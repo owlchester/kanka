@@ -160,6 +160,9 @@ class MenuLink extends MiscModel
             elseif (Str::contains($this->menu, 'relation')) {
                 return route('entities.relations.index', $this->target->id);
             }
+            elseif (Str::contains($this->menu, 'abilit')) {
+                return route('entities.entity_abilities.index', $this->target->id);
+            }
             if (Route::has($menuRoute)) {
                 $route = $menuRoute;
             }
