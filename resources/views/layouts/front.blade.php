@@ -32,22 +32,22 @@ $menus = [
 @else
     <link rel="canonical" href="{{ LaravelLocalization::localizeURL(null, null) }}" />
     @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+@if ($localeCode == app()->getLocale())
+@continue
+@endif
     <link rel="alternate" href="{{ LaravelLocalization::localizeUrl(null, $localeCode) }}" hreflang="{{ $localeCode }}">
     @endforeach
 @endif
 
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css?v=4.4" rel="stylesheet">
+    <link href="/css/front/new-age.min.css" rel="stylesheet">
+    <link href="{{ mix('css/front.css') }}" rel="stylesheet">
     @yield('styles')
 </head>
 
 <body id="page-top">
 @include('layouts._tracking-fallback')
-<!-- Custom styles for this template -->
-<link href="/css/front/new-age.min.css" rel="stylesheet"  media="print" onload="this.media='all'">
-<link href="{{ mix('css/front.css') }}" rel="stylesheet"  media="print" onload="this.media='all'">
-<noscript id="deferred-styles">
-</noscript>
 
 <!-- Navigation -->
 <div class="topbar">

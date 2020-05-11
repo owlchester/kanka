@@ -44,4 +44,19 @@ class SitemapController extends Controller
             'Content-Type' => 'text/xml'
         ]);
     }
+
+    public function language()
+    {
+        $this->sitemapService
+            ->locale(app()->getLocale())
+            ->page(request()->get('page', ''));
+
+        $sitemaps = $this->sitemapService->sitemaps();
+        $urls = $this->sitemapService->urls();
+
+        $contents = view('front.sitemap', compact('urls', 'sitemaps'));
+        return response($contents)->withHeaders([
+            'Content-Type' => 'text/xml'
+        ]);
+    }
 }
