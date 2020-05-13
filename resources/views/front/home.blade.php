@@ -1,13 +1,4 @@
-@extends('layouts.front', [
-    'menus' => [
-        'features',
-        'pricing',
-        'about',
-        'news',
-        'contact'
-    ],
-    'metaDescription' => __('front.home.seo.meta-description')
-])
+@extends('layouts.front')
 @section('og')
 @endsection
 @section('content')

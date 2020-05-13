@@ -1,12 +1,3 @@
-@php
-$menus = [
-        'features',
-        'pricing',
-        'about',
-        'news',
-        'contact'
-    ];
-@endphp
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -14,7 +5,7 @@ $menus = [
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no">
     <meta name="author" content="{{ config('app.name') }}">
-    <meta name="description" content="{{ $metaDescription ?? __('front.meta.description') }}">
+    <meta name="description" content="{{ $metaDescription ?? __('front.home.seo.description') }}">
     <meta name="keywords" content="{{  $metaKeywords ?? __('front.seo.keywords') }}">
 
     <meta property="og:title" content="{{ $title ?? __('front.meta.title') }} - {{ config('app.name') }}">
@@ -106,11 +97,21 @@ $menus = [
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                @foreach ($menus as $menu)
                 <li class="nav-item">
-                    <a class="nav-link @if(!empty($active) && $active == $menu) nav-active @endif" href="{{ route("front.$menu") }}">{{ __('front.menu.' . $menu) }}</a>
+                    <a class="nav-link @if(!empty($active) && $active == 'features') nav-active @endif" href="{{ route("front.features") }}">{{ __('front.menu.features') }}</a>
                 </li>
-                @endforeach
+                <li class="nav-item">
+                    <a class="nav-link @if(!empty($active) && $active == 'pricing') nav-active @endif" href="{{ route("front.pricing") }}">{{ __('front.menu.pricing') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @if(!empty($active) && $active == 'about') nav-active @endif" href="{{ route("front.about") }}">{{ __('front.menu.about') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://blog.kanka.io" target="_blank">{{ __('front.menu.news') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @if(!empty($active) && $active == 'contact') nav-active @endif" href="{{ route("front.contact") }}">{{ __('front.menu.contact') }}</a>
+                </li>
 
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="drop3" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
