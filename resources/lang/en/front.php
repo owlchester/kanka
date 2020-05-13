@@ -40,6 +40,9 @@ return [
     'faq'           => [
         'description'   => 'We\'ve covered the most frequently asked questions and answered them as clearly as we can.',
         'title'         => 'FAQ',
+        'helpers' => [
+            'more' => 'Didn\'t find what you were looking for?',
+        ],
     ],
     'features'      => [
         'api'               => [
@@ -132,19 +135,30 @@ return [
         'navigation'=> 'Navigation',
         'resources' => 'Resources',
         'social'    => 'Social',
+        'headings' => [
+            'useful_links' => 'Useful Links',
+            'community' => 'Community',
+            'app' => 'App',
+        ]
     ],
     'help'          => [
         'description'   => 'We are here for you in case you need a bit of help. Contact us using one of the following methods, and we\'ll get back to you as fast as we can.',
-        'discord'       => 'Join the community on Discord',
+        'discord'       => 'Join our Discord',
         'email'         => 'Send us an email',
         'facebook'      => 'Contact us on Facebook',
         'title'         => 'Help',
         'twitter'       => 'Tweet at us on Twitter',
     ],
+    'home' => [
+        'seo' => [
+            'meta-description' => 'Kanka is a community driven RPG Campaign Manager and Worldbuilding tool, that makes it easy to organise, plan and enjoy your tabletop RPG campaigns',
+        ],
+    ],
     'master'        => [
-        'call_to_action'    => 'Register now, it\'s free!',
-        'description'       => 'Kanka is an easy, intuitive, and flexible tool for worldbuilders, authors, story tellers and RPG players to digitally track their worlds and campaigns. Create and organize people, places, organisations, events and much more.',
+        'call_to_action'    => 'Sign up',
+        'description'       => 'Kanka is an easy, intuitive, and flexible tool for worldbuilders, authors, story tellers and RPG players to digitally track their worlds and campaigns. Create and organize people, places, organisations, events and much more for free.',
         'title'             => 'Kanka',
+        'heading' => 'RPG Campaign Management and Worldbuilding made easy',
     ],
     'menu'          => [
         'about'     => 'About',
@@ -154,7 +168,7 @@ return [
         'contact'   => 'Contact',
         'contact_us'=> 'Contact Us',
         'dashboard' => 'Dashboard',
-        'faq'       => 'FAQ',
+        'faq'       => 'FAQ & Help',
         'features'  => 'Features',
         'help'      => 'Help',
         'home'      => 'Home',
@@ -222,6 +236,9 @@ return [
     'second_block'  => [
         'call_to_action'    => 'Register a free account!',
         'title'             => 'Spend less time organising and more time worldbuilding.',
+    ],
+    'seo' => [
+        'keywords' => 'Worldbuilding, Tabletop RPG, RPG Campaign Manager',
     ],
     'team'          => [
         'coffee'    => 'Buy me a coffee!',

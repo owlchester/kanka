@@ -157,6 +157,23 @@
                     <div class="col-md-4">
                     </div>
                 </div>
+
+                <hr />
+
+                <h2>{{ __('front.faq.helpers.more') }}</h2>
+                <div class="row faq-more">
+                    <a href="{{ config('social.discord') }}" class="btn btn-light">
+                        <i class="fab fa-discord"></i>
+                        {{ trans('front.help.discord') }}
+                    </a>
+                    <a href="{{ config('social.facebook') }}" class="btn btn-light">
+                        <i class="fab fa-facebook"></i>
+                        {{ trans('front.help.facebook') }}
+                    </a>
+                    <a href="mailto:hello@kanka.io" class="btn btn-light">
+                        <i class="fa fa-envelope-open"></i>
+                        {{ trans('front.help.email') }}
+                    </a>
             </div>
         </div>
     </section>

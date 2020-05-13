@@ -25,7 +25,7 @@
 
                 @include('front._pricing')
 
-                <a href="{{ route('front.features') }}" class="lead">
+                <a href="{{ route('front.features', '#patreon') }}" class="lead">
                     {{ __('front.pricing.actions.more') }} <i class="fa fa-arrow-right"></i>
                 </a>
             </div>
