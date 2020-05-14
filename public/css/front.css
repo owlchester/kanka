@@ -1372,6 +1372,18 @@ ul.pagination li span {
   margin-left: auto;
 }
 
+.card .subscription-kobold {
+  background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/tiers/kobold-325.png);
+}
+
+.card .subscription-owlbear {
+  background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/tiers/owlbear-325.png);
+}
+
+.card .subscription-elemental {
+  background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/tiers/elemental-325.png);
+}
+
 #pricing,
 #news {
   padding: 50px 0;

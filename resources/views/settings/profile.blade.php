@@ -41,7 +41,7 @@
                     @if (!empty(auth()->user()->avatar) && auth()->user()->avatar != 'users/default.png')
                         <div class="preview">
                             <div class="image">
-                                <img src="{{ Storage::url(auth()->user()->avatar) }}"/>
+                                <img src="{{ auth()->user()->getAvatarUrl(200) }}"/>
                                 <a href="#" class="img-delete" data-target="remove-avatar" title="{{ __('crud.remove') }}">
                                     <i class="fa fa-trash"></i> {{ __('crud.remove') }}
                                 </a>

@@ -12,7 +12,7 @@
         <div id="location-map">
             <location-map
                 :id="{{ $location->id }}"
-                :map="'{{ Storage::url($location->map) }}'"
+                :map="'{{ Img::url($location->map) }}'"
 
             >
 

@@ -274,6 +274,10 @@
                     <td><i class="fa fa-check-circle"></i></td>
                 </tr>
                 <tr>
+                    <td class="text">{{ __('front.features.boosts.images') }}</td>
+                    <td><i class="fa fa-check-circle"></i></td>
+                </tr>
+                <tr>
                     <td class="text">{{ __('front.features.boosts.upload') }}</td>
                     <td><i class="fa fa-check-circle"></i></td>
                 </tr>
@@ -291,7 +295,7 @@
 
             <div class="col-lg-6 my-auto">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/eSyHGSq4SbE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="embed-responsive-item" src="" data-src="https://www.youtube.com/embed/eSyHGSq4SbE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </div>

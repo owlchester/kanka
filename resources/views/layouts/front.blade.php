@@ -12,12 +12,12 @@ $menus = [
 <head>
 @include('layouts._tracking')
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no">
     <meta name="description" content="{{ __('front.meta.description') }}">
     <meta name="author" content="{{ config('app.name') }}">
 
-    <meta property="og:title" content="{{ $title ?? __('front.meta.title') }} - {{ config('app.name') }}" />
-    <meta property="og:site_name" content="{{ config('app.site_name') }}" />
+    <meta property="og:title" content="{{ $title ?? __('front.meta.title') }} - {{ config('app.name') }}">
+    <meta property="og:site_name" content="{{ config('app.site_name') }}">
 @yield('og')
     <title>{{ $title ?? __('front.meta.title') }} - {{ config('app.name', 'Kanka') }}</title>
 
@@ -95,7 +95,7 @@ $menus = [
 </div>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="{{ route('home') }}">{{ config('app.name', 'Laravel') }}</a>
+        <a class="navbar-brand" href="{{ route('home') }}">{{ config('app.name', 'Laravel') }}</a>
         @auth
         @else
             <a href="{{ route('login') }}" class="d-sm-none">
@@ -147,10 +147,9 @@ $menus = [
 <!-- Plugin JavaScript -->
 <script src="/vendor/jquery-easing/jquery.easing.min.js" async></script>
 
-<!-- Custom scripts for this template -->
-<script src="/js/front/new-age.min.js" async></script>
-
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+<script src="https://kit.fontawesome.com/d7f0be4a8d.js" crossorigin="anonymous"></script>
+
 <script>
     WebFont.load({
         google: {
@@ -171,7 +170,6 @@ $menus = [
 </script>
 
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
 <script>
     window.addEventListener("load", function(){
@@ -191,6 +189,15 @@ $menus = [
                 "link": "{{ __('front.cookie.link') }}"
             }
         })});
+</script>
+<script>
+    function init() {
+        var vidDefer = document.getElementsByTagName('iframe');
+        for (var i=0; i<vidDefer.length; i++) {
+            if(vidDefer[i].getAttribute('data-src')) {
+                vidDefer[i].setAttribute('src',vidDefer[i].getAttribute('data-src'));
+            } } }
+    window.onload = init;
 </script>
 
 <!-- Facebook Pixel Code -->

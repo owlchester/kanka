@@ -1,8 +1,16 @@
 <?php
 
 return [
+    'create'    => [
+        'success'   => 'Közösségi szavazás létrehozva.',
+        'title'     => 'Új közösségi szavazás létrehozása',
+    ],
+    'destroy'   => [
+        'success'   => 'Közösségi szavazás eltávolítva.',
+    ],
     'edit'      => [
-        'title' => 'Közösségi szavazás frissítése :name',
+        'success'   => 'Közösségi szavazás szerkesztve.',
+        'title'     => 'Közösségi szavazás frissítése :name',
     ],
     'fields'    => [
         'content'       => 'Tartalom',
@@ -15,6 +23,7 @@ return [
         'votes'         => 'Szavazatok',
     ],
     'index'     => [
+        'add'   => 'Új Közösségi szavazás',
         'title' => 'Admin: Közösségi szavazatok',
     ],
 ];

@@ -18,6 +18,7 @@ return [
     'fields'        => [
         'abilities' => 'Habilidades',
         'ability'   => 'Habilidad',
+        'charges'   => 'Usos',
         'name'      => 'Nombre',
         'type'      => 'Tipo',
     ],
@@ -32,8 +33,9 @@ return [
         'title'         => 'Habilidades',
     ],
     'placeholders'  => [
-        'name'  => 'Bola de fuego, Alerta, Puñalada trasera',
-        'type'  => 'Hechizo, Proeza, Ataque',
+        'charges'   => 'Cantidad de usos. Puedes hacer referencia a un atributo con {Nivel}*{CHA}',
+        'name'      => 'Bola de fuego, Alerta, Puñalada trasera',
+        'type'      => 'Hechizo, Proeza, Ataque',
     ],
     'show'          => [
         'tabs'  => [

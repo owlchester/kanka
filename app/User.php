@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Facades\Img;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
@@ -187,27 +188,15 @@ class User extends \TCG\Voyager\Models\User
     }
 
     /**
+     * @param int $size = 40
      * @return string
      */
-    public function getAvatarUrl($thumb = false): string
+    public function getAvatarUrl(int $size = 40): string
     {
         if (!empty($this->avatar) && $this->avatar != 'users/default.png') {
-            return Storage::url(($thumb ? str_replace('.', '_thumb.', $this->avatar) : $this->avatar));
+            return Img::crop($size, $size)->url($this->avatar);
         } else {
             return '/images/defaults/user.svg';
-        }
-    }
-
-    /**
-     * @param bool $thumb
-     * @return string
-     */
-    public function getImageUrl($thumb = false): string
-    {
-        if (empty($this->avatar)) {
-            return asset('/images/defaults/' . $this->getTable() . ($thumb ? '_thumb' : null) . '.jpg');
-        } else {
-            return Storage::url(($thumb ? str_replace('.', '_thumb.', $this->avatar) : $this->avatar));
         }
     }
 
@@ -302,13 +291,12 @@ class User extends \TCG\Voyager\Models\User
 
     /**
      * Get the user's avatar
-     * @param bool $thumb
      * @return string
      */
-    public function getAvatar($thumb = false)
+    public function getAvatar()
     {
         return "<span class=\"entity-image\" style=\"background-image: url('" .
-            $this->getImageUrl(true) . "');\" title=\"" . e($this->name) . "\"></span>";
+            $this->getAvatarUrl(40) . "');\" title=\"" . e($this->name) . "\"></span>";
     }
 
 

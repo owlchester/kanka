@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'abilities'             => 'Schopnosti',
     'admin'                 => 'Administrácia',
     'attribute_templates'   => 'Šablóny atribútov',
     'calendars'             => 'Kalendáre',
@@ -33,4 +34,5 @@ return [
     'team'                  => 'Tím',
     'translations'          => 'Preklady',
     'trello'                => 'Trello',
+    'world'                 => 'Svet',
 ];

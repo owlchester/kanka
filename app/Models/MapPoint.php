@@ -93,7 +93,7 @@ class MapPoint extends Model
                 . 'data-toggle="tooltip-ajax" '
                 . 'data-id="' . $this->target_entity_id . '" ';
             if($this->icon == 'entity') {
-                $style .= "background-image: url('" . $this->targetEntity->child->getImageUrl(true) . "');";
+                $style .= "background-image: url('" . $this->targetEntity->child->getImageUrl(40) . "');";
                 $marker = '';
             }
         }

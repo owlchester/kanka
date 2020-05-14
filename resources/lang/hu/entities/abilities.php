@@ -3,6 +3,7 @@
 return [
     'actions'   => [
         'add'   => 'Adj hozzá egy képességet',
+        'reset' => 'Aktiválások számának visszaállítása',
     ],
     'create'    => [
         'title' => 'Adj hozzá egy képességet ehhez: :name',

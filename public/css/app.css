@@ -598,16 +598,28 @@ div.mce-fullscreen {
   text-align: left;
 }
 
+.tooltip-ajax .entity-header {
+  display: flex;
+  align-items: center;
+  align-content: stretch;
+  min-height: unset;
+  height: auto;
+  margin: 5px 0;
+  justify-content: flex-start;
+}
+
+.tooltip-ajax .entity-header .entity-image {
+  margin: 0 10px 0 2px;
+  height: 60px;
+  width: 60px;
+}
+
 .tooltip-ajax .tooltip-text {
   clear: both;
 }
 
-.tooltip-ajax .entity-image {
-  height: 120px;
-  width: 120px;
-  border-radius: 50%;
-  float: left;
-  display: block;
+.tooltip-ajax .entity-names {
+  line-height: 24px;
 }
 
 .tooltip-ajax .entity-name {

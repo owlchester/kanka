@@ -38,7 +38,7 @@ return [
         'type'          => 'Főváros',
     ],
     'note1'         => [
-        'entry' => <<<'TEXT'
+        'entry'         => <<<'TEXT'
 Üdv a Kankában! Elkészült az első kampányod, amihez hozzá is adtunk számos entitást példaképpen, hogy meghozzák az ihleted (természetesen bármikor törölheted őket, ha nincs rájuk szükséged).
 
 Minden bizonnyal neki is kezdenél a saját entitásaid felvételéhez, ehhez válassz egy kategóriát bal oldalt, és már neki is láthatsz. A számodra felesleges kategóriákat el is rejtheted a Kampány beállításainál. (Nem törlődnek a hozzá tartozó elemek, és bármikor vissza is kapcsolhatod őket.)
@@ -55,6 +55,7 @@ Végül, de nem utolsó sorban:
 - Tetszik az app, és szeretnéd segíteni, hogy tovább növekedhessen? Látogass el a :patreon-ra, és támogasd a Kankát!
 TEXT
 ,
-        'name'  => 'Üdvözlő üzenet',
+        'name'          => 'Üdvözlő üzenet',
+        'subscriptions' => 'Előfizetések',
     ],
 ];

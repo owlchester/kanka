@@ -20,6 +20,18 @@ return [
         'settings'                  => 'Beállítások',
         'theme'                     => 'Téma',
     ],
+    'newsletter'    => [
+        'links'     => [
+            'community-vote'    => 'Közösségi szavazás',
+            'news'              => 'Hírek',
+        ],
+        'settings'  => [
+            'news'          => 'Hírek - értesíts, amikor vannak :news.',
+            'newsletter'    => 'Hírlevél - feliratkozás a Kanka hírlevelére.',
+            'votes'         => 'Közösségi szavazás - értesíts amint egy új :vote elérhető.',
+        ],
+        'title'     => 'Hírlevelek',
+    ],
     'password'      => [
         'success'   => 'A jelszavadat frissítettük.',
     ],

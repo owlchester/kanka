@@ -24,6 +24,7 @@ use App\Models\EntityFile;
 use App\Models\EntityNote;
 use App\Models\Family;
 use App\Http\Validators\HashValidator;
+use App\Models\Image;
 use App\Models\Inventory;
 use App\Models\Item;
 use App\Models\Journal;
@@ -107,6 +108,7 @@ class AppServiceProvider extends ServiceProvider
             EntityFile::observe('App\Observers\EntityFileObserver');
             Location::observe(LocationObserver::class);
             Family::observe(FamilyObserver::class);
+            Image::observe('App\Observers\ImageObserver');
             Item::observe(ItemObserver::class);
             Inventory::observe('App\Observers\InventoryObserver');
             MapPoint::observe('App\Observers\MapPointObserver');

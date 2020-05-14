@@ -6,14 +6,14 @@
                     <h1 class="mb-5">{{ trans('front.master.title') }}</h1>
                     <p class="mb-5">{{ trans('front.master.description') }}</p>
 
-                    <a href="{{ route('register') }}" class="btn btn-outline btn-xl js-scroll-trigger">
+                    <a href="{{ route('register') }}" class="btn btn-outline btn-xl">
                         {{ trans('front.master.call_to_action') }}
                     </a>
                 </div>
             </div>
             <div class="col-lg-5 text-center my-auto">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TUAMJf22XeM" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="embed-responsive-item" src="" data-src="https://www.youtube.com/embed/TUAMJf22XeM" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </div>

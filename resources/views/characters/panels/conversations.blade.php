@@ -16,7 +16,7 @@
             @foreach ($r as $conversation)
                 <tr>
                     <td>
-                        <a class="entity-image" style="background-image: url('{{ $conversation->getImageUrl(true) }}');" title="{{ $conversation->name }}" href="{{ route('conversations.show', $conversation->id) }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $conversation->getImageUrl(40) }}');" title="{{ $conversation->name }}" href="{{ route('conversations.show', $conversation->id) }}"></a>
                     </td>
                     <td>
                         <a href="{{ route('conversations.show', $conversation->id) }}" data-toggle="tooltip" title="{{ $conversation->tooltip() }}">{{ $conversation->name }}</a>

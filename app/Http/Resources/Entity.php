@@ -19,7 +19,7 @@ class Entity extends EntityChild
             'entity_id' => $this->id,
             'name' => $this->name,
             'image' => $this->child->getImageUrl(),
-            'image_thumb' => $this->child->getImageUrl(true),
+            'image_thumb' => $this->child->getImageUrl(40),
             'has_custom_image' => !empty($this->child->image),
 
             'type' => $this->type,

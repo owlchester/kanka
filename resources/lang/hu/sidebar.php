@@ -34,4 +34,5 @@ return [
     'team'                  => 'Csapat',
     'translations'          => 'Fordítások',
     'trello'                => 'Trello',
+    'world'                 => 'Világ',
 ];

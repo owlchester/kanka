@@ -229,6 +229,7 @@ class CampaignService
             throw new TranslatableException(trans('campaigns.export.errors.limit'));
         }
         $campaign->export_date = date('Y-m-d');
+        $campaign->withObservers = false;
         $campaign->save();
 
         CampaignExport::dispatch($campaign, $user, $service);

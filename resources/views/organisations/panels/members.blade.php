@@ -71,7 +71,7 @@ $hasOrg = request()->has('organisation_id');
             @foreach ($r as $relation)
                 <tr>
                     <td>
-                        <a class="entity-image" style="background-image: url('{{ $relation->character->getImageUrl(true) }}');" title="{{ $relation->character->name }}" href="{{ route('characters.show', $relation->character->id) }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $relation->character->getImageUrl(40) }}');" title="{{ $relation->character->name }}" href="{{ route('characters.show', $relation->character->id) }}"></a>
                     </td>
                     <td>
                         {!! $relation->character->tooltipedLink() !!}<br />

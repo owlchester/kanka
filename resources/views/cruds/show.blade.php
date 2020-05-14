@@ -18,7 +18,7 @@ $headerImage = !empty($model->entity->header_image) && $campaign->campaign()->bo
 
 @section('og')
     <meta property="og:description" content="{{ $model->tooltip() ?: trans($name . '.show.title', ['name' => $model->name]) }}" />
-    @if ($model->image)<meta property="og:image" content="{{ Storage::url($model->image)  }}" />@endif
+    @if ($model->image)<meta property="og:image" content="{{ $model->getImageUrl(0)  }}" />@endif
 
     <meta property="og:url" content="{{ $model->getLink()  }}" />
 @endsection

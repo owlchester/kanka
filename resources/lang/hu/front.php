@@ -160,6 +160,7 @@ return [
         'home'      => 'Kezdőlap',
         'login'     => 'Bejelentkezés',
         'news'      => 'Hírek',
+        'newsletter'=> 'Hírlevél',
         'pricing'   => 'Árak',
         'privacy'   => 'Adatvédelmi tájékoztató',
         'register'  => 'Regisztráció',
@@ -179,6 +180,7 @@ return [
     'pricing'       => [
         'actions'       => [
             'more'      => 'Ismerd meg az összes funkciót, amelyet a Kanka támogatásával szerezhetsz meg',
+            'subscribe' => 'Előfizetés',
             'support'   => 'Támogatás',
         ],
         'benefits'      => [

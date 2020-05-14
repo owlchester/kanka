@@ -13,7 +13,7 @@
                 {{ $mapPoint->name }}
             @else
                 <a href="{{ $mapPoint->targetEntity->child->getLink('show') }}">
-                    <span class="entity-image" style="background-image: url('{{ $mapPoint->targetEntity->child->getImageUrl(true) }}')"></span>
+                    <span class="entity-image" style="background-image: url('{{ $mapPoint->targetEntity->child->getImageUrl(40) }}')"></span>
                     <span class="entity-name">{{ $mapPoint->targetEntity->name }}</span>
                 </a>
             @endif

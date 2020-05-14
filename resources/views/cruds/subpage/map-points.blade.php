@@ -34,7 +34,7 @@
                         @foreach ($data as $location)
                             <tr>
                                 <td>
-                                    <a class="entity-image" style="background-image: url('{{ $location->location->getImageUrl(true) }}');" title="{{ $location->location->name }}" href="{{ route('locations.show', $location->location_id) }}"></a>
+                                    <a class="entity-image" style="background-image: url('{{ $location->location->getImageUrl(40) }}');" title="{{ $location->location->name }}" href="{{ route('locations.show', $location->location_id) }}"></a>
                                 </td>
                                 <td>
                                     {!! $location->location->tooltipedLink() !!}

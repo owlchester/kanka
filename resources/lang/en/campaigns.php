@@ -56,10 +56,12 @@ return [
         'system'                        => 'System',
         'theme'                         => 'Theme',
         'tooltip_family'                => 'Disable family names from tooltips',
+        'tooltip_image'                 => 'Show entity image in tooltips',
         'visibility'                    => 'Visibility',
     ],
     'following'                         => 'Following',
     'helpers'                           => [
+        'boost_required'                => 'This feature requires the campaign to be boosted. More info on the :settings page.',
         'boosted'                       => 'Some features are unlocked because this campaign is being boosted. Find out more on the :settings page.',
         'css'                           => 'Write your own CSS that will be loaded into the pages of your campaign. Please note that any abuse of this feature can lead to a removal of your custom CSS. Repeated or grave offenses can lead to a removal of your campaign.',
         'entity_personality_visibility' => 'When creating a new character, the "Personality Visible" option will automatically be unselected.',
@@ -304,6 +306,7 @@ return [
         'tabs'          => [
             'export'        => 'Export',
             'information'   => 'Information',
+            'default-images' => 'Default Images',
             'members'       => 'Members',
             'menu'          => 'Menu',
             'recovery'      => 'Recovery',

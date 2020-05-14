@@ -104,7 +104,7 @@ $actions = [
         @foreach ($campaign->campaign()->members()->withoutAdmins()->with('user')->get() as $member)
             <div class="row margin-bottom">
                 <div class="col-sm-4">
-                    <div class="entity-image float-left" style="background-image: url({{ $member->user->getAvatarUrl(true) }})" title="{{ $member->user->name }}">
+                    <div class="entity-image float-left" style="background-image: url({{ $member->user->getAvatarUrl() }})" title="{{ $member->user->name }}">
                     </div>
                     <div class="entity-name-img">{{ $member->user->name }}</div>
                 </div>

@@ -21,7 +21,7 @@
             @foreach ($r as $race)
                 <tr>
                     <td>
-                        <a class="entity-image" style="background-image: url('{{ $race->getImageUrl(true) }}');" title="{{ $race->name }}" href="{{ route('races.show', $race->id) }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $race->getImageUrl(40) }}');" title="{{ $race->name }}" href="{{ route('races.show', $race->id) }}"></a>
                     </td>
                     <td>
                         {!! $race->tooltipedLink() !!}
