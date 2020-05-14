@@ -385,6 +385,9 @@ Route::group([
         Route::get('/', '\BinaryTorch\LaRecipe\Http\Controllers\DocumentationController@index')->name('index');
         Route::get('/{version}/{page?}', '\BinaryTorch\LaRecipe\Http\Controllers\DocumentationController@show')->where('page', '(.*)')->name('show');
     });
+
+    // Language sitemaps
+    Route::get('/sitemap.xml', 'Front\SitemapController@language')->name('front.sitemap');
 });
 
 Route::group(['prefix' => 'subscription-api'], function () {
@@ -397,8 +400,6 @@ Route::group(['prefix' => 'subscription-api'], function () {
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
-
-Route::get('/sitemap', 'Front\SitemapController@index')->name('front.sitemap');
 
 // Stripe
 Route::post(

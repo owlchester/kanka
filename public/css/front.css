@@ -1144,6 +1144,10 @@ footer h4 {
   color: #ddd;
 }
 
+footer h5 {
+  margin-left: 11px;
+}
+
 footer a,
 footer span {
   border-radius: 4px;
@@ -1185,8 +1189,19 @@ footer .footer-social .email:hover {
 }
 
 footer .copyright {
-  margin-top: 20px;
   font-size: 12px;
+}
+
+footer .secondary-footer {
+  margin-top: 25px;
+}
+
+footer .secondary-footer ul li {
+  display: inline-block;
+}
+
+footer .secondary-footer ul li a {
+  font-size: 12px !important;
 }
 
 .campaign {
@@ -1458,6 +1473,22 @@ ul.pagination li span {
 
 .faqs ul li {
   margin: 0 0 20px 0;
+}
+
+.faqs .faq-more a {
+  margin-right: 25px;
+}
+
+.faqs .faq-more a i {
+  display: inline-block;
+}
+
+.btn-light {
+  background-color: #ecedee;
+}
+
+.landing-heading {
+  margin-bottom: 50px !important;
 }
 
 /* Hover Effects on Card */

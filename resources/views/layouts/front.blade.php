@@ -15,6 +15,8 @@ $menus = [
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no">
     <meta name="description" content="{{ __('front.meta.description') }}">
     <meta name="author" content="{{ config('app.name') }}">
+    <meta name="description" content="{{ $metaDescription ?? __('front.meta.description') }}">
+    <meta name="keywords" content="{{  $metaKeywords ?? __('front.seo.keywords') }}">
 
     <meta property="og:title" content="{{ $title ?? __('front.meta.title') }} - {{ config('app.name') }}">
     <meta property="og:site_name" content="{{ config('app.site_name') }}">
@@ -32,20 +34,25 @@ $menus = [
 @else
     <link rel="canonical" href="{{ LaravelLocalization::localizeURL(null, null) }}" />
     @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+@if ($localeCode == app()->getLocale())
+@continue
+@endif
     <link rel="alternate" href="{{ LaravelLocalization::localizeUrl(null, $localeCode) }}" hreflang="{{ $localeCode }}">
-    @endforeach
+@endforeach
 @endif
 
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css?v=4.4" rel="stylesheet">
+    <link href="/css/front/new-age.min.css" rel="stylesheet">
+    <link href="{{ mix('css/front.css') }}" rel="stylesheet">
     @yield('styles')
 </head>
 
 <body id="page-top">
 @include('layouts._tracking-fallback')
 <!-- Custom styles for this template -->
-<link href="/css/front/new-age.min.css" rel="stylesheet">
-<link href="{{ mix('css/front.css') }}" rel="stylesheet">
+<link href="/css/front/new-age.min.css" rel="stylesheet"  media="print" onload="this.media='all'">
+<link href="{{ mix('css/front.css') }}" rel="stylesheet"  media="print" onload="this.media='all'">
 <noscript id="deferred-styles">
 </noscript>
 
@@ -67,11 +74,6 @@ $menus = [
                     <a class="nav-link" href="{{ route('register') }}">{{ __('front.menu.register') }}</a>
                 </li>
             @endauth
-            <li>
-                <a href="{{ config('patreon.url') }}" target="patreon" title="Patreon" rel="noreferrer">
-                    <i class="fab fa-patreon"></i>
-                </a>
-            </li>
             <li>
                 <a href="{{ config('social.discord') }}" target="discord" title="Discord" rel="noreferrer">
                     <i class="fab fa-discord"></i>
@@ -170,7 +172,7 @@ $menus = [
 </script>
 
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
-<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js" async></script>
 <script>
     window.addEventListener("load", function(){
         window.cookieconsent.initialise({

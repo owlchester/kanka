@@ -47,13 +47,12 @@ class SitemapService
      */
     public function sitemaps(): array
     {
-        if (empty($this->locale)) {
+        if (empty($this->page)) {
             return $this->base();
         }
         elseif (!empty($this->page) && method_exists($this, $this->page)) {
             return [];
         }
-        return $this->language();
     }
 
     public function urls(): array
@@ -75,23 +74,7 @@ class SitemapService
             // Pages
             $links = [];
         } else {
-            $base = [
-                '/',
-                'about',
-                'privacy-policy',
-                'help',
-                'faq',
-                'features',
-                'pricing',
-                'roadmap',
-                'community',
-                'public-campaigns',
-                'news',
-            ];
 
-            foreach ($base as $link) {
-                $links[] = LaravelLocalization::localizeURL($link, $this->locale);
-            }
         }
 
         return $links;
@@ -130,14 +113,38 @@ class SitemapService
         return $links;
     }
 
+    /**
+     * @return array
+     */
+    protected function index(): array
+    {
+        $links = [];
+        $base = [
+            '/',
+            'about',
+            'privacy-policy',
+            'help',
+            'faq',
+            'features',
+            'pricing',
+            'roadmap',
+            'community',
+            'public-campaigns',
+            'news',
+        ];
+
+        foreach ($base as $link) {
+            $links[] = LaravelLocalization::localizeURL($link, $this->locale);
+        }
+        return $links;
+    }
+
     protected function base(): array
     {
         $links = [];
-        foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties) {
-            $links[] = route('front.sitemap', ['locale' => $localeCode]);
-            $links[] = route('front.sitemap', ['locale' => $localeCode, 'page' => 'news']);
-            $links[] = route('front.sitemap', ['locale' => $localeCode, 'page' => 'campaigns']);
-        }
+        $links[] = route('front.sitemap', ['page' => 'index']);
+        $links[] = route('front.sitemap', ['page' => 'news']);
+        $links[] = route('front.sitemap', ['page' => 'campaigns']);
         return $links;
     }
 }

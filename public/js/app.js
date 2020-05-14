@@ -73062,7 +73062,7 @@ $(document).ready(function () {
   /*$.each($('.datagrid-search'), function(index) {
       $(this).submit(function(event) {
           event.preventDefault();
-           window.location.href =
+            window.location.href =
       });
   });*/
 
@@ -73079,8 +73079,7 @@ $(document).ready(function () {
     initSelect2();
     initCheckboxSwitch();
     initAjaxPagination();
-    initTooltips();
-    initCategories(); // Handle when opening the entity-creator ui
+    initTooltips(); // Handle when opening the entity-creator ui
 
     entityCreatorUI();
   });
@@ -74574,8 +74573,7 @@ window.ajaxTooltip = function () {
     trigger: 'hover',
     placement: 'auto',
     template: '<div class="tooltip" role="tooltip">' + '<div class="tooltip-arrow"></div>' + '<div class="tooltip-inner tooltip-ajax"></div>' + '</div>',
-    html: true,
-    sanitize: false
+    html: true
   });
   $('[data-toggle="tooltip-ajax"]').click(function (e) {
     $(this).tooltip('hide');

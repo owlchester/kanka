@@ -24,7 +24,7 @@ return array(
         'it',
         'nl',
         'pt-BR',
-        //'ru',
+        'ru',
         'sk',
         'he',
         'hr'

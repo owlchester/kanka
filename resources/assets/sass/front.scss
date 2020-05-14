@@ -166,6 +166,9 @@ footer {
     font-weight: 700;
     color: #ddd;
   }
+  h5 {
+    margin-left: 11px;
+  }
 
   a, span {
     border-radius: 4px;
@@ -202,8 +205,20 @@ footer {
   }
 
   .copyright {
-    margin-top: 20px;
     font-size: 12px;
+  }
+
+  .secondary-footer {
+    margin-top: 25px;
+
+    ul {
+      li {
+        display: inline-block;
+        a {
+          font-size: 12px !important;
+        }
+      }
+    }
   }
 }
 
@@ -482,7 +497,26 @@ ul.pagination {
       margin: 0 0 20px 0;
     }
   }
+
+  .faq-more {
+    a {
+      margin-right: 25px;
+      i {
+        display: inline-block;
+      }
+    }
+  }
 }
+
+
+.btn-light {
+  background-color: #ecedee;
+}
+
+.landing-heading {
+  margin-bottom: 50px !important;
+}
+
 
 /* Hover Effects on Card */
 

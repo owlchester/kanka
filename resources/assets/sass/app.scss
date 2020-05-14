@@ -311,6 +311,19 @@ footer {
       }
     }
   }
+  .secondary-footer {
+    margin-top: 25px;
+
+    ul {
+      li {
+        display: inline-block;
+        padding-right: 12px;
+        a {
+          font-size: 12px !important;
+        }
+      }
+    }
+  }
 }
 .main-header {
   .sidebar-toggle {

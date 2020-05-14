@@ -299,6 +299,19 @@ footer .footer-social .copyright .dropup {
   display: inline-block;
 }
 
+footer .secondary-footer {
+  margin-top: 25px;
+}
+
+footer .secondary-footer ul li {
+  display: inline-block;
+  padding-right: 12px;
+}
+
+footer .secondary-footer ul li a {
+  font-size: 12px !important;
+}
+
 .main-header .sidebar-toggle {
   font-family: "Font Awesome 5 Free";
   font-weight: 700;
@@ -598,28 +611,16 @@ div.mce-fullscreen {
   text-align: left;
 }
 
-.tooltip-ajax .entity-header {
-  display: flex;
-  align-items: center;
-  align-content: stretch;
-  min-height: unset;
-  height: auto;
-  margin: 5px 0;
-  justify-content: flex-start;
-}
-
-.tooltip-ajax .entity-header .entity-image {
-  margin: 0 10px 0 2px;
-  height: 60px;
-  width: 60px;
-}
-
 .tooltip-ajax .tooltip-text {
   clear: both;
 }
 
-.tooltip-ajax .entity-names {
-  line-height: 24px;
+.tooltip-ajax .entity-image {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  float: left;
+  display: block;
 }
 
 .tooltip-ajax .entity-name {
@@ -944,15 +945,6 @@ td.breakable {
 
 hr {
   border-top: 1px solid #eeeeee;
-}
-
-.label-tag-bubble {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: inline-block;
-  font-size: 8pt;
-  padding: 4px;
 }
 
 .calendar {

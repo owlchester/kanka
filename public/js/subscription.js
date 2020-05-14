@@ -153,11 +153,12 @@ function initConfirmListener() {
     }
 
     e.preventDefault();
-    var button = $('.subscription-confirm-button');
+    var button = $('#subscription-confirm-button');
     button.addClass('disabled').html('<i class="fa fa-spin fa-spinner"></i>');
     var intentToken = $('input[name="subscription-intent-token"]');
     var errorMessage = $('.alert-danger');
-    errorMessage.hide(); // If the form already has a payment id, we don't need stripe to add the new one
+    errorMessage.hide();
+    console.log('intent token', intentToken.val(), intentToken); // If the form already has a payment id, we don't need stripe to add the new one
 
     var cardID = $('input[name="payment_id"]');
 
@@ -185,11 +186,6 @@ function initConfirmListener() {
         $('#subscription-confirm').submit();
       }
     }.bind(this));
-  });
-  $('.subscription-form').submit(function (e) {
-    var button = $('.subscription-confirm-button');
-    button.addClass('disabled').html('<i class="fa fa-spin fa-spinner"></i>');
-    return true;
   });
 }
 
