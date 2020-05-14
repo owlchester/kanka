@@ -653,7 +653,8 @@ export default {
                     "title": "Editing multiple entities"
                 },
                 "errors": {
-                    "admin": "Only campaign admins can change the private status of entities."
+                    "admin": "Only campaign admins can change the private status of entities.",
+                    "general": "An error occurred processing your action. Please try again and contact us if the problem persists. Error message: {hint}."
                 },
                 "permissions": {
                     "fields": {
@@ -665,6 +666,7 @@ export default {
                     "title": "Change permissions for several entities"
                 },
                 "success": {
+                    "copy_to_campaign": "{1} {count} entity copied to {campaign}.|[2,*] {count} entities copied to {campaign}.",
                     "editing": "{1} {count} entity was updated.|[2,*] {count} entities were updated.",
                     "permissions": "{1} Permissions changed for {count} entity.|[2,*] Permissions changed for {count} entities.",
                     "private": "{1} {count} entity is now private|[2,*] {count} entities are now private.",
@@ -678,6 +680,7 @@ export default {
                 "title": "Confirm your action"
             },
             "copy_to_campaign": {
+                "bulk_title": "Copy entities to another campaign",
                 "panel": "Copy",
                 "title": "Copy '{name}' to another campaign"
             },
@@ -789,8 +792,10 @@ export default {
             },
             "history": {
                 "created": "Created by <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "created_date": "Created <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "unknown": "Unknown",
                 "updated": "Last modified by <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "updated_date": "Last modified <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "view": "View entity log"
             },
             "image": {
@@ -841,9 +846,15 @@ export default {
                 "action": "Action",
                 "actions": {
                     "bulk": {
-                        "add": "Add",
-                        "ignore": "Ignore",
+                        "add": "Allow",
+                        "deny": "Deny",
+                        "ignore": "Skip",
                         "remove": "Remove"
+                    },
+                    "bulk_entity": {
+                        "allow": "Allow",
+                        "deny": "Deny",
+                        "inherit": "Inherit"
                     },
                     "delete": "Delete",
                     "edit": "Edit",
@@ -856,7 +867,11 @@ export default {
                     "member": "Member",
                     "role": "Role"
                 },
-                "helper": "Use this interface to fine-tune which users and roles that can interact with this entity.",
+                "helper": "Use this interface to fine-tune which users and roles that can interact with this entity. {allow} ",
+                "helpers": {
+                    "setup": "Use this interface to fine-tune how roles and users can interact with this entity. {allow} will allow the user or role to do this action. {deny} will deny them that action. {inherit} will use the user's role or main role's permission. A user set to {allow} is able to do the action, even if their role is set to {deny}.",
+                    "entity_note": "Allow users to create Entity Notes on this Entity. Without this permission, they will still be able to see Entity Notes set to visibility All."
+                },
                 "inherited": "This role already has this permission set for this entity type.",
                 "inherited_by": "This user is part of the '{role}' role which grants this permissions on this entity type.",
                 "success": "Permissions saved.",
@@ -964,7 +979,6 @@ export default {
                 "benefits": "Kanka provides a few integration to third party services. More third party integrations are planned for the future.",
                 "discord": {
                     "errors": {
-                        "0": "1",
                         "add": "An error occurred linking up your Discord account with Kanka. Please try again."
                     },
                     "success": {
@@ -979,6 +993,7 @@ export default {
                 "benefits": {
                     "first": "To secure continued progress on Kanka, some campaign features are unlocked by boosting a campaign. Boosts are unlocked through subscriptions. Anyone who can view a campaign can boost it, so that the DM doesn't always have to foot the bill. A campaign remains boosted as long as a user is boosting the campaign and they continue supporting Kanka. If a campaign is no longer boosted, data isn't lost, it is only hidden until the campaign is boosted again.",
                     "header": "Entity header images.",
+                    "images": "Custom default entity images.",
                     "more": "Find out more about all features.",
                     "second": "Boosting a campaign enables the following benefits:",
                     "theme": "Campaign level theme and custom styling.",
@@ -999,11 +1014,21 @@ export default {
                 },
                 "title": "Boost"
             },
+            "countries": {
+                "austria": "Austria",
+                "belgium": "Belgium",
+                "germany": "Germany",
+                "italy": "Italy",
+                "france": "France",
+                "netherlands": "The Netherlands",
+                "spain": "Spain"
+            },
             "invoices": {
                 "actions": {
                     "download": "Download PDF",
                     "view_all": "View all"
                 },
+                "empty": "No invoices",
                 "fields": {
                     "amount": "Amount",
                     "date": "Date",
@@ -1056,6 +1081,7 @@ export default {
                 "pledge": "Pledge: {name}",
                 "remove": {
                     "button": "Unlink your Patreon account",
+                    "success": "Your Patreon account has been unlinked.",
                     "text": "Unlinking your Patreon account with Kanka will remove your bonuses, name on the hall of fame, campaign boosts, and other features linked to supporting Kanka. None of your boosted content will be lost (e.g. entity headers). By subscribing again, you will have access to all your previous data, including the ability to boost your previously boosted campaigns.",
                     "title": "Unlink your Patreon account with Kanka"
                 },
@@ -1088,7 +1114,10 @@ export default {
                 },
                 "cancelled": "Your subscription has been cancelled. You can renew a subscription once your current subscription ends.",
                 "change": {
-                    "text": "You are subscribing at the {tier} tier, billed monthly for {amount}.",
+                    "text": {
+                        "monthly": "You are subscribing at the {tier} tier, billed monthly for {amount}.",
+                        "yearly": "You are subscribing at the {tier} tier, billed annualy for {amount}."
+                    },
                     "title": "Change Subscription Tier"
                 },
                 "currencies": {
@@ -1105,22 +1134,30 @@ export default {
                 "fields": {
                     "active_since": "Active since",
                     "active_until": "Active until",
-                    "billed_monthly": "Billed monthly",
+                    "billing": "Billing",
                     "currency": "Billing Currency",
                     "payment_method": "Payment method",
                     "plan": "Current plan",
                     "reason": "Reason"
+                },
+                "helpers": {
+                    "alternatives": "Pay for your subscription using {method}. This payment method won't auto-renew at the end of your subscription. {method} is only available in Euros.",
+                    "alternatives_yearly": "Due to the restrictions surrounding recurring payments, {method} is only available for yearly subscriptions",
+                    "alternatives_warning": "Upgrading your subscription when using this method is not possible. Please create a new subscription when your current one ends."
                 },
                 "manage_subscription": "Manage subscription",
                 "payment_method": {
                     "actions": {
                         "add_new": "Add a new payment method",
                         "change": "Change payment method",
-                        "save": "Save payment method"
+                        "save": "Save payment method",
+                        "show_alternatives": "Alternative payment options"
                     },
                     "add_one": "You currently have no payment method saved.",
+                    "alternatives": "You can subscribe using these alternative payment options. This action will charge your account once and not auto-renew your subscription every month.",
                     "card": "Card",
                     "card_name": "Name on card",
+                    "country": "Country of residence",
                     "ending": "Ending in",
                     "helper": "This card will be used for all of your subscriptions.",
                     "new_card": "Add a new payment method",
@@ -1129,21 +1166,28 @@ export default {
                 "placeholders": {
                     "reason": "Optionally tell us why you are no longer supporting Kanka. Was a feature missing? Did your financial situation change?"
                 },
+                "plans": {
+                    "cost_monthly": "{currency} {amount} billed monthly",
+                    "cost_yearly": "{currency} {amount} billed yearly"
+                },
                 "sub_status": "Subscription information",
                 "subscription": {
                     "actions": {
                         "downgrading": "Please contact us for downgrading",
                         "rollback": "Change to Kobold",
-                        "subscribe": "Change to {tier} monthly"
+                        "subscribe": "Change to {tier} monthly",
+                        "subscribe_annual": "Change to {tier} yearly"
                     }
                 },
                 "success": {
+                    "alternative": "Your payment was registered. You will get a notification as soon as it is processed and your subscription is active.",
                     "callback": "Your subscription was successful. Your account will be updated as soon as our payment provided informs us of the change (this might take a few minutes).",
                     "cancel": "Your subscription was cancelled. It will continue to be active until the end of your current billing period.",
                     "currency": "Your prefered currency setting was updated.",
                     "subscribed": "Your subscription was successful. Don't forget to subscribe to the Community Vote newsletter to be notified when a vote goes live. You can change your newsletter settings in your Profile page."
                 },
                 "tiers": "Subscription Tiers",
+                "trial_period": "Yearly subscriptions have a 14 day cancellation policy. Contact us at {email} if you wish to cancel your yearly subscription and get a refund.",
                 "upgrade_downgrade": {
                     "button": "Upgrade & Downgrade Information",
                     "downgrade": {
@@ -1673,7 +1717,6 @@ export default {
                 "benefits": "Kanka ofrece algunas integraciones con servicios de terceros. Hay más integraciones planeadas para el futuro.",
                 "discord": {
                     "errors": {
-                        "0": "1",
                         "add": "Ha ocurrido un error tratando de vincular tu cuenta de Discord con Kanka. Por favor, inténtalo de nuevo."
                     },
                     "success": {
@@ -2058,7 +2101,8 @@ export default {
                     "title": "Modifications de plusieurs entités"
                 },
                 "errors": {
-                    "admin": "Seulement les membres administrateur de la campagne peuvent changer le status des entités."
+                    "admin": "Seulement les membres administrateur de la campagne peuvent changer le status des entités.",
+                    "general": "Un problème est survenu lors de l'exécution. Prière de ressayer de nouveau ou nous contacter en cas de problème persistant. Message d'erreur: {hint}."
                 },
                 "permissions": {
                     "fields": {
@@ -2070,6 +2114,7 @@ export default {
                     "title": "Changer les permissions pour plusieurs entités"
                 },
                 "success": {
+                    "copy_to_campaign": "{1} {count} entité copiée à {campaign}.|[2,*] {count} entités copiées à {campaign}.",
                     "editing": "{count} entité modifiée.|{count} entités modifiées.",
                     "permissions": "Permissions changées pour {count} entité. |Permissions changées pour {count} entités.",
                     "private": "{count} entité est maintenant privée.|{count} entitées sont maintenant privées.",
@@ -2083,6 +2128,7 @@ export default {
                 "title": "Confirme ton action"
             },
             "copy_to_campaign": {
+                "bulk_title": "Copier vers une campagne",
                 "panel": "Copier",
                 "title": "Copier '{name}' vers une autre campagne"
             },
@@ -2194,8 +2240,10 @@ export default {
             },
             "history": {
                 "created": "Créé par <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "created_date": "Créé <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "unknown": "Inconnu",
                 "updated": "Dernière modification par <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "updated_date": "Dernière modification <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "view": "Visionner les journaux de l'entité"
             },
             "image": {
@@ -2247,8 +2295,14 @@ export default {
                 "actions": {
                     "bulk": {
                         "add": "Ajouter",
+                        "deny": "Refuser",
                         "ignore": "Ignorer",
                         "remove": "Retirer"
+                    },
+                    "bulk_entity": {
+                        "allow": "Permettre",
+                        "deny": "Refuser",
+                        "inherit": "Hériter"
                     },
                     "delete": "Supprimer",
                     "edit": "Modifier",
@@ -2262,6 +2316,10 @@ export default {
                     "role": "Rôle"
                 },
                 "helper": "En utilisant cette interface, il est possible d'affiner les permissions des membres et rôles de la campagne pouvant interagir avec cette entité.",
+                "helpers": {
+                    "entity_note": "Permettre aux utilisateurs de créer des notes d'entité sur cette entité. Sans cette permission, seuls les notes d'entités avec la visibilité Tous seront visibles.",
+                    "setup": "Utilise cette interface pour affiner la manière dont les rôles et les utilisateurs peuvent interagir avec cette entité. {allow} permettra à l'utilisateur ou au rôle d'effectuer cette action. {deny} leur empêchera de prendre cette action. {inherit} utilisera le rôle de l'utilisateur ou l'autorisation de leur rôle. Un utilisateur avec {allow} peut effectuer l'action en question, même si son rôle est en {deny}."
+                },
                 "inherited": "Ce rôle a déjà cette permission pour ce type d'entité.",
                 "inherited_by": "Cet utilisateur fait partie du rôle {role} qui permet cette permission pour ce type d'entité.",
                 "success": "Permissions enregistrées.",
@@ -2342,7 +2400,6 @@ export default {
                     "update_email": "Modifier l'email",
                     "update_password": "Modifier le mot de passe"
                 },
-                "description": "Modification du compte",
                 "email": "Modification de l'email",
                 "email_success": "Email modifié.",
                 "password": "Modification du mot de passe",
@@ -2356,7 +2413,6 @@ export default {
                 "title": "Compte"
             },
             "api": {
-                "description": "Modifier les options d'API",
                 "experimental": "Bienvenus aux API de Kanka! Ces fonctionalités sont encore experimental mais assez stable que tu puisses intéragire avec les APIs. Créé un jeton personnel pour utiliser dans tes requêtes API, ou un jeton client pour permettre à ton app d'accéder à tes données.",
                 "help": "Kanka va prochainement mettre à disposition une API.",
                 "link": "Lire la documentation",
@@ -2410,6 +2466,7 @@ export default {
                     "download": "Télécharger PDF",
                     "view_all": "Tout voir"
                 },
+                "empty": "Aucune facture",
                 "fields": {
                     "amount": "Montant",
                     "date": "Date",
@@ -2463,6 +2520,7 @@ export default {
                 "pledge": "Pledge: {name}",
                 "remove": {
                     "button": "Délier le compte Patreon",
+                    "success": "Ton compte Patreon a été délié.",
                     "text": "Délier le compte Patreon de Kanka supprime les bonus, le nom du Hall of Fame, les boosters de campagne et d'autres fonctionnalités liées au supporter de Kanka. Aucun contenu boosté ne sera perdu (par exemple les en-têtes d'entité). Lors du réabonnement, toutes les données seront à nouveau visibles, y compris la possibilité de booster des campagnes précédemment boostées.",
                     "title": "Délier le compte Patreon de Kanka"
                 },
@@ -2661,7 +2719,7 @@ export default {
                 "copy": "Kopiraj",
                 "copy_mention": "Kopiraj [ ] spominjanje",
                 "copy_to_campaign": "Kopiraj u kampanju",
-                "explore_view": "Ugniježđeni pogled",
+                "explore_view": "Ugniježđeni pregled",
                 "export": "Izvoz",
                 "find_out_more": "Saznaj više",
                 "go_to": "Idi na {name}",
@@ -2762,7 +2820,8 @@ export default {
                     "title": "Uređivanje više entiteta"
                 },
                 "errors": {
-                    "admin": "Samo administratori kampanje mogu promijeniti privatni status entiteta."
+                    "admin": "Samo administratori kampanje mogu promijeniti privatni status entiteta.",
+                    "general": "Došlo je do pogreške prilikom obrade tvoje akcije. Pokušaj ponovo i kontaktiraj nas ako se problem nastavi. Poruka o pogrešci: {hint}."
                 },
                 "permissions": {
                     "fields": {
@@ -2771,9 +2830,10 @@ export default {
                     "helpers": {
                         "override": "Ako je uključeno, dopuštenja odabranih entiteta će biti pregažena s ovima. Ako nije uključeno, odabrana dopuštenja će biti dodana postojećim."
                     },
-                    "title": "Promijenite dozvole za nekoliko entiteta"
+                    "title": "Promijeni dozvole za nekoliko entiteta"
                 },
                 "success": {
+                    "copy_to_campaign": "{1} {count} entitet kopiran u {campaign}.|{2,4} {count} entiteta kopirana u {campaign}.|{5,*} {count} entiteta kopirano u {campaign}.",
                     "editing": "{1} {count} entitet je ažuriran.|[2,4] {count} entiteta su ažurirana.|[5, *] {count} entiteta je ažurirano.",
                     "permissions": "{1} Ovlasti promijenjene za {count} entitet.|[2,*] Ovlasti promijenjene za {count} entiteta.",
                     "private": "{1} {count} entitet je sad privatan.|[2,4] {count} entiteta su sad privatna.|[5, *] {count} entiteta su sad privatno.",
@@ -2787,6 +2847,7 @@ export default {
                 "title": "Potvrdi svoju akciju"
             },
             "copy_to_campaign": {
+                "bulk_title": "Kopiraj entitete u drugu kampanju",
                 "panel": "Kopiraj",
                 "title": "Kopiraj \"{name}\" u drugu kampanju"
             },
@@ -2875,7 +2936,7 @@ export default {
                     "desc": "{field} silazno",
                     "helper": "Kontroliraj u kojem se prikazuju rezultati."
                 },
-                "title": "Filtri"
+                "title": "Filteri"
             },
             "forms": {
                 "actions": {
@@ -2898,8 +2959,10 @@ export default {
             },
             "history": {
                 "created": "Kreirao/la <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "created_date": "Kreirano <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "unknown": "Nepoznato",
                 "updated": "Zadnji/a promijenio/la <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "updated_date": "Zadnji puta ažurirano <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "view": "Pogledaj zapisnik entiteta"
             },
             "image": {
@@ -2954,10 +3017,10 @@ export default {
                         "ignore": "Ignoriraj",
                         "remove": "Ukloni"
                     },
-                    "delete": "Obriši",
-                    "edit": "Uredi",
+                    "delete": "Brisanje",
+                    "edit": "Uređivanje",
                     "entity_note": "Bilješke entiteta",
-                    "read": "Pročitaj",
+                    "read": "Čitanje",
                     "toggle": "Uključi ili isključi"
                 },
                 "allowed": "Dozvoljeno",
@@ -3073,7 +3136,6 @@ export default {
                 "benefits": "Kanka pruža nekoliko integracija na usluge trećih strana. U budućnosti se planira više integracija trećih strana.",
                 "discord": {
                     "errors": {
-                        "0": "1",
                         "add": "Došlo je do pogreške u povezivanju tvog Discord računa s Kankom. Molim te pokušaj ponovno."
                     },
                     "success": {
@@ -3086,12 +3148,12 @@ export default {
             },
             "boost": {
                 "benefits": {
-                    "first": "Kako bi se osigurali kontinuirani napredak na Kanki, pojedine značajke kampanje otključavaju se pojačavanjem kampanje. Pojačanja se otključavaju putem pretplate. Svatko tko može pogledati kampanju može je pojačati tako da ne mora uvijek ista osoba plaćati račun. Kampanja ostaje pojačana sve dok korisnik pojačava kampanju i oni nastave podržavati Kanku. Ako se kampanja više ne pojačava, podaci se ne gube već su samo skriveni dok se kampanja ponovno ne pojača.",
+                    "first": "Kako bi osigurali kontinuirani napredak na Kanki, pojedine značajke kampanje otključavaju se pojačavanjem kampanje. Pojačanja se otključavaju putem pretplate. Svatko tko može pogledati kampanju može ju pojačati tako da ne mora uvijek ista osoba plaćati račun. Kampanja ostaje pojačana sve dok korisnik pojačava kampanju i oni nastave podržavati Kanku. Ako se kampanja više ne pojačava, podaci se ne gube već su samo skriveni dok se kampanja ponovno ne pojača.",
                     "header": "Slike zaglavlja entiteta.",
                     "more": "Saznaj više o svim značajkama.",
                     "second": "Pojačavanje kampanje omogućuje sljedeće prednosti:",
                     "theme": "Tema na razini kampanje i proizvoljno stiliziranje.",
-                    "tooltip": "Proizvoljni savjeti za entitete.",
+                    "tooltip": "Proizvoljni kratki opisi entiteta.",
                     "upload": "Povećana veličina prijenosa za svakog člana u kampanji."
                 },
                 "buttons": {
@@ -3113,6 +3175,7 @@ export default {
                     "download": "Preuzmi PDF",
                     "view_all": "Pogledaj sve"
                 },
+                "empty": "Nema fakture",
                 "fields": {
                     "amount": "Količina",
                     "date": "Datum",
@@ -3128,7 +3191,7 @@ export default {
             },
             "layout": {
                 "success": "Ažurirane opcije rasporeda.",
-                "title": "Raspored"
+                "title": "Izgled"
             },
             "menu": {
                 "account": "Račun",
@@ -3165,6 +3228,7 @@ export default {
                 "pledge": "Zalog: {name}",
                 "remove": {
                     "button": "Prekini vezu s Patreon računom",
+                    "success": "Uklonjena je poveznica na tvoj Patreon račun.",
                     "text": "Ako prekineš vezu tvog računa s Patreonom, Kanka će ukloniti tvoje bonuse, ime u kući slavnih, pojačanja kampanje, te druge značajke povezane s podrškom Kanke. Nijedan tvoj pojačani sadržaj neće biti izgubljen (npr. zaglavlja entiteta). Ako se ponovo pretplatiš, imat ćeš pristup svim svojim prethodnim podacima, uključujući mogućnost pojačanja prijašnjih pojačanih kampanja.",
                     "title": "Prekini vezu Patreon računa s Kankom"
                 },
@@ -3264,7 +3328,7 @@ export default {
                     "upgrade": {
                         "bullets": {
                             "immediate": "Tvoj način plaćanja bit će naplaćen odmah i imat ćeš pristup svom novom sloju.",
-                            "prorate": "Kada nadogradite s Owlbear na Elemental, samo će vam se naplatiti ​​razlika do tvoje nove razine."
+                            "prorate": "Kada nadogradiš s Owlbear na Elemental, samo će ti se naplatiti ​​razlika do tvoje nove razine."
                         },
                         "title": "Pri nadogradnji na viši sloj"
                     }
@@ -3456,7 +3520,8 @@ export default {
                     "title": "Több entitás együttes szerkesztése"
                 },
                 "errors": {
-                    "admin": "Csak a kampány adminjai tudják megváltoztatni egy entitás privát státuszát."
+                    "admin": "Csak a kampány adminjai tudják megváltoztatni egy entitás privát státuszát.",
+                    "general": "Hiba lépett fel a művelet feldolgozása közben. Kérlek próbáld újra, és vedd fel velünk a kapcsolatot, ha a probléma továbbra is fennáll. Hibaüzenet: {hint}."
                 },
                 "permissions": {
                     "fields": {
@@ -3468,6 +3533,7 @@ export default {
                     "title": "Jogosultság változtatása több entitásra vonatkozóan"
                 },
                 "success": {
+                    "copy_to_campaign": "{1} {count} entitásból másolat jött létre itt: {campaign}.|[2,*] {count} entitásból másolat jött létre itt: {campaign}.",
                     "editing": "{1} {count} entitás frissült.|[2,*] {count} entitás frissült.",
                     "permissions": "{1} Jogosultságok változtak meg meg {count} entitás esetén.|[2,*]Jogosultságok változtak meg {count} entitás esetén.",
                     "private": "{count} entitás most már privát|{count} entitás most már privát.",
@@ -3481,6 +3547,7 @@ export default {
                 "title": "Igazold vissza az akciódat!"
             },
             "copy_to_campaign": {
+                "bulk_title": "Entitások másolása egy másik kampányba",
                 "panel": "Másolás",
                 "title": "'{name}' másolása egy másik kampányba"
             },
@@ -3591,9 +3658,11 @@ export default {
                 "visibility": "Ha a láthatóságot Admin-ra állítod, akkor csak az Admin jogú felhasználók tudják megnézni ezt. 'Magam'-ra állítva csak te láthatod."
             },
             "history": {
-                "created": "Létrehozás: <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "created": "Létrehozta <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "created_date": "Létrejött <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "unknown": "Ismeretlen",
                 "updated": "Utolsó módosítás: <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "updated_date": "Uoljára módosítva <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "view": "Entitásnapló megtekintése"
             },
             "image": {
@@ -3809,6 +3878,7 @@ export default {
                     "download": "PDF letöltése",
                     "view_all": "Összes megtekintése"
                 },
+                "empty": "Nincs számla",
                 "fields": {
                     "amount": "Mennyiség",
                     "date": "Dátum",
@@ -3862,6 +3932,7 @@ export default {
                 "pledge": "{name} támogatási szint",
                 "remove": {
                     "button": "Patreon fiók leválasztása",
+                    "success": "A Patreon fiókod le lett választva.",
                     "text": "A Patreon fiók leválasztása megszűntet minden bónuszt, a Dicsőségcsarnokbeli jelenléted, kampány boost-ot, és egyéb, a támogatással szerzett funkciókat a Kankán. Fontos megjegyezni, hogy egyik boost-tal kihelyezett tartalmad sem fog elveszni (pl. entitás fejlécek). Amint ismét előfizetővé válasz, újra hozzá fogsz férni ezekhez az adatokhoz, beleértve a lehetőségét, hogy boost-olj, egy korábban boostolt kampányodat.",
                     "title": "A Patreon fiókod leválasztása a Kankáról"
                 },
