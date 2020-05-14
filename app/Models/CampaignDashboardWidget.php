@@ -19,6 +19,7 @@ use Illuminate\Support\Arr;
  * @property string $config
  * @property integer $width
  * @property integer $position
+ * @property Tag[] $tags
  */
 class CampaignDashboardWidget extends Model
 {
@@ -61,6 +62,21 @@ class CampaignDashboardWidget extends Model
     public function entity()
     {
         return $this->belongsTo(\App\Models\Entity::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(
+            'App\Models\Tag',
+            'campaign_dashboard_widget_tags',
+            'widget_id',
+            'tag_id',
+            'id',
+            'id'
+        );
     }
 
     /**

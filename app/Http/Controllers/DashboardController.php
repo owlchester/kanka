@@ -22,14 +22,11 @@ class DashboardController extends Controller
             return redirect()->route('start');
         }
 
-        $recentCount = 5;
         $user = null;
         $settings = null;
         if (Auth::check() && Auth::user()->can('update', $campaign)) {
             $settings = true;
         }
-
-        //$characters = Character::
 
         $release = PostCache::latest();
         $widgets = CampaignDashboardWidget::positioned()->get();
@@ -58,6 +55,7 @@ class DashboardController extends Controller
         $offset = request()->get('offset', 0);
 
         $entities = \App\Models\Entity::recentlyModified()
+            ->inTags($widget->tags->pluck('id')->toArray())
             ->type($widget->conf('entity'))
             ->acl()
             ->take(10)

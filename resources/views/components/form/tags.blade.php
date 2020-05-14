@@ -25,6 +25,10 @@ elseif(!empty($model) && !empty($model->entity)) {
             $selectedOption[$tag->id] = $tag;
         }
     }
+} elseif(!empty($model) && $model instanceof \App\Models\CampaignDashboardWidget) {
+    foreach ($model->tags()->get() as $tag) {
+        $selectedOption[$tag->id] = $tag;
+    }
 } elseif (!empty($filterOptions)) {
     foreach ($filterOptions as $tagId) {
         if (!empty($tagId)) {

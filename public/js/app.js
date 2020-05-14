@@ -73062,7 +73062,7 @@ $(document).ready(function () {
   /*$.each($('.datagrid-search'), function(index) {
       $(this).submit(function(event) {
           event.preventDefault();
-            window.location.href =
+           window.location.href =
       });
   });*/
 
@@ -73079,7 +73079,8 @@ $(document).ready(function () {
     initSelect2();
     initCheckboxSwitch();
     initAjaxPagination();
-    initTooltips(); // Handle when opening the entity-creator ui
+    initTooltips();
+    initCategories(); // Handle when opening the entity-creator ui
 
     entityCreatorUI();
   });

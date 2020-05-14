@@ -10,6 +10,7 @@ use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Kalnoy\Nestedset\NodeTrait;
 
 /**
@@ -282,5 +283,11 @@ class Tag extends MiscModel
     {
         return '<span class="label ' . ($this->hasColour() ? $this->colourClass() : 'label-default') . '">'
             . e($this->name) . '</span>';
+    }
+
+    public function bubble(): string
+    {
+        return '<span class="label label-tag-bubble ' . ($this->hasColour() ? $this->colourClass() : 'label-default') . '" title="'
+            . e($this->name) . '">' . ucfirst(substr(e($this->name), 0, 1)) . '</span>';
     }
 }
