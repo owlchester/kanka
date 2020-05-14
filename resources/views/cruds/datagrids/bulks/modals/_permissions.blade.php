@@ -1,3 +1,15 @@
+<?php
+$actions = [
+        'allow' => __('crud.permissions.actions.bulk_entity.allow'),
+        'ignore' => __('crud.permissions.actions.bulk.ignore'),
+        'deny' => __('crud.permissions.actions.bulk_entity.deny'),
+        'inherit' => __('crud.permissions.actions.bulk_entity.inherit'),
+];
+// Negative permissions as a beta for boosted campaigns
+if (!$campaign->boosted()) {
+    unset($actions['deny']);
+}
+?>
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title" id="clickModalLabel">{{ __('crud.bulk.permissions.title') }}</h4>
@@ -19,7 +31,7 @@
                 <td>
                     {!! Form::select(
                     'role[' . $role->id . '][read]',
-                    __('crud.permissions.actions.bulk'),
+                    $actions,
                     'ignore',
                     ['class' => 'form-control']) !!}
                 </td>
@@ -27,7 +39,7 @@
                     <td>
                         {!! Form::select(
                         'role[' . $role->id . '][edit]',
-                        __('crud.permissions.actions.bulk'),
+                        $actions,
                         'ignore',
                         ['class' => 'form-control']) !!}
                     </td>
@@ -35,14 +47,14 @@
 
                         {!! Form::select(
                         'role[' . $role->id . '][delete]',
-                        __('crud.permissions.actions.bulk'),
+                        $actions,
                         'ignore',
                         ['class' => 'form-control']) !!}
                     </td>
                     <td>
                         {!! Form::select(
                         'role[' . $role->id . '][entity-note]',
-                        __('crud.permissions.actions.bulk'),
+                        $actions,
                         'ignore',
                         ['class' => 'form-control']) !!}
                     </td>
@@ -69,28 +81,28 @@
                 <td>
                     {!! Form::select(
                     'user[' . $member->user_id . '][read]',
-                    __('crud.permissions.actions.bulk'),
+                    $actions,
                     'ignore',
                     ['class' => 'form-control']) !!}
                 </td>
                 <td>
                     {!! Form::select(
                     'user[' . $member->user_id . '][edit]',
-                    __('crud.permissions.actions.bulk'),
+                    $actions,
                     'ignore',
                     ['class' => 'form-control']) !!}
                 </td>
                 <td>
                     {!! Form::select(
                     'user[' . $member->user_id . '][delete]',
-                    __('crud.permissions.actions.bulk'),
+                    $actions,
                     'ignore',
                     ['class' => 'form-control']) !!}
                 </td>
                 <td>
                     {!! Form::select(
                     'user[' . $member->user_id . '][entity-note]',
-                    __('crud.permissions.actions.bulk'),
+                    $actions,
                     'ignore',
                     ['class' => 'form-control']) !!}
                 </td>

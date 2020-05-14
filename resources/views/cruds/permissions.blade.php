@@ -20,14 +20,8 @@
 @section('content')
     @inject('permissionService', 'App\Services\PermissionService')
 @php
-    /** @var \App\Services\PermissionService $permissionService */
-    $permissions = $permissionService->type($entity->type)->entityPermissions($entity);
-
-    $actions = [
-        'allow' => __('crud.permissions.actions.bulk_entity.allow'),
-        'deny' => __('crud.permissions.actions.bulk_entity.deny'),
-        'inherit' => __('crud.permissions.actions.bulk_entity.inherit'),
-    ];
+/** @var \App\Services\PermissionService $permissionService */
+$permissions = $permissionService->type($entity->type)->entityPermissions($entity);
 @endphp
 
     <div class="panel panel-default">
