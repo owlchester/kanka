@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'description'   => 'Nekoliko korisnih savjeta i trikova koji će vam pomoći',
+    'description'   => 'Nekoliko korisnih savjeta i trikova koji će ti pomoći',
     'dice'          => [
         'description'               => 'Generičko bacanje kockica je moguće pisanjem "d20", "4d4 + 4", "d%" za postotak i "df" za gluposti.',
         'description_attributes'    => 'Također je moguće dobiti atribut lika koristeći sintaksu {lik.naziv_atributa}. Na primjer, {lik.level}d6+{lik.mudrost}.',

@@ -6,7 +6,7 @@ return [
         'entity'    => 'Entitet',
     ],
     'helper'        => 'Slijedi lista entiteta koji su spomenuti u ovom entitetu u njihovom polju "Unos".',
-    'mentioned_in'  => 'Spomenuto u :count entiteta.',
+    'mentioned_in'  => 'Spominje se u :count entiteta.',
     'show'          => [
         'title' => 'Spominjanje entiteta :name',
     ],

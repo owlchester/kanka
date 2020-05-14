@@ -109,7 +109,8 @@ return [
             'title'     => 'Több entitás együttes szerkesztése',
         ],
         'errors'        => [
-            'admin' => 'Csak a kampány adminjai tudják megváltoztatni egy entitás privát státuszát.',
+            'admin'     => 'Csak a kampány adminjai tudják megváltoztatni egy entitás privát státuszát.',
+            'general'   => 'Hiba lépett fel a művelet feldolgozása közben. Kérlek próbáld újra, és vedd fel velünk a kapcsolatot, ha a probléma továbbra is fennáll. Hibaüzenet: :hint.',
         ],
         'permissions'   => [
             'fields'    => [
@@ -121,10 +122,11 @@ return [
             'title'     => 'Jogosultság változtatása több entitásra vonatkozóan',
         ],
         'success'       => [
-            'editing'       => '{1} :count entitás frissült.|[2,*] :count entitás frissült.',
-            'permissions'   => '{1} Jogosultságok változtak meg meg :count entitás esetén.|[2,*]Jogosultságok változtak meg :count entitás esetén.',
-            'private'       => ':count entitás most már privát|:count entitás most már privát.',
-            'public'        => ':count entitás most már látható|:count entitás most már látható.',
+            'copy_to_campaign'  => '{1} :count entitásból másolat jött létre itt: :campaign.|[2,*] :count entitásból másolat jött létre itt: :campaign.',
+            'editing'           => '{1} :count entitás frissült.|[2,*] :count entitás frissült.',
+            'permissions'       => '{1} Jogosultságok változtak meg meg :count entitás esetén.|[2,*]Jogosultságok változtak meg :count entitás esetén.',
+            'private'           => ':count entitás most már privát|:count entitás most már privát.',
+            'public'            => ':count entitás most már látható|:count entitás most már látható.',
         ],
     ],
     'cancel'            => 'Mégse',
@@ -134,8 +136,9 @@ return [
         'title'     => 'Igazold vissza az akciódat!',
     ],
     'copy_to_campaign'  => [
-        'panel' => 'Másolás',
-        'title' => '\':name\' másolása egy másik kampányba',
+        'bulk_title'    => 'Entitások másolása egy másik kampányba',
+        'panel'         => 'Másolás',
+        'title'         => '\':name\' másolása egy másik kampányba',
     ],
     'create'            => 'Létrehozás',
     'datagrid'          => [
@@ -244,10 +247,12 @@ return [
         'visibility'            => 'Ha a láthatóságot Admin-ra állítod, akkor csak az Admin jogú felhasználók tudják megnézni ezt. \'Magam\'-ra állítva csak te láthatod.',
     ],
     'history'           => [
-        'created'   => 'Létrehozás: <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'unknown'   => 'Ismeretlen',
-        'updated'   => 'Utolsó módosítás: <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'view'      => 'Entitásnapló megtekintése',
+        'created'       => 'Létrehozta <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'created_date'  => 'Létrejött <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'unknown'       => 'Ismeretlen',
+        'updated'       => 'Utolsó módosítás: <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'updated_date'  => 'Uoljára módosítva <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'view'          => 'Entitásnapló megtekintése',
     ],
     'image'             => [
         'error' => 'Nem érjük el a kívánt képet. Lehet, hogy a honlap nem engedi, hogy letöltsük a képet (ilyen a Squarespace és a DeviantArt), vagy a link nem érvényes már. Kérjük, arról is bizonyosodj meg, hogy a kép nem nagyobb, mint :size.',

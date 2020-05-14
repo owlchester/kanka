@@ -7,6 +7,8 @@ return [
         'en-US' => 'Angol (Amerikai)',
         'es'    => 'Spanyol',
         'fr'    => 'Francia',
+        'he'    => 'Héber',
+        'hr'    => 'Horvát',
         'hu'    => 'Magyar',
         'it'    => 'Olasz',
         'nl'    => 'Holland',

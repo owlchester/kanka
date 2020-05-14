@@ -76,6 +76,7 @@ return [
             'download'  => 'PDF letöltése',
             'view_all'  => 'Összes megtekintése',
         ],
+        'empty'     => 'Nincs számla',
         'fields'    => [
             'amount'    => 'Mennyiség',
             'date'      => 'Dátum',
@@ -129,6 +130,7 @@ return [
         'pledge'            => ':name támogatási szint',
         'remove'            => [
             'button'    => 'Patreon fiók leválasztása',
+            'success'   => 'A Patreon fiókod le lett választva.',
             'text'      => 'A Patreon fiók leválasztása megszűntet minden bónuszt, a Dicsőségcsarnokbeli jelenléted, kampány boost-ot, és egyéb, a támogatással szerzett funkciókat a Kankán. Fontos megjegyezni, hogy egyik boost-tal kihelyezett tartalmad sem fog elveszni (pl. entitás fejlécek). Amint ismét előfizetővé válasz, újra hozzá fogsz férni ezekhez az adatokhoz, beleértve a lehetőségét, hogy boost-olj, egy korábban boostolt kampányodat.',
             'title'     => 'A Patreon fiókod leválasztása a Kankáról',
         ],

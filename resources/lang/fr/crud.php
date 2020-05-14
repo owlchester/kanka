@@ -109,7 +109,8 @@ return [
             'title'     => 'Modifications de plusieurs entités',
         ],
         'errors'        => [
-            'admin' => 'Seulement les membres administrateur de la campagne peuvent changer le status des entités.',
+            'admin'     => 'Seulement les membres administrateur de la campagne peuvent changer le status des entités.',
+            'general'   => 'Un problème est survenu lors de l\'exécution. Prière de ressayer de nouveau ou nous contacter en cas de problème persistant. Message d\'erreur: :hint.',
         ],
         'permissions'   => [
             'fields'    => [
@@ -121,10 +122,11 @@ return [
             'title'     => 'Changer les permissions pour plusieurs entités',
         ],
         'success'       => [
-            'editing'       => ':count entité modifiée.|:count entités modifiées.',
-            'permissions'   => 'Permissions changées pour :count entité. |Permissions changées pour :count entités.',
-            'private'       => ':count entité est maintenant privée.|:count entitées sont maintenant privées.',
-            'public'        => ':count entité est maintenant visible.|:count entitées sont maintenant visibles.',
+            'copy_to_campaign'  => '{1} :count entité copiée à :campaign.|[2,*] :count entités copiées à :campaign.',
+            'editing'           => ':count entité modifiée.|:count entités modifiées.',
+            'permissions'       => 'Permissions changées pour :count entité. |Permissions changées pour :count entités.',
+            'private'           => ':count entité est maintenant privée.|:count entitées sont maintenant privées.',
+            'public'            => ':count entité est maintenant visible.|:count entitées sont maintenant visibles.',
         ],
     ],
     'cancel'            => 'Annuler',
@@ -134,8 +136,9 @@ return [
         'title'     => 'Confirme ton action',
     ],
     'copy_to_campaign'  => [
-        'panel' => 'Copier',
-        'title' => 'Copier \':name\' vers une autre campagne',
+        'bulk_title'    => 'Copier vers une campagne',
+        'panel'         => 'Copier',
+        'title'         => 'Copier \':name\' vers une autre campagne',
     ],
     'create'            => 'Créer',
     'datagrid'          => [
@@ -244,10 +247,12 @@ return [
         'visibility'            => 'Si la visibilité est définie à Admin, seuls les membres du rôle Admin de la campagne verront ceci. La visibilité "Soit-même" signifie que seulement tu peux le voir.',
     ],
     'history'           => [
-        'created'   => 'Créé par <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'unknown'   => 'Inconnu',
-        'updated'   => 'Dernière modification par <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'view'      => 'Visionner les journaux de l\'entité',
+        'created'       => 'Créé par <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'created_date'  => 'Créé <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'unknown'       => 'Inconnu',
+        'updated'       => 'Dernière modification par <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'updated_date'  => 'Dernière modification <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'view'          => 'Visionner les journaux de l\'entité',
     ],
     'image'             => [
         'error' => 'Impossible de récupérer l\'image demandée. Il est possible que le site web ne nous permet pas de télécharger des images (cela arrive par example avec squarespace et DeviantArt), ou le lien n\'est plus valide.',
@@ -298,8 +303,14 @@ return [
         'actions'           => [
             'bulk'          => [
                 'add'       => 'Ajouter',
+                'deny'      => 'Refuser',
                 'ignore'    => 'Ignorer',
                 'remove'    => 'Retirer',
+            ],
+            'bulk_entity'   => [
+                'allow'     => 'Permettre',
+                'deny'      => 'Refuser',
+                'inherit'   => 'Hériter',
             ],
             'delete'        => 'Supprimer',
             'edit'          => 'Modifier',
@@ -313,6 +324,10 @@ return [
             'role'      => 'Rôle',
         ],
         'helper'            => 'En utilisant cette interface, il est possible d\'affiner les permissions des membres et rôles de la campagne pouvant interagir avec cette entité.',
+        'helpers'           => [
+            'entity_note'   => 'Permettre aux utilisateurs de créer des notes d\'entité sur cette entité. Sans cette permission, seuls les notes d\'entités avec la visibilité Tous seront visibles.',
+            'setup'         => 'Utilise cette interface pour affiner la manière dont les rôles et les utilisateurs peuvent interagir avec cette entité. :allow permettra à l\'utilisateur ou au rôle d\'effectuer cette action. :deny leur empêchera de prendre cette action. :inherit utilisera le rôle de l\'utilisateur ou l\'autorisation de leur rôle. Un utilisateur avec :allow peut effectuer l\'action en question, même si son rôle est en :deny.',
+        ],
         'inherited'         => 'Ce rôle a déjà cette permission pour ce type d\'entité.',
         'inherited_by'      => 'Cet utilisateur fait partie du rôle :role qui permet cette permission pour ce type d\'entité.',
         'success'           => 'Permissions enregistrées.',

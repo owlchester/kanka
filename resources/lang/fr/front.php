@@ -39,6 +39,9 @@ return [
     ],
     'faq'           => [
         'description'   => 'Nous avons couvert les questions les plus fréquentes et avons répondu de manière aussi clair que possible.',
+        'helpers'       => [
+            'more'  => 'Pas trouvé ce que tu cherches?',
+        ],
         'title'         => 'FAQ',
     ],
     'features'      => [
@@ -53,10 +56,11 @@ return [
             'css'           => 'CSS personnalisé pour la campagne',
             'description'   => 'Certains niveaux de soutien donnent aux utilisateurs des boosters qu\'ils peuvent utiliser pour booster des campagnes. Ceci donne les avantages suivants.',
             'header_image'  => 'Image d\'entête pour entité',
+            'images'        => 'Définir des images d\'entité par défaut',
             'recovery'      => 'Récupération d\'entité pendant 30 jours',
             'theme'         => 'Thème de campagne fixe',
             'title'         => 'Campagnes Boostées',
-            'tooltip'       => 'Tooltip d\'entité personnalisé',
+            'tooltip'       => 'Infobulles d\'entité personnalisés',
             'upload'        => 'Augmentation de la taille de fichier uploadé pour tous les membres',
         ],
         'calendars'         => [
@@ -129,21 +133,32 @@ return [
     'footer'        => [
         'app'       => 'App',
         'copyright' => '&copy; 2017 - :current kanka.io. Tous droits réservés.',
+        'headings'  => [
+            'app'           => 'App',
+            'community'     => 'Communauté',
+            'useful_links'  => 'Liens utiles',
+        ],
         'navigation'=> 'Navigation',
         'resources' => 'Ressources',
         'social'    => 'Social',
     ],
     'help'          => [
         'description'   => 'Nous sommes là en cas de pépins. Contacte-nous en utilisant une des méthodes suivantes, et nous te contacteront aussi rapidement que possible.',
-        'discord'       => 'Rejoins-nous Discord',
+        'discord'       => 'Rejoins notre Discord',
         'email'         => 'Envoie nous un email',
         'facebook'      => 'Contacte-nous sur Facebook',
         'title'         => 'Aide',
         'twitter'       => 'Tweet-nous sur Twitter',
     ],
+    'home'          => [
+        'seo'   => [
+            'meta-description'  => 'Kanka est un gestionnaire de campagne JDR communautaire, qui facilite l\'organisation et la planification de tes campagnes JDR',
+        ],
+    ],
     'master'        => [
-        'call_to_action'    => 'Créé un compte, c\'est gratuit!',
-        'description'       => 'Kanka est un outil flexible et facile d\'utilisation pour créer et gérer vos campagnes de jeu de rôle. Créé et organise des personnages, localités, organisations, événements et bien plus.',
+        'call_to_action'    => 'Créé un compte',
+        'description'       => 'Kanka est un outil flexible, facile d\'utilisation et gratuit pour créer et gérer vos campagnes de jeu de rôle. Créé et organise des personnages, localités, organisations, événements et bien plus.',
+        'heading'           => 'Gestionnaire de jeux de rôle et création de monde rendu facile',
         'title'             => 'Kanka',
     ],
     'menu'          => [
@@ -154,7 +169,7 @@ return [
         'contact'   => 'Contact',
         'contact_us'=> 'Nous contacter',
         'dashboard' => 'Accueil',
-        'faq'       => 'FAQ',
+        'faq'       => 'FAQ & Aide',
         'features'  => 'Fonctionnalités',
         'help'      => 'Aide',
         'home'      => 'Accueil',
@@ -222,6 +237,9 @@ return [
     'second_block'  => [
         'call_to_action'    => 'C\'est parti!',
         'title'             => 'Laisse libre cours à ta créativité.',
+    ],
+    'seo'           => [
+        'keywords'  => 'Création de monde, jeux de rôles, gestionnaire de jeux de rôles',
     ],
     'team'          => [
         'coffee'    => 'Achète-moi un café!',

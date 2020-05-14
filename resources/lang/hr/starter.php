@@ -17,7 +17,7 @@ return [
         'race'      => 'Gnom',
         'sex'       => 'Žensko',
         'title'     => 'Kraljica eksplozija',
-        'traits'    => 'Želiš pratiti nešto drugo? Možete s ovom slobodnom sekcijom teksta.',
+        'traits'    => 'Želiš pratiti nešto drugo? Možeš s ovom slobodnom sekcijom teksta.',
     ],
     'item1'         => [
         'description'   => 'Primjer predmeta.',
@@ -39,7 +39,7 @@ return [
     ],
     'note1'         => [
         'entry'         => <<<'TEXT'
-Dobrodošli u Kanku! Tcoja prva kampanja je stvorena i kao inspiraciju smo uključili nekoliko primjera (možeš ih izbrisati kad god želiš).
+Dobrodošli u Kanku! Tvoja prva kampanja je stvorena i kao inspiraciju smo uključili nekoliko primjera (možeš ih izbrisati kad god želiš).
 
 Vjerojatno ćeš htjeti započeti dodavanjem nekih vlastitih entiteta, pa odaberi kategoriju s lijeve strane i započni. Možeš isključiti nepotrebne kategorije entiteta iz postavki kampanje, a to će ih sakriti iz izbornika.
 

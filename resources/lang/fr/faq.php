@@ -56,9 +56,7 @@ TEXT
         'answer'    => <<<'TEXT'
 Oui ! Nous pensons que votre situation financière ne doit pas avoir d'impact sur votre plaisir de jouer à des jeux de rôles ou à créer votre propre univers, et donc l'application sera toujours gratuite. Merci à nos généreux Patrons sur :patreon, grâce à qui nous sommes capables de couvrir nos frais de serveurs mensuels et de vous offrir une application sans publicité !
 
-Cependant, si vous souhaitez jouer un rôle plus actif dans Kanka, nous soutenir et voter sur les fonctionnalités qui vous importent le plus, vous pouvez le faire via notre site Web ou sur :patreon.
-
-En plus de voter dans la direction prise par Kanka, nous soutenir vous permet d'accéder aux :boosters, d'augmenter les limites de téléchargement de taille de fichier, d'ajouter votre nom au "Hall of Fame", d'avoir de plus belles icônes par défaut, et bien plus encore!
+Cependant, nous soutenir sur Patreon permet d'augmenter la taille maximale des images à uploader, d'apparaitre dans le "Hall of Fame Patreon", d'avoir des icones plus sympas, de voter sur les tickets a prioritiser, et bien plus!
 TEXT
 ,
         'question'  => 'Est-ce que l\'application restera gratuite ?',

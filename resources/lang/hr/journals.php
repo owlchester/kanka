@@ -29,9 +29,9 @@ return [
     ],
     'placeholders'  => [
         'author'    => 'Tko je napisao dnevnik',
-        'date'      => 'Datum dnevnika',
+        'date'      => 'Stvarni datum dnevnika',
         'name'      => 'Naslov dnevnika',
-        'type'      => 'Sesija, Jednokratno, Nacrt',
+        'type'      => 'Sesija, Jednokratna kampanja, Nacrt',
     ],
     'show'          => [
         'description'   => 'Detaljni pregled dnevnika',
