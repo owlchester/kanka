@@ -19,6 +19,9 @@ class CampaignLocalization
      */
     protected $campaign = false;
 
+    /** @var int console campaign id */
+    protected $consoleCampaignId = 0;
+
     /**
      * Set and return current locale.
      *
@@ -93,5 +96,23 @@ class CampaignLocalization
     public function getUrl($campaignId, $with = null)
     {
         return app()->getLocale() . '/' . $this->setCampaign($campaignId) . (!empty($with) ? "/$with" : null);
+    }
+
+    /**
+     * @return int
+     */
+    public function getConsoleCampaign(): int
+    {
+        return $this->consoleCampaignId;
+    }
+
+    /**
+     * @param int $campaignId
+     * @return $this
+     */
+    public function setConsoleCampaign(int $campaignId): self
+    {
+        $this->consoleCampaignId = $campaignId;
+        return $this;
     }
 }
