@@ -18,7 +18,7 @@ $actions = [
     'inherit' => __('crud.permissions.actions.bulk_entity.inherit'),
 ];
 // Negative permissions as a beta for boosted campaigns
-if (!$campaign->boosted()) {
+if (!$campaign->campaign()->boosted()) {
     unset($actions['deny']);
 }
 @endphp
@@ -31,4 +31,4 @@ if (!$campaign->boosted()) {
     ]) !!}
 </p>
 
-@include('cruds.permissions.permissions_table', ['skipUsers' => true])
+@include('cruds.permissions.permissions_table', ['skipUsers' => true, 'campaign'])
