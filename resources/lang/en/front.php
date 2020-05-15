@@ -186,7 +186,7 @@ return [
     ],
     'meta'          => [
         'description'   => 'Kanka is a flexible digital world builder and online rpg campaign manager',
-        'title'         => 'Kanka - Online RPG campaign manager and worldbuilding tool',
+        'title'         => 'Online RPG campaign manager and worldbuilding tool',
     ],
     'partners'      => [
         'description'   => 'We\'ve partnered up with a few amazing tools and communities that share our goals and values.',
