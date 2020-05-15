@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
+use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Orderable;
@@ -14,6 +16,7 @@ use App\Models\Scopes\SubEntityScopes;
 use App\Traits\AclTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Exception;
@@ -181,19 +184,24 @@ abstract class MiscModel extends Model
 
     /**
      * Get the image (or default image) of an entity
-     * @param bool $thumb
+     * @param int $size = 200
      * @return string
      */
-    public function getImageUrl(bool $thumb = false, string $field = 'image')
+    public function getImageUrl(int $width = 400, int $height = null, string $field = 'image')
     {
         if (empty($this->$field)) {
+            // Campaign could have something set up
+            $campaign = CampaignLocalization::getCampaign();
+            if ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->getEntityType())) {
+                return Img::crop(40, 40)->url(CampaignCache::defaultImages()[$this->getEntityType()]['path']);
+            }
             // Patreons have nicer icons
             if (auth()->check() && auth()->user()->isGoblinPatron()) {
-                return asset('/images/defaults/patreon/' . $this->getTable() . ($thumb ? '_thumb' : null) . '.png');
+                return asset('/images/defaults/patreon/' . $this->getTable() . ($width !== 400 ? '_thumb' : null) . '.png');
             }
-            return asset('/images/defaults/' . $this->getTable() . ($thumb ? '_thumb' : null) . '.jpg');
+            return asset('/images/defaults/' . $this->getTable() . ($width !== 400 ? '_thumb' : null) . '.jpg');
         } else {
-            return Storage::url(($thumb ? str_replace('.', '_thumb.', $this->$field) : $this->$field));
+            return Img::crop($width, (!empty($height) ? $height : $width))->url($this->$field);
         }
     }
 
@@ -311,16 +319,17 @@ abstract class MiscModel extends Model
 
     /**
      * List of types as suggestions for the type field
-     * @return mixed
+     * @param int $take = 20
+     * @return array
      */
-    public function entityTypeList()
+    public function entityTypeSuggestion(int $take = 20): array
     {
         return $this
             ->select(DB::raw('type, MAX(created_at) as cmat'))
             ->groupBy('type')
             ->whereNotNull('type')
             ->orderBy('cmat', 'DESC')
-            ->limit(20)
+            ->take($take)
             ->pluck('type')
             ->all();
     }

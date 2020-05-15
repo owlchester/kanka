@@ -28,7 +28,7 @@
             @foreach ($r->sortBy('character.name') as $member)
                 <tr>
                     <td>
-                        <a class="entity-image" style="background-image: url('{{ $member->getImageUrl(true) }}');" title="{{ $member->name }}" href="{{ route('characters.show', $member->id) }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $member->getImageUrl(40) }}');" title="{{ $member->name }}" href="{{ route('characters.show', $member->id) }}"></a>
                     </td>
                     <td>
                         {!! $member->tooltipedLink() !!}

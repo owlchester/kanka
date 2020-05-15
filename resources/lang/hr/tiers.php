@@ -9,7 +9,7 @@ return [
         'discord'           => 'Discord uloge',
         'feature_influence' => 'Utjecaj na nove funkcionalosti',
         'file_size'         => ':size veličina učitane datoteke',
-        'hall_of_fame'      => 'Kuća slavnih',
+        'hall_of_fame'      => 'Kući slavnih',
         'map_size'          => ':size veličina učitane mape',
         'nice_image'        => 'Zadane slike entiteta',
         'pagination'        => ':amount maksimalna paginacija rezultata',

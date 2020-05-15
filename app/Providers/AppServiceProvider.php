@@ -7,6 +7,7 @@ use App\Models\Ability;
 use App\Models\CalendarWeather;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
+use App\Models\CampaignFollower;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignUser;
 use App\Models\AttributeTemplate;
@@ -23,6 +24,7 @@ use App\Models\EntityFile;
 use App\Models\EntityNote;
 use App\Models\Family;
 use App\Http\Validators\HashValidator;
+use App\Models\Image;
 use App\Models\Inventory;
 use App\Models\Item;
 use App\Models\Journal;
@@ -39,6 +41,7 @@ use App\Models\Note;
 use App\Models\QuestOrganisation;
 use App\Models\Race;
 use App\Models\Relation;
+use App\Models\Release;
 use App\Models\Tag;
 use App\Observers\CalendarObserver;
 use App\Observers\CalendarWeatherObserver;
@@ -90,6 +93,7 @@ class AppServiceProvider extends ServiceProvider
             CampaignRoleUser::observe('App\Observers\CampaignRoleUserObserver');
             CampaignInvite::observe('App\Observers\CampaignInviteObserver');
             CampaignDashboardWidget::observe('App\Observers\CampaignDashboardWidgetObserver');
+            CampaignFollower::observe('App\Observers\CampaignFollowerObserver');
             //MapPoint::observe('App\Observers\MapPointObserver');
             Character::observe(CharacterObserver::class);
             CommunityVote::observe('App\Observers\CommunityVoteObserver');
@@ -104,6 +108,7 @@ class AppServiceProvider extends ServiceProvider
             EntityFile::observe('App\Observers\EntityFileObserver');
             Location::observe(LocationObserver::class);
             Family::observe(FamilyObserver::class);
+            Image::observe('App\Observers\ImageObserver');
             Item::observe(ItemObserver::class);
             Inventory::observe('App\Observers\InventoryObserver');
             MapPoint::observe('App\Observers\MapPointObserver');
@@ -122,6 +127,8 @@ class AppServiceProvider extends ServiceProvider
             Race::observe('App\Observers\RaceObserver');
 
             Relation::observe('App\Observers\RelationObserver');
+
+            Release::observe('App\Observers\ReleaseObserver');
 
             Paginator::useBootstrapThree();
 

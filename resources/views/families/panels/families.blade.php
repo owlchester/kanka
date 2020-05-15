@@ -22,7 +22,7 @@
             @foreach ($r as $family)
                 <tr>
                     <td>
-                        <a class="entity-image" style="background-image: url('{{ $family->getImageUrl(true) }}');" title="{{ $family->name }}" href="{{ route('families.show', $family->id) }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $family->getImageUrl(40) }}');" title="{{ $family->name }}" href="{{ route('families.show', $family->id) }}"></a>
                     </td>
                     <td>
                         {!! $family->tooltipedLink() !!}

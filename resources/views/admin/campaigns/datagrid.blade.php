@@ -10,7 +10,7 @@
     <tbody>
     @foreach ($models as $campaign)
         <tr>
-            <td><a class="entity-image" style="background-image: url('{{ $campaign->getImageUrl(true) }}');" href="{{ app()->getLocale() . '/' . $campaign->getMiddlewareLink() }}"></a></td>
+            <td><a class="entity-image" style="background-image: url('{{ $campaign->getImageUrl(40) }}');" href="{{ app()->getLocale() . '/' . $campaign->getMiddlewareLink() }}"></a></td>
             <td>{{ link_to(app()->getLocale() . '/' . $campaign->getMiddlewareLink(), $campaign->name) }}</td>
             <td>{{ trans('campaigns.visibilities.' . $campaign->visibility) }}</td>
             <td>

@@ -2,7 +2,7 @@
 <div class="box box-solid">
     <div class="box-body box-profile">
         @if ($campaign->image)
-            <div class="full-sized-image" style="background-image: url('{{ Storage::url($campaign->image) }}');">
+            <div class="full-sized-image" style="background-image: url('{{ Img::crop(400, 240)->url($campaign->image) }}');">
                 <h1>{!! $campaign->name !!}</h1>
             </div>
         @else
@@ -17,11 +17,11 @@
                 </span>
                 <br class="clear" />
             </li>
-            @if (false && $campaign->isPublic())
+            @if ($campaign->isPublic())
                 <li class="list-group-item">
                     <b>{{ trans('campaigns.fields.followers') }}</b>
                     <span  class="pull-right">
-                    {{ $campaign->followers->count() }}
+                    {{ \App\Facades\CampaignCache::followerCount() }}
                 </span>
                     <br class="clear" />
                 </li>
@@ -38,7 +38,7 @@
             <li class="list-group-item">
                 <b>{{ trans('campaigns.fields.entity_count') }}</b>
                 <span  class="pull-right">
-                    {{ number_format($campaign->entities()->count()) }}
+                    {{ number_format(\App\Facades\CampaignCache::entityCount()) }}
                 </span>
                 <br class="clear" />
             </li>
@@ -108,7 +108,7 @@
                 <a href="{{ route('campaign_users.index') }}">
                     {{ __('campaigns.show.tabs.members') }}
                     <span class="label label-default pull-right">
-                        {{ $campaign->users()->count() }}
+                        {{ \App\Facades\CampaignCache::members()->count() }}
                     </span>
                 </a>
             </li>
@@ -117,7 +117,7 @@
                 <a href="{{ route('campaign_roles.index') }}">
                     {{ __('campaigns.show.tabs.roles') }}
                     <span class="label label-default pull-right">
-                        {{ $campaign->roles()->count() }}
+                        {{ \App\Facades\CampaignCache::roles()->count() }}
                     </span>
                 </a>
             </li>
@@ -135,7 +135,17 @@
                 </a>
             </li>
             @if ($campaign->boosted())
-                    <li class="@if(!empty($active) && $active == 'recovery')active @endif">
+                <li class="@if(!empty($active) && $active == 'default-images')active @endif">
+                    <a href="{{ route('campaign.default-images') }}">
+                        {{ __('campaigns.show.tabs.default-images') }}
+                        @if($campaign->default_images)
+                        <span class="label label-default pull-right">
+                            {{ count($campaign->default_images)}}
+                        </span>
+                        @endif
+                    </a>
+                </li>
+                <li class="@if(!empty($active) && $active == 'recovery')active @endif">
                     <a href="{{ route('recovery') }}">
                         {{ __('campaigns.show.tabs.recovery') }}
                     </a>

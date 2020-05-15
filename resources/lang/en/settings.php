@@ -48,6 +48,7 @@ return [
         'benefits'      => [
             'first'     => 'To secure continued progress on Kanka, some campaign features are unlocked by boosting a campaign. Boosts are unlocked through subscriptions. Anyone who can view a campaign can boost it, so that the DM doesn\'t always have to foot the bill. A campaign remains boosted as long as a user is boosting the campaign and they continue supporting Kanka. If a campaign is no longer boosted, data isn\'t lost, it is only hidden until the campaign is boosted again.',
             'header'    => 'Entity header images.',
+            'images'    => 'Custom default entity images.',
             'more'      => 'Find out more about all features.',
             'second'    => 'Boosting a campaign enables the following benefits:',
             'theme'     => 'Campaign level theme and custom styling.',
@@ -67,6 +68,15 @@ return [
             'delete'=> 'Removed your boost from :name.',
         ],
         'title'         => 'Boost',
+    ],
+    'countries' => [
+      'austria' => 'Austria',
+        'belgium' => 'Belgium',
+      'germany' => 'Germany',
+      'italy' => 'Italy',
+        'france' => 'France',
+        'netherlands' => 'The Netherlands',
+        'spain' => 'Spain',
     ],
     'invoices'      => [
         'actions'   => [
@@ -159,7 +169,10 @@ return [
         ],
         'cancelled'             => 'Your subscription has been cancelled. You can renew a subscription once your current subscription ends.',
         'change'                => [
-            'text'  => 'You are subscribing at the :tier tier, billed monthly for :amount.',
+            'text'  => [
+                'monthly' => 'You are subscribing at the :tier tier, billed monthly for :amount.',
+                'yearly' => 'You are subscribing at the :tier tier, billed annualy for :amount.',
+            ],
             'title' => 'Change Subscription Tier',
         ],
         'currencies'            => [
@@ -176,11 +189,16 @@ return [
         'fields'                => [
             'active_since'      => 'Active since',
             'active_until'      => 'Active until',
-            'billed_monthly'    => 'Billed monthly',
+            'billing'           => 'Billing',
             'currency'          => 'Billing Currency',
             'payment_method'    => 'Payment method',
             'plan'              => 'Current plan',
             'reason'            => 'Reason',
+        ],
+        'helpers' => [
+            'alternatives' =>  'Pay for your subscription using :method. This payment method won\'t auto-renew at the end of your subscription. :method is only available in Euros.',
+            'alternatives_yearly' =>  'Due to the restrictions surrounding recurring payments, :method is only available for yearly subscriptions',
+            'alternatives_warning' => 'Upgrading your subscription when using this method is not possible. Please create a new subscription when your current one ends.',
         ],
         'manage_subscription'   => 'Manage subscription',
         'payment_method'        => [
@@ -188,10 +206,13 @@ return [
                 'add_new'   => 'Add a new payment method',
                 'change'    => 'Change payment method',
                 'save'      => 'Save payment method',
+                'show_alternatives' => 'Alternative payment options',
             ],
             'add_one'   => 'You currently have no payment method saved.',
+            'alternatives' => 'You can subscribe using these alternative payment options. This action will charge your account once and not auto-renew your subscription every month.',
             'card'      => 'Card',
             'card_name' => 'Name on card',
+            'country'   => 'Country of residence',
             'ending'    => 'Ending in',
             'helper'    => 'This card will be used for all of your subscriptions.',
             'new_card'  => 'Add a new payment method',
@@ -200,21 +221,28 @@ return [
         'placeholders'          => [
             'reason'    => 'Optionally tell us why you are no longer supporting Kanka. Was a feature missing? Did your financial situation change?',
         ],
+        'plans' => [
+            'cost_monthly' => ':currency :amount billed monthly',
+            'cost_yearly' => ':currency :amount billed yearly',
+        ],
         'sub_status'            => 'Subscription information',
         'subscription'          => [
             'actions'   => [
                 'downgrading'   => 'Please contact us for downgrading',
                 'rollback'      => 'Change to Kobold',
                 'subscribe'     => 'Change to :tier monthly',
+                'subscribe_annual'     => 'Change to :tier yearly',
             ],
         ],
         'success'               => [
+            'alternative'   => 'Your payment was registered. You will get a notification as soon as it is processed and your subscription is active.',
             'callback'      => 'Your subscription was successful. Your account will be updated as soon as our payment provided informs us of the change (this might take a few minutes).',
             'cancel'        => 'Your subscription was cancelled. It will continue to be active until the end of your current billing period.',
             'currency'      => 'Your prefered currency setting was updated.',
             'subscribed'    => 'Your subscription was successful. Don\'t forget to subscribe to the Community Vote newsletter to be notified when a vote goes live. You can change your newsletter settings in your Profile page.',
         ],
         'tiers'                 => 'Subscription Tiers',
+        'trial_period'          => 'Yearly subscriptions have a 14 day cancellation policy. Contact us at :email if you wish to cancel your yearly subscription and get a refund.',
         'upgrade_downgrade'     => [
             'button'    => 'Upgrade & Downgrade Information',
             'downgrade' => [

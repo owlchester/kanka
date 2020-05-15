@@ -37,7 +37,7 @@
             @foreach ($r as $organisation)
                 <tr>
                     <td>
-                        <a class="entity-image" style="background-image: url('{{ $organisation->organisation->getImageUrl(true) }}');" title="{{ $organisation->organisation->name }}" href="{{ route('organisations.show', $organisation->organisation->id) }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $organisation->organisation->getImageUrl(40) }}');" title="{{ $organisation->organisation->name }}" href="{{ route('organisations.show', $organisation->organisation->id) }}"></a>
                     </td>
                     <td>
                         {!! $organisation->organisation->tooltipedLink() !!}

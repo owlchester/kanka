@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Facades\CampaignLocalization;
+use App\Facades\EntityCache;
 use App\Facades\EntityPermission;
 use App\Facades\Identity;
 use App\Jobs\EntityUpdatedJob;
@@ -115,10 +116,10 @@ class EntityObserver
         if (EntityPermission::granted() && !empty($data['user'])) {
             $user = auth()->user()->id;
             if (!in_array('edit', $data['user'][$user])) {
-                $data['user'][$user][] = 'edit';
+                $data['user'][$user]['edit'] = 'allow';
             }
             if (!in_array('read', $data['user'][$user])) {
-                $data['user'][$user][] = 'read';
+                $data['user'][$user]['read'] = 'allow';
             }
         }
 
@@ -206,6 +207,8 @@ class EntityObserver
         $log->impersonated_by = Identity::getImpersonatorId();
         $log->action = EntityLog::ACTION_UPDATE;
         $log->save();
+
+        //EntityCache::clearEntity($entity->id);
 
         // Queue job when an entity was updated
         EntityUpdatedJob::dispatch($entity);

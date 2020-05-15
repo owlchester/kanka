@@ -16,7 +16,7 @@ return [
     'creator'               => [
         'duplicate' => 'Postoje drugi entiteti ovog tipa s istim nazivom.',
         'error'     => 'Došlo je do pogreške s tvojim vrijednostima. Provjeri ih ponovo.',
-        'helper'    => 'Odaberi vrstu entiteta koju želiš izraditi. Ako se ne pojavi nijedan entitet, to znači da nemaš dozvolu za stvaranje bilo kakvog entiteta u ovoj kampanji.',
+        'helper'    => 'Odaberi vrstu entiteta koju želiš izraditi. Ako se ne pojavljuje nijedan entitet, to znači da nemaš dozvolu za stvaranje bilo kakvog entiteta u ovoj kampanji.',
         'success'   => 'Kreiran novi entitet ":link".',
         'title'     => 'Novi entitet',
     ],

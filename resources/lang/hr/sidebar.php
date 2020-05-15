@@ -10,7 +10,7 @@ return [
     'characters'            => 'Likovi',
     'conversations'         => 'Razgovori',
     'custom_links'          => 'Brze poveznice',
-    'dashboard'             => 'Pregledna ploča',
+    'dashboard'             => 'Naslovna ploča',
     'dice_rolls'            => 'Bacanja kockice',
     'entity-creator'        => 'Kreiraj na brzinu',
     'events'                => 'Događaji',

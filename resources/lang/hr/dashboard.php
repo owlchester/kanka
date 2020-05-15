@@ -8,15 +8,15 @@ return [
     'campaigns'         => [
         'manage'    => 'Upravljanje kampanjom',
         'tabs'      => [
-            'modules'   => ':count modula',
-            'roles'     => ':count uloga',
-            'users'     => ':count korisnika',
+            'modules'   => '{1} :count modul|{2,*} :count modula',
+            'roles'     => '{1} :count uloga|{2,4} :count uloge|{5,*} :count uloga',
+            'users'     => '{1} :count korisnik|{2,*} :count korisnika',
         ],
     ],
     'description'       => 'Dom za tvoju kreativnost',
     'helpers'           => [
         'follow'    => 'Praćenje kampanje prikazat će ju u izborniku kampanje (gore desno) ispod tvojih kampanja.',
-        'setup'     => 'Postavljanje pregledne ploče kampanje.',
+        'setup'     => 'Postavljanje naslovne ploče kampanje.',
     ],
     'latest_release'    => 'Najnovije izdanje',
     'notifications'     => [
@@ -32,7 +32,7 @@ return [
         'view'          => 'Pregledaj sve :name',
     ],
     'settings'          => [
-        'description'   => 'Prilagodi što vidiš na preglednoj ploči',
+        'description'   => 'Prilagodi što vidiš na naslovnoj ploči',
         'edit'          => [
             'success'   => 'Tvoje promjene su spremljene.',
         ],
@@ -40,37 +40,37 @@ return [
             'helper'        => 'Možeš jednostavno promijeniti ono što vidiš na nadzornoj ploči. Imaj na umu da je to za sve tvoje kampanje, bez obzira na postavke kampanje.',
             'recent_count'  => 'Broj nedavnih elemenata',
         ],
-        'title'         => 'Postavke pregledne ploče',
+        'title'         => 'Postavke naslovne ploče',
     ],
     'setup'             => [
         'actions'   => [
             'add'               => 'Dodajte programčić',
-            'back_to_dashboard' => 'Povratak na preglednu ploču',
+            'back_to_dashboard' => 'Povratak na naslovnu ploču',
             'edit'              => 'Uredi programčić',
         ],
-        'title'     => 'Postavljanje pregledne ploče kampanje',
+        'title'     => 'Postavljanje naslovne ploče kampanje',
         'widgets'   => [
             'calendar'  => 'Kalendar',
             'preview'   => 'Skraćeni pregled entiteta',
             'recent'    => 'Nedavno',
         ],
     ],
-    'title'             => 'Pregledna ploča',
+    'title'             => 'Naslovna ploča',
     'widgets'           => [
         'calendar'  => [
             'actions'           => [
-                'next'      => 'Promijeni datum na sljedeći dan',
-                'previous'  => 'Promijeni datum u prethodni dan',
+                'next'      => 'Promijeni trenutni datum na sljedeći dan',
+                'previous'  => 'Promijeni trenutni datum na prethodni dan',
             ],
             'events_today'      => 'Danas',
-            'previous_events'   => 'Prethodni',
-            'upcoming_events'   => 'Sljedeći',
+            'previous_events'   => 'Prošli događaji',
+            'upcoming_events'   => 'Nadolazeći događaji',
         ],
         'create'    => [
-            'success'   => 'Programčić dodan na preglednu ploču.',
+            'success'   => 'Programčić dodan na naslovnu ploču.',
         ],
         'delete'    => [
-            'success'   => 'Programčić uklonjen s pregledne ploče.',
+            'success'   => 'Programčić uklonjen s naslovne ploče.',
         ],
         'fields'    => [
             'width' => 'Širina',

@@ -13,7 +13,7 @@
 
 @section('og')
     <meta property="og:description" content="{{ $campaign->excerpt ?: $campaign->tooltip() }}" />
-    @if ($campaign->image)<meta property="og:image" content="{{ Storage::url($campaign->image)  }}" />@endif
+    @if ($campaign->image)<meta property="og:image" content="{{ Img::crop(50, 50)->url($campaign->image)  }}" />@endif
     <meta property="og:url" content="{{ route('campaigns.show', $campaign)  }}" />
 @endsection
 
@@ -45,38 +45,12 @@
 
     @include('partials.errors')
 
-    @if (!empty($release) && auth()->check() && auth()->user()->release != $release->id)
-        <div class="box box-widget">
-            <div class="box-header with-border">
-                <div class="user-block">
-                    @if ($release->author && $release->author->avatar)
-                        <img class="img-circle" src="{{ $release->author->getAvatarUrl(true) }}" alt="{{ $release->author->name }}" title="{{ $release->author->name }}">
-                    @endif
-                    <span class="username">
-                        <a href="{{ route('front.news.show', $release->getSlug()) }}">{{ $release->title }}</a>
-                    </span>
-                    <span class="description">{{ $release->updated_at->isoFormat('MMMM D, Y') }}</span>
-                </div>
-                <div class="box-tools">
-                    <button type="button" class="btn btn-box-tool" data-widget="remove" data-url="{{ route('settings.release', $release) }}">
-                        <i class="fa fa-times"></i>
-                    </button>
-                </div>
-                @auth
-                @endauth
-            </div>
-            <div class="box-body">
-                {{ $release->excerpt }}
-            </div>
-        </div>
-    @endif
-
-    <div class="campaign @if(!empty($campaign->header_image))cover-background" style="background-image: url({{ Storage::url($campaign->header_image) }}) @else no-header @endif ">
+    <div class="campaign @if(!empty($campaign->header_image))cover-background" style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }}) @else no-header @endif ">
         <div class="content">
             <div class="title">
                 <h1>
                     @if (!empty($campaign->image))
-                        <img class="img-circle cover-background" src="{{ Storage::url($campaign->image) }}" alt="{{ $campaign->name }} picture">
+                        <img class="img-circle cover-background" src="{{ Img::crop(50, 50)->url($campaign->image) }}" alt="{{ $campaign->name }} picture">
                     @endif
                     <a href="{{ route('campaigns.show', $campaign) }}" title="{{ $campaign->name }}">{{ $campaign->name }}</a>
                 </h1>
@@ -93,13 +67,13 @@
             @can('update', $campaign)
             <div class="row">
                 <div class="col-xs-6 col-sm-6 col-md-2">
-                    <a href="{{ route('campaign_users.index') }}" class="campaign-link" title="{{ __('dashboard.campaigns.tabs.users', ['count' => $campaign->users()->count()]) }}">
-                        <i class="fa fa-user"></i> {{ $campaign->users()->count() }}
+                    <a href="{{ route('campaign_users.index') }}" class="campaign-link" title="{{ __('dashboard.campaigns.tabs.users', ['count' => \App\Facades\CampaignCache::members()->count()]) }}">
+                        <i class="fa fa-user"></i> {{ \App\Facades\CampaignCache::members()->count() }}
                     </a>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-2">
-                    <a href="{{ route('campaign_roles.index') }}" class="campaign-link" title="{{  __('dashboard.campaigns.tabs.roles', ['count' => $campaign->roles()->count()]) }}">
-                        <i class="fa fa-lock"></i> {{ $campaign->roles()->count() }}
+                    <a href="{{ route('campaign_roles.index') }}" class="campaign-link" title="{{  __('dashboard.campaigns.tabs.roles', ['count' => \App\Facades\CampaignCache::roles()->count()]) }}">
+                        <i class="fa fa-lock"></i> {{ \App\Facades\CampaignCache::roles()->count() }}
                     </a>
                 </div>
                 <div class="col-md-2 hidden-xs hidden-sm">

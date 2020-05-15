@@ -60,16 +60,16 @@
                 </h4>
 
                 <div class="socials">
-                    <a href="{{ config('social.discord') }}" target="discord" title="Discord" rel="noreferrer">
+                    <a href="{{ config('social.discord') }}" target="discord" rel="nofollow" title="Discord" rel="noreferrer">
                         <i class="fab fa-discord"></i>
                     </a>
-                    <a href="{{ config('social.reddit') }}" target="reddit" title="Reddit" rel="noreferrer">
+                    <a href="{{ config('social.reddit') }}" target="reddit" rel="nofollow" title="Reddit" rel="noreferrer">
                         <i class="fab fa-reddit"></i>
                     </a>
-                    <a href="{{ config('social.facebook') }}" target="facebook" title="Facebook" rel="noreferrer">
+                    <a href="{{ config('social.facebook') }}" target="facebook" rel="nofollow" title="Facebook" rel="noreferrer">
                         <i class="fab fa-facebook"></i>
                     </a>
-                    <a href="{{ config('social.instagram') }}" target="instagram" title="Instagram" rel="noreferrer">
+                    <a href="{{ config('social.instagram') }}" target="instagram" rel="nofollow" title="Instagram" rel="noreferrer">
                         <i class="fab fa-instagram"></i>
                     </a>
                 </div>

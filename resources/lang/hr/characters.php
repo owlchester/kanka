@@ -117,7 +117,7 @@ return [
         'sex'               => 'Spol',
         'title'             => 'Titula',
         'traits'            => 'Osobine',
-        'type'              => 'NPC, Lik igrača, Božanstvo',
+        'type'              => 'Lik igrača, Lik kojim upravlja voditelj igre, Božanstvo',
     ],
     'quests'        => [
         'description'   => 'Zadaci u koje je lik uključen.',

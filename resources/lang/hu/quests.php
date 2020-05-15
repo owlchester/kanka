@@ -37,6 +37,7 @@ return [
     'fields'        => [
         'character'     => 'Küldetésadó',
         'characters'    => 'Karakterek',
+        'date'          => 'Dátum',
         'description'   => 'Leírás',
         'image'         => 'Kép',
         'is_completed'  => 'Teljesítve',
@@ -122,6 +123,7 @@ return [
         'title'     => 'Szervezetek :name küldetésben',
     ],
     'placeholders'  => [
+        'date'  => 'A küldetés valós világbéli dátuma',
         'name'  => 'A küldetés neve',
         'quest' => 'Főküldetés',
         'role'  => 'Az entitás szerepe a küldetésben',

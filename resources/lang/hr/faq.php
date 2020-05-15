@@ -3,29 +3,29 @@
 return [
     'attribute-templates'   => [
         'answer'    => <<<'TEXT'
-Najbolji način na koji možemo objasniti Predloške atributa je primjerom. Zamislimo da Vaš svijet ima puno lokacija, a na mnogim od tih lokacija želite se sjetiti stvoriti prilagođeni atribut za "Stanovništvo", "Klima", "Razina kriminala".
+Najbolji način na koji možemo objasniti Predloške atributa je primjerom. Zamislimo da tvoj svijet ima puno lokacija, a na mnogim od tih lokacija želiš se sjetiti stvoriti prilagođeni atribut za "Stanovništvo", "Klima" i "Razina kriminala".
 
-Mogli biste to lako postići na svakoj lokaciji, ali može postati zamorno i ponekad možete zaboraviti stvoriti atribut "Razina zločina". Ovdje Predloške atributa ulaze u igru.
+Možeš to lako postići na svakoj lokaciji, ali može postati zamorno i ponekad možeš zaboraviti stvoriti atribut "Razina zločina". Ovdje Predlošci atributa ulaze u igru.
 
-Možete stvoriti Predložak atributa s tim atributima (stanovništvo, klima, razina kriminala), a kasnije taj predložak primijenite na svoje lokacije. Ovo će stvoriti atribute iz predloška na lokacijama, tako da sve što morate učiniti je promijeniti vrijednosti, a ne morate se prisjećati atributa!
+Možeš  stvoriti Predložak atributa s tim atributima (stanovništvo, klima, razina kriminala), a kasnije taj predložak primijeniti na svoje lokacije. Ovo će stvoriti atribute iz predloška na lokacijama, tako da sve što moraš učiniti je promijeniti vrijednosti, a ne moraš se prisjećati atributa!
 TEXT
 ,
         'question'  => 'Predlošci atributa, što su oni?',
     ],
     'backup'                => [
-        'answer'    => 'Jednom dnevno možete sve podatke svoje kampanje izvesti kao ZIP datoteku. U aplikaciji kliknite na "Kampanja" na lijevom izborniku i kliknite na "Izvezi". Tako će se stvoriti izvoz koji je dostupan 30 minuta. Ne možete prenijeti ovaj izvoz na Kanka, on je namijenjen samo vlastitom miru ili ako više ne planirate koristiti aplikaciju.',
+        'answer'    => 'Jednom dnevno možeš sve podatke svoje kampanje izvesti kao ZIP datoteku. U aplikaciji klikni na "Kampanja" na lijevom izborniku i klikni na "Izvoz". Tako će se stvoriti datoteka koja je dostupna 30 minuta. Ne možeš prenijeti ovaj izvoz na Kanku, on je namijenjen samo vlastitom miru ili ako više ne planiraš koristiti aplikaciju.',
         'question'  => 'Kako mogu sigurnosno kopirati ili izvoziti kampanju?',
     ],
     'bugs'                  => [
-        'answer'    => 'Jednostavno se pridružite našem :discord poslužitelju i prijavite svoju pogrešku u kanalu #error-and-bugs.',
+        'answer'    => 'Jednostavno se pridruži našem :discord poslužitelju i prijavi svoju pogrešku u kanalu #error-and-bugs.',
         'question'  => 'Kako mogu prijaviti pogrešku?',
     ],
     'campaign-sync'         => [
-        'answer'    => 'Kanka nema tu značajku. Međutim, ako pokušavate imati više grupa za igru u istom svijetu, razmislite o upotrebi iste kampanje i razdvajanju grupa kombinacijom zadataka, oznaka i dozvola.',
+        'answer'    => 'Kanka nema tu značajku. Međutim, ako pokušavaš imati više grupa za igru u istom svijetu, razmisli o upotrebi iste kampanje i razdvajanju grupa kombinacijom zadataka, oznaka i dozvola.',
         'question'  => 'Mogu li sinkronizirati entitete u više kampanja?',
     ],
     'conversations'         => [
-        'answer'    => 'Razgovori se mogu postaviti kao razgovori između likova ili između članova kampanje. Ako na primjer želite dokumentirati važan razgovor između NPC-a i likova igrača, to možete učiniti pomoću ovog modula. Možete ih koristiti i za kampanje koje se igraju preko slanja poruka.',
+        'answer'    => 'Razgovori se mogu postaviti kao razgovori između likova ili između članova kampanje. Ako na primjer želiš dokumentirati važan razgovor između likova igrača i likova s kojima upravlja voditelj kampanje, to možeš učiniti pomoću ovog modula. Možeš ih koristiti i za kampanje koje se igraju putem slanja poruka.',
         'question'  => 'Što su razgovori?',
     ],
     'custom'                => [
@@ -33,11 +33,11 @@ TEXT
         'question'  => 'Mogu li stvoriti prilagođene vrste entiteta?',
     ],
     'delete-campaign'       => [
-        'answer'    => 'Idite na preglednu ploču kampanje i kliknite na "Kampanja" na lijevom izborniku. Gumb "Izbriši" pojavit će se ako ste posljednji član kampanje. Brisanje kampanje trajna je akcija kojom ćete izbrisati sve podatke pohranjene na našim poslužiteljima, uključujući slike.',
+        'answer'    => 'Idi na naslovnu ploču kampanje i klikni na "Kampanja" na lijevom izborniku. Gumb "Izbriši" pojavit će se ako si posljednji član kampanje. Brisanje kampanje trajna je akcija kojom ćeš izbrisati sve podatke pohranjene na našim poslužiteljima, uključujući slike.',
         'question'  => 'Kako mogu izbrisati kampanju?',
     ],
     'entity-notes'          => [
-        'answer'    => 'Svi entiteti imaju karticu "Bilješke entiteta" koje sadrže male isječke teksta koje možete postaviti da su vidljivi samo vama (odlično prilikom zajedničkog vođenja kampanje), samo članovima administratorske uloge ili vidljive svima. Također, možete dati igračima dozvolu za kreiranje i uređivanje bilješki o entitetima bez ovlaštenja za uređivanjem čitavog entiteta.',
+        'answer'    => 'Svi entiteti imaju karticu "Bilješke entiteta" koje sadrže male isječke teksta koje možeš postaviti da su vidljivi samo tebi (odlično prilikom zajedničkog vođenja kampanje), samo članovima administratorske uloge ili vidljive svima. Također, možeš dati igračima dozvolu za kreiranje i uređivanje bilješki o entitetima bez ovlaštenja za uređivanjem čitavog entiteta.',
         'question'  => 'Kako Kanka postupa s djelomično skrivenim informacijama?',
     ],
     'fields'                => [
@@ -49,9 +49,9 @@ TEXT
     ],
     'free'                  => [
         'answer'    => <<<'TEXT'
-Da! Čvrsto vjerujemo da Vaša financijska situacija ne bi trebala utjecati na Vaše uživanje u RPG-ovima ili izgradnji svijeta te ćemo osnovnu aplikaciju uvijek držati besplatnom. Ako želite preuzeti aktivniju ulogu na ovom putovanju, podržite nas i glasajte o funkcionalnostima koje su Vama najvažnije, što možete učiniti putem naše web stranice ili na :patreon.
+Da! Čvrsto vjerujemo da tvoja financijska situacija ne bi trebala utjecati na tvoje uživanje u RPG-ovima ili izgradnji svijeta te ćemo osnovnu aplikaciju uvijek držati besplatnom. Ako želiš preuzeti aktivniju ulogu na ovom putovanju, podrži nas i glasaj o funkcionalnostima koje su ti najvažnije, što možeš učiniti putem naše web stranice ili na :patreon.
 
-Uz glasanje o pravcu kojim će Kanka napredovati, podržavanje nas omogućava Vam pristup :boosters, povećanju ograničenja za prijenos veličine datoteke, dodavanje Vašeg imena u kuću slavnih, ljepše zadate ikone i još mnogo toga!
+Osim glasanje o pravcu kojim će Kanka napredovati, podržavanje nas omogućava tebi pristup :boosters, povećanju ograničenja za prijenos veličine datoteke, dodavanju tvog imena u kuću slavnih, ljepše zadate ikone i još mnogo toga!
 TEXT
 ,
         'question'  => 'Hoće li aplikacija ostati besplatna?',
@@ -61,7 +61,7 @@ TEXT
         'question'  => 'Gdje stvoriti bogove i religije?',
     ],
     'help'                  => [
-        'answer'    => 'Kao prvo, hvala Vam što želite pomoći! Uvijek smo zainteresirani za ljude koji mogu pomoći u prijevodima, testiranju novih značajki ili koji mogu pomoći novim korisnicima. Također volimo kad ljudi promoviraju Kanku da dosegne nove korisnike na mjestima o kojima nismo razmišljali. Vaš je najbolji način djelovanja da nam se pridružite na :discord koji sadrži kanal posvećen pomoći. Također volimo i naše pokrovitelje na :patreon ako nas želite podržati i dobiti pristup nekim povlasticama!',
+        'answer'    => 'Kao prvo, hvala ti što želiš pomoći! Uvijek smo zainteresirani za ljude koji mogu pomoći u prijevodima, testiranju novih značajki ili koji mogu pomoći novim korisnicima. Također volimo kad ljudi promoviraju Kanku da dosegne nove korisnike na mjestima o kojima nismo razmišljali. Tvoj je najbolji način djelovanja da nam se pridružiš na :discord koji sadrži kanal posvećen pomoći. Također volimo i naše pokrovitelje na :patreon ako nas želiš podržati i dobiti pristup nekim povlasticama!',
         'question'  => 'Želim pomoći! Što mogu učiniti?',
     ],
     'map'                   => [
@@ -73,7 +73,7 @@ TEXT
         'question'  => 'Postoji li mobilna aplikacija? Planira li se?',
     ],
     'multiworld'            => [
-        'answer'    => 'Možete biti dio onoliko kampanja koliko želite, uključujući i one koje ste kreirali. Da biste promijenili ili stvorili novu kampanju, idite na preglednu ploču kampanje i u gornjem desnom kutu možete kliknuti na trenutnu kampanju da biste prikazali sučelje prebacivanja kampanje.',
+        'answer'    => 'Možeš biti dio onoliko kampanja koliko želiš, uključujući i one koje si kreirao/la. Za promjenu ili stvaranje nove kampanje, idi na preglednu ploču kampanje i u gornjem desnom kutu klikni na trenutnu kampanju za prikaz sučelja prebacivanja kampanje.',
         'question'  => 'Mogu li imati više kampanja?',
     ],
     'permissions'           => [
@@ -84,13 +84,13 @@ TEXT
         'answer'    => <<<'TEXT'
 Dugoročni planovi za Kanku su izgraditi svestrani alat za upravljanje izgradnje svijeta i upravljanjem kampanjama, koji je agnostičan na sustav, ali uz sadržaj specifičan za sustav koji kreira zajednica u obliku "predložaka zajednice". Duži cilj je izgradnja alata koji se integrira s drugim platformama poput Virtual Table Top aplikacija koje će ih povezati sa svjetovima Kanka.
 
-Što se tiče drugog dijela, većina hobi projekata završava izgaranjem, a autor ih napušta. :patreon je postavljen s ciljem da budemo u mogućnosti raditi puno radno vrijeme na Kanki bez žrtvovanja financijske sigurnosti naših obitelji, kao i pokrivanja troškova poslužitelja. Projekt je također otvorenog koda i zajednica ga može pokupiti ako nam se ikada nešto dogodi.
+Što se tiče drugog dijela, većina hobi projekata završava izgaranjem, a autor ih napušta. :patreon je postavljen s ciljem da budemo u mogućnosti raditi puno radno vrijeme na Kanki bez žrtvovanja financijske sigurnosti naših obitelji, kao i pokrivanja troškova poslužitelja. Projekt je također otvorenog koda i zajednica ga može nastaviti ako se nama ikada nešto dogodi.
 TEXT
 ,
         'question'  => 'Koji su dugoročni planovi?',
     ],
     'public-campaigns'      => [
-        'answer'    => 'Možete pregledavati stranicu :public-campaigns da biste vidjeli kako drugi koriste Kanka za svoje kampanje.',
+        'answer'    => 'Možeš pregledavati stranicu :public-campaigns da vidiš kako drugi koriste Kanku za svoje kampanje.',
         'question'  => 'Kako drugi koriste Kanka?',
     ],
     'sections'              => [
@@ -107,11 +107,11 @@ TEXT
         'title'     => 'Često postavljana pitanja :name',
     ],
     'user-switch'           => [
-        'answer'    => 'Dozvole mogu postati škakljive, osobito kod velikih kampanja. Kao administrator kampanje, možete doći do stranice članova kampanje i kliknuti gumb "Prebaci se" koji će se pojaviti pored članova koji nisu administratori. Tako ćete se prijaviti kao korisnik i omogućiti vam da vidite kampanju kakvu bi oni vidjeli. To je najlakši način za provjeru dozvola vaše kampanje.',
+        'answer'    => 'Dozvole mogu postati škakljive, osobito kod velikih kampanja. Kao administrator kampanje, možeš doći do stranice članova kampanje i kliknuti gumb "Prebaci se" koji će se pojaviti pored članova koji nisu administratori. Tako ćeš se prijaviti kao korisnik, što će ti omogućiti pregled kampanje kakvu taj korisnik vidi. To je najlakši način za provjeru dozvola tvoje kampanje.',
         'question'  => 'Ovlasti u mojoj kampanji su postavljene, kako ih mogu testirati?',
     ],
     'visibility'            => [
-        'answer'    => 'Samo ljudi koje pozovete u kampanju mogu vidjeti i koristiti što ste stvorili. Vaši su podaci privatni i uvijek u Vašoj kontroli. Također možete postaviti javnu kampanju kako biste omogućili pregled neregistriranim korisnicima.',
+        'answer'    => 'Samo ljudi koje pozoveš u kampanju mogu vidjeti i koristiti što je stvoreno. Tvoji su podaci privatni i uvijek u tvojoj kontroli. Također, možeš postaviti kampanju kao javnu kako bi tvoju kampanju mogli vidjeti i neregistrirani korisnici.',
         'question'  => 'Može li itko vidjeti moj svijet?',
     ],
 ];

@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\Tag $model */?>
 {{ csrf_field() }}
 <div class="row">
     <div class="col-md-12">
@@ -9,7 +10,8 @@
                 false,
                 'crud.fields.entity',
                 'search.tag-children',
-                'entities/relations.placeholders.target'
+                'entities/relations.placeholders.target',
+                $model
             ) !!}
         </div>
     </div>

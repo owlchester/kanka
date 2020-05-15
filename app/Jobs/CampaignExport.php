@@ -66,6 +66,7 @@ class CampaignExport implements ShouldQueue
         if (!empty($this->campaign->export_path)) {
             Storage::delete($this->campaign->export_path);
             $this->campaign->export_path = null;
+            $this->campaign->withObservers = false;
             $this->campaign->save();
         }
 
@@ -126,6 +127,7 @@ class CampaignExport implements ShouldQueue
 
         // Save the new path.
         $this->campaign->export_path = $downloadPath;
+        $this->campaign->withObservers = false;
         $this->campaign->save();
 
         // Don't delete in "sync" mode as there is no delay.

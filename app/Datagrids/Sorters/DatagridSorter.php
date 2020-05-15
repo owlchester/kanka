@@ -262,11 +262,11 @@ abstract class DatagridSorter
      */
     protected function validOption(string $key, Campaign $campaign = null)
     {
-        $whitelist = ['tag.name'];
+        $whitelist = ['tag.name', 'target.name'];
         if (strpos($key, '.name') === false || in_array($key, $whitelist)) {
             return true;
         }
-        if ($key === 'entity.name') {
+        if ($key == 'entity.name') {
             return true;
         }
 

@@ -54,7 +54,7 @@ class CampaignSearchService
             $result[] = [
                 'id' => $member->user->id,
                 'name' => $member->user->name,
-                'avatar' => $member->user->getImageUrl(true)
+                'avatar' => $member->user->getImageUrl(40)
             ];
         }
 

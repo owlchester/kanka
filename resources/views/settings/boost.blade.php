@@ -24,6 +24,7 @@
             <ul>
                 <li>{{ __('settings.boost.benefits.theme') }}</li>
                 <li>{{ __('settings.boost.benefits.tooltip') }}</li>
+                <li>{{ __('settings.boost.benefits.images') }}</li>
                 <li>{{ __('settings.boost.benefits.header') }}</li>
                 <li>{{ __('settings.boost.benefits.upload') }}</li>
                 <li><a href="{{ route('front.features', '#boost') }}">
@@ -37,8 +38,8 @@
             </h3>
                 <div class="row">
                     @foreach ($boosts as $boost)
-                    <div class="col-md-4">
-                        <div class="campaign" @if ($boost->campaign->image) style="background-image: url('{{ Storage::url($boost->campaign->image) }}');" @endif>
+                    <div class="col-md-4 margin-bottom">
+                        <div class="campaign" @if ($boost->campaign->image) style="background-image: url('{{ Img::crop(500, 200)->url($boost->campaign->image) }}');" @endif>
                             <div class="actions">
                             <a href="{{ url(App::getLocale() . '/' . $boost->campaign->getMiddlewareLink()) }}">{!! $boost->campaign->name !!}</a><br />
 
@@ -55,7 +56,7 @@
                     @endforeach
                     @if ($campaign)
                         <div class="col-md-4">
-                            <div class="campaign boost" @if ($campaign->image) style="background-image: url('{{ Storage::url($campaign->image) }}');" @endif>
+                            <div class="campaign boost" @if ($campaign->image) style="background-image: url('{{ Img::crop(500, 200)->url($campaign->image) }}');" @endif>
                                 <div class="actions">
                                     <a href="{{ url(App::getLocale() . '/' . $campaign->getMiddlewareLink()) }}">{!! $campaign->name !!}</a>
 

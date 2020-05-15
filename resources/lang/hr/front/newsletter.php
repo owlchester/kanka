@@ -15,6 +15,6 @@ return [
         'news'              => 'Vijesti',
         'newsletter'        => 'Bilten',
     ],
-    'headline'  => 'Pretplatite se na jedan ili sve naše biltene kako biste bili u toku s Kankom.',
+    'headline'  => 'Pretplati se na jedan ili sve naše biltene kako bi bio/la u toku s Kankom.',
     'title'     => 'Obavijesti email porukama',
 ];

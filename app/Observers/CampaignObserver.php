@@ -3,7 +3,9 @@
 namespace App\Observers;
 
 use App\Facades\Mentions;
+use App\Facades\UserCache;
 use App\Models\Campaign;
+use App\Models\CampaignFollower;
 use App\Models\CampaignUser;
 use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
@@ -50,6 +52,10 @@ class CampaignObserver
      */
     public function saving(Campaign $campaign)
     {
+        if (!$campaign->withObservers) {
+            return;
+        }
+
         // Purity text
         $campaign->name = $this->purify($campaign->name);
         $campaign->entry = $this->purify(Mentions::codify($campaign->entry));
@@ -69,11 +75,14 @@ class CampaignObserver
         }
 
         // UI settings
+        $uiSettings = $campaign->ui_settings;
         if (request()->has('tooltip_family')) {
-            $uiSettings = $campaign->ui_settings;
             $uiSettings['tooltip_family'] = (bool) request()->get('tooltip_family');
-            $campaign->ui_settings = $uiSettings;
         }
+        if (request()->has('tooltip_image')) {
+            $uiSettings['tooltip_image'] = (bool) request()->get('tooltip_image');
+        }
+        $campaign->ui_settings = $uiSettings;
 
         // Handle image. Let's use a service for this.
         ImageService::handle($campaign, 'campaigns');
@@ -136,6 +145,8 @@ class CampaignObserver
         if ($first) {
             $this->starterService->generateBoilerplate($campaign);
         }
+
+        UserCache::clearCampaigns();
     }
 
     /**
@@ -143,12 +154,24 @@ class CampaignObserver
      */
     public function saved(Campaign $campaign)
     {
+        if (!$campaign->withObservers) {
+            return;
+        }
+
         // If the entity note's entry has changed, we need to re-build it's map.
         if ($campaign->isDirty('entry')) {
             $this->entityMappingService->mapCampaign($campaign);
         }
 
         $this->saveRpgSystems($campaign);
+
+        // In case the campaign is no longer public, update any followers
+        if ($campaign->isDirty('visibility') && $campaign->visibility == Campaign::VISIBILITY_PRIVATE) {
+            /** @var CampaignFollower $follow */
+            foreach ($campaign->followers()->with('user')->get() as $follow) {
+                UserCache::user($follow->user)->clearFollows();
+            }
+        }
     }
 
     /**
@@ -157,6 +180,7 @@ class CampaignObserver
     public function deleted(Campaign $campaign)
     {
         ImageService::cleanup($campaign);
+        UserCache::clearCampaigns();
     }
 
     /**

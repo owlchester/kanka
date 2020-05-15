@@ -21,6 +21,12 @@ class MentionsService
     protected $entities = [];
 
     /**
+     * @var array
+     */
+    protected $mentionedEntities = [];
+    protected $mentionedEntityTypes = [];
+
+    /**
      * Map the mentions in an entity
      * @param MiscModel $model
      * @param string $field
@@ -140,6 +146,22 @@ class MentionsService
      */
     protected function extractAndReplace()
     {
+        // First let's prepare all mentions to do a single query on the entities table
+        $this->mentionedEntities = [];
+        preg_replace_callback('`\[([a-z_]+):(.*?)\]`i' , function($matches) {
+            $segments = explode('|', $matches[2]);
+            $id = (int) $segments[0];
+            if (!in_array($id, $this->mentionedEntities)) {
+                $this->mentionedEntities[] = $id;
+            }
+            if (!in_array($matches[1], $this->mentionedEntityTypes)) {
+                $this->mentionedEntityTypes[] = $matches[1];
+            }
+        }, $this->text);
+
+        // Pre-fetch all the entities
+        $this->prepareEntities();
+
         // Extract links from the entry to foreign
         $this->text = preg_replace_callback('`\[([a-z_]+):(.*?)\]`i' , function($matches) {
             $data = $this->extractData($matches);
@@ -218,5 +240,29 @@ class MentionsService
         }
 
         return Arr::get($this->entities, $id, null);
+    }
+
+    /**
+     * Pre-fetch all mentioned entities
+     */
+    protected function prepareEntities()
+    {
+        // Remove those already cached in memory
+        $ids = [];
+        foreach ($this->mentionedEntities as $id) {
+            if (!Arr::has($this->entities, $id)) {
+                $ids[] = $id;
+            }
+        }
+
+        if (empty($ids)) {
+            return;
+        }
+
+        // Directly get with the mentioned entity types (provided they are valid)
+        $entities = Entity::whereIn('id', $ids)->with($this->mentionedEntityTypes)->get();
+        foreach ($entities as $entity) {
+            $this->entities[$entity->id] = $entity;
+        }
     }
 }

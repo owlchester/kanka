@@ -16,7 +16,7 @@
             @foreach ($r as $event)
                 <tr>
                     <td>
-                        <a class="entity-image" style="background-image: url('{{ $event->getImageUrl(true) }}');" title="{{ $event->name }}" href="{{ route('events.show', $event->id) }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $event->getImageUrl(40) }}');" title="{{ $event->name }}" href="{{ route('events.show', $event->id) }}"></a>
                     </td>
                     <td>
                         {!! $event->tooltipedLink() !!}

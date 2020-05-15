@@ -42,7 +42,7 @@ $r = $model
         @viewentity($relation->calendar->entity)
         <tr>
             <td>
-                <a class="entity-image" style="background-image: url('{{ $relation->calendar->getImageUrl(true) }}');" title="{{ $relation->calendar->name }}" href="{{ route('calendars.show', $relation->calendar->id) }}"></a>
+                <a class="entity-image" style="background-image: url('{{ $relation->calendar->getImageUrl(40) }}');" title="{{ $relation->calendar->name }}" href="{{ route('calendars.show', $relation->calendar->id) }}"></a>
             </td>
             <td>
                 {!! $relation->calendar->tooltipedLink() !!}

@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Facades\CampaignCache;
+use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
@@ -9,6 +11,7 @@ use App\Models\Entity;
 use App\Models\MiscModel;
 use App\User;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class EntityPermission
 {
@@ -93,11 +96,27 @@ class EntityPermission
     /**
      * Get list of entity ids for a given model type that the user can access.
      * @param string $modelName
+     * @param string $action = 'read'
      * @return array
      */
-    public function entityIds(string $modelName)
+    public function entityIds(string $modelName, string $action = 'read'): array
     {
-        return Arr::get($this->cachedEntityIds, $modelName, [0]);
+        // Check if we have this model type at all
+        $modelIds = Arr::get($this->cachedEntityIds, $modelName, []);
+        if (empty($modelIds)) {
+            return [];
+        }
+        $ids = [];
+        foreach ($modelIds as $id => $data) {
+            if (!is_array($data)) {
+            }
+            foreach ($data as $perm => $access) {
+                if ($perm === $action && $access) {
+                    $ids[] = $id;
+                }
+            }
+        }
+        return $ids;
     }
 
     /**
@@ -134,21 +153,24 @@ class EntityPermission
             return true;
         }
 
-        // Check if we have permission to `action` all of the entities of this type first.
+        // Check if we have permission to `action` all of the entities of this type first. The user
+        // might be able to view all quests, but have a specific quest set to denied. This is why
+        // we need to check the specific permissions too.
         $key = $modelName . '_' . $action;
+        $perm = false;
         if (isset($this->cached[$key]) && $this->cached[$key]) {
-            return $this->cached[$key];
+            $perm = $this->cached[$key];
         }
 
         // Check if we have permission for `action` exactly for this entity
         if (!empty($entity)) {
             $entityKey = $key . '_' . $entity->id;
             if (isset($this->cached[$entityKey])) {
-                return $this->cached[$entityKey];
+                $perm = $this->cached[$entityKey];
             }
         }
 
-        return false;
+        return $perm;
     }
 
     /**
@@ -164,18 +186,13 @@ class EntityPermission
             $this->roles = false;
             // If we have a user, get the user's role for this campaign
             if ($user) {
-                $this->roles = $user->campaignRoles($campaign->id)
-                    ->with('permissions')
-                    ->get();
+                $this->roles = UserCache::user($user)->roles();
             }
 
             // If we don't have a user, or our user has no specified role yet, use the public role.
             if ($this->roles === false || $this->roles->count() == 0) {
                 // Use the campaign's public role
-                $this->roles = $campaign->roles()
-                    ->public()
-                    ->with('permissions')
-                    ->get();
+                $this->roles = CampaignCache::campaign($campaign)->roles()->where('is_public', true);
             }
 
             // Save all the role ids. If one of them is an admin, stop there.
@@ -204,7 +221,15 @@ class EntityPermission
         $this->loadAllPermissions($user, $campaign);
         $key = $modelName . '_' . $action;
 
+        // We check if the role was set for global entity permissions
         if (isset($this->cached[$key]) && $this->cached[$key]) {
+            // However, we need to make sure the user doesn't have some negative roles attached to this entity type.
+            $specificPerms = Arr::where($this->cached, function ($access, $permKey) use ($key) {
+                return Str::startsWith($permKey, $key) && !$access;
+            });
+            if (!empty($specificPerms)) {
+                return false;
+            }
             return $this->cached[$key];
         }
 
@@ -272,24 +297,40 @@ class EntityPermission
         }
 
         /** @var CampaignRole $role */
+//        dump('role');
         foreach ($this->roles as $role) {
             /** @var CampaignPermission $permission */
             foreach ($role->permissions as $permission) {
-                $this->cached[$permission->key] = true;
+                $this->cached[$permission->key] = $permission->access;
                 if (!empty($permission->entity_id)) {
-                    $this->cachedEntityIds[$permission->type()][] = $permission->entityId();
+//                    if ($permission->entity_id == 164) {
+//                        dump($permission->id);
+//                        dump($permission->entityId());
+//                        dump((bool)$permission->access);
+//                    }
+                    $this->cachedEntityIds[$permission->type()][$permission->entityId()][$permission->action()] = (bool) $permission->access;
                 }
             }
         }
 
         // If a user is provided, get their permissions too
         if (!empty($user)) {
+//            dump($user->permissions);
             foreach ($user->permissions as $permission) {
-                $this->cached[$permission->key] = true;
+                $this->cached[$permission->key] = $permission->access;
                 if (!empty($permission->entity_id)) {
-                    $this->cachedEntityIds[$permission->type()][] = $permission->entityId();
+                    if ($permission->entity_id == 20) {
+//                        dump($permission->id);
+//                        dump($permission->type());
+//                        dump($permission->action());
+//                        dump($permission->entityId());
+//                        dump((bool)$permission->access);
+                    }
+                    $this->cachedEntityIds[$permission->type()][$permission->entityId()][$permission->action()] = (bool) $permission->access;
                 }
             }
         }
+
+//        dump($this->cachedEntityIds);
     }
 }

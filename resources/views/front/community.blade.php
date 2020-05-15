@@ -25,7 +25,7 @@
                             <div class="card-body">
                                 <h5 class="card-title text-uppercase text-center"><i class="fab fa-discord fa-2x"></i> Discord</h5>
                                 <p class="text-muted">{{ trans('front.community.discord') }}</p>
-                                <a href="{{ config('social.discord') }}" class="btn btn-block btn-primary text-uppercase">{{ trans('front.community.join') }}</a>
+                                <a href="{{ config('social.discord') }}" class="btn btn-block btn-primary text-uppercase" rel="nofollow" >{{ trans('front.community.join') }}</a>
                             </div>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                             <div class="card-body">
                                 <h5 class="card-title text-uppercase text-center"><i class="fab fa-instagram fa-2x"></i> Instagram</h5>
                                 <p class="text-muted">{{ trans('front.community.instagram') }}</p>
-                                <a href="{{ config('social.instagram') }}" class="btn btn-block btn-primary text-uppercase">{{ trans('front.community.join') }}</a>
+                                <a href="{{ config('social.instagram') }}" class="btn btn-block btn-primary text-uppercase" rel="nofollow" >{{ trans('front.community.join') }}</a>
                             </div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                             <div class="card-body">
                                 <h5 class="card-title text-uppercase text-center"><i class="fab fa-facebook fa-2x"></i> Facebook</h5>
                                 <p class="text-muted">{{ trans('front.community.facebook') }}</p>
-                                <a href="{{ config('social.facebook') }}" class="btn btn-block btn-primary text-uppercase">{{ trans('front.community.join') }}</a>
+                                <a href="{{ config('social.facebook') }}" class="btn btn-block btn-primary text-uppercase" rel="nofollow" >{{ trans('front.community.join') }}</a>
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                             <div class="card-body">
                                 <h5 class="card-title text-uppercase text-center"><i class="fab fa-reddit fa-2x"></i> Reddit</h5>
                                 <p class="text-muted">{{ trans('front.community.reddit') }}</p>
-                                <a href="{{ config('social.reddit') }}" class="btn btn-block btn-primary text-uppercase">{{ trans('front.community.join') }}</a>
+                                <a href="{{ config('social.reddit') }}" class="btn btn-block btn-primary text-uppercase" rel="nofollow" >{{ trans('front.community.join') }}</a>
                             </div>
                         </div>
                     </div>

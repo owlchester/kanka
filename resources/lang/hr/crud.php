@@ -8,7 +8,7 @@ return [
         'copy'              => 'Kopiraj',
         'copy_mention'      => 'Kopiraj [ ] spominjanje',
         'copy_to_campaign'  => 'Kopiraj u kampanju',
-        'explore_view'      => 'Ugniježđeni pogled',
+        'explore_view'      => 'Ugniježđeni pregled',
         'export'            => 'Izvoz',
         'find_out_more'     => 'Saznaj više',
         'go_to'             => 'Idi na :name',
@@ -109,7 +109,8 @@ return [
             'title'     => 'Uređivanje više entiteta',
         ],
         'errors'        => [
-            'admin' => 'Samo administratori kampanje mogu promijeniti privatni status entiteta.',
+            'admin'     => 'Samo administratori kampanje mogu promijeniti privatni status entiteta.',
+            'general'   => 'Došlo je do pogreške prilikom obrade tvoje akcije. Pokušaj ponovo i kontaktiraj nas ako se problem nastavi. Poruka o pogrešci: :hint.',
         ],
         'permissions'   => [
             'fields'    => [
@@ -118,13 +119,14 @@ return [
             'helpers'   => [
                 'override'  => 'Ako je uključeno, dopuštenja odabranih entiteta će biti pregažena s ovima. Ako nije uključeno, odabrana dopuštenja će biti dodana postojećim.',
             ],
-            'title'     => 'Promijenite dozvole za nekoliko entiteta',
+            'title'     => 'Promijeni dozvole za nekoliko entiteta',
         ],
         'success'       => [
-            'editing'       => '{1} :count entitet je ažuriran.|[2,4] :count entiteta su ažurirana.|[5, *] :count entiteta je ažurirano.',
-            'permissions'   => '{1} Ovlasti promijenjene za :count entitet.|[2,*] Ovlasti promijenjene za :count entiteta.',
-            'private'       => '{1} :count entitet je sad privatan.|[2,4] :count entiteta su sad privatna.|[5, *] :count entiteta su sad privatno.',
-            'public'        => '{1} :count entitet je sad vidljiv.|[2,4] :count entiteta su sad vidljiva.|[5, *] :count entiteta je sad vidljivo.',
+            'copy_to_campaign'  => '{1} :count entitet kopiran u :campaign.|{2,4} :count entiteta kopirana u :campaign.|{5,*} :count entiteta kopirano u :campaign.',
+            'editing'           => '{1} :count entitet je ažuriran.|[2,4] :count entiteta su ažurirana.|[5, *] :count entiteta je ažurirano.',
+            'permissions'       => '{1} Ovlasti promijenjene za :count entitet.|[2,*] Ovlasti promijenjene za :count entiteta.',
+            'private'           => '{1} :count entitet je sad privatan.|[2,4] :count entiteta su sad privatna.|[5, *] :count entiteta su sad privatno.',
+            'public'            => '{1} :count entitet je sad vidljiv.|[2,4] :count entiteta su sad vidljiva.|[5, *] :count entiteta je sad vidljivo.',
         ],
     ],
     'cancel'            => 'Otkaži',
@@ -134,8 +136,9 @@ return [
         'title'     => 'Potvrdi svoju akciju',
     ],
     'copy_to_campaign'  => [
-        'panel' => 'Kopiraj',
-        'title' => 'Kopiraj ":name" u drugu kampanju',
+        'bulk_title'    => 'Kopiraj entitete u drugu kampanju',
+        'panel'         => 'Kopiraj',
+        'title'         => 'Kopiraj ":name" u drugu kampanju',
     ],
     'create'            => 'Kreiraj',
     'datagrid'          => [
@@ -222,7 +225,7 @@ return [
             'desc'      => ':field silazno',
             'helper'    => 'Kontroliraj u kojem se prikazuju rezultati.',
         ],
-        'title'     => 'Filtri',
+        'title'     => 'Filteri',
     ],
     'forms'             => [
         'actions'       => [
@@ -244,10 +247,12 @@ return [
         'visibility'            => 'Postavljanje vidljivosti na "Administratori" znači da će samo članovi kampanje u ulozi Administrator vidjeti ovo. Postavljanje vidljivosti na "Samo ja" znači da samo ti vidiš ovo.',
     ],
     'history'           => [
-        'created'   => 'Kreirao/la <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'unknown'   => 'Nepoznato',
-        'updated'   => 'Zadnji/a promijenio/la <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'view'      => 'Pogledaj zapisnik entiteta',
+        'created'       => 'Kreirao/la <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'created_date'  => 'Kreirano <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'unknown'       => 'Nepoznato',
+        'updated'       => 'Zadnji/a promijenio/la <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'updated_date'  => 'Zadnji puta ažurirano <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'view'          => 'Pogledaj zapisnik entiteta',
     ],
     'image'             => [
         'error' => 'Nismo uspjeli dobiti sliku koju ste tražili. Može biti da nam web mjesto ne dopušta preuzimanje slike (uobičajeno za Squarespace i DeviantArt) ili da veza više nije valjana. Provjerite također da slika nije veća od :size.',
@@ -301,10 +306,10 @@ return [
                 'ignore'    => 'Ignoriraj',
                 'remove'    => 'Ukloni',
             ],
-            'delete'        => 'Obriši',
-            'edit'          => 'Uredi',
+            'delete'        => 'Brisanje',
+            'edit'          => 'Uređivanje',
             'entity_note'   => 'Bilješke entiteta',
-            'read'          => 'Pročitaj',
+            'read'          => 'Čitanje',
             'toggle'        => 'Uključi ili isključi',
         ],
         'allowed'           => 'Dozvoljeno',

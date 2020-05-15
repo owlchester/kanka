@@ -21,7 +21,7 @@
 
                     <div class="map map-admin" id="location-map-admin">
                         <div id="draggable-map">
-                            <img src="{{ Storage::url($location->map) }}" alt="{{ $location->name }}" id="location-map-image" data-url="{{ route('locations.map_points.create', $location) }}" />
+                            <img src="{{ Img::url($location->map) }}" alt="{{ $location->name }}" id="location-map-image" data-url="{{ route('locations.map_points.create', $location) }}" />
                             @foreach ($location->mapPoints()->with('target')->get() as $point)
                                 @if ($point->target)
                                     @viewentity($point->target->entity)

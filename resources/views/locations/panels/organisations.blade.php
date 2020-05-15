@@ -38,7 +38,7 @@ if (request()->has('location_id')) {
             @foreach ($r as $org)
                 <tr>
                     <td>
-                        <a class="entity-image" style="background-image: url('{{ $org->getImageUrl(true) }}');" title="{{ $org->name }}" href="{{ route('items.show', $org->id) }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $org->getImageUrl(40) }}');" title="{{ $org->name }}" href="{{ route('items.show', $org->id) }}"></a>
                     </td>
                     <td>
                         {!! $org->tooltipedLink() !!}

@@ -34,7 +34,6 @@ return [
         'benefits'  => 'Kanka pruža nekoliko integracija na usluge trećih strana. U budućnosti se planira više integracija trećih strana.',
         'discord'   => [
             'errors'    => [
-                '0'     => '1',
                 'add'   => 'Došlo je do pogreške u povezivanju tvog Discord računa s Kankom. Molim te pokušaj ponovno.',
             ],
             'success'   => [
@@ -47,12 +46,12 @@ return [
     ],
     'boost'         => [
         'benefits'      => [
-            'first'     => 'Kako bi se osigurali kontinuirani napredak na Kanki, pojedine značajke kampanje otključavaju se pojačavanjem kampanje. Pojačanja se otključavaju putem pretplate. Svatko tko može pogledati kampanju može je pojačati tako da ne mora uvijek ista osoba plaćati račun. Kampanja ostaje pojačana sve dok korisnik pojačava kampanju i oni nastave podržavati Kanku. Ako se kampanja više ne pojačava, podaci se ne gube već su samo skriveni dok se kampanja ponovno ne pojača.',
+            'first'     => 'Kako bi osigurali kontinuirani napredak na Kanki, pojedine značajke kampanje otključavaju se pojačavanjem kampanje. Pojačanja se otključavaju putem pretplate. Svatko tko može pogledati kampanju može ju pojačati tako da ne mora uvijek ista osoba plaćati račun. Kampanja ostaje pojačana sve dok korisnik pojačava kampanju i oni nastave podržavati Kanku. Ako se kampanja više ne pojačava, podaci se ne gube već su samo skriveni dok se kampanja ponovno ne pojača.',
             'header'    => 'Slike zaglavlja entiteta.',
             'more'      => 'Saznaj više o svim značajkama.',
             'second'    => 'Pojačavanje kampanje omogućuje sljedeće prednosti:',
             'theme'     => 'Tema na razini kampanje i proizvoljno stiliziranje.',
-            'tooltip'   => 'Proizvoljni savjeti za entitete.',
+            'tooltip'   => 'Proizvoljni kratki opisi entiteta.',
             'upload'    => 'Povećana veličina prijenosa za svakog člana u kampanji.',
         ],
         'buttons'       => [
@@ -74,6 +73,7 @@ return [
             'download'  => 'Preuzmi PDF',
             'view_all'  => 'Pogledaj sve',
         ],
+        'empty'     => 'Nema fakture',
         'fields'    => [
             'amount'    => 'Količina',
             'date'      => 'Datum',
@@ -89,7 +89,7 @@ return [
     ],
     'layout'        => [
         'success'   => 'Ažurirane opcije rasporeda.',
-        'title'     => 'Raspored',
+        'title'     => 'Izgled',
     ],
     'menu'          => [
         'account'               => 'Račun',
@@ -126,6 +126,7 @@ return [
         'pledge'            => 'Zalog: :name',
         'remove'            => [
             'button'    => 'Prekini vezu s Patreon računom',
+            'success'   => 'Uklonjena je poveznica na tvoj Patreon račun.',
             'text'      => 'Ako prekineš vezu tvog računa s Patreonom, Kanka će ukloniti tvoje bonuse, ime u kući slavnih, pojačanja kampanje, te druge značajke povezane s podrškom Kanke. Nijedan tvoj pojačani sadržaj neće biti izgubljen (npr. zaglavlja entiteta). Ako se ponovo pretplatiš, imat ćeš pristup svim svojim prethodnim podacima, uključujući mogućnost pojačanja prijašnjih pojačanih kampanja.',
             'title'     => 'Prekini vezu Patreon računa s Kankom',
         ],
@@ -225,7 +226,7 @@ return [
             'upgrade'   => [
                 'bullets'   => [
                     'immediate' => 'Tvoj način plaćanja bit će naplaćen odmah i imat ćeš pristup svom novom sloju.',
-                    'prorate'   => 'Kada nadogradite s Owlbear na Elemental, samo će vam se naplatiti ​​razlika do tvoje nove razine.',
+                    'prorate'   => 'Kada nadogradiš s Owlbear na Elemental, samo će ti se naplatiti ​​razlika do tvoje nove razine.',
                 ],
                 'title'     => 'Pri nadogradnji na viši sloj',
             ],

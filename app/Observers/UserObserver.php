@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Facades\UserCache;
 use App\Jobs\Emails\GoodbyeEmailJob;
 use App\Jobs\Emails\WelcomeEmailJob;
 use App\Models\CampaignUser;
@@ -34,6 +35,7 @@ class UserObserver
      */
     public function saved(User $user)
     {
+        UserCache::user($user)->clearName();
     }
 
     /**
@@ -74,6 +76,8 @@ class UserObserver
 
         // Send notification that an account has been removed
         GoodbyeEmailJob::dispatch($user, app()->getLocale());
+
+        UserCache::user($user)->clearName()->clearCampaigns()->clearRoles();
     }
 
     /**

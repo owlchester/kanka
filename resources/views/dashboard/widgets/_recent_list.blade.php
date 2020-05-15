@@ -1,8 +1,5 @@
 <?php /** @var \App\Models\Entity $entity */?>
 @foreach ($entities as $entity)
-    @if (empty($entity->child))
-        @continue
-    @endif
     <div class="flex">
             <a class="entity-image" style="background-image: url('{{ $entity->avatar(true) }}');"
                title="{{ $entity->name }}"
@@ -10,10 +7,12 @@
 
             {!! $entity->tooltipedLink() !!}
         <div class="blame">
-            {{ $entity->updater ? $entity->updater->name : trans('crud.history.unknown') }}<br class="hidden-xs" />
+            {{ !empty($entity->updater_by) ? \App\Facades\UserCache::name($entity->updater_id) : trans('crud.history.unknown') }}<br class="hidden-xs" />
+            @if (!empty($entity->updated_at))
             <span class="elapsed" title="{{ $entity->updated_at }}">
                 {{ $entity->updated_at->diffForHumans() }}
             </span>
+            @endif
         </div>
     </div>
 

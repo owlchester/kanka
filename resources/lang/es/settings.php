@@ -36,7 +36,6 @@ return [
         'benefits'  => 'Kanka ofrece algunas integraciones con servicios de terceros. Hay más integraciones planeadas para el futuro.',
         'discord'   => [
             'errors'    => [
-                '0'     => '1',
                 'add'   => 'Ha ocurrido un error tratando de vincular tu cuenta de Discord con Kanka. Por favor, inténtalo de nuevo.',
             ],
             'success'   => [

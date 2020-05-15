@@ -37,6 +37,7 @@ return [
     'fields'        => [
         'character'     => 'Inicijator',
         'characters'    => 'Likovi',
+        'date'          => 'Datum',
         'description'   => 'Opis',
         'image'         => 'Slika',
         'is_completed'  => 'Izvršen',
@@ -122,6 +123,7 @@ return [
         'title'     => 'Organizacije u :name',
     ],
     'placeholders'  => [
+        'date'  => 'Stvarni datum zadatka',
         'name'  => 'Naziv zadatka',
         'quest' => 'Zadatak roditelj',
         'role'  => 'Uloga ovog entieta u zadatku',

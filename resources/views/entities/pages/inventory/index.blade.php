@@ -62,7 +62,7 @@
                         @foreach ($inventory as $item)
                             <tr>
                                 <td>
-                                    <a class="entity-image" style="background-image: url('{{ $item->item->getImageUrl(true) }}');" title="{{ $item->item->name }}" href="{{ $item->item->getLink() }}"></a>
+                                    <a class="entity-image" style="background-image: url('{{ $item->item->getImageUrl(40) }}');" title="{{ $item->item->name }}" href="{{ $item->item->getLink() }}"></a>
                                 </td>
                                 <td>
                                     {!! $item->item->tooltipedLink() !!}

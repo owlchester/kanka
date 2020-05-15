@@ -6,6 +6,16 @@
 </div>
 
 <div class="form-group">
+    {!! Form::tags(
+            'tag_id',
+            [
+                'model' => isset($model) ? $model : null,
+                'enableNew' => false
+            ]
+        ) !!}
+</div>
+
+<div class="form-group">
     <label for="config-singular">
         {!! Form::hidden('config[singular]', 0) !!}
         {{ __('dashboard.widgets.recent.singular') }}

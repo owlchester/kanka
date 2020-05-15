@@ -1,6 +1,6 @@
-@extends('layouts.front')
-@section('og')
-@endsection
+@extends('layouts.front', [
+    'metaDescription' => __('front.home.seo.meta-description')
+])
 @section('content')
     @include('front.master')
 
@@ -16,7 +16,7 @@
                 <div class="device-mockup iphone6_plus portrait white">
                     <div class="device">
                         <div class="screen">
-                            <img src="/images/front/dashboard.png" class="img-fluid" alt="{{ config('app.name') }} campaign management and worldbuilding dashboard">
+                            <img src="/images/front/dashboard.png" class="img-fluid" loading="lazy" alt="{{ config('app.name') }} campaign management and worldbuilding dashboard">
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                         <div class="device-mockup iphone6_plus portrait white">
                             <div class="device">
                                 <div class="screen">
-                                    <img src="/images/front/home-image.png?v=2" class="img-fluid" alt="{{ config('app.name') }} mobile campaign management and worldbuilding dashboard">
+                                    <img src="/images/front/home-image.png?v=2" loading="lazy" class="img-fluid" alt="{{ config('app.name') }} mobile campaign management and worldbuilding dashboard">
                                 </div>
                             </div>
                         </div>

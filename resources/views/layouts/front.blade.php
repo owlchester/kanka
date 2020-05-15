@@ -4,6 +4,7 @@
 @include('layouts._tracking')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no">
+    <meta name="description" content="{{ __('front.meta.description') }}">
     <meta name="author" content="{{ config('app.name') }}">
     <meta name="description" content="{{ $metaDescription ?? __('front.home.seo.description') }}">
     <meta name="keywords" content="{{  $metaKeywords ?? __('front.seo.keywords') }}">
@@ -40,6 +41,11 @@
 
 <body id="page-top">
 @include('layouts._tracking-fallback')
+<!-- Custom styles for this template -->
+<link href="/css/front/new-age.min.css" rel="stylesheet"  media="print" onload="this.media='all'">
+<link href="{{ mix('css/front.css') }}" rel="stylesheet"  media="print" onload="this.media='all'">
+<noscript id="deferred-styles">
+</noscript>
 
 <!-- Navigation -->
 <div class="topbar">

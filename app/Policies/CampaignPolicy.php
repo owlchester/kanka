@@ -2,7 +2,9 @@
 
 namespace App\Policies;
 
+use App\Facades\CampaignCache;
 use App\Facades\Identity;
+use App\Facades\UserCache;
 use App\Traits\AdminPolicyTrait;
 use App\Traits\EnvTrait;
 use App\User;
@@ -61,7 +63,7 @@ class CampaignPolicy
     public function update(User $user, Campaign $campaign): bool
     {
         return
-            $user->campaign->id == $campaign->id && $this->isAdmin($user) && !$this->shadow();
+            $user->campaign->id == $campaign->id && UserCache::user($user)->admin() && !$this->shadow();
     }
 
     /**
@@ -75,7 +77,9 @@ class CampaignPolicy
     {
         return
             !$this->shadow() &&
-            $user->campaign->id == $campaign->id && $this->isAdmin($user) && $campaign->members()->count() == 1;
+            $user->campaign->id == $campaign->id &&
+            UserCache::user($user)->admin() &&
+            CampaignCache::members()->count() == 1;
     }
 
     /**
@@ -85,7 +89,7 @@ class CampaignPolicy
      */
     public function invite(User $user, Campaign $campaign): bool
     {
-        return !$this->shadow() && $user->campaign->id == $campaign->id && $this->isAdmin($user);
+        return !$this->shadow() && $user->campaign->id == $campaign->id && UserCache::user($user)->admin();
     }
 
     /**
@@ -95,7 +99,7 @@ class CampaignPolicy
      */
     public function setting(User $user, Campaign $campaign): bool
     {
-        return !$this->shadow() && $user->campaign->id == $campaign->id && $this->isAdmin($user);
+        return !$this->shadow() && $user->campaign->id == $campaign->id && UserCache::user($user)->admin();
     }
 
     /**
@@ -105,7 +109,7 @@ class CampaignPolicy
      */
     public function recover(User $user, Campaign $campaign): bool
     {
-        return !$this->shadow() && $user->campaign->id == $campaign->id && $this->isAdmin($user);
+        return !$this->shadow() && $user->campaign->id == $campaign->id && UserCache::user($user)->admin();
     }
 
     /**
@@ -115,7 +119,7 @@ class CampaignPolicy
      */
     public function dashboard(User $user, Campaign $campaign): bool
     {
-        return $user->campaign->id == $campaign->id && $this->isAdmin($user);
+        return $user->campaign->id == $campaign->id && UserCache::user($user)->admin();
     }
 
     /**
@@ -125,7 +129,7 @@ class CampaignPolicy
      */
     public function search(User $user, Campaign $campaign): bool
     {
-        return $user->campaign->id == $campaign->id && $this->isAdmin($user);
+        return $user->campaign->id == $campaign->id && UserCache::user($user)->admin();
     }
 
     /**
@@ -140,7 +144,7 @@ class CampaignPolicy
         return !$this->shadow() &&
             $user->campaign->id == $campaign->id &&
             // If we are not the owner, or that we are an owner but there are other owners
-            $campaign->userIsMember() && (!$this->isAdmin($user) || count($campaign->admins()) > 1) &&
+            $campaign->userIsMember() && (!UserCache::user($user)->admin() || count($campaign->admins()) > 1) &&
             // We also can't leave a campaign if we are not the real user
             !Identity::isImpersonating();
     }

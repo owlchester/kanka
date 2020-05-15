@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
+use App\Facades\PostCache;
 use App\Models\CampaignDashboardWidget;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,27 +22,17 @@ class DashboardController extends Controller
             return redirect()->route('start');
         }
 
-        $recentCount = 5;
         $user = null;
         $settings = null;
         if (Auth::check() && Auth::user()->can('update', $campaign)) {
             $settings = true;
         }
 
-        //$characters = Character::
-
-        $release = Release::with(['category'])
-            ->where('status', 'PUBLISHED')
-            ->orderBy('created_at', 'DESC')
-            ->first();
-
-
         $widgets = CampaignDashboardWidget::positioned()->get();
 
         return view('home', compact(
             'campaign',
             'settings',
-            'release',
             'widgets'
         ));
     }
@@ -62,6 +53,7 @@ class DashboardController extends Controller
         $offset = request()->get('offset', 0);
 
         $entities = \App\Models\Entity::recentlyModified()
+            ->inTags($widget->tags->pluck('id')->toArray())
             ->type($widget->conf('entity'))
             ->acl()
             ->take(10)

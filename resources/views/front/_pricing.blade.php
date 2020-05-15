@@ -73,7 +73,7 @@
 {{--                    </li>--}}
                 </ul>
 
-                <a href="{{ route('settings.subscription') }}" target="_blank" rel="nofollow" class="btn btn-block btn-primary text-uppercase">
+                <a href="{{ route('settings.subscription') }}" target="_blank" class="btn btn-block btn-primary text-uppercase">
                     {{ __('front.pricing.actions.subscribe') }}
                 </a>
             </div>
@@ -112,7 +112,7 @@
                     </li>
                 </ul>
 
-                <a href="{{ route('settings.subscription') }}" target="_blank" rel="nofollow" class="btn btn-block btn-primary text-uppercase">
+                <a href="{{ route('settings.subscription') }}" target="_blank" class="btn btn-block btn-primary text-uppercase">
                     {{ __('front.pricing.actions.subscribe') }}
                 </a>
             </div>

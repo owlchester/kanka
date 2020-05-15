@@ -104,18 +104,6 @@ class EntityService
         return $labels;
     }
 
-    public function dashboardEntities()
-    {
-        $real = [];
-        foreach ($this->entities() as $name => $class) {
-            if (in_array($name, ['characters', 'families', 'locations', 'organisations', 'items', 'journals'])) {
-                $real[$name] = $class;
-            }
-        }
-
-        return $real;
-    }
-
     /**
      * @param $entity
      * @return string
@@ -259,11 +247,11 @@ class EntityService
                 }
 
                 // Copy thumb
-                $oldThumb = str_replace('.', '_thumb.', $entity->child->image);
-                $newThumb = str_replace('.', $uniqid . '_thumb.', $entity->child->image);
-                if (!Storage::exists($newThumb)) {
-                    Storage::copy($oldThumb, $newThumb);
-                }
+//                $oldThumb = str_replace('.', '_thumb.', $entity->child->image);
+//                $newThumb = str_replace('.', $uniqid . '_thumb.', $entity->child->image);
+//                if (!Storage::exists($newThumb)) {
+//                    Storage::copy($oldThumb, $newThumb);
+//                }
             }
 
             // The model is ready to be saved.
@@ -357,11 +345,11 @@ class EntityService
             }
 
             // Copy thumb
-            $oldThumb = str_replace('.', '_thumb.', $old->image);
-            $newThumb = str_replace($old->getTable(), $new->getTable(), $oldThumb);
-            if (!Storage::exists($newThumb)) {
-                Storage::copy($oldThumb, $newThumb);
-            }
+//            $oldThumb = str_replace('.', '_thumb.', $old->image);
+//            $newThumb = str_replace($old->getTable(), $new->getTable(), $oldThumb);
+//            if (!Storage::exists($newThumb)) {
+//                Storage::copy($oldThumb, $newThumb);
+//            }
         }
 
         // Finally, we can save. Should be all good. But tell the app not to create the entity

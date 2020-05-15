@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Facades\CampaignLocalization;
+use App\Facades\EntityCache;
 use App\Facades\Mentions;
 use App\Models\Entity;
 use App\Models\MiscModel;
@@ -100,6 +101,9 @@ abstract class MiscObserver
             // Take care of mentions for the entity.
             $this->syncMentions($model, $entity);
             $model->refresh();
+
+            // Clear some cache
+            EntityCache::clearSuggestion($model);
         }
     }
 

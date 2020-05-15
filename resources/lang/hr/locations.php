@@ -48,7 +48,7 @@ return [
     ],
     'index'         => [
         'actions'       => [
-            'explore_view'  => 'Ugniježđeni pogled',
+            'explore_view'  => 'Ugniježđeni pregled',
         ],
         'add'           => 'Nova lokacija',
         'description'   => 'Upravljanje lokacijama u :name',

@@ -122,7 +122,7 @@ class CharacterRelationMapBuilder
         $data = [
             'id' => $key,
             'name' => $entity->name,
-            'image' => $entity->getImageUrl(false),
+            'image' => $entity->getImageUrl(),
             'link' => $entity->getLink(),
             'group' => $group,
             'type' => __('entities.' . $entity->getEntityType())

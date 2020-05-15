@@ -117,6 +117,7 @@ function loadModalForm(url) {
         modalContentTarget.html(data);
 
         window.initSelect2();
+        window.initCategories();
     });
 }
 

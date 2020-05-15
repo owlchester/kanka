@@ -43,6 +43,14 @@
                                 <h5>{{ __('dashboard.widgets.recent.singular') }}</h5>
                                 @endif
                             @endif
+
+                            @if (!empty($widget->tags))
+                                <div class="tags">
+                                    @foreach ($widget->tags as $tag)
+                                        {!! $tag->html() !!}
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
                         <input type="hidden" name="widgets[]" value="{{ $widget->id }}" />
                     </div>

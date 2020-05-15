@@ -6,7 +6,8 @@ return [
         'reset' => 'Réinitialiser les charges',
     ],
     'create'    => [
-        'title' => 'Ajouter un pouvoir à :name',
+        'success'   => 'Pouvoir :ability ajouté à :entity.',
+        'title'     => 'Ajouter un pouvoir à :name',
     ],
     'show'      => [
         'helper'    => 'Attache des pouvoirs à cette entité. Il est toujours possible de modifier ou de supprimer un pouvoir. Les pouvoirs qui appartiennent au même parent sont groupés ensembles et agissent comme filtres.',

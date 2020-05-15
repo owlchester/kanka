@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Facades\EntityCache;
+use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\Concerns\Picture;
 use App\Models\Concerns\Searchable;
@@ -10,6 +12,7 @@ use App\Models\Scopes\EntityScopes;
 use App\Traits\CampaignTrait;
 use App\Traits\EntityAclTrait;
 use App\Traits\TooltipTrait;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -43,6 +46,8 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property EntityAbility[] $abilities
  * @property CampaignDashboardWidget[] $widgets
  * @property MiscModel $child
+ * @property User $updater
+ * @property Campaign $campaign
  */
 class Entity extends Model
 {
@@ -106,9 +111,18 @@ class Entity extends Model
             return $this->attributeTemplate();
         } elseif ($this->type == 'dice_roll') {
             return $this->diceRoll();
+        } else {
+            return $this->{$this->type}();
         }
+    }
 
-        return $this->{$this->type}();
+    /**
+     * Child attribute
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany|\Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function getChildAttribute()
+    {
+        return EntityCache::child($this);
     }
 
     /**
@@ -362,9 +376,7 @@ class Entity extends Model
             return null;
         }
 
-        //$avatar = '<img class=\'entity-image\' src=\'' . $this->avatar(true) . '\'/>';
-        $text = Str::limit($this->child->entry(), 500);
-        $text = strip_tags($text);
+        $avatar = $text = null;
 
         if ($this->campaign->boosted()) {
             $boostedTooltip = strip_tags($this->tooltip);
@@ -372,6 +384,13 @@ class Entity extends Model
                 $text = Mentions::mapEntity($this);
                 $text = strip_tags($text);
             }
+            if ($this->campaign->tooltip_image) {
+                $avatar = '<div class=\'entity-image\' style=\'background-image: url(' . $this->child->getImageUrl(60) . ');\'></div>';
+            }
+        }
+        if (empty($text)) {
+            $text = Str::limit($this->child->entry(), 500);
+            $text = strip_tags($text);
         }
 
         $name = '<span class="entity-name">' . $this->child->tooltipName() . '</span>';
@@ -381,7 +400,7 @@ class Entity extends Model
         }
         $text = $this->child->tooltipAddTags($text, $this->tags);
 
-        return $name . $subtitle . $text;
+        return "<div class='entity-header'>$avatar<div class='entity-names'>" . $name . $subtitle . '</div></div>' . $text;
     }
 
 
@@ -509,16 +528,6 @@ class Entity extends Model
     }
 
     /**
-     * @param $query
-     * @return mixed
-     */
-    public function scopeRecentlyModified($query)
-    {
-        return $query
-            ->orderBy('updated_at', 'desc');
-    }
-
-    /**
      * Get the entity's type id
      * @return \Illuminate\Config\Repository|mixed
      */
@@ -545,16 +554,17 @@ class Entity extends Model
 
     /**
      * Get the image (or default image) of an entity
-     * @param bool $thumb
+     * @param int $width = 200
+     * @param int $height = null (null takes width)
      * @return string
      */
-    public function getImageUrl($thumb = false, $field = 'header_image'): string
+    public function getImageUrl(int $width = 400, $height = null, $field = 'header_image'): string
     {
         if (empty($this->$field)) {
             return '';
         }
 
-        return Storage::url(($thumb ? str_replace('.', '_thumb.', $this->$field) : $this->$field));
+        return Img::crop($width, $height ?? $width)->url($this->$field);
     }
 
     /**

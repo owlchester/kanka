@@ -208,7 +208,8 @@ return [
         App\Providers\MentionsServiceProvider::class,
         App\Providers\UserPermissionServiceProvider::class,
         App\Providers\BreadcrumbServiceProvider::class,
-
+        App\Providers\CacheServiceProvider::class,
+        App\Providers\ImgServiceProvider::class,
     ],
 
     /*
@@ -276,6 +277,10 @@ return [
         'UserPermission' => App\Facades\UserPermission::class,
         'Breadcrumb' => App\Facades\Breadcrumb::class,
         'FormCopy' => App\Facades\FormCopy::class,
+        'EntityCache' => App\Facades\EntityCache::class,
+        'CampaignCache' => App\Facades\CampaignCache::class,
+        'UserCache' => App\Facades\UserCache::class,
+        'Img' => App\Facades\Img::class,
     ],
 
 ];

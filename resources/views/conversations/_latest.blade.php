@@ -7,9 +7,9 @@
 @foreach ($messages as $message)
     <div class="box-comment" data-id="{{ $message->id }}">
         @if ($message->target() == \App\Models\Conversation::TARGET_USERS)
-            {!! $message->user->getAvatar(true) !!}
+            {!! $message->user->getAvatar() !!}
         @elseif ($message->target() == \App\Models\Conversation::TARGET_CHARACTERS && !empty($message->character))
-            <a class="entity-image" style="background-image: url('{{ $message->character->getImageUrl(true) }}');" title="{{ $message->character->name }}" href="{{ route('characters.show', $message->character) }}"></a>
+            <a class="entity-image" style="background-image: url('{{ $message->character->getImageUrl(40) }}');" title="{{ $message->character->name }}" href="{{ route('characters.show', $message->character) }}"></a>
         @endif
         <div class="comment-text">
             @can('delete', $message)
