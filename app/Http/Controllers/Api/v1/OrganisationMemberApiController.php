@@ -6,7 +6,7 @@ use App\Models\Organisation;
 use App\Models\Campaign;
 use App\Models\OrganisationMember;
 use App\Http\Requests\StoreOrganisationMember as Request;
-use App\Http\Resources\OrganisationMember as Resource;
+use App\Http\Resources\OrganisationMemberResource as Resource;
 use App\Http\Resources\OrganisationMemberCollection as Collection;
 
 class OrganisationMemberApiController extends ApiController
@@ -20,7 +20,7 @@ class OrganisationMemberApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $organisation);
-        return new Collection($organisation->members()->paginate());
+        return Resource::collection($organisation->members()->paginate());
     }
 
     /**

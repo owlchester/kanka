@@ -6,8 +6,7 @@ use App\Models\Conversation;
 use App\Models\Campaign;
 use App\Models\ConversationParticipant;
 use App\Http\Requests\StoreConversationParticipant as RequestParticipant;
-use App\Http\Resources\ConversationParticipant as Resource;
-use App\Http\Resources\ConversationParticipantCollection as Collection;
+use App\Http\Resources\ConversationParticipantResource as Resource;
 
 class ConversationParticipantApiController extends ApiController
 {
@@ -20,7 +19,7 @@ class ConversationParticipantApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $conversation);
-        return new Collection($conversation->participants()->paginate());
+        return Resource::collection($conversation->participants()->paginate());
     }
 
     /**

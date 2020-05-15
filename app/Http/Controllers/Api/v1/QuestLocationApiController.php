@@ -6,7 +6,7 @@ use App\Models\Quest;
 use App\Models\Campaign;
 use App\Models\QuestLocation;
 use App\Http\Requests\StoreQuestLocation as RequestLocation;
-use App\Http\Resources\QuestLocation as Resource;
+use App\Http\Resources\QuestLocationResource as Resource;
 use App\Http\Resources\QuestLocationCollection as Collection;
 
 class QuestLocationApiController extends ApiController
@@ -20,7 +20,7 @@ class QuestLocationApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $quest);
-        return new Collection($quest->locations()->paginate());
+        return Resource::collection($quest->locations()->paginate());
     }
 
     /**

@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Campaign;
 use App\Models\DiceRoll;
 use App\Http\Requests\StoreDiceRoll as Request;
-use App\Http\Resources\DiceRoll as Resource;
-use App\Http\Resources\DiceRollCollection as Collection;
+use App\Http\Resources\DiceRollResource as Resource;
 
 class DiceRollApiController extends ApiController
 {
@@ -18,7 +17,7 @@ class DiceRollApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign
+        return Resource::collection($campaign
             ->diceRolls()
             ->with([
                 'entity', 'entity.tags', 'entity.notes', 'entity.files',

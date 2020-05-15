@@ -6,7 +6,7 @@ use App\Models\Quest;
 use App\Models\Campaign;
 use App\Models\QuestCharacter;
 use App\Http\Requests\StoreQuestCharacter as RequestCharacter;
-use App\Http\Resources\QuestCharacter as Resource;
+use App\Http\Resources\QuestCharacterResource as Resource;
 use App\Http\Resources\QuestCharacterCollection as Collection;
 
 class QuestCharacterApiController extends ApiController
@@ -20,7 +20,7 @@ class QuestCharacterApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $quest);
-        return new Collection($quest->characters()->paginate());
+        return Resource::collection($quest->characters()->paginate());
     }
 
     /**

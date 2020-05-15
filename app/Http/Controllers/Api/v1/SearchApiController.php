@@ -38,6 +38,6 @@ class SearchApiController extends ApiController
         $enabledEntities = $this->entity->getEnabledEntities($campaign);
         $models = Entity::whereIn('type', $enabledEntities)->where('name', 'like', "%$term%")->limit(10)->get();
 
-        return new Collection($models);
+        return Resource::collection($models);
     }
 }

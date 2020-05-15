@@ -6,8 +6,7 @@ use App\Models\Conversation;
 use App\Models\Campaign;
 use App\Models\ConversationMessage;
 use App\Http\Requests\StoreConversationMessage as RequestMessage;
-use App\Http\Resources\ConversationMessage as Resource;
-use App\Http\Resources\ConversationMessageCollection as Collection;
+use App\Http\Resources\ConversationMessageResource as Resource;
 
 class ConversationMessageApiController extends ApiController
 {
@@ -20,7 +19,7 @@ class ConversationMessageApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $conversation);
-        return new Collection(
+        return Resource::collection(
             $conversation
                 ->messages()
                 ->lastSync(request()->get('lastSync'))

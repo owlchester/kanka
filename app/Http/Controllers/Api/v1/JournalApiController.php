@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Campaign;
 use App\Models\Journal;
 use App\Http\Requests\StoreJournal as Request;
-use App\Http\Resources\Journal as Resource;
-use App\Http\Resources\JournalCollection as Collection;
+use App\Http\Resources\JournalResource as Resource;
 
 class JournalApiController extends ApiController
 {
@@ -18,7 +17,7 @@ class JournalApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign
+        return Resource::collection($campaign
             ->journals()
             ->with(['entity', 'entity.tags', 'entity.notes', 'entity.files',
                 'entity.events', 'entity.relationships', 'entity.attributes'])

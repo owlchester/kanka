@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Campaign;
 use App\Models\Tag;
 use App\Http\Requests\StoreTag as Request;
-use App\Http\Resources\Tag as Resource;
+use App\Http\Resources\TagResource as Resource;
 use App\Http\Resources\TagCollection as Collection;
 
 class TagApiController extends ApiController
@@ -18,7 +18,7 @@ class TagApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign
+        return Resource::collection($campaign
             ->tags()
             ->with(['entity', 'entity.tags', 'entity.notes', 'entity.files', 'entity.events',
                 'entity.relationships', 'entity.attributes'])

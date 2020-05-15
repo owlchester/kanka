@@ -7,7 +7,6 @@ use App\Models\Campaign;
 use App\Models\Calendar;
 use App\Http\Requests\AddCalendarWeather as Request;
 use App\Http\Resources\CalendarWeatherResource as Resource;
-use App\Http\Resources\CalendarWeatherCollection as Collection;
 
 class CalendarWeatherApiController extends ApiController
 {
@@ -20,7 +19,7 @@ class CalendarWeatherApiController extends ApiController
     public function index(Campaign $campaign, Calendar $calendar)
     {
         $this->authorize('access', $campaign);
-        return new Collection($calendar
+        return Resource::collection($calendar
             ->calendarWeather()
             ->paginate());
     }

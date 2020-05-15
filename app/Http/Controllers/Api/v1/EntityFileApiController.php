@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Http\Requests\StoreEntityFile as Request;
-use App\Http\Resources\EntityFile as Resource;
-use App\Http\Resources\EntityFileCollection as Collection;
+use App\Http\Resources\EntityFileResource as Resource;
 use App\Models\EntityFile;
 
 class EntityFileApiController extends ApiController
@@ -20,7 +19,7 @@ class EntityFileApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity->child);
-        return new Collection($entity->files);
+        return Resource::collection($entity->files);
     }
 
     /**

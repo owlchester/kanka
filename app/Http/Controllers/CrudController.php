@@ -6,7 +6,7 @@ use App\Datagrids\Filters\DatagridFilter;
 use App\Datagrids\Sorters\DatagridSorter;
 use App\Facades\CampaignLocalization;
 use App\Facades\FormCopy;
-use App\Http\Resources\Attribute;
+use App\Http\Resources\AttributeResource;
 use App\Models\AttributeTemplate;
 use App\Models\MiscModel;
 use App\Services\FilterService;
@@ -520,7 +520,7 @@ class CrudController extends Controller
         foreach ($templates as $attr) {
             $attributeTemplates[] = $attr;
             $ids[] = $attr->id;
-            /** @var Attribute $child */
+            /** @var AttributeResource $child */
             foreach ($attr->ancestors()->with('entity')->get() as $child) {
                 if (!in_array($child->id, $ids)) {
                     $ids[] = $child->id;

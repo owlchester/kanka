@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Http\Requests\StoreEntityAbility as Request;
-use App\Http\Resources\EntityAbility as Resource;
-use App\Http\Resources\EntityAbilityCollection as Collection;
+use App\Http\Resources\EntityAbilityResource as Resource;
 use App\Models\EntityAbility;
 
 class EntityAbilityApiController extends ApiController
@@ -20,7 +19,7 @@ class EntityAbilityApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity->child);
-        return new Collection($entity->abilities);
+        return Resource::collection($entity->abilities);
     }
 
     /**

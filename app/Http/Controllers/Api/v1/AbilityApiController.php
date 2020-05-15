@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Campaign;
 use App\Models\Ability;
 use App\Http\Requests\StoreAbility as Request;
-use App\Http\Resources\Ability as Resource;
-use App\Http\Resources\AbilityCollection as Collection;
+use App\Http\Resources\AbilityResource as Resource;
 
 class AbilityApiController extends ApiController
 {
@@ -18,7 +17,7 @@ class AbilityApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign
+        return Resource::collection($campaign
             ->abilities()
             ->with(['entity', 'entity.tags', 'entity.notes', 'entity.files',
                 'entity.events', 'entity.relationships', 'entity.attributes'])

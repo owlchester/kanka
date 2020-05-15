@@ -5,26 +5,26 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Campaign;
 use App\Models\Character;
 use App\Http\Requests\StoreCharacter as Request;
-use App\Http\Resources\Character as Resource;
-use App\Http\Resources\CharacterCollection as Collection;
+use App\Http\Resources\CharacterResource;
 
 class CharacterApiController extends ApiController
 {
     /**
      * @param Campaign $campaign
-     * @return Collection
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign->characters()
+        return CharacterResource::collection($campaign->characters()
             ->with([
                 'entity', 'entity.tags', 'entity.notes', 'entity.files', 'entity.events',
                 'entity.relationships', 'entity.attributes', 'characterTraits'
             ])
             ->lastSync(request()->get('lastSync'))
-            ->paginate());
+            ->paginate()
+        );
     }
 
     /**
@@ -36,7 +36,7 @@ class CharacterApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $character);
-        return new Resource($character);
+        return new CharacterResource($character);
     }
 
     /**
@@ -52,7 +52,7 @@ class CharacterApiController extends ApiController
         $model = Character::create($request->all());
         $this->crudSave($model);
 
-        return new Resource($model);
+        return new CharacterResource($model);
     }
 
     /**
@@ -68,7 +68,7 @@ class CharacterApiController extends ApiController
         $character->update($request->all());
         $this->crudSave($character);
 
-        return new Resource($character);
+        return new CharacterResource($character);
     }
 
     /**

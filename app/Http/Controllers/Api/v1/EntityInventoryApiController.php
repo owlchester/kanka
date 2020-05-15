@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Http\Requests\StoreInventory as Request;
-use App\Http\Resources\Inventory as Resource;
-use App\Http\Resources\InventoryCollection as Collection;
+use App\Http\Resources\InventoryResource as Resource;
 use App\Models\Inventory;
 
 class EntityInventoryApiController extends ApiController
@@ -20,7 +19,7 @@ class EntityInventoryApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity->child);
-        return new Collection($entity->inventories);
+        return Resource::collection($entity->inventories);
     }
 
     /**

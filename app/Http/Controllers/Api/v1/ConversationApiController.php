@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Campaign;
 use App\Models\Conversation;
 use App\Http\Requests\StoreConversation as Request;
-use App\Http\Resources\Conversation as Resource;
-use App\Http\Resources\ConversationCollection as Collection;
+use App\Http\Resources\ConversationResource as Resource;
 
 class ConversationApiController extends ApiController
 {
@@ -18,7 +17,7 @@ class ConversationApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign
+        return Resource::collection($campaign
             ->conversations()
             ->with(['messages', 'participants'])
             ->lastSync(request()->get('lastSync'))

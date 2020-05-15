@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Http\Requests\StoreRelation as Request;
-use App\Http\Resources\Relation as Resource;
-use App\Http\Resources\RelationCollection as Collection;
+use App\Http\Resources\RelationResource as Resource;
 use App\Models\Relation;
 
 class EntityRelationApiController extends ApiController
@@ -20,7 +19,7 @@ class EntityRelationApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity->child);
-        return new Collection($entity->relationships);
+        return Resource::collection($entity->relationships);
     }
 
     /**

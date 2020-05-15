@@ -45,13 +45,13 @@ class EntityResource extends JsonResource
 
         /** @var MiscModel $this */
         if (request()->get('related', false)) {
-            $merged['attributes'] = new AttributeCollection($this->entity->attributes);
-            $merged['entity_notes'] = new AttributeCollection($this->entity->notes);
-            $merged['entity_events'] = new AttributeCollection($this->entity->events);
-            $merged['entity_files'] = new EntityFileCollection($this->entity->files);
-            $merged['relations'] = new RelationCollection($this->entity->relationships);
-            $merged['inventory'] = new InventoryCollection($this->entity->inventories);
-            $merged['entity_abilities'] = new EntityAbilityCollection($this->entity->abilities);
+            $merged['attributes'] = AttributeResource::collection($this->entity->attributes);
+            $merged['entity_notes'] = EntityNoteResource::collection($this->entity->notes);
+            $merged['entity_events'] = EntityEventResource::collection($this->entity->events);
+            $merged['entity_files'] = EntityFileResource::collection($this->entity->files);
+            $merged['relations'] = RelationResource::collection($this->entity->relationships);
+            $merged['inventory'] = InventoryResource::collection($this->entity->inventories);
+            $merged['entity_abilities'] = EntityAbilityResource::collection($this->entity->abilities);
         }
 
         $final = array_merge($merged, $prepared);

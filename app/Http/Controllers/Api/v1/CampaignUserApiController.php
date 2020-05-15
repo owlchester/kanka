@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
-use App\Models\CampaignUser;
-use App\Http\Resources\User as Resource;
-use App\Http\Resources\UserCollection as Collection;
+use App\Http\Resources\UserResource;
 
 class CampaignUserApiController extends ApiController
 {
@@ -13,6 +11,6 @@ class CampaignUserApiController extends ApiController
     {
         $this->authorize('access', $campaign);
 
-        return new Collection($campaign->users);
+        return UserResource::collection($campaign->users);
     }
 }

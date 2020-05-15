@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Http\Requests\StoreEntityNote as Request;
-use App\Http\Resources\EntityNote as Resource;
-use App\Http\Resources\EntityNoteCollection as Collection;
+use App\Http\Resources\EntityNoteResource as Resource;
 use App\Models\EntityNote;
 
 class EntityNoteApiController extends ApiController
@@ -20,7 +19,7 @@ class EntityNoteApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity->child);
-        return new Collection($entity->notes);
+        return Resource::collection($entity->notes);
     }
 
     /**

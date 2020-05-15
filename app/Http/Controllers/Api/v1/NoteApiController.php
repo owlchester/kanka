@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Campaign;
 use App\Models\Note;
 use App\Http\Requests\StoreNote as Request;
-use App\Http\Resources\Note as Resource;
-use App\Http\Resources\NoteCollection as Collection;
+use App\Http\Resources\NoteResource as Resource;
 
 class NoteApiController extends ApiController
 {
@@ -18,7 +17,7 @@ class NoteApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign
+        return Resource::collection($campaign
             ->notes()
             ->with(['entity', 'entity.tags', 'entity.notes', 'entity.files', 'entity.events',
                 'entity.relationships', 'entity.attributes'])

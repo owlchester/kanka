@@ -6,7 +6,7 @@ use App\Models\Quest;
 use App\Models\Campaign;
 use App\Models\QuestItem;
 use App\Http\Requests\StoreQuestItem as RequestItem;
-use App\Http\Resources\QuestItem as Resource;
+use App\Http\Resources\QuestItemResource as Resource;
 use App\Http\Resources\QuestItemCollection as Collection;
 
 class QuestItemApiController extends ApiController
@@ -20,7 +20,7 @@ class QuestItemApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $quest);
-        return new Collection($quest->items()->paginate());
+        return Resource::collection($quest->items()->paginate());
     }
 
     /**

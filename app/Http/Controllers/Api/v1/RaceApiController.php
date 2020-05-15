@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Campaign;
 use App\Models\Race;
 use App\Http\Requests\StoreRace as Request;
-use App\Http\Resources\Race as Resource;
+use App\Http\Resources\RaceResource as Resource;
 use App\Http\Resources\RaceCollection as Collection;
 
 class RaceApiController extends ApiController
@@ -18,7 +18,7 @@ class RaceApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return new Collection($campaign
+        return Resource::collection($campaign
             ->races()
             ->with(['entity', 'entity.tags', 'entity.notes', 'entity.files', 'entity.events',
                 'entity.relationships', 'entity.attributes'])

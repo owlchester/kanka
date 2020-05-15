@@ -2,32 +2,27 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Resources\CampaignResource;
 use App\Models\Campaign;
 use App\Http\Requests\StoreCampaign as Request;
-use App\Http\Resources\Campaign as Resource;
-use App\Http\Resources\CampaignCollection as Collection;
 
 class CampaignApiController extends ApiController
 {
-    public function index()
+    public function index(\Illuminate\Http\Request $request)
     {
-        return new Collection(auth()
-            ->user()
-            ->campaigns()
-            ->lastSync(request()->get('lastSync'))
-            ->paginate()
-        );
+        $campaigns = $request->user()->campaigns()->lastSync(request()->get('lastSync'))->paginate();
+        return CampaignResource::collection($campaigns);
     }
 
     public function show(Campaign $campaign)
     {
-        return new Resource($campaign);
+        return new CampaignResource($campaign);
     }
 
     public function store(Request $request)
     {
         $model = Campaign::create($request->all());
-        return new Resource($model);
+        return new CampaignResource($model);
     }
 
     public function update(Request $request, Campaign $campaign)
@@ -35,7 +30,7 @@ class CampaignApiController extends ApiController
         $this->authorize('access', $campaign);
         $campaign->update($request->all());
 
-        return new Resource($campaign);
+        return new CampaignResource($campaign);
     }
 
     public function delete(Request $request, Campaign $campaign)

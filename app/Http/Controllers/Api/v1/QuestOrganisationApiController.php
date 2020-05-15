@@ -6,7 +6,7 @@ use App\Models\Quest;
 use App\Models\Campaign;
 use App\Models\QuestOrganisation;
 use App\Http\Requests\StoreQuestOrganisation as RequestOrganisation;
-use App\Http\Resources\QuestOrganisation as Resource;
+use App\Http\Resources\QuestOrganisationResource as Resource;
 use App\Http\Resources\QuestOrganisationCollection as Collection;
 
 class QuestOrganisationApiController extends ApiController
@@ -20,7 +20,7 @@ class QuestOrganisationApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $quest);
-        return new Collection($quest->organisations()->paginate());
+        return Resource::collection($quest->organisations()->paginate());
     }
 
     /**

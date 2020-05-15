@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Campaign;
 use App\Models\Location;
 use App\Http\Requests\StoreMapPoint as Request;
-use App\Http\Resources\MapPoint as Resource;
-use App\Http\Resources\MapPointCollection as Collection;
+use App\Http\Resources\MapPointResource as Resource;
 use App\Models\MapPoint;
 
 class LocationMapPointApiController extends ApiController
@@ -20,7 +19,7 @@ class LocationMapPointApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $location);
-        return new Collection($location->mapPoints);
+        return Resource::collection($location->mapPoints);
     }
 
     /**

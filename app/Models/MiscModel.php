@@ -192,6 +192,11 @@ abstract class MiscModel extends Model
         if (empty($this->$field)) {
             // Campaign could have something set up
             $campaign = CampaignLocalization::getCampaign();
+            // If campaign is empty, we might be calling the api/campaigns of the user.
+            if (empty($campaign) && $this instanceof Campaign) {
+                CampaignCache::campaign($this);
+                $campaign = $this;
+            }
             if ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->getEntityType())) {
                 return Img::crop(40, 40)->url(CampaignCache::defaultImages()[$this->getEntityType()]['path']);
             }
