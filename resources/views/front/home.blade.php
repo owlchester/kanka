@@ -48,14 +48,14 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="feature-item">
-                                    <i class="icon-layers text-primary"></i>
+                                    <i class="fas fa-layer-group text-primary"></i>
                                     <h3>{{ trans('front.features.layers.title') }}</h3>
                                     <p class="text-muted">{{ trans('front.features.layers.description') }}</p>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="feature-item">
-                                    <i class="icon-notebook text-primary"></i>
+                                    <i class="fas fa-book text-primary"></i>
                                     <h3>{{ trans('front.features.notebook.title') }}</h3>
                                     <p class="text-muted">{{ trans('front.features.notebook.description') }}</p>
                                 </div>
@@ -64,7 +64,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="feature-item">
-                                    <i class="icon-present text-primary"></i>
+                                    <i class="fas fa-gift text-primary"></i>
                                     <h3>{{ trans('front.features.free.title') }}</h3>
                                     <p class="text-muted">{!! trans('front.features.free.description', [
                                                 'bonuses' => link_to(route('front.features', '#patreon'), __('front.features.free.bonuses')),
@@ -74,7 +74,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="feature-item">
-                                    <i class="icon-people text-primary"></i>
+                                    <i class="fas fa-users text-primary"></i>
                                     <h3>{{ trans('front.features.collaborative.title') }}</h3>
                                     <p class="text-muted">{{ trans('front.features.collaborative.description') }}</p>
                                 </div>
