@@ -30,10 +30,10 @@ class SitemapController extends Controller
     /**
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
-    public function index()
+    public function index(string $locale)
     {
         $this->sitemapService
-            ->locale(request()->get('locale', ''))
+            ->locale($locale)
             ->page(request()->get('page', ''));
 
         $sitemaps = $this->sitemapService->sitemaps();
@@ -45,10 +45,10 @@ class SitemapController extends Controller
         ]);
     }
 
-    public function language()
+    public function language(string $locale)
     {
         $this->sitemapService
-            ->locale(app()->getLocale())
+            ->locale($locale)
             ->page(request()->get('page', ''));
 
         $sitemaps = $this->sitemapService->sitemaps();

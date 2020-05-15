@@ -32,7 +32,7 @@ trait Picture
         if (empty($this->child->$field)) {
             $avatar = asset('/images/defaults/' . $this->child->getTable() . ($thumb ? '_thumb' : null) . '.jpg');
         } else {
-            $avatar = Storage::url(($thumb ? str_replace('.', '_thumb.', $this->child->$field) : $this->child->$field));
+            $avatar = $this->child->getImageUrl($thumb ? 40 : 400, null, $field);
         }
 
         Cache::forever($this->avatarCacheKey($thumb, $field), $avatar);
@@ -82,6 +82,6 @@ trait Picture
      */
     protected function avatarCacheKey(bool $thumb, string $field): string
     {
-        return 'picture_' . $this->id . '_' . $field . ($thumb ? '_thumb' : null);
+        return 'entity_picture_' . $this->id . '_' . $field . ($thumb ? '_thumb' : null);
     }
 }

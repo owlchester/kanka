@@ -386,8 +386,6 @@ Route::group([
         Route::get('/{version}/{page?}', '\BinaryTorch\LaRecipe\Http\Controllers\DocumentationController@show')->where('page', '(.*)')->name('show');
     });
 
-    // Language sitemaps
-    Route::get('/sitemap.xml', 'Front\SitemapController@language')->name('front.sitemap');
 });
 
 Route::group(['prefix' => 'subscription-api'], function () {
@@ -406,6 +404,9 @@ Route::post(
     'stripe/webhook',
     '\App\Http\Controllers\WebhookController@handleWebhook'
 );
+
+// Language sitemaps
+Route::get('/{locale}/sitemap.xml', 'Front\SitemapController@language')->name('front.sitemap');
 
 // Rss feeds
 Route::feeds();

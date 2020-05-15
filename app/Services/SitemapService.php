@@ -142,9 +142,9 @@ class SitemapService
     protected function base(): array
     {
         $links = [];
-        $links[] = route('front.sitemap', ['page' => 'index']);
-        $links[] = route('front.sitemap', ['page' => 'news']);
-        $links[] = route('front.sitemap', ['page' => 'campaigns']);
+        $links[] = route('front.sitemap', ['locale' => $this->locale, 'page' => 'index']);
+        $links[] = route('front.sitemap', ['locale' => $this->locale, 'page' => 'news']);
+        $links[] = route('front.sitemap', ['locale' => $this->locale, 'page' => 'campaigns']);
         return $links;
     }
 }
