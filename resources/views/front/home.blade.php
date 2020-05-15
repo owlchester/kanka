@@ -16,7 +16,7 @@
                 <div class="device-mockup iphone6_plus portrait white">
                     <div class="device">
                         <div class="screen">
-                            <img src="/images/front/dashboard.png" class="img-fluid" loading="lazy" alt="{{ config('app.name') }} campaign management and worldbuilding dashboard">
+                            <img src="https://images.kanka.io/app/Waw_atyiOiNeph4a67qCzp_K6RA=/src/images%2Ffront%2Fdashboard.png" class="img-fluid" loading="lazy" width=819" height="461" alt="{{ config('app.name') }} campaign management and worldbuilding dashboard">
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                         <div class="device-mockup iphone6_plus portrait white">
                             <div class="device">
                                 <div class="screen">
-                                    <img src="/images/front/home-image.png?v=2" loading="lazy" class="img-fluid" alt="{{ config('app.name') }} mobile campaign management and worldbuilding dashboard">
+                                    <img src="https://images.kanka.io/app/BUB6ZG5CZdySIAR-8ou23TjXUbs=/src/images%2Ffront%2Fhome-image.png" loading="lazy" width="350" height="784" class="img-fluid" alt="{{ config('app.name') }} mobile campaign management and worldbuilding dashboard">
                                 </div>
                             </div>
                         </div>

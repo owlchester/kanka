@@ -1,3 +1,6 @@
+
+@import "~startbootstrap-new-age/css/new-age.css";
+
 // This is kind of a mess, since the plugin uses bootstrap 4.0.0, but adminlte still uses the previous bootstrap.
 // will have to reevaluate when adminlte supports b-4.0.0
 
@@ -6,6 +9,7 @@ $KankaDarkBlue: #08083c;
 $KankaGrey: #EDEDED;
 
 @import "~simple-line-icons/scss/simple-line-icons";
+
 body {
   background-color: #222;
 }
@@ -14,7 +18,7 @@ header.masthead {
 }
 header.masthead-img {
   background-color: $KankaDarkBlue;
-  background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/backgrounds/mountain-background-desktop.jpg) !important;
+  background-image: url(https://images.kanka.io/app/fRvHCH-8nraqMOxYiqN7rOJtq7I=/src/images%2Fbackgrounds%2Fmountain-background-desktop.jpg) !important;
   background-position: top left;
   background-size: cover;
 
@@ -84,7 +88,7 @@ header.reduced-masthead {
     margin-bottom: 0;
     li {
       display: inline-block;
-      margin: 0px 10px;
+      margin: 0 10px;
       line-height: 12px;
       a {
         color: $KankaBlue;
@@ -412,13 +416,13 @@ ul.pagination {
   }
 
   .subscription-kobold {
-    background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/tiers/kobold-325.png);
+    background-image: url(https://images.kanka.io/app/qys-P4Qdr8__OVuiejzh5grC3dg=/200x200/src/images%2Ftiers%2Fkobold-325.png);
   }
   .subscription-owlbear {
-    background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/tiers/owlbear-325.png);
+    background-image: url(https://images.kanka.io/app/pNUdiAGfWMlNpLnX7ZMJhnA4hFs=/200x200/src/images%2Ftiers%2Fowlbear-325.png);
   }
   .subscription-elemental {
-    background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/tiers/elemental-325.png);
+    background-image: url(https://images.kanka.io/app/E6iultkgKe86CZBAiybu8nT9mwM=/200x200/src/images%2Ftiers%2Felemental-325.png);
   }
 }
 
@@ -536,7 +540,7 @@ ul.pagination {
   }
 
   .login-page, .register-page, header.masthead {
-    background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/backgrounds/mountain-background-desktop.jpg);
+    background-image: url(https://images.kanka.io/app/fRvHCH-8nraqMOxYiqN7rOJtq7I=/src/images%2Fbackgrounds%2Fmountain-background-desktop.jpg);
   }
 }
 
@@ -552,7 +556,7 @@ ul.pagination {
 
     .topbar-list {
       li {
-        margin: 0px 6px;
+        margin: 0 6px;
       }
 
       .login {
@@ -562,6 +566,6 @@ ul.pagination {
   }
 
   .login-page, .register-page, header.masthead {
-    background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/backgrounds/mountain-background-mobile.jpg);
+    background-image: url(https://images.kanka.io/app/WgTgGlDmiswpJ1cBISY3xEcwL7U=/src/images%2Fbackgrounds%2Fmountain-background-mobile.jpg);
   }
 }

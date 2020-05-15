@@ -1,5 +1,5 @@
 let mix = require('laravel-mix');
-const tailwindcss = require('tailwindcss');
+require('laravel-mix-brotli');
 
 /*
  |--------------------------------------------------------------------------
@@ -50,6 +50,13 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/themes/dark.scss', 'public/css')
     .sass('resources/assets/sass/themes/midnight.scss', 'public/css')
     .sass('resources/assets/sass/tinymce.scss', 'public/css')
+    .brotli({
+        enabled: mix.inProduction(),
+        asset: '[path].br[query]',
+        test: /\.(js|css|html|svg)$/,
+        threshold: 10240,
+        minRatio: 0.8
+    })
     // .options({
     //     processCssUrls: false,
     //     postCss:[
