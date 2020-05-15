@@ -15,15 +15,8 @@ use App\Models\Patreon;
 use App\Models\Scopes\UserScope;
 use App\Models\UserApp;
 use App\Models\UserSetting;
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use DateTime;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
 use Laravel\Cashier\Billable;
 use Laravel\Passport\HasApiTokens;
 
