@@ -1,45 +1,45 @@
 {
-    "private": true,
-    "scripts": {
-        "dev": "npm run development",
-        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "watch-poll": "npm run watch -- --watch-poll",
-        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
-    },
-    "devDependencies": {
-        "admin-lte": "^2.4.17",
-        "axios": "^0.19",
-        "bootstrap-sass": "^3.4.1",
-        "cross-env": "^5.1",
-        "jquery": "3.4.1",
-        "jquery-ui": "^1.12.1",
-        "laravel-mix": "^4.1.2",
-        "lodash": "^4.17.15",
-        "popper.js": "^1.12",
-        "postcss-loader": "^3.0.0",
-        "resolve-url-loader": "^2.3.1",
-        "sass": "^1.22.9",
-        "vue": "^2.6.10",
-        "vue-template-compiler": "^2.6.10"
-    },
-    "dependencies": {
-        "bloodhound-js": "^1.2.3",
-        "bootstrap": "3.4",
-        "corejs-typeahead": "^1.2.1",
-        "eonasdan-bootstrap-datetimepicker": "^4.17.47",
-        "grunt": "^1.0.3",
-        "laravel-mix-brotli": "^1.0.0",
-        "postcss-import": "^12.0.1",
-        "pretty-checkbox": "^3.0.3",
-        "sass-loader": "7.1.0",
-        "select2": "^4.0.8",
-        "simple-line-icons": "^2.4.1",
-        "startbootstrap-new-age": "3.3",
-        "tailwindcss": "^1.1.2",
-        "uiv": "^0.34.1",
-        "vue-i18n": "^8.15.0"
-    }
+  "private": true,
+  "scripts": {
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch-poll": "npm run watch -- --watch-poll",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "devDependencies": {
+    "admin-lte": "^2.4.17",
+    "axios": "^0.19",
+    "bootstrap-sass": "^3.4.1",
+    "cross-env": "^5.1",
+    "jquery": "^3.4.1",
+    "jquery-ui": "^1.12.1",
+    "laravel-mix": "^4.1.2",
+    "lodash": "^4.17.15",
+    "popper.js": "^1.12",
+    "postcss-loader": "^3.0.0",
+    "resolve-url-loader": "^2.3.1",
+    "sass": "^1.22.9",
+    "vue": "^2.6.10",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "dependencies": {
+    "bloodhound-js": "^1.2.3",
+    "bootstrap": "^4.3.1",
+    "corejs-typeahead": "^1.2.1",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47",
+    "grunt": "^1.0.3",
+    "laravel-mix-brotli": "^1.0.0",
+    "postcss-import": "^12.0.1",
+    "pretty-checkbox": "^3.0.3",
+    "sass-loader": "7.1.0",
+    "select2": "^4.0.8",
+    "simple-line-icons": "^2.4.1",
+    "startbootstrap-new-age": "^3.3.7",
+    "tailwindcss": "^1.1.2",
+    "uiv": "^0.34.1",
+    "vue-i18n": "^8.15.0"
+  }
 }

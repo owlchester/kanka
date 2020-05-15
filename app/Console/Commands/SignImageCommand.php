@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Facades\Img;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class SignImageCommand extends Command
 {
@@ -12,7 +13,7 @@ class SignImageCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'img:sign {img} {base=users}';
+    protected $signature = 'img:sign {img} {base=users} {size=200}';
 
     /**
      * The console command description.
@@ -40,7 +41,13 @@ class SignImageCommand extends Command
     {
         $img = $this->argument('img');
         $base = $this->argument('base');
-        $url = Img::crop(200, 200)->url($img, $base);
+        $width = $height = $this->argument('size');
+        if (Str::contains($width, 'x')) {
+            $width = Str::before($width, 'x');
+            $height = Str::after($width, 'x');
+        }
+
+        $url = Img::base($base)->url($img);
 
         $this->info("Url: " . $url);
     }
