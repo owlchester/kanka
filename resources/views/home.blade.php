@@ -45,32 +45,6 @@
 
     @include('partials.errors')
 
-    @if (!empty($release) && auth()->check() && auth()->user()->release != $release->id)
-        <div class="box box-widget">
-            <div class="box-header with-border">
-                <div class="user-block">
-                    @if ($release->author && $release->author->avatar)
-                        <img class="img-circle" src="{{ $release->author->getAvatarUrl() }}" alt="{{ $release->author->name }}" title="{{ $release->author->name }}">
-                    @endif
-                    <span class="username">
-                        <a href="{{ route('front.news.show', $release->getSlug()) }}">{{ $release->title }}</a>
-                    </span>
-                    <span class="description">{{ $release->updated_at->isoFormat('MMMM D, Y') }}</span>
-                </div>
-                <div class="box-tools">
-                    <button type="button" class="btn btn-box-tool" data-widget="remove" data-url="{{ route('settings.release', $release) }}">
-                        <i class="fa fa-times"></i>
-                    </button>
-                </div>
-                @auth
-                @endauth
-            </div>
-            <div class="box-body">
-                {{ $release->excerpt }}
-            </div>
-        </div>
-    @endif
-
     <div class="campaign @if(!empty($campaign->header_image))cover-background" style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }}) @else no-header @endif ">
         <div class="content">
             <div class="title">

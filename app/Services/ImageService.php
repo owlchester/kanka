@@ -50,8 +50,6 @@ class ImageService
                     $path = $file->hashName($folder);
                 }
 
-                $thumb = str_replace('.', '_thumb.', $path);
-
                 // Sanitize SVGs to avoid any XSS attacks
                 if ($file->getMimeType() == 'image/svg+xml') {
                     $sanitizer = new Sanitizer();
@@ -70,12 +68,12 @@ class ImageService
                     self::cleanup($model, $field);
 
                     // Create a thumb of the picture
-                    if ($thumbSize !== false) {
-                        $image = Image::make($file)->resize($thumbSize, null, function ($constraint) {
-                            $constraint->aspectRatio();
-                        });
-                        Storage::put($thumb, (string) $image->encode(), 'public');
-                    }
+//                    if ($thumbSize !== false) {
+//                        $image = Image::make($file)->resize($thumbSize, null, function ($constraint) {
+//                            $constraint->aspectRatio();
+//                        });
+//                        Storage::put($thumb, (string) $image->encode(), 'public');
+//                    }
 
                     // Save new image
                     if ($url) {
@@ -137,8 +135,6 @@ class ImageService
                     $path = $file->hashName($folder);
                 }
 
-                $thumb = str_replace('.', '_thumb.', $path);
-
                 // Sanitize SVGs to avoid any XSS attacks
                 if ($file->getMimeType() == 'image/svg+xml') {
                     $sanitizer = new Sanitizer();
@@ -151,13 +147,13 @@ class ImageService
                     // Remove old
                     self::cleanup($entity, $field);
 
-                    // Create a thumb of the picture
-                    if ($thumbSize !== false) {
-                        $image = Image::make($file)->resize($thumbSize, null, function ($constraint) {
-                            $constraint->aspectRatio();
-                        });
-                        Storage::put($thumb, (string) $image->encode(), 'public');
-                    }
+//                    // Create a thumb of the picture
+//                    if ($thumbSize !== false) {
+//                        $image = Image::make($file)->resize($thumbSize, null, function ($constraint) {
+//                            $constraint->aspectRatio();
+//                        });
+//                        Storage::put($thumb, (string) $image->encode(), 'public');
+//                    }
 
                     // Save new image
                     if ($url) {
@@ -192,6 +188,7 @@ class ImageService
         if ($model->$field) {
             try {
                 Storage::delete($model->$field);
+                // Leave removing thumbs for old campaigns
                 $thumb = str_replace('.', '_thumb.', $model->$field);
                 if (Storage::has($thumb)) {
                     Storage::delete($thumb);
