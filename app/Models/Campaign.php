@@ -222,7 +222,7 @@ class Campaign extends MiscModel
         }
 
         $settings = CampaignCache::settings();
-        return $settings->$entity;
+        return (bool) $settings->$entity;
     }
 
     /**
