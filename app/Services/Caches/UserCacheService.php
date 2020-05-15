@@ -62,7 +62,7 @@ class UserCacheService extends BaseCache
             return $this->get($key);
         }
 
-        $data = $this->user->campaignRoles;
+        $data = $this->user->campaignRoles->where('campaign_id', $this->campaign->id);
         $this->forever($key, $data);
 
         return $data;

@@ -30,6 +30,9 @@ trait Picture
     protected function cacheAvatar(bool $thumb, string $field)
     {
         if (empty($this->child->$field)) {
+            if (empty($this->child)) {
+                return '';
+            }
             $avatar = asset('/images/defaults/' . $this->child->getTable() . ($thumb ? '_thumb' : null) . '.jpg');
         } else {
             $avatar = $this->child->getImageUrl($thumb ? 40 : 400, null, $field);
