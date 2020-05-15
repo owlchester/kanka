@@ -4,7 +4,6 @@
 @include('layouts._tracking')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no">
-    <meta name="description" content="{{ __('front.meta.description') }}">
     <meta name="author" content="{{ config('app.name') }}">
     <meta name="description" content="{{ $metaDescription ?? __('front.home.seo.description') }}">
     <meta name="keywords" content="{{  $metaKeywords ?? __('front.seo.keywords') }}">
