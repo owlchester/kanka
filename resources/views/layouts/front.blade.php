@@ -36,7 +36,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css?v=4.4" rel="stylesheet">
-{{--    <link href="/css/front/new-age.min.css" rel="stylesheet">--}}
+    <link href="/css/front/new-age.min.css" rel="stylesheet">
     <link href="{{ mix('css/front.css') }}" rel="stylesheet">
     @yield('styles')
 </head>
