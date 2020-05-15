@@ -33,12 +33,17 @@ class GenerateTrees extends Command
     public function handle()
     {
         Race::fixTree();
+        $this->info("Fixed races.");
         Location::fixTree();
+        $this->info("Fixed locations.");
         Organisation::fixTree();
+        $this->info("Fixed organisations.");
         Family::fixTree();
+        $this->info("Fixed families.");
         Tag::fixTree();
+        $this->info("Fixed tags.");
         Ability::fixTree();
-        Quest::fixTree();
-        $this->info("Fixed tree.");
+        $this->info("Fixed abilities.");
+        $this->info("Fixed quests.");
     }
 }

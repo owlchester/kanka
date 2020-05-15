@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Intervention\Image\Facades\Image;
 use enshrined\svgSanitize\Sanitizer;
@@ -36,7 +37,7 @@ class ImageService
                     copy($externalUrl, $tempImage);
 
                     $file = $tempImage;
-                    $path = "$folder/" . uniqid() . "_" . $externalFile;
+                    $path = "$folder/" . uniqid() . "_" . Str::before(Str::before($externalFile, '%3F'), '?');
 
                     // Check if file is too big
                     $copiedFileSize = ceil(filesize($tempImage) / 1000);

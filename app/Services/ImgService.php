@@ -5,6 +5,7 @@ namespace App\Services;
 
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ImgService
 {
@@ -59,18 +60,19 @@ class ImgService
      */
     public function url(string $img): string
     {
-        if (!$this->enabled) {
+        if (!$this->enabled || Str::contains($img, '?')) {
             return Storage::url($img);
         }
 
         // Default base
         $this->base();
 
+        $img = Str::before($img, '?');
         $full = $this->s3 . $img;
         $thumborUrl = $this->crop . $full;
         $sign = $this->sign($thumborUrl);
 
-        return config('thumbor.url') . $this->base . '/' . $sign . '/' . $this->crop . 'src/' . $img;
+        return config('thumbor.url') . $this->base . '/' . $sign . '/' . $this->crop . 'src/' . urlencode($img);
     }
 
     /**
