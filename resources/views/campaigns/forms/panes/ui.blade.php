@@ -15,7 +15,7 @@
             </div>
 
             <div class="checkbox">
-            @if ($model->boosted())
+            @if (isset($model) && $model->boosted())
 
                 {!! Form::hidden('tooltip_image', 0) !!}
                 <label>{!! Form::checkbox('tooltip_image') !!}
