@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Facades\CampaignCache;
 use App\Models\Campaign;
 use App\Notifications\Header;
 use App\Services\EntityService;
@@ -72,6 +73,7 @@ class CampaignExport implements ShouldQueue
 
         // We want the full path for jobs running in the queue.
         $zipName = 'campaign_' . $this->campaign->id . '_' .  uniqid() . '_' . date('Ymd_His') . '.zip';
+        CampaignCache::campaign($this->campaign);
         $pathName = storage_path() . '/exports/campaigns/' . $zipName;
         $zip = new ZipArchive();
         $zip->open($pathName, ZipArchive::CREATE);
