@@ -87,8 +87,10 @@ class CampaignVisibileEntityCount extends Command
             }
         }
 
+
         // Now that we have the types and ids, we can count the number of visible entities in this campaign
         return Entity::where(['campaign_id' => $campaign->id])
+            ->where('is_private', false)
             ->where(function ($sub) use ($types, $ids) {
                 return $sub->whereIn('type', $types)
                     ->orWhereIn('id', $ids);

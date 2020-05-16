@@ -109,6 +109,7 @@ class EntityPermission
         $ids = [];
         foreach ($modelIds as $id => $data) {
             if (!is_array($data)) {
+                // This will throw an error
             }
             foreach ($data as $perm => $access) {
                 if ($perm === $action && $access) {
@@ -249,7 +250,7 @@ class EntityPermission
     public function grant(Entity $entity, string $action = 'read'): self
     {
         $this->granted = true;
-        $this->cachedEntityIds[$entity->type][] = $entity->entity_id;
+        $this->cachedEntityIds[$entity->type][$entity->entity_id][$action] = true;
         return $this;
     }
 

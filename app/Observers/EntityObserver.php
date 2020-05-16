@@ -161,6 +161,7 @@ class EntityObserver
             $permission->user_id = auth()->user()->id;
             $permission->key = $entity->type . '_read_' . $entity->entity_id;
             $permission->table_name = $entity->pluralType();
+            $permission->access = true;
             $permission->save();
             EntityPermission::grant($entity);
             $this->permissionGrantSelf = true;
@@ -171,6 +172,7 @@ class EntityObserver
             $permission->user_id = auth()->user()->id;
             $permission->key = $entity->type . '_edit_' . $entity->entity_id;
             $permission->table_name = $entity->pluralType();
+            $permission->access = true;
             $permission->save();
             $this->permissionGrantSelf = true;
         }
