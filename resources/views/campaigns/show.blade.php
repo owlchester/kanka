@@ -34,6 +34,7 @@
 
             <div class="entity-modification-history">
                 <div class="help-block text-right">
+                    @if (!empty($campaign->created_at) && !empty($campaign->updated_at))
                     {!! __('crud.history.created_date', [
                         'date' => $campaign->created_at->diffForHumans(),
                         'realdate' => $campaign->created_at . ' UTC',
@@ -41,6 +42,7 @@
                         'date' => $campaign->updated_at->diffForHumans(),
                         'realdate' => $campaign->updated_at . ' UTC',
                     ]) !!}
+                    @endif
                 </div>
             </div>
         </div>
