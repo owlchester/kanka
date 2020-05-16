@@ -151,10 +151,12 @@ class MentionsService
         preg_replace_callback('`\[([a-z_]+):(.*?)\]`i' , function($matches) {
             $segments = explode('|', $matches[2]);
             $id = (int) $segments[0];
+            $entityType = $matches[1];
             if (!in_array($id, $this->mentionedEntities)) {
                 $this->mentionedEntities[] = $id;
             }
-            if (!in_array($matches[1], $this->mentionedEntityTypes)) {
+            // If the mentioned entity wasn't there yet, but the map also doesn't map to "entity"
+            if (!in_array($matches[1], $this->mentionedEntityTypes) && $entityType !== 'entity') {
                 $this->mentionedEntityTypes[] = $matches[1];
             }
         }, $this->text);
