@@ -176,12 +176,18 @@ class UserPermission
             // If we have a user, they might have individual entity permissions
             foreach (CampaignPermission::where('user_id', $this->user->id)->get() as $permission) {
                 /** @var $permission CampaignPermission */
-                if (!in_array($permission->entity_id, $this->entityIds)) {
-                    if ($permission->access) {
+                // If the permission set is negative, we need to add it to the denied ones too, in case a role of
+                // the user has access to this entity.
+                if ($permission->access) {
+                    if (!in_array($permission->entity_id, $this->entityIds)) {
                         $this->entityIds[] = $permission->entity_id;
-                    } else {
-                        $this->deniedEntityIds[] = $permission->entity_id;
                     }
+                    // If the user was denied through a role but has access through a direct permissions, still allow them
+                    if (($key = array_search($permission->entity_id, $this->deniedEntityIds)) !== false) {
+                        unset($this->deniedEntityIds[$key]);
+                    }
+                } elseif (!$permission->access && !in_array($permission->entity_id, $this->deniedEntityIds)) {
+                    $this->deniedEntityIds[] = $permission->entity_id;
                 }
             }
         }
@@ -221,9 +227,12 @@ class UserPermission
                 if (!in_array($type, $this->entityTypes)) {
                     $this->entityTypes[] = $type;
                 }
-            } elseif (!in_array($permission->entity_id, $this->entityIds)) {
+            } elseif ($permission->access && !in_array($permission->entity_id, $this->entityIds)) {
                 // This permission targets an entity directly
                 $this->entityIds[] = $permission->entity_id;
+            } elseif (!$permission->access && !in_array($permission->entity_id, $this->deniedEntityIds)) {
+                // This permission targets an entity directly
+                $this->deniedEntityIds[] = $permission->entity_id;
             }
         }
     }
