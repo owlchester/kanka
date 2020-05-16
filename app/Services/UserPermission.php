@@ -28,6 +28,12 @@ class UserPermission
     protected $entityIds = [];
 
     /**
+     * Array of Entity IDs the user can specifically not access
+     * @var array
+     */
+    protected $deniedEntityIds = [];
+
+    /**
      * Array of Entity Types (journals, characters) the user can access
      * @var array
      */
@@ -110,10 +116,20 @@ class UserPermission
      * List of unique entity ids the user has access to
      * @return array
      */
-    public function entityIds()
+    public function entityIds(): array
     {
         $this->loadPermissions();
         return $this->entityIds;
+    }
+
+    /**
+     * List of unique entity ids the user has access to
+     * @return array
+     */
+    public function deniedEntityIds(): array
+    {
+        $this->loadPermissions();
+        return $this->deniedEntityIds;
     }
 
     /**
@@ -161,7 +177,11 @@ class UserPermission
             foreach (CampaignPermission::where('user_id', $this->user->id)->get() as $permission) {
                 /** @var $permission CampaignPermission */
                 if (!in_array($permission->entity_id, $this->entityIds)) {
-                    $this->entityIds[] = $permission->entity_id;
+                    if ($permission->access) {
+                        $this->entityIds[] = $permission->entity_id;
+                    } else {
+                        $this->deniedEntityIds[] = $permission->entity_id;
+                    }
                 }
             }
         }
@@ -182,7 +202,7 @@ class UserPermission
     }
 
     /**
-     * Load the permissions of a roal into the service
+     * Load the permissions of a role into the service
      * @param CampaignRole $role
      */
     protected function parseRole(CampaignRole $role)

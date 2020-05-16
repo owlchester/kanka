@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Facade;
  * Class EntityPermission
  * @package App\Facadesf
  *
- * @method static string entityIds(string $modelName, string $action = 'read')
+ * @method static array entityIds(string $modelName, string $action = 'read')
+ * @method static array deniedEntityIds(string $modelName, string $action = 'read')
  * @method static bool canView(Entity $entity, Campaign $campaign = null)
  * @method static bool canViewMisc(MiscModel $model, Campaign $campaign = null)
  * @method static bool hasPermission(string $modelName, string $action, User $user = null, $entity = null, Campaign $campaign = null)

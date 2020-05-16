@@ -31,11 +31,17 @@ class VisibleScope implements Scope
                 // If one of the user's roles can read all entities of this type, there
                 // is no need to check further.
                 if ($model instanceof MiscModel && !empty($model->getEntityType())) {
+                    $deniedEntityIds = EntityPermission::deniedEntityIds($model->getEntityType());
                     if (!EntityPermission::canRole('read', $model->getEntityType(), auth()->user())) {
                         $entityIds = EntityPermission::entityIds($model->getEntityType());
 
                         $primaryKey = !empty($model->aclFieldName) ? $model->aclFieldName : 'id';
-                        $builder->whereIn($model->getTable() . '.' . $primaryKey, $entityIds);
+                        $builder
+                            ->whereIn($model->getTable() . '.' . $primaryKey, $entityIds)
+                            ->whereNotIn($model->getTable() . '.' . $primaryKey, $deniedEntityIds);
+                    } elseif (!empty($deniedEntityIds)) {
+                        $primaryKey = !empty($model->aclFieldName) ? $model->aclFieldName : 'id';
+                        $builder->whereNotIn($model->getTable() . '.' . $primaryKey, $deniedEntityIds);
                     }
                 }
             }

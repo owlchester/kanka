@@ -121,6 +121,33 @@ class EntityPermission
     }
 
     /**
+     * Entity IDs the user specifically doesn't have access to
+     * @param string $modelName
+     * @param string $action
+     * @return array
+     */
+    public function deniedEntityIds(string $modelName, string $action = 'read'): array
+    {
+        // Check if we have this model type at all
+        $modelIds = Arr::get($this->cachedEntityIds, $modelName, []);
+        if (empty($modelIds)) {
+            return [];
+        }
+        $ids = [];
+        foreach ($modelIds as $id => $data) {
+            if (!is_array($data)) {
+                // This will throw an error
+            }
+            foreach ($data as $perm => $access) {
+                if ($perm === $action && !$access) {
+                    $ids[] = $id;
+                }
+            }
+        }
+        return $ids;
+    }
+
+    /**
      * @param MiscModel $model
      * @param Campaign|null $campaign
      * @return bool
@@ -228,13 +255,6 @@ class EntityPermission
 
         // We check if the role was set for global entity permissions
         if (isset($this->cached[$key]) && $this->cached[$key]) {
-            // However, we need to make sure the user doesn't have some negative roles attached to this entity type.
-            $specificPerms = Arr::where($this->cached, function ($access, $permKey) use ($key) {
-                return Str::startsWith($permKey, $key) && !$access;
-            });
-            if (!empty($specificPerms)) {
-                return false;
-            }
             return $this->cached[$key];
         }
 
@@ -302,17 +322,11 @@ class EntityPermission
         }
 
         /** @var CampaignRole $role */
-//        dump('role');
         foreach ($this->roles as $role) {
             /** @var CampaignPermission $permission */
             foreach ($role->permissions as $permission) {
                 $this->cached[$permission->key] = $permission->access;
                 if (!empty($permission->entity_id)) {
-//                    if ($permission->entity_id == 164) {
-//                        dump($permission->id);
-//                        dump($permission->entityId());
-//                        dump((bool)$permission->access);
-//                    }
                     $this->cachedEntityIds[$permission->type()][$permission->entityId()][$permission->action()] = (bool) $permission->access;
                 }
             }
@@ -320,17 +334,9 @@ class EntityPermission
 
         // If a user is provided, get their permissions too
         if (!empty($user)) {
-//            dump($user->permissions);
             foreach ($user->permissions as $permission) {
                 $this->cached[$permission->key] = $permission->access;
                 if (!empty($permission->entity_id)) {
-                    if ($permission->entity_id == 20) {
-//                        dump($permission->id);
-//                        dump($permission->type());
-//                        dump($permission->action());
-//                        dump($permission->entityId());
-//                        dump((bool)$permission->access);
-                    }
                     $this->cachedEntityIds[$permission->type()][$permission->entityId()][$permission->action()] = (bool) $permission->access;
                 }
             }
