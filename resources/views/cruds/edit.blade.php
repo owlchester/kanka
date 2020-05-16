@@ -30,7 +30,6 @@
                 </a>
             </li>
             @include($name . '.form._tabs', ['source' => null])
-            @dd($campaign)
             <li class="{{ (request()->get('tab') == 'permission' ? ' active' : '') }}">
                 <a href="#form-permission" title="{{ trans('crud.panels.permission') }}" data-toggle="tooltip">
                     {{ trans('crud.panels.permission') }}

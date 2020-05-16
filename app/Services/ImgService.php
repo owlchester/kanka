@@ -45,6 +45,9 @@ class ImgService
      */
     public function base(string $base = 'user'): self
     {
+//        if (!empty($this->s3)) {
+//            return $this;
+//        }
         $this->base = $base;
         if ($base === 'app') {
             $this->s3 = config('thumbor.bases.app');
@@ -60,7 +63,7 @@ class ImgService
      */
     public function url(string $img): string
     {
-        if (!$this->enabled || Str::contains($img, '?')) {
+        if (!$this->enabled || Str::contains($img, '?') || Str::endsWith($img, '.svg')) {
             return Storage::url($img);
         }
 
