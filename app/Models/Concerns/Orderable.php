@@ -24,7 +24,7 @@ trait Orderable
         // Default
         $field = $this->defaultOrderField;
         $direction = $this->defaultOrderDirection;
-        if (!empty($data)) {
+        if (!empty($data) && auth()->check()) {
             foreach ($data as $key => $value) {
                 $field = $key;
                 $direction = $value;
