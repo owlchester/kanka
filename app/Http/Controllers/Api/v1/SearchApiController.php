@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Http\Resources\EntityCollection as Collection;
 use App\Services\EntityService;
 use Illuminate\Http\Request;
 
@@ -38,6 +37,6 @@ class SearchApiController extends ApiController
         $enabledEntities = $this->entity->getEnabledEntities($campaign);
         $models = Entity::whereIn('type', $enabledEntities)->where('name', 'like', "%$term%")->limit(10)->get();
 
-        return Resource::collection($models);
+        return \App\Http\Resources\Entity::collection($models);
     }
 }
