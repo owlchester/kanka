@@ -141,8 +141,8 @@ class CalendarObserver extends MiscObserver
 
         // Calculate date
         $year = request()->post('current_year', 1);
-        $month = request()->post('current_month', 1);
-        $day = request()->post('current_day', 1);
+        $month = ltrim(request()->post('current_month', 1), 0);
+        $day = ltrim(request()->post('current_day', 1), 0);
 
         // Empty values
         if (empty($year)) {

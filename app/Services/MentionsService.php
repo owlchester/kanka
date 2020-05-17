@@ -157,6 +157,11 @@ class MentionsService
             }
             // If the mentioned entity wasn't there yet, but the map also doesn't map to "entity"
             if (!in_array($matches[1], $this->mentionedEntityTypes) && $entityType !== 'entity') {
+                if ($matches[1] == 'attribute_template') {
+                    $matches[1] = 'attributeTemplate';
+                } elseif ($matches[1] == 'dice_roll') {
+                    $matches[1] = 'diceRoll';
+                }
                 $this->mentionedEntityTypes[] = $matches[1];
             }
         }, $this->text);
