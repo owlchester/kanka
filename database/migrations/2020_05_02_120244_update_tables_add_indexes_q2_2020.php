@@ -55,10 +55,6 @@ class UpdateTablesAddIndexesQ22020 extends Migration
             $table->dropColumn('section_id');
         });
 
-        Schema::table('abilities', function (Blueprint $table) {
-            $table->dropColumn('character_id');
-            $table->dropColumn('location_id');
-        });
         Schema::table('attributes', function (Blueprint $table) {
             $table->index('default_order');
         });
