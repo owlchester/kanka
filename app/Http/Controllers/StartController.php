@@ -40,7 +40,11 @@ class StartController extends Controller
             $campaign = Auth::user()->campaigns()->first();
             return redirect()->to(CampaignLocalization::getUrl($campaign->id));
         }
-        return view($this->view . '.create', ['start' => true]);
+        $new = session()->has('user_registered');
+        if ($new) {
+            session()->remove('user_registered');
+        }
+        return view($this->view . '.create', ['start' => true, 'tracking_new' => $new]);
     }
 
     /**

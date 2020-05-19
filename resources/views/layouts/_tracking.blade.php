@@ -5,9 +5,14 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', '{{ config('tracking.ga') }}');
+@if (!empty(config('tracking.ga_convo')))
+        gtag('config', '{{ config('tracking.ga_convo') }}');
+@endif
     </script>
+@if (!empty($tracking_new))
+    <script> gtag('event', 'conversion', {'send_to': '{{ config('tracking.ga_convo') }}/uNbhCObY0tABEOaOq7oC'}); </script>
+@endif
     <!-- End Google Analytics -->
 @endif
 @if (!empty(config('tracking.gtm')))

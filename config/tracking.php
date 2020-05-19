@@ -16,6 +16,13 @@ return [
     'ga' => env('TRACKING_GA', null),
 
     /*
+     * Google Analytics conversation tracking
+     * Used to track who converts to the app
+     * If empty, tracking will be disabled
+     */
+    'ga_convo' => env('TRACKING_GA_CONVERSION', null),
+
+    /*
      * Facebook tracking pixel on homepage for "join now"
      * If empty, tracking will be disabled
      */
