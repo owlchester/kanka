@@ -367,6 +367,10 @@ Route::group([
     Route::get('/notifications', 'NotificationController@index')->name('notifications');
     Route::get('/notifications/refresh', 'NotificationController@refresh')->name('notifications.refresh');
 
+    // Third party hooks
+    Route::get('/lfgm-hooks/sync/{uuid}', 'LFGM\HookController@sync')->name('lfgm.sync');
+    Route::post('/lfgm-hooks/sync/{uuid}', 'LFGM\HookController@saveSync')->name('lfgm.syncSave');
+
     // 3rd party
     Route::group(['middleware' => ['auth', 'translator'], 'prefix' => 'translations'], function () {
         Translator::routes();

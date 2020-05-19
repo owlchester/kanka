@@ -5,15 +5,20 @@
   background-color: #eee;
   padding: 8px;
   border-radius: 2px;
+  max-height: 120px;
+  overflow: hidden;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   .actions {
     text-align: center;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    a {
+    a, span {
       font-size: 14pt;
       color: #fff;
       text-shadow: rgba(0, 0, 0, 0.7) 0px 1px 4px;
+      cursor: pointer;
     }
 
     .btn {
@@ -21,4 +26,7 @@
       text-shadow: none;
     }
   }
+}
+.campaign.selected {
+  box-shadow: 0 6px 6px rgba(50, 50, 93, 0.8), 0 1px 3px rgba(0, 0, 0, 0.08);
 }

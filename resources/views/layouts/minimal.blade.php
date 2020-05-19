@@ -4,54 +4,39 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ $title ?? trans('default.page_title') }} - {{ config('app.name') }}</title>
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-    <meta property="og:title" content="{{ $title ?? __('default.page_title') }} - {{ config('app.name') }}" />
+    <meta property="og:title" content="{{ $title ?? '' }} - {{ config('app.name') }}" />
     <meta property="og:site_name" content="{{ config('app.site_name') }}" />
 @yield('og')
-    <!-- Font Awesome Icons -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <!-- Ionicons -->
-    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+
     <link rel="icon" type="image/png" href="/favicon.ico">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- Styles -->
+    <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    @if (auth()->check() && !empty(auth()->user()->theme))
+        <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">
+    @endif
+    @yield('styles')
 </head>
-<body class="skin-black">
+<body class="skin-black sidebar-mini layout-top-nav">
 <div id="app" class="wrapper">
 
-    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-                {{ $title ?? "Page Title" }}
-                <small>{{ $description ?? null }}</small>
-            </h1>
+        <section class="content-header margin-bottom">
         </section>
 
-        <!-- Main content -->
         <section class="content">
-            <!-- Your Page Content Here -->
             @yield('content')
-        </section><!-- /.content -->
-    </div><!-- /.content-wrapper -->
+        </section>
+    </div>
 
-    <!-- Footer -->
     @include('layouts.footer')
 
-</div><!-- ./wrapper -->
+</div>
 
-<!-- Scripts -->
 <script src="{{ mix('js/app.js') }}"></script>
+<script src="https://kit.fontawesome.com/d7f0be4a8d.js" crossorigin="anonymous"></script>
+@yield('scripts')
 </body>
 </html>

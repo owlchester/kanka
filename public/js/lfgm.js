@@ -81,56 +81,39 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 17);
+/******/ 	return __webpack_require__(__webpack_require__.s = 16);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/assets/js/profile.js":
-/*!****************************************!*\
-  !*** ./resources/assets/js/profile.js ***!
-  \****************************************/
+/***/ "./resources/assets/js/lfgm.js":
+/*!*************************************!*\
+  !*** ./resources/assets/js/lfgm.js ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var api;
+var campaignField = $('input[name="campaign"]');
+var submit = $('input[type="submit"]');
 $(document).ready(function () {
-  if ($('#newsletter-api').length === 1) {
-    init();
-  }
+  $('[data-campaign]').on('click', function (e) {
+    $('[data-campaign]').removeClass('selected');
+    $(this).addClass('selected');
+    campaignField.val($(this).data('campaign'));
+    submit.removeAttr('disabled');
+  });
 });
-
-function init() {
-  $.ajaxSetup({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-  });
-  api = $('#newsletter-api').val();
-  handle($('input[name="mail_release"]'));
-  handle($('input[name="mail_newsletter"]'));
-  handle($('input[name="mail_vote"]'));
-}
-
-function handle(element) {
-  $(element).change(function (e) {
-    var name = this.name;
-    var data = {};
-    data[name] = this.checked ? 1 : 0;
-    $.post(api, data);
-  });
-}
 
 /***/ }),
 
-/***/ 17:
-/*!*******************************************!*\
-  !*** multi ./resources/assets/js/profile ***!
-  \*******************************************/
+/***/ 16:
+/*!****************************************!*\
+  !*** multi ./resources/assets/js/lfgm ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\profile */"./resources/assets/js/profile.js");
+module.exports = __webpack_require__(/*! C:\Users\jerem\Projects\Php\kanka\resources\assets\js\lfgm */"./resources/assets/js/lfgm.js");
 
 
 /***/ })

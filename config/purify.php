@@ -159,7 +159,12 @@ return [
         'Filter.YouTube' => true,
 
         "HTML.SafeIframe" => true,
-        "URI.SafeIframeRegexp" => "%^(https?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player\.vimeo\.com/video/|open\.spotify\.com/embed/)%",
+        "URI.SafeIframeRegexp" => "%^(https?:)?//("
+            . "www\.youtube(?:-nocookie)?\.com/embed/|"
+            . "player\.vimeo\.com/video/|"
+            . "open\.spotify\.com/embed/|"
+            . "www\.lookingforgm\.com/campaign/"
+            . ")%",
     ],
 
 ];
