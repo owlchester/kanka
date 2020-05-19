@@ -10,6 +10,7 @@
 namespace App\Http\Controllers\LFGM;
 
 
+use App\Exceptions\TranslatableException;
 use App\Facades\UserCache;
 use App\Http\Controllers\Controller;
 use App\Services\LfgmService;
@@ -49,15 +50,19 @@ class HookController extends Controller
      */
     public function saveSync(Request $request)
     {
-        //try {
-            $this->service->sync($request);
+        try {
+            $campaign = $this->service->sync($request);
             return redirect()
-                ->route('home')
+                ->to('/' . app()->getLocale() . '/campaign/' . $campaign->id . '/')
                 ->withSuccess(__('lfgm.successes.synced'));
-        /*} catch (\Exception $e) {
+        } catch (TranslatableException $e) {
             return response()
                 ->redirectToRoute('lfgm.sync', ['uuid' => $request->post('uuid')])
-                ->withErrors(__('lfgm.errors.invalid_campaign'));
-        }*/
+                ->withErrors(__($e->getMessage()));
+        } catch (\Exception $e) {
+            return response()
+                ->redirectToRoute('lfgm.sync', ['uuid' => $request->post('uuid')])
+                ->withErrors(__('lfgm.errors.general_error'));
+        }
     }
 }

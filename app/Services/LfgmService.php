@@ -72,7 +72,7 @@ class LfgmService
             'widget' => CampaignDashboardWidget::WIDGET_PREVIEW,
             'width' => 4, // half
             'config' => '{"full":"1"}',
-            'position' => $last->position++,
+            'position' => $last ? $last->position++ : 1,
         ]);
         $widget->save();
 

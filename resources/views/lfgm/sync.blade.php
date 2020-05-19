@@ -19,6 +19,8 @@ $cpt = 0;
                         {!! __('lfgm.sync.helper', ['lfgm' => link_to('https://lookingforgm.com', 'LookingForGM')]) !!}
                     </p>
 
+                    @include('partials.errors')
+
                     {!! Form::open(['route' => ['lfgm.syncSave', 'uuid' => $uuid], 'method' => 'POST']) !!}
                     <div class="row">
                         @foreach ($campaigns as $campaign)
