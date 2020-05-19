@@ -9,18 +9,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <meta name="robots" content="noindex">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <!-- Ionicons -->
-    <link href="https://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-    <link rel="icon" type="image/png" href="/favicon.ico">
+    <meta property="og:title" content="{{ $title ?? '' }} - {{ config('app.name') }}" />
+    <meta property="og:site_name" content="{{ config('app.site_name') }}" />
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
+    <link rel="icon" type="image/png" href="/favicon.ico">
 
     <!-- Styles -->
     <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
@@ -41,8 +33,10 @@
             @yield('content')
         </div>
     </div>
-<!-- Scripts -->
-<script src="{{ mix('js/app.js') }}" defer></script>
+
+    <!-- Scripts -->
+    <script src="https://kit.fontawesome.com/d7f0be4a8d.js" crossorigin="anonymous"></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
 @yield('scripts')
 </body>
 </html>
