@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Facades\UserCache;
 use App\Models\CampaignUser;
 use App\Exceptions\RequireLoginException;
 use App\Models\CampaignInvite;
@@ -133,6 +134,10 @@ class InviteService
                 ]
             ));
         }
+
+        // Make sure the user's cache is cleared
+        UserCache::clearCampaigns();
+        UserCache::clearRoles();
 
         return $role->campaign;
     }
