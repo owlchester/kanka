@@ -125,6 +125,9 @@
                             <strong>{{ __('languages.codes.he') }}</strong>: Beefpotato
                         </p>
                         <p>
+                            <strong>{{ __('languages.codes.ru') }}</strong>: Ilia
+                        </p>
+                        <p>
                             <strong>{{ __('languages.codes.fr') }}</strong>: Ilestis
                         </p>
                     </div>
