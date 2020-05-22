@@ -4,7 +4,7 @@
     'breadcrumbs' => [
         ['url' => Breadcrumb::index('organisations'), 'label' => __('organisations.index.title')],
         ['url' => route('organisations.show', $model), 'label' => $model->name],
-        trans('organisations.show.tabs.members')
+        trans('organisations.fields.members')
     ],
     'mainTitle' => false,
 ])

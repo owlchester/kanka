@@ -33,7 +33,7 @@
                 @endif
                 <tr>
                     <td class="avatar">
-                        <a class="entity-image" style="background-image: url('{{ $event->entity->child->getImageUrl(true) }}');" title="{{ $event->entity->name }}" href="{{ $event->entity->url() }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $event->entity->child->getImageUrl(40) }}');" title="{{ $event->entity->name }}" href="{{ $event->entity->url() }}"></a>
                     </td>
                     <td>
                         {!! $event->entity->tooltipedLink() !!}

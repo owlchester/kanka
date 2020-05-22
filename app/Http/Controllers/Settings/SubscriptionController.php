@@ -65,7 +65,7 @@ class SubscriptionController extends Controller
     public function change(Request $request)
     {
         $tier = $request->get('tier');
-        $period = $request->get('period');
+        $period = $request->get('period', 'monthly');
 
         $amount = $this->subscription->user($request->user())->tier($tier)->period($period)->amount();
         $card = $request->user()->hasPaymentMethod() ? Arr::first($request->user()->paymentMethods()): null;
