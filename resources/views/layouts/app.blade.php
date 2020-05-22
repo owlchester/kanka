@@ -42,7 +42,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
     @endif
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
-<body class="skin-black sidebar-mini @if (!empty($campaign) || (auth()->check() && auth()->user()->hasCampaigns())) @else layout-top-nav @endif">
+<body class="skin-black sidebar-mini @if (!empty($campaign) || (auth()->check() && auth()->user()->hasCampaigns()) || $sidebar == 'settings') @else layout-top-nav @endif">
 @include('layouts._tracking-fallback')
     <div id="app" class="wrapper">
         <!-- Header -->
