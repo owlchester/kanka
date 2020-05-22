@@ -74,9 +74,11 @@ export default {
         },
         "crud": {
             "actions": {
+                "actions": "Aktionen",
                 "apply": "Übernehmen",
                 "back": "Zurück",
                 "copy": "Kopieren",
+                "copy_mention": "Kopie [] erwähnen",
                 "copy_to_campaign": "Kopiere zu Kampagne",
                 "explore_view": "Verschachtelte Ansicht",
                 "export": "Exportieren",
@@ -87,9 +89,13 @@ export default {
                 "new": "Neu",
                 "next": "Weiter",
                 "private": "Privat",
-                "public": "Öffentlich"
+                "public": "Öffentlich",
+                "reset": "Zurücksetzen"
             },
             "add": "Hinzufügen",
+            "alerts": {
+                "copy_mention": "Die erweiterte Erwähnung dieses Objekts wurde in Ihre Zwischenablage kopiert."
+            },
             "attributes": {
                 "actions": {
                     "add": "Attribut hinzufügen",
@@ -116,9 +122,16 @@ export default {
                 "fields": {
                     "attribute": "Attribut",
                     "community_templates": "Community Vorlagen",
+                    "is_private": "Private Attribute",
                     "is_star": "Angepinnt",
                     "template": "Vorlage",
                     "value": "Wert"
+                },
+                "helpers": {
+                    "delete_all": "Möchten Sie wirklich alle Attribute dieses Objekts löschen?"
+                },
+                "hints": {
+                    "is_private": "Sie können alle Attribute eines Objekts für alle Mitglieder außerhalb der Administratorrolle ausblenden, indem Sie sie privat machen."
                 },
                 "index": {
                     "success": "Attribute für {entity} aktualisiert",
@@ -128,6 +141,7 @@ export default {
                     "attribute": "Anzahl der Eroberungen, Challenge Rating, Initiative, Bevölkerung",
                     "block": "Blockname",
                     "checkbox": "Checkbox Name",
+                    "section": "Abteilungsname",
                     "template": "Wähle eine Vorlage",
                     "value": "Wert des Attributs"
                 },
@@ -139,6 +153,7 @@ export default {
                     "attribute": "Attribute",
                     "block": "Block",
                     "checkbox": "Checkbox",
+                    "section": "Abteilung",
                     "text": "Mehrzeiliger Text"
                 },
                 "visibility": {
@@ -148,9 +163,26 @@ export default {
                     "tab": "Das Attribut wird nur im Attribute-Reiter angezeigt."
                 }
             },
+            "boosted": "geboostet",
+            "boosted_campaigns": "geboostete Kampagne",
             "bulk": {
+                "actions": {
+                    "edit": "Massenbetrieb"
+                },
+                "age": {
+                    "helper": "Sie können + und - vor der Nummer verwenden, um das Alter dynamisch zu aktualisieren."
+                },
+                "edit": {
+                    "tagging": "Aktion für Tags",
+                    "tags": {
+                        "add": "Hinzufügen",
+                        "remove": "Entfernen"
+                    },
+                    "title": "Mehrere Objekte bearbeiten"
+                },
                 "errors": {
-                    "admin": "Nur Kampagnenadmins können den \"Privat\" Status eines Objektes ändern."
+                    "admin": "Nur Kampagnenadmins können den \"Privat\" Status eines Objektes ändern.",
+                    "general": "Bei der Verarbeitung Ihrer Aktion ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut und kontaktieren Sie uns, wenn das Problem weiterhin besteht. Fehlermeldung: {hint}."
                 },
                 "permissions": {
                     "fields": {
@@ -162,6 +194,8 @@ export default {
                     "title": "Ändert die Berechtigungen für mehrere Objekte"
                 },
                 "success": {
+                    "copy_to_campaign": "{1} {count} der in {campaign} kopierten Objekte. | [2, *] {count}  der in {campaign} kopierten Objekte.",
+                    "editing": "1} {count} objekt wurde aktualisiert. | [2, *] {count} objekte wurden aktualisiert.",
                     "permissions": "Berechtigungen für {count} Objekt geändert.|Berechtigungen für {count} Objekte geändert.",
                     "private": "{count} Objekt ist jetzt privat.|{count} Objekte sind jetzt privat.",
                     "public": "{count} Objekt ist jetzt sichtbar.|{count} Objekte sind jetzt sichtbar."
@@ -174,6 +208,7 @@ export default {
                 "title": "Bestätige deine Aktion"
             },
             "copy_to_campaign": {
+                "bulk_title": "Kopieren Sie Objekte in eine andere Kampagne",
                 "panel": "Kopieren",
                 "title": "Kopiere {name} in eine andere Kampagne"
             },
@@ -193,6 +228,7 @@ export default {
             },
             "edit": "Bearbeiten",
             "errors": {
+                "boosted": "Diese Funktion ist nur für geboostete Kampagnen verfügbar.",
                 "node_must_not_be_a_descendant": "Ungültiges Objekt (Kategorie, Ort): es würde ein Nachkomme von sich selbst sein."
             },
             "events": {
@@ -200,10 +236,12 @@ export default {
             },
             "export": "Exportieren",
             "fields": {
+                "ability": "Fähigkeit",
                 "attribute_template": "Attributsvorlage",
                 "calendar": "Kalender",
                 "calendar_date": "Datum",
                 "character": "Charakter",
+                "colour": "Farbe",
                 "copy_attributes": "Kopiere Attribute",
                 "copy_notes": "Kopiere Objektnotizen",
                 "creator": "Ersteller",
@@ -215,6 +253,7 @@ export default {
                 "excerpt": "Auszug",
                 "family": "Familie",
                 "files": "Dateien",
+                "header_image": "Kopfzeilenbild",
                 "image": "Bild",
                 "is_private": "Privat",
                 "is_star": "Angepinnt",
@@ -225,6 +264,8 @@ export default {
                 "race": "Rasse",
                 "tag": "Tag",
                 "tags": "Tags",
+                "tooltip": "Kurzinfo",
+                "type": "Typ",
                 "visibility": "Sichtbarkeit"
             },
             "files": {
@@ -233,7 +274,8 @@ export default {
                     "manage": "Verwalte Objektdateien"
                 },
                 "errors": {
-                    "max": "Du hast die maximale Anzahl ({max}) von Dateien in diesem Objekt erreicht."
+                    "max": "Du hast die maximale Anzahl ({max}) von Dateien in diesem Objekt erreicht.",
+                    "no_files": "Keine Dateien."
                 },
                 "files": "Hochgeladene Dateien",
                 "hints": {
@@ -250,6 +292,11 @@ export default {
                 "filtered": "Zeige {count} von {total} {entity}.",
                 "hide": "Verstecken",
                 "show": "Zeigen",
+                "sorting": {
+                    "asc": "{field} Aufsteigend",
+                    "desc": "{field} absteigend",
+                    "helper": "Steuern Sie, in welcher Reihenfolge die Ergebnisse angezeigt werden."
+                },
                 "title": "Filter"
             },
             "forms": {
@@ -262,17 +309,21 @@ export default {
             "hints": {
                 "attribute_template": "Wende eine Attributsvorlage direkt beim erstellen des Objektes an.",
                 "calendar_date": "Ein Datum erlaubt es, Listen einfach zu filtern und pflegt ein Ereignis im ausgewählten Kalender.",
+                "header_image": "Dieses Bild wird über dem Objekt platziert. Verwenden Sie ein breites Bild, um optimale Ergebnisse zu erzielen.",
                 "image_limitations": "Unterstützte Formate: jpg, png und gif. Maximale Dateigröße: {size}.",
                 "image_patreon": "Erhöhe das Limit indem du uns bei Patreon unterstützt.",
                 "is_private": "Vor 'Zuschauern' verbergen",
                 "is_star": "Angepinnte Objekte erscheinen im Objektmenü.",
                 "map_limitations": "Unterstützte Formate: jpg, png, gif und svg. Max Dateigröße: {size}.",
+                "tooltip": "Ersetzen Sie die automatisch generierte Kurzinfo durch den folgenden Inhalt.",
                 "visibility": "Wenn die Sichtbarkeit auf Admin festgelegt wird, können dies nur Mitglieder in der Rolle Admin sehen. Wird es auf \"Selbst\" gesetzt, kannst es nur du sehen."
             },
             "history": {
                 "created": "Erstellt von <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "created_date": "Erstelle <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "unknown": "Unbekannt",
                 "updated": "Zuletzt aktualisiert von <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "updated_date": "Letzte Änderung <span data-toggle = \"tooltip\" title = \": realdate\">: Datum </ span>",
                 "view": "Zeige Objektprotokoll"
             },
             "image": {
@@ -324,13 +375,20 @@ export default {
                 "actions": {
                     "bulk": {
                         "add": "Hinzufügen",
+                        "deny": "verweigern",
                         "ignore": "Ignorieren",
                         "remove": "Entfernen"
+                    },
+                    "bulk_entity": {
+                        "allow": "erlauben",
+                        "deny": "verweigern",
+                        "inherit": "Erben"
                     },
                     "delete": "Löschen",
                     "edit": "Bearbeiten",
                     "entity_note": "Objektnotizen",
-                    "read": "Lesen"
+                    "read": "Lesen",
+                    "toggle": "Umschalten"
                 },
                 "allowed": "Erlaubt",
                 "fields": {
@@ -338,10 +396,18 @@ export default {
                     "role": "Rolle"
                 },
                 "helper": "Benutze dieses Interface um die Berechtigungen von Nutzern und Rollen mit diesem Objekt  fein zu justieren.",
+                "helpers": {
+                    "entity_note": "Ermöglichen Sie Benutzern das Erstellen von Objektnotizen für dieses Objekt. Ohne diese Berechtigung können sie weiterhin Objekt Notizen sehen, die auf Sichtbarkeit Alle eingestellt sind.",
+                    "setup": "Verwenden Sie diese Schnittstelle, um zu optimieren, wie Rollen und Benutzer mit diesem Objekt interagieren können. {allow} ermöglicht dem Benutzer oder der Rolle, diese Aktion auszuführen. {deny} wird ihnen diese Handlung verweigern. {inherit} verwendet die Berechtigung des Benutzers oder der Hauptrolle. Ein Benutzer, der auf {allow} eingestellt ist, kann die Aktion ausführen, auch wenn seine Rolle auf {deny} eingestellt ist."
+                },
+                "inherited": "Für diese Rolle ist die Berechtigung für diesen Objekttyp bereits festgelegt.",
+                "inherited_by": "Dieser Benutzer ist Teil der Rolle '{role}', die diese Berechtigungen für diesen Objekttyp erteilt.",
                 "success": "Berechtigungen gespeichert.",
-                "title": "Berechtigungen"
+                "title": "Berechtigungen",
+                "too_many_members": "Diese Kampagne hat zu viele Mitglieder (> 10), um in dieser Benutzeroberfläche angezeigt zu werden. Verwenden Sie die Schaltfläche Berechtigung in der Objektansicht, um die Berechtigungen im Detail zu steuern."
             },
             "placeholders": {
+                "ability": "Wähle eine Fähigkeit",
                 "calendar": "Wähle einen Kalender",
                 "character": "Wähle einen Character",
                 "entity": "Objekt",
@@ -369,13 +435,16 @@ export default {
             "rename": "Umbenennen",
             "save": "Speichern",
             "save_and_close": "Speichern und schließen",
+            "save_and_copy": "Speichern und kopieren",
             "save_and_new": "Speichern und neu",
             "save_and_update": "Speichern und aktualisieren",
             "save_and_view": "Speichern und ansehen",
             "search": "Suchen",
             "select": "Auswählen",
             "tabs": {
+                "abilities": "Fähigkeiten",
                 "attributes": "Attribute",
+                "boost": "Boost",
                 "calendars": "Kalender",
                 "default": "Standard",
                 "events": "Ereignisse",
@@ -385,7 +454,9 @@ export default {
                 "menu": "Menü",
                 "notes": "Notizen",
                 "permissions": "Berechtigungen",
-                "relations": "Beziehungen"
+                "relations": "Beziehungen",
+                "reminders": "Erinnerungen",
+                "tooltip": "Kurztip"
             },
             "update": "Bearbeiten",
             "users": {
@@ -394,6 +465,7 @@ export default {
             "view": "Ansehen",
             "visibilities": {
                 "admin": "Admin",
+                "admin-self": "Selbst & Admin",
                 "all": "Jeder",
                 "self": "Selbst"
             }
@@ -429,6 +501,43 @@ export default {
                 "request_permission": "Wir bauen zurzeit eine mächtige RESTful API, so das Drittanbieter-Apps sich zu Kanka verbinden können. Allerdings limitieren wir aktuell noch die Anzahl der Nutzer, die die API nutzen können, solange wir noch daran arbeiten. Wenn du Zugriff auf die API haben möchtest und coole Apps bauen möchtest, die mit Kanka kommunizieren, bitte kontaktiere uns und wir senden dir die Informationen, die du brauchst.",
                 "title": "API"
             },
+            "apps": {
+                "actions": {
+                    "connect": "Verbinden",
+                    "remove": "Entfernen"
+                }
+            },
+            "boost": {
+                "title": "Boost"
+            },
+            "countries": {
+                "austria": "Österreich",
+                "belgium": "Belgien",
+                "france": "Frankreich",
+                "germany": "Deutschland",
+                "italy": "Italien",
+                "netherlands": "Niederlande",
+                "spain": "Spanien"
+            },
+            "invoices": {
+                "actions": {
+                    "download": "PDF herunterladen",
+                    "view_all": "Alle anzeigen"
+                },
+                "empty": "keine Rechnungen",
+                "fields": {
+                    "amount": "Menge",
+                    "date": "Datum",
+                    "invoice": "Rechnung",
+                    "status": "Status"
+                },
+                "header": "Unten finden Sie eine Liste Ihrer letzten 24 Rechnungen, die heruntergeladen werden können.",
+                "status": {
+                    "paid": "Bezahlt",
+                    "pending": "steht aus"
+                },
+                "title": "Rechnungen"
+            },
             "layout": {
                 "description": "Aktualisiere deine Layout Optionen",
                 "success": "Layout Optionen aktualisiert.",
@@ -437,10 +546,18 @@ export default {
             "menu": {
                 "account": "Account",
                 "api": "API",
+                "apps": "Apps",
+                "billing": "Zahlungsmethode",
+                "boost": "Boost",
+                "invoices": "Rechnungen",
                 "layout": "Layout",
+                "other": "Andere",
                 "patreon": "Patreon",
+                "payment_options": "Zahlungsmöglichkeiten",
                 "personal_settings": "Persönliche Einstellungen",
-                "profile": "Profil"
+                "profile": "Profil",
+                "subscription": "Abonnement",
+                "subscription_status": "Abonnement Status"
             },
             "patreon": {
                 "actions": {
@@ -448,6 +565,7 @@ export default {
                     "view": "Besuche Kanka auf Patreon"
                 },
                 "benefits": "Eure Unterstützung auf Patreon erlaubt es euch größere Bilder hochzuladen, hilft uns die Serverkosten zu begleichen und mehr Arbeitszeit in Kanka zu stecken.",
+                "benefits_features": "erstaunliche Eigenschaften",
                 "description": "Synchronisierung mit Patreon",
                 "errors": {
                     "invalid_token": "Ungültiger Token! Patreon konnte die Anfrage nicht validieren.",
@@ -457,6 +575,11 @@ export default {
                 "link": "Benutze diesen Button, wenn du aktuell Kanka auf Patreon unterstützt. Das gibt dir Zugriff auf einige tolle Extras.",
                 "linked": "Danke, dass du Kanka auf Patreon unterstützt! Dein Account wurde verlinkt.",
                 "pledge": "Pledge {name}",
+                "remove": {
+                    "button": "Trennen Sie die Verknüpfung Ihres Patreon-Kontos",
+                    "success": "Ihr Patreon-Konto wurde getrennt.",
+                    "title": "Trennen Sie Ihr Patreon-Konto von Kanka"
+                },
                 "success": "Danke, dass du Kanka auf Patreon unterstützt.",
                 "title": "Patreon",
                 "wrong_pledge": "Euer Patreon Tier wird manuell von uns gesetzt. Daher kann es sein, dass es bis zu ein paar Tagen dauert bis es korrekt hinterlegt wird. Wenn es länger falsch ist, kontaktiert uns bitte."
@@ -469,6 +592,30 @@ export default {
                 "description": "Aktualisiere dein Profil",
                 "success": "Profil aktualisiert.",
                 "title": "Persönliches Profil"
+            },
+            "subscription": {
+                "actions": {
+                    "cancel_sub": "Abonnement beenden",
+                    "subscribe": "Abonnieren",
+                    "update_currency": "Speichern Sie die bevorzugte Währung"
+                },
+                "billing": {
+                    "saved": "Gespeicherte Zahlungsmethode",
+                    "title": "Zahlungsmethode ändern"
+                },
+                "currencies": {
+                    "eur": "EUR",
+                    "usd": "USD"
+                },
+                "fields": {
+                    "active_since": "aktiv seit",
+                    "active_until": "aktiv bis",
+                    "billing": "Abrechnung",
+                    "currency": "Abrechnungswährung",
+                    "payment_method": "Zahlungsmethode",
+                    "plan": "Derzeitiger Plan",
+                    "reason": "Ursache"
+                }
             }
         }
     },
@@ -867,10 +1014,10 @@ export default {
                     "member": "Member",
                     "role": "Role"
                 },
-                "helper": "Use this interface to fine-tune which users and roles that can interact with this entity. {allow} ",
+                "helper": "Use this interface to fine-tune which users and roles that can interact with this entity. {allow}",
                 "helpers": {
-                    "setup": "Use this interface to fine-tune how roles and users can interact with this entity. {allow} will allow the user or role to do this action. {deny} will deny them that action. {inherit} will use the user's role or main role's permission. A user set to {allow} is able to do the action, even if their role is set to {deny}.",
-                    "entity_note": "Allow users to create Entity Notes on this Entity. Without this permission, they will still be able to see Entity Notes set to visibility All."
+                    "entity_note": "Allow users to create Entity Notes on this Entity. Without this permission, they will still be able to see Entity Notes set to visibility All.",
+                    "setup": "Use this interface to fine-tune how roles and users can interact with this entity. {allow} will allow the user or role to do this action. {deny} will deny them that action. {inherit} will use the user's role or main role's permission. A user set to {allow} is able to do the action, even if their role is set to {deny}."
                 },
                 "inherited": "This role already has this permission set for this entity type.",
                 "inherited_by": "This user is part of the '{role}' role which grants this permissions on this entity type.",
@@ -1017,9 +1164,9 @@ export default {
             "countries": {
                 "austria": "Austria",
                 "belgium": "Belgium",
+                "france": "France",
                 "germany": "Germany",
                 "italy": "Italy",
-                "france": "France",
                 "netherlands": "The Netherlands",
                 "spain": "Spain"
             },
@@ -1142,8 +1289,8 @@ export default {
                 },
                 "helpers": {
                     "alternatives": "Pay for your subscription using {method}. This payment method won't auto-renew at the end of your subscription. {method} is only available in Euros.",
-                    "alternatives_yearly": "Due to the restrictions surrounding recurring payments, {method} is only available for yearly subscriptions",
-                    "alternatives_warning": "Upgrading your subscription when using this method is not possible. Please create a new subscription when your current one ends."
+                    "alternatives_warning": "Upgrading your subscription when using this method is not possible. Please create a new subscription when your current one ends.",
+                    "alternatives_yearly": "Due to the restrictions surrounding recurring payments, {method} is only available for yearly subscriptions"
                 },
                 "manage_subscription": "Manage subscription",
                 "payment_method": {
@@ -3014,8 +3161,14 @@ export default {
                 "actions": {
                     "bulk": {
                         "add": "Dodaj",
+                        "deny": "Zabrani",
                         "ignore": "Ignoriraj",
                         "remove": "Ukloni"
+                    },
+                    "bulk_entity": {
+                        "allow": "Dozvoli",
+                        "deny": "Zabrani",
+                        "inherit": "Naslijedi"
                     },
                     "delete": "Brisanje",
                     "edit": "Uređivanje",
@@ -3029,6 +3182,10 @@ export default {
                     "role": "Uloga"
                 },
                 "helper": "Koristi ovo sučelje za preciziranje korisnika i uloga koji mogu vidjeti ili koristiti ovaj entitet.",
+                "helpers": {
+                    "entity_note": "Dozvoli korisnicima da za ovaj entitet mogu kreirati Bilješke entiteta. Korisnici će tuđe bilješke koje su podijeljene sa svima vidjeti i bez ove ovlasti.",
+                    "setup": "Koristi ovo sučelje za detaljno namještanje ovlasti uloga i korisnika za ovaj entitet. {allow} će dozvoliti korisniku ili ulozi da odradi tu akciju. {deny} će zabraniti akciju. {inherit} će koristiti ovlasti korisnikove ili glavne uloge. Korisnik kojemu je postavljano {allow}, može odrađivati akciju čak i ako uloga čiji je član ima {deny}."
+                },
                 "inherited": "Ova uloga već ima postavljeno dopuštenje za ovu vrstu entiteta.",
                 "inherited_by": "Ovaj je korisnik dio uloge \"{role}\" koja daje ova dopuštenja ovom entitetu.",
                 "success": "Ovlasti spremljene.",
@@ -3150,6 +3307,7 @@ export default {
                 "benefits": {
                     "first": "Kako bi osigurali kontinuirani napredak na Kanki, pojedine značajke kampanje otključavaju se pojačavanjem kampanje. Pojačanja se otključavaju putem pretplate. Svatko tko može pogledati kampanju može ju pojačati tako da ne mora uvijek ista osoba plaćati račun. Kampanja ostaje pojačana sve dok korisnik pojačava kampanju i oni nastave podržavati Kanku. Ako se kampanja više ne pojačava, podaci se ne gube već su samo skriveni dok se kampanja ponovno ne pojača.",
                     "header": "Slike zaglavlja entiteta.",
+                    "images": "Proizvoljne zadane slike entiteta.",
                     "more": "Saznaj više o svim značajkama.",
                     "second": "Pojačavanje kampanje omogućuje sljedeće prednosti:",
                     "theme": "Tema na razini kampanje i proizvoljno stiliziranje.",
@@ -3169,6 +3327,15 @@ export default {
                     "delete": "Tvoje pojačanje uklonjeno s {name}."
                 },
                 "title": "Pojačanje"
+            },
+            "countries": {
+                "austria": "Austrija",
+                "belgium": "Belgija",
+                "france": "Francuska",
+                "germany": "Njemačka",
+                "italy": "Italija",
+                "netherlands": "Nizozemska",
+                "spain": "Španjolska"
             },
             "invoices": {
                 "actions": {
@@ -3261,7 +3428,10 @@ export default {
                 },
                 "cancelled": "Tvoja pretplata je otkazana. Pretplatu možete obnoviti nakon završetka tvoje trenutne pretplate.",
                 "change": {
-                    "text": "Pretplatite se na sloj {tier}, mjesečno se naplaćuje za {amount}.",
+                    "text": {
+                        "monthly": "Pretplaćuješ se na sloj {tier} koji se naplaćuje mjesečno {amount}.",
+                        "yearly": "Pretplaćuješ se na sloj {tier} koji se naplaćuje godišnje {amount}."
+                    },
                     "title": "Promijenite razinu pretplate"
                 },
                 "currencies": {
@@ -3278,22 +3448,30 @@ export default {
                 "fields": {
                     "active_since": "Aktivno od",
                     "active_until": "Aktivno do",
-                    "billed_monthly": "Naplaćuje se mjesečno",
+                    "billing": "Naplata",
                     "currency": "Valuta naplate",
                     "payment_method": "Način plaćanja",
                     "plan": "Trenutni plan",
                     "reason": "Razlog"
+                },
+                "helpers": {
+                    "alternatives": "Plati svoju pretplatu pomoću {method}. Na kraju pretplate ovaj se način plaćanja neće automatski obnoviti. {metoda} je dostupna samo u eurima.",
+                    "alternatives_warning": "Nadogradnja pretplate prilikom korištenja ove metode nije moguća. Stvori novu pretplatu kada se završi trenutna.",
+                    "alternatives_yearly": "Zbog ograničenja koja se odnose na ponavljajuća plaćanja, metoda {method} je dostupna samo za godišnje pretplate"
                 },
                 "manage_subscription": "Upravljanje pretplatom",
                 "payment_method": {
                     "actions": {
                         "add_new": "Dodajte novi način plaćanja",
                         "change": "Promjena načina plaćanja",
-                        "save": "Spremi način plaćanja"
+                        "save": "Spremi način plaćanja",
+                        "show_alternatives": "Alternativni načini plaćanja"
                     },
                     "add_one": "Trenutno nema spremljenog načina plaćanja.",
+                    "alternatives": "Možeš se pretplatiti pomoću ovih alternativnih načina plaćanja. Ova radnja će teretiti tvoj račun jednom i neće automatski obnavljati pretplatu svaki mjesec.",
                     "card": "Kartica",
                     "card_name": "Ime na kartici",
+                    "country": "Zemlja prebivališta",
                     "ending": "Završava za",
                     "helper": "Ova će se kartica koristiti za sve tvoje pretplate.",
                     "new_card": "Dodaj novi način plaćanja",
@@ -3302,21 +3480,28 @@ export default {
                 "placeholders": {
                     "reason": "Po želji nam možeš reći zašto više ne podržavaš Kanku. Nedostajala je funkcionalnost? Je li se promijenila tvoja financijska situacija?"
                 },
+                "plans": {
+                    "cost_monthly": "{currency} {amount} naplaćeno mjesečno",
+                    "cost_yearly": "{currency} {amount} naplaćeno godišnje"
+                },
                 "sub_status": "Informacije o pretplati",
                 "subscription": {
                     "actions": {
                         "downgrading": "Molimo kontaktiraj nas radi smanjenja za nižu razinu",
                         "rollback": "Promjena u Kobold",
-                        "subscribe": "Promjena u {tier} mjesečno"
+                        "subscribe": "Promjena u {tier} mjesečno",
+                        "subscribe_annual": "Promjeni na {tier} godišnje"
                     }
                 },
                 "success": {
+                    "alternative": "Tvoja uplata je registrirana. Primit ćeš obavijest čim se obradi i tvoja pretplata postane aktivna.",
                     "callback": "Tvoja pretplata je uspješna. Tvoj račun će biti ažuriran čim nas naš pružatelj plaćanja informira o promjeni (ovo može potrajati nekoliko minuta).",
                     "cancel": "Tvoja pretplata je otkazana. I dalje će biti aktivna do kraja tvog trenutnog razdoblja naplate.",
                     "currency": "Tvoja željena postavka valute je ažurirana.",
                     "subscribed": "Tvoja pretplata je bila uspješna. Ne zaboravi se pretplatiti na bilten glasanja zajednice kako bi te obavijestili kada započne novo glasanje. Postavke biltena možeš promijeniti na stranici profila."
                 },
                 "tiers": "Razina pretplate",
+                "trial_period": "Godišnje pretplate imaju pravo otkaza 14 dana. Kontaktiraj nas na {email} ako želiš otkazati godišnju pretplatu i dobiti povrat novca.",
                 "upgrade_downgrade": {
                     "button": "Informacije o promjeni razine",
                     "downgrade": {
@@ -3714,8 +3899,14 @@ export default {
                 "actions": {
                     "bulk": {
                         "add": "Hozzáadás",
+                        "deny": "Tilt",
                         "ignore": "Figyelmen kívül hagyás",
                         "remove": "Eltávolítás"
+                    },
+                    "bulk_entity": {
+                        "allow": "Engedélyez",
+                        "deny": "Tilt",
+                        "inherit": "Örököl"
                     },
                     "delete": "Törlés",
                     "edit": "Szerkesztés",
@@ -4716,9 +4907,278 @@ export default {
     },
     "ru": {
         "admin": [],
+        "calendars": [],
+        "campaigns": [],
         "crud": {
             "actions": {
                 "back": "Back"
+            }
+        },
+        "entities": [],
+        "front": [],
+        "randomisers": [],
+        "settings": {
+            "account": {
+                "actions": {
+                    "social": "Вход Kanka",
+                    "update_email": "Обновить электронную почту",
+                    "update_password": "Обновить пароль"
+                },
+                "email": "Смена электронной почты",
+                "email_success": "Электронная почта обновлена.",
+                "password": "Смена пароля",
+                "password_success": "Пароль обновлен.",
+                "social": {
+                    "error": "Вы уже используете вход Kanka на этом аккаунте.",
+                    "helper": "Ваш аккаунт сейчас управляется с помощью {provider}. Вы можете остановить это и включить стандартный вход Kanka, введя пароль.",
+                    "success": "Теперь ваш аккаунт использует вход Kanka.",
+                    "title": "Вход Kanka"
+                },
+                "title": "Аккаунт"
+            },
+            "api": {
+                "experimental": "Добро пожаловать в Kanka API! Эти функции пока экспериментальные, но достаточно стабильные, чтобы вы могли начать общаться с помощью API. Создайте личный токен доступа для использования ваших API запросов или используйте клиентский токен, если вы хотите, чтобы ваше приложение имело доступ к данным пользователя.",
+                "help": "Kanka скоро обеспечит RESTful API, чтобы приложения третьей стороны могли подключаться к приложению. Детали управления API ключами будут показаны ниже.",
+                "link": "Читать API документацию",
+                "request_permission": "Мы работаем над созданием RESTful API, чтобы приложения третьей стороны могли подключаться к приложению. Однако, мы ограничиваем число пользователей, которые могут взаимодействовать с API, пока мы работаем над ним. Если вы хотите получить доступ к API и создавать крутые приложения для доступа к Kanka, пожалуйста свяжитесь с нами, и мы отправим вам всю необходимую информацию.",
+                "title": "API"
+            },
+            "apps": {
+                "actions": {
+                    "connect": "Подключиться",
+                    "remove": "Удалить"
+                },
+                "benefits": "Kanka поддерживает несколько видов связи с сервисами третьей стороны. Больше видов связи планируются в будущем.",
+                "discord": {
+                    "errors": {
+                        "add": "При соединении с вашим Discord аккаунтом через Kanka произошла ошибка. Пожалуйста, попробуйте снова."
+                    },
+                    "success": {
+                        "add": "Ваш Discord аккаунт подключен.",
+                        "remove": "Ваш Discord аккаунт отключен."
+                    },
+                    "text": "Получите доступ к вашим ролям подписки автоматически."
+                },
+                "title": "Подключение к приложению"
+            },
+            "boost": {
+                "benefits": {
+                    "first": "Для гарантии продолжения развития Kanka, некоторые черты кампаний доступны только с помощью усилителей кампаний. Усилители доступны по подписке. Любой, кто видит кампанию, может усилить ее, так что админ не всегда должен за это платить. Кампания остается усиленной пока пользователь ее усиляет и продолжает поддерживать Kanka. Если кампания больше не усилена, то данные не потеряны, они просто скрыты, пока кампанию снова не усилят.",
+                    "header": "Изображения заголовков объектов",
+                    "images": "Заказные изображения по умолчанию для объектов",
+                    "more": "Узнать больше обо всех функциях",
+                    "second": "Усиление кампании дает следующие преимущества:",
+                    "theme": "Тема уровней кампании и заказной стиль",
+                    "tooltip": "Заказные подсказки для объектов",
+                    "upload": "Увеличенный вес загружаемых файлов для всех членов кампании"
+                },
+                "buttons": {
+                    "boost": "Усилить"
+                },
+                "campaigns": "Усиленные кампании {count}/{max}",
+                "exceptions": {
+                    "already_boosted": "Кампания {name} уже усилена.",
+                    "exhausted_boosts": "У вас закончились усилители. Уберите усилитель с кампании, чтобы применить его на другую."
+                },
+                "success": {
+                    "boost": "Кампания {name} усилена.",
+                    "delete": "Ваше усиление удалено с {name}."
+                },
+                "title": "Усилить"
+            },
+            "countries": {
+                "austria": "Австрия",
+                "belgium": "Бельгия",
+                "france": "Франция",
+                "germany": "Германия",
+                "italy": "Италия",
+                "netherlands": "Нидерланды",
+                "spain": "Испания"
+            },
+            "invoices": {
+                "actions": {
+                    "download": "Скачать PDF",
+                    "view_all": "Показать все"
+                },
+                "empty": "Нет счетов",
+                "fields": {
+                    "amount": "Количество",
+                    "date": "Дата",
+                    "invoice": "Счет",
+                    "status": "Статус"
+                },
+                "header": "Ниже список ваших последних 24 счетов, которые можно скачать.",
+                "status": {
+                    "paid": "Оплачен",
+                    "pending": "Ожидает"
+                },
+                "title": "Счета"
+            },
+            "layout": {
+                "success": "Оформление обновлено.",
+                "title": "Оформление"
+            },
+            "menu": {
+                "account": "Аккаунт",
+                "api": "API",
+                "apps": "Приложения",
+                "billing": "Способ оплаты",
+                "boost": "Усилители",
+                "invoices": "Счета",
+                "layout": "Оформление",
+                "other": "Другое",
+                "patreon": "Patreon",
+                "payment_options": "Способы оплаты",
+                "personal_settings": "Персональные настройки",
+                "profile": "Профиль",
+                "subscription": "Подписка",
+                "subscription_status": "Статус подписки"
+            },
+            "patreon": {
+                "actions": {
+                    "link": "Подключить Аккаунт",
+                    "view": "Посетить Kanka на Patreon"
+                },
+                "benefits": "Поддержка нашего {patreon} разблокирует все {features} для вас и ваших кампаний, а также позволит нам проводить больше времени, работая над улучшением Kanka.",
+                "benefits_features": "удивительные черты",
+                "deprecated": "Устаревшая функция - если вы хотите поддержать Kanka, пожалуйста сделайте это с помощью {subscription}. Ссылка на Patreon до сих пор активна для наших патреонцев, которые подключили их аккаунты до выхода с Patreon.",
+                "description": "Синхронизация с Patreon.",
+                "errors": {
+                    "invalid_token": "Недействительный токен! Patreon не может утвердить ваш запрос.",
+                    "missing_code": "Код отсутствует! Patreon не отправил назад код, определяющий ваш аккаунт.",
+                    "no_pledge": "Залог отсутствует! Patreon определил ваш аккаунт, но у вас нет на нем активного залога."
+                },
+                "link": "Используйте следующую кнопку, если вы уже поддерживаете Kanka на {patreon}. Это разблокирует бонусы.",
+                "linked": "Спасибо за поддержку на Patreon! Ваш аккаунт подключен.",
+                "pledge": "Залог: {name}",
+                "remove": {
+                    "button": "Отключить ваш Patreon аккаунт",
+                    "success": "Ваш Patreon аккаунт отключен.",
+                    "text": "Отключение вашего Patreon аккаунта Kanka удалит ваши бонусы, имя в Зале Славы, усилители кампаний и другие функции, включенные в поддержку Kanka. Все созданное при усилении не пропадет (например заголовки объектов). Подписавшись назад вы получите доступ ко всем этим данным, включая возможность усилять ваши кампании.",
+                    "title": "Отключение вашего Patreon аккаунта Kanka"
+                },
+                "success": "Спасибо за поддержку Kanka на Patreon!",
+                "title": "Patreon",
+                "wrong_pledge": "Уровень вашего залога устанавливается нами вручную, так что, пожалуйста, дайте нам пару дней на то, чтобы правильно его настроить."
+            },
+            "profile": {
+                "actions": {
+                    "update_profile": "Обновить профиль"
+                },
+                "avatar": "Картинка профиля",
+                "success": "Профиль обновлен",
+                "title": "Персональный профиль"
+            },
+            "subscription": {
+                "actions": {
+                    "cancel_sub": "Отменить Подписку",
+                    "subscribe": "Подписаться",
+                    "update_currency": "Сохранить Предпочитаемую Валюту"
+                },
+                "benefits": "Поддерживая нас, вы можете разблокировать новые {features} и помочь нам проводить больше времени над улучшением Kanka. Никакая информация кредитной карты не сохраняется и не передается через наши сервера. Мы используем {stripe} для управления оплатой.",
+                "billing": {
+                    "helper": "Информация о вашей оплате обработана и сохранена с помощью {stripe}. Этот способ оплаты используется для всех ваших подписок.",
+                    "saved": "Сохраненный способ оплаты",
+                    "title": "Редактировать Способ Оплаты"
+                },
+                "cancel": {
+                    "text": "Жаль, что вы уходите! Отмена вашей подписки сохранит ее активной до следующего цикла оплаты, после которого вы потеряете ваши усилители кампаний и другие привилегии относящиеся к поддержке Kanka. Можете заполнить следующую форму, чтобы сообщить нам, что мы можем сделать лучше или почему вы приняли это решение."
+                },
+                "cancelled": "Ваша подписка отменена. Вы можете обновить подписку, как только у вас закончится нынешняя подписка.",
+                "change": {
+                    "text": {
+                        "monthly": "Вы подписываетесь на уровень {tier}, оплачиваемый в {amount} ежемесячно.",
+                        "yearly": "Вы подписываетесь на уровень {tier}, оплачиваемый в {amount} ежегодно."
+                    },
+                    "title": "Изменение уровня подписки"
+                },
+                "currencies": {
+                    "eur": "EUR",
+                    "usd": "USD"
+                },
+                "currency": {
+                    "title": "Изменение вашей предпочитаемой валюты оплаты"
+                },
+                "errors": {
+                    "callback": "Наш провайдер счетов сообщил об ошибке. Пожалуйста, попробуйте еще раз или свяжитесь с нами, если проблема повторится.",
+                    "subscribed": "Невозможно обработать вашу подписку. Stripe предоставил следующий совет."
+                },
+                "fields": {
+                    "active_since": "Активно с",
+                    "active_until": "Активно до",
+                    "billing": "Оплата",
+                    "currency": "Валюта оплаты",
+                    "payment_method": "Способ оплаты",
+                    "plan": "Нынешний план",
+                    "reason": "Причина"
+                },
+                "helpers": {
+                    "alternatives": "Оплатите свою подписку с помощью {method}. Этот способ оплаты не будет обновляться по окончанию вашей подписки. {method} доступен только для Евро.",
+                    "alternatives_warning": "Повышение вашего уровня подписки при данном способе невозможно. Пожалуйста, создайте новую подписку, когда закончится ваша нынешняя.",
+                    "alternatives_yearly": "Из-за ограничений, связанных с повторяющимися оплатами, {method} доступен только для годовых подписок."
+                },
+                "manage_subscription": "Управление подпиской",
+                "payment_method": {
+                    "actions": {
+                        "add_new": "Добавить новый способ оплаты",
+                        "change": "Изменить способ оплаты",
+                        "save": "Сохранить способ оплаты",
+                        "show_alternatives": "Альтернативные способы оплаты"
+                    },
+                    "add_one": "У вас нет сохраненного способа оплаты.",
+                    "alternatives": "Вы можете подписаться с помощью альтернативных способов оплаты. Это действие изменит ваш аккаунт один раз и не будет обновлять его каждый месяц.",
+                    "card": "Карта",
+                    "card_name": "Имя на карте",
+                    "country": "Страна проживания",
+                    "ending": "Заканчивается на",
+                    "helper": "Эта карта будет использоваться для всех ваших подписок.",
+                    "new_card": "Добавить новый способ оплаты",
+                    "saved": "{brand} заканчивается на {last4}"
+                },
+                "placeholders": {
+                    "reason": "Если хотите, можете сказать нам, почему вы больше не поддерживаете Kanka. Отсутствует необходимая функция? Изменилась ваша финансовая ситуация?"
+                },
+                "plans": {
+                    "cost_monthly": "{currency} {amount} выплачивается в месяц",
+                    "cost_yearly": "{currency} {amount} выплачивается в год"
+                },
+                "sub_status": "Информация о подписке",
+                "subscription": {
+                    "actions": {
+                        "downgrading": "Пожалуйста, свяжитесь с нами для понижения",
+                        "rollback": "Изменить на Kobold",
+                        "subscribe": "Изменять на {tier} каждый месяц",
+                        "subscribe_annual": "Изменять на {tier} каждый год"
+                    }
+                },
+                "success": {
+                    "alternative": "Ваша оплата зарегистрирована. Вы получите уведомление, как только она будет обработана и ваша подписка будет активирована.",
+                    "callback": "Ваша подписка успешно оформлена. Ваш аккаунт будет обновлен, как только наш провайдер счетов сообщит нам об изменении (это может занять несколько минут)",
+                    "cancel": "Ваша подписка была отменена. Она будет активной до окончания вашего нынешнего периода оплаты.",
+                    "currency": "Настройки вашей предпочитаемой валюты обновлены.",
+                    "subscribed": "Ваша подписка успешно оформлена. Не забудьте подписаться на рассылку голосований, чтобы знать когда начинается голосование. Вы можете изменить свои настройки рассылки на вашей странице профиля."
+                },
+                "tiers": "Уровни подписки",
+                "trial_period": "У годовых подписок есть возможность отмены в течение 14 дней. Свяжитесь с нами через {email}, если вы хотите отменить вашу годовую подписку и получить деньги назад.",
+                "upgrade_downgrade": {
+                    "button": "Информация о повышении и понижении",
+                    "downgrade": {
+                        "bullets": {
+                            "end": "Ваш нынешний уровень будет активен до окончания нынешнего цикла оплаты, после чего вы будете понижены до вашего нового уровня."
+                        },
+                        "title": "При понижении на уровень"
+                    },
+                    "upgrade": {
+                        "bullets": {
+                            "immediate": "Ваш способ оплаты будет немедленно оплачен и вы получите доступ к вашему новому уровню.",
+                            "prorate": "При повышении с Owlbear на Elemental вы заплатите только разницу с вашим новым уровнем."
+                        },
+                        "title": "При повышении на уровень"
+                    }
+                },
+                "warnings": {
+                    "patreon": "Ваш аккаунт подключен к Patreon. Пожалуйста, отключите ваш аккаунт в ваших настройках {patreon} перед включением Kanka подписки."
+                }
             }
         }
     },
@@ -4796,9 +5256,11 @@ export default {
         },
         "crud": {
             "actions": {
+                "actions": "Akcie",
                 "apply": "Použiť",
                 "back": "Naspäť",
                 "copy": "Kopírovať",
+                "copy_mention": "Kopírovať [ ] referenciu",
                 "copy_to_campaign": "Kopírovať do kampane",
                 "explore_view": "Vložené zobrazenie",
                 "export": "Exportovať",
@@ -4809,9 +5271,13 @@ export default {
                 "new": "Nový",
                 "next": "Ďalej",
                 "private": "Súkromný",
-                "public": "Verejný"
+                "public": "Verejný",
+                "reset": "Resetovať"
             },
             "add": "Pridať",
+            "alerts": {
+                "copy_mention": "Rozšírená referencia objektu bola skopírovaná do tvojej schránky."
+            },
             "attributes": {
                 "actions": {
                     "add": "Pridať atribúť",
@@ -4879,15 +5345,26 @@ export default {
                     "tab": "Atribút je zobrazený len v karte atribútov."
                 }
             },
+            "boosted": "Boostnutá",
+            "boosted_campaigns": "Boostnuté kampane",
             "bulk": {
+                "actions": {
+                    "edit": "Hromadná úprava a nálepkovanie"
+                },
+                "age": {
+                    "helper": "Môžeš použiť + a - pred číslom na úpravu veku o danú hodnotu."
+                },
                 "edit": {
+                    "tagging": "Akcie pre nálepky",
                     "tags": {
                         "add": "Pridať",
                         "remove": "Odstrániť"
-                    }
+                    },
+                    "title": "Úprava viacerých objektov"
                 },
                 "errors": {
-                    "admin": "Iba administrátori kampane vedia zmeniť súkromný štatút objektu."
+                    "admin": "Iba administrátori kampane vedia zmeniť súkromný štatút objektu.",
+                    "general": "Pri spracovávaní tvojej akcie došlo k chybe. Prosím, skús to opäť a kontaktuj nás, ak problém pretrváva. Hlásenie chyby: {hint}."
                 },
                 "permissions": {
                     "fields": {
@@ -4899,9 +5376,11 @@ export default {
                     "title": "Zmeniť oprávnenia pre viaceré objekty"
                 },
                 "success": {
-                    "permissions": "Oprávnenia zmenené pre {count} objekt.|Oprávnenia zmenené pre {count} objektov.",
-                    "private": "{count} objekt je teraz súkromný.|{count} objektov je teraz súkromných.",
-                    "public": "{count} objekt je teraz viditeľný.|{count} objektov je teraz viditeľných."
+                    "copy_to_campaign": "{1} {count} objekt bol skopírovaný do {campaign}.|[2,4] {count} objekty boli skopírované do {campaign}.|[5,*] {count} objektov bolo skopírovaných do {campaign}.",
+                    "editing": "{1} {count} objekt bol upravený.|[2,4] {count} objekty boli upravené.|[5,*] {count} objektov bolo upravených.",
+                    "permissions": "{1} Oprávnenia zmenené pre {count} objekt.|[2,4] Oprávnenia zmenené pre {count} objekty.|[5,*] Oprávnenia zmenené pre {count} objektov.",
+                    "private": "{1} {count} objekt je teraz súkromný.|[2,4] {count} objekty je teraz súkromné.|[5,*] {count} objektov je teraz súkromných.",
+                    "public": "{1} {count} objekt je teraz viditeľný.|[2,4] {count} objekty sú teraz viditeľné.|[5,*] {count} objektov je teraz viditeľných."
                 }
             },
             "cancel": "Zrušiť",
@@ -4911,6 +5390,7 @@ export default {
                 "title": "Potvrdiť akciu"
             },
             "copy_to_campaign": {
+                "bulk_title": "Kopírovať objekty do inej kampane",
                 "panel": "Kopírovať",
                 "title": "Kopírovať {name} do inej kampane"
             },
@@ -4930,6 +5410,7 @@ export default {
             },
             "edit": "Upraviť",
             "errors": {
+                "boosted": "Táto funkcia je dostupná iba pre boostnuté kampane.",
                 "node_must_not_be_a_descendant": "Neplatný objekt (kategória, miesto): bol by potomok samého seba."
             },
             "events": {
@@ -4937,6 +5418,7 @@ export default {
             },
             "export": "Exportovať",
             "fields": {
+                "ability": "Schopnosť",
                 "attribute_template": "Šablóna atribútov",
                 "calendar": "Kalendár",
                 "calendar_date": "Dátum",
@@ -4964,6 +5446,8 @@ export default {
                 "race": "Rasa",
                 "tag": "Deň",
                 "tags": "Štítky",
+                "tooltip": "Bublina",
+                "type": "Typ",
                 "visibility": "Viditeľnosť"
             },
             "files": {
@@ -4972,7 +5456,8 @@ export default {
                     "manage": "Spravovať súbory objektov"
                 },
                 "errors": {
-                    "max": "Max. počet ({max}) súborov v tomto objekte dosiahnutý."
+                    "max": "Max. počet ({max}) súborov v tomto objekte dosiahnutý.",
+                    "no_files": "Žiadne súbory."
                 },
                 "files": "Nahraté súbory",
                 "hints": {
@@ -4989,6 +5474,11 @@ export default {
                 "filtered": "Zobraziť {count} z {total} {entity}.",
                 "hide": "Skryť",
                 "show": "Zobraziť",
+                "sorting": {
+                    "asc": "{field} vzostupne",
+                    "desc": "{field} zostupne",
+                    "helper": "Nastav poradie zoradenia výsledkov."
+                },
                 "title": "Filter"
             },
             "forms": {
@@ -5001,17 +5491,21 @@ export default {
             "hints": {
                 "attribute_template": "Aplikovať šablónu atribútov automaticky pri vytvorení objektu.",
                 "calendar_date": "Dátum umožňuje filtrovať zoznamy a zadať udalosť do vybraného kalendára.",
+                "header_image": "Tento obrázok je umiestnený nad objekt. Odporúčame používať obrázok na šírku.",
                 "image_limitations": "Podporované formáty: jpg, png a gif. Max. veľkosť súboru: {size}.",
                 "image_patreon": "Zvýš svoj limit tým, že nás podporíš na Patreone.",
                 "is_private": "Nastaviť ako súkromný.",
                 "is_star": "Pripnuté objekty sa zobrazia v menu objektu.",
                 "map_limitations": "Podporované formáty: jpg, png, gif a svg. Max. veľkosť súboru: {size}.",
+                "tooltip": "Nahradiť automaticky generovaný obsah bubliny týmto obsahom.",
                 "visibility": "Ak je viditeľnosť nastavená na \"Admin\", vidia to len členovia a členky roly Admin. Ak je nastavená na \"Vlastník\", môže to vidieť len ty."
             },
             "history": {
                 "created": "Vytvorené: <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "created_date": "Vytvorené: <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "unknown": "Neznámy",
                 "updated": "Posledná úprava: <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "updated_date": "Posledná úprava: <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "view": "Zobraziť protokol objektu"
             },
             "image": {
@@ -5062,9 +5556,15 @@ export default {
                 "action": "Akcie",
                 "actions": {
                     "bulk": {
-                        "add": "Pridať",
+                        "add": "Povoliť",
+                        "deny": "Zakázať",
                         "ignore": "Ignorovať",
                         "remove": "Odstrániť"
+                    },
+                    "bulk_entity": {
+                        "allow": "Povoliť",
+                        "deny": "Zakázať",
+                        "inherit": "Zdediť"
                     },
                     "delete": "Zmazať",
                     "edit": "Upraviť",
@@ -5078,10 +5578,18 @@ export default {
                     "role": "Rola"
                 },
                 "helper": "Použi toto rozhranie na nastavenie oprávnení pre užívateľov a role pre daný objekt.",
+                "helpers": {
+                    "entity_note": "Povoliť užívateľom vytvárať poznámky k tomuto objektu. Aj bez tohto oprávnenia budú ešte stále vidieť poznámky s nastavením viditeľnosti pre všetkých.",
+                    "setup": "Pomocou tohto rozhrania môžeš presne nastaviť ako role a užívatelia pracujú s týmto objektom. {allow} dovolí užívateľovi alebo role urobiť danú akciu. {deny} im túto akciu zakáže. {inherit} preberie nastavenie z roly užívateľa alebo z oprávnení hlavnej roly. Užívateľ s nastavením {allow} môže danú akciu vykonať, aj keď má jeho rola nastavenie {deny}."
+                },
+                "inherited": "Táto rola má už pridelené oprávnenia na tento typ objektov.",
+                "inherited_by": "Tomuto užívateľovi je pridelená rola {role}, ktorá mu poskytuje oprávnenia na tento typ objektov.",
                 "success": "Oprávnenia uložené.",
-                "title": "Oprávnenia"
+                "title": "Oprávnenia",
+                "too_many_members": "Táto kampaň má príliš veľa členov (> 10), aby boli zobrazení v tomto rozhraní. Prosím, použi tlačidlo Oprávnení na danom objekte, aby sa zobrazili detaily nastavenia oprávnení."
             },
             "placeholders": {
+                "ability": "Vybrať schopnosť",
                 "calendar": "Vybrať kalendár",
                 "character": "Vybrať postavu",
                 "entity": "Objekt",
@@ -5109,13 +5617,16 @@ export default {
             "rename": "Premenovať",
             "save": "Uložiť",
             "save_and_close": "Uložiť a zavrieť",
+            "save_and_copy": "Uložiť a kopírovať",
             "save_and_new": "Uložiť a nový",
             "save_and_update": "Uložiť a upraviť",
             "save_and_view": "Uložiť a zobraziť",
             "search": "Hľadať",
             "select": "Vybrať",
             "tabs": {
+                "abilities": "Schopnosti",
                 "attributes": "Atribúty",
+                "boost": "Boost",
                 "calendars": "Kalendáre",
                 "default": "Štandardný",
                 "events": "Udalosti",
@@ -5126,7 +5637,8 @@ export default {
                 "notes": "Poznámky",
                 "permissions": "Oprávnenia",
                 "relations": "Vzťahy",
-                "reminders": "Pripomenutia"
+                "reminders": "Pripomenutia",
+                "tooltip": "Bublina"
             },
             "update": "Upraviť",
             "users": {
@@ -5135,6 +5647,7 @@ export default {
             "view": "Zobraziť",
             "visibilities": {
                 "admin": "Admin",
+                "admin-self": "Vlastník a Admin",
                 "all": "Všetci",
                 "self": "Vlastník"
             }
