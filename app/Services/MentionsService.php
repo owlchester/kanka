@@ -156,7 +156,7 @@ class MentionsService
                 $this->mentionedEntities[] = $id;
             }
             // If the mentioned entity wasn't there yet, but the map also doesn't map to "entity"
-            if (!in_array($matches[1], $this->mentionedEntityTypes) && $entityType !== 'entity') {
+            if (!in_array($matches[1], $this->mentionedEntityTypes) && $this->validEntityType($entityType)) {
                 if ($matches[1] == 'attribute_template') {
                     $matches[1] = 'attributeTemplate';
                 } elseif ($matches[1] == 'dice_roll') {
@@ -271,5 +271,18 @@ class MentionsService
         foreach ($entities as $entity) {
             $this->entities[$entity->id] = $entity;
         }
+    }
+
+    /**
+     * Validate the entity type that was inserted in the mention block
+     * @param string $type
+     * @return bool
+     */
+    protected function validEntityType(string $type): bool
+    {
+        if (in_array($type, ['entity', 'file'])) {
+            return false;
+        }
+        return true;
     }
 }
