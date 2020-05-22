@@ -24,7 +24,9 @@ return [
         'type'      => 'Tip entiteta',
     ],
     'helpers'       => [
+        'entity'    => 'Postavi ovu poveznicu izbornika tako da ide direktno na entitet. Polje :tab kontrolira koja kartica je fokusirana. Polje :menu kontrolira koja podstranica entiteta se otvara.',
         'position'  => 'Pomoću ovog polja možeš upravljati redoslijedom kojim se poveznice pojavljuju na izborniku.',
+        'type'      => 'Postavi ovu poveznicu izbornika tako da vodi direktno na listu entiteta. Za filtriranje rezultata, kopiraj dijelove URL s filtrirane liste entiteta nakon znaka :? u polje :filter',
     ],
     'index'         => [
         'add'           => 'Nova poveznica izbornika',

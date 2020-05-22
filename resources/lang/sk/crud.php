@@ -2,9 +2,11 @@
 
 return [
     'actions'           => [
+        'actions'           => 'Akcie',
         'apply'             => 'Použiť',
         'back'              => 'Naspäť',
         'copy'              => 'Kopírovať',
+        'copy_mention'      => 'Kopírovať [ ] referenciu',
         'copy_to_campaign'  => 'Kopírovať do kampane',
         'explore_view'      => 'Vložené zobrazenie',
         'export'            => 'Exportovať',
@@ -16,8 +18,12 @@ return [
         'next'              => 'Ďalej',
         'private'           => 'Súkromný',
         'public'            => 'Verejný',
+        'reset'             => 'Resetovať',
     ],
     'add'               => 'Pridať',
+    'alerts'            => [
+        'copy_mention'  => 'Rozšírená referencia objektu bola skopírovaná do tvojej schránky.',
+    ],
     'attributes'        => [
         'actions'       => [
             'add'               => 'Pridať atribúť',
@@ -85,15 +91,26 @@ return [
             'tab'       => 'Atribút je zobrazený len v karte atribútov.',
         ],
     ],
+    'boosted'           => 'Boostnutá',
+    'boosted_campaigns' => 'Boostnuté kampane',
     'bulk'              => [
+        'actions'       => [
+            'edit'  => 'Hromadná úprava a nálepkovanie',
+        ],
+        'age'           => [
+            'helper'    => 'Môžeš použiť + a - pred číslom na úpravu veku o danú hodnotu.',
+        ],
         'edit'          => [
-            'tags'  => [
+            'tagging'   => 'Akcie pre nálepky',
+            'tags'      => [
                 'add'       => 'Pridať',
                 'remove'    => 'Odstrániť',
             ],
+            'title'     => 'Úprava viacerých objektov',
         ],
         'errors'        => [
-            'admin' => 'Iba administrátori kampane vedia zmeniť súkromný štatút objektu.',
+            'admin'     => 'Iba administrátori kampane vedia zmeniť súkromný štatút objektu.',
+            'general'   => 'Pri spracovávaní tvojej akcie došlo k chybe. Prosím, skús to opäť a kontaktuj nás, ak problém pretrváva. Hlásenie chyby: :hint.',
         ],
         'permissions'   => [
             'fields'    => [
@@ -105,9 +122,11 @@ return [
             'title'     => 'Zmeniť oprávnenia pre viaceré objekty',
         ],
         'success'       => [
-            'permissions'   => 'Oprávnenia zmenené pre :count objekt.|Oprávnenia zmenené pre :count objektov.',
-            'private'       => ':count objekt je teraz súkromný.|:count objektov je teraz súkromných.',
-            'public'        => ':count objekt je teraz viditeľný.|:count objektov je teraz viditeľných.',
+            'copy_to_campaign'  => '{1} :count objekt bol skopírovaný do :campaign.|[2,4] :count objekty boli skopírované do :campaign.|[5,*] :count objektov bolo skopírovaných do :campaign.',
+            'editing'           => '{1} :count objekt bol upravený.|[2,4] :count objekty boli upravené.|[5,*] :count objektov bolo upravených.',
+            'permissions'       => '{1} Oprávnenia zmenené pre :count objekt.|[2,4] Oprávnenia zmenené pre :count objekty.|[5,*] Oprávnenia zmenené pre :count objektov.',
+            'private'           => '{1} :count objekt je teraz súkromný.|[2,4] :count objekty je teraz súkromné.|[5,*] :count objektov je teraz súkromných.',
+            'public'            => '{1} :count objekt je teraz viditeľný.|[2,4] :count objekty sú teraz viditeľné.|[5,*] :count objektov je teraz viditeľných.',
         ],
     ],
     'cancel'            => 'Zrušiť',
@@ -117,8 +136,9 @@ return [
         'title'     => 'Potvrdiť akciu',
     ],
     'copy_to_campaign'  => [
-        'panel' => 'Kopírovať',
-        'title' => 'Kopírovať :name do inej kampane',
+        'bulk_title'    => 'Kopírovať objekty do inej kampane',
+        'panel'         => 'Kopírovať',
+        'title'         => 'Kopírovať :name do inej kampane',
     ],
     'create'            => 'Vytvoriť',
     'datagrid'          => [
@@ -136,6 +156,7 @@ return [
     ],
     'edit'              => 'Upraviť',
     'errors'            => [
+        'boosted'                       => 'Táto funkcia je dostupná iba pre boostnuté kampane.',
         'node_must_not_be_a_descendant' => 'Neplatný objekt (kategória, miesto): bol by potomok samého seba.',
     ],
     'events'            => [
@@ -143,6 +164,7 @@ return [
     ],
     'export'            => 'Exportovať',
     'fields'            => [
+        'ability'               => 'Schopnosť',
         'attribute_template'    => 'Šablóna atribútov',
         'calendar'              => 'Kalendár',
         'calendar_date'         => 'Dátum',
@@ -170,6 +192,8 @@ return [
         'race'                  => 'Rasa',
         'tag'                   => 'Deň',
         'tags'                  => 'Štítky',
+        'tooltip'               => 'Bublina',
+        'type'                  => 'Typ',
         'visibility'            => 'Viditeľnosť',
     ],
     'files'             => [
@@ -178,7 +202,8 @@ return [
             'manage'    => 'Spravovať súbory objektov',
         ],
         'errors'    => [
-            'max'   => 'Max. počet (:max) súborov v tomto objekte dosiahnutý.',
+            'max'       => 'Max. počet (:max) súborov v tomto objekte dosiahnutý.',
+            'no_files'  => 'Žiadne súbory.',
         ],
         'files'     => 'Nahraté súbory',
         'hints'     => [
@@ -195,6 +220,11 @@ return [
         'filtered'  => 'Zobraziť :count z :total :entity.',
         'hide'      => 'Skryť',
         'show'      => 'Zobraziť',
+        'sorting'   => [
+            'asc'       => ':field vzostupne',
+            'desc'      => ':field zostupne',
+            'helper'    => 'Nastav poradie zoradenia výsledkov.',
+        ],
         'title'     => 'Filter',
     ],
     'forms'             => [
@@ -207,18 +237,22 @@ return [
     'hints'             => [
         'attribute_template'    => 'Aplikovať šablónu atribútov automaticky pri vytvorení objektu.',
         'calendar_date'         => 'Dátum umožňuje filtrovať zoznamy a zadať udalosť do vybraného kalendára.',
+        'header_image'          => 'Tento obrázok je umiestnený nad objekt. Odporúčame používať obrázok na šírku.',
         'image_limitations'     => 'Podporované formáty: jpg, png a gif. Max. veľkosť súboru: :size.',
         'image_patreon'         => 'Zvýš svoj limit tým, že nás podporíš na Patreone.',
         'is_private'            => 'Nastaviť ako súkromný.',
         'is_star'               => 'Pripnuté objekty sa zobrazia v menu objektu.',
         'map_limitations'       => 'Podporované formáty: jpg, png, gif a svg. Max. veľkosť súboru: :size.',
+        'tooltip'               => 'Nahradiť automaticky generovaný obsah bubliny týmto obsahom.',
         'visibility'            => 'Ak je viditeľnosť nastavená na "Admin", vidia to len členovia a členky roly Admin. Ak je nastavená na "Vlastník", môže to vidieť len ty.',
     ],
     'history'           => [
-        'created'   => 'Vytvorené: <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'unknown'   => 'Neznámy',
-        'updated'   => 'Posledná úprava: <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'view'      => 'Zobraziť protokol objektu',
+        'created'       => 'Vytvorené: <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'created_date'  => 'Vytvorené: <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'unknown'       => 'Neznámy',
+        'updated'       => 'Posledná úprava: <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'updated_date'  => 'Posledná úprava: <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'view'          => 'Zobraziť protokol objektu',
     ],
     'image'             => [
         'error' => 'Požadovaný obrázok nebolo možné stiahnuť. Zdá sa, že daná webová stránka nepovoľuje sťahovanie obrázkov (typické správanie Squarescape a DeviantArt) alebo že link už nie je platný.',
@@ -265,12 +299,18 @@ return [
         'system'                => 'Systém',
     ],
     'permissions'       => [
-        'action'    => 'Akcie',
-        'actions'   => [
+        'action'            => 'Akcie',
+        'actions'           => [
             'bulk'          => [
-                'add'       => 'Pridať',
+                'add'       => 'Povoliť',
+                'deny'      => 'Zakázať',
                 'ignore'    => 'Ignorovať',
                 'remove'    => 'Odstrániť',
+            ],
+            'bulk_entity'   => [
+                'allow'     => 'Povoliť',
+                'deny'      => 'Zakázať',
+                'inherit'   => 'Zdediť',
             ],
             'delete'        => 'Zmazať',
             'edit'          => 'Upraviť',
@@ -278,16 +318,24 @@ return [
             'read'          => 'Čítať',
             'toggle'        => 'Prepnúť',
         ],
-        'allowed'   => 'Povolené',
-        'fields'    => [
+        'allowed'           => 'Povolené',
+        'fields'            => [
             'member'    => 'Člen',
             'role'      => 'Rola',
         ],
-        'helper'    => 'Použi toto rozhranie na nastavenie oprávnení pre užívateľov a role pre daný objekt.',
-        'success'   => 'Oprávnenia uložené.',
-        'title'     => 'Oprávnenia',
+        'helper'            => 'Použi toto rozhranie na nastavenie oprávnení pre užívateľov a role pre daný objekt.',
+        'helpers'           => [
+            'entity_note'   => 'Povoliť užívateľom vytvárať poznámky k tomuto objektu. Aj bez tohto oprávnenia budú ešte stále vidieť poznámky s nastavením viditeľnosti pre všetkých.',
+            'setup'         => 'Pomocou tohto rozhrania môžeš presne nastaviť ako role a užívatelia pracujú s týmto objektom. :allow dovolí užívateľovi alebo role urobiť danú akciu. :deny im túto akciu zakáže. :inherit preberie nastavenie z roly užívateľa alebo z oprávnení hlavnej roly. Užívateľ s nastavením :allow môže danú akciu vykonať, aj keď má jeho rola nastavenie :deny.',
+        ],
+        'inherited'         => 'Táto rola má už pridelené oprávnenia na tento typ objektov.',
+        'inherited_by'      => 'Tomuto užívateľovi je pridelená rola :role, ktorá mu poskytuje oprávnenia na tento typ objektov.',
+        'success'           => 'Oprávnenia uložené.',
+        'title'             => 'Oprávnenia',
+        'too_many_members'  => 'Táto kampaň má príliš veľa členov (> 10), aby boli zobrazení v tomto rozhraní. Prosím, použi tlačidlo Oprávnení na danom objekte, aby sa zobrazili detaily nastavenia oprávnení.',
     ],
     'placeholders'      => [
+        'ability'       => 'Vybrať schopnosť',
         'calendar'      => 'Vybrať kalendár',
         'character'     => 'Vybrať postavu',
         'entity'        => 'Objekt',
@@ -315,13 +363,16 @@ return [
     'rename'            => 'Premenovať',
     'save'              => 'Uložiť',
     'save_and_close'    => 'Uložiť a zavrieť',
+    'save_and_copy'     => 'Uložiť a kopírovať',
     'save_and_new'      => 'Uložiť a nový',
     'save_and_update'   => 'Uložiť a upraviť',
     'save_and_view'     => 'Uložiť a zobraziť',
     'search'            => 'Hľadať',
     'select'            => 'Vybrať',
     'tabs'              => [
+        'abilities'     => 'Schopnosti',
         'attributes'    => 'Atribúty',
+        'boost'         => 'Boost',
         'calendars'     => 'Kalendáre',
         'default'       => 'Štandardný',
         'events'        => 'Udalosti',
@@ -333,6 +384,7 @@ return [
         'permissions'   => 'Oprávnenia',
         'relations'     => 'Vzťahy',
         'reminders'     => 'Pripomenutia',
+        'tooltip'       => 'Bublina',
     ],
     'update'            => 'Upraviť',
     'users'             => [
@@ -340,8 +392,9 @@ return [
     ],
     'view'              => 'Zobraziť',
     'visibilities'      => [
-        'admin' => 'Admin',
-        'all'   => 'Všetci',
-        'self'  => 'Vlastník',
+        'admin'         => 'Admin',
+        'admin-self'    => 'Vlastník a Admin',
+        'all'           => 'Všetci',
+        'self'          => 'Vlastník',
     ],
 ];

@@ -303,8 +303,14 @@ return [
         'actions'           => [
             'bulk'          => [
                 'add'       => 'Dodaj',
+                'deny'      => 'Zabrani',
                 'ignore'    => 'Ignoriraj',
                 'remove'    => 'Ukloni',
+            ],
+            'bulk_entity'   => [
+                'allow'     => 'Dozvoli',
+                'deny'      => 'Zabrani',
+                'inherit'   => 'Naslijedi',
             ],
             'delete'        => 'Brisanje',
             'edit'          => 'Uređivanje',
@@ -318,6 +324,10 @@ return [
             'role'      => 'Uloga',
         ],
         'helper'            => 'Koristi ovo sučelje za preciziranje korisnika i uloga koji mogu vidjeti ili koristiti ovaj entitet.',
+        'helpers'           => [
+            'entity_note'   => 'Dozvoli korisnicima da za ovaj entitet mogu kreirati Bilješke entiteta. Korisnici će tuđe bilješke koje su podijeljene sa svima vidjeti i bez ove ovlasti.',
+            'setup'         => 'Koristi ovo sučelje za detaljno namještanje ovlasti uloga i korisnika za ovaj entitet. :allow će dozvoliti korisniku ili ulozi da odradi tu akciju. :deny će zabraniti akciju. :inherit će koristiti ovlasti korisnikove ili glavne uloge. Korisnik kojemu je postavljano :allow, može odrađivati akciju čak i ako uloga čiji je član ima :deny.',
+        ],
         'inherited'         => 'Ova uloga već ima postavljeno dopuštenje za ovu vrstu entiteta.',
         'inherited_by'      => 'Ovaj je korisnik dio uloge ":role" koja daje ova dopuštenja ovom entitetu.',
         'success'           => 'Ovlasti spremljene.',

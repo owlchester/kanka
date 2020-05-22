@@ -24,6 +24,7 @@ return [
         'members'   => 'Mitglieder',
         'name'      => 'Name',
         'relation'  => 'Beziehung',
+        'type'      => 'Typ',
     ],
     'helpers'       => [
         'descendants'   => 'Diese Liste enthält alle Familien, die der Familie untergeordnet sind, nicht nur die direkt unter ihr.',
@@ -48,6 +49,7 @@ return [
     'placeholders'  => [
         'location'  => 'Wähle einen Ort',
         'name'      => 'Name der Familie',
+        'type'      => 'königlich, edel, ausgestorben',
     ],
     'show'          => [
         'description'   => 'Eine detaillierte Ansicht der Familie',

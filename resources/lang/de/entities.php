@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'abilities'             => 'Fähigkeiten',
+    'ability'               => 'Fähigkeit',
     'attribute_template'    => 'Attributvorlage',
     'attribute_templates'   => 'Attributsvorlagen',
     'calendar'              => 'Kalender',

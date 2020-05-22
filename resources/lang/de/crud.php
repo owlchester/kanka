@@ -2,9 +2,11 @@
 
 return [
     'actions'           => [
+        'actions'           => 'Aktionen',
         'apply'             => 'Übernehmen',
         'back'              => 'Zurück',
         'copy'              => 'Kopieren',
+        'copy_mention'      => 'Kopie [] erwähnen',
         'copy_to_campaign'  => 'Kopiere zu Kampagne',
         'explore_view'      => 'Verschachtelte Ansicht',
         'export'            => 'Exportieren',
@@ -16,8 +18,12 @@ return [
         'next'              => 'Weiter',
         'private'           => 'Privat',
         'public'            => 'Öffentlich',
+        'reset'             => 'Zurücksetzen',
     ],
     'add'               => 'Hinzufügen',
+    'alerts'            => [
+        'copy_mention'  => 'Die erweiterte Erwähnung dieses Objekts wurde in Ihre Zwischenablage kopiert.',
+    ],
     'attributes'        => [
         'actions'       => [
             'add'               => 'Attribut hinzufügen',
@@ -44,9 +50,16 @@ return [
         'fields'        => [
             'attribute'             => 'Attribut',
             'community_templates'   => 'Community Vorlagen',
+            'is_private'            => 'Private Attribute',
             'is_star'               => 'Angepinnt',
             'template'              => 'Vorlage',
             'value'                 => 'Wert',
+        ],
+        'helpers'       => [
+            'delete_all'    => 'Möchten Sie wirklich alle Attribute dieses Objekts löschen?',
+        ],
+        'hints'         => [
+            'is_private'    => 'Sie können alle Attribute eines Objekts für alle Mitglieder außerhalb der Administratorrolle ausblenden, indem Sie sie privat machen.',
         ],
         'index'         => [
             'success'   => 'Attribute für :entity aktualisiert',
@@ -56,6 +69,7 @@ return [
             'attribute' => 'Anzahl der Eroberungen, Challenge Rating, Initiative, Bevölkerung',
             'block'     => 'Blockname',
             'checkbox'  => 'Checkbox Name',
+            'section'   => 'Abteilungsname',
             'template'  => 'Wähle eine Vorlage',
             'value'     => 'Wert des Attributs',
         ],
@@ -67,6 +81,7 @@ return [
             'attribute' => 'Attribute',
             'block'     => 'Block',
             'checkbox'  => 'Checkbox',
+            'section'   => 'Abteilung',
             'text'      => 'Mehrzeiliger Text',
         ],
         'visibility'    => [
@@ -76,9 +91,26 @@ return [
             'tab'       => 'Das Attribut wird nur im Attribute-Reiter angezeigt.',
         ],
     ],
+    'boosted'           => 'geboostet',
+    'boosted_campaigns' => 'geboostete Kampagne',
     'bulk'              => [
+        'actions'       => [
+            'edit'  => 'Massenbetrieb',
+        ],
+        'age'           => [
+            'helper'    => 'Sie können + und - vor der Nummer verwenden, um das Alter dynamisch zu aktualisieren.',
+        ],
+        'edit'          => [
+            'tagging'   => 'Aktion für Tags',
+            'tags'      => [
+                'add'       => 'Hinzufügen',
+                'remove'    => 'Entfernen',
+            ],
+            'title'     => 'Mehrere Objekte bearbeiten',
+        ],
         'errors'        => [
-            'admin' => 'Nur Kampagnenadmins können den "Privat" Status eines Objektes ändern.',
+            'admin'     => 'Nur Kampagnenadmins können den "Privat" Status eines Objektes ändern.',
+            'general'   => 'Bei der Verarbeitung Ihrer Aktion ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut und kontaktieren Sie uns, wenn das Problem weiterhin besteht. Fehlermeldung: :hint.',
         ],
         'permissions'   => [
             'fields'    => [
@@ -90,9 +122,11 @@ return [
             'title'     => 'Ändert die Berechtigungen für mehrere Objekte',
         ],
         'success'       => [
-            'permissions'   => 'Berechtigungen für :count Objekt geändert.|Berechtigungen für :count Objekte geändert.',
-            'private'       => ':count Objekt ist jetzt privat.|:count Objekte sind jetzt privat.',
-            'public'        => ':count Objekt ist jetzt sichtbar.|:count Objekte sind jetzt sichtbar.',
+            'copy_to_campaign'  => '{1} :count der in :campaign kopierten Objekte. | [2, *] :count  der in :campaign kopierten Objekte.',
+            'editing'           => '1} :count objekt wurde aktualisiert. | [2, *] :count objekte wurden aktualisiert.',
+            'permissions'       => 'Berechtigungen für :count Objekt geändert.|Berechtigungen für :count Objekte geändert.',
+            'private'           => ':count Objekt ist jetzt privat.|:count Objekte sind jetzt privat.',
+            'public'            => ':count Objekt ist jetzt sichtbar.|:count Objekte sind jetzt sichtbar.',
         ],
     ],
     'cancel'            => 'Abbrechen',
@@ -102,8 +136,9 @@ return [
         'title'     => 'Bestätige deine Aktion',
     ],
     'copy_to_campaign'  => [
-        'panel' => 'Kopieren',
-        'title' => 'Kopiere :name in eine andere Kampagne',
+        'bulk_title'    => 'Kopieren Sie Objekte in eine andere Kampagne',
+        'panel'         => 'Kopieren',
+        'title'         => 'Kopiere :name in eine andere Kampagne',
     ],
     'create'            => 'Erstellen',
     'datagrid'          => [
@@ -121,6 +156,7 @@ return [
     ],
     'edit'              => 'Bearbeiten',
     'errors'            => [
+        'boosted'                       => 'Diese Funktion ist nur für geboostete Kampagnen verfügbar.',
         'node_must_not_be_a_descendant' => 'Ungültiges Objekt (Kategorie, Ort): es würde ein Nachkomme von sich selbst sein.',
     ],
     'events'            => [
@@ -128,10 +164,12 @@ return [
     ],
     'export'            => 'Exportieren',
     'fields'            => [
+        'ability'               => 'Fähigkeit',
         'attribute_template'    => 'Attributsvorlage',
         'calendar'              => 'Kalender',
         'calendar_date'         => 'Datum',
         'character'             => 'Charakter',
+        'colour'                => 'Farbe',
         'copy_attributes'       => 'Kopiere Attribute',
         'copy_notes'            => 'Kopiere Objektnotizen',
         'creator'               => 'Ersteller',
@@ -143,6 +181,7 @@ return [
         'excerpt'               => 'Auszug',
         'family'                => 'Familie',
         'files'                 => 'Dateien',
+        'header_image'          => 'Kopfzeilenbild',
         'image'                 => 'Bild',
         'is_private'            => 'Privat',
         'is_star'               => 'Angepinnt',
@@ -153,6 +192,8 @@ return [
         'race'                  => 'Rasse',
         'tag'                   => 'Tag',
         'tags'                  => 'Tags',
+        'tooltip'               => 'Kurzinfo',
+        'type'                  => 'Typ',
         'visibility'            => 'Sichtbarkeit',
     ],
     'files'             => [
@@ -161,7 +202,8 @@ return [
             'manage'    => 'Verwalte Objektdateien',
         ],
         'errors'    => [
-            'max'   => 'Du hast die maximale Anzahl (:max) von Dateien in diesem Objekt erreicht.',
+            'max'       => 'Du hast die maximale Anzahl (:max) von Dateien in diesem Objekt erreicht.',
+            'no_files'  => 'Keine Dateien.',
         ],
         'files'     => 'Hochgeladene Dateien',
         'hints'     => [
@@ -178,6 +220,11 @@ return [
         'filtered'  => 'Zeige :count von :total :entity.',
         'hide'      => 'Verstecken',
         'show'      => 'Zeigen',
+        'sorting'   => [
+            'asc'       => ':field Aufsteigend',
+            'desc'      => ':field absteigend',
+            'helper'    => 'Steuern Sie, in welcher Reihenfolge die Ergebnisse angezeigt werden.',
+        ],
         'title'     => 'Filter',
     ],
     'forms'             => [
@@ -190,18 +237,22 @@ return [
     'hints'             => [
         'attribute_template'    => 'Wende eine Attributsvorlage direkt beim erstellen des Objektes an.',
         'calendar_date'         => 'Ein Datum erlaubt es, Listen einfach zu filtern und pflegt ein Ereignis im ausgewählten Kalender.',
+        'header_image'          => 'Dieses Bild wird über dem Objekt platziert. Verwenden Sie ein breites Bild, um optimale Ergebnisse zu erzielen.',
         'image_limitations'     => 'Unterstützte Formate: jpg, png und gif. Maximale Dateigröße: :size.',
         'image_patreon'         => 'Erhöhe das Limit indem du uns bei Patreon unterstützt.',
         'is_private'            => 'Vor \'Zuschauern\' verbergen',
         'is_star'               => 'Angepinnte Objekte erscheinen im Objektmenü.',
         'map_limitations'       => 'Unterstützte Formate: jpg, png, gif und svg. Max Dateigröße: :size.',
+        'tooltip'               => 'Ersetzen Sie die automatisch generierte Kurzinfo durch den folgenden Inhalt.',
         'visibility'            => 'Wenn die Sichtbarkeit auf Admin festgelegt wird, können dies nur Mitglieder in der Rolle Admin sehen. Wird es auf "Selbst" gesetzt, kannst es nur du sehen.',
     ],
     'history'           => [
-        'created'   => 'Erstellt von <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'unknown'   => 'Unbekannt',
-        'updated'   => 'Zuletzt aktualisiert von <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'view'      => 'Zeige Objektprotokoll',
+        'created'       => 'Erstellt von <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'created_date'  => 'Erstelle <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'unknown'       => 'Unbekannt',
+        'updated'       => 'Zuletzt aktualisiert von <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'updated_date'  => 'Letzte Änderung <span data-toggle = "tooltip" title = ": realdate">: Datum </ span>',
+        'view'          => 'Zeige Objektprotokoll',
     ],
     'image'             => [
         'error' => 'Wir konnten das von dir angeforderte Bild nicht laden. Es könnte sein, dass die Website nicht erlaubt, Bilder herunterzuladen (typisch für Squarespace und DeviantArt) oder dass der Link nicht mehr gültig ist.',
@@ -248,28 +299,43 @@ return [
         'system'                => 'System',
     ],
     'permissions'       => [
-        'action'    => 'Aktion',
-        'actions'   => [
+        'action'            => 'Aktion',
+        'actions'           => [
             'bulk'          => [
                 'add'       => 'Hinzufügen',
+                'deny'      => 'verweigern',
                 'ignore'    => 'Ignorieren',
                 'remove'    => 'Entfernen',
+            ],
+            'bulk_entity'   => [
+                'allow'     => 'erlauben',
+                'deny'      => 'verweigern',
+                'inherit'   => 'Erben',
             ],
             'delete'        => 'Löschen',
             'edit'          => 'Bearbeiten',
             'entity_note'   => 'Objektnotizen',
             'read'          => 'Lesen',
+            'toggle'        => 'Umschalten',
         ],
-        'allowed'   => 'Erlaubt',
-        'fields'    => [
+        'allowed'           => 'Erlaubt',
+        'fields'            => [
             'member'    => 'Mitglied',
             'role'      => 'Rolle',
         ],
-        'helper'    => 'Benutze dieses Interface um die Berechtigungen von Nutzern und Rollen mit diesem Objekt  fein zu justieren.',
-        'success'   => 'Berechtigungen gespeichert.',
-        'title'     => 'Berechtigungen',
+        'helper'            => 'Benutze dieses Interface um die Berechtigungen von Nutzern und Rollen mit diesem Objekt  fein zu justieren.',
+        'helpers'           => [
+            'entity_note'   => 'Ermöglichen Sie Benutzern das Erstellen von Objektnotizen für dieses Objekt. Ohne diese Berechtigung können sie weiterhin Objekt Notizen sehen, die auf Sichtbarkeit Alle eingestellt sind.',
+            'setup'         => 'Verwenden Sie diese Schnittstelle, um zu optimieren, wie Rollen und Benutzer mit diesem Objekt interagieren können. :allow ermöglicht dem Benutzer oder der Rolle, diese Aktion auszuführen. :deny wird ihnen diese Handlung verweigern. :inherit verwendet die Berechtigung des Benutzers oder der Hauptrolle. Ein Benutzer, der auf :allow eingestellt ist, kann die Aktion ausführen, auch wenn seine Rolle auf :deny eingestellt ist.',
+        ],
+        'inherited'         => 'Für diese Rolle ist die Berechtigung für diesen Objekttyp bereits festgelegt.',
+        'inherited_by'      => 'Dieser Benutzer ist Teil der Rolle \':role\', die diese Berechtigungen für diesen Objekttyp erteilt.',
+        'success'           => 'Berechtigungen gespeichert.',
+        'title'             => 'Berechtigungen',
+        'too_many_members'  => 'Diese Kampagne hat zu viele Mitglieder (> 10), um in dieser Benutzeroberfläche angezeigt zu werden. Verwenden Sie die Schaltfläche Berechtigung in der Objektansicht, um die Berechtigungen im Detail zu steuern.',
     ],
     'placeholders'      => [
+        'ability'       => 'Wähle eine Fähigkeit',
         'calendar'      => 'Wähle einen Kalender',
         'character'     => 'Wähle einen Character',
         'entity'        => 'Objekt',
@@ -297,13 +363,16 @@ return [
     'rename'            => 'Umbenennen',
     'save'              => 'Speichern',
     'save_and_close'    => 'Speichern und schließen',
+    'save_and_copy'     => 'Speichern und kopieren',
     'save_and_new'      => 'Speichern und neu',
     'save_and_update'   => 'Speichern und aktualisieren',
     'save_and_view'     => 'Speichern und ansehen',
     'search'            => 'Suchen',
     'select'            => 'Auswählen',
     'tabs'              => [
+        'abilities'     => 'Fähigkeiten',
         'attributes'    => 'Attribute',
+        'boost'         => 'Boost',
         'calendars'     => 'Kalender',
         'default'       => 'Standard',
         'events'        => 'Ereignisse',
@@ -314,6 +383,8 @@ return [
         'notes'         => 'Notizen',
         'permissions'   => 'Berechtigungen',
         'relations'     => 'Beziehungen',
+        'reminders'     => 'Erinnerungen',
+        'tooltip'       => 'Kurztip',
     ],
     'update'            => 'Bearbeiten',
     'users'             => [
@@ -321,8 +392,9 @@ return [
     ],
     'view'              => 'Ansehen',
     'visibilities'      => [
-        'admin' => 'Admin',
-        'all'   => 'Jeder',
-        'self'  => 'Selbst',
+        'admin'         => 'Admin',
+        'admin-self'    => 'Selbst & Admin',
+        'all'           => 'Jeder',
+        'self'          => 'Selbst',
     ],
 ];

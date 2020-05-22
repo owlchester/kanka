@@ -20,6 +20,18 @@ return [
         'settings'                  => 'Einstellungen',
         'theme'                     => 'Theme',
     ],
+    'newsletter'    => [
+        'links'     => [
+            'community-vote'    => 'Gemeinschaftsabstimmung',
+            'news'              => 'News',
+        ],
+        'settings'  => [
+            'news'          => 'Nachrichten - benachrichtigt werden, wenn es :news gibt.',
+            'newsletter'    => 'Newsletter - Erhalten Sie den Kanka Newsletter.',
+            'votes'         => 'Community-Abstimmungen - benachrichtigt werden, sobald ein neuer :vote  verfügbar ist.',
+        ],
+        'title'     => 'Newsletter',
+    ],
     'password'      => [
         'success'   => 'Passwort aktualisiert',
     ],
@@ -42,11 +54,13 @@ return [
     ],
     'settings'      => [
         'fields'    => [
+            'advanced_mentions' => 'Fortgeschrittene Erwähnungen',
             'date_format'       => 'Datenformatierung',
             'default_nested'    => 'Verschachtelte Ansicht als Standard',
             'pagination'        => 'Seitennummerierung (Objekte pro Seite)',
         ],
         'hints'     => [
+            'advanced_mentions' => 'Wenn diese Option aktiviert ist, werden Erwähnungen beim Bearbeiten eines Objektes immer als [entity: 123] angezeigt.',
             'default_nested'    => 'Aktivier diese Option, wenn du Listen im Standard in der verschachtelten Ansicht sehen möchtest (soweit verfügbar).',
         ],
         'success'   => 'Einstellungen geändert.',

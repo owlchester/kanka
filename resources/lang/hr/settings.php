@@ -48,6 +48,7 @@ return [
         'benefits'      => [
             'first'     => 'Kako bi osigurali kontinuirani napredak na Kanki, pojedine značajke kampanje otključavaju se pojačavanjem kampanje. Pojačanja se otključavaju putem pretplate. Svatko tko može pogledati kampanju može ju pojačati tako da ne mora uvijek ista osoba plaćati račun. Kampanja ostaje pojačana sve dok korisnik pojačava kampanju i oni nastave podržavati Kanku. Ako se kampanja više ne pojačava, podaci se ne gube već su samo skriveni dok se kampanja ponovno ne pojača.',
             'header'    => 'Slike zaglavlja entiteta.',
+            'images'    => 'Proizvoljne zadane slike entiteta.',
             'more'      => 'Saznaj više o svim značajkama.',
             'second'    => 'Pojačavanje kampanje omogućuje sljedeće prednosti:',
             'theme'     => 'Tema na razini kampanje i proizvoljno stiliziranje.',
@@ -67,6 +68,15 @@ return [
             'delete'=> 'Tvoje pojačanje uklonjeno s :name.',
         ],
         'title'         => 'Pojačanje',
+    ],
+    'countries'     => [
+        'austria'       => 'Austrija',
+        'belgium'       => 'Belgija',
+        'france'        => 'Francuska',
+        'germany'       => 'Njemačka',
+        'italy'         => 'Italija',
+        'netherlands'   => 'Nizozemska',
+        'spain'         => 'Španjolska',
     ],
     'invoices'      => [
         'actions'   => [
@@ -159,7 +169,10 @@ return [
         ],
         'cancelled'             => 'Tvoja pretplata je otkazana. Pretplatu možete obnoviti nakon završetka tvoje trenutne pretplate.',
         'change'                => [
-            'text'  => 'Pretplatite se na sloj :tier, mjesečno se naplaćuje za :amount.',
+            'text'  => [
+                'monthly'   => 'Pretplaćuješ se na sloj :tier koji se naplaćuje mjesečno :amount.',
+                'yearly'    => 'Pretplaćuješ se na sloj :tier koji se naplaćuje godišnje :amount.',
+            ],
             'title' => 'Promijenite razinu pretplate',
         ],
         'currencies'            => [
@@ -176,45 +189,60 @@ return [
         'fields'                => [
             'active_since'      => 'Aktivno od',
             'active_until'      => 'Aktivno do',
-            'billed_monthly'    => 'Naplaćuje se mjesečno',
+            'billing'           => 'Naplata',
             'currency'          => 'Valuta naplate',
             'payment_method'    => 'Način plaćanja',
             'plan'              => 'Trenutni plan',
             'reason'            => 'Razlog',
         ],
+        'helpers'               => [
+            'alternatives'          => 'Plati svoju pretplatu pomoću :method. Na kraju pretplate ovaj se način plaćanja neće automatski obnoviti. :metoda je dostupna samo u eurima.',
+            'alternatives_warning'  => 'Nadogradnja pretplate prilikom korištenja ove metode nije moguća. Stvori novu pretplatu kada se završi trenutna.',
+            'alternatives_yearly'   => 'Zbog ograničenja koja se odnose na ponavljajuća plaćanja, metoda :method je dostupna samo za godišnje pretplate',
+        ],
         'manage_subscription'   => 'Upravljanje pretplatom',
         'payment_method'        => [
-            'actions'   => [
-                'add_new'   => 'Dodajte novi način plaćanja',
-                'change'    => 'Promjena načina plaćanja',
-                'save'      => 'Spremi način plaćanja',
+            'actions'       => [
+                'add_new'           => 'Dodajte novi način plaćanja',
+                'change'            => 'Promjena načina plaćanja',
+                'save'              => 'Spremi način plaćanja',
+                'show_alternatives' => 'Alternativni načini plaćanja',
             ],
-            'add_one'   => 'Trenutno nema spremljenog načina plaćanja.',
-            'card'      => 'Kartica',
-            'card_name' => 'Ime na kartici',
-            'ending'    => 'Završava za',
-            'helper'    => 'Ova će se kartica koristiti za sve tvoje pretplate.',
-            'new_card'  => 'Dodaj novi način plaćanja',
-            'saved'     => ':brand završava s :last4',
+            'add_one'       => 'Trenutno nema spremljenog načina plaćanja.',
+            'alternatives'  => 'Možeš se pretplatiti pomoću ovih alternativnih načina plaćanja. Ova radnja će teretiti tvoj račun jednom i neće automatski obnavljati pretplatu svaki mjesec.',
+            'card'          => 'Kartica',
+            'card_name'     => 'Ime na kartici',
+            'country'       => 'Zemlja prebivališta',
+            'ending'        => 'Završava za',
+            'helper'        => 'Ova će se kartica koristiti za sve tvoje pretplate.',
+            'new_card'      => 'Dodaj novi način plaćanja',
+            'saved'         => ':brand završava s :last4',
         ],
         'placeholders'          => [
             'reason'    => 'Po želji nam možeš reći zašto više ne podržavaš Kanku. Nedostajala je funkcionalnost? Je li se promijenila tvoja financijska situacija?',
         ],
+        'plans'                 => [
+            'cost_monthly'  => ':currency :amount naplaćeno mjesečno',
+            'cost_yearly'   => ':currency :amount naplaćeno godišnje',
+        ],
         'sub_status'            => 'Informacije o pretplati',
         'subscription'          => [
             'actions'   => [
-                'downgrading'   => 'Molimo kontaktiraj nas radi smanjenja za nižu razinu',
-                'rollback'      => 'Promjena u Kobold',
-                'subscribe'     => 'Promjena u :tier mjesečno',
+                'downgrading'       => 'Molimo kontaktiraj nas radi smanjenja za nižu razinu',
+                'rollback'          => 'Promjena u Kobold',
+                'subscribe'         => 'Promjena u :tier mjesečno',
+                'subscribe_annual'  => 'Promjeni na :tier godišnje',
             ],
         ],
         'success'               => [
+            'alternative'   => 'Tvoja uplata je registrirana. Primit ćeš obavijest čim se obradi i tvoja pretplata postane aktivna.',
             'callback'      => 'Tvoja pretplata je uspješna. Tvoj račun će biti ažuriran čim nas naš pružatelj plaćanja informira o promjeni (ovo može potrajati nekoliko minuta).',
             'cancel'        => 'Tvoja pretplata je otkazana. I dalje će biti aktivna do kraja tvog trenutnog razdoblja naplate.',
             'currency'      => 'Tvoja željena postavka valute je ažurirana.',
             'subscribed'    => 'Tvoja pretplata je bila uspješna. Ne zaboravi se pretplatiti na bilten glasanja zajednice kako bi te obavijestili kada započne novo glasanje. Postavke biltena možeš promijeniti na stranici profila.',
         ],
         'tiers'                 => 'Razina pretplate',
+        'trial_period'          => 'Godišnje pretplate imaju pravo otkaza 14 dana. Kontaktiraj nas na :email ako želiš otkazati godišnju pretplatu i dobiti povrat novca.',
         'upgrade_downgrade'     => [
             'button'    => 'Informacije o promjeni razine',
             'downgrade' => [

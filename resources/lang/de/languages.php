@@ -7,6 +7,8 @@ return [
         'en-US' => 'amerikanisches Englisch',
         'es'    => 'Spanisch',
         'fr'    => 'Französisch',
+        'he'    => 'Hebräisch',
+        'hr'    => 'Kroatisch',
         'hu'    => 'Ungarisch',
         'it'    => 'Italienisch',
         'nl'    => 'Holländisch',

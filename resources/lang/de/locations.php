@@ -21,6 +21,9 @@ return [
         'description'   => 'Ereignisse, die an diesem Ort stattgefunden haben.',
         'title'         => 'Ort :name Ereignisse',
     ],
+    'families'      => [
+        'title' => 'Ort :name Familien',
+    ],
     'fields'        => [
         'characters'        => 'Charaktere',
         'image'             => 'Bild',
@@ -35,7 +38,13 @@ return [
     'helpers'       => [
         'characters'    => 'Sieh alle Charaktere in diesem Ort und den Unterorten an oder nur die direkt im Ort.',
         'descendants'   => 'Diese Liste enthält alle Orte, die direkt in diesem Ort und allen untergeordneten Orten sind.',
+        'families'      => 'Standorte können der Sitz mächtiger Familien sein.',
+        'map'           => 'Durch Hinzufügen einer Karte zu einem Ort können Sie "Punkte" auf der Karte platzieren und mit anderen Objekten in der Kampagne verknüpfen.',
         'nested'        => 'Orte können in einer verschachtelten Ansicht angesehen werden. Orte ohne einen übergeordneten Ort werden direkt angezeigt. Orte, die untergeordnete Orte haben, können angeklickt werden um die untergeordneten Orte anzuzeigen. Du kannst so lange klicken, bis es keine untergeordneten Orte mehr gibt.',
+        'organisations' => 'Zeigen Sie alle Organisationen an diesem Standort und die untergeordneten Standorte oder nur die direkt hier befindlichen an.',
+    ],
+    'hints'         => [
+        'is_map_private'    => 'Eine private Karte ist nur für Mitglieder der "Admin" -Rolle der Kampagne sichtbar.',
     ],
     'index'         => [
         'actions'       => [
@@ -60,29 +69,33 @@ return [
     ],
     'map'           => [
         'actions'   => [
-            'admin_mode'    => 'Aktiviere Bearbeitungsmodus',
-            'big'           => 'Vollansicht',
-            'download'      => 'Herunterladen',
-            'points'        => 'Punkte bearbeiten',
-            'toggle_hide'   => 'Punkte verstecken',
-            'toggle_show'   => 'Punkte anzeigen',
-            'view_mode'     => 'Zurück zum Ansichtsmodus',
-            'zoom_in'       => 'Hereinzoomen',
-            'zoom_out'      => 'Herauszoomen',
-            'zoom_reset'    => 'Zoom zurücksetzen',
+            'admin_mode'        => 'Aktiviere Bearbeitungsmodus',
+            'big'               => 'Vollansicht',
+            'confirm_delete'    => 'Möchten Sie diesen Kartenpunkt wirklich löschen?',
+            'download'          => 'Herunterladen',
+            'points'            => 'Punkte bearbeiten',
+            'toggle_hide'       => 'Punkte verstecken',
+            'toggle_show'       => 'Punkte anzeigen',
+            'view_mode'         => 'Zurück zum Ansichtsmodus',
+            'zoom_in'           => 'Hereinzoomen',
+            'zoom_out'          => 'Herauszoomen',
+            'zoom_reset'        => 'Zoom zurücksetzen',
         ],
         'helper'    => 'Klicke auf die Karte um einen Link zu einem Ort hinzu zu fügen oder klicke auf einen existierenden Punkt, um ihn zu entfernen.',
         'helpers'   => [
             'admin' => 'Aktivieren um neue Punkte hinzuzufügen indem man auf die Karte klickt, mit einem Klick die Punkte zu bearbeiten oder um sie zu bewegen.',
+            'info'  => 'Weitere Infos zu Karten.',
             'label' => 'Dieser Punkt ist nur eine Beschriftung. Nicht mehr, nicht weniger.',
             'view'  => 'Klick auf einen Kartenpunkt um dessen details zu sehen. Benutze STR + Mausrad um in die Karte rein oder raus zu zoomen.',
         ],
+        'legend'    => 'Legende',
         'modal'     => [
             'submit'    => 'Hinzufügen',
             'title'     => 'Ziel des neuen Punkts',
         ],
         'no_map'    => 'Bitte erst eine Karte hinzufügen.',
         'points'    => [
+            'empty_label'   => 'Unbenannter Punkt',
             'fields'        => [
                 'axis_x'    => 'X-Achse',
                 'axis_y'    => 'Y-Achse',
@@ -107,6 +120,8 @@ return [
                 'bridge'        => 'Brücke',
                 'campfire'      => 'Lagerfeuer',
                 'candle'        => 'Kerze',
+                'capitol'       => 'Hauptstadt',
+                'castle-emblem' => 'Schloss',
                 'cat'           => 'Katze',
                 'cheese'        => 'Käse',
                 'cog'           => 'Zahnrad',
@@ -163,6 +178,7 @@ return [
                 'square'    => 'Quadrat',
             ],
             'sizes'         => [
+                'huge'      => 'Enorm',
                 'large'     => 'Groß',
                 'small'     => 'Klein',
                 'standard'  => 'Standard',
@@ -198,6 +214,7 @@ return [
         'tabs'          => [
             'characters'    => 'Charaktere',
             'events'        => 'Ereignisse',
+            'families'      => 'Familien',
             'information'   => 'Informationen',
             'items'         => 'Gegenstände',
             'journals'      => 'Logbücher',

@@ -308,9 +308,9 @@ return [
                 'remove'    => 'Remove',
             ],
             'bulk_entity'   => [
-                'allow' => 'Allow',
-                'deny' => 'Deny',
-                'inherit' => 'Inherit',
+                'allow'     => 'Allow',
+                'deny'      => 'Deny',
+                'inherit'   => 'Inherit',
             ],
             'delete'        => 'Delete',
             'edit'          => 'Edit',
@@ -323,10 +323,10 @@ return [
             'member'    => 'Member',
             'role'      => 'Role',
         ],
-        'helper'            => 'Use this interface to fine-tune which users and roles that can interact with this entity. :allow ',
-        'helpers' => [
-            'setup' => 'Use this interface to fine-tune how roles and users can interact with this entity. :allow will allow the user or role to do this action. :deny will deny them that action. :inherit will use the user\'s role or main role\'s permission. A user set to :allow is able to do the action, even if their role is set to :deny.',
-            'entity_note' => 'Allow users to create Entity Notes on this Entity. Without this permission, they will still be able to see Entity Notes set to visibility All.',
+        'helper'            => 'Use this interface to fine-tune which users and roles that can interact with this entity. :allow',
+        'helpers'           => [
+            'entity_note'   => 'Allow users to create Entity Notes on this Entity. Without this permission, they will still be able to see Entity Notes set to visibility All.',
+            'setup'         => 'Use this interface to fine-tune how roles and users can interact with this entity. :allow will allow the user or role to do this action. :deny will deny them that action. :inherit will use the user\'s role or main role\'s permission. A user set to :allow is able to do the action, even if their role is set to :deny.',
         ],
         'inherited'         => 'This role already has this permission set for this entity type.',
         'inherited_by'      => 'This user is part of the \':role\' role which grants this permissions on this entity type.',

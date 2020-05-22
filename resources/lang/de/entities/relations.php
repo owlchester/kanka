@@ -15,6 +15,7 @@ return [
         'target'    => 'Ziel',
         'two_way'   => 'Gespiegelte Beziehung erstellen',
     ],
+    'helper'        => 'Richten Sie Beziehungen zwischen Entitäten mit Einstellungen und Sichtbarkeit ein. Beziehungen können auch an das Menü der Berechtigung angeheftet werden.',
     'hints'         => [
         'mirrored'  => [
             'text'  => 'Diese Beziehung ist gespiegelt mit :link.',
@@ -26,6 +27,9 @@ return [
         'attitude'  => '-100 bis 100, 100 ist maximal positiv.',
         'relation'  => 'Art der Beziehung',
         'target'    => 'Wähle ein Objekt',
+    ],
+    'show'          => [
+        'title' => 'Beziehungen für :name',
     ],
     'update'        => [
         'success'   => 'Beziehung für :name aktualisiert',

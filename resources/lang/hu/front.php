@@ -39,6 +39,9 @@ return [
     ],
     'faq'           => [
         'description'   => 'Összegyűjtöttük a leggyakrabban feltett kérdéseket, és igyekeztünk a lehető legtisztább választ adni.',
+        'helpers'       => [
+            'more'  => 'Nem találtad meg, amit kerestél?',
+        ],
         'title'         => 'GYIK',
     ],
     'features'      => [
@@ -53,6 +56,7 @@ return [
             'css'           => 'Kampány-függő egyedi CSS',
             'description'   => 'Bizonyos adományozási szintek adott számú boosterrel látják el a felhasználót, amellyel kampányt tud boostolni. Ezek az alábbi előnyöket biztosítják.',
             'header_image'  => 'Entitás fejléc kép',
+            'images'        => 'Saját alapértelmezett entitásképek beállítása',
             'recovery'      => 'Entitások visszaállítása 30 napon belül',
             'theme'         => 'Rögzített kampány megjelenítési téma.',
             'title'         => 'Boost-olt kampányok',
@@ -129,6 +133,11 @@ return [
     'footer'        => [
         'app'       => 'Alkalmazás',
         'copyright' => '© 2017 - :current kanka.io. Minden jog fenntartva.',
+        'headings'  => [
+            'app'           => 'App',
+            'community'     => 'Közösség',
+            'useful_links'  => 'Hasznos linkek',
+        ],
         'navigation'=> 'Navigáció',
         'resources' => 'Dokumentumok',
         'social'    => 'Közösségi média',
@@ -141,9 +150,15 @@ return [
         'title'         => 'Segítség',
         'twitter'       => 'Küldj nekünk tweetet Twitteren!',
     ],
+    'home'          => [
+        'seo'   => [
+            'meta-description'  => 'A Kanka egy közösség-vezérelt Szerepjátékos kampánymenedzselő eszköz, amely segít a szerepjátékos kampányaid tervezésében, szervezésében, és az élvezetében is.',
+        ],
+    ],
     'master'        => [
         'call_to_action'    => 'Regisztrálj most, nem kerül semmibe!',
         'description'       => 'A Kanka egy könnyű és rugalmas eszköz online világépítésre és a szerepjátékos kampányaid kezelésére. Hozz létre és kezelj szereplőket, helyszíneket, szervezeteket, eseményeket és még sok minden mást.',
+        'heading'           => 'Szerepjátékos kampánymenedzsment, és világépítés könnyedén',
         'title'             => 'Kanka',
     ],
     'menu'          => [
@@ -222,6 +237,9 @@ return [
     'second_block'  => [
         'call_to_action'    => 'Kezdjük el!',
         'title'             => 'Hagyd abba a várakozást! <br />Kezdd el az építést!',
+    ],
+    'seo'           => [
+        'keywords'  => 'Világépítés, Asztali szerepjáték, Szerepjátékos kampány kezelő',
     ],
     'team'          => [
         'coffee'    => 'Hívj meg egy kávéra!',

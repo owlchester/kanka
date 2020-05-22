@@ -8,11 +8,12 @@ return [
         'es'    => 'Spanish',
         'fr'    => 'French',
         'he'    => 'Hebrew',
-        'hu'    => 'Hungarian',
         'hr'    => 'Croatian',
+        'hu'    => 'Hungarian',
         'it'    => 'Italian',
         'nl'    => 'Dutch',
         'pt-BR' => 'Brazilian Portuguese',
+        'ru'    => 'Russian',
     ],
     'header'=> 'Languages',
 ];

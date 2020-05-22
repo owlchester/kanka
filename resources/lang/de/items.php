@@ -18,7 +18,9 @@ return [
         'image'     => 'Bild',
         'location'  => 'Ort',
         'name'      => 'Name',
+        'price'     => 'Preis',
         'relation'  => 'Beziehung',
+        'size'      => 'Größe',
         'type'      => 'Typ',
     ],
     'index'         => [
@@ -27,10 +29,16 @@ return [
         'header'        => 'Gegenstände von :name',
         'title'         => 'Gegenstände',
     ],
+    'inventories'   => [
+        'description'   => 'Objekte, in denen sich der Artikel befindet.',
+        'title'         => 'Gegenstand :name Objekte',
+    ],
     'placeholders'  => [
         'character' => 'Wähle einen Charakter',
         'location'  => 'Wähle einen Ort',
         'name'      => 'Name des Gegenstands',
+        'price'     => 'Preis des Gegenstandes',
+        'size'      => 'Größe, Gewicht, Maße',
         'type'      => 'Waffe, Trank, Artefakt',
     ],
     'quests'        => [
@@ -41,6 +49,7 @@ return [
         'description'   => 'Eine detaillierte Ansicht eines Gegenstands',
         'tabs'          => [
             'information'   => 'Informationen',
+            'inventories'   => 'Objekte',
             'quests'        => 'Quests',
         ],
         'title'         => 'Gegenstand :name',

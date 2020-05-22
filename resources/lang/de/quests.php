@@ -37,6 +37,7 @@ return [
     'fields'        => [
         'character'     => 'Auslöser',
         'characters'    => 'Charaktere',
+        'date'          => 'Datum',
         'description'   => 'Beschreibung',
         'image'         => 'Bild',
         'is_completed'  => 'Abgeschlossen',
@@ -122,6 +123,7 @@ return [
         'title'     => 'Organisationen in :name',
     ],
     'placeholders'  => [
+        'date'  => 'Reales Datum der Quest',
         'name'  => 'Name des Quests',
         'quest' => 'Elternquest',
         'role'  => 'Die Rolle des Objekts in der Quest',

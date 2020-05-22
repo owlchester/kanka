@@ -12,9 +12,29 @@ TEXT
 ,
         'question'  => 'Attributvorlagen, was sind die?',
     ],
+    'backup'                => [
+        'answer'    => 'Einmal am Tag können Sie alle Daten Ihrer Kampagne als ZIP-Datei exportieren. Klicken Sie in der App im linken Menü auf "Kampagne" und dann auf "Exportieren". Dadurch wird ein Export erstellt, der 30 Minuten lang verfügbar ist. Sie können diesen Export nicht auf Kanka hochladen. Er dient nur Ihrer eigenen Sicherheit oder wenn Sie die Anwendung nicht mehr verwenden möchten.',
+        'question'  => 'Wie kann ich meine Kampagne sichern oder exportieren?',
+    ],
+    'bugs'                  => [
+        'answer'    => 'Treten Sie einfach unserem :discord server bei und melden Sie Ihren Fehler im Kanal #error-and-bugs.',
+        'question'  => 'Wie kann ich einen Fehler melden?',
+    ],
+    'campaign-sync'         => [
+        'answer'    => 'Kanka hat diese Funktion nicht. Wenn Sie jedoch versuchen, mehrere Spielgruppen in derselben Welt zu haben, sollten Sie dieselbe Kampagne verwenden und Ihre Gruppen durch eine Kombination aus Quests, Tags und Berechtigungen trennen',
+        'question'  => 'Kann ich Objekte über mehrere Kampagnen hinweg synchronisieren?',
+    ],
     'conversations'         => [
         'answer'    => 'Unterhaltungen können als Gespräche zwischen Charakteren oder zwischen Kampagnenmitgliedern eingerichtet werden. Wenn du zum Beispiel ein wichtiges Gespräch zwischen NSCs und SCs dokumentieren möchtest, kannst du dies mit diesem Modul tun. Sie können auch für Play-by-Post-Kampagnen verwendet werden.',
         'question'  => 'Was sind "Unterhaltungen"?',
+    ],
+    'custom'                => [
+        'answer'    => 'Kanka wird mit einer Reihe vordefinierter Objekttypen erstellt, die miteinander interagieren. Um benutzerdefinierte Objekttypen zuzulassen, müsste die Anwendung vollständig geändert und das Ziel der Vereinfachung der Organisation verfehlt werden. Darüber hinaus ist Kanka flexibel mit Tags, die die meisten benutzerdefinierten Objekte darstellen können.',
+        'question'  => 'Kann ich benutzerdefinierte Objekttypen erstellen?',
+    ],
+    'delete-campaign'       => [
+        'answer'    => 'Gehen Sie zu Ihrem Kampagnen-Dashboard und klicken Sie im linken Menü auf "Kampagne". Eine Schaltfläche "Löschen" wird angezeigt, wenn Sie das letzte Mitglied der Kampagne sind. Das Löschen einer Kampagne ist eine endgültige Aktion, mit der alle auf unseren Servern gespeicherten Daten, einschließlich Bilder, gelöscht werden.',
+        'question'  => 'Wie kann ich eine Kampagne löschen?',
     ],
     'entity-notes'          => [
         'answer'    => 'Alle Objekte verfügen über den Reiter "Objekt-Notizen", bei der es sich um kleine Textausschnitte handelt, die nur für Sie sichtbar (vor allem  sinnvoll, wenn mehrere SLs an der Kampagne arbeiten), nur für Mitglieder der Administratorrolle oder für alle sichtbar sind. Du kannst deinen Spielern auch die Erlaubnis erteilen, Objekt-Notizen zu Objekten zu erstellen und zu bearbeiten, ohne dass sie ein ganzes Objekt bearbeiten müssen.',
@@ -35,6 +55,10 @@ Uns auf Patreon zu unterstützen ermöglicht es euch allerdings das Upload Limit
 TEXT
 ,
         'question'  => 'Wird die App kostenfrei bleiben?',
+    ],
+    'gods-and-religions'    => [
+        'answer'    => 'Wir empfehlen, Götter als Charaktere und Religionen als Organisationen zu schaffen. Wenn Sie Ihre Gottheiten schnell finden möchten, empfehlen wir, sie mit einem geeigneten Tag und / oder Typ zu versehen.',
+        'question'  => 'Wo kann man Götter und Religionen erschaffen?',
     ],
     'help'                  => [
         'answer'    => 'Als Erstes: Danke, dass du helfen möchtest! Wir sind immer an Leuten interessiert, die uns bei Übersetzungen unterstützen, neue Funktionen testen oder die neuen Usern helfen können. Wir lieben es auch wenn Leute Kanka weiterempfehlen, um neue User an Orten zu erreichen an die wir nicht gedacht haben. Am besten ist es, wenn du auf :discord zu uns stößt, wo es einen Kanal für\'s Aushelfen gibt. Wir lieben auch unsere Patrone auf Patreon, wenn du uns unterstützen möchtest und ein paar Extras bekommen möchtest!',
@@ -61,10 +85,35 @@ TEXT
         'answer'    => 'Ja absolut, deswegen haben wir Kanka gemacht! Du kannst all deine Spieler zu deiner Kampagne einladen und ihnen Rollen und Berechtigungen erteilen.  Wir haben das System für  große Flexibiliät gebaut (sowohl opt-in als auch opt-out Konfigurationen möglich), um so viele Ansprüche und Situationen wie möglich abzudecken.',
         'question'  => 'Ich möchte Kanka nutzen, um meine RPG Welt aufzubauen. Meinen Spielern möchte ich ermöglichen manche Objekte und ihre Charakter zu bearbeiten. Geht das?',
     ],
+    'plans'                 => [
+        'answer'    => <<<'TEXT'
+Langfristig ist geplant, dass Kanka sich in ein vielseitiges Tool für Worldbuilding und Kampagnenmanagement entwickelt, das systemunabhängig ist und systemspezifische Inhalte enthält, die von der Community in Form von "Community-Vorlagen" verwaltet werden. Ein längeres Ziel ist es, Tools zu entwickeln, die sich in andere Plattformen wie Virtual Table Top-Apps integrieren lassen, um diese mit den Welten von Kanka zu verbinden.
+
+Was den zweiten Teil betrifft, so enden die meisten Hobbyprojekte im Burnout und der Schöpfer gibt sie auf. The :patreon wurde mit dem Ziel eingerichtet, dass wir Vollzeit an Kanka arbeiten können, ohne die finanzielle Sicherheit unserer Familien zu beeinträchtigen und die Serverkosten zu decken. Das Projekt ist auch Open Source und kann von der Community aufgegriffen werden, falls uns jemals etwas passieren sollte.
+TEXT
+,
+        'question'  => 'Was sind die langfristigen Pläne?',
+    ],
+    'public-campaigns'      => [
+        'answer'    => 'Auf der Seite :public-campaigns können Sie sehen, wie andere Kanka für ihre Kampagnen verwenden.',
+        'question'  => 'Wie benutzen andere Kanka?',
+    ],
+    'sections'              => [
+        'community'     => 'Gemeinschaft',
+        'general'       => 'Allgemeines',
+        'other'         => 'Andere',
+        'permissions'   => 'Berechtigungen',
+        'pricing'       => 'Preisgestaltung',
+        'worldbuilding' => 'Worldbuilding',
+    ],
     'show'                  => [
         'return'    => 'Zurück zum FAQ',
         'timestamp' => 'Letzte Aktualisierung am :date',
         'title'     => 'FAQ :name',
+    ],
+    'user-switch'           => [
+        'answer'    => 'Berechtigungen können schwierig werden, insbesondere bei großen Kampagnen. Als Kampagnenadministrator können Sie zur Mitgliederseite der Kampagne navigieren und auf die Schaltfläche "Wechseln" klicken, die neben Nicht-Administratormitgliedern der Kampagne angezeigt wird. Wenn Sie dies tun, melden Sie sich als dieser Benutzer an und können die Kampagne so sehen, wie sie es tun würde. Dies ist der einfachste Weg, um die Berechtigungen Ihrer Kampagne zu überprüfen.',
+        'question'  => 'Meine Kampagnenberechtigungen sind festgelegt. Wie kann ich sie testen?',
     ],
     'visibility'            => [
         'answer'    => 'Nur die Leute, die du zu deiner Kampagne eingeladen hast, können deine Welt sehen und bearbeiten. Deine Daten sind privat und immer unter deiner Kontrolle.',

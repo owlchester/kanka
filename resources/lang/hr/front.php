@@ -39,6 +39,9 @@ return [
     ],
     'faq'           => [
         'description'   => 'Pokrili smo najčešće postavljana pitanja i odgovorili na njih što je jasnije moguće.',
+        'helpers'       => [
+            'more'  => 'Nisi pronašao/la što si tražio/la?',
+        ],
         'title'         => 'Često postavljana pitanja',
     ],
     'features'      => [
@@ -53,6 +56,7 @@ return [
             'css'           => 'Prilagođeni CSS kampanje',
             'description'   => 'Određene razine pretplate pružaju korisnicima pojačanja koja mogu koristiti za unaprijeđenje kampanja. Ona omogućuju sljedeće prednosti.',
             'header_image'  => 'Slika zaglavlja entiteta',
+            'images'        => 'Postavi proizvoljne zadane slike entiteta',
             'recovery'      => 'Oporavak entiteta do 30 dana',
             'theme'         => 'Fiksna tema kampanje',
             'title'         => 'Pojačane kampanje',
@@ -100,7 +104,7 @@ return [
             'description'       => 'Podrška Kanke s malom mjesečnom naknadom omogućava nam nastavak rada na Kanki i otključava sljedeće pogodnosti za račun.',
             'discord'           => 'Privatni Discord kanal',
             'free'              => 'Besplatno',
-            'hall_of_fame'      => 'Naziv u :link',
+            'hall_of_fame'      => 'Ime u :link',
             'impact'            => 'Utjecaj na budućne funkcionalnosti',
             'monthly_vote'      => 'Sudjelovanje u glasanju zajednice',
             'pagination'        => 'Povećan broj rezultata na stranici',
@@ -129,6 +133,11 @@ return [
     'footer'        => [
         'app'       => 'Aplikacija',
         'copyright' => '© 2017 - :current kanka.io. Sva prava pridržana.',
+        'headings'  => [
+            'app'           => 'Aplikacija',
+            'community'     => 'Zajednica',
+            'useful_links'  => 'Korisne poveznice',
+        ],
         'navigation'=> 'Navigacija',
         'resources' => 'Resursi',
         'social'    => 'Socijalno',
@@ -141,9 +150,15 @@ return [
         'title'         => 'Pomoć',
         'twitter'       => 'Javi nam se na Twitteru',
     ],
+    'home'          => [
+        'seo'   => [
+            'meta-description'  => 'Kanka je alat za upravljanje RPG kampanjama i izgradnju svijetova kojeg usmjerava zajednica, a koji olakšava organizaciju, planiranje i uživanje RPG kampanja koje se igraju za stolom',
+        ],
+    ],
     'master'        => [
         'call_to_action'    => 'Registriraj se sada, besplatno je!',
         'description'       => 'Kanka je jednostavan, intuitivan i fleksibilan alat za graditelje svjetova, autore, pripovjedače i RPG igrače kako bi digitalno pratili svoje svjetove i kampanje. Stvorite i organizirajte ljude, mjesta, organizacije, događaje i još mnogo toga.',
+        'heading'           => 'Olakšano upravljanje RPG kampanjama i izgradnja svjetova',
         'title'             => 'Kanka',
     ],
     'menu'          => [
@@ -222,6 +237,9 @@ return [
     'second_block'  => [
         'call_to_action'    => 'Registriraj besplatan račun!',
         'title'             => 'Provedite manje vremena organizirajući i više vremena gradeći svijet.',
+    ],
+    'seo'           => [
+        'keywords'  => 'Izgradnja svjetova, RPG koji se igraju na stolu, upravitelj RPG kampanjama',
     ],
     'team'          => [
         'coffee'    => 'Kupi mi kavu!',

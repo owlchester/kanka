@@ -69,14 +69,14 @@ return [
         ],
         'title'         => 'Boost',
     ],
-    'countries' => [
-      'austria' => 'Austria',
-        'belgium' => 'Belgium',
-      'germany' => 'Germany',
-      'italy' => 'Italy',
-        'france' => 'France',
-        'netherlands' => 'The Netherlands',
-        'spain' => 'Spain',
+    'countries'     => [
+        'austria'       => 'Austria',
+        'belgium'       => 'Belgium',
+        'france'        => 'France',
+        'germany'       => 'Germany',
+        'italy'         => 'Italy',
+        'netherlands'   => 'The Netherlands',
+        'spain'         => 'Spain',
     ],
     'invoices'      => [
         'actions'   => [
@@ -170,8 +170,8 @@ return [
         'cancelled'             => 'Your subscription has been cancelled. You can renew a subscription once your current subscription ends.',
         'change'                => [
             'text'  => [
-                'monthly' => 'You are subscribing at the :tier tier, billed monthly for :amount.',
-                'yearly' => 'You are subscribing at the :tier tier, billed annualy for :amount.',
+                'monthly'   => 'You are subscribing at the :tier tier, billed monthly for :amount.',
+                'yearly'    => 'You are subscribing at the :tier tier, billed annualy for :amount.',
             ],
             'title' => 'Change Subscription Tier',
         ],
@@ -195,43 +195,43 @@ return [
             'plan'              => 'Current plan',
             'reason'            => 'Reason',
         ],
-        'helpers' => [
-            'alternatives' =>  'Pay for your subscription using :method. This payment method won\'t auto-renew at the end of your subscription. :method is only available in Euros.',
-            'alternatives_yearly' =>  'Due to the restrictions surrounding recurring payments, :method is only available for yearly subscriptions',
-            'alternatives_warning' => 'Upgrading your subscription when using this method is not possible. Please create a new subscription when your current one ends.',
+        'helpers'               => [
+            'alternatives'          => 'Pay for your subscription using :method. This payment method won\'t auto-renew at the end of your subscription. :method is only available in Euros.',
+            'alternatives_warning'  => 'Upgrading your subscription when using this method is not possible. Please create a new subscription when your current one ends.',
+            'alternatives_yearly'   => 'Due to the restrictions surrounding recurring payments, :method is only available for yearly subscriptions',
         ],
         'manage_subscription'   => 'Manage subscription',
         'payment_method'        => [
-            'actions'   => [
-                'add_new'   => 'Add a new payment method',
-                'change'    => 'Change payment method',
-                'save'      => 'Save payment method',
+            'actions'       => [
+                'add_new'           => 'Add a new payment method',
+                'change'            => 'Change payment method',
+                'save'              => 'Save payment method',
                 'show_alternatives' => 'Alternative payment options',
             ],
-            'add_one'   => 'You currently have no payment method saved.',
-            'alternatives' => 'You can subscribe using these alternative payment options. This action will charge your account once and not auto-renew your subscription every month.',
-            'card'      => 'Card',
-            'card_name' => 'Name on card',
-            'country'   => 'Country of residence',
-            'ending'    => 'Ending in',
-            'helper'    => 'This card will be used for all of your subscriptions.',
-            'new_card'  => 'Add a new payment method',
-            'saved'     => ':brand ending with :last4',
+            'add_one'       => 'You currently have no payment method saved.',
+            'alternatives'  => 'You can subscribe using these alternative payment options. This action will charge your account once and not auto-renew your subscription every month.',
+            'card'          => 'Card',
+            'card_name'     => 'Name on card',
+            'country'       => 'Country of residence',
+            'ending'        => 'Ending in',
+            'helper'        => 'This card will be used for all of your subscriptions.',
+            'new_card'      => 'Add a new payment method',
+            'saved'         => ':brand ending with :last4',
         ],
         'placeholders'          => [
             'reason'    => 'Optionally tell us why you are no longer supporting Kanka. Was a feature missing? Did your financial situation change?',
         ],
-        'plans' => [
-            'cost_monthly' => ':currency :amount billed monthly',
-            'cost_yearly' => ':currency :amount billed yearly',
+        'plans'                 => [
+            'cost_monthly'  => ':currency :amount billed monthly',
+            'cost_yearly'   => ':currency :amount billed yearly',
         ],
         'sub_status'            => 'Subscription information',
         'subscription'          => [
             'actions'   => [
-                'downgrading'   => 'Please contact us for downgrading',
-                'rollback'      => 'Change to Kobold',
-                'subscribe'     => 'Change to :tier monthly',
-                'subscribe_annual'     => 'Change to :tier yearly',
+                'downgrading'       => 'Please contact us for downgrading',
+                'rollback'          => 'Change to Kobold',
+                'subscribe'         => 'Change to :tier monthly',
+                'subscribe_annual'  => 'Change to :tier yearly',
             ],
         ],
         'success'               => [

@@ -26,7 +26,9 @@ return [
         'title' => 'Promjene ovlasti',
     ],
     'subscriptions'     => [
-        'ended' => 'Tvoja pretplata na Kanku je završila. Pojačanja tvoje kampanje i Discord uloge su uklonjene. Nadamo će te nam se uskoro vratiti!',
-        'failed'=> 'Tvoja pretplata na Kanku je otkazana nakon previše neuspjelih pokušaja naplate tvoje kartice. Idi u postavke pretplate i pokušaj ažurirati svoje podatke o plaćanju.',
+        'charge_fail'   => 'Došlo je do pogreške tijekom obrade tvoje uplate. Pričekaj trenutak dok pokušavamo ponovo. Ako se ništa ne promijeni, kontaktiraj nas.',
+        'ended'         => 'Tvoja pretplata na Kanku je završila. Pojačanja tvoje kampanje i Discord uloge su uklonjene. Nadamo će te nam se uskoro vratiti!',
+        'failed'        => 'Tvoja pretplata na Kanku je otkazana nakon previše neuspjelih pokušaja naplate tvoje kartice. Idi u postavke pretplate i pokušaj ažurirati svoje podatke o plaćanju.',
+        'started'       => 'Tvoja pretplata na Kanku je započela.',
     ],
 ];

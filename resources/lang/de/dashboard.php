@@ -86,13 +86,26 @@ TEXT
         'delete'    => [
             'success'   => 'Widget vom Dashboard entfernt.',
         ],
+        'fields'    => [
+            'width' => 'Breite',
+        ],
         'recent'    => [
+            'full'      => 'Voll',
             'help'      => 'Nur das zuletzt aktualisierte Objekt anzeigen, aber eine vollständige Vorschau des Objektes anzeigen',
+            'helpers'   => [
+                'full'  => 'Zeigen Sie standardmäßig den Eintrag des gesamten Objektes anstelle einer Vorschau an.',
+            ],
             'singular'  => 'Einzelnes Objekt',
             'title'     => 'Vor kurzem aktualisiert',
         ],
         'update'    => [
             'success'   => 'Widget angepasst.',
+        ],
+        'widths'    => [
+            '0' => 'automatisch',
+            '12'=> 'Komplett',
+            '4' => 'Klein',
+            '6' => 'Halb',
         ],
     ],
 ];

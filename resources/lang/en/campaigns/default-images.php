@@ -1,20 +1,20 @@
 <?php
 
 return [
-    'title' => 'Campaign :campaign Default Entity Images',
-    'helper' => 'Set custom default entity images for your campaign. These will be shown in the various lists, but not on the entity itself.',
-    'actions' => [
-        'add' => 'Add a new default image',
+    'actions'   => [
+        'add'   => 'Add a new default image',
     ],
-    'create' => [
-        'title' => 'New default entity image',
-        'success' => 'Default entity image for :type created.',
-        'error' => 'Error saving the new default entity images. Is :type already set?',
+    'create'    => [
+        'error'     => 'Error saving the new default entity images. Is :type already set?',
+        'success'   => 'Default entity image for :type created.',
+        'title'     => 'New default entity image',
     ],
-    'destroy' => [
-        'success' => 'Default entity image for :type removed.',
+    'destroy'   => [
+        'success'   => 'Default entity image for :type removed.',
     ],
-    'index' => [
+    'helper'    => 'Set custom default entity images for your campaign. These will be shown in the various lists, but not on the entity itself.',
+    'index'     => [
         'title' => 'Default Entity Images',
     ],
+    'title'     => 'Campaign :campaign Default Entity Images',
 ];

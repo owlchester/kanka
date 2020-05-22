@@ -303,8 +303,14 @@ return [
         'actions'           => [
             'bulk'          => [
                 'add'       => 'Hozzáadás',
+                'deny'      => 'Tilt',
                 'ignore'    => 'Figyelmen kívül hagyás',
                 'remove'    => 'Eltávolítás',
+            ],
+            'bulk_entity'   => [
+                'allow'     => 'Engedélyez',
+                'deny'      => 'Tilt',
+                'inherit'   => 'Örököl',
             ],
             'delete'        => 'Törlés',
             'edit'          => 'Szerkesztés',

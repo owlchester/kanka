@@ -51,7 +51,7 @@ TEXT
         'answer'    => <<<'TEXT'
 Da! Čvrsto vjerujemo da tvoja financijska situacija ne bi trebala utjecati na tvoje uživanje u RPG-ovima ili izgradnji svijeta te ćemo osnovnu aplikaciju uvijek držati besplatnom. Ako želiš preuzeti aktivniju ulogu na ovom putovanju, podrži nas i glasaj o funkcionalnostima koje su ti najvažnije, što možeš učiniti putem naše web stranice ili na :patreon.
 
-Osim glasanje o pravcu kojim će Kanka napredovati, podržavanje nas omogućava tebi pristup :boosters, povećanju ograničenja za prijenos veličine datoteke, dodavanju tvog imena u kuću slavnih, ljepše zadate ikone i još mnogo toga!
+Osim glasanja o pravcu kojim će Kanka napredovati, podržavanje nas omogućava tebi pristup :boosters, povećanju ograničenja za prijenos veličine datoteke, dodavanju tvog imena u kuću slavnih, ljepše zadate ikone i još mnogo toga!
 TEXT
 ,
         'question'  => 'Hoće li aplikacija ostati besplatna?',

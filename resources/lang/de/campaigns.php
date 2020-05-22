@@ -40,6 +40,8 @@ return [
         'title'         => 'Kampagne :name Export',
     ],
     'fields'                            => [
+        'boosted'                       => 'geboosted durch',
+        'css'                           => 'CSS',
         'description'                   => 'Beschreibung',
         'entity_count'                  => 'Objekt Zähler',
         'entity_personality_visibility' => 'Charakter Persönlichkeit Sichtbarkeit',
@@ -52,10 +54,16 @@ return [
         'name'                          => 'Name',
         'rpg_system'                    => 'Rollenspielsysteme',
         'system'                        => 'System',
+        'theme'                         => 'Thema',
+        'tooltip_family'                => 'Deaktivieren Sie Familiennamen in den QuickInfos',
+        'tooltip_image'                 => 'Objektbild in QuickInfos anzeige',
         'visibility'                    => 'Sichtbarkeit',
     ],
     'following'                         => 'Abonniert',
     'helpers'                           => [
+        'boost_required'                => 'Für diese Funktion muss die Kampagne geboosted werden. Weitere Informationen finden Sie hier :settings page.',
+        'boosted'                       => 'Einige Funktionen sind freigeschaltet, da diese Kampagne geboosted wird. Weitere Informationen finden Sie auf der :settings page.',
+        'css'                           => 'Schreiben Sie Ihr eigenes CSS, das auf die Seiten Ihrer Kampagne laden können. Bitte beachten Sie, dass jeder Missbrauch dieser Funktion dazu führen kann, dass Ihr benutzerdefiniertes CSS entfernt wird. Wiederholungen oder schwerwiegende Verstöße können dazu führen, dass Ihre Kampagne entfernt wird.',
         'entity_personality_visibility' => 'Wenn ein neuer Charakter erstellt wird, wird die "Persönlichkeit sichtbar" Option automatisch deaktiviert.',
         'entity_visibility'             => 'Wenn du ein neues Objekt erstellst, wird es automatisch auf "Privat" gesetzt.',
         'excerpt'                       => 'Die Kampagnenzusammenfassung wird im Dashboard angezeigt. Schreib daher ein paar Sätze, die deine Welt vorstellen. Idealerweise hältst du es kurz und informativ.',
@@ -63,6 +71,7 @@ return [
         'name'                          => 'Deine Kampagne/Welt kann einen beliebigen Namen haben, solange dieser mindestens 4 Buchstaben oder Zahlen enthält.',
         'system'                        => 'Wenn deine Kampagne öffentlich einsehbar ist, damm wird das System in der :link Seite angezeigt.',
         'systems'                       => 'Um die Benutzer nicht mit Optionen zu überfordern, sind einige Funktionen von Kanka nur mit bestimmten Rollenspielsystemen (z.B. dem D&D 5e-Monster-Werteblock) verfügbar. Wenn wir hier unterstützte Systeme hinzufügen, werden diese Funktionen aktiviert.',
+        'theme'                         => 'Legen Sie das Thema für die Kampagne fest und überschreiben Sie die Benutzereinstellungen.',
         'visibility'                    => 'Eine Kampagne öffentlich machen bedeutet, dass jeder mit einem Link dazu sie sehen kann.',
     ],
     'index'                             => [
@@ -74,48 +83,51 @@ return [
         'title'     => 'Kampagnen',
     ],
     'invites'                           => [
-        'actions'       => [
+        'actions'               => [
             'add'   => 'Einladung',
+            'copy'  => 'Kopieren Sie den Link in Ihre Zwischenablage',
             'link'  => 'Neuer Link',
         ],
-        'create'        => [
+        'create'                => [
             'button'        => 'Einladen',
             'description'   => 'Lade einen Freund zu deiner Kampagne ein',
             'link'          => 'Link erstellt: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Einladung verschickt.',
             'title'         => 'Lade jemanden zu deiner Kampagne ein',
         ],
-        'destroy'       => [
+        'destroy'               => [
             'success'   => 'Einladung entfernt.',
         ],
-        'email'         => [
+        'email'                 => [
             'link'      => '<a href=":link">Trete :name\'s Kampagne bei</a>',
             'subject'   => ':name hat dich eingeladen, seiner Kampagne \':campaign\' auf kanka.io beizutreten! Nutze den folgenden Link, um die Einladung anzunehmen.',
             'title'     => 'Einladung von :name',
         ],
-        'error'         => [
+        'error'                 => [
             'already_member'    => 'Du bist bereits Mitglied dieser Kampagne',
             'inactive_token'    => 'Dieses Token wurde bereits genutzt oder die Kampagne existiert nicht mehr.',
             'invalid_token'     => 'Dieser Token ist nicht mehr gültig.',
             'login'             => 'Bitte logge dich ein oder registriere dich, um der Kampagne beizutreten.',
         ],
-        'fields'        => [
+        'fields'                => [
             'created'   => 'Senden',
             'email'     => 'Email',
             'role'      => 'Rolle',
             'type'      => 'Typ',
             'validity'  => 'Gültigkeit',
         ],
-        'helpers'       => [
+        'helpers'               => [
+            'email'     => 'Unsere E-Mails werden häufig als Spam gekennzeichnet und können sich bis zu einigen Stunden verzögern, bevor sie in Ihrem Posteingang angezeigt werden.',
             'validity'  => 'Wie viele Nutzer können diesen Link benutzen, bevor er ausläuft.',
         ],
-        'placeholders'  => [
+        'placeholders'          => [
             'email' => 'Email Adresse der Person, die du zu der Kampagne einladen möchtest',
         ],
-        'types'         => [
+        'types'                 => [
             'email' => 'Email',
             'link'  => 'Link',
         ],
+        'unlimited_validity'    => 'Unbegrenzt',
     ],
     'leave'                             => [
         'confirm'   => 'Bist du sicher, dass du die Kampagne :name verlassen möchtest? Du hast danach keinen Zugang mehr, außer ein Besitzer der Kampagne lädt dich erneut ein.',
@@ -173,10 +185,12 @@ TEXT
         'your_role'             => 'Du bist ein <i>:role</i>',
     ],
     'panels'                            => [
+        'boosted'   => 'Geboosted',
         'dashboard' => 'Dashboard',
         'permission'=> 'Berechtigung',
         'sharing'   => 'Teilen',
         'systems'   => 'Systeme',
+        'ui'        => 'Schnittstelle',
     ],
     'placeholders'                      => [
         'description'   => 'Eine kurze Zusammenfassung deiner Kampagne',
@@ -224,6 +238,7 @@ TEXT
                 'entity-note'   => 'Notizen',
                 'permission'    => 'Verwalte Berechtigungen',
                 'read'          => 'Anschauen',
+                'toggle'        => 'Alles ändern',
             ],
             'hint'      => 'Diese Rolle hat automatisch Zugriff auf alles.',
         ],
@@ -257,12 +272,17 @@ TEXT
         ],
     ],
     'settings'                          => [
+        'actions'       => [
+            'enable'    => 'aktivieren',
+        ],
+        'boosted'       => 'Diese Funktion befindet sich in der Beta-Phase und ist derzeit nur verfügbar für :boosted.',
         'description'   => 'Aktiviere oder deaktiviere Module für diese Kampagne.',
         'edit'          => [
             'success'   => 'Kampagnen Einstellungen aktualisiert.',
         ],
         'helper'        => 'Du kannst einfach Elemente von deiner Kampagne abschalten, die dann versteckt werden. Wenn du bereits Objekte in dieser Kategorie angelegt hast, werden diese nicht gelöscht, nur versteckt.',
         'helpers'       => [
+            'abilities'     => 'Erstellen Sie Fähigkeiten, seien es Talente, Zauber oder Kräfte, die Objekten zugewiesen werden können.',
             'calendars'     => 'Der Ort, um die Kalender deiner Welt zu erstellen.',
             'characters'    => 'Die Leute, die deine Welt bevölkern.',
             'conversations' => 'Fiktive Gespräche zwischen Charakteren oder zwischen Kampagnennutzern.',
@@ -283,18 +303,24 @@ TEXT
     ],
     'show'                              => [
         'actions'       => [
+            'boost' => 'Geboostete Kampagne',
             'leave' => 'Kampagne verlassen',
         ],
         'description'   => 'Eine detaillierte Ansicht der Kampagne',
         'tabs'          => [
-            'export'        => 'Export',
-            'information'   => 'Informationen',
-            'members'       => 'Mitglieder',
-            'menu'          => 'Menü',
-            'roles'         => 'Rollen',
-            'settings'      => 'Einstellungen',
+            'default-images'    => 'Standardbilder',
+            'export'            => 'Export',
+            'information'       => 'Informationen',
+            'members'           => 'Mitglieder',
+            'menu'              => 'Menü',
+            'recovery'          => 'Wiederherstellen',
+            'roles'             => 'Rollen',
+            'settings'          => 'Einstellungen',
         ],
         'title'         => 'Kampagne :name',
+    ],
+    'ui'                                => [
+        'helper'    => 'Verwenden Sie diese Einstellungen, um die Art und Weise zu ändern, in der einige Elemente in der Kampagne angezeigt werden.',
     ],
     'visibilities'                      => [
         'private'   => 'Privat',

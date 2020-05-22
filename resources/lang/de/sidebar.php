@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'abilities'             => 'Fähigkeiten',
     'admin'                 => 'Admin',
     'attribute_templates'   => 'Attributvorlagen',
     'calendars'             => 'Kalender',
@@ -33,4 +34,5 @@ return [
     'team'                  => 'Team',
     'translations'          => 'Übersetzungen',
     'trello'                => 'Trello',
+    'world'                 => 'Welt',
 ];
