@@ -2,7 +2,7 @@
 /** @var \App\Models\Campaign $campaign */
 $campaign = CampaignLocalization::getCampaign(); ?>
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" @if(app()->getLocale() == 'he') dir="rtl" @endif>
 <head>
 @include('layouts._tracking')
     <meta charset="utf-8">
@@ -27,6 +27,9 @@ $campaign = CampaignLocalization::getCampaign(); ?>
     <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    @if(app()->getLocale() == 'he')
+        <link href="{{ mix('css/app-rtl.css') }}" rel="stylesheet">
+    @endif
     @yield('styles')
 
     @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme))

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" @if(app()->getLocale() == 'he') dir="rtl" @endif>
 <head>
 @include('layouts._tracking')
     <meta charset="utf-8">
@@ -38,6 +38,9 @@
     <link href="/vendor/bootstrap/css/bootstrap.min.css?v=4.4" rel="stylesheet">
     <link href="/css/front/new-age.min.css" rel="stylesheet">
     <link href="{{ mix('css/front.css') }}" rel="stylesheet">
+    @if(app()->getLocale() == 'he')
+        <link href="{{ mix('css/front-rtl.css') }}" rel="stylesheet">
+    @endif
     @yield('styles')
 </head>
 
