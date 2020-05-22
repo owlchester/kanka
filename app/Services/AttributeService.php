@@ -196,6 +196,7 @@ class AttributeService
         $privates = Arr::get($request, 'attr_is_private', []);
         $stars = Arr::get($request, 'attr_is_star', []);
         $templateId = Arr::get($request, 'template_id', null);
+        $touch = false;
 
         foreach ($names as $id => $name) {
             // Skip empties, which are probably the templates
@@ -215,9 +216,12 @@ class AttributeService
                 $attribute->type = $type;
                 $attribute->name = $name;
                 $attribute->value = $value;
-                $attribute->is_private = $isPrivate;
-                $attribute->is_star = $isStar;
+                $attribute->is_private = (int) $isPrivate;
+                $attribute->is_star = (int) $isStar;
                 $attribute->default_order = $order;
+                if ($attribute->isDirty()) {
+                    $touch = true;
+                }
                 $attribute->save();
 
                 // Remove it from the list of existing ids so it doesn't get deleted
@@ -232,12 +236,14 @@ class AttributeService
                     'is_star' => $isStar,
                     'default_order' => $order,
                 ]);
+                $touch = true;
             }
             $order++;
         }
 
         // Remaining existing have been deleted
         foreach ($existing as $id => $attribute) {
+            $touch = true;
             $attribute->delete();
         }
 
@@ -246,6 +252,11 @@ class AttributeService
             /** @var AttributeTemplate $template */
             $template = AttributeTemplate::findOrFail($templateId);
             $order = $template->apply($entity, $order);
+        }
+
+        if ($touch) {
+            $entity->touchSilently();
+            $entity->child->touchSilently();
         }
 
         return $order;

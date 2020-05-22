@@ -400,4 +400,15 @@ abstract class MiscModel extends Model
 
         return $entity;
     }
+
+    /**
+     * Touch a model (update the timestamps) without any observers/events
+     * @return mixed
+     */
+    public function touchSilently()
+    {
+        return static::withoutEvents(function() {
+            return $this->touch();
+        });
+    }
 }
