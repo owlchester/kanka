@@ -94,7 +94,7 @@ a {
     }
   }
   li.active {
-    border: none;
+    border: none !important;
     a {
       color: $Soft !important;
       background-color: $Hard !important;

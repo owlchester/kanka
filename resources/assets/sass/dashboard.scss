@@ -34,11 +34,12 @@
       font-size: 18pt;
       margin: 0;
       padding: 0;
+      line-height: 1.3em;
 
       .img-circle {
         width: 50px;
         height: 50px;
-        margin-right: 0px;
+        margin-right: 0;
 
         &:hover {
           box-shadow: $box-shadow-hover;

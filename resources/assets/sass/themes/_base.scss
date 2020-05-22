@@ -179,6 +179,9 @@ p {
   text-align: justify;
   color: $White;
 }
+li {
+  color: $White;
+}
 pre, blockquote {
   background-color: $Detail;
   color: $White;
@@ -223,6 +226,7 @@ pre, blockquote {
 .mce-menu-item.mce-disabled, .mce-menu-item.mce-disabled:hover {
   background: $Unfocused !important;
 }
+
 
 .input-group .input-group-addon {
   color: $Hard;
@@ -296,6 +300,17 @@ pre, blockquote {
 
   .campaign-selector {
     color: white !important;
+  }
+}
+
+
+.entity-form {
+  ul.nav {
+    border-bottom-color: unset;
+    border-bottom: none;
+    li {
+      background: unset;
+    }
   }
 }
 
@@ -439,5 +454,11 @@ footer {
     .box-header {
       background-color: #00a65a !important;
     }
+  }
+}
+
+.entity-creator {
+  a {
+    background: #232424 !important;
   }
 }

@@ -192,6 +192,10 @@ p {
   color: #eee;
 }
 
+li {
+  color: #eee;
+}
+
 pre,
 blockquote {
   background-color: #0B1F20;
@@ -357,6 +361,15 @@ blockquote {
   color: white !important;
 }
 
+.entity-form ul.nav {
+  border-bottom-color: unset;
+  border-bottom: none;
+}
+
+.entity-form ul.nav li {
+  background: unset;
+}
+
 /**
  * Quests
  */
@@ -490,6 +503,10 @@ footer .footer {
   background-color: #00a65a !important;
 }
 
+.entity-creator a {
+  background: #232424 !important;
+}
+
 body {
   background-color: #0C1416;
   background: linear-gradient(to left, #0B1F20, #0C1416) !important;
@@ -576,7 +593,7 @@ a:hover {
 }
 
 .nav-tabs li.active {
-  border: none;
+  border: none !important;
 }
 
 .nav-tabs li.active a {

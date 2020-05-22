@@ -1,7 +1,6 @@
 @extends('layouts.app', [
     'title' => trans('campaigns.create.title'),
-    'description' => trans('campaigns.create.description'),
-    'breadcrumbs' => [
+    'breadcrumbs' => $start ? false : [
         ['url' => route('campaigns.index'), 'label' => trans('campaigns.index.title')],
         trans('crud.create')
     ]

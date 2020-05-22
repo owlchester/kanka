@@ -27,7 +27,7 @@
 .main-sidebar li:hover a,
 .main-sidebar li.active a,
 .main-sidebar li.header a {
-  color: #fff !important;
+  color: #424240 !important;
   background-color: #222 !important;
 }
 
@@ -53,7 +53,7 @@
 .box .with-border,
 .panel .with-border {
   background: none !important;
-  border-bottom: 1px solid #fff !important;
+  border-bottom: 1px solid #424240 !important;
 }
 
 .box .box-footer,
@@ -112,7 +112,7 @@ input,
 textarea,
 .select2,
 select {
-  border: 1px solid #fff !important;
+  border: 1px solid #424240 !important;
   background-color: #222 !important;
   color: white;
 }
@@ -156,11 +156,11 @@ input[type=checkbox] {
 
 input[type=checkbox]:after {
   background-color: #222 !important;
-  border: 1px solid #fff !important;
+  border: 1px solid #424240 !important;
 }
 
 input[type=checkbox]:checked {
-  background: #fff !important;
+  background: #424240 !important;
 }
 
 input[type=checkbox]:checked:after {
@@ -190,6 +190,10 @@ p {
   color: #eee;
 }
 
+li {
+  color: #eee;
+}
+
 pre,
 blockquote {
   background-color: #222;
@@ -203,7 +207,7 @@ blockquote {
 }
 
 .badge {
-  background-color: #fff !important;
+  background-color: #424240 !important;
   color: #333 !important;
 }
 
@@ -255,7 +259,7 @@ blockquote {
 }
 
 .input-group .input-group-addon {
-  color: #fff;
+  color: #424240;
   background-color: #333;
 }
 
@@ -272,7 +276,7 @@ blockquote {
 .modal-content .popover-header,
 .popover-content .modal-header,
 .popover-content .popover-header {
-  border-color: #fff !important;
+  border-color: #424240 !important;
   border: none !important;
 }
 
@@ -346,13 +350,22 @@ blockquote {
 
 .main-header a:hover,
 .navbar a:hover {
-  color: #fff !important;
+  color: #424240 !important;
   background: #222 !important;
 }
 
 .main-header .campaign-selector,
 .navbar .campaign-selector {
   color: white !important;
+}
+
+.entity-form ul.nav {
+  border-bottom-color: unset;
+  border-bottom: none;
+}
+
+.entity-form ul.nav li {
+  background: unset;
 }
 
 /**
@@ -418,7 +431,7 @@ blockquote {
 }
 
 .alert a {
-  color: #fff !important;
+  color: #424240 !important;
 }
 
 /**
@@ -439,7 +452,7 @@ footer .footer {
 }
 
 .tt-cursor {
-  color: #fff !important;
+  color: #424240 !important;
 }
 
 /**
@@ -488,8 +501,12 @@ footer .footer {
   background-color: #00a65a !important;
 }
 
+.entity-creator a {
+  background: #232424 !important;
+}
+
 body {
-  background-color: #333;
+  background-color: #262626;
   color: #777;
 }
 
@@ -510,7 +527,8 @@ body {
 
 .box,
 .panel {
-  border: 1px solid #fff !important;
+  border: 1px solid #202121 !important;
+  background-color: #202121 !important;
 }
 
 a {
@@ -519,6 +537,12 @@ a {
 
 a:hover {
   color: #fff !important;
+}
+
+.mce-edit-area,
+.mce-content-body {
+  -webkit-filter: invert(90%) !important;
+          filter: invert(90%) !important;
 }
 
 @media (min-width: 1200px) {
@@ -536,21 +560,23 @@ a:hover {
   color: #fff !important;
 }
 
-.nav-tabs-custom {
-  background: none;
+.nav-tabs-custom,
+.nav-tabs {
+  background-color: #202121 !important;
 }
 
-.nav-tabs-custom .tab-content {
-  background: none;
-  border: 1px solid #fff;
+.nav-tabs-custom .tab-content,
+.nav-tabs .tab-content {
+  border-top: 1px solid #3D3C3B !important;
+  background: #202121 !important;
 }
 
 .nav-tabs {
-  border: none !important;
+  border-bottom-color: #202121 !important;
 }
 
 .nav-tabs li:hover {
-  background-color: #999 !important;
+  background-color: #444444 !important;
 }
 
 .nav-tabs li:hover a {
@@ -558,12 +584,42 @@ a:hover {
 }
 
 .nav-tabs li.active {
-  border-top-color: #999 !important;
+  border-top-color: #496E81 !important;
 }
 
 .nav-tabs li.active a {
-  color: #333 !important;
-  background-color: #fff !important;
+  color: #fff !important;
+  background: none !important;
+}
+
+.nav-tabs-custom > .nav-tabs > li:first-of-type.active > a,
+.nav-tabs-custom > .nav-tabs > li.active > a {
+  border-left-color: #3D3C3B !important;
+  border-right-color: #3D3C3B !important;
+  border-bottom-color: #202121 !important;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  border-top-color: #3D3C3B !important;
+}
+
+.box .nav-stacked > li {
+  border-bottom-color: #3D3C3B !important;
+}
+
+.nav > li > a:hover,
+.nav > li > a:active,
+.nav > li > a:focus {
+  background-color: #333 !important;
+}
+
+hr {
+  border-top: 1px solid #424240 !important;
 }
 
 /**
@@ -580,5 +636,52 @@ a:hover {
 
 .panel-body .preview:before {
   background: linear-gradient(transparent 0px, #333) !important;
+}
+
+.bg-aqua,
+.callout.callout-info,
+.alert-info,
+.label-info,
+.modal-info .modal-body {
+  background-color: #3BA0B6 !important;
+}
+
+.form-control {
+  border-color: #424240 !important;
+  border-radius: 2px;
+  background-color: #232424 !important;
+}
+
+.btn-primary {
+  background-color: #496E81 !important;
+  border: 1px solid #426375 !important;
+}
+
+.btn-primary:hover {
+  background-color: #6b96ab !important;
+}
+
+.btn-danger {
+  background-color: #814948 !important;
+  border: 1px solid #6f3e3d !important;
+}
+
+.btn-danger:hover {
+  background-color: #994e4d !important;
+}
+
+.btn-success {
+  background-color: #007239 !important;
+  border: 1px solid #005028 !important;
+}
+
+.btn-success:hover {
+  background-color: #00934c !important;
+}
+
+.btn-default {
+  background-color: #232424 !important;
+  border-color: #424240 !important;
+  color: #aaa !important;
 }
 
