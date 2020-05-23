@@ -93,6 +93,10 @@ class ImgService
         if (!empty($this->nowebp)) {
             return $this->nowebp;
         }
+        // If the browser doesn't bother telling us, we assume they do
+        if (empty($_SERVER['HTTP_ACCEPT'])) {
+            return false;
+        }
         $accept = strtolower($_SERVER['HTTP_ACCEPT']);
         return $this->nowebp = !Str::contains($accept, 'image/webp');
     }
