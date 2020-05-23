@@ -10,11 +10,11 @@ body {
   background-color: #222;
 }
 header.masthead {
-  background: linear-gradient(to left, #3f44a1, $KankaDarkBlue) !important;
+  background: linear-gradient(to left, #3f44a1, $KankaDarkBlue);
 }
 header.masthead-img {
   background-color: $KankaDarkBlue;
-  background-image: url(https://images.kanka.io/app/fRvHCH-8nraqMOxYiqN7rOJtq7I=/src/images%2Fbackgrounds%2Fmountain-background-desktop.jpg) !important;
+  background-image: url(https://images.kanka.io/app/fRvHCH-8nraqMOxYiqN7rOJtq7I=/src/images%2Fbackgrounds%2Fmountain-background-desktop.jpg);
   background-position: top left;
   background-size: cover;
 
@@ -35,6 +35,9 @@ header.masthead-img {
   p {
     font-size: 22px;
   }
+}
+header.masthead-img.webpfallback {
+  background-image: url(https://images.kanka.io/app/fRvHCH-8nraqMOxYiqN7rOJtq7I=/src/images%2Fbackgrounds%2Fmountain-background-desktop.jpg?webpfallback) !important;
 }
 section.cta {
 
@@ -421,6 +424,15 @@ ul.pagination {
   .subscription-elemental {
     background-image: url(https://images.kanka.io/app/E6iultkgKe86CZBAiybu8nT9mwM=/200x200/src/images%2Ftiers%2Felemental-325.png);
   }
+  .subscription-kobold.webpfallback {
+    background-image: url(https://images.kanka.io/app/qys-P4Qdr8__OVuiejzh5grC3dg=/200x200/src/images%2Ftiers%2Fkobold-325.png?webpfallback);
+  }
+  .subscription-owlbear.webpfallback {
+    background-image: url(https://images.kanka.io/app/pNUdiAGfWMlNpLnX7ZMJhnA4hFs=/200x200/src/images%2Ftiers%2Fowlbear-325.png?webpfallback);
+  }
+  .subscription-elemental.webpfallback {
+    background-image: url(https://images.kanka.io/app/E6iultkgKe86CZBAiybu8nT9mwM=/200x200/src/images%2Ftiers%2Felemental-325.png?webpfallback);
+  }
 }
 
 #pricing, #news {
@@ -536,8 +548,11 @@ ul.pagination {
     width: 420px;
   }
 
-  .login-page, .register-page, header.masthead {
+  .login-page, .register-page, header.masthead-img {
     background-image: url(https://images.kanka.io/app/fRvHCH-8nraqMOxYiqN7rOJtq7I=/src/images%2Fbackgrounds%2Fmountain-background-desktop.jpg);
+  }
+  .login-page.webpfallback, .register-page.webpfallback, header.masthead-img.webpfallback {
+    background-image: url(https://images.kanka.io/app/fRvHCH-8nraqMOxYiqN7rOJtq7I=/src/images%2Fbackgrounds%2Fmountain-background-desktop.jpg?webpfallback);
   }
 }
 
@@ -562,7 +577,10 @@ ul.pagination {
     }
   }
 
-  .login-page, .register-page, header.masthead {
-    background-image: url(https://images.kanka.io/app/WgTgGlDmiswpJ1cBISY3xEcwL7U=/src/images%2Fbackgrounds%2Fmountain-background-mobile.jpg);
+  .login-page, .register-page, header.masthead-img {
+    background-image: url(https://images.kanka.io/app/WgTgGlDmiswpJ1cBISY3xEcwL7U=/src/images%2Fbackgrounds%2Fmountain-background-mobile.jpg) !important;
+  }
+  .login-page.webpfallback, .register-page.webpfallback, header.masthead-img.webpfallback {
+    background-image: url(https://images.kanka.io/app/WgTgGlDmiswpJ1cBISY3xEcwL7U=/src/images%2Fbackgrounds%2Fmountain-background-mobile.jpg?webpfallback) !important;
   }
 }

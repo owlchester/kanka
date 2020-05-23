@@ -19,7 +19,7 @@
     <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ mix('css/front.css') }}" rel="stylesheet">
 </head>
-<body  class="hold-transition register-page">
+<body  class="hold-transition register-page @nowebp webpfallback @endnowebp">
 @include('layouts._tracking-fallback')
     <div class="login-box">
         <div class="login-logo">

@@ -21,6 +21,9 @@ class ImgService
     /** @var bool */
     protected $enabled;
 
+    /** @var bool if the device supports webp */
+    protected $nowebp;
+
     public function __construct()
     {
         $this->enabled = !empty(config('thumbor.key'));
@@ -80,8 +83,21 @@ class ImgService
 
         return config('thumbor.url') . $this->base . '/' . $sign . '/' . $this->crop
             . 'src/' . urlencode($img)
-            . (!empty($extra) ? '?' . $extra : null)
+            . ($this->nowebp() ? '?webpfallback' : null)
         ;
+    }
+
+    /**
+     * Safari / iPhone devices don't support webp
+     * @return bool
+     */
+    public function nowebp(): bool
+    {
+        if (!empty($this->nowebp)) {
+            return $this->nowebp;
+        }
+        $ua = strtolower(request()->header('User-Agent'));
+        return $this->nowebp = preg_match('/macintosh|mac os x|iphone|ipad/i', $ua);
     }
 
     /**
@@ -92,20 +108,5 @@ class ImgService
     {
         $signature = hash_hmac('sha1', $url, config('thumbor.key'), true);
         return strtr(base64_encode($signature), '/+', '_-');
-    }
-
-    /**
-     * Apple devices don't support webp so we need an extra key in the url to make sure that the request for webp
-     * isn't cached in the CDN when the browser doesn't support it
-     * @return string
-     */
-    protected function extraOptions(): string
-    {
-        $ua = strtolower(request()->header('User-Agent'));
-        if (preg_match('/macintosh|mac os x|iphone|ipad/i', $ua)) {
-            return 'mac';
-        }
-
-        return '';
     }
 }

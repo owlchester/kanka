@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Facades\EntityPermission;
+use App\Facades\Img;
 use App\Models\Ability;
 use App\Models\CalendarWeather;
 use App\Models\Campaign;
@@ -183,6 +184,11 @@ class AppServiceProvider extends ServiceProvider
         // Permission to view an entity
         Blade::if('viewentity', function (Entity $entity) {
             return EntityPermission::canView($entity);
+        });
+
+        // If a webp fallback is needed
+        Blade::if('nowebp', function () {
+            return Img::nowebp();
         });
 
 //        Blade::if('campaigns', function () {
