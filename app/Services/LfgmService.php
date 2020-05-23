@@ -70,7 +70,7 @@ class LfgmService
             'campaign_id' => $campaign->id,
             'entity_id' => $note->entity->id,
             'widget' => CampaignDashboardWidget::WIDGET_PREVIEW,
-            'width' => 4, // half
+            'width' => 6, // half
             'config' => '{"full":"1"}',
             'position' => $last ? $last->position++ : 1,
         ]);

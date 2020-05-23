@@ -75,7 +75,13 @@ class ImgService
         $thumborUrl = $this->crop . $full;
         $sign = $this->sign($thumborUrl);
 
-        return config('thumbor.url') . $this->base . '/' . $sign . '/' . $this->crop . 'src/' . urlencode($img);
+        // Safari / Mac doesn't support webp yet, so we need to add a special key to not cache them in the cdn
+        $extra = $this->extraOptions();
+
+        return config('thumbor.url') . $this->base . '/' . $sign . '/' . $this->crop
+            . 'src/' . urlencode($img)
+            . (!empty($extra) ? '?' . $extra : null)
+        ;
     }
 
     /**
@@ -86,5 +92,20 @@ class ImgService
     {
         $signature = hash_hmac('sha1', $url, config('thumbor.key'), true);
         return strtr(base64_encode($signature), '/+', '_-');
+    }
+
+    /**
+     * Apple devices don't support webp so we need an extra key in the url to make sure that the request for webp
+     * isn't cached in the CDN when the browser doesn't support it
+     * @return string
+     */
+    protected function extraOptions(): string
+    {
+        $ua = strtolower(request()->header('User-Agent'));
+        if (preg_match('/macintosh|mac os x|iphone|ipad/i', $ua)) {
+            return 'mac';
+        }
+
+        return '';
     }
 }
