@@ -264,6 +264,7 @@ footer {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     padding: 15px;
+    padding-top: 30px;
   }
   ul {
     list-style-type: none;
@@ -275,17 +276,20 @@ footer {
       margin: 2px 0;
       a {
         padding: 5px 0;
-        font-size: 14px !important;
-        line-height: 26px;
+        font-size: 12px !important;
+        line-height: 20px;
       }
     }
   }
   h4 {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
+    margin: 0;
   }
-  h4, span {
-    margin: 0 15px 10px 0;
+  h5 {
+    margin: 0;
+    margin-bottom: 8px;
+    text-transform: uppercase;
   }
 
   a {
@@ -313,16 +317,7 @@ footer {
   }
   .secondary-footer {
     margin-top: 25px;
-
-    ul {
-      li {
-        display: inline-block;
-        padding-right: 12px;
-        a {
-          font-size: 12px !important;
-        }
-      }
-    }
+    font-size: 11px;
   }
 }
 .main-header {

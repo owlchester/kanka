@@ -48,6 +48,7 @@ return [
         'benefits'      => [
             'first'     => 'Pour assurer une évolution continue de Kanka, certaines fonctionnalités de l\'application sont débloquées lorsqu\'une campagne est boostée. Les boosts sont débloqués grâce a un abonnement. Une campagne peut être boostée par n\'importe qui, du moment que le compte a accès à la campagne en question. Une campagne reste boostée tant que le compte a un :subscription actif. Si une campagne n\'est plus boostée, les informations ne sont pas perdues mais deviennent simplement invisible jusqu\'à ce que la campagne sois à nouveau boostée..',
             'header'    => 'Image d\'en-tête pour entité.',
+            'images'    => 'Images d\'entité par défaut personnalisées.',
             'more'      => 'En savoir plus sur toutes les fonctionalités.',
             'second'    => 'Booster une campagne débloques les bénéfices suivants:',
             'theme'     => 'Thème de campagne et style personnalisé.',
@@ -67,6 +68,15 @@ return [
             'delete'=> 'Boost retiré de :name.',
         ],
         'title'         => 'Boost',
+    ],
+    'countries'     => [
+        'austria'       => 'Autriche',
+        'belgium'       => 'Belgique',
+        'france'        => 'France',
+        'germany'       => 'Allemagne',
+        'italy'         => 'Italie',
+        'netherlands'   => 'Pays Bas',
+        'spain'         => 'Espagne',
     ],
     'invoices'      => [
         'actions'   => [
@@ -160,7 +170,10 @@ return [
         ],
         'cancelled'             => 'L\'abonnement a été annulé. Un nouvel abonnement peut être fait dès que celui-ci arrive à terme.',
         'change'                => [
-            'text'  => 'Abonnement pour le tier :tier, facturé mensuellement pour :amount.',
+            'text'  => [
+                'monthly'   => 'Abonnement au niveau :tier, facturé mensuellement pour :amount.',
+                'yearly'    => 'Abonnement au niveau :tier, facturé annuellement pour :amount.',
+            ],
             'title' => 'Changement d\'abonnement',
         ],
         'currencies'            => [
@@ -177,45 +190,60 @@ return [
         'fields'                => [
             'active_since'      => 'Actif depuis',
             'active_until'      => 'Active jusqu\'à',
-            'billed_monthly'    => 'Facturé mensuellement',
+            'billing'           => 'Facturation',
             'currency'          => 'Devise',
             'payment_method'    => 'Méthode de paiement',
             'plan'              => 'Abonnement actuel',
             'reason'            => 'Raison',
         ],
+        'helpers'               => [
+            'alternatives'          => 'Payez votre abonnement en utilisant :method. Ce mode de paiement ne sera pas renouvelé automatiquement à la fin de votre abonnement. :method n\'est disponible qu\'en Euros.',
+            'alternatives_warning'  => 'La mise à niveau de l\'abonnement lors de l\'utilisation de cette méthode n\'est pas possible. Veuillez créer un nouvel abonnement à la fin de votre abonnement actuel.',
+            'alternatives_yearly'   => 'En raison des restrictions entourant les paiements récurrents,:method n\'est disponible que pour les abonnements annuels',
+        ],
         'manage_subscription'   => 'Gérer l\'abonnement',
         'payment_method'        => [
-            'actions'   => [
-                'add_new'   => 'Ajouter une méthode de paiement',
-                'change'    => 'Modifier la méthode de paiement',
-                'save'      => 'Enregister la méthode de paiement',
+            'actions'       => [
+                'add_new'           => 'Ajouter une méthode de paiement',
+                'change'            => 'Modifier la méthode de paiement',
+                'save'              => 'Enregister la méthode de paiement',
+                'show_alternatives' => 'Autres méthodes de paiement',
             ],
-            'add_one'   => 'Aucune méthode de paiement actuellement saisie.',
-            'card'      => 'Carte',
-            'card_name' => 'Nom sur la carte',
-            'ending'    => 'Se terminant par',
-            'helper'    => 'Cette carte sera utilisée pour les abonnements.',
-            'new_card'  => 'Ajouter une méthode de paiement',
-            'saved'     => ':brand se terminant par :last4',
+            'add_one'       => 'Aucune méthode de paiement actuellement saisie.',
+            'alternatives'  => 'Un abonnement peut être souscrit avec ces méthodes de paiement. Cette action générera qu\'une seule facture et ne renouera pas automatiquement l\'abonnement chaque mois.',
+            'card'          => 'Carte',
+            'card_name'     => 'Nom sur la carte',
+            'country'       => 'Pays de résidence',
+            'ending'        => 'Se terminant par',
+            'helper'        => 'Cette carte sera utilisée pour les abonnements.',
+            'new_card'      => 'Ajouter une méthode de paiement',
+            'saved'         => ':brand se terminant par :last4',
         ],
         'placeholders'          => [
             'reason'    => '(optionnelle) dis-nous pourquoi tu ne souhaites plus être abonné à Kanka. Manquait-il une fonctionnalité? Ta situation financière a-t-elle changé?',
         ],
+        'plans'                 => [
+            'cost_monthly'  => ':currency :amount facturé mensuellement',
+            'cost_yearly'   => ':currency :amount facturé annuellement',
+        ],
         'sub_status'            => 'Information d\'abonnement',
         'subscription'          => [
             'actions'   => [
-                'downgrading'   => 'Prière de nous contacter pour un déclassement',
-                'rollback'      => 'Changer à Kobold',
-                'subscribe'     => 'Changer à :tier mensuel',
+                'downgrading'       => 'Prière de nous contacter pour un déclassement',
+                'rollback'          => 'Changer à Kobold',
+                'subscribe'         => 'Changer à :tier mensuel',
+                'subscribe_annual'  => 'Changer à :tier annuel',
             ],
         ],
         'success'               => [
+            'alternative'   => 'Le paiement a été enregistré. Une notification sera générée dès le paiement a été traité et l\'abonnement activé.',
             'callback'      => 'Ton abonnement est réussis! Ton compte sera mis à jour dès que notre gestionnaire de paiement nous informe des changement (cela peut prendre quelques minutes).',
             'cancel'        => 'Ton abonnement est annulé. Il sera toujours actif jusqu\'à la fin de la période actuel.',
             'currency'      => 'Devise préférée sauvegardée.',
             'subscribed'    => 'Ton abonnement est réussis! N\'oublie pas de t\'abonner à la newsletter Community Vote pour être averti lorsqu\'un vote sera ouvert. Tu peux modifier tes paramètres de newsletter sur ta page de profil.',
         ],
         'tiers'                 => 'Niveaux d\'abonnements',
+        'trial_period'          => 'Les abonnements annuels ont une période d\'annulation de 14 jours. Nous contacter à  :email pour annuler un abonnement et recevoir un remboursement.',
         'upgrade_downgrade'     => [
             'button'    => 'Information sur l\'upgrade/downgrade',
             'downgrade' => [

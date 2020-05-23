@@ -146,26 +146,28 @@ footer {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    margin-bottom: 20px;
     li {
       padding: 0;
       display: block;
       margin: 2px 0;
       a {
-        padding: 2px 12px;
-        display: block;
-        font-size: 16px !important;
+        padding: 5px 0;
+        font-size: 14px !important;
         width: 100%;
       }
     }
   }
   h4 {
-    margin: 0 12px 10px;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 700;
     color: #ddd;
   }
   h5 {
-    margin-left: 11px;
+    margin: 0;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    font-size: 18px;
   }
 
   a, span {
@@ -193,6 +195,7 @@ footer {
       margin-bottom: 20px;
       border-radius: 4px;
       padding: 15px 25px;
+      font-size: 18px;
       &:hover {
         transition: all 0.2s ease;
         background: rgba(255, 255, 255, 0.4);

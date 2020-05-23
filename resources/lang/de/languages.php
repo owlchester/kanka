@@ -13,6 +13,7 @@ return [
         'it'    => 'Italienisch',
         'nl'    => 'Holländisch',
         'pt-BR' => 'Brasilianisches Portugisiesch',
+        'ru'    => 'Russisch',
     ],
     'header'=> 'Sprachen',
 ];

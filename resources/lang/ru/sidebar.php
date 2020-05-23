@@ -11,7 +11,7 @@ return [
     'conversations'         => 'Разговоры',
     'custom_links'          => 'Быстрые Ссылки',
     'dashboard'             => 'Главная Страница',
-    'dice_rolls'            => 'Игральные Кости',
+    'dice_rolls'            => 'Броски Кубиков',
     'entity-creator'        => 'Быстрый Редактор',
     'events'                => 'События',
     'families'              => 'Семьи',

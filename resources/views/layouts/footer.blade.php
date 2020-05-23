@@ -5,14 +5,14 @@
     </div>
     <div class="footer">
         <div class="row">
-            <div class="col-lg-2 col-md-2 col-12">
-                <h4><a href="{{ route('home') }}">Kanka</a></h4>
+            <div class="col-lg-2 col-md-2 col-12 text-center">
+                <h4 class="margin-bottom"><a href="{{ route('home') }}">Kanka</a></h4>
             </div>
             <div class="col-lg-7 col-md-7 col-12">
                 <div class="row">
                     <div class="col-lg-4 col-xs-4">
                         <h5>{{ __('front.footer.headings.app') }}</h5>
-                        <ul>
+                        <ul class="margin-bottom">
                             <li>
                                 <a href="{{ route('front.features') }}">{{ __('front.menu.features') }}</a>
                             </li>
@@ -23,8 +23,7 @@
                                 <a href="{{ route('front.about') }}">{{ __('front.menu.about') }}</a>
                             </li>
                         </ul>
-                    </div>
-                    <div class="col-lg-4 col-xs-4">
+
                         <h5>{{ __('front.footer.headings.community') }}</h5>
                         <ul>
                             <li>
@@ -40,7 +39,7 @@
                     </div>
                     <div class="col-lg-4 col-xs-4">
                         <h5>{{ __('front.footer.headings.useful_links') }}</h5>
-                        <ul>
+                        <ul class="margin-bottom">
                             <li>
                                 <a href="{{ route('faq.index') }}">{{ __('front.menu.faq') }}</a>
                             </li>
@@ -51,6 +50,25 @@
                                 <a href="{{ route('front.contact') }}">{{ __('front.menu.contact') }}</a>
                             </li>
                         </ul>
+                        <ul>
+                            <li>
+                                <a href="/docs/1.0">{{ __('front.menu.api') }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('front.privacy') }}">{{ __('front.menu.privacy') }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('front.terms') }}">{{ __('front.menu.terms') }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-xs-4">
+                        <h5>{{ __('front.footer.headings.friends') }}</h5>
+                        <ul>
+                            <li>
+                                <a href="//lookingforgm.com" target="_blank" title="LookingForGM.com">LFGM</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -58,19 +76,18 @@
                 <h4 class="email">
                     <i class="fa fa-envelope hidden-xs"></i> hello@kanka.io
                 </h4>
-
                 <div class="socials">
                     <a href="{{ config('social.discord') }}" target="discord" rel="nofollow" title="Discord" rel="noreferrer">
                         <i class="fab fa-discord"></i>
-                    </a>
-                    <a href="{{ config('social.reddit') }}" target="reddit" rel="nofollow" title="Reddit" rel="noreferrer">
-                        <i class="fab fa-reddit"></i>
                     </a>
                     <a href="{{ config('social.facebook') }}" target="facebook" rel="nofollow" title="Facebook" rel="noreferrer">
                         <i class="fab fa-facebook"></i>
                     </a>
                     <a href="{{ config('social.instagram') }}" target="instagram" rel="nofollow" title="Instagram" rel="noreferrer">
                         <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="{{ config('social.reddit') }}" target="reddit" rel="nofollow" title="Reddit" rel="noreferrer">
+                        <i class="fab fa-reddit"></i>
                     </a>
                 </div>
 
@@ -97,28 +114,10 @@
                 </div>
             </div>
         </div>
-        <div class="row secondary-footer">
-            <div class="col-md-2"></div>
-            <div class="col-md-7 col-12 text-center">
-                <ul>
-                    <li>
-                        <a href="/docs/1.0">{{ __('front.menu.api') }}</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('front.privacy') }}">{{ __('front.menu.privacy') }}</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('front.terms') }}">{{ __('front.menu.terms') }}</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-3 col-12 text-center">
-
-                <p class="copyright">
-                    {!! __('footer.copyright', ['year' => date('Y')]) !!}
-                </p>
-            </div>
-
+        <div class="secondary-footer text-center">
+            <p class="copyright">
+                Kanka v{{ config('app.version') }} - {!! __('footer.copyright', ['year' => date('Y')]) !!} - {{ __('footer.server_time', ['time' => \Carbon\Carbon::now()->isoFormat('MMMM Do YYYY, h:mm a')]) }}
+            </p>
         </div>
     </div>
 </footer>

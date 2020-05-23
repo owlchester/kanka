@@ -28,7 +28,7 @@ $cpt = 0;
                     </div><div class="row">
 @endif
                             <div class="col-md-4 margin-bottom">
-                                <div class="campaign" data-campaign="{{ $campaign->id }}" @if ($campaign->image) style="background-image: url('{{ Img::crop(500, 200)->url($campaign->image) }}');" @endif>
+                                <div class="campaign clickable" data-campaign="{{ $campaign->id }}" @if ($campaign->image) style="background-image: url('{{ Img::crop(500, 200)->url($campaign->image) }}');" @endif>
                                     <div class="actions">
                                         <span>{!! $campaign->name !!}</span>
                                     </div>

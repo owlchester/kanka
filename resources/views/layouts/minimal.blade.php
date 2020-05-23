@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
+    @include('layouts._tracking')
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ $title ?? trans('default.page_title') }} - {{ config('app.name') }}</title>
@@ -20,23 +21,24 @@
     @yield('styles')
 </head>
 <body class="skin-black sidebar-mini layout-top-nav">
-<div id="app" class="wrapper">
+@include('layouts._tracking-fallback')
+    <div id="app" class="wrapper">
 
-    <div class="content-wrapper">
-        <section class="content-header margin-bottom">
-        </section>
+        <div class="content-wrapper">
+            <section class="content-header margin-bottom">
+            </section>
 
-        <section class="content">
-            @yield('content')
-        </section>
+            <section class="content">
+                @yield('content')
+            </section>
+        </div>
+
+        @include('layouts.footer')
+
     </div>
 
-    @include('layouts.footer')
-
-</div>
-
-<script src="{{ mix('js/app.js') }}"></script>
-<script src="https://kit.fontawesome.com/d7f0be4a8d.js" crossorigin="anonymous"></script>
-@yield('scripts')
+    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="https://kit.fontawesome.com/d7f0be4a8d.js" crossorigin="anonymous"></script>
+    @yield('scripts')
 </body>
 </html>
