@@ -137,6 +137,7 @@ return [
             'app'           => 'App',
             'community'     => 'Community',
             'useful_links'  => 'Useful Links',
+            'friends' => 'Our Friends',
         ],
         'navigation'=> 'Navigation',
         'resources' => 'Resources',
