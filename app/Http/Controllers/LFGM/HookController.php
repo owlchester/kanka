@@ -34,7 +34,7 @@ class HookController extends Controller
     public function sync(string $uuid)
     {
         try {
-            $campaigns = UserCache::campaigns();
+            $campaigns = auth()->user()->campaigns;
             $uuid = $this->service->uuid($uuid);
             return view('lfgm.sync', compact('campaigns', 'uuid'));
         } catch (\Exception $e) {

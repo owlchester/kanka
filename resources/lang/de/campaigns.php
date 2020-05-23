@@ -48,7 +48,7 @@ return [
         'entity_visibility'             => 'Objektsichtbarkeit',
         'excerpt'                       => 'Zusammenfassung',
         'followers'                     => 'Abonnenten',
-        'header_image'                  => 'Titelbild',
+        'header_image'                  => 'Header Bild',
         'image'                         => 'Bild',
         'locale'                        => 'Schauplatz',
         'name'                          => 'Name',
@@ -226,8 +226,9 @@ TEXT
             '3' => 'Man kann entweder ein "opt-out" System verwenden, in dem Rollen lesenden Zugriff auf alle Objekte bekommen und mit der "Privat" Checkbox bestimmte Objekte ausgeblendet werden. Oder man gibt Rollen wenige Berechtigungen und setzt jedes Objekt explizit auf sichtbar.',
         ],
         'hints'         => [
-            'public'            => 'Die Rolle "Öffentlich" wird benutzt, wenn jemand eure öffentliche Kampagne ansieht. :more',
-            'role_permissions'  => 'Erlaube der Rolle \':name\' die folgenden Aktionen auf allen Objekten.',
+            'campaign_not_public'   => 'Die öffentliche Rolle hat Berechtigungen, aber die Kampagne ist privat. Sie können diese Einstellung auf der Registerkarte Freigabe ändern, wenn Sie die Kampagne bearbeiten.',
+            'public'                => 'Die Rolle "Öffentlich" wird benutzt, wenn jemand eure öffentliche Kampagne ansieht. :more',
+            'role_permissions'      => 'Erlaube der Rolle \':name\' die folgenden Aktionen auf allen Objekten.',
         ],
         'members'       => 'Mitglieder',
         'permissions'   => [

@@ -505,9 +505,43 @@ export default {
                 "actions": {
                     "connect": "Verbinden",
                     "remove": "Entfernen"
-                }
+                },
+                "benefits": "Kanka bietet einige Integrationsmöglichkeiten für Dienste von Drittanbietern. Weitere Integrationen von Drittanbietern sind für die Zukunft geplant.",
+                "discord": {
+                    "errors": {
+                        "add": "Beim Verknüpfen Ihres Discord-Kontos mit Kanka ist ein Fehler aufgetreten. Bitte versuche es erneut."
+                    },
+                    "success": {
+                        "add": "Ihr Discord-Konto wurde verknüpft.",
+                        "remove": "Ihr Discord-Konto wurde nicht verbunden."
+                    },
+                    "text": "Greifen Sie automatisch auf Ihre Abonnementrollen zu."
+                },
+                "title": "App Integration"
             },
             "boost": {
+                "benefits": {
+                    "first": "Um weitere Fortschritte bei Kanka zu erzielen, werden einige Kampagnenfunktionen durch Boosten einer Kampagne freigeschaltet. Boosts werden durch Abonnements freigeschaltet. Jeder, der eine Kampagne anzeigen kann, kann sie verbessern, sodass der DM nicht immer die Rechnung bezahlen muss. Eine Kampagne bleibt verstärkt, solange ein Benutzer die Kampagne verstärkt und Kanka weiterhin unterstützt. Wenn eine Kampagne nicht mehr verstärkt wird, gehen keine Daten verloren, sondern werden nur ausgeblendet, bis die Kampagne erneut erhöht wird.",
+                    "header": "Objekt Header Bilder.",
+                    "images": "Benutzerdefinitierte Standardobjektbilder.",
+                    "more": "Erfahren Sie mehr über alle Funktionen.",
+                    "second": "Das Boosten einer Kampagne bietet die folgenden Vorteile:",
+                    "theme": "Leitmotiv auf Kampagnenebene und benutzerdefiniertes Design.",
+                    "tooltip": "Benutzerdefinierte Kurzinfo für Objekt.",
+                    "upload": "Erhöhte Upload-Größe für jedes Mitglied in der Kampagne."
+                },
+                "buttons": {
+                    "boost": "Boost"
+                },
+                "campaigns": "Geboostete Kampagne {count} / {max}",
+                "exceptions": {
+                    "already_boosted": "Kampagne {name} ist bereits geboostet",
+                    "exhausted_boosts": "Sie haben keine Boosts mehr zu geben. Entfernen Sie Ihren Boost aus einer Kampagne, bevor Sie ihn einer anderen geben."
+                },
+                "success": {
+                    "boost": "Kampagne {name} geboostet",
+                    "delete": "Entferne den boost von {name}"
+                },
                 "title": "Boost"
             },
             "countries": {
@@ -566,6 +600,7 @@ export default {
                 },
                 "benefits": "Eure Unterstützung auf Patreon erlaubt es euch größere Bilder hochzuladen, hilft uns die Serverkosten zu begleichen und mehr Arbeitszeit in Kanka zu stecken.",
                 "benefits_features": "erstaunliche Eigenschaften",
+                "deprecated": "Veraltete Funktion - Wenn Sie Kanka unterstützen möchten, tun Sie dies bitte mit einem {subscription}. Die Patreon-Verknüpfung ist weiterhin für unsere Benutzer aktiv, die ihr Konto vor dem Umzug von Patreon verknüpft haben.",
                 "description": "Synchronisierung mit Patreon",
                 "errors": {
                     "invalid_token": "Ungültiger Token! Patreon konnte die Anfrage nicht validieren.",
@@ -578,6 +613,7 @@ export default {
                 "remove": {
                     "button": "Trennen Sie die Verknüpfung Ihres Patreon-Kontos",
                     "success": "Ihr Patreon-Konto wurde getrennt.",
+                    "text": "Wenn Sie die Verknüpfung Ihres Patreon-Kontos mit Kanka aufheben, werden Ihre Boni, Ihr Name in der Hall of Fame, Kampagnen-Boosts und andere Funktionen im Zusammenhang mit der Unterstützung von Kanka entfernt. Keiner Ihrer verstärkten Inhalte geht verloren (z. B. Objekt header). Wenn Sie sich erneut anmelden, haben Sie Zugriff auf alle Ihre vorherigen Daten, einschließlich der Möglichkeit, Ihre zuvor verstärkten Kampagnen zu verbessern.",
                     "title": "Trennen Sie Ihr Patreon-Konto von Kanka"
                 },
                 "success": "Danke, dass du Kanka auf Patreon unterstützt.",
@@ -599,22 +635,110 @@ export default {
                     "subscribe": "Abonnieren",
                     "update_currency": "Speichern Sie die bevorzugte Währung"
                 },
+                "benefits": "Wenn Sie uns unterstützen, können Sie einige neue {features} freischalten und uns helfen  mehr Zeit in die Verbesserung von Kanka zu investieren. Es werden keine Kreditkarteninformationen gespeichert oder über unsere Server übertragen. Wir verwenden {stripe}, um alle Abrechnungen abzuwickeln.",
                 "billing": {
+                    "helper": "Ihre Zahlungsinformationen werden sicher verarbeitet und gespeichert durch {stripe}. Diese Zahlungsmethode wird für alle Ihre Abonnements verwendet.",
                     "saved": "Gespeicherte Zahlungsmethode",
                     "title": "Zahlungsmethode ändern"
+                },
+                "cancel": {
+                    "text": "Es tut uns leid dich gehen zu sehen! Wenn Sie Ihr Abonnement kündigen, bleibt es bis zu Ihrem nächsten Abrechnungszyklus aktiv. Danach verlieren Sie Ihre Kampagnen-Boosts und andere Vorteile im Zusammenhang mit der Unterstützung von Kanka. Füllen Sie das folgende Formular aus, um uns mitzuteilen, was wir besser machen können oder was zu Ihrer Entscheidung geführt hat."
+                },
+                "cancelled": "Ihr Abonnement wurde gekündigt. Sie können ein Abonnement verlängern, sobald Ihr aktuelles Abonnement endet.",
+                "change": {
+                    "text": {
+                        "monthly": "Sie abonnieren die {tier} Stufe , die monatlich in Rechnung gestellt wird für {amount}.",
+                        "yearly": "Sie abonnieren die {tier} Stufe, die jährlich in Rechnung gestellt wird für {amount}."
+                    },
+                    "title": "Abonnementstufe ändern"
                 },
                 "currencies": {
                     "eur": "EUR",
                     "usd": "USD"
                 },
+                "currency": {
+                    "title": "Ändern Sie Ihre bevorzugte Rechnungswährung"
+                },
+                "errors": {
+                    "callback": "Unser Zahlungsanbieter hat einen Fehler gemeldet. Bitte versuchen Sie es erneut oder kontaktieren Sie uns, wenn das Problem weiterhin besteht.",
+                    "subscribed": "Ihr Abonnement konnte nicht verarbeitet werden. Stripe lieferte den folgenden Hinweis."
+                },
                 "fields": {
                     "active_since": "aktiv seit",
                     "active_until": "aktiv bis",
+                    "billed_monthly": "Monatlich abgerechnet",
                     "billing": "Abrechnung",
                     "currency": "Abrechnungswährung",
                     "payment_method": "Zahlungsmethode",
                     "plan": "Derzeitiger Plan",
                     "reason": "Ursache"
+                },
+                "helpers": {
+                    "alternatives": "Bezahlen Sie Ihr Abonnement mit {method}. Diese Zahlungsmethode wird am Ende Ihres Abonnements nicht automatisch verlängert. {method} ist nur in Euro verfügbar.",
+                    "alternatives_warning": "Ein Upgrade Ihres Abonnements mit dieser Methode ist nicht möglich. Bitte erstellen Sie ein neues Abonnement, wenn Ihr aktuelles Abonnement endet.",
+                    "alternatives_yearly": "Aufgrund der Einschränkungen bei wiederkehrenden Zahlungen ist die {method} nur für Jahresabonnements verfügbar"
+                },
+                "manage_subscription": "Abonnement verwalten",
+                "payment_method": {
+                    "actions": {
+                        "add_new": "Füge eine neue Zahlungsmethode hinzu",
+                        "change": "Zahlungsmethode ändern",
+                        "save": "Zahlungsmethode speichern",
+                        "show_alternatives": "alternative Zahlungsoptionen"
+                    },
+                    "add_one": "Sie haben derzeit keine Zahlungsmethode gespeichert.",
+                    "alternatives": "Sie können diese alternativen Zahlungsoptionen abonnieren. Diese Aktion belastet Ihr Konto einmal und erneuert Ihr Abonnement nicht jeden Monat automatisch.",
+                    "card": "Karte",
+                    "card_name": "Name auf der Karte",
+                    "country": "Land des Wohnsitzes",
+                    "ending": "gültig bis",
+                    "helper": "Diese Karte wird für alle Ihre Abonnements verwendet.",
+                    "new_card": "Fügen sie eine neue Zahlungsmethode hinzu",
+                    "saved": "{brand} endet mit {last4}"
+                },
+                "placeholders": {
+                    "reason": "Sagen Sie uns optional, warum Sie Kanka nicht mehr unterstützen. Fehlt eine Funktion? Hat sich Ihre finanzielle Situation geändert?"
+                },
+                "plans": {
+                    "cost_monthly": "{currency} {amount} monatlich abgerechnet",
+                    "cost_yearly": "{currency} {amount} jährlich abgerechnet"
+                },
+                "sub_status": "Abonnementinformationen",
+                "subscription": {
+                    "actions": {
+                        "downgrading": "Bitte kontaktieren Sie uns für ein Downgrade",
+                        "rollback": "Wechseln Sie zu Kobold",
+                        "subscribe": "Wechseln Sie zu {tier} monatlich",
+                        "subscribe_annual": "Wechseln Sie zu {tier} jährlich"
+                    }
+                },
+                "success": {
+                    "alternative": "Ihre Zahlung wurde registriert. Sie erhalten eine Benachrichtigung, sobald diese verarbeitet wurde und Ihr Abonnement aktiv ist.",
+                    "callback": "Ihr Abonnement war erfolgreich. Ihr Konto wird aktualisiert, sobald unsere Zahlung uns über die Änderung informiert (dies kann einige Minuten dauern).",
+                    "cancel": "Ihr Abonnement wurde gekündigt. Es bleibt bis zum Ende Ihres aktuellen Abrechnungszeitraums aktiv.",
+                    "currency": "Ihre bevorzugte Währungseinstellung wurde aktualisiert.",
+                    "subscribed": "Ihr Abonnement war erfolgreich. Vergessen Sie nicht, den Community Vote-Newsletter zu abonnieren, um benachrichtigt zu werden, wenn eine Abstimmung live geht. Sie können Ihre Newsletter-Einstellungen auf Ihrer Profilseite ändern."
+                },
+                "tiers": "Abonnementstufen",
+                "trial_period": "Für Jahresabonnements gilt eine Stornierungsfrist von 14 Tagen. Kontaktieren Sie uns unter {email}, wenn Sie Ihr Jahresabonnement kündigen und eine Rückerstattung erhalten möchten.",
+                "upgrade_downgrade": {
+                    "button": "Upgrade- und Downgrade-Informationen",
+                    "downgrade": {
+                        "bullets": {
+                            "end": "Ihre aktuelle Stufe bleibt bis zum Ende Ihres aktuellen Abrechnungszyklus aktiv. Danach werden Sie auf Ihre neue Stufe herabgestuft."
+                        },
+                        "title": "Beim Downgrade auf eine niedrigere Stufe"
+                    },
+                    "upgrade": {
+                        "bullets": {
+                            "immediate": "Ihre Zahlungsmethode wird sofort in Rechnung gestellt und Sie haben Zugriff auf Ihre neue Stufe.",
+                            "prorate": "Beim Upgrade von Owlbear auf Elemental wird Ihnen nur die Differenz zu Ihrer neuen Stufe in Rechnung gestellt."
+                        },
+                        "title": "Beim Upgrade auf eine höhere Stufe"
+                    }
+                },
+                "warnings": {
+                    "patreon": "Ihr Konto ist derzeit mit Patreon verknüpft. Bitte trennen Sie die Verknüpfung Ihres Kontos in Ihren {patreon}-Einstellungen, bevor Sie zu einem Kanka-Abonnement wechseln."
                 }
             }
         }
@@ -2588,6 +2712,7 @@ export default {
                 "benefits": {
                     "first": "Pour assurer une évolution continue de Kanka, certaines fonctionnalités de l'application sont débloquées lorsqu'une campagne est boostée. Les boosts sont débloqués grâce a un abonnement. Une campagne peut être boostée par n'importe qui, du moment que le compte a accès à la campagne en question. Une campagne reste boostée tant que le compte a un {subscription} actif. Si une campagne n'est plus boostée, les informations ne sont pas perdues mais deviennent simplement invisible jusqu'à ce que la campagne sois à nouveau boostée..",
                     "header": "Image d'en-tête pour entité.",
+                    "images": "Images d'entité par défaut personnalisées.",
                     "more": "En savoir plus sur toutes les fonctionalités.",
                     "second": "Booster une campagne débloques les bénéfices suivants:",
                     "theme": "Thème de campagne et style personnalisé.",
@@ -2607,6 +2732,15 @@ export default {
                     "delete": "Boost retiré de {name}."
                 },
                 "title": "Boost"
+            },
+            "countries": {
+                "austria": "Autriche",
+                "belgium": "Belgique",
+                "france": "France",
+                "germany": "Allemagne",
+                "italy": "Italie",
+                "netherlands": "Pays Bas",
+                "spain": "Espagne"
             },
             "invoices": {
                 "actions": {
@@ -2700,7 +2834,10 @@ export default {
                 },
                 "cancelled": "L'abonnement a été annulé. Un nouvel abonnement peut être fait dès que celui-ci arrive à terme.",
                 "change": {
-                    "text": "Abonnement pour le tier {tier}, facturé mensuellement pour {amount}.",
+                    "text": {
+                        "monthly": "Abonnement au niveau {tier}, facturé mensuellement pour {amount}.",
+                        "yearly": "Abonnement au niveau {tier}, facturé annuellement pour {amount}."
+                    },
                     "title": "Changement d'abonnement"
                 },
                 "currencies": {
@@ -2717,22 +2854,30 @@ export default {
                 "fields": {
                     "active_since": "Actif depuis",
                     "active_until": "Active jusqu'à",
-                    "billed_monthly": "Facturé mensuellement",
+                    "billing": "Facturation",
                     "currency": "Devise",
                     "payment_method": "Méthode de paiement",
                     "plan": "Abonnement actuel",
                     "reason": "Raison"
+                },
+                "helpers": {
+                    "alternatives": "Payez votre abonnement en utilisant {method}. Ce mode de paiement ne sera pas renouvelé automatiquement à la fin de votre abonnement. {method} n'est disponible qu'en Euros.",
+                    "alternatives_warning": "La mise à niveau de l'abonnement lors de l'utilisation de cette méthode n'est pas possible. Veuillez créer un nouvel abonnement à la fin de votre abonnement actuel.",
+                    "alternatives_yearly": "En raison des restrictions entourant les paiements récurrents,{method} n'est disponible que pour les abonnements annuels"
                 },
                 "manage_subscription": "Gérer l'abonnement",
                 "payment_method": {
                     "actions": {
                         "add_new": "Ajouter une méthode de paiement",
                         "change": "Modifier la méthode de paiement",
-                        "save": "Enregister la méthode de paiement"
+                        "save": "Enregister la méthode de paiement",
+                        "show_alternatives": "Autres méthodes de paiement"
                     },
                     "add_one": "Aucune méthode de paiement actuellement saisie.",
+                    "alternatives": "Un abonnement peut être souscrit avec ces méthodes de paiement. Cette action générera qu'une seule facture et ne renouera pas automatiquement l'abonnement chaque mois.",
                     "card": "Carte",
                     "card_name": "Nom sur la carte",
+                    "country": "Pays de résidence",
                     "ending": "Se terminant par",
                     "helper": "Cette carte sera utilisée pour les abonnements.",
                     "new_card": "Ajouter une méthode de paiement",
@@ -2741,21 +2886,28 @@ export default {
                 "placeholders": {
                     "reason": "(optionnelle) dis-nous pourquoi tu ne souhaites plus être abonné à Kanka. Manquait-il une fonctionnalité? Ta situation financière a-t-elle changé?"
                 },
+                "plans": {
+                    "cost_monthly": "{currency} {amount} facturé mensuellement",
+                    "cost_yearly": "{currency} {amount} facturé annuellement"
+                },
                 "sub_status": "Information d'abonnement",
                 "subscription": {
                     "actions": {
                         "downgrading": "Prière de nous contacter pour un déclassement",
                         "rollback": "Changer à Kobold",
-                        "subscribe": "Changer à {tier} mensuel"
+                        "subscribe": "Changer à {tier} mensuel",
+                        "subscribe_annual": "Changer à {tier} annuel"
                     }
                 },
                 "success": {
+                    "alternative": "Le paiement a été enregistré. Une notification sera générée dès le paiement a été traité et l'abonnement activé.",
                     "callback": "Ton abonnement est réussis! Ton compte sera mis à jour dès que notre gestionnaire de paiement nous informe des changement (cela peut prendre quelques minutes).",
                     "cancel": "Ton abonnement est annulé. Il sera toujours actif jusqu'à la fin de la période actuel.",
                     "currency": "Devise préférée sauvegardée.",
                     "subscribed": "Ton abonnement est réussis! N'oublie pas de t'abonner à la newsletter Community Vote pour être averti lorsqu'un vote sera ouvert. Tu peux modifier tes paramètres de newsletter sur ta page de profil."
                 },
                 "tiers": "Niveaux d'abonnements",
+                "trial_period": "Les abonnements annuels ont une période d'annulation de 14 jours. Nous contacter à  {email} pour annuler un abonnement et recevoir un remboursement.",
                 "upgrade_downgrade": {
                     "button": "Information sur l'upgrade/downgrade",
                     "downgrade": {
@@ -4930,17 +5082,17 @@ export default {
                 "password_success": "Пароль обновлен.",
                 "social": {
                     "error": "Вы уже используете вход Kanka на этом аккаунте.",
-                    "helper": "Ваш аккаунт сейчас управляется с помощью {provider}. Вы можете остановить это и включить стандартный вход Kanka, введя пароль.",
+                    "helper": "Ваш аккаунт сейчас управляется с помощью {provider}. Вы можете остановить это и включить стандартный вход Kanka через ввод пароля.",
                     "success": "Теперь ваш аккаунт использует вход Kanka.",
                     "title": "Вход Kanka"
                 },
                 "title": "Аккаунт"
             },
             "api": {
-                "experimental": "Добро пожаловать в Kanka API! Эти функции пока экспериментальные, но достаточно стабильные, чтобы вы могли начать общаться с помощью API. Создайте личный токен доступа для использования ваших API запросов или используйте клиентский токен, если вы хотите, чтобы ваше приложение имело доступ к данным пользователя.",
-                "help": "Kanka скоро обеспечит RESTful API, чтобы приложения третьей стороны могли подключаться к приложению. Детали управления API ключами будут показаны ниже.",
+                "experimental": "Добро пожаловать в Kanka API! Эти функции пока экспериментальные, но достаточно стабильные, чтобы вы могли начать общаться с помощью API. Создайте личный токен доступа для использования ваших API запросов или используйте клиентский токен, если вы хотите, чтобы ваше приложение имело доступ к данным пользователей.",
+                "help": "Kanka скоро обеспечит RESTful API, чтобы приложения третьей стороны могли подключаться к этому приложению. Детали управления API ключами будут показаны ниже.",
                 "link": "Читать API документацию",
-                "request_permission": "Мы работаем над созданием RESTful API, чтобы приложения третьей стороны могли подключаться к приложению. Однако, мы ограничиваем число пользователей, которые могут взаимодействовать с API, пока мы работаем над ним. Если вы хотите получить доступ к API и создавать крутые приложения для доступа к Kanka, пожалуйста свяжитесь с нами, и мы отправим вам всю необходимую информацию.",
+                "request_permission": "Мы работаем над созданием RESTful API, чтобы приложения третьей стороны могли подключаться к этому приложению. Однако, мы ограничиваем число пользователей, которые могут взаимодействовать с API, пока мы работаем над ним. Если вы хотите получить доступ к API и создавать крутые приложения для доступа к Kanka, пожалуйста свяжитесь с нами, и мы отправим вам всю необходимую информацию.",
                 "title": "API"
             },
             "apps": {
@@ -4948,7 +5100,7 @@ export default {
                     "connect": "Подключиться",
                     "remove": "Удалить"
                 },
-                "benefits": "Kanka поддерживает несколько видов связи с сервисами третьей стороны. Больше видов связи планируются в будущем.",
+                "benefits": "Kanka поддерживает несколько соединений с сервисами третьей стороны. Больше соединений планируется в будущем.",
                 "discord": {
                     "errors": {
                         "add": "При соединении с вашим Discord аккаунтом через Kanka произошла ошибка. Пожалуйста, попробуйте снова."
@@ -4963,22 +5115,22 @@ export default {
             },
             "boost": {
                 "benefits": {
-                    "first": "Для гарантии продолжения развития Kanka, некоторые черты кампаний доступны только с помощью усилителей кампаний. Усилители доступны по подписке. Любой, кто видит кампанию, может усилить ее, так что админ не всегда должен за это платить. Кампания остается усиленной пока пользователь ее усиляет и продолжает поддерживать Kanka. Если кампания больше не усилена, то данные не потеряны, они просто скрыты, пока кампанию снова не усилят.",
+                    "first": "Для гарантии продолжения развития Kanka, некоторые черты Кампаний доступны только с помощью усилителей Кампаний. Усилители доступны по подписке. Любой, кто видит Кампанию, может усилить ее, так что Админ не всегда должен за это платить. Кампания остается усиленной пока пользователь ее усиливает и продолжает поддерживать Kanka. Если Кампания теряет усиление, то данные не теряются, они просто скрываются, пока Кампанию снова не усилят.",
                     "header": "Изображения заголовков объектов",
-                    "images": "Заказные изображения по умолчанию для объектов",
+                    "images": "Заказные изображения объектов по умолчанию",
                     "more": "Узнать больше обо всех функциях",
-                    "second": "Усиление кампании дает следующие преимущества:",
-                    "theme": "Тема уровней кампании и заказной стиль",
+                    "second": "Усиление Кампании дает следующие преимущества:",
+                    "theme": "Тема уровней Кампании и заказной стиль",
                     "tooltip": "Заказные подсказки для объектов",
-                    "upload": "Увеличенный вес загружаемых файлов для всех членов кампании"
+                    "upload": "Увеличенный вес загружаемых файлов для всех членов Кампании"
                 },
                 "buttons": {
                     "boost": "Усилить"
                 },
-                "campaigns": "Усиленные кампании {count}/{max}",
+                "campaigns": "Усиленные Кампании {count}/{max}",
                 "exceptions": {
                     "already_boosted": "Кампания {name} уже усилена.",
-                    "exhausted_boosts": "У вас закончились усилители. Уберите усилитель с кампании, чтобы применить его на другую."
+                    "exhausted_boosts": "У вас закончились усилители. Уберите усилитель с одной из Кампаний, чтобы применить его на другую."
                 },
                 "success": {
                     "boost": "Кампания {name} усилена.",
@@ -5010,7 +5162,7 @@ export default {
                 "header": "Ниже список ваших последних 24 счетов, которые можно скачать.",
                 "status": {
                     "paid": "Оплачен",
-                    "pending": "Ожидает"
+                    "pending": "Неоплачен"
                 },
                 "title": "Счета"
             },
@@ -5036,16 +5188,16 @@ export default {
             },
             "patreon": {
                 "actions": {
-                    "link": "Подключить Аккаунт",
+                    "link": "Подключить аккаунт",
                     "view": "Посетить Kanka на Patreon"
                 },
-                "benefits": "Поддержка нашего {patreon} разблокирует все {features} для вас и ваших кампаний, а также позволит нам проводить больше времени, работая над улучшением Kanka.",
-                "benefits_features": "удивительные черты",
+                "benefits": "Поддержка нашего {patreon} разблокирует все {features} для вас и ваших Кампаний, а также позволит нам проводить больше времени, работая над улучшением Kanka.",
+                "benefits_features": "потрясающие функции",
                 "deprecated": "Устаревшая функция - если вы хотите поддержать Kanka, пожалуйста сделайте это с помощью {subscription}. Ссылка на Patreon до сих пор активна для наших патреонцев, которые подключили их аккаунты до выхода с Patreon.",
                 "description": "Синхронизация с Patreon.",
                 "errors": {
                     "invalid_token": "Недействительный токен! Patreon не может утвердить ваш запрос.",
-                    "missing_code": "Код отсутствует! Patreon не отправил назад код, определяющий ваш аккаунт.",
+                    "missing_code": "Код отсутствует! Patreon вернул код, определяющий ваш аккаунт.",
                     "no_pledge": "Залог отсутствует! Patreon определил ваш аккаунт, но у вас нет на нем активного залога."
                 },
                 "link": "Используйте следующую кнопку, если вы уже поддерживаете Kanka на {patreon}. Это разблокирует бонусы.",
@@ -5054,7 +5206,7 @@ export default {
                 "remove": {
                     "button": "Отключить ваш Patreon аккаунт",
                     "success": "Ваш Patreon аккаунт отключен.",
-                    "text": "Отключение вашего Patreon аккаунта Kanka удалит ваши бонусы, имя в Зале Славы, усилители кампаний и другие функции, включенные в поддержку Kanka. Все созданное при усилении не пропадет (например заголовки объектов). Подписавшись назад вы получите доступ ко всем этим данным, включая возможность усилять ваши кампании.",
+                    "text": "Отключение вашего Patreon аккаунта Kanka удалит ваши бонусы, имя в Зале Славы, усилители Кампаний и другие функции, включенные в поддержку Kanka. Все созданное при усилении не пропадет (например заголовки объектов). Подписавшись назад вы получите доступ ко всем этим данным, включая возможность усиливать ваши кампании.",
                     "title": "Отключение вашего Patreon аккаунта Kanka"
                 },
                 "success": "Спасибо за поддержку Kanka на Patreon!",
@@ -5067,28 +5219,28 @@ export default {
                 },
                 "avatar": "Картинка профиля",
                 "success": "Профиль обновлен",
-                "title": "Персональный профиль"
+                "title": "Личный профиль"
             },
             "subscription": {
                 "actions": {
-                    "cancel_sub": "Отменить Подписку",
+                    "cancel_sub": "Отменить подписку",
                     "subscribe": "Подписаться",
-                    "update_currency": "Сохранить Предпочитаемую Валюту"
+                    "update_currency": "Сохранить предпочитаемую валюту"
                 },
-                "benefits": "Поддерживая нас, вы можете разблокировать новые {features} и помочь нам проводить больше времени над улучшением Kanka. Никакая информация кредитной карты не сохраняется и не передается через наши сервера. Мы используем {stripe} для управления оплатой.",
+                "benefits": "Поддерживая нас, вы можете разблокировать новые {features} и помочь нам проводить больше времени над улучшением Kanka. Информация кредитной карты не сохраняется и не передается через наши сервера. Мы используем {stripe} для управления оплатой.",
                 "billing": {
                     "helper": "Информация о вашей оплате обработана и сохранена с помощью {stripe}. Этот способ оплаты используется для всех ваших подписок.",
                     "saved": "Сохраненный способ оплаты",
                     "title": "Редактировать Способ Оплаты"
                 },
                 "cancel": {
-                    "text": "Жаль, что вы уходите! Отмена вашей подписки сохранит ее активной до следующего цикла оплаты, после которого вы потеряете ваши усилители кампаний и другие привилегии относящиеся к поддержке Kanka. Можете заполнить следующую форму, чтобы сообщить нам, что мы можем сделать лучше или почему вы приняли это решение."
+                    "text": "Жаль, что вы уходите! Отмена вашей подписки сохранит ее активной до следующего цикла оплаты, после которого вы потеряете ваши усилители Кампаний и другие привилегии относящиеся к поддержке Kanka. Можете заполнить следующую форму, чтобы сообщить нам, что мы можем сделать лучше или почему вы приняли это решение."
                 },
                 "cancelled": "Ваша подписка отменена. Вы можете обновить подписку, как только у вас закончится нынешняя подписка.",
                 "change": {
                     "text": {
-                        "monthly": "Вы подписываетесь на уровень {tier}, оплачиваемый в {amount} ежемесячно.",
-                        "yearly": "Вы подписываетесь на уровень {tier}, оплачиваемый в {amount} ежегодно."
+                        "monthly": "Вы подписываетесь на уровень {tier}, оплачиваемый в {amount} в месяц.",
+                        "yearly": "Вы подписываетесь на уровень {tier}, оплачиваемый в {amount} в год."
                     },
                     "title": "Изменение уровня подписки"
                 },
@@ -5104,17 +5256,17 @@ export default {
                     "subscribed": "Невозможно обработать вашу подписку. Stripe предоставил следующий совет."
                 },
                 "fields": {
-                    "active_since": "Активно с",
-                    "active_until": "Активно до",
+                    "active_since": "Активна с",
+                    "active_until": "Активна до",
                     "billing": "Оплата",
                     "currency": "Валюта оплаты",
                     "payment_method": "Способ оплаты",
-                    "plan": "Нынешний план",
+                    "plan": "Текущий план",
                     "reason": "Причина"
                 },
                 "helpers": {
                     "alternatives": "Оплатите свою подписку с помощью {method}. Этот способ оплаты не будет обновляться по окончанию вашей подписки. {method} доступен только для Евро.",
-                    "alternatives_warning": "Повышение вашего уровня подписки при данном способе невозможно. Пожалуйста, создайте новую подписку, когда закончится ваша нынешняя.",
+                    "alternatives_warning": "Повышение вашего уровня подписки при данном способе невозможно. Пожалуйста, создайте новую подписку, когда закончится текущая.",
                     "alternatives_yearly": "Из-за ограничений, связанных с повторяющимися оплатами, {method} доступен только для годовых подписок."
                 },
                 "manage_subscription": "Управление подпиской",
@@ -5147,8 +5299,8 @@ export default {
                     "actions": {
                         "downgrading": "Пожалуйста, свяжитесь с нами для понижения",
                         "rollback": "Изменить на Kobold",
-                        "subscribe": "Изменять на {tier} каждый месяц",
-                        "subscribe_annual": "Изменять на {tier} каждый год"
+                        "subscribe": "Изменить на месячный {tier}",
+                        "subscribe_annual": "Изменять на годовой {tier}"
                     }
                 },
                 "success": {

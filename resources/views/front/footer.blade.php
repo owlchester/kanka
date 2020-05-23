@@ -23,8 +23,7 @@
                                 <a href="{{ route('front.newsletter') }}">{{ __('front.menu.newsletter') }}</a>
                             </li>
                         </ul>
-                    </div>
-                    <div class="col-md-4 col-4">
+
                         <h5>{{ __('front.footer.headings.community') }}</h5>
                         <ul>
                             <li>
@@ -48,6 +47,27 @@
                                 <a href="{{ route('front.contact') }}">{{ __('front.menu.contact') }}</a>
                             </li>
                         </ul>
+
+                        <ul>
+                            <li>
+                                <a href="/docs/1.0">{{ __('front.menu.api') }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('front.privacy') }}">{{ __('front.menu.privacy') }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('front.terms') }}">{{ __('front.menu.terms') }}</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4 col-4">
+                        <h5>{{ __('front.footer.headings.friends') }}</h5>
+                        <ul>
+                            <li>
+                                <a href="//lookingforgm.com" target="_blank" title="LookingForGM.com">LFGM</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -60,37 +80,23 @@
                     <a href="{{ config('social.discord') }}" target="discord" title="Discord" rel="noreferrer">
                         <i class="fab fa-discord"></i>
                     </a>
-                    <a href="{{ config('social.reddit') }}" target="reddit" title="Reddit" rel="noreferrer">
-                        <i class="fab fa-reddit"></i>
-                    </a>
                     <a href="{{ config('social.facebook') }}" target="facebook" title="Facebook" rel="noreferrer">
                         <i class="fab fa-facebook"></i>
                     </a>
                     <a href="{{ config('social.instagram') }}" target="instagram" title="Instagram" rel="noreferrer">
                         <i class="fab fa-instagram"></i>
                     </a>
+                    <a href="{{ config('social.reddit') }}" target="reddit" title="Reddit" rel="noreferrer">
+                        <i class="fab fa-reddit"></i>
+                    </a>
                 </div>
             </div>
         </div>
         <div class="row secondary-footer">
-            <div class="col-md-2"></div>
-            <div class="col-md-7 col-12 text-center">
-                <ul>
-                    <li>
-                        <a href="/docs/1.0">{{ __('front.menu.api') }}</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('front.privacy') }}">{{ __('front.menu.privacy') }}</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('front.terms') }}">{{ __('front.menu.terms') }}</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-3 col-12 text-center">
+            <div class="col-12 text-center">
 
                 <p class="copyright">
-                    {!! __('footer.copyright', ['year' => date('Y')]) !!}
+                    Kanka v{{ config('app.version') }} - {!! __('footer.copyright', ['year' => date('Y')]) !!} - {{ __('footer.server_time', ['time' => \Carbon\Carbon::now()->isoFormat('MMMM Do YYYY, h:mm a')]) }}
                 </p>
             </div>
 

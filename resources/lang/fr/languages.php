@@ -14,6 +14,7 @@ return [
         'it'    => 'Italien',
         'nl'    => 'Hollandais',
         'pt-BR' => 'Portugais Brésilien',
+        'ru'    => 'Russe',
     ],
     'header'    => 'Langues',
 ];

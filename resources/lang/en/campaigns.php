@@ -222,10 +222,9 @@ return [
             '3' => 'One can either go with an "opt-out" system, where roles are given access to viewing all of the entities, and use the "Private" checkbox on entities to hide them. Or one can not give roles many permissions, but set each entitity to be visible individually.',
         ],
         'hints'         => [
-            'public'            => 'The Public role is used when someone browses your public campaign. :more',
-            'role_permissions'  => 'Enable the \':name\' role to do the following actions on all entities.',
-            'campaign_not_public' => 'The public role has permissions but the campaign is private. You can change this setting on the Sharing tab when editing the campaign.'
-
+            'campaign_not_public'   => 'The public role has permissions but the campaign is private. You can change this setting on the Sharing tab when editing the campaign.',
+            'public'                => 'The Public role is used when someone browses your public campaign. :more',
+            'role_permissions'      => 'Enable the \':name\' role to do the following actions on all entities.',
         ],
         'members'       => 'Members',
         'permissions'   => [
@@ -306,14 +305,14 @@ return [
         ],
         'description'   => 'A detailed view of a campaign',
         'tabs'          => [
-            'export'        => 'Export',
-            'information'   => 'Information',
-            'default-images' => 'Default Images',
-            'members'       => 'Members',
-            'menu'          => 'Menu',
-            'recovery'      => 'Recovery',
-            'roles'         => 'Roles',
-            'settings'      => 'Modules',
+            'default-images'    => 'Default Images',
+            'export'            => 'Export',
+            'information'       => 'Information',
+            'members'           => 'Members',
+            'menu'              => 'Menu',
+            'recovery'          => 'Recovery',
+            'roles'             => 'Roles',
+            'settings'          => 'Modules',
         ],
         'title'         => 'Campaign :name',
     ],

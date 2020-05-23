@@ -26,7 +26,9 @@ return [
         'title' => 'Permissions',
     ],
     'subscriptions'     => [
-        'ended' => 'Ta souscription a Kanka est terminée. Tes boosters de campagnes et des rôles Discord ont été retirés. Nous espérons te revoir bientôt!',
-        'failed'=> 'Ta souscription à Kanka a été annulée après trop d\'essais raté de débiter ta méthode de paiement. Va sur la page de ta souscription et mets à jour tes données de paiement.',
+        'charge_fail'   => 'Une erreur est survenue lors du paiement. Kanka va ressayer encore une fois. Si rien ne change, prière de nous contacter.',
+        'ended'         => 'Ta souscription a Kanka est terminée. Tes boosters de campagnes et des rôles Discord ont été retirés. Nous espérons te revoir bientôt!',
+        'failed'        => 'Ta souscription à Kanka a été annulée après trop d\'essais raté de débiter ta méthode de paiement. Va sur la page de ta souscription et mets à jour tes données de paiement.',
+        'started'       => 'L\'abonnement à Kanka a commencé.',
     ],
 ];

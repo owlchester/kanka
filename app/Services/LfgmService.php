@@ -60,7 +60,7 @@ class LfgmService
         CampaignLocalization::forceCampaign($campaign);
         $note = Note::create([
             'name' => 'LookingForGM Events',
-            'entry' => '<iframe src="https://www.lookingforgm.com/campaign/' . $uuid . '/kanka/" style="width: 100%; height:100%"></iframe>',
+            'entry' => '<iframe src="https://lookingforgm.com/campaign/' . $uuid . '/kanka/" style="width: 100%; border: none;" height="400" class="lfgm-iframe"></iframe>',
             'campaign_id' => $campaign->id
         ]);
 
