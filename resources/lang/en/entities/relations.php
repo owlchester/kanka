@@ -25,7 +25,7 @@ return [
     ],
     'placeholders'  => [
         'attitude'  => '-100 to 100, 100 being very positive.',
-        'relation'  => 'Rival, Best Friend, Sibling, ',
+        'relation'  => 'Rival, Best Friend, Sibling',
         'target'    => 'Choose an entity',
     ],
     'show'          => [
