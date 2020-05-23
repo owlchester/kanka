@@ -78,9 +78,6 @@ class ImgService
         $thumborUrl = $this->crop . $full;
         $sign = $this->sign($thumborUrl);
 
-        // Safari / Mac doesn't support webp yet, so we need to add a special key to not cache them in the cdn
-        $extra = $this->extraOptions();
-
         return config('thumbor.url') . $this->base . '/' . $sign . '/' . $this->crop
             . 'src/' . urlencode($img)
             . ($this->nowebp() ? '?webpfallback' : null)
@@ -96,8 +93,8 @@ class ImgService
         if (!empty($this->nowebp)) {
             return $this->nowebp;
         }
-        $ua = strtolower(request()->header('User-Agent'));
-        return $this->nowebp = preg_match('/macintosh|mac os x|iphone|ipad/i', $ua);
+        $accept = strtolower($_SERVER['HTTP_ACCEPT']);
+        return $this->nowebp = !Str::contains($accept, 'image/webp');
     }
 
     /**
