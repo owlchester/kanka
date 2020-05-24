@@ -56,7 +56,7 @@
                                 @viewentity($mention->entity)
                                 <tr>
                                     <td>
-                                        <a href="{{ $mention->entity->url() }}">{{ $mention->entity->name }}</a>
+                                        <a href="{{ $mention->entity->url() }}">{{ $mention->entity->name }} ({{ __('entities.' . $mention->entity->type) }})</a>
                                     </td>
                                 </tr>
                                 @endviewentity
