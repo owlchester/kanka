@@ -573,7 +573,7 @@ class SubscriptionService
 
         // Check if the user's active sub is from before the current date
         /** @var \Laravel\Cashier\Subscription $sub */
-        $sub = Subscription::where('user_id', $this->user->id)->where('stripe_status', 'active')->first();
+        $sub = \Laravel\Cashier\Subscription::where('user_id', $this->user->id)->where('stripe_status', 'active')->first();
         if (empty($sub)) {
             return false;
         }
