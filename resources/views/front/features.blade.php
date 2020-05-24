@@ -170,15 +170,15 @@
                 <tbody>
                 <tr>
                     <td class="text">{{ __('front.features.patreon.upload_limit') }}</td>
-                    <td>1mb </td>
-                    <td>8mb</td>
-                    <td>25mb</td>
+                    <td>1 MB</td>
+                    <td>8 MB</td>
+                    <td>25 MB</td>
                 </tr>
                 <tr>
                     <td class="text">{{ __('front.features.patreon.upload_limit_map') }}</td>
-                    <td>1mb </td>
-                    <td>10mb</td>
-                    <td>25mb</td>
+                    <td>3 MB</td>
+                    <td>10 MB</td>
+                    <td>25 MB</td>
                 </tr>
                 <tr>
                     <td class="text">{{ __('front.features.patreon.discord') }}</td>

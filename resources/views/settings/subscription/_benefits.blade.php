@@ -1,13 +1,13 @@
 <tbody>
 <tr>
-    <td>{{ __('tiers.features.file_size', ['size' => '2mb']) }}</td>
-    <td>{{ __('tiers.features.file_size', ['size' => '8mb']) }}</td>
-    <td>{{ __('tiers.features.file_size', ['size' => '25mb']) }}</td>
+    <td>{{ __('tiers.features.file_size', ['size' => '1 MB']) }}</td>
+    <td>{{ __('tiers.features.file_size', ['size' => '8 MB']) }}</td>
+    <td>{{ __('tiers.features.file_size', ['size' => '25 MB']) }}</td>
 </tr>
 <tr>
-    <td>{{ __('tiers.features.map_size', ['size' => '2mb']) }}</td>
-    <td>{{ __('tiers.features.map_size', ['size' => '10mb']) }}</td>
-    <td>{{ __('tiers.features.map_size', ['size' => '25mb']) }}</td>
+    <td>{{ __('tiers.features.map_size', ['size' => '3 MB']) }}</td>
+    <td>{{ __('tiers.features.map_size', ['size' => '10 MB']) }}</td>
+    <td>{{ __('tiers.features.map_size', ['size' => '25 MB']) }}</td>
 </tr>
 <tr>
     <td>{{ __('tiers.features.pagination', ['amount' => 45]) }}</td>

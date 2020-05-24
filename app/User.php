@@ -306,12 +306,15 @@ class User extends \TCG\Voyager\Models\User
             if ($this->isElementalPatreon()) {
                 return $readable ? '25MB' : 25600;
             }
-            if ($what == 'map') {
+            elseif ($what == 'map') {
                 return $readable ? '10MB' : 10240;
             }
             return $readable ? '8MB' : 8192;
         }
-        return $readable ? '2MB' : 2048;
+        elseif ($what == 'map') {
+            return $readable ? '3MB' : 3072;
+        }
+        return $readable ? '1MB' : 2048;
     }
 
     /**
