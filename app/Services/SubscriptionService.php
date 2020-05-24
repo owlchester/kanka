@@ -185,8 +185,9 @@ class SubscriptionService
         }
 
         // Anything that can fail, send to the queue
+        $period = !empty($this->period) ? $this->period : in_array($planID, $this->yearlyPlans()) ? 'yearly' : 'monthly';
         DiscordRoleJob::dispatch($this->user);
-        SubscriptionCreatedEmailJob::dispatch($this->user, $this->period, $new);
+        SubscriptionCreatedEmailJob::dispatch($this->user, $period, $new);
 
         return $this;
     }
