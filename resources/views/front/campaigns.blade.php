@@ -86,7 +86,7 @@
                 </div>
                 {!! Form::close() !!}
 
-                @if (empty($campaign))
+                @if (empty($campaigns))
                 <p class="text-muted">{{ __('front.campaigns.public.no-results') }}</p>
                 @else
                 <div class="row">
