@@ -74,5 +74,16 @@ class PurifySetupProvider extends ServiceProvider
 //        $def->addAttribute('img', 'data-trix-store-key', 'Text');
         $def->addAttribute('a', 'data-toggle', 'Text');
         $def->addAttribute('a', 'data-html', 'Text');
+
+        $def->addElement(
+            'details',
+            'Block',
+            'Flow',
+            'Common',
+            array(
+                'open' => new \HTMLPurifier_AttrDef_HTML_Bool(true)
+            )
+        );
+        $def->addElement('summary', 'Inline', 'Inline', 'Common');
     }
 }
