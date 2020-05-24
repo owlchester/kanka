@@ -107,6 +107,13 @@ trait Filterable
                             })
                             ->leftJoin('entity_tags as et', 'et.entity_id', 'e.id')
                             ->where('et.tag_id', $value);
+                    } elseif ($key == 'organisation_member') {
+                        $query
+                            ->select($this->getTable() . '.*')
+                            ->leftJoin('organisation_member as om', function ($join) {
+                                $join->on('om.character_id', '=', $this->getTable() . '.id');
+                            })
+                            ->where('om.organisation_id', $value);
                     } elseif ($operator == 'IS NULL') {
                         $query->where(function ($sub) use ($key) {
                             $sub->whereNull($this->getTable() . '.' . $key)
