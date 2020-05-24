@@ -3,6 +3,7 @@
 namespace App\Models\Scopes;
 
 use App\Models\Campaign;
+use Illuminate\Database\Eloquent\Builder;
 
 trait SubEntityScopes
 {
@@ -34,7 +35,7 @@ trait SubEntityScopes
      * @param $lastSync
      * @return mixed
      */
-    public function scopeLastSync($query, $lastSync)
+    public function scopeLastSync(Builder $query, $lastSync)
     {
         if (empty($lastSync)) {
             return $query;

@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static self|CampaignCacheService clearSettings();
  * @method static array defaultImages()
  * @method static self|CampaignCacheService clearDefaultImages();
+ * @method static array systems();
  *
  * @see \App\Services\Caches\CampaignCacheService
  */
