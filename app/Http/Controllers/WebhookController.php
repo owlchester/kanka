@@ -32,7 +32,7 @@ class WebhookController  extends CashierController
             $service = app()->make('App\Services\SubscriptionService');
 
             //Log::info(Arr::get($payload, 'data.object.plan'));
-            $service->user($user)->finish($payload['data']['object']['plan']['id']);
+            $service->user($user)->webhook()->finish($payload['data']['object']['plan']['id']);
         }
         return $response;
     }

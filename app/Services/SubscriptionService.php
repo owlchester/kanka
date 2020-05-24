@@ -48,6 +48,9 @@ class SubscriptionService
     /** @var string giropay,sofort,ideal */
     protected $method;
 
+    /** @var bool set to true if the request comes from a webhook */
+    protected $webhook = false;
+
     /**
      * @param User $user
      * @return $this
@@ -93,6 +96,15 @@ class SubscriptionService
         if (!in_array($period, ['monthly', 'yearly'])) {
             throw new Exception("Unknown period '$period'.");
         }
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function webhook(): self
+    {
+        $this->webhook = true;
         return $this;
     }
 
@@ -185,8 +197,14 @@ class SubscriptionService
         }
 
         // Anything that can fail, send to the queue
-        $period = !empty($this->period) ? $this->period : in_array($planID, $this->yearlyPlans()) ? 'yearly' : 'monthly';
+        $period = !empty($this->period) ? $this->period : (in_array($planID, $this->yearlyPlans()) ? 'yearly' : 'monthly');
         DiscordRoleJob::dispatch($this->user);
+
+        // If Stripe is confirming that a sub is renewed, we don't want to do anything more
+        if ($this->renewal()) {
+            return $this;
+        }
+
         SubscriptionCreatedEmailJob::dispatch($this->user, $period, $new);
 
         return $this;
@@ -540,5 +558,25 @@ class SubscriptionService
     protected function downgrading(): bool
     {
         return $this->user->isElementalPatreon() && $this->tier === Patreon::PLEDGE_OWLBEAR;
+    }
+
+    /**
+     * Determine if the process is renewing the user or not
+     * @return bool
+     */
+    protected function renewal(): bool
+    {
+        // If we're not in a webhook, it's not possible to be an auto-renewal
+        if (!$this->webhook) {
+            return false;
+        }
+
+        // Check if the user's active sub is from before the current date
+        /** @var \Laravel\Cashier\Subscription $sub */
+        $sub = Subscription::where('user_id', $this->user->id)->where('stripe_status', 'active')->first();
+        if (empty($sub)) {
+            return false;
+        }
+        return $sub->created_at->lessThan(Carbon::yesterday());
     }
 }
