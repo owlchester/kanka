@@ -164,6 +164,7 @@ return [
             . "www\.youtube(?:-nocookie)?\.com/embed/|"
             . "player\.vimeo\.com/video/|"
             . "open\.spotify\.com/embed/|"
+            . "docs.google.com/|"
             . "lookingforgm\.com/campaign/"
             . ")%",
     ],
