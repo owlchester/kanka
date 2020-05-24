@@ -18,8 +18,10 @@ class RelationResource extends JsonResource
             'owner_id' => $this->owner_id,
             'target_id' => $this->target_id,
             'relation' => $this->relation,
-            'is_private' => (bool) $this->is_private,
             'attitude' => $this->attitude,
+            'colour' => $this->colour,
+            'is_private' => (bool) $this->is_private,
+            'is_star' => (bool) $this->is_star,
 
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

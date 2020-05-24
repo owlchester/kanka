@@ -23,6 +23,7 @@ use Exception;
  * @property int $owner_id
  * @property int $target_id
  * @property bool $is_star
+ * @property string $colour
  * @property Relation $mirror
  * @property Relation $target
  * @property Relation $owner
@@ -47,6 +48,7 @@ class Relation extends Model
         'mirror_id',
         'attitude',
         'is_star',
+        'colour',
     ];
 
     /**
@@ -103,6 +105,7 @@ class Relation extends Model
             'campaign_id' => $this->campaign_id,
             'relation' => $this->relation,
             'attitude' => $this->attitude,
+            'colour' => $this->colour,
             'visibility' => $this->visibility,
             'is_star' => $this->is_star,
             'mirror_id' => $this->id,
@@ -137,5 +140,26 @@ class Relation extends Model
                     ->whereIn('entities.id', $service->entityIds())
                     ->orWhereIn('entities.type', $service->entityTypes());
             });
+    }
+
+    /**
+     * When setting the colour, remove the '#' from the db
+     * @param $colour
+     */
+    public function setColourAttribute($colour)
+    {
+        $this->attributes['colour'] = ltrim($colour, '#');
+    }
+
+    /**
+     * When setting the colour, remove the '#' from the db
+     * @param $colour
+     */
+    public function getColourAttribute(): string
+    {
+        if (empty($this->attributes['colour'])) {
+            return '';
+        }
+        return '#' . $this->attributes['colour'];
     }
 }

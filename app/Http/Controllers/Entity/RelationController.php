@@ -96,9 +96,12 @@ class RelationController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $data = $request->only(['owner_id', 'target_id', 'attitude', 'relation', 'is_star', 'two_way', 'visibility']);
+        $data = $request->only([
+            'owner_id', 'target_id', 'attitude', 'relation', 'colour', 'is_star', 'two_way', 'visibility'
+        ]);
         $ajax = $request->ajax();
 
+        /** @var Relation $relation */
         $relation = new Relation();
         $relation = $relation->create($data);
 
@@ -141,7 +144,7 @@ class RelationController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $data = $request->only(['target_id', 'attitude', 'relation', 'is_star', 'two_way', 'visibility']);
+        $data = $request->only(['target_id', 'attitude', 'relation', 'colour', 'is_star', 'two_way', 'visibility']);
         $ajax = $request->ajax();
 
         $relation->update($data);

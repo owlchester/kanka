@@ -29,6 +29,7 @@ class StoreRelation extends FormRequest
             'relation' => 'required|max:255',
             'visibility' => 'required',
             'attitude' => 'min:-100|max:100',
+            'colour' => 'nullable|max:7',
             'is_star' => 'boolean'
         ];
     }

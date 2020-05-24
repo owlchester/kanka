@@ -30,6 +30,8 @@ You can get a list of all the relations of an entity by using the following endp
             "relation": "Just Friends",
             "attitude": 22,
             "is_private": false,
+            "is_star": false,
+            "colour": null,
             "created_at": {
                 "date": "2018-04-18 12:49:16.000000",
                 "timezone_type": 3,
@@ -64,6 +66,8 @@ To get the details of a single relation, use the following endpoint.
         "relation": "Just Friends",
         "attitude": 22,
         "is_private": false,
+        "is_star": true,
+        "colour": "#22bbff",
         "created_at": {
             "date": "2018-04-18 12:49:16.000000",
             "timezone_type": 3,
@@ -96,7 +100,9 @@ To create an relation, use the following endpoint.
 | `owner_id` | `integer` (Required) | The relation's entity |
 | `target_id` | `integer` (Required) | The relation's target entity |
 | `attitude` | `integer` (Required) | -100 to 100 |
+| `colour` | `string` (Required) | Hex colour of the attitude (with or without the `#`) |
 | `two_way` | `boolean` | If set, will duplicate the relation but in the other direction |
+| `is_star` | `boolean` | If the relation is visible on the entity's submenu |
 | `is_private` | `boolean` | If the relation is only visible to `admin` members of the campaign |
 
 ### Results

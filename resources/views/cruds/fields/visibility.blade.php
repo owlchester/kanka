@@ -21,8 +21,8 @@ if (isset($model) && $model->visibility === \App\Models\Scopes\VisibilityScope::
 <div class="form-group">
     <label for="visibility">
         {{ trans('crud.fields.visibility') }}
+        <i class="fa fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ trans('crud.hints.visibility') }}"></i>
     </label>
-    <i class="fa fa-question-circle pull-right hidden-xs hidden-sm" data-toggle="tooltip" title="{{ trans('crud.hints.visibility') }}"></i>
     {{ Form::select('visibility', $options, null, ['class' => 'form-control', 'id' => 'visibility']) }}
 
     <p class="help-block visible-xs visible-sm">{{ trans('crud.hints.visibility') }}</p>

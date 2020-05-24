@@ -175,6 +175,7 @@ $(document).ready(function() {
         initAjaxPagination();
         initTooltips();
         initCategories();
+        initSpectrum();
 
         // Handle when opening the entity-creator ui
         entityCreatorUI();
@@ -424,6 +425,16 @@ function initTooltips()
     $('[data-toggle="tooltip"]').tooltip();
 
     window.ajaxTooltip();
+}
+
+function initSpectrum()
+{
+    $(".spectrum").spectrum({
+        preferredFormat: "hex",
+        showInput: true,
+        showPalette: true,
+        allowEmpty: true
+    });
 }
 
 // Helpers are injected directly in the window functions.

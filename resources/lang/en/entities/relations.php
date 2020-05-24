@@ -17,6 +17,7 @@ return [
     ],
     'helper'        => 'Set up relations between entities with attitudes and visibility. Relations can also be pinned to the entitiy\'s menu.',
     'hints'         => [
+        'attitude'  => 'This optional field can be used to define the default order relations appear in by descending order.',
         'mirrored'  => [
             'text'  => 'This relation is mirrored with :link.',
             'title' => 'Mirrored',

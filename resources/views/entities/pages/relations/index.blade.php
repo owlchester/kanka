@@ -49,14 +49,13 @@
                             <th>
                                 {{ __('entities/relations.fields.relation') }}
                             </th>
-                            <th>
-                                {{ __('entities/relations.fields.attitude') }}
-                            </th>
                             <th class="avatar"><br></th>
                             <th>
                                 {{ __('crud.relations.fields.name') }}
                             </th>
-                            @if ($campaign->enabled('locations'))<th>{{ __('crud.relations.fields.location') }}</th>@endif
+                            <th>
+                                {{ __('entities/relations.fields.attitude') }}
+                            </th>
                             @if (Auth::check())
                                 <th>
                                     {{ __('crud.fields.visibility') }}
@@ -71,20 +70,21 @@
                         @foreach ($relations as $relation)
                             @viewentity($relation->target)
                             <tr>
-                                <td class="breakable">{{ $relation->relation }}</td>
-                                <td class="breakable">{{ $relation->attitude }}</td>
+                                <td class="breakable">
+                                    {{ $relation->relation }}
+                                </td>
                                 <td>
                                     <a class="entity-image" style="background-image: url('{{ $relation->target->child->getImageUrl(40) }}');" title="{{ $relation->target->child->name }}" href="{{ $relation->target->url() }}"></a>
                                 </td>
                                 <td>
                                     {!! $relation->target->tooltipedLink() !!}
                                 </td>
-                                @if ($campaign->enabled('locations'))<td>
-                                    @if ($relation->target->child->location)
-                                        {!! $relation->target->child->location->tooltipedLink() !!}
+                                <td class="breakable">
+                                    @if (!empty($relation->colour))
+                                        <div class="label-tag-bubble" style="background-color: {{ $relation->colour }}"></div>
                                     @endif
+                                    {{ $relation->attitude }}
                                 </td>
-                                @endif
                                 @if (Auth::check())
                                     <td>
                                         @include('cruds.partials.visibility', ['model' => $relation])
@@ -126,4 +126,14 @@
             </div>
         </div>
     </div>
+@endsection
+
+
+
+@section('scripts')
+    <script src="/vendor/spectrum/spectrum.js" defer></script>
+@endsection
+
+@section('styles')
+    <link href="/vendor/spectrum/spectrum.css" rel="stylesheet">
 @endsection
