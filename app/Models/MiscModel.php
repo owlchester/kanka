@@ -262,7 +262,7 @@ abstract class MiscModel extends Model
      */
     public function hasEntry(): bool
     {
-        $excludedTypes = ['dice_roll', 'conversation'];
+        $excludedTypes = ['dice_roll', 'conversation', 'attribute_template'];
         if (in_array($this->getEntityType(), $excludedTypes)) {
             return false;
         }

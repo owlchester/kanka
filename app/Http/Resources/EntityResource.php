@@ -7,6 +7,19 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class EntityResource extends JsonResource
 {
+    /** @var bool If the entity should come with related objects */
+    public $withRelated = false;
+
+    /**
+     * Get related objects for this entity
+     * @return $this
+     */
+    public function withRelated(): self
+    {
+        $this->withRelated = true;
+        return $this;
+    }
+
     /**
      * Transform the resource into an array.
      *
@@ -44,7 +57,7 @@ class EntityResource extends JsonResource
         }
 
         /** @var MiscModel $this */
-        if (request()->get('related', false)) {
+        if (request()->get('related', false) || $this->withRelated) {
             $merged['attributes'] = AttributeResource::collection($this->entity->attributes);
             $merged['entity_notes'] = EntityNoteResource::collection($this->entity->notes);
             $merged['entity_events'] = EntityEventResource::collection($this->entity->events);

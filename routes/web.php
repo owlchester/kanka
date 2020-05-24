@@ -325,6 +325,8 @@ Route::group([
 
         Route::get('/entities/{entity}/tooltip', 'EntityTooltipController@show')->name('entities.tooltip');
 
+        Route::get('/entities/{entity}/json-export', 'Entity\ExportController@json')->name('entities.json-export');
+
         Route::get('/entities/copy-to-campaign/{entity}', 'EntityController@copyToCampaign')->name('entities.copy_to_campaign');
         Route::post('/entities/copy-to-campaign/{entity}', 'EntityController@copyEntityToCampaign')->name('entities.copy_to_campaign');
 
