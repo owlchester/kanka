@@ -6,4 +6,9 @@ return [
             'description'   => 'Add a character to a Quest',
         ],
     ],
+    'show' => [
+        'actions' => [
+            'add_organisation'  => 'Add an organization',
+        ],
+    ],
 ];

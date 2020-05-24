@@ -800,7 +800,7 @@ class CalendarRenderer
             $daysInAYear += $length;
         }
         foreach ($this->calendar->moons() as $moon) {
-            $fullmoon = (int) $moon['fullmoon'];
+            $fullmoon = $moon['fullmoon'];
             // Let's figure out how many full moons occurred until now
             $numberOfFullMoons = $totalDays / $fullmoon;
 
@@ -808,18 +808,10 @@ class CalendarRenderer
             $lastFullMoon = floor($numberOfFullMoons) * $fullmoon;
 
             // Use that to see how many days it's been
-            $daysSinceLastFullMoon = $totalDays - $lastFullMoon;
+            $daysSinceLastFullMoon = round($totalDays - $lastFullMoon, 2);
 
             // Next full moon? If it's 0, we want it today.
             $nextFullMoon = (1 + $moon['offset']) + ($fullmoon - ($daysSinceLastFullMoon == 0 ? $fullmoon : $daysSinceLastFullMoon));
-
-//            if ($moon['name'] === 'Fourth 11/1') {
-//                dump($moon['name']);
-//                dump("number of full moons: $numberOfFullMoons");
-//                dump("last full moon: $lastFullMoon");
-//                dump("days since last full moon: $daysSinceLastFullMoon");
-//                dump("next full moon: $nextFullMoon");
-//            }
 
             // Previous cycle
             $this->addMoonPhases($nextFullMoon - $moon['fullmoon'], $moon);
@@ -910,18 +902,18 @@ class CalendarRenderer
     }
 
     /**
-     * @param int $start
+     * @param float $start
      * @param array $moon
      */
-    protected function addMoonPhases(int $start, array $moon)
+    protected function addMoonPhases($start, array $moon)
     {
         // Full & New Moon
         $this->addMoonPhase($start, $moon, 'full', 'far fa-circle');
-        $newMoon = $start + ceil($moon['fullmoon'] / 2);
+        $newMoon = $start + ($moon['fullmoon'] / 2);
         $this->addMoonPhase($newMoon, $moon, 'new', 'fas fa-circle');
 
         if ($moon['fullmoon'] > 10) {
-            $quarterMonth = ceil($moon['fullmoon'] / 4);
+            $quarterMonth = $moon['fullmoon'] / 4;
             $this->addMoonPhase($newMoon - $quarterMonth, $moon, 'waning', 'far fa-moon');
             $this->addMoonPhase($newMoon + $quarterMonth, $moon, 'waxing', 'fas fa-moon');
         }
@@ -935,6 +927,8 @@ class CalendarRenderer
      */
     protected function addMoonPhase(string $nextFullMoon, array $moon, string $type = 'full', string $class = 'far fa-circle')
     {
+        // Moons can be float so we "floor" them
+        $nextFullMoon = floor($nextFullMoon);
         if (!isset($this->moons[$nextFullMoon])) {
             $this->moons[$nextFullMoon] = [];
         }
@@ -944,8 +938,6 @@ class CalendarRenderer
             'class' => $class,
             'colour' => Arr::get($moon, 'colour', 'grey')
         ];
-
-        //dump($nextFullMoon . ':' . $type);
     }
 
     /**

@@ -107,7 +107,7 @@ class CalendarObserver extends MiscObserver
 
                 $moons[] = [
                     'name' => $this->purify($moonNames[$moonCount]),
-                    'fullmoon' => $moon,
+                    'fullmoon' => round($moon, 3),
                     'offset' => (int) $moonOffsets[$moonCount],
                     'colour' => $this->purify($moonColours[$moonCount]),
                 ];
