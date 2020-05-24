@@ -98,6 +98,11 @@
                                     <i class="fa fa-download" aria-hidden="true"></i> {{ __('crud.actions.export') }}
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('entities.json-export', $model->entity) }}">
+                                    <i class="fa fa-download" aria-hidden="true"></i> {{ trans('crud.actions.json-export') }}
+                                </a>
+                            </li>
                         @endif
                         @can('delete', $model)
                             <li class="divider"></li>
