@@ -130,30 +130,33 @@ $(document).ready(function () {
 
 function registerBulkActions() {
   $('#datagrids-bulk-actions-permissions').on('click', function () {
-    setDatagridAction('permissions', '#datagrid-bulk-permission-models');
+    setBulkModels('#datagrid-bulk-permission-models');
   });
   $('#datagrids-bulk-actions-batch').on('click', function () {
-    setDatagridAction('batch', '#datagrid-bulk-batch-models');
+    setBulkModels('#datagrid-bulk-batch-models');
+  });
+  $('#datagrids-bulk-actions-delete').on('click', function () {
+    setBulkModels('#datagrid-bulk-delete-models');
   });
   $('#datagrids-bulk-actions-copy-campaign').on('click', function () {
     console.log('aaa');
-    setDatagridAction('copy-campaign', '#datagrid-bulk-permission-models');
+    setBulkModels('#datagrid-bulk-permission-models');
   });
 }
 /**
- * Set the datagrid action
- * @param action
+ * Set the datagrid bulk models
  * @param modelField
  */
 
 
-function setDatagridAction(action, modelField) {
+function setBulkModels(modelField) {
   var values = [];
   $.each($("input[name='model[]']"), function () {
     if ($(this).prop('checked')) {
       values.push($(this).val());
     }
   });
+  console.log('datagrid models', values);
   $(modelField).val(values.toString());
 }
 /**

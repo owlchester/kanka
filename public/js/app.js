@@ -76859,8 +76859,16 @@ function initTooltips() {
   $('[data-toggle="tooltip"]').tooltip();
   window.ajaxTooltip();
 }
+/**
+ * Initiate spectrum for the various fields
+ */
+
 
 function initSpectrum() {
+  if (!$.isFunction($.fn.spectrum)) {
+    return;
+  }
+
   $(".spectrum").spectrum({
     preferredFormat: "hex",
     showInput: true,

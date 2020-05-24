@@ -55,7 +55,8 @@ class BulkController extends Controller
 
         try {
             if ($action === 'delete') {
-                $count = $this->bulkService->delete();
+                $models = explode(',', $request->get('models'));
+                $count = $this->bulkService->entities($models)->delete();
                 return redirect()->route($entity . '.' . $subroute, $routeParams)
                     ->with('success', trans_choice('crud.destroy_many.success', $count, ['count' => $count]));
             } elseif ($action === 'export') {

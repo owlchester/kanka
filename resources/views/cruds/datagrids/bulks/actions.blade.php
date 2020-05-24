@@ -23,7 +23,9 @@
                 @endif
             @endif
             @can('delete', $model)
-                {!! Form::button('<i class="fa fa-trash"></i> ' . __('crud.remove'), ['type' => 'submit', 'name' => 'datagrid-action', 'value' => 'delete', 'class' => 'btn btn-danger', 'id' => 'datagrids-bulk-actions-delete', 'disabled'=>'disabled']) !!}
+                <a href="#" class="btn btn-danger bulk-delete disabled" data-toggle="modal" data-target="#bulk-delete.modal" id="datagrids-bulk-actions-delete">
+                    <i class="fa fa-trash"></i> {{ __('crud.remove') }}
+                </a>
             @endcan
         </div>
     @endif

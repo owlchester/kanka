@@ -427,8 +427,14 @@ function initTooltips()
     window.ajaxTooltip();
 }
 
+/**
+ * Initiate spectrum for the various fields
+ */
 function initSpectrum()
 {
+    if (!$.isFunction($.fn.spectrum)) {
+        return;
+    }
     $(".spectrum").spectrum({
         preferredFormat: "hex",
         showInput: true,
