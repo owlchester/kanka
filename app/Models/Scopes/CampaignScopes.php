@@ -4,8 +4,22 @@ namespace App\Models\Scopes;
 
 use App\Models\Campaign;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * Trait CampaignScopes
+ * @package App\Models\Scopes
+ *
+ * @method self|Builder visibility(string $visibility)
+ * @method self|Builder admin()
+ * @method self|Builder public()
+ * @method self|Builder front()
+ * @method self|Builder featured(bool $features = true)
+ * @method self|Builder filterPublic(array $filters)
+ */
 trait CampaignScopes
 {
     /**
@@ -13,7 +27,7 @@ trait CampaignScopes
      * @param $visibility
      * @return mixed
      */
-    public function scopeVisibility($query, $visibility)
+    public function scopeVisibility(Builder $query, $visibility)
     {
         return $query->where('visibility', $visibility);
     }
@@ -23,7 +37,7 @@ trait CampaignScopes
      * @param $query
      * @return mixed
      */
-    public function scopeAdmin($query)
+    public function scopeAdmin(Builder $query)
     {
         return $query->visibility(Campaign::VISIBILITY_REVIEW);
     }
@@ -33,7 +47,7 @@ trait CampaignScopes
      * @param $query
      * @return mixed
      */
-    public function scopeFeatured($query, $featured = true)
+    public function scopeFeatured(Builder $query, $featured = true)
     {
         return $query->where('is_featured', $featured);
     }
@@ -43,7 +57,7 @@ trait CampaignScopes
      * @param $query
      * @return mixed
      */
-    public function scopePublic($query)
+    public function scopePublic(Builder $query)
     {
         return $query->visibility(Campaign::VISIBILITY_PUBLIC);
     }
@@ -53,7 +67,7 @@ trait CampaignScopes
      * @param $query
      * @return mixed
      */
-    public function scopeTop($query)
+    public function scopeTop(Builder $query)
     {
         return $query
             ->select([
@@ -70,7 +84,7 @@ trait CampaignScopes
      * @param $lastSync
      * @return mixed
      */
-    public function scopeLastSync($query, $lastSync)
+    public function scopeLastSync(Builder $query, $lastSync)
     {
         if (empty($lastSync)) {
             return $query;
@@ -83,7 +97,7 @@ trait CampaignScopes
      * @param $query
      * @return mixed
      */
-    public function scopeTopMembers($query)
+    public function scopeTopMembers(Builder $query)
     {
         return $query
             ->select([
@@ -99,7 +113,7 @@ trait CampaignScopes
      * @param $query
      * @return mixed
      */
-    public function scopeToday($query)
+    public function scopeToday(Builder $query)
     {
         return $query->whereDate('created_at', Carbon::today());
     }
@@ -109,12 +123,26 @@ trait CampaignScopes
      * @param $query
      * @return mixed
      */
-    public function scopeFront($query)
+    public function scopeFront(Builder $query)
     {
         return $query
             ->with('boosts')
             ->where('visible_entity_count', '>', 0)
             ->orderBy('visible_entity_count', 'desc')
             ->orderBy('name', 'asc');
+    }
+
+    public function scopeFilterPublic(Builder $query, array $options)
+    {
+        $language = Arr::get($options, 'language');
+        $system = Arr::get($options, 'system');
+        if (!empty($language)) {
+            $query->where('locale', $language);
+        }
+        if (!empty($system)) {
+            $query->where('system', $system);
+        }
+
+        return $query;
     }
 }

@@ -14,6 +14,7 @@ return [
         'public'            => [
             'description'   => 'Take a look at the Public Campaigns for inspiration.',
             'title'         => 'Public Campaigns',
+            'no-results'    => 'No public campaign with these filters could be found. Please try again.',
         ],
         'title'             => 'Public Campaigns',
     ],

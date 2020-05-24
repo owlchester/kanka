@@ -2,6 +2,7 @@
 
 namespace App\Services\Caches;
 
+use App\Models\Campaign;
 use App\Models\CampaignSetting;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -172,6 +173,32 @@ class CampaignCacheService extends BaseCache
             $this->defaultImagesKey()
         );
         return $this;
+    }
+
+    /**
+     * Get the public campaign systems and cache them for a day
+     * @param string|null $type
+     * @return int
+     */
+    public function systems(): array
+    {
+        $key = 'campaign_public_systems';
+        /*if ($this->has($key)) {
+            return $this->get($key);
+        }*/
+
+        $data = Campaign::selectRaw('system, count(*) as cpt')
+            ->whereNotNull('system')
+            ->where('visibility', 'public')
+            ->groupBy('system')
+            ->orderBy('system')
+            ->get();
+
+
+        $data = $data->where('cpt', '>=', 5)->pluck('system', 'system')->toArray();
+
+        $this->put($key, $data, 24 * 3600);
+        return $data;
     }
 
     /**

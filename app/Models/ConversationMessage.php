@@ -7,6 +7,7 @@ use App\Models\Concerns\Blameable;
 use App\Traits\CampaignTrait;
 use App\Traits\VisibleTrait;
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -136,7 +137,7 @@ class ConversationMessage extends MiscModel
      * @param $lastSync
      * @return mixed
      */
-    public function scopeLastSync($query, $lastSync)
+    public function scopeLastSync(Builder $query, $lastSync)
     {
         if (empty($lastSync)) {
             return $query;
