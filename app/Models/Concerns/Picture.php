@@ -2,8 +2,8 @@
 
 namespace App\Models\Concerns;
 
+use App\Facades\Img;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 trait Picture
@@ -55,6 +55,13 @@ trait Picture
             }
         }
 
+        $nowebp = Img::nowebp();
+        $endsWith = Str::endsWith($avatar, '?webpfallback');
+        if (!$nowebp && $endsWith) {
+            $avatar = Str::replaceLast('?webpfallback', null, $avatar);
+        } elseif ($nowebp && !$endsWith) {
+            $avatar .= '?webpfallback';
+        }
         return $avatar;
     }
 
