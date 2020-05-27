@@ -42,6 +42,6 @@ return [
     'quests'                => 'Úlohy',
     'race'                  => 'Rasa',
     'races'                 => 'Rasy',
-    'tag'                   => 'Nálepka',
-    'tags'                  => 'Nálepky',
+    'tag'                   => 'Kategória',
+    'tags'                  => 'Kategórie',
 ];

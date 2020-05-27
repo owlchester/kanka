@@ -18,7 +18,7 @@ return [
     'fields'        => [
         'abilities' => 'Fähigkeiten',
         'ability'   => 'Fähigkeit',
-        'charges'   => 'Gebühren',
+        'charges'   => 'Ladungen',
         'name'      => 'Name',
         'type'      => 'Typ',
     ],

@@ -2,7 +2,7 @@
 
 return [
     'actions'       => [
-        'add_appearance'    => 'Добавить внешность',
+        'add_appearance'    => 'Добавить внешность.',
         'add_organisation'  => 'Добавить Организацию',
         'add_personality'   => 'Добавить личность',
     ],

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'abilities'             => 'Способности',
+    'abilities'             => 'Способности.',
     'admin'                 => 'Админ',
     'attribute_templates'   => 'Шаблоны Атрибутов',
     'calendars'             => 'Календари',

@@ -184,7 +184,7 @@ return [
         'boosted'   => 'Boostovaná',
         'dashboard' => 'Nástenka',
         'permission'=> 'Oprávnenie',
-        'sharing'   => 'Zdieľať',
+        'sharing'   => 'Zdieľanie',
         'systems'   => 'Systémy',
         'ui'        => 'Rozhranie',
     ],
@@ -222,8 +222,9 @@ return [
             '3' => 'Môžeš použiť "opt-out" systém, v ktorom všetky roly dostanú práva na čítanie na všetky objekty a niektoré objekty potom nastavíš ako "Súkromné", čím ich skryješ. Alebo rolám nedáš veľa oprávnení a následne ich nastavíš individuálne pre každý objekt.',
         ],
         'hints'         => [
-            'public'            => 'Rola "Verejný" sa používa, keď niekto zobrazuje tvoju verejnú kampaň. :more',
-            'role_permissions'  => 'Umožniť role :name nasledujúce akcie pre všetky objekty.',
+            'campaign_not_public'   => 'Verejná rola má oprávnenia, ale kampaň je súkromná. Tieto nastavenia počas úpravy kampane nájdeš na karte Zdieľanie.',
+            'public'                => 'Rola "Verejný" sa používa, keď niekto zobrazuje tvoju verejnú kampaň. :more',
+            'role_permissions'      => 'Umožniť role :name nasledujúce akcie pre všetky objekty.',
         ],
         'members'       => 'Členovia',
         'permissions'   => [
@@ -247,7 +248,7 @@ return [
         ],
         'title'         => 'Roly kampane :name',
         'types'         => [
-            'owner'     => 'Vlastník',
+            'owner'     => 'Admin',
             'public'    => 'Verejný',
             'standard'  => 'Štandard',
         ],
@@ -293,7 +294,7 @@ return [
             'organisations' => 'Kulty, vojenské jednotky, frakcie, cechy.',
             'quests'        => 'Aby si vedel/a sledovať plnenie úloh a cieľov postáv.',
             'races'         => 'Ak má kampaň viac ako jednu rasu, pomôže sa ti v nich vyznať táto funkcia.',
-            'tags'          => 'Každý objekt môže mať viacero nálepiek. Nálepky môžu patriť pod iné nálepky a objekty môžu byť podľa nálepiek filtrované.',
+            'tags'          => 'Každý objekt môže byť priradený viacerým kategóriám. Kategórie môžu patriť pod iné kategórie a objekty môžu byť podľa kategórií filtrované.',
         ],
         'title'         => 'Moduly kampane :name',
     ],

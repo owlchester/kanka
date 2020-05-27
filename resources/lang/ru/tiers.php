@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'current'   => 'Ваша текущая подписка',
+    'current'   => 'Ваша текущая подписка.',
     'features'  => [
         'api_requests'      => ':amount API запросов/мин',
         'boosters'          => 'Усилителей Кампаний',

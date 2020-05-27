@@ -95,13 +95,13 @@ return [
     'boosted_campaigns' => 'Boostnuté kampane',
     'bulk'              => [
         'actions'       => [
-            'edit'  => 'Hromadná úprava a nálepkovanie',
+            'edit'  => 'Hromadná úprava a kategórie',
         ],
         'age'           => [
             'helper'    => 'Môžeš použiť + a - pred číslom na úpravu veku o danú hodnotu.',
         ],
         'edit'          => [
-            'tagging'   => 'Akcie pre nálepky',
+            'tagging'   => 'Akcie s kategóriami',
             'tags'      => [
                 'add'       => 'Pridať',
                 'remove'    => 'Odstrániť',
@@ -190,8 +190,8 @@ return [
         'name'                  => 'Názov',
         'organisation'          => 'Organizácia',
         'race'                  => 'Rasa',
-        'tag'                   => 'Deň',
-        'tags'                  => 'Štítky',
+        'tag'                   => 'Kategória',
+        'tags'                  => 'Kategórie',
         'tooltip'               => 'Bublina',
         'type'                  => 'Typ',
         'visibility'            => 'Viditeľnosť',
@@ -342,11 +342,11 @@ return [
         'event'         => 'Vybrať udalosť',
         'family'        => 'Vybrať rod',
         'image_url'     => 'Obrázok je možné pridať aj nahratím cez URL.',
-        'item'          => 'Vybrať predmet',
-        'location'      => 'Vybrať miesto',
-        'organisation'  => 'Vybrať organizáciu',
-        'race'          => 'Vybrať rasu',
-        'tag'           => 'Vybrať deň',
+        'item'          => 'Vyber predmet',
+        'location'      => 'Vyber miesto',
+        'organisation'  => 'Vyber organizáciu',
+        'race'          => 'Vyber rasu',
+        'tag'           => 'Vyber kategóriu',
     ],
     'relations'         => [
         'actions'   => [

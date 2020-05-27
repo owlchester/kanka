@@ -17,7 +17,7 @@ return [
     'events'                => 'Udalosti',
     'families'              => 'Rody',
     'items'                 => 'Predmety',
-    'journals'              => 'Denníky',
+    'journals'              => 'Denník',
     'locations'             => 'Miesta',
     'manage_links'          => 'Spravovať linky',
     'navigation'            => 'Navigácia',

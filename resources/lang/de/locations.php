@@ -51,7 +51,7 @@ return [
             'explore_view'  => 'Erkundungsansicht',
         ],
         'add'           => 'Neuer Ort',
-        'description'   => 'Verwalte den Ort von :name',
+        'description'   => 'Verwalte die Orte von :name',
         'header'        => 'Orte in :name',
         'title'         => 'Orte',
     ],

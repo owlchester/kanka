@@ -56,6 +56,20 @@ return [
         ],
     ],
     'title'             => 'Nástenka',
+    'welcome'           => [
+        'body'  => <<<'TEXT'
+Vitaj v Kanke! Tvoju prvú kampaň je vytvorená a pre inšpiráciu sme do nej vložili pár objektov ako príklad (tie môžeš hocikedy odstrániť).
+
+Chceš asi začať zakladať vlastné objekty, tak si vyber niektorú z kategórií v menu! Kategórie, ktoré nepotrebuješ, môžeš vypnúť v nastavení tvojej kampane.
+
+Na začiatok pár tipov:
+- Zadaním @menoobjektu môžeš vytvoriť linku na daný objekt. Zobrazovaný text linky sa automaticky aktualizuje, ak upravíš meno daného objektu alebo jeho popis.
+- V nastavení tvojho profilového konta vpravo hore vieš upraviť dizajn a zobrazenie objektov.
+- Na :youtube sa nachádza stále narastajúci počet návodov. Mimo iných aj o atribútoch a ako zdieľať kampaň s ostatnými. Na pomoc tu máme aj :faq.
+- Keď budeš mať otázky alebo návrhy - alebo si chceš len pokecať - ukáž sa v našom :discord.
+TEXT
+,
+    ],
     'widgets'           => [
         'calendar'  => [
             'actions'           => [

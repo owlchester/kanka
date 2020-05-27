@@ -2,7 +2,7 @@
 
 return [
     'index' => [
-        'description'   => 'Последние обновления kanka.io.',
+        'description'   => 'Последние обновления kanka.io..',
         'title'         => 'Обновления',
     ],
     'post'  => [

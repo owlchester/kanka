@@ -6,7 +6,7 @@ return [
         '1' => 'Pathfinder',
         '10'=> 'GURPS',
         '11'=> 'DSA',
-        '12'=> 'Chronicles of Darkness',
+        '12'=> 'Мир Тьмы (Chronicles of Darkness)',
         '13'=> 'Powered by the Apocalypse',
         '2' => 'Stars Without Numbers',
         '3' => 'Savage Worlds',
