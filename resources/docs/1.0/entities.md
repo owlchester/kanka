@@ -83,28 +83,16 @@ With each request to an object (ie. `character`, `location`, etc), you can inclu
             "is_private": false,
             "entity_id": 76,
             "tags": [],
-            "created_at": {
-                "date": "2017-12-01 09:07:38.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "created_at":  "2019-01-30T00:01:44.000000Z",
             "created_by": null,
-            "updated_at": {
-                "date": "2017-12-03 12:06:23.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": null,
             "location_id": 2,
             "attributes": [],
             "entity_notes": [],
             "entity_events": [
                 {
-                    "created_at": {
-                        "date": "2018-05-04 05:16:04.000000",
-                        "timezone_type": 3,
-                        "timezone": "UTC"
-                    },
+                    "created_at":  "2019-01-30T00:01:44.000000Z",
                     "created_by": null,
                     "default_order": null,
                     "entity_id": 76,
@@ -112,17 +100,13 @@ With each request to an object (ie. `character`, `location`, etc), you can inclu
                     "is_private": false,
                     "name": null,
                     "type": null,
-                    "updated_at": {
-                        "date": "2018-12-21 09:25:08.000000",
-                        "timezone_type": 3,
-                        "timezone": "UTC"
-                    },
+                    "updated_at":  "2019-08-29T13:48:54.000000Z",
                     "updated_by": null,
                     "value": null
                 }
             ],
             "entity_files": [],
-            "entity_abilities": [],,
+            "entity_abilities": [],
             "relations": [],
             "title": null,
             "age": null,

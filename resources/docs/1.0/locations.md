@@ -32,23 +32,17 @@ You can get a list of all the locations of a campaign by using the following end
             "image": "{path}",
             "image_full": "{url}",
             "image_thumb": "{url}",
+            "has_custom_image": false,
             "is_private": true,
             "entity_id": 5,
             "tags": [],
-            "created_at": {
-                "date": "2017-10-31 10:55:08.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "created_at":  "2019-01-30T00:01:44.000000Z",
             "created_by": 1,
-            "updated_at": {
-                "date": "2018-09-20 09:18:58.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": 1,
             "parent_location_id": 4,
             "map": "{url}",
+            "is_map_private": 0,
             "type": "Kingdom"
         }
     ]
@@ -75,23 +69,17 @@ To get the details of a single location, use the following endpoint.
         "image": "{path}",
         "image_full": "{url}",
         "image_thumb": "{url}",
+        "has_custom_image": false,
         "is_private": true,
         "entity_id": 5,
         "tags": [],
-        "created_at": {
-            "date": "2017-10-31 10:55:08.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "created_at":  "2019-01-30T00:01:44.000000Z",
         "created_by": 1,
-        "updated_at": {
-            "date": "2018-09-20 09:18:58.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1,
         "parent_location_id": 4,
         "map": "{url}",
+        "is_map_private": 0,
         "type": "Kingdom"
     }
     
@@ -120,16 +108,8 @@ To get the map points of a location, use the following endpoint.
         "icon": "skull",
         "shape": "circle",
         "name": null,
-        "created_at": {
-            "date": "2018-03-21 12:47:19.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
-        "updated_at": {
-            "date": "2018-11-02 18:18:27.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        }
+        "created_at":  "2019-01-30T00:01:44.000000Z",
+        "updated_at":  "2019-08-29T13:48:54.000000Z"
     }
 }
 ```
@@ -186,6 +166,8 @@ To create a location, use the following endpoint.
 | `image_url` | `string` | URL to a picture to be used for the location |
 | `map` | `stream` | Stream to file uploaded as the location's map |
 | `map_url` | `string` | URL to a picture to be used for the location's map |
+| `is_map_private` | `boolean` | If the location's map is only visible to `admin` members of the campaign |
+
 
 ### Results
 

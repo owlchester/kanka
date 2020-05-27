@@ -38,7 +38,22 @@ You can get a list of all the weather effects of a calendar by using the followi
             "created_at": "2020-01-27 14:32:59",
             "updated_at": "2020-01-27 14:33:22"
         }
-    ]
+    ],
+    "links": {
+        "first": "https://kanka.io/api/{{version}}/campaigns/1/calendars/1/calendar_weathers?page=1",
+        "last": "https://kanka.io/api/{{version}}/campaigns/1/calendars/1/calendar_weathers?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "path": "https://kanka.io/api/{{version}}/campaigns/1/calendars/1/calendar_weathers",
+        "per_page": 15,
+        "to": 1,
+        "total": 1
+    }
 }
 ```
 

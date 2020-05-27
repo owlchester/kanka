@@ -24,11 +24,7 @@ You can get a list of the inventory of an entity by using the following endpoint
 {
     "data": [
         {
-            "created_at": {
-                "date": "2019-01-28 19:42:33.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "created_at":  "2019-01-30T00:01:44.000000Z",
             "created_by": 1,
             "entity_id": 69,
             "id": 31,
@@ -36,11 +32,7 @@ You can get a list of the inventory of an entity by using the following endpoint
             "visibility": "all",
             "amount": "5",
             "position": "Bank",
-            "updated_at": {
-                "date": "2019-01-28 19:42:33.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": null
         }
     ]
