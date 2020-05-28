@@ -11,7 +11,7 @@
 @endif
     </script>
 @if (!empty($tracking_new))
-    <script> gtag('event', 'conversion', {'send_to': '{{ config('tracking.ga_convo') }}/uNbhCObY0tABEOaOq7oC'}); </script>
+    <script> gtag('event', 'conversion', {'send_to': '{{ config('tracking.ga_convo') }}/pa10CJTvrssBEOaOq7oC'}); </script>
 @endif
     <!-- End Google Analytics -->
 @endif
