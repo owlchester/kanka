@@ -13,7 +13,8 @@
             'family_id',
             $preset,
             App\Models\Family::class,
-            isset($enableNew) ? $enableNew : true
+            isset($enableNew) ? $enableNew : true,
+            isset($parent) ? 'families.fields.family' : null
         ) !!}
     </div>
 @endif
