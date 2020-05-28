@@ -140,7 +140,12 @@ trait CampaignScopes
             $query->where('locale', $language);
         }
         if (!empty($system)) {
-            $query->where('system', $system);
+            $valid =  \App\Facades\CampaignCache::systems();
+            if ($system == 'other') {
+                $query->whereNotIn('system', $valid);
+            } elseif (in_array($system, $valid)) {
+                $query->where('system', $system);
+            }
         }
 
         return $query;
