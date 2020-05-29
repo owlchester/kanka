@@ -282,7 +282,7 @@ class PermissionService
         if (!empty($request['role'])) {
             foreach ($request['role'] as $roleId => $data) {
                 foreach ($data as $perm => $action) {
-                    if ($action == 'add') {
+                    if ($action == 'allow') {
                         if (empty($permissions['role'][$roleId][$perm])) {
                             CampaignPermission::create([
                                 'key' => $entity->type . '_' . $perm . '_' . $entity->child->id,
@@ -320,7 +320,7 @@ class PermissionService
         if (!empty($request['user'])) {
             foreach ($request['user'] as $userId => $data) {
                 foreach ($data as $perm => $action) {
-                    if ($action == 'add') {
+                    if ($action == 'allow') {
                         if (empty($permissions['user'][$userId][$perm])) {
                             CampaignPermission::create([
                                 'key' => $entity->type . '_' . $perm . '_' . $entity->child->id,

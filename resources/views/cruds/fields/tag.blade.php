@@ -13,7 +13,8 @@
             'tag_id',
             $preset,
             App\Models\Tag::class,
-            isset($enableNew) ? $enableNew : true
+            isset($enableNew) ? $enableNew : true,
+            isset($parent) ? 'tags.fields.tag' : null
         ) !!}
     </div>
 @endif

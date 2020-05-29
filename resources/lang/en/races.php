@@ -20,6 +20,7 @@ return [
     'fields'        => [
         'characters'    => 'Characters',
         'name'          => 'Name',
+        'race'          => 'Parent Race',
         'races'         => 'Sub Races',
         'type'          => 'Type',
     ],

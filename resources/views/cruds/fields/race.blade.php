@@ -15,7 +15,8 @@
             'race_id',
             $preset,
             App\Models\Race::class,
-            isset($enableNew) ? $enableNew : true
+            isset($enableNew) ? $enableNew : true,
+            isset($parent) ? 'races.fields.race' : null
         ) !!}
     </div>
 @endif

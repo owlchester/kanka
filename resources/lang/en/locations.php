@@ -28,7 +28,7 @@ return [
         'characters'        => 'Characters',
         'image'             => 'Image',
         'is_map_private'    => 'Private Map',
-        'location'          => 'Location',
+        'location'          => 'Parent Location',
         'locations'         => 'Locations',
         'map'               => 'Map',
         'name'              => 'Name',

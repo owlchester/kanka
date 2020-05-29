@@ -32,20 +32,13 @@ You can get a list of all the quests of a campaign by using the following endpoi
             "image": "{path}",
             "image_full": "{url}",
             "image_thumb": "{url}",
+            "has_custom_image": false,
             "is_private": true,
             "entity_id": 164,
             "tags": [],
-            "created_at": {
-                "date": "2017-10-31 10:55:08.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "created_at":  "2019-01-30T00:01:44.000000Z",
             "created_by": 1,
-            "updated_at": {
-                "date": "2018-09-20 09:18:58.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": 1,
             "character_id": 4,
             "date": "2020-04-20",
@@ -79,20 +72,13 @@ To get the details of a single quest, use the following endpoint.
         "image": "{path}",
         "image_full": "{url}",
         "image_thumb": "{url}",
+        "has_custom_image": false,
         "is_private": true,
         "entity_id": 164,
         "tags": [],
-        "created_at": {
-            "date": "2017-10-31 10:55:08.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "created_at":  "2019-01-30T00:01:44.000000Z",
         "created_by": 1,
-        "updated_at": {
-            "date": "2018-09-20 09:18:58.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1,
         "character_id": 4,
         "type": "Main",
@@ -121,20 +107,12 @@ To get the characters of an quest, use the following endpoint.
 {
     "data": {
         "character_id": 70,
-        "created_at": {
-            "date": "2018-05-05 08:19:23.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "created_at":  "2019-01-30T00:01:44.000000Z",
         "created_by": null,
         "description": "Lorem Ipsum",
         "id": 5,
         "is_private": true,
-        "updated_at": {
-            "date": "2018-05-05 08:19:23.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": null
     }
 }
@@ -157,20 +135,12 @@ To get the locations of an quest, use the following endpoint.
 {
     "data": {
         "location_id": 33,
-        "created_at": {
-            "date": "2018-05-05 08:19:23.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "created_at":  "2019-01-30T00:01:44.000000Z",
         "created_by": null,
         "description": "Lorem Ipsum",
         "id": 2,
         "is_private": true,
-        "updated_at": {
-            "date": "2018-05-05 08:19:23.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": null
     }
 }
@@ -192,20 +162,12 @@ To get the items of an quest, use the following endpoint.
 {
     "data": {
         "item_id": 33,
-        "created_at": {
-            "date": "2018-05-05 08:19:23.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "created_at":  "2019-01-30T00:01:44.000000Z",
         "created_by": null,
         "description": "Lorem Ipsum",
         "id": 2,
         "is_private": true,
-        "updated_at": {
-            "date": "2018-05-05 08:19:23.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": null
     }
 }
@@ -228,20 +190,12 @@ To get the organisations of an quest, use the following endpoint.
 {
     "data": {
         "organisation_id": 33,
-        "created_at": {
-            "date": "2018-05-05 08:19:23.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "created_at":  "2019-01-30T00:01:44.000000Z",
         "created_by": null,
         "description": "Lorem Ipsum",
         "id": 2,
         "is_private": true,
-        "updated_at": {
-            "date": "2018-05-05 08:19:23.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": null
     }
 }

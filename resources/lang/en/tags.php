@@ -27,7 +27,7 @@ return [
         'characters'    => 'Characters',
         'children'      => 'Children',
         'name'          => 'Name',
-        'tag'           => 'Tag',
+        'tag'           => 'Parent Tag',
         'tags'          => 'Subtags',
         'type'          => 'Type',
     ],

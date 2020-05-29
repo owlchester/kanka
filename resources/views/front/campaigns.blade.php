@@ -78,7 +78,7 @@
                         {!! Form::select('language', array_merge(['' => __('campaigns.fields.locale')], $languages->getSupportedLanguagesList()), request()->get('language'), ['class' => 'form-control']) !!}
                     </div>
                     <div class="col">
-                        {!! Form::select('system', array_merge(['' => __('campaigns.fields.system')], \App\Facades\CampaignCache::systems()), request()->get('system'), ['class' => 'form-control']) !!}
+                        {!! Form::select('system', array_merge(['' => __('campaigns.fields.system')], \App\Facades\CampaignCache::systems(), ['other' => __('sidebar.other')]), request()->get('system'), ['class' => 'form-control']) !!}
                     </div>
                     <div class="col">
                         <input type="submit" class="btn btn-primary" value="{{ __('crud.actions.apply') }}" />

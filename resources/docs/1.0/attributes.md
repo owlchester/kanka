@@ -25,24 +25,16 @@ You can get a list of all the attributes of an entity by using the following end
 {
     "data": [
         {
-            "api_key": null,
-            "created_at": {
-                "date": "2018-06-25 06:07:51.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "api_key": "",
+            "created_at": "2019-07-09T19:55:13.000000Z",
             "created_by": null,
             "default_order": 0,
             "entity_id": 4,
             "id": 151,
             "is_private": false,
             "name": "Force Strength",
-            "type": "block",
-            "updated_at": {
-                "date": "2018-06-25 06:07:51.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "type": "text",
+            "updated_at": "2020-03-11T13:31:34.000000Z",
             "updated_by": null,
             "value": "5"
         }
@@ -64,24 +56,16 @@ To get the details of a single attribute, use the following endpoint.
 ```json
 {
     "data": {
-        "api_key": null,
-        "created_at": {
-            "date": "2018-06-25 06:07:51.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "api_key": "",
+        "created_at": "2019-07-09T19:55:13.000000Z",
         "created_by": null,
         "default_order": 0,
         "entity_id": 4,
         "id": 151,
         "is_private": false,
         "name": "Force Strength",
-        "type": "block",
-        "updated_at": {
-            "date": "2018-06-25 06:07:51.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "type": "text",
+        "updated_at": "2020-03-11T13:31:34.000000Z",
         "updated_by": null,
         "value": "5"
     }
@@ -105,7 +89,7 @@ To create an attribute, use the following endpoint.
 | `name` | `string` (Required) | Name of the attribute |
 | `value` | `string` | The attribute's value |
 | `default_order` | `integer` | The attribute's order |
-| `type` | `string` | The attribute's type (`block` or `checkbox`) |
+| `type` | `string` | The attribute's type (`null`, `text` (multiline text), `section`, or `checkbox`) |
 | `entity_id` | `integer` (Required) | The attribute's parent entity |
 | `is_private` | `boolean` | If the attribute is only visible to `admin` members of the campaign |
 | `api_key` | `string` (max 20) | A custom field only shown in the API for you to link attributes to your system ids. |

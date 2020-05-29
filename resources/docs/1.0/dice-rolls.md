@@ -34,17 +34,9 @@ You can get a list of all the dice-rolls of a campaign by using the following en
             "is_private": false,
             "entity_id": 302,
             "tags": [],
-            "created_at": {
-                "date": "2017-10-31 10:55:08.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "created_at":  "2019-01-30T00:01:44.000000Z",
             "created_by": 1,
-            "updated_at": {
-                "date": "2018-09-20 09:18:58.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": 1,
             "character_id": 1,
             "system": "standard",
@@ -82,17 +74,9 @@ To get the details of a single dice-roll, use the following endpoint.
         "is_private": false,
         "entity_id": 302,
         "tags": [],
-        "created_at": {
-            "date": "2017-10-31 10:55:08.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "created_at":  "2019-01-30T00:01:44.000000Z",
         "created_by": 1,
-        "updated_at": {
-            "date": "2018-09-20 09:18:58.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1,
         "character_id": 1,
         "system": "standard",
