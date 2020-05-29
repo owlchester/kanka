@@ -31,24 +31,18 @@ You can get a list of all the abilities of a campaign by using the following end
             "image": "{path}",
             "image_full": "{url}",
             "image_thumb": "{url}",
+            "has_custom_image": false,
             "is_private": true,
-            "ability_id": null,
             "entity_id": 17,
             "tags": [],
-            "created_at": {
-                "date": "2017-10-31 10:55:08.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "created_at": "2020-03-25T13:52:42.000000Z",
             "created_by": 1,
-            "updated_at": {
-                "date": "2018-09-20 09:18:58.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "updated_at": "2020-05-15T08:35:56.000000Z",
             "updated_by": 1,
             "type": "3rd level",
-            "charges": 3
+            "ability_id": null,
+            "charges": 3,
+            "abilities": []
         }
     ]
 }
@@ -67,31 +61,26 @@ To get the details of a single ability, use the following endpoint.
 ### Results
 ```json
 {
-    "data": {
+    "data": 
+    {
         "id": 1,
         "name": "Fireball",
         "entry": "\n<p>Lorem Ipsum.</p>\n",
-        "ability_id": null,
         "image": "{path}",
         "image_full": "{url}",
         "image_thumb": "{url}",
+        "has_custom_image": false,
         "is_private": true,
         "entity_id": 17,
         "tags": [],
-        "created_at": {
-            "date": "2017-10-31 10:55:08.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "created_at": "2020-03-25T13:52:42.000000Z",
         "created_by": 1,
-        "updated_at": {
-            "date": "2018-09-20 09:18:58.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "updated_at": "2020-05-15T08:35:56.000000Z",
         "updated_by": 1,
-        "type": "3rd level spell",
-        "charges": 3
+        "type": "3rd level",
+        "ability_id": null,
+        "charges": 3,
+        "abilities": []
     }
 
 }

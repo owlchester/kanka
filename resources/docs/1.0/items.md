@@ -31,24 +31,19 @@ You can get a list of all the items of a campaign by using the following endpoin
             "image": "{path}",
             "image_full": "{url}",
             "image_thumb": "{url}",
+            "has_custom_image": false,
             "is_private": true,
             "entity_id": 7,
             "tags": [],
-            "created_at": {
-                "date": "2017-10-31 10:55:08.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "created_at":  "2019-01-30T00:01:44.000000Z",
             "created_by": 1,
-            "updated_at": {
-                "date": "2018-09-20 09:18:58.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": 1,
             "location_id": 4,
             "character_id": 2,
-            "type": "Weapon"
+            "type": "Weapon",
+            "price": "25 gp",
+            "size": "1 lb."
         }
     ]
 }
@@ -74,24 +69,19 @@ To get the details of a single item, use the following endpoint.
         "image": "{path}",
         "image_full": "{url}",
         "image_thumb": "{url}",
+        "has_custom_image": false,
         "is_private": true,
         "entity_id": 7,
         "tags": [],
-        "created_at": {
-            "date": "2017-10-31 10:55:08.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "created_at":  "2019-01-30T00:01:44.000000Z",
         "created_by": 1,
-        "updated_at": {
-            "date": "2018-09-20 09:18:58.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1,
         "location_id": 4,
         "character_id": 2,
-        "type": "Weapon"
+        "type": "Weapon",
+        "price": "25 gp",
+        "size": "1 lb."
     }
     
 }
@@ -115,6 +105,8 @@ To create a item, use the following endpoint.
 | `type` | `string` | The item's type |
 | `location_id` | `integer` | The item's location |
 | `character_id` | `integer` | The item's owner |
+| `price` | `string` | The item's price |
+| `size` | `string` | The item's size |
 | `tags` | `array` | Array of tag ids |
 | `is_private` | `boolean` | If the item is only visible to `admin` members of the campaign |
 | `image` | `stream` | Stream to file uploaded to the item |
