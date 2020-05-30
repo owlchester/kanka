@@ -182,30 +182,51 @@ abstract class MiscModel extends Model
 
     /**
      * Get the image (or default image) of an entity
-     * @param int $size = 200
+     * @param int $width = 200
+     * @param int $width = null
+     * @param string $field = 'image'
      * @return string
      */
     public function getImageUrl(int $width = 400, int $height = null, string $field = 'image')
     {
         if (empty($this->$field)) {
-            // Campaign could have something set up
-            $campaign = CampaignLocalization::getCampaign();
-            // If campaign is empty, we might be calling the api/campaigns of the user.
-            if (empty($campaign) && $this instanceof Campaign) {
-                CampaignCache::campaign($this);
-                $campaign = $this;
-            }
-            if ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->getEntityType())) {
-                return Img::crop(40, 40)->url(CampaignCache::defaultImages()[$this->getEntityType()]['path']);
-            }
-            // Patreons have nicer icons
-            if (auth()->check() && auth()->user()->isGoblinPatron()) {
-                return asset('/images/defaults/patreon/' . $this->getTable() . ($width !== 400 ? '_thumb' : null) . '.png');
-            }
-            return asset('/images/defaults/' . $this->getTable() . ($width !== 400 ? '_thumb' : null) . '.jpg');
-        } else {
-            return Img::crop($width, (!empty($height) ? $height : $width))->url($this->$field);
+            return $this->getImageFallback($width);
         }
+        return Img::crop($width, (!empty($height) ? $height : $width))->url($this->$field);
+    }
+
+    /**
+     * Get the original image url (for prod: aws link)
+     * @param string $field
+     * @return mixed
+     */
+    public function getOriginalImageUrl(string $field = 'image')
+    {
+        return Storage::url($this->$field);
+    }
+
+    /**
+     * Get the image fallback image
+     * @param int $width
+     * @return string
+     */
+    protected function getImageFallback(int $width = 400): string
+    {
+        // Campaign could have something set up
+        $campaign = CampaignLocalization::getCampaign();
+        // If campaign is empty, we might be calling the api/campaigns of the user.
+        if (empty($campaign) && $this instanceof Campaign) {
+            CampaignCache::campaign($this);
+            $campaign = $this;
+        }
+        if ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->getEntityType())) {
+            return Img::crop(40, 40)->url(CampaignCache::defaultImages()[$this->getEntityType()]['path']);
+        }
+        // Patreons have nicer icons
+        if (auth()->check() && auth()->user()->isGoblinPatron()) {
+            return asset('/images/defaults/patreon/' . $this->getTable() . ($width !== 400 ? '_thumb' : null) . '.png');
+        }
+        return asset('/images/defaults/' . $this->getTable() . ($width !== 400 ? '_thumb' : null) . '.jpg');
     }
 
     /**
