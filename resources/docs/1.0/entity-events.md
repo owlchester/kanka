@@ -27,11 +27,7 @@ You can get a list of all the entity-events of an entity by using the following 
         {
             "calendar_id": 7,
             "comment": "Recurring event",
-            "created_at": {
-                "date": "2019-01-04 12:31:12.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "created_at":  "2019-01-30T00:01:44.000000Z",
             "created_by": null,
             "date": "2-1-5",
             "entity_id": 1085,
@@ -40,11 +36,7 @@ You can get a list of all the entity-events of an entity by using the following 
             "is_recurring": true,
             "length": 1,
             "recurring_until": null,
-            "updated_at": {
-                "date": "2019-01-04 12:31:12.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": null
         }
     ]
@@ -67,11 +59,7 @@ To get the details of a single entity-event, use the following endpoint.
     "data": {
         "calendar_id": 7,
         "comment": "Recurring event",
-        "created_at": {
-            "date": "2019-01-04 12:31:12.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "created_at":  "2019-01-30T00:01:44.000000Z",
         "created_by": null,
         "date": "2-1-5",
         "entity_id": 1085,
@@ -80,11 +68,7 @@ To get the details of a single entity-event, use the following endpoint.
         "is_recurring": true,
         "length": 1,
         "recurring_until": null,
-        "updated_at": {
-            "date": "2019-01-04 12:31:12.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": null
     }
 }

@@ -24,11 +24,7 @@ You can get a list of all the entity-files of an entity by using the following e
 {
     "data": [
         {
-            "created_at": {
-                "date": "2019-01-28 19:42:33.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "created_at":  "2019-01-30T00:01:44.000000Z",
             "created_by": 1,
             "entity_id": 69,
             "entry": "Lorem Ipsum",
@@ -38,11 +34,7 @@ You can get a list of all the entity-files of an entity by using the following e
             "path": "{url}",
             "size": "44420",
             "type": "image/jpeg",
-            "updated_at": {
-                "date": "2019-01-28 19:42:33.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": null
         }
     ]
@@ -63,11 +55,7 @@ To get the details of a single entity-file, use the following endpoint.
 ```json
 {
     "data": {
-        "created_at": {
-            "date": "2019-01-28 19:42:33.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "created_at":  "2019-01-30T00:01:44.000000Z",
         "created_by": 1,
         "entity_id": 69,
         "entry": "Lorem Ipsum",
@@ -77,11 +65,7 @@ To get the details of a single entity-file, use the following endpoint.
         "path": "{url}",
         "size": "44420",
         "type": "image/jpeg",
-        "updated_at": {
-            "date": "2019-01-28 19:42:33.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": null
     }
 }

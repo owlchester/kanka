@@ -36,17 +36,9 @@ You can get a list of all the conversations of a campaign by using the following
                 "is_private": false,
                 "entity_id": 335,
                 "tags": [],
-                "created_at": {
-                    "date": "2018-08-22 12:35:21.000000",
-                    "timezone_type": 3,
-                    "timezone": "UTC"
-                },
+                "created_at":  "2019-01-30T00:01:44.000000Z",
                 "created_by": 1,
-                "updated_at": {
-                    "date": "2018-08-23 07:18:25.000000",
-                    "timezone_type": 3,
-                    "timezone": "UTC"
-                },
+                "updated_at":  "2019-08-29T13:48:54.000000Z",
                 "updated_by": 1,
                 "type": "In Game",
                 "target": "members",
@@ -80,17 +72,9 @@ To get the details of a single conversation, use the following endpoint.
         "is_private": false,
         "entity_id": 335,
         "tags": [],
-        "created_at": {
-            "date": "2018-08-22 12:35:21.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "created_at":  "2019-01-30T00:01:44.000000Z",
         "created_by": 1,
-        "updated_at": {
-            "date": "2018-08-23 07:18:25.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1,
         "type": "In Game",
         "target": "members",

@@ -32,16 +32,8 @@ You can get a list of all the relations of an entity by using the following endp
             "is_private": false,
             "is_star": false,
             "colour": null,
-            "created_at": {
-                "date": "2018-04-18 12:49:16.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
-            "updated_at": {
-                "date": "2018-04-18 12:49:16.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            }
+            "created_at":  "2019-01-30T00:01:44.000000Z",
+            "updated_at":  "2019-08-29T13:48:54.000000Z"
         }
     ]
 }
@@ -68,16 +60,8 @@ To get the details of a single relation, use the following endpoint.
         "is_private": false,
         "is_star": true,
         "colour": "#22bbff",
-        "created_at": {
-            "date": "2018-04-18 12:49:16.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
-        "updated_at": {
-            "date": "2018-04-18 12:49:16.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        }
+        "created_at":  "2019-01-30T00:01:44.000000Z",
+        "updated_at":  "2019-08-29T13:48:54.000000Z"
     }
 }
 ```
