@@ -44,7 +44,10 @@ class StartController extends Controller
         if ($new) {
             session()->remove('user_registered');
         }
-        return view($this->view . '.create', ['start' => true, 'tracking_new' => $new]);
+        return view($this->view . '.create', [
+            'start' => true,
+            'tracking_new' => $new
+        ]);
     }
 
     /**
