@@ -41,6 +41,7 @@
 
     <div class="row">
         <div class="col-md-4">
+            @if ($advanced)
             <div class="box box-solid">
                 <div class="box-header with-border">
                     <h4 class="box-title">Top Users (Logins)</h4>
@@ -59,7 +60,6 @@
                 </div>
             </div>
 
-            @if ($advanced)
             <div class="box box-solid">
                 <div class="box-header with-border">
                     <h4 class="box-title">Themes</h4>

@@ -8,6 +8,14 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * Trait UserScope
+ * @package App\Models\Scopes
+ *
+ * @method static self|Builder today()
+ * @method static self|Builder startOfMonth()
+ * @method static self|Builder top()
+ */
 trait UserScope
 {
     /**
