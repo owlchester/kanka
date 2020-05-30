@@ -28,6 +28,7 @@ Most entities have the following attributes.
 | `id` | `integer` | The id identifying the object against all other objects of the same type. |
 | `name` | `string` | The name representing the object. |
 | `entry` | `string` | The html description of the object. |
+| `entry_parsed` | `string` | The html description of the object with mentions replaced with kanka links. |
 | `image` | `string` | The local path to the picture of the object. |
 | `image_full` | `string` | The url to the picture of the object. |
 | `image_thumb` | `string` | The url to the thumbnail of the object. |
