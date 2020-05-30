@@ -37,8 +37,6 @@ use Exception;
  * @property string $header_image
  * @property boolean $is_private
  * @property [] $nullableForeignKeys
- * @property Attribute[] $starredAttributes
- * @property Relation[] $starredRelationss
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
 abstract class MiscModel extends Model

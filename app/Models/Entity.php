@@ -13,12 +13,8 @@ use App\Models\Scopes\EntityScopes;
 use App\Traits\CampaignTrait;
 use App\Traits\EntityAclTrait;
 use App\Traits\TooltipTrait;
-use App\User;
 use Illuminate\Database\Eloquent\Model;
-use DateTime;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
@@ -37,18 +33,6 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property boolean $is_attributes_private
  * @property string $tooltip
  * @property string $header_image
- * @property Conversation $conversation
- * @property Tag[] $tags
- * @property EntityTag[] $entityTags
- * @property EntityNote[] $notes
- * @property EntityMention[] $mentions
- * @property Inventory[] $inventories
- * @property EntityMention[] $targetMentions
- * @property EntityAbility[] $abilities
- * @property CampaignDashboardWidget[] $widgets
- * @property MiscModel $child
- * @property User $updater
- * @property Campaign $campaign
  */
 class Entity extends Model
 {
@@ -261,7 +245,12 @@ class Entity extends Model
      */
     public function starredRelations()
     {
-        return $this->relationships()->stared()->ordered()->has('target');
+        return $this->relationships()
+            ->stared()
+            ->ordered()
+            ->with('target')
+            ->has('target')
+            ->acl();
     }
 
     /**
