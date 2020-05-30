@@ -76601,7 +76601,7 @@ $(document).ready(function () {
   /*$.each($('.datagrid-search'), function(index) {
       $(this).submit(function(event) {
           event.preventDefault();
-            window.location.href =
+           window.location.href =
       });
   });*/
 
@@ -76749,13 +76749,14 @@ function resetSubmitButton(id) {
 function entityCreatorUI() {
   $('[data-toggle="entity-creator"]').on('click', function (e) {
     e.preventDefault();
-    var selection = $('#entity-creator-selection');
-    var loader = $('.entity-creator-loader');
-    selection.addClass('hidden');
-    loader.removeClass('hidden');
+    var entityCreatorSelection = $('#entity-creator-selection');
+    var entityCreatorLoader = $('.entity-creator-loader');
+    var entityCreatorFormPanel = $('.entity-creator-form-panel');
+    entityCreatorSelection.addClass('hidden');
+    entityCreatorLoader.removeClass('hidden');
     $.ajax($(this).data('url')).done(function (data) {
-      loader.addClass('hidden');
-      selection.html(data).removeClass('hidden');
+      entityCreatorLoader.addClass('hidden');
+      entityCreatorFormPanel.html(data).removeClass('hidden');
       initSelect2();
       initEntityCreatorDuplicateName();
       window.initCategories();
@@ -76774,6 +76775,8 @@ function entityCreatorUI() {
         }).done(function (result, textStatus, xhr) {
           // New entity was created, let's follow that redirect
           //console.log(result);
+          entityCreatorFormPanel.html('').addClass('hidden');
+          entityCreatorSelection.removeClass('hidden');
           $('#entity-creator-form').hide();
           $('.entity-creator-success').html(result.message).show();
         }).fail(function (data) {

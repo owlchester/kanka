@@ -34,21 +34,7 @@ class EntityCreatorController extends Controller
      */
     public function selection()
     {
-        $entities = [];
-        /** @var Campaign $campaign */
-        $campaign = CampaignLocalization::getCampaign();
-
-        // Loop through the entities, check those enabled in the campaign, and where the user has create access.
-        foreach ($this->entityService->entities([
-            'calendars', 'conversations', 'tags', 'dice_rolls', 'menu_links'
-        ]) as $name => $class) {
-            if ($campaign->enabled($name)) {
-                if (auth()->user()->can('create', $class)) {
-                    $entities[$name] = $class;
-                }
-            }
-        }
-
+        $entities = $this->availableEntities();
         return view('entities.creator.selection', [
             'entities' => $entities
         ]);
@@ -105,5 +91,30 @@ class EntityCreatorController extends Controller
             'success' => true,
             'message' => __('entities.creator.success', ['link' => link_to($new->getLink(), e($new->name))])
         ]);
+    }
+
+    /**
+     * Build a list of available entities for the quick creator
+     * @return array
+     */
+    protected function availableEntities(): array
+    {
+
+        $entities = [];
+        /** @var Campaign $campaign */
+        $campaign = CampaignLocalization::getCampaign();
+
+        // Loop through the entities, check those enabled in the campaign, and where the user has create access.
+        foreach ($this->entityService->entities([
+            'calendars', 'conversations', 'tags', 'dice_rolls', 'menu_links'
+        ]) as $name => $class) {
+            if ($campaign->enabled($name)) {
+                if (auth()->user()->can('create', $class)) {
+                    $entities[$name] = $class;
+                }
+            }
+        }
+
+        return $entities;
     }
 }
