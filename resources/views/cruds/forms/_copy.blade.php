@@ -4,4 +4,4 @@
         {{ trans('crud.fields.copy_notes') }}
     </label>
 </div>
-<input type="hidden" name="copy_source_id" value="{{ !empty($source) ? $source->entity->id : old('copy_source_id') }}">
+<input type="hidden" name="copy_source_id" value="{{ !empty($source) ? (!empty($source->entity) ? $source->entity->id : $source->id) : old('copy_source_id') }}">
