@@ -20,6 +20,42 @@ class EntityResource extends JsonResource
         return $this;
     }
 
+    public function toArray($request)
+    {
+        /** @var \App\Models\Entity $entity */
+        $entity = $this->resource;
+        $data = [
+            'id' => $entity->id,
+            'name' => $entity->name,
+            'type' => $entity->type,
+            'child_id' => $entity->id,
+            'tags' => $entity->tags()->pluck('tags.id')->toArray(),
+            'is_private' => (bool) $entity->is_private,
+            'campaign_id' => $entity->campaign_id,
+            'is_attributes_private' => (bool) $entity->is_attributes_private,
+            'tooltip' => $entity->tooltip,
+            'header_image' => $entity->header_image,
+
+            'created_at' => $entity->created_at,
+            'created_by' => $entity->created_by,
+            'updated_at' => $entity->updated_at,
+            'updated_by' => $entity->updated_by,
+        ];
+
+        /** @var MiscModel $this */
+        if (request()->get('related', false)) {
+            $data['attributes'] = AttributeResource::collection($this->attributes);
+            $data['entity_notes'] = EntityNoteResource::collection($this->notes);
+            $data['entity_events'] = EntityEventResource::collection($this->events);
+            $data['entity_files'] = EntityFileResource::collection($this->files);
+            $data['relations'] = RelationResource::collection($this->relationships);
+            $data['inventory'] = InventoryResource::collection($this->inventories);
+            $data['entity_abilities'] = EntityAbilityResource::collection($this->abilities);
+        }
+
+        return $data;
+    }
+
     /**
      * Transform the resource into an array.
      *

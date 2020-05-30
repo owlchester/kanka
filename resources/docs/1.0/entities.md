@@ -3,6 +3,7 @@
 ---
 
 - [Entities](#entities)
+- [Single Entity](#entity)
 - [Related Entities](#related-entities)
 
 <a name="entities"></a>
@@ -37,6 +38,39 @@ Most entities have the following attributes.
 | `created_by` | `integer` | The `users`.`id` who created the object.
 | `updated_at` | `object` | An object representing when the object was updated (server time) |
 | `updated_by` | `integer` | The `users`.`id` who last updated the object.
+
+<a name="entity"></a>
+## Single Entity
+
+To get the details of a single entity, use the following endpoint.
+
+| Method | Endpoint| Headers |
+| :- |   :-   |  :-  |
+| GET/HEAD | `entities/{entity.id}` | Default |
+
+### Results
+```json
+{
+    "data": {
+        "id": 95,
+        "name": "Redkeep",
+        "type": "location",
+        "child_id": 95,
+        "tags": [],
+        "is_private": false,
+        "campaign_id": 1,
+        "is_attributes_private": false,
+        "tooltip": null,
+        "header_image": null,
+        "created_at": "2017-12-07T14:23:57.000000Z",
+        "created_by": null,
+        "updated_at": "2017-12-07T14:23:57.000000Z",
+        "updated_by": null
+    }
+}
+```
+
+You can call this endpoint with the `?related` option described below to get the entity's related objects.
 
 <a name="related-entities"></a>
 ## Related Entities
