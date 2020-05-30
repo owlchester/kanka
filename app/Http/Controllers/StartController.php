@@ -35,7 +35,7 @@ class StartController extends Controller
     public function index(Request $request)
     {
         // A user with campaigns doesn't need this process.
-        if (Auth::user()->hasCampaigns()) {
+        if (Auth::user()->campaigns->count() > 0) {
             // Take the first campaign
             $campaign = Auth::user()->campaigns()->first();
             return redirect()->to(CampaignLocalization::getUrl($campaign->id));
