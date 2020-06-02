@@ -85,6 +85,10 @@ class AppServiceProvider extends ServiceProvider
 
 
         if (!app()->runningInConsole()) {
+            if($this->app->environment('prod')) {
+                \URL::forceScheme('https');
+            }
+
             // Observers
             Ability::observe('App\Observers\AbilityObserver');
             AttributeTemplate::observe('App\Observers\AttributeTemplateObserver');
