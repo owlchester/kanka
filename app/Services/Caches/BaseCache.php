@@ -90,17 +90,19 @@ abstract class BaseCache
     }
 
     /**
-     * Wrapper for the cache forever method
+     * Wrapper for the cache forever method. Don't actually store forever as data from inactive users doesn't
+     * need to be kept somewhere.
      * @param string $key
      * @param $data
+     * @param int $days
      * @return bool
      */
-    protected function forever(string $key, $data): bool
+    protected function forever(string $key, $data, int $days = 7): bool
     {
         Log::info(class_basename($this), [
             'forever' => $key,
         ]);
-        return Cache::forever($key, $data);
+        return Cache::put($key, $data, $days * 86400);
     }
 
     /**
