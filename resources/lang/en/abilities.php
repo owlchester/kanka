@@ -17,7 +17,7 @@ return [
     ],
     'fields'        => [
         'abilities' => 'Abilities',
-        'ability'   => 'Ability',
+        'ability'   => 'Parent Ability',
         'charges'   => 'Charges',
         'name'      => 'Name',
         'type'      => 'Type',

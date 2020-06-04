@@ -14,7 +14,7 @@
         <ul class="list-group list-group-unbordered">
             @if ($model->race)
                 <li class="list-group-item">
-                    <b>{{ trans('characters.fields.race') }}</b>
+                    <b>{{ trans('races.fields.race') }}</b>
                     <span class="pull-right">
                         {!! $model->race->tooltipedLink() !!}
                     </span>
