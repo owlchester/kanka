@@ -17,6 +17,7 @@ return [
     ],
     'helper'        => 'Vytvor vzťahy medzi objektami s postojom a viditeľnosťou. Vzťahy môžu byť tiež pripnuté k menu objektu.',
     'hints'         => [
+        'attitude'  => 'Toto nepovinné pole môže usporiadať poradie vzťahov štandardne podľa hodnoty vzťahu.',
         'mirrored'  => [
             'text'  => 'Tento vzťah je zrkadlený s :link.',
             'title' => 'Zrkadlený',

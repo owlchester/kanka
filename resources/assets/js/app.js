@@ -306,15 +306,16 @@ function entityCreatorUI() {
     $('[data-toggle="entity-creator"]').on('click', function(e) {
         e.preventDefault();
 
-        var selection = $('#entity-creator-selection');
-        var loader = $('.entity-creator-loader');
+        var entityCreatorSelection = $('#entity-creator-selection');
+        var entityCreatorLoader = $('.entity-creator-loader');
+        var entityCreatorFormPanel = $('.entity-creator-form-panel');
 
-        selection.addClass('hidden');
-        loader.removeClass('hidden');
+        entityCreatorSelection.addClass('hidden');
+        entityCreatorLoader.removeClass('hidden');
 
         $.ajax($(this).data('url')).done(function (data) {
-            loader.addClass('hidden');
-            selection.html(data).removeClass('hidden');
+            entityCreatorLoader.addClass('hidden');
+            entityCreatorFormPanel.html(data).removeClass('hidden');
             initSelect2();
             initEntityCreatorDuplicateName();
             window.initCategories();
@@ -337,8 +338,9 @@ function entityCreatorUI() {
                     // New entity was created, let's follow that redirect
                     //console.log(result);
 
+                    entityCreatorFormPanel.html('').addClass('hidden');
+                    entityCreatorSelection.removeClass('hidden');
                     $('#entity-creator-form').hide();
-
                     $('.entity-creator-success').html(result.message).show();
 
                 }).fail(function (data) {

@@ -13,7 +13,7 @@
         'name',
         'type',
         [
-            'label' => trans('abilities.fields.ability'),
+            'label' => trans('crud.fields.ability'),
             'field' => 'ability.name',
             'render' => function($model) {
                 if ($model->ability) {

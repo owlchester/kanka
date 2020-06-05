@@ -11,7 +11,7 @@ return [
         'notifications' => 'Benachrichtigungen',
     ],
     'groups'    => [
-        'community-votes'   => 'Gemeinschaftsabstimmungen',
+        'community-votes'   => 'Community Votes',
         'news'              => 'Neuigkeiten',
         'newsletter'        => 'Newsletter',
     ],

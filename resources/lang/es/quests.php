@@ -37,6 +37,7 @@ return [
     'fields'        => [
         'character'     => 'Instigador',
         'characters'    => 'Personajes',
+        'date'          => 'Fecha',
         'description'   => 'Descripción',
         'image'         => 'Imagen',
         'is_completed'  => 'Completada',
@@ -122,6 +123,7 @@ return [
         'title'     => 'Organizaciones en :name',
     ],
     'placeholders'  => [
+        'date'  => 'Fecha real de la misión',
         'name'  => 'Nombre de la misión',
         'quest' => 'Misión superior',
         'role'  => 'El papel que juega la entidad en la misión',

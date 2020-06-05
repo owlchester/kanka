@@ -13,7 +13,8 @@
             'ability_id',
             $preset,
             App\Models\Ability::class,
-            isset($enableNew) ? $enableNew : true
+            isset($enableNew) ? $enableNew : true,
+            isset($parent) ? 'abilities.fields.ability' : null
         ) !!}
     </div>
 @endif

@@ -251,6 +251,11 @@ footer {
     }
   }
 
+  .no-image {
+    background: rgb(223,223,223);
+    background: linear-gradient(135deg, rgba(223,223,223,1) 0%, rgba(135,135,172,1) 76%, rgba(118,118,170,1) 100%);
+  }
+
   .small-campaign {
     height: 160px;
   }

@@ -13,7 +13,7 @@
         'name',
         'type',
         [
-            'label' => trans('locations.fields.location'),
+            'label' => trans('crud.fields.location'),
             'field' => 'parentLocation.name',
             'render' => function($model) {
                 if ($model->parentLocation) {

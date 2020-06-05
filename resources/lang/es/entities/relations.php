@@ -17,6 +17,7 @@ return [
     ],
     'helper'        => 'Crea relaciones entre entidades y configura su actitud y visibilidad. Las relaciones también se pueden fijar al menú de la entidad.',
     'hints'         => [
+        'attitude'  => 'Este campo opcional puede usarse para definir el orden en el que las relaciones aparecen por defecto de forma descendiente.',
         'mirrored'  => [
             'text'  => 'Esta relación está reflejada en :link.',
             'title' => 'Reflejada',

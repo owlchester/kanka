@@ -17,6 +17,7 @@ return [
     ],
     'helper'        => 'Définir des relations entre entités avec leur description, attitude et visibilité. Les relations peuvent aussi être épinglée sur le menu de l\'entité.',
     'hints'         => [
+        'attitude'  => 'Ce champ optionnel peut être utilisé pour définir l\'ordre ascendant dans lequel s\'affiche les relations.',
         'mirrored'  => [
             'text'  => 'Cette relation est liée avec :link.',
             'title' => 'Lié',

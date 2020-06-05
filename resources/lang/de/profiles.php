@@ -22,7 +22,7 @@ return [
     ],
     'newsletter'    => [
         'links'     => [
-            'community-vote'    => 'Gemeinschaftsabstimmung',
+            'community-vote'    => 'Community Votes',
             'news'              => 'News',
         ],
         'settings'  => [

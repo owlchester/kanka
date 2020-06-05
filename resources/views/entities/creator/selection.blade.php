@@ -5,6 +5,7 @@
             <h4>{{ trans('entities.creator.title') }}</h4>
         </div>
         <div class="panel-body">
+            <p class="alert alert-success entity-creator-success" style="display: none"></p>
             <p class="help-block">{{ __('entities.creator.helper') }}</p>
             <div class="row entity-creator">
                 @if (isset($entities['characters']))
@@ -130,5 +131,7 @@
                 <i class="fa fa-spin fa-spinner fa-5x"></i>
             </div>
         </div>
+    </div>
+    <div class="entity-creator-form-panel hidden">
     </div>
 </div>

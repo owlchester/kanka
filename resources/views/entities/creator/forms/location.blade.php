@@ -6,7 +6,7 @@
         (isset($model) && $model->parentLocation ? $model->parentLocation : FormCopy::field('parentLocation')->select()),
         App\Models\Location::class,
         false,
-        'crud.fields.location',
+        'locations.fields.location',
         'locations.find',
         'locations.placeholders.location'
     ) !!}

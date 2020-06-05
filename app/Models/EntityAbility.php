@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\UserPermission;
+use App\Models\Concerns\Blameable;
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\VisibilityTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -33,7 +34,7 @@ class EntityAbility extends Model
         'charges',
     ];
 
-    use VisibilityTrait, SimpleSortableTrait;
+    use VisibilityTrait, SimpleSortableTrait, Blameable;
 
     /**
      * Set to false to skip save observers
@@ -111,8 +112,11 @@ class EntityAbility extends Model
             ->where('entities.is_private', false)
             ->where(function ($subquery) use ($service) {
                 return $subquery
-                    ->whereIn('entities.id', $service->entityIds())
-                    ->orWhereIn('entities.type', $service->entityTypes());
+                    ->where(function ($sub) use ($service) {
+                        return $sub->whereIn('entities.id', $service->entityIds())
+                            ->orWhereIn('entities.type', $service->entityTypes());
+                    })
+                    ->whereNotIn('entities.id', $service->deniedEntityIds());
             });
     }
 }

@@ -13,6 +13,7 @@ return [
         ],
         'public'            => [
             'description'   => 'Potraži inspiraciju u javnim kampanjama.',
+            'no-results'    => 'Nije pronađena nijedna javna kampanja s ovim filterima. Pokušaj ponovno.',
             'title'         => 'Javne kampanje',
         ],
         'title'             => 'Javne kampanje',
@@ -136,6 +137,7 @@ return [
         'headings'  => [
             'app'           => 'Aplikacija',
             'community'     => 'Zajednica',
+            'friends'       => 'Naši prijatelji',
             'useful_links'  => 'Korisne poveznice',
         ],
         'navigation'=> 'Navigacija',

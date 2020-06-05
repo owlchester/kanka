@@ -100,6 +100,10 @@ return [
         'age'           => [
             'helper'    => 'Puedes usar + y - antes del número para actualizar la edad en dicha cantidad.',
         ],
+        'delete'        => [
+            'title'     => 'Eliminar múltiples entidades',
+            'warning'   => '¿Seguro que quieres eliminar las entidades seleccionadas?',
+        ],
         'edit'          => [
             'tagging'   => 'Acción para las etiquetas',
             'tags'      => [
@@ -109,7 +113,8 @@ return [
             'title'     => 'Editando múltiples entidades',
         ],
         'errors'        => [
-            'admin' => 'Solamente los administradores de la campaña pueden cambiar el estatus privado de las entidades.',
+            'admin'     => 'Solamente los administradores de la campaña pueden cambiar el estatus privado de las entidades.',
+            'general'   => 'Ha habido un error al procesar la acción. Vuelve a intentarlo o contáctanos si el problema persiste. Mensaje de error: :hint.',
         ],
         'permissions'   => [
             'fields'    => [
@@ -121,10 +126,11 @@ return [
             'title'     => 'Cambiar permisos a varias entidades',
         ],
         'success'       => [
-            'editing'       => ':count entidad se ha actualizado.|:count entidades se han actualizado.',
-            'permissions'   => 'Permisos cambiados en :count entidad.|Permisos cambiados en :count entidades.',
-            'private'       => ':count entidad es ahora privada|:count entidades son ahora privadas.',
-            'public'        => ':count entidad es ahora visible|:count son ahora visibles.',
+            'copy_to_campaign'  => '{1} :count entidad copiada a :campaign.|[2,*] :count entidades copiadas a :campaign.',
+            'editing'           => ':count entidad se ha actualizado.|:count entidades se han actualizado.',
+            'permissions'       => 'Permisos cambiados en :count entidad.|Permisos cambiados en :count entidades.',
+            'private'           => ':count entidad es ahora privada|:count entidades son ahora privadas.',
+            'public'            => ':count entidad es ahora visible|:count son ahora visibles.',
         ],
     ],
     'cancel'            => 'Cancelar',
@@ -134,8 +140,9 @@ return [
         'title'     => 'Confirmar acción',
     ],
     'copy_to_campaign'  => [
-        'panel' => 'Copiar',
-        'title' => 'Copiar \':name\' a otra campaña',
+        'bulk_title'    => 'Copiar entidades a otra campaña',
+        'panel'         => 'Copiar',
+        'title'         => 'Copiar \':name\' a otra campaña',
     ],
     'create'            => 'Crear',
     'datagrid'          => [
@@ -244,10 +251,12 @@ return [
         'visibility'            => 'Al seleccionar "Administrador", solo los miembros con el rol de administrador podrán ver esto. "Solo yo" significa que solo tú puedes ver esto.',
     ],
     'history'           => [
-        'created'   => 'Creado por <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'unknown'   => 'Desconocido',
-        'updated'   => 'Última modificación por <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'view'      => 'Historial de cambios de la entidad',
+        'created'       => 'Creado por <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'created_date'  => 'Creado <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'unknown'       => 'Desconocido',
+        'updated'       => 'Última modificación por <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'updated_date'  => 'Última modificación <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'view'          => 'Historial de cambios de la entidad',
     ],
     'image'             => [
         'error' => 'No hemos podido obtener la imagen. Puede que la página web no nos permita descargarla (típico de Squarespace o DeviantArt), o que el enlace ya no es válido.',
@@ -297,9 +306,15 @@ return [
         'action'            => 'Acción',
         'actions'           => [
             'bulk'          => [
-                'add'       => 'Añadir',
+                'add'       => 'Permitir',
+                'deny'      => 'Denegar',
                 'ignore'    => 'Ignorar',
-                'remove'    => 'Eliminar',
+                'remove'    => 'Quitar',
+            ],
+            'bulk_entity'   => [
+                'allow'     => 'Permitir',
+                'deny'      => 'Denegar',
+                'inherit'   => 'Heredar',
             ],
             'delete'        => 'Eliminar',
             'edit'          => 'Editar',
@@ -313,6 +328,10 @@ return [
             'role'      => 'Rol',
         ],
         'helper'            => 'Usa esta interfaz para afinar qué usuarios y roles pueden interactuar con esta entidad.',
+        'helpers'           => [
+            'entity_note'   => 'Permite a los usuarios crear notas dentro de esta entidad. Sin este permiso, podrán seguir viendo las notas de entidad que se muestren a todos.',
+            'setup'         => 'Usa esta interfaz para afinar cómo los diferentes roles y usuarios pueden interactuar con esta entidad. :allow les permitirá hacer dicha acción; :deny se la denegará, y :inherit usará el permiso que ya tenga el rol o usuario. Un usuario con una acción puesta en :allow podrá hacerla, aunque su rol esté en :deny.',
+        ],
         'inherited'         => 'Este rol ya tiene este permiso en esta entidad.',
         'inherited_by'      => 'Este usuario forma parte del rol ":role", que le otorga este permiso en esta entidad.',
         'success'           => 'Permisos guardados.',

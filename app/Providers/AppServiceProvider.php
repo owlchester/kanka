@@ -9,6 +9,7 @@ use App\Models\CalendarWeather;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignFollower;
+use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignSetting;
 use App\Models\CampaignUser;
@@ -85,6 +86,10 @@ class AppServiceProvider extends ServiceProvider
 
 
         if (!app()->runningInConsole()) {
+            if($this->app->environment('prod')) {
+                \URL::forceScheme('https');
+            }
+
             // Observers
             Ability::observe('App\Observers\AbilityObserver');
             AttributeTemplate::observe('App\Observers\AttributeTemplateObserver');
@@ -92,6 +97,7 @@ class AppServiceProvider extends ServiceProvider
             CalendarWeather::observe(CalendarWeatherObserver::class);
             Campaign::observe(CampaignObserver::class);
             CampaignUser::observe(CampaignUserObserver::class);
+            CampaignRole::observe('App\Observers\CampaignRoleObserver');
             CampaignRoleUser::observe('App\Observers\CampaignRoleUserObserver');
             CampaignInvite::observe('App\Observers\CampaignInviteObserver');
             CampaignDashboardWidget::observe('App\Observers\CampaignDashboardWidgetObserver');

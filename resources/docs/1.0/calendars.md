@@ -32,20 +32,13 @@ You can get a list of all the calendars of a campaign by using the following end
             "image": "{path}",
             "image_full": "{url}",
             "image_thumb": "{url}",
+            "has_custom_image": false,
             "is_private": false,
             "entity_id": 78,
             "tags": [],
-            "created_at": {
-                "date": "2017-10-31 18:19:47.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
-            "created_by": null,
-            "updated_at": {
-                "date": "2018-09-20 09:17:41.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "created_at": "2019-01-28T06:29:29.000000Z",
+            "created_by": 1,
+            "updated_at": "2020-01-30T17:30:52.000000Z",
             "updated_by": 1,
             "type": "Primary",
             "date": "311-2-3",
@@ -62,9 +55,46 @@ You can get a list of all the calendars of a campaign by using the following end
                 "type": "intercalary"
               }
             ],
-            "years": [],
-            "seasons": [],
-            "moons": [],
+            "start_offset": 0,
+            "weekdays": [
+                "Sul",
+                "Mol",
+                "Zol",
+                "Wir",
+                "Zor",
+                "Far",
+                "Sar"
+            ],
+            "years": {
+                "299": "Year of Blood and Fire",
+                "300": "Year of Water and Bone"
+            },
+            "seasons": [
+              {
+                  "name": "Spring",
+                  "month": 1,
+                  "day": 1
+              },
+              {
+                  "name": "Summer",
+                  "month": 4,
+                  "day": 1
+              },
+            ],
+            "moons": [
+              {
+                  "name": "Zarantyr",
+                  "fullmoon": "13",
+                  "offset": 0,
+                  "colour": "aqua"
+              },
+              {
+                  "name": "Olarune",
+                  "fullmoon": "17",
+                  "offset": 0,
+                  "colour": "brown"
+              },
+            ],
             "suffix": "BC",
             "has_leap_year": true,
             "leap_year_amount": 4,
@@ -72,7 +102,22 @@ You can get a list of all the calendars of a campaign by using the following end
             "leap_year_offset": 3,
             "leap_year_start": 233
         }
-    ]
+    ],
+    "links": {
+        "first": "https://kanka.io/api/{{version}}/campaigns/1/calendars?page=1",
+        "last": "https://kanka.io/api/{{version}}/campaigns/1/calendars?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "path": "https://kanka.io/api/{{version}}/campaigns/1/calendars",
+        "per_page": 100,
+        "to": 1,
+        "total": 1
+    }
 }
 ```
 
@@ -96,20 +141,13 @@ To get the details of a single calendar, use the following endpoint.
         "image": "{path}",
         "image_full": "{url}",
         "image_thumb": "{url}",
+        "has_custom_image": false,
         "is_private": false,
         "entity_id": 78,
         "tags": [],
-        "created_at": {
-            "date": "2017-10-31 18:19:47.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
-        "created_by": null,
-        "updated_at": {
-            "date": "2018-09-20 09:17:41.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "created_at": "2019-01-28T06:29:29.000000Z",
+        "created_by": 1,
+        "updated_at": "2020-01-30T17:30:52.000000Z",
         "updated_by": 1,
         "type": "Primary",
         "date": "311-2-3",
@@ -126,9 +164,46 @@ To get the details of a single calendar, use the following endpoint.
             "type": "intercalary"
           }
         ],
-        "years": [],
-        "seasons": [],
-        "moons": [],
+        "start_offset": 0,
+        "weekdays": [
+            "Sul",
+            "Mol",
+            "Zol",
+            "Wir",
+            "Zor",
+            "Far",
+            "Sar"
+        ],
+        "years": {
+            "299": "Year of Blood and Fire",
+            "300": "Year of Water and Bone"
+        },
+        "seasons": [
+          {
+              "name": "Spring",
+              "month": 1,
+              "day": 1
+          },
+          {
+              "name": "Summer",
+              "month": 4,
+              "day": 1
+          },
+        ],
+        "moons": [
+          {
+              "name": "Zarantyr",
+              "fullmoon": "13",
+              "offset": 0,
+              "colour": "aqua"
+          },
+          {
+              "name": "Olarune",
+              "fullmoon": "17",
+              "offset": 0,
+              "colour": "brown"
+          },
+        ],
         "suffix": "BC",
         "has_leap_year": true,
         "leap_year_amount": 4,
@@ -176,8 +251,6 @@ To create a calendar, use the following endpoint.
 | `leap_year_amount` | `integer` | The amount of leap days |
 | `leap_year_offset` | `integer` | Every how many years the leap days occur |
 | `leap_year_start` | `integer` | The year from which the leap days start occurring  |
-| `tags` | `array` | Array of tag ids |
-| `tags` | `array` | Array of tag ids |
 | `tags` | `array` | Array of tag ids |
 | `is_private` | `boolean` | If the calendar is only visible to `admin` members of the campaign |
 | `image` | `stream` | Stream to file uploaded to the calendar |

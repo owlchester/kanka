@@ -222,8 +222,9 @@ return [
             '3' => 'Možeš ići sustavom "isključivanja", u kojem je ulogama dan pristup pregledu svih entiteta, i onda koristiti "Privatno" kućicu na entitetima da ih se sakrije. Ili možeš ne dati puno ovlasti ulogama pa postavljati vidljivost svakog entiteta zasebno.',
         ],
         'hints'         => [
-            'public'            => 'Uloga "Javnost" se koristi kad netko pretražuje tvoju javnu kampanju. :more',
-            'role_permissions'  => 'Omogući ulozi ":name" da radi sljedeće akcije nad svim entitetima.',
+            'campaign_not_public'   => 'Javna uloga ima ovlasti, ali je kampanja privatna. Ovu postavku možeš promijeniti na kartici Dijeljenje prilikom uređivanja kampanje.',
+            'public'                => 'Uloga "Javnost" se koristi kad netko pretražuje tvoju javnu kampanju. :more',
+            'role_permissions'      => 'Omogući ulozi ":name" da radi sljedeće akcije nad svim entitetima.',
         ],
         'members'       => 'Članovi',
         'permissions'   => [

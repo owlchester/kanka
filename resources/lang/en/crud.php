@@ -12,7 +12,7 @@ return [
         'export'            => 'Export (PDF)',
         'find_out_more'     => 'Find out more',
         'go_to'             => 'Go to :name',
-        'json-export'       => 'Export (json)',
+        'json-export'       => 'Export (JSON)',
         'more'              => 'More Actions',
         'move'              => 'Move',
         'new'               => 'New',
@@ -101,9 +101,9 @@ return [
         'age'           => [
             'helper'    => 'You can use + and - before the number to update the age by that amount.',
         ],
-        'delete' => [
-            'title' => 'Deleting multiple entities',
-            'warning' => 'Are you sure you want to delete the selected entities?',
+        'delete'        => [
+            'title'     => 'Deleting multiple entities',
+            'warning'   => 'Are you sure you want to delete the selected entities?',
         ],
         'edit'          => [
             'tagging'   => 'Action for tags',

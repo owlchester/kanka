@@ -5,7 +5,6 @@ namespace App\Models\Scopes;
 use App\Models\Campaign;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
@@ -13,12 +12,12 @@ use Illuminate\Support\Facades\DB;
  * Trait CampaignScopes
  * @package App\Models\Scopes
  *
- * @method self|Builder visibility(string $visibility)
- * @method self|Builder admin()
- * @method self|Builder public()
- * @method self|Builder front()
- * @method self|Builder featured(bool $features = true)
- * @method self|Builder filterPublic(array $filters)
+ * @method static self|Builder visibility(string $visibility)
+ * @method static self|Builder admin()
+ * @method static self|Builder public()
+ * @method static self|Builder front()
+ * @method static self|Builder featured(bool $features = true)
+ * @method static self|Builder filterPublic(array $filters)
  */
 trait CampaignScopes
 {
@@ -140,7 +139,12 @@ trait CampaignScopes
             $query->where('locale', $language);
         }
         if (!empty($system)) {
-            $query->where('system', $system);
+            $valid =  \App\Facades\CampaignCache::systems();
+            if ($system == 'other') {
+                $query->whereNotIn('system', $valid);
+            } elseif (in_array($system, $valid)) {
+                $query->where('system', $system);
+            }
         }
 
         return $query;

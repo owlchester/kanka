@@ -24,7 +24,9 @@ return [
         'type'      => 'Entitás típusa',
     ],
     'helpers'       => [
+        'entity'    => 'Hozz létre egy menü hivatkozást egy entitás közvetlen eléréséhez. A :tab mező meghatározza, hogy melyik fül legyen kiválasztva. A :menu mező azt befolyásolja, hogy melyik oldalrész legyen megnyitva.',
         'position'  => 'Használd ezt a mezőt, a menühivatkozások sorrendjének meghatározásához. A rendezés az itt beállított számok alapján, növekvő sorrendben történik majd.',
+        'type'      => 'Hozz létre egy menü hivatkozást entitások listájának közvetlen eléréséhez. A találatok szűréséhez másold a szűrt entitás lista url-jének azon részét a :filter mezőbe, amely a :? karakter után következik.',
     ],
     'index'         => [
         'add'           => 'Új menühivatkozás',

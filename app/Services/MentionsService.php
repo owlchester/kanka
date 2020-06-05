@@ -26,6 +26,9 @@ class MentionsService
     protected $mentionedEntities = [];
     protected $mentionedEntityTypes = [];
 
+    /** @var array */
+    protected $validEntityTypes = [];
+
     /**
      * Map the mentions in an entity
      * @param MiscModel $model
@@ -280,9 +283,20 @@ class MentionsService
      */
     protected function validEntityType(string $type): bool
     {
-        if (in_array($type, ['entity', 'file'])) {
-            return false;
+        return in_array($type, $this->validEntityTypes());
+    }
+
+    /**
+     * List of valid entity types
+     * @return array
+     */
+    protected function validEntityTypes(): array
+    {
+        if (!empty($this->validEntityTypes)) {
+            return $this->validEntityTypes;
         }
-        return true;
+
+        $validEntityTypes = array_keys(config('entities.ids'));
+        return $this->validEntityTypes = $validEntityTypes;
     }
 }

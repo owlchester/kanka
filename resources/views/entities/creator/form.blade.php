@@ -35,6 +35,4 @@
 
         <input type="hidden" name="entity" value="{{ $type }}" />
     </form>
-
-    <p class="alert alert-success entity-creator-success" style="display: none"></p>
 </div>

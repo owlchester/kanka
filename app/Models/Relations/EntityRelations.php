@@ -3,7 +3,40 @@
 
 namespace App\Models\Relations;
 
+use App\Models\Attribute;
+use App\Models\Campaign;
+use App\Models\CampaignDashboardWidget;
+use App\Models\Conversation;
+use App\Models\EntityAbility;
+use App\Models\EntityMention;
+use App\Models\EntityNote;
+use App\Models\EntityTag;
+use App\Models\Inventory;
+use App\Models\MiscModel;
+use App\Models\Relation;
+use App\Models\Tag;
+use App\User;
 
+/**
+ * Trait EntityRelations
+ * @package App\Models\Relations
+ *
+ * @property Conversation $conversation
+ * @property Tag[] $tags
+ * @property EntityTag[] $entityTags
+ * @property EntityNote[] $notes
+ * @property EntityMention[] $mentions
+ * @property Inventory[] $inventories
+ * @property EntityMention[] $targetMentions
+ * @property EntityAbility[] $abilities
+ * @property CampaignDashboardWidget[] $widgets
+ * @property MiscModel $child
+ * @property User $updater
+ * @property Campaign $campaign
+ * @property Attribute[] $starredAttributes
+ * @property Relation[] $starredRelations
+ * @property Relation[] $relations
+ */
 trait EntityRelations
 {
     /**

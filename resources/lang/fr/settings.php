@@ -98,9 +98,8 @@ return [
         'title'     => 'Factures',
     ],
     'layout'        => [
-        'description'   => 'Modifier les options de mise en page',
-        'success'       => 'Options de mise en page modifiées.',
-        'title'         => 'Mise en page',
+        'success'   => 'Options de mise en page modifiées.',
+        'title'     => 'Mise en page',
     ],
     'menu'          => [
         'account'               => 'Compte',

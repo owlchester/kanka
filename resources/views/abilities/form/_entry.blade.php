@@ -9,7 +9,7 @@
                 (isset($model) && $model->ability ? $model->ability : FormCopy::field('ability')->select(true, \App\Models\Ability::class)),
                 App\Models\Ability::class,
                 true,
-                'crud.fields.ability'
+                'abilities.fields.ability'
             ) !!}
         </div>
         <div class="form-group">

@@ -17,7 +17,7 @@ return [
     ],
     'fields'        => [
         'abilities' => 'Pouvoirs',
-        'ability'   => 'Pouvoir',
+        'ability'   => 'Pouvoir Parent',
         'charges'   => 'Charges',
         'name'      => 'Nom',
         'type'      => 'Type',

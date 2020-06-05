@@ -25,22 +25,14 @@ You can get a list of all the campaigns the user has access to using the followi
         {
             "id": 1,
             "name": "Thaelia",
-            "locale": "fr",
+            "locale": "en",
             "entry": "\r\n<p>Aenean sit amet vehicula.</p>\r\n",
             "image": "{path}",
             "image_full": "{url}",
             "image_thumb": "{url}",
             "visibility": "public",
-            "created_at": {
-                "date": "2017-10-27 13:36:19.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
-            "updated_at": {
-                "date": "2019-01-28 20:46:42.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "created_at": "2017-11-02T16:29:34.000000Z",
+            "updated_at": "2020-05-23T22:00:02.000000Z",
             "members": [
                 {
                     "id": 1,
@@ -92,16 +84,8 @@ Getting a single campaign is straightforward. `{id}` is to be replaced with the 
         "image_full": "{url}",
         "image_thumb": "{url}",
         "visibility": "public",
-        "created_at": {
-            "date": "2017-10-27 13:36:19.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
-        "updated_at": {
-            "date": "2019-01-28 20:46:42.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "created_at": "2017-11-02T16:29:34.000000Z",
+        "updated_at": "2020-05-23T22:00:02.000000Z",
         "members": [
             {
                 "id": 1,

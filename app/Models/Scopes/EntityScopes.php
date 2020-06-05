@@ -2,7 +2,6 @@
 
 namespace App\Models\Scopes;
 
-use App\Models\Tag;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 

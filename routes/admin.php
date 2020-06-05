@@ -9,6 +9,9 @@ Route::namespace('Admin')->name('admin.')->middleware(['moderator'])->prefix('ad
 
     Route::get('/test-email', 'TestEmailController@index');
 
+    Route::get('/cache', 'CacheController@index')->name('cache');
+    Route::post('/cache', 'CacheController@destroy')->name('cache.destroy');
+
     Route::resources([
         'faqs' => 'FaqController',
         'patrons' => 'PatronController',

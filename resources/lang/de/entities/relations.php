@@ -17,6 +17,7 @@ return [
     ],
     'helper'        => 'Richten Sie Beziehungen zwischen Entitäten mit Einstellungen und Sichtbarkeit ein. Beziehungen können auch an das Menü der Berechtigung angeheftet werden.',
     'hints'         => [
+        'attitude'  => 'In diesem optionalen Feld können Sie die Standardordnungsbeziehungen definieren, sie wird in absteigender Reihenfolge angezeigt.',
         'mirrored'  => [
             'text'  => 'Diese Beziehung ist gespiegelt mit :link.',
             'title' => 'Gespiegelt',

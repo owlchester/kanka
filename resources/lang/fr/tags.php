@@ -27,7 +27,7 @@ return [
         'characters'    => 'Personnages',
         'children'      => 'Enfants',
         'name'          => 'Nom',
-        'tag'           => 'Etiquette',
+        'tag'           => 'Etiquette Parentale',
         'tags'          => 'Etiquettes',
         'type'          => 'Type',
     ],

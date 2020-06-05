@@ -13,6 +13,7 @@ return [
         ],
         'public'            => [
             'description'   => 'Schau dir zur Inspiration die öffentliche Kampagne an.',
+            'no-results'    => 'Es konnte keine öffentliche Kampagne mit diesen Filtern gefunden werden. Bitte versuche es erneut.',
             'title'         => 'Öffentliche Kampagnen',
         ],
         'title'             => 'Öffentliche Kampagnen',
@@ -58,7 +59,7 @@ return [
             'header_image'  => 'Objekt-Header-Bild',
             'images'        => 'Legen Sie benutzerdefinierte Standardobjektbilder fest',
             'recovery'      => 'Wiederherstellung des Objektes für bis zu 30 Tage',
-            'theme'         => 'Kampagnenthema behoben',
+            'theme'         => 'Fixiertes Kampagnenthema',
             'title'         => 'geboostete Kampagne',
             'tooltip'       => 'Kurzinfo für benutzerdefinierte Objekte: Bild anzeigen, Text ändern',
             'upload'        => 'Erhöhte Upload-Größen für alle Mitglieder',
@@ -136,6 +137,7 @@ return [
         'headings'  => [
             'app'           => 'App',
             'community'     => 'Community',
+            'friends'       => 'Unsere Freunde',
             'useful_links'  => 'Nützliche Links',
         ],
         'navigation'=> 'Navigation',
@@ -215,7 +217,7 @@ return [
         'title'         => 'Preisübersicht',
     ],
     'privacy'       => [
-        'description'   => 'Datum des Inkrafttretens: 25. Mai 2018',
+        'description'   => 'Datum des Inkrafttretens: :date',
         'title'         => 'Datenschutz-Bestimmung',
     ],
     'release'       => [

@@ -31,20 +31,13 @@ You can get a list of all the characters of a campaign by using the following en
             "image": "{path}",
             "image_full": "{url}",
             "image_thumb": "{url}",
+            "has_custom_image": false,
             "is_private": true,
             "entity_id": 4,
             "tags": [],
-            "created_at": {
-                "date": "2017-10-31 10:55:08.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "created_at": "2019-01-29T16:40:34.000000Z",
             "created_by": 1,
-            "updated_at": {
-                "date": "2018-09-20 09:18:58.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            },
+            "updated_at": "2019-08-29T13:38:46.000000Z",
             "updated_by": 1,
             "location_id": 4,
             "title": null,
@@ -90,21 +83,13 @@ To get the details of a single character, use the following endpoint.
         "image": "{path}",
         "image_full": "{url}",
         "image_thumb": "{url}",
-        "has_custom_image": true,
+        "has_custom_image": false,
         "is_private": true,
         "entity_id": 4,
         "tags": [],
-        "created_at": {
-            "date": "2017-10-31 10:55:08.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "created_at": "2019-01-29T16:40:34.000000Z",
         "created_by": 1,
-        "updated_at": {
-            "date": "2018-09-20 09:18:58.000000",
-            "timezone_type": 3,
-            "timezone": "UTC"
-        },
+        "updated_at": "2019-08-29T13:38:46.000000Z",
         "updated_by": 1,
         "location_id": 4,
         "title": null,
@@ -145,6 +130,7 @@ To create a character, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the character |
+| `entry` | `string` | The html description of the character. | 
 | `title` | `string`  | Title of the character |
 | `age` | `string`  | Age of the character |
 | `sex` | `string`  | Gender of the character |

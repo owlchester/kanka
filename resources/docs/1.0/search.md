@@ -24,17 +24,9 @@ A search API is available at the following endpoint.
                 "tooltip": "Lorem Ipsum",
                 "url": "{url}",
                 "is_private": false,
-                "created_at": {
-                    "date": "2017-10-30 21:44:51.000000",
-                    "timezone_type": 3,
-                    "timezone": "UTC"
-                },
+                "created_at":  "2019-01-30T00:01:44.000000Z",
                 "created_by": null,
-                "updated_at": {
-                    "date": "2018-09-25 14:57:53.000000",
-                    "timezone_type": 3,
-                    "timezone": "UTC"
-                },
+                "updated_at":  "2019-08-29T13:48:54.000000Z",
                 "updated_by": null
             }
         ]

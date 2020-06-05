@@ -9,9 +9,10 @@ return [
         'copy_mention'      => 'Említett [ ] másolása',
         'copy_to_campaign'  => 'Másolás Kampányba',
         'explore_view'      => 'Hierarchikus nézet',
-        'export'            => 'Export',
+        'export'            => 'Export (pdf)',
         'find_out_more'     => 'Tudj meg többet!',
         'go_to'             => 'Ugrás :name entitáshoz',
+        'json-export'       => 'Exportálás (json)',
         'more'              => 'Több művelet',
         'move'              => 'Mozgatás',
         'new'               => 'Új',
@@ -99,6 +100,10 @@ return [
         ],
         'age'           => [
             'helper'    => 'Használhatod a + és - gombokat a szám előtt, hogy frissítsd a korát az adott számmal.',
+        ],
+        'delete'        => [
+            'title'     => 'Több entitás törlése egyidejűleg',
+            'warning'   => 'Biztosan törölni szeretnéd a kijelölt entitásokat?',
         ],
         'edit'          => [
             'tagging'   => 'Címkézési esemény',
@@ -323,7 +328,11 @@ return [
             'member'    => 'Tag',
             'role'      => 'Szerep',
         ],
-        'helper'            => 'Használd ezt a felületet, hogy finomhangold, melyik felhasználó és szerep tud kapcsolatba lépni ezzel az entitással.',
+        'helper'            => 'Használd ezt a felületet, hogy finomhangold, melyik felhasználó és szerep tud kapcsolatba lépni ezzel az entitással. :allow',
+        'helpers'           => [
+            'entity_note'   => 'Entitás Jegyzetek létrehozásának engedélyezése a felhasználók számára ezen az entitáson. Enélkül a jogosultság nélkül a felhasználók látják majd az Entitás Jegyzeteket, ha azok láthatósága \'Mindenki\'-re van állítva.',
+            'setup'         => 'Használd ezt a felületet, hogy finomhangold, melyik felhasználó és szerep tud kapcsolatba lépni ezzel az entitással. :allow engedélyezni fogja a felhasználó, vagy a szerep birtokosa számára, ennek a műveletnek az elvégzését. :deny megtiltja hogy ezt a műveletet végezhessék. :inherit beállítás esetén pedig a felhasználó szerepét, vagy fő szerepének jogosultságát fogja figyelembe venni. Egy felhasználói szinten beállított :allow jog engedélyt fog adni a művelet elvégzésére, még akkor is, ha a felhasználó szerepköre :deny-aná ezt.',
+        ],
         'inherited'         => 'Ez a szerep már rendelkezik ezzel a jogosultsággal ehhez a típusú entitáshoz.',
         'inherited_by'      => 'Ez a felhasználó tagja a \':role\' szerepnek, amely rendelkezik jogosultsággal ezen az entitás típuson.',
         'success'           => 'Engedélyeket elmentettük.',

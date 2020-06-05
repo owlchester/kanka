@@ -12,7 +12,7 @@ return [
         'hall_of_fame'      => 'Hall of Fame',
         'map_size'          => ':size Map size uploads',
         'nice_image'        => 'Default entity images',
-        'pagination'        => ':amount Max paginated results',
+        'pagination'        => ':amount Max paginated results (entities per page)',
         'vote_influence'    => 'Community vote influence',
     ],
     'pricing'   => ':currency :amount / month',

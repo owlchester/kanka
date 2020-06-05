@@ -38,11 +38,7 @@ When calling an `index` enpoint, for example the `items` endpoint, you can provi
     "data": [
         {
             "id": "4",
-            "updated_at": {
-                "date": "2019-03-21 19:24:53.000000",
-                "timezone_type": 3,
-                "timezone": "UTC"
-            }
+            "updated_at":  "2019-08-29T13:48:54.000000Z"
         }
     ],
     "sync": {
