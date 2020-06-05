@@ -313,6 +313,12 @@ class PermissionService
                             $permissions['role'][$roleId][$perm]->update(['access' => false]);
                             unset($permissions['role'][$roleId][$perm]);
                         }
+
+                    } elseif ($action == 'inherit') {
+                        // Inherit? Remove it if it exists
+                        if (!empty($permissions['role'][$roleId][$perm])) {
+                            $permissions['role'][$roleId][$perm]->delete();
+                        }
                     }
                 }
             }
@@ -349,6 +355,11 @@ class PermissionService
                             ]);
                         } else {
                             $permissions['user'][$userId][$perm]->update(['access' => false]);
+                        }
+                    } elseif ($action == 'inherit') {
+                        // Inherit? Remove it if it exists
+                        if (!empty($permissions['user'][$userId][$perm])) {
+                            $permissions['user'][$userId][$perm]->delete();
                         }
                     }
                 }

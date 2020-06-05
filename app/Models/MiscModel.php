@@ -310,7 +310,7 @@ abstract class MiscModel extends Model
             $items['relations'] = [
                 'name' => 'crud.tabs.relations',
                 'route' => 'entities.relations.index',
-                'count' => $this->entity->relationships()->count(),
+                'count' => $this->entity->relationships()->acl()->count(),
                 'entity' => true,
                 'icon' => 'fa fa-users',
             ];
