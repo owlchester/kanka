@@ -165,6 +165,7 @@ return [
             . "player\.vimeo\.com/video/|"
             . "open\.spotify\.com/embed/|"
             . "docs.google.com/|"
+            . "drive.google.com/|"
             . "lookingforgm\.com/campaign/"
             . ")%",
     ],
