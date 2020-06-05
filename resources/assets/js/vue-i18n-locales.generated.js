@@ -84,6 +84,7 @@ export default {
                 "export": "Exportieren",
                 "find_out_more": "Mehr erfahren",
                 "go_to": "Gehe zu {name}",
+                "json-export": "Export (json)",
                 "more": "Mehr Aktionen",
                 "move": "Verschieben",
                 "new": "Neu",
@@ -171,6 +172,10 @@ export default {
                 },
                 "age": {
                     "helper": "Sie können + und - vor der Nummer verwenden, um das Alter dynamisch zu aktualisieren."
+                },
+                "delete": {
+                    "title": "Mehrere Objekte löschen",
+                    "warning": "Möchten Sie die ausgewählten Objekte wirklich löschen?"
                 },
                 "edit": {
                     "tagging": "Aktion für Tags",
@@ -827,7 +832,7 @@ export default {
                 "export": "Export (PDF)",
                 "find_out_more": "Find out more",
                 "go_to": "Go to {name}",
-                "json-export": "Export (json)",
+                "json-export": "Export (JSON)",
                 "more": "More Actions",
                 "move": "Move",
                 "new": "New",
@@ -1671,6 +1676,10 @@ export default {
                 "age": {
                     "helper": "Puedes usar + y - antes del número para actualizar la edad en dicha cantidad."
                 },
+                "delete": {
+                    "title": "Eliminar múltiples entidades",
+                    "warning": "¿Seguro que quieres eliminar las entidades seleccionadas?"
+                },
                 "edit": {
                     "tagging": "Acción para las etiquetas",
                     "tags": {
@@ -1680,7 +1689,8 @@ export default {
                     "title": "Editando múltiples entidades"
                 },
                 "errors": {
-                    "admin": "Solamente los administradores de la campaña pueden cambiar el estatus privado de las entidades."
+                    "admin": "Solamente los administradores de la campaña pueden cambiar el estatus privado de las entidades.",
+                    "general": "Ha habido un error al procesar la acción. Vuelve a intentarlo o contáctanos si el problema persiste. Mensaje de error: {hint}."
                 },
                 "permissions": {
                     "fields": {
@@ -1692,6 +1702,7 @@ export default {
                     "title": "Cambiar permisos a varias entidades"
                 },
                 "success": {
+                    "copy_to_campaign": "{1} {count} entidad copiada a {campaign}.|[2,*] {count} entidades copiadas a {campaign}.",
                     "editing": "{count} entidad se ha actualizado.|{count} entidades se han actualizado.",
                     "permissions": "Permisos cambiados en {count} entidad.|Permisos cambiados en {count} entidades.",
                     "private": "{count} entidad es ahora privada|{count} entidades son ahora privadas.",
@@ -1705,6 +1716,7 @@ export default {
                 "title": "Confirmar acción"
             },
             "copy_to_campaign": {
+                "bulk_title": "Copiar entidades a otra campaña",
                 "panel": "Copiar",
                 "title": "Copiar '{name}' a otra campaña"
             },
@@ -1816,8 +1828,10 @@ export default {
             },
             "history": {
                 "created": "Creado por <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "created_date": "Creado <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "unknown": "Desconocido",
                 "updated": "Última modificación por <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "updated_date": "Última modificación <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "view": "Historial de cambios de la entidad"
             },
             "image": {
@@ -1868,9 +1882,15 @@ export default {
                 "action": "Acción",
                 "actions": {
                     "bulk": {
-                        "add": "Añadir",
+                        "add": "Permitir",
+                        "deny": "Denegar",
                         "ignore": "Ignorar",
-                        "remove": "Eliminar"
+                        "remove": "Quitar"
+                    },
+                    "bulk_entity": {
+                        "allow": "Permitir",
+                        "deny": "Denegar",
+                        "inherit": "Heredar"
                     },
                     "delete": "Eliminar",
                     "edit": "Editar",
@@ -1884,6 +1904,10 @@ export default {
                     "role": "Rol"
                 },
                 "helper": "Usa esta interfaz para afinar qué usuarios y roles pueden interactuar con esta entidad.",
+                "helpers": {
+                    "entity_note": "Permite a los usuarios crear notas dentro de esta entidad. Sin este permiso, podrán seguir viendo las notas de entidad que se muestren a todos.",
+                    "setup": "Usa esta interfaz para afinar cómo los diferentes roles y usuarios pueden interactuar con esta entidad. {allow} les permitirá hacer dicha acción; {deny} se la denegará, y {inherit} usará el permiso que ya tenga el rol o usuario. Un usuario con una acción puesta en {allow} podrá hacerla, aunque su rol esté en {deny}."
+                },
                 "inherited": "Este rol ya tiene este permiso en esta entidad.",
                 "inherited_by": "Este usuario forma parte del rol \"{role}\", que le otorga este permiso en esta entidad.",
                 "success": "Permisos guardados.",
@@ -2280,6 +2304,7 @@ export default {
                 "export": "Export",
                 "find_out_more": "En savoir plus",
                 "go_to": "Aller à {name}",
+                "json-export": "Export (JSON)",
                 "more": "Autres Actions",
                 "move": "Déplacer",
                 "new": "Nouveau",
@@ -2367,6 +2392,10 @@ export default {
                 },
                 "age": {
                     "helper": "Il est possible de préfixer le numéro avec + ou - pour modifier l'age dynamiquement."
+                },
+                "delete": {
+                    "title": "Suppression de plusieurs entités",
+                    "warning": "Es-tu sûr de vouloir supprimer les entités sélectionnées?"
                 },
                 "edit": {
                     "tagging": "Action pour les étiquettes",
@@ -2767,7 +2796,6 @@ export default {
                 "title": "Factures"
             },
             "layout": {
-                "description": "Modifier les options de mise en page",
                 "success": "Options de mise en page modifiées.",
                 "title": "Mise en page"
             },
@@ -2939,6 +2967,164 @@ export default {
         "admin": [],
         "calendars": [],
         "campaigns": [],
+        "conversations": {
+            "create": {
+                "description": "צור שיחה חדשה",
+                "success": "השיחה '{name}' נוצרה.",
+                "title": "שיחה חדשה"
+            },
+            "destroy": {
+                "success": "השיחה '{name}' הוסרה."
+            },
+            "edit": {
+                "description": "עדכן את השיחה",
+                "success": "השיחה '{name}' עודכנה.",
+                "title": "שיחה {name}"
+            },
+            "fields": {
+                "messages": "הודעות",
+                "name": "שם",
+                "participants": "משתתפים",
+                "target": "קטגוריה",
+                "type": "סוג"
+            },
+            "hints": {
+                "participants": "הוסף משתתפים בלחיצה על האייקון {icon} בצד שמאל למעלה."
+            },
+            "index": {
+                "add": "שיחה חדשה",
+                "description": "ניהול הקטגוריה של {name}.",
+                "header": "שיחות ב{name}",
+                "title": "שיחות"
+            },
+            "messages": {
+                "destroy": {
+                    "success": "ההודעה הוסרה."
+                },
+                "is_updated": "עודכן",
+                "load_previous": "טען הודעות קודמות",
+                "placeholders": {
+                    "message": "ההודעה שלך"
+                }
+            },
+            "participants": {
+                "create": {
+                    "success": "{entity} הוסף לשיחה."
+                },
+                "description": "הוסף או הסר משתתפים",
+                "destroy": {
+                    "success": "{entity} הוסר מהשיחה."
+                },
+                "modal": "משתתפים",
+                "title": "המשתתפים של {name}"
+            },
+            "placeholders": {
+                "name": "שם השיחה",
+                "type": "בתוך המשחק, הכנה, עלילה"
+            },
+            "show": {
+                "description": "מבט מפורט על שיחה",
+                "title": "שיחה {name}"
+            },
+            "tabs": {
+                "conversation": "שיחה",
+                "participants": "משתתפים"
+            },
+            "targets": {
+                "characters": "דמויות",
+                "members": "שחקנים"
+            }
+        },
+        "crud": {
+            "edit": "עריכה",
+            "fields": {
+                "ability": "יכולת",
+                "attribute_template": "תבנית מאפיינים",
+                "calendar": "לוח שנה",
+                "calendar_date": "תאריך בלוח שנה",
+                "character": "דמות",
+                "colour": "צבע",
+                "copy_attributes": "העתק מאפיינים",
+                "copy_notes": "העתק פתקי אובייקט",
+                "creator": "יוצר",
+                "dice_roll": "הטלת קוביה",
+                "entity": "אובייקט",
+                "entity_type": "סוג אובייקט",
+                "entry": "ערך",
+                "event": "אירוע",
+                "excerpt": "תקציר",
+                "family": "משפחה",
+                "files": "קבצים",
+                "header_image": "תמונת כותרת",
+                "image": "תמונה",
+                "is_private": "פרטי",
+                "is_star": "מוצמד",
+                "item": "חפץ",
+                "location": "מיקום",
+                "name": "שם",
+                "organisation": "ארגון",
+                "race": "גזע",
+                "tag": "תגית",
+                "tags": "תגיות",
+                "tooltip": "רמז",
+                "type": "סוג",
+                "visibility": "נראות"
+            },
+            "files": {
+                "actions": {
+                    "drop": "גרור קובץ או לחץ להוספה",
+                    "manage": "נהל קבצי אובייקט"
+                },
+                "errors": {
+                    "max": "הגעת למקסימום הקבצים ({max}) לאובייקט זה.",
+                    "no_files": "אין קבצים"
+                },
+                "files": "קבצים הועלו",
+                "hints": {
+                    "limit": "לכל אובייקט יכולים להיות עד {max} קבצים.",
+                    "limitations": "סיומות נתמכות: jpg, .png, .gif., וpdf. גודל מירבי: {size}"
+                },
+                "title": "קבצים של {name}"
+            },
+            "remove": "הסר",
+            "rename": "שנה שם",
+            "save": "שמור",
+            "save_and_close": "שמור וסגור",
+            "save_and_copy": "שמור והעתק",
+            "save_and_new": "שמור וצור חדש",
+            "save_and_update": "שמור והמשך לעדכן",
+            "save_and_view": "שמור וצפה",
+            "search": "חיפוש",
+            "select": "בחר",
+            "tabs": {
+                "abilities": "יכולות",
+                "attributes": "מאפיינים",
+                "boost": "מוגבר",
+                "calendars": "לוחות שנה",
+                "default": "ברירת מחדל",
+                "events": "אירועים",
+                "inventory": "ציוד",
+                "map-points": "נקודות מפה",
+                "mentions": "אזכורים",
+                "menu": "תפריט",
+                "notes": "פתקי אובייקט",
+                "permissions": "הרשאות",
+                "relations": "ייחסים",
+                "reminders": "תזכורות",
+                "tooltip": "רמז"
+            },
+            "update": "עדכן",
+            "users": {
+                "unknown": "לא ידוע"
+            },
+            "view": "צפייה",
+            "visibilities": {
+                "admin": "מנהלים",
+                "admin-self": "עצמי ומנהלים",
+                "all": "כולם",
+                "self": "עצמי"
+            }
+        },
         "entities": [],
         "front": [],
         "randomisers": []
@@ -3027,6 +3213,7 @@ export default {
                 "export": "Izvoz",
                 "find_out_more": "Saznaj više",
                 "go_to": "Idi na {name}",
+                "json-export": "Izvoz (json)",
                 "more": "Više akcija",
                 "move": "Pomakni",
                 "new": "Novo",
@@ -3114,6 +3301,10 @@ export default {
                 },
                 "age": {
                     "helper": "Možeš koristiti + i - prije broja za ažuriranje dobi za taj iznos."
+                },
+                "delete": {
+                    "title": "Brisanje više entiteta",
+                    "warning": "Jesi li siguran/a da želiš izbrisati odabrane entitete?"
                 },
                 "edit": {
                     "tagging": "Akcija za oznake",
@@ -3762,9 +3953,10 @@ export default {
                 "copy_mention": "Említett [ ] másolása",
                 "copy_to_campaign": "Másolás Kampányba",
                 "explore_view": "Hierarchikus nézet",
-                "export": "Export",
+                "export": "Export (pdf)",
                 "find_out_more": "Tudj meg többet!",
                 "go_to": "Ugrás {name} entitáshoz",
+                "json-export": "Exportálás (json)",
                 "more": "Több művelet",
                 "move": "Mozgatás",
                 "new": "Új",
@@ -3852,6 +4044,10 @@ export default {
                 },
                 "age": {
                     "helper": "Használhatod a + és - gombokat a szám előtt, hogy frissítsd a korát az adott számmal."
+                },
+                "delete": {
+                    "title": "Több entitás törlése egyidejűleg",
+                    "warning": "Biztosan törölni szeretnéd a kijelölt entitásokat?"
                 },
                 "edit": {
                     "tagging": "Címkézési esemény",
@@ -4076,7 +4272,11 @@ export default {
                     "member": "Tag",
                     "role": "Szerep"
                 },
-                "helper": "Használd ezt a felületet, hogy finomhangold, melyik felhasználó és szerep tud kapcsolatba lépni ezzel az entitással.",
+                "helper": "Használd ezt a felületet, hogy finomhangold, melyik felhasználó és szerep tud kapcsolatba lépni ezzel az entitással. {allow}",
+                "helpers": {
+                    "entity_note": "Entitás Jegyzetek létrehozásának engedélyezése a felhasználók számára ezen az entitáson. Enélkül a jogosultság nélkül a felhasználók látják majd az Entitás Jegyzeteket, ha azok láthatósága 'Mindenki'-re van állítva.",
+                    "setup": "Használd ezt a felületet, hogy finomhangold, melyik felhasználó és szerep tud kapcsolatba lépni ezzel az entitással. {allow} engedélyezni fogja a felhasználó, vagy a szerep birtokosa számára, ennek a műveletnek az elvégzését. {deny} megtiltja hogy ezt a műveletet végezhessék. {inherit} beállítás esetén pedig a felhasználó szerepét, vagy fő szerepének jogosultságát fogja figyelembe venni. Egy felhasználói szinten beállított {allow} jog engedélyt fog adni a művelet elvégzésére, még akkor is, ha a felhasználó szerepköre {deny}-aná ezt."
+                },
                 "inherited": "Ez a szerep már rendelkezik ezzel a jogosultsággal ehhez a típusú entitáshoz.",
                 "inherited_by": "Ez a felhasználó tagja a '{role}' szerepnek, amely rendelkezik jogosultsággal ezen az entitás típuson.",
                 "success": "Engedélyeket elmentettük.",
@@ -4201,6 +4401,7 @@ export default {
                 "benefits": {
                     "first": "Hogy biztosítsuk a Kanka folyamatos fejlődését, bizonyos funkciók az adott kampány boost-olása után válnak elérhetővé. A boost-olás lehetőségégének megszerzése {patreon}-on keresztül történik. Egy kampányt akárki boost-olhatja is, ha van joga megtekinteni azt, így nem minden esetben a Mesélőnek kell állnia a cehhet. Egy kampány addig marad boost-olva, amíg egy felhasználó fenntartja rajta a boost-ját, valamint a támogatását is {patreon}-on keresztül. Ha egy kampány boost-olása megszűnik, az adatok nem vesznek el, csupán eltűnnek szem elől, amíg ismét nem kerül boost-olásra.",
                     "header": "Entitás fejléc képek.",
+                    "images": "Egyedi alapérzelmezett entitás képek.",
                     "more": "Tudj meg többet a funkciókról.",
                     "second": "Egy kampány Boost-olása az alábbi előnyöket biztosítja:",
                     "theme": "Kampány-szintű téma, és egyedi megjelenítési stílus.",
@@ -4220,6 +4421,15 @@ export default {
                     "delete": "Boost visszavonva innen: {name}"
                 },
                 "title": "Boost"
+            },
+            "countries": {
+                "austria": "Ausztria",
+                "belgium": "Belgium",
+                "france": "Franciaország",
+                "germany": "Németország",
+                "italy": "Olaszország",
+                "netherlands": "Hollandia",
+                "spain": "Spanyolország"
             },
             "invoices": {
                 "actions": {
@@ -4303,7 +4513,7 @@ export default {
                     "subscribe": "Előfizetés",
                     "update_currency": "Választott pénznem mentése"
                 },
-                "benefits": "Támogatásoddal lehetőséged nyílik, hogy hozzáférj új {featureshoz}, valamint ezzel is segítesz minket, hogy több időt szentelhessünk a Kanka fejlesztésének. A szerverünkön nem tárolunk, és nem küldünk keresztül semmilyen bankkártya információt. A számlázáshoz a {stirpe} vesszük segítségül.",
+                "benefits": "Támogatásoddal lehetőséged nyílik, hogy hozzáférj új {featureshez}, valamint ezzel is segítesz minket, hogy több időt szentelhessünk a Kanka fejlesztésének. A szerverünkön nem tárolunk, és nem küldünk keresztül semmilyen bankkártya információt. A számlázáshoz a {stripe} vesszük segítségül.",
                 "billing": {
                     "helper": "A számlázási információid tárolása, és feldolgozása a {stripe}-on keresztül történik, biztonságos formában. Ez a fizetési mód kerül felhasználásra minden előfizetésed esetében.",
                     "saved": "Mentett fizetési mód",
@@ -4314,7 +4524,10 @@ export default {
                 },
                 "cancelled": "Az előfizetésed felmondásra került. Ismét megújíthatod előfizetésed, amint a jelenlegi előfizetésed lejár.",
                 "change": {
-                    "text": "{tier} szintű előfizető vagy, havonta {amount} kerül számlázásra.",
+                    "text": {
+                        "monthly": "A {tier} szintre vagy előfizetve, a számlázás havonta történik, {amount} értékben.",
+                        "yearly": "A {tier} szintre vagy előfizetve, a számlázás évente történik, {amount} értékben."
+                    },
                     "title": "Előfizetői szint megváltoztatása"
                 },
                 "currencies": {
@@ -4332,21 +4545,30 @@ export default {
                     "active_since": "Előfizetés kezdete",
                     "active_until": "Előfizetés vége",
                     "billed_monthly": "Havonta számlázva",
+                    "billing": "Számlázás",
                     "currency": "Számlázott összeg pénzneme",
                     "payment_method": "Fizetési mód",
                     "plan": "Aktuális terv",
                     "reason": "Indok"
+                },
+                "helpers": {
+                    "alternatives": "Az előfizetésed fizetése a következővel {method}. Ez a fizetési mód nem fog automatikusan megújulni az előfizetésed végén. {method} csak Euróval történő fizetés esetén elérhető.",
+                    "alternatives_warning": "Az előfizetésed fejlesztése ezzel a fizetési móddal nem lehetséges. Kérlek válassz új előfizetést, amikor a jelenlegi előfizetésed lejárna.",
+                    "alternatives_yearly": "A megújuló előfizetés korlátozásai miatt, a(z) {metod} csak éves előfizetéssel használható."
                 },
                 "manage_subscription": "Előfizetés menedzselése",
                 "payment_method": {
                     "actions": {
                         "add_new": "Új fizetési mód hozzáadása",
                         "change": "Fizetési mód megváltoztatása",
-                        "save": "Fizetési mód mentése"
+                        "save": "Fizetési mód mentése",
+                        "show_alternatives": "Alternatív fizetési lehetőségek."
                     },
                     "add_one": "Jelenleg nincs mentett fizetési módod.",
+                    "alternatives": "Előfizethetsz ezeket az alternatív előfizetési lehetőségeket választva. Ebben az esetben csupán egyszer kerül terhelésre a számlád, és nem fog automatikusan megújulni az előfizetésed minden hónapban.",
                     "card": "Kártya",
                     "card_name": "A kártyán szereplő név",
+                    "country": "Tartózkodási hely",
                     "ending": "Lejárat",
                     "helper": "Ez a kártya kerül használatra minden előfizetésed esetén.",
                     "new_card": "Új fizetési mód hozzáadása",
@@ -4355,21 +4577,28 @@ export default {
                 "placeholders": {
                     "reason": "Opcionálisan kérlek mondd el, miért nem támogatod tovább a Kankát. Esetleg anyagi okokból döntöttél így?"
                 },
+                "plans": {
+                    "cost_monthly": "{amount} {currency} havonta kiszámlázva.",
+                    "cost_yearly": "{amount} {currency} évente kiszámlázva."
+                },
                 "sub_status": "Előfizetési információk",
                 "subscription": {
                     "actions": {
                         "downgrading": "Kérlek vedd fel velünk a kapcsolatot az alacsonyabb szintre váltáshoz",
                         "rollback": "Kobold előfizetői szintre váltás",
-                        "subscribe": "{tier} előfizetői szintre váltás havonta"
+                        "subscribe": "{tier} előfizetői szintre váltás havi számlázással",
+                        "subscribe_annual": "{tier} előfizetői szintre váltás éves számlázással"
                     }
                 },
                 "success": {
+                    "alternative": "A fizetésed regisztrálásra került. Értesítést fogsz kapni, amint feldolgozásra került, és az előfizetésed aktiválódott.",
                     "callback": "Az előfizetés sikeresen megtörtént. A fiókod frissülni fog, amint a fizetési szolgáltatónk tudatja velünk a változást. (Ez néhány percet igénybe vehet.)",
                     "cancel": "Az előfizetésed lemondásra került. A jelenlegi előfizetés továbbra is aktív marad a számlázási periódus végéig.",
                     "currency": "A kívánt pénznem beállítása frissült.",
                     "subscribed": "Az előfizetés sikeres volt. Ne feledkezz el feliratkozni a Közösségi szavazás hírlevelére, hogy értesülj, amikor egy szavazás elindul. A hírlevél beállításait a Profilodnál tudod szerkeszteni."
                 },
                 "tiers": "Előfizetői szintek",
+                "trial_period": "Az éves előfizetésekre 14 napos visszamondási jog él. Vedd fel velünk a kapcsolatot a következő címen: {email} amennyiben szeretnéd lemondani az éves előfizetésed, és az összeg visszatérítését kérvényezni.",
                 "upgrade_downgrade": {
                     "button": "Magasabb, vagy Alacsonyabb szintre váltás információi",
                     "downgrade": {
@@ -5143,13 +5372,14 @@ export default {
                 "copy_mention": "Копировать [ ] ссылку",
                 "copy_to_campaign": "Копировать в Кампанию",
                 "explore_view": "Свернутый вид",
-                "export": "Экспортировать",
+                "export": "Экспортировать (PDF)",
                 "find_out_more": "Узнать больше",
                 "go_to": "Перейти к {name}",
+                "json-export": "Экспортировать (JSON)",
                 "more": "Больше действий",
                 "move": "Переместить",
                 "new": "Новый",
-                "next": "Следующий",
+                "next": "Следующее",
                 "private": "Приватный",
                 "public": "Публичный",
                 "reset": "Сброс"
@@ -5234,8 +5464,12 @@ export default {
                 "age": {
                     "helper": "Вы можете использовать + и - перед числом, чтобы изменить возраст на это число."
                 },
+                "delete": {
+                    "title": "Удаление нескольких объектов",
+                    "warning": "Вы уверены, что хотите удалить выбранные объекты?"
+                },
                 "edit": {
-                    "tagging": "Действия с тэгами",
+                    "tagging": "Действие с тэгами",
                     "tags": {
                         "add": "Добавить",
                         "remove": "Удалить"
@@ -5881,9 +6115,10 @@ export default {
                 "copy_mention": "Kopírovať [ ] referenciu",
                 "copy_to_campaign": "Kopírovať do kampane",
                 "explore_view": "Vložené zobrazenie",
-                "export": "Exportovať",
+                "export": "Exportovať (PDF)",
                 "find_out_more": "Dozvedieť sa viac",
                 "go_to": "Prejsť na {name}",
+                "json-export": "Exportovať (json)",
                 "more": "Ďalšie akcie",
                 "move": "Premiestniť",
                 "new": "Nový",
@@ -5971,6 +6206,10 @@ export default {
                 },
                 "age": {
                     "helper": "Môžeš použiť + a - pred číslom na úpravu veku o danú hodnotu."
+                },
+                "delete": {
+                    "title": "Odstraňujú sa viaceré objekty",
+                    "warning": "Naozaj chceš odstrániť vybrané objekty?"
                 },
                 "edit": {
                     "tagging": "Akcie s kategóriami",

@@ -12,6 +12,7 @@ return [
         'export'            => 'Export',
         'find_out_more'     => 'En savoir plus',
         'go_to'             => 'Aller à :name',
+        'json-export'       => 'Export (JSON)',
         'more'              => 'Autres Actions',
         'move'              => 'Déplacer',
         'new'               => 'Nouveau',
@@ -99,6 +100,10 @@ return [
         ],
         'age'           => [
             'helper'    => 'Il est possible de préfixer le numéro avec + ou - pour modifier l\'age dynamiquement.',
+        ],
+        'delete'        => [
+            'title'     => 'Suppression de plusieurs entités',
+            'warning'   => 'Es-tu sûr de vouloir supprimer les entités sélectionnées?',
         ],
         'edit'          => [
             'tagging'   => 'Action pour les étiquettes',

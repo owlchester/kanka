@@ -13,6 +13,7 @@ return [
         ],
         'public'            => [
             'description'   => 'Laisse toi inspirer par les campagns publiques.',
+            'no-results'    => 'Aucune campagne public n\'a été trouvée avec ces filtres.',
             'title'         => 'Campagnes Publiques',
         ],
         'title'             => 'Campagnes Publiques',
@@ -136,6 +137,7 @@ return [
         'headings'  => [
             'app'           => 'App',
             'community'     => 'Communauté',
+            'friends'       => 'Nos Amis',
             'useful_links'  => 'Liens utiles',
         ],
         'navigation'=> 'Navigation',

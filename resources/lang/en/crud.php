@@ -12,7 +12,7 @@ return [
         'export'            => 'Export (PDF)',
         'find_out_more'     => 'Find out more',
         'go_to'             => 'Go to :name',
-        'json-export'       => 'Export (json)',
+        'json-export'       => 'Export (JSON)',
         'more'              => 'More Actions',
         'move'              => 'Move',
         'new'               => 'New',
