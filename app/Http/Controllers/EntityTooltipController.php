@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Entity;
+use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Facades\Auth;
 use Response;
 
 class EntityTooltipController extends Controller
 {
+    use GuestAuthTrait;
+
     /**
      *
      */
@@ -16,7 +19,7 @@ class EntityTooltipController extends Controller
         if (Auth::check()) {
             $this->authorize('view', $entity->child);
         } else {
-            $this->authorizeForGuest('read', $entity->child);
+            $this->authorizeEntityForGuest('read', $entity->child);
         }
 
         return Response::json([
