@@ -9,9 +9,10 @@ return [
         'copy_mention'      => 'Kopírovať [ ] referenciu',
         'copy_to_campaign'  => 'Kopírovať do kampane',
         'explore_view'      => 'Vložené zobrazenie',
-        'export'            => 'Exportovať',
+        'export'            => 'Exportovať (PDF)',
         'find_out_more'     => 'Dozvedieť sa viac',
         'go_to'             => 'Prejsť na :name',
+        'json-export'       => 'Exportovať (json)',
         'more'              => 'Ďalšie akcie',
         'move'              => 'Premiestniť',
         'new'               => 'Nový',
@@ -99,6 +100,10 @@ return [
         ],
         'age'           => [
             'helper'    => 'Môžeš použiť + a - pred číslom na úpravu veku o danú hodnotu.',
+        ],
+        'delete'        => [
+            'title'     => 'Odstraňujú sa viaceré objekty',
+            'warning'   => 'Naozaj chceš odstrániť vybrané objekty?',
         ],
         'edit'          => [
             'tagging'   => 'Akcie s kategóriami',

@@ -17,6 +17,7 @@ return [
     ],
     'helper'        => 'Állíts be kapcsolatot entitások között hozzáállás mértékét, és a kapcsolat láthatóságát is beállítva. A kapcsolatok ki is rögzíthetőek az entitás menüjére.',
     'hints'         => [
+        'attitude'  => 'Ez az opcionális mező arra használható, hogy kiválaszd, hogy mely jellemző alapján legyenek csökkenő sorrendben rendezve a Kapcsolatok.',
         'mirrored'  => [
             'text'  => 'Tükörkapcsolatban van ezzel :link.',
             'title' => 'Tükörkapcsolatban',

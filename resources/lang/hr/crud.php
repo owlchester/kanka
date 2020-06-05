@@ -12,6 +12,7 @@ return [
         'export'            => 'Izvoz',
         'find_out_more'     => 'Saznaj više',
         'go_to'             => 'Idi na :name',
+        'json-export'       => 'Izvoz (json)',
         'more'              => 'Više akcija',
         'move'              => 'Pomakni',
         'new'               => 'Novo',
@@ -99,6 +100,10 @@ return [
         ],
         'age'           => [
             'helper'    => 'Možeš koristiti + i - prije broja za ažuriranje dobi za taj iznos.',
+        ],
+        'delete'        => [
+            'title'     => 'Brisanje više entiteta',
+            'warning'   => 'Jesi li siguran/a da želiš izbrisati odabrane entitete?',
         ],
         'edit'          => [
             'tagging'   => 'Akcija za oznake',

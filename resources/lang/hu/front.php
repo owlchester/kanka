@@ -13,6 +13,7 @@ return [
         ],
         'public'            => [
             'description'   => 'Ha inspiráció kell, nézz rá a kiemelt kampányainkra!',
+            'no-results'    => 'Nem találtunk olyan publikus kampányt, ami ezen szűrőfeltételeknek eleget tett volna. Kérlek próbáld újra.',
             'title'         => 'Nyilvános kampányok',
         ],
         'title'             => 'Nyilvános kampányok',
@@ -136,6 +137,7 @@ return [
         'headings'  => [
             'app'           => 'App',
             'community'     => 'Közösség',
+            'friends'       => 'Barátaink',
             'useful_links'  => 'Hasznos linkek',
         ],
         'navigation'=> 'Navigáció',

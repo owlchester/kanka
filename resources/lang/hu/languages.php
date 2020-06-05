@@ -13,6 +13,7 @@ return [
         'it'    => 'Olasz',
         'nl'    => 'Holland',
         'pt-BR' => 'Portugál (Brazil)',
+        'ru'    => 'Orosz',
     ],
     'header'=> 'Nyelvek',
 ];

@@ -26,7 +26,9 @@ return [
         'title' => 'Jogosultság-változások',
     ],
     'subscriptions'     => [
-        'ended' => 'A Kanka előfizetésed lejárt. A kampány boost-jaid, és Discord szereped megszűntek. Reméljük hamarosan viszontláthatunk ismét!',
-        'failed'=> 'A Kanka előfizetésed vissza lett utasítva, mivel túl sokszor sikertelen volt a bankkártyád megterhelése az előfizetés összegére. Kérlek látogasd meg a Előfizetés beállításaid, és próbáld meg frissíteni a fizetési beállításod részleteit.',
+        'charge_fail'   => 'Hiba lépett fel a fizetés feldolgozása közben. Kérlek várj egy picit, újra megpróbáljuk. Ha nem történik változás, kérlek vedd fel a kapcsolatot velünk.',
+        'ended'         => 'A Kanka előfizetésed lejárt. A kampány boost-jaid, és Discord szereped megszűntek. Reméljük hamarosan viszontláthatunk ismét!',
+        'failed'        => 'A Kanka előfizetésed vissza lett utasítva, mivel túl sokszor sikertelen volt a bankkártyád megterhelése az előfizetés összegére. Kérlek látogasd meg a Előfizetés beállításaid, és próbáld meg frissíteni a fizetési beállításod részleteit.',
+        'started'       => 'Kanka előfizetésed megkezdődött.',
     ],
 ];

@@ -117,7 +117,7 @@ return [
         'sex'               => 'Geschlecht',
         'title'             => 'Titel',
         'traits'            => 'Eigenschaften',
-        'type'              => 'NPC, Spieler Charakter, Gottheit',
+        'type'              => 'NSC, Spieler Charakter, Gottheit',
     ],
     'quests'        => [
         'description'   => 'Quests des Charakters.',

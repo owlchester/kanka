@@ -99,7 +99,7 @@ TEXT
         'question'  => 'Wie benutzen andere Kanka?',
     ],
     'sections'              => [
-        'community'     => 'Gemeinschaft',
+        'community'     => 'Community',
         'general'       => 'Allgemeines',
         'other'         => 'Andere',
         'permissions'   => 'Berechtigungen',

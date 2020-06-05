@@ -17,6 +17,7 @@ return [
     ],
     'helper'        => 'Uspostavite odnose između entiteta sa stavovima i vidljivošću. Odnosi se mogu prikvačiti i na izbornik entiteta.',
     'hints'         => [
+        'attitude'  => 'Ovo opcionalno polje se može koristiti za postavljanje zadanog poretka odnosa na silazno po tom polju.',
         'mirrored'  => [
             'text'  => 'Ovaj odnos se zrcali s :link.',
             'title' => 'Zrcaljen',

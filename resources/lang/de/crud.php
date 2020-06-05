@@ -12,6 +12,7 @@ return [
         'export'            => 'Exportieren',
         'find_out_more'     => 'Mehr erfahren',
         'go_to'             => 'Gehe zu :name',
+        'json-export'       => 'Export (json)',
         'more'              => 'Mehr Aktionen',
         'move'              => 'Verschieben',
         'new'               => 'Neu',
@@ -99,6 +100,10 @@ return [
         ],
         'age'           => [
             'helper'    => 'Sie können + und - vor der Nummer verwenden, um das Alter dynamisch zu aktualisieren.',
+        ],
+        'delete'        => [
+            'title'     => 'Mehrere Objekte löschen',
+            'warning'   => 'Möchten Sie die ausgewählten Objekte wirklich löschen?',
         ],
         'edit'          => [
             'tagging'   => 'Aktion für Tags',

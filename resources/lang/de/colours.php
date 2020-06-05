@@ -2,7 +2,7 @@
 
 return [
     'aqua'          => 'Eisblau',
-    'black'         => 'Schwartz',
+    'black'         => 'Schwarz',
     'blue'          => 'Blau',
     'brown'         => 'Braun',
     'green'         => 'Grün',

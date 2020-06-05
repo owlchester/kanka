@@ -13,8 +13,8 @@ return [
         ],
         'public'            => [
             'description'   => 'Take a look at the Public Campaigns for inspiration.',
-            'title'         => 'Public Campaigns',
             'no-results'    => 'No public campaign with these filters could be found. Please try again.',
+            'title'         => 'Public Campaigns',
         ],
         'title'             => 'Public Campaigns',
     ],
@@ -137,8 +137,8 @@ return [
         'headings'  => [
             'app'           => 'App',
             'community'     => 'Community',
+            'friends'       => 'Our Friends',
             'useful_links'  => 'Useful Links',
-            'friends' => 'Our Friends',
         ],
         'navigation'=> 'Navigation',
         'resources' => 'Resources',

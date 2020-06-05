@@ -101,9 +101,9 @@ return [
         'age'           => [
             'helper'    => 'You can use + and - before the number to update the age by that amount.',
         ],
-        'delete' => [
-            'title' => 'Deleting multiple entities',
-            'warning' => 'Are you sure you want to delete the selected entities?',
+        'delete'        => [
+            'title'     => 'Deleting multiple entities',
+            'warning'   => 'Are you sure you want to delete the selected entities?',
         ],
         'edit'          => [
             'tagging'   => 'Action for tags',

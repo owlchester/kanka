@@ -5,7 +5,7 @@ return [
     'features'  => [
         'api_requests'      => ':amount API Anfrage / min',
         'boosters'          => 'Kampagnen Booster',
-        'community_vote'    => 'Gemeinschaftsabstimmung',
+        'community_vote'    => 'Community Votes',
         'discord'           => 'Discord Rollen',
         'feature_influence' => 'Einfluss neuer Funktionen',
         'file_size'         => ':size Upload Dateigröße',
@@ -13,7 +13,7 @@ return [
         'map_size'          => ':size Upload Kartengröße',
         'nice_image'        => 'Standardobjektbilder',
         'pagination'        => ':amount Max paginierte Ergebnisse',
-        'vote_influence'    => 'Einfluss der Gemeinschaftsabstimmung',
+        'vote_influence'    => 'Einfluss der Community Votes',
     ],
     'pricing'   => ':currency :amount / monatlich',
 ];

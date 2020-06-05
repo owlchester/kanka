@@ -222,8 +222,9 @@ return [
             '3' => 'Használhatsz "opt-out" rendszert, ahol a szerepek hozzáférnek minden entitáshoz, és inkább a "Privát" jelölőt használod az entitásoknál, hogy elrejtsd őket. Vagy nem adsz túl sok engedély a szerepeknek, de minden entitást láthatóvá teszel.',
         ],
         'hints'         => [
-            'public'            => 'A Nyilvános szerepet akkor használjuk, amikor valaki a nyilvános kampányodat böngészi. :more',
-            'role_permissions'  => ':name szerep számára engedélyezni az alábbi tevékenységeket minden etnitás esetében.',
+            'campaign_not_public'   => 'A publikus szerep adna jogosultságokat, de a kampány privát láthatóságú. Megváltoztathatod ezt a beállítást a Megosztás fülön, a kampány szerkesztése közben.',
+            'public'                => 'A Nyilvános szerepet akkor használjuk, amikor valaki a nyilvános kampányodat böngészi. :more',
+            'role_permissions'      => ':name szerep számára engedélyezni az alábbi tevékenységeket minden etnitás esetében.',
         ],
         'members'       => 'Tagok',
         'permissions'   => [
