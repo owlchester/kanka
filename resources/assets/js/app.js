@@ -179,7 +179,6 @@ $(document).ready(function() {
 
         // Handle when opening the entity-creator ui
         entityCreatorUI();
-
     });
 });
 

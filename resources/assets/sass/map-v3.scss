@@ -1,0 +1,48 @@
+#map {
+  width: 100%;
+  min-height: calc(50vh);
+}
+
+.marker {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.marker.custom {
+
+}
+
+.marker.size-1 {
+  font-size: 0.5em;
+  //line-height: 20px;
+}
+.marker.size-2 {
+  font-size: 1em;
+  //line-height: 40px;
+}
+.marker.size-3 {
+  font-size: 2em;
+  //line-height: 40px;
+}
+.marker.size-4 {
+  font-size: 3em;
+}
+.marker.size-5 {
+  font-size: 4em;
+}
+.marker {
+  i {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}
+

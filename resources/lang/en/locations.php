@@ -176,6 +176,8 @@ return [
             'shapes'        => [
                 'circle'    => 'Circle',
                 'square'    => 'Square',
+                'triangle'  => 'Triangle',
+                'custom'    => 'Custom',
             ],
             'sizes'         => [
                 'huge'      => 'Huge',

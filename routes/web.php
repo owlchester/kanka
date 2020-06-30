@@ -65,6 +65,10 @@ Route::group([
         Route::get('/abilities/{ability}/abilities', 'AbilityController@abilities')->name('abilities.abilities');
         Route::get('/abilities/tree', 'AbilityController@tree')->name('abilities.tree');
 
+        // Maps
+        Route::get('/maps/{ability}/maps', 'Maps\MapController@maps')->name('maps.maps');
+        Route::get('/maps/tree', 'Maps\MapController@tree')->name('maps.tree');
+
         // Character
         Route::get('/characters/random', 'CharacterController@random')->name('characters.random');
         Route::get('/characters/{character}/quests', 'CharacterSubController@quests')->name('characters.quests');
@@ -213,38 +217,30 @@ Route::group([
             'conversations.conversation_participants' => 'ConversationParticipantController',
             'conversations.conversation_messages' => 'ConversationMessageController',
             'dice_rolls' => 'DiceRollController',
-            //'dice_rolls.relations' => 'DiceRollRelationController',
             'dice_roll_results' => 'DiceRollResultController',
             'events' => 'EventController',
-            //'events.relations' => 'EventRelationController',
             'locations' => 'LocationController',
             'locations.relations' => 'LocationRelationController',
             'locations.map_points' => 'LocationMapPointController',
             'families' => 'FamilyController',
-            //'families.relations' => 'FamilyRelationController',
             'items' => 'ItemController',
-            //'items.relations' => 'ItemRelationController',
             'journals' => 'JournalController',
-            //'journals.relations' => 'JournalRelationController',
+            'maps' => 'Maps\MapController',
+            'maps.map_layers' => 'Maps\MapLayerController',
+            'maps.map_markers' => 'Maps\MapMarkerController',
             'menu_links' => 'MenuLinkController',
             'organisations' => 'OrganisationController',
-            //'organisations.relations' => 'OrganisationRelationController',
-            //'organisation_member' => 'OrganisationMemberController',
             'organisations.organisation_members' => 'OrganisationMemberController',
             'notes' => 'NoteController',
-            //'notes.relations' => 'NoteRelationController',
             'quests' => 'QuestController',
             'quests.quest_locations' => 'QuestLocationController',
             'quests.quest_characters' => 'QuestCharacterController',
             'quests.quest_items' => 'QuestItemController',
             'quests.quest_organisations' => 'QuestOrganisationController',
-            //'quests.relations' => 'QuestRelationController',
             'tags' => 'TagController',
             'sections' => 'SectionController',
-            //'tags.relations' => 'TagRelationController',
             'campaign_invites' => 'CampaignInviteController',
             'races' => 'RaceController',
-            //'races.relations' => 'RaceRelationController',
 
             // Entities
             'entities.attributes' => 'AttributeController',
@@ -286,6 +282,7 @@ Route::group([
         Route::get('/search/conversations', 'Search\MiscController@conversations')->name('conversations.find');
         Route::get('/search/races', 'Search\MiscController@races')->name('races.find');
         Route::get('/search/abilities', 'Search\MiscController@abilities')->name('abilities.find');
+        Route::get('/search/maps', 'Search\MiscController@maps')->name('maps.find');
         Route::get('/search/attribute-templates', 'Search\MiscController@attributeTemplates')->name('attribute_templates.find');
 
         Route::get('/search/members', 'Search\CampaignSearchController@members')->name('find.campaign.members');

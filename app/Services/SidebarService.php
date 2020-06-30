@@ -43,6 +43,9 @@ class SidebarService
         'locations' => [
             'locations',
         ],
+        'maps' => [
+            'maps',
+        ],
         'notes' => [
             'notes',
         ],

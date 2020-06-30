@@ -289,6 +289,7 @@ return [
             'items'         => 'Weapons, vehicles, relics, potions.',
             'journals'      => 'Observations written by characters, or session prep for the dungeon master.',
             'locations'     => 'Planets, planes, continents, rivers, states, settlements, temples, taverns.',
+            'maps'          => 'Upload maps with layers and markers pointing to other entities in the campaign.',
             'menu_links'    => 'Custom menu links in the side bar.',
             'notes'         => 'Lore, religions, history, magic, races.',
             'organisations' => 'Cults, military units, factions, guilds.',

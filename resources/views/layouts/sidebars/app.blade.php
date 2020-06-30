@@ -79,6 +79,11 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                 <a href="{{ route('locations.' . $defaultIndex) }}"><i class="ra ra-tower"></i> <span>{{ trans('sidebar.locations') }}</span></a>
             </li>
             @endif
+            @if ($campaign->enabled('maps'))
+            <li class="{{ $sidebar->active('maps') }}">
+                <a href="{{ route('maps.' . $defaultIndex) }}"><i class="fas fa-map"></i> <span>{{ trans('entities.maps') }}</span></a>
+            </li>
+            @endif
             @if ($campaign->enabled('organisations'))
             <li class="{{ $sidebar->active('organisations') }}">
                 <a href="{{ route('organisations.' . $defaultIndex) }}"><i class="ra ra-hood"></i> <span>{{ trans('sidebar.organisations') }}</span></a>

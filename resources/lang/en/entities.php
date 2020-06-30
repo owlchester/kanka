@@ -32,6 +32,8 @@ return [
     'journals'              => 'Journals',
     'location'              => 'Location',
     'locations'             => 'Locations',
+    'map'                   => 'Map',
+    'maps'                  => 'Maps',
     'menu_link'             => 'Menu Link',
     'menu_links'            => 'Menu Links',
     'note'                  => 'Note',
