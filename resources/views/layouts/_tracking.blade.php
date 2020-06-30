@@ -24,14 +24,6 @@
         })(window,document,'script','dataLayer', '{{ config('tracking.gtm') }}');</script>
     <!-- End Google Tag Manager -->
 @endif
-@if (!empty($tracking_new))
-    <script>
-        fbq('track', 'ViewContent', {
-            value: 1,
-            currency: 'USD',
-        });
-    </script>
-@endif
 @if (!empty(config('tracking.fb')))
     <!-- Facebook Pixel Code -->
     <script>
@@ -50,4 +42,12 @@
         <img height="1" width="1" src="https://www.facebook.com/tr?id={{ config('tracking.fb') }}&ev=PageView&noscript=1"/>
     </noscript>
     <!-- End Facebook Pixel Code -->
+@endif
+@if (!empty($tracking_new))
+    <script>
+        fbq('track', 'ViewContent', {
+            value: 1,
+            currency: 'USD',
+        });
+    </script>
 @endif
