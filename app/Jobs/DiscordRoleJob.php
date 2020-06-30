@@ -53,10 +53,14 @@ class DiscordRoleJob implements ShouldQueue
     public function handle()
     {
         $this->discord = app()->make('App\Services\DiscordService');
-        if ($this->add) {
-            $this->discord->user($this->user)->addRoles();
-        } else {
-            $this->discord->user($this->user)->removeRoles();
+        try {
+            if ($this->add) {
+                $this->discord->user($this->user)->addRoles();
+            } else {
+                $this->discord->user($this->user)->removeRoles();
+            }
+        } catch (\Exception $e) {
+            // Silence errors and ignore
         }
     }
 }

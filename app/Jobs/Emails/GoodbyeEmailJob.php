@@ -51,7 +51,7 @@ class GoodbyeEmailJob implements ShouldQueue
 
     public function handle()
     {
-        Mail::to('hello+deleted@kanka.io')
+        Mail::to('hello@kanka.io')
             ->locale($this->language)
             ->send(
                 new UserDeleted($this->userId, $this->email)

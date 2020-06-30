@@ -46,7 +46,7 @@ class SubscriptionCancelEmailJob implements ShouldQueue
         }
 
         // Send an email to the admins
-        Mail::to('hello+subscriptions@kanka.io')
+        Mail::to('hello@kanka.io')
             ->send(
                 new CancelledSubscriptionMail($user, $this->reason)
             );
