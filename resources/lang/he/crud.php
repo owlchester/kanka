@@ -51,6 +51,28 @@ return [
         ],
         'title'     => 'קבצים של :name',
     ],
+    'filter'            => 'סינון',
+    'filters'           => [
+        'all'       => 'סנן לכל הצאצאים',
+        'clear'     => 'בטל סינון',
+        'direct'    => 'סנן לצאצאים ישירים',
+        'filtered'  => 'מציג :count מתוך :total.',
+        'hide'      => 'הסתר סינון',
+        'show'      => 'הצג סינון',
+        'sorting'   => [
+            'asc'       => ':field עולה',
+            'desc'      => ':field יורד',
+            'helper'    => 'בחר באיזה סדר יופיעו התוצאות',
+        ],
+        'title'     => 'מסננים',
+    ],
+    'forms'             => [
+        'actions'       => [
+            'calendar'  => 'הוסף תאריך בלוח שנה',
+        ],
+        'copy_options'  => 'העתק הגדרות',
+    ],
+    'hidden'            => 'מוסתר',
     'remove'            => 'הסר',
     'rename'            => 'שנה שם',
     'save'              => 'שמור',

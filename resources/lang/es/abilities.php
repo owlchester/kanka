@@ -17,7 +17,7 @@ return [
     ],
     'fields'        => [
         'abilities' => 'Habilidades',
-        'ability'   => 'Habilidad',
+        'ability'   => 'Habilidad superior',
         'charges'   => 'Usos',
         'name'      => 'Nombre',
         'type'      => 'Tipo',

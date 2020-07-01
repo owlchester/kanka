@@ -13,6 +13,7 @@ return [
         ],
         'public'            => [
             'description'   => 'Échale un vistazo a las Campañas Públicas para inspirarte.',
+            'no-results'    => 'No se encuentra ninguna campaña pública con estos filtros. Por favor, vuelve a intentarlo.',
             'title'         => 'Campañas Públicas',
         ],
         'title'             => 'Campañas Públicas',
@@ -39,6 +40,9 @@ return [
     ],
     'faq'           => [
         'description'   => 'Hemos reunido las preguntas más frecuentes y las hemos respondido lo más claramente posible.',
+        'helpers'       => [
+            'more'  => '¿No encuentras lo que buscas?',
+        ],
         'title'         => 'Preguntas Frecuentes',
     ],
     'features'      => [
@@ -53,6 +57,7 @@ return [
             'css'           => 'CSS personalizado de la campaña',
             'description'   => 'Algunos niveles de mecenazgo otorgan mejoras a los usuarios, que pueden usar para mejorar campañas. Éstas obtienen los siguientes beneficios.',
             'header_image'  => 'Imagen de cabecera para la entidad',
+            'images'        => 'Añadir imágenes por defecto a las entidades',
             'recovery'      => 'Recuperación de entidades de hasta 30 días',
             'theme'         => 'Tema de campaña fijo',
             'title'         => 'Campañas mejoradas',
@@ -129,6 +134,12 @@ return [
     'footer'        => [
         'app'       => 'App',
         'copyright' => '© 2017 - :current kanka.io. Todos los derechos reservados.',
+        'headings'  => [
+            'app'           => 'App',
+            'community'     => 'Comunidad',
+            'friends'       => 'Nuestros amigos',
+            'useful_links'  => 'Enlaces útiles',
+        ],
         'navigation'=> 'Navegación',
         'resources' => 'Recursos',
         'social'    => 'Social',
@@ -141,9 +152,15 @@ return [
         'title'         => 'Ayuda',
         'twitter'       => 'Tuitéanos en Twitter',
     ],
+    'home'          => [
+        'seo'   => [
+            'meta-description'  => 'Kanka es una herramienta de gestión de campañas de rol y creación de mundos, que facilita la organización y planificación de tus campañas RPG.',
+        ],
+    ],
     'master'        => [
         'call_to_action'    => 'Regístrate ahora, ¡es gratis!',
         'description'       => 'Kanka es una herramienta fácil y flexible para crear mundos y monitorizar tu campaña RPG en nuestra web. Crea y organiza a tus personajes, lugares, organizaciones, eventos y mucho más.',
+        'heading'           => 'Gestión de campañas de rol y creación de mundos a tu alcance',
         'title'             => 'Kanka',
     ],
     'menu'          => [
@@ -222,6 +239,9 @@ return [
     'second_block'  => [
         'call_to_action'    => '¡Empecemos!',
         'title'             => 'No esperes. <br />Empieza a construir.',
+    ],
+    'seo'           => [
+        'keywords'  => 'Worldbuilding, Creación de mundos, RPG, Rol, Juego de rol, Gestión de campaña de rol',
     ],
     'team'          => [
         'coffee'    => '¡Invítame a un café!',

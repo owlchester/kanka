@@ -17,7 +17,7 @@ return [
     ],
     'fields'        => [
         'abilities' => 'Sposobnosti',
-        'ability'   => 'Sposobnost',
+        'ability'   => 'Sposobnost roditelj',
         'charges'   => 'Punjenja',
         'name'      => 'Naziv',
         'type'      => 'Tip',

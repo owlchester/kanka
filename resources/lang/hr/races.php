@@ -20,6 +20,7 @@ return [
     'fields'        => [
         'characters'    => 'Likovi',
         'name'          => 'Naziv',
+        'race'          => 'Rasa roditelj',
         'races'         => 'Podrase',
         'type'          => 'Tip',
     ],

@@ -45,7 +45,7 @@ return [
         'locations'     => 'Helyszínek',
         'name'          => 'Megnevezés',
         'organisations' => 'Szervezetek',
-        'quest'         => 'Főküldetés',
+        'quest'         => 'Szülő Küldetés',
         'quests'        => 'Alküldetések',
         'role'          => 'Szerep',
         'type'          => 'Típus',

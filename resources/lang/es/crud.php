@@ -12,6 +12,7 @@ return [
         'export'            => 'Exportar',
         'find_out_more'     => 'Saber más',
         'go_to'             => 'Ir a :name',
+        'json-export'       => 'Exportar (JSON)',
         'more'              => 'Más acciones',
         'move'              => 'Mover',
         'new'               => 'Nuevo',

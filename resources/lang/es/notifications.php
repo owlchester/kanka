@@ -26,7 +26,9 @@ return [
         'title' => 'Cambios en los permisos',
     ],
     'subscriptions'     => [
-        'ended' => 'Tu suscripción a Kanka ha finalizado. Se han eliminado tus mejoras de campaña y tus roles de Discord. ¡Esperamos volver a verte pronto!',
-        'failed'=> 'Tu suscripción a Kanka se ha cancelado tras demasiados intentos de cargar el cobro en tu tarjeta. Por favor, dirígete a los ajustes de suscripción e intenta actualizar tus detalles de pago.',
+        'charge_fail'   => 'Ha habido un error procesando tu pago. Por favor, espera un momento mientras volvemos a intentarlo. Si no se producen cambios, contacta con nosotros.',
+        'ended'         => 'Tu suscripción a Kanka ha finalizado. Se han eliminado tus mejoras de campaña y tus roles de Discord. ¡Esperamos volver a verte pronto!',
+        'failed'        => 'Tu suscripción a Kanka se ha cancelado tras demasiados intentos de cargar el cobro en tu tarjeta. Por favor, dirígete a los ajustes de suscripción e intenta actualizar tus detalles de pago.',
+        'started'       => 'Tu suscripción a Kanka ha empezado.',
     ],
 ];

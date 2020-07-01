@@ -27,7 +27,7 @@ return [
         'characters'    => 'Personajes',
         'children'      => 'Entidades anidadas',
         'name'          => 'Nombre',
-        'tag'           => 'Etiqueta',
+        'tag'           => 'Etiqueta superior',
         'tags'          => 'Subetiquetas',
         'type'          => 'Tipo',
     ],
