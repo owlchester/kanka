@@ -51,7 +51,8 @@ class InventoryController extends Controller
         $ajax = request()->ajax();
         $inventory = $entity
             ->inventories()
-            ->with('item')
+            ->with(['entity', 'item', 'item.entity'])
+            ->has('item')
             ->has('entity')
             ->acl()
             ->simpleSort($datagridSorter)
