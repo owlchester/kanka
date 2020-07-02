@@ -16,8 +16,8 @@
 </tr>
 <tr>
     <td></td>
-    <td><i class="fa fa-check"></i> 3 {!! link_to_route('front.features', __('tiers.features.boosters'), '#boosts', ['target' => '_blank']) !!}</td>
-    <td><i class="fa fa-check"></i> 10 {!! link_to_route('front.features', __('tiers.features.boosters'), '#boosts', ['target' => '_blank']) !!}</td>
+    <td><i class="fa fa-check"></i> 3 {!! link_to_route('front.features', __('tiers.features.boosters'), '#boost', ['target' => '_blank']) !!}</td>
+    <td><i class="fa fa-check"></i> 10 {!! link_to_route('front.features', __('tiers.features.boosters'), '#boost', ['target' => '_blank']) !!}</td>
 </tr>
 <tr>
     <td></td>
