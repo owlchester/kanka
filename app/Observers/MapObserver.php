@@ -11,24 +11,18 @@ class MapObserver extends MiscObserver
     /**
      * @param Map $map
      */
-//    public function saving(MiscModel $map)
-//    {
-//        parent::saving($map);
-//
-//        if ($map->isDirty('image')) {
-//            $path = Storage::get($map->image);
-//            $sizes = getimagesize($path);
-//            $map->width = $sizes[0];
-//            $map->height = $sizes[1];
-//        }
-//    }
+    public function saving(MiscModel $map)
+    {
+        parent::saving($map);
+
+        $map->grid = (int) $map->grid;
+    }
 
     /**
      * @param Map $model
      */
     public function deleting(MiscModel $model)
     {
-        dd('0why deleting');
         /**
          * We need to do this ourselves and not let mysql to it (set null), because the plugin wants to delete
          * all descendants when deleting the parent, which is stupid.

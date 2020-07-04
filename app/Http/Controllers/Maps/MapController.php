@@ -9,6 +9,7 @@ use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreMap;
 use App\Models\Map;
 use App\Traits\TreeControllerTrait;
+use Illuminate\Support\Facades\Auth;
 
 class MapController extends CrudController
 {
@@ -115,5 +116,17 @@ class MapController extends CrudController
     public function mapPoints(Map $map)
     {
         return $this->menuView($map, 'map-points', true);
+    }
+
+    public function explore(Map $map)
+    {
+        // Policies will always fail if they can't resolve the user.
+        if (Auth::check()) {
+            $this->authorize('view', $map);
+        } else {
+            $this->authorizeForGuest('read', $map);
+        }
+
+        return view('maps.explore', compact('map'));
     }
 }

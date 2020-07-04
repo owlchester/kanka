@@ -17,11 +17,13 @@ use Kalnoy\Nestedset\NodeTrait;
  * @property int $location_id
  * @property int $width
  * @property int $height
+ * @property int $grid
  * @property Map $map
  * @property Map[] $maps
  * @property Location $location
  * @property MapLayer[] $layers
  * @property MapMarker[] $markers
+ * @property [] $grids
  */
 class Map extends MiscModel
 {
@@ -43,6 +45,7 @@ class Map extends MiscModel
         'image',
         'map_id',
         'location_id',
+        'grid',
         'is_private',
     ];
 
@@ -196,5 +199,25 @@ class Map extends MiscModel
     public function entityTypeId(): int
     {
         return (int) config('entities.ids.map');
+    }
+
+    /**
+     * @return array
+     */
+    public function grids(): array
+    {
+        $lines = [];
+
+        // Horizontal lines
+        for($i = $this->grid; $i <= $this->height; $i += $this->grid) {
+            $lines[] = [$i, 0, $i, $this->width];
+        }
+
+        // Vertical lines
+        for($i = $this->grid; $i <= $this->width; $i += $this->grid) {
+            $lines[] = [0, $i, $this->height, $i];
+        }
+
+        return $lines;
     }
 }

@@ -1,14 +1,19 @@
 <?php
 
 return [
+    'actions' => [
+        'update' => 'Edit marker',
+    ],
     'create' => [
         'title' => 'New Marker',
+        'Marker :name created.',
     ],
-    'tabs' => [
-        'marker' => 'Marker',
-        'label' => 'Label',
-        'circle' => 'Circle',
-        'polygon' => 'Polygon',
+    'delete' => [
+        'success' => 'Marker :name deleted,',
+    ],
+    'edit' => [
+        'title' => 'Edit Marker :name',
+        'success' => 'Marker :name updated.',
     ],
     'fields' => [
         'custom_icon' => 'Custom Icon',
@@ -17,12 +22,8 @@ return [
         'longitude' => 'Longitude',
     ],
     'helpers' => [
+        'base' => 'Add markers to the map by clicking on any spot.',
         'custom_icon' => 'Copy the name of an icon from :fontawesome or :rpgawesome.',
-    ],
-    'placeholders' => [
-        'name' => 'Name of the marker',
-        'custom_icon' => 'ra ra-skull, fas fa-gem',
-        'custom_shape' => '100,100 200,240 340,110'
     ],
     'icons' => [
         'exclamation' => 'Exclamation',
@@ -30,6 +31,11 @@ return [
         'question' => 'Question',
         'custom' => 'Custom',
         'entity' => 'Entity',
+    ],
+    'placeholders' => [
+        'name' => 'Name of the marker',
+        'custom_icon' => 'ra ra-skull, fas fa-gem',
+        'custom_shape' => '100,100 200,240 340,110'
     ],
     'shapes'        => [
         0 => 'Circle',
@@ -43,5 +49,11 @@ return [
         2 => 'Small',
         3 => 'Large',
         4 => 'Huge',
+    ],
+    'tabs' => [
+        'marker' => 'Marker',
+        'label' => 'Label',
+        'circle' => 'Circle',
+        'polygon' => 'Polygon',
     ],
 ];

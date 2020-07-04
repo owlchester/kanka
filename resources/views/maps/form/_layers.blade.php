@@ -40,11 +40,11 @@
                     <i class="fa fa-pencil"></i>
                 </a>
 
-                <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $layer->name }}"
-                        data-target="#delete-confirm" data-delete-target="delete-form-{{ $layer->id }}"
+                <a href="#" class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $layer->name }}"
+                        data-target="#delete-confirm" data-delete-target="delete-form-layer-{{ $layer->id }}"
                         title="{{ __('crud.remove') }}">
                     <i class="fa fa-trash" aria-hidden="true"></i>
-                </button>
+                </a>
             </td>
         </tr>
     @endforeach
@@ -65,10 +65,10 @@
 @endif
 
 @if (!empty($layers))
-@section('modal')
+@section('modals')
     @parent
     @foreach ($layers as $layer)
-        {!! Form::open(['method' => 'DELETE', 'route' => ['maps.map_layers.destroy', $model, $layer], 'style '=> 'display:inline', 'id' => 'delete-form-' . $layer->id]) !!}
+        {!! Form::open(['method' => 'DELETE', 'route' => ['maps.map_layers.destroy', $model, $layer], 'style '=> 'display:inline', 'id' => 'delete-form-layer-' . $layer->id]) !!}
         {!! Form::close() !!}
     @endforeach
 @endsection

@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'actions' => [
+        'explore' => 'Explore',
+        'edit' => 'Edit map',
+    ],
     'create' => [
         'title' => 'New Map',
     ],
@@ -8,9 +12,11 @@ return [
         'title' => 'Edit Map :name',
     ],
     'fields' => [
+        'grid' => 'Grid',
         'name' => 'Name',
         'type' => 'Type',
         'map' => 'Parent Map',
+        'maps' => 'Maps'
     ],
     'index' => [
         'title' => 'Maps',
@@ -20,6 +26,7 @@ return [
         'markers' => 'Markers',
     ],
     'placeholders' => [
+        'grid' => 'Distance in pixel between grid elements. Leave empty to hide the grid.',
         'name' => 'Name of the map',
         'type' => 'Dungeon, City, Galaxy',
     ],

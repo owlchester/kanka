@@ -1,6 +1,6 @@
 export default function deleteConfirm() {
     // Delete confirm dialog
-    $.each($('.delete-confirm'), function (index) {
+    $.each($('.delete-confirm'), function () {
         $(this).click(function (e) {
             var name = $(this).data('name');
             var text = $(this).data('text');
@@ -34,7 +34,7 @@ export default function deleteConfirm() {
                 $('#' + target + ' input[name=remove_mirrored]').val(
                     $('#delete-confirm-mirror-chexkbox').is(':checked') ? 1 : 0
                 );
-                console.log('target', target, $('#' + target));
+                //console.log('target', target, $('#' + target));
                 $('#' + target).submit();
             } else {
                 $('#delete-confirm-form').submit();

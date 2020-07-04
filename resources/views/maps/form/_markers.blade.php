@@ -10,18 +10,12 @@
     </div>
 @else
     <p class="help-block">
-        {{ __('maps/markers.helper') }}
+        {{ __('maps/markers.helpers.base') }}
     </p>
 
-    <div class="map" id="map" style="width: 100%; height: 100%;"></div>
-
-    <div id="map-source"
-         data-image="{{ Img::url($model->image) }}"
-         data-width="{{ $model->width }}"
-         data-height="{{ $model->height }}"
-         data-new="{{ route('maps.map_markers.create', [$model]) }}"
-    ></div>
-
+    <div class="map" id="map" style="width: 100%; height: 100%;">
+        <a href="{{ route('maps.explore', $model) }}" target="_blank" class="btn btn-primary btn-map-explore"><i class="fa fa-map"></i> {{ __('maps.actions.explore') }}</a>
+    </div>
 
 @section('scripts')
     @parent
@@ -43,7 +37,7 @@
 @foreach ($model->layers as $layer)
             "{{ $layer->name }}": layer{{ $layer->id }},
 @endforeach
-            "Base": baseLayer
+            "{{ __('maps/layers.base') }}": baseLayer
         }
 
         var map = L.map('map', {
@@ -68,14 +62,6 @@
 
         map.on('click', function(ev) {
             let position = ev.latlng;
-            // AJAX request
-            $('#marker-latitude').val(Math.ceil(position.lat));
-            $('#marker-longitude').val(Math.ceil(position.lng));
-            $('#marker-modal').modal('show');
-        });
-
-        map.on('click', function(ev) {
-            let position = ev.latlng;
             console.log('Click', 'lat', Math.floor(position.lat), 'lng', Math.floor(position.lng));
             // AJAX request
             $('#marker-latitude').val(Math.floor(position.lat));
@@ -85,6 +71,15 @@
 
         window.map = map;
     </script>
+@endsection
+
+@section('modals')
+    @parent
+    <!-- Deletion forms -->
+    @foreach ($model->markers as $marker)
+        {!! Form::open(['method' => 'DELETE', 'route' => ['maps.map_markers.destroy', $model, $marker], 'style '=> 'display:inline', 'id' => 'delete-form-marker-' . $marker->id]) !!}
+        {!! Form::close() !!}
+    @endforeach
 @endsection
 
 @section('styles')
@@ -99,8 +94,8 @@
     <style>
 @foreach ($model->markers as $marker)
         .marker-{{ $marker->id }}  {
-            background-color: {{ $marker->colour }};
-@if ($marker->entity)
+            background-color: {{ $marker->colour ?? 'unset' }};
+@if ($marker->entity && $marker->icon == 4)
             /* entity {{ $marker->entity_id }} */
             background-image: url({{ $marker->entity->child->getImageUrl(400) }});
 @endif
@@ -110,6 +105,7 @@
 @endsection
 
 @section('modals')
+    @parent
     <div class="modal fade" id="marker-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">

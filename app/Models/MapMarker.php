@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Map $map
  * @property Entity $entity
  * @property int $id
+ * @property int $map_id
  * @property int $entity_id
  * @property string $name
  * @property string $entry
@@ -54,7 +55,14 @@ class MapMarker extends Model
         'colour',
         'longitude',
         'latitude',
+        'opacity',
     ];
+
+    /** @var bool Editing the map */
+    protected $editing = false;
+
+    /** @var bool Exploring the map */
+    protected $exploring = false;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -77,7 +85,7 @@ class MapMarker extends Model
      */
     public function icon(): string
     {
-        if ($this->icon == 5 && !empty($this->custom_icon)) {
+        if (!empty($this->custom_icon)) {
             return '<i class="' . $this->custom_icon . '"></i>';
         }
         if ($this->icon == 4 && !empty($this->entity)) {
@@ -110,13 +118,16 @@ class MapMarker extends Model
                 fillColor: \'' . e($this->colour) . '\',
                 title: \'' . $this->makerTitle() . '\',
                 stroke: false,
-                className: \'marker marker-' . $this->id . ' size-' . $this->size_id . '\'
+                opacity: 0.7,
+                className: \'marker marker-circle marker-' . $this->id . ' size-' . $this->size_id . '\','
+                . ($this->editing ? 'draggable: true' : null) . '
             })' . $this->popup();
 
         }
         elseif ($this->shape_id == MapMarker::SHAPE_LABEL) {
             return 'L.marker([' . ($this->latitude ). ', ' . $this->longitude . '], {
-                opacity: 0
+                opacity: 0,'
+                . ($this->editing ? 'draggable: true' : null) . '
             }).bindTooltip(`' . $this->name . '`, {
                 direction: \'center\',
                 permanent: true
@@ -136,23 +147,86 @@ class MapMarker extends Model
                 opacity: 0.5,
                 smoothFactor: 1,
                 linecap: \'round\',
-                linejoin: \'round\'
+                linejoin: \'round\',
+                ' . ($this->editing ? 'draggable: true' : null) . '
             })' . $this->popup();
         }
 
         return 'L.marker([' . ($this->latitude ). ', ' . $this->longitude . '], {
-            title: \'' . $this->makerTitle() . '\',
+            title: \'' . $this->makerTitle() . '\','
+            . ($this->editing ? 'draggable: true,' : null) . '
             ' . $this->markerIcon() . '
-        })' . $this->popup();
+        })' . $this->popup() . $this->draggable();
     }
 
+    /**
+     * @return string
+     */
     protected function popup(): string
     {
+        if ($this->editing) {
+            return '';
+        }
+        if ($this->exploring) {
+            return '
+            .bindPopup(`
+            <div class="marker-popup-content">
+                <h4 class="marker-header">' . e($this->name) . '</h4>
+                <p class="marker-text">' . $this->entry . '</p>
+            </div>
+            ' . (!empty($this->entity) ? '
+            <p><a href="' . $this->entity->url() . '">' . e($this->entity->name) . '</a>' : null) . '`)
+            .on(`mouseover`, function (ev) {
+                this.openPopup();
+            })
+            .on(`click`, function (ev) {
+                window.markerDetails(`' . route('maps.markers.details', [$this->map_id, $this->id]) . '`)
+            })';
+        }
+
         return '.bindPopup(`
-        <div class="marker-popup-content">
-            <h4 class="marker-header">' . e($this->name) . '</h4>
-            <p class="marker-text">' . $this->entry . '</p>
-        </div>`';
+            <div class="marker-popup-content">
+                <h4 class="marker-header">' . e($this->name) . '</h4>
+                <p class="marker-text">' . $this->entry . '</p>
+            </div>
+            ' . (!empty($this->entity) ? '
+            <p><a href="' . $this->entity->url() . '">' . e($this->entity->name) . '</a>' : null) . '
+            <div class="marker-popup-actions">
+                <a href="' . route('maps.map_markers.edit', [$this->map_id, $this->id]). '" class="btn btn-xs btn-primary">' . __('crud.edit') . '</a>
+
+                <a href="#" class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="'. e($this->name) .'"
+                        data-target="#delete-confirm" data-delete-target="delete-form-marker-' . $this->id . '"
+                        title="' . __('crud.remove') . '">
+                    ' . __('crud.remove') . '
+                </a>
+            </div>`
+        )';
+    }
+
+    /**
+     * @return string
+     */
+    protected function draggable(): string
+    {
+        if (!$this->editing) {
+            return '';
+        }
+
+        return '.on(\'dragend\', function() {
+            var coordinates = marker' . $this->id . '.getLatLng();
+            console.log(\'coords\', coordinates);
+            console.log(\'new coords\', coordinates.lat, coordinates.lng);
+
+            var shapeId = $(\'input[name="shape_id"]\').val();
+            var polyCoords = $(\'textarea[name="custom_shape"]\');
+            if (shapeId == "5") {
+                console.log(\'poly\', polyCoords.val());
+                polyCoords.val(polyCoords.val() + \' \' + Math.floor(coordinates.lat) + \',\' + Math.floor(coordinates.lng));
+            } else {
+                $(\'#marker-latitude\').val(Math.floor(coordinates.lat));
+                $(\'#marker-longitude\').val(Math.floor(coordinates.lng));
+            }
+        })';
     }
 
     protected function markerIcon(): string
@@ -162,16 +236,17 @@ class MapMarker extends Model
         }
 
         $icon = 'fa fa-pin-marker';
-        if ($this->icon == 2) {
+        if (!empty($this->custom_icon)) {
+            $icon = e($this->custom_icon);
+        }
+        elseif ($this->icon == 2) {
             $icon = 'fa fa-question';
         } elseif ($this->icon == 3) {
             $icon = 'fa fa-exclamation';
-        } elseif ($this->icon == 4 && !empty($this->custom_icon)) {
-            $icon = e($this->custom_icon);
         }
 
         return 'icon: L.divIcon({
-                html: \'<i class="' . $icon . '"></i>\',
+                html: \'<i class="' . $icon . ' ra-2x fa-2x"></i>\',
                 iconSize: [40, 40],
                 className: \'marker marker-' . $this->id . '\'
         })';
@@ -187,5 +262,23 @@ class MapMarker extends Model
             return e($this->entity->name);
         }
         return e($this->name);
+    }
+
+    /**
+     * @return $this
+     */
+    public function editing(): self
+    {
+        $this->editing = true;
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function exploring(): self
+    {
+        $this->exploring = true;
+        return $this;
     }
 }

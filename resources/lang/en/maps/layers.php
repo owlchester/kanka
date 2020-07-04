@@ -5,13 +5,17 @@ return [
     'actions' => [
         'add' => 'Add a new layer'
     ],
+    'base' => 'Base Layer',
     'create' => [
-        'title' => 'New Map Layer',
-        'success' => 'Map Layer :name created.',
+        'title' => 'New Layer',
+        'success' => 'Layer :name created.',
+    ],
+    'delete' => [
+        'success' => 'Layer :name deleted.',
     ],
     'edit' => [
-        'title' => 'Edit Map Layer :name',
-        'success' => 'Map Layer :name updated.',
+        'title' => 'Edit Layer :name',
+        'success' => 'Layer :name updated.',
     ],
     'fields' => [
         'position' => 'Position',

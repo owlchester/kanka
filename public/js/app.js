@@ -76473,6 +76473,7 @@ $(document).ready(function () {
     sanitize: false
   });
   initSelect2();
+  initSpectrum();
   initCheckboxSwitch();
   initCopyToClipboard(); // Open select2 dropdowns on focus. Don't add this in initSelect2 since we only need this
   // binded once.
@@ -76601,11 +76602,10 @@ $(document).ready(function () {
   /*$.each($('.datagrid-search'), function(index) {
       $(this).submit(function(event) {
           event.preventDefault();
-            window.location.href =
+           window.location.href =
       });
   });*/
 
-  Object(_components_delete_confirm_js__WEBPACK_IMPORTED_MODULE_1__["default"])();
   initTogglePasswordFields();
   initAjaxPagination();
   /**
@@ -76680,8 +76680,9 @@ function manageTabs() {
     e.preventDefault();
     var tabId = $(e.target).attr("href").substr(1);
     var dataToggle = $(e.target).attr('ajax-modal');
+    var nohash = $(e.target).data("nohash");
 
-    if (dataToggle && dataToggle == 'ajax-modal') {
+    if (dataToggle && dataToggle == 'ajax-modal' || nohash) {
       // Modal? Don't do more.
       return true;
     } // We fake a tab_ to avoid page jumps from the browser
@@ -77206,7 +77207,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return deleteConfirm; });
 function deleteConfirm() {
   // Delete confirm dialog
-  $.each($('.delete-confirm'), function (index) {
+  $.each($('.delete-confirm'), function () {
     $(this).click(function (e) {
       var name = $(this).data('name');
       var text = $(this).data('text');
@@ -77236,8 +77237,8 @@ function deleteConfirm() {
       var target = $(this).data('target');
 
       if (target) {
-        $('#' + target + ' input[name=remove_mirrored]').val($('#delete-confirm-mirror-chexkbox').is(':checked') ? 1 : 0);
-        console.log('target', target, $('#' + target));
+        $('#' + target + ' input[name=remove_mirrored]').val($('#delete-confirm-mirror-chexkbox').is(':checked') ? 1 : 0); //console.log('target', target, $('#' + target));
+
         $('#' + target).submit();
       } else {
         $('#delete-confirm-form').submit();

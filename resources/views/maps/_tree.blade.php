@@ -15,9 +15,16 @@
         'name',
         'type',
         [
-            'label' => trans('abilities.fields.abilities'),
+            'label' => trans('maps.actions.explore'),
             'render' => function($model) {
-                return $model->abilities->count();
+                return '<a href="' . route('maps.explore', $model) . '" target="_blank"><i class="fa fa-map"></i></a>';
+            },
+            'disableSort' => true,
+        ],
+        [
+            'label' => trans('maps.fields.maps'),
+            'render' => function($model) {
+                return $model->maps->count();
             },
             'disableSort' => true,
         ],
@@ -29,14 +36,14 @@
     $models,
     // Options
     [
-        'route' => 'abilities.tree',
-        'baseRoute' => 'abilities',
-        'trans' => 'abilities.fields.',
+        'route' => 'maps.tree',
+        'baseRoute' => 'maps',
+        'trans' => 'maps.fields.',
         'campaign' => $campaign,
         'row' => [
             'data' => [
                 'data-children' => function($model) {
-                    return $model->abilities->count();
+                    return $model->maps->count();
                 }
             ]
         ]

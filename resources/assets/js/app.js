@@ -23,6 +23,7 @@ $(document).ready(function() {
 
 
     initSelect2();
+    initSpectrum();
     initCheckboxSwitch();
     initCopyToClipboard();
 
@@ -159,7 +160,6 @@ $(document).ready(function() {
         });
     });*/
 
-    deleteConfirm();
     initTogglePasswordFields();
     initAjaxPagination();
 
@@ -236,8 +236,9 @@ function manageTabs() {
         e.preventDefault();
         var tabId = $(e.target).attr("href").substr(1);
         var dataToggle = $(e.target).attr('ajax-modal');
+        var nohash = $(e.target).data("nohash");
 
-        if (dataToggle && dataToggle == 'ajax-modal') {
+        if ((dataToggle && dataToggle == 'ajax-modal') || (nohash)) {
             // Modal? Don't do more.
             return true;
         }

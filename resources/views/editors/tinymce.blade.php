@@ -82,5 +82,3 @@
     </script>
 @endsection
 
-@section('styles')
-@endsection

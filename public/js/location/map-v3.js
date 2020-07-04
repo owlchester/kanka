@@ -86,23 +86,88 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./resources/assets/js/components/delete-confirm.js":
+/*!**********************************************************!*\
+  !*** ./resources/assets/js/components/delete-confirm.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return deleteConfirm; });
+function deleteConfirm() {
+  // Delete confirm dialog
+  $.each($('.delete-confirm'), function () {
+    $(this).click(function (e) {
+      var name = $(this).data('name');
+      var text = $(this).data('text');
+      var target = $(this).data('delete-target');
+
+      if (text) {
+        $('#delete-confirm-text').text(text);
+      } else {
+        $('#delete-confirm-name').text(name);
+      }
+
+      if ($(this).data('mirrored')) {
+        $('#delete-confirm-mirror').show();
+      } else {
+        $('#delete-confirm-mirror').hide();
+      }
+
+      if (target) {
+        $('#delete-confirm-submit').data('target', target);
+      }
+    });
+  }); // Submit modal form
+
+  $.each($('#delete-confirm-submit'), function (index) {
+    $(this).unbind('click');
+    $(this).click(function (e) {
+      var target = $(this).data('target');
+
+      if (target) {
+        $('#' + target + ' input[name=remove_mirrored]').val($('#delete-confirm-mirror-chexkbox').is(':checked') ? 1 : 0); //console.log('target', target, $('#' + target));
+
+        $('#' + target).submit();
+      } else {
+        $('#delete-confirm-form').submit();
+      }
+    });
+  }); // Delete confirm dialog
+
+  $.each($('.click-confirm'), function (index) {
+    $(this).click(function (e) {
+      var name = $(this).data('message');
+      $('#click-confirm-text').text(name);
+      $('#click-confirm-url').attr('href', $(this).data('url'));
+    });
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/assets/js/location/map-v3.js":
 /*!************************************************!*\
   !*** ./resources/assets/js/location/map-v3.js ***!
   \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-var map;
-var source;
-var base;
-var bounds;
-var baseMaps;
-var icons = {};
-var layers = {};
-var mapLayers = [];
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_delete_confirm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/delete-confirm */ "./resources/assets/js/components/delete-confirm.js");
+
+var hasDeleteConfirm = false;
+var mapPageBody;
+var sidebarMap, sidebarMarker;
 $(document).ready(function () {
-  window.map.invalidateSize(); // Event fired when clicking on an existing map point
+  window.map.invalidateSize();
+  Object(_components_delete_confirm__WEBPACK_IMPORTED_MODULE_0__["default"])();
+  window.map.on('popupopen', function (ev) {
+    Object(_components_delete_confirm__WEBPACK_IMPORTED_MODULE_0__["default"])();
+  }); // Event fired when clicking on an existing map point
 
   $('a[href="#marker-pin"]').click(function (e) {
     $('input[name="shape_id"]').val(1);
@@ -116,7 +181,51 @@ $(document).ready(function () {
   $('a[href="#marker-poly"]').click(function (e) {
     $('input[name="shape_id"]').val(5);
   });
+  initMapExplore();
 });
+
+function initMapExplore() {
+  mapPageBody = $('#map-body');
+  sidebarMap = $('#sidebar-map');
+  sidebarMarker = $('#sidebar-marker');
+
+  window.markerDetails = function (url) {
+    showSidebar();
+    $.ajax({
+      url: url,
+      type: 'GET',
+      async: true,
+      success: function success(result) {
+        console.log('result');
+
+        if (result) {
+          sidebarMarker.html(result);
+          handleCloseMarker();
+        }
+      }
+    });
+  };
+
+  $('.map-legend-marker').click(function (ev) {
+    ev.preventDefault();
+    window.map.panTo(L.latLng($(this).data('lat'), $(this).data('lng')));
+    window[$(this).data('id')].openPopup();
+  });
+}
+
+function showSidebar() {
+  window.map.invalidateSize();
+  mapPageBody.removeClass('sidebar-collapse');
+  sidebarMap.hide();
+  sidebarMarker.show().html('<div class="text-center"><i class="fa fa-spin fa-spinner fa-2x"></i></div>');
+}
+
+function handleCloseMarker() {
+  $('.marker-close').click(function (ev) {
+    sidebarMarker.hide();
+    sidebarMap.show();
+  });
+}
 
 /***/ }),
 

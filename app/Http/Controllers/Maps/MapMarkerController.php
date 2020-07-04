@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Maps;
 
 
+use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMapMarker;
 use App\Models\Map;
@@ -56,10 +57,11 @@ class MapMarkerController extends Controller
 
         $ajax = request()->ajax();
         $model = $mapMarker;
+        $includeMap = true;
 
         return view(
             'maps.markers.edit',
-            compact('map', 'ajax', 'model')
+            compact('map', 'ajax', 'model', 'includeMap')
         );
     }
 
@@ -84,5 +86,13 @@ class MapMarkerController extends Controller
         return redirect()
             ->route('maps.edit', [$map, '#tab_form-markers'])
             ->withSuccess(__('maps/markers.delete.success', ['name' => $mapMarker->name]));
+    }
+
+    public function details(Map $map, MapMarker $mapMarker)
+    {
+        $this->authorize('view', $map);
+
+        return view('maps.markers.details', ['marker' => $mapMarker]);
+
     }
 }

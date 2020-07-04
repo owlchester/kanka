@@ -20,26 +20,26 @@ $sizeOptions = [
 
 <div class="nav-tabs-custom">
     <ul class="nav nav-tabs">
-        <li class="active">
-            <a href="#marker-pin" data-toggle="tooltip" class="text-center" title="{{ __('maps/markers.tabs.marker') }}">
+        <li role="presentation" @if(!isset($model) || $model->shape_id == 1) class="active" @endif>
+            <a href="#marker-pin" data-nohash="true" data-toggle="tooltip" class="text-center" title="{{ __('maps/markers.tabs.marker') }}">
                 <i class="fa fa-2x fa-map-pin"></i><br />
                 {{ __('maps/markers.tabs.marker') }}
             </a>
         </li>
-        <li>
-            <a href="#marker-label" data-toggle="tooltip" class="text-center" title="{{ __('maps/markers.tabs.label') }}">
+        <li role="presentation" @if(isset($model) && $model->shape_id == 2) class="active" @endif>
+            <a href="#marker-label" data-nohash="true"  data-toggle="tooltip" class="text-center" title="{{ __('maps/markers.tabs.label') }}">
                 <i class="fa fa-2x fa-font"></i><br />
                 {{ __('maps/markers.tabs.label') }}
             </a>
         </li>
-        <li>
-            <a href="#marker-circle" data-toggle="tooltip" class="text-center" title="{{ __('crud.fields.circle') }}">
+        <li role="presentation" @if(isset($model) && $model->shape_id == 3) class="active" @endif>
+            <a href="#marker-circle" data-nohash="true"  data-toggle="tooltip" class="text-center" title="{{ __('maps/markers.tabs.circle') }}">
                 <i class="fa fa-2x fa-circle-o"></i><br />
                 {{ __('maps/markers.tabs.circle') }}
             </a>
         </li>
-        <li>
-            <a href="#marker-poly" data-toggle="tooltip" class="text-center" title="{{ __('maps/markers.tabs.poly') }}">
+        <li role="presentation" @if(isset($model) && $model->shape_id == 5) class="active" @endif>
+            <a href="#marker-poly" data-nohash="true"  data-toggle="tooltip" class="text-center" title="{{ __('maps/markers.tabs.polygon') }}">
                 <i class="fa fa-2x fa-draw-polygon"></i><br />
                 {{ __('maps/markers.tabs.polygon') }}
             </a>
@@ -47,7 +47,7 @@ $sizeOptions = [
     </ul>
 
     <div class="tab-content">
-        <div class="tab-pane active" id="marker-pin">
+        <div class="tab-pane @if(!isset($model) || $model->shape_id == 1) active @endif" id="marker-pin">
             <div class="row">
                 <div class="col-xs-6">
                     <div class="form-group">
@@ -60,6 +60,7 @@ $sizeOptions = [
                         <label>{{ __('maps/markers.fields.custom_icon') }}</label>
                         @if ($campaign->campaign()->boosted())
                             {!! Form::text('custom_icon', null, ['class' => 'form-control', 'placeholder' => __('maps/markers.placeholders.custom_icon')]) !!}
+                            <p class="help-block">{!! __('maps/markers.helpers.custom_icon', ['rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>', 'fontawesome' => '<a href="https://fontawesome.com/icons?d=gallery" target="_blank">Font Awesome</a>']) !!}</p>
                         @else
                             <p class="help-block">{{ __('crud.errors.boosted') }}</p>
                         @endif
@@ -67,13 +68,13 @@ $sizeOptions = [
                 </div>
             </div>
         </div>
-        <div class="tab-pane" id="marker-label">
+        <div class="tab-pane @if(isset($model) && $model->shape_id == 2) active @endif" id="marker-label">
             <div class="form-group">
                 <label>{{ __('crud.fields.entry') }}</label>
                 {!! Form::textarea('entry', null, ['class' => 'form-control html-editor', 'id' => 'marker-entry', 'name' => 'entry']) !!}
             </div>
         </div>
-        <div class="tab-pane" id="marker-circle">
+        <div class="tab-pane @if(isset($model) && $model->shape_id == 3) active @endif" id="marker-circle">
             <div class="row">
                 <div class="col-xs-6">
                     <div class="form-group">
@@ -83,7 +84,7 @@ $sizeOptions = [
                 </div>
             </div>
         </div>
-        <div class="tab-pane" id="marker-poly">
+        <div class="tab-pane @if(isset($model) && $model->shape_id == 5) active @endif" id="marker-poly">
             <div class="form-group">
                 <label>{{ __('maps/markers.fields.custom_shape') }}</label>
                 @if ($campaign->campaign()->boosted())
@@ -107,24 +108,21 @@ $sizeOptions = [
     {!! Form::text('colour', null, ['class' => 'form-control spectrum', 'maxlength' => 20] ) !!}
 </div>
 
-<div class="row">
-    <div class="col-sm-12">
-        {!! Form::select2(
-            'entity_id',
-            (isset($model) && $model->entity ? $model->entity : null),
-            App\Models\Entity::class,
-            false,
-            'crud.fields.entity',
-            'search.entities-with-reminders',
-            'crud.placeholders.entity'
-        ) !!}
-    </div>
+<div class="form-group">
+{!! Form::select2(
+    'entity_id',
+    (isset($model) && $model->entity ? $model->entity : null),
+    App\Models\Entity::class,
+    false,
+    'crud.fields.entity',
+    'search.entities-with-reminders',
+    'crud.placeholders.entity'
+) !!}
 </div>
 
-<div class="row">
-    <div class="col-xs-12">
+
+<div class="form-group">
 @include('cruds.fields.visibility')
-    </div>
 </div>
 
 <div class="row @if (!$model) hidden @endif">
@@ -142,6 +140,6 @@ $sizeOptions = [
     </div>
 </div>
 
-{!! Form::hidden('shape_id', 1) !!}
+{!! Form::hidden('shape_id') !!}
 
 @include('editors.editor')

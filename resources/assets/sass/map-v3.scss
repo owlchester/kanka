@@ -2,6 +2,13 @@
   width: 100%;
   min-height: calc(50vh);
 }
+.map-explore {
+  min-height: calc(100vh - 50px) !important;
+}
+
+.map-form {
+  margin-bottom: 15px;
+}
 
 .marker {
   color: white;
@@ -15,6 +22,14 @@
 
 .marker.custom {
 
+}
+
+.btn-map-explore {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: #fff !important;
+  z-index: 999;
 }
 
 .marker.size-1 {
@@ -46,3 +61,57 @@
   }
 }
 
+
+.marker-popup-actions
+{
+  a {
+    color: #fff;
+  }
+}
+
+
+
+#map-body {
+  .main-sidebar {
+    width: 430px;
+  }
+  .content-wrapper, .main-footer {
+    margin-left: 430px;
+  }
+  #sidebar-content {
+    margin: 8px;
+  }
+  .sidebar {
+    a {
+      color: #fff;
+    }
+  }
+}
+.skin-map.sidebar-collapse {
+  .sidebar {
+    display: none !important;
+  }
+}
+
+.skin-map {
+  .main-sidebar {
+    //background-color: #dedede;
+    color: #efefef;
+    overflow: hidden;
+  }
+  .marker-details {
+    .marker-name {
+      margin-top: 0;
+    }
+  }
+
+  .marker-actions {
+    margin: 20px 0;
+  }
+}
+
+.marker-close {
+  &:hover {
+    cursor: pointer;
+  }
+}

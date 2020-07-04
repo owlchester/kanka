@@ -66,7 +66,9 @@ Route::group([
         Route::get('/abilities/tree', 'AbilityController@tree')->name('abilities.tree');
 
         // Maps
-        Route::get('/maps/{ability}/maps', 'Maps\MapController@maps')->name('maps.maps');
+        Route::get('/maps/{map}/maps', 'Maps\MapController@maps')->name('maps.maps');
+        Route::get('/maps/{map}/explore', 'Maps\MapController@explore')->name('maps.explore');
+        Route::get('/maps/{map}/{map_marker}/details', 'Maps\MapMarkerController@details')->name('maps.markers.details');
         Route::get('/maps/tree', 'Maps\MapController@tree')->name('maps.tree');
 
         // Character

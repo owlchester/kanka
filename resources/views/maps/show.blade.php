@@ -11,27 +11,20 @@
                         <i class="fa fa-align-justify"></i> <span class="hidden-sm hidden-xs">{{ trans('crud.panels.entry') }}</span>
                     </a>
                 </li>
-                @include('cruds._tabs', ['disableAttributes' => true])
+                @include('cruds._tabs')
             </ul>
 
             <div class="tab-content">
                 <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="entry">
                     <p>{!! $model->entry() !!}</p>
                     @include('cruds.partials.mentions')
+
+                    <a href="{{ route('maps.explore', $model) }}" class="btn btn-block btn-primary">
+                        <i class="fa fa-map"></i> {{ __('maps.actions.explore') }}
+                    </a>
+
                 </div>
-                @include('cruds._panes', ['disableAttributes' => true])
-            </div>
-        </div>
-
-        <div class="box box-solid">
-            <div class="box-header">
-                <h3 class="box-title">
-                    {{ __('crud.tabs.attributes') }}
-                </h3>
-            </div>
-            <div class="box-body">
-
-            @include('cruds._attributes')
+                @include('cruds._panes')
             </div>
         </div>
 

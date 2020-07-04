@@ -35,6 +35,15 @@ class MapLayerObserver
     public function deleted(MapLayer $mapLayer)
     {
         ImageService::cleanup($mapLayer);
+        $mapLayer->map->touch();
+    }
+
+    /**
+     * @param MapLayer $mapLayer
+     */
+    public function saved(MapLayer $mapLayer)
+    {
+        $mapLayer->map->touch();
     }
 
 }

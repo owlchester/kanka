@@ -13,6 +13,13 @@
         'name',
         'type',
         [
+            'label' => trans('maps.actions.explore'),
+            'render' => function($model) {
+                return '<a href="' . route('maps.explore', $model) . '" target="_blank"><i class="fa fa-map"></i></a>';
+            },
+            'disableSort' => true,
+        ],
+        [
             'label' => trans('crud.fields.map'),
             'field' => 'map.name',
             'render' => function($model) {
