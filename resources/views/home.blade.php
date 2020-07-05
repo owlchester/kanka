@@ -45,12 +45,6 @@
 
     @include('partials.errors')
 
-    <div class="alert alert-warning alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <h4><i class="icon fa fa-warning"></i> Planned Downtime</h4>
-        Kanka will be moving to new servers on Monday the 6th of July 2020. We expect the website to be unavailable from 09:00 AM to 01:00 PM UTC while we move to the new servers. Updates will be posted on our <a href="{{ config('discord.url') }}" target="_blank">Discord</a>.
-    </div>
-
     <div class="campaign @if(!empty($campaign->header_image))cover-background" style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }}) @else no-header @endif ">
         <div class="content">
             <div class="title">

@@ -5,10 +5,6 @@ $actions = [
         'deny' => __('crud.permissions.actions.bulk_entity.deny'),
         'inherit' => __('crud.permissions.actions.bulk_entity.inherit'),
 ];
-// Negative permissions as a beta for boosted campaigns
-if (!$campaign->boosted()) {
-    unset($actions['deny']);
-}
 ?>
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
