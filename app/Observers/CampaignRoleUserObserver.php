@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Facades\UserCache;
+use App\Jobs\CampaignRoleUserJob;
 use App\Models\CampaignRoleUser;
 use App\Notifications\Header;
 
@@ -27,17 +28,7 @@ class CampaignRoleUserObserver
      */
     public function created(CampaignRoleUser $campaignRoleUser)
     {
-        $notification = new Header(
-            'campaign.role.add',
-            'user',
-            'green',
-            [
-                'role' => e($campaignRoleUser->campaignRole->name),
-                'campaign' => e($campaignRoleUser->campaignRole->campaign->name)
-            ]
-        );
-        $campaignRoleUser->user->notify($notification);
-
+        CampaignRoleUserJob::dispatch($campaignRoleUser, true);
         UserCache::user($campaignRoleUser->user)->clearRoles();
     }
 
@@ -46,6 +37,7 @@ class CampaignRoleUserObserver
      */
     public function creating(CampaignRoleUser $campaignRoleUser)
     {
+
     }
 
     /**
@@ -53,17 +45,7 @@ class CampaignRoleUserObserver
      */
     public function deleted(CampaignRoleUser $campaignRoleUser)
     {
-        $notification = new Header(
-            'campaign.role.remove',
-            'user',
-            'green',
-            [
-                'role' => $campaignRoleUser->campaignRole->name,
-                'campaign' => $campaignRoleUser->campaignRole->campaign->name
-            ]
-        );
-        $campaignRoleUser->user->notify($notification);
-
+        CampaignRoleUserJob::dispatch($campaignRoleUser, false);
         UserCache::user($campaignRoleUser->user)->clearRoles();
     }
 }

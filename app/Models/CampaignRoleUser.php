@@ -10,6 +10,7 @@ use DateTime;
  * Class Attribute
  * @package App\Models
  *
+ * @property integer $id
  * @property integer $campaign_role_id
  * @property integer $user_id
  */

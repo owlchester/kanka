@@ -175,15 +175,5 @@ abstract class MiscObserver
         if ($model->isDirty('entry')) {
             $this->entityMappingService->silent()->mapEntity($entity);
         }
-
-        // If we changed the name or entry of this object, we need to update the entry of objects mentioning us
-        // Mentionsv3: injected on rendering, no longer need to do this in the background.
-        // We can however take this opportunity to fix old links to the new ones.
-//        if ($model->isDirty('name') || $model->isDirty('entry')) {
-//            // If the entity is targeted by mentions, queue a job to update texts
-//            if ($entity->targetMentions()->count() > 0) {
-//                EntityMentionJob::dispatch($entity);
-//            }
-//        }
     }
 }
