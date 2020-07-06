@@ -42,7 +42,7 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'read' => [
-                'host' => env('DB_HOST_RO', env('DB_HOST', '127.0.0.1')),
+                'host' => env('DB_HOST_RW', env('DB_HOST', '127.0.0.1')),
             ],
             'write' => [
                 'host' => env('DB_HOST_RW', env('DB_HOST', '127.0.0.1')),
