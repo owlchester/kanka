@@ -154,13 +154,13 @@ return [
     ],
     'home'          => [
         'seo'   => [
-            'meta-description'  => 'Kanka is a community driven RPG Campaign Manager and Worldbuilding tool, that makes it easy to organise, plan and enjoy your tabletop RPG campaigns',
+            'meta-description'  => 'Kanka is a community driven tabletop RPG Campaign Manager and Worldbuilding tool, that makes it easy to organise, plan and enjoy your tabletop RPG campaigns',
         ],
     ],
     'master'        => [
         'call_to_action'    => 'Sign up',
-        'description'       => 'Kanka is an easy, intuitive, and flexible tool for worldbuilders, authors, story tellers and RPG players to digitally track their worlds and campaigns. Create and organize people, places, organisations, events and much more for free.',
-        'heading'           => 'RPG Campaign Management and Worldbuilding made easy',
+        'description'       => 'Kanka is an easy, intuitive, and flexible tool for worldbuilders, authors, story tellers and tabletop RPG players to digitally track their worlds and campaigns. Create and organize people, places, organisations, events and much more for free.',
+        'heading'           => 'Tabletop RPG Campaign Management and Worldbuilding made easy',
         'title'             => 'Kanka',
     ],
     'menu'          => [
@@ -187,8 +187,8 @@ return [
         'title'     => 'Menu',
     ],
     'meta'          => [
-        'description'   => 'Kanka is a flexible digital world builder and online rpg campaign manager',
-        'title'         => 'Kanka - Online RPG campaign manager and worldbuilding tool',
+        'description'   => 'Kanka is a flexible digital world builder and online tabletop rpg campaign manager',
+        'title'         => 'Kanka - Online tabletop RPG campaign manager and worldbuilding tool',
     ],
     'partners'      => [
         'description'   => 'We\'ve partnered up with a few amazing tools and communities that share our goals and values.',

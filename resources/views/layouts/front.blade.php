@@ -8,10 +8,10 @@
     <meta name="description" content="{{ $metaDescription ?? __('front.home.seo.description') }}">
     <meta name="keywords" content="{{  $metaKeywords ?? __('front.seo.keywords') }}">
 
-    <meta property="og:title" content="{{ $title ?? __('front.meta.title') }} - {{ config('app.name') }}">
+    <meta property="og:title" content="{{ $title ?? __('front.meta.title') }}@if (!isset($skipEnding)) - {{ config('app.name') }} @endif">
     <meta property="og:site_name" content="{{ config('app.site_name') }}">
 @yield('og')
-    <title>{{ $title ?? __('front.meta.title') }} - {{ config('app.name', 'Kanka') }}</title>
+    <title>{{ $title ?? __('front.meta.title') }} @if (!isset($skipEnding)) - {{ config('app.name', 'Kanka') }}@endif</title>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
