@@ -358,6 +358,8 @@ Route::group([
         Route::post('/campaign/export', 'CampaignExportController@export')->name('campaign_export.save');
         Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');
 
+
+
         // Entity quick creator
         Route::get('/entity-creator', [\App\Http\Controllers\EntityCreatorController::class, 'selection'])->name('entity-creator.selection');
         Route::get('/entity-creator/{type}', [\App\Http\Controllers\EntityCreatorController::class, 'form'])->name('entity-creator.form');
