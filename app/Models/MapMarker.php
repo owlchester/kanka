@@ -132,7 +132,8 @@ class MapMarker extends Model
                 . ($this->editing ? 'draggable: true' : null) . '
             }).bindTooltip(`' . $this->name . '`, {
                 direction: \'center\',
-                permanent: true
+                permanent: true,
+                offset: [0,0]
             })' . $this->popup();
         } elseif ($this->shape_id == MapMarker::SHAPE_POLY) {
             $coords = [];

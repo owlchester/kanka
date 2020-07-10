@@ -94,12 +94,12 @@
 }
 
 @media (min-width: 767px) {
-  .main-sidebar {
+  #map-body .main-sidebar {
     width: 430px;
   }
 
-  .content-wrapper,
-  .main-footer {
+  #map-body .content-wrapper,
+  #map-body .main-footer {
     margin-left: 430px;
   }
 }

@@ -7,9 +7,11 @@ return [
     ],
     'create' => [
         'title' => 'New Map',
+        'success' => 'Map :name created.',
     ],
     'edit' => [
         'title' => 'Edit Map :name',
+        'success' => 'Map :name updated.',
     ],
     'fields' => [
         'grid' => 'Grid',

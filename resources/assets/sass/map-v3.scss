@@ -113,11 +113,14 @@
   }
 }
 @media(min-width: 767px) {
-  .main-sidebar {
-    width: 430px;
-  }
-  .content-wrapper, .main-footer {
-    margin-left: 430px;
+  #map-body {
+    .main-sidebar {
+      width: 430px;
+    }
+
+    .content-wrapper, .main-footer {
+      margin-left: 430px;
+    }
   }
 }
 
