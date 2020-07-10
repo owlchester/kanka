@@ -162,6 +162,7 @@ __webpack_require__.r(__webpack_exports__);
 var hasDeleteConfirm = false;
 var mapPageBody;
 var sidebarMap, sidebarMarker;
+var markerModal, markerModalContent, markerModalTitle;
 $(document).ready(function () {
   window.map.invalidateSize();
   Object(_components_delete_confirm__WEBPACK_IMPORTED_MODULE_0__["default"])();
@@ -182,25 +183,54 @@ $(document).ready(function () {
     $('input[name="shape_id"]').val(5);
   });
   initMapExplore();
+  initMapForms(); // Limit the size of custom svg icons to not overblow the marker size
+
+  $('.map svg').each(function (e) {
+    $(this).attr("height", 32).attr("width", 32).css('margin-top', '4px');
+  });
+  $(document).on('shown.bs.modal shown.bs.popover', function () {
+    initMapForms();
+  });
 });
 
 function initMapExplore() {
   mapPageBody = $('#map-body');
   sidebarMap = $('#sidebar-map');
   sidebarMarker = $('#sidebar-marker');
+  markerModal = $('#map-marker-modal');
+  markerModalTitle = $('#map-marker-modal-title');
+  markerModalContent = $('#map-marker-modal-content'); // Allow ajax requests to use the X_CSRF_TOKEN for moves
+
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
 
   window.markerDetails = function (url) {
     showSidebar();
+
+    if (window.kankaIsMobile.matches) {
+      url = url + '?mobile=1';
+    }
+
     $.ajax({
       url: url,
       type: 'GET',
       async: true,
       success: function success(result) {
-        console.log('result');
-
+        // console.log('result');
         if (result) {
-          sidebarMarker.html(result);
-          handleCloseMarker();
+          if (window.kankaIsMobile.matches) {
+            console.log('mobile result');
+            markerModalTitle.html(result.name);
+            markerModalContent.html(result.body);
+            console.log('markerModal', markerModal);
+          } else {
+            sidebarMarker.html(result.body);
+            handleCloseMarker();
+            mapPageBody.addClass('sidebar-open');
+          }
         }
       }
     });
@@ -212,12 +242,41 @@ function initMapExplore() {
     window[$(this).data('id')].openPopup();
   });
 }
+/**
+ * When submitting the layer or marker form from the map modal, disable the map form unsaved changed
+ * alert.
+ */
+
+
+function initMapForms() {
+  var layerForm = $('#map-layer-form');
+  var markerForm = $('#map-marker-form');
+
+  if (layerForm.length === 0 && markerForm.length === 0) {
+    return;
+  }
+
+  layerForm.on('submit', function () {
+    window.entityFormHasUnsavedChanges = false;
+  });
+  markerForm.on('submit', function () {
+    window.entityFormHasUnsavedChanges = false;
+  });
+}
 
 function showSidebar() {
+  var spinner = '<div class="text-center"><i class="fa fa-spin fa-spinner fa-2x"></i></div>'; // On mobile use the modal instead of the sidebar
+
+  if (window.kankaIsMobile.matches) {
+    markerModalContent.html(spinner);
+    markerModal.modal('toggle');
+    return;
+  }
+
   window.map.invalidateSize();
-  mapPageBody.removeClass('sidebar-collapse');
+  mapPageBody.removeClass('sidebar-collapse').addClass('sidebar-open');
   sidebarMap.hide();
-  sidebarMarker.show().html('<div class="text-center"><i class="fa fa-spin fa-spinner fa-2x"></i></div>');
+  sidebarMarker.show().html(spinner);
 }
 
 function handleCloseMarker() {

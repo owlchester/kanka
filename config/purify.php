@@ -69,15 +69,15 @@ return [
 
         'HTML.Allowed' =>
             'big,small,h1[class|style|id],h2[class|style|id],h3[class|style|id],h4[class|style|id],h5[class|style|id],h6[class|style|id],'
-            . 'div[class|style],ins,del,pre,blockquote[cite],sup,sub,hr,caption,'
-            . 'strong,em,b,ul[class|style|id],ol[style],li[style],p,i,br,'
-            . 'img[src|style|alt|width|height|class|title],'
+            . 'div[class|style|id],ins,del,pre,blockquote[cite],sup,sub,hr,caption,'
+            . 'strong,em,b,ul[class|style|id],ol[style],li[style],p,i[class],br,'
+            . 'img[src|style|alt|width|height|class|title|id],'
             . 'a[href|class|target|rel|title|data-toggle|data-html|id],'
-            . 'p[class|style|id],span[class|style],'
-            . 'table[class|summary|style|border|cellpadding|cellspacing],tbody,thead,tfoot,tr[class|style],td[class|style|abbr|colspan],th[class|style|abbr|colspan],'
+            . 'p[class|style|id],span[class|style|id],'
+            . 'table[class|summary|style|border|cellpadding|cellspacing|id],tbody,thead,tfoot,tr[class|style|id],td[class|style|abbr|colspan],th[class|style|abbr|colspan],'
             . 'acronym[title],abbr[title],'
             . 'summary[class|style|id],details[class|style|id|open],'
-            . 'iframe[src|width|height|style|class]', // only use this with HTML.SafeIframe
+            . 'iframe[src|width|height|style|class|scrolling|id]', // only use this with HTML.SafeIframe
 
         /*
         |--------------------------------------------------------------------------

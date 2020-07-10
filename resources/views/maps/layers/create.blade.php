@@ -28,6 +28,7 @@
             {!! Form::open(['route' => ['maps.map_layers.store', $map],
                 'method' => 'POST',
                 'data-shortcut' => 1,
+                'id' => 'map-layer-form',
                 'enctype' => 'multipart/form-data'
                ]) !!}
             @include('maps.layers._form', ['model' => null])

@@ -21,6 +21,8 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string $image
  * @property string $visibility
  * @property int $position
+ * @property int $height
+ * @property int $width
  *
  * @property Map $map
  *
@@ -55,8 +57,8 @@ class MapLayer extends Model
     public function scopeOrdered(Builder $query)
     {
         return $query
-            ->orderBy('position', 'desc')
-            ->orderBy('name', 'asc');
+            ->orderByDesc('position')
+            ->orderBy('name');
     }
 
     /**

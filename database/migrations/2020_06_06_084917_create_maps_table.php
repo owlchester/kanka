@@ -90,7 +90,7 @@ class CreateMapsTable extends Migration
             $table->unsignedTinyInteger('size_id')->default(1);
             $table->string('icon', 20)->nullable();
 
-            $table->string('custom_icon', 20)->nullable();
+            $table->text('custom_icon')->nullable();
             $table->text('custom_shape')->nullable();
             $table->boolean('is_draggable')->default(0);
 

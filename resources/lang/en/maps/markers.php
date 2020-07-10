@@ -6,7 +6,7 @@ return [
     ],
     'create' => [
         'title' => 'New Marker',
-        'Marker :name created.',
+        'success' => 'Marker :name created.',
     ],
     'delete' => [
         'success' => 'Marker :name deleted,',
@@ -18,12 +18,15 @@ return [
     'fields' => [
         'custom_icon' => 'Custom Icon',
         'custom_shape' => 'Custom Shape',
+        'is_draggable' => 'Draggable',
         'latitude' => 'Latitude',
         'longitude' => 'Longitude',
+        'opacity' => 'Opacity',
     ],
     'helpers' => [
         'base' => 'Add markers to the map by clicking on any spot.',
-        'custom_icon' => 'Copy the name of an icon from :fontawesome or :rpgawesome.',
+        'custom_icon' => 'Copy the html of an icon from :fontawesome or :rpgawesome, or a custom SVG icon.',
+        'draggable' => 'Enable to allow moving a marker in the exploration mode.',
     ],
     'icons' => [
         'exclamation' => 'Exclamation',
@@ -34,7 +37,6 @@ return [
     ],
     'placeholders' => [
         'name' => 'Name of the marker',
-        'custom_icon' => 'ra ra-skull, fas fa-gem',
         'custom_shape' => '100,100 200,240 340,110'
     ],
     'shapes'        => [

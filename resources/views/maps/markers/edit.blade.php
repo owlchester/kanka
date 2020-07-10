@@ -30,6 +30,7 @@
             {!! Form::model($model, ['route' => ['maps.map_markers.update', 'map' => $map, 'map_marker' => $model],
                 'method' => 'PATCH',
                 'data-shortcut' => 1,
+                'id' => 'map-marker-form',
                 'enctype' => 'multipart/form-data'
                ]) !!}
             @include('maps.markers._form')

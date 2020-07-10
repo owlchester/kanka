@@ -59,7 +59,7 @@ $sizeOptions = [
                     <div class="form-group">
                         <label>{{ __('maps/markers.fields.custom_icon') }}</label>
                         @if ($campaign->campaign()->boosted())
-                            {!! Form::text('custom_icon', null, ['class' => 'form-control', 'placeholder' => __('maps/markers.placeholders.custom_icon')]) !!}
+                            {!! Form::text('custom_icon', null, ['class' => 'form-control', 'placeholder' => '<i class="fa fa-gem"></i>, <i class="ra ra-sword">']) !!}
                             <p class="help-block">{!! __('maps/markers.helpers.custom_icon', ['rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>', 'fontawesome' => '<a href="https://fontawesome.com/icons?d=gallery" target="_blank">Font Awesome</a>']) !!}</p>
                         @else
                             <p class="help-block">{{ __('crud.errors.boosted') }}</p>
@@ -97,15 +97,37 @@ $sizeOptions = [
     </div>
 </div>
 
-
-<div class="form-group required">
-    <label>{{ __('crud.fields.name') }}</label>
-    {!! Form::text('name', null, ['placeholder' => __('maps/markers.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group required">
+            <label>{{ __('crud.fields.name') }}</label>
+            {!! Form::text('name', null, ['placeholder' => __('maps/markers.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            {!! Form::hidden('is_draggable', 0) !!}
+            <label>{!! Form::checkbox('is_draggable', 1) !!}
+                {{ __('maps/markers.fields.is_draggable') }}
+            </label>
+            <p class="help-block">{{ __('maps/markers.helpers.draggable') }}</p>
+        </div>
+    </div>
 </div>
 
-<div class="form-group">
-    <label>{{ __('locations.map.points.fields.colour') }}</label><br />
-    {!! Form::text('colour', null, ['class' => 'form-control spectrum', 'maxlength' => 20] ) !!}
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>{{ __('locations.map.points.fields.colour') }}</label><br />
+            {!! Form::text('colour', null, ['class' => 'form-control spectrum', 'maxlength' => 20] ) !!}
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>{{ __('maps/markers.fields.opacity') }}</label><br />
+            {!! Form::number('opacity', (!isset($model) ? 1 : null), ['class' => 'form-control', 'maxlength' => 3, 'step' => 0.1, 'max' => 1, 'min' => 0] ) !!}
+        </div>
+    </div>
 </div>
 
 <div class="form-group">
@@ -140,6 +162,6 @@ $sizeOptions = [
     </div>
 </div>
 
-{!! Form::hidden('shape_id') !!}
+{!! Form::hidden('shape_id', (!isset($model) ? 1 : null)) !!}
 
 @include('editors.editor')

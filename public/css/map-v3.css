@@ -50,6 +50,7 @@
 }
 
 .marker i {
+  font-size: 20px;
   margin: 0;
   position: absolute;
   top: 50%;
@@ -61,17 +62,10 @@
   color: #fff;
 }
 
-#map-body .main-sidebar {
-  width: 430px;
-}
-
-#map-body .content-wrapper,
-#map-body .main-footer {
-  margin-left: 430px;
-}
-
 #map-body #sidebar-content {
-  margin: 8px;
+  padding: 8px;
+  overflow: auto;
+  max-height: calc(100vh - 60px);
 }
 
 #map-body .sidebar a {
@@ -97,5 +91,16 @@
 
 .marker-close:hover {
   cursor: pointer;
+}
+
+@media (min-width: 767px) {
+  .main-sidebar {
+    width: 430px;
+  }
+
+  .content-wrapper,
+  .main-footer {
+    margin-left: 430px;
+  }
 }
 

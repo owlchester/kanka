@@ -17,7 +17,7 @@ class MapsAddGridOpacity extends Migration
             $table->unsignedSmallInteger('grid')->nullable();
         });
         Schema::table('map_markers', function (Blueprint $table) {
-            $table->float('opacity', 2)->default(0.5);
+            $table->float('opacity', 2, 1)->default(0.5);
         });
     }
 

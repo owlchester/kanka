@@ -19,7 +19,7 @@
         "binarytorch/larecipe": "^2.0",
         "blueimp/jquery-file-upload": "^9.23",
         "chriskonnertz/string-calc": "^1.0",
-        "enshrined/svg-sanitize": "^0.13.1",
+        "enshrined/svg-sanitize": "^0.13.3",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.5",
         "ilestis/kanka-dnd5e-monster": "^2.0",

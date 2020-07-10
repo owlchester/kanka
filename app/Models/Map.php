@@ -47,6 +47,8 @@ class Map extends MiscModel
         'location_id',
         'grid',
         'is_private',
+        'height',
+        'width',
     ];
 
     /**
@@ -82,7 +84,6 @@ class Map extends MiscModel
      */
     public $nullableForeignKeys = [
         'map_id',
-        'location_id',
     ];
 
     /**
@@ -104,7 +105,7 @@ class Map extends MiscModel
      * Specify parent id attribute mutator
      * @param $value
      */
-    public function setAbilityIdAttribute($value)
+    public function setMapIdAttribute($value)
     {
         $this->setParentIdAttribute($value);
     }
@@ -129,14 +130,6 @@ class Map extends MiscModel
     public function map()
     {
         return $this->belongsTo('App\Models\Map', 'map_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function location()
-    {
-        return $this->belongsTo('App\Models\Location', 'location_id', 'id');
     }
 
     /**

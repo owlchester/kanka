@@ -28,6 +28,7 @@
             {!! Form::model($model, ['route' => ['maps.map_layers.update', 'map' => $map, 'map_layer' => $model],
                 'method' => 'PATCH',
                 'data-shortcut' => 1,
+                'id' => 'map-layer-form',
                 'enctype' => 'multipart/form-data'
                ]) !!}
             @include('maps.layers._form')

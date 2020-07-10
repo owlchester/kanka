@@ -9,13 +9,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMapMarker;
 use App\Models\Map;
 use App\Models\MapMarker;
+use Illuminate\Http\Request;
 
 class MapMarkerController extends Controller
 {
     protected $fields = [
-        'entity_id', 'name', 'entry', 'longitude', 'latitude', 'colour',
+        'entity_id', 'name', 'entry', 'longitude', 'latitude',
+        'colour', 'opacity',
         'shape_id',
-        'type_id', 'size_id', 'icon', 'custom_icon', 'custom_shape', 'visibility'
+        'type_id', 'size_id', 'icon', 'custom_icon', 'custom_shape', 'visibility',
+        'is_draggable',
     ];
 
     public function create(Map $map)
@@ -92,7 +95,21 @@ class MapMarkerController extends Controller
     {
         $this->authorize('view', $map);
 
-        return view('maps.markers.details', ['marker' => $mapMarker]);
+        return response()->json([
+            'body' => view('maps.markers.details', ['marker' => $mapMarker])->render(),
+            'name' => $mapMarker->name
+        ]);
+    }
 
+    public function move(Request $request, Map $map, MapMarker $mapMarker)
+    {
+        $this->authorize('update', $map);
+
+        $mapMarker->update($request->only('latitude', 'longitude'));
+
+        return response()->json([
+            'success' => true,
+            'marker_id' => $mapMarker->id
+        ]);
     }
 }

@@ -69,17 +69,7 @@
         function toggle(marker) {
             console.log('marker', marker);
             window[marker].openPopup();
-
         }
-
-        // map.on('click', function(ev) {
-        //     let position = ev.latlng;
-        //     console.log('Click', 'lat', Math.floor(position.lat), 'lng', Math.floor(position.lng));
-        //     // AJAX request
-        //     $('#marker-latitude').val(Math.floor(position.lat));
-        //     $('#marker-longitude').val(Math.floor(position.lng));
-        //     $('#marker-modal').modal('show');
-        // });
 
         window.map = map;
     </script>
@@ -99,4 +89,20 @@
 }
 @endforeach
     </style>
+@endsection
+
+@section('modals')
+    <div class="modal fade" id="map-marker-modal" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span id="map-marker-modal-title"></span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body" id="map-marker-modal-content">
+                    <i class="fa fa-spinner fa-spin"></i>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

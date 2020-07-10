@@ -159,6 +159,14 @@ trait CampaignRelations
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function maps()
+    {
+        return $this->hasMany('App\Models\Map');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function notes()
     {
         return $this->hasMany('App\Models\Note');

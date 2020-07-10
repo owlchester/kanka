@@ -20,6 +20,7 @@ return [
     ],
     'index' => [
         'title' => 'Maps',
+        'add' => 'New Map',
     ],
     'panels' => [
         'layers' => 'Layers',

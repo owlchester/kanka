@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Traits\VisibilityTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 /**
  * Class MapMarker
@@ -27,6 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $custom_icon
  * @property string $custom_shape
  * @property bool $is_draggable
+ * @property float $opacity
  * @property string $visibility
  */
 class MapMarker extends Model
@@ -118,9 +120,9 @@ class MapMarker extends Model
                 fillColor: \'' . e($this->colour) . '\',
                 title: \'' . $this->makerTitle() . '\',
                 stroke: false,
-                opacity: 0.7,
+                fillOpacity: ' . $this->opacity . ',
                 className: \'marker marker-circle marker-' . $this->id . ' size-' . $this->size_id . '\','
-                . ($this->editing ? 'draggable: true' : null) . '
+                . ($this->isDraggable() ? 'draggable: true' : null) . '
             })' . $this->popup();
 
         }
@@ -144,17 +146,17 @@ class MapMarker extends Model
             return 'L.polygon([' . implode(', ', $coords) . '], {
                 color: \'' . e($this->colour) . '\',
                 weight: 1,
-                opacity: 0.5,
+                opacity: ' . $this->opacity . ',
                 smoothFactor: 1,
                 linecap: \'round\',
                 linejoin: \'round\',
-                ' . ($this->editing ? 'draggable: true' : null) . '
             })' . $this->popup();
         }
 
         return 'L.marker([' . ($this->latitude ). ', ' . $this->longitude . '], {
-            title: \'' . $this->makerTitle() . '\','
-            . ($this->editing ? 'draggable: true,' : null) . '
+            title: \'' . $this->makerTitle() . '\',
+            opacity: ' . $this->opacity . ','
+            . ($this->isDraggable() ? 'draggable: true,' : null) . '
             ' . $this->markerIcon() . '
         })' . $this->popup() . $this->draggable();
     }
@@ -204,23 +206,52 @@ class MapMarker extends Model
     }
 
     /**
+     * Determin if a marker is draggable
+     * @return bool
+     */
+    protected function isDraggable(): bool
+    {
+        return $this->editing || ($this->exploring && $this->is_draggable);
+    }
+
+    /**
      * @return string
      */
     protected function draggable(): string
     {
-        if (!$this->editing) {
+        if (!$this->isDraggable()) {
             return '';
+        }
+
+        // Exploring and moving? Update through ajax
+        if ($this->exploring && $this->is_draggable) {
+            return '.on(`dragstart`, function() {
+            console.log(`drag start`);
+                this.closePopup();
+            })
+
+            .on(\'dragend\', function() {
+                var coordinates = marker' . $this->id . '.getLatLng();
+                console.log(`dragend`);
+                $.ajax({
+                    url: `' . route('maps.markers.move', [$this->map_id, $this->id]) . '`,
+                    type: `post`,
+                    data: {latitude: Math.floor(coordinates.lat), longitude: Math.floor(coordinates.lng)}
+                }).done(function (data) {
+                    console.log(`moved marker`);
+                });
+            })';
         }
 
         return '.on(\'dragend\', function() {
             var coordinates = marker' . $this->id . '.getLatLng();
-            console.log(\'coords\', coordinates);
-            console.log(\'new coords\', coordinates.lat, coordinates.lng);
+//            console.log(\'coords\', coordinates);
+//            console.log(\'new coords\', coordinates.lat, coordinates.lng);
 
             var shapeId = $(\'input[name="shape_id"]\').val();
             var polyCoords = $(\'textarea[name="custom_shape"]\');
             if (shapeId == "5") {
-                console.log(\'poly\', polyCoords.val());
+//                console.log(\'poly\', polyCoords.val());
                 polyCoords.val(polyCoords.val() + \' \' + Math.floor(coordinates.lat) + \',\' + Math.floor(coordinates.lng));
             } else {
                 $(\'#marker-latitude\').val(Math.floor(coordinates.lat));
@@ -235,18 +266,22 @@ class MapMarker extends Model
             return '';
         }
 
-        $icon = 'fa fa-pin-marker';
+        $icon = '`<i class="fa fa-pin-marker"></i>`';
         if (!empty($this->custom_icon)) {
-            $icon = e($this->custom_icon);
+            if (Str::startsWith($this->custom_icon, '<i')) {
+                $icon = '`' . $this->custom_icon . '`';
+            } else {
+                $icon = 'L.Util.template(`' . $this->custom_icon . '`)';
+            }
         }
         elseif ($this->icon == 2) {
-            $icon = 'fa fa-question';
+            $icon = '`<i class="fa fa-question"></i>`';
         } elseif ($this->icon == 3) {
-            $icon = 'fa fa-exclamation';
+            $icon = '`<i class="fa fa-exclamation"></i`';
         }
 
         return 'icon: L.divIcon({
-                html: \'<i class="' . $icon . ' ra-2x fa-2x"></i>\',
+                html: ' . $icon . ',
                 iconSize: [40, 40],
                 className: \'marker marker-' . $this->id . '\'
         })';
