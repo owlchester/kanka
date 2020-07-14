@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\CommunityVote $model */?>
 @extends('layouts.front', [
-    'title' => trans('front/community-votes.show.title', ['name' => $model->name]),
+    'title' => __('front/community-votes.show.title', ['name' => $model->name]),
     'description' => '',
 ])
 
@@ -16,8 +16,8 @@
             <div class="row h-100">
                 <div class="col-lg-12 my-auto">
                     <div class="header-content mx-auto">
-                        <h1 class="mb-5">{{ trans('front/community-votes.title') }}</h1>
-                        <p class="mb-5">{{ trans('front/community-votes.description') }}</p>
+                        <h1 class="mb-5">{{ __('front/community-votes.title') }}</h1>
+                        <p class="mb-5">{{ __('front/community-votes.description') }}</p>
                     </div>
                 </div>
             </div>
@@ -60,6 +60,9 @@
                                             </div>
                                         @endforeach
                                     </div>
+                                    <p class="text-muted mt-3">
+                                        {!! trans_choice('front/community-votes.show.vote_count', $model->ballots->count(), ['number' => $model->ballots->count()]) !!}
+                                    </p>
                                     <p class="text-muted mt-3">
                                         @if ($model->isVoting())
                                             {!! __('front/community-votes.show.voting_until', [

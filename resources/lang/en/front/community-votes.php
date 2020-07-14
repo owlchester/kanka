@@ -20,6 +20,7 @@ return [
         'title'         => 'Community Vote - :name',
         'voted_lasted'  => 'Voting lasted from :from GMT until :until GMT.',
         'voting_until'  => 'Voting is open until :until GMT.',
+        'vote_count'    => '{1} :number participant voted.|[2,*] :number participants votes.',
     ],
     'title'         => 'Community Votes',
 ];
