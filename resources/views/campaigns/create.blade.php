@@ -3,7 +3,7 @@
     'breadcrumbs' => $start ? false : [
         ['url' => route('campaigns.index'), 'label' => trans('campaigns.index.title')],
         trans('crud.create')
-    ]
+    ],
 ])
 
 @section('fullpage-form')

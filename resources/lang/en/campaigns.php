@@ -4,9 +4,10 @@ return [
     'create'                            => [
         'description'           => 'Create a new campaign',
         'helper'                => [
-            'first' => 'Thanks for trying our app out! Before we can go any further, we need you to provide one simple thing for us, your <b>campaign name</b>. This is the name of your world that separates it from others. If you don\'t have a good name yet, don\'t worry, you can <b>always change it later</b>, or create more campaigns.',
-            'second'=> 'But enough chit-chat! So, what\'s it going to be?',
-            'title' => 'Welcome to :name!',
+            'title' => 'Welcome to :name',
+            'welcome' => 'Before going any further, you need to pick a campaign name. This is the name of your world. If you don\'t have a good name yet, don\'t worry, you can always change it later, or create more campaigns.
+
+Thanks for joining Kanka, and welcome to our thriving community!',
         ],
         'success'               => 'Campaign created.',
         'success_first_time'    => 'Your campaign has been created! Since it\'s your first campaign, we\'ve created a few things to help you get started and hopefully provide a bit of inspiration on what you can do.',
