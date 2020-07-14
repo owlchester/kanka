@@ -20,6 +20,7 @@ return [
     'fields'        => [
         'characters'    => 'Postavy',
         'name'          => 'Názov',
+        'race'          => 'Nadradená rasa',
         'races'         => 'Podrasy',
         'type'          => 'Typ',
     ],

@@ -27,7 +27,7 @@ return [
         'characters'    => 'Karakterek',
         'children'      => 'Almezők',
         'name'          => 'Megnevezés',
-        'tag'           => 'Címke',
+        'tag'           => 'Szülő Címke',
         'tags'          => 'Alcímkék',
         'type'          => 'Típus',
     ],

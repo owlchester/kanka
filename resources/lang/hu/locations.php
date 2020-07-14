@@ -28,7 +28,7 @@ return [
         'characters'        => 'Karakterek',
         'image'             => 'Kép',
         'is_map_private'    => 'Privát Térkép',
-        'location'          => 'Helyszín',
+        'location'          => 'Szülő Helyszín',
         'locations'         => 'Helyszínek',
         'map'               => 'Térkép',
         'name'              => 'Név',

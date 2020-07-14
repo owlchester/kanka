@@ -28,7 +28,7 @@ return [
         'characters'        => 'Likovi',
         'image'             => 'Slika',
         'is_map_private'    => 'Privatna mapa',
-        'location'          => 'Lokacija',
+        'location'          => 'Lokacija roditelj',
         'locations'         => 'Lokacije',
         'map'               => 'Mapa',
         'name'              => 'Naziv',

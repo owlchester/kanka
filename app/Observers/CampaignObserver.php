@@ -165,6 +165,10 @@ class CampaignObserver
 
         $this->saveRpgSystems($campaign);
 
+        foreach ($campaign->members()->with('user')->get() as $member) {
+            UserCache::user($member->user)->clearCampaigns();
+        }
+
         // In case the campaign is no longer public, update any followers
         if ($campaign->isDirty('visibility') && $campaign->visibility == Campaign::VISIBILITY_PRIVATE) {
             /** @var CampaignFollower $follow */
@@ -232,7 +236,7 @@ class CampaignObserver
         }
         $campaign->rpgSystems()->attach($new);
 
-        // Detatch the remaining
+        // Detach the remaining
         if (!empty($existing)) {
             $campaign->rpgSystems()->detach($existing);
         }

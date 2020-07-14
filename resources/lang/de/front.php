@@ -108,7 +108,7 @@ return [
             'hall_of_fame'      => 'Name in :link',
             'impact'            => 'Auswirkungen auf zukünftige Funktionen',
             'monthly_vote'      => 'Teilnahme an der Community-Feature-Abstimmung',
-            'pagination'        => 'Erhöhung der paginierten Ergebnisgrenze',
+            'pagination'        => 'Erhöhung der anzeigten Elemente pro Seite.',
             'title'             => 'Bezahlte Funktionen',
             'upload_limit'      => 'Upload Größe',
             'upload_limit_map'  => 'Kartenupload Größe',

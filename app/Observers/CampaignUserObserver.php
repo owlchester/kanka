@@ -27,7 +27,7 @@ class CampaignUserObserver
     public function created(CampaignUser $campaignUser)
     {
         // Update the campaign members cache when a user was added to the campaign
-        CampaignCache::campaign($campaignUser->campaign)->clearmembers();
+        CampaignCache::campaign($campaignUser->campaign)->clearMembers();
     }
 
     /**
@@ -43,6 +43,6 @@ class CampaignUserObserver
     public function deleted(CampaignUser $campaignUser)
     {
         // Update the campaign members cache when a user was deleted
-        CampaignCache::campaign($campaignUser->campaign)->clearmembers();
+        CampaignCache::campaign($campaignUser->campaign)->clearMembers();
     }
 }

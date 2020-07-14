@@ -17,7 +17,7 @@ return [
     ],
     'fields'        => [
         'abilities' => 'Képességek',
-        'ability'   => 'Képesség',
+        'ability'   => 'Szülő Képesség',
         'charges'   => 'Aktiválások száma',
         'name'      => 'Megnevezés',
         'type'      => 'Típus',

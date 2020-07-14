@@ -50,6 +50,7 @@ return [
         'benefits'      => [
             'first'     => 'Para asegurar un progreso contínuo en Kanka, algunas características de campaña se pueden desbloquear mejorando la campaña. Las mejoras se desbloquean mediante :patreon. Cualquiera que pueda ver una campaña puede mejorarla; así el máster no tiene que pagar la cuenta siempre. Una campaña permanece mejorada mientras un usuario la esté mejorando y continúe apoyando a Kanka en :patreon. Si una campaña deja de estar mejorada, los datos no se pierden: solo permanecen ocultos hasta que la campaña vuelva a ser mejorada.',
             'header'    => 'Imágenes de cabecera para las entidades.',
+            'images'    => 'Imágenes por defecto personalizadas',
             'more'      => 'Saber más sobre todas las características.',
             'second'    => 'Mejorar una campaña activa los siguientes beneficios:',
             'theme'     => 'Tema y estilo personalizado a nivel de campaña.',
@@ -70,11 +71,21 @@ return [
         ],
         'title'         => 'Mejorar',
     ],
+    'countries'     => [
+        'austria'       => 'Austria',
+        'belgium'       => 'Bégica',
+        'france'        => 'Francia',
+        'germany'       => 'Alemania',
+        'italy'         => 'Italia',
+        'netherlands'   => 'Holanda',
+        'spain'         => 'España',
+    ],
     'invoices'      => [
         'actions'   => [
             'download'  => 'Descargar PDF',
             'view_all'  => 'Ver todas',
         ],
+        'empty'     => 'Sin facturas',
         'fields'    => [
             'amount'    => 'Cantidad',
             'date'      => 'Fecha',
@@ -128,6 +139,7 @@ return [
         'pledge'            => 'Pledge :name',
         'remove'            => [
             'button'    => 'Desvincular mi cuenta de Patreon',
+            'success'   => 'Tu cuenta de Patreon se ha desvinculado.',
             'text'      => 'Desvincular tu cuenta de Patreon de Kanka eliminará tus bonus, tu nombre en el salón de la fama, tus mejoras y otras funcionalidades vinculadas. Sin embargo, tu contenido mejorado no se perderá: si vuelves a suscribirte, volverás a tener acceso a esos datos, incluyendo la posibilidad de volver a mejorar dicha campaña.',
             'title'     => 'Desvincular mi cuenta de Patreon de Kanka',
         ],
@@ -161,7 +173,10 @@ return [
         ],
         'cancelled'             => 'Se ha cancelado tu suscripción. Puedes renovarla una vez el período de la suscripción actual termine.',
         'change'                => [
-            'text'  => 'Tienes la suscripción de nivel :tier, que cuesta :amount al mes.',
+            'text'  => [
+                'monthly'   => 'Estás suscribiéndote al nivel :tier, que cuesta :amount mensuales.',
+                'yearly'    => 'Estás suscribiéndote al nivel :tier, que cuesta :amount anuales.',
+            ],
             'title' => 'Cambiar nivel de suscripción',
         ],
         'currencies'            => [
@@ -179,44 +194,60 @@ return [
             'active_since'      => 'Activa desde',
             'active_until'      => 'Activa hasta',
             'billed_monthly'    => 'Cobro mensual',
+            'billing'           => 'Cobro',
             'currency'          => 'Moneda de cobro',
             'payment_method'    => 'Método de pago',
             'plan'              => 'Plan actual',
             'reason'            => 'Razón',
         ],
+        'helpers'               => [
+            'alternatives'          => 'Paga por tu suscripción usando :method. Este método de pago no se renovará automáticamente al final de tu suscripción. :method solo está disponible en euros.',
+            'alternatives_warning'  => 'No se puede mejorar la suscripción usando este método. Por favor, crea una nueva suscripción cuando la actual termine.',
+            'alternatives_yearly'   => 'Debido a las restricciones de los pagos recurrentes, :method solo está disponible para las suscripciones anuales.',
+        ],
         'manage_subscription'   => 'Gestionar suscripción',
         'payment_method'        => [
-            'actions'   => [
-                'add_new'   => 'Añadir nuevo método de pago',
-                'change'    => 'Cambiar método de pago',
-                'save'      => 'Guardar método de pago',
+            'actions'       => [
+                'add_new'           => 'Añadir nuevo método de pago',
+                'change'            => 'Cambiar método de pago',
+                'save'              => 'Guardar método de pago',
+                'show_alternatives' => 'Métodos de pago alternativos',
             ],
-            'add_one'   => 'Aún no tienes ningún método de pago guardado.',
-            'card'      => 'Tarjeta',
-            'card_name' => 'Nombre en la tarjeta',
-            'ending'    => 'Termina en',
-            'helper'    => 'Se usará esta tarjeta para todas tus suscripciones.',
-            'new_card'  => 'Añadir nuevo método de pago',
-            'saved'     => ':brand que termina en :last4',
+            'add_one'       => 'Aún no tienes ningún método de pago guardado.',
+            'alternatives'  => 'Puedes suscribirte usando estos métodos de pago alternativos. Esto hará un solo cobro en tu cuenta y no se renovará automáticamente cada mes.',
+            'card'          => 'Tarjeta',
+            'card_name'     => 'Nombre en la tarjeta',
+            'country'       => 'País de residencia',
+            'ending'        => 'Termina en',
+            'helper'        => 'Se usará esta tarjeta para todas tus suscripciones.',
+            'new_card'      => 'Añadir nuevo método de pago',
+            'saved'         => ':brand que termina en :last4',
         ],
         'placeholders'          => [
             'reason'    => 'Opcionalmente, puedes contarnos por qué ya no apoyas a Kanka. ¿Faltaba algo? ¿Cambió tu situación financiera?',
         ],
+        'plans'                 => [
+            'cost_monthly'  => ':amount :currency mensuales',
+            'cost_yearly'   => ':amount :currency anuales',
+        ],
         'sub_status'            => 'Información sobre la suscripción',
         'subscription'          => [
             'actions'   => [
-                'downgrading'   => 'Contáctanos para bajar de nivel',
-                'rollback'      => 'Cambiar a Kobold',
-                'subscribe'     => 'Cambiar a :tier al mes',
+                'downgrading'       => 'Contáctanos para bajar de nivel',
+                'rollback'          => 'Cambiar a Kobold',
+                'subscribe'         => 'Cambiar a :tier al mes',
+                'subscribe_annual'  => 'Cambiar a :tier anualmente',
             ],
         ],
         'success'               => [
+            'alternative'   => 'Se ha registrado tu pago. Recibirás una notificación en cuanto terminemos de procesarlo y se active tu suscripción.',
             'callback'      => 'Tu suscripción ha tenido éxito. Tu cuenta será actualizada en cuanto nuestro proveedor de pagos nos informe del cambio (puede llevar algunos minutos).',
             'cancel'        => 'Se ha cancelado tu suscripción. Continuará activa hasta el final del período de pago.',
             'currency'      => 'Se ha actualizado tu moneda preferida.',
             'subscribed'    => 'Tu suscripción ha tenido éxito. ¡No te olvides de suscribirte a la newsletter de votaciones comunitarias para enterarte cuando se abra una votación! Puedes cambiar tu configuración de newsletters en tu perfil.',
         ],
         'tiers'                 => 'Niveles de suscripción',
+        'trial_period'          => 'Las suscripciones anuales tienen un período de cancelación de 14 días. Contáctanos en :email si quieres cancelar tu suscripción anual y recuperar el dinero.',
         'upgrade_downgrade'     => [
             'button'    => 'Información acerca de subir o bajar de nivel',
             'downgrade' => [

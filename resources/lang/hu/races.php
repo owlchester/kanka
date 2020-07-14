@@ -20,6 +20,7 @@ return [
     'fields'        => [
         'characters'    => 'Karakterek',
         'name'          => 'Név',
+        'race'          => 'Szülő Faj',
         'races'         => 'Alfajok',
         'type'          => 'Típus',
     ],

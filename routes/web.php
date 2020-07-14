@@ -356,7 +356,9 @@ Route::group([
         Route::post('/campaign/settings', 'CampaignSettingController@save')->name('campaign_settings.save');
         Route::get('/campaign/export', 'CampaignExportController@index')->name('campaign_export');
         Route::post('/campaign/export', 'CampaignExportController@export')->name('campaign_export.save');
-        Route::get('/campaign.css', 'CampaignController@css')->name('campaign.css');
+        Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');
+
+
 
         // Entity quick creator
         Route::get('/entity-creator', [\App\Http\Controllers\EntityCreatorController::class, 'selection'])->name('entity-creator.selection');

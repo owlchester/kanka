@@ -27,7 +27,7 @@ return [
         'characters'    => 'Likovi',
         'children'      => 'Djeca',
         'name'          => 'Naziv',
-        'tag'           => 'Oznaka',
+        'tag'           => 'Oznaka roditelj',
         'tags'          => 'Pod-oznake',
         'type'          => 'Tip',
     ],

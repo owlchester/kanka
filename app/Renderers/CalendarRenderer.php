@@ -132,7 +132,7 @@ class CalendarRenderer
         $monthName = e(Arr::get($month, 'name', ''));
         $monthName = '' . $monthName . '';
 
-        return ($this->isYearlyLayout() ? null : $monthName);
+        return ($this->isYearlyLayout() ? '' : $monthName);
     }
 
     public function currentYearName(): string
@@ -584,14 +584,20 @@ class CalendarRenderer
                                 ->where('is_recurring', true);
                         }
                     })
-                    // Events from previous year that spills over
+                    // Events from previous year or month that spill over
                     ->orWhere(function ($sub) {
                         $previousYear = $this->getYear(-1);
-//                        list($year, $month) = $this->subMonth($this->getYear(), $this->getMonth());
-                        $sub->where('year', $previousYear)
-//                            ->where('month', $month)
+                        $sub->whereIn('year', [$previousYear, $this->getYear()])
                             ->where('length', '>', 1);
                     })
+                    // Events from previous month that spill over
+//                    ->orWhere(function ($sub) {
+//                        list($year, $month) = $this->subMonth($this->getYear(), $this->getMonth());
+//                        $sub->where('year', $year)
+//                            ->where('month', $month)
+//                            ->where('length', '>', 1);
+//                    })
+
                     // Monthly recurring events
                     ->orWhere(function ($sub) {
                         $sub->where('is_recurring', true)

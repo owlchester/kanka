@@ -28,7 +28,7 @@ return [
         'characters'        => 'Personajes',
         'image'             => 'Imagen',
         'is_map_private'    => 'Mapa privado',
-        'location'          => 'Localización',
+        'location'          => 'Localización superior',
         'locations'         => 'Lugares',
         'map'               => 'Mapa',
         'name'              => 'Nombre',

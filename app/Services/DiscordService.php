@@ -9,6 +9,7 @@ use App\User;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Exception;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class DiscordService
@@ -220,9 +221,13 @@ class DiscordService
             'access_token' => $this->app->access_token,
         ];
 
-        foreach (config('discord.roles') as $id) {
-            $url = 'guilds/' . config('discord.channel_id') . '/members/' . $me->id . '/roles/' . $id;
-            $this->call('delete', $url, $body, $headers);
+        try {
+            foreach (config('discord.roles') as $id) {
+                $url = 'guilds/' . config('discord.channel_id') . '/members/' . $me->id . '/roles/' . $id;
+                $this->call('delete', $url, $body, $headers);
+            }
+        } catch (\Exception $e) {
+            Log::warning('Couldn\'t delete role for user');
         }
 
         return $this;

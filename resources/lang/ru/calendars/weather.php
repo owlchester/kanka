@@ -26,7 +26,7 @@ return [
             'cloud-rain'            => 'Дождь',
             'cloud-showers-heavy'   => 'Ливень',
             'cloud-sun'             => 'Облачно и ясно',
-            'cloud-sun-rain'        => 'Облака, солнце и дождь',
+            'cloud-sun-rain'        => 'Облачно, солнце и дождь',
             'meteor'                => 'Метеорит',
             'smog'                  => 'Смог',
             'snowflake'             => 'Снег',

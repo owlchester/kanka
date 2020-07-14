@@ -24,7 +24,9 @@ return [
         'type'      => 'Tipo de entidad',
     ],
     'helpers'       => [
+        'entity'    => 'Configura este enlace de menú para acceder directamente a una entidad. El campo de :tab controla qué pestaña estará seleccionada. El campo de :menu controla qué subpágina de la entidad se abrirá.',
         'position'  => 'Usa este campo para controlar en qué orden ascendente aparecen los enlaces en el menú.',
+        'type'      => 'Configura este enlace de menú para ir directamente a una lista de entidades. Para filtrar los resultados, copia las partes de la URL de la lista filtrada a partir del símbolo :? en el campo de :filter.',
     ],
     'index'         => [
         'add'           => 'Nuevo enlace de menú',
