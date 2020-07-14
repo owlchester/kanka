@@ -6,7 +6,7 @@ return [
         'helper'                => [
             'first' => 'Thanks for trying our app out! Before we can go any further, we need you to provide one simple thing for us, your <b>campaign name</b>. This is the name of your world that separates it from others. If you don\'t have a good name yet, don\'t worry, you can <b>always change it later</b>, or create more campaigns.',
             'second'=> 'But enough chit-chat! So, what\'s it going to be?',
-            'title' => 'Welcome to :name!',
+            'title' => 'Welcome to :name',
         ],
         'success'               => 'Campaign created.',
         'success_first_time'    => 'Your campaign has been created! Since it\'s your first campaign, we\'ve created a few things to help you get started and hopefully provide a bit of inspiration on what you can do.',

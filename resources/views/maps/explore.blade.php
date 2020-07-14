@@ -42,12 +42,12 @@
 {{--@endif--}}
 
         // Map ticker to update markers every 20 seconds
-        var tickerTimeout = 2000;
+        var tickerTimeout = 20000;
         var tickerUrl = '{{ route('maps.ticker', $map) }}';
         var tickerTs = '{{ \Carbon\Carbon::now() }}';
         $(document).ready(function () {
             setTimeout(mapTicker, tickerTimeout);
-            setTimeout(mapRedraw(), 1000);
+            // setTimeout(mapRedraw(), 1000);
         });
 
         function mapTicker() {
@@ -65,11 +65,11 @@
                 setTimeout(mapTicker, tickerTimeout);
             });
         }
-
-        function mapRedraw() {
-            console.log('redraw');
-            window.map.invalidateSize(true);
-        }
+        //
+        // function mapRedraw() {
+        //     console.log('redraw');
+        //     window.map.invalidateSize(true);
+        // }
     </script>
 @endsection
 

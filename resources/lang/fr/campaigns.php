@@ -6,7 +6,7 @@ return [
         'helper'                => [
             'first' => 'Merci pour l\'intérêt! Avant de pouvoir avancer, nous n\'avons que besoin d\'un <b>nom de campagne</b>. Ceci est le nom unique du monde qui le distingue des autres. Pas d\'inquiétude pour l\'originalité, le nom peut être changé à tout moment, autant de fois que désiré, et d\'autres campagnes peuvent être créées.',
             'second'=> 'Bref! Alors, ce nom?',
-            'title' => 'Bienvenue à :name!',
+            'title' => 'Bienvenue à :name',
         ],
         'success'               => 'Campagne créée.',
         'success_first_time'    => 'La première campagne a été créée! Quelques éléments ont été créé pour aider à bien démarrer.',
