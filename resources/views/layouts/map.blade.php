@@ -22,7 +22,9 @@
     <link rel="stylesheet" href="//unpkg.com/leaflet@1.6.0/dist/leaflet.css"
           integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
           crossorigin=""/>
-    @if (auth()->check() && !empty(auth()->user()->theme))
+    <link rel="stylesheet" href="https://ppete2.github.io/Leaflet.PolylineMeasure/Leaflet.PolylineMeasure.css" />
+
+@if (auth()->check() && !empty(auth()->user()->theme))
         <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">
     @endif
     @yield('styles')
@@ -45,7 +47,7 @@
                         </div>
 
                         <div class="marker-actions text-center">
-                            @can('update', $marker->map)
+                            @can('update', $map)
                                 <a href="{{ route('maps.edit', [$map]) }}" class="btn btn-primary">
                                     <i class="fa fa-map"></i> {{ __('maps.actions.edit') }}
                                 </a>
@@ -62,6 +64,10 @@
                                 </li>
                                 @endforeach
                             </ul>
+                        </div>
+
+                        <div class="map-legend text-center">
+                            <a href="{{ $map->getLink() }}" class="btn btn-primary">{{ __('maps.actions.back', ['name' => $map->name]) }}</a>
                         </div>
                     </div>
                     <div id="sidebar-marker">
@@ -82,6 +88,8 @@
 <script src="//unpkg.com/leaflet@1.6.0/dist/leaflet.js"
         integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
         crossorigin=""></script>
+<script src="/js/vendor/leaflet/leaflet-polyline-measure.js"></script>
+
 <script src="{{ mix('js/location/map-v3.js') }}" defer></script>
 @yield('scripts')
 

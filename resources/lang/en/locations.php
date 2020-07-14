@@ -67,6 +67,9 @@ return [
         'description'   => 'Locations located in the location.',
         'title'         => 'Location :name Locations',
     ],
+    'maps'         => [
+        'title'         => 'Location :name Maps',
+    ],
     'map'           => [
         'actions'   => [
             'admin_mode'        => 'Enable Edit Mode',
@@ -222,6 +225,7 @@ return [
             'journals'      => 'Journals',
             'locations'     => 'Locations',
             'map'           => 'Map',
+            'maps'          => 'Maps',
             'menu'          => 'Menu',
             'organisations' => 'Organisations',
             'quests'        => 'Quests',

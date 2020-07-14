@@ -89,6 +89,10 @@
   margin: 20px 0;
 }
 
+.skin-map .entity-title .entity-name {
+  font-size: 12pt;
+}
+
 .marker-close:hover {
   cursor: pointer;
 }

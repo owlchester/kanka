@@ -4,6 +4,7 @@ var hasDeleteConfirm = false;
 var mapPageBody;
 var sidebarMap, sidebarMarker;
 var markerModal, markerModalContent, markerModalTitle;
+var invalidatedMap = false;
 
 $(document).ready(function() {
 
@@ -27,6 +28,9 @@ $(document).ready(function() {
     });
     $('a[href="#marker-poly"]').click(function (e) {
         $('input[name="shape_id"]').val(5);
+    });
+    $('a[href="#form-markers"]').click(function (e) {
+        window.map.invalidateSize();
     });
 
     initMapExplore();

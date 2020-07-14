@@ -19,7 +19,7 @@
                     <p>{!! $model->entry() !!}</p>
                     @include('cruds.partials.mentions')
 
-                    <a href="{{ route('maps.explore', $model) }}" class="btn btn-block btn-primary">
+                    <a href="{{ route('maps.explore', $model) }}" class="btn btn-block btn-primary" target="_blank">
                         <i class="fa fa-map"></i> {{ __('maps.actions.explore') }}
                     </a>
 

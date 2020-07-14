@@ -125,7 +125,7 @@ $sizeOptions = [
     <div class="col-sm-6">
         <div class="form-group">
             <label>{{ __('maps/markers.fields.opacity') }}</label><br />
-            {!! Form::number('opacity', (!isset($model) ? 1 : null), ['class' => 'form-control', 'maxlength' => 3, 'step' => 0.1, 'max' => 1, 'min' => 0] ) !!}
+            {!! Form::number('opacity', (!isset($model) ? 100 : null), ['class' => 'form-control', 'maxlength' => 3, 'step' => 10, 'max' => 100, 'min' => 0] ) !!}
         </div>
     </div>
 </div>
@@ -151,13 +151,13 @@ $sizeOptions = [
     <div class="col-xs-6">
         <div class="form-group">
             <label>{{ __('maps/markers.fields.latitude') }}</label>
-            {!! Form::number('latitude', null, ['placeholder' => __('maps/markers.placeholders.latitude'), 'class' => 'form-control', 'maxlength' => 191, 'id' => 'marker-latitude']) !!}
+            {!! Form::number('latitude', null, ['class' => 'form-control', 'id' => 'marker-latitude', 'step' => 0.001]) !!}
         </div>
     </div>
     <div class="col-xs-6">
         <div class="form-group">
             <label>{{ __('maps/markers.fields.longitude') }}</label>
-            {!! Form::number('longitude', null, ['placeholder' => __('maps/markers.placeholders.longitude'), 'class' => 'form-control', 'maxlength' => 191, 'id' => 'marker-longitude']) !!}
+            {!! Form::number('longitude', null, ['class' => 'form-control', 'id' => 'marker-longitude', 'step' => 0.001]) !!}
         </div>
     </div>
 </div>

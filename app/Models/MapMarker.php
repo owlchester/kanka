@@ -120,7 +120,7 @@ class MapMarker extends Model
                 fillColor: \'' . e($this->colour) . '\',
                 title: \'' . $this->makerTitle() . '\',
                 stroke: false,
-                fillOpacity: ' . $this->opacity . ',
+                fillOpacity: ' . $this->opacity() . ',
                 className: \'marker marker-circle marker-' . $this->id . ' size-' . $this->size_id . '\','
                 . ($this->isDraggable() ? 'draggable: true' : null) . '
             })' . $this->popup();
@@ -147,7 +147,7 @@ class MapMarker extends Model
             return 'L.polygon([' . implode(', ', $coords) . '], {
                 color: \'' . e($this->colour) . '\',
                 weight: 1,
-                opacity: ' . $this->opacity . ',
+                opacity: ' . $this->opacity() . ',
                 smoothFactor: 1,
                 linecap: \'round\',
                 linejoin: \'round\',
@@ -156,7 +156,7 @@ class MapMarker extends Model
 
         return 'L.marker([' . ($this->latitude ). ', ' . $this->longitude . '], {
             title: \'' . $this->makerTitle() . '\',
-            opacity: ' . $this->opacity . ','
+            opacity: ' . $this->opacity() . ','
             . ($this->isDraggable() ? 'draggable: true,' : null) . '
             ' . $this->markerIcon() . '
         })' . $this->popup() . $this->draggable();
@@ -227,17 +227,16 @@ class MapMarker extends Model
         // Exploring and moving? Update through ajax
         if ($this->exploring && $this->is_draggable) {
             return '.on(`dragstart`, function() {
-            console.log(`drag start`);
                 this.closePopup();
             })
 
             .on(\'dragend\', function() {
                 var coordinates = marker' . $this->id . '.getLatLng();
-                console.log(`dragend`);
+                console.log(`dragend`, coordinates);
                 $.ajax({
                     url: `' . route('maps.markers.move', [$this->map_id, $this->id]) . '`,
                     type: `post`,
-                    data: {latitude: Math.floor(coordinates.lat), longitude: Math.floor(coordinates.lng)}
+                    data: {latitude: coordinates.lat.toFixed(3), longitude: coordinates.lng.toFixed(3)}
                 }).done(function (data) {
                     console.log(`moved marker`);
                 });
@@ -253,10 +252,10 @@ class MapMarker extends Model
             var polyCoords = $(\'textarea[name="custom_shape"]\');
             if (shapeId == "5") {
 //                console.log(\'poly\', polyCoords.val());
-                polyCoords.val(polyCoords.val() + \' \' + Math.floor(coordinates.lat) + \',\' + Math.floor(coordinates.lng));
+                polyCoords.val(polyCoords.val() + \' \' + coordinates.lat.toFixed(3) + \',\' + coordinates.lng.toFixed(3));
             } else {
-                $(\'#marker-latitude\').val(Math.floor(coordinates.lat));
-                $(\'#marker-longitude\').val(Math.floor(coordinates.lng));
+                $(\'#marker-latitude\').val(coordinates.lat.toFixed(3));
+                $(\'#marker-longitude\').val(coordinates.lng.toFixed(3));
             }
         })';
     }
@@ -316,5 +315,18 @@ class MapMarker extends Model
     {
         $this->exploring = true;
         return $this;
+    }
+
+    /**
+     * Get the opacity of a point. Users input a %, convert it to a float for leaflet
+     * @return float
+     */
+    protected function opacity(): float
+    {
+        if (empty($this->opacity) || $this->opacity > 100) {
+            return 1.0;
+        }
+
+        return round($this->opacity / 100, 1);
     }
 }

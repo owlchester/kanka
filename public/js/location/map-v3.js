@@ -163,6 +163,7 @@ var hasDeleteConfirm = false;
 var mapPageBody;
 var sidebarMap, sidebarMarker;
 var markerModal, markerModalContent, markerModalTitle;
+var invalidatedMap = false;
 $(document).ready(function () {
   window.map.invalidateSize();
   Object(_components_delete_confirm__WEBPACK_IMPORTED_MODULE_0__["default"])();
@@ -181,6 +182,9 @@ $(document).ready(function () {
   });
   $('a[href="#marker-poly"]').click(function (e) {
     $('input[name="shape_id"]').val(5);
+  });
+  $('a[href="#form-markers"]').click(function (e) {
+    window.map.invalidateSize();
   });
   initMapExplore();
   initMapForms(); // Limit the size of custom svg icons to not overblow the marker size

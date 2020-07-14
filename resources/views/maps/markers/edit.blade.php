@@ -56,38 +56,9 @@
     <script src="{{ mix('js/location/map-v3.js') }}" defer></script>
     <script src="/vendor/spectrum/spectrum.js" defer></script>
 
+    @include('maps._setup')
     <script type="text/javascript">
-        var bounds = [[0, 0], [{{ $map->height }}, {{ $map->width }}]];
-        var baseLayer = L.imageOverlay('{{ Img::url($map->image) }}', bounds);
-
-                @foreach ($map->layers as $layer)
-        var layer{{ $layer->id }} = L.imageOverlay('{{ Img::url($layer->image) }}', bounds);
-                @endforeach
-        var baseMaps = {
-                    @foreach ($map->layers as $layer)
-                    "{{ $layer->name }}": layer{{ $layer->id }},
-                    @endforeach
-                    "Base": baseLayer
-                }
-
-        var map = L.map('map', {
-            crs: L.CRS.Simple,
-            center: [{{ floor($map->height / 2)  }}, {{ floor($map->width / 2) }}],
-            noWrap: true,
-            dragging: true,
-            tap: false,
-            attributionControl: false,
-            zoom: 0,
-            minZoom: -3,
-            maxZoom: 2,
-            layers: [baseLayer]
-        });
-
-        L.control.layers(baseMaps).addTo(map);
-
         var marker{{ $model->id }} = {!! $model->editing()->marker() !!}.addTo(map);
-
-        window.map = map;
     </script>
 @endsection
 

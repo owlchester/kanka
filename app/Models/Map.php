@@ -18,6 +18,8 @@ use Kalnoy\Nestedset\NodeTrait;
  * @property int $width
  * @property int $height
  * @property int $grid
+ * @property string $distance_name
+ * @property int $distance_measure
  * @property Map $map
  * @property Map[] $maps
  * @property Location $location
@@ -49,6 +51,8 @@ class Map extends MiscModel
         'is_private',
         'height',
         'width',
+        'distance_name',
+        'distance_measure',
     ];
 
     /**
@@ -133,6 +137,14 @@ class Map extends MiscModel
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function location()
+    {
+        return $this->belongsTo('App\Models\Location', 'location_id', 'id');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function maps()
@@ -202,12 +214,13 @@ class Map extends MiscModel
         $lines = [];
 
         // Horizontal lines
-        for($i = $this->grid; $i <= $this->height; $i += $this->grid) {
+        $grid = $this->grid;
+        for($i = $grid; $i <= $this->height; $i += $grid) {
             $lines[] = [$i, 0, $i, $this->width];
         }
 
         // Vertical lines
-        for($i = $this->grid; $i <= $this->width; $i += $this->grid) {
+        for($i = $grid; $i <= $this->width; $i += $grid) {
             $lines[] = [0, $i, $this->height, $i];
         }
 

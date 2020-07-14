@@ -68,6 +68,7 @@ Route::group([
         // Maps
         Route::get('/maps/{map}/maps', 'Maps\MapController@maps')->name('maps.maps');
         Route::get('/maps/{map}/explore', 'Maps\MapController@explore')->name('maps.explore');
+        Route::get('/maps/{map}/ticker', 'Maps\MapController@ticker')->name('maps.ticker');
         Route::get('/maps/{map}/{map_marker}/details', 'Maps\MapMarkerController@details')->name('maps.markers.details');
         Route::post('/maps/{map}/{map_marker}/move', 'Maps\MapMarkerController@move')->name('maps.markers.move');
         Route::get('/maps/tree', 'Maps\MapController@tree')->name('maps.tree');
@@ -91,6 +92,7 @@ Route::group([
         // Locations
         Route::get('/locations/tree', 'LocationController@tree')->name('locations.tree');
         Route::any('/locations/{location}/map', 'LocationController@map')->name('locations.map');
+        Route::any('/locations/{location}/maps', 'LocationController@maps')->name('locations.maps');
         Route::get('/locations/{location}/map-points', 'LocationController@mapPoints')->name('locations.map-points');
         Route::any('/locations/{location}/map/admin', 'LocationController@mapAdmin')->name('locations.map.admin');
         Route::post('/locations/{location}/map_points/{map_point}/move', 'LocationMapPointController@move')->name('locations.map_points.move');

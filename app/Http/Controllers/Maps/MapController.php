@@ -8,7 +8,9 @@ use App\Datagrids\Sorters\MapMapSorter;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreMap;
 use App\Models\Map;
+use App\Models\MapMarker;
 use App\Traits\TreeControllerTrait;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class MapController extends CrudController
@@ -118,6 +120,12 @@ class MapController extends CrudController
         return $this->menuView($map, 'map-points', true);
     }
 
+    /**
+     * Exploration view for a map
+     * @param Map $map
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function explore(Map $map)
     {
         // Policies will always fail if they can't resolve the user.
@@ -128,5 +136,37 @@ class MapController extends CrudController
         }
 
         return view('maps.explore', compact('map'));
+    }
+
+    /**
+     * Map ticker for updates to pointers
+     * @param Map $map
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function ticker(Map $map)
+    {
+        // Policies will always fail if they can't resolve the user.
+        if (Auth::check()) {
+            $this->authorize('view', $map);
+        } else {
+            $this->authorizeForGuest('read', $map);
+        }
+
+        $timestamp = request()->get('ts', time());
+        /** @var MapMarker[] $markers */
+        $markers = $map->markers()->where('updated_at', '>=', $timestamp)->get();
+        $data = [];
+        foreach ($markers as $marker) {
+            $data[] = [
+                'id' => $marker->id,
+                'longitude' => $marker->longitude,
+                'latitude' => $marker->latitude,
+            ];
+        }
+
+        return response()->json([
+            'ts' => Carbon::now(),
+            'markers' => $data,
+        ]);
     }
 }

@@ -19,59 +19,57 @@
 
 @section('scripts')
     @parent
+    @include('maps._setup')
     <script type="text/javascript">
-        var bounds = [[0, 0], [{{ $map->height }}, {{ $map->width }}]];
-        var baseLayer = L.imageOverlay('{{ Img::url($map->image) }}', bounds);
-
-@foreach ($map->layers as $layer)
-        var layer{{ $layer->id }} = L.imageOverlay('{{ Img::url($layer->image) }}', bounds);
-@endforeach
-
-        var baseMaps = {
-@foreach ($map->layers as $layer)
-            "{{ $layer->name }}": layer{{ $layer->id }},
-@endforeach
-            "{{ __('maps/layers.base') }}": baseLayer
-        }
-
-        var map = L.map('map', {
-            crs: L.CRS.Simple,
-            center: [{{ floor($map->height / 2)  }}, {{ floor($map->width / 2) }}],
-            noWrap: true,
-            dragging: true,
-            tap: false,
-            attributionControl: false,
-            zoom: 0,
-            minZoom: -3,
-            maxZoom: 2,
-            layers: [baseLayer]
-        });
-
-        L.control.layers(baseMaps).addTo(map);
-
         var markers = [];
 @foreach ($map->markers as $marker)
         var marker{{ $marker->id }} = {!! $marker->exploring()->marker() !!}.addTo(map);
         markers.push('marker' + {{ $marker->id }});
 @endforeach
-
-        // Grid
+    </script>
+    <script type="text/javascript">
 @if (!empty($map->grid))
-    @foreach ($map->grids() as $id => $line)
-            var polyline{{ $id }} = L.polyline([[{{ $line[0] }}, {{ $line[1] }}],[{{ $line[2] }}, {{ $line[3] }}]], {color: 'black', opacity: 0.5}).addTo(map);
-    @endforeach
+        // Leaflet grid
+@foreach ($map->grids() as $id => $line)
+        var polyline{{ $id }} = L.polyline([[{{ $line[0] }}, {{ $line[1] }}],[{{ $line[2] }}, {{ $line[3] }}]], {color: 'grey', opacity: 0.5}).addTo(map);
+@endforeach
+
 @endif
 
-        // $('#toggle-tooltips').on('click', function (ev) {
-        //     markers.forEach(toggle);
-        // });
+{{--@if (!empty($map->distance_measure))--}}
+{{--        // Distance calculator--}}
+{{--        L.control.polylineMeasure({unit: 'meters', unitControlLabel: {custom: '{{ $map->distance_name ?? 'custom' }}'}, customUnitDistance: {{ $map->distance_measure }}}).addTo(map);--}}
+{{--@endif--}}
 
-        function toggle(marker) {
-            console.log('marker', marker);
-            window[marker].openPopup();
+        // Map ticker to update markers every 20 seconds
+        var tickerTimeout = 2000;
+        var tickerUrl = '{{ route('maps.ticker', $map) }}';
+        var tickerTs = '{{ \Carbon\Carbon::now() }}';
+        $(document).ready(function () {
+            setTimeout(mapTicker, tickerTimeout);
+            setTimeout(mapRedraw(), 1000);
+        });
+
+        function mapTicker() {
+            $.ajax(tickerUrl + '?ts=' + tickerTs)
+            .done(function (data) {
+                if (!data) {
+                    return;
+                }
+                tickerTs = data.ts;
+                for (var id in data.markers) {
+                    let changedMarker = data.markers[id];
+                    //console.log('moving', 'marker' + changedMarker.id, changedMarker);
+                    window['marker' + changedMarker.id].setLatLng({lon: changedMarker.longitude, lat: changedMarker.latitude}).update();
+                }
+                setTimeout(mapTicker, tickerTimeout);
+            });
         }
 
-        window.map = map;
+        function mapRedraw() {
+            console.log('redraw');
+            window.map.invalidateSize(true);
+        }
     </script>
 @endsection
 

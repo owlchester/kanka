@@ -83,8 +83,8 @@ class CreateMapsTable extends Migration
 
             $table->string('name')->nullable();
             $table->longText('entry')->nullable();
-            $table->unsignedInteger('longitude');
-            $table->unsignedInteger('latitude');
+            $table->decimal('longitude', 10, 3)->unsigned();
+            $table->decimal('latitude', 10, 3)->unsigned();
             $table->string('colour', 7)->nullable();
             $table->unsignedTinyInteger('shape_id')->default(1);
             $table->unsignedTinyInteger('size_id')->default(1);

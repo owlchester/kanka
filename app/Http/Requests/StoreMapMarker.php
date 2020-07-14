@@ -31,8 +31,8 @@ class StoreMapMarker extends FormRequest
             'visibility' => 'string',
             'entity_id' => 'integer|exists:entities,id|required_without_all:name',
 
-            'longitude' => 'required|integer',
-            'latitude' => 'required|integer',
+            'longitude' => 'required|numeric',
+            'latitude' => 'required|numeric',
             'colour' => 'max:7',
             'size_id' => 'nullable|integer',
 

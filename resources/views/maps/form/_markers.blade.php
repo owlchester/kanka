@@ -26,34 +26,8 @@
     <script src="{{ mix('js/location/map-v3.js') }}" defer></script>
     <script src="/vendor/spectrum/spectrum.js" defer></script>
 
+    @include('maps._setup', ['map' => $model])
     <script type="text/javascript">
-        var bounds = [[0, 0], [{{ $model->height }}, {{ $model->width }}]];
-        var baseLayer = L.imageOverlay('{{ Img::url($model->image) }}', bounds);
-
-@foreach ($model->layers as $layer)
-        var layer{{ $layer->id }} = L.imageOverlay('{{ Img::url($layer->image) }}', bounds);
-@endforeach
-        var baseMaps = {
-@foreach ($model->layers as $layer)
-            "{{ $layer->name }}": layer{{ $layer->id }},
-@endforeach
-            "{{ __('maps/layers.base') }}": baseLayer
-        }
-
-        var map = L.map('map', {
-            crs: L.CRS.Simple,
-            center: [{{ floor($model->height / 2)  }}, {{ floor($model->width / 2) }}],
-            noWrap: true,
-            dragging: true,
-            tap: false,
-            attributionControl: false,
-            zoom: 0,
-            minZoom: -3,
-            maxZoom: 2,
-            layers: [baseLayer]
-        });
-
-        L.control.layers(baseMaps).addTo(map);
 
         var markers = {};
 @foreach ($model->markers as $marker)
@@ -62,10 +36,11 @@
 
         map.on('click', function(ev) {
             let position = ev.latlng;
-            console.log('Click', 'lat', Math.floor(position.lat), 'lng', Math.floor(position.lng));
+            console.log('Click', 'lat', position.lat, 'lng', position.lng);
             // AJAX request
-            $('#marker-latitude').val(Math.floor(position.lat));
-            $('#marker-longitude').val(Math.floor(position.lng));
+    console.log('do', "$('#marker-latitude').val(" + position.lat.toFixed(3) + ");");
+            $('#marker-latitude').val(position.lat.toFixed(3));
+            $('#marker-longitude').val(position.lng.toFixed(3));
             $('#marker-modal').modal('show');
         });
 
