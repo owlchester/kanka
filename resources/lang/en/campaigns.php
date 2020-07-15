@@ -4,10 +4,13 @@ return [
     'create'                            => [
         'description'           => 'Create a new campaign',
         'helper'                => [
-            'title' => 'Welcome to :name',
-            'welcome' => 'Before going any further, you need to pick a campaign name. This is the name of your world. If you don\'t have a good name yet, don\'t worry, you can always change it later, or create more campaigns.
+            'title'     => 'Welcome to :name',
+            'welcome'   => <<<'TEXT'
+Before going any further, you need to pick a campaign name. This is the name of your world. If you don't have a good name yet, don't worry, you can always change it later, or create more campaigns.
 
-Thanks for joining Kanka, and welcome to our thriving community!',
+Thanks for joining Kanka, and welcome to our thriving community!
+TEXT
+,
         ],
         'success'               => 'Campaign created.',
         'success_first_time'    => 'Your campaign has been created! Since it\'s your first campaign, we\'ve created a few things to help you get started and hopefully provide a bit of inspiration on what you can do.',
