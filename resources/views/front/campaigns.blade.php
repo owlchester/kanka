@@ -123,7 +123,7 @@
                     @endforeach
                 </div>
 
-                {{ $campaigns->fragment('public-campaigns')->appends(['language', 'system'])->links() }}
+                {{ $campaigns->fragment('public-campaigns')->appends('language', request()->get('language'))->appends('system', request()->get('system'))->links() }}
                 @endif
             </div>
         </div>
