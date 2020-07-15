@@ -1,8 +1,16 @@
 <?php
 
 return [
+    'create'    => [
+        'success'   => 'Voto Community creato.',
+        'title'     => 'Crea un nuovo Voto Community',
+    ],
+    'destroy'   => [
+        'success'   => 'Voto Community rimosso.',
+    ],
     'edit'      => [
-        'title' => 'Aggiornamento Voto Community :name',
+        'success'   => 'Voto Community modificato.',
+        'title'     => 'Aggiornamento Voto Community :name',
     ],
     'fields'    => [
         'content'       => 'Contenuto',
@@ -15,6 +23,7 @@ return [
         'votes'         => 'Voti',
     ],
     'index'     => [
+        'add'   => 'Nuovo Voto Community',
         'title' => 'Admin: Voti della community',
     ],
 ];

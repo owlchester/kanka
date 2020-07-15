@@ -3,7 +3,7 @@
 return [
     'create'        => [
         'success'   => 'Tempo atmosferico aggiunto.',
-        'title'     => 'Nuovo Effetto del Tempo Atmosferico',
+        'title'     => 'Nuovo effetto del Tempo Atmosferico',
     ],
     'destroy'       => [
         'success'   => 'Tempo atmosferico rimosso.',
@@ -21,12 +21,12 @@ return [
     ],
     'options'       => [
         'weather'   => [
-            'bolt'                  => 'Tuono',
+            'bolt'                  => 'Temporale',
             'cloud'                 => 'Nuvoloso',
             'cloud-rain'            => 'Piovoso',
-            'cloud-showers-heavy'   => 'Pioggia Pesante',
-            'cloud-sun'             => 'Parzialmente Nuvoloso',
-            'cloud-sun-rain'        => 'Parzialmente Nuvoloso con Piogge',
+            'cloud-showers-heavy'   => 'Pioggia Torrenziale',
+            'cloud-sun'             => 'Sereno Variabile',
+            'cloud-sun-rain'        => 'Parzialmente Nuvoloso con Precipitazioni',
             'meteor'                => 'Meteora',
             'smog'                  => 'Smog',
             'snowflake'             => 'Neve',
@@ -36,7 +36,7 @@ return [
     ],
     'placeholders'  => [
         'effect'        => 'Effetto magico o naturale',
-        'precipitation' => 'Quantitativo di acqua',
+        'precipitation' => 'Quantità di acqua caduta',
         'temperature'   => 'Temperatura massima e minima',
         'wind'          => 'Velocità del vento',
     ],
