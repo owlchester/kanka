@@ -1384,7 +1384,7 @@ export default {
                     "subscribe": "Subscribe",
                     "update_currency": "Save prefered currency"
                 },
-                "benefits": "By supporting us, you can unlock some new {features} and help is invest more time into improving Kanka. No credit card information is stored or transits through our servers. We use {stripe} to handle all billing.",
+                "benefits": "By supporting us, you can unlock some new {features} and help us invest more time into improving Kanka. No credit card information is stored or transits through our servers. We use {stripe} to handle all billing.",
                 "billing": {
                     "helper": "Your billing information is processed and stored safely through {stripe}. This payment method is used for all of your subscriptions.",
                     "saved": "Saved payment method",
@@ -1486,7 +1486,8 @@ export default {
                     }
                 },
                 "warnings": {
-                    "patreon": "Your account is currently linked with Patreon. Please unlink your account in your {patreon} settings before switching to a Kanka subscription."
+                    "patreon": "Your account is currently linked with Patreon. Please unlink your account in your {patreon} settings before switching to a Kanka subscription.",
+                    "incomplete": "We couldn't charge your credit card. Please update your credit card information, and we will try charging it again in the next few days. If it fails again, your subscription will be cancelled."
                 }
             }
         }
@@ -1588,6 +1589,7 @@ export default {
                 "export": "Exportar",
                 "find_out_more": "Saber más",
                 "go_to": "Ir a {name}",
+                "json-export": "Exportar (JSON)",
                 "more": "Más acciones",
                 "move": "Mover",
                 "new": "Nuevo",
@@ -2031,6 +2033,7 @@ export default {
                 "benefits": {
                     "first": "Para asegurar un progreso contínuo en Kanka, algunas características de campaña se pueden desbloquear mejorando la campaña. Las mejoras se desbloquean mediante {patreon}. Cualquiera que pueda ver una campaña puede mejorarla; así el máster no tiene que pagar la cuenta siempre. Una campaña permanece mejorada mientras un usuario la esté mejorando y continúe apoyando a Kanka en {patreon}. Si una campaña deja de estar mejorada, los datos no se pierden: solo permanecen ocultos hasta que la campaña vuelva a ser mejorada.",
                     "header": "Imágenes de cabecera para las entidades.",
+                    "images": "Imágenes por defecto personalizadas",
                     "more": "Saber más sobre todas las características.",
                     "second": "Mejorar una campaña activa los siguientes beneficios:",
                     "theme": "Tema y estilo personalizado a nivel de campaña.",
@@ -2051,11 +2054,21 @@ export default {
                 },
                 "title": "Mejorar"
             },
+            "countries": {
+                "austria": "Austria",
+                "belgium": "Bégica",
+                "france": "Francia",
+                "germany": "Alemania",
+                "italy": "Italia",
+                "netherlands": "Holanda",
+                "spain": "España"
+            },
             "invoices": {
                 "actions": {
                     "download": "Descargar PDF",
                     "view_all": "Ver todas"
                 },
+                "empty": "Sin facturas",
                 "fields": {
                     "amount": "Cantidad",
                     "date": "Fecha",
@@ -2109,6 +2122,7 @@ export default {
                 "pledge": "Pledge {name}",
                 "remove": {
                     "button": "Desvincular mi cuenta de Patreon",
+                    "success": "Tu cuenta de Patreon se ha desvinculado.",
                     "text": "Desvincular tu cuenta de Patreon de Kanka eliminará tus bonus, tu nombre en el salón de la fama, tus mejoras y otras funcionalidades vinculadas. Sin embargo, tu contenido mejorado no se perderá: si vuelves a suscribirte, volverás a tener acceso a esos datos, incluyendo la posibilidad de volver a mejorar dicha campaña.",
                     "title": "Desvincular mi cuenta de Patreon de Kanka"
                 },
@@ -2142,7 +2156,10 @@ export default {
                 },
                 "cancelled": "Se ha cancelado tu suscripción. Puedes renovarla una vez el período de la suscripción actual termine.",
                 "change": {
-                    "text": "Tienes la suscripción de nivel {tier}, que cuesta {amount} al mes.",
+                    "text": {
+                        "monthly": "Estás suscribiéndote al nivel {tier}, que cuesta {amount} mensuales.",
+                        "yearly": "Estás suscribiéndote al nivel {tier}, que cuesta {amount} anuales."
+                    },
                     "title": "Cambiar nivel de suscripción"
                 },
                 "currencies": {
@@ -2160,21 +2177,30 @@ export default {
                     "active_since": "Activa desde",
                     "active_until": "Activa hasta",
                     "billed_monthly": "Cobro mensual",
+                    "billing": "Cobro",
                     "currency": "Moneda de cobro",
                     "payment_method": "Método de pago",
                     "plan": "Plan actual",
                     "reason": "Razón"
+                },
+                "helpers": {
+                    "alternatives": "Paga por tu suscripción usando {method}. Este método de pago no se renovará automáticamente al final de tu suscripción. {method} solo está disponible en euros.",
+                    "alternatives_warning": "No se puede mejorar la suscripción usando este método. Por favor, crea una nueva suscripción cuando la actual termine.",
+                    "alternatives_yearly": "Debido a las restricciones de los pagos recurrentes, {method} solo está disponible para las suscripciones anuales."
                 },
                 "manage_subscription": "Gestionar suscripción",
                 "payment_method": {
                     "actions": {
                         "add_new": "Añadir nuevo método de pago",
                         "change": "Cambiar método de pago",
-                        "save": "Guardar método de pago"
+                        "save": "Guardar método de pago",
+                        "show_alternatives": "Métodos de pago alternativos"
                     },
                     "add_one": "Aún no tienes ningún método de pago guardado.",
+                    "alternatives": "Puedes suscribirte usando estos métodos de pago alternativos. Esto hará un solo cobro en tu cuenta y no se renovará automáticamente cada mes.",
                     "card": "Tarjeta",
                     "card_name": "Nombre en la tarjeta",
+                    "country": "País de residencia",
                     "ending": "Termina en",
                     "helper": "Se usará esta tarjeta para todas tus suscripciones.",
                     "new_card": "Añadir nuevo método de pago",
@@ -2183,21 +2209,28 @@ export default {
                 "placeholders": {
                     "reason": "Opcionalmente, puedes contarnos por qué ya no apoyas a Kanka. ¿Faltaba algo? ¿Cambió tu situación financiera?"
                 },
+                "plans": {
+                    "cost_monthly": "{amount} {currency} mensuales",
+                    "cost_yearly": "{amount} {currency} anuales"
+                },
                 "sub_status": "Información sobre la suscripción",
                 "subscription": {
                     "actions": {
                         "downgrading": "Contáctanos para bajar de nivel",
                         "rollback": "Cambiar a Kobold",
-                        "subscribe": "Cambiar a {tier} al mes"
+                        "subscribe": "Cambiar a {tier} al mes",
+                        "subscribe_annual": "Cambiar a {tier} anualmente"
                     }
                 },
                 "success": {
+                    "alternative": "Se ha registrado tu pago. Recibirás una notificación en cuanto terminemos de procesarlo y se active tu suscripción.",
                     "callback": "Tu suscripción ha tenido éxito. Tu cuenta será actualizada en cuanto nuestro proveedor de pagos nos informe del cambio (puede llevar algunos minutos).",
                     "cancel": "Se ha cancelado tu suscripción. Continuará activa hasta el final del período de pago.",
                     "currency": "Se ha actualizado tu moneda preferida.",
                     "subscribed": "Tu suscripción ha tenido éxito. ¡No te olvides de suscribirte a la newsletter de votaciones comunitarias para enterarte cuando se abra una votación! Puedes cambiar tu configuración de newsletters en tu perfil."
                 },
                 "tiers": "Niveles de suscripción",
+                "trial_period": "Las suscripciones anuales tienen un período de cancelación de 14 días. Contáctanos en {email} si quieres cancelar tu suscripción anual y recuperar el dinero.",
                 "upgrade_downgrade": {
                     "button": "Información acerca de subir o bajar de nivel",
                     "downgrade": {
@@ -3086,6 +3119,28 @@ export default {
                 },
                 "title": "קבצים של {name}"
             },
+            "filter": "סינון",
+            "filters": {
+                "all": "סנן לכל הצאצאים",
+                "clear": "בטל סינון",
+                "direct": "סנן לצאצאים ישירים",
+                "filtered": "מציג {count} מתוך {total}.",
+                "hide": "הסתר סינון",
+                "show": "הצג סינון",
+                "sorting": {
+                    "asc": "{field} עולה",
+                    "desc": "{field} יורד",
+                    "helper": "בחר באיזה סדר יופיעו התוצאות"
+                },
+                "title": "מסננים"
+            },
+            "forms": {
+                "actions": {
+                    "calendar": "הוסף תאריך בלוח שנה"
+                },
+                "copy_options": "העתק הגדרות"
+            },
+            "hidden": "מוסתר",
             "remove": "הסר",
             "rename": "שנה שם",
             "save": "שמור",
