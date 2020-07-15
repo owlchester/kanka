@@ -133,6 +133,16 @@ class AttributeTemplate extends MiscModel
     {
         $order = $startingOrder;
         $existing = array_values($entity->attributes()->pluck('name')->toArray());
+
+        // If adding to an entity that already has attributes, we need to add the new ones after the existing ones
+        $lastOrder = 0;
+        if ($startingOrder == 0) {
+            $lastExisting = $entity->attributes()->orderByDesc('default_order')->first();
+            if (!empty($lastExisting)) {
+                $lastOrder = $lastExisting->default_order + 1;
+            }
+        }
+
         /** @var Attribute $attribute */
         foreach ($this->entity->attributes()->orderBy('default_order', 'ASC')->get() as $attribute) {
             // Don't re-create existing attributes.
@@ -143,7 +153,7 @@ class AttributeTemplate extends MiscModel
                 'entity_id' => $entity->id,
                 'name' => $attribute->name,
                 'value' => $attribute->value,
-                'default_order' => $order,
+                'default_order' => $lastOrder + $order,
                 'is_private' => $attribute->is_private,
                 'is_star' => $attribute->is_star,
                 'type' => $attribute->type,
