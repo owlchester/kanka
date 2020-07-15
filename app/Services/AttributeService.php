@@ -199,9 +199,11 @@ class AttributeService
         $touch = false;
 
         foreach ($names as $id => $name) {
-            // Skip empties, which are probably the templates
+            // Skip empties, which are probably the templates, but still allow an attribute called '0'
             if (empty($name) || $name == '$TMP_ID') {
-                continue;
+                if ($name !== '0') {
+                    continue;
+                }
             }
 
             $value = $values[$id] ?? '';
