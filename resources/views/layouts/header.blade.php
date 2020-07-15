@@ -80,7 +80,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
                                                 <a href="{{ url(App::getLocale() . '/' . $campaign->getMiddlewareLink()) }}"
                                                    class="campaign-selector
                                                    @if ($campaign->image) cover-background" style="background-image: url({{ $campaign->getImageUrl() }}) !important" @else placeholder-background" @endif >
-                                                    {{ $campaign->name }}
+                                                    {!! $campaign->name !!}
                                                 </a>
                                             </li>
                                         @endif
@@ -92,7 +92,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
                                                        class="campaign-selector
                                                        @if ($campaign->image) cover-background" style="background-image: url({{ $campaign->getImageUrl() }}) !important;" @else placeholder-background" @endif >
                                                         <i class="fa fa-star pull-right" title="{{ __('campaigns.following')  }}"></i>
-                                                        {{ $campaign->name }}
+                                                        {!! $campaign->name !!}
                                                     </a>
                                                 </li>
                                             @endif
@@ -112,11 +112,11 @@ $currentCampaign = CampaignLocalization::getCampaign();
                     <li class="messages-menu campaign-menu">
                         <a href="{{ route('dashboard') }}">
                             @if ($currentCampaign->image)
-                                <img src="{{ $currentCampaign->getImageUrl(40) }}" alt="{{ $currentCampaign->name }}" class="campaign-image" />
+                                <img src="{{ $currentCampaign->getImageUrl(40) }}" alt="{!! $currentCampaign->name !!}" class="campaign-image" />
                             @else
                                 <i class="fa fa-globe"></i>
                             @endif
-                            <span class="hidden-xs hidden-sm">{{ $currentCampaign->name }}</span>
+                            <span class="hidden-xs hidden-sm">{!! $currentCampaign->name !!}</span>
                         </a>
                     </li>
                 @endif

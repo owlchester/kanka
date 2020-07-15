@@ -21,7 +21,7 @@ return [
     ],
     'options'       => [
         'weather'   => [
-            'bolt'                  => 'Eclaire',
+            'bolt'                  => 'Orage',
             'cloud'                 => 'Nuageux',
             'cloud-rain'            => 'Pluie',
             'cloud-showers-heavy'   => 'Forte Pluie',
@@ -30,7 +30,7 @@ return [
             'meteor'                => 'Météorite',
             'smog'                  => 'Brouillard',
             'snowflake'             => 'Neige',
-            'sun'                   => 'Soleilleux',
+            'sun'                   => 'Ensoleillé',
             'wind'                  => 'Venteux',
         ],
     ],

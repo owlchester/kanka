@@ -6,7 +6,7 @@ return [
         'entity'    => 'Entité',
     ],
     'helper'        => 'Cette liste affiche les entités qui mentionnent cette entité dans leur description.',
-    'mentioned_in'  => 'Mentioné dans :count entités.',
+    'mentioned_in'  => 'Mentionné dans :count entité(s).',
     'show'          => [
         'title' => 'Mention d\'entité :name',
     ],
