@@ -80,6 +80,11 @@ class FilterService
             $this->filters = [];
         }
 
+        // If we have data but no "tags" array, it's empty
+        if (!empty($this->data) && in_array('tags', $availableFilters) && !isset($this->data['tags'])) {
+            $this->data['tags'] = null;
+        }
+
         foreach ($this->data as $key => $value) {
             if (in_array($key, $availableFilters)) {
                 // Update the value we have in the session.

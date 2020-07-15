@@ -43,7 +43,6 @@ $count = 0;
                                     $model = $modelclass->find($value);
                                 }?>
                                 @if ($field['type'] == 'tag')
-                                    {!! Form::hidden($field['field'], null) !!}
                                     {!! Form::tags(
                                         $field['field'],
                                         [
