@@ -13,7 +13,7 @@ $actions = [
 ?>
 
 
-<div id="crud_permissions" class="">
+<div id="crud_permissions" class="tooltip-wide">
     <div class="row margin-bottom">
         <div class="col-sm-4">
             <strong>{{ __('crud.permissions.fields.role') }}</strong>
@@ -33,7 +33,7 @@ $actions = [
         <div class="col-sm-2 hidden-xs hidden-xm text-center">
             <i class="fa fa-sticky-note visible-xs visible-sm" title="{{ __('crud.permissions.actions.entity_note') }}"></i>
             <span class="hidden-xs hidden-sm"><strong>{{ __('crud.permissions.actions.entity_note') }}</strong></span>
-            <i class="fa fa-question-circle" data-toggle="tooltip" title="{{ __('crud.permissions.helpers.entity_note') }}"></i>
+            <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}"></i>
         </div>
     </div>
     @foreach ($campaign->campaign()->roles()->withoutAdmin()->get() as $role)
@@ -99,7 +99,7 @@ $actions = [
             <div class="col-sm-2 hidden-xs hidden-xm text-center">
                 <i class="fa fa-sticky-note visible-xs visible-sm" title="{{ __('crud.permissions.actions.entity_note') }}"></i>
                 <span class="hidden-xs hidden-sm"><strong>{{ __('crud.permissions.actions.entity_note') }}</strong></span>
-                <i class="fa fa-question-circle" data-toggle="tooltip" title="{{ __('crud.permissions.helpers.entity_note') }}"></i>
+                <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="bottom" title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}"></i>
             </div>
         </div>
         @foreach ($campaign->campaign()->members()->withoutAdmins()->with('user')->get() as $member)

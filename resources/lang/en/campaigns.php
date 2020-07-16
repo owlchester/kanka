@@ -242,6 +242,9 @@ TEXT
                 'toggle'        => 'Change for all',
             ],
             'hint'      => 'This role automatically has access to everything.',
+            'helpers' => [
+                'entity_note' => 'This allows users who do not have Edit permissions for an Entity to add Entity Notes to it.',
+            ]
         ],
         'placeholders'  => [
             'name'  => 'Name of the role',

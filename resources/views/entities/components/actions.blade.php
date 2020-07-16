@@ -47,7 +47,7 @@
 
             @can('permission', $model)
                 <div class="btn-group">
-                    <a href="{{ route('entities.permissions', $model->entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.permissions', $model->entity) }}" class="btn btn-default">
+                    <a href="{{ route('entities.permissions', $model->entity) }}" data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ route('entities.permissions', $model->entity) }}" class="btn btn-default">
                         <i class="fa fa-cog"></i> <span class="hidden-xs">{{ __('crud.tabs.permissions') }}</span>
                     </a>
                     @if (Auth::user()->isAdmin())

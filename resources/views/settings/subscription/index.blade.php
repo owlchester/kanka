@@ -34,7 +34,7 @@
                     @if ($user->hasPatreonSync())
                             <dt>{{ __('settings.subscription.fields.plan') }}</dt>
                             <dd>{{ $user->patreon_pledge }}</dd>
-                            <dt>{{ __('settings.subscription.fields.billed_monthly') }}</dt>
+                            <dt>{{ __('settings.subscription.fields.billing') }}</dt>
                             <dd>By Patreon</dd>
                     @else
                         <dt>{{ __('settings.subscription.fields.plan') }}</dt>

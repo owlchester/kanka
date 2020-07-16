@@ -975,6 +975,12 @@ hr {
   vertical-align: middle;
 }
 
+.tooltip-wide {
+  .tooltip-inner {
+    min-width: 200px;
+  }
+}
+
 // Other stylings
 @import "calendar";
 @import "print";
