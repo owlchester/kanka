@@ -1,1 +1,196 @@
-!function(e){var n={};function t(o){if(n[o])return n[o].exports;var i=n[o]={i:o,l:!1,exports:{}};return e[o].call(i.exports,i,i.exports,t),i.l=!0,i.exports}t.m=e,t.c=n,t.d=function(e,n,o){t.o(e,n)||Object.defineProperty(e,n,{enumerable:!0,get:o})},t.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},t.t=function(e,n){if(1&n&&(e=t(e)),8&n)return e;if(4&n&&"object"==typeof e&&e&&e.__esModule)return e;var o=Object.create(null);if(t.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:e}),2&n&&"string"!=typeof e)for(var i in e)t.d(o,i,function(n){return e[n]}.bind(null,i));return o},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,n){return Object.prototype.hasOwnProperty.call(e,n)},t.p="/",t(t.s=15)}({15:function(e,n,t){e.exports=t("IPbR")},IPbR:function(e,n){function t(e){var n=[];$.each($("input[name='model[]']"),(function(){$(this).prop("checked")&&n.push($(this).val())})),console.log("datagrid models",n),$(e).val(n.toString())}function o(){var e=!0;$.each($("input[name='model[]']"),(function(){$(this).prop("checked")&&(e=!1)})),e?$(".datagrid-bulk-actions .btn").prop("disabled",!0).addClass("disabled"):$(".datagrid-bulk-actions .btn").prop("disabled",!1).removeClass("disabled")}$(document).ready((function(){var e=$("#datagrid-select-all");e.length>0&&e.click((function(e){$(this).prop("checked")?$.each($("input[name='model[]']"),(function(){$(this).prop("checked",!0)})):$.each($("input[name='model[]']"),(function(){$(this).prop("checked",!1)})),o()})),$.each($("input[name='model[]']"),(function(){$(this).change((function(e){o(),e.preventDefault()}))})),$("#datagrids-bulk-actions-permissions").on("click",(function(){t("#datagrid-bulk-permission-models")})),$("#datagrids-bulk-actions-batch").on("click",(function(){t("#datagrid-bulk-batch-models")})),$("#datagrids-bulk-actions-delete").on("click",(function(){t("#datagrid-bulk-delete-models")})),$("#datagrids-bulk-actions-copy-campaign").on("click",(function(){console.log("aaa"),t("#datagrid-bulk-permission-models")})),o()}))}});
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 15);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./resources/assets/js/datagrids.js":
+/*!******************************************!*\
+  !*** ./resources/assets/js/datagrids.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// id="datagrids-bulk-actions-permissions"
+// id="datagrids-bulk-actions-edit
+$(document).ready(function () {
+  // Multi-delete
+  var crudDelete = $('#datagrid-select-all');
+
+  if (crudDelete.length > 0) {
+    crudDelete.click(function (e) {
+      if ($(this).prop('checked')) {
+        $.each($("input[name='model[]']"), function () {
+          $(this).prop('checked', true);
+        });
+      } else {
+        $.each($("input[name='model[]']"), function () {
+          $(this).prop('checked', false);
+        });
+      }
+
+      toggleCrudMultiDelete();
+    });
+  }
+
+  $.each($("input[name='model[]']"), function () {
+    $(this).change(function (e) {
+      toggleCrudMultiDelete();
+      e.preventDefault();
+    });
+  });
+  registerBulkActions();
+  toggleCrudMultiDelete();
+});
+/**
+ * Register button handeling for bulk actions
+ */
+
+function registerBulkActions() {
+  $('#datagrids-bulk-actions-permissions').on('click', function () {
+    setBulkModels('#datagrid-bulk-permission-models');
+  });
+  $('#datagrids-bulk-actions-batch').on('click', function () {
+    setBulkModels('#datagrid-bulk-batch-models');
+  });
+  $('#datagrids-bulk-actions-delete').on('click', function () {
+    setBulkModels('#datagrid-bulk-delete-models');
+  });
+  $('#datagrids-bulk-actions-copy-campaign').on('click', function () {
+    console.log('aaa');
+    setBulkModels('#datagrid-bulk-permission-models');
+  });
+}
+/**
+ * Set the datagrid bulk models
+ * @param modelField
+ */
+
+
+function setBulkModels(modelField) {
+  var values = [];
+  $.each($("input[name='model[]']"), function () {
+    if ($(this).prop('checked')) {
+      values.push($(this).val());
+    }
+  });
+  console.log('datagrid models', values);
+  $(modelField).val(values.toString());
+}
+/**
+ *
+ */
+
+
+function toggleCrudMultiDelete() {
+  var hide = true;
+  $.each($("input[name='model[]']"), function () {
+    if ($(this).prop('checked')) {
+      hide = false;
+    }
+  });
+
+  if (hide) {
+    $('.datagrid-bulk-actions .btn').prop('disabled', true).addClass('disabled');
+  } else {
+    $('.datagrid-bulk-actions .btn').prop('disabled', false).removeClass('disabled');
+  }
+}
+
+/***/ }),
+
+/***/ 15:
+/*!*********************************************!*\
+  !*** multi ./resources/assets/js/datagrids ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\js\datagrids */"./resources/assets/js/datagrids.js");
+
+
+/***/ })
+
+/******/ });

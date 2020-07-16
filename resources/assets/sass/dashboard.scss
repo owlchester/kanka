@@ -368,6 +368,14 @@
       margin-right: 6px;
     }
   }
+
+  table {
+    width: 100% !important;
+    word-break: break-all;
+  }
+  iframe {
+    max-width: 100% !important;
+  }
 }
 
 @media (max-width: 787px) {
