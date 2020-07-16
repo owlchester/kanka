@@ -14,7 +14,7 @@
                 'quests.placeholders.quest'
             ) !!}
         </div>
-        @include('cruds.fields.character')
+        @include('cruds.fields.character', ['label' => 'quests.fields.character'])
 
         @include('cruds.fields.tags')
 

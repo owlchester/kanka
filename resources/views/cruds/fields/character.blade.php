@@ -4,7 +4,8 @@
             'character_id',
             (isset($model) && $model->character ? $model->character : FormCopy::field('character')->select()),
             App\Models\Character::class,
-            isset($enableNew) ? $enableNew : true
+            isset($enableNew) ? $enableNew : true,
+            isset($label) ? $label : null
         ) !!}
     </div>
 @endif
