@@ -206,13 +206,17 @@ class Entity extends Model
      */
     public function url($action = 'show', $tab = null)
     {
-        if ($action == 'index') {
-            return route($this->pluralType() . '.index');
+        try {
+            if ($action == 'index') {
+                return route($this->pluralType() . '.index');
+            }
+            if (!empty($tab)) {
+                return route($this->pluralType() . '.' . $action, [$this->entity_id, '#' . $tab]);
+            }
+            return route($this->pluralType() . '.' . $action, $this->entity_id);
+        } catch (\Exception $e) {
+            return route('dashboard');
         }
-        if (!empty($tab)) {
-            return route($this->pluralType() . '.' . $action, [$this->entity_id, '#' . $tab]);
-        }
-        return route($this->pluralType() . '.' . $action, $this->entity_id);
     }
 
     /**
