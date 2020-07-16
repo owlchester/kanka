@@ -32,7 +32,7 @@ TEXT
             'text'  => <<<'TEXT'
 Jay et moi sommes amis depuis près d'une décennie, et ça  a été une joie de le voir développer Kanka au cours des deux dernières années.
 
-Depuis le début de 2020, je m’occupe de l'aspect commercial des choses, et j’ai pour ambition de continuer à offrir un outil unique qui sera utile aux auteurs ainsi que aux joueurs du monde entier!
+Début 2020, j'ai rejoint Jay pour gérer à la fois le développement commercial et le marketing, et je pour rien au monde je ne retournerais en arrière!
 TEXT
 ,
             'title' => 'Co-Foundateur & Business Manager',

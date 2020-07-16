@@ -9,6 +9,7 @@ return [
         'qa'            => 'Quality Assurance',
         'support'       => 'Support',
         'title'         => 'Team',
+        'community'     => 'Community',
         'translations'  => 'Translations',
     ],
     'patreon'       => [
@@ -32,7 +33,8 @@ TEXT
             'text'  => <<<'TEXT'
 Jay and I have been friends for almost a decade, and it has been exciting to see him develop Kanka over the past couple years.
 
-Since early 2020, I have been helping by taking care of the business side of things, and I hope that we can continue to offer a unique tool that is useful for world-builders and players everywhere!
+In early 2020, I joined Jay to handle both business development & marketing, and I haven’t looked back since!
+
 TEXT
 ,
             'title' => 'Co-Founder & Business Manager',

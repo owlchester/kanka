@@ -105,6 +105,9 @@
                         <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.discord') }}
                     </li>
                     <li>
+                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.default_image') }}
+                    </li>
+                    <li>
                         <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.curation') }}
                     </li>
                     <li>

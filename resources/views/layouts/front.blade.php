@@ -111,8 +111,6 @@
                 <li class="nav-item">
                     <a class="nav-link @if(!empty($active) && $active == 'pricing') nav-active @endif" href="{{ route("front.pricing") }}">{{ __('front.menu.pricing') }}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link @if(!empty($active) && $active == 'about') nav-active @endif" href="{{ route("front.about") }}">{{ __('front.menu.about') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="https://blog.kanka.io" target="_blank">{{ __('front.menu.news') }}</a>
@@ -120,6 +118,8 @@
                 <li class="nav-item">
                     <a class="nav-link @if(!empty($active) && $active == 'contact') nav-active @endif" href="{{ route("front.contact") }}">{{ __('front.menu.contact') }}</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link @if(!empty($active) && $active == 'about') nav-active @endif" href="{{ route("front.about") }}">{{ __('front.menu.about') }}</a>
 
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" id="drop3" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">

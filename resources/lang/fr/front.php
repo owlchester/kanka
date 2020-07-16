@@ -2,7 +2,7 @@
 
 return [
     'about'         => [
-        'description'   => 'Kanka a été imaginé durant l\'été de 2017 par deux joueurs de JdR passionnés qui souhaient construire un gérer un monde ensemble. Après avoir essayé plusieurs outils existant à l\'époque, nous avons conclu qu\'aucune solution ne faisait exactement ce qu\'on voulait, alors on s\'est donné comme objectif de créer notre propre outil durant l\'automne de 2017.',
+        'description'   => 'Kanka a été imaginé durant l\'été de 2017 par deux joueurs de JdR passionnés qui souhaitent construire un gérer un monde ensemble. Après avoir essayé plusieurs outils existant à l\'époque, nous avons conclu qu\'aucune solution ne faisait exactement ce qu\'on voulait, alors on s\'est donné comme objectif de créer notre propre outil durant l\'automne de 2017.',
         'title'         => 'A propos',
     ],
     'campaigns'     => [

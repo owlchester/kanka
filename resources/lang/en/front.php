@@ -2,7 +2,7 @@
 
 return [
     'about'         => [
-        'description'   => 'Kanka was born in 2017 out of the desire of a passionate RPG player wanting to build and manage a world with his players. After trying out a few available options at the time and concluding that none of them fit quite right, development on Kanka started in the fall of 2017.',
+        'description'   => 'Kanka was born out of the desire of a passionate tabletop RPG player who wanted to build and manage a world with his players. After trying out a few available options and concluding that none of them fit quite right, development on Kanka started in the fall of 2017.',
         'title'         => 'About',
     ],
     'campaigns'     => [
@@ -29,8 +29,8 @@ return [
     ],
     'contact'       => [
         'description'   => 'Need help, have a suggestion, or just want to share your love for Kanka? Our team will reply whatever the occasion!',
-        'email'         => 'Send all inquiries to our email:',
-        'other'         => 'Or contact us one of the following social media platforms:',
+        'email'         => 'Send all inquiries to',
+        'other'         => 'Or on one of the following social media platforms:',
         'title'         => 'We\'re here for you',
     ],
     'cookie'        => [
@@ -73,7 +73,7 @@ return [
             'title'         => 'Collaborative',
         ],
         'description'       => 'Kanka has a large number of features. Keep track of your world\'s Characters and their relations, Locations and their history, Quests and their objectives, Calendars and their events and weather effects, and many more. Best of all, Kanka receives several updates every month based on user feedback.',
-        'description_full'  => 'We are constantly adding new features and improvements to Kanka, and all core features are free.',
+        'description_full'  => 'Kanka is constantly being updated with new features and improvements, but here are some of the most important ones we think you’ll love.',
         'free'              => [
             'bonuses'       => 'bonuses',
             'description'   => 'All core features of Kanka are absolutely free, with :bonuses for :patreon supporters.',
@@ -101,7 +101,7 @@ return [
             'api_calls'         => 'Increased API calls (90)',
             'boosts'            => 'Campaign Boosters',
             'curation'          => 'Help curate the community vote items',
-            'default_image'     => 'Nice default images for entities',
+            'default_image'     => 'Custom default images for entities',
             'description'       => 'Supporting Kanka with a small monthly fee allows us to keep working on Kanka and unlocks the following benefits for an account.',
             'discord'           => 'Private Discord channel',
             'free'              => 'Free',
@@ -209,12 +209,12 @@ return [
             'unlimited'         => 'Unlimited campaigns & uploads',
             'updates'           => 'Frequent updates and improvements',
         ],
-        'description'   => 'While all core features are free, supporting Kanka helps us deliver frequent updates and improvements for all users.',
+        'description'   => 'All core features are free, but supporting Kanka helps us deliver frequent updates and improvements for all users.',
         'tier'          => [
             'free'  => 'Free',
             'month' => 'Month',
         ],
-        'title'         => 'Pricing Overview',
+        'title'         => 'Pricing',
     ],
     'privacy'       => [
         'description'   => 'Effective date: :date',
@@ -231,8 +231,14 @@ return [
         ],
         'description'   => 'Our community votes shape our work, so while we don\'t have a multi-month roadmap, it is easy to stay up to date with what has been requested and what is currently being worked on.',
         'next'          => [
-            'description'   => 'This Trello board contains all the features and improvements that are currently being worked on.',
+            'description'   => 'This Trello board contains all the features, improvements, and bugs that are currently being worked on following the latest :community_vote.',
             'title'         => 'Next',
+        ],
+        'featured_requests' => [
+            'title' => 'Featured Requests',
+        ],
+        'ongoing_progress' => [
+            'title' => 'Ongoing Progress',
         ],
         'title'         => 'Roadmap',
     ],

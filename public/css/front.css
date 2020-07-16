@@ -414,6 +414,10 @@ ul.pagination li span {
   padding-bottom: 40px;
 }
 
+.team .card .card-text {
+  font-size: 16px;
+}
+
 .card .pull-bottom {
   margin-top: 10px;
   position: absolute;

@@ -56,9 +56,9 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="feature-item">
-                                    <i class="fas fa-book text-primary"></i>
-                                    <h3>{{ trans('front.features.notebook.title') }}</h3>
-                                    <p class="text-muted">{{ trans('front.features.notebook.description') }}</p>
+                                    <i class="fas fa-calendar text-primary"></i>
+                                    <h3>{{ trans('front.features.calendars.title') }}</h3>
+                                    <p class="text-muted">{{ trans('front.features.calendars.description') }}</p>
                                 </div>
                             </div>
                         </div>

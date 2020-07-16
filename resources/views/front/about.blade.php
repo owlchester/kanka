@@ -28,7 +28,7 @@
                 <h1>{{ __('teams.index.title') }}</h1>
 
                 <div class="row">
-                    <div class="col-lg-4 col-sm-6 mb-2">
+                    <div class="col-lg-3 col-sm-4 col-12 mb-2">
                         <div class="card">
                             <img class="card-img-top" src="https://kanka-app-assets.s3.amazonaws.com/images/team/jay.jpg" alt="Jay">
                             <div class="card-body">
@@ -36,11 +36,11 @@
                                 <p class="text-muted">{{ __('teams.people.jay.title') }}</p>
                                 <p class="card-text">{!! nl2br(__('teams.people.jay.text')) !!}</p>
 
-                                <span title="Discord" class="pull-bottom"><i class="fab fa-discord"></i> Ilestis#9745</span>
+                                <span title="Discord" class="pull-bottom"><i class="fab fa-discord"></i> Jay | Ilestis#9745</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6 mb-2">
+                    <div class="col-lg-3 col-sm-4 col-12 mb-2">
                         <div class="card">
                             <img class="card-img-top" src="https://kanka-app-assets.s3.amazonaws.com/images/team/jon.jpg" alt="Jonathan">
                             <div class="card-body">
@@ -48,11 +48,11 @@
                                 <p class="text-muted">{{ __('teams.people.jon.title') }}</p>
                                 <p class="card-text">{!! nl2br(__('teams.people.jon.text')) !!}</p>
 
-                                <span title="Discord" class="pull-bottom"><i class="fab fa-discord"></i> Karuga/Eliame#6904</span>
+                                <span title="Discord" class="pull-bottom"><i class="fab fa-discord"></i> Karuga#6904</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6 mb-2">
+                    <div class="col-lg-3 col-sm-4 col-12 mb-2">
                         <div class="card">
                             <img class="card-img-top" src="https://kanka-app-assets.s3.amazonaws.com/images/team/ryan.jpg" alt="Ryan">
                             <div class="card-body">
@@ -66,18 +66,19 @@
                     </div>
                 </div>
 
-                <div class="row mt-5">
-                    <div class="col-lg-3 col-sm-4 col-6 mb-2">
-                        <div class="card">
-                            <img class="card-img-top" src="https://kanka-app-assets.s3.amazonaws.com/images/team/iz.jpg" alt="Iz Groceman">
-                            <div class="card-body">
-                                <h5 class="card-title">Iz Groceman <a href="mailto:dm@timeraverse.com"><i class="fas fa-envelope"></i></a></h5>
-                                <p class="text-muted">{{ __('teams.people.iz.title') }}</p>
+                <h2 class="mt-5">{{ __('teams.index.community') }}</h2>
+                <div class="row ">
+{{--                    <div class="col-lg-3 col-sm-4 col-6 mb-2">--}}
+{{--                        <div class="card">--}}
+{{--                            <img class="card-img-top" src="https://kanka-app-assets.s3.amazonaws.com/images/team/iz.jpg" alt="Iz Groceman">--}}
+{{--                            <div class="card-body">--}}
+{{--                                <h5 class="card-title">Iz Groceman <a href="mailto:dm@timeraverse.com"><i class="fas fa-envelope"></i></a></h5>--}}
+{{--                                <p class="text-muted">{{ __('teams.people.iz.title') }}</p>--}}
 
-                                <span title="Discord" class="pull-bottom"><i class="fab fa-discord"></i> Timera#2707</span>
-                            </div>
-                        </div>
-                    </div>
+{{--                                <span title="Discord" class="pull-bottom"><i class="fab fa-discord"></i> Timera#2707</span>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     <div class="col-lg-3 col-sm-4 col-6 mb-2">
                         <div class="card">
                             <img class="card-img-top" src="https://kanka-app-assets.s3.amazonaws.com/images/team/joseph.jpg" alt="ChaosOS">
@@ -101,7 +102,7 @@
                     <div class="col-6 my-auto">
                         <h2>{{ __('teams.index.translations') }}</h2>
                         <p>
-                            <strong>{{ __('languages.codes.de') }}</strong>: TheFurya, Yanila, Thogrim
+                            <strong>{{ __('languages.codes.de') }}</strong>: TheFurya, Yanila, Thogrim, Xoltax
                         </p>
                         <p>
                             <strong>{{ __('languages.codes.en-US') }}</strong>: Oriek
@@ -110,7 +111,7 @@
                             <strong>{{ __('languages.codes.es') }}</strong>: Helionking, Raigho
                         </p>
                         <p>
-                            <strong>{{ __('languages.codes.it') }}</strong>: Dreadino, Arroagantes
+                            <strong>{{ __('languages.codes.it') }}</strong>: Dreadino, Arroagantes, VolpeNera
                         </p>
                         <p>
                             <strong>{{ __('languages.codes.hu') }}</strong>: Kildar, Orkogo, orwen89
