@@ -123,7 +123,6 @@ class SitemapService
             '/',
             'about',
             'privacy-policy',
-            'help',
             'faq',
             'features',
             'pricing',
