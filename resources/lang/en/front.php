@@ -123,8 +123,8 @@ return [
         ],
         'title'             => 'Powerful features with incredible flexibility',
         'updates'           => [
-            'description'   => 'Kanka goes through frequent community driven updates.',
-            'title'         => 'Frequent Updates',
+            'description'   => 'Kanka goes through frequent community driven updates, with new features added every month. We go into details about these updates on our :discord.',
+            'title'         => 'Frequent Community Driven Updates',
         ],
     ],
     'first_block'   => [
