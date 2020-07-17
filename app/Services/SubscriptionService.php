@@ -437,7 +437,9 @@ class SubscriptionService
         $this->user = $source->user;
 
         // Remove all the user's stuff directly
-        $this->user->subscription('kanka')->delete();
+        if ($this->user->subscribed('kanka')) {
+            $this->user->subscription('kanka')->delete();
+        }
 
         // Anything that can fail, send to a queue
         SubscriptionCancelEmailJob::dispatch($this->user, $source->method . ' charge failed');
