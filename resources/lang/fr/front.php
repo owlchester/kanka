@@ -109,6 +109,7 @@ return [
             'impact'            => 'Impact sur les futures fonctionalités',
             'monthly_vote'      => 'Participation dans les votes Patreon',
             'pagination'        => 'Augmentation de la limite des résultats paginés',
+            'pagination_help'   => 'Ceci est le nombre maximal de résultats affichés par page, et non de la limite du nombre d\'entités par campagne.',
             'title'             => 'Support Patreon',
             'upload_limit'      => 'Taille des fichiers augmentés',
             'upload_limit_map'  => 'Taille des cartes augmentées',

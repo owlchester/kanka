@@ -36,13 +36,13 @@ return [
         'type'              => 'Type',
     ],
     'helpers'       => [
-        'characters'    => 'View all characters in this location and its children locations, or just those directly located here.',
-        'descendants'   => 'This list contains all locations which are descendants of this location, not only those directly under it.',
-        'families'      => 'Locations can be the seat of powerful families.',
-        'map'           => 'Adding a map to a location will allow you to place "Points" on the map, linking to other Entities in the campaign.',
-        'map_deprecated' => 'Maps are now their own module! This new feature is currently available in early access to :boosted. This current interface will become unavailable once the new module is available for all, but you will still be able to edit old maps in this interface.',
-        'nested'        => 'When in Nested View, you can view your locations in a nested manner. Locations with no parent location will be shown by default. Locations with children locations can be clicked to view those children. You can keep clicking until there are no more children to view.',
-        'organisations' => 'View all organisations in this location and its children locations, or just those directly located here.',
+        'characters'        => 'View all characters in this location and its children locations, or just those directly located here.',
+        'descendants'       => 'This list contains all locations which are descendants of this location, not only those directly under it.',
+        'families'          => 'Locations can be the seat of powerful families.',
+        'map'               => 'Adding a map to a location will allow you to place "Points" on the map, linking to other Entities in the campaign.',
+        'map_deprecated'    => 'Maps are now their own module! This new feature is currently available in early access to :boosted. This current interface will become unavailable once the new module is available for all, but you will still be able to edit old maps in this interface.',
+        'nested'            => 'When in Nested View, you can view your locations in a nested manner. Locations with no parent location will be shown by default. Locations with children locations can be clicked to view those children. You can keep clicking until there are no more children to view.',
+        'organisations'     => 'View all organisations in this location and its children locations, or just those directly located here.',
     ],
     'hints'         => [
         'is_map_private'    => 'A private map will only be visible to members of the campaign\'s "Admin" role.',
@@ -67,9 +67,6 @@ return [
     'locations'     => [
         'description'   => 'Locations located in the location.',
         'title'         => 'Location :name Locations',
-    ],
-    'maps'         => [
-        'title'         => 'Location :name Maps',
     ],
     'map'           => [
         'actions'   => [
@@ -179,9 +176,8 @@ return [
             'return'        => 'Back to :name',
             'shapes'        => [
                 'circle'    => 'Circle',
-                'square'    => 'Square',
-                'triangle'  => 'Triangle',
                 'custom'    => 'Custom',
+                'square'    => 'Square',
             ],
             'sizes'         => [
                 'huge'      => 'Huge',
@@ -198,6 +194,9 @@ return [
             'title'         => 'Location :name Map Points',
         ],
         'success'   => 'Map Points saved.',
+    ],
+    'maps'          => [
+        'title' => 'Location :name Maps',
     ],
     'organisations' => [
         'description'   => 'Organisations situated in the location.',

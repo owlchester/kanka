@@ -1,59 +1,58 @@
 <?php
 
 return [
-    'actions' => [
-        'explore' => 'Explore',
-        'edit' => 'Edit map',
-        'back' => 'Back to :name',
+    'actions'       => [
+        'back'      => 'Back to :name',
+        'edit'      => 'Edit map',
+        'explore'   => 'Explore',
     ],
-    'create' => [
-        'title' => 'New Map',
-        'success' => 'Map :name created.',
+    'create'        => [
+        'success'   => 'Map :name created.',
+        'title'     => 'New Map',
     ],
-    'edit' => [
-        'title' => 'Edit Map :name',
-        'success' => 'Map :name updated.',
+    'edit'          => [
+        'success'   => 'Map :name updated.',
+        'title'     => 'Edit Map :name',
     ],
-    'fields' => [
-        'distance_name' => 'Distance Unit',
-        'distance_measure' => 'Distance Measure',
-        'grid' => 'Grid',
-        'name' => 'Name',
-        'type' => 'Type',
-        'map' => 'Parent Map',
-        'maps' => 'Maps'
+    'fields'        => [
+        'distance_measure'  => 'Distance Measure',
+        'distance_name'     => 'Distance Unit',
+        'grid'              => 'Grid',
+        'map'               => 'Parent Map',
+        'maps'              => 'Maps',
+        'name'              => 'Name',
+        'type'              => 'Type',
     ],
-    'index' => [
+    'helpers'       => [
+        'descendants'       => 'This list contains all maps which are descendants of this map, and not only those directly under it.',
+        'distance_measure'  => 'Giving the map a distance measurement will enable the measurement tool on the exploration mode.',
+        'grid'              => 'Define a grid size that will be displayed on the exploration mode.',
+        'missing_image'     => 'Save the map with an image before being able to add layers and markers.',
+        'nested'            => 'When in Nested View, you can view your Maps in a nested manner. Maps with no parent map will be shown by default. Maps with children tags can be clicked to view those children. You can keep clicking until there are no more children to view.',
+    ],
+    'index'         => [
+        'add'   => 'New Map',
         'title' => 'Maps',
-        'add' => 'New Map',
     ],
-    'maps' => [
+    'maps'          => [
         'title' => 'Maps of :name',
     ],
-    'panels' => [
-        'layers' => 'Layers',
-        'markers' => 'Markers',
-        'settings' => 'Settings',
+    'panels'        => [
+        'layers'    => 'Layers',
+        'markers'   => 'Markers',
+        'settings'  => 'Settings',
     ],
-    'placeholders' => [
-        'distance_name' => 'Name of the distance unit (kilometer, mile)',
-        'distance_measure' => 'Units per pixel',
-        'grid' => 'Distance in pixel between grid elements. Leave empty to hide the grid.',
-        'name' => 'Name of the map',
-        'type' => 'Dungeon, City, Galaxy',
+    'placeholders'  => [
+        'distance_measure'  => 'Units per pixel',
+        'distance_name'     => 'Name of the distance unit (kilometer, mile)',
+        'grid'              => 'Distance in pixel between grid elements. Leave empty to hide the grid.',
+        'name'              => 'Name of the map',
+        'type'              => 'Dungeon, City, Galaxy',
     ],
-    'show' => [
-        'title' => 'Map :name',
-        'tabs' => [
-            'maps' => 'Maps',
+    'show'          => [
+        'tabs'  => [
+            'maps'  => 'Maps',
         ],
+        'title' => 'Map :name',
     ],
-    'helpers' => [
-        'grid'              => 'Define a grid size that will be displayed on the exploration mode.',
-        'descendants'   => 'This list contains all maps which are descendants of this map, and not only those directly under it.',
-        'distance_measure' => 'Giving the map a distance measurement will enable the measurement tool on the exploration mode. You will have to play around with this value for a while. We suggest starting with 50000.',
-        'nested'        => 'When in Nested View, you can view your Maps in a nested manner. Maps with no parent map will be shown by default. Maps with children tags can be clicked to view those children. You can keep clicking until there are no more children to view.',
-
-        'missing_image' => 'Save the map with an image before being able to add layers and markers.',
-    ]
 ];

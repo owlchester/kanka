@@ -109,7 +109,7 @@ return [
             'impact'            => 'Impact future features',
             'monthly_vote'      => 'Participation in the community feature vote',
             'pagination'        => 'Increased pagination results',
-            'pagination_help' => 'This is the maximum number of results shown per page, not the limit on the number of entities per campaign.',
+            'pagination_help'   => 'This is the maximum number of results shown per page, not the limit on the number of entities per campaign.',
             'title'             => 'Paid Features',
             'upload_limit'      => 'Upload sizes',
             'upload_limit_map'  => 'Map upload sizes',

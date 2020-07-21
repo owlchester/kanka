@@ -70,7 +70,7 @@ return [
         'excerpt'                       => 'The campaign excerpt will be displayed on the dashboard, so write a few sentences introducing your world. Keep it short for the best results.',
         'locale'                        => 'The language your campaign is written in. This is used for generating content and grouping public campaigns.',
         'name'                          => 'Your campaign/world can have any name as long as it contains at least 4 letters or numbers.',
-        'public_campaign_filters'       => 'Help others find the the campaign among other public campaigns by providing the following information.',
+        'public_campaign_filters'       => 'Help others find the campaign among other public campaigns by providing the following information.',
         'system'                        => 'If your campaign is publicly visible, the system is shown in the :link page.',
         'systems'                       => 'To avoid cluttering users with options, some features of Kanka are only available with specific RPG systems (ie the D&D 5e monster stat block). Adding supported systems here will enable those features.',
         'theme'                         => 'Force the theme for the campaign, overriding a user\'s preference.',
