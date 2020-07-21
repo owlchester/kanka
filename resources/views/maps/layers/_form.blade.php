@@ -11,7 +11,7 @@
             {!! Form::textarea('entry', null, ['class' => 'form-control html-editor', 'id' => 'layer-entry', 'name' => 'entry']) !!}
         </div>
 
-        @include('cruds.fields.image', ['imageRequired' => true])
+        @include('cruds.fields.image', ['imageRequired' => true, 'size' => 'map'])
 
         @include('cruds.fields.visibility')
 

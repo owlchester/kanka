@@ -40,6 +40,7 @@ return [
         'descendants'   => 'This list contains all locations which are descendants of this location, not only those directly under it.',
         'families'      => 'Locations can be the seat of powerful families.',
         'map'           => 'Adding a map to a location will allow you to place "Points" on the map, linking to other Entities in the campaign.',
+        'map_deprecated' => 'Maps are now their own module! This new feature is currently available in early access to :boosted. This current interface will become unavailable once the new module is available for all, but you will still be able to edit old maps in this interface.',
         'nested'        => 'When in Nested View, you can view your locations in a nested manner. Locations with no parent location will be shown by default. Locations with children locations can be clicked to view those children. You can keep clicking until there are no more children to view.',
         'organisations' => 'View all organisations in this location and its children locations, or just those directly located here.',
     ],

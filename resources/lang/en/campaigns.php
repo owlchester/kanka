@@ -275,7 +275,7 @@ return [
         'actions'       => [
             'enable'    => 'Enable',
         ],
-        'boosted'       => 'This feature is in beta and currently only available for :boosted.',
+        'boosted'       => 'This feature is in early access and currently only available for :boosted.',
         'description'   => 'Enable or disable modules of the campaign.',
         'edit'          => [
             'success'   => 'Campaign settings updated.',

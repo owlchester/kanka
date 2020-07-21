@@ -12,6 +12,6 @@
     </div>
     <div class="col-md-6">
         @include('cruds.fields.entry2')
-        @include('cruds.fields.image')
+        @include('cruds.fields.image', ['size' => 'map'])
     </div>
 </div>

@@ -163,7 +163,7 @@ return [
         "URI.SafeIframeRegexp" => "%^(https?:)?//("
             . "www\.youtube(?:-nocookie)?\.com/embed/|"
             . "player\.vimeo\.com/video/|"
-            . "open\.spotify\.com/embed/|"
+            . "open\.spotify\.com/embed|"
             . "docs.google.com/|"
             . "drive.google.com/|"
             . "lookingforgm\.com/campaign/"

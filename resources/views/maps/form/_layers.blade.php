@@ -2,6 +2,7 @@
 /**
  * @var \App\Models\MapLayer $layer
  * @var \App\Models\Map $model
+ * @var \App\Services\CampaignService $campaign
  */
 ?>
 @if (!isset($model) || empty($model->image))
@@ -11,7 +12,10 @@
 @else
     <?php $layers = $model->layers()->ordered()->paginate(); ?>
     <p class="help-block">
-        {{ __('maps/layers.helper') }}
+        {{ __('maps/layers.helper.amount', ['amount' => $campaign->campaign()->maxMapLayers()]) }}
+        @if (!$campaign->campaign()->boosted())
+            {!! __('maps/layers.helper.boosted_campaign', ['boosted' => link_to_route('front.features', __('crud.boosted_campaigns'), '#boost'), 'amount' => \App\Models\Campaign::LAYER_COUNT_MAX])!!}
+        @endif
     </p>
 
     <table class="table table-condensed">
@@ -55,12 +59,15 @@
     <div class="pull-right">
         {{ $layers->links() }}
     </div>
+
+    @if ($layers->count() < $campaign->campaign()->maxMapLayers())
     <a href="{{ route('maps.map_layers.create', ['map' => $model]) }}" class="btn btn-primary btn-sm"
        data-toggle="ajax-modal" data-target="#entity-modal"
        data-url="{{ route('maps.map_layers.create', ['map' => $model]) }}"
     >
         <i class="fas fa-plus"></i> {{ __('maps/layers.actions.add') }}
     </a>
+    @endif
 
 @endif
 

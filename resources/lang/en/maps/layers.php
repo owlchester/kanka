@@ -20,7 +20,10 @@ return [
     'fields' => [
         'position' => 'Position',
     ],
-    'helper' => 'You can add multiple layers on a map to switch the background image displayed below your markers.',
+    'helper' => [
+        'amount' => 'You can add up to :amount layers on a map to switch the background image displayed below your markers.',
+        'boosted_campaign' => ':boosted can have up to :amount layers.',
+    ],
     'placeholders' => [
         'name' => 'Underground, Level 2, Shipwreck',
         'position' => 'Optional field to set the order in which the layers appear.',
