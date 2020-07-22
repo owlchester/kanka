@@ -101,7 +101,7 @@ $sizeOptions = [
     <div class="col-sm-6">
         <div class="form-group required">
             <label>{{ __('crud.fields.name') }}</label>
-            {!! Form::text('name', null, ['placeholder' => __('maps/markers.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+            {!! Form::text('name', null, ['placeholder' => __('maps/markers.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'required']) !!}
         </div>
     </div>
     <div class="col-sm-6">

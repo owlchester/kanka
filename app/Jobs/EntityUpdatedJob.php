@@ -51,7 +51,7 @@ class EntityUpdatedJob implements ShouldQueue
         /** @var Entity $entity */
         Log::info('EntityUpdateJob for entity #' . $this->entityId);
         $entity = Entity::find($this->entityId);
-        if (empty($entity)) {
+        if (empty($entity) || empty($entity->child)) {
             // Entity was deleted
             return;
         }
