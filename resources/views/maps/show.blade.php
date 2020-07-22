@@ -17,11 +17,14 @@
             <div class="tab-content">
                 <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="entry">
                     <p>{!! $model->entry() !!}</p>
-                    @include('cruds.partials.mentions')
 
+                    @if (!empty($model->image))
                     <a href="{{ route('maps.explore', $model) }}" class="btn btn-block btn-primary" target="_blank">
                         <i class="fa fa-map"></i> {{ __('maps.actions.explore') }}
                     </a>
+                    @endif
+
+                    @include('cruds.partials.mentions')
 
                 </div>
                 @include('cruds._panes')
