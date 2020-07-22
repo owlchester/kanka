@@ -166,6 +166,7 @@ return [
             . "open\.spotify\.com/embed|"
             . "docs.google.com/|"
             . "drive.google.com/|"
+            . "www.google.com/maps/embed|"
             . "lookingforgm\.com/campaign/"
             . ")%",
     ],
