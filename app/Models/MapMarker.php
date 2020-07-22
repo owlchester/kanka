@@ -4,6 +4,7 @@
 namespace App\Models;
 
 
+use App\Facades\Mentions;
 use App\Traits\VisibilityTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -175,7 +176,7 @@ class MapMarker extends Model
             .bindPopup(`
             <div class="marker-popup-content">
                 <h4 class="marker-header">' . e($this->name) . '</h4>
-                <p class="marker-text">' . $this->entry . '</p>
+                <p class="marker-text">' . Mentions::mapAny($this) . '</p>
             </div>
             ' . (!empty($this->entity) ? '
             <p><a href="' . $this->entity->url() . '">' . e($this->entity->name) . '</a>' : null) . '`)
@@ -190,7 +191,7 @@ class MapMarker extends Model
         return '.bindPopup(`
             <div class="marker-popup-content">
                 <h4 class="marker-header">' . e($this->name) . '</h4>
-                <p class="marker-text">' . $this->entry . '</p>
+                <p class="marker-text">' . Mentions::mapAny($this) . '</p>
             </div>
             ' . (!empty($this->entity) ? '
             <p><a href="' . $this->entity->url() . '">' . e($this->entity->name) . '</a>' : null) . '

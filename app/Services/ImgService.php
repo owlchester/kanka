@@ -43,6 +43,15 @@ class ImgService
     }
 
     /**
+     * @return $this
+     */
+    public function resetCrop(): self
+    {
+        $this->crop = '';
+        return $this;
+    }
+
+    /**
      * @param string|null $base
      * @return $this
      */
