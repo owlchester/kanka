@@ -1,5 +1,7 @@
 @if (!isset($model) || auth()->user()->can('map', $model))
 
+    <p class="alert alert-warning">{!! __('locations.helpers.map_deprecated', ['boosted' => link_to_route('front.features', __('crud.boosted_campaigns'), '#boost')]) !!}</p>
+
     <p class="help-block">{{ __('locations.helpers.map') }}</p>
     <label>{{ trans('locations.fields.map') }}</label>
     {!! Form::hidden('remove-map') !!}

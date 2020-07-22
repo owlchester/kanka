@@ -52,7 +52,7 @@
                     @if (!empty($campaign->image))
                         <img class="img-circle cover-background" src="{{ Img::crop(50, 50)->url($campaign->image) }}" alt="{{ $campaign->name }} picture">
                     @endif
-                    <a href="{{ route('campaigns.show', $campaign) }}" title="{{ $campaign->name }}">{!! $campaign->name !!}</a>
+                    <a href="{{ route('campaigns.show', $campaign) }}" title="{!! $campaign->name !!}">{!! $campaign->name !!}</a>
                 </h1>
             </div>
             @if ($campaign->hasPreview())

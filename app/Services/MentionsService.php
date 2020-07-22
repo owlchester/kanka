@@ -8,6 +8,7 @@ use App\Models\Entity;
 use App\Models\EntityNote;
 use App\Models\MiscModel;
 use App\Traits\MentionTrait;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -61,6 +62,17 @@ class MentionsService
     public function mapEntityNote(EntityNote $entityNote)
     {
         $this->text = $entityNote->entry;
+        return $this->extractAndReplace();
+    }
+
+    /**
+     * Map the mentions in any model
+     * @param EntityNote $entityNote
+     * @return string|string[]|null
+     */
+    public function mapAny(Model $model, string $field = 'entry')
+    {
+        $this->text = $model->{$field};
         return $this->extractAndReplace();
     }
 

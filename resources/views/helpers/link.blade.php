@@ -37,6 +37,11 @@
                 ]) !!}
             </p>
             <p class="info">{{ __('helpers.link.limitations') }}</p>
+
+            <hr />
+
+            <h4>{{ __('helpers.link.formatting.title') }}</h4>
+            <p>{!! __('helpers.link.formatting.text', ['github' => '<a href="https://github.com/ilestis/miscellany/blob/develop/config/purify.php" target="_blank">Github</a>']) !!}</p>
         </div>
     </div>
 @endsection

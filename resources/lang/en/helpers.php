@@ -19,6 +19,10 @@ return [
     'link'          => [
         'auto_update'       => 'Links to other entities will automatically be updated when the target\'s name or description is changed.',
         'description'       => 'You can easily link to other entities in your campaign using the following shorthands.',
+        'formatting'        => [
+            'text'  => 'The list of allowed HTML tags and attributes can be seen on our :github.',
+            'title' => 'Formatting',
+        ],
         'friendly_mentions' => 'Link to other entities by typing :code and the first few characters of an entity to search for it. This will inject :example in the text editor, and render as a link to the entity when viewing said entity.',
         'limitations'       => 'Please note that due to technical limitations, these shorthands don\'t work on android mobile devices.',
         'mentions'          => 'Link to other entities by typing :code and the first few characters of an entity to search for it. This will inject :example in the text editor. To customise the name of the entity displayed, you can type :example_name. To set the entity\'s subpage, use :example_page. To set the entity\'s tab, use :example_tab.',

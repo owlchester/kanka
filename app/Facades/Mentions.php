@@ -9,6 +9,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityNote;
 use App\Models\MiscModel;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Facade;
 
 /**
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static mapAttribute(Attribute $attribute)
  * @method static mapCampaign(Campaign $campaign, string $field = 'entry')
  * @method static mapEntity(Entity $entity, string $field = 'tooltip')
+ * @method static mapAny(Model $model, string $field = 'entry')
  * @method static edit(Entity $entity, string $field = 'entry'): string
  * @method static editEntityNote(EntityNote $entityNote, string $field = 'entry'): string
  * @method static editMisc(MiscModel $model, string $field = 'entry'): string

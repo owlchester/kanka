@@ -22,6 +22,7 @@ return [
         'conversation' => 14,
         'attribute_template' => 15,
         'ability' => 16,
+        'map' => 17,
 //        '' => 17,
 //        '' => 18,
 //        '' => 19,

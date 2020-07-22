@@ -56,6 +56,7 @@ TEXT
         'image'                         => 'Image',
         'locale'                        => 'Locale',
         'name'                          => 'Name',
+        'public_campaign_filters'       => 'Public Campaign Filters',
         'rpg_system'                    => 'RPG Systems',
         'system'                        => 'System',
         'theme'                         => 'Theme',
@@ -73,9 +74,11 @@ TEXT
         'excerpt'                       => 'The campaign excerpt will be displayed on the dashboard, so write a few sentences introducing your world. Keep it short for the best results.',
         'locale'                        => 'The language your campaign is written in. This is used for generating content and grouping public campaigns.',
         'name'                          => 'Your campaign/world can have any name as long as it contains at least 4 letters or numbers.',
+        'public_campaign_filters'       => 'Help others find the campaign among other public campaigns by providing the following information.',
         'system'                        => 'If your campaign is publicly visible, the system is shown in the :link page.',
         'systems'                       => 'To avoid cluttering users with options, some features of Kanka are only available with specific RPG systems (ie the D&D 5e monster stat block). Adding supported systems here will enable those features.',
         'theme'                         => 'Force the theme for the campaign, overriding a user\'s preference.',
+        'view_public'                   => 'To view your campaign as a public viewer would, open :link in an incognito window.',
         'visibility'                    => 'Making a campaign public will mean anyone with a link to it will be able to see it.',
     ],
     'index'                             => [
@@ -279,7 +282,7 @@ TEXT
         'actions'       => [
             'enable'    => 'Enable',
         ],
-        'boosted'       => 'This feature is in beta and currently only available for :boosted.',
+        'boosted'       => 'This feature is in early access and currently only available for :boosted.',
         'description'   => 'Enable or disable modules of the campaign.',
         'edit'          => [
             'success'   => 'Campaign settings updated.',
@@ -296,6 +299,7 @@ TEXT
             'items'         => 'Weapons, vehicles, relics, potions.',
             'journals'      => 'Observations written by characters, or session prep for the dungeon master.',
             'locations'     => 'Planets, planes, continents, rivers, states, settlements, temples, taverns.',
+            'maps'          => 'Upload maps with layers and markers pointing to other entities in the campaign.',
             'menu_links'    => 'Custom menu links in the side bar.',
             'notes'         => 'Lore, religions, history, magic, races.',
             'organisations' => 'Cults, military units, factions, guilds.',

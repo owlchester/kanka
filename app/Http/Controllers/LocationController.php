@@ -236,6 +236,16 @@ class LocationController extends CrudController
     }
 
     /**
+     * @param Location $location
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function maps(Location $location)
+    {
+        return $this->menuView($location, 'maps');
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Location  $location

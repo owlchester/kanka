@@ -39,6 +39,7 @@ class EntityService
             'items' => 'App\Models\Item',
             'journals' => 'App\Models\Journal',
             'locations' => 'App\Models\Location',
+            'maps' => 'App\Models\Map',
             'notes' => 'App\Models\Note',
             'organisations' => 'App\Models\Organisation',
             'quests' => 'App\Models\Quest',

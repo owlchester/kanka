@@ -55,6 +55,9 @@ class Campaign extends MiscModel
     const VISIBILITY_REVIEW = 'review';
     const VISIBILITY_PUBLIC = 'public';
 
+    const LAYER_COUNT_MIN = 3;
+    const LAYER_COUNT_MAX = 10;
+
     /**
      * @var array
      */
@@ -313,6 +316,18 @@ class Campaign extends MiscModel
     public function getTooltipImageAttribute()
     {
         return Arr::get($this->ui_settings, 'tooltip_image', false);
+    }
+
+    /**
+     * Number of layers a map of a campaign can have
+     * @return int
+     */
+    public function maxMapLayers(): int
+    {
+        if ($this->boosted()) {
+            return self::LAYER_COUNT_MAX;
+        }
+        return self::LAYER_COUNT_MIN;
     }
 
     /**

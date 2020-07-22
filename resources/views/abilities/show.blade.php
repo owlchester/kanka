@@ -41,9 +41,5 @@
 
 
 @if (isset($exporting))
-    @include('families.panels.families')
-    @if ($campaign->enabled('characters'))
-        @include('families.panels.members')
-        @include('families.panels.all_members')
-    @endif
+    @include('abilities.panels.abilities')
 @endif

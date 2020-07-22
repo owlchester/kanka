@@ -23,6 +23,8 @@ use Exception;
  * @var boolean $is_private
  * @var boolean $is_map_private
  * @var integer $parent_location_id
+ * @var Location $parentLocation
+ * @var Map[] $maps
  */
 class Location extends MiscModel
 {
@@ -156,6 +158,14 @@ class Location extends MiscModel
     public function items()
     {
         return $this->hasMany('App\Models\Item', 'location_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function maps()
+    {
+        return $this->hasMany('App\Models\Map', 'location_id', 'id');
     }
 
     /**
@@ -375,6 +385,16 @@ class Location extends MiscModel
                 'count' => $count
             ];
         }
+
+        $count = $this->maps()->count();
+        if ($campaign->enabled('maps') && $count > 0) {
+            $items['maps'] = [
+                'name' => 'locations.show.tabs.maps',
+                'route' => 'locations.maps',
+                'count' => $count
+            ];
+        }
+
         $count = $this->allCharacters()->count();
         if ($campaign->enabled('characters') && $count > 0) {
             $items['characters'] = [

@@ -12,6 +12,7 @@ use App\Models\EntityMention;
 use App\Models\EntityNote;
 use App\Models\EntityTag;
 use App\Models\Inventory;
+use App\Models\Map;
 use App\Models\MiscModel;
 use App\Models\Relation;
 use App\Models\Tag;
@@ -33,6 +34,7 @@ use App\User;
  * @property MiscModel $child
  * @property User $updater
  * @property Campaign $campaign
+ * @property Map $map
  * @property Attribute[] $starredAttributes
  * @property Relation[] $starredRelations
  * @property Relation[] $relations
@@ -54,6 +56,7 @@ trait EntityRelations
     {
         return $this->hasOne('App\Models\AttributeTemplate', 'id', 'entity_id');
     }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -116,6 +119,14 @@ trait EntityRelations
     public function location()
     {
         return $this->hasOne('App\Models\Location', 'id', 'entity_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function map()
+    {
+        return $this->hasOne('App\Models\Map', 'id', 'entity_id');
     }
 
     /**

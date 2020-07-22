@@ -15,7 +15,7 @@
                 "fullpage mention media"
             ],
             toolbar: "undo redo | styleselect | bold italic underline strikethrough forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | hr | link image table media | code fullscreen",
-            nanospell_server:"php",
+            nanospell_server: "php",
             browser_spellcheck: true,
             relative_urls: false,
             remove_script_host: false,
@@ -82,5 +82,3 @@
     </script>
 @endsection
 
-@section('styles')
-@endsection
