@@ -477,6 +477,7 @@ export default {
         },
         "entities": [],
         "front": [],
+        "maps": [],
         "randomisers": [],
         "settings": {
             "account": {
@@ -1012,6 +1013,7 @@ export default {
                 "is_star": "Pinned",
                 "item": "Item",
                 "location": "Location",
+                "map": "Map",
                 "name": "Name",
                 "organisation": "Organisation",
                 "race": "Race",
@@ -1150,7 +1152,6 @@ export default {
                 },
                 "helper": "Use this interface to fine-tune which users and roles that can interact with this entity. {allow}",
                 "helpers": {
-                    "entity_note": "Allow users to create Entity Notes on this Entity. Without this permission, they will still be able to see Entity Notes set to visibility All.",
                     "setup": "Use this interface to fine-tune how roles and users can interact with this entity. {allow} will allow the user or role to do this action. {deny} will deny them that action. {inherit} will use the user's role or main role's permission. A user set to {allow} is able to do the action, even if their role is set to {deny}."
                 },
                 "inherited": "This role already has this permission set for this entity type.",
@@ -1169,6 +1170,7 @@ export default {
                 "image_url": "You can upload an image from a URL instead",
                 "item": "Choose an item",
                 "location": "Choose a location",
+                "map": "Choose a map",
                 "organisation": "Choose an organisation",
                 "race": "Choose a race",
                 "tag": "Choose a tag"
@@ -1225,6 +1227,7 @@ export default {
         },
         "entities": [],
         "front": [],
+        "maps": [],
         "randomisers": [],
         "settings": {
             "account": {
@@ -1486,8 +1489,8 @@ export default {
                     }
                 },
                 "warnings": {
-                    "patreon": "Your account is currently linked with Patreon. Please unlink your account in your {patreon} settings before switching to a Kanka subscription.",
-                    "incomplete": "We couldn't charge your credit card. Please update your credit card information, and we will try charging it again in the next few days. If it fails again, your subscription will be cancelled."
+                    "incomplete": "We couldn't charge your credit card. Please update your credit card information, and we will try charging it again in the next few days. If it fails again, your subscription will be cancelled.",
+                    "patreon": "Your account is currently linked with Patreon. Please unlink your account in your {patreon} settings before switching to a Kanka subscription."
                 }
             }
         }
@@ -1503,6 +1506,7 @@ export default {
                 "organisation": "Choose an organization"
             }
         },
+        "maps": [],
         "randomisers": []
     },
     "es": {
@@ -1982,6 +1986,7 @@ export default {
         },
         "entities": [],
         "front": [],
+        "maps": [],
         "randomisers": [],
         "settings": {
             "account": {
@@ -2248,6 +2253,7 @@ export default {
                     }
                 },
                 "warnings": {
+                    "incomplete": "No hemos podido hacer el cobro en tu tarjeta de crédito. Por favor, actualiza la información de la tarjeta y volveremos a intentarlo en los próximos días. Si vuelve a fallar, tu suscripción será cancelada.",
                     "patreon": "Tu cuenta se encuentra vinculada con Patreon. Desvincúlala en la configuración de {patreon} antes de cambiarla por una suscripción de Kanka."
                 }
             }
@@ -2517,6 +2523,7 @@ export default {
                 "is_star": "Epinglé",
                 "item": "Objet",
                 "location": "Lieu",
+                "map": "Carte",
                 "name": "Nom",
                 "organisation": "Organisation",
                 "race": "Race",
@@ -2674,6 +2681,7 @@ export default {
                 "image_url": "Ou depuis une URL",
                 "item": "Choix d'un objet",
                 "location": "Choix du lieu",
+                "map": "Choix d'une carte",
                 "organisation": "Choix d'une organisation",
                 "race": "Choix d'une race",
                 "tag": "Choix d'une étiquette"
@@ -2730,6 +2738,7 @@ export default {
         },
         "entities": [],
         "front": [],
+        "maps": [],
         "randomisers": [],
         "settings": {
             "account": {
@@ -3182,6 +3191,7 @@ export default {
         },
         "entities": [],
         "front": [],
+        "maps": [],
         "randomisers": []
     },
     "hr": {
@@ -3661,6 +3671,7 @@ export default {
         },
         "entities": [],
         "front": [],
+        "maps": [],
         "randomisers": [],
         "settings": {
             "account": {
@@ -4404,6 +4415,7 @@ export default {
         },
         "entities": [],
         "front": [],
+        "maps": [],
         "randomisers": [],
         "settings": {
             "account": {
@@ -4750,22 +4762,29 @@ export default {
         },
         "crud": {
             "actions": {
+                "actions": "Azioni",
                 "apply": "Applica",
                 "back": "Indietro",
                 "copy": "Copia",
+                "copy_mention": "Copia [ ] menzione",
                 "copy_to_campaign": "Copia nella Campagna",
                 "explore_view": "Vista annidata",
-                "export": "Esporta",
+                "export": "Esporta (PDF)",
                 "find_out_more": "Scopri di più",
                 "go_to": "Vai a {name}",
+                "json-export": "Esporta (JSON)",
                 "more": "Più Azioni",
-                "move": "Muovi",
+                "move": "Sposta",
                 "new": "Nuovo",
                 "next": "Prossimo",
                 "private": "Privato",
-                "public": "Pubblico"
+                "public": "Pubblico",
+                "reset": "Resetta"
             },
             "add": "Aggiungi",
+            "alerts": {
+                "copy_mention": "La menzione avanzata dell'entità è stata copiata nei tuoi appunti."
+            },
             "attributes": {
                 "actions": {
                     "add": "Aggiungi un attributo",
@@ -4816,7 +4835,7 @@ export default {
                     "value": "Valore dell'attributo"
                 },
                 "template": {
-                    "success": "Il Template di Attributi {name} si applica su {entity}",
+                    "success": "Il Template di Attributi {name} è stato applicato su {entity}",
                     "title": "Applica un Template degli Attributi per {name}"
                 },
                 "types": {
@@ -4834,9 +4853,29 @@ export default {
                 }
             },
             "boosted": "Potenziata",
+            "boosted_campaigns": "Campagne potenziate",
             "bulk": {
+                "actions": {
+                    "edit": "Modifica in blocco & assegnazione dei tag"
+                },
+                "age": {
+                    "helper": "Puoi usare + e - prima del numero per aggiornare l'età di quel quantitativo."
+                },
+                "delete": {
+                    "title": "Rimuovendo molteplici entità",
+                    "warning": "Sei sicuro di voler cancellare le entità selezionate?"
+                },
+                "edit": {
+                    "tagging": "Azione per i tag",
+                    "tags": {
+                        "add": "Aggiungi",
+                        "remove": "Rimuovi"
+                    },
+                    "title": "Modificando molteplici entità"
+                },
                 "errors": {
-                    "admin": "Solo gli amministratori della campagna possono cambiare lo stato di visibilità delle entità."
+                    "admin": "Solo gli amministratori della campagna possono cambiare lo stato di visibilità delle entità.",
+                    "general": "C'è stato un errore nell'elaborazione della tua azione. Per favore prova di nuovo e contattaci qualora il problema dovesse persistere. Messaggio di errore: {hint}."
                 },
                 "permissions": {
                     "fields": {
@@ -4848,9 +4887,11 @@ export default {
                     "title": "Cambia i permessi a più entità"
                 },
                 "success": {
-                    "permissions": "Permessi modificati a {count} entità.|Permessi modificati a {count} entità.",
-                    "private": "{count} entità è adesso privata|{count} entità sono adesso private.",
-                    "public": "{count} entità è adesso visibile|{count} entità sono adesso visibili."
+                    "copy_to_campaign": "{1} {count} entità copiata in {campaign}.|[2,*] {count} entità copiate in {campaign}.",
+                    "editing": "{1} {count} entità è stata aggiornata.|[2,*] {count} entitià sono state aggiornate.",
+                    "permissions": "{1} Permessi modificati per {count} entità.|[2,*] Permessi modificati per {count} entità.",
+                    "private": "{1} {count} entità è adesso privata|[2,*] {count} entità sono adesso private.",
+                    "public": "{1} {count} entità è adesso visibile|[2,*] {count} entità sono adesso visibili."
                 }
             },
             "cancel": "Annulla",
@@ -4860,6 +4901,7 @@ export default {
                 "title": "Conferma la tua azione"
             },
             "copy_to_campaign": {
+                "bulk_title": "Copia le entità in un'altra campagna",
                 "panel": "Copia",
                 "title": "Copia '{name}' in una'ltra campagna"
             },
@@ -4870,8 +4912,8 @@ export default {
             "delete_modal": {
                 "close": "Chiudi",
                 "delete": "Cancella",
-                "description": "Sei sicuro di vole rimuovere {tag}?",
-                "mirrored": "Rimuove relazioni speculari.",
+                "description": "Sei sicuro di voler rimuovere {tag}?",
+                "mirrored": "Rimuovere la relazione speculare.",
                 "title": "Conferma di cancellazione"
             },
             "destroy_many": {
@@ -4879,13 +4921,15 @@ export default {
             },
             "edit": "Modifica",
             "errors": {
-                "node_must_not_be_a_descendant": "Nodo non valido (tag, luogo padre): sarebbe un discendente di se stesso."
+                "boosted": "Questa funzionalità è disponibile solo per le campagne potenziate.",
+                "node_must_not_be_a_descendant": "Nodo non valido (tag, luogo padre): sarebbe un discendente di sé stesso."
             },
             "events": {
-                "hint": "Quella visualizzata sotto è una lista di tutti i Calendari in cui questa entità è stata aggiunta usando \"Aggiungi un evento ad un calendario\"."
+                "hint": "Qui sotto puoi vedere una lista di tutti i calendari ai quali questa entità è stata aggiunta usando \"Aggiungi un evento ad un calendario\"."
             },
             "export": "Esporta",
             "fields": {
+                "ability": "Abilità",
                 "attribute_template": "Template di Attributi",
                 "calendar": "Calendario",
                 "calendar_date": "Data del Calendario",
@@ -4914,22 +4958,24 @@ export default {
                 "tag": "Tag",
                 "tags": "Tags",
                 "tooltip": "Tooltip",
+                "type": "Tipo",
                 "visibility": "Visibilità"
             },
             "files": {
                 "actions": {
-                    "drop": "Premi per Aggiungere o Trascina un file",
-                    "manage": "Gestisci i file dell'entità"
+                    "drop": "Clicca per Aggiungere o Trascina un file",
+                    "manage": "Gestisci i files dell'entità"
                 },
                 "errors": {
-                    "max": "Hai raggiunto il numero massimo di file ({max}) per questa entità."
+                    "max": "Hai raggiunto il numero massimo di file ({max}) per questa entità.",
+                    "no_files": "Nessun file."
                 },
                 "files": "Files Caricati",
                 "hints": {
-                    "limit": "Ogni entità può avere un massimo di {max} files caricati.",
-                    "limitations": "Formati supportati: jpg, png, gif, and pdf. Dimensione massima del file: {size}"
+                    "limit": "Ciascuna entità può avere un massimo di {max} files caricati.",
+                    "limitations": "Formati supportati: jpg, png, gif, e pdf. Dimensione massima del file: {size}"
                 },
-                "title": "File dell'entità {name}"
+                "title": "Files dell'entità {name}"
             },
             "filter": "Filtra",
             "filters": {
@@ -4939,6 +4985,11 @@ export default {
                 "filtered": "Visualizzati {count} di {total} {entity}.",
                 "hide": "Nascondi i Filtri",
                 "show": "Visualizza i Filtri",
+                "sorting": {
+                    "asc": "{field} in ordine crescente",
+                    "desc": "{field} in ordine decrescente",
+                    "helper": "Gestisci l'ordine di visualizzazione dei risultati."
+                },
                 "title": "Filtri"
             },
             "forms": {
@@ -4950,11 +5001,11 @@ export default {
             "hidden": "Nascosto",
             "hints": {
                 "attribute_template": "Applica un template per gli attributi direttamente quando si crea questa entità.",
-                "calendar_date": "La data di un calendario permette un semplice filtro nelle lista ed inoltre mantiene un evento nel calendario selezionato.",
-                "header_image": "Questa immagine è posizionata sopra alle entità. Per un miglior risultato utilizza un'immagine larga.",
-                "image_limitations": "Formati supportati: jpg, png and gif. Dimensione massima del file: {size}.",
+                "calendar_date": "La data di un calendario permette un semplice filtro nelle liste e mantiene un evento nel calendario selezionato.",
+                "header_image": "Questa immagine è posizionata sopra all' entità. Per un miglior risultato, utilizza un'immagine larga.",
+                "image_limitations": "Formati supportati: jpg, png e gif. Dimensione massima del file: {size}.",
                 "image_patreon": "Aumentare la dimensione massima dei file?",
-                "is_private": "Nascondi dalle utenze non \"Admin\".",
+                "is_private": "Se impostata come privata, questa entità sarà visibile solamente ai membri appartenenti al ruolo \"Proprietario\" della campagna.",
                 "is_star": "Gli elementi fissati appariranno nel menù dell'entità",
                 "map_limitations": "Formati supportati{jpg}, png, gif e svg. Dimensione massima del file: {size}.",
                 "tooltip": "Sostituisci il tooltip generato automaticamente con il seguente contenuto.",
@@ -4962,32 +5013,34 @@ export default {
             },
             "history": {
                 "created": "Creato da <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "created_date": "Creato <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "unknown": "Sconosciuto",
-                "updated": "Ultima modifica da <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "updated": "Modificato l'ultima volta da <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "updated_date": "Ultima modifica <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "view": "Visualizza i log dell'entità"
             },
             "image": {
-                "error": "Noi non siamo stati in gradi di recuperare l'immagine richiesta. Potrebbe essere che il sito web non ci permetta di scaricare l'immagine (solitamente per Squarespace e DeviantArt) o che il link non sia più valido. Per favore controlla anche che la dimensione dell'immagine non sia maggiore di {size}."
+                "error": "Non siamo stati in gradi di recuperare l'immagine richiesta. Potrebbe essere che il sito web non ci permetta di scaricare l'immagine (solitamente ciò riguarda Squarespace e DeviantArt) o che il link non sia più valido. Per favore controlla anche che la dimensione dell'immagine non sia maggiore di {size}."
             },
-            "is_private": "Questa entità è privata e non visibile alle utenze non amministratrici.",
-            "linking_help": "Come posso creare un collegamento ad altre entità inserite?",
+            "is_private": "Questa entità è privata e visibile solamente ai membri del ruolo \"Proprietario\".",
+            "linking_help": "Come posso creare un collegamento ad altre entità?",
             "manage": "Gestisci",
             "move": {
-                "description": "Muovi questa entità in un'altro posto",
+                "description": "Sposta questa entità in un altro posto",
                 "errors": {
                     "permission": "Non sei autorizzato a creare entità di questo tipo nella campagna selezionata.",
-                    "same_campaign": "Devi selezionare un'altra campagna dove muore l'entità.",
+                    "same_campaign": "Devi selezionare un'altra campagna verso cui spostare l'entità.",
                     "unknown_campaign": "Campagna sconosciuta"
                 },
                 "fields": {
                     "campaign": "Nuova campagna",
-                    "copy": "Crea una Copia",
+                    "copy": "Crea una copia",
                     "target": "Nuovo tipo"
                 },
                 "hints": {
-                    "campaign": "Puoi anche provare a muovere questa entità in un'altra campagna",
+                    "campaign": "Puoi anche provare a spostare questa entità in un'altra campagna",
                     "copy": "Seleziona questa opzione se vuoi crearne una copia nella nuova campagna.",
-                    "target": "Per favore considera che alcuni dati potrebbero andare perso nel caso si muovesse un elemento da un tipo ad un'altro."
+                    "target": "Per favore considera che alcuni dati potrebbero andare persi nel caso si spostasse un elemento da un tipo ad un altro."
                 },
                 "success": "Entità '{name}' spostata.",
                 "success_copy": "Entità '{name}' copiata.",
@@ -5015,10 +5068,16 @@ export default {
                 "actions": {
                     "bulk": {
                         "add": "Aggiungi",
-                        "ignore": "Ignorare",
+                        "deny": "Nega",
+                        "ignore": "Ignora",
                         "remove": "Rimuovi"
                     },
-                    "delete": "Cancellazione",
+                    "bulk_entity": {
+                        "allow": "Permetti",
+                        "deny": "Nega",
+                        "inherit": "Eredita"
+                    },
+                    "delete": "Cancella",
                     "edit": "Modifica",
                     "entity_note": "Note dell'Entità",
                     "read": "Lettura"
@@ -5028,13 +5087,19 @@ export default {
                     "member": "Membro",
                     "role": "Ruolo"
                 },
-                "helper": "Utilizza questa interfaccia per specificare quali utenti e ruoli possono interagire con questa entità.",
+                "helper": "Utilizza questa interfaccia per rifinire e specificare quali utenti e ruoli possono interagire con questa entità.",
+                "helpers": {
+                    "entity_note": "Permetti agli utenti di creare Note per questa Entità. Senza questo permesso, essi saranno ancora in grado di vedere le note dell'entità impostate come visibili per Tutti.",
+                    "setup": "Utilizza questa interfaccia per rifinire e specificare come utenti e ruoli possono interagire con questa entità. {allow} permetterà all'utente o al ruolo di fare questa azione. {deny} negherà loro tale azione. {inherit} farà riferimento al ruolo dell'utente o al permesso del ruolo. Un utente impostato come {allow} sarà in grado di fare l'azione anche se il suo ruolo sarà invece impostato su {deny}."
+                },
                 "inherited": "Questo ruolo ha già questo permesso impostato per questa tipologia di entità.",
                 "inherited_by": "Questo utente fa parte del ruolo '{role}' che gli conferisce questo permesso su questa tipologia di entità.",
                 "success": "Permessi salvati.",
-                "title": "Permessi"
+                "title": "Permessi",
+                "too_many_members": "Questa campagna ha troppi membri (più di 10) per poterli mostrare tutti in questa interfaccia. Ti preghiamo di usare il tasto Permessi sulla pagine dell'entità per poter verificare i permessi nel dettaglio."
             },
             "placeholders": {
+                "ability": "Seleziona un'abilità",
                 "calendar": "Seleziona un calendario",
                 "character": "Seleziona un personaggio",
                 "entity": "Entità",
@@ -5053,25 +5118,27 @@ export default {
                 },
                 "fields": {
                     "location": "Luogo",
-                    "name": "Nomi",
-                    "relation": "Relazioni"
+                    "name": "Nome",
+                    "relation": "Relazione"
                 },
-                "hint": "Le relazioni fra gli elementi possono essere impostate per rappresentare le loro connessioni."
+                "hint": "Le relazioni fra le entità possono essere impostate per rappresentare le loro connessioni."
             },
             "remove": "Rimuovi",
             "rename": "Rinomina",
             "save": "Salva",
             "save_and_close": "Salva e Chiudi",
-            "save_and_new": "Salva e Nuovo",
-            "save_and_update": "Salve ed Aggiorna",
+            "save_and_copy": "Salva e Copia",
+            "save_and_new": "Salva e Crea Nuovo",
+            "save_and_update": "Salve e Aggiorna",
             "save_and_view": "Salva e Visualizza",
             "search": "Cerca",
             "select": "Seleziona",
             "tabs": {
+                "abilities": "Abilità",
                 "attributes": "Attributi",
                 "boost": "Potenzia",
                 "calendars": "Calendari",
-                "default": "Default",
+                "default": "Predefinito",
                 "events": "Eventi",
                 "inventory": "Inventario",
                 "map-points": "Punti della Mappa",
@@ -5080,6 +5147,7 @@ export default {
                 "notes": "Note",
                 "permissions": "Permessi",
                 "relations": "Relazioni",
+                "reminders": "Promemoria",
                 "tooltip": "Tooltip"
             },
             "update": "Aggiorna",
@@ -5089,12 +5157,14 @@ export default {
             "view": "Visualizza",
             "visibilities": {
                 "admin": "Proprietario",
+                "admin-self": "Te Stesso e Proprietario",
                 "all": "Tutti",
                 "self": "Te stesso"
             }
         },
         "entities": [],
         "front": [],
+        "maps": [],
         "randomisers": [],
         "settings": {
             "account": {
@@ -5344,6 +5414,7 @@ export default {
         },
         "entities": [],
         "front": [],
+        "maps": [],
         "randomisers": []
     },
     "ru": {
@@ -5823,6 +5894,7 @@ export default {
         },
         "entities": [],
         "front": [],
+        "maps": [],
         "randomisers": [],
         "settings": {
             "account": {
@@ -6566,6 +6638,7 @@ export default {
         },
         "entities": [],
         "front": [],
+        "maps": [],
         "randomisers": []
     },
     "tr": [],
