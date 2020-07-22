@@ -21,6 +21,9 @@ return [
         'description'   => 'Eventi accaduti nel luogo',
         'title'         => 'Eventi del Luogo :name',
     ],
+    'families'      => [
+        'title' => 'Famiglie del Luogo :name',
+    ],
     'fields'        => [
         'characters'        => 'Personaggi',
         'image'             => 'Immagine',
@@ -35,6 +38,7 @@ return [
     'helpers'       => [
         'characters'    => 'Visualizza tutti i personaggi in questo luogo e nei luoghi discendenti, o semplicemente quelli che si trovano qui.',
         'descendants'   => 'La lista contiene tutti i luoghi discendenti di questo luogo, non solo quelli direttamente sotto di esso.',
+        'families'      => 'I luoghi possono essere dimora di potenti famiglie.',
         'map'           => 'Aggiungere una mappa ad un luogo ti permetterà di aggiungere "Punti" sulla mappa collecandoli ad altre Entità nella campagna.',
         'nested'        => 'Quando ci si trova nella Vista Nidificata puoi visualizzare la gerarchia dei tuoi luoghi. I luoghi senza padri saranno mostrati per impostazione predefinita. I luoghi con dei figli invece potranno essere premuti per mostrare questi figli. Si potrà continuare ad espandere la gerarchia fino a quando non ci saranno più luoghi da mostrare.',
         'organisations' => 'Visualizza tutte le organizzazioni in questo luogo e nei suoi luoghi figlio o solamente quelle direttamente presenti qui.',
@@ -210,6 +214,7 @@ return [
         'tabs'          => [
             'characters'    => 'Personaggi',
             'events'        => 'Eventi',
+            'families'      => 'Famiglie',
             'information'   => 'Informazioni',
             'items'         => 'Oggetti',
             'journals'      => 'Pagine del diario',

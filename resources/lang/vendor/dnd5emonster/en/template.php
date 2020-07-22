@@ -82,7 +82,7 @@ return [
         'size'                  => 'Medium',
         'skills'                => 'Athletics +4',
         'speed'                 => '30 ft.',
-        'spells_at_will'        => 'alter self, detect magic, gear, ice storm, invisibility',
+        'spells_at_will'        => 'alter self, detect magic, fear, ice storm, invisibility',
         'spells_once'           => 'divine word, symbol (pain only)',
         'str'                   => '11 (+0)',
         'wis'                   => '10 (+0)',

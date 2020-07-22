@@ -265,7 +265,8 @@ return [
             ],
         ],
         'warnings'              => [
-            'patreon'   => 'Tu cuenta se encuentra vinculada con Patreon. Desvincúlala en la configuración de :patreon antes de cambiarla por una suscripción de Kanka.',
+            'incomplete'    => 'No hemos podido hacer el cobro en tu tarjeta de crédito. Por favor, actualiza la información de la tarjeta y volveremos a intentarlo en los próximos días. Si vuelve a fallar, tu suscripción será cancelada.',
+            'patreon'       => 'Tu cuenta se encuentra vinculada con Patreon. Desvincúlala en la configuración de :patreon antes de cambiarla por una suscripción de Kanka.',
         ],
     ],
 ];

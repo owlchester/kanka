@@ -4,9 +4,13 @@ return [
     'create'                            => [
         'description'           => 'Crear nueva campaña',
         'helper'                => [
-            'first' => '¡Gracias por probar nuestra web! Antes de que prosigamos, necesitamos que nos indiques algo muy simple: el nombre de tu <b> campaña </b>. El nombre de tu mundo que lo separa de los demás, así que tiene que ser único. Si aun no se te ocurre ninguno, no te preocupes, siempre <b>puedes cambiarlo despues</b>, o crear otras campañas.',
-            'second'=> '¡Pero basta de parloteo! Así que... ¿cual escogerás?',
-            'title' => '¡Bienvenid@ a :name!',
+            'title'     => '¡Bienvenid@ a :name!',
+            'welcome'   => <<<'TEXT'
+Antes de continuar, necesitas un nombre para tu campaña. Este será el nombre de tu mundo. Si no tienes un buen nombre aún, no te preocupes, pues puedes cambiarlo más tarde o crear nuevas campañas.
+
+¡Gracias por unirte a Kanka, y bienvenid@ a nuestra floreciente comunidad!
+TEXT
+,
         ],
         'success'               => 'Campaña creada.',
         'success_first_time'    => '¡Tu campaña ha sido creada! Como es tu primera campaña, hemos rellenado algunas cosas para que te familiarices y con suerte proveerte con algo de inspiración, para que veas que puedes conseguir.',

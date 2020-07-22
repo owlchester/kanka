@@ -18,6 +18,7 @@ return [
     'show'          => [
         'restricted'    => 'Las votaciones comunitarias solo están disponibles para los usuarios que apoyan a Kanka.',
         'title'         => 'Votación comunitaria - :name',
+        'vote_count'    => 'Ha votado {1} :number participante.|Han votado [2,*] :number participantes.',
         'voted_lasted'  => 'La votación tuvo lugar desde las :from GMT hasta las :until GMT.',
         'voting_until'  => 'La votación está abierta hasta las :until GMT.',
     ],
