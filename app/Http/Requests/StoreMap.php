@@ -28,7 +28,7 @@ class StoreMap extends FormRequest
             'type' => 'nullable:max:191',
             'map_id' => 'nullable|integer|exists:maps,id',
             'location_id' => 'nullable|integer|exists:locations,id',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:' . auth()->user()->maxUploadSize(),
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:' . auth()->user()->maxUploadSize(false, 'map'),
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable|exists:attribute_templates,id',
         ];
