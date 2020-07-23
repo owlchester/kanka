@@ -160,6 +160,7 @@ $(document).ready(function() {
         });
     });*/
 
+    deleteConfirm();
     initTogglePasswordFields();
     initAjaxPagination();
 

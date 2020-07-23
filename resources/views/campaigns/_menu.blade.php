@@ -80,11 +80,10 @@
 
 
         @can('delete', $campaign)
-            <button class="btn btn-block btn-danger delete-confirm" data-name="{{ $campaign->name }}" data-toggle="modal" data-target="#delete-confirm">
+            <button class="btn btn-block btn-danger delete-confirm" data-name="{{ $campaign->name }}" data-toggle="modal" data-target="#delete-confirm" data-delete-target="delete-campaign-confirm-form">
                 <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
             </button>
-            {!! Form::open(['method' => 'DELETE','route' => ['campaigns.destroy', $campaign->id], 'style'=>'display:inline', 'id' => 'delete-confirm-form']) !!}
-            {!! Form::close() !!}
+            {!! Form::open(['method' => 'DELETE', 'route' => ['campaigns.destroy', $campaign->id], 'style' => 'display:inline', 'id' => 'delete-campaign-confirm-form']) !!}
             {!! Form::close() !!}
         @endcan
     </div>

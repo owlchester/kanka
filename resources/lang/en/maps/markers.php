@@ -2,6 +2,7 @@
 
 return [
     'actions'       => [
+        'remove'    => 'Remove marker',
         'update'    => 'Edit marker',
     ],
     'create'        => [

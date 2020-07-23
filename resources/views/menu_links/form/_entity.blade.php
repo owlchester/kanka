@@ -11,6 +11,7 @@ $menus = [
         'all-members' => __('families.show.tabs.all_members') . ' (' . __('entities.organisations') . ')',
         'locations' => __('locations.show.tabs.locations') . ' (' . __('entities.locations') . ')',
         'organisations' => __('characters.show.tabs.organisations')  . ' (' . __('entities.characters') . ', ' . __('entities.organisations') . ')',
+        'explore' => __('maps.actions.explore') . ' (' . __('entities.maps') . ')',
         'quests' => __('characters.show.tabs.quests'),
         'tags' => __('tags.show.tabs.tags') . ' (' . __('entities.tags') . ')',
         'members' => __('families.show.tabs.members') . ' (' . __('entities.families') . ', ' . __('entities.organisations'). ')',

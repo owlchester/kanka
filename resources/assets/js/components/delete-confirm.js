@@ -2,6 +2,7 @@ export default function deleteConfirm() {
     // Delete confirm dialog
     $.each($('.delete-confirm'), function () {
         $(this).click(function (e) {
+            console.log('clicked');
             var name = $(this).data('name');
             var text = $(this).data('text');
             var target = $(this).data('delete-target');
@@ -29,6 +30,7 @@ export default function deleteConfirm() {
     $.each($('#delete-confirm-submit'), function (index) {
         $(this).unbind('click');
         $(this).click(function (e) {
+            console.log('clicky submit');
             var target = $(this).data('target');
             if (target) {
                 $('#' + target + ' input[name=remove_mirrored]').val(

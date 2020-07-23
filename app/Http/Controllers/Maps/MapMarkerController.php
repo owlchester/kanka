@@ -86,6 +86,11 @@ class MapMarkerController extends Controller
 
         $mapMarker->delete();
 
+        if (request()->get('from') == 'map') {
+            return redirect()
+                ->route('maps.explore', $map);
+        }
+
         return redirect()
             ->route('maps.edit', [$map, '#tab_form-markers'])
             ->withSuccess(__('maps/markers.delete.success', ['name' => $mapMarker->name]));

@@ -38,6 +38,11 @@
                 <a href="{{ route('maps.edit', [$marker->map]) }}" class="btn btn-primary">
                     <i class="fa fa-map"></i> {{ __('maps.actions.edit') }}
                 </a>
+                <button class="btn btn-danger delete-confirm" data-name="{{ $marker->name }}" data-toggle="modal" data-target="#delete-confirm" data-delete-target="delete-marker-confirm-form-{{ $marker->id }}">
+                    <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('maps/markers.actions.remove') }}
+                </button>
+                {!! Form::open(['method' => 'DELETE', 'route' => ['maps.map_markers.destroy', $marker->map_id, $marker->id, 'from' => 'map'], 'style' => 'display:inline', 'id' => 'delete-marker-confirm-form-' . $marker->id]) !!}
+                {!! Form::close() !!}
             </div>
         @endcan
     </div>

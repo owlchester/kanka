@@ -82,6 +82,33 @@
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="delete-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ trans('crud.delete_modal.title') }}</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="delete-confirm-text">
+                        {!! trans('crud.delete_modal.description', ['tag' => '<b><span id="delete-confirm-name"></span></b>']) !!}
+                    </p>
+                    <div id="delete-confirm-mirror" class="form-group" style="display: none">
+                        <label>
+                            <input type="checkbox" id="delete-confirm-mirror-chexkbox" name="delete-mirror">
+                            {{ __('crud.delete_modal.mirrored') }}
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('crud.cancel') }}</button>
+                    <button type="button" class="btn btn-danger" id="delete-confirm-submit"><span class="fa fa-trash"></span> {{ trans('crud.delete_modal.delete') }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <script src="{{ mix('js/app.js') }}"></script>
 <script src="https://kit.fontawesome.com/d7f0be4a8d.js" crossorigin="anonymous"></script>
 <!-- Make sure you put this AFTER Leaflet's CSS -->

@@ -9,7 +9,7 @@ var invalidatedMap = false;
 $(document).ready(function() {
 
     window.map.invalidateSize();
-    deleteConfirm();
+    //deleteConfirm();
 
     window.map.on('popupopen', function (ev) {
         deleteConfirm();
@@ -85,6 +85,7 @@ function initMapExplore()
                         handleCloseMarker();
                         mapPageBody.addClass('sidebar-open');
                     }
+                    deleteConfirm();
                 }
             }
         })
