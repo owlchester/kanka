@@ -371,7 +371,7 @@ return [
     'save_and_close'    => 'Save and Close',
     'save_and_copy'     => 'Save and Copy',
     'save_and_new'      => 'Save and New',
-    'save_and_update'   => 'Save and Update',
+    'save_and_update'   => 'Save and Edit',
     'save_and_view'     => 'Save and View',
     'search'            => 'Search',
     'select'            => 'Select',

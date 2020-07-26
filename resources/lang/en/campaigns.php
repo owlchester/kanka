@@ -313,6 +313,7 @@ TEXT
         'actions'       => [
             'boost' => 'Boost campaign',
             'leave' => 'Leave campaign',
+            'edit' => 'Edit Campaign',
         ],
         'description'   => 'A detailed view of a campaign',
         'tabs'          => [

@@ -68,7 +68,7 @@
         @endif
         @can('update', $campaign)
             <a href="{{ route('campaigns.edit', $campaign->id) }}" class="btn btn-primary btn-block">
-                <i class="fa fa-edit" aria-hidden="true"></i> {{ trans('crud.update') }}
+                <i class="fa fa-edit" aria-hidden="true"></i> {{ trans('campaigns.show.actions.edit') }}
             </a>
         @endcan
 

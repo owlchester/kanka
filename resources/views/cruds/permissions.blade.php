@@ -12,7 +12,7 @@
     'breadcrumbs' => [
         ['url' => route($entity->pluralType() . '.index'), 'label' => __($entity->pluralType() . '.index.title')],
         ['url' => route($entity->pluralType() . '.show', $entity->child->id), 'label' => $entity->name],
-        __('crud.update'),
+        __('crud.edit'),
     ]
 ])
 @inject('campaign', 'App\Services\CampaignService')

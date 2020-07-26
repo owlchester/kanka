@@ -7,7 +7,7 @@
     'breadcrumbs' => [
         ['url' => route($name . '.index'), 'label' => trans($name . '.index.title')],
         ['url' => route($name . '.show', $model->id), 'label' => $model->name],
-        trans('crud.update'),
+        trans('crud.edit'),
     ]
 ])
 @inject('campaign', 'App\Services\CampaignService')
