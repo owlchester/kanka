@@ -26,12 +26,19 @@
     <script src="{{ mix('js/location/map-v3.js') }}" defer></script>
     <script src="/vendor/spectrum/spectrum.js" defer></script>
 
-    @include('maps._setup', ['map' => $model])
     <script type="text/javascript">
 
         var markers = {};
 @foreach ($model->markers as $marker)
-        var marker{{ $marker->id }} = {!! $marker->marker() !!}.addTo(map);
+        var marker{{ $marker->id }} = {!! $marker->marker() !!};
+@endforeach
+    </script>
+    @include('maps._setup', ['map' => $model])
+    <script type="text/javascript">
+@foreach ($model->markers as $marker)
+@if (empty($marker->group_id))
+        marker{{ $marker->id }}.addTo(map);
+@endif
 @endforeach
 
         map.on('click', function(ev) {
@@ -98,7 +105,7 @@
                             'data-shortcut' => 1,
                             'enctype' => 'multipart/form-data'
                            ]) !!}
-                        @include('maps.markers._form', ['model' => null])
+                        @include('maps.markers._form', ['model' => null, 'map' => $model])
 
                         <div class="form-group">
                             <button class="btn btn-success">{{ trans('crud.save') }}</button>

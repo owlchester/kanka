@@ -35,6 +35,7 @@ use App\Models\Location;
 use App\Models\CampaignInvite;
 use App\Models\Event;
 use App\Models\Map;
+use App\Models\MapGroup;
 use App\Models\MapLayer;
 use App\Models\MapMarker;
 use App\Models\MapPoint;
@@ -126,6 +127,7 @@ class AppServiceProvider extends ServiceProvider
             Map::observe('App\Observers\MapObserver');
             MapPoint::observe('App\Observers\MapPointObserver');
             MapLayer::observe('App\Observers\MapLayerObserver');
+            MapGroup::observe('App\Observers\MapGroupObserver');
             MapMarker::observe('App\Observers\MapMarkerObserver');
             MenuLink::observe('App\Observers\MenuLinkObserver');
             Journal::observe(JournalObserver::class);

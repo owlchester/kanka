@@ -31,6 +31,8 @@ use Illuminate\Support\Str;
  * @property bool $is_draggable
  * @property float $opacity
  * @property string $visibility
+ * @property int $group_id
+ * @property MapGroup $group
  */
 class MapMarker extends Model
 {
@@ -59,6 +61,7 @@ class MapMarker extends Model
         'longitude',
         'latitude',
         'opacity',
+        'group_id',
     ];
 
     /** @var bool Editing the map */
@@ -81,6 +84,14 @@ class MapMarker extends Model
     public function entity()
     {
         return $this->belongsTo(Entity::class, 'entity_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function group()
+    {
+        return $this->belongsTo(MapGroup::class, 'group_id');
     }
 
     /**
@@ -145,7 +156,8 @@ class MapMarker extends Model
                     $coords[] = '[' . $coord[0] . ', ' . $coord[1] . ']';
                 }
             }
-            return 'L.polygon([' . implode(', ', $coords) . '], {
+            // ' . implode(', ', $coords) . '
+            return 'L.polygon([[500,500],[500,600],[600,600],[600,500]], {
                 color: \'' . e($this->colour) . '\',
                 weight: 1,
                 opacity: ' . $this->opacity() . ',
@@ -271,8 +283,8 @@ class MapMarker extends Model
         if (!empty($this->custom_icon)) {
             if (Str::startsWith($this->custom_icon, '<i')) {
                 $icon = '`' . $this->custom_icon . '`';
-            } else {
-                $icon = 'L.Util.template(`' . $this->custom_icon . '`)';
+            } elseif(Str::startsWith($this->custom_icon, '<?xml')) {
+                $icon = 'L.Util.template(`<div class="custom-icon">' . $this->resizedCustomIcon() . '</div>`)';
             }
         }
         elseif ($this->icon == 2) {
@@ -329,5 +341,16 @@ class MapMarker extends Model
         }
 
         return round($this->opacity / 100, 1);
+    }
+
+    /**
+     * Resize any custom svg icon to be limited in height and width to the pin
+     * @return string
+     */
+    protected function resizedCustomIcon(): string
+    {
+        $resized = preg_replace('`(width|height)=\".*?\"`sui', '$1="32"', $this->custom_icon);
+        $resized = str_replace('height="32"', 'height="32" style="margin-top: 4px;"', $resized);
+        return $resized;
     }
 }

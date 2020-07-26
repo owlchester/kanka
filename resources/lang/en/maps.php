@@ -14,6 +14,11 @@ return [
         'success'   => 'Map :name updated.',
         'title'     => 'Edit Map :name',
     ],
+    'errors' => [
+        'explore' => [
+            'missing' => 'Please add an image to the map before being able to explore it.',
+        ],
+    ],
     'fields'        => [
         'distance_measure'  => 'Distance Measure',
         'distance_name'     => 'Distance Unit',
@@ -40,6 +45,7 @@ return [
     'panels'        => [
         'layers'    => 'Layers',
         'markers'   => 'Markers',
+        'groups'    => 'Groups',
         'settings'  => 'Settings',
     ],
     'placeholders'  => [

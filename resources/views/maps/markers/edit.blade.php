@@ -56,7 +56,7 @@
     <script src="{{ mix('js/location/map-v3.js') }}" defer></script>
     <script src="/vendor/spectrum/spectrum.js" defer></script>
 
-    @include('maps._setup')
+    @include('maps._setup', ['single' => true])
     <script type="text/javascript">
         var marker{{ $model->id }} = {!! $model->editing()->marker() !!}.addTo(map);
     </script>

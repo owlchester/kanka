@@ -25,6 +25,7 @@ use Kalnoy\Nestedset\NodeTrait;
  * @property Location $location
  * @property MapLayer[] $layers
  * @property MapMarker[] $markers
+ * @property MapGroup[] $groups
  * @property [] $grids
  */
 class Map extends MiscModel
@@ -163,6 +164,14 @@ class Map extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function groups()
+    {
+        return $this->hasMany('App\Models\MapGroup', 'map_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function markers()
     {
         return $this->hasMany('App\Models\MapMarker', 'map_id', 'id')
@@ -225,5 +234,18 @@ class Map extends MiscModel
         }
 
         return $lines;
+    }
+
+    /**
+     * @return array|string[]
+     */
+    public function groupOptions(): array
+    {
+        $options = [null => ''];
+        $groups = $this->groups()->orderBy('name')->get();
+        foreach ($groups as $group) {
+            $options[$group->id] = $group->name;
+        }
+        return $options;
     }
 }

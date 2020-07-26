@@ -232,6 +232,7 @@ Route::group([
             'journals' => 'JournalController',
             'maps' => 'Maps\MapController',
             'maps.map_layers' => 'Maps\MapLayerController',
+            'maps.map_groups' => 'Maps\MapGroupController',
             'maps.map_markers' => 'Maps\MapMarkerController',
             'menu_links' => 'MenuLinkController',
             'organisations' => 'OrganisationController',

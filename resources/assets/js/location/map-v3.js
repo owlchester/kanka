@@ -37,9 +37,10 @@ $(document).ready(function() {
     initMapForms();
 
     // Limit the size of custom svg icons to not overblow the marker size
-    $('.map svg').each(function (e) {
-        $(this).attr("height", 32).attr("width", 32).css('margin-top', '4px');
-    });
+    // $('.map .custom-icon svg').each(function (e) {
+    //     $(this).attr("height", 32).attr("width", 32).css('margin-top', '4px');
+    // });
+
 
     $(document).on('shown.bs.modal shown.bs.popover', function() {
         initMapForms();
@@ -106,6 +107,7 @@ function initMapForms()
 {
     let layerForm = $('#map-layer-form');
     let markerForm = $('#map-marker-form');
+    let groupForm = $('#map-group-form');
     if (layerForm.length === 0 && markerForm.length === 0) {
         return;
     }
@@ -114,6 +116,9 @@ function initMapForms()
         window.entityFormHasUnsavedChanges = false;
     });
     markerForm.on('submit', function() {
+        window.entityFormHasUnsavedChanges = false;
+    });
+    groupForm.on('submit', function() {
         window.entityFormHasUnsavedChanges = false;
     });
 }
@@ -130,7 +135,7 @@ function showSidebar()
         return;
     }
 
-    window.map.invalidateSize();
+    //window.map.invalidateSize();
     mapPageBody.removeClass('sidebar-collapse').addClass('sidebar-open');
     sidebarMap.hide();
     sidebarMarker.show().html(spinner);
