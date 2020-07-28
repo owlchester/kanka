@@ -190,10 +190,10 @@ $(document).ready(function () {
   });
   initMapExplore();
   initMapForms(); // Limit the size of custom svg icons to not overblow the marker size
+  // $('.map .custom-icon svg').each(function (e) {
+  //     $(this).attr("height", 32).attr("width", 32).css('margin-top', '4px');
+  // });
 
-  $('.map .custom-icon svg').each(function (e) {
-    $(this).attr("height", 32).attr("width", 32).css('margin-top', '4px');
-  });
   $(document).on('shown.bs.modal shown.bs.popover', function () {
     initMapForms();
   });

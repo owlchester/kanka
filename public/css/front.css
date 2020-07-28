@@ -308,6 +308,14 @@ h2 {
   font-size: 44px !important;
 }
 
+section a {
+  color: #fac134;
+}
+
+section li a {
+  color: #2828A1;
+}
+
 ul.pagination li a {
   display: inline-block;
   padding: 10px;
