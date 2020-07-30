@@ -76,7 +76,7 @@
     <style>
 @foreach ($model->markers as $marker)
         .marker-{{ $marker->id }}  {
-            background-color: {{ $marker->colour ?? 'unset' }};
+            background-color: {{ $marker->colour ?? ($marker->icon != 1 && !empty($marker->custom_icon) ? 'unset' : '#ccc') }};
 @if ($marker->entity && $marker->icon == 4)
             /* entity {{ $marker->entity_id }} */
             background-image: url({{ $marker->entity->child->getImageUrl(400) }});

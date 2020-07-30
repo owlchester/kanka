@@ -23,6 +23,7 @@ return [
         'latitude'      => 'Latitude',
         'longitude'     => 'Longitude',
         'opacity'       => 'Opacity',
+        'group'         => 'Marker Group',
     ],
     'helpers'       => [
         'base'          => 'Add markers to the map by clicking on any spot.',
