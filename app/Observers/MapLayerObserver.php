@@ -58,7 +58,8 @@ class MapLayerObserver
      */
     public function saved(MapLayer $mapLayer)
     {
-        $mapLayer->map->touch();
+        // If we touch, we'll replace the image of the map
+        //$mapLayer->map->touch();
     }
 
 }

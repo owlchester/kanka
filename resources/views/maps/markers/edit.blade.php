@@ -24,7 +24,7 @@
             </div>
         @endif
         <div class="panel-body">
-            <div class="map map-form" id="map" style="width: 100%; height: 100%;"></div>
+            <div class="map map-form" id="map{{ $map->id }}" style="width: 100%; height: 100%;"></div>
             @include('partials.errors')
 
             {!! Form::model($model, ['route' => ['maps.map_markers.update', 'map' => $map, 'map_marker' => $model],
@@ -58,7 +58,7 @@
 
     @include('maps._setup', ['single' => true])
     <script type="text/javascript">
-        var marker{{ $model->id }} = {!! $model->editing()->marker() !!}.addTo(map);
+        var marker{{ $model->id }} = {!! $model->editing()->marker() !!}.addTo(map{{ $map->id }});
     </script>
 @endsection
 
@@ -73,7 +73,7 @@
 
     <style>
         .marker-{{ $model->id }}  {
-            background-color: {{ $model->colour ?? 'unset' }};
+            background-color: {{ $model->backgroundColour() }};
         @if ($model->entity && $model->icon == 4)
             background-image: url({{ $model->entity->child->getImageUrl(400) }});
         @endif

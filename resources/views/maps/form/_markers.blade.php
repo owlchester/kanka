@@ -13,7 +13,7 @@
         {{ __('maps/markers.helpers.base') }}
     </p>
 
-    <div class="map" id="map" style="width: 100%; height: 100%;">
+    <div class="map" id="map{{ $model->id }}" style="width: 100%; height: 100%;">
         <a href="{{ route('maps.explore', $model) }}" target="_blank" class="btn btn-primary btn-map-explore"><i class="fa fa-map"></i> {{ __('maps.actions.explore') }}</a>
     </div>
 
@@ -37,11 +37,11 @@
     <script type="text/javascript">
 @foreach ($model->markers as $marker)
 @if (empty($marker->group_id))
-        marker{{ $marker->id }}.addTo(map);
+        marker{{ $marker->id }}.addTo(map{{ $model->id }});
 @endif
 @endforeach
 
-        map.on('click', function(ev) {
+        map{{ $model->id }}.on('click', function(ev) {
             let position = ev.latlng;
             console.log('Click', 'lat', position.lat, 'lng', position.lng);
             // AJAX request
@@ -51,7 +51,7 @@
             $('#marker-modal').modal('show');
         });
 
-        window.map = map;
+        window.map = map{{ $model->id }};
     </script>
 @endsection
 
@@ -76,7 +76,7 @@
     <style>
 @foreach ($model->markers as $marker)
         .marker-{{ $marker->id }}  {
-            background-color: {{ $marker->colour ?? ($marker->icon != 1 && !empty($marker->custom_icon) ? 'unset' : '#ccc') }};
+            background-color: {{ $marker->backgroundColour() }};
 @if ($marker->entity && $marker->icon == 4)
             /* entity {{ $marker->entity_id }} */
             background-image: url({{ $marker->entity->child->getImageUrl(400) }});

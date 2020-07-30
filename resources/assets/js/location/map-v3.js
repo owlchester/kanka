@@ -1,6 +1,5 @@
 import deleteConfirm from "../components/delete-confirm";
 
-var hasDeleteConfirm = false;
 var mapPageBody;
 var sidebarMap, sidebarMarker;
 var markerModal, markerModalContent, markerModalTitle;
@@ -108,7 +107,7 @@ function initMapForms()
     let layerForm = $('#map-layer-form');
     let markerForm = $('#map-marker-form');
     let groupForm = $('#map-group-form');
-    if (layerForm.length === 0 && markerForm.length === 0) {
+    if (layerForm.length === 0 && markerForm.length === 0 && groupForm.length === 0) {
         return;
     }
 

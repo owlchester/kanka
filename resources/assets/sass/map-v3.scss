@@ -1,9 +1,12 @@
-#map {
+.map {
   width: 100%;
   min-height: calc(50vh);
 }
 .map-explore {
   min-height: calc(100vh - 50px) !important;
+}
+.map-dashboard {
+   min-height: calc(30vh);
 }
 
 .map-form {

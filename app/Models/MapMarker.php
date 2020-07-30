@@ -353,4 +353,20 @@ class MapMarker extends Model
         $resized = str_replace('height="32"', 'height="32" style="margin-top: 4px;"', $resized);
         return $resized;
     }
+
+    /**
+     * Marker background colour
+     * @return string
+     */
+    public function backgroundColour(): string
+    {
+        if (!empty($this->colour)) {
+            return  $this->colour;
+        }
+
+        if ($this->icon != 1 && !empty($this->custom_icon)) {
+            return 'unset';
+        }
+        return '#ccc';
+    }
 }
