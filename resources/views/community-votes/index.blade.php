@@ -40,8 +40,8 @@
                         @include('community-votes._vote', ['model' => $voting, 'voting' => true])
                     @endif
 
+                    <h4>{{ __('front/community-votes.index.past') }}</h4>
                     @foreach ($models as $model)
-                        <h4>{{ __('front/community-votes.index.past') }}</h4>
                         @include('community-votes._vote', ['voting' => false])
                     @endforeach
 

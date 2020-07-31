@@ -4,9 +4,15 @@ return [
     'create'                            => [
         'description'           => 'Erstelle eine neue Kampagne',
         'helper'                => [
-            'first' => 'Danke, dass du unsere App ausprobierst! Bevor es losgehen kann, brauchen wir nur eine Kleinigkeit von dir, deinen <b>Kampagnennamen</b>. Das ist der Name deiner Welt, der sie von anderen unterscheidet, also muss er einzigartig sein. Wenn du noch keinen geeigneten Namen hast, mach dir keine Sorgen, du kannst ihn <b>jederzeit ändern</b>, oder weitere Kampagnen erstellen.',
-            'second'=> 'Aber genug Geplauder! Was soll es sein?',
-            'title' => 'Willkommen bei :name!',
+            'first'     => 'Danke, dass du unsere App ausprobierst! Bevor es losgehen kann, brauchen wir nur eine Kleinigkeit von dir, deinen <b>Kampagnennamen</b>. Das ist der Name deiner Welt, der sie von anderen unterscheidet, also muss er einzigartig sein. Wenn du noch keinen geeigneten Namen hast, mach dir keine Sorgen, du kannst ihn <b>jederzeit ändern</b>, oder weitere Kampagnen erstellen.',
+            'second'    => 'Aber genug Geplauder! Was soll es sein?',
+            'title'     => 'Willkommen bei :name!',
+            'welcome'   => <<<'TEXT'
+Bevor Sie fortfahren, müssen Sie einen Kampagnennamen auswählen. Das ist der Name deiner Welt. Wenn Sie noch keinen guten Namen haben, machen Sie sich keine Sorgen, Sie können ihn später jederzeit ändern oder weitere Kampagnen erstellen.
+
+Vielen Dank, dass Sie sich Kanka angeschlossen haben, und willkommen in unserer florierenden Community!
+TEXT
+,
         ],
         'success'               => 'Kampagne erstellt.',
         'success_first_time'    => 'Deine Kampagne wurde erstellt! Da es deine erste Kampagne ist, haben wir ein paar Dinge für dich erstellt, die dir helfen sollen, loszulegen und hoffentlich ein bisschen Inspiration liefern, was du alles machen kannst.',
@@ -52,6 +58,7 @@ return [
         'image'                         => 'Bild',
         'locale'                        => 'Schauplatz',
         'name'                          => 'Name',
+        'public_campaign_filters'       => 'Öffentliche Kampagnenfilter',
         'rpg_system'                    => 'Rollenspielsysteme',
         'system'                        => 'System',
         'theme'                         => 'Thema',
@@ -69,9 +76,11 @@ return [
         'excerpt'                       => 'Die Kampagnenzusammenfassung wird im Dashboard angezeigt. Schreib daher ein paar Sätze, die deine Welt vorstellen. Idealerweise hältst du es kurz und informativ.',
         'locale'                        => 'Die Sprache, in der deine Kampagne geschrieben ist. Dies wird genutzt, um Inhalte zu erstellen und öffentliche Kampagnen zu gruppieren.',
         'name'                          => 'Deine Kampagne/Welt kann einen beliebigen Namen haben, solange dieser mindestens 4 Buchstaben oder Zahlen enthält.',
+        'public_campaign_filters'       => 'Helfen Sie anderen, die Kampagne unter anderen öffentlichen Kampagnen zu finden, indem Sie die folgenden Informationen bereitstellen.',
         'system'                        => 'Wenn deine Kampagne öffentlich einsehbar ist, damm wird das System in der :link Seite angezeigt.',
         'systems'                       => 'Um die Benutzer nicht mit Optionen zu überfordern, sind einige Funktionen von Kanka nur mit bestimmten Rollenspielsystemen (z.B. dem D&D 5e-Monster-Werteblock) verfügbar. Wenn wir hier unterstützte Systeme hinzufügen, werden diese Funktionen aktiviert.',
         'theme'                         => 'Legen Sie das Thema für die Kampagne fest und überschreiben Sie die Benutzereinstellungen.',
+        'view_public'                   => 'Um Ihre Kampagne als öffentlichen Betrachter anzuzeigen, öffnen Sie :link in einem Inkognito-Fenster.',
         'visibility'                    => 'Eine Kampagne öffentlich machen bedeutet, dass jeder mit einem Link dazu sie sehen kann.',
     ],
     'index'                             => [
@@ -241,6 +250,9 @@ TEXT
                 'read'          => 'Anschauen',
                 'toggle'        => 'Alles ändern',
             ],
+            'helpers'   => [
+                'entity_note'   => 'Auf diese Weise können Benutzer ohne Bearbeitungsberechtigung für ein Objekt Objektsnotizen hinzufügen.',
+            ],
             'hint'      => 'Diese Rolle hat automatisch Zugriff auf alles.',
         ],
         'placeholders'  => [
@@ -293,6 +305,7 @@ TEXT
             'items'         => 'Waffen, Fahrzeuge, Reliquien, Tränke.',
             'journals'      => 'Beobachtungen von Spielern oder Spielvorbereitungen vom Spielleiter.',
             'locations'     => 'Planeten, Ebenen, Kontinente, Flüsse, Staaten, Siedlungen, Tempel, Tavernen.',
+            'maps'          => 'Laden Sie Karten mit Ebenen und Markierungen hoch, die auf andere Objekte in der Kampagne verweisen.',
             'menu_links'    => 'Selbsterstellte Menü Links in der Seitenleiste.',
             'notes'         => 'Sagen, Religionen, Geschichte, Magie, Rassen.',
             'organisations' => 'Kulte, Militäreinheiten, Fraktionen, Gilden.',

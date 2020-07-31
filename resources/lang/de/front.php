@@ -109,6 +109,7 @@ return [
             'impact'            => 'Auswirkungen auf zukünftige Funktionen',
             'monthly_vote'      => 'Teilnahme an der Community-Feature-Abstimmung',
             'pagination'        => 'Erhöhung der anzeigten Elemente pro Seite.',
+            'pagination_help'   => 'Dies ist die maximale Anzahl der pro Seite angezeigten Ergebnisse, nicht die Begrenzung der Anzahl der Objekte pro Kampagne.',
             'title'             => 'Bezahlte Funktionen',
             'upload_limit'      => 'Upload Größe',
             'upload_limit_map'  => 'Kartenupload Größe',
@@ -225,16 +226,22 @@ return [
         'title'         => 'Versionen',
     ],
     'roadmap'       => [
-        'backlog'       => [
+        'backlog'           => [
             'description'   => 'Dieses Trello Board enthält alle von der Community angefragten Features, wie auch alle geplanten Features und Verbesserungen die eines Tages in die App schaffen werden.',
             'title'         => 'Backlog',
         ],
-        'description'   => 'Unsere großartigen Patrons stimmen einmal im Monat darüber ab, an welchen Features als nächstes gearbeitet wird. Auch wenn wir keine Roadmap über mehrere Monate haben, ist es einfach nachzuverfolgen, welche Features bereits angefragt wurden und was momentan in Arbeit ist.',
-        'next'          => [
+        'description'       => 'Unsere großartigen Patrons stimmen einmal im Monat darüber ab, an welchen Features als nächstes gearbeitet wird. Auch wenn wir keine Roadmap über mehrere Monate haben, ist es einfach nachzuverfolgen, welche Features bereits angefragt wurden und was momentan in Arbeit ist.',
+        'featured_requests' => [
+            'title' => 'Ausgewählte Anfragen',
+        ],
+        'next'              => [
             'description'   => 'Dieses Trello Board enthält alle Features und Verbesserungen an denen momentan gearbeitet wird.',
             'title'         => 'Als Nächstes',
         ],
-        'title'         => 'Roadmap',
+        'ongoing_progress'  => [
+            'title' => 'Laufender Fortschritt',
+        ],
+        'title'             => 'Roadmap',
     ],
     'second_block'  => [
         'call_to_action'    => 'Lass uns anfangen!',

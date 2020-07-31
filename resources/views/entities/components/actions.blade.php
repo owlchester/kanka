@@ -120,7 +120,7 @@
                 @can('update', $model)
                     <div class="btn-group">
                         <a href="{{ route($name . '.edit', [$model]) }}" class="btn btn-primary">
-                            <i class="fa fa-edit" aria-hidden="true"></i> <span class="hidden-xs">{{ __('crud.update') }}</span>
+                            <i class="fa fa-edit" aria-hidden="true"></i> <span class="hidden-xs">{{ __('crud.edit') }}</span>
                         </a>
                     </div>
                 @endcan

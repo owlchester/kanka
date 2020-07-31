@@ -135,6 +135,9 @@ class MapController extends CrudController
             $this->authorizeForGuest('read', $map);
         }
 
+        if (empty($map->image)) {
+            return redirect()->back()->withError(__('maps.errors.explore.missing'));
+        }
         return view('maps.explore', compact('map'));
     }
 

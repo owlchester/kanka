@@ -27,10 +27,10 @@
     <section class="community-vote">
         <div class="container">
             <div class="row">
-                <div class="col-3">
+                <div class="col-3 d-none d-md-block">
                     @include('community-votes._recent')
                 </div>
-                <div class="col-9">
+                <div class="col-12 col-md-9">
                     <div class="card mb-4">
                         <div class="card-body">
                             <h2 class="card-title mb-1">

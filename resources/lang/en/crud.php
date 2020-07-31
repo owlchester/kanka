@@ -331,7 +331,7 @@ return [
         ],
         'helper'            => 'Use this interface to fine-tune which users and roles that can interact with this entity. :allow',
         'helpers'           => [
-            'setup'         => 'Use this interface to fine-tune how roles and users can interact with this entity. :allow will allow the user or role to do this action. :deny will deny them that action. :inherit will use the user\'s role or main role\'s permission. A user set to :allow is able to do the action, even if their role is set to :deny.',
+            'setup' => 'Use this interface to fine-tune how roles and users can interact with this entity. :allow will allow the user or role to do this action. :deny will deny them that action. :inherit will use the user\'s role or main role\'s permission. A user set to :allow is able to do the action, even if their role is set to :deny.',
         ],
         'inherited'         => 'This role already has this permission set for this entity type.',
         'inherited_by'      => 'This user is part of the \':role\' role which grants this permissions on this entity type.',
@@ -371,7 +371,7 @@ return [
     'save_and_close'    => 'Save and Close',
     'save_and_copy'     => 'Save and Copy',
     'save_and_new'      => 'Save and New',
-    'save_and_update'   => 'Save and Update',
+    'save_and_update'   => 'Save and Edit',
     'save_and_view'     => 'Save and View',
     'search'            => 'Search',
     'select'            => 'Select',

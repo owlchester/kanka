@@ -68,6 +68,11 @@
                                     {{ __('faq.backup.question') }}
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'nested', 'slug' => Str::slug(__('faq.nested.question'))]) }}">
+                                    {{ __('faq.nested.question') }}
+                                </a>
+                            </li>
                         </ul>
 
                     </div>
@@ -145,6 +150,11 @@
                             <li>
                                 <a href="{{ route('faq.show', ['key' => 'plans', 'slug' => Str::slug(__('faq.plans.question'))]) }}">
                                     {{ __('faq.plans.question') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'app_backup', 'slug' => Str::slug(__('faq.app_backup.question'))]) }}">
+                                    {{ __('faq.app_backup.question') }}
                                 </a>
                             </li>
                             <li>

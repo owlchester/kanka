@@ -15,6 +15,9 @@
         [
             'label' => trans('maps.actions.explore'),
             'render' => function($model) {
+                if (empty($model->image)) {
+                    return '';
+                }
                 return '<a href="' . route('maps.explore', $model) . '" target="_blank"><i class="fa fa-map"></i></a>';
             },
             'disableSort' => true,

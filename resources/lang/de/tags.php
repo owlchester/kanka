@@ -27,7 +27,7 @@ return [
         'characters'    => 'Charaktere',
         'children'      => 'Kinder',
         'name'          => 'Name',
-        'tag'           => 'Kategorie',
+        'tag'           => 'Übergeordnete Kategorie',
         'tags'          => 'Unterkategorien',
         'type'          => 'Typ',
     ],

@@ -56,6 +56,7 @@ TEXT
         'image'                         => 'Imagen',
         'locale'                        => 'Idioma',
         'name'                          => 'Nombre',
+        'public_campaign_filters'       => 'Filtros de las campañas públicas',
         'rpg_system'                    => 'Sistemas RPG',
         'system'                        => 'Sistema',
         'theme'                         => 'Tema',
@@ -73,9 +74,11 @@ TEXT
         'excerpt'                       => 'El extracto de la campaña se mostrará en el tablero principal. Escribe unas pocas líneas para introducir tu mundo.',
         'locale'                        => 'El idioma en que está escrita tu campaña. Esto se usa para generar contenido y agrupar campañas públicas.',
         'name'                          => 'Tu campaña/mundo puede tener cualquier nombre, siempre y cuando contenga al menos 4 letras o números.',
+        'public_campaign_filters'       => 'Ayuda a que otros encuentren tu campaña entre las demás proporcionando la siguiente información.',
         'system'                        => 'Si tu campaña es visible públicamente, el sistema se mostrará en la página de :link.',
         'systems'                       => 'Para evitar líos, algunos elementos de Kanka solo están disponibles en sistemas RPG específicos (por ejemplo, el bloque de stats de monstruo de D&D 5e). Si eliges un sistema soportado, se activarán dichos elementos.',
         'theme'                         => 'Establece un tema único para la campaña, anulando las preferencias de los usuarios.',
+        'view_public'                   => 'Para ver tu campaña como lo haría un visitante público, abre un :link en una ventana de incógnito.',
         'visibility'                    => 'Hacer pública una campaña implica que todos los que tengan el enlace a ella la podrán ver.',
     ],
     'index'                             => [
@@ -241,6 +244,9 @@ TEXT
                 'read'          => 'Ver',
                 'toggle'        => 'Cambiar para todos',
             ],
+            'helpers'   => [
+                'entity_note'   => 'Esto permite que los usuarios que no tengan permisos para editar una entidad puedan añadirle notas.',
+            ],
             'hint'      => 'Este rol tiene acceso automático a todo.',
         ],
         'placeholders'  => [
@@ -293,6 +299,7 @@ TEXT
             'items'         => 'Armas, vehículos, reliquias, pociones...',
             'journals'      => 'Observaciones escritas por los personajes, o preparación de la sesión del máster.',
             'locations'     => 'Planetas, planos, continentes, ríos, estados, asentamientos, templos, tabernas...',
+            'maps'          => 'Sube mapas con diferentes capas y marcadores que señalen a otras entidades de la campaña.',
             'menu_links'    => 'Enlaces de menú personalizados en la barra lateral.',
             'notes'         => 'Tradiciones, religiones, historia, magia, razas...',
             'organisations' => 'Sectas, unidades militares, facciones, gremios...',

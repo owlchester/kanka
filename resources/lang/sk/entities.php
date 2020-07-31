@@ -32,6 +32,8 @@ return [
     'journals'              => 'Denníky',
     'location'              => 'Miesto',
     'locations'             => 'Miesta',
+    'map'                   => 'Mapa',
+    'maps'                  => 'Mapy',
     'menu_link'             => 'Link v menu',
     'menu_links'            => 'Linky v menu',
     'note'                  => 'Poznámka',

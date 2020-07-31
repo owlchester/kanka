@@ -38,7 +38,7 @@ return [
         'type'          => 'Capitale',
     ],
     'note1'         => [
-        'entry' => <<<'TEXT'
+        'entry'         => <<<'TEXT'
 Benvenuto in Kanka! La tua prima campagna è stata creata e vi abbiamo inserito un po' di entità di esempio come ispirazione (le potrai cancellare in qualsiasi momento).
 
 Vorrai probabilmente iniziale aggiungendo qualche tua entità, quindi seleziona una categoria da sinistra ed iniziamo.
@@ -55,6 +55,7 @@ Ultimo ma non meno importante:
 - Ami l'app e vuoi supportare la sua crescita? Recati sul nostro :patreon.
 TEXT
 ,
-        'name'  => 'Nota di Benvenuto',
+        'name'          => 'Nota di Benvenuto',
+        'subscriptions' => 'Abbonamenti',
     ],
 ];

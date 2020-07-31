@@ -292,6 +292,15 @@ h2 {
   font-size: 44px !important;
 }
 
+section {
+  a {
+    color: #fac134;
+  }
+  li a {
+    color: $KankaBlue;
+  }
+}
+
 ul.pagination {
   li {
     a {

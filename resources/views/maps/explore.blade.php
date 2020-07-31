@@ -8,32 +8,38 @@
 ])
 
 @section('content')
-
-    <div class="map map-explore" id="map" style="width: 100%; height: 100%;">
-{{--        <a href="#" class="btn btn-primary btn-map-explore" id="toggle-tooltips">--}}
-{{--            {{ __('maps.actions.toggle') }}--}}
-{{--        </a>--}}
+    <div class="map map-explore" id="map{{ $map->id }}" style="width: 100%; height: 100%;">
     </div>
 
 @endsection
 
 @section('scripts')
     @parent
-    @include('maps._setup')
     <script type="text/javascript">
         var markers = [];
 @foreach ($map->markers as $marker)
-        var marker{{ $marker->id }} = {!! $marker->exploring()->marker() !!}.addTo(map);
+        var marker{{ $marker->id }} = {!! $marker->exploring()->marker() !!};
         markers.push('marker' + {{ $marker->id }});
 @endforeach
     </script>
+
+    @include('maps._setup')
+
+    <script type="text/javascript">
+        window.map = map{{ $map->id }};
+@foreach ($map->markers as $marker)
+@if (empty($marker->group_id))
+        marker{{ $marker->id }}.addTo(map{{ $map->id }});
+@endif
+@endforeach
+    </script>
+
     <script type="text/javascript">
 @if (!empty($map->grid))
         // Leaflet grid
 @foreach ($map->grids() as $id => $line)
-        var polyline{{ $id }} = L.polyline([[{{ $line[0] }}, {{ $line[1] }}],[{{ $line[2] }}, {{ $line[3] }}]], {color: 'grey', opacity: 0.5}).addTo(map);
+        var polyline{{ $id }} = L.polyline([[{{ $line[0] }}, {{ $line[1] }}],[{{ $line[2] }}, {{ $line[3] }}]], {color: 'grey', opacity: 0.5}).addTo(map{{ $map->id }});
 @endforeach
-
 @endif
 
 {{--@if (!empty($map->distance_measure))--}}
@@ -80,7 +86,7 @@
     <style>
 @foreach ($map->markers as $marker)
         .marker-{{ $marker->id }}  {
-            background-color: {{ $marker->colour ?? 'unset' }};
+            background-color: {{ $marker->backgroundColour() }};
         @if ($marker->entity && $marker->icon == 4)
             background-image: url({{ $marker->entity->child->getImageUrl(400) }});
         @endif

@@ -462,3 +462,23 @@ footer {
     background: #232424 !important;
   }
 }
+
+
+/**
+ * Map
+ */
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip,
+.leaflet-control-layers-expanded,
+.leaflet-control-layers,
+.leaflet-bar a {
+  background: $Detail;
+}
+.leaflet-bar a {
+  &:hover {
+    background: $Unfocused;
+  }
+}
+.leaflet-container {
+  background: $Soft;
+}

@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'app_backup'            => [
+        'answer'    => 'Nous effectuons deux sauvegardes par jour pour éviter toute perte de données. Nos propres campagnes sont sur le serveur, du coups nous ne voulons prendre aucun risque!',
+        'question'  => 'À quelle fréquence les données sur Kanka sont-elles sauvegardées?',
+    ],
     'attribute-templates'   => [
         'answer'    => <<<'TEXT'
 La meilleure façon d'expliquer les modèles d'attributs est d'utiliser un exemple. Imaginons que ton monde a beaucoup de lieux, et que pour chacun, tu veux des attributs personnalisés pour "Population", Climat" et "Niveau de criminalité".
@@ -89,6 +93,10 @@ TEXT
     'multiworld'            => [
         'answer'    => 'Non! Tu peux créer autant de campagnes que tu souhaites dans l\'application. Une campagne peut être un univers, un monde, un thème, ou quoi que ce soit d’autre. Quand tu as plusieurs campagnes, tu peux facilement passer d\'une campagne à l\'autre.',
         'question'  => 'Puis-je avoir plusieurs campagnes?',
+    ],
+    'nested'                => [
+        'answer'    => 'Si tu préfères afficher les entités dans une vue imbriquée par défaut (par exemple, le bouton Vue Imbriquée dans la liste des lieux), tu peux le faire en accédant à tes options Profil et Mise en Page. Là, tu peux cocher l\'option Vue imbriquée par défaut. Ceci est uniquement pour ton compte et non pour tes campagnes.',
+        'question'  => 'Puis-je définir les listes pour qu\'elles s\'affichent de manières imbriquées par défaut?',
     ],
     'permissions'           => [
         'answer'    => 'Absolument, c\'est ce pourquoi nous avons créé Kanka! Vous pouvez inviter n’importe qui à votre campagne, et leur donner des rôles et des permissions. Nous avons créé un système extrêmement flexible (vous pouvez à la fois utiliser des optionsde permission et de restriction) pour couvrir toutes les situations possibles.',

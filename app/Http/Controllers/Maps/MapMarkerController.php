@@ -19,6 +19,7 @@ class MapMarkerController extends Controller
         'shape_id',
         'type_id', 'size_id', 'icon', 'custom_icon', 'custom_shape', 'visibility',
         'is_draggable',
+        'group_id',
     ];
 
     public function create(Map $map)

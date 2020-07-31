@@ -32,6 +32,8 @@ return [
     'journals'              => 'Diarios',
     'location'              => 'Lugar',
     'locations'             => 'Lugares',
+    'map'                   => 'Mapa',
+    'maps'                  => 'Mapas',
     'menu_link'             => 'Enlace de menú',
     'menu_links'            => 'Enlaces del menú',
     'note'                  => 'Nota',

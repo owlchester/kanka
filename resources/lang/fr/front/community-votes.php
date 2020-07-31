@@ -18,6 +18,7 @@ return [
     'show'          => [
         'restricted'    => 'La participation aux votes communautaire est limitées à ceux qui soutiennent Kanka.',
         'title'         => 'Vote Communautaire - :name',
+        'vote_count'    => '{1} :number participant a voté.|[2,*] :number participants ont voté.',
         'voted_lasted'  => 'Le vote s\'est déroulé de :from GMT jusqu\'à :until GMT.',
         'voting_until'  => 'Vote ouvert jusqu\'à :until GMT.',
     ],

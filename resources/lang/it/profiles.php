@@ -20,6 +20,18 @@ return [
         'settings'                  => 'Impostazioni',
         'theme'                     => 'Tema',
     ],
+    'newsletter'    => [
+        'links'     => [
+            'community-vote'    => 'Voto della Community',
+            'news'              => 'News',
+        ],
+        'settings'  => [
+            'news'          => 'News - ricevi una notifica quando ci sono :news.',
+            'newsletter'    => 'Newsletter - ricevi la newsletter di Kanka.',
+            'votes'         => 'Voti della Community - ricevi una notifica appena un nuovo :vote è disponibile.',
+        ],
+        'title'     => 'Newsletters',
+    ],
     'password'      => [
         'success'   => 'Password aggiornata',
     ],

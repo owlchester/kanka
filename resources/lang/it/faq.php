@@ -12,9 +12,29 @@ TEXT
 ,
         'question'  => 'Templates di Attributi, che cosa sono?',
     ],
+    'backup'                => [
+        'answer'    => 'Una volta al giorno, puoi esportare tutti i dati della tua campagna in un file ZIP. Nnell\'app, clicca su "Campagna" nel menù a sinistra, poi clicca su "Esporta". Questa azione creerà un file esportato che sarà disponibile per 30 minuti. Non puoi caricare questo file esportato su Kanka, è inteso solamente per tua tranquillità o se non pensi più di usare l\'app.',
+        'question'  => 'Come posso fare un backup della mia campagna o esportarla?',
+    ],
+    'bugs'                  => [
+        'answer'    => 'Puoi semplicemente unirti al nostro server :discord e riferire il tuo bug nel canale #error-and-bugs (in lingua inglese).',
+        'question'  => 'Come posso riferire un bug?',
+    ],
+    'campaign-sync'         => [
+        'answer'    => 'Kanka non ha questa funzionalità. In ogni caso, se stai cercando di gestire vari gruppi di gioco nel medesimo mondo, puoi provare a usare la stessa campagna e a separare i tuoi gruppi per mezzo di una combinazione di missioni, tags e permessi.',
+        'question'  => 'Posso sincronizzare entità per campagne multiple?',
+    ],
     'conversations'         => [
         'answer'    => 'Le conversazioni possono essere impostate come discorsi fra Personaggio o fra Membri della Campagna. Se, per esempio, volessi documentare un\'importante discorso tra NPCs e PCs lo potresti fare utilizzando questo modulo. You puoi utilizzare anche per le campagna play-by-post.',
         'question'  => 'Che cosa sono le Conversazioni?',
+    ],
+    'custom'                => [
+        'answer'    => 'Kanka parte con un set di tipi predefiniti di entità che interagiscono l\'uno con l\'altro. Permettere la creazione di tipi di entità personalizzati richiederebbe la ricostruzione dell\'app da zero, rendendo vano lo scopo di uno strumento dotato di tipi predefiniti per aiutare persone a creare mondi, piuttosto che a cercare di capire come organizzare cose. Inoltre, Kanka è flessibile con i Tags, che possono rappresentare la maggior parte dei probabili tipi di entità personalizzati.',
+        'question'  => 'Posso creare tipi di entità personalizzati?',
+    ],
+    'delete-campaign'       => [
+        'answer'    => 'Vai alla bacheca della tua campagna, e clicca su "Campagna" nel menù a sinistra. Apparirà un pulsante "Rimuovi" se sei l\'ultimo membro della campagna. Cancellare una campagna è un\'azione permanente che eliminerà tutti i dati presenti sui nostri server, incluse le immagini.',
+        'question'  => 'Come posso eliminare una campagna?',
     ],
     'entity-notes'          => [
         'answer'    => 'Tutte le entità hanno le "Note dell\'Entità" che sono piccoli testi che possono essere impostati per essere visibili solamente da te (perfetto quando co-amministrata), solo agli amministratori della campagna o a tutti. Puoi anche dare i permessi ai tuoi membri per creare e modificare le note senza il bisogno di abilitarli alla modifica completa dell\'entità.',
@@ -35,6 +55,10 @@ Supportarci su Patreon però ti permette di incrementare il limite di dimensione
 TEXT
 ,
         'question'  => 'L\'app resterà gratuita?',
+    ],
+    'gods-and-religions'    => [
+        'answer'    => 'Consigliamo la creazione di Divinità come Personaggi, e di Religioni come Organizzazioni. Se vuoi trovare velocemente le tue divinità, ti consigliamo di taggarle con un Tag e/o un tipo appropriato.',
+        'question'  => 'Dove posso creare Dei e religioni?',
     ],
     'help'                  => [
         'answer'    => 'Prima di tutto grazie per volerci aiutare! Siamo sempre interessati in persone che possono aiutarci con le traduzioni, nel testare le nuove funzionalità o che possano aiutare i nuovi utenti. Adoriamo anche quando le persone promuovono Kanka per raggiungere nuove utenze in posti a cui non avevamo pensato. La miglior cosa che puoi fare è unirti a noi su Discord dove un canale è dedicato all\'aiuto degli utenti. Adoriamo anche i nostri patrons su Patreon se vuoi supportarci e ottenere l\'accesso a qualche vantaggio!',
@@ -69,6 +93,18 @@ Per quanto riguarda la seconda parte la maggior parte dei progetti obbistici fin
 TEXT
 ,
         'question'  => 'Quali sono i piani a lungo termine? Cosa succederebbe se Ilestis si stufasse di lavorare su Kanka?',
+    ],
+    'public-campaigns'      => [
+        'answer'    => 'Puoi dare uno sguardo alla pagina :public-campaigns per osservare come gli altri sfruttano Kanka per le loro campagne.',
+        'question'  => 'Gli altri come usano Kanka?',
+    ],
+    'sections'              => [
+        'community'     => 'Community',
+        'general'       => 'Generale',
+        'other'         => 'Altro',
+        'permissions'   => 'Permessi',
+        'pricing'       => 'Prezzi',
+        'worldbuilding' => 'Worldbuilding',
     ],
     'show'                  => [
         'return'    => 'Ritorna alle FAQ',

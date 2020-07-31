@@ -130,21 +130,35 @@ $sizeOptions = [
     </div>
 </div>
 
-<div class="form-group">
-{!! Form::select2(
-    'entity_id',
-    (isset($model) && $model->entity ? $model->entity : null),
-    App\Models\Entity::class,
-    false,
-    'crud.fields.entity',
-    'search.entities-with-reminders',
-    'crud.placeholders.entity'
-) !!}
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+        {!! Form::select2(
+            'entity_id',
+            (isset($model) && $model->entity ? $model->entity : null),
+            App\Models\Entity::class,
+            false,
+            'crud.fields.entity',
+            'search.entities-with-reminders',
+            'crud.placeholders.entity'
+        ) !!}
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="visibility">
+                {{ trans('maps/markers.fields.group') }}
+            </label>
+            {{ Form::select('group_id', $map->groupOptions(), null, ['class' => 'form-control', 'id' => 'group_id']) }}
+        </div>
+    </div>
 </div>
-
-
-<div class="form-group">
-@include('cruds.fields.visibility')
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+        @include('cruds.fields.visibility')
+        </div>
+    </div>
 </div>
 
 <div class="row @if (!$model) hidden @endif">

@@ -28,7 +28,7 @@ return [
         'characters'        => 'Postavy',
         'image'             => 'Obrázok',
         'is_map_private'    => 'Súkromná mapa',
-        'location'          => 'Miesto',
+        'location'          => 'Nadradené miesto',
         'locations'         => 'Miesta',
         'map'               => 'Mapa',
         'name'              => 'Názov',
@@ -36,12 +36,13 @@ return [
         'type'              => 'Typ',
     ],
     'helpers'       => [
-        'characters'    => 'Zobraz všetky postavy na tomto mieste a jemu podradených miestach, alebo len tie priamo na tomto mieste.',
-        'descendants'   => 'Tento zoznam obsahuje miesta, ktoré sú tomuto miestu podriadené, nie iba tie priamo pod ním.',
-        'families'      => 'Miesta môžu byť sídlami mocných rodov.',
-        'map'           => 'Pridaním mapy k danému miestu na nej môžeš umiestniť body a prepojiť ich s inými objektami kampane.',
-        'nested'        => 'Miesta vieš zoradiť vo vnorenom zobrazení. Miesta bez nadradeného miesta sa zoradia štandardným spôsobom. Miesta s podradenými miestami je možné rozkliknúť, dokiaľ nebudú existovať už žiadne ďalšie podradené miesta.',
-        'organisations' => 'Zobraz všetky organizácie na tomto mieste a jemu podradených miestach, alebo iba tie nachádzajúce sa priamo na tomto mieste.',
+        'characters'        => 'Zobraz všetky postavy na tomto mieste a jemu podradených miestach, alebo len tie priamo na tomto mieste.',
+        'descendants'       => 'Tento zoznam obsahuje miesta, ktoré sú tomuto miestu podriadené, nie iba tie priamo pod ním.',
+        'families'          => 'Miesta môžu byť sídlami mocných rodov.',
+        'map'               => 'Pridaním mapy k danému miestu na nej môžeš umiestniť body a prepojiť ich s inými objektami kampane.',
+        'map_deprecated'    => 'Mapy majú teraz vlastný modul! Táto nová funkcia je zatiaľ dostupná len pre :boosted. Toto aktuálne rozhranie nebude dostupné, akonáhle bude nová funkcia dostupná pre všetkých. Pôvodné mapy môžete teraz ale naďalej upravovať.',
+        'nested'            => 'Miesta vieš zoradiť vo vnorenom zobrazení. Miesta bez nadradeného miesta sa zoradia štandardným spôsobom. Miesta s podradenými miestami je možné rozkliknúť, dokiaľ nebudú existovať už žiadne ďalšie podradené miesta.',
+        'organisations'     => 'Zobraz všetky organizácie na tomto mieste a jemu podradených miestach, alebo iba tie nachádzajúce sa priamo na tomto mieste.',
     ],
     'hints'         => [
         'is_map_private'    => 'Súkromná mapa je viditeľná len pre členov kampane s rolou Admin.',
@@ -175,6 +176,7 @@ return [
             'return'        => 'Späť na :name',
             'shapes'        => [
                 'circle'    => 'kruh',
+                'custom'    => 'Vlastné',
                 'square'    => 'štvorec',
             ],
             'sizes'         => [
@@ -192,6 +194,9 @@ return [
             'title'         => 'Body na mape miesta :name',
         ],
         'success'   => 'Body na mape uložené.',
+    ],
+    'maps'          => [
+        'title' => 'Mapy miesta :name',
     ],
     'organisations' => [
         'description'   => 'Organizácie na tomto mieste.',
@@ -220,6 +225,7 @@ return [
             'journals'      => 'Záznamy v denníku',
             'locations'     => 'Miesta',
             'map'           => 'Mapa',
+            'maps'          => 'Mapy',
             'menu'          => 'Menu',
             'organisations' => 'Organizácie',
             'quests'        => 'Úlohy',

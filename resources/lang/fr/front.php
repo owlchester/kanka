@@ -226,16 +226,22 @@ return [
         'title'         => 'Mises à jours',
     ],
     'roadmap'       => [
-        'backlog'       => [
+        'backlog'           => [
             'description'   => 'Ce Trello continent toutes les requêtes de la communauté, ainsi que les améliorations planifiées et nouvelles fonctionnalités qui seront un jour ajouté à l\'application.',
             'title'         => 'Backlog',
         ],
-        'description'   => 'Nos incroyables Patrons votent une fois par mois sur les nouvelles fonctionnalités à prioritiser, ce qui veut dire que nous n\'avons pas de roadmap sur plusieurs mois, mais qu’il est facile de suivre les requêtes qui sont en cours d’implémentation.',
-        'next'          => [
+        'description'       => 'Nos incroyables Patrons votent une fois par mois sur les nouvelles fonctionnalités à prioritiser, ce qui veut dire que nous n\'avons pas de roadmap sur plusieurs mois, mais qu’il est facile de suivre les requêtes qui sont en cours d’implémentation.',
+        'featured_requests' => [
+            'title' => 'Requêtes de nouvelles fonctionnalités',
+        ],
+        'next'              => [
             'description'   => 'Ce Trello contient toutes les améliorations et nouvelles fonctionnalités qui sont en cours de développement.',
             'title'         => 'Prochain',
         ],
-        'title'         => 'Roadmap',
+        'ongoing_progress'  => [
+            'title' => 'Progrès en cours',
+        ],
+        'title'             => 'Roadmap',
     ],
     'second_block'  => [
         'call_to_action'    => 'C\'est parti!',

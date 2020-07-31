@@ -244,10 +244,10 @@ TEXT
                 'read'          => 'View',
                 'toggle'        => 'Change for all',
             ],
+            'helpers'   => [
+                'entity_note'   => 'This allows users who do not have Edit permissions for an Entity to add Entity Notes to it.',
+            ],
             'hint'      => 'This role automatically has access to everything.',
-            'helpers' => [
-                'entity_note' => 'This allows users who do not have Edit permissions for an Entity to add Entity Notes to it.',
-            ]
         ],
         'placeholders'  => [
             'name'  => 'Name of the role',
@@ -312,6 +312,7 @@ TEXT
     'show'                              => [
         'actions'       => [
             'boost' => 'Boost campaign',
+            'edit'  => 'Edit Campaign',
             'leave' => 'Leave campaign',
         ],
         'description'   => 'A detailed view of a campaign',

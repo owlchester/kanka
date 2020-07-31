@@ -19,6 +19,10 @@ return [
     'link'          => [
         'auto_update'       => 'Los enlaces a otras entidades se actualizarán automáticamente cuando se cambie el nombre o la descripción de éstas.',
         'description'       => 'Puedes enlazar fácilmente otras entidades usando los siguientes atajos.',
+        'formatting'        => [
+            'text'  => 'La lista de etiquetas y atributos HTML permitidos se encuentra en nuestro :github.',
+            'title' => 'Formato',
+        ],
         'friendly_mentions' => 'Enlaza a otras entidades escribiendo :code y los primeros caracteres de una entidad para buscarla. Esto insertará :example en el editor de texto, y se mostrará como un enlace a la entidad al ver dicha entidad.',
         'limitations'       => 'Ten en cuenta que debido a limitaciones técnicas estos atajos no funcionan en dispositivos móviles android.',
         'mentions'          => 'Enlaza a otras entidades escribiendo :code y los primeros caracteres de una entidad para buscarla. Esto introducirá :example en el editor de texto. Para personalizar el nombre a mostrar, puedes escribir :example_name. Para indicar una subpágina concreta de la entidad, usa :example_page. Para indicar una pestaña concreta, usa :example_tab.',

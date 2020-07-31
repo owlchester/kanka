@@ -19,6 +19,7 @@ return [
     'fields'        => [
         'custom_icon'   => 'Custom Icon',
         'custom_shape'  => 'Custom Shape',
+        'group'         => 'Marker Group',
         'is_draggable'  => 'Draggable',
         'latitude'      => 'Latitude',
         'longitude'     => 'Longitude',

@@ -3,7 +3,7 @@
     'description' => '',
     'breadcrumbs' => [
         ['url' => route('campaigns.index'), 'label' => trans('campaigns.index.title')],
-        trans('crud.update')
+        trans('crud.edit')
     ],
     'canonical' => true,
 ])

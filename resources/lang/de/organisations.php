@@ -18,7 +18,7 @@ return [
         'location'      => 'Ort',
         'members'       => 'Mitglieder',
         'name'          => 'Name',
-        'organisation'  => 'Oberorganisation',
+        'organisation'  => 'Übergeordnete Organisation',
         'organisations' => 'Unterorganisation',
         'relation'      => 'Beziehung',
         'type'          => 'Typ',

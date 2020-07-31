@@ -265,7 +265,8 @@ return [
             ],
         ],
         'warnings'              => [
-            'patreon'   => 'Ihr Konto ist derzeit mit Patreon verknüpft. Bitte trennen Sie die Verknüpfung Ihres Kontos in Ihren :patreon-Einstellungen, bevor Sie zu einem Kanka-Abonnement wechseln.',
+            'incomplete'    => 'Wir konnten Ihre Kreditkarte nicht belasten. Bitte aktualisieren Sie Ihre Kreditkarteninformationen. Wir werden versuchen, sie in den nächsten Tagen erneut zu belasten. Wenn es erneut fehlschlägt, wird Ihr Abonnement gekündigt.',
+            'patreon'       => 'Ihr Konto ist derzeit mit Patreon verknüpft. Bitte trennen Sie die Verknüpfung Ihres Kontos in Ihren :patreon-Einstellungen, bevor Sie zu einem Kanka-Abonnement wechseln.',
         ],
     ],
 ];

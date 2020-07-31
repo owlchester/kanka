@@ -52,6 +52,7 @@ return [
         'image'                         => 'Obrázok',
         'locale'                        => 'Jazyk',
         'name'                          => 'Názov',
+        'public_campaign_filters'       => 'Filter verejných kampaní',
         'rpg_system'                    => 'RPG systémy',
         'system'                        => 'Systém',
         'theme'                         => 'Téma',

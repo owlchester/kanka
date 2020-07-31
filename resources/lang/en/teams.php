@@ -3,13 +3,13 @@
 return [
     'hall_of_fame'  => 'Hall of Fame',
     'index'         => [
+        'community'     => 'Community',
         'core'          => 'Core',
         'description'   => 'These people make Kanka possible',
         'other'         => 'Other',
         'qa'            => 'Quality Assurance',
         'support'       => 'Support',
         'title'         => 'Team',
-        'community'     => 'Community',
         'translations'  => 'Translations',
     ],
     'patreon'       => [
@@ -26,7 +26,7 @@ I created Kanka in October 2017 because there was no tool that easily allowed me
 
 In early 2020 I took a leap of faith to work full time on Kanka thanks to the support of friends and the community.
 TEXT
-,
+            ,
             'title' => 'Founder & Lead Developer',
         ],
         'jon'       => [
@@ -36,7 +36,7 @@ Jay and I have been friends for almost a decade, and it has been exciting to see
 In early 2020, I joined Jay to handle both business development & marketing, and I haven’t looked back since!
 
 TEXT
-,
+            ,
             'title' => 'Co-Founder & Business Manager',
         ],
         'joseph'    => [
@@ -48,7 +48,7 @@ I started using Kanka in early 2018 and was one of the first people to join the 
 
 Nowdays I help out with the community on Discord and Reddit, and break new versions so you don't have to.
 TEXT
-,
+            ,
             'title' => 'Community Manager & Lead QA',
         ],
     ],
