@@ -9,14 +9,14 @@ return [
         'description_full'  => 'Muchas de las campañas de Kanka son públicas para que todos las puedan ver. Esta página contiene una lista con todas las campañas públicas, así como algunas campañas destacadas de la comunidad.',
         'featured'          => [
             'description'   => 'Nuestra comunidad construye campañas increíbles que hemos incluido en las Campañas Destacadas. Iremos cambiando esta lista con frecuencia, así que asegúrate de volver de vez en cuando para ver qué novedades hay.',
-            'title'         => 'Campañas Destacadas',
+            'title'         => 'Campañas destacadas',
         ],
         'public'            => [
-            'description'   => 'Échale un vistazo a las Campañas Públicas para inspirarte.',
+            'description'   => 'Échale un vistazo a las campañas públicas para inspirarte.',
             'no-results'    => 'No se encuentra ninguna campaña pública con estos filtros. Por favor, vuelve a intentarlo.',
-            'title'         => 'Campañas Públicas',
+            'title'         => 'Campañas públicas',
         ],
-        'title'             => 'Campañas Públicas',
+        'title'             => 'Campañas públicas',
     ],
     'community'     => [
         'description'   => 'Kanka no es solamente una app: también es una próspera comunidad de creadores de mundos, másters y jugadores de rol y entusiastas creativos.',
@@ -29,9 +29,9 @@ return [
     ],
     'contact'       => [
         'description'   => '¿Necesitas ayuda, tienes una sugerencia o simplemente quieres compartir tu amor por Kanka? ¡Nuestro equipo te responderá en cualquier momento!',
-        'email'         => 'Envía cualquier consulta a nuestro correo:',
+        'email'         => 'Envía cualquier consulta a',
         'other'         => 'O contáctanos en una de nuestras redes sociales:',
-        'title'         => '¡Nos gusta hacer nuevas amistades :icon !',
+        'title'         => 'Estamos aquí para ayudarte',
     ],
     'cookie'        => [
         'dismiss'   => '¡Entendido!',
@@ -72,11 +72,11 @@ return [
             'description'   => '¿No estás solo? ¡Cuenta con nosotros! ¡Puedes invitar a tus amigos para ayudarte a construir tu campaña juntos!',
             'title'         => 'Colaborativo',
         ],
-        'description'       => '¡Las razones por las que creemos que te enamoraras de nuestra aplicación!',
-        'description_full'  => 'Muestra de algunas de las mejores y más queridas funciones.',
+        'description'       => 'Kanka tiene una gran cantidad de funciones. Puedes hacer un seguimiento de tus personajes y sus relaciones, los lugares y su historia, las misiones y sus objetivos, los calendarios y sus eventos y fenómenos meteorológicos, y mucho más. Lo mejor de todo es que Kanka recibe muchas actualizaciones cada mes basadas en los comentarios de los usuarios.',
+        'description_full'  => 'Kanka se actualiza constantemente, pero aquí hay algunas de las más importantes que creemos que te van a encantar.',
         'free'              => [
             'bonuses'       => 'Bonus',
-            'description'   => 'Lo mejor de la vida es lo gratis. Sin anuncios, sin costes ocultos, sin suscripciones de pago.',
+            'description'   => 'Todas las funciones principales de Kanka son absolutamente gratis, con algunos :bonuses para los suscriptores.',
             'title'         => 'Uso Gratuito',
         ],
         'landscape'         => 'Por favor, pon tu dispositivo en modo apaisado para mostrar toda la lista de características.',
@@ -102,33 +102,34 @@ return [
             'boosts'            => 'Mejoras de campaña',
             'curation'          => 'Ayuda a crear la lista mensual de votos',
             'default_image'     => 'Imágenes bonitas por defecto para las entidades',
-            'description'       => 'Apoyar a Kanka en Patreon desbloquea los siguientes beneficios en una cuenta.',
+            'description'       => 'Apoyar a Kanka con una pequeña tarifa mensual nos permite seguir trabajando en ella y desbloquea los siguientes beneficios.',
             'discord'           => 'Canal privado de Discord',
             'free'              => 'Gratis',
             'hall_of_fame'      => 'Nombre en el :link',
             'impact'            => 'Influencia en futuras características',
             'monthly_vote'      => 'Participación en la votación mensual de características',
             'pagination'        => 'Aumento en los resultados por página (100)',
-            'title'             => 'Soporte de Patreon',
+            'pagination_help'   => 'Este es el número máximo de resultados mostrados por página, NO un límite en el número de entidades por campaña.',
+            'title'             => 'Funciones de pago',
             'upload_limit'      => 'Aumento del tamaño máximo de subida de archivos (8mb)',
             'upload_limit_map'  => 'Aumento del tamaño máximo de subida de mapas (10mb)',
         ],
         'public'            => [
-            'description'   => 'Se pueden establecer permisos en los módulos, o en cada entidad por separado. Las campañas también pueden hacerse públicas para que todo el mundo las vea.',
+            'description'   => 'Se pueden establecer permisos en los módulos, o en cada entidad por separado. Las campañas también pueden hacerse públicas para que <a href=":url">todo el mundo las vea</a>.',
             'title'         => 'Permisos',
         ],
         'relations'         => [
             'description'   => 'Cada entidad puede tener una complicada red de relaciones con otras entidades, incluyendo relaciones secretas, invisibles para tus jugadores.',
             'title'         => 'Relaciones',
         ],
-        'title'             => 'Funciones ilimitadas, diversión ilimitada',
+        'title'             => 'Poderosas funciones con increíble flexibilidad',
         'updates'           => [
-            'description'   => 'Kanka se actualiza frecuentemente gracias a las aportaciones de la comunidad.',
+            'description'   => 'Kanka se actualiza frecuentemente gracias a las aportaciones de la comunidad. Los detalles de dichas actualizaciones se discuten en profundidad en nuestro :discord.',
             'title'         => 'Actualizaciones frecuentes',
         ],
     ],
     'first_block'   => [
-        'description'   => '¡Nuestra aplicación esta disponible en cualquier dispositivo! No hay necesidad de instalar nada, esta todo en tu navegador. Lo mejor de todo, ¡es completamente gratis!',
+        'description'   => 'Kanka está disponible en cualquier dispositivo móvil y navegador. No se necesita instalar nada, y siempre tendrás la última versión con las nuevas funciones. Olvídate de perderte entre notas desperdigadas: en Kanka, todo está en un solo lugar fácil de encontrar.',
         'title'         => 'Una nueva manera de monitorizar tus campañas.',
     ],
     'footer'        => [
@@ -217,28 +218,34 @@ return [
         'title'         => 'Resumen de tarifas',
     ],
     'privacy'       => [
-        'description'   => 'Fecha efectiva: 23 de mayo de 2018',
-        'title'         => 'Política de Privacidad',
+        'description'   => 'Fecha efectiva: :date',
+        'title'         => 'Política de privacidad',
     ],
     'release'       => [
         'description'   => 'Kanka está creciendo y mejorando constantemente, y queremos que el mundo conozca todas las cosas increíbles que estamos añadiendo a la aplicación.',
         'title'         => 'Lanzamientos',
     ],
     'roadmap'       => [
-        'backlog'       => [
+        'backlog'           => [
             'description'   => 'Este tablón de Trello contiene todas las peticiones de características propuestas por la comunidad, así como las mejoras planeadas que algún día llegarán a la app.',
             'title'         => 'Trabajos pendientes',
         ],
-        'description'   => 'Nuestros increíbles Patrons votan una vez al mes en qué características se trabajará a continuación. Aquí podrás seguir lo que se ha pedido y en lo que se está trabajando actualmente.',
-        'next'          => [
+        'description'       => 'Los votaciones de nuestra comunidad moldean nuestro trabajo, así que, aunque no tenemos una hoja de ruta a meses vista, es sencillo estar al tanto de lo que se ha pedido y en lo que se está trabajando en cada momento.',
+        'featured_requests' => [
+            'title' => 'Peticiones destacadas',
+        ],
+        'next'              => [
             'description'   => 'Este tablón de Trello contiene todas las mejoras y características nuevas en las que estamos trabajando actualmente.',
             'title'         => 'Siguiente',
         ],
-        'title'         => 'Hoja de ruta',
+        'ongoing_progress'  => [
+            'title' => 'Progreso en curso',
+        ],
+        'title'             => 'Hoja de ruta',
     ],
     'second_block'  => [
-        'call_to_action'    => '¡Empecemos!',
-        'title'             => 'No esperes. <br />Empieza a construir.',
+        'call_to_action'    => '¡Registra tu cuenta gratuita!',
+        'title'             => 'Dedica menos tiempo a organizar y más a crear.',
     ],
     'seo'           => [
         'keywords'  => 'Worldbuilding, Creación de mundos, RPG, Rol, Juego de rol, Gestión de campaña de rol',
@@ -247,7 +254,7 @@ return [
         'coffee'    => '¡Invítame a un café!',
     ],
     'terms'         => [
-        'description'   => 'Fecha efectiva: 4 de marzo de 2020',
+        'description'   => 'Fecha efectiva: :date',
         'title'         => 'Términos y condiciones',
     ],
 ];

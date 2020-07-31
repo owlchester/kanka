@@ -18,6 +18,7 @@ return [
     'show'          => [
         'restricted'    => 'Community Votes sind nur für Benutzer verfügbar, die Kanka unterstützen.',
         'title'         => 'Community Votes- :name',
+        'vote_count'    => '{1} :number Teilnehmer gewählt.|[2,*] :number Teilnehmer gewählt.',
         'voted_lasted'  => 'Die Abstimmung dauerte von :from GMT bis :until GMT.',
         'voting_until'  => 'Die Abstimmung ist geöffnet bis :until GMT.',
     ],

@@ -13,6 +13,7 @@ return [
         ],
         'public'            => [
             'description'   => 'Dai uno sguardo alle Campagne Pubbliche per un po\' di ispirazione.',
+            'no-results'    => 'Non è stata trovata nessuna campagna con questi filtri. Per favore riprova.',
             'title'         => 'Campagne Pubbliche',
         ],
         'title'             => 'Campagne Pubbliche',
@@ -20,12 +21,17 @@ return [
     'community'     => [
         'description'   => 'Kanka non è solamente un\'app è anche una fiorente comunità di costruttori di mondi, dungeon masters, giocatori di ruolo ed appassionati creativi.',
         'discord'       => 'Il canale Discord di Kanka è il luogo più attivo per parlare dell\'app, dei bug, delle caratteristiche e per chiedere aiuto o darne.',
+        'facebook'      => 'Tieniti al corrente di tutti i nostri aggiornamenti sulla nostra pagina Facebook.',
+        'instagram'     => 'Vuoi dare uno sguardo dietro le quinte ad immagini di noi mentre lavoriamo a Kanka o giochiamo? Allora Instagram è il luogo dove puoi seguirci!',
         'join'          => 'Unisciti a noi!',
         'reddit'        => 'Il subreddit di kanka è un posto più tranquillo dove le cose possono essere discusse per un periodo più lungo.',
         'title'         => 'Comunità',
     ],
     'contact'       => [
-        'title' => 'Noi :icon i nuovi amici!',
+        'description'   => 'Hai bisogno di aiuto, hai un suggerimento, o vuoi semplicemente condividere il tuo amore per Kanka? Il nostro team ti risponderà in ogni caso!',
+        'email'         => 'Manda tutte le domande a',
+        'other'         => 'O su una delle seguenti piattaforme social:',
+        'title'         => 'Noi :icon i nuovi amici!',
     ],
     'cookie'        => [
         'dismiss'   => 'Capito!',
@@ -34,6 +40,9 @@ return [
     ],
     'faq'           => [
         'description'   => 'Abbiamo risposto alle domande più frequenti nella maniera più chiara possibile.',
+        'helpers'       => [
+            'more'  => 'Non hai trovato ciò che stavi cercando?',
+        ],
         'title'         => 'FAQ',
     ],
     'features'      => [
@@ -41,6 +50,17 @@ return [
             'description'   => 'Vuoi realizzare un fantastico strumento che si integra con Kanka? Sequi questo link :link.',
             'link'          => 'API docs',
             'title'         => 'API',
+        ],
+        'boosts'            => [
+            'beta'      => 'Accesso in beta ad alcune nuove funzionalità 30 giorni prima del loro rilascio generale.',
+            'boosted'   => 'Campagna potenziata',
+            'css'       => 'CSS personalizzati per la campagna',
+            'images'    => 'Imposta immagini predefinite personalizzate per le entità',
+            'recovery'  => 'Recupero delle entità fino a 30 giorni',
+            'theme'     => 'Tema fisso della campagna',
+            'title'     => 'Campagne potenziate',
+            'tooltip'   => 'Tooltips personalizzati per le entità: mostra immagine, cambia testo',
+            'upload'    => 'Dimensioni di caricamento aumentate per tutti i membri',
         ],
         'calendars'         => [
             'description'   => 'Crea dei calendari personalizzati ed organizza la tua campagna attorno ad essi.',
@@ -53,9 +73,11 @@ return [
         'description'       => 'Qui ci sono alcune delle cose che noi pensiamo tu adorerai della nostra app!',
         'description_full'  => 'Una vetrina di alcune delle nostre migliori e più amate caratteristiche.',
         'free'              => [
+            'bonuses'       => 'Bonus',
             'description'   => 'Le migliori cose nella vita sono quelle gratuite. Niente pubblicità, nessun costo nascosto, nessun paywall.',
             'title'         => 'Utilizzo Gratuito',
         ],
+        'landscape'         => 'Per favore passa alla modalità landscape per mostrare la lista delle funzionalità.',
         'layers'            => [
             'description'   => 'Tieni traccia dei personaggi, delle loro famiglie, dei luoghi visitati e molto altro in qualsiasi momento.',
             'title'         => 'Personaggi, Famiglie, Luoghi',
@@ -72,6 +94,22 @@ return [
         'notebook'          => [
             'description'   => 'Prepara la tua prossimo sessione o tieni traccia di quello che è successo con il nostro diario!',
             'title'         => 'Pagine del Diario',
+        ],
+        'patreon'           => [
+            'boosts'            => 'Potenziatori delle Campagne',
+            'curation'          => 'Aiuta a gestire gli elementi per il voto della community',
+            'default_image'     => 'Immagini predefinite personalizzate per le entità',
+            'description'       => 'Ricevere il vostro supporto tramite una piccola quota mensile ci permette di continuare a lavorare su Kanka e sblocca i seguenti benefici per un account.',
+            'discord'           => 'Canale Privato di Discord',
+            'free'              => 'Gratis',
+            'hall_of_fame'      => 'Nome nella :link',
+            'impact'            => 'Influenza le funzionalità future',
+            'monthly_vote'      => 'Partecipazione al voto della community per le funzionalità',
+            'pagination'        => 'Risultati per pagina aumentati',
+            'pagination_help'   => 'Questo è il numero massimo di risultati mostrati per pagina, non il limite numerico delle entità per una campagna.',
+            'title'             => 'Funzionalità a Pagamento',
+            'upload_limit'      => 'Dimensioni di caricamento',
+            'upload_limit_map'  => 'Dimensioni di caricamento per le mappe',
         ],
         'public'            => [
             'description'   => 'I permessi possono essere impostati per moduli o per ogni singola entità. Le campagne possono anche essere impostate come pubbliche per <a href=":url">mondo intero</a>.',
@@ -94,6 +132,12 @@ return [
     'footer'        => [
         'app'       => 'App',
         'copyright' => '© 2017 - :current kanka.io. All Rights Reserved.',
+        'headings'  => [
+            'app'           => 'App',
+            'community'     => 'Community',
+            'friends'       => 'I Nostri Amici',
+            'useful_links'  => 'Link Utili',
+        ],
         'navigation'=> 'Navigazione',
         'resources' => 'Risorse',
         'social'    => 'Social',
@@ -102,6 +146,7 @@ return [
         'description'   => 'Noi siamo qui per te nel caso qavessi bisogno di un piccolo aiuto. Contattaci utilizzando uno dei seguenti metodi è noi ti risponderemo il più velocemente possibile.',
         'discord'       => 'Unisciti alla comunità su Discord',
         'email'         => 'Inviaci una e-mail',
+        'facebook'      => 'Contattaci su Facebook',
         'title'         => 'Aiuto',
         'twitter'       => 'Facci un tweet su Twitter',
     ],
@@ -123,10 +168,14 @@ return [
         'help'      => 'Aiuto',
         'home'      => 'Home',
         'login'     => 'Entra',
+        'news'      => 'Novità',
+        'newsletter'=> 'Newsletter',
+        'pricing'   => 'Prezzi',
         'privacy'   => 'Privacy Policy',
         'register'  => 'Registrati',
         'releases'  => 'Rilasci',
         'roadmap'   => 'Roadmap',
+        'terms'     => 'Termini e Condizioni',
         'title'     => 'Menù',
     ],
     'meta'          => [
@@ -134,7 +183,7 @@ return [
         'title'         => 'Kanka - Gestore di campagne Online per RPG e strumento per la creazione di mondi',
     ],
     'privacy'       => [
-        'description'   => 'Data di entrata in vigore: 25 Maggio 2018',
+        'description'   => 'Data di entrata in vigore: :date',
         'title'         => 'Privacy Policy',
     ],
     'release'       => [
@@ -158,6 +207,10 @@ return [
         'title'             => 'Smetti di aspettare.<br />Inizia a costruire.',
     ],
     'team'          => [
-        'coffee'    => 'Comprami un caffè!',
+        'coffee'    => 'Offrimi un caffè!',
+    ],
+    'terms'         => [
+        'description'   => 'Data di entrata in vigore: :date',
+        'title'         => 'Termini e Condizioni',
     ],
 ];

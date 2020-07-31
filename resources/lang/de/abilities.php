@@ -17,7 +17,7 @@ return [
     ],
     'fields'        => [
         'abilities' => 'Fähigkeiten',
-        'ability'   => 'Fähigkeit',
+        'ability'   => 'Übergeordnete Fähigkeit',
         'charges'   => 'Ladungen',
         'name'      => 'Name',
         'type'      => 'Typ',

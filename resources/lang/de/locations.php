@@ -28,7 +28,7 @@ return [
         'characters'        => 'Charaktere',
         'image'             => 'Bild',
         'is_map_private'    => 'Private Karte',
-        'location'          => 'Ort',
+        'location'          => 'Übergeordneter Ort',
         'locations'         => 'Orte',
         'map'               => 'Karte',
         'name'              => 'Name',
@@ -36,12 +36,13 @@ return [
         'type'              => 'Typ',
     ],
     'helpers'       => [
-        'characters'    => 'Sieh alle Charaktere in diesem Ort und den Unterorten an oder nur die direkt im Ort.',
-        'descendants'   => 'Diese Liste enthält alle Orte, die direkt in diesem Ort und allen untergeordneten Orten sind.',
-        'families'      => 'Standorte können der Sitz mächtiger Familien sein.',
-        'map'           => 'Durch Hinzufügen einer Karte zu einem Ort können Sie "Punkte" auf der Karte platzieren und mit anderen Objekten in der Kampagne verknüpfen.',
-        'nested'        => 'Orte können in einer verschachtelten Ansicht angesehen werden. Orte ohne einen übergeordneten Ort werden direkt angezeigt. Orte, die untergeordnete Orte haben, können angeklickt werden um die untergeordneten Orte anzuzeigen. Du kannst so lange klicken, bis es keine untergeordneten Orte mehr gibt.',
-        'organisations' => 'Zeigen Sie alle Organisationen an diesem Standort und die untergeordneten Standorte oder nur die direkt hier befindlichen an.',
+        'characters'        => 'Sieh alle Charaktere in diesem Ort und den Unterorten an oder nur die direkt im Ort.',
+        'descendants'       => 'Diese Liste enthält alle Orte, die direkt in diesem Ort und allen untergeordneten Orten sind.',
+        'families'          => 'Standorte können der Sitz mächtiger Familien sein.',
+        'map'               => 'Durch Hinzufügen einer Karte zu einem Ort können Sie "Punkte" auf der Karte platzieren und mit anderen Objekten in der Kampagne verknüpfen.',
+        'map_deprecated'    => 'Karten sind jetzt ihr eigenes Modul! Diese neue Funktion ist derzeit für den frühen Zugriff auf :boosted verfügbar. Diese aktuelle Benutzeroberfläche ist nicht mehr verfügbar, sobald das neue Modul für alle verfügbar ist. Sie können jedoch weiterhin alte Karten in dieser Benutzeroberfläche bearbeiten.',
+        'nested'            => 'Orte können in einer verschachtelten Ansicht angesehen werden. Orte ohne einen übergeordneten Ort werden direkt angezeigt. Orte, die untergeordnete Orte haben, können angeklickt werden um die untergeordneten Orte anzuzeigen. Du kannst so lange klicken, bis es keine untergeordneten Orte mehr gibt.',
+        'organisations'     => 'Zeigen Sie alle Organisationen an diesem Standort und die untergeordneten Standorte oder nur die direkt hier befindlichen an.',
     ],
     'hints'         => [
         'is_map_private'    => 'Eine private Karte ist nur für Mitglieder der "Admin" -Rolle der Kampagne sichtbar.',
@@ -175,6 +176,7 @@ return [
             'return'        => 'Zurück zu :name',
             'shapes'        => [
                 'circle'    => 'Kreis',
+                'custom'    => 'Benutzerdefiniert',
                 'square'    => 'Quadrat',
             ],
             'sizes'         => [
@@ -192,6 +194,9 @@ return [
             'title'         => 'Ort :name Kartenpunkte',
         ],
         'success'   => 'Kartenpunkte gespeichert.',
+    ],
+    'maps'          => [
+        'title' => 'Ort :name Karten',
     ],
     'organisations' => [
         'description'   => 'Organisationen in diesem Ort.',
@@ -220,6 +225,7 @@ return [
             'journals'      => 'Logbücher',
             'locations'     => 'Orte',
             'map'           => 'Karte',
+            'maps'          => 'Karten',
             'menu'          => 'Menü',
             'organisations' => 'Organisationen',
             'quests'        => 'Quests',

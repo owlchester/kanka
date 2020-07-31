@@ -109,6 +109,7 @@ return [
             'impact'            => 'Ovplyvnenie budúcich funkcií',
             'monthly_vote'      => 'Účasť na komunitných hlasovaniach',
             'pagination'        => 'Navýšenie stránkovania',
+            'pagination_help'   => 'Toto je maximum zobrazovaných výsledkov na stránke, nie obmedzenie počtu objektov v kampani.',
             'title'             => 'Platené funkcie',
             'upload_limit'      => 'Veľkosti súborov',
             'upload_limit_map'  => 'Veľkosť nahraných máp',
@@ -225,16 +226,22 @@ return [
         'title'         => 'Verzie',
     ],
     'roadmap'       => [
-        'backlog'       => [
+        'backlog'           => [
             'description'   => 'Táto nástenka v Trelle obsahuje všetky komunitou požadované funkcionality, ako aj všetky plánované funkcie a vylepšenia, ktoré sa jedného dňa dostanú do aplikácie.',
             'title'         => 'Backlog',
         ],
-        'description'   => 'Naše komunitné hlasovania ovplyvňujú našu prácu, takže hoci nemáme viacmesačný plán, vieme všetci jednoducho získať prehľad o aktuálnom stave požiadaviek a o tom, na čom sa aktuálne pracuje.',
-        'next'          => [
+        'description'       => 'Naše komunitné hlasovania ovplyvňujú našu prácu, takže hoci nemáme viacmesačný plán, vieme všetci jednoducho získať prehľad o aktuálnom stave požiadaviek a o tom, na čom sa aktuálne pracuje.',
+        'featured_requests' => [
+            'title' => 'Vybrané požiadavky',
+        ],
+        'next'              => [
             'description'   => 'Táto nástenka v Trelle obsahuje všetky funkcionality a vylepšenia, na ktorých sa práve pracuje.',
             'title'         => 'Ďalšie',
         ],
-        'title'         => 'Roadmap',
+        'ongoing_progress'  => [
+            'title' => 'Priebežný postup',
+        ],
+        'title'             => 'Roadmap',
     ],
     'second_block'  => [
         'call_to_action'    => 'Zaregistruj sa zadarmo!',

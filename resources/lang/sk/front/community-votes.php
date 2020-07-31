@@ -18,6 +18,7 @@ return [
     'show'          => [
         'restricted'    => 'Komunitné hlasovania sú dostupné len pre používateľov, ktorí podporujú Kanku.',
         'title'         => 'Komunitné hlasovanie - :name',
+        'vote_count'    => '{1} :number hlas zaznamenaný.|[2,4] :number hlasy zaznamenané.|[5,*] :number hlasov zaznamenaných.',
         'voted_lasted'  => 'Hlasovanie trvalo od :from GMT do :until GMT.',
         'voting_until'  => 'Hlasovanie je otvorené do :until GMT.',
     ],

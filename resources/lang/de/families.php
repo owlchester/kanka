@@ -18,7 +18,7 @@ return [
     ],
     'fields'        => [
         'families'  => 'Unterfamilien',
-        'family'    => 'Oberfamilie',
+        'family'    => 'Übergeordnete Familie',
         'image'     => 'Bild',
         'location'  => 'Ort',
         'members'   => 'Mitglieder',

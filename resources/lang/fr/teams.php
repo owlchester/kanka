@@ -3,7 +3,6 @@
 return [
     'hall_of_fame'  => 'Hall of Fame',
     'index'         => [
-        'community'     => 'Communauté',
         'core'          => 'Coeur',
         'description'   => 'Ces personnes rendent Kanka possible',
         'other'         => 'Autre',

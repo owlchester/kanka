@@ -3,6 +3,7 @@
 return [
     'hall_of_fame'  => 'Sieň slávy',
     'index'         => [
+        'community'     => 'Komunita',
         'core'          => 'Hlavný tím',
         'description'   => 'Vďaka tímto ľuďom tu máme Kanku',
         'other'         => 'Ďalší',

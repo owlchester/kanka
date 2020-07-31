@@ -36,12 +36,13 @@ return [
         'type'              => 'Tipo',
     ],
     'helpers'       => [
-        'characters'    => 'Muestra todos los personajes en este lugar y sus lugares anidados, o solo los que están aquí.',
-        'descendants'   => 'Esta lista contiene todas las localizaciones que son descendientes de estos lugares, además de las que están directamente por debajo.',
-        'families'      => 'Hay lugares donde se asientan poderosas familias.',
-        'map'           => 'Al añadir un mapa a un lugar, podrás crear puntos en él y enlazar a otras entidades de la campaña.',
-        'nested'        => 'En la vista anidada puedes ver tus lugares de forma anidada. Las localizaciones que no tengan ninguna superior se mostrarán aquí por defecto. Las que tengan localizaciones anidadas se pueden ir clicando para mostrarlas. Puedes seguir haciendo click hasta que no haya más lugares anidados que ver.',
-        'organisations' => 'Ver todas las organizaciones de esta localización y sus sublocalizaciones, o solo las que están directamente aquí.',
+        'characters'        => 'Muestra todos los personajes en este lugar y sus lugares anidados, o solo los que están aquí.',
+        'descendants'       => 'Esta lista contiene todas las localizaciones que son descendientes de estos lugares, además de las que están directamente por debajo.',
+        'families'          => 'Hay lugares donde se asientan poderosas familias.',
+        'map'               => 'Al añadir un mapa a un lugar, podrás crear puntos en él y enlazar a otras entidades de la campaña.',
+        'map_deprecated'    => '¡Los mapas son ahora un módulo por sí mismos! Esta nueva función está actualmente disponible como acceso temprano a las :boosted. La interfaz previa dejará de estar disponible cuando se abra el acceso al nuevo módulo, pero seguirás pudiendo editar mapas antiguos.',
+        'nested'            => 'En la vista anidada puedes ver tus lugares de forma anidada. Las localizaciones que no tengan ninguna superior se mostrarán aquí por defecto. Las que tengan localizaciones anidadas se pueden ir clicando para mostrarlas. Puedes seguir haciendo click hasta que no haya más lugares anidados que ver.',
+        'organisations'     => 'Ver todas las organizaciones de esta localización y sus sublocalizaciones, o solo las que están directamente aquí.',
     ],
     'hints'         => [
         'is_map_private'    => 'Un mapa privado solo será visible para los miembros con el rol "Admin".',
@@ -175,6 +176,7 @@ return [
             'return'        => 'Volver a :name',
             'shapes'        => [
                 'circle'    => 'Círculo',
+                'custom'    => 'Personalizada',
                 'square'    => 'Cuadrado',
             ],
             'sizes'         => [
@@ -192,6 +194,9 @@ return [
             'title'         => 'Puntos del mapa de :name',
         ],
         'success'   => 'Puntos del mapa guardados.',
+    ],
+    'maps'          => [
+        'title' => 'Mapas de :name',
     ],
     'organisations' => [
         'description'   => 'Organizaciones situadas en la localización.',
@@ -220,6 +225,7 @@ return [
             'journals'      => 'Diarios',
             'locations'     => 'Lugares',
             'map'           => 'Mapa',
+            'maps'          => 'Mapas',
             'menu'          => 'Menú',
             'organisations' => 'Organizaciones',
             'quests'        => 'Misiones',

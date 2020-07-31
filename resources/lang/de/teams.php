@@ -3,6 +3,7 @@
 return [
     'hall_of_fame'  => 'Ruhmeshalle',
     'index'         => [
+        'community'     => 'Community',
         'core'          => 'Kernteam',
         'description'   => 'Diese Leute machen Kanka möglich',
         'other'         => 'Andere',

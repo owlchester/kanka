@@ -192,6 +192,7 @@ return [
         'is_star'               => 'Fissato',
         'item'                  => 'Oggetto',
         'location'              => 'Luogo',
+        'map'                   => 'Mappa',
         'name'                  => 'Nome',
         'organisation'          => 'Organizzazione',
         'race'                  => 'Razza',
@@ -321,6 +322,7 @@ return [
             'edit'          => 'Modifica',
             'entity_note'   => 'Note dell\'Entità',
             'read'          => 'Lettura',
+            'toggle'        => 'Attiva/Disattiva',
         ],
         'allowed'           => 'Permesso',
         'fields'            => [
@@ -348,6 +350,7 @@ return [
         'image_url'     => 'Altrimenti puoi caricare un\'immagine da un URL',
         'item'          => 'Seleziona un\'oggetto',
         'location'      => 'Seleziona un luogo',
+        'map'           => 'Seleziona una mappa',
         'organisation'  => 'Seleziona un\'organizzazione',
         'race'          => 'Seleziona una razza',
         'tag'           => 'Seleziona un tag',

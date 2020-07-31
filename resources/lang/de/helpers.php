@@ -19,6 +19,10 @@ return [
     'link'          => [
         'auto_update'       => 'Links zu ändern Objekten werden automatisch aktualisiert, wenn der Name des Ziels oder die Beschreibung sich geändert hat.',
         'description'       => 'Mit einem "@" kannst du ganz einfach Links zu anderen Einträgen setzen. Ein "#" zeigt dir stattdessen eine Namensliste mit Monaten aus deinen Kalendern an.',
+        'formatting'        => [
+            'text'  => 'Die Liste der zulässigen HTML-Tags und -Attribute finden Sie auf unserem :github.',
+            'title' => 'Formatierung',
+        ],
         'friendly_mentions' => 'Verknüpfen Sie andere Objekte, indem Sie Folgendes eingeben :code und die ersten Zeichen eines Objekts, um danach zu suchen. Dadurch wird :example in den Texteditor eingefügt und beim Anzeigen dieses Objekts als Link zum Objekt verlinkt.',
         'limitations'       => 'Bitte beachten Sie, dass diese Abkürzungen aufgrund technischer Einschränkungen auf Android-Mobilgeräten nicht funktionieren.',
         'mentions'          => 'Verknüpfen Sie andere Objekte, indem Sie Folgendes eingeben :code und die ersten Zeichen eines Objekts, um danach zu suchen. Dies wird eingefügt :example im Texteditor. Um den Namen des angezeigten Objekts anzupassen, können Sie Folgendes eingeben: :example_name. Verwenden Sie zum Festlegen der Unterseite des Objekts :example_page. Verwenden Sie zum Festlegen der Registerkarte des Objekts :example_tab.',

@@ -3,6 +3,7 @@
 return [
     'hall_of_fame'  => 'Salón de la fama',
     'index'         => [
+        'community'     => 'Comunidad',
         'core'          => 'Esencia',
         'description'   => 'Estas personas hacen que Kanka sea posible',
         'other'         => 'Otro',

@@ -56,6 +56,7 @@ TEXT
         'image'                         => 'Immagine',
         'locale'                        => 'Lingua',
         'name'                          => 'Nome',
+        'public_campaign_filters'       => 'Filtri Campagna Pubblica',
         'rpg_system'                    => 'Sistema RPG',
         'system'                        => 'Sistema',
         'theme'                         => 'Tema',
@@ -73,9 +74,11 @@ TEXT
         'excerpt'                       => 'L\'estratto della campagna sarà mostrato sulla dashboard, quindi scrivi una breve introduzione al tuo mondo. Mantienila breve per un miglior risultato.',
         'locale'                        => 'La lingua in cui la tua campagna è scritta. Questa specificazione è sfruttata per generare contenuti e raggruppare le campagne pubbliche.',
         'name'                          => 'La tua campagna/mondo può avere qualsiasi nome, a patto che che contenga almeno 4 lettere o numeri.',
+        'public_campaign_filters'       => 'Aiuta altre persone a trovare la campagna tra altre campagne pubbliche fornendo le seguenti informazioni.',
         'system'                        => 'Se la tua campagna è visibile pubblicamente, il sistema sarà visualizzato nella pagina :link.',
         'systems'                       => 'Per evitare di confondere gli utenti con una sovrabbondanza di opzioni, alcune di esse sono disponibili solamente per specifici sistemi RPG (per esempio il blocco delle statistiche dei mostri di D&D 5e). Aggiungere un sistema supportato qui abiliterà queste funzionalità.',
         'theme'                         => 'Forza il tema della campagna, sovrascrivendo le preferenze delle utenze.',
+        'view_public'                   => 'Per visualizzare la tua campagna come farebbe uno spettatore pubblico, apri :link in una finestra di navigazione in incognito.',
         'visibility'                    => 'Rendere pubblica una campagna significa che chiunque abbia il link può vederla.',
     ],
     'index'                             => [
@@ -241,6 +244,9 @@ TEXT
                 'read'          => 'Visualizza',
                 'toggle'        => 'Cambia per tutte',
             ],
+            'helpers'   => [
+                'entity_note'   => 'Questo permette ad utenti che non hanno il permesso di modificare un\'entità di aggiungere note ad essa.',
+            ],
             'hint'      => 'Questo ruolo ha automaticamente accesso a tutto.',
         ],
         'placeholders'  => [
@@ -293,6 +299,7 @@ TEXT
             'items'         => 'Armi, veicoli, reliquie, pozioni.',
             'journals'      => 'Osservazioni scritte dai personaggi, o preparazione per le sessioni del dungeon master.',
             'locations'     => 'Pianeti, piani, continenti, fiumi, stati, insediamenti, templi, taverne.',
+            'maps'          => 'Carica mappe con livelli e marcatori che puntano ad altre entità nella campagna.',
             'menu_links'    => 'Collegamenti personalizzati nel menu laterale.',
             'notes'         => 'Tradizioni, religioni, storia, magia, razze.',
             'organisations' => 'Culti, unità militari, fazioni, gilde.',

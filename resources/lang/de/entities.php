@@ -32,6 +32,8 @@ return [
     'journals'              => 'Logbücher',
     'location'              => 'Ort',
     'locations'             => 'Orte',
+    'map'                   => 'Karte',
+    'maps'                  => 'Karten',
     'menu_link'             => 'Menü Link',
     'menu_links'            => 'Menü Links',
     'note'                  => 'Notiz',

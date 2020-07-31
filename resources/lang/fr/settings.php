@@ -260,8 +260,7 @@ return [
             ],
         ],
         'warnings'              => [
-            'incomplete'    => 'Ne n\'avons pas pu débiter la carte de crédit. Vérifier les informations de la carte et mettre à jour si nécessaire. Nous essayerons à nouveau durant les prochains jours. Si ça échoue de nouveau, l\'abonnement sera annulé.',
-            'patreon'       => 'Ce compte est actuellement lié à Patreon. Prière de délié le compte dans les paramètres :patreon avant de pouvoir s\'abonner à Kanka.',
+            'patreon'   => 'Ce compte est actuellement lié à Patreon. Prière de délié le compte dans les paramètres :patreon avant de pouvoir s\'abonner à Kanka.',
         ],
     ],
 ];
