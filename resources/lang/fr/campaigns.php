@@ -4,9 +4,13 @@ return [
     'create'                            => [
         'description'           => 'Créer une nouvelle campagne',
         'helper'                => [
-            'first' => 'Merci pour l\'intérêt! Avant de pouvoir avancer, nous n\'avons que besoin d\'un <b>nom de campagne</b>. Ceci est le nom unique du monde qui le distingue des autres. Pas d\'inquiétude pour l\'originalité, le nom peut être changé à tout moment, autant de fois que désiré, et d\'autres campagnes peuvent être créées.',
-            'second'=> 'Bref! Alors, ce nom?',
-            'title' => 'Bienvenue à :name',
+            'title'     => 'Bienvenue à :name',
+            'welcome'   => <<<'TEXT'
+Avant d'aller plus loin, tu dois choisir un nom de campagne. C'est le nom de ton monde. Si tu n'as pas encore un bon nom, pas de panique, tu peux toujours le changer plus tard ou créer plus de campagnes.
+
+Merci d'avoir rejoint Kanka et bienvenue dans notre communauté florissante!
+TEXT
+,
         ],
         'success'               => 'Campagne créée.',
         'success_first_time'    => 'La première campagne a été créée! Quelques éléments ont été créé pour aider à bien démarrer.',
@@ -240,6 +244,9 @@ return [
                 'read'          => 'Voir',
                 'toggle'        => 'Changer pour tous',
             ],
+            'helpers'   => [
+                'entity_note'   => 'Ceci permets aux utilisateurs qui n\'ont pas la permission de modifier une entité de pouvoir ajouter des Notes d\'Entités sur celle-ci.',
+            ],
             'hint'      => 'Ce rôle a automatiquement accès à tout.',
         ],
         'placeholders'  => [
@@ -305,6 +312,7 @@ return [
     'show'                              => [
         'actions'       => [
             'boost' => 'Booster la campagne',
+            'edit'  => 'Modifier la campagne',
             'leave' => 'Quitter la campagne',
         ],
         'description'   => 'Détail d\'une campagne',

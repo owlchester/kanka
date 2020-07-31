@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'app_backup' => [
-        'question' => 'How often is the data on Kanka backed up?',
-        'answer' => 'We perform two backups a day to prevent any data loss. Our own campaigns are on the server, so we don’t want to take any risks!'
+    'app_backup'            => [
+        'answer'    => 'We perform two backups a day to prevent any data loss. Our own campaigns are on the server, so we don’t want to take any risks!',
+        'question'  => 'How often is the data on Kanka backed up?',
     ],
     'attribute-templates'   => [
         'answer'    => <<<'TEXT'
@@ -80,9 +80,9 @@ TEXT
         'answer'    => 'You can be a part of as many campaigns as you want, including those you\'ve created. To switch or create a new campaign, go to your campaign dashboard and in the top right you can click on your current campaign to display the campaign switcher interface.',
         'question'  => 'Can I have more than one campaign?',
     ],
-    'nested' => [
-        'question' => 'Can I set the lists to be nested by default?',
-        'answer' => 'If you prefer viewing your entities in a nested view by default (in example the Nested View button on the list of locations), you can do so by going into your Profile and Layout options. There you can check the Nested View option. This is only for your account and not for your campaigns.'
+    'nested'                => [
+        'answer'    => 'If you prefer viewing your entities in a nested view by default (in example the Nested View button on the list of locations), you can do so by going into your Profile and Layout options. There you can check the Nested View option. This is only for your account and not for your campaigns.',
+        'question'  => 'Can I set the lists to be nested by default?',
     ],
     'permissions'           => [
         'answer'    => 'Absolutely, this is why we built Kanka! You can invite all your players to your campaigns, and give them roles and permissions. We built the system to be extremely flexible (you can both use an opt-in and opt-out configuration) to cover as many needs and situations as possible.',

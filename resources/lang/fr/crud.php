@@ -331,8 +331,7 @@ return [
         ],
         'helper'            => 'En utilisant cette interface, il est possible d\'affiner les permissions des membres et rôles de la campagne pouvant interagir avec cette entité.',
         'helpers'           => [
-            'entity_note'   => 'Permettre aux utilisateurs de créer des notes d\'entité sur cette entité. Sans cette permission, seuls les notes d\'entités avec la visibilité Tous seront visibles.',
-            'setup'         => 'Utilise cette interface pour affiner la manière dont les rôles et les utilisateurs peuvent interagir avec cette entité. :allow permettra à l\'utilisateur ou au rôle d\'effectuer cette action. :deny leur empêchera de prendre cette action. :inherit utilisera le rôle de l\'utilisateur ou l\'autorisation de leur rôle. Un utilisateur avec :allow peut effectuer l\'action en question, même si son rôle est en :deny.',
+            'setup' => 'Utilise cette interface pour affiner la manière dont les rôles et les utilisateurs peuvent interagir avec cette entité. :allow permettra à l\'utilisateur ou au rôle d\'effectuer cette action. :deny leur empêchera de prendre cette action. :inherit utilisera le rôle de l\'utilisateur ou l\'autorisation de leur rôle. Un utilisateur avec :allow peut effectuer l\'action en question, même si son rôle est en :deny.',
         ],
         'inherited'         => 'Ce rôle a déjà cette permission pour ce type d\'entité.',
         'inherited_by'      => 'Cet utilisateur fait partie du rôle :role qui permet cette permission pour ce type d\'entité.',

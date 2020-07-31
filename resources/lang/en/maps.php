@@ -14,9 +14,9 @@ return [
         'success'   => 'Map :name updated.',
         'title'     => 'Edit Map :name',
     ],
-    'errors' => [
-        'explore' => [
-            'missing' => 'Please add an image to the map before being able to explore it.',
+    'errors'        => [
+        'explore'   => [
+            'missing'   => 'Please add an image to the map before being able to explore it.',
         ],
     ],
     'fields'        => [
@@ -43,9 +43,9 @@ return [
         'title' => 'Maps of :name',
     ],
     'panels'        => [
+        'groups'    => 'Groups',
         'layers'    => 'Layers',
         'markers'   => 'Markers',
-        'groups'    => 'Groups',
         'settings'  => 'Settings',
     ],
     'placeholders'  => [

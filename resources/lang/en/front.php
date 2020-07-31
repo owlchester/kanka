@@ -226,22 +226,22 @@ return [
         'title'         => 'Releases',
     ],
     'roadmap'       => [
-        'backlog'       => [
+        'backlog'           => [
             'description'   => 'This Trello board contains all the requested features that have been submitted by the community, as well as all the planned features and improvements that will one day make it to the app.',
             'title'         => 'Backlog',
         ],
-        'description'   => 'Our community votes shape our work, so while we don\'t have a multi-month roadmap, it is easy to stay up to date with what has been requested and what is currently being worked on.',
-        'next'          => [
+        'description'       => 'Our community votes shape our work, so while we don\'t have a multi-month roadmap, it is easy to stay up to date with what has been requested and what is currently being worked on.',
+        'featured_requests' => [
+            'title' => 'Feature Requests',
+        ],
+        'next'              => [
             'description'   => 'This Trello board contains all the features, improvements, and bugs that are currently being worked on following the latest :community_vote.',
             'title'         => 'Next',
         ],
-        'featured_requests' => [
-            'title' => 'Featured Requests',
-        ],
-        'ongoing_progress' => [
+        'ongoing_progress'  => [
             'title' => 'Ongoing Progress',
         ],
-        'title'         => 'Roadmap',
+        'title'             => 'Roadmap',
     ],
     'second_block'  => [
         'call_to_action'    => 'Register a free account!',

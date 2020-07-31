@@ -14,6 +14,11 @@ return [
         'success'   => 'Carte :name modifiée.',
         'title'     => 'Modifier la carte :name',
     ],
+    'errors'        => [
+        'explore'   => [
+            'missing'   => 'Il faut ajouter une image à la carte avant de pouvoir l\'explorer.',
+        ],
+    ],
     'fields'        => [
         'distance_measure'  => 'Mesure de distance',
         'distance_name'     => 'Unité de distance',
@@ -38,6 +43,7 @@ return [
         'title' => 'Cartes de :name',
     ],
     'panels'        => [
+        'groups'    => 'Groupes',
         'layers'    => 'Couches',
         'markers'   => 'Marqueurs',
         'settings'  => 'Paramètres',

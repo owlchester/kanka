@@ -3,13 +3,13 @@
 return [
     'hall_of_fame'  => 'Hall of Fame',
     'index'         => [
+        'community'     => 'Community',
         'core'          => 'Core',
         'description'   => 'These people make Kanka possible',
         'other'         => 'Other',
         'qa'            => 'Quality Assurance',
         'support'       => 'Support',
         'title'         => 'Team',
-        'community'     => 'Community',
         'translations'  => 'Translations',
     ],
     'patreon'       => [

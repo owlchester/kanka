@@ -19,11 +19,11 @@ return [
     'fields'        => [
         'custom_icon'   => 'Custom Icon',
         'custom_shape'  => 'Custom Shape',
+        'group'         => 'Marker Group',
         'is_draggable'  => 'Draggable',
         'latitude'      => 'Latitude',
         'longitude'     => 'Longitude',
         'opacity'       => 'Opacity',
-        'group'         => 'Marker Group',
     ],
     'helpers'       => [
         'base'          => 'Add markers to the map by clicking on any spot.',
