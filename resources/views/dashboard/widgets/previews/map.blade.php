@@ -4,6 +4,28 @@
  */
 $map = $widget->entity->child;
 ?>
+
+
+@if(empty($map->image))
+    <div class="panel panel-default widget-preview" id="dashboard-widget-{{ $widget->id }}">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <a href="{{ $model->getLink() }}">
+                    @if ($model->is_private)
+                        <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
+                    @endif
+
+                    {{ $widget->entity->name }}
+                </a>
+            </h3>
+        </div>
+        <div class="panel-body">
+            <p class="help-block">{{ __('maps.errors.dashboard.missing') }}</p>
+        </div>
+    </div>
+    @php return @endphp
+@endif
+
 <div class="panel panel-default widget-preview widget-map" id="dashboard-widget-{{ $widget->id }}">
     <div class="panel-body">
         <div class="map map-dashboard" id="map{{ $map->id }}" style="width: 100%; height: 100%;">

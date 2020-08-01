@@ -18,6 +18,9 @@ return [
         'explore'   => [
             'missing'   => 'Please add an image to the map before being able to explore it.',
         ],
+        'dashboard' => [
+            'missing' => 'This map needs an image to be able to render on the dashboard.',
+        ],
     ],
     'fields'        => [
         'distance_measure'  => 'Distance Measure',
