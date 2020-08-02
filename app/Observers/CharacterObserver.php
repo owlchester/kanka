@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Facades\CharacterCache;
 use App\Models\Character;
 use App\Models\CharacterTrait;
 use App\Models\MiscModel;
@@ -133,5 +134,17 @@ class CharacterObserver extends MiscObserver
         foreach ($existing as $id => $model) {
             $model->delete();
         }
+    }
+
+    /**
+     * @param MiscModel $model
+     */
+    public function saved(MiscModel $model)
+    {
+        parent::saved($model);
+
+
+        // Clear some cache
+        CharacterCache::clearSuggestion();
     }
 }
