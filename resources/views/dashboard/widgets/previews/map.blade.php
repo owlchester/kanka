@@ -1,8 +1,9 @@
 <?php
 /**
+ * @var \App\Models\CampaignDashboardWidget $widget
  * @var \App\Models\Map $map
  */
-$map = $widget->entity->child;
+$map = $widget->entity->map;
 ?>
 
 

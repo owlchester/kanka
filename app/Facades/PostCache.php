@@ -2,15 +2,18 @@
 
 namespace App\Facades;
 
-use App\Models\Release;
+use App\Models\AppRelease;
+use App\Services\Caches\PostCacheService;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * Class PostCache
  * @package App\Facades
  *
- * @method static null|Release latest()
+ * @method static null|AppRelease latest()
  * @method static bool clearLatest()
+ *
+ * @see PostCacheService
  */
 class PostCache extends Facade
 {

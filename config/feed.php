@@ -2,15 +2,6 @@
 
 return [
     'feeds' => [
-        'main' => [
-            'items' => 'App\Models\Release@getFeedItems',
-            'url' => '/feeds/news.rss',
-            'title' => 'Kanka News',
-            'description' => 'News for Kanka.io',
-            'language' => 'en-UK',
-            'view' => 'feed::atom',
-            'type' => 'application/atom+xml',
-        ],
         'community-votes' => [
             /*
              * Here you can specify which class and method will return
