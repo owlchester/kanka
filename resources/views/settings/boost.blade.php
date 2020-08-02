@@ -32,6 +32,11 @@
                     </a></li>
             </ul>
 
+            <p class="help-block">{{ __('settings.boost.benefits.third', [
+                'boost_button' => __('campaigns.show.actions.boost'),
+                'edit_button' => __('campaigns.show.actions.edit')
+            ]) }}</p>
+
             @if (Auth::user()->maxBoosts() > 0)
             <h3 class="page-header with-border">
                 {{ __('settings.boost.campaigns', ['max' => Auth::user()->maxBoosts(), 'count' => Auth::user()->boosting()]) }}

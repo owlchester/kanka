@@ -52,6 +52,7 @@ return [
             'more'      => 'Find out more about all features.',
             'second'    => 'Boosting a campaign enables the following benefits:',
             'theme'     => 'Campaign level theme and custom styling.',
+            'third'     => 'To boost a campaign, go to the campaign\'s page, and click on the ":boost_button" button above the ":edit_button" button.',
             'tooltip'   => 'Custom tooltips for entities.',
             'upload'    => 'Increased upload size for every member in the campaign.',
         ],
