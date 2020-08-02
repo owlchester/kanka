@@ -59,6 +59,8 @@
     @include('maps._setup', ['single' => true])
     <script type="text/javascript">
         var marker{{ $model->id }} = {!! $model->editing()->marker() !!}.addTo(map{{ $map->id }});
+
+        window.map = map{{ $map->id }};
     </script>
 @endsection
 

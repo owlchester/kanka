@@ -157,7 +157,7 @@ class MapMarker extends Model
                 }
             }
             // ' . implode(', ', $coords) . '
-            return 'L.polygon([[500,500],[500,600],[600,600],[600,500]], {
+            return 'L.polygon([' . implode(', ', $coords) . '], {
                 color: \'' . e($this->colour) . '\',
                 weight: 1,
                 opacity: ' . $this->opacity() . ',
@@ -258,13 +258,14 @@ class MapMarker extends Model
 
         return '.on(\'dragend\', function() {
             var coordinates = marker' . $this->id . '.getLatLng();
-//            console.log(\'coords\', coordinates);
-//            console.log(\'new coords\', coordinates.lat, coordinates.lng);
+            console.log(\'coords\', coordinates);
+            console.log(\'new coords\', coordinates.lat, coordinates.lng);
 
             var shapeId = $(\'input[name="shape_id"]\').val();
             var polyCoords = $(\'textarea[name="custom_shape"]\');
+            console.log(\'shape id\', shapeId);
             if (shapeId == "5") {
-//                console.log(\'poly\', polyCoords.val());
+                console.log(\'poly\', polyCoords.val());
                 polyCoords.val(polyCoords.val() + \' \' + coordinates.lat.toFixed(3) + \',\' + coordinates.lng.toFixed(3));
             } else {
                 $(\'#marker-latitude\').val(coordinates.lat.toFixed(3));
@@ -364,7 +365,7 @@ class MapMarker extends Model
             return  $this->colour;
         }
 
-        if ($this->icon != 1 && !empty($this->custom_icon)) {
+        if ($this->icon != 1 || !empty($this->custom_icon)) {
             return 'unset';
         }
         return '#ccc';

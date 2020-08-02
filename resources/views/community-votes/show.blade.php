@@ -6,7 +6,7 @@
 
 @section('og')
     <meta property="og:description" content="{{ $model->excerpt }}" />
-    <meta property="og:url" content="{{ route('releases.show', $model->getSlug()) }}" />
+    <meta property="og:url" content="{{ route('community-votes.show', $model->getSlug()) }}" />
     <link rel="alternate" type="application/rss+xml" title="{{ __('front/community-votes.title') }}" href="{{ url('/feeds/community-votes.rss') }}" />
 @endsection
 

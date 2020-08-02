@@ -248,4 +248,17 @@ class Map extends MiscModel
         }
         return $options;
     }
+
+    /**
+     * @return string
+     */
+    public function activeLayers(): string
+    {
+        $layers = ['baseLayer' . $this->id];
+        foreach ($this->groups as $group) {
+            $layers[] = 'group' . $group->id;
+        }
+
+        return implode(', ', $layers);
+    }
 }

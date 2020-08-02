@@ -4,7 +4,6 @@
 namespace App\Jobs;
 
 
-use App\Mail\Subscription\Admin\CancelledSubscriptionMail;
 use App\Notifications\Header;
 use App\Services\DiscordService;
 use App\User;
@@ -13,12 +12,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Mail;
 use TCG\Voyager\Models\Role;
 
 class SubscriptionEndJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    /**
+     * The number of times the job may be attempted.
+     *
+     * @var int
+     */
+    public $tries = 1;
 
     /** @var User  */
     public $userId;
@@ -39,7 +44,7 @@ class SubscriptionEndJob implements ShouldQueue
     public function handle()
     {
         $this->user = User::find($this->userId);
-        if (empty($this->user)) {
+        if (empty($this->user) || $this->userId == 27078) {
             // User deleted their account already.
             return;
         }

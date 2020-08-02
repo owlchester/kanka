@@ -27,4 +27,10 @@ return [
      * If empty, tracking will be disabled
      */
     'fb' => env('TRACKING_FB', null),
+
+
+    /*
+     * AdSense ID
+     */
+    'adsense' => env('TRACKING_ADSENSE', null),
 ];

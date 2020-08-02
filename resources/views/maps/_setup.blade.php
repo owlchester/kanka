@@ -42,7 +42,7 @@
         zoom: 0,
         minZoom: -2,
         maxZoom: 5,
-        layers: [baseLayer{{ $map->id }}]
+        layers: [{{ $map->activeLayers() }}]
     });
 
     L.control.layers(baseMaps{{ $map->id }}, overlayMaps{{ $map->id }}).addTo(map{{ $map->id }});

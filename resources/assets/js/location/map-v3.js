@@ -3,7 +3,6 @@ import deleteConfirm from "../components/delete-confirm";
 var mapPageBody;
 var sidebarMap, sidebarMarker;
 var markerModal, markerModalContent, markerModalTitle;
-var invalidatedMap = false;
 
 $(document).ready(function() {
 
