@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Log;
  * @package App\Services
  *
  * To set up your discord bot, access the following:
- * https://discordapp.com/api/oauth2/authorize?client_id=<DISCORD_ID>&scope=bot&permissions=268443657
+ * https://discord.com/api/oauth2/authorize?client_id=<DISCORD_ID>&scope=bot&permissions=268443657
  */
 class DiscordService
 {
@@ -27,7 +27,7 @@ class DiscordService
     protected $app;
 
     /** @var string  */
-    protected $url = 'https://discordapp.com/api/v6/';
+    protected $url = 'https://discord.com/api/v6/';
 
     /** @var mixed */
     protected $me = false;
