@@ -103,6 +103,7 @@
                     {{ __('crud.panels.entry') }}
                 </a>
             </li>
+            @can('members', $campaign)
             <li class="@if(!empty($active) && $active == 'users')active @endif">
                 <a href="{{ route('campaign_users.index') }}">
                     {{ __('campaigns.show.tabs.members') }}
@@ -111,6 +112,7 @@
                     </span>
                 </a>
             </li>
+            @endcan
             @can('update', $campaign)
             <li class="@if(!empty($active) && $active == 'roles')active @endif">
                 <a href="{{ route('campaign_roles.index') }}">

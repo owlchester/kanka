@@ -82,6 +82,12 @@ class CampaignObserver
         if (request()->has('tooltip_image')) {
             $uiSettings['tooltip_image'] = (bool) request()->get('tooltip_image');
         }
+        if (request()->has('hide_members')) {
+            $uiSettings['hide_members'] = (bool) request()->get('hide_members');
+        }
+        if (request()->has('hide_history')) {
+            $uiSettings['hide_history'] = (bool) request()->get('hide_history');
+        }
         $campaign->ui_settings = $uiSettings;
 
         // Handle image. Let's use a service for this.
