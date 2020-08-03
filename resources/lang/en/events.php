@@ -20,6 +20,9 @@ return [
         'name'      => 'Name',
         'type'      => 'Type',
     ],
+    'helpers'       => [
+        'date'      => 'This field can contain anything and is not linked to the campaign\'s calendars. Go to a calendar and add the event there to link both together.',
+    ],
     'index'         => [
         'add'           => 'New Event',
         'description'   => 'Manage the events of :name.',

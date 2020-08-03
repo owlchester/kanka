@@ -1,9 +1,18 @@
 
-{{ csrf_field() }}
 <div class="row">
     <div class="col-md-6">
         @include('cruds.fields.name', ['trans' => 'journals'])
+    </div>
+    <div class="col-md-6">
         @include('cruds.fields.type', ['base' => \App\Models\Journal::class, 'trans' => 'journals'])
+    </div>
+</div>
+
+@include('cruds.fields.entry2')
+
+
+<div class="row">
+    <div class="col-md-6">
         @include('cruds.fields.character', ['label' => 'journals.fields.author'])
         @include('cruds.fields.location')
 
@@ -23,9 +32,5 @@
     </div>
     <div class="col-md-6">
         @include('cruds.fields.image')
-    </div>
-
-    <div class="col-md-12">
-        @include('cruds.fields.entry2')
     </div>
 </div>
