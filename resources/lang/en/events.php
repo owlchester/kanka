@@ -21,7 +21,7 @@ return [
         'type'      => 'Type',
     ],
     'helpers'       => [
-        'date'      => 'This field can contain anything and is not linked to the campaign\'s calendars. Go to a calendar and add the event there to link both together.',
+        'date'      => 'This field can contain anything and is not linked to the campaign\'s calendars. To link this event to a calendar, go add it on the calendar or on the reminders tab of this event.',
     ],
     'index'         => [
         'add'           => 'New Event',
