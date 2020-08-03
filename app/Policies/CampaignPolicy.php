@@ -175,6 +175,6 @@ class CampaignPolicy
      */
     public function members(?User $user, Campaign $campaign)
     {
-        return !($campaign->boosted() && $campaign->hide_members);
+        return UserCache::user($user)->admin() || !($campaign->boosted() && $campaign->hide_members);
     }
 }
