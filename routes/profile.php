@@ -7,7 +7,7 @@ Route::patch('/settings/profile', 'Settings\ProfileController@update')->name('se
 // Model mapping
 Route::get('/settings/boost', 'Settings\BoostController@index')->name('settings.boost');
 
-Route::post('/settings/release/{release}', 'Settings\ReleaseController@read')->name('settings.release');
+Route::post('/settings/release/{app_release}', 'Settings\ReleaseController@read')->name('settings.release');
 Route::post('/settings/welcome', 'Settings\WelcomeController@read')->name('settings.welcome');
 
 Route::get('/settings/account', 'Settings\AccountController@index')->name('settings.account');
