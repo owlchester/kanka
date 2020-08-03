@@ -330,6 +330,14 @@ class Campaign extends MiscModel
         return self::LAYER_COUNT_MIN;
     }
 
+    public function maxEntityFiles(): int
+    {
+        if ($this->boosted()) {
+            return config('entities.max_entity_files_boosted');
+        }
+        return config('entities.max_entity_files');
+    }
+
     /**
      * @return array
      */

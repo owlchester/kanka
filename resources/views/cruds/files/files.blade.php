@@ -15,4 +15,4 @@
     @endforeach
 </ul>
 
-<p class="text-muted">{{ __('crud.files.hints.limit', ['max' => config('entities.max_entity_files')]) }}</p>
+<p class="text-muted">{{ __('crud.files.hints.limit', ['max' => $campaign->maxEntityFiles()]) }}</p>

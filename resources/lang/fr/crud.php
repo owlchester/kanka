@@ -214,7 +214,7 @@ return [
         'files'     => 'Fichiers uploadé',
         'hints'     => [
             'limit'         => 'Chaque entité peut avoir un nombre maximal de :max fichiers uploadé.',
-            'limitations'   => 'Formats supportés: jpg, png, gif et pdf. Taille maximale: :size',
+            'limitations'   => 'Formats supportés: :formats. Taille maximale: :size',
         ],
         'title'     => 'Fichiers d\'entité pour :name',
     ],

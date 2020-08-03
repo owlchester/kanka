@@ -24,7 +24,7 @@ class StoreEntityFile extends FormRequest
     public function rules()
     {
         return [
-            'file' => 'required|file|mimes:jpeg,png,jpg,gif,pdf|max:' . auth()->user()->maxUploadSize(),
+            'file' => 'required|file|mimes:jpeg,png,jpg,gif,pdf,xls,xlsx|max:' . auth()->user()->maxUploadSize(),
         ];
     }
 }

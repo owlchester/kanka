@@ -3,23 +3,35 @@
 namespace App\Services;
 
 use App\Exceptions\EntityFileException;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityFile;
 
 class EntityFileService
 {
-    /**
-     * @var Entity
-     */
+    /** @var Entity */
     protected $entity;
+
+    /** @var Campaign */
+    protected $campaign;
 
     /**
      * @param Entity $entity
      * @return $this
      */
-    public function entity(Entity $entity)
+    public function entity(Entity $entity): self
     {
         $this->entity = $entity;
+        return $this;
+    }
+
+    /**
+     * @param Campaign $campaign
+     * @return $this
+     */
+    public function campaign(Campaign $campaign): self
+    {
+        $this->campaign = $campaign;
         return $this;
     }
 
@@ -29,7 +41,7 @@ class EntityFileService
     public function upload($field = 'file', $folder = 'entities/files')
     {
         // Already above max capacity?
-        if ($this->entity->files->count() >= config('entities.max_entity_files')) {
+        if ($this->entity->files->count() >= $this->campaign->maxEntityFiles()) {
             throw new EntityFileException('max');
         }
         // Prepare the file for the journey
