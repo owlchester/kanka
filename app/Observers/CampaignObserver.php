@@ -114,7 +114,6 @@ class CampaignObserver
         // Make sure we save the last campaign id to avoid infinite loops
         $user = Auth::user();
         $user->last_campaign_id = $campaign->id;
-        $user->campaign_role = 'owner';
         $user->save();
 
         $role = CampaignRole::create([

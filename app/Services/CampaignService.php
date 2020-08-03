@@ -68,7 +68,6 @@ class CampaignService
         Session::put('campaign_id', $campaign->id);
         $user = Auth::user();
         $user->last_campaign_id = $campaign->id;
-        $user->campaign_role = $campaign->role();
         $user->save();
     }
 
