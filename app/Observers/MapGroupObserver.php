@@ -20,7 +20,7 @@ class MapGroupObserver
      */
     public function saving(MapGroup $mapGroup)
     {
-        if (!empty($mapGroup->positon)) {
+        if (!empty($mapGroup->position)) {
             $mapGroup->position = (int) $mapGroup->position;
         } else {
             $lastGroup = $mapGroup->map->groups()->orderByDesc('position')->first();

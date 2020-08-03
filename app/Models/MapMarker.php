@@ -370,4 +370,13 @@ class MapMarker extends Model
         }
         return '#ccc';
     }
+
+    /**
+     * Check if a marker is visible (pointing to an entity that shouldn't be visible)
+     * @return bool
+     */
+    public function visible(): bool
+    {
+        return empty($this->entity_id) || $this->entity->child;
+    }
 }

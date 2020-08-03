@@ -61,12 +61,18 @@ class MapGroup extends Model
         return $this->hasMany(MapMarker::class, 'group_id');
     }
 
+    /**
+     * @return string
+     */
     public function markerGroupHtml(): string
     {
         $data = [];
-        $ids = $this->markers->pluck('id');
-        foreach ($ids as $id) {
-            $data[] = 'marker' . $id;
+        /** @var MapMarker[] $markers */
+        $markers = $this->markers()->with('entity')->get();
+        foreach ($markers as $marker) {
+            if ($marker->visible()) {
+                $data[] = 'marker' . $marker->id;
+            }
         }
 
         return implode(',', $data);
