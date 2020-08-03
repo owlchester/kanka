@@ -4,11 +4,11 @@
  */
 ?><script type="text/javascript">
     var bounds{{ $map->id }} = [[0, 0], [{{ floor($map->height / 1) }}, {{ floor($map->width / 1) }}]];
-    var baseLayer{{ $map->id }} = L.imageOverlay('{{ Img::resetCrop()->url($map->image) }}', bounds{{ $map->id }});
+    var baseLayer{{ $map->id }} = L.imageOverlay('{{ Storage::url($map->image) }}', bounds{{ $map->id }});
 
     /** Layers Init **/
 @foreach ($map->layers as $layer)
-    var layer{{ $layer->id }} = L.imageOverlay('{{ Img::resetCrop()->url($layer->image) }}', bounds{{ $map->id }});
+    var layer{{ $layer->id }} = L.imageOverlay('{{ Storage::url($layer->image) }}', bounds{{ $map->id }});
 @endforeach
 
     var baseMaps{{ $map->id }} = {
