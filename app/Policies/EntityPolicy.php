@@ -37,4 +37,14 @@ class EntityPolicy
     {
         return $user->isAdmin();
     }
+
+    /**
+     * @param User|null $user
+     * @param Entity $entity
+     * @return bool
+     */
+    public function history(?User $user, Entity $entity, Campaign $campaign)
+    {
+        return $user->isAdmin() || !($campaign->boosted() && $campaign->hide_history);
+    }
 }
