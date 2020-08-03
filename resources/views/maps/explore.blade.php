@@ -18,6 +18,9 @@
     <script type="text/javascript">
         var markers = [];
 @foreach ($map->markers as $marker)
+@if(!$marker->visible())
+@continue
+@endif
         var marker{{ $marker->id }} = {!! $marker->exploring()->marker() !!};
         markers.push('marker' + {{ $marker->id }});
 @endforeach
@@ -28,7 +31,7 @@
     <script type="text/javascript">
         window.map = map{{ $map->id }};
 @foreach ($map->markers as $marker)
-@if (empty($marker->group_id))
+@if ($marker->visible() && empty($marker->group_id))
         marker{{ $marker->id }}.addTo(map{{ $map->id }});
 @endif
 @endforeach

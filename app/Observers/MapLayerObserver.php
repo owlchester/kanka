@@ -21,7 +21,7 @@ class MapLayerObserver
     public function saving(MapLayer $mapLayer)
     {
         $mapLayer->entry = $this->purify(Mentions::codify($mapLayer->entry));
-        if (!empty($mapLayer->positon)) {
+        if (!empty($mapLayer->position)) {
             $mapLayer->position = (int) $mapLayer->position;
         } else {
             $lastLayer = $mapLayer->map->layers()->orderByDesc('position')->first();

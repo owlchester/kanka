@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 
 class MapMarkerController extends Controller
 {
+    /**
+     * @var array fields from the input sent to the model
+     */
     protected $fields = [
         'entity_id', 'name', 'entry', 'longitude', 'latitude',
         'colour', 'opacity',
@@ -22,6 +25,11 @@ class MapMarkerController extends Controller
         'group_id',
     ];
 
+    /**
+     * @param Map $map
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function create(Map $map)
     {
         $this->authorize('update', $map);
@@ -55,6 +63,12 @@ class MapMarkerController extends Controller
 
     }
 
+    /**
+     * @param Map $map
+     * @param MapMarker $mapMarker
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function edit(Map $map, MapMarker $mapMarker)
     {
         $this->authorize('update', $map);
@@ -69,6 +83,13 @@ class MapMarkerController extends Controller
         );
     }
 
+    /**
+     * @param StoreMapMarker $request
+     * @param Map $map
+     * @param MapMarker $mapMarker
+     * @return mixed
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function update(StoreMapMarker $request, Map $map, MapMarker $mapMarker)
     {
         $this->authorize('update', $map);
@@ -81,6 +102,12 @@ class MapMarkerController extends Controller
 
     }
 
+    /**
+     * @param Map $map
+     * @param MapMarker $mapMarker
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function destroy(Map $map, MapMarker $mapMarker)
     {
         $this->authorize('update', $map);
@@ -97,9 +124,19 @@ class MapMarkerController extends Controller
             ->withSuccess(__('maps/markers.delete.success', ['name' => $mapMarker->name]));
     }
 
+    /**
+     * @param Map $map
+     * @param MapMarker $mapMarker
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Throwable
+     */
     public function details(Map $map, MapMarker $mapMarker)
     {
         $this->authorize('view', $map);
+        if ($mapMarker->entity_id) {
+            $this->authorize('view', $mapMarker->entity->child);
+        }
 
         return response()->json([
             'body' => view('maps.markers.details', ['marker' => $mapMarker])->render(),
@@ -107,6 +144,13 @@ class MapMarkerController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param Map $map
+     * @param MapMarker $mapMarker
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function move(Request $request, Map $map, MapMarker $mapMarker)
     {
         $this->authorize('update', $map);

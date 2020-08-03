@@ -250,13 +250,16 @@ class Map extends MiscModel
     }
 
     /**
+     * @param bool $groups
      * @return string
      */
-    public function activeLayers(): string
+    public function activeLayers(bool $groups = true): string
     {
         $layers = ['baseLayer' . $this->id];
-        foreach ($this->groups as $group) {
-            $layers[] = 'group' . $group->id;
+        if ($groups) {
+            foreach ($this->groups as $group) {
+                $layers[] = 'group' . $group->id;
+            }
         }
 
         return implode(', ', $layers);
