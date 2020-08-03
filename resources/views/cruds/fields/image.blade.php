@@ -19,8 +19,8 @@
 
             <p class="help-block">
                 {{ __('crud.hints.image_limitations', ['size' => auth()->user()->maxUploadSize(true, (isset($size) ? $size : 'image'))]) }}
-                @if (!auth()->user()->hasRole('patreon'))
-                    <a href="{{ route('settings.patreon') }}">{{ __('crud.hints.image_patreon') }}</a>
+                @if (!auth()->user()->hasRole('patreon') && !$campaign->campaign()->boosted())
+                    <a href="{{ route('settings.subscription') }}">{{ __('crud.hints.image_patreon') }}</a>
                 @endif
             </p>
         </div>
