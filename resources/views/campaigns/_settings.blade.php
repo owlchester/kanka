@@ -59,13 +59,16 @@
         @include('campaigns.settings.box', ['icon' => 'ra ra-fire-symbol', 'module' => 'abilities'])
     </div>
     <div class="col-md-4">
-        @include('campaigns.settings.box', ['icon' => 'ra ra-fire-symbol', 'module' => 'maps', 'boosted' => true])
+        @include('campaigns.settings.box', ['icon' => 'fa fa-map', 'module' => 'maps', 'boosted' => true])
     </div>
     <div class="col-md-4">
-        @include('campaigns.settings.box', ['icon' => 'ra ra-dice-five', 'module' => 'dice_rolls'])
+        @include('campaigns.settings.box', ['icon' => 'fa fa-clock', 'module' => 'timelines', 'boosted' => true])
     </div>
 </div>
 <div class="row">
+    <div class="col-md-4">
+        @include('campaigns.settings.box', ['icon' => 'ra ra-dice-five', 'module' => 'dice_rolls'])
+    </div>
     <div class="col-md-4">
         @include('campaigns.settings.box', ['icon' => 'ra ra-speech-bubbles', 'module' => 'conversations'])
     </div>

@@ -33,6 +33,8 @@ class CampaignSetting extends Model
         'menu_links',
         'conversations',
         'races',
+        'maps',
+        'timelines',
     ];
 
     /**

@@ -71,6 +71,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\Quest' => 'App\Policies\QuestPolicy',
         'App\Models\Race' => 'App\Policies\RacePolicy',
         'App\Models\Tag' => 'App\Policies\TagPolicy',
+        'App\Models\Timeline' => 'App\Policies\TimelinePolicy',
     ];
 
     /**

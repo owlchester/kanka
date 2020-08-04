@@ -43,11 +43,12 @@ class EntityService
             'notes' => 'App\Models\Note',
             'organisations' => 'App\Models\Organisation',
             'quests' => 'App\Models\Quest',
+            'races' => 'App\Models\Race',
             'tags' => 'App\Models\Tag',
+            'timelines' => 'App\Models\Timeline',
             'attribute_templates' => 'App\Models\AttributeTemplate',
             'dice_rolls' => 'App\Models\DiceRoll',
             'menu_links' => 'App\Models\MenuLink',
-            'races' => 'App\Models\Race',
         ];
     }
 

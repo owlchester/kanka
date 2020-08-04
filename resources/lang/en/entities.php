@@ -46,4 +46,6 @@ return [
     'races'                 => 'Races',
     'tag'                   => 'Tag',
     'tags'                  => 'Tags',
+    'timeline'              => 'Timeline',
+    'timelines'             => 'Timelines',
 ];

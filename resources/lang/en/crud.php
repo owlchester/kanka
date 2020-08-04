@@ -195,6 +195,7 @@ return [
         'map'                   => 'Map',
         'name'                  => 'Name',
         'organisation'          => 'Organisation',
+        'position'              => 'Position',
         'race'                  => 'Race',
         'tag'                   => 'Tag',
         'tags'                  => 'Tags',
