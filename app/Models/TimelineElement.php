@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Builder;
  *
  * @property int $id
  * @property int $timeline_id
- * @property int $timeline_era
+ * @property int $era_id
  * @property int $entity_id
  * @property string $name
  * @property string $entry

@@ -205,6 +205,14 @@ trait CampaignRelations
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function timelines()
+    {
+        return $this->hasMany('App\Models\Timeline');
+    }
+
+    /**
      * @return mixed
      */
     public function menuLinks()

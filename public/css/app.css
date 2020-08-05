@@ -835,7 +835,7 @@ td.breakable {
 }
 
 .rte-autocomplete {
-  z-index: 1500;
+  z-index: 9920;
 }
 
 .widget-user-image .entity-image {

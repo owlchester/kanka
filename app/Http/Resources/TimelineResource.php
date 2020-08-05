@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Timeline;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class TimelineResource extends EntityResource
@@ -14,10 +15,12 @@ class TimelineResource extends EntityResource
      */
     public function toArray($request)
     {
+        /** @var Timeline $model */
+        $model = $this->resource;
         return $this->entity([
-            'type' => $this->type,
-            'calendar_id' => $this->calendar_id,
-            'eras' => $this->eras,
+            'type' => $model->type,
+            'calendar_id' => $model->calendar_id,
+            'eras' => TimelineEraResource::collection($model->eras),
         ]);
     }
 }
