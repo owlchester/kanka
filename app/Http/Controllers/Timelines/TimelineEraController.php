@@ -70,10 +70,11 @@ class TimelineEraController extends Controller
 
         $ajax = request()->ajax();
         $model = $timelineEra;
+        $from = request()->get('from') == 'view' ? 'view' : null;
 
         return view(
             'timelines.eras.edit',
-            compact('timeline', 'ajax', 'model')
+            compact('timeline', 'ajax', 'model', 'from')
         );
     }
 
@@ -89,6 +90,12 @@ class TimelineEraController extends Controller
         $this->authorize('update', $timeline);
 
         $timelineEra->update($request->only($this->fields));
+
+        if (request()->post('from') == 'view') {
+            return redirect()
+                ->route('timelines.show', [$timeline, '#' . $timelineEra->id])
+                ->withSuccess(__('timelines/eras.edit.success', ['name' => $timelineEra->name]));
+        }
 
         return redirect()
             ->route('timelines.edit', [$timeline, '#tab_form-eras'])
@@ -107,6 +114,13 @@ class TimelineEraController extends Controller
         $this->authorize('update', $timeline);
 
         $timelineEra->delete();
+
+
+        if (request()->get('from') == 'view') {
+            return redirect()
+                ->route('timelines.show', [$timeline])
+                ->withSuccess(__('timelines/eras.delete.success', ['name' => $timelineEra->name]));
+        }
 
         return redirect()
             ->route('timelines.edit', [$timeline, '#tab_form-eras'])

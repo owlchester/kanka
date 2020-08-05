@@ -75,6 +75,9 @@ class SidebarService
         'tags' => [
             'tags'
         ],
+        'timelines' => [
+            'timelines'
+        ],
         'dice_rolls' => [
             'dice_rolls',
         ],
