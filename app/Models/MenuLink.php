@@ -186,10 +186,10 @@ class MenuLink extends MiscModel
 
     /**
      * Override the get link
-     * @param string $route
+     * @param string $route = 'show'
      * @return string
      */
-    public function getLink($route = 'show')
+    public function getLink(string $route = 'show'): string
     {
         return route('menu_links.' . $route, $this->id);
     }

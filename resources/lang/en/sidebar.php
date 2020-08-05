@@ -26,6 +26,7 @@ return [
     'races'                 => 'Races',
     'search'                => 'Search...',
     'tags'                  => 'Tags',
+    'timelines'             => 'Timelines',
     'translations'          => 'Translations',
     'world'                 => 'World',
 ];

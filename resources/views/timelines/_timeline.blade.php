@@ -10,7 +10,7 @@
     $position = 1;
     @endphp
 
-    <div class="box box-widget">
+    <div class="box box-widget" id="era{{ $era->id }}">
         <div class="box-header with-border">
             <div class="box-title">{{ $era->name }} @if(!empty($era->abbreviation)) ({{ $era->abbreviation }}) @endif</div>
             <span>
@@ -56,7 +56,7 @@
         @if(!empty($element->entity_id) && empty($element->entity->child))
             @continue
         @endif
-        <li>
+        <li id="element{{ $element->id }}">
             <i class="fa fas fa-hourglass-half bg-{{ $element->colour }}"></i>
 
             <div class="timeline-item">

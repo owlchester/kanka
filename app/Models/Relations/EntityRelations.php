@@ -212,6 +212,14 @@ trait EntityRelations
     }
 
     /**
+     * @return mixed
+     */
+    public function timelines()
+    {
+        return $this->hasMany('App\Models\TimelineElement', 'entity_id');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\hasOne
      */
     public function abilities()
