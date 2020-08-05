@@ -19,7 +19,6 @@ class TimelineResource extends EntityResource
         $model = $this->resource;
         return $this->entity([
             'type' => $model->type,
-            'calendar_id' => $model->calendar_id,
             'eras' => TimelineEraResource::collection($model->eras),
         ]);
     }

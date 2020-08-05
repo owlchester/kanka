@@ -13,15 +13,6 @@
         'name',
         'type',
         [
-            'label' => trans('crud.fields.calendar'),
-            'field' => 'calendar.name',
-            'render' => function($model) {
-                if ($model->calendar) {
-                    return $model->calendar->tooltipedLink();
-                }
-            }
-        ],
-        [
             'type' => 'is_private',
         ]
     ],

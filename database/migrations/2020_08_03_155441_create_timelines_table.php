@@ -58,6 +58,7 @@ class CreateTimelinesTable extends Migration
 
             // Foreign
             $table->foreign('timeline_id')->references('id')->on('timelines')->onDelete('cascade');
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
 
             // Index
             $table->index(['name', 'start_year']);
