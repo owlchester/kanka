@@ -72,7 +72,6 @@
     <link href="{{ mix('css/map-v3.css') }}" rel="stylesheet">
     <link href="/vendor/spectrum/spectrum.css" rel="stylesheet">
 
-
     <style>
 @foreach ($model->markers as $marker)
         .marker-{{ $marker->id }}  {

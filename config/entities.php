@@ -24,6 +24,7 @@ return [
         'attribute_template' => 15,
         'ability' => 16,
         'map' => 17,
+        'timeline' => 18,
 //        '' => 17,
 //        '' => 18,
 //        '' => 19,

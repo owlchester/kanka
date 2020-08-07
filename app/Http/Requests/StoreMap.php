@@ -25,7 +25,7 @@ class StoreMap extends FormRequest
     {
         $rules = [
             'name' => 'required',
-            'type' => 'nullable:max:191',
+            'type' => 'nullable|max:191',
             'map_id' => 'nullable|integer|exists:maps,id',
             'location_id' => 'nullable|integer|exists:locations,id',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:' . auth()->user()->maxUploadSize(false, 'map'),

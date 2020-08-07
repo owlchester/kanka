@@ -58,7 +58,7 @@ class LiveController extends Controller
             $this->search
                 ->term($term)
                 ->campaign($campaign)
-                ->exclude(['calendars', 'tags'])
+                ->exclude(['calendar', 'tag', 'map', 'timeline'])
                 ->find()
         );
     }

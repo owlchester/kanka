@@ -16,6 +16,7 @@ use App\Models\Map;
 use App\Models\MiscModel;
 use App\Models\Relation;
 use App\Models\Tag;
+use App\Models\Timeline;
 use App\User;
 
 /**
@@ -35,6 +36,7 @@ use App\User;
  * @property User $updater
  * @property Campaign $campaign
  * @property Map $map
+ * @property Timeline $timeline
  * @property Attribute[] $starredAttributes
  * @property Relation[] $starredRelations
  * @property Relation[] $relations
@@ -184,6 +186,15 @@ trait EntityRelations
         );
     }
 
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function timeline()
+    {
+        return $this->hasOne('App\Models\Timeline', 'id', 'entity_id');
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -198,6 +209,14 @@ trait EntityRelations
     public function inventories()
     {
         return $this->hasMany('App\Models\Inventory', 'entity_id');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function timelines()
+    {
+        return $this->hasMany('App\Models\TimelineElement', 'entity_id');
     }
 
     /**

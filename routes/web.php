@@ -244,6 +244,9 @@ Route::group([
             'quests.quest_items' => 'QuestItemController',
             'quests.quest_organisations' => 'QuestOrganisationController',
             'tags' => 'TagController',
+            'timelines' => 'Timelines\TimelineController',
+            'timelines.timeline_eras' => 'Timelines\TimelineEraController',
+            'timelines.timeline_elements' => 'Timelines\TimelineElementController',
             'sections' => 'SectionController',
             'campaign_invites' => 'CampaignInviteController',
             'races' => 'RaceController',
@@ -337,6 +340,7 @@ Route::group([
         Route::get('/entities/{entity}/files', 'EntityController@files')->name('entities.files');
         Route::get('/entities/{entity}/logs', 'Entity\LogController@index')->name('entities.logs');
         Route::get('/entities/{entity}/mentions', 'Entity\MentionController@index')->name('entities.mentions');
+        Route::get('/entities/{entity}/timelines', 'Entity\TimelineController@index')->name('entities.timelines');
         //Route::patch('/settings/profile', 'Settings\ProfileController@update')->name('settings.profile');
 
         // Inventory

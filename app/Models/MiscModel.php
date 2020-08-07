@@ -248,11 +248,11 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @param string $route
+     * @param string $route = 'show'
      * @return string
      * @throws Exception
      */
-    public function getLink($route = 'show')
+    public function getLink(string $route = 'show'): string
     {
         try {
             return route($this->entity->pluralType() . '.' . $route, $this->id);
@@ -295,6 +295,9 @@ abstract class MiscModel extends Model
      */
     public function menuItems($items = [])
     {
+        $campaign = CampaignLocalization::getCampaign();
+
+        // Todo: point to the new points
         $mapPoints = $this->entity->targetMapPoints()->has('location')->count();
         if ($mapPoints > 0) {
             $items['map-points'] = [
@@ -316,6 +319,19 @@ abstract class MiscModel extends Model
             ];
         }
 
+        // Timelines
+        if ((!isset($this->hasTimelines) || $this->hasTimelines === true) && $campaign->enabled('timelines')) {
+            $timelines = $this->entity->timelines()->with('timeline')->has('timeline')->count();
+            if ($timelines > 0) {
+                $items['timelines'] = [
+                    'name' => 'crud.tabs.timelines',
+                    'route' => 'entities.timelines',
+                    'count' => $timelines,
+                    'entity' => true,
+                    'icon' => 'fas fa-hourglass-half',
+                ];
+            }
+        }
 
         // Each entity can have an inventory
         $items['inventory'] = [
@@ -327,7 +343,6 @@ abstract class MiscModel extends Model
         ];
 
         // Each entity can have abilities
-        $campaign = CampaignLocalization::getCampaign();
         if ($campaign->enabled('abilities') && $this->entityTypeId() != config('entities.ids.ability')) {
             $items['abilities'] = [
                 'name' => 'crud.tabs.abilities',
@@ -377,7 +392,6 @@ abstract class MiscModel extends Model
 
     /**
      * Get the entity link with ajax tooltip
-     * @param string $textField = 'name'
      * @return string
      */
     public function tooltipedLink(): string

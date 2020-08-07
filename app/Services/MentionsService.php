@@ -119,6 +119,10 @@ class MentionsService
     {
         return $this->editEntity($campaign, $field);
     }
+    public function editAny(Model $model, string $field = 'entry')
+    {
+        return $this->editEntity($model, $field);
+    }
 
     /**
      * @param $model

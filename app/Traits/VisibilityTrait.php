@@ -4,6 +4,12 @@ namespace App\Traits;
 
 use App\Models\Scopes\VisibilityScope;
 
+/**
+ * Trait VisibilityTrait
+ * @package App\Traits
+ *
+ * @property string $visibility
+ */
 trait VisibilityTrait
 {
     /**
