@@ -438,7 +438,7 @@ export default {
             "boosted_campaigns": "geboostete Kampagne",
             "bulk": {
                 "actions": {
-                    "edit": "Massenbetrieb"
+                    "edit": "Bearbeitung vieler Objekte"
                 },
                 "age": {
                     "helper": "Sie können + und - vor der Nummer verwenden, um das Alter dynamisch zu aktualisieren."
@@ -807,6 +807,7 @@ export default {
                     "more": "Find out more about all features.",
                     "second": "Boosting a campaign enables the following benefits:",
                     "theme": "Campaign level theme and custom styling.",
+                    "third": "To boost a campaign, go to the campaign's page, and click on the \"{boost_button}\" button above the \"{edit_button}\" button.",
                     "tooltip": "Custom tooltips for entities.",
                     "upload": "Increased upload size for every member in the campaign."
                 },
@@ -1303,7 +1304,7 @@ export default {
                 "files": "Uploaded Files",
                 "hints": {
                     "limit": "Each entity can have a maximum of {max} files uploaded to it.",
-                    "limitations": "Supported formats: jpg, png, gif, and pdf. Max file size: {size}"
+                    "limitations": "Supported formats: {formats}. Max file size: {size}"
                 },
                 "title": "Entity Files for {name}"
             },
@@ -2526,6 +2527,7 @@ export default {
                     }
                 },
                 "warnings": {
+                    "incomplete": "Ne n'avons pas pu débiter la carte de crédit. Vérifier les informations de la carte et mettre à jour si nécessaire. Nous essayerons à nouveau durant les prochains jours. Si ça échoue de nouveau, l'abonnement sera annulé.",
                     "patreon": "Ce compte est actuellement lié à Patreon. Prière de délié le compte dans les paramètres {patreon} avant de pouvoir s'abonner à Kanka."
                 }
             }
@@ -2813,7 +2815,7 @@ export default {
                 "files": "Fichiers uploadé",
                 "hints": {
                     "limit": "Chaque entité peut avoir un nombre maximal de {max} fichiers uploadé.",
-                    "limitations": "Formats supportés: jpg, png, gif et pdf. Taille maximale: {size}"
+                    "limitations": "Formats supportés: {formats}. Taille maximale: {size}"
                 },
                 "title": "Fichiers d'entité pour {name}"
             },
@@ -3009,6 +3011,7 @@ export default {
         "entities": []
     },
     "he": {
+        "maps": [],
         "calendars": [],
         "conversations": {
             "create": {
@@ -3080,6 +3083,7 @@ export default {
         },
         "admin": [],
         "crud": {
+            "boosted_campaigns": "מערכות מוגברות",
             "edit": "עריכה",
             "fields": {
                 "ability": "יכולת",
@@ -3196,6 +3200,7 @@ export default {
         "entities": []
     },
     "hr": {
+        "maps": [],
         "calendars": [],
         "settings": {
             "account": {
@@ -3938,6 +3943,7 @@ export default {
         "entities": []
     },
     "hu": {
+        "maps": [],
         "calendars": [],
         "settings": {
             "account": {
@@ -5243,6 +5249,7 @@ export default {
     },
     "pt": [],
     "pt-BR": {
+        "maps": [],
         "calendars": [],
         "admin": [],
         "crud": {
@@ -5414,6 +5421,7 @@ export default {
         "entities": []
     },
     "ru": {
+        "maps": [],
         "calendars": [],
         "settings": {
             "account": {
@@ -6156,6 +6164,7 @@ export default {
         "entities": []
     },
     "sk": {
+        "maps": [],
         "calendars": [],
         "conversations": {
             "create": {
