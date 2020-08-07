@@ -2,20 +2,18 @@
 
 namespace App\Facades;
 
-use App\Models\AppRelease;
-use App\Services\Caches\PostCacheService;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class PostCache
+ * Class CharacterCache
  * @package App\Facades
  *
- * @method static null|AppRelease latest()
- * @method static bool clearLatest()
+ * @method static array genderSuggestion()
+ * @method static self|CharacterCacheService clearSuggestion()
  *
- * @see PostCacheService
+ * @see \App\Services\Caches\CharacterCacheService
  */
-class PostCache extends Facade
+class CharacterCache extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -24,6 +22,6 @@ class PostCache extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'postcache';
+        return 'charactercache';
     }
 }

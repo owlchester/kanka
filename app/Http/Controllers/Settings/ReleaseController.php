@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
+use App\Models\AppRelease;
 use App\Models\Release;
 
 class ReleaseController extends Controller
@@ -19,12 +20,12 @@ class ReleaseController extends Controller
 
     /**
      * Update the user's last viewed release
-     * @param Release $release
+     * @param AppRelease $appRelease
      */
-    public function read(Release $release)
+    public function read(AppRelease $appRelease)
     {
         if (auth()->check()) {
-            auth()->user()->release = $release->id;
+            auth()->user()->release = $appRelease->id;
             auth()->user()->save();
         }
         return response()->json([

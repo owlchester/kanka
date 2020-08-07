@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Entity;
 
+use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Models\Entity;
 use App\Models\EntityLog;
@@ -31,6 +32,8 @@ class LogController extends Controller
     public function index(Entity $entity)
     {
         $this->authorize('update', $entity->child);
+        $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('history', [$entity, $campaign]);
 
         $ajax = request()->ajax();
 

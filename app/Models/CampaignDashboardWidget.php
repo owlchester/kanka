@@ -20,6 +20,7 @@ use Illuminate\Support\Arr;
  * @property integer $width
  * @property integer $position
  * @property Tag[] $tags
+ * @property Entity $entity
  */
 class CampaignDashboardWidget extends Model
 {

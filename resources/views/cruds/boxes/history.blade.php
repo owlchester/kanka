@@ -1,3 +1,4 @@
+@can('history', [$model->entity, $campaign->campaign()])
 <div class="entity-modification-history">
     <p class="help-block text-right">
     @if ($model->entity)
@@ -28,3 +29,4 @@
     @endif
     </p>
 </div>
+@endcan

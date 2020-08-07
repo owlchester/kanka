@@ -25,8 +25,23 @@ if (request()->route()->getName() == 'characters.random') {
         </div>
         <div class="form-group">
             <label>{{ trans('characters.fields.sex') }}</label>
-            {!! Form::text('sex', ($isRandom ? $random->generate('sex') : FormCopy::field('sex')->string()), ['placeholder' => trans('characters.placeholders.sex'), 'class' => 'form-control', 'maxlength' => 45]) !!}
+            {!! Form::text('sex', ($isRandom ? $random->generate('sex') : FormCopy::field('sex')->string()), [
+                'placeholder' => trans('characters.placeholders.sex'),
+                'class' => 'form-control',
+                'maxlength' => 45,
+                'list' => 'character-gender-list',
+                'autocomplete' => 'off'
+            ]) !!}
         </div>
+
+        <div class="hidden">
+            <datalist id="character-gender-list">
+                @foreach (\App\Facades\CharacterCache::genderSuggestion() as $gender)
+                    <option value="{{ $gender }}">{{ $gender }}</option>
+                @endforeach
+            </datalist>
+        </div>
+
 
         <div class="form-group">
             {!! Form::hidden('is_dead', 0) !!}

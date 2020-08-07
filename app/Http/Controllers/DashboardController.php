@@ -29,10 +29,12 @@ class DashboardController extends Controller
         }
 
         $widgets = CampaignDashboardWidget::positioned()->get();
+        $release = PostCache::latest();
 
         return view('home', compact(
             'campaign',
             'settings',
+            'release',
             'widgets'
         ));
     }

@@ -4,7 +4,7 @@
 namespace App\Services\Caches;
 
 
-use App\Models\Release;
+use App\Models\AppRelease;
 
 class PostCacheService extends BaseCache
 {
@@ -18,8 +18,7 @@ class PostCacheService extends BaseCache
             return $this->get($key);
         }
 
-        $data = Release::where('status', 'PUBLISHED')
-            ->orderBy('created_at', 'DESC')
+        $data = AppRelease::orderBy('published_at', 'DESC')
             ->first();
 
         $this->forever($key, $data);

@@ -5,6 +5,7 @@ namespace App\Providers;
 
 
 use App\Services\Caches\CampaignCacheService;
+use App\Services\Caches\CharacterCacheService;
 use App\Services\Caches\EntityCacheService;
 use App\Services\Caches\PostCacheService;
 use App\Services\Caches\UserCacheService;
@@ -31,10 +32,14 @@ class CacheServiceProvider extends ServiceProvider
         $this->app->singleton(PostCacheService::class, function ($app) {
             return new PostCacheService();
         });
+        $this->app->singleton(CharacterCacheService::class, function ($app) {
+            return new CharacterCacheService();
+        });
 
         $this->app->alias(EntityCacheService::class, 'entitycache');
         $this->app->alias(CampaignCacheService::class, 'campaigncache');
         $this->app->alias(UserCacheService::class, 'usercache');
         $this->app->alias(PostCacheService::class, 'postcache');
+        $this->app->alias(CharacterCacheService::class, 'charactercache');
     }
 }

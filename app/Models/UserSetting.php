@@ -35,7 +35,7 @@ trait UserSetting
      */
     public function setReleaseAttribute($value)
     {
-        $this->setSettingsOption('release', $value);
+        $this->setSettingsOption('app_release', $value);
     }
 
     /**
@@ -75,7 +75,7 @@ trait UserSetting
      */
     public function getReleaseAttribute()
     {
-        return Arr::get($this->settings, 'release', null);
+        return Arr::get($this->settings, 'app_release', null);
     }
 
     /**

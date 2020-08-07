@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Facades\EntityPermission;
 use App\Facades\Img;
 use App\Models\Ability;
+use App\Models\AppRelease;
 use App\Models\CalendarWeather;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
@@ -97,6 +98,7 @@ class AppServiceProvider extends ServiceProvider
             // Observers
             Ability::observe('App\Observers\AbilityObserver');
             AttributeTemplate::observe('App\Observers\AttributeTemplateObserver');
+            AppRelease::observe('App\Observers\AppReleaseObserver');
             Calendar::observe(CalendarObserver::class);
             CalendarWeather::observe(CalendarWeatherObserver::class);
             Campaign::observe(CampaignObserver::class);

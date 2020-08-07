@@ -11,9 +11,9 @@
         </form>
         <div class="entity-files-drop well" style="{{ $enabled ? '' : 'display:none' }}">
             <b>{{ __('crud.files.actions.drop') }}</b><br />
-            {{ trans('crud.files.hints.limitations', ['size' => auth()->user()->maxUploadSize(true)]) }}
+            {{ trans('crud.files.hints.limitations', ['formats' => 'jpg, png, gif, pdf, xls(x)', 'size' => auth()->user()->maxUploadSize(true)]) }}
             @if (!auth()->user()->hasRole('patreon'))
-                <a href="{{ config('patreon.url') }}" target="_blank">{{ __('crud.hints.image_patreon') }}</a>
+                <p><a href="{{ route('settings.subscription') }}" target="_blank">{{ __('crud.hints.image_patreon') }}</a></p>
             @endif
         </div>
         <div class="progress" style="display: none">
@@ -23,7 +23,7 @@
         </div>
         <div class="entity-file-upload-error text-red" style="display: none"></div>
         <div class="entity-file-upload-max text-red well" style="{{ $enabled ? 'display:none' : '' }}">
-            {{ __('crud.files.errors.max', ['max' => config('entities.max_entity_files')]) }}
+            {{ __('crud.files.errors.max', ['max' => $campaign->maxEntityFiles()]) }}
         </div>
 
         <div class="entity-files">

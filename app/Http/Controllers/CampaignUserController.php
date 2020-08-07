@@ -26,6 +26,7 @@ class CampaignUserController extends Controller
     public function index()
     {
         $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('members', $campaign);
         return view('campaigns.users', ['campaign' => $campaign]);
     }
 

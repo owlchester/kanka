@@ -282,6 +282,10 @@
                     <td><i class="fa fa-check-circle"></i></td>
                 </tr>
                 <tr>
+                    <td class="text">{{ __('front.features.boosts.entity_files') }}</td>
+                    <td><i class="fa fa-check-circle"></i></td>
+                </tr>
+                <tr>
                     <td class="text">{{ __('front.features.boosts.recovery') }}</td>
                     <td><i class="fa fa-check-circle"></i></td>
                 </tr>

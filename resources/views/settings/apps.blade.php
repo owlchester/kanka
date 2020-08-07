@@ -37,7 +37,7 @@
                         ]) !!}
                         {!! Form::close() !!}
                     @else
-                        <a href="https://discordapp.com/api/oauth2/authorize?client_id={{ config('discord.client_id') }}&redirect_uri={{ url('/settings/discord-callback') }}&response_type=code&scope=identify+guilds+guilds.join" class="btn btn-default pull-right">
+                        <a href="https://discord.com/api/oauth2/authorize?client_id={{ config('discord.client_id') }}&redirect_uri={{ url('/settings/discord-callback') }}&response_type=code&scope=identify+guilds+guilds.join" class="btn btn-default pull-right">
                             {{ __('settings.apps.actions.connect') }}
                         </a>
                     @endif

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\EntityFileException;
+use App\Facades\CampaignLocalization;
 use App\Http\Requests\RenameEntityFile;
 use App\Http\Requests\StoreEntityFile;
 use App\Models\EntityFile;
@@ -41,9 +42,11 @@ class EntityFileController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $enabled = $entity->files->count() < config('entities.max_entity_files');
+        $campaign = CampaignLocalization::getCampaign();
+        $enabled = $entity->files->count() < $campaign->maxEntityFiles();
         return view('cruds.files.index', compact(
             'entity',
+            'campaign',
             'enabled'
         ));
     }
@@ -57,26 +60,28 @@ class EntityFileController extends Controller
     public function store(StoreEntityFile $request, Entity $entity)
     {
         $this->authorize('update', $entity->child);
+        $campaign = CampaignLocalization::getCampaign();
 
         try {
             $this->entityFile
                 ->entity($entity)
+                ->campaign($campaign)
                 ->upload();
 
             $entity->load('files');
 
 
             // Send back the new list of files to the view
-            $html = view('cruds.files.files', compact('entity'))->render();
+            $html = view('cruds.files.files', compact('entity', 'campaign'))->render();
             return response()->json([
                 'success' => true,
                 'html' => $html,
-                'enabled' => $entity->files->count() < config('entities.max_entity_files')
+                'enabled' => $entity->files->count() < $campaign->maxEntityFiles()
             ]);
         } catch (EntityFileException $e) {
             return response()->json([
                 'success' => false,
-                'error' => __('crud.files.errors.' . $e->getMessage(), ['max' => config('entities.max_entity_files')])
+                'error' => __('crud.files.errors.' . $e->getMessage(), ['max' => $campaign->maxEntityFiles()])
             ]);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'error' => $e->getMessage()]);
@@ -111,10 +116,11 @@ class EntityFileController extends Controller
         $this->authorize('update', $entity->child);
 
         $entityFile->delete();
+        $campaign = CampaignLocalization::getCampaign();
 
         return response()->json([
             'success' => true,
-            'enabled' => $entity->files->count() < config('entities.max_entity_files')
+            'enabled' => $entity->files->count() < $campaign->maxEntityFiles()
         ]);
     }
 }

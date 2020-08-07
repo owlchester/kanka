@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Requests;
+
+namespace App\Http\Requests\Admin;
+
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreEntityFile extends FormRequest
+class StoreRelease extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +26,10 @@ class StoreEntityFile extends FormRequest
     public function rules()
     {
         return [
-            'file' => 'required|file|mimes:jpeg,png,jpg,gif,pdf,xls,xlsx|max:' . auth()->user()->maxUploadSize(),
+            'name' => 'required|max:191',
+            'link' => 'required',
+            'excerpt' => 'required',
+            'published_at' => 'required',
         ];
     }
 }

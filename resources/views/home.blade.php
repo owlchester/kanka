@@ -1,6 +1,6 @@
 <?php /**
  * @var \App\Models\Campaign $campaign
- * @var \App\Models\Release $release
+ * @var \App\Models\AppRelease $release
  */ ?>
 <?php $position = 0; ?>
 
@@ -44,6 +44,32 @@
 @section('content')
 
     @include('partials.errors')
+
+    @if (!empty($release) && auth()->check() && auth()->user()->release != $release->id)
+        <div class="box box-widget">
+            <div class="box-header with-border">
+                <div class="user-block">
+                    @if ($release->author && $release->author->avatar)
+                        <img class="img-circle" src="{{ $release->author->getAvatarUrl() }}" alt="{{ $release->author->name }}" title="{{ $release->author->name }}">
+                    @endif
+                    <span class="username">
+                        <a href="{{ $release->link }}" target="_blank">{{ $release->name }}</a>
+                    </span>
+                    <span class="description">{{ $release->published_at->isoFormat('MMMM D, Y') }}</span>
+                </div>
+                <div class="box-tools">
+                    <button type="button" class="btn btn-box-tool" data-widget="remove" data-url="{{ route('settings.release', $release) }}">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+                @auth
+                @endauth
+            </div>
+            <div class="box-body">
+                {{ $release->excerpt }}
+            </div>
+        </div>
+    @endif
 
     <div class="campaign @if(!empty($campaign->header_image))cover-background" style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }}) @else no-header @endif ">
         <div class="content">

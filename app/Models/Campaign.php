@@ -42,6 +42,8 @@ use Illuminate\Support\Str;
  * UI virtual Settings
  * @property bool $tooltip_family
  * @property bool $tooltip_image
+ * @property bool $hide_members
+ * @property bool $hide_history
  *
  */
 class Campaign extends MiscModel
@@ -319,6 +321,23 @@ class Campaign extends MiscModel
     }
 
     /**
+     * @return mixed
+     */
+    public function getHideMembersAttribute()
+    {
+        return Arr::get($this->ui_settings, 'hide_members', false);
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getHideHistoryAttribute()
+    {
+        return Arr::get($this->ui_settings, 'hide_history', false);
+    }
+
+    /**
      * Number of layers a map of a campaign can have
      * @return int
      */
@@ -328,6 +347,17 @@ class Campaign extends MiscModel
             return self::LAYER_COUNT_MAX;
         }
         return self::LAYER_COUNT_MIN;
+    }
+
+    /**
+     * @return int
+     */
+    public function maxEntityFiles(): int
+    {
+        if ($this->boosted()) {
+            return config('entities.max_entity_files_boosted');
+        }
+        return config('entities.max_entity_files');
     }
 
     /**

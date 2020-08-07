@@ -82,6 +82,12 @@ class CampaignObserver
         if (request()->has('tooltip_image')) {
             $uiSettings['tooltip_image'] = (bool) request()->get('tooltip_image');
         }
+        if (request()->has('hide_members')) {
+            $uiSettings['hide_members'] = (bool) request()->get('hide_members');
+        }
+        if (request()->has('hide_history')) {
+            $uiSettings['hide_history'] = (bool) request()->get('hide_history');
+        }
         $campaign->ui_settings = $uiSettings;
 
         // Handle image. Let's use a service for this.
@@ -108,7 +114,6 @@ class CampaignObserver
         // Make sure we save the last campaign id to avoid infinite loops
         $user = Auth::user();
         $user->last_campaign_id = $campaign->id;
-        $user->campaign_role = 'owner';
         $user->save();
 
         $role = CampaignRole::create([

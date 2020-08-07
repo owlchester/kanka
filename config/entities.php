@@ -2,6 +2,7 @@
 
 return [
     'max_entity_files' => 3,
+    'max_entity_files_boosted' => 5,
     'file_upload' => env('APP_ENTITY_FILE_UPLOAD', false),
     'hard_delete' => env('APP_ENTITY_HARD_DELETE', 31),
 
