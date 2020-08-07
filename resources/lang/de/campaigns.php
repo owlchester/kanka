@@ -318,6 +318,7 @@ TEXT
     'show'                              => [
         'actions'       => [
             'boost' => 'Geboostete Kampagne',
+            'edit'  => 'Kampagne editieren',
             'leave' => 'Kampagne verlassen',
         ],
         'description'   => 'Eine detaillierte Ansicht der Kampagne',

@@ -14,6 +14,11 @@ return [
         'success'   => 'Karte :name aktualisiert',
         'title'     => 'Karte :name editieren',
     ],
+    'errors'        => [
+        'explore'   => [
+            'missing'   => 'Bitte fügen Sie der Karte ein Bild hinzu, bevor Sie sie erkunden können.',
+        ],
+    ],
     'fields'        => [
         'distance_measure'  => 'Abstandsmaß',
         'distance_name'     => 'Entfernungseinheit',
@@ -38,6 +43,7 @@ return [
         'title' => 'Karte von :name',
     ],
     'panels'        => [
+        'groups'    => 'Gruppen',
         'layers'    => 'Ebenen',
         'markers'   => 'Marker',
         'settings'  => 'Einstellungen',

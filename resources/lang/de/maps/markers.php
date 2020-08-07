@@ -2,6 +2,7 @@
 
 return [
     'actions'       => [
+        'remove'    => 'Marker entfernen',
         'update'    => 'Marker editieren',
     ],
     'create'        => [
@@ -18,6 +19,7 @@ return [
     'fields'        => [
         'custom_icon'   => 'Benutzerdefiniertes Symbol',
         'custom_shape'  => 'Benutzerdefinierte Form',
+        'group'         => 'Markergruppe',
         'is_draggable'  => 'Verschiebbar',
         'latitude'      => 'Breitengrad',
         'longitude'     => 'Längengrad',
