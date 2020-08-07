@@ -65,7 +65,7 @@
                         <h5>{{ __('front.footer.headings.friends') }}</h5>
                         <ul>
                             <li>
-                                <a href="//lookingforgm.com" target="_blank" title="LookingForGM.com">LFGM</a>
+                                <a href="//lookingforgm.com?utm_source=kanka_footer_front" target="_blank" title="LookingForGM.com">LFGM</a>
                             </li>
                         </ul>
                     </div>
