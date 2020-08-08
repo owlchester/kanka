@@ -5,11 +5,16 @@
  * @var \App\Services\CampaignService $campaign
  */
 ?>
+
+@if (!isset($model))
+    <div class="alert alert-warning">
+        {{ __('timelines/eras.helpers.eras') }}
+    </div>
+@else
     <p class="help-block">
-        {{ __('timelines/eras.helper.primary') }}
+        {{ __('timelines/eras.helpers.primary') }}
     </p>
 
-@if(isset($model))
     <table class="table table-condensed">
     <thead>
     <tr>
@@ -71,10 +76,6 @@
 @endsection
 @endif
 
-@else
-    <p class="help-block">
-        {{ __('timelines.helpers.eras') }}
-    </p>
 @endif
 
 

@@ -34,6 +34,7 @@ class StoreTimelineElement extends FormRequest
             'colour' => 'nullable|string|max:12',
             'date' => 'nullable|string|max:45',
             'visibility' => 'string',
+            'icon' => 'nullable|string',
         ];
 
         return $rules;

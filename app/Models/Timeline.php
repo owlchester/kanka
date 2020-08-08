@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property TimelineEra[] $eras
+ * @property bool $revert_order
  */
 class Timeline extends MiscModel
 {
@@ -29,6 +30,7 @@ class Timeline extends MiscModel
         'entry',
         'is_private',
         'image',
+        'revert_order',
     ];
 
     /**

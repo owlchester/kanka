@@ -26,6 +26,7 @@ class TimelineElementController extends Controller
         'colour',
         'date',
         'visibility',
+        'icon',
     ];
 
     /**

@@ -12,6 +12,10 @@ return [
     'fields' => [
         'era' => 'Era',
         'date' => 'Date',
+        'icon' => 'Icon',
+    ],
+    'helpers' => [
+        'icon'   => 'Copy the HTML of an icon from :fontawesome or :rpgawesome.',
     ],
     'placeholders' => [
         'name' => 'Required if no entity selected',

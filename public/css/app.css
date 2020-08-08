@@ -1098,6 +1098,20 @@ hr {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+.timeline > li > .ra {
+  width: 30px;
+  height: 30px;
+  font-size: 15px;
+  line-height: 30px;
+  position: absolute;
+  color: #666;
+  background: #d2d6de;
+  border-radius: 50%;
+  text-align: center;
+  left: 18px;
+  top: 0;
+}
+
 /**
  * SASS file for all that is print related.
  * This file contains all the stuff to hide when printing

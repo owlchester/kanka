@@ -1,4 +1,5 @@
 
+@inject('campaign', 'App\Services\CampaignService')
 
 <div class="form-group required">
     <label>{{ __('timelines/elements.fields.era') }}</label>
@@ -18,7 +19,7 @@
         <div class="form-group">
             {!! Form::select2(
                 'entity_id',
-                null,
+                (!empty($model) && $model->entity ? $model->entity : null),
                 App\Models\Entity::class,
                 false,
                 'crud.fields.entity',
@@ -36,17 +37,36 @@
 
 <div class="row">
     <div class="col-md-6">
-
         <div class="form-group">
             <label>{{ __('timelines/elements.fields.date') }}</label>
             {!! Form::text('date', null, ['placeholder' => __('timelines/elements.placeholders.date'), 'class' => 'form-control', 'maxlength' => 45]) !!}
         </div>
     </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>{{ __('crud.fields.position') }}</label>
+            {!! Form::number('position', $position ?? null, ['placeholder' => __('timelines/elements.placeholders.position'), 'class' => 'form-control', 'maxlength' => 5]) !!}
+        </div>
+    </div>
 
+</div>
+
+<div class="row">
     <div class="col-md-6">
         <div class="form-group">
             <label>{{ __('crud.fields.colour') }}</label>
             {!! Form::select('colour', FormCopy::colours(false), (!empty($model) ? null : 'grey'), ['class' => 'form-control']) !!}
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label>{{ __('timelines/elements.fields.icon') }}</label>
+            @if ($campaign->campaign()->boosted())
+                {!! Form::text('icon', null, ['class' => 'form-control', 'placeholder' => '<i class="fa fa-gem"></i>, <i class="ra ra-sword">']) !!}
+                <p class="help-block">{!! __('timelines/elements.helpers.icon', ['rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>', 'fontawesome' => '<a href="https://fontawesome.com/icons?d=gallery" target="_blank">Font Awesome</a>']) !!}</p>
+            @else
+                <p class="help-block">{{ __('crud.errors.boosted') }}</p>
+            @endif
         </div>
     </div>
 </div>
@@ -54,12 +74,6 @@
 <div class="row">
     <div class="col-md-6">
         @include('cruds.fields.visibility')
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label>{{ __('crud.fields.position') }}</label>
-            {!! Form::number('position', $position ?? null, ['placeholder' => __('timelines/elements.placeholders.position'), 'class' => 'form-control', 'maxlength' => 5]) !!}
-        </div>
     </div>
 </div>
 

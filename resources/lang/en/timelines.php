@@ -18,6 +18,10 @@ return [
         'name'              => 'Name',
         'type'              => 'Type',
         'eras'              => 'Eras',
+        'reverse_order'     => 'Reverse era order',
+    ],
+    'helpers'   => [
+        'reverse_order'     => 'Enable to display eras in reverse chronological order (older era first)',
     ],
     'index'         => [
         'add'   => 'New Timeline',

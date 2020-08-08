@@ -10,6 +10,7 @@ use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\VisibilityTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 /**
  * Class TimelineElement
@@ -24,6 +25,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string $date
  * @property int $position
  * @property string $colour
+ * @property string $icon
  *
  * @property Timeline $timeline
  * @property TimelineEra $era
@@ -46,6 +48,7 @@ class TimelineElement extends Model
         'name',
         'colour',
         'visibility',
+        'icon',
         'date',
     ];
 
@@ -141,5 +144,29 @@ class TimelineElement extends Model
                     })
                     ->whereNotIn('entities.id', $service->deniedEntityIds());
             });
+    }
+
+    /**
+     * @return string
+     */
+    public function htmlIcon(): string
+    {
+        if (!empty($this->icon) && Str::startsWith($this->icon, '<i class=')) {
+            return str_replace('<i class="', '<i class="bg-' . $this->colour . ' ', $this->icon);
+        }
+
+        return '<i class="fa fas fa-hourglass-half bg-' . $this->colour . '"></i>';
+    }
+
+    /**
+     * @return string
+     */
+    public function htmlName(): string
+    {
+        if (empty($this->entity_id)) {
+            return e($this->name);
+        }
+
+        return $this->entity->tooltipedLink($this->name);
     }
 }

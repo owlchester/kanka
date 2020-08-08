@@ -5,7 +5,7 @@
  * @var \App\Models\TimelineElement $element
  */
 ?>
-@foreach ($timeline->eras()->ordered()->get() as $era)
+@foreach ($timeline->eras()->ordered($timeline->revert_order)->get() as $era)
     @php
     $position = 1;
     @endphp
@@ -57,7 +57,7 @@
             @continue
         @endif
         <li id="element{{ $element->id }}">
-            <i class="fa fas fa-hourglass-half bg-{{ $element->colour }}"></i>
+            {!! $element->htmlIcon() !!}
 
             <div class="timeline-item">
                 @can('update', $timeline)
@@ -79,7 +79,7 @@
                 @endcan
 
                 <h3 class="timeline-header">
-                    @if (empty($element->entity_id)) {{ $element->name }} @else {!! $element->entity->tooltipedLink() !!} @endif {{ $element->date }}
+                    {!! $element->htmlName() !!}
                 </h3>
 
                 <div class="timeline-body">
@@ -110,18 +110,19 @@
 
 
 
+@if(!isset($exporting))
+    @include('editors.editor')
 
-@include('editors.editor')
-
-@if ($ajax)
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var editorId = 'element-entry';
-            // First we remove in case it was already loaded
-            tinyMCE.EditorManager.execCommand('mceFocus', false, editorId);
-            tinyMCE.EditorManager.execCommand('mceRemoveEditor', true, editorId);
-            // And add again
-            tinymce.EditorManager.execCommand('mceAddEditor', false, editorId);
-        });
-    </script>
+    @if ($ajax)
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var editorId = 'element-entry';
+                // First we remove in case it was already loaded
+                tinyMCE.EditorManager.execCommand('mceFocus', false, editorId);
+                tinyMCE.EditorManager.execCommand('mceRemoveEditor', true, editorId);
+                // And add again
+                tinymce.EditorManager.execCommand('mceAddEditor', false, editorId);
+            });
+        </script>
+    @endif
 @endif

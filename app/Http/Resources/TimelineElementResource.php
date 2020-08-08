@@ -29,7 +29,8 @@ class TimelineElementResource extends EntityResource
             'date' => $model->date,
             'colour' => $model->colour,
             'position' => $model->position,
-            'visibility' => $model->visibility
+            'visibility' => $model->visibility,
+            'icon' => $model->icon
         ];
     }
 }

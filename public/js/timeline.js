@@ -95,6 +95,9 @@
 
 $(document).ready(function () {
   initTimelineForms();
+  $(document).on('shown.bs.modal shown.bs.popover', function () {
+    initTimelineForms();
+  });
 });
 /**
  *

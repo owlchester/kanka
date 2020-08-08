@@ -20,9 +20,9 @@ return [
         'start_year' => 'Start Year',
         'end_year' => 'End Year',
     ],
-    'helper'        => [
-        'primary' => 'Separate your timeline into Eras. A timeline needs at least one era to properly work.',
-        'eras' => 'Please '
+    'helpers'        => [
+        'primary' => 'Separate your timeline into eras. A timeline needs at least one era to properly work.',
+        'eras' => 'The timeline needs to be created before eras can be added to it.'
     ],
     'placeholders'  => [
         'name'      => 'Modern Era, Bronz Age, Galactic Wars',
