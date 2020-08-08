@@ -42,6 +42,7 @@ You can get a list of all the timelines of a campaign by using the following end
             "updated_at": "2020-01-30T17:30:52.000000Z",
             "updated_by": 1,
             "type": "Primary",
+            "revert_order": false,
             "eras": [
               {
                 "name": "Anno Domani",
@@ -107,6 +108,7 @@ To get the details of a single timeline, use the following endpoint.
         "updated_at": "2020-01-30T17:30:52.000000Z",
         "updated_by": 1,
         "type": "Primary",
+        "revert_order": false,
         "eras": [
           {
             "name": "Anno Domani",
@@ -144,7 +146,8 @@ To create a timeline, use the following endpoint.
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the timeline |
 | `type` | `string` | The timeline's type |
-| `eras` | `Array` | Eras of the calendar |
+| `eras` | `array` | Eras of the calendar |
+| `revert_order` | `boolean` | Revert era rendering order (older first) |
 | `tags` | `array` | Array of tag ids |
 | `is_private` | `boolean` | If the timeline is only visible to `admin` members of the campaign |
 | `image` | `stream` | Stream to file uploaded to the timeline |

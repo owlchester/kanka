@@ -20,6 +20,7 @@ class TimelineResource extends EntityResource
         return $this->entity([
             'type' => $model->type,
             'eras' => TimelineEraResource::collection($model->eras),
+            'revert_order' => $model->revert_order,
         ]);
     }
 }
