@@ -4,4 +4,8 @@
         {{ trans('crud.fields.copy_notes') }}
     </label>
 </div>
+
+@if(view()->exists($name . '.form._copy'))
+    @include($name . '.form._copy')
+@endif
 <input type="hidden" name="copy_source_id" value="{{ !empty($source) ? (!empty($source->entity) ? $source->entity->id : $source->id) : old('copy_source_id') }}">

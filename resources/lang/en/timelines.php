@@ -15,6 +15,7 @@ return [
         'title'     => 'Edit Timeline :name',
     ],
     'fields'        => [
+        'copy_eras'         => 'Copy eras',
         'name'              => 'Name',
         'type'              => 'Type',
         'eras'              => 'Eras',

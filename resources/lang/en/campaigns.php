@@ -310,6 +310,7 @@ TEXT
             'quests'        => 'To keep track of various quests with characters and locations.',
             'races'         => 'If your campaign has more than one race, this will make keeping track easy.',
             'tags'          => 'Each entity can have several tags. Tags can belong to other tags, and entries can be filtered by tag.',
+            'timelines'     => 'Represent the history of your world with timelines.',
         ],
         'title'         => 'Campaign :name Modules',
     ],

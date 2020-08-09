@@ -38,22 +38,29 @@
 }
 
 .box,
-.panel {
+.panel,
+.timeline-item {
   background: none !important;
   border: none !important;
 }
 
 .box .box-header,
 .box .panel-heading,
+.box .timeline-header,
 .panel .box-header,
-.panel .panel-heading {
+.panel .panel-heading,
+.panel .timeline-header,
+.timeline-item .box-header,
+.timeline-item .panel-heading,
+.timeline-item .timeline-header {
   border: none !important;
   background-color: transparent !important;
   color: #157778 !important;
 }
 
 .box .with-border,
-.panel .with-border {
+.panel .with-border,
+.timeline-item .with-border {
   background: none !important;
   border-bottom: 1px solid #42FFFF !important;
 }
@@ -61,13 +68,16 @@
 .box .box-footer,
 .box .panel-footer,
 .panel .box-footer,
-.panel .panel-footer {
+.panel .panel-footer,
+.timeline-item .box-footer,
+.timeline-item .panel-footer {
   background: none !important;
   border: none !important;
 }
 
 .box .panel-body ul,
-.panel .panel-body ul {
+.panel .panel-body ul,
+.timeline-item .panel-body ul {
   color: #eee;
 }
 
@@ -533,7 +543,8 @@ body {
 }
 
 .box,
-.panel {
+.panel,
+.timeline-item {
   border: 1px solid #42FFFF !important;
 }
 

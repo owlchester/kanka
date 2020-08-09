@@ -130,7 +130,7 @@ function handle(element) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/js/profile */"./resources/assets/js/profile.js");
+module.exports = __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\js\profile */"./resources/assets/js/profile.js");
 
 
 /***/ })

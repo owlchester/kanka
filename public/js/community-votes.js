@@ -178,7 +178,7 @@ function updateStats(results) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/js/community-votes */"./resources/assets/js/community-votes.js");
+module.exports = __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\js\community-votes */"./resources/assets/js/community-votes.js");
 
 
 /***/ })

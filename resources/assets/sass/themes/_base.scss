@@ -34,11 +34,12 @@
   background: none !important;
 }
 
-.box, .panel  {
+.box, .panel, .timeline-item
+{
   background: none !important;
   border: none !important;
 
-  .box-header, .panel-heading {
+  .box-header, .panel-heading, .timeline-header {
     border: none !important;
     background-color: transparent !important;
     color: $Unfocused !important;

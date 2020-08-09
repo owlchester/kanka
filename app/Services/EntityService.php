@@ -9,6 +9,8 @@ use App\Models\Entity;
 use App\Models\EntityNote;
 use App\Models\MiscModel;
 use App\Models\OrganisationMember;
+use App\Models\Timeline;
+use App\Models\TimelineEra;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -286,6 +288,16 @@ class EntityService
                     $newTrait = $trait->replicate();
                     $newTrait->character_id = $newModel->id;
                     $newTrait->save();
+                }
+            }
+
+            // Timeline: copy eras
+            if($entity->child instanceof Timeline) {
+                /** @var TimelineEra $newEra **/
+                foreach ($entity->child->eras as $era) {
+                    $newEra = $era->replicate();
+                    $newEra->timeline_id = $newModel->id;
+                    $newEra->save();
                 }
             }
 
