@@ -95,6 +95,16 @@ $count = 0;
                                             @endforeach
                                         </datalist>
                                     </div>
+                                @elseif ($field === 'sex' && !empty($entityModel))
+
+                                    <input type="text" class="form-control" name="{{ $field }}" value="{{ $filterService->single($field) }}" autocomplete="off" list="entity-gender-list" />
+                                    <div class="hidden">
+                                        <datalist id="entity-gender-list">
+                                            @foreach (\App\Facades\CharacterCache::genderSuggestion() as $suggestion)
+                                                <option value="{{ $suggestion }}">{{ $suggestion }}</option>
+                                            @endforeach
+                                        </datalist>
+                                    </div>
                                 @else
                                     <input type="text" class="form-control" name="{{ $field }}" value="{{ $filterService->single($field) }}" />
                                 @endif
