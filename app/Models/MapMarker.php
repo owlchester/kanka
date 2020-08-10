@@ -130,7 +130,7 @@ class MapMarker extends Model
             return 'L.circle([' . $this->latitude . ', ' . $this->longitude . '], {
                 radius: ' . $this->size_id * 20 . ',
                 fillColor: \'' . e($this->colour) . '\',
-                title: \'' . $this->makerTitle() . '\',
+                title: \'' . $this->markerTitle() . '\',
                 stroke: false,
                 fillOpacity: ' . $this->opacity() . ',
                 className: \'marker marker-circle marker-' . $this->id . ' size-' . $this->size_id . '\','
@@ -168,7 +168,7 @@ class MapMarker extends Model
         }
 
         return 'L.marker([' . ($this->latitude ). ', ' . $this->longitude . '], {
-            title: \'' . $this->makerTitle() . '\',
+            title: \'' . $this->markerTitle() . '\',
             opacity: ' . $this->opacity() . ','
             . ($this->isDraggable() ? 'draggable: true,' : null) . '
             ' . $this->markerIcon() . '
@@ -187,7 +187,7 @@ class MapMarker extends Model
             return '
             .bindPopup(`
             <div class="marker-popup-content">
-                <h4 class="marker-header">' . e($this->name) . '</h4>
+                <h4 class="marker-header">' . $this->markerTitle() . '</h4>
                 <p class="marker-text">' . Mentions::mapAny($this) . '</p>
             </div>
             ' . (!empty($this->entity) ? '
@@ -202,7 +202,7 @@ class MapMarker extends Model
 
         return '.bindPopup(`
             <div class="marker-popup-content">
-                <h4 class="marker-header">' . e($this->name) . '</h4>
+                <h4 class="marker-header">' . $this->markerTitle() . '</h4>
                 <p class="marker-text">' . Mentions::mapAny($this) . '</p>
             </div>
             ' . (!empty($this->entity) ? '
@@ -274,6 +274,10 @@ class MapMarker extends Model
         })';
     }
 
+    /**
+     * Marker icon as shown in explore and edit mode
+     * @return string
+     */
     protected function markerIcon(): string
     {
         if ($this->icon == 5) {
@@ -303,9 +307,10 @@ class MapMarker extends Model
     }
 
     /**
+     * The name of the marker: name or entity
      * @return string
      */
-    protected function makerTitle(): string
+    public function markerTitle(): string
     {
         if (empty($this->name) && !empty($this->entity)) {
             return e($this->entity->name);

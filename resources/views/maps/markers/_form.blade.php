@@ -99,18 +99,22 @@ $sizeOptions = [
 
 <div class="row">
     <div class="col-sm-6">
-        <div class="form-group required">
+        <div class="form-group">
             <label>{{ __('crud.fields.name') }}</label>
-            {!! Form::text('name', null, ['placeholder' => __('maps/markers.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191, 'required']) !!}
+            {!! Form::text('name', null, ['placeholder' => __('maps/markers.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
     </div>
     <div class="col-sm-6">
         <div class="form-group">
-            {!! Form::hidden('is_draggable', 0) !!}
-            <label>{!! Form::checkbox('is_draggable', 1) !!}
-                {{ __('maps/markers.fields.is_draggable') }}
-            </label>
-            <p class="help-block">{{ __('maps/markers.helpers.draggable') }}</p>
+            {!! Form::select2(
+                'entity_id',
+                (isset($model) && $model->entity ? $model->entity : null),
+                App\Models\Entity::class,
+                false,
+                'crud.fields.entity',
+                'search.entities-with-reminders',
+                'crud.placeholders.entity'
+            ) !!}
         </div>
     </div>
 </div>
@@ -133,15 +137,11 @@ $sizeOptions = [
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
-        {!! Form::select2(
-            'entity_id',
-            (isset($model) && $model->entity ? $model->entity : null),
-            App\Models\Entity::class,
-            false,
-            'crud.fields.entity',
-            'search.entities-with-reminders',
-            'crud.placeholders.entity'
-        ) !!}
+            {!! Form::hidden('is_draggable', 0) !!}
+            <label>{!! Form::checkbox('is_draggable', 1) !!}
+                {{ __('maps/markers.fields.is_draggable') }}
+            </label>
+            <p class="help-block">{{ __('maps/markers.helpers.draggable') }}</p>
         </div>
     </div>
     <div class="col-sm-6">

@@ -56,14 +56,7 @@
 
 
                         <div class="map-legend">
-                            <h4>{{ __('locations.map.legend') }}</h4>
-                            <ul>
-                                @foreach ($map->markers()->orderBy('name')->get() as $marker)
-                                <li>
-                                    <a href="#" class="map-legend-marker" data-lng="{{ $marker->longitude }}" data-lat="{{ $marker->latitude }}" data-id="marker{{ $marker->id }}">{{ $marker->name }}</a>
-                                </li>
-                                @endforeach
-                            </ul>
+                            @include('maps.explore.legend')
                         </div>
 
                         <div class="map-legend text-center">

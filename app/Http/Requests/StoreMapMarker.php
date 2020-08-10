@@ -26,10 +26,10 @@ class StoreMapMarker extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'nullable|string',
+            'name' => 'nullable|string|required_without:entity_id',
             'entry' => 'nullable|string',
             'visibility' => 'string',
-            'entity_id' => 'integer|exists:entities,id|required_without_all:name',
+            'entity_id' => 'integer|exists:entities,id|required_without:name',
             'group_id' => 'nullable|integer|exists:map_groups,id',
 
             'longitude' => 'required|numeric',

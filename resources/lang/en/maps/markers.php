@@ -39,7 +39,7 @@ return [
     ],
     'placeholders'  => [
         'custom_shape'  => '100,100 200,240 340,110',
-        'name'          => 'Name of the marker',
+        'name'          => 'Required if no entity selected',
     ],
     'shapes'        => [
         '0' => 'Circle',

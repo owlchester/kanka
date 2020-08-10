@@ -8,6 +8,7 @@ use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 use Kalnoy\Nestedset\NodeTrait;
 
 /**
@@ -263,5 +264,22 @@ class Map extends MiscModel
         }
 
         return implode(', ', $layers);
+    }
+
+    public function legendMarkers(): array
+    {
+        $markers = new Collection();
+        /** @var MapMarker $marker */
+        foreach ($this->markers as $marker) {
+            $markers->add([
+                'id' => $marker->id,
+                'longitude' => $marker->longitude,
+                'latitude' => $marker->latitude,
+                'name' => $marker->markerTitle(),
+                'lower_name' => strtolower($marker->markerTitle()),
+            ]);
+        }
+
+        return $markers->sortBy('lower_name')->toArray();
     }
 }
