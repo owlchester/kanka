@@ -33,6 +33,56 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
+            <label>{{ trans('maps.fields.initial_zoom') }}</label>
+            {!! Form::number(
+                'initial_zoom',
+                FormCopy::field('initial_zoom')->string(),
+                [
+                    'placeholder' => 0,
+                    'class' => 'form-control',
+                    'min' => -\App\Models\Map::MIN_ZOOM,
+                    'max' => \App\Models\Map::MAX_ZOOM,
+                ]
+            ) !!}
+            <p class="help-block">{{ __('maps.helpers.initial_zoom', ['min' => \App\Models\Map::MIN_ZOOM, 'max' => \App\Models\Map::MAX_ZOOM, 'default' => 0]) }}</p>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>{{ trans('maps.fields.min_zoom') }}</label>
+            {!! Form::number(
+                'min_zoom',
+                FormCopy::field('min_zoom')->string(),
+                [
+                    'placeholder' => -2,
+                    'class' => 'form-control',
+                    'min' => \App\Models\Map::MIN_ZOOM,
+                    'max' => 0,
+                ]
+            ) !!}
+            <p class="help-block">{{ __('maps.helpers.min_zoom', ['min' => \App\Models\Map::MIN_ZOOM, 'default' => -2]) }}</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>{{ trans('maps.fields.max_zoom') }}</label>
+            {!! Form::number(
+                'max_zoom',
+                FormCopy::field('max_zoom')->string(),
+                [
+                    'placeholder' => 5,
+                    'class' => 'form-control',
+                    'min' => 0,
+                    'max' => \App\Models\Map::MAX_ZOOM,
+                ]
+            ) !!}
+            <p class="help-block">{{ __('maps.helpers.max_zoom', ['max' => \App\Models\Map::MAX_ZOOM, 'default' => 5]) }}</p>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
             <label>{{ trans('maps.fields.grid') }}</label>
             {!! Form::number(
                 'grid',

@@ -20,6 +20,9 @@ class MapResource extends EntityResource
             'width' => $this->width,
             'map_id' => $this->map_id,
             'grid' => $this->grid,
+            'min_zoom' => $this->minZoom(),
+            'max_zoom' => $this->maxZoom(),
+            'initial_zoom' => $this->initialZoom(),
         ]);
     }
 }

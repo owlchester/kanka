@@ -30,6 +30,9 @@ return [
         'maps'              => 'Maps',
         'name'              => 'Name',
         'type'              => 'Type',
+        'min_zoom'          => 'Minimal zoom',
+        'max_zoom'          => 'Maximal zoom',
+        'initial_zoom'      => 'Initial zoom',
     ],
     'helpers'       => [
         'descendants'       => 'This list contains all maps which are descendants of this map, and not only those directly under it.',
@@ -37,6 +40,9 @@ return [
         'grid'              => 'Define a grid size that will be displayed on the exploration mode.',
         'missing_image'     => 'Save the map with an image before being able to add layers and markers.',
         'nested'            => 'When in Nested View, you can view your Maps in a nested manner. Maps with no parent map will be shown by default. Maps with children tags can be clicked to view those children. You can keep clicking until there are no more children to view.',
+        'min_zoom'          => 'The most a map can be zoomed out of. The default value is :default, while the lowest allowed value is :min.',
+        'max_zoom'          => 'The most a map can be zoomed in on. The default value is :default, while the highest allowed value is :max.',
+        'initial_zoom'      => 'The initial zoom level a map is loaded with. The default value is :default, while the highest allowed value is :max and the lowest allowed value is :min.',
     ],
     'index'         => [
         'add'   => 'New Map',

@@ -21,6 +21,9 @@ use Kalnoy\Nestedset\NodeTrait;
  * @property int $grid
  * @property string $distance_name
  * @property int $distance_measure
+ * @property int $min_zoom
+ * @property int $max_zoom
+ * @property int $initial_zoom
  * @property Map $map
  * @property Map[] $maps
  * @property Location $location
@@ -37,6 +40,9 @@ class Map extends MiscModel
         NodeTrait,
         SimpleSortableTrait,
         SoftDeletes;
+
+    const MAX_ZOOM = 10;
+    const MIN_ZOOM = -10;
 
     /**
      * @var array
@@ -55,6 +61,9 @@ class Map extends MiscModel
         'width',
         'distance_name',
         'distance_measure',
+        'min_zoom',
+        'max_zoom',
+        'initial_zoom',
     ];
 
     /**
@@ -266,6 +275,10 @@ class Map extends MiscModel
         return implode(', ', $layers);
     }
 
+    /**
+     * List of markers for the map legend (ordered by "name")
+     * @return array
+     */
     public function legendMarkers(): array
     {
         $markers = new Collection();
@@ -282,4 +295,54 @@ class Map extends MiscModel
 
         return $markers->sortBy('lower_name')->toArray();
     }
+
+    /**
+     * Minimum zoom of a map
+     * @return int
+     */
+    public function minZoom(): int
+    {
+        if (!is_numeric($this->min_zoom)) {
+            return -2;
+        }
+
+        // if the initial zoom is further away than the min zoom, adapt
+        if ($this->min_zoom > $this->initial_zoom && $this->initial_zoom > self::MIN_ZOOM) {
+            return $this->initial_zoom;
+        }
+        return (int) max($this->min_zoom, self::MIN_ZOOM);
+    }
+
+    /**
+     * Maximum zoom of a map
+     * @return int
+     */
+    public function maxZoom(): int
+    {
+        if (!is_numeric($this->max_zoom)) {
+            return 5;
+        }
+        return (int) min($this->max_zoom, self::MAX_ZOOM);
+    }
+
+    /**
+     * Initiall zoom of a map
+     * @return int
+     */
+    public function initialZoom(): int
+    {
+        if (!is_numeric($this->initial_zoom)) {
+            return 0;
+        }
+
+        if ($this->initial_zoom > self::MAX_ZOOM) {
+            return self::MAX_ZOOM;
+        }
+        if ($this->initial_zoom < self::MIN_ZOOM) {
+            return self::MIN_ZOOM;
+        }
+        return (int) $this->initial_zoom;
+    }
+
+
 }

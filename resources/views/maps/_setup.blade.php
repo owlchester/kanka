@@ -39,9 +39,9 @@
         dragging: true,
         tap: false,
         attributionControl: false,
-        zoom: 0,
-        minZoom: -2,
-        maxZoom: 5,
+        zoom: {{ $map->initialZoom() }},
+        minZoom: {{ $map->minZoom() }},
+        maxZoom: {{ $map->maxZoom() }},
         layers: [{{ $map->activeLayers(!isset($single)) }}]
     });
 
