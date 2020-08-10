@@ -18,7 +18,7 @@
             {!! Form::text('image_url', null, ['placeholder' => __('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
 
             <p class="help-block">
-                {{ __('crud.hints.image_limitations', ['size' => auth()->user()->maxUploadSize(true, (isset($size) ? $size : 'image'))]) }}
+                {{ __('crud.hints.' . (isset($size) && $size == 'map' ? 'map' : 'image') . '_limitations', ['size' => auth()->user()->maxUploadSize(true, (isset($size) ? $size : 'image'))]) }}
                 @if (!auth()->user()->hasRole('patreon') && !\App\Facades\CampaignLocalization::getCampaign()->boosted())
                     <a href="{{ route('settings.subscription') }}">{{ __('crud.hints.image_patreon') }}</a>
                 @endif

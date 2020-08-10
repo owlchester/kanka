@@ -12,7 +12,7 @@
         <div class="entity-files-drop well" style="{{ $enabled ? '' : 'display:none' }}">
             <b>{{ __('crud.files.actions.drop') }}</b><br />
             {{ trans('crud.files.hints.limitations', ['formats' => 'jpg, png, gif, pdf, xls(x)', 'size' => auth()->user()->maxUploadSize(true)]) }}
-            @if (!auth()->user()->hasRole('patreon'))
+            @if (!\App\Facades\CampaignLocalization::getCampaign()->boosted() && !auth()->user()->hasRole('patreon'))
                 <p><a href="{{ route('settings.subscription') }}" target="_blank">{{ __('crud.hints.image_patreon') }}</a></p>
             @endif
         </div>
