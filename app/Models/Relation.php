@@ -58,7 +58,7 @@ class Relation extends Model
      */
     public function scopeOrdered($query, $order = 'desc')
     {
-        return $query->orderBy('attitude', $order);
+        return $query->orderBy('attitude', $order)->orderBy('relation');
     }
 
     /**
