@@ -321,6 +321,13 @@ function entityCreatorUI() {
             initEntityCreatorDuplicateName();
             window.initCategories();
 
+            // Back button
+            $('#entity-creator-back').on('click', function(e) {
+                entityCreatorFormPanel.html('').addClass('hidden');
+                entityCreatorSelection.removeClass('hidden');
+                $('#entity-creator-form').hide();
+            });
+
             $('#entity-creator-form').on('submit', function(e) {
                 e.preventDefault();
 

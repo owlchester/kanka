@@ -33,6 +33,8 @@
         <p class="alert alert-danger entity-creator-error" style="display: none">{{ __('entities.creator.error') }}</p>
         <button class="btn btn-success" id="form-submit-main">{{ trans('crud.save') }}</button>
 
+        <a href="#" id="entity-creator-back" data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal" class="pull-right">{{ __('entities.creator.back') }}</a>
+
         <input type="hidden" name="entity" value="{{ $type }}" />
     </form>
 </div>

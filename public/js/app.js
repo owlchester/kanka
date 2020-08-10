@@ -76602,7 +76602,7 @@ $(document).ready(function () {
   /*$.each($('.datagrid-search'), function(index) {
       $(this).submit(function(event) {
           event.preventDefault();
-            window.location.href =
+           window.location.href =
       });
   });*/
 
@@ -76761,7 +76761,13 @@ function entityCreatorUI() {
       entityCreatorFormPanel.html(data).removeClass('hidden');
       initSelect2();
       initEntityCreatorDuplicateName();
-      window.initCategories();
+      window.initCategories(); // Back button
+
+      $('#entity-creator-back').on('click', function (e) {
+        entityCreatorFormPanel.html('').addClass('hidden');
+        entityCreatorSelection.removeClass('hidden');
+        $('#entity-creator-form').hide();
+      });
       $('#entity-creator-form').on('submit', function (e) {
         e.preventDefault(); // Allow ajax requests to use the X_CSRF_TOKEN for deletes
 
