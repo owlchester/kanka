@@ -60,6 +60,7 @@ Route::apiResources([
 ]);
 
 Route::get('campaigns/{campaign}/users', 'CampaignUserApiController@index');
+Route::get('campaigns/{campaign}/relations', 'RelationApiController@index');
 Route::get('campaigns/{campaign}/search/{query}', 'SearchApiController@index');
 Route::get('profile', 'ProfileApiController@index');
 

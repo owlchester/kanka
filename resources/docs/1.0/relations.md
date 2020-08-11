@@ -7,6 +7,7 @@
 - [Create an relation](#create-relation)
 - [Update an relation](#update-relation)
 - [Delete an relation](#delete-relation)
+- [All Campaign Relations](#all-campaign-relations)
 
 <a name="all-relations"></a>
 ## All Relations
@@ -124,3 +125,16 @@ To delete an relation, use the following endpoint.
 ### Results
 
 > {success} Code 200 with JSON.
+
+
+<a name="all-campaign-relations"></a>
+## All Campaign Relations
+
+You can get a list of all the relations of a campaign by using the following endpoint.
+
+
+> {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
+
+| Method | Endpoint| Headers |
+| :- |   :-   |  :-  |
+| GET/HEAD | `relations` | Default |

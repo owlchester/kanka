@@ -277,4 +277,9 @@ trait CampaignRelations
     {
         return $this->belongsTo('App\Models\Theme');
     }
+
+    public function entityRelations()
+    {
+        return $this->hasMany('App\Models\Relation');
+    }
 }
