@@ -45,6 +45,6 @@ class EntityPolicy
      */
     public function history(?User $user, Entity $entity, Campaign $campaign)
     {
-        return $user->isAdmin() || !($campaign->boosted() && $campaign->hide_history);
+        return $user && $user->isAdmin() || !($campaign->boosted() && $campaign->hide_history);
     }
 }

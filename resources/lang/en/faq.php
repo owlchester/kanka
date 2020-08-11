@@ -90,9 +90,9 @@ TEXT
     ],
     'plans'                 => [
         'answer'    => <<<'TEXT'
-The long term plans for Kanka are to build a versatile worldbuilding and campaign management tool that is system agnostic with system specific content managed by the community in the form of "Community Templates". A longer goal is to build tools that integrate with other platforms like Virtual Table Top apps to link those with the worlds of Kanka.
+The long-term plan for Kanka is to build a versatile worldbuilding and campaign management tool that is system agnostic with content managed by the community in the form of "Community Templates". Another goal of ours is to build tools that integrate with other platforms like Virtual Tabletop apps.
 
-As for the second part, most hobby projects end up in burnout and the creator abandoning them. The :patreon is set up with the goal of us being able to work full time on Kanka without sacrificing our families' financial security, as well as covering the server costs. The project is also open source and can be picked up by the community if something were to ever happen to us.
+We use Kanka ourselves, so we have no plans to ever stop developing and improving it. However, just to be safe, the project is also open source and can be picked up by the community if something were to ever happen to us.
 TEXT
 ,
         'question'  => 'What are the long term plans?',

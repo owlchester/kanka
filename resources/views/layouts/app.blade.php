@@ -117,6 +117,20 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                     </div>
                 @endif
                 @include('partials.success')
+
+                @if(!auth()->check() && !empty(config('tracking.adsense')))
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="{{ config('tracking.adsense') }}"
+                         data-ad-slot="2711573107"
+                         data-ad-format="auto"
+                         data-adtest="on"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                @endif
+
                 @yield('entity-actions')
                 @yield('entity-header')
                 @yield('content')
