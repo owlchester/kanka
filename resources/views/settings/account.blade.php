@@ -53,23 +53,6 @@
             </button>
             {!! Form::close() !!}
 
-            <p><br /></p>
-            <h2 class="page-header with-border text-red">
-                {{ trans('profiles.sections.delete.title') }}
-            </h2>
-            {!! Form::model(auth()->user(), ['method' => 'PATCH', 'id' => 'delete-confirm-form', 'route' => ['settings.account.destroy']]) !!}
-
-            <div class="form-group">
-                <label>{{ trans('profiles.fields.password') }}</label>
-                {!! Form::password('password', ['placeholder' => trans('profiles.placeholders.password'), 'class' => 'form-control']) !!}
-            </div>
-            {!! Form::close() !!}
-            <div class="form-group">
-                <button class="btn btn-danger delete-confirm" data-text="{{ trans('profiles.sections.delete.warning') }}" data-toggle="modal" data-target="#delete-confirm">
-                    <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('profiles.sections.delete.delete') }}
-                </button>
-            </div>
-
             @else
                 <h2 class="page-header with-border">
                     {{ trans('settings.account.social.title') }}
@@ -86,6 +69,26 @@
                 </button>
                 {!! Form::close() !!}
             @endif
+
+
+            <p><br /></p>
+            <h2 class="page-header with-border text-red">
+                {{ trans('profiles.sections.delete.title') }}
+            </h2>
+            {!! Form::model(auth()->user(), ['method' => 'PATCH', 'id' => 'delete-confirm-form', 'route' => ['settings.account.destroy']]) !!}
+
+            @if (empty(auth()->user()->provider))
+            <div class="form-group">
+                <label>{{ trans('profiles.fields.password') }}</label>
+                {!! Form::password('password', ['placeholder' => trans('profiles.placeholders.password'), 'class' => 'form-control']) !!}
+            </div>
+            @endif
+            {!! Form::close() !!}
+            <div class="form-group">
+                <button class="btn btn-danger delete-confirm" data-text="{{ trans('profiles.sections.delete.warning') }}" data-toggle="modal" data-target="#delete-confirm">
+                    <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('profiles.sections.delete.delete') }}
+                </button>
+            </div>
         </div>
     </div>
 @endsection
