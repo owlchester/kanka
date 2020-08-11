@@ -124,7 +124,6 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                          data-ad-client="{{ config('tracking.adsense') }}"
                          data-ad-slot="2711573107"
                          data-ad-format="auto"
-                         data-adtest="on"
                          data-full-width-responsive="true"></ins>
                     <script>
                         (adsbygoogle = window.adsbygoogle || []).push({});
