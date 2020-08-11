@@ -27,7 +27,8 @@ return array(
         'ru',
         'sk',
         'he',
-        'hr'
+        'hr',
+        'pl',
     ],
     /**
      * Specify locales that you want to show in the web interface, if empty or not provided then all locales in the database
@@ -45,6 +46,7 @@ return array(
         'it',
         'hu',
         'nl',
+        'pl',
     ],
     /**
      * Specify the prefix used for all cookies, session data and cache persistence.
