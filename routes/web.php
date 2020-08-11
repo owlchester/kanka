@@ -41,6 +41,7 @@ Route::group([
     Route::get('/helper/public', 'HelperController@public')->name('helpers.public');
     Route::get('/helper/map', 'HelperController@map')->name('helpers.map');
     Route::get('/helper/filters', 'HelperController@filters')->name('helpers.filters');
+    Route::get('/helper/age', 'HelperController@age')->name('helpers.age');
 
     // OAuth Routes
     Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider')->name('auth.provider');

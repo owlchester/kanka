@@ -16,7 +16,6 @@
                 @if ($campaign->enabled('locations'))
                     <th>{{ trans('characters.fields.location') }}</th>
                 @endif
-                <th>{{ trans('characters.fields.age') }}</th>
                 @if ($campaign->enabled('races'))
                     <th>{{ trans('characters.fields.race') }}</th>
                 @endif
@@ -41,7 +40,6 @@
                             @endif
                         </td>
                     @endif
-                    <td>{{ $member->age }}</td>
                     @if ($campaign->enabled('races'))
                         <td>
                             @if ($member->race)

@@ -19,7 +19,6 @@
                 @if ($campaign->enabled('families'))
                     <th>{{ trans('characters.fields.family') }}</th>
                 @endif
-                <th>{{ trans('characters.fields.age') }}</th>
                 <th>&nbsp;</th>
             </tr>
             @foreach ($r as $character)
@@ -44,7 +43,6 @@
                         @endif
                     </td>
                     @endif
-                    <td>{{ $character->age }}</td>
                     <td class="text-right">
                         <a href="{{ route('characters.show', [$character]) }}" class="btn btn-xs btn-primary">
                             <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}

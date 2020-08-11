@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'age'           => [
+        'title'     => 'Character Age and Death',
+        'description' => 'You can link a Character to a calendar of the campaign by viewing a Character and going to the Reminders tab. From there, add a new reminder and set the type to Birth or Death to automatically calculate the the character\'s age. If both birth and death are present, both dates will be shown and the age at death. If only the birth is set, the date and the current age will be shown. If only the death is set, the date and the years since death will be shown.',
+    ],
     'description'   => 'Some helpful tips and tricks to help you out',
     'dice'          => [
         'description'               => 'Generic dice rolling is possible by writting "d20", "4d4+4", "d%" for percentile and "df" for fudge.',

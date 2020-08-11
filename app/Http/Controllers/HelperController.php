@@ -36,6 +36,14 @@ class HelperController
         return $this->render('filters');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function age()
+    {
+        return $this->render('age');
+    }
+
     protected function render(string $view)
     {
         $ajax = request()->ajax();

@@ -397,7 +397,8 @@ class Character extends MiscModel
     public function showAppearance(): bool
     {
         if ($this->showAppearanceCache === null) {
-            $this->showAppearanceCache = !empty($this->sex) || !empty($this->sex) ||
+            $this->showAppearanceCache = !empty($this->age) || !empty($this->sex) ||
+                $this->entity->elapsedEvents->count() > 0 ||
                 $this->characterTraits()->appearance()->count() > 0;
         }
         return $this->showAppearanceCache;

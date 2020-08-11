@@ -8,6 +8,7 @@ use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\Conversation;
 use App\Models\EntityAbility;
+use App\Models\EntityEvent;
 use App\Models\EntityMention;
 use App\Models\EntityNote;
 use App\Models\EntityTag;
@@ -40,6 +41,7 @@ use App\User;
  * @property Attribute[] $starredAttributes
  * @property Relation[] $starredRelations
  * @property Relation[] $relations
+ * @property EntityEvent[] $elapsedEvents
  */
 trait EntityRelations
 {
@@ -297,6 +299,14 @@ trait EntityRelations
     public function events()
     {
         return $this->hasMany('App\Models\EntityEvent', 'entity_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function elapsedEvents()
+    {
+        return $this->events()->with('calendar')->whereNotNull('type_id');
     }
 
     /**

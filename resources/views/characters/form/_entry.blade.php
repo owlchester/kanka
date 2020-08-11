@@ -22,6 +22,7 @@ if (request()->route()->getName() == 'characters.random') {
         <div class="form-group">
             <label>{{ trans('characters.fields.age') }}</label>
             {!! Form::text('age', ($isRandom ? $random->generateNumber(1, 300) : FormCopy::field('age')->string()), ['placeholder' => trans('characters.placeholders.age'), 'class' => 'form-control', 'maxlength' => 25]) !!}
+            <p class="help-block">{!! __('characters.helpers.age', ['more' => link_to_route('helpers.age', __('crud.actions.find_out_more'))]) !!}</p>
         </div>
         <div class="form-group">
             <label>{{ trans('characters.fields.sex') }}</label>

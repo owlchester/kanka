@@ -34,6 +34,7 @@ return [
         'image'                     => 'Image',
         'is_dead'                   => 'Dead',
         'is_personality_visible'    => 'Personality visible',
+        'life'                      => 'Life',
         'location'                  => 'Location',
         'name'                      => 'Name',
         'physical'                  => 'Physical',
@@ -45,6 +46,7 @@ return [
         'type'                      => 'Type',
     ],
     'helpers'       => [
+        'age'   => 'You can link this entity with a calendar of your campaign to automatically calculate their age instead. :more.',
         'free'  => 'Where did the "Free" field go? If this character had one, it\'s been moved over to the new Notes tab!',
     ],
     'hints'         => [

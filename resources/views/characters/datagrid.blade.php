@@ -37,7 +37,6 @@
             }
         ],
         'type',
-        'age',
         'sex',
         'is_dead',
         [

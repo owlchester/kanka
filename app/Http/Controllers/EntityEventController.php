@@ -76,6 +76,14 @@ class EntityEventController extends Controller
         $reminder->entity_id = $entity->id;
         $reminder->save();
 
+
+        $next = request()->post('next', false);
+        if ($next == 'entity.events') {
+            return redirect()
+                ->to($entity->url('show', 'tab_calendars'))
+                ->with('success', trans('calendars.event.create.success'));
+        }
+
         return redirect()
             ->route($entity->pluralType() . '.show', [$entity->entity_id, '#calendars'])
             ->with('success', trans('calendars.event.create.success'));
@@ -135,6 +143,10 @@ class EntityEventController extends Controller
             return redirect()
                 ->route('calendars.events', $entityEvent->calendar)
                 ->with('success', trans('calendars.event.edit.success'));
+        } elseif ($next == 'entity.events') {
+            return redirect()
+                ->to($entity->url('show', 'tab_calendars'))
+                ->with('success', trans('calendars.event.edit.success'));
         }
 
         return redirect()->route('calendars.show', $routeOptions)
@@ -157,6 +169,11 @@ class EntityEventController extends Controller
         if ($next == 'calendars.events') {
             return redirect()
                 ->route('calendars.events', $entityEvent->calendar)
+                ->with('success', $success);
+
+        } elseif ($next == 'entity.events') {
+            return redirect()
+                ->to($entity->url('show', 'tab_calendars'))
                 ->with('success', $success);
         }
 

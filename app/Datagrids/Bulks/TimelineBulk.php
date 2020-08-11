@@ -4,7 +4,7 @@
 namespace App\Datagrids\Bulks;
 
 
-class MapBulk extends Bulk
+class TimelineBulk extends Bulk
 {
     protected $fields = [
         'name',

@@ -35,6 +35,7 @@ class AddCalendarEvent extends FormRequest
             'recurring_periodicity' => 'nullable|max:5',
             'colour' => 'nullable|string',
             'comment' => 'nullable|max:191',
+            'type_id' => 'nullable|integer|exists:entity_event_types,id'
         ];
     }
 }

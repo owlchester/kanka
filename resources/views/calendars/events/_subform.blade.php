@@ -50,13 +50,13 @@
 </div>
 <div class="row" style="@if (!isset($entityEvent) || !$entityEvent->is_recurring) display:none @endif" id="add_event_recurring_until">
     <div class="col-md-6">
-        <div class="form-group" >
+        <div class="form-group">
             <label>{{ __('calendars.fields.recurring_periodicity') }}</label>
             {!! Form::select('recurring_periodicity', __('calendars.options.events.recurring_periodicity'), null, ['class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-md-6">
-        <div class="form-group" >
+        <div class="form-group">
             <label>{{ __('calendars.fields.recurring_until') }}</label>
             {!! Form::text('recurring_until', null, ['placeholder' => __('calendars.placeholders.recurring_until'), 'class' => 'form-control', 'maxlength' => 12]) !!}
         </div>
@@ -65,3 +65,11 @@
         <p class="help-block">{{ __('calendars.hints.is_recurring') }}</p>
     </div>
 </div>
+
+@if (!empty($entity) && $entity->typeId() == config('entities.ids.character'))
+    <div class="form-group">
+        <label>{{ __('entities/events.fields.type') }}</label>
+        {!! Form::select('type_id', [null => '', 2 => __('entities/events.types.birth'), 3 =>  __('entities/events.types.death')], (isset($entityEvent) ? $entityEvent->type_id : null), ['class' => 'form-control']) !!}
+        <p class="help-block">{!! __('entities/events.helpers.characters', ['more' => link_to_route('helpers.age', __('crud.actions.find_out_more'), null, ['target' => '_blank'])]) !!}</p>
+    </div>
+@endif

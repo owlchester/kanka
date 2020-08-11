@@ -11,9 +11,9 @@ $r = $model
     ->paginate(); ?>
 <p class="export-hidden">
     @can('events', $model)
-    <a href="{{ route('entities.entity_events.create', [$model->entity]) }}" id="entity-calendar-modal-add"
+    <a href="{{ route('entities.entity_events.create', [$model->entity, 'next' => 'entity.events']) }}" id="entity-calendar-modal-add"
        class="btn btn-sm btn-primary pull-right" data-toggle="ajax-modal" data-target="#entity-modal"
-       data-url="{{ route('entities.entity_events.create', [$model->entity]) }}">
+       data-url="{{ route('entities.entity_events.create', [$model->entity, 'next' => 'entity.events']) }}">
         <i class="fa fa-plus"></i> {{ trans('crud.add') }}
     </a>
     @endcan
@@ -28,13 +28,13 @@ $r = $model
         <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/date', '#calendars']) }}">{{ trans('events.fields.date') }}@if (request()->get('order') == 'events/date') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
         <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/length', '#calendars']) }}">{{ trans('calendars.fields.length') }}@if (request()->get('order') == 'events/length') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
         <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/comment', '#calendars']) }}">{{ trans('calendars.fields.comment') }}@if (request()->get('order') == 'events/comment') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
-        <th><a href="{{ route($name . '.show', [$model, 'order' => 'events/is_recurring', '#calendars']) }}">{{ trans('calendars.fields.is_recurring') }}@if (request()->get('order') == 'events/is_recurring') <i class="fa fa-long-arrow-down"></i>@endif</a></th>
+        <th><br /></th>
         @else
         <th>{{ trans('calendars.fields.name') }}</th>
         <th>{{ trans('calendars.fields.date') }}</th>
         <th>{{ trans('calendars.fields.length') }}</th>
         <th>{{ trans('calendars.fields.comment') }}</th>
-        <th>{{ trans('calendars.fields.is_recurring') }}</th>
+        <th></th>
         @endif
         <th>&nbsp;</th>
     </tr>
@@ -54,15 +54,22 @@ $r = $model
             </td>
             <td>{{ trans_choice('calendars.fields.length_days', $relation->length, ['count' => $relation->length]) }}</td>
             <td>{{ $relation->comment }}</td>
-            <td>@if ($relation->is_recurring)
-                  <i class="fa fa-check"></i>
-            @endif</td>
+            <td>
+                @if ($relation->is_recurring)
+                    <i class="fa fa-redo" title="{{ trans('calendars.fields.is_recurring') }}"></i>
+                @endif
+                @if ($relation->type_id == 2)
+                    <i class="fa fa-birthday-cake" title="{{ __('entities/events.types.birth') }}"></i>
+                @elseif ($relation->type_id == 3)
+                    <i class="fa fa-skull" title="{{ __('entities/events.types.death') }}"></i>
+                @endif
+            </td>
             <td class="text-right">
                 @can('events', $relation->calendar)
-                <a href="{{ route('entities.entity_events.edit', [$relation->entity, $relation->id]) }}" class="btn btn-xs btn-primary">
+                <a href="{{ route('entities.entity_events.edit', [$relation->entity, $relation->id, 'next' => 'entity.events']) }}" class="btn btn-xs btn-primary">
                     <i class="fa fa-edit"></i>
                 </a>
-                {!! Form::open(['method' => 'DELETE', 'route' => ['entities.entity_events.destroy', $relation->entity, $relation->id], 'style' => 'display:inline']) !!}
+                {!! Form::open(['method' => 'DELETE', 'route' => ['entities.entity_events.destroy', $relation->entity, $relation->id, 'next' => 'entity.events'], 'style' => 'display:inline']) !!}
                 <button class="btn btn-xs btn-danger">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>

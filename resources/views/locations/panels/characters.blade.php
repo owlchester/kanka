@@ -47,7 +47,6 @@ if (request()->has('location_id')) {
                     <th>{{ trans('characters.fields.family') }}</th>
                 @endif
                 <th>{{ trans('crud.fields.location') }}</th>
-                <th>{{ trans('characters.fields.age') }}</th>
                 @if ($campaign->enabled('races'))
                     <th>{{ trans('characters.fields.race') }}</th>
                 @endif
@@ -72,7 +71,6 @@ if (request()->has('location_id')) {
                     <td>
                         {!! $character->location->tooltipedLink() !!}
                     </td>
-                    <td>{{ $character->age }}</td>
                     @if ($campaign->enabled('races'))
                         <td>
                             @if ($character->race)

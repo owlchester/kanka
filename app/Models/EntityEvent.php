@@ -21,7 +21,12 @@ use App\Traits\OrderableTrait;
  * @property boolean $is_recurring
  * @property integer $recurring_until
  * @property integer $recurring_periodicity
+ * @property integer $type_id
+ * @property integer $elapsed
  * @property boolean $is_private
+ *
+ * @property Calendar $calendar
+ * @property EntityEventType $type
  */
 class EntityEvent extends MiscModel
 {
@@ -81,7 +86,8 @@ class EntityEvent extends MiscModel
         'colour',
         'day',
         'month',
-        'year'
+        'year',
+        'type_id'
     ];
 
     /**
@@ -98,6 +104,14 @@ class EntityEvent extends MiscModel
     public function entity()
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function type()
+    {
+        return $this->belongsTo('App\Models\EntityEventType', 'type_id');
     }
 
     /**
@@ -193,5 +207,32 @@ class EntityEvent extends MiscModel
 
         // Current month, check on day
         return $this->day < $calendar->currentDate('date');
+    }
+
+    /**
+     * Calculate the elapsed time since the event happened
+     */
+    public function calcElasped(EntityEvent $event = null)
+    {
+        if (!empty($event)) {
+            $year = $event->year;
+            $month = $event->month;
+            $day = $event->day;
+        } else {
+            $year = $this->calendar->currentDate('year');
+            $month = $this->calendar->currentDate('month');
+            $day = $this->calendar->currentDate('day');
+        }
+
+        $years = $year - $this->year;
+        if ($month < $this->month) {
+            return $years-1;
+        }
+        if ($month > $this->month) {
+            return $years;
+        }
+
+        // Same month
+        return $years - ($day < $this->day ? 1 : 0);
     }
 }

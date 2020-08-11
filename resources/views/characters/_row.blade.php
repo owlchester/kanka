@@ -19,7 +19,6 @@
         @endif
     </td>
     @endif
-    <td>{{ $character->age }}</td>
     <td>{{ $character->race }}</td>
     <td>{{ $character->sex }}</td>
     @if (Auth::user()->isAdmin())
