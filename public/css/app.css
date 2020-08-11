@@ -697,6 +697,11 @@ div.mce-fullscreen {
   border-bottom: none;
 }
 
+.list-group-item-repeat {
+  padding-top: 0;
+  border: unset;
+}
+
 .input-error {
   border: 1px inset red;
 }
