@@ -147,7 +147,7 @@ class MapMarker extends Model
                 permanent: true,
                 offset: [0,0]
             })' . $this->popup();
-        } elseif ($this->shape_id == MapMarker::SHAPE_POLY) {
+        } elseif ($this->shape_id == MapMarker::SHAPE_POLY && !empty($this->custom_shape)) {
             $coords = [];
             $segments = explode(' ', $this->custom_shape);
             foreach ($segments as $segment) {
