@@ -89,6 +89,10 @@ class MacroServiceProvider extends HtmlServiceProvider
 
     protected function blade()
     {
+        Blade::if('renderOnce', function ($key) {
+            $key = 'render-once-key-' . $key;
+            return defined($key)? false : define($key, true);
+        });
 
         /*Blade::directive('tooltip', function (Entity $entity) {
             return "<?php echo '<a class=\"name\" data-toggle=\"tooltip-ajax\" data-id=\"" . $entity->id

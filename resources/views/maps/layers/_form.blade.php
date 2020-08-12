@@ -27,12 +27,16 @@
 @if ($ajax)
     <script type="text/javascript">
         $(document).ready(function () {
-            var editorId = 'layer-entry';
-            // First we remove in case it was already loaded
-            tinyMCE.EditorManager.execCommand('mceFocus', false, editorId);
-            tinyMCE.EditorManager.execCommand('mceRemoveEditor', true, editorId);
-            // And add again
-            tinymce.EditorManager.execCommand('mceAddEditor', false, editorId);
+            @if(auth()->user()->editor == 'summernote')
+                window.initSummernote();
+            @else
+                var editorId = 'layer-entry';
+                // First we remove in case it was already loaded
+                tinyMCE.EditorManager.execCommand('mceFocus', false, editorId);
+                tinyMCE.EditorManager.execCommand('mceRemoveEditor', true, editorId);
+                // And add again
+                tinymce.EditorManager.execCommand('mceAddEditor', false, editorId);
+            @endif
         });
     </script>
 @endif

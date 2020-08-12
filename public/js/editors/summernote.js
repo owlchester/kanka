@@ -97,61 +97,61 @@ var summernoteConfig;
 var advancedRequest = false;
 $(document).ready(function () {
   summernoteConfig = $('#summernote-config');
+  console.log('summernote.js ready', summernoteConfig);
 
   if (summernoteConfig.length > 0) {
-    initSummernote();
+    window.initSummernote();
   }
 });
 /**
  * Initialize summernote when available
  */
 
-function initSummernote() {
-  $(document).ready(function () {
-    $('.html-editor').summernote({
-      height: '300px',
-      lang: editorLang(summernoteConfig.data('locale')),
-      toolbar: [['style', ['style']], ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']], ['fontname', ['fontname']], ['color', ['color']], ['para', ['ul', 'ol', 'paragraph']], ['table', ['table']], ['insert', ['link', 'picture', 'video', 'hr']], ['view', ['fullscreen', 'codeview', 'help']]],
-      hint: [{
-        match: /\B@(\w*)$/,
-        search: function search(keyword, callback) {
-          return hintEntities(keyword, callback);
-        },
-        template: function template(item) {
-          return hintTemplate(item);
-        },
-        content: function content(item) {
-          advancedRequest = false;
-          return hintContent(item);
-        }
-      }, {
-        match: /\B\[(\w*)$/,
-        search: function search(keyword, callback) {
-          return hintEntities(keyword, callback);
-        },
-        template: function template(item) {
-          return hintTemplate(item);
-        },
-        content: function content(item) {
-          advancedRequest = true;
-          return hintContent(item);
-        }
-      }, {
-        match: /\B\#(\w*)$/,
-        search: function search(keyword, callback) {
-          return hintMonths(keyword, callback);
-        },
-        template: function template(item) {
-          return hintTemplate(item);
-        },
-        content: function content(item) {
-          advancedRequest = false;
-          return hintContent(item);
-        }
-      }]
-    });
+window.initSummernote = function () {
+  console.log('init with', summernoteConfig);
+  $('.html-editor').summernote({
+    height: '300px',
+    lang: editorLang(summernoteConfig.data('locale')),
+    toolbar: [['style', ['style']], ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']], ['fontname', ['fontname']], ['color', ['color']], ['para', ['ul', 'ol', 'paragraph']], ['table', ['table']], ['insert', ['link', 'picture', 'video', 'hr']], ['view', ['fullscreen', 'codeview', 'help']]],
+    hint: [{
+      match: /\B@(\w*)$/,
+      search: function search(keyword, callback) {
+        return hintEntities(keyword, callback);
+      },
+      template: function template(item) {
+        return hintTemplate(item);
+      },
+      content: function content(item) {
+        advancedRequest = false;
+        return hintContent(item);
+      }
+    }, {
+      match: /\B\[(\w*)$/,
+      search: function search(keyword, callback) {
+        return hintEntities(keyword, callback);
+      },
+      template: function template(item) {
+        return hintTemplate(item);
+      },
+      content: function content(item) {
+        advancedRequest = true;
+        return hintContent(item);
+      }
+    }, {
+      match: /\B\#(\w*)$/,
+      search: function search(keyword, callback) {
+        return hintMonths(keyword, callback);
+      },
+      template: function template(item) {
+        return hintTemplate(item);
+      },
+      content: function content(item) {
+        advancedRequest = false;
+        return hintContent(item);
+      }
+    }]
   });
-}
+};
 /**
  * Search for entities
  * @param keyword

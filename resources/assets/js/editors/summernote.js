@@ -3,71 +3,71 @@ var advancedRequest = false;
 
 $(document).ready(function () {
     summernoteConfig = $('#summernote-config');
+    console.log('summernote.js ready', summernoteConfig);
     if (summernoteConfig.length > 0) {
-        initSummernote();
+        window.initSummernote();
     }
 });
 
 /**
  * Initialize summernote when available
  */
-function initSummernote() {
-    $(document).ready(function() {
-        $('.html-editor').summernote({
-            height: '300px',
-            lang: editorLang(summernoteConfig.data('locale')),
-            toolbar: [
-                ['style', ['style']],
-                ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
-                ['fontname', ['fontname']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['table', ['table']],
-                ['insert', ['link', 'picture', 'video', 'hr']],
-                ['view', ['fullscreen', 'codeview', 'help']],
-            ],
-            hint: [
-                {
-                    match: /\B@(\w*)$/,
-                    search: function (keyword, callback) {
-                        return hintEntities(keyword, callback);
-                    },
-                    template: function (item) {
-                        return hintTemplate(item);
-                    },
-                    content: function (item) {
-                        advancedRequest = false;
-                        return hintContent(item);
-                    }
+window.initSummernote = function() {
+    console.log('init with', summernoteConfig);
+    $('.html-editor').summernote({
+        height: '300px',
+        lang: editorLang(summernoteConfig.data('locale')),
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video', 'hr']],
+            ['view', ['fullscreen', 'codeview', 'help']],
+        ],
+        hint: [
+            {
+                match: /\B@(\w*)$/,
+                search: function (keyword, callback) {
+                    return hintEntities(keyword, callback);
                 },
-                {
-                    match: /\B\[(\w*)$/,
-                    search: function (keyword, callback) {
-                        return hintEntities(keyword, callback);
-                    },
-                    template: function (item) {
-                        return hintTemplate(item);
-                    },
-                    content: function (item) {
-                        advancedRequest = true;
-                        return hintContent(item);
-                    }
+                template: function (item) {
+                    return hintTemplate(item);
                 },
-                {
-                    match: /\B\#(\w*)$/,
-                    search: function (keyword, callback) {
-                        return hintMonths(keyword, callback);
-                    },
-                    template: function (item) {
-                        return hintTemplate(item);
-                    },
-                    content: function (item) {
-                        advancedRequest = false;
-                        return hintContent(item);
-                    }
+                content: function (item) {
+                    advancedRequest = false;
+                    return hintContent(item);
+                }
+            },
+            {
+                match: /\B\[(\w*)$/,
+                search: function (keyword, callback) {
+                    return hintEntities(keyword, callback);
                 },
-            ],
-        });
+                template: function (item) {
+                    return hintTemplate(item);
+                },
+                content: function (item) {
+                    advancedRequest = true;
+                    return hintContent(item);
+                }
+            },
+            {
+                match: /\B\#(\w*)$/,
+                search: function (keyword, callback) {
+                    return hintMonths(keyword, callback);
+                },
+                template: function (item) {
+                    return hintTemplate(item);
+                },
+                content: function (item) {
+                    advancedRequest = false;
+                    return hintContent(item);
+                }
+            },
+        ],
     });
 }
 
