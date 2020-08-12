@@ -980,6 +980,14 @@ hr {
   display: none !important;
 }
 
+.note-editing-area .mention {
+  background-color: #eee;
+  padding: 3px 5px;
+  border-radius: 5px;
+  color: #333;
+  text-decoration: none;
+}
+
 .calendar {
   table-layout: fixed;
 }
