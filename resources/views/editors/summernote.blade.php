@@ -1,8 +1,10 @@
-<div id="summernote-config"
+<div
+    id="summernote-config"
     data-mention="{{ route('search.live') }}"
     data-advanced-mention="{{ Auth::user()->advancedMentions }}"
     data-months="{{ route('search.calendar-months') }}"
-></div>
+    data-locale="{{ app()->getLocale() }}"></div>
+
 @section('scripts')
     @parent
     <script src="/vendor/summernote/summernote.min.js" defer></script>

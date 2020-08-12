@@ -15,6 +15,7 @@ function initSummernote() {
     $(document).ready(function() {
         $('.html-editor').summernote({
             height: '300px',
+            lang: editorLang(summernoteConfig.data('locale')),
             toolbar: [
                 ['style', ['style']],
                 ['font', ['bold', 'underline', 'clear']],
@@ -146,4 +147,23 @@ function hintContent(item) {
         })[0];
     }
     return item.fullname;
+}
+
+/**
+ * Editor locale
+ * @param locale
+ * @returns {string}
+ */
+function editorLang(locale) {
+    if (!locale) {
+        return 'en-US';
+    }
+
+    if (locale == 'he') {
+        return 'he-IL';
+    } else if(locale == 'en') {
+        return 'en-US';
+    } else {
+        return locale + '-' + locale.toUpperCase();
+    }
 }

@@ -110,6 +110,7 @@ function initSummernote() {
   $(document).ready(function () {
     $('.html-editor').summernote({
       height: '300px',
+      lang: editorLang(summernoteConfig.data('locale')),
       toolbar: [['style', ['style']], ['font', ['bold', 'underline', 'clear']], ['fontname', ['fontname']], ['color', ['color']], ['para', ['ul', 'ol', 'paragraph']], ['table', ['table']], ['insert', ['link', 'picture', 'video', 'hr']], ['view', ['fullscreen', 'codeview', 'help']]],
       hint: [{
         match: /\B@(\w*)$/,
@@ -236,6 +237,26 @@ function hintContent(item) {
   }
 
   return item.fullname;
+}
+/**
+ * Editor locale
+ * @param locale
+ * @returns {string}
+ */
+
+
+function editorLang(locale) {
+  if (!locale) {
+    return 'en-US';
+  }
+
+  if (locale == 'he') {
+    return 'he-IL';
+  } else if (locale == 'en') {
+    return 'en-US';
+  } else {
+    return locale + '-' + locale.toUpperCase();
+  }
 }
 
 /***/ }),
