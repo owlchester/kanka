@@ -3,7 +3,6 @@ var advancedRequest = false;
 
 $(document).ready(function () {
     summernoteConfig = $('#summernote-config');
-    console.log('summernote.js ready', summernoteConfig);
     if (summernoteConfig.length > 0) {
         window.initSummernote();
     }
@@ -13,7 +12,6 @@ $(document).ready(function () {
  * Initialize summernote when available
  */
 window.initSummernote = function() {
-    console.log('init with', summernoteConfig);
     $('.html-editor').summernote({
         height: '300px',
         lang: editorLang(summernoteConfig.data('locale')),
