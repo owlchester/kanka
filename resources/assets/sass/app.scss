@@ -985,6 +985,9 @@ hr {
   }
 }
 
+/** Summernote: hide file upload **/
+.note-group-select-from-files { display: none!important; }
+
 // Other stylings
 @import "calendar";
 @import "timeline";
