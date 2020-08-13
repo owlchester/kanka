@@ -110,7 +110,10 @@ window.initSummernote = function () {
   $('.html-editor').summernote({
     height: '300px',
     lang: editorLang(summernoteConfig.data('locale')),
-    toolbar: [['style', ['style']], ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']], ['fontname', ['fontname']], ['color', ['color']], ['para', ['ul', 'ol', 'paragraph']], ['table', ['table']], ['insert', ['link', 'picture', 'video', 'hr']], ['view', ['fullscreen', 'codeview', 'help']]],
+    toolbar: [['style', ['style']], ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']], ['color', ['color']], ['para', ['ul', 'ol', 'paragraph']], ['table', ['table']], ['insert', ['link', 'picture', 'video', 'embed', 'hr']], ['view', ['fullscreen', 'codeview', 'help']]],
+    popover: {
+      table: [['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']], ['delete', ['deleteRow', 'deleteCol', 'deleteTable']], ['custom', ['tableHeaders']]]
+    },
     hint: [{
       match: /\B@(\w*)$/,
       search: function search(keyword, callback) {

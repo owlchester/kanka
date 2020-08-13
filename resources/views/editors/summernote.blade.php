@@ -9,6 +9,8 @@
     @parent
     <script src="/vendor/summernote/summernote.min.js" defer></script>
     <script src="{{ asset('js/editors/summernote.js') }}" defer></script>
+    <script src="/vendor/summernote/plugin/embed/summernote-embed-plugin.js" defer></script>
+    <script src="/vendor/summernote/plugin/summernote-table-headers/summernote-table-headers.js" defer></script>
     @if (app()->getLocale() == 'he')
         <script src="/vendor/summernote/lang/summernote-he-IL.js" defer></script>
     @elseif (!in_array(app()->getLocale(), ['en-US', 'en']))

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Summernote Lists Extension Example</title>
+
+    <!-- include libraries(jQuery, bootstrap) -->
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+
+    <!-- include summernote css/js-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.7/summernote.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.7/summernote.js"></script>
+
+    <script src="../summernote-table-headers.js"></script>
+    <link href="../summernote-table-headers.css" rel="stylesheet">
+
+</head>
+<body>
+<h3>Demo of summernote-table-headers extension:</h3>
+<div id="summernote" >
+  <table class="table table-bordered"><tbody><tr><td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td><td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td><td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td></tr><tr><td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td><td><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit<br></p></td><td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td></tr><tr><td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td><td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td><td>Lorem ipsum dolor sit amet, consectetur adipiscing elit</td></tr></tbody></table><p>
+      </p><br><p></p>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#summernote').summernote({
+            height: 400,
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['table', ['table']],
+                ['misc', ['codeview']]
+            ],
+            popover: {
+                table: [
+                  ['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight', 'toggle']],
+                  ['delete', ['deleteRow', 'deleteCol', 'deleteTable']],
+                  ['custom', ['tableHeaders']]
+                ],
+            },
+        });
+    });
+
+</script>
+
+</body>
+</html>

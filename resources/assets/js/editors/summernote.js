@@ -18,13 +18,19 @@ window.initSummernote = function() {
         toolbar: [
             ['style', ['style']],
             ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
-            ['fontname', ['fontname']],
             ['color', ['color']],
             ['para', ['ul', 'ol', 'paragraph']],
             ['table', ['table']],
-            ['insert', ['link', 'picture', 'video', 'hr']],
+            ['insert', ['link', 'picture', 'video', 'embed', 'hr']],
             ['view', ['fullscreen', 'codeview', 'help']],
         ],
+        popover: {
+            table: [
+                ['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']],
+                ['delete', ['deleteRow', 'deleteCol', 'deleteTable']],
+                ['custom', ['tableHeaders']]
+            ],
+        },
         hint: [
             {
                 match: /\B@(\w*)$/,
