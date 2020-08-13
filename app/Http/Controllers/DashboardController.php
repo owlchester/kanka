@@ -46,6 +46,7 @@ class DashboardController extends Controller
     public function recent($id)
     {
         $widget = CampaignDashboardWidget::findOrFail($id);
+        $campaign = CampaignLocalization::getCampaign();
         if ($widget->widget != CampaignDashboardWidget::WIDGET_RECENT) {
             return response()->json([
                 'success' => true
@@ -65,6 +66,7 @@ class DashboardController extends Controller
         return view('dashboard.widgets._recent_list')
             ->with('entities', $entities)
             ->with('widget', $widget)
+            ->with('campaign', $campaign)
             ->with('offset', $offset);
     }
 }
