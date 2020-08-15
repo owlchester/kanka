@@ -65,6 +65,7 @@
       }
       a {
         border-left: unset;
+        overflow: hidden;
         &:hover {
           background: rgba(0, 0, 0, 0.16);
           border-radius: 8px;

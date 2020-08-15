@@ -110,7 +110,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
             @endforeach
             @endif
 
-            <li class="{{ $sidebar->open('menu_links') }} sidebar-section">
+            <li class="sidebar-section">
                 <div class="sidebar-text">
                     <i class="fa fa-globe"></i>
                     <span>{{ trans('sidebar.world') }}</span>
@@ -199,7 +199,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                 </li>
             @endif
 
-            <li class="{{ $sidebar->open('menu_links') }} sidebar-section">
+            <li class="sidebar-section">
                 <div class="sidebar-text">
                     <i class="fas fa-cubes"></i>
                     <span>{{ trans('sidebar.other') }}</span>

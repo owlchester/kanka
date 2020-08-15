@@ -37,41 +37,54 @@
                 </a>
             </li>
 
-            <li class="header">{{ __('settings.menu.subscription') }}</li>
-            <li class="{{ $sidebar->settings('boost') }}">
+
+            <li class="sidebar-section">
+                <div class="sidebar-text">
+                    <i class="fa fa-bolt"></i>
+                    <span>{{ trans('settings.menu.subscription') }}</span>
+                </div>
+            </li>
+
+            <li class="{{ $sidebar->settings('boost') }} subsection">
                 <a href="{{ route('settings.boost') }}">
                     <i class="fa fa-rocket"></i> <span>{{ __('settings.menu.boost') }}</span>
                 </a>
             </li>
-            <li class="{{ $sidebar->settings('billing-information') }}">
+            <li class="{{ $sidebar->settings('billing-information') }} subsection">
                 <a href="{{ route('settings.billing') }}">
-                    <i class="far fa-circle"></i> <span>{{ __('settings.menu.billing') }}</span>
+                    <i class="fa fa-credit-card"></i> <span>{{ __('settings.menu.billing') }}</span>
                 </a>
             </li>
-            <li class="{{ $sidebar->settings('subscription') }}">
+            <li class="{{ $sidebar->settings('subscription') }} subsection">
                 <a href="{{ route('settings.subscription') }}">
-                    <i class="far fa-circle"></i> <span>{{ __('settings.menu.subscription_status') }}</span>
+                    <i class="fa fa-heart"></i> <span>{{ __('settings.menu.subscription_status') }}</span>
                 </a>
             </li>
-            <li class="{{ $sidebar->settings('invoices') }}">
+            <li class="{{ $sidebar->settings('invoices') }} subsection">
                 <a href="{{ route('settings.invoices') }}">
-                    <i class="far fa-circle"></i> <span>{{ __('settings.menu.invoices') }}</span>
+                    <i class="fa fa-receipt"></i> <span>{{ __('settings.menu.invoices') }}</span>
                 </a>
             </li>
 
-            <li class="header">{{ __('settings.menu.other') }}</li>
-            @if (Auth::user()->hasPatreonSync())<li class="{{ $sidebar->settings('patreon') }}">
+
+            <li class="sidebar-section">
+                <div class="sidebar-text">
+                    <i class="fa fa-cubes"></i>
+                    <span>{{ trans('settings.menu.other') }}</span>
+                </div>
+            </li>
+            @if (Auth::user()->hasPatreonSync())<li class="{{ $sidebar->settings('patreon') }} subsection">
                 <a href="{{ route('settings.patreon') }}">
                     <i class="fab fa-patreon"></i> <span>{{ __('settings.menu.patreon') }}</span>
                 </a>
             </li>@endif
 
-            <li class="{{ $sidebar->settings('apps') }}">
+            <li class="{{ $sidebar->settings('apps') }} subsection">
                 <a href="{{ route('settings.apps') }}">
                     <i class="fab fa-discord"></i> <span>{{ __('settings.menu.apps') }}</span>
                 </a>
             </li>
-            <li class="{{ $sidebar->settings('api') }}">
+            <li class="{{ $sidebar->settings('api') }} subsection">
                 <a href="{{ route('settings.api') }}">
                     <i class="fas fa-code"></i> <span>{{ __('settings.menu.api') }}</span>
                 </a>

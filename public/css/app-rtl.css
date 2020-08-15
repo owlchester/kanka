@@ -26,12 +26,12 @@ th {
 }
 
 .content-wrapper {
-  margin-right: 230px;
+  margin-right: 280px;
   margin-left: unset;
 }
 
 .main-footer {
-  margin-right: 230px;
+  margin-right: 280px;
   margin-left: unset;
 }
 
@@ -53,7 +53,7 @@ th {
 
 .main-header .navbar {
   margin-left: unset;
-  margin-right: 230px;
+  margin-right: 280px;
 }
 
 .main-header .sidebar-toggle {
@@ -173,7 +173,7 @@ th {
 
 @media (max-width: 767px) {
   .main-sidebar {
-    transform: translate(230px, 0);
+    transform: translate(280px, 0);
   }
 
   .content-wrapper,
@@ -188,7 +188,7 @@ th {
 
   .sidebar-open .content-wrapper,
   .sidebar-open .main-footer {
-    transform: translate(-230px, 0);
+    transform: translate(-280px, 0);
   }
 }
 
