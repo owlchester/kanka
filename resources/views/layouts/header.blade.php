@@ -4,19 +4,22 @@ $currentCampaign = CampaignLocalization::getCampaign();
 <!-- Main Header -->
 <header class="main-header">
 
-    <!-- Logo -->
-    <a href="{{ route('home') }}" class="logo hidden-xs">
-        {{ config('app.name') }}
-    </a>
+{{--    @if ((Auth::check() && Auth::user()->hasCampaigns()) || !Auth::check())--}}
+{{--        <!-- Sidebar toggle button-->--}}
+{{--        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">--}}
+{{--            <span class="sr-only">{{ trans('header.toggle_navigation') }}</span>--}}
+{{--        </a>--}}
+{{--    @endif--}}
 
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top">
         @if ((Auth::check() && Auth::user()->hasCampaigns()) || !Auth::check())
         <!-- Sidebar toggle button-->
-        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-            <span class="sr-only">{{ trans('header.toggle_navigation') }}</span>
-        </a>
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">{{ trans('header.toggle_navigation') }}</span>
+            </a>
         @endif
+
         @if (!empty($currentCampaign))
             {!! Form::open(['route' => 'search', 'class' => 'visible-md visible-lg navbar-form navbar-left live-search-form', 'method'=>'GET']) !!}
                 <input type="text" name="q" id="live-search" class="typeahead form-control" autocomplete="off"
@@ -58,66 +61,6 @@ $currentCampaign = CampaignLocalization::getCampaign();
                             </li>
                             <li class="footer"><a href="{{ route('notifications') }}">{{ trans('header.notifications.read_all') }}</a></li>
                         </ul>
-                    </li>
-                @endif
-                <!-- If there is a current campaign and (the user has at least one other campaign or the user isn't part of the current campaign) -->
-                @if(Auth::check() && $currentCampaign)
-                    <li class="dropdown messages-menu campaign-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" name="list-current-campaigns">
-                            @if ($currentCampaign->image)
-                                <img src="{{ $currentCampaign->getImageUrl(40) }}" alt="{!! $currentCampaign->name !!}" class="campaign-image" />
-                            @else
-                                <i class="fa fa-globe"></i>
-                            @endif <span class="hidden-xs hidden-sm">{!! $currentCampaign->name !!}</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <!-- inner menu: contains the actual data -->
-                                <ul class="menu text-center">
-                                    @foreach (\App\Facades\UserCache::campaigns() as $campaign)
-                                        @if ($campaign->id != $currentCampaign->id && !\App\Facades\Identity::isImpersonating())
-                                            <li>
-                                                <a href="{{ url(App::getLocale() . '/' . $campaign->getMiddlewareLink()) }}"
-                                                   class="campaign-selector
-                                                   @if ($campaign->image) cover-background" style="background-image: url({{ $campaign->getImageUrl() }}) !important" @else placeholder-background" @endif >
-                                                    {!! $campaign->name !!}
-                                                </a>
-                                            </li>
-                                        @endif
-                                    @endforeach
-                                    @foreach (\App\Facades\UserCache::follows() as $campaign)
-                                            @if ($campaign->id != $currentCampaign->id && !\App\Facades\Identity::isImpersonating())
-                                                <li>
-                                                    <a href="{{ url(App::getLocale() . '/' . $campaign->getMiddlewareLink()) }}"
-                                                       class="campaign-selector
-                                                       @if ($campaign->image) cover-background" style="background-image: url({{ $campaign->getImageUrl() }}) !important;" @else placeholder-background" @endif >
-                                                        <i class="fa fa-star pull-right" title="{{ __('campaigns.following')  }}"></i>
-                                                        {!! $campaign->name !!}
-                                                    </a>
-                                                </li>
-                                            @endif
-                                    @endforeach
-                                    @can('create', \App\Models\Campaign::class)
-                                    <li>
-                                        <a href="{{ !Auth::user()->hasCampaigns() ? route('start') : route('campaigns.create') }}">
-                                            <i class="fa fa-plus"></i> {{ trans('campaigns.index.actions.new.title') }}
-                                        </a>
-                                    </li>
-                                    @endcan
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                @elseif (!empty($currentCampaign))
-                    <li class="messages-menu campaign-menu">
-                        <a href="{{ route('dashboard') }}">
-                            @if ($currentCampaign->image)
-                                <img src="{{ $currentCampaign->getImageUrl(40) }}" alt="{!! $currentCampaign->name !!}" class="campaign-image" />
-                            @else
-                                <i class="fa fa-globe"></i>
-                            @endif
-                            <span class="hidden-xs hidden-sm">{!! $currentCampaign->name !!}</span>
-                        </a>
                     </li>
                 @endif
                 @if(!Auth::check())

@@ -790,6 +790,11 @@ td.breakable {
   word-break: break-word;
 }
 
+.entity-form {
+  -webkit-margin-after: 0;
+          margin-block-end: 0;
+}
+
 .entity-form .nav-tabs-custom {
   min-height: 0;
   background-color: unset;

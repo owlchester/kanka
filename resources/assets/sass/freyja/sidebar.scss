@@ -1,0 +1,314 @@
+.main-sidebar {
+  width: 280px;
+}
+
+.main-header {
+
+  .sidebar-toggle {
+    display: block;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+  }
+  .navbar-static-top {
+    margin-left: $sidebarWidth;
+  }
+}
+.content-wrapper {
+  margin-left: $sidebarWidth;
+}
+
+.main-sidebar {
+  background-color: #333;
+  color: #fff;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  a {
+    color: #fff;
+  }
+
+  .sidebar {
+    background-color: #333;
+
+    .sidebar-icon-link {
+      color: #474747;
+      font-size: 16px;
+
+      .fas, .fa, .far, .ra {
+        width: 20px;
+      }
+      &:hover {
+        color: #C2C2C2;
+        background: unset;
+      }
+    }
+
+    li.sidebar-section {
+      .sidebar-text {
+        padding: 8px 5px 8px 15px;
+      }
+    }
+    li {
+      .fa, .ra, .fas, .far {
+        font-size: 16px;
+        width: 24px;
+      }
+      padding: 8px 12px;
+      height: 40px;
+      a, .sidebar-text {
+        font-size: 12px;
+        line-height: 24px;
+        color: #FFFFFF;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+      a {
+        border-left: unset;
+        &:hover {
+          background: rgba(0, 0, 0, 0.16);
+          border-radius: 8px;
+        }
+      }
+    }
+    li.active a, li.active.sidebar-section {
+        border: none;
+        background: rgba(0, 0, 0, 0.24);
+        box-shadow: inset 1px 2px 6px rgba(0, 0, 0, 0.16);
+        border-radius: 8px;
+    }
+
+    li.subsection {
+      padding-left: 24px;
+    }
+  }
+}
+section.sidebar-campaign {
+  height: 160px;
+  background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, #333333 100%);
+  overflow: hidden;
+
+  .campaign-block {
+    text-align: left;
+    height: 120px;
+    left: 60px;
+    padding: 0 24px;
+    padding-top: 96px;
+
+    .campaign-head {
+      font-size: 20px;
+      line-height: 24px;
+      letter-spacing: 0.15px;
+      height: 24px;
+      .campaign-name {
+        overflow: hidden;
+        display: inline-block;
+        width: 194px;
+      }
+      .campaign-dropdown-toggle {
+        float: right;
+        cursor: pointer;
+      }
+
+
+      .campaign-updated {
+        font-size: 12px;
+        line-height: 16px;
+        /* identical to box height, or 133% */
+
+        letter-spacing: 0.4px;
+
+        /* Soft grey */
+
+        color: #C2C2C2;
+        mix-blend-mode: normal;
+      }
+    }
+  }
+}
+
+.campaign-switcher {
+  background-color: #1F1F1F;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.33), 2px 2px 16px rgba(0, 0, 0, 0.33);
+  border-radius: 8px;
+  z-index: 1080;
+
+  width: 256px;
+  position: absolute;
+  left: 78px;
+  top: 180px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 16px;
+
+  text-transform: uppercase;
+
+  .section {
+    color: #757575;
+    padding: 12px 16px 4px 16px;
+    font-weight: 500;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    li {
+      display: block;
+      height: 48px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: right center;
+
+      a {
+        letter-spacing: 1.5px;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.12);
+        line-height: 24px;
+        height: 24px;
+        display: block;
+        overflow: hidden;
+        position: absolute;
+        margin-left: 16px;
+        margin-top: 12px;
+        font-size: 12px;
+      }
+
+      .background-image, .background-gradient {
+        position: absolute;
+        width: 208px;
+        height: 48px;
+        right: 0;
+      }
+      .background-gradient {
+        background: linear-gradient(270deg, rgba(31, 31, 31, 0) 0%, #1F1F1F 100%);
+      }
+    }
+
+    li.bordered {
+      padding: 0;
+      margin-left: 8px;
+      a {
+        color: #757575;
+        border: 1px dashed #474747;
+        box-sizing: border-box;
+        border-radius: 8px;
+        height: 40px;
+        padding: 9px 10px;
+        display: block;
+        margin: 0;
+        width: 240px;
+      }
+    }
+  }
+}
+
+.sidebar-creator {
+  position: fixed;
+  width: $sidebarWidth;
+  height: 48px;
+  bottom: 0;
+  left: 0;
+  background-color: #2D7FED;
+  transform: translate(0, 0);
+  z-index: 812;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+
+  a {
+    text-align: center;
+    color: #fff;
+    mix-blend-mode: normal;
+
+    // Whole button clickable
+    width: 100%;
+    padding: 14px 0;
+
+    flex: none;
+    order: 1;
+    align-self: center;
+    //margin: 8px 0px;
+
+    line-height: 16px;
+    font-size: 14px;
+    letter-spacing: 0.75px;
+    text-transform: uppercase;
+
+    span {
+      transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+    }
+  }
+}
+
+// Collapsed state
+.sidebar-collapse {
+  .sidebar-toggle {
+    width: 50px;
+  }
+}
+
+.skin-black .wrapper, .skin-black .main-sidebar, .skin-black .left-side {
+  background-color: #333;
+}
+
+
+
+
+/** Mobile **/
+@media (max-width: 767px) {
+  .main-header {
+    background-color: #fff;
+    .navbar {
+      margin-left: 0;
+    }
+  }
+  .main-sidebar {
+    transform: translate(-280px, 0);
+  }
+  .sidebar-creator {
+    transform: translate(-280px, 0);
+  }
+  .content-wrapper {
+    margin-left: 0;
+  }
+
+
+  .sidebar-open .content-wrapper, .sidebar-open .main-footer {
+    transform: translate($sidebarWidth, 0);
+  }
+  .sidebar-open .sidebar-creator {
+    transform: translate(0, 0);
+  }
+
+  .campaign-switcher {
+    left: 10px;
+  }
+}
+@media (min-width: 768px) {
+  .sidebar-mini.sidebar-collapse .main-sidebar {
+    transform: translate(0, 0);
+    width: 0 !important;
+    z-index: 850;
+  }
+  .sidebar-mini.sidebar-collapse .sidebar-creator {
+    width: 50px !important;
+    span {
+      display: none;
+    }
+  }
+  .sidebar-mini.sidebar-collapse .content-wrapper, .sidebar-mini.sidebar-collapse .right-side, .sidebar-mini.sidebar-collapse .main-footer {
+    margin-left: 0 !important;
+    z-index: 840;
+  }
+  .sidebar-mini.sidebar-collapse .main-header .navbar {
+    margin-left: 0;
+  }
+
+  .sidebar-mini.sidebar-collapse .sidebar-menu > li > .sidebar-text > span, .sidebar-mini.sidebar-collapse .campaign-updated, .sidebar-mini.sidebar-collapse .campaign-name {
+    display: none !important;
+  }
+}

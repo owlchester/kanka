@@ -15,11 +15,11 @@ h1, h2, h3, h4, h5, p, th {
   right: 0;
 }
 .content-wrapper {
-  margin-right: 230px;
+  margin-right: 280px;
   margin-left: unset;
 }
 .main-footer {
-   margin-right: 230px;
+   margin-right: 280px;
    margin-left: unset;
  }
 
@@ -39,7 +39,7 @@ h1, h2, h3, h4, h5, p, th {
   }
   .navbar {
     margin-left: unset;
-    margin-right: 230px;
+    margin-right: 280px;
   }
   .sidebar-toggle {
     float: right;
@@ -110,7 +110,7 @@ h1, h2, h3, h4, h5, p, th {
 }
 @media (max-width: 767px) {
   .main-sidebar {
-    transform: translate(230px, 0);
+    transform: translate(280px, 0);
   }
 
   .content-wrapper, .main-footer {
@@ -121,6 +121,6 @@ h1, h2, h3, h4, h5, p, th {
     margin-right: 0;
   }
   .sidebar-open .content-wrapper, .sidebar-open .main-footer {
-    transform: translate(-230px, 0);
+    transform: translate(-280px, 0);
   }
 }

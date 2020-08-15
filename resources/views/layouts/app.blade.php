@@ -27,6 +27,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
     <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/freyja.css') }}" rel="stylesheet">
     @if(app()->getLocale() == 'he')
         <link href="{{ mix('css/app-rtl.css') }}" rel="stylesheet">
     @endif
@@ -43,6 +44,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
     @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->css))
         <link href="{{ route('campaign.css', ['ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">
     @endif
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
 <body class="skin-black sidebar-mini @if (!empty($campaign) || (auth()->check() && auth()->user()->hasCampaigns()) || (!empty($sidebar) && $sidebar == 'settings')) @else layout-top-nav @endif">

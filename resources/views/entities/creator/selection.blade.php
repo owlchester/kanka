@@ -56,7 +56,7 @@
                 @if (isset($entities['notes']))
                     <div class="col-md-4 col-sm-12">
                         <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'notes']) }}">
-                            <i class="ra ra-quill-ink ra-2x"></i>
+                            <i class="fas fa-book-open fa-2x"></i>
                             {{ __('entities.note') }}
                         </a>
                     </div>
@@ -65,7 +65,7 @@
                 @if (isset($entities['events']))
                     <div class="col-md-4 col-sm-12">
 <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'events']) }}">
-                            <i class="fa fa-calendar fa-2x"></i>
+                            <i class="fas fa-bolt fa-2x"></i>
                             {{ __('entities.event') }}
                         </a>
                     </div>
@@ -74,7 +74,7 @@
                 @if (isset($entities['calendars']))
                     <div class="col-md-4 col-sm-12">
 <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'calendar']) }}">
-                            <i class="ra ra-moon-sun ra-2x"></i>
+                            <i class="fa fa-calendar fa-2x"></i>
                             {{ __('entities.calendar') }}
                         </a>
                     </div>
@@ -101,7 +101,7 @@
                 @if (isset($entities['journals']))
                     <div class="col-md-4 col-sm-12">
                         <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'journals']) }}">
-                            <i class="ra ra-scroll-unfurled ra-2x"></i>
+                            <i class="ra ra-quill-ink ra-2x"></i>
                             {{ __('entities.journal') }}
                         </a>
                     </div>
@@ -111,7 +111,7 @@
                     <div class="col-md-4 col-sm-12">
                         <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'abilities']) }}">
                             <i class="ra ra-fire-symbol ra-2x"></i>
-                            {{ __('entities.abilities') }}
+                            {{ __('entities.ability') }}
                         </a>
                     </div>
                 @endif
@@ -119,7 +119,7 @@
                 <div class="col-md-4 col-sm-12">
                     <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'tags']) }}">
                         <i class="fa fa-tags fa-2x"></i>
-                        {{ __('entities.tags') }}
+                        {{ __('entities.tag') }}
                     </a>
                 </div>
             </div>

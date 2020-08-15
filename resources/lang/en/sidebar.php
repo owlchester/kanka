@@ -13,6 +13,7 @@ return [
     'dashboard'             => 'Dashboard',
     'dice_rolls'            => 'Dice Rolls',
     'entity-creator'        => 'Quick Creator',
+    'new-entity'             => 'Create new entity',
     'events'                => 'Events',
     'families'              => 'Families',
     'items'                 => 'Items',
