@@ -54,6 +54,7 @@ return [
             'more'      => 'Erfahren Sie mehr über alle Funktionen.',
             'second'    => 'Das Boosten einer Kampagne bietet die folgenden Vorteile:',
             'theme'     => 'Leitmotiv auf Kampagnenebene und benutzerdefiniertes Design.',
+            'third'     => 'Um eine Kampagne zu boosten, rufen Sie die Seite der Kampagne auf und klicken Sie auf die Schaltfläche ":boost_button" über der Schaltfläche ":edit_button".',
             'tooltip'   => 'Benutzerdefinierte Kurzinfo für Objekt.',
             'upload'    => 'Erhöhte Upload-Größe für jedes Mitglied in der Kampagne.',
         ],

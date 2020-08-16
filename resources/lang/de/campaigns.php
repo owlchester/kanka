@@ -55,6 +55,8 @@ TEXT
         'excerpt'                       => 'Zusammenfassung',
         'followers'                     => 'Abonnenten',
         'header_image'                  => 'Header Bild',
+        'hide_history'                  => 'Objektverlauf ausblenden',
+        'hide_members'                  => 'Kampagnenmitglieder ausblenden',
         'image'                         => 'Bild',
         'locale'                        => 'Schauplatz',
         'name'                          => 'Name',
@@ -74,6 +76,8 @@ TEXT
         'entity_personality_visibility' => 'Wenn ein neuer Charakter erstellt wird, wird die "Persönlichkeit sichtbar" Option automatisch deaktiviert.',
         'entity_visibility'             => 'Wenn du ein neues Objekt erstellst, wird es automatisch auf "Privat" gesetzt.',
         'excerpt'                       => 'Die Kampagnenzusammenfassung wird im Dashboard angezeigt. Schreib daher ein paar Sätze, die deine Welt vorstellen. Idealerweise hältst du es kurz und informativ.',
+        'hide_history'                  => 'Aktivieren Sie diese Option, um den Verlauf von Objekten vor Nichtmitglieder der Kampagne zu verbergen.',
+        'hide_members'                  => 'Aktivieren Sie diese Option, um die Liste der Kampagnenmitglieder der Kampagne für Nicht-Administratoren auszublenden.',
         'locale'                        => 'Die Sprache, in der deine Kampagne geschrieben ist. Dies wird genutzt, um Inhalte zu erstellen und öffentliche Kampagnen zu gruppieren.',
         'name'                          => 'Deine Kampagne/Welt kann einen beliebigen Namen haben, solange dieser mindestens 4 Buchstaben oder Zahlen enthält.',
         'public_campaign_filters'       => 'Helfen Sie anderen, die Kampagne unter anderen öffentlichen Kampagnen zu finden, indem Sie die folgenden Informationen bereitstellen.',
@@ -318,6 +322,7 @@ TEXT
     'show'                              => [
         'actions'       => [
             'boost' => 'Geboostete Kampagne',
+            'edit'  => 'Kampagne editieren',
             'leave' => 'Kampagne verlassen',
         ],
         'description'   => 'Eine detaillierte Ansicht der Kampagne',

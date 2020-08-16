@@ -32,6 +32,8 @@ return [
     'journals'              => 'יומנים',
     'location'              => 'מיקום',
     'locations'             => 'מיקומים',
+    'map'                   => 'מפה',
+    'maps'                  => 'מפות',
     'menu_link'             => 'קישור מהיר',
     'menu_links'            => 'קישורים מהירים',
     'note'                  => 'פתק',

@@ -3,6 +3,7 @@
 return [
     'hall_of_fame'  => 'היכל התהילה',
     'index'         => [
+        'community'     => 'קהילה',
         'core'          => 'ליבה',
         'description'   => 'האנשים האלה הופכים את Kanka לאפשרי',
         'other'         => 'אחר',

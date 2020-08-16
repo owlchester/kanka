@@ -18,6 +18,7 @@ return [
     'show'          => [
         'restricted'    => 'A Közösségi Szavazás csak a Támogatók számára elérhetőek.',
         'title'         => 'Közösségi Szavazás - :name',
+        'vote_count'    => '{1} :number résztvevő szavazott.|[2,*] :résztvevő szavazott.',
         'voted_lasted'  => 'A szavazás a GTM időzóna szerinti :from - :until időpontok közötti tartott.',
         'voting_until'  => 'A szavazás a GTM időzóna szerinti :until időpontig él.',
     ],

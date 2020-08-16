@@ -56,6 +56,7 @@ return [
             'boosted'       => 'Boost-olt kampány',
             'css'           => 'Kampány-függő egyedi CSS',
             'description'   => 'Bizonyos adományozási szintek adott számú boosterrel látják el a felhasználót, amellyel kampányt tud boostolni. Ezek az alábbi előnyöket biztosítják.',
+            'entity_files'  => 'Megemelt entitáshoz feltölthető fájl darabszám (5 db az eredeti 3 db helyett).',
             'header_image'  => 'Entitás fejléc kép',
             'images'        => 'Saját alapértelmezett entitásképek beállítása',
             'recovery'      => 'Entitások visszaállítása 30 napon belül',
@@ -109,6 +110,7 @@ return [
             'impact'            => 'A jövőbeli funkciók befolyásolása',
             'monthly_vote'      => 'Részvétel az új funkciókról történő rendszeres szavazásban',
             'pagination'        => 'Megnövelt megjelenített elemek száma oldalanként (100)',
+            'pagination_help'   => 'Ez a maximálisan megjeleníthető találatok száma oldalanként nem pedig a kampányban létrehozható entitásokra vonatkozó limit.',
             'title'             => 'Patreon támogatás',
             'upload_limit'      => 'Megnövelt feltöltési méret (8MB)',
             'upload_limit_map'  => 'Megnövelt térkép feltöltési méret (10MB)',
@@ -225,20 +227,26 @@ return [
         'title'         => 'Verziók',
     ],
     'roadmap'       => [
-        'backlog'       => [
+        'backlog'           => [
             'description'   => 'Ez a Trello board minden igényelt funkciót tartalmaz, amelyet a közösség küldött be, valamint azokat a tervezett funkciókat és fejlesztéseket, amelyek egy napon bekerülnek az alkalmazásba.',
             'title'         => 'Feladatlista',
         ],
-        'description'   => 'A csodálatos Patreon támogatóink havonta egyszer szavaznak, hogy mely funkciókon dolgozzunk, így hiába nincs előre többhavi tervünk, könnyű követni, mire van igény, és min dolgozunk.',
-        'next'          => [
+        'description'       => 'A csodálatos Patreon támogatóink havonta egyszer szavaznak, hogy mely funkciókon dolgozzunk, így hiába nincs előre többhavi tervünk, könnyű követni, mire van igény, és min dolgozunk.',
+        'featured_requests' => [
+            'title' => 'Funkció igénylés',
+        ],
+        'next'              => [
             'description'   => 'Ez a Trello board azokat a funkciókat és fejlesztéseket tartalmazza, amelyeken jelenleg dolgozunk.',
             'title'         => 'Következő',
         ],
-        'title'         => 'Fejlesztési terv',
+        'ongoing_progress'  => [
+            'title' => 'Folyamatban lévő fejlesztés',
+        ],
+        'title'             => 'Fejlesztési terv',
     ],
     'second_block'  => [
         'call_to_action'    => 'Kezdjük el!',
-        'title'             => 'Hagyd abba a várakozást! <br />Kezdd el az építést!',
+        'title'             => 'Hagyd abba a várakozást! Kezdd el az építést!',
     ],
     'seo'           => [
         'keywords'  => 'Világépítés, Asztali szerepjáték, Szerepjátékos kampány kezelő',

@@ -26,7 +26,7 @@ J'ai créé Kanka en octobre 2017 car il n'y avait aucun outil qui me permettait
 
 J’ai pris le pari de bosser à plein temps sur Kanka au début de 2020 grâce au soutien de mes amis et de la communauté.
 TEXT
-            ,
+,
             'title' => 'Fondateur & Lead Developer',
         ],
         'jon'       => [
@@ -35,7 +35,7 @@ Jay et moi sommes amis depuis près d'une décennie, et ça  a été une joie de
 
 Début 2020, j'ai rejoint Jay pour gérer à la fois le développement commercial et le marketing, et je pour rien au monde je ne retournerais en arrière!
 TEXT
-            ,
+,
             'title' => 'Co-Foundateur & Business Manager',
         ],
         'joseph'    => [
@@ -47,7 +47,7 @@ I started using Kanka in early 2018 and was one of the first people to join the 
 
 Nowdays I help out with the community on Discord and Reddit, and break new versions so you don't have to.
 TEXT
-            ,
+,
             'title' => 'Community Manager & Lead QA',
         ],
     ],
