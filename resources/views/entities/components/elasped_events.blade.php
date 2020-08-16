@@ -19,7 +19,30 @@ foreach ($elapsed as $event) {
     if ($event->type_id == 2) {
         $distinctCalendars[$event->calendar_id]['birth'] = $event;
     } elseif ($event->type_id == 3) {
-        $distinctCalendars[$event->calendar_id]['death'] = $event;
+        if (!isset($distinctCalendars[$event->calendar_id]['death'])) {
+            $distinctCalendars[$event->calendar_id]['death'] = $event;
+            continue;
+        }
+
+        // Already have a death? Take the new one if it's older
+        $older = false;
+        /** @var \App\Models\EntityEvent $previous */
+        $previous = $distinctCalendars[$event->calendar_id]['death'];
+        if ($previous->year < $event->year) {
+            $older = true;
+        } elseif ($previous->year == $event->year) {
+            if ($previous->month < $event->month) {
+                $older = true;
+            } elseif ($previous->month == $event->month) {
+                if ($previous->day < $event->day) {
+                    $older = true;
+                }
+            }
+        }
+
+        if ($older) {
+            $distinctCalendars[$event->calendar_id]['death'] = $event;
+        }
     }
 }
 ?>
