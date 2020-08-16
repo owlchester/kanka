@@ -367,7 +367,12 @@ class MapMarker extends Model
     public function backgroundColour(): string
     {
         if (!empty($this->colour)) {
-            return  $this->colour;
+            return $this->colour;
+        }
+
+        // Entity with no image?
+        if ($this->icon == 4 && empty($this->entity->child->image)) {
+            return '#ccc';
         }
 
         if ($this->icon != 1 || !empty($this->custom_icon)) {
