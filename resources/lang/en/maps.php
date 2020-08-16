@@ -14,6 +14,9 @@ return [
         'success'   => 'Map :name updated.',
         'title'     => 'Edit Map :name',
     ],
+    'destroy'   => [
+        'success'   => 'Map :name removed.',
+    ],
     'errors'        => [
         'dashboard' => [
             'missing'   => 'This map needs an image to be able to render on the dashboard.',

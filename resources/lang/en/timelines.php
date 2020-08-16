@@ -14,6 +14,9 @@ return [
         'success'   => 'Timeline :name updated.',
         'title'     => 'Edit Timeline :name',
     ],
+    'destroy'   => [
+        'success'   => 'Timeline :name removed.',
+    ],
     'fields'        => [
         'copy_eras'     => 'Copy eras',
         'eras'          => 'Eras',
