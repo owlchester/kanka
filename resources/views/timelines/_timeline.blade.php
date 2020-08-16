@@ -116,16 +116,16 @@
     @if ($ajax)
         <script type="text/javascript">
             $(document).ready(function () {
-                @if(auth()->user()->editor == 'summernote')
+@if(auth()->user()->editor == 'summernote')
                     window.initSummernote();
-                @else
+@else
                     var editorId = 'element-entry';
                     // First we remove in case it was already loaded
                     tinyMCE.EditorManager.execCommand('mceFocus', false, editorId);
                     tinyMCE.EditorManager.execCommand('mceRemoveEditor', true, editorId);
                     // And add again
                     tinymce.EditorManager.execCommand('mceAddEditor', false, editorId);
-                @endif
+@endif
             });
         </script>
     @endif
