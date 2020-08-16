@@ -79,7 +79,7 @@
                 @endcan
 
                 <h3 class="timeline-header">
-                    {!! $element->htmlName() !!}
+                    {!! $element->htmlName() !!} @if(!empty($element->date))<span class="text-muted">{{ $element->date }}</span>@endif
                 </h3>
 
                 <div class="timeline-body">
