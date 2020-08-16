@@ -76596,6 +76596,10 @@ $(document).ready(function () {
     treeViewInit('abilities');
   }
 
+  if ($('#maps').length > 0) {
+    treeViewInit('maps');
+  }
+
   manageTabs();
   manageDashboardNotifications(); // Live search on forms
 
