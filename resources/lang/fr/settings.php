@@ -52,6 +52,7 @@ return [
             'more'      => 'En savoir plus sur toutes les fonctionalités.',
             'second'    => 'Booster une campagne débloques les bénéfices suivants:',
             'theme'     => 'Thème de campagne et style personnalisé.',
+            'third'     => 'Pour booster une campagne, aller sur la page de la campagne et cliquer sur le bouton ":boost_button" situé au dessus du bouton ":edit_button".',
             'tooltip'   => 'Infobulles personnalisés pour les entités.',
             'upload'    => 'Taille de fichier uploadé plus grand pour tous les membres de la campagne.',
         ],

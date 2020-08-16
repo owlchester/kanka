@@ -56,6 +56,7 @@ return [
             'boosted'       => 'Campagne Boostée',
             'css'           => 'CSS personnalisé pour la campagne',
             'description'   => 'Certains niveaux de soutien donnent aux utilisateurs des boosters qu\'ils peuvent utiliser pour booster des campagnes. Ceci donne les avantages suivants.',
+            'entity_files'  => 'Augmenter le nombre de fichiers maximal sur chaque entité (5 au lieu de 3)',
             'header_image'  => 'Image d\'entête pour entité',
             'images'        => 'Définir des images d\'entité par défaut',
             'recovery'      => 'Récupération d\'entité pendant 30 jours',
