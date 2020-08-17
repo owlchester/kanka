@@ -9,7 +9,8 @@
         ['url' => route('calendars.index'), 'label' => trans('calendars.index.title')],
         ['url' => $entityEvent->calendar->getLink(), 'label' => $entityEvent->calendar->name],
         trans('crud.tabs.reminders'),
-        trans('crud.update'),],
+        trans('crud.update'),
+    ],
     'canonical' => true,
 ])
 @section('content')

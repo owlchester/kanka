@@ -5,7 +5,7 @@
         ['url' => route('calendars.index'), 'label' => trans('calendars.index.title')],
         ['url' => $entity->url(), 'label' => $entity->name],
         ['url' => $entity->url() . '#calendars', 'label' => trans('crud.tabs.events')],
-        trans('crud.update'),
+        trans('crud.tabs.reminders'),
     ],
     'canonical' => true,
 ])
