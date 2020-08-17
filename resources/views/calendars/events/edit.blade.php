@@ -1,12 +1,15 @@
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => trans('calendars.event.edit.title', ['name' => $entity->name]),
-    'description' => trans('calendars.event.edit.description'),
-    'breadcrumbs' => [
-        ['url' => route('calendars.index'), 'label' => trans('calendars.index.title')],
-        ['url' => route('calendars.show', $entity->id), 'label' => $entity->name],
-        trans('crud.tabs.events'),
+    'breadcrumbs' => isset($next) && $next == 'entity.events' ? [
+        trans($entity->pluralType() . '.index.title'),
+        ['url' => $entity->url(), 'label' => $entity->name],
+        trans('crud.tabs.reminders'),
         trans('crud.update'),
-    ],
+    ] : [
+        ['url' => route('calendars.index'), 'label' => trans('calendars.index.title')],
+        ['url' => $entityEvent->calendar->getLink(), 'label' => $entityEvent->calendar->name],
+        trans('crud.tabs.reminders'),
+        trans('crud.update'),],
     'canonical' => true,
 ])
 @section('content')
