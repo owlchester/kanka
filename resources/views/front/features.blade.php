@@ -1,5 +1,5 @@
 @extends('layouts.front', [
-    'title' => trans('front.menu.features'),
+    'title' => __('front.menu.features'),
     'active' => 'features',
 ])
 @section('content')
@@ -9,8 +9,8 @@
             <div class="row h-100">
                 <div class="col-lg-7 my-auto">
                     <div class="header-content mx-auto">
-                        <h1 class="mb-5">{{ trans('front.features.title') }}</h1>
-                        <p class="mb-5">{{ trans('front.features.description_full') }}</p>
+                        <h1 class="mb-5">{{ __('front.features.title') }}</h1>
+                        <p class="mb-5">{{ __('front.features.description_full') }}</p>
                     </div>
                 </div>
             </div>
@@ -42,15 +42,15 @@
                                     <div class="col-lg-6">
                                         <div class="feature-item">
                                             <i class="fas fa-layer-group text-primary"></i>
-                                            <h3>{{ trans('front.features.layers.title') }}</h3>
-                                            <p class="text-muted">{{ trans('front.features.layers.description') }}</p>
+                                            <h3>{{ __('front.features.layers.title') }}</h3>
+                                            <p class="text-muted">{{ __('front.features.layers.description') }}</p>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="feature-item">
                                             <i class="fas fa-book text-primary"></i>
-                                            <h3>{{ trans('front.features.notebook.title') }}</h3>
-                                            <p class="text-muted">{{ trans('front.features.notebook.description') }}</p>
+                                            <h3>{{ __('front.features.notebook.title') }}</h3>
+                                            <p class="text-muted">{{ __('front.features.notebook.description') }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -58,8 +58,8 @@
                                     <div class="col-lg-6">
                                         <div class="feature-item">
                                             <i class="fas fa-gift text-primary"></i>
-                                            <h3>{{ trans('front.features.free.title') }}</h3>
-                                            <p class="text-muted">{!! trans('front.features.free.description', [
+                                            <h3>{{ __('front.features.free.title') }}</h3>
+                                            <p class="text-muted">{!! __('front.features.free.description', [
                                                 'bonuses' => link_to('#patreon', __('front.features.free.bonuses')),
                                                 'patreon' => 'Kanka',
                                             ]) !!}</p>
@@ -68,8 +68,8 @@
                                     <div class="col-lg-6">
                                         <div class="feature-item">
                                             <i class="fas fa-users text-primary"></i>
-                                            <h3>{{ trans('front.features.collaborative.title') }}</h3>
-                                            <p class="text-muted">{{ trans('front.features.collaborative.description') }}</p>
+                                            <h3>{{ __('front.features.collaborative.title') }}</h3>
+                                            <p class="text-muted">{{ __('front.features.collaborative.description') }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -83,51 +83,51 @@
                                 <div class="col-lg-4">
                                     <div class="feature-item">
                                         <i class="fas fa-lock text-primary"></i>
-                                        <h3>{{ trans('front.features.public.title') }}</h3>
-                                        <p class="text-muted">{!! trans('front.features.public.description', ['url' => route('front.public_campaigns')]) !!}</p>
+                                        <h3>{{ __('front.features.public.title') }}</h3>
+                                        <p class="text-muted">{!! __('front.features.public.description', ['url' => route('front.public_campaigns')]) !!}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="feature-item">
                                         <i class="fas fa-sync-alt text-primary"></i>
-                                        <h3>{{ trans('front.features.updates.title') }}</h3>
-                                        <p class="text-muted">{!! trans('front.features.updates.description', ['discord' => link_to(config('discord.url'), 'Discord', ['target' => '_blank'])]) !!}</p>
+                                        <h3>{{ __('front.features.updates.title') }}</h3>
+                                        <p class="text-muted">{!! __('front.features.updates.description', ['discord' => link_to(config('discord.url'), 'Discord', ['target' => '_blank'])]) !!}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="feature-item">
                                         <i class="fas fa-list text-primary"></i>
-                                        <h3>{{ trans('front.features.modular.title') }}</h3>
-                                        <p class="text-muted">{{ trans('front.features.modular.description') }}</p>
+                                        <h3>{{ __('front.features.modular.title') }}</h3>
+                                        <p class="text-muted">{{ __('front.features.modular.description') }}</p>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-4">
                                     <div class="feature-item">
                                         <i class="fa fa-map text-primary"></i>
-                                        <h3>{{ trans('front.features.maps.title') }}</h3>
-                                        <p class="text-muted">{{ trans('front.features.maps.description') }}</p>
+                                        <h3>{{ __('front.features.maps.title') }}</h3>
+                                        <p class="text-muted">{{ __('front.features.maps.description') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="feature-item">
                                         <i class="fa fa-calendar text-primary"></i>
-                                        <h3>{{ trans('front.features.calendars.title') }}</h3>
-                                        <p class="text-muted">{{ trans('front.features.calendars.description') }}</p>
+                                        <h3>{{ __('front.features.calendars.title') }}</h3>
+                                        <p class="text-muted">{{ __('front.features.calendars.description') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="feature-item">
                                         <i class="fa fa-compass text-primary"></i>
-                                        <h3>{{ trans('front.features.relations.title') }}</h3>
-                                        <p class="text-muted">{{ trans('front.features.relations.description') }}</p>
+                                        <h3>{{ __('front.features.relations.title') }}</h3>
+                                        <p class="text-muted">{{ __('front.features.relations.description') }}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 offset-lg-4">
                                     <div class="feature-item">
                                         <i class="fas fa-flask text-primary"></i>
-                                        <h3>{{ trans('front.features.api.title') }}</h3>
-                                        <p class="text-muted">{!! trans('front.features.api.description', ['link'
+                                        <h3>{{ __('front.features.api.title') }}</h3>
+                                        <p class="text-muted">{!! __('front.features.api.description', ['link'
                                             => link_to('/docs/1.0', __('front.features.api.link'))
                                         ]) !!}</p>
                                     </div>
@@ -153,8 +153,8 @@
         <div class="container">
             <div class="col-lg-12 my-auto">
                 <div class="header-content mx-auto">
-                    <h1 class="mb-5">{{ trans('front.features.patreon.title') }}</h1>
-                    <p class="mb-5">{{ trans('front.features.patreon.description') }}</p>
+                    <h1 class="mb-5">{{ __('front.features.patreon.title') }}</h1>
+                    <p class="mb-5">{{ __('front.features.patreon.description') }}</p>
                 </div>
             </div>
 
@@ -179,6 +179,18 @@
                     <td>3 MB</td>
                     <td>10 MB</td>
                     <td>25 MB</td>
+                </tr>
+                <tr>
+                    <td class="text">{{ __('front.features.patreon.users_roles') }}</td>
+                    <td><i class="fa fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
+                    <td><i class="fa fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
+                    <td><i class="fa fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
+                </tr>
+                <tr>
+                    <td class="text">{{ __('front.features.patreon.entities') }}</td>
+                    <td><i class="fa fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
+                    <td><i class="fa fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
+                    <td><i class="fa fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
                 </tr>
                 <tr>
                     <td class="text">{{ __('front.features.patreon.discord') }}</td>
@@ -220,7 +232,7 @@
                     <td class="text">{{ __('front.features.patreon.boosts') }}</td>
                     <td></td>
                     <td>3</td>
-                    <td>5</td>
+                    <td>10</td>
                 </tr>
                 <tr>
                     <td class="text">{{ __('front.features.patreon.curation') }}</td>
@@ -244,8 +256,8 @@
         <div class="container">
             <div class="col-lg-12 my-auto">
                 <div class="header-content mx-auto">
-                    <h1 class="mb-5">{{ trans('front.features.boosts.title') }}</h1>
-                    <p class="mb-5">{{ trans('front.features.boosts.description') }}</p>
+                    <h1 class="mb-5">{{ __('front.features.boosts.title') }}</h1>
+                    <p class="mb-5">{{ __('front.features.boosts.description') }}</p>
                 </div>
             </div>
 

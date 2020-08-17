@@ -12,13 +12,13 @@
 
     <div class="box box-widget" id="era{{ $era->id }}">
         <div class="box-header with-border">
-            <div class="box-title">{{ $era->name }} @if(!empty($era->abbreviation)) ({{ $era->abbreviation }}) @endif</div>
+            <div class="box-title"><a href="#" data-toggle="collapse" data-target="#era-items-{{ $era->id }}">{{ $era->name }}</a> @if(!empty($era->abbreviation)) ({{ $era->abbreviation }}) @endif</div>
             <span>
-                @if (!empty($era->start_year) && !empty($era->end_year))
+                @if (isset($era->start_year) && isset($era->end_year))
                     {{ $era->start_year }} &mdash; {{ $era->end_year }}
                 @elseif(empty($era->start_year))
                     < {{ $era->end_year }}
-                @elseif (empty($era->end_year))
+                @elseif(empty($era->end_year))
                     > {{ $era->start_year }}
                 @else
 
@@ -48,7 +48,7 @@
             {!! \App\Facades\Mentions::mapAny($era)  !!}
         </div>
     </div>
-    <ul class="timeline">
+    <ul class="timeline collapse in" id="era-items-{{ $era->id }}">
     @foreach($era->elements()->ordered()->get() as $element)
         @php
             $position = $element->position + 1;
