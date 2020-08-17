@@ -16,9 +16,9 @@
             <span>
                 @if (isset($era->start_year) && isset($era->end_year))
                     {{ $era->start_year }} &mdash; {{ $era->end_year }}
-                @elseif(empty($era->start_year))
+                @elseif(!isset($era->start_year))
                     < {{ $era->end_year }}
-                @elseif(empty($era->end_year))
+                @elseif(!isset($era->end_year))
                     > {{ $era->start_year }}
                 @else
 
