@@ -110,7 +110,7 @@
 
 
 
-@if(!isset($exporting))
+@if(!isset($exporting) && auth()->check())
     @include('editors.editor')
 
     @if ($ajax)

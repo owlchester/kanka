@@ -32,6 +32,3 @@
         @include('cruds.boxes.history')
     </div>
 </div>
-
-
-@include('editors.editor')

@@ -1,4 +1,4 @@
-@if(auth()->user()->editor == 'summernote')
+@if(auth()->check() && auth()->user()->editor == 'summernote')
     @renderOnce('editors-summernote')
         @include('editors.summernote')
     @endrenderOnce
