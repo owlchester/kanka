@@ -1,0 +1,37 @@
+.btn-primary {
+  background-color: $neutralColour;
+  &:hover, &:focus {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)), $neutralColour;
+  }
+}
+.btn-success {
+  background-color: $positiveColour;
+
+  &:hover, &:focus {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)), $positiveColour;
+  }
+}
+.btn-danger {
+  background-color: $negativeColour;
+  &:hover, &:focus {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)), $negativeColour;
+  }
+}
+.btn {
+  border-radius: 4px;
+  border: none;
+  &:hover, &:focus {
+    border: none;
+  }
+}
+
+.alert {
+  border-radius: 4px;
+  border: none;
+}
+.alert-danger {
+  background-color: $negativeColour !important;
+}
+.alert-success {
+  background-color: $positiveColour !important;
+}

@@ -463,19 +463,14 @@ function initSidebar()
     }
 
     let down = $('.campaign-dropdown-toggle .fa-caret-down');
-    let up = $('.campaign-dropdown-toggle .fa-caret-up');
 
     down.on('click', function(e) {
-        console.log('click on down');
         e.preventDefault();
-        down.hide();
-        up.show();
-    });
-    up.on('click', function(e) {
-        console.log('click on up');
-        e.preventDefault();
-        up.hide();
-        down.show();
+        if (down.hasClass('flipped')) {
+            down.removeClass('flipped');
+        } else {
+            down.addClass('flipped');
+        }
     });
 }
 

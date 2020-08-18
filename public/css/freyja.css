@@ -135,6 +135,14 @@ section.sidebar-campaign .campaign-block .campaign-head .campaign-dropdown-toggl
   cursor: pointer;
 }
 
+section.sidebar-campaign .campaign-block .campaign-head .campaign-dropdown-toggle .fa-caret-down {
+  transition: transform 0.5s ease;
+}
+
+section.sidebar-campaign .campaign-block .campaign-head .campaign-dropdown-toggle .fa-caret-down.flipped {
+  transform: rotate(-180deg);
+}
+
 section.sidebar-campaign .campaign-block .campaign-head .campaign-updated {
   font-size: 12px;
   line-height: 16px;
@@ -348,6 +356,56 @@ section.sidebar-campaign .campaign-block .campaign-head .campaign-updated {
   }
 }
 
+.btn-primary {
+  background-color: #2d7fed;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)), #2d7fed;
+}
+
+.btn-success {
+  background-color: #27AE60;
+}
+
+.btn-success:hover,
+.btn-success:focus {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)), #27AE60;
+}
+
+.btn-danger {
+  background-color: #E94A34;
+}
+
+.btn-danger:hover,
+.btn-danger:focus {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)), #E94A34;
+}
+
+.btn {
+  border-radius: 4px;
+  border: none;
+}
+
+.btn:hover,
+.btn:focus {
+  border: none;
+}
+
+.alert {
+  border-radius: 4px;
+  border: none;
+}
+
+.alert-danger {
+  background-color: #E94A34 !important;
+}
+
+.alert-success {
+  background-color: #27AE60 !important;
+}
+
 body,
 a,
 h1,
@@ -357,5 +415,44 @@ h4,
 h5,
 h6 {
   font-family: "Roboto", "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 96px;
+  letter-spacing: -1.5px;
+}
+
+h2 {
+  font-weight: 300;
+  font-size: 60px;
+  letter-spacing: -0.5px;
+}
+
+h3 {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 48px;
+}
+
+h4 {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 34px;
+  letter-spacing: 0.25px;
+}
+
+h5 {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
 }
 

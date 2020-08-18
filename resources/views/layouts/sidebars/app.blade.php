@@ -19,7 +19,6 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
 
                 <div class="campaign-dropdown-toggle">
                     <i class="fa fa-caret-down" data-toggle="collapse" data-target="#campaign-switcher"></i>
-                    <i class="fa fa-caret-up" style="display: none" data-toggle="collapse" data-target="#campaign-switcher"></i>
                 </div>
 
                 <div class="campaign-updated">

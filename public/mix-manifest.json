@@ -1,10 +1,10 @@
 {
     "/js/abilities.js": "/js/abilities.js?id=a4777ab104e3649cc8ad",
     "/js/api.js": "/js/api.js?id=ac705fd85e15ef416b9c",
-    "/js/app.js": "/js/app.js?id=4a4d5b385d0eee4a1d57",
+    "/js/app.js": "/js/app.js?id=22544df169a362947a06",
     "/css/bootstrap.css": "/css/bootstrap.css?id=f28aeee238326cd7c477",
     "/css/vendor.css": "/css/vendor.css?id=86f3141dc39a1f0e35d5",
-    "/css/app.css": "/css/app.css?id=f69cecb270174f40d914",
+    "/css/app.css": "/css/app.css?id=94b73388734e8c9d01a2",
     "/css/app-rtl.css": "/css/app-rtl.css?id=dd9211fc261def8381b5",
     "/css/abilities.css": "/css/abilities.css?id=3ad3d5f63486a6e39843",
     "/css/export.css": "/css/export.css?id=7efe967765ecd8c6469c",
@@ -22,7 +22,6 @@
     "/css/dark.css": "/css/dark.css?id=1ff922b5b56af58961bd",
     "/css/midnight.css": "/css/midnight.css?id=6b684103cf1ca74b7742",
     "/css/tinymce.css": "/css/tinymce.css?id=4c1d1b478c24a77c7444",
-    "/css/freyja.css": "/css/freyja.css?id=943f92a48483ec71c6fd",
     "/js/attributes.js": "/js/attributes.js?id=02caed1669d007aca62d",
     "/js/billing.js": "/js/billing.js?id=a28fc70a0fb6524da2a3",
     "/js/campaign.js": "/js/campaign.js?id=3e05328f5c1714c5a24b",
@@ -42,5 +41,6 @@
     "/js/timeline.js": "/js/timeline.js?id=064ba43684defbc2a164",
     "/js/jquery.fileupload.js": "/js/jquery.fileupload.js?id=20a07a657cad26703a1b",
     "/js/jquery.iframe-transport.js": "/js/jquery.iframe-transport.js?id=f371e8d9f57329f90114",
-    "/js/vendor/jquery.ui.widget.js": "/js/vendor/jquery.ui.widget.js?id=3d0f0f5ca5d86c5a4b4f"
+    "/js/vendor/jquery.ui.widget.js": "/js/vendor/jquery.ui.widget.js?id=3d0f0f5ca5d86c5a4b4f",
+    "/css/freyja.css": "/css/freyja.css?id=538783fb89efce249782"
 }
