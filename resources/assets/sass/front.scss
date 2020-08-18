@@ -99,6 +99,11 @@ header.reduced-masthead {
     }
   }
 }
+.navbar {
+  a {
+    color: $KankaBlue;
+  }
+}
 
 @font-face {
   font-display: swap;
@@ -577,7 +582,6 @@ ul.pagination {
   .topbar {
     padding: 0 15px;
 
-
     .container {
       padding-right: 0;
       padding-left: 0;
@@ -585,7 +589,7 @@ ul.pagination {
 
     .topbar-list {
       li {
-        margin: 0 6px;
+        margin: 8px 6px;
       }
 
       .login {

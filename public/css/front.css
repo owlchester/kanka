@@ -101,6 +101,10 @@ header.reduced-masthead .header-content {
   margin-right: 15px;
 }
 
+.navbar a {
+  color: #2828A1;
+}
+
 @font-face {
   font-display: swap;
   font-family: "Dubai";
@@ -602,7 +606,7 @@ ul.pagination li span {
   }
 
   .topbar .topbar-list li {
-    margin: 0 6px;
+    margin: 8px 6px;
   }
 
   .topbar .topbar-list .login {

@@ -741,20 +741,22 @@ div.mce-fullscreen {
 
   a {
     display: block;
-    padding: 20px 0;
+    padding: 20px 10px;
     text-align: center;
     margin-bottom: 20px;
     border-radius: 2px;
     color: #fff;
-    line-height: 16px;
+    line-height: 18px;
     font-size: 14px;
-    background-color: #2D7FED;
+    background-color: #144c93;
     letter-spacing: 0.75px;
     text-transform: uppercase;
-
+    overflow: hidden;
+    height: 94px;
+    word-break: break-all;
 
     &:hover {
-      background: #1469d9;
+      background-color: rgb(45, 127, 237);
       box-shadow: $box-shadow-hover;
       transition: all 0.3s ease-in-out;
       color: #fff;
