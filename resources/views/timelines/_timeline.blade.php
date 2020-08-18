@@ -111,22 +111,24 @@
 
 
 @if(!isset($exporting) && auth()->check())
-    @include('editors.editor')
+    @can('update', $timeline)
+        @include('editors.editor')
 
-    @if ($ajax)
-        <script type="text/javascript">
-            $(document).ready(function () {
-@if(auth()->user()->editor == 'summernote')
-                    window.initSummernote();
-@else
-                    var editorId = 'element-entry';
-                    // First we remove in case it was already loaded
-                    tinyMCE.EditorManager.execCommand('mceFocus', false, editorId);
-                    tinyMCE.EditorManager.execCommand('mceRemoveEditor', true, editorId);
-                    // And add again
-                    tinymce.EditorManager.execCommand('mceAddEditor', false, editorId);
-@endif
-            });
-        </script>
+        @if ($ajax)
+            <script type="text/javascript">
+                $(document).ready(function () {
+    @if(auth()->user()->editor == 'summernote')
+                        window.initSummernote();
+    @else
+                        var editorId = 'element-entry';
+                        // First we remove in case it was already loaded
+                        tinyMCE.EditorManager.execCommand('mceFocus', false, editorId);
+                        tinyMCE.EditorManager.execCommand('mceRemoveEditor', true, editorId);
+                        // And add again
+                        tinymce.EditorManager.execCommand('mceAddEditor', false, editorId);
     @endif
+                });
+            </script>
+        @endif
+    @endcan
 @endif
