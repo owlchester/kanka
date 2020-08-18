@@ -11,6 +11,7 @@ Route::namespace('Admin')->name('admin.')->middleware(['moderator'])->prefix('ad
 
     Route::get('/cache', 'CacheController@index')->name('cache');
     Route::post('/cache', 'CacheController@destroy')->name('cache.destroy');
+    Route::post('/cache-view', 'CacheController@view')->name('cache.view');
 
     Route::resources([
         'faqs' => 'FaqController',

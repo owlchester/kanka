@@ -31,4 +31,12 @@ class CacheController extends Controller
             return redirect()->to('admin/cache')->withErrors('Cache key \'' . $key . '\' doesnt\'t exist.');
         }
     }
+
+    public function view(Request $request)
+    {
+        $key = $request->get('key');
+        $val = Cache::get($key);
+
+        return view('admin.cache.form')->with('key', $key)->with('val', $val);
+    }
 }

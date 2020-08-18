@@ -21,7 +21,10 @@
                 <a href="{{ route('admin.community-votes.index') }}"><i class="fas fa-check-square"></i> <span>Community Votes</span></a>
             </li>
             <li class="{{ $sidebar->admin('app-releases') }}">
-                <a href="{{ route('admin.app-releases.index') }}"><i class="fas fa-time"></i> <span>Releases</span></a>
+                <a href="{{ route('admin.app-releases.index') }}"><i class="fa fa-plus"></i> <span>Releases</span></a>
+            </li>
+            <li class="{{ $sidebar->admin('cache') }}">
+                <a href="{{ route('admin.cache') }}"><i class="fa fa-hourglass-half"></i> <span>Cache</span></a>
             </li>
         </ul><!-- /.sidebar-menu -->
 
