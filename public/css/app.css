@@ -755,23 +755,21 @@ div.mce-fullscreen {
   display: block;
   padding: 20px 0;
   text-align: center;
-  background: rgba(0, 0, 0, 0.2);
   margin-bottom: 20px;
   border-radius: 2px;
-  color: #222;
-  background: #dfdfdf;
-  background: linear-gradient(135deg, #dfdfdf 0%, #9c9cbb 100%, #7676aa 100%);
-  -webkit-filter: grayscale(60%);
-  filter: grayscale(60%);
-  font-size: 1.5rem;
+  color: #fff;
+  line-height: 16px;
+  font-size: 14px;
+  background-color: #2D7FED;
+  letter-spacing: 0.75px;
+  text-transform: uppercase;
 }
 
 .entity-creator a:hover {
-  -webkit-filter: grayscale(0%);
-  filter: grayscale(0%);
+  background: #1469d9;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-  color: #3a3844;
+  transition: all 0.3s ease-in-out;
+  color: #fff;
 }
 
 .entity-creator i {

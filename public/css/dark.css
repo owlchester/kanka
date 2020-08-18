@@ -14,23 +14,6 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.main-sidebar {
-  background: #222 !important;
-}
-
-.main-sidebar li:hover,
-.main-sidebar li.active,
-.main-sidebar li.header {
-  background-color: #222 !important;
-}
-
-.main-sidebar li:hover a,
-.main-sidebar li.active a,
-.main-sidebar li.header a {
-  color: #424240 !important;
-  background-color: #222 !important;
-}
-
 .content-wrapper {
   background: none !important;
 }
@@ -195,7 +178,7 @@ input[type=checkbox]:checked:after {
   font-style: italic;
 }
 
-p {
+.content-wrapper p {
   text-align: justify;
   color: #eee;
 }
@@ -562,11 +545,11 @@ body {
   background-color: #202121 !important;
 }
 
-a {
+.content-wrapper a {
   color: #999 !important;
 }
 
-a:hover {
+.content-wrapper a:hover {
   color: #fff !important;
 }
 

@@ -9,7 +9,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
 @if (!empty($currentCampaign))
     @inject('sidebar', 'App\Services\SidebarService')
     @inject('campaign', 'App\Services\CampaignService')
-<aside class="main-sidebar" @if ($currentCampaign->image)  style="background-image: url({{ Img::crop(280, 160)->url($currentCampaign->image) }})" @endif>
+<aside class="main-sidebar" @if ($currentCampaign->image)  style="background-image: url({{ Img::crop(280, 210)->url($currentCampaign->image) }})" @endif>
     <section class="sidebar-campaign">
         <div class="campaign-block">
             <div class="campaign-head">
@@ -19,18 +19,18 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
 
                 <div class="campaign-dropdown-toggle">
                     <i class="fa fa-caret-down" data-toggle="collapse" data-target="#campaign-switcher"></i>
-                    <i class="fa fa-caret-up hidden"  data-toggle="collapse" data-target="#campaign-switcher"></i>
+                    <i class="fa fa-caret-up" style="display: none" data-toggle="collapse" data-target="#campaign-switcher"></i>
                 </div>
 
                 <div class="campaign-updated">
-                    Updated {{ $currentCampaign->updated_at->diffForHumans() }}
+                    {{ __('sidebar.campaign_switcher.updated') }} {{ $currentCampaign->updated_at->diffForHumans() }}
                 </div>
             </div>
         </div>
     </section>
 
     <section class="campaign-switcher collapse" id="campaign-switcher">
-        <div class="section">Created worlds</div>
+        <div class="section">{{ __('sidebar.campaign_switcher.created_campaigns') }}</div>
 
         <ul>
             @foreach (\App\Facades\UserCache::campaigns() as $userCampaign)
@@ -49,20 +49,19 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
             @can('create', \App\Models\Campaign::class)
                 <li class="bordered">
                     <a href="{{ !Auth::user()->hasCampaigns() ? route('start') : route('campaigns.create') }}">
-                        <i class="fa fa-plus"></i> New world
+                        <i class="fa fa-plus"></i> {{ __('sidebar.campaign_switcher.new_campaign') }}
                     </a>
                 </li>
             @endcan
         </ul>
 
         @if (\App\Facades\UserCache::follows()->count() > 0)
-        <div class="section">Public Worlds</div>
+        <div class="section">{{ __('sidebar.campaign_switcher.public_campaigns') }}</div>
         <ul>
             @foreach (\App\Facades\UserCache::follows() as $userCampaign)
                 @if ($userCampaign->id != $currentCampaign->id && !\App\Facades\Identity::isImpersonating())
                     <li>
                         <a href="{{ url(App::getLocale() . '/' . $userCampaign->getMiddlewareLink()) }}">
-                        <i class="fa fa-star pull-right" title="{{ __('campaigns.following')  }}"></i>
                         {!! $userCampaign->name !!}
                         </a>
                     </li>

@@ -19,16 +19,16 @@
   }
 }
 
-.main-sidebar {
-  background: $Detail !important;
-  li:hover, li.active, li.header {
-    background-color: $Detail !important;
-    a {
-      color: $Hard !important;
-      background-color: $Detail !important;
-    }
-  }
-}
+//.main-sidebar {
+//  background: $Detail !important;
+//  li:hover, li.active, li.header {
+//    background-color: $Detail !important;
+//    a {
+//      color: $Hard !important;
+//      background-color: $Detail !important;
+//    }
+//  }
+//}
 
 .content-wrapper {
   background: none !important;
@@ -176,9 +176,11 @@ input[type=checkbox] {
   color: #bbb;
   font-style: italic;
 }
-p {
-  text-align: justify;
-  color: $White;
+.content-wrapper {
+  p {
+    text-align: justify;
+    color: $White;
+  }
 }
 li {
   color: $White;
@@ -303,6 +305,7 @@ pre, blockquote {
     color: white !important;
   }
 }
+
 
 
 .entity-form {

@@ -3,7 +3,7 @@
 <aside class="main-sidebar">
     <section class="sidebar" style="height: auto">
         <ul class="sidebar-menu tree" data-widget="tree">
-            <li class="treeview">
+            <li class="treeview" style="height: auto;">
                 <a href="#">
                     <i class="fas fa-globe"></i>
                     <span>{{ __('entities.campaigns') }}</span>

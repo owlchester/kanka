@@ -30,4 +30,10 @@ return [
     'timelines'             => 'Timelines',
     'translations'          => 'Translations',
     'world'                 => 'World',
+    'campaign_switcher' => [
+        'new_campaign' => 'New Campaign',
+        'created_campaigns' => 'Your Campaigns',
+        'public_campaigns' => 'Public Campaigns',
+        'updated' => 'Updated',
+    ],
 ];

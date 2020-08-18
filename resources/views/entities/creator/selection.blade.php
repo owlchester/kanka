@@ -9,7 +9,7 @@
             <p class="help-block">{{ __('entities.creator.helper') }}</p>
             <div class="row entity-creator">
                 @if (isset($entities['characters']))
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-4 col-sm-6">
                         <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'characters']) }}">
                             <i class="fa fa-user fa-2x"></i>
                             {{ __('entities.character') }}
@@ -18,7 +18,7 @@
                 @endif
 
                 @if (isset($entities['families']))
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-4 col-sm-6">
                         <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'families']) }}">
                             <i class="ra ra-double-team ra-2x"></i>
                             {{ __('entities.family') }}
@@ -27,7 +27,7 @@
                 @endif
 
                 @if (isset($entities['locations']))
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-4 col-sm-6">
                         <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'locations']) }}">
                             <i class="ra ra-tower ra-2x"></i>
                             {{ __('entities.location') }}
@@ -36,7 +36,7 @@
                 @endif
 
                 @if (isset($entities['organisations']))
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-4 col-sm-6">
                         <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'organisations']) }}">
                             <i class="ra ra-hood ra-2x"></i>
                             {{ __('entities.organisation') }}
@@ -45,7 +45,7 @@
                 @endif
 
                 @if (isset($entities['items']))
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-4 col-sm-6">
                         <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'items']) }}">
                             <i class="ra ra-gem-pendant ra-2x"></i>
                             {{ __('entities.item') }}
@@ -54,7 +54,7 @@
                 @endif
 
                 @if (isset($entities['notes']))
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-4 col-sm-6">
                         <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'notes']) }}">
                             <i class="fas fa-book-open fa-2x"></i>
                             {{ __('entities.note') }}
@@ -63,7 +63,7 @@
                 @endif
 
                 @if (isset($entities['events']))
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-4 col-sm-6">
 <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'events']) }}">
                             <i class="fas fa-bolt fa-2x"></i>
                             {{ __('entities.event') }}
@@ -72,7 +72,7 @@
                 @endif
 
                 @if (isset($entities['calendars']))
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-4 col-sm-6">
 <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'calendar']) }}">
                             <i class="fa fa-calendar fa-2x"></i>
                             {{ __('entities.calendar') }}
@@ -81,7 +81,7 @@
                 @endif
 
                 @if (isset($entities['races']))
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-4 col-sm-6">
 <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'races']) }}">
                             <i class="ra ra-wyvern ra-2x"></i>
                             {{ __('entities.race') }}
@@ -90,7 +90,7 @@
                 @endif
 
                 @if (isset($entities['quests']))
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-4 col-sm-6">
                         <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'quests']) }}">
                             <i class="ra ra-wooden-sign ra-2x"></i>
                             {{ __('entities.quest') }}
@@ -99,7 +99,7 @@
                 @endif
 
                 @if (isset($entities['journals']))
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-4 col-sm-6">
                         <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'journals']) }}">
                             <i class="ra ra-quill-ink ra-2x"></i>
                             {{ __('entities.journal') }}
@@ -108,7 +108,7 @@
                 @endif
 
                 @if (isset($entities['abilities']))
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-4 col-sm-6">
                         <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'abilities']) }}">
                             <i class="ra ra-fire-symbol ra-2x"></i>
                             {{ __('entities.ability') }}
@@ -116,7 +116,7 @@
                     </div>
                 @endif
 
-                <div class="col-md-4 col-sm-12">
+                <div class="col-md-4 col-sm-6">
                     <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'tags']) }}">
                         <i class="fa fa-tags fa-2x"></i>
                         {{ __('entities.tag') }}

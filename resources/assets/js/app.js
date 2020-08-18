@@ -26,6 +26,7 @@ $(document).ready(function() {
     initSpectrum();
     initCheckboxSwitch();
     initCopyToClipboard();
+    initSidebar();
 
     // Open select2 dropdowns on focus. Don't add this in initSelect2 since we only need this
     // binded once.
@@ -450,6 +451,31 @@ function initSpectrum()
         showInput: true,
         showPalette: true,
         allowEmpty: true
+    });
+}
+
+function initSidebar()
+{
+    let toggler = $('.campaign-dropdown-toggle');
+    console.log('toggler');
+    if (toggler.length === 0) {
+        return;
+    }
+
+    let down = $('.campaign-dropdown-toggle .fa-caret-down');
+    let up = $('.campaign-dropdown-toggle .fa-caret-up');
+
+    down.on('click', function(e) {
+        console.log('click on down');
+        e.preventDefault();
+        down.hide();
+        up.show();
+    });
+    up.on('click', function(e) {
+        console.log('click on up');
+        e.preventDefault();
+        up.hide();
+        down.show();
     });
 }
 

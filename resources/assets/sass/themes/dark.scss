@@ -38,10 +38,13 @@ body {
   background-color: #202121 !important;
 }
 
-a {
-  color: $Unfocused !important;
-  &:hover {
-    color: $Hard !important;
+.content-wrapper {
+  a {
+    color: $Unfocused !important;
+
+    &:hover {
+      color: $Hard !important;
+    }
   }
 }
 

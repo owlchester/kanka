@@ -76475,7 +76475,8 @@ $(document).ready(function () {
   initSelect2();
   initSpectrum();
   initCheckboxSwitch();
-  initCopyToClipboard(); // Open select2 dropdowns on focus. Don't add this in initSelect2 since we only need this
+  initCopyToClipboard();
+  initSidebar(); // Open select2 dropdowns on focus. Don't add this in initSelect2 since we only need this
   // binded once.
 
   $(document).on('focus', '.select2.select2-container', function (e) {
@@ -76885,6 +76886,30 @@ function initSpectrum() {
     showInput: true,
     showPalette: true,
     allowEmpty: true
+  });
+}
+
+function initSidebar() {
+  var toggler = $('.campaign-dropdown-toggle');
+  console.log('toggler');
+
+  if (toggler.length === 0) {
+    return;
+  }
+
+  var down = $('.campaign-dropdown-toggle .fa-caret-down');
+  var up = $('.campaign-dropdown-toggle .fa-caret-up');
+  down.on('click', function (e) {
+    console.log('click on down');
+    e.preventDefault();
+    down.hide();
+    up.show();
+  });
+  up.on('click', function (e) {
+    console.log('click on up');
+    e.preventDefault();
+    up.hide();
+    down.show();
   });
 } // Helpers are injected directly in the window functions.
 
