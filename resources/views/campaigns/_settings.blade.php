@@ -2,10 +2,10 @@
 <div class="box box-solid">
     <div class="box-body">
         <h2 class="page-header with-border">
-            {{ trans('campaigns.show.tabs.settings') }}
+            {{ __('campaigns.show.tabs.settings') }}
         </h2>
 
-        <p class="help-block">{{ trans('campaigns.settings.helper') }}</p>
+        <p class="help-block">{{ __('campaigns.settings.helper') }}</p>
     </div>
 </div>
 
@@ -59,7 +59,7 @@
         @include('campaigns.settings.box', ['icon' => 'ra ra-fire-symbol', 'module' => 'abilities'])
     </div>
     <div class="col-md-4">
-        @include('campaigns.settings.box', ['icon' => 'fa fa-map', 'module' => 'maps', 'boosted' => true])
+        @include('campaigns.settings.box', ['icon' => 'fa fa-map', 'module' => 'maps'])
     </div>
     <div class="col-md-4">
         @include('campaigns.settings.box', ['icon' => 'fa fa-clock', 'module' => 'timelines', 'boosted' => true])
@@ -80,7 +80,7 @@
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
         <button class="btn btn-success btn-block">
-            <i class="fa fa-check"></i> {{ trans('crud.save') }}
+            <i class="fa fa-check"></i> {{ __('crud.save') }}
         </button>
     </div>
 </div>

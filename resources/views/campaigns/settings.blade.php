@@ -1,9 +1,9 @@
 @extends('layouts.app', [
-    'title' => trans('campaigns.settings.title', ['name' => $campaign->name]),
-    'description' => trans('campaigns.settings.description'),
+    'title' => __('campaigns.settings.title', ['name' => $campaign->name]),
+    'description' => __('campaigns.settings.description'),
     'breadcrumbs' => [
         ['url' => route('campaign'), 'label' => $campaign->name],
-        trans('campaigns.show.tabs.settings')
+        __('campaigns.show.tabs.settings')
     ],
     'canonical' => true,
     'mainTitle' => false,
