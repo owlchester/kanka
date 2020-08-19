@@ -197,6 +197,11 @@ padding-top: 96px;
         position: absolute;
         font-size: 11px;
         word-break: break-all;
+        transition: all 0.3s ease;
+
+        &:hover {
+          letter-spacing: 1.8px;
+        }
       }
 
       .background-image, .background-gradient {
@@ -223,10 +228,10 @@ padding-top: 96px;
         display: block;
         margin: 0;
         width: 240px;
+        transition: all 0.3s ease;
 
         &:hover {
           border: 1px dashed #757575;
-          transition: all 0.3s ease;
           color: #999;
         }
       }

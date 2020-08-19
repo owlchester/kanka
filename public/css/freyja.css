@@ -207,6 +207,11 @@ section.sidebar-campaign .campaign-block .campaign-head .campaign-updated {
   position: absolute;
   font-size: 11px;
   word-break: break-all;
+  transition: all 0.3s ease;
+}
+
+.campaign-switcher ul li a:hover {
+  letter-spacing: 1.8px;
 }
 
 .campaign-switcher ul li .background-image,
@@ -236,11 +241,11 @@ section.sidebar-campaign .campaign-block .campaign-head .campaign-updated {
   display: block;
   margin: 0;
   width: 240px;
+  transition: all 0.3s ease;
 }
 
 .campaign-switcher ul li.bordered a:hover {
   border: 1px dashed #757575;
-  transition: all 0.3s ease;
   color: #999;
 }
 
