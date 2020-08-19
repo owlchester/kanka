@@ -86,7 +86,7 @@ TEXT
     ],
     'organise_play'         => [
         'question'  => 'How can I manage when I run my sessions?',
-        'answer'    => 'We\'ve partnered with :lfgm which allows you to organise when you run your sessions with your group. You can sync your Kanka campaign with your LGFM campaign to show your next availabilities directly on the campaign dashboard.',
+        'answer'    => 'We\'ve partnered with :lfgm which allows you to organise your sessions with your group. You can sync your Kanka campaign with your LGFM campaign to show your next availabilities directly on the campaign dashboard.',
     ],
     'permissions'           => [
         'answer'    => 'Absolutely, this is why we built Kanka! You can invite all your players to your campaigns, and give them roles and permissions. We built the system to be extremely flexible (you can both use an opt-in and opt-out configuration) to cover as many needs and situations as possible.',
