@@ -163,9 +163,10 @@
 
         this.bindEnterKey = function ($input, $btn) {
             $input.on('keypress', function (event) {
-                if (event.keyCode === 13)
+                if (event.keyCode === 13) {
                     event.preventDefault();
                     $btn.trigger('click');
+                }
             });
         };
 
