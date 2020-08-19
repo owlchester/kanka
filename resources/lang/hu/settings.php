@@ -55,6 +55,7 @@ return [
             'more'      => 'Tudj meg többet a funkciókról.',
             'second'    => 'Egy kampány Boost-olása az alábbi előnyöket biztosítja:',
             'theme'     => 'Kampány-szintű téma, és egyedi megjelenítési stílus.',
+            'third'     => 'A kampány boost-olásához keresd fel a kampány oldalát, kattints a ":boost_button" gombra, amely a ":edit_button" felett helyezkedik el.',
             'tooltip'   => 'Egyedi entitás tooltip-ek.',
             'upload'    => 'Megnövelt fájlfeltöltési korlát az összes Tag számára.',
         ],
@@ -266,7 +267,8 @@ return [
             ],
         ],
         'warnings'              => [
-            'patreon'   => 'A fiókod jelenleg a Patreon-nal van összekapcsolva. Kérlek csatlakoztasd le a fiókod a :patreon beállításaiban, mielőtt Kanka előfizetésre váltanál!',
+            'incomplete'    => 'Nem sikerült az előfizetés összegét a kártyádra terhelni. Kérlek frissítsd a bakkártya adataidat, és a következő pár napban ismételten megpróbáljuk megterhelni az előfizetés összegével. Ha ismét sikertelen a tranzakció, az előfizetésed lemondásra kerül.',
+            'patreon'       => 'A fiókod jelenleg a Patreon-nal van összekapcsolva. Kérlek csatlakoztasd le a fiókod a :patreon beállításaiban, mielőtt Kanka előfizetésre váltanál!',
         ],
     ],
 ];

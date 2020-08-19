@@ -96,7 +96,7 @@ return [
     'boosted_campaigns' => 'geboostete Kampagne',
     'bulk'              => [
         'actions'       => [
-            'edit'  => 'Massenbetrieb',
+            'edit'  => 'Bearbeitung vieler Objekte',
         ],
         'age'           => [
             'helper'    => 'Sie können + und - vor der Nummer verwenden, um das Alter dynamisch zu aktualisieren.',

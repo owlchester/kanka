@@ -1,9 +1,3 @@
-<div
-    id="summernote-config"
-    data-mention="{{ route('search.live') }}"
-    data-advanced-mention="{{ Auth::user()->advancedMentions }}"
-    data-months="{{ route('search.calendar-months') }}"
-    data-locale="{{ app()->getLocale() }}"></div>
 
 @section('scripts')
     @parent
@@ -23,3 +17,12 @@
 <link href="/vendor/summernote/summernote.min.css" rel="stylesheet">
 @endsection
 
+@section('modals')
+    @parent
+    <div
+            id="summernote-config"
+            data-mention="{{ route('search.live') }}"
+            data-advanced-mention="{{ Auth::user()->advancedMentions }}"
+            data-months="{{ route('search.calendar-months') }}"
+            data-locale="{{ app()->getLocale() }}"></div>
+@endsection

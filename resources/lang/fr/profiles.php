@@ -8,6 +8,10 @@ return [
     'edit'          => [
         'success'   => 'Profil modifié',
     ],
+    'editors'       => [
+        'default'       => 'Défault (TyineMCE 4)',
+        'summernote'    => 'Summernote (experimental)',
+    ],
     'fields'        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'Email',
@@ -57,7 +61,11 @@ return [
             'advanced_mentions' => 'Mentions Avancées',
             'date_format'       => 'Format de date',
             'default_nested'    => 'Vue imbriquée par défaut',
+            'editor'            => 'Editeur de text',
             'pagination'        => 'Pagination (éléments par page)',
+        ],
+        'helpers'   => [
+            'editor'    => 'L\'éditeur par défaut (TinyMCE 4) est vieux et fonctionne sur un ordinateur, mais ne fonctionne pas bien sur les portables. Summernote est un éditeur plus récent qui fonctionne bien sur tout type de support mais que nous sommes en train d\'évaluer.',
         ],
         'hints'     => [
             'advanced_mentions' => 'Lorsque cette option est activée, les mentions s\'afficheront tout le temps comme [entity:123] lors de l\'édition d\'une entité.',

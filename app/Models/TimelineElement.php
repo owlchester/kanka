@@ -164,7 +164,7 @@ class TimelineElement extends Model
     public function htmlName(): string
     {
         if (empty($this->entity_id)) {
-            return e($this->name);
+            return $this->name;
         }
 
         return $this->entity->tooltipedLink($this->name);

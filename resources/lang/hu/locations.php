@@ -175,6 +175,7 @@ return [
             'return'        => 'Vissza ide: :name',
             'shapes'        => [
                 'circle'    => 'Kör',
+                'custom'    => 'Egyedi',
                 'square'    => 'Négyzet',
             ],
             'sizes'         => [
@@ -192,6 +193,9 @@ return [
             'title'         => ':name helyszín térképi pontjai',
         ],
         'success'   => 'A térképi pontokat elmentettük.',
+    ],
+    'maps'          => [
+        'title' => 'Helyszín :name Térképei',
     ],
     'organisations' => [
         'description'   => 'Szervezetek ezen a helyszínen',
@@ -220,6 +224,7 @@ return [
             'journals'      => 'Naplóbejegyzések',
             'locations'     => 'Helyszínek',
             'map'           => 'Térkép',
+            'maps'          => 'Térképek',
             'menu'          => 'Menü',
             'organisations' => 'Szervezetek',
             'quests'        => 'Küldetések',

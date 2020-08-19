@@ -4,7 +4,7 @@
     'breadcrumbs' => [
         ['url' => route('calendars.index'), 'label' => trans('calendars.index.title')],
         ['url' => route('calendars.show', $calendar->id), 'label' => $calendar->name],
-        trans('crud.tabs.events'),
+        trans('crud.tabs.reminders'),
     ],
     'canonical' => true,
 ])

@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'boosted_campaigns' => 'מערכות מוגברות',
     'edit'              => 'עריכה',
     'fields'            => [
         'ability'               => 'יכולת',

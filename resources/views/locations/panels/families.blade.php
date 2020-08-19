@@ -39,8 +39,8 @@ if (request()->has('location_id')) {
         </div>
 
         <?php  $r = $model->allFamilies()->filter($filters)->simpleSort($datagridSorter)->with(['location', 'family', 'entity', 'entity.tags'])->paginate(); ?>
-        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('locations.show.tabs.characters') }}</p>
-        <table id="characters" class="table table-hover margin-top {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('locations.show.tabs.families') }}</p>
+        <table id="families" class="table table-hover margin-top {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ trans('families.fields.name') }}</th>
@@ -54,7 +54,7 @@ if (request()->has('location_id')) {
             @foreach ($r as $family)
                 <tr>
                     <td>
-                        <a class="entity-image" style="background-image: url('{{ $family->getImageUrl(40) }}');" title="{{ $family->name }}" href="{{ route('characters.show', $family->id) }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $family->getImageUrl(40) }}');" title="{{ $family->name }}" href="{{ route('families.show', $family->id) }}"></a>
                     </td>
                     <td>
                         {!! $family->tooltipedLink() !!}
@@ -73,7 +73,7 @@ if (request()->has('location_id')) {
                     </td>
                     <td>{{ $family->type }}</td>
                     <td class="text-right">
-                        <a href="{{ route('characters.show', [$family]) }}" class="btn btn-xs btn-primary">
+                        <a href="{{ route('families.show', [$family]) }}" class="btn btn-xs btn-primary">
                             <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
                         </a>
                     </td>

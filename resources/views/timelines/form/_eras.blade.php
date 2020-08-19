@@ -65,6 +65,19 @@
         <i class="fas fa-plus"></i> {{ __('maps/groups.actions.add') }}
     </a>
 
+    <hr />
+
+    <div class="form-group">
+        {!! Form::hidden('revert_order', 0) !!}
+        <label>{!! Form::checkbox('revert_order') !!}
+            {{ __('timelines.fields.reverse_order') }}
+        </label>
+
+        <p class="help-block">
+            {!! __('timelines.helpers.reverse_order') !!}
+        </p>
+    </div>
+
 
 @if (!empty($eras))
 @section('modals')

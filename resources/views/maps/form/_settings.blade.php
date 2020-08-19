@@ -40,7 +40,7 @@
                 [
                     'placeholder' => 0,
                     'class' => 'form-control',
-                    'min' => -\App\Models\Map::MIN_ZOOM,
+                    'min' => \App\Models\Map::MIN_ZOOM,
                     'max' => \App\Models\Map::MAX_ZOOM,
                 ]
             ) !!}

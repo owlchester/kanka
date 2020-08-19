@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'title' => trans($name . '.index.title', ['name' => CampaignLocalization::getCampaign()->name]),
-    'description' => trans($name . '.index.description',  ['name' => CampaignLocalization::getCampaign()->name]),
+    'description' => null,
     'breadcrumbs' => [
         ['url' => route($name . '.index'), 'label' => trans($name . '.index.title')]
     ],

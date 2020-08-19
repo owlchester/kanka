@@ -8,6 +8,10 @@ return [
     'edit'          => [
         'success'   => 'Profile updated',
     ],
+    'editors'       => [
+        'default'       => 'Default (TinyMCE 4)',
+        'summernote'    => 'Summernote (Experimental)',
+    ],
     'fields'        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'Email',
@@ -57,15 +61,15 @@ return [
             'advanced_mentions' => 'Advanced Mentions',
             'date_format'       => 'Date Formatting',
             'default_nested'    => 'Nested Views as Default',
-            'pagination'        => 'Pagination (elements per page)',
             'editor'            => 'Text Editor',
+            'pagination'        => 'Pagination (elements per page)',
+        ],
+        'helpers'   => [
+            'editor'    => 'The default editor (TinyMCE 4) is old but works well on desktop, but doesn\'t work on mobile. Summernote is a newer editor that works on all devices but we are still trying it out.',
         ],
         'hints'     => [
             'advanced_mentions' => 'If activated, mentions will always render as [entity:123] when editing an entity.',
             'default_nested'    => 'Activate this option if you wish for the default lists to be Nested by default (when available).',
-        ],
-        'helpers' => [
-            'editor' => 'The default editor (tinymce v4) is old but works well on desktop, but doesn\'t work on mobile. Summernote is a newer editor that works on all devices but we are still trying it out.',
         ],
         'success'   => 'Settings changed.',
     ],
@@ -77,10 +81,6 @@ return [
             'future'    => 'Future',
             'midnight'  => 'Midnight Blue',
         ],
-    ],
-    'editors' => [
-        'default' => 'Default (TinyMCE 4)',
-        'summernote' => 'Summernote (Experimental)',
     ],
     'title'         => 'Update your profile',
 ];

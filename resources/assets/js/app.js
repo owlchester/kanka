@@ -147,6 +147,9 @@ $(document).ready(function() {
     if ($('#abilities').length > 0) {
         treeViewInit('abilities');
     }
+    if ($('#maps').length > 0) {
+        treeViewInit('maps');
+    }
 
     manageTabs();
     manageDashboardNotifications();

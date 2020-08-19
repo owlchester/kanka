@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'app_backup'            => [
+        'answer'    => 'Wir führen täglich zwei Sicherungen durch, um Datenverlust zu vermeiden. Unsere eigenen Kampagnen befinden sich ebenfalls auf dem Server, daher möchten wir kein Risiko eingehen!',
+        'question'  => 'Wie oft werden die Daten von Kanka gesichert?',
+    ],
     'attribute-templates'   => [
         'answer'    => <<<'TEXT'
 Die beste Art Attributvorlagen zu erklären, ist mit einem Beispiel. Stellen wir uns, dass deine Welt eine Menge Orte hat. Für viele dieser Orte möchtest du eigene Attribute wie "Bewohnerzahl", "Klima" und "Kriminalitätsgrad" haben.
@@ -80,6 +84,10 @@ TEXT
     'multiworld'            => [
         'answer'    => 'Nein, brauchst du nicht! Du kannst so viele "Kampagnen" in der App haben, wie du möchtest. Jede Kampagne kann für eine Welt, ein Setting oder was immer du willst genutzt werden. Sobald du mehrere Kampagnen hast, kannst du einfach zwischen ihnen wechseln.',
         'question'  => 'Ich baue mehrere Welten in verschiedenen Settings auf. benötige ich für jede Welt einen anderes Konto?',
+    ],
+    'nested'                => [
+        'answer'    => 'Wenn Sie Ihre Objekte standardmäßig in einer verschachtelten Ansicht anzeigen möchten (z. B. die Schaltfläche Verschachtelte Ansicht in der Liste der Speicherorte), können Sie dies tun, indem Sie in die Optionen Profil und Layout wechseln. Dort können Sie die Option Verschachtelte Ansicht aktivieren. Dies gilt nur für Ihr Konto und nicht für Ihre Kampagnen.',
+        'question'  => 'Kann ich festlegen, dass die Listen standardmäßig verschachtelt sind?',
     ],
     'permissions'           => [
         'answer'    => 'Ja absolut, deswegen haben wir Kanka gemacht! Du kannst all deine Spieler zu deiner Kampagne einladen und ihnen Rollen und Berechtigungen erteilen.  Wir haben das System für  große Flexibiliät gebaut (sowohl opt-in als auch opt-out Konfigurationen möglich), um so viele Ansprüche und Situationen wie möglich abzudecken.',

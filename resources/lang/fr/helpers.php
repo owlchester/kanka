@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'age'           => [
+        'description'   => 'Il est possible de lier un personnage à un ou plusieurs calendriers de la campagne en allant sur la page Rappels du personnage. Sur cette page, ajouter un nouveau rappel et sélectionner la valeur Naissance ou Mort du champs type d\'événement. Si la naissance et la mort sont indiquées, l\'age à la mort sera affiché. Si seulement la mort est indiquée, le nombre d\'année depuis laquelle le personnage est décédé sera affiché.',
+        'title'         => 'Age et mort d\'un personnage',
+    ],
     'description'   => 'Quelques aides disponnibles dans Kanka',
     'dice'          => [
         'description'               => 'Example de jet de dés: "d20", "4d4+4", "d%" pour un pourcent et "df" pour un jet Fudge.',

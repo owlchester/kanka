@@ -18,6 +18,7 @@ return [
     'show'          => [
         'restricted'    => 'הצבעות קהילתיות זמינות רק למשתמשים התומכים בKanka.',
         'title'         => 'הצבעה קהילתית - :name',
+        'vote_count'    => '{1} משתתף :number הצביע.|[2,*] :number משתתפים הצביעו.',
         'voted_lasted'  => 'ההצבעה נמשכת מ:from GMT עד :until GMT.',
         'voting_until'  => 'ההצבעה פתוחה עד :until GMT.',
     ],

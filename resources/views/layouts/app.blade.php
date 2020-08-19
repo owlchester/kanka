@@ -121,17 +121,17 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                 @include('partials.success')
 
                 @if(auth()->guest() && !empty(config('tracking.adsense')))
-    <div class="row">
-        <div class="col-md-6 col-sm-8 col-md-offset-3 col-sm-offset-1">
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:728px;height:90px"
-                 data-ad-client="{{ config('tracking.adsense') }}"
-                 data-ad-slot="2711573107"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-    </div>
+{{--    <div class="row">--}}
+{{--        <div class="col-md-6 col-sm-8 col-md-offset-3 col-sm-offset-1">--}}
+{{--            <ins class="adsbygoogle"--}}
+{{--                 style="display:inline-block;width:728px;height:90px"--}}
+{{--                 data-ad-client="{{ config('tracking.adsense') }}"--}}
+{{--                 data-ad-slot="2711573107"></ins>--}}
+{{--            <script>--}}
+{{--                (adsbygoogle = window.adsbygoogle || []).push({});--}}
+{{--            </script>--}}
+{{--        </div>--}}
+{{--    </div>--}}
                 @endif
 
                 @yield('entity-actions')

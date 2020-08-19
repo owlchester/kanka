@@ -156,6 +156,12 @@ class MentionsService
             '$1',
             $text
         );
+        // Summernote will inject the link differently
+        $text = preg_replace(
+            '`<a href="#" class="mention" data-mention="([^"]*)">(.*?)</a>`',
+            '$1',
+            $text
+        );
         return $text;
     }
 

@@ -26,6 +26,7 @@ return [
     'races'                 => 'Races',
     'search'                => 'Recherche...',
     'tags'                  => 'Etiquettes',
+    'timelines'             => 'Chronologies',
     'translations'          => 'Traductions',
     'world'                 => 'Monde',
 ];

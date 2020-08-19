@@ -34,6 +34,7 @@ return [
         'image'                     => 'Image',
         'is_dead'                   => 'Mort',
         'is_personality_visible'    => 'Personnalité visible',
+        'life'                      => 'Vie',
         'location'                  => 'Lieu',
         'name'                      => 'Nom',
         'physical'                  => 'Physique',
@@ -45,6 +46,7 @@ return [
         'type'                      => 'Type',
     ],
     'helpers'       => [
+        'age'   => 'Il est possible de lier cette entité avec un calendrier de la campagne pour automatiquement calculer l\'age. :more.',
         'free'  => 'Où est passé le champ "Texte Libre"? Si le personnage en avait un, il a été déplacé sur le nouvel onglet "Notes".',
     ],
     'hints'         => [

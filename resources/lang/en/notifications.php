@@ -26,7 +26,7 @@ return [
         'title' => 'Permission Changes',
     ],
     'subscriptions'     => [
-        'charge_fail'   => 'An error occured while processing your payment. Please wait a moment while we try again. If nothing changes, please contact us.',
+        'charge_fail'   => 'An error occurred while processing your payment. Please wait a moment while we try again. If nothing changes, please contact us.',
         'ended'         => 'Your subscription to Kanka has ended. Your campaign boosts and Discord roles have been removed. We hope to see you back soon!',
         'failed'        => 'Your subscription to Kanka was cancelled after too many failed attempts to charge your card. Please go to your Subscription settings and try updating your payment details.',
         'started'       => 'Your subscription to Kanka has started.',

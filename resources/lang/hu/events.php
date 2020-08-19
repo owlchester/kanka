@@ -20,6 +20,9 @@ return [
         'name'      => 'Megnevezés',
         'type'      => 'Típus',
     ],
+    'helpers'       => [
+        'date'  => 'Ebbe a mezőbe bármit beírhatsz, és nem kapcsolódik a kampány naptárához. Hogy az eseményt összerendeld egy naptárral, magán a naptáron add hozzá az eseményt, vagy ennek az eseménynek az Emlékeztetők fülén.',
+    ],
     'index'         => [
         'add'           => 'Új esemény',
         'description'   => ':name eseményeinek kezelése',

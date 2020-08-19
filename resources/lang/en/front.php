@@ -105,6 +105,7 @@ return [
             'default_image'     => 'Custom default images for entities',
             'description'       => 'Supporting Kanka with a small monthly fee allows us to keep working on Kanka and unlocks the following benefits for an account.',
             'discord'           => 'Private Discord channel',
+            'entities'          => 'Number of entities that can be created in each campaign',
             'free'              => 'Free',
             'hall_of_fame'      => 'Name in the :link',
             'impact'            => 'Impact future features',
@@ -114,6 +115,7 @@ return [
             'title'             => 'Paid Features',
             'upload_limit'      => 'Upload sizes',
             'upload_limit_map'  => 'Map upload sizes',
+            'users_roles'       => 'Number of users, roles and permission controls',
         ],
         'public'            => [
             'description'   => 'Permissions can be set for modules, or for each single entity. Campaigns can also be public for the <a href=":url">whole world to see</a>.',
@@ -124,6 +126,7 @@ return [
             'title'         => 'Relations',
         ],
         'title'             => 'Powerful features with incredible flexibility',
+        'unlimited'         => 'Unlimited',
         'updates'           => [
             'description'   => 'Kanka goes through frequent community driven updates, with new features added every month. We go into details about these updates on our :discord.',
             'title'         => 'Frequent Community Driven Updates',

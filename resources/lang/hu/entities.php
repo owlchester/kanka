@@ -32,6 +32,8 @@ return [
     'journals'              => 'Naplóbejegyzések',
     'location'              => 'Helyszín',
     'locations'             => 'Helyszínek',
+    'map'                   => 'Térkép',
+    'maps'                  => 'Térképek',
     'menu_link'             => 'Menühivatkozás',
     'menu_links'            => 'Menühivatkozások',
     'note'                  => 'Jegyzet',

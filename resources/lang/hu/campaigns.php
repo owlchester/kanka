@@ -4,9 +4,15 @@ return [
     'create'                            => [
         'description'           => 'Új kampány létrehozása',
         'helper'                => [
-            'first' => 'Köszi, hogy kipróbálod az alkalmazást! Mielőtt bármit csinálhatnál, egy egyszerű dologra szükségünk van tőled: a <b>kampányod nevére</b>. Ez a világod neve, ami megkülönbözteti a többitől. Ha most nem tudsz egy jó nevet kitalálni, ne aggódj, <b>később megváltoztathatod</b>, vagy több kampányt is létrehozhatsz.',
-            'second'=> 'De elég a dumából, mihez kezdjünk?',
-            'title' => 'Üdvözöllek :name világában!',
+            'first'     => 'Köszi, hogy kipróbálod az alkalmazást! Mielőtt bármit csinálhatnál, egy egyszerű dologra szükségünk van tőled: a <b>kampányod nevére</b>. Ez a világod neve, ami megkülönbözteti a többitől. Ha most nem tudsz egy jó nevet kitalálni, ne aggódj, <b>később megváltoztathatod</b>, vagy több kampányt is létrehozhatsz.',
+            'second'    => 'De elég a dumából, mihez kezdjünk?',
+            'title'     => 'Üdvözöllek :name világában!',
+            'welcome'   => <<<'TEXT'
+Mielőtt tovább lépnénk, ki kell választanod a kampányod nevét. Ez lesz a világod neve. Ha még nincs meg a tökéletes név, ne aggódj, később bármikor megváltoztathatod, vagy új kampányokat is készíthetsz.
+
+Köszönjük, hogy a Kanka, és virágzó közösségünk tagjaként üdvözölhetünk!
+TEXT
+,
         ],
         'success'               => 'A kampányt létrehoztuk.',
         'success_first_time'    => 'A kampányodat létrehoztuk! Milve ez az első kampányod, csináltunk néhány dolgot, ami segít a kezdésben, és remélhetőleg némi inspirációt biztosít számodra.',
@@ -49,9 +55,12 @@ return [
         'excerpt'                       => 'Kivonat',
         'followers'                     => 'Követők',
         'header_image'                  => 'Fejléc képe',
+        'hide_history'                  => 'Az entitások változási naplójának elrejtése',
+        'hide_members'                  => 'A kampányban résztvevő tagok elrejtése',
         'image'                         => 'Kép',
         'locale'                        => 'Nyelv',
         'name'                          => 'Név',
+        'public_campaign_filters'       => 'Publikus kampány szűrők',
         'rpg_system'                    => 'Szerepjáték rendszerek',
         'system'                        => 'Rendszer',
         'theme'                         => 'Téma',
@@ -67,11 +76,15 @@ return [
         'entity_personality_visibility' => 'Amikor új karaktert hozol létre, a "személyiség látható" opciót automatikusan kikapcsoljuk.',
         'entity_visibility'             => 'Amikor új entitást hozol létre, a "Privát" opciót automatikusan kiválasztjuk.',
         'excerpt'                       => 'A kampány kivonata a főoldalon jelenik meg, írj hát pár mondatot, világod bemutatására! Fogalmazz tömören a legjobb eredmény érdekében.',
+        'hide_history'                  => 'Az entitások változás naplójának elrejtése minden nem admin szerepű felhasználó számára.',
+        'hide_members'                  => 'A kampány résztvevőinek listája elrejtésre kerül minden nem admin szerepű felhasználó elől.',
         'locale'                        => 'Amilyen nyelven írod a kampányodat. Ezt a tartalom-generáláshoz és a nyilvános kampányok csoportosításához használjuk.',
         'name'                          => 'A kampányod/világod neve bármi lehet, ami legalább 4 számot vagy betűt tartalmaz.',
+        'public_campaign_filters'       => 'Segíts másoknak a kampány könnyebb megtalálásában az alábbi adatok kitöltésével.',
         'system'                        => 'Ha a kampányod nyilvánosan látható, a rendszer a :link oldalon látható.',
         'systems'                       => 'Hogy elkerüljük a felhasználók elárasztását szükségtelen opciókkal, néhány funkció csak adott szerepjáték rendszerek esetén érhető el (ilyen például a D&D 5e szörny harcérték blokk, a tulajdonságblokkok között). Támogatott rendszerek hozzáadásával engedélyezheted ezeket a funkciókat.',
         'theme'                         => 'Adott téma rögzítése a kampányhoz, amely minden esetben felülbírálja a felhasználók saját preferenciáját.',
+        'view_public'                   => 'Hogy lásd, hogy mi mindent látszik a kampányodból egy olvasó számára, nyisd meg az alábbi linket: :link a böngésződ Inkognitó módjában.',
         'visibility'                    => 'Ha egy kampányt nyilvánossá teszel, bárki egy link segítségével meg tudja nézni.',
     ],
     'index'                             => [
@@ -237,6 +250,9 @@ return [
                 'read'          => 'Megtekintés',
                 'toggle'        => 'Váltás mindnél',
             ],
+            'helpers'   => [
+                'entity_note'   => 'Ez lehetővé teszi Entitás jegyzetek hozzáadását olyan felhasználók számára is, akiknek nincs szerkesztési joguk az adott Entitásra.',
+            ],
             'hint'      => 'Ez a szerep automatikusan hozzáférst biztosít mindenhez.',
         ],
         'placeholders'  => [
@@ -289,6 +305,7 @@ return [
             'items'         => 'Fegyverek, járművek, relikviák, italok.',
             'journals'      => 'A karakterek által írt hozzászólások vagy a játékülésre való előkészület a mesélő részéről.',
             'locations'     => 'Bolygók, síkok, kontinensek, folyók, államok, települések, templomok, kocsmák.',
+            'maps'          => 'Tölts fel több rétegű térképeket, melyek különböző entitásokra mutatnak a kampányodban.',
             'menu_links'    => 'Egyedi menülinkek az oldalsó sávban.',
             'notes'         => 'Ismeretek, egyházak, történelem, mágia, fajok.',
             'organisations' => 'Kultuszok, katonai egységek, frakciók, céhek.',
@@ -301,6 +318,7 @@ return [
     'show'                              => [
         'actions'       => [
             'boost' => 'Kampány boost-olása',
+            'edit'  => 'Kampány szerkesztése',
             'leave' => 'Kilépés a kampányból',
         ],
         'description'   => 'Egy kampány részleteinek megjelenítése',

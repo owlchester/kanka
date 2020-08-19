@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Facades\EntityPermission;
 use App\Models\Entity;
@@ -17,6 +18,8 @@ class MiscPolicy
     protected static $cached = [];
 
     protected static $roles = false;
+
+    protected $boosted = false;
 
     protected $model = '';
 
@@ -38,6 +41,13 @@ class MiscPolicy
      */
     public function view(User $user, $entity)
     {
+        if ($this->boosted) {
+            $campaign = CampaignLocalization::getCampaign();
+            if (!$campaign->boosted()) {
+                return false;
+            }
+        }
+
         return
             // The entity's campaign must be the same as the current user campaign
             $user->campaign->id == $entity->campaign_id
@@ -57,6 +67,13 @@ class MiscPolicy
      */
     public function create(User $user, $entity = null, Campaign $campaign = null)
     {
+        if ($this->boosted) {
+            $campaign = CampaignLocalization::getCampaign();
+            if (!$campaign->boosted()) {
+                return false;
+            }
+        }
+
         return Auth::check() && !$this->shadow() && $this->checkPermission('add', $user, null, $campaign);
     }
 

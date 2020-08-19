@@ -3,6 +3,7 @@
 return [
     'hall_of_fame'  => 'Dicsőségcsarnok',
     'index'         => [
+        'community'     => 'Közösség',
         'core'          => 'Fejlesztők',
         'description'   => 'Ők teszik lehetővé, hogy a Kanka működjön',
         'other'         => 'Egyéb',
