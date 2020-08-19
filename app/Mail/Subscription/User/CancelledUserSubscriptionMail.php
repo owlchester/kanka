@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail\Subscription\Admin;
+namespace App\Mail\Subscription\User;
 
 use App\User;
 use Illuminate\Bus\Queueable;
@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class CancelledSubscriptionMail extends Mailable
+class CancelledUserSubscriptionMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -43,6 +43,6 @@ class CancelledSubscriptionMail extends Mailable
         return $this
             ->from(['address' => 'hello@kanka.io', 'name' => 'Kanka Team'])
             ->subject('Subscription: Cancelled ' . $this->user->patreon_pledge)
-            ->view('emails.subscriptions.cancelled.html');
+            ->view('emails.subscriptions.cancelled.user-html');
     }
 }

@@ -432,9 +432,14 @@ class SubscriptionService
         /** @var SubscriptionSource $source */
         $source = SubscriptionSource::where('charge_id', Arr::get($payload, 'data.object.charge'))
             ->firstOrFail();
+        $this->user = $source->user;
+
+        // user was deleted
+        if (empty($this->user) || $this->userId == 27078) {
+            return true;
+        }
         $source->update(['status' => 'failed']);
 
-        $this->user = $source->user;
 
         // Remove all the user's stuff directly
         if ($this->user->subscribed('kanka')) {

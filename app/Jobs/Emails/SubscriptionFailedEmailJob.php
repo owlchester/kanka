@@ -5,6 +5,7 @@ namespace App\Jobs\Emails;
 
 
 use App\Mail\Subscription\Admin\FailedSubscriptionMail;
+use App\Mail\Subscription\User\FailedUserSubscriptionMail;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -48,6 +49,13 @@ class SubscriptionFailedEmailJob implements ShouldQueue
         Mail::to('hello@kanka.io')
             ->send(
                 new FailedSubscriptionMail($user)
+            );
+
+        // Send an email to the user
+        Mail::to($user->email)
+            ->bcc('hello@kanka.io')
+            ->send(
+                new FailedUserSubscriptionMail($user)
             );
     }
 }

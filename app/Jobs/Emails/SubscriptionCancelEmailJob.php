@@ -5,6 +5,7 @@ namespace App\Jobs\Emails;
 
 
 use App\Mail\Subscription\Admin\CancelledSubscriptionMail;
+use App\Mail\Subscription\User\CancelledUserSubscriptionMail;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -49,6 +50,13 @@ class SubscriptionCancelEmailJob implements ShouldQueue
         Mail::to('hello@kanka.io')
             ->send(
                 new CancelledSubscriptionMail($user, $this->reason)
+            );
+
+        // Send an email to the user
+        Mail::to($user->email)
+            ->bcc('hello@kanka.io')
+            ->send(
+                new CancelledUserSubscriptionMail($user, $this->reason)
             );
     }
 }

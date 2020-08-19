@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail\Subscription\Admin;
+namespace App\Mail\Subscription\User;
 
 use App\User;
 use Illuminate\Bus\Queueable;
@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class CancelledSubscriptionMail extends Mailable
+class FailedUserSubscriptionMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -18,19 +18,13 @@ class CancelledSubscriptionMail extends Mailable
     public $user;
 
     /**
-     * @var string
-     */
-    public $reason;
-
-    /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user, string $reason = null)
+    public function __construct(User $user)
     {
         $this->user = $user;
-        $this->reason = $reason;
     }
 
     /**
@@ -42,7 +36,7 @@ class CancelledSubscriptionMail extends Mailable
     {
         return $this
             ->from(['address' => 'hello@kanka.io', 'name' => 'Kanka Team'])
-            ->subject('Subscription: Cancelled ' . $this->user->patreon_pledge)
-            ->view('emails.subscriptions.cancelled.html');
+            ->subject('Subscription: Failed ' . $this->user->patreon_pledge)
+            ->view('emails.subscriptions.failed.user-html');
     }
 }
