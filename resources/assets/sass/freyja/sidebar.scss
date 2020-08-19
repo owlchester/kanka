@@ -46,7 +46,7 @@
 
     li.sidebar-section {
       .sidebar-text {
-        padding: 8px 5px 8px 15px;
+        padding: 6px 5px 6px 15px;
       }
     }
     li {
@@ -54,8 +54,8 @@
         font-size: 16px;
         width: 24px;
       }
-      padding: 8px 12px;
-      height: 40px;
+      padding: 6px 12px;
+      height: 38px;
 
       &:hover {
         a {
@@ -63,8 +63,8 @@
         }
       }
       a, .sidebar-text {
-        font-size: 12px;
-        line-height: 24px;
+        font-size: 11px;
+        line-height: 22px;
         color: #FFFFFF;
         letter-spacing: 1.5px;
         text-transform: uppercase;
@@ -87,6 +87,7 @@
 
     li.subsection {
       padding-left: 24px;
+      margin: 1px 0;
     }
   }
 }
@@ -192,7 +193,7 @@ section.sidebar-campaign {
         display: block;
         overflow: hidden;
         position: absolute;
-        font-size: 12px;
+        font-size: 11px;
         word-break: break-all;
       }
 
