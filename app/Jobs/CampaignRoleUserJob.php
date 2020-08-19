@@ -19,7 +19,7 @@ class CampaignRoleUserJob implements ShouldQueue
      *
      * @var int
      */
-    public $tries = 3;
+    public $tries = 1;
 
     /** @var int Campaign role user id */
     public $id;
@@ -46,6 +46,11 @@ class CampaignRoleUserJob implements ShouldQueue
     public function handle()
     {
         $campaignRoleUser = CampaignRoleUser::find($this->id);
+
+        // If the role was deleted, don't notify anyone
+        if (empty($campaignRoleUser)) {
+            return;
+        }
 
         $notification = new Header(
             //'campaign.role.add',
