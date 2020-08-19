@@ -69,11 +69,11 @@ TEXT
         'question'  => 'How can I help?',
     ],
     'map'                   => [
-        'answer'    => 'Every location can contain a map (png, jpg or svg) that itself has "map points" that can be placed with control over size, shape, icon and colour, and as links to entities or simple labels.',
+        'answer'    => 'The Maps module supports PNG, JPG, and SVG images. These maps can have layers, groups, and markers pointing of various shapes and sizes pointint to other entities in a campaign.',
         'question'  => 'Can I upload maps to Kanka?',
     ],
     'mobile'                => [
-        'answer'    => 'There currently is no dedicated mobile app for Kanka, but most of the app works on a mobile device. One limitation is the mentions tool not working in the text editor. We hope that the support on :patreon allows us to pay someone to build a mobile app one day, but don\'t foresee that happening in the near future.',
+        'answer'    => 'There currently is no dedicated mobile app for Kanka, but most of the app works on a mobile device. We hope that the support through subscriptions will allows us to pay someone to build a mobile app one day, but don\'t foresee that happening in the near future.',
         'question'  => 'Is there a mobile app? Is one planned?',
     ],
     'multiworld'            => [
@@ -83,6 +83,10 @@ TEXT
     'nested'                => [
         'answer'    => 'If you prefer viewing your entities in a nested view by default (in example the Nested View button on the list of locations), you can do so by going into your Profile and Layout options. There you can check the Nested View option. This is only for your account and not for your campaigns.',
         'question'  => 'Can I set the lists to be nested by default?',
+    ],
+    'organise_play'         => [
+        'question'  => 'How can I manage when I run my sessions?',
+        'answer'    => 'We\'ve partnered with :lfgm which allows you to organise when you run your sessions with your group. You can sync your Kanka campaign with your LGFM campaign to show your next availabilities directly on the campaign dashboard.',
     ],
     'permissions'           => [
         'answer'    => 'Absolutely, this is why we built Kanka! You can invite all your players to your campaigns, and give them roles and permissions. We built the system to be extremely flexible (you can both use an opt-in and opt-out configuration) to cover as many needs and situations as possible.',

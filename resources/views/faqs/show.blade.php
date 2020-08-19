@@ -20,7 +20,8 @@
                             'patreon' => link_to(config('patreon.url'), 'Patreon', ['target' => '_blank']),
                             'discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank']),
                             'boosters' => link_to_route('front.features', __('front.features.patreon.boosts'), ['#boost']),
-                            'public-campaigns' => link_to_route('front.public_campaigns', __('front.menu.campaigns'))
+                            'public-campaigns' => link_to_route('front.public_campaigns', __('front.menu.campaigns')),
+                            'lfgm' => link_to('https://lookingforgm.com', 'LookingForGM.com', ['target' => '_blank']),
                         ])) !!}</p>
 
                         @if ($key == 'permissions')

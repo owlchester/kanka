@@ -5,10 +5,13 @@
     width: auto;
   }
 
-  footer {
+  footer.main-footer {
     .footer {
       background: transparent;
       padding: 3px;
+      .email {
+        margin: 10px 0;
+      }
     }
   }
 

@@ -1169,9 +1169,13 @@ hr {
     width: auto;
   }
 
-  footer .footer {
+  footer.main-footer .footer {
     background: transparent;
     padding: 3px;
+  }
+
+  footer.main-footer .footer .email {
+    margin: 10px 0;
   }
 
   .navbar-nav .campaign-menu .campaign-image {

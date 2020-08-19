@@ -52,6 +52,7 @@ A few tips to get you started:
 Last but not least:
 - Have a look at :public for inspiration on how others use Kanka.
 - If you have questions, suggestions or just want to chat, join us on :discord.
+- Plan when your group plays its next session with our friends over at :lfgm and sync up your LGFM campaign with your Kanka campaign.
 - Loving the app and want to support it's growth? Consider supporting Kanka through :subscriptions.
 TEXT
 ,

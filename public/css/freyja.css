@@ -305,7 +305,8 @@ section.sidebar-campaign .campaign-block .campaign-head .campaign-updated {
     transform: translate(-280px, 0);
   }
 
-  .content-wrapper {
+  .content-wrapper,
+  .main-footer {
     margin-left: 0;
   }
 
@@ -354,56 +355,6 @@ section.sidebar-campaign .campaign-block .campaign-head .campaign-updated {
   .sidebar-mini.sidebar-collapse .campaign-name {
     display: none !important;
   }
-}
-
-.btn-primary {
-  background-color: #2d7fed;
-}
-
-.btn-primary:hover,
-.btn-primary:focus {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)), #2d7fed;
-}
-
-.btn-success {
-  background-color: #27AE60;
-}
-
-.btn-success:hover,
-.btn-success:focus {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)), #27AE60;
-}
-
-.btn-danger {
-  background-color: #E94A34;
-}
-
-.btn-danger:hover,
-.btn-danger:focus {
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)), #E94A34;
-}
-
-.btn {
-  border-radius: 4px;
-  border: none;
-}
-
-.btn:hover,
-.btn:focus {
-  border: none;
-}
-
-.alert {
-  border-radius: 4px;
-  border: none;
-}
-
-.alert-danger {
-  background-color: #E94A34 !important;
-}
-
-.alert-success {
-  background-color: #27AE60 !important;
 }
 
 body,

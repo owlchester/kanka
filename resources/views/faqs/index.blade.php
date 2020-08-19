@@ -162,6 +162,11 @@
                                     {{ __('faq.bugs.question') }}
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'organise_play', 'slug' => Str::slug(__('faq.organise_play.question'))]) }}">
+                                    {{ __('faq.organise_play.question') }}
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div class="col-md-4">
