@@ -1,11 +1,16 @@
-.main-header .sidebar-toggle {
+.skin-black .main-header {
+  box-shadow: unset;
+}
+
+.skin-black .main-header .sidebar-toggle {
   display: block;
   text-align: center;
   transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
 }
 
-.main-header .navbar-static-top {
+.skin-black .main-header .navbar-static-top {
   margin-left: 280px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
 }
 
 .content-wrapper {
