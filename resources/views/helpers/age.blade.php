@@ -1,6 +1,5 @@
 @extends('layouts.app', [
     'title' => __('helpers.title'),
-    'description' => __('helpers.description'),
     'breadcrumbs' => [
         __('helpers.age.title')
     ]

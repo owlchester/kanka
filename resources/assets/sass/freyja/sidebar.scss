@@ -19,7 +19,6 @@
   width: 280px;
   background-color: #333;
   color: #fff;
-  background-image: url(https://images.kanka.io/app/L5nSYCLgwtxR3wlUGk16fMZ0zAU=/280x210/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg);
 
   background-size: 280px 210px;
   background-repeat: no-repeat;
@@ -30,6 +29,7 @@
 
   .sidebar {
     background-color: #333;
+    margin-bottom: 60px;
 
     .sidebar-icon-link {
       color: #474747;
@@ -90,6 +90,9 @@
       margin: 1px 0;
     }
   }
+}
+.main-sidebar-placeholder {
+  background-image: url(https://images.kanka.io/app/L5nSYCLgwtxR3wlUGk16fMZ0zAU=/280x210/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg);
 }
 .skin-black .sidebar-menu > li > .treeview-menu {
   background-color: unset;

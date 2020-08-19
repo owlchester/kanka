@@ -118,7 +118,6 @@ function hintTemplate(item) {
  * @returns {string|*}
  */
 function hintContent(item) {
-    console.log('item', item);
     if (item.id) {
         let mention = '[' + item.model_type + ':' + item.id + ']';
         if (summernoteConfig.data('advanced-mention')) {

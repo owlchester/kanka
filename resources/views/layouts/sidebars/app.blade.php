@@ -9,7 +9,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
 @if (!empty($currentCampaign))
     @inject('sidebar', 'App\Services\SidebarService')
     @inject('campaign', 'App\Services\CampaignService')
-<aside class="main-sidebar" @if ($currentCampaign->image)  style="background-image: url({{ Img::crop(280, 210)->url($currentCampaign->image) }})" @endif>
+<aside class="main-sidebar main-sidebar-placeholder" @if ($currentCampaign->image) style="background-image: url({{ Img::crop(280, 210)->url($currentCampaign->image) }})" @endif>
     <section class="sidebar-campaign">
         <div class="campaign-block">
             <div class="campaign-head">

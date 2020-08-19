@@ -201,8 +201,6 @@ function hintTemplate(item) {
 
 
 function hintContent(item) {
-  console.log('item', item);
-
   if (item.id) {
     var mention = '[' + item.model_type + ':' + item.id + ']';
 
@@ -221,6 +219,8 @@ function hintContent(item) {
       })[0];
     }
   } else if (item.url) {
+    return item.fullname;
+
     if (item.tooltip) {
       return $('<a>', {
         text: item.fullname,

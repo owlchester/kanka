@@ -1,6 +1,5 @@
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => trans('helpers.title'),
-    'description' => trans('helpers.description'),
     'breadcrumbs' => [
         trans('helpers.link.title')
     ]
