@@ -76,6 +76,7 @@ return [
             . 'p[class|style|id],span[class|style|id],'
             . 'table[class|summary|style|border|cellpadding|cellspacing|id],tbody,thead,tfoot,tr[class|style|id],td[class|style|abbr|colspan],th[class|style|abbr|colspan],'
             . 'acronym[title],abbr[title],'
+            . 'font[color|style],'
             . 'summary[class|style|id],details[class|style|id|open],'
             . 'iframe[src|width|height|style|class|scrolling|id]', // only use this with HTML.SafeIframe
 
