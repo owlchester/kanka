@@ -59,8 +59,8 @@
 .main-sidebar .sidebar li .ra,
 .main-sidebar .sidebar li .fas,
 .main-sidebar .sidebar li .far {
-  font-size: 16px;
-  width: 24px;
+  font-size: 14px;
+  width: 22px;
 }
 
 .main-sidebar .sidebar li:hover a {
@@ -282,6 +282,15 @@ section.sidebar-campaign .campaign-block .campaign-head .campaign-updated {
 .skin-black .main-sidebar,
 .skin-black .left-side {
   background-color: #333;
+}
+
+.main-sidebar .sidebar li .fa,
+.main-sidebar .sidebar li .ra,
+.main-sidebar .sidebar li .fas,
+.main-sidebar .sidebar li .far,
+.main-sidebar .sidebar li .ra {
+  font-size: 14px;
+  vertical-align: text-bottom;
 }
 
 .main-footer {

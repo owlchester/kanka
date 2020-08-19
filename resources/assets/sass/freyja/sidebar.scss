@@ -51,8 +51,8 @@
     }
     li {
       .fa, .ra, .fas, .far {
-        font-size: 16px;
-        width: 24px;
+        font-size: 14px;
+        width: 22px;
       }
       padding: 6px 12px;
       height: 38px;
@@ -282,6 +282,10 @@ section.sidebar-campaign {
 
 .skin-black .wrapper, .skin-black .main-sidebar, .skin-black .left-side {
   background-color: #333;
+}
+.main-sidebar .sidebar li .fa, .main-sidebar .sidebar li .ra, .main-sidebar .sidebar li .fas, .main-sidebar .sidebar li .far, .main-sidebar .sidebar li .ra {
+  font-size: 14px;
+  vertical-align: text-bottom;
 }
 
 .main-footer {
