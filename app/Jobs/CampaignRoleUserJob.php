@@ -48,7 +48,7 @@ class CampaignRoleUserJob implements ShouldQueue
         $campaignRoleUser = CampaignRoleUser::find($this->id);
 
         // If the role was deleted, don't notify anyone
-        if (empty($campaignRoleUser)) {
+        if (empty($campaignRoleUser) || empty($campaignRoleUser->campaignRole)) {
             return;
         }
 
