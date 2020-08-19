@@ -43,12 +43,19 @@ class SignImageCommand extends Command
         $base = $this->argument('base');
         $width = $height = $this->argument('size');
         if (Str::contains($width, 'x')) {
-            $width = Str::before($width, 'x');
-            $height = Str::after($width, 'x');
+            $full = $width;
+            $width = Str::before($full, 'x');
+            $height = Str::after($full, 'x');
         }
 
-        $url = Img::base($base)->url($img);
+        if (!empty($height) && $height != "200") {
+
+            $url = Img::console()->base($base)->crop($width, $height)->url($img);
+        } else {
+            $url = Img::console()->base($base)->url($img);
+        }
 
         $this->info("Url: " . $url);
     }
 }
+

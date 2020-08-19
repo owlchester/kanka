@@ -12,6 +12,9 @@ class ImgService
     /** @var string  */
     protected $crop = '';
 
+    /** @var bool Called from console */
+    protected $console = false;
+
     /** @var string user or app */
     protected $base;
 
@@ -27,6 +30,15 @@ class ImgService
     public function __construct()
     {
         $this->enabled = !empty(config('thumbor.key'));
+    }
+
+    /**
+     * @return $this
+     */
+    public function console(): self
+    {
+        $this->console = true;
+        return $this;
     }
 
     /**
@@ -80,7 +92,9 @@ class ImgService
         }
 
         // Default base
-        $this->base();
+        if(!$this->console) {
+            $this->base();
+        }
 
         $img = Str::before($img, '?');
         $full = $this->s3 . $img;

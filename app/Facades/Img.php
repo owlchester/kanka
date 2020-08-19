@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static self|Img crop(int $width, int $height)
  * @method static self|Img resetCrop()
  * @method static self|Img base(string $base)
+ * @method static self|Img console()
  * @method static bool nowebp()
  *
  * @see ImgService

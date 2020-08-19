@@ -178,3 +178,12 @@ hr {
   border-color: #424240 !important;
   color: #aaa !important;
 }
+
+.skin-black .main-header .navbar > .sidebar-toggle, .skin-black .main-header .navbar .nav > li > a {
+  color: #aaa;
+
+  &:hover {
+    color: #ccc;
+  }
+}
+

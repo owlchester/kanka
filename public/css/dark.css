@@ -699,3 +699,13 @@ hr {
   color: #aaa !important;
 }
 
+.skin-black .main-header .navbar > .sidebar-toggle,
+.skin-black .main-header .navbar .nav > li > a {
+  color: #aaa;
+}
+
+.skin-black .main-header .navbar > .sidebar-toggle:hover,
+.skin-black .main-header .navbar .nav > li > a:hover {
+  color: #ccc;
+}
+
