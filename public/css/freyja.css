@@ -131,21 +131,16 @@ section.sidebar-campaign .campaign-block .campaign-head {
 
 section.sidebar-campaign .campaign-block .campaign-head .campaign-name {
   overflow: hidden;
-  display: inline-block;
-  width: 194px;
+  display: block;
   max-height: 24px;
-}
-
-section.sidebar-campaign .campaign-block .campaign-head .campaign-dropdown-toggle {
-  float: right;
   cursor: pointer;
 }
 
-section.sidebar-campaign .campaign-block .campaign-head .campaign-dropdown-toggle .fa-caret-down {
+section.sidebar-campaign .campaign-block .campaign-head .campaign-name .fa-caret-down {
   transition: transform 0.5s ease;
 }
 
-section.sidebar-campaign .campaign-block .campaign-head .campaign-dropdown-toggle .fa-caret-down.flipped {
+section.sidebar-campaign .campaign-block .campaign-head .campaign-name .fa-caret-down.flipped {
   transform: rotate(-180deg);
 }
 

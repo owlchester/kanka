@@ -456,15 +456,16 @@ function initSpectrum()
 
 function initSidebar()
 {
-    let toggler = $('.campaign-dropdown-toggle');
-    console.log('toggler');
+    let toggler = $('.sidebar-campaign .campaign-head .campaign-name');
+    console.log('toggler', toggler);
     if (toggler.length === 0) {
         return;
     }
 
-    let down = $('.campaign-dropdown-toggle .fa-caret-down');
+    let down = $('.sidebar-campaign .campaign-head .campaign-name .fa-caret-down');
 
-    down.on('click', function(e) {
+    toggler.on('click', function(e) {
+        console.log('flippy');
         e.preventDefault();
         if (down.hasClass('flipped')) {
             down.removeClass('flipped');

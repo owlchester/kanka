@@ -116,14 +116,11 @@ section.sidebar-campaign {
       letter-spacing: 0.15px;
       height: 24px;
       word-break: break-all;
+
       .campaign-name {
         overflow: hidden;
-        display: inline-block;
-        width: 194px;
+        display: block;
         max-height: 24px;
-      }
-      .campaign-dropdown-toggle {
-        float: right;
         cursor: pointer;
 
         .fa-caret-down {

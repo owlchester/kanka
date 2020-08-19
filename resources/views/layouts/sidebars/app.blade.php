@@ -13,12 +13,9 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
     <section class="sidebar-campaign">
         <div class="campaign-block">
             <div class="campaign-head">
-                <a href="{{ route('campaign') }}" class="campaign-name">
+                <div class="campaign-name" data-toggle="collapse" data-target="#campaign-switcher">
+                    <i class="fa fa-caret-down pull-right"></i>
                     {!! $currentCampaign->name !!}
-                </a>
-
-                <div class="campaign-dropdown-toggle">
-                    <i class="fa fa-caret-down" data-toggle="collapse" data-target="#campaign-switcher"></i>
                 </div>
 
                 <div class="campaign-updated">
@@ -108,11 +105,11 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
             @endforeach
             @endif
 
-            <li class="sidebar-section">
-                <div class="sidebar-text">
+            <li class="{{ $sidebar->active('campaigns') }}">
+                <a href="{{ route('campaign') }}">
                     <i class="fa fa-globe"></i>
                     <span>{{ trans('sidebar.world') }}</span>
-                </div>
+                </a>
             </li>
 
             @if ($campaign->enabled('characters'))
@@ -156,11 +153,11 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                 </li>
             @endif
 
-            <li class="{{ $sidebar->open('menu_links') }} sidebar-section">
-                <div class="sidebar-text">
-                    <i class="fa fa-compass"></i>
+            <li class="sidebar-section">
+                <a href="{{ route('campaign') }}">
+                    <i class="fa fa-globe"></i>
                     <span>{{ trans('sidebar.campaign') }}</span>
-                </div>
+                </a>
             </li>
             @if ($campaign->enabled('quests'))
                 <li class="{{ $sidebar->active('quests') }} subsection">

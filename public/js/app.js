@@ -76603,7 +76603,7 @@ $(document).ready(function () {
   /*$.each($('.datagrid-search'), function(index) {
       $(this).submit(function(event) {
           event.preventDefault();
-            window.location.href =
+           window.location.href =
       });
   });*/
 
@@ -76890,15 +76890,16 @@ function initSpectrum() {
 }
 
 function initSidebar() {
-  var toggler = $('.campaign-dropdown-toggle');
-  console.log('toggler');
+  var toggler = $('.sidebar-campaign .campaign-head .campaign-name');
+  console.log('toggler', toggler);
 
   if (toggler.length === 0) {
     return;
   }
 
-  var down = $('.campaign-dropdown-toggle .fa-caret-down');
-  down.on('click', function (e) {
+  var down = $('.sidebar-campaign .campaign-head .campaign-name .fa-caret-down');
+  toggler.on('click', function (e) {
+    console.log('flippy');
     e.preventDefault();
 
     if (down.hasClass('flipped')) {

@@ -219,8 +219,6 @@ function hintContent(item) {
       })[0];
     }
   } else if (item.url) {
-    return item.fullname;
-
     if (item.tooltip) {
       return $('<a>', {
         text: item.fullname,
