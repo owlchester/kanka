@@ -24,6 +24,7 @@ class MapFilter extends DatagridFilter
             ])
             ->location()
             ->isPrivate()
+            ->hasImage()
             ->tags()
         ;
     }

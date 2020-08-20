@@ -14,6 +14,7 @@ class EventFilter extends DatagridFilter
             ->add('type')
             ->add('date')
             ->isPrivate()
+            ->hasImage()
             ->tags()
         ;
     }

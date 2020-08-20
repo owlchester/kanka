@@ -86,7 +86,6 @@ abstract class DatagridFilter
         return $this;
     }
 
-
     /**
      * Add the is_private
      * @return $this
@@ -97,6 +96,18 @@ abstract class DatagridFilter
         if (Auth::check() && Auth::user()->isAdmin()) {
             $this->filters[] = 'is_private';
         }
+
+        return $this;
+    }
+
+    /**
+     * Add the has image
+     * @return $this
+     */
+    protected function hasImage(): self
+    {
+        // Add the is_private filter only for admins.
+        $this->filters[] = 'has_image';
 
         return $this;
     }

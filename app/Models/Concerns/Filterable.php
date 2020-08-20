@@ -41,6 +41,7 @@ trait Filterable
 
         foreach ($params as $key => $value) {
             if (isset($value) && in_array($key, $fields)) {
+                $filterOption = !empty($params[$key . '_option']) ? $params[$key . '_option'] : null;
                 // It's possible to request "not" values
                 $operator = 'like';
                 $filterValue = $value;
@@ -54,15 +55,19 @@ trait Filterable
                     } elseif (Str::endsWith($value, '!')) {
                         $operator = '=';
                         $filterValue = rtrim($value, '!');
+                    } elseif(Str::endsWith($key, '_id')) {
+                        $operator = '=';
                     }
                 }
 
+                // Foreign key search
                 $segments = explode('-', $key);
                 if (count($segments) > 1) {
                     $relationName = $segments[0];
 
                     $relation = $this->{$relationName}();
                     $foreignName = $relation->getQuery()->getQuery()->from;
+
                     return $query
                         ->select($this->getTable() . '.*')
                         ->with($relationName)
@@ -73,6 +78,7 @@ trait Filterable
                             ($operator == '=' ? $filterValue : "%$filterValue%")
                         );
                 } else {
+                    // Explicit filters (numbers typically, foreign ids)
                     if (in_array($key, $this->explicitFilters)) {
                         $query->where($this->getTable() . '.' . $key, $operator, "$filterValue");
                     } elseif ($key == 'tags') {
@@ -81,14 +87,25 @@ trait Filterable
                             ->select($this->getTable() . '.*')
                             ->leftJoin('entities as e', function ($join) {
                                 $join->on('e.entity_id', '=', $this->getTable() . '.id');
-                                $join->where('e.type', '=', $this->getEntityType());
+                                $join->where('e.type', '=', $this->getEntityType())
+                                    ->whereRaw('e.campaign_id = ' . $this->getTable() . '.campaign_id');
                             })
-                            //->having(DB::raw('count(distinct et.tag_id)'), count($value))
                         ;
 
                         // Make sure we always have an array
                         if (!is_array($value)) {
                             $value = [$value];
+                        }
+
+                        if (!empty($filterOption) && $filterOption == 'exclude') {
+                            $tagIds = [];
+                            foreach ($value as $v) {
+                                $tagIds[] = (int) $v;
+                            }
+                            //$query->leftJoin('entity_tags as et_tags', "et_tags.entity_id", 'e.id')
+                             $query->whereRaw('(select count(*) from entity_tags as et where et.entity_id = e.id and et.tag_id in (' . implode(', ', $tagIds) . ')) = 0');
+
+                            continue;
                         }
 
                         foreach ($value as $v) {
@@ -114,18 +131,52 @@ trait Filterable
                                 $join->on('om.character_id', '=', $this->getTable() . '.id');
                             })
                             ->where('om.organisation_id', $value);
+                    } elseif ($key == 'has_image') {
+                        if ($value) {
+                            $query->whereNotNull($this->getTable() . '.image');
+                        } else {
+                            $query->whereNull($this->getTable() . '.image');
+                        }
                     } elseif ($operator == 'IS NULL') {
                         $query->where(function ($sub) use ($key) {
                             $sub->whereNull($this->getTable() . '.' . $key)
                                 ->orWhere($this->getTable() . '.' . $key, '=', '');
                         });
                     } else {
+                        // If we have an exclude option filter, change the operator
+                        if (!empty($filterOption) && $filterOption == 'exclude') {
+                            $query->where(function ($subquery) use ($key, $filterValue) {
+                                return $subquery->where($this->getTable() . '.' . $key,
+                                    '!=',
+                                    $filterValue
+                                )->orWhereNull($this->getTable() . '.' . $key);
+                            });
+                            
+                            continue;
+                        }
                         $query->where(
                             $this->getTable() . '.' . $key,
                             $operator,
                             ($operator == '=' ? $filterValue : "%$filterValue%")
                         );
                     }
+                }
+            } elseif ($key == 'tags_option' && $value == 'none') {
+                $query
+                    ->distinct()
+                    ->select($this->getTable() . '.*')
+                    ->leftJoin('entities as e', function ($join) {
+                        $join->on('e.entity_id', '=', $this->getTable() . '.id');
+                        $join->where('e.type', '=', $this->getEntityType())
+                            ->whereRaw('e.campaign_id = ' . $this->getTable() . '.campaign_id');
+                    })
+                    ->leftJoin('entity_tags as no_tags', 'no_tags.entity_id', 'e.id')
+                    ->whereNull('no_tags.tag_id');
+            } elseif (Str::endsWith($key, '_option') && $value == 'none') {
+                $key = Str::beforeLast($key, '_option');
+                // Validate the key is a filter
+                if (in_array($key, $fields)) {
+                    $query->whereNull($this->getTable() . '.' . $key);
                 }
             }
         }

@@ -24,6 +24,7 @@ class OrganisationFilter extends DatagridFilter
                 'model' => Organisation::class,
             ])
             ->isPrivate()
+            ->hasImage()
             ->tags()
         ;
     }

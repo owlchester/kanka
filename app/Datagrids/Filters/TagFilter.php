@@ -24,6 +24,7 @@ class TagFilter extends DatagridFilter
                 'model' => Tag::class,
             ])
             ->isPrivate()
+            ->hasImage()
         ;
     }
 }

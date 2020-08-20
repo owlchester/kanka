@@ -24,6 +24,7 @@ class FamilyFilter extends DatagridFilter
             ])
             ->location()
             ->isPrivate()
+            ->hasImage()
             ->tags()
         ;
     }

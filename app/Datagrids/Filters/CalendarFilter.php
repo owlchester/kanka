@@ -13,6 +13,7 @@ class CalendarFilter extends DatagridFilter
             ->add('name')
             ->add('type')
             ->isPrivate()
+            ->hasImage()
             ->tags()
         ;
     }

@@ -24,6 +24,7 @@ class RaceFilter extends DatagridFilter
                 'model' => Race::class,
             ])
             ->isPrivate()
+            ->hasImage()
             ->tags()
         ;
     }

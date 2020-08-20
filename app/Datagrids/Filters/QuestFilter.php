@@ -26,6 +26,7 @@ class QuestFilter extends DatagridFilter
                 'model' => Quest::class,
             ])
             ->isPrivate()
+            ->hasImage()
             ->tags()
         ;
     }

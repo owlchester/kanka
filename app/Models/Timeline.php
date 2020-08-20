@@ -49,6 +49,7 @@ class Timeline extends MiscModel
         'calendar_id',
         'is_private',
         'tags',
+        'has_image',
     ];
 
     /**

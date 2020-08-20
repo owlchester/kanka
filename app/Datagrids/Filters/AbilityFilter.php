@@ -23,6 +23,7 @@ class AbilityFilter extends DatagridFilter
                 'model' => Ability::class,
             ])
             ->isPrivate()
+            ->hasImage()
             ->tags()
         ;
     }

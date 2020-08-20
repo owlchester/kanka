@@ -83,6 +83,7 @@ class Map extends MiscModel
         'location_id',
         'is_private',
         'tags',
+        'has_image',
     ];
 
     /**

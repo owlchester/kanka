@@ -16,6 +16,7 @@ class JournalFilter extends DatagridFilter
             ->character()
             ->location()
             ->isPrivate()
+            ->hasImage()
             ->tags()
         ;
     }

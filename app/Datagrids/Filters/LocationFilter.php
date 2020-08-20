@@ -23,6 +23,7 @@ class LocationFilter extends DatagridFilter
                 'model' => Location::class,
             ])
             ->isPrivate()
+            ->hasImage()
             ->tags()
         ;
     }

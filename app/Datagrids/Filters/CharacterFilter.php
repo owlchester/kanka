@@ -46,6 +46,7 @@ class CharacterFilter extends DatagridFilter
             ->add('sex')
             ->add('is_dead')
             ->isPrivate()
+            ->hasImage()
             ->tags()
         ;
     }

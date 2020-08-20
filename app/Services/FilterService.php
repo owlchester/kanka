@@ -89,7 +89,19 @@ class FilterService
             if (in_array($key, $availableFilters)) {
                 // Update the value we have in the session.
                 $this->filters[$key] = $value;
+                continue;
             }
+
+            // Of if it's the _option of a filter
+            if (Str::endsWith($key, '_option')) {
+                $stripedKey = Str::before($key, '_option');
+                if (in_array($stripedKey, $availableFilters)) {
+                    // Update the value we have in the session.
+                    $this->filters[$key] = $value;
+                    continue;
+                }
+            }
+
         }
 
         // Foreign keys that are not set might have been cleared. If so, remove them from the filters.
@@ -226,7 +238,7 @@ class FilterService
      */
     public function isCheckbox($field)
     {
-        return strpos($field, 'is_') !== false;
+        return Str::startsWith($field, ['is_', 'has_']);
     }
 
     /**
@@ -245,6 +257,14 @@ class FilterService
             }
         }
         return $filters;
+    }
+
+    /**
+     * @return int
+     */
+    public function activeFiltersCount(): int
+    {
+        return count($this->activeFilters());
     }
 
     /**

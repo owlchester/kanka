@@ -17,6 +17,7 @@ class ItemFilter extends DatagridFilter
             ->location()
             ->character()
             ->isPrivate()
+            ->hasImage()
             ->tags()
         ;
     }

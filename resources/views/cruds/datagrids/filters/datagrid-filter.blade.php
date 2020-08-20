@@ -5,7 +5,7 @@
  */
 use Illuminate\Support\Arr;
 $filters = $filter->filters();
-$activeFilters = count($filterService->activeFilters());
+$activeFilters = $filterService->activeFiltersCount();
 $entityModel = $model;
 $count = 0;
 
@@ -43,42 +43,74 @@ $count = 0;
                                     $model = $modelclass->find($value);
                                 }?>
                                 @if ($field['type'] == 'tag')
-                                    {!! Form::tags(
-                                        $field['field'],
-                                        [
-                                            'id' => $field['field'] . '_' . uniqid(),
-                                            'model' => null,
-                                            'enableNew' => false,
-                                            'allowClear' => 'false',
-                                            'label' => false,
-                                            'filterOptions' => $value
-                                        ]
-                                    ) !!}
+                                    <div class="row">
+                                        <div class="col-xs-8">
+                                            {!! Form::tags(
+                                                $field['field'],
+                                                [
+                                                    'id' => $field['field'] . '_' . uniqid(),
+                                                    'model' => null,
+                                                    'enableNew' => false,
+                                                    'allowClear' => 'false',
+                                                    'label' => false,
+                                                    'filterOptions' => $value
+                                                ]
+                                            ) !!}
+                                        </div>
+                                        <div class="col-xs-4">
+                                            {!! Form::select(
+                                                $field['field'] . '_option',
+                                                [
+                                                    '' => __('crud.filters.options.include'),
+                                                    'exclude' => __('crud.filters.options.exclude'),
+                                                    'none' => __('crud.filters.options.none'),
+                                                ],
+                                                $filterService->single($field['field'] . '_option'), [
+                                                    'class' => 'form-control',
+                                            ]) !!}
+                                        </div>
+                                    </div>
                                 @elseif ($field['type'] == 'select')
                                     {!! Form::select(
-                                    $field['field'],
-                                    array_merge(['' => ''], $field['data']), // Add an empty option
-                                    $value,
-                                    [
-                                        'id' => $field['field'],
-                                        'class' => 'form-control select2',
-                                        'style' => 'width: 100%',
-                                    ]
-                                ) !!}
-                                @else
-                                    {!! Form::select($field['field'], (!empty($model) ? [$model->id => $model->name] : []),
-                                        null,
+                                        $field['field'],
+                                        array_merge(['' => ''], $field['data']), // Add an empty option
+                                        $value,
                                         [
                                             'id' => $field['field'],
                                             'class' => 'form-control select2',
-                                            'data-url' => $field['route'],
-                                            'data-placeholder' => $field['placeholder'],
                                             'style' => 'width: 100%',
                                         ]
                                     ) !!}
+                                @else
+                                    <div class="row">
+                                        <div class="col-xs-8">
+                                            {!! Form::select($field['field'], (!empty($model) ? [$model->id => $model->name] : []),
+                                                null,
+                                                [
+                                                    'id' => $field['field'],
+                                                    'class' => 'form-control select2',
+                                                    'data-url' => $field['route'],
+                                                    'data-placeholder' => $field['placeholder'],
+                                                    'style' => 'width: 100%',
+                                                ]
+                                            ) !!}
+                                        </div>
+                                        <div class="col-xs-4">
+                                            {!! Form::select(
+                                                $field['field'] . '_option',
+                                                [
+                                                    '' => __('crud.filters.options.include'),
+                                                    'exclude' => __('crud.filters.options.exclude'),
+                                                    'none' => __('crud.filters.options.none'),
+                                                ],
+                                                $filterService->single($field['field'] . '_option'), [
+                                                    'class' => 'form-control',
+                                            ]) !!}
+                                        </div>
+                                    </div>
                                 @endif
                             @else
-                                <label>{{ __(($field == 'is_private' ? 'crud.fields.' : $name . '.fields.') . $field) }}</label>
+                                <label>{{ __((in_array($field, ['is_private', 'has_image']) ? 'crud.fields.' : $name . '.fields.') . $field) }}</label>
                                 @if ($filterService->isCheckbox($field))
                                     <select class="filter-select form-control" id="{{ $field }}" name="{{ $field }}">
                                         <option value=""></option>

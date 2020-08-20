@@ -72,6 +72,7 @@ class Item extends MiscModel
         'price',
         'size',
         'tags',
+        'has_image',
     ];
 
     /**

@@ -75,6 +75,7 @@ class Quest extends MiscModel
         'is_completed',
         'is_private',
         'tags',
+        'has_image',
     ];
 
     /**

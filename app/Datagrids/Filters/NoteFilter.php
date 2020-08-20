@@ -13,6 +13,7 @@ class NoteFilter extends DatagridFilter
             ->add('name')
             ->add('type')
             ->isPrivate()
+            ->hasImage()
             ->tags()
         ;
     }
