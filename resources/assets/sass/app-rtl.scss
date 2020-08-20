@@ -23,6 +23,11 @@ h1, h2, h3, h4, h5, p, th {
    margin-left: unset;
  }
 
+.skin-black .main-header .navbar-static-top {
+  margin-right: 280px;
+  margin-left: unset;
+}
+
 .pull-left {
   float: right !important;
 }
@@ -31,6 +36,14 @@ h1, h2, h3, h4, h5, p, th {
 }
 .text-right {
   text-align: left;
+}
+.text-center {
+  p {
+    text-align: center;
+  }
+}
+h4.email {
+  text-align: center;
 }
 
 .main-header {
@@ -88,6 +101,29 @@ h1, h2, h3, h4, h5, p, th {
   margin-left: unset !important;
   z-index: 840;
 }
+section.sidebar-campaign .campaign-block {
+  text-align: right !important;
+}
+.main-sidebar .sidebar li.subsection {
+  padding-left: 0;
+  padding-right: 24px;
+}
+.sidebar-creator {
+  right: 0;
+  left: unset;
+}
+.campaign-switcher {
+  left: unset;
+  right: 78px;
+}
+.main-sidebar .sidebar li a, .main-sidebar .sidebar li .sidebar-text {
+  font-size: 12px;
+}
+body.modal-open {
+  padding-left: 17px !important;
+  padding-right: 0 !important;
+}
+
 
 @media (min-width: 768px) {
   .dl-horizontal dt {
@@ -122,5 +158,13 @@ h1, h2, h3, h4, h5, p, th {
   }
   .sidebar-open .content-wrapper, .sidebar-open .main-footer {
     transform: translate(-280px, 0);
+  }
+
+  .skin-black .main-header .navbar-static-top {
+    margin-right: 0;
+    margin-left: 280px;
+  }
+  .sidebar-creator {
+    transform: translate(280px, 0);
   }
 }
