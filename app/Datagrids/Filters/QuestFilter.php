@@ -16,6 +16,7 @@ class QuestFilter extends DatagridFilter
             ->add('name')
             ->add('type')
             ->add('date')
+            ->add('is_completed')
             ->character()
             ->add([
                 'field' => 'quest_id',
