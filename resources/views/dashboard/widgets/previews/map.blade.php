@@ -42,6 +42,9 @@ $map = $widget->entity->map;
     <script type="text/javascript">
         var markers = [];
 @foreach ($map->markers as $marker)
+@if(!$marker->visible())
+@continue
+@endif
         var marker{{ $marker->id }} = {!! $marker->exploring()->marker() !!};
         markers.push('marker' + {{ $marker->id }});
 @endforeach
@@ -51,6 +54,9 @@ $map = $widget->entity->map;
 
     <script type="text/javascript">
 @foreach ($map->markers as $marker)
+@if(!$marker->visible())
+@continue
+@endif
     @if (empty($marker->group_id))
         marker{{ $marker->id }}.addTo(map{{ $map->id }});
     @endif
@@ -64,6 +70,9 @@ $map = $widget->entity->map;
     @parent
     <style>
 @foreach ($map->markers as $marker)
+@if(!$marker->visible())
+@continue
+@endif
         .marker-{{ $marker->id }}  {
             background-color: {{ $marker->backgroundColour() }};
 @if ($marker->entity && $marker->icon == 4)

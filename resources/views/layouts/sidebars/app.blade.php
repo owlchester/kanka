@@ -28,6 +28,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
         <section class="campaign-switcher collapse" id="campaign-switcher">
             <div class="section">{{ __('sidebar.campaign_switcher.created_campaigns') }}</div>
 
+            @if (Auth::check())
             <ul>
                 @foreach (\App\Facades\UserCache::campaigns() as $userCampaign)
                     @if ($userCampaign->id != $currentCampaign->id && !\App\Facades\Identity::isImpersonating())
@@ -64,6 +65,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                         @endif
                     @endforeach
                 </ul>
+            @endif
             @endif
 
         </section>
@@ -106,7 +108,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                 @endif
 
                 <li class="{{ $sidebar->active('campaigns') }}">
-                    <a href="{{ route('campaign') }}">
+                    <a href="{{ (auth()->check() ? route('campaign') : '#') }}">
                         <i class="fa fa-globe"></i>
                         <span>{{ trans('sidebar.world') }}</span>
                     </a>
@@ -154,7 +156,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                 @endif
 
                 <li class="sidebar-section">
-                    <a href="{{ route('campaign') }}">
+                    <a href="{{ (auth()->check() ? route('campaign') : '#') }}">
                         <i class="fa fa-globe"></i>
                         <span>{{ trans('sidebar.campaign') }}</span>
                     </a>
