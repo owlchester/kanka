@@ -120,19 +120,22 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                 @endif
                 @include('partials.success')
 
-                @if(auth()->guest() && !empty(config('tracking.adsense')))
-{{--    <div class="row">--}}
-{{--        <div class="col-md-6 col-sm-8 col-md-offset-3 col-sm-offset-1">--}}
-{{--            <ins class="adsbygoogle"--}}
-{{--                 style="display:inline-block;width:728px;height:90px"--}}
-{{--                 data-ad-client="{{ config('tracking.adsense') }}"--}}
-{{--                 data-ad-slot="2711573107"></ins>--}}
-{{--            <script>--}}
-{{--                (adsbygoogle = window.adsbygoogle || []).push({});--}}
-{{--            </script>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-                @endif
+@if(auth()->guest() && !empty(config('tracking.adsense')))
+                <div class="row">
+                    <div class="col-md-6 col-sm-8 col-md-offset-3 col-sm-offset-1">
+                        <ins class="adsbygoogle"
+                             style="display:inline-block;width:728px;height:90px"@if (config('app.env') != 'prod')
+                             data-adtest="on"@endif
+                             data-ad-client="{{ config('tracking.adsense') }}"
+                             data-ad-slot="2711573107"
+                             data-full-width-responsive="true"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                        <p class="text-center text-muted">{!! __('misc.ads.remove', ['login' => link_to_route('login', __('misc.ads.login'))]) !!}</p>
+                    </div>
+                </div>
+@endif
 
                 @yield('entity-actions')
                 @yield('entity-header')

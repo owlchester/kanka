@@ -460,7 +460,6 @@ function initSpectrum()
 function initSidebar()
 {
     let toggler = $('.sidebar-campaign .campaign-head .campaign-name');
-    console.log('toggler', toggler);
     if (toggler.length === 0) {
         return;
     }

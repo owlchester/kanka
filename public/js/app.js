@@ -76607,7 +76607,7 @@ $(document).ready(function () {
   /*$.each($('.datagrid-search'), function(index) {
       $(this).submit(function(event) {
           event.preventDefault();
-            window.location.href =
+           window.location.href =
       });
   });*/
 
@@ -76895,7 +76895,6 @@ function initSpectrum() {
 
 function initSidebar() {
   var toggler = $('.sidebar-campaign .campaign-head .campaign-name');
-  console.log('toggler', toggler);
 
   if (toggler.length === 0) {
     return;
