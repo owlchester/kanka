@@ -17,7 +17,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-    <link rel="icon" type="image/png" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/favicon.ico?v=3">
 
 @if (isset($englishCanonical) && $englishCanonical)
     <link rel="canonical" href="{{ LaravelLocalization::localizeURL(null, 'en') }}" />

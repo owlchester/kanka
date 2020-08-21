@@ -20,8 +20,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
 @endforeach
 
     @yield('og')
-    <!-- Font Awesome Icons -->
-    <link rel="icon" type="image/png" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/favicon.ico?v=3">
 
     <!-- Styles -->
     <link href="{{ mix('css/bootstrap.css') }}" rel="stylesheet">
