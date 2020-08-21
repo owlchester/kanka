@@ -56,11 +56,16 @@ header.reduced-masthead .header-content {
 
 #mainNav {
   top: 34px;
+  box-shadow: 0 7px 6px rgba(50, 50, 93, 0.21);
 }
 
 #mainNav .navbar-brand {
   color: #73a6c0 !important;
   font-family: "Dubai", Catamaran, Helvetica, Arial, sans-serif !important;
+}
+
+#mainNav .navbar-brand img {
+  height: 32px;
 }
 
 #mainNav .nav-active,
@@ -76,7 +81,7 @@ header.reduced-masthead .header-content {
   top: 0;
   right: 0;
   left: 0;
-  background-color: #EDEDED;
+  background-color: #08083c;
   text-align: right;
   padding: 5px 25px;
   height: 36px;
@@ -94,7 +99,7 @@ header.reduced-masthead .header-content {
 }
 
 .topbar .topbar-list li a {
-  color: #2828A1;
+  color: #EDEDED;
 }
 
 .topbar .topbar-list .login {
@@ -152,6 +157,13 @@ hr {
   margin: 25px auto;
 }
 
+@media (min-width: 992px) {
+  #mainNav {
+    border-color: transparent;
+    background-color: #08083c;
+  }
+}
+
 footer {
   padding-top: 40px;
   padding-bottom: 30px;
@@ -173,7 +185,7 @@ footer ul li {
 }
 
 footer ul li a {
-  padding: 5px 0;
+  padding: 5px 2px;
   font-size: 14px !important;
   width: 100%;
   color: rgba(255, 255, 255, 0.6);
@@ -183,6 +195,11 @@ footer h4 {
   font-size: 14px;
   font-weight: 700;
   color: #ddd;
+}
+
+footer h4 a {
+  padding: 5px;
+  display: inline-block;
 }
 
 footer h5 {
@@ -196,6 +213,7 @@ footer h5 {
 footer a,
 footer span {
   border-radius: 4px;
+  letter-spacing: 1.1px;
 }
 
 footer a:hover,
@@ -203,6 +221,7 @@ footer span:hover {
   transition: all 0.2s ease;
   background: rgba(255, 255, 255, 0.4);
   text-decoration: none;
+  letter-spacing: 1.5px;
 }
 
 footer .footer-social {
@@ -369,10 +388,10 @@ ul.pagination li span {
   background-attachment: fixed;
 }
 
-.login-page h1 img,
-.register-page h1 img {
+.login-page .login-logo img,
+.register-page .login-logo img {
   display: inline-block;
-  width: 40px;
+  width: 96px;
   margin-top: -8px;
 }
 
@@ -601,6 +620,7 @@ ul.pagination li span {
 @media (max-width: 991px) {
   .topbar {
     padding: 0 15px;
+    background-color: #fff;
   }
 
   .topbar .container {
@@ -610,6 +630,10 @@ ul.pagination li span {
 
   .topbar .topbar-list li {
     margin: 8px 6px;
+  }
+
+  .topbar .topbar-list li a {
+    color: #2828A1;
   }
 
   .topbar .topbar-list .login {

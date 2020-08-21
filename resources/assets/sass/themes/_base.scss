@@ -390,6 +390,14 @@ pre, blockquote {
 footer {
   .footer {
     background-color: rgba(0, 0, 0, 0.2);
+
+    img.logo-blue {
+      display: none;
+    }
+
+    img.logo-white {
+      display: unset;
+    }
   }
 }
 

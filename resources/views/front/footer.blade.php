@@ -2,7 +2,11 @@
     <div class="container">
         <div class="row h-100 footer-links">
             <div class="col-lg-2 col-md-2 col-12">
-                <h4><a href="{{ route('home') }}">Kanka</a></h4>
+                <h4>
+                    <a href="{{ route('home') }}">
+                        <img src="https://images.kanka.io/app/0HdWv4egPu6lBQ30iWTcS9MPgRo=/64x64/src/images%2Flogos%2Flogo-small-white.png" title="Kanka logo" alt="Kanka logo white">
+                    </a>
+                </h4>
             </div>
             <div class="col-lg-7 col-md-7 col-12">
                 <div class="row">

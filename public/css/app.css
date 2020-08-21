@@ -285,6 +285,10 @@ footer a:hover {
   text-decoration: none;
 }
 
+footer img.logo-white {
+  display: none;
+}
+
 footer .footer-social {
   text-align: center;
   font-size: 22px !important;

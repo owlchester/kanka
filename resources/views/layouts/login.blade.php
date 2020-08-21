@@ -22,14 +22,12 @@
 <body  class="hold-transition register-page @nowebp webpfallback @endnowebp">
 @include('layouts._tracking-fallback')
     <div class="login-box">
-        <div class="login-logo">
-            <h1>
-                <a href="{{ route('home') }}"><img src="/images/kanka_transparent_small.png" alt="{{ config('app.name') }}" title="{{ config('app.name') }}"/> {{ config('app.name') }}</a>
-            </h1>
-        </div>
 
         <!-- Content Header (Page header) -->
         <div class="login-box-body">
+            <div class="login-logo">
+                <a href="{{ route('home') }}"><img src="https://kanka-app-assets.s3.amazonaws.com/images/logos/logo-small.png" alt="{{ config('app.name') }}" title="{{ config('app.name') }}"/></a>
+            </div>
             @yield('content')
         </div>
     </div>

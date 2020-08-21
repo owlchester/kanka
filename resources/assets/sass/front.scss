@@ -60,9 +60,14 @@ header.reduced-masthead {
 }
 #mainNav {
   top: 34px;
+  box-shadow: 0 7px 6px rgba(50, 50, 93, 0.21);
   .navbar-brand {
     color: #73a6c0 !important;
     font-family: 'Dubai',Catamaran,Helvetica,Arial,sans-serif !important;
+
+    img {
+      height: 32px;
+    }
   }
   .nav-active, .nav-link:hover {
     transition: all 0.2s ease-in-out;
@@ -77,7 +82,7 @@ header.reduced-masthead {
   top: 0;
   right: 0;
   left: 0;
-  background-color: $KankaGrey;
+  background-color: $KankaDarkBlue;
   text-align: right;
   padding: 5px 25px;
   height: 36px;
@@ -90,7 +95,7 @@ header.reduced-masthead {
       margin: 0 10px;
       line-height: 12px;
       a {
-        color: $KankaBlue;
+        color: $KankaGrey;
       }
     }
 
@@ -144,6 +149,13 @@ hr {
   margin: 25px auto;
 }
 
+@media (min-width: 992px) {
+  #mainNav {
+    border-color: transparent;
+    background-color: $KankaDarkBlue;
+  }
+}
+
 footer {
   padding-top: 40px;
   padding-bottom: 30px;
@@ -160,7 +172,7 @@ footer {
       display: block;
       margin: 2px 0;
       a {
-        padding: 5px 0;
+        padding: 5px 2px;
         font-size: 14px !important;
         width: 100%;
         color: rgba(255, 255, 255, 0.6);
@@ -171,6 +183,10 @@ footer {
     font-size: 14px;
     font-weight: 700;
     color: #ddd;
+     a {
+       padding: 5px;
+       display: inline-block;
+     }
   }
   h5 {
     margin: 0;
@@ -182,10 +198,13 @@ footer {
 
   a, span {
     border-radius: 4px;
+    letter-spacing: 1.1px;
+
     &:hover {
       transition: all 0.2s ease;
       background: rgba(255, 255, 255, 0.4);
       text-decoration: none;
+      letter-spacing: 1.5px;
     }
   }
 
@@ -356,10 +375,10 @@ ul.pagination {
   background-repeat: no-repeat;
   background-attachment: fixed;
 
-  h1 {
+  .login-logo {
     img {
       display: inline-block;
-      width: 40px;
+      width: 96px;
       margin-top: -8px;
     }
   }
@@ -584,6 +603,7 @@ ul.pagination {
 @media (max-width:991px) {
   .topbar {
     padding: 0 15px;
+    background-color: #fff;
 
     .container {
       padding-right: 0;
@@ -593,6 +613,9 @@ ul.pagination {
     .topbar-list {
       li {
         margin: 8px 6px;
+        a {
+          color: $KankaBlue;
+        }
       }
 
       .login {

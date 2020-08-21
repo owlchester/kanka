@@ -90,7 +90,11 @@
 </div>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('home') }}">{{ config('app.name', 'Laravel') }}</a>
+        <a class="navbar-brand" href="{{ route('home') }}">
+            <img class="d-none d-lg-block" src="https://images.kanka.io/app/lYYwvb1TENQSosFKdgDCLd2oLdU=/228x77/src/images%2Flogos%2Ftext-white.png" title="Kanka logo text white" alt="kanka logo text white" />
+            <img class="d-xl-none d-lg-none" src="https://images.kanka.io/app/G2bnfyER8xMuMzPX4LM0Phdrjew=/228x77/src/images%
+2Flogos%2Ftext-blue.png" title="Kanka logo text blue" alt="Kanka logo text blue" />
+        </a>
         @auth
         @else
             <a href="{{ route('login') }}" class="d-sm-none">
