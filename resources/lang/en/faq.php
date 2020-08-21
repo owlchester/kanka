@@ -40,6 +40,10 @@ TEXT
         'answer'    => 'Go to your campaign dashboard, and click on "Campaign" on the left menu. A "Delete" campaign button will appear if you are last member of the campaign. Deleting a campaign is a permanent action that will delete all the data stored on our servers, including images.',
         'question'  => 'How can I delete a campaign?',
     ],
+    'early-access'          => [
+        'answer'    => 'Early Access is a way for us to reward our amazing subscribers by giving them an exclusive 30 day period where they can try out the latest modules before anyone else.',
+        'question' => 'What is Early Access?',
+    ],
     'entity-notes'          => [
         'answer'    => 'All entities have an \'Entity Notes\' tab that are little snippets of text that can be set to only visible by you (great when co-dming), only for members of the admin role, or visible to all. You can also give your players permission to create and edit entity notes on entities without having to allow them editing a whole entity.',
         'question'  => 'How does Kanka handle partially hidden information?',
@@ -75,6 +79,10 @@ TEXT
     'mobile'                => [
         'answer'    => 'There currently is no dedicated mobile app for Kanka, but most of the app works on a mobile device. We hope that the support through subscriptions will allows us to pay someone to build a mobile app one day, but don\'t foresee that happening in the near future.',
         'question'  => 'Is there a mobile app? Is one planned?',
+    ],
+    'monsters'              => [
+        'answer'    => 'We recommend using the Races module for folks, species, monsters, and anything living that isn\'t a character.',
+        'question' => 'Where to create monsters?',
     ],
     'multiworld'            => [
         'answer'    => 'You can be a part of as many campaigns as you want, including those you\'ve created. To switch or create a new campaign, go to your campaign dashboard and in the top right you can click on your current campaign to display the campaign switcher interface.',

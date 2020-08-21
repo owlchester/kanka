@@ -127,6 +127,11 @@
                                     {{ __('faq.gods-and-religions.question') }}
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'monsters', 'slug' => Str::slug(__('faq.monsters.question'))]) }}">
+                                    {{ __('faq.monsters.question') }}
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div class="col-md-4">
@@ -135,6 +140,11 @@
                             <li>
                                 <a href="{{ route('faq.show', ['key' => 'free', 'slug' => Str::slug(__('faq.free.question'))]) }}">
                                     {{ __('faq.free.question') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'early-access', 'slug' => Str::slug(__('faq.early-access.question'))]) }}">
+                                    {{ __('faq.early-access.question') }}
                                 </a>
                             </li>
                         </ul>
