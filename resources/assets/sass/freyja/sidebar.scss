@@ -304,6 +304,9 @@ padding-top: 96px;
 
 /** Mobile **/
 @media (max-width: 767px) {
+  .skin-black .main-header .navbar-static-top {
+    margin-left: 0;
+  }
   .main-header {
     background-color: #fff;
     .navbar {
