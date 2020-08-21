@@ -34,6 +34,7 @@ return [
         'image'                     => 'Bild',
         'is_dead'                   => 'Tot',
         'is_personality_visible'    => 'Persönlichkeit sichtbar?',
+        'life'                      => 'Leben',
         'location'                  => 'Aufenthaltsort',
         'name'                      => 'Name',
         'physical'                  => 'Körper',
@@ -45,6 +46,7 @@ return [
         'type'                      => 'Typ',
     ],
     'helpers'       => [
+        'age'   => 'Sie können dieses Objektes mit einem Kalender Ihrer Kampagne verknüpfen, um stattdessen automatisch dessen Alter zu berechnen. :more.',
         'free'  => 'Wo ist das "Freitext" Feld? Wenn dieser Charakter ein solches Feld hatte, wurde es in den neuen Notizen Tab verschoben.',
     ],
     'hints'         => [

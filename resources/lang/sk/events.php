@@ -20,6 +20,9 @@ return [
         'name'      => 'Názov',
         'type'      => 'Typ',
     ],
+    'helpers'       => [
+        'date'  => 'Toto pole môže obsahovať čokoľvek a nie je prepojené s kalendármi kampane. Na zobrazenie tejto udalosti v kalendári je nutné ju pridať do kalendára alebo do karty Pripomenutia tejto udalosti.',
+    ],
     'index'         => [
         'add'           => 'Nová udalosť',
         'description'   => 'Spravuj udalosti objektu :name.',

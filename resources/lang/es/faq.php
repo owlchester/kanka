@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'app_backup'            => [
+        'answer'    => 'Realizamos dos copias de seguridad al día para evitar cualquier pérdida de datos. Nuestras propias campañas están en el servidor, así que no queremos correr ningún riesgo!',
+        'question'  => '¿Cada cuánto tiempo se hace una copia de seguridad de los datos de Kanka?',
+    ],
     'attribute-templates'   => [
         'answer'    => <<<'TEXT'
 La mejor forma de explicártelo es con un ejemplo. Imagina que tu mundo tiene montones de localizaciones, y en muchas de ellas quieres acordarte de crear un atributo personalizado de “Población”, “Clima”, “Nivel de criminalidad”...
@@ -73,6 +77,10 @@ TEXT
     'multiworld'            => [
         'answer'    => '¡No hace falta! Puedes crear tantas “campañas” como quieras en la aplicación, y hacer que cada una represente mundos, escenarios o lo que quieras. Una vez tengas varias campañas, puedes cambiar fácilmente entre ellas.',
         'question'  => 'Estoy construyendo varios mundos en escenarios diferentes. ¿Necesito una cuenta diferente para cada mundo?',
+    ],
+    'nested'                => [
+        'answer'    => 'Si prefieres ver tus entidades en vista anidada por defecto, puedes hacerlo desde las opciones de Diseño, dentro de tu Perfil. Allí puedes seleccionar la opción "Vista anidada por defecto". Esto solo afectará a tu cuenta.',
+        'question'  => '¿Puedo configurar las listas para que aparezcan anidadas por defecto?',
     ],
     'permissions'           => [
         'answer'    => '¡Por supuesto, para eso hemos creado Kanka! Puedes invitar a todos tus jugadores a tus campañas, y darles roles y permisos. Hemos construido el sistema para que sea extremadamente flexible (con opción de incluir o de excluir) para cubrir las máximas necesidades y situaciones posibles.',

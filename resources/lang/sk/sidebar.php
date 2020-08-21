@@ -32,6 +32,7 @@ return [
     'support'               => 'Podpora / Komunita',
     'tags'                  => 'Tagy',
     'team'                  => 'Tím',
+    'timelines'             => 'Časové osi',
     'translations'          => 'Preklady',
     'trello'                => 'Trello',
     'world'                 => 'Svet',

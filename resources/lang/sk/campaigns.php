@@ -49,6 +49,8 @@ return [
         'excerpt'                       => 'Krátky popis',
         'followers'                     => 'Odberatelia',
         'header_image'                  => 'Titulný obrázok',
+        'hide_history'                  => 'Skryť históriu objektu',
+        'hide_members'                  => 'Skryť členov kampane',
         'image'                         => 'Obrázok',
         'locale'                        => 'Jazyk',
         'name'                          => 'Názov',
@@ -296,12 +298,14 @@ return [
             'quests'        => 'Aby si vedel/a sledovať plnenie úloh a cieľov postáv.',
             'races'         => 'Ak má kampaň viac ako jednu rasu, pomôže sa ti v nich vyznať táto funkcia.',
             'tags'          => 'Každý objekt môže byť priradený viacerým kategóriám. Kategórie môžu patriť pod iné kategórie a objekty môžu byť podľa kategórií filtrované.',
+            'timelines'     => 'Zobraz dejiny tvojho sveta pomocou časových osí.',
         ],
         'title'         => 'Moduly kampane :name',
     ],
     'show'                              => [
         'actions'       => [
             'boost' => 'Boostnuť kampaň',
+            'edit'  => 'Upraviť kampaň',
             'leave' => 'Opustiť kampaň',
         ],
         'description'   => 'Detailné zobrazenie kampane',

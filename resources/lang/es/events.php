@@ -20,6 +20,9 @@ return [
         'name'      => 'Nombre',
         'type'      => 'Tipo',
     ],
+    'helpers'       => [
+        'date'  => 'Este campo puede contener cualquier cosa y no está vinculado a los calendarios de la campaña. Para vincular este evento con un calendario, añádelo desde la pestaña de recordatorios o desde el mismo calendario.',
+    ],
     'index'         => [
         'add'           => 'Nuevo evento',
         'description'   => 'Gestiona los eventos de :name.',

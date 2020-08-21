@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'age'           => [
+        'title' => 'Edad y muerte de los personajes',
+    ],
     'description'   => 'Algunos trucos y consejos para que sea más sencilla tu estancia en Kanka',
     'dice'          => [
         'description'               => 'Puedes hacer tiradas de dados genéricas escribiendo "d20", "4d4+4", "d%" para porcentual y "df" para fudge.',

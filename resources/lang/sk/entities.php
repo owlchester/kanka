@@ -14,6 +14,7 @@ return [
     'conversation'          => 'Diskusia',
     'conversations'         => 'Diskusie',
     'creator'               => [
+        'back'      => 'Späť na výber',
         'duplicate' => 'Existujú iné objekty tohto typu s rovnakým menom.',
         'error'     => 'Pri kontrole tvojich hodnôt došlo k chybe. Prosím, skontroluj ich ešte raz.',
         'helper'    => 'Vyber si typ objektu, ktorý chceš vytvoriť. Ak sa nezobrazia žiadne objekty, znamená to, že ti chýba oprávnenie vytvoriť objekty v tejto kampani.',
@@ -46,4 +47,6 @@ return [
     'races'                 => 'Rasy',
     'tag'                   => 'Kategória',
     'tags'                  => 'Kategórie',
+    'timeline'              => 'Časová os',
+    'timelines'             => 'Časové osi',
 ];

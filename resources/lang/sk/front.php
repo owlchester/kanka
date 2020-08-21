@@ -56,6 +56,7 @@ return [
             'boosted'       => 'Boostovaná kampaň',
             'css'           => 'Vlastné CSS tvojej kampane',
             'description'   => 'Niektoré formy predplatného dávajú užívateľom možnosť boostnuť kampane. Tieto následne získajú tieto výhody.',
+            'entity_files'  => 'Navýšený max. počet nahraných súborov v objekte (5 namiesto 3)',
             'header_image'  => 'Obrázok záhlavia objektu',
             'images'        => 'Prednastavenie štandardných obrázkov typov objektov',
             'recovery'      => 'Obnovenie odstránených objektov do 30 dní',

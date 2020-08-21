@@ -56,6 +56,7 @@ return [
             'boosted'       => 'geboostete Kampagne',
             'css'           => 'Benutzerdefinierte Kampagne CSS',
             'description'   => 'Bestimmte Versprechen bieten Benutzern mit Booster, mit denen sie Kampagnen steigern können. Diese bieten die folgenden Vorteile.',
+            'entity_files'  => 'Maximal hochgeladene Dateien pro Objekt erhöht (bis zu 5 statt 3)',
             'header_image'  => 'Objekt-Header-Bild',
             'images'        => 'Legen Sie benutzerdefinierte Standardobjektbilder fest',
             'recovery'      => 'Wiederherstellung des Objektes für bis zu 30 Tage',

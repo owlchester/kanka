@@ -14,6 +14,7 @@ return [
     'conversation'          => 'Conversación',
     'conversations'         => 'Conversaciones',
     'creator'               => [
+        'back'      => 'Volver a la selección',
         'duplicate' => 'Ya existen otras entidades de este tipo con el mismo nombre.',
         'error'     => 'Ha habido un error con los valores que has introducido. Por favor, revísalos.',
         'helper'    => 'Selecciona el tipo de entidad que quieres crear. Si no aparece ninguna, quiere decir que no tienes permiso para crear entidades en esta campaña.',
@@ -46,4 +47,6 @@ return [
     'races'                 => 'Razas',
     'tag'                   => 'Etiqueta',
     'tags'                  => 'Etiquetas',
+    'timeline'              => 'Línea de tiempo',
+    'timelines'             => 'Líneas de tiempo',
 ];

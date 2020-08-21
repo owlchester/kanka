@@ -32,6 +32,7 @@ return [
     'support'               => 'Support / Community',
     'tags'                  => 'Tags',
     'team'                  => 'Team',
+    'timelines'             => 'Zeitleisten',
     'translations'          => 'Übersetzungen',
     'trello'                => 'Trello',
     'world'                 => 'Welt',

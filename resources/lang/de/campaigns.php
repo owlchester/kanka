@@ -316,6 +316,7 @@ TEXT
             'quests'        => 'Um Aufgaben mit Charakteren und Ort zu verfolgen.',
             'races'         => 'Wenn deine Kampagne mehr als eine Rasse hat, hier kannst du den Überblick behalten.',
             'tags'          => 'Jedes Objekt kann eine Kategorie habe. Kategorien können zu anderen Kategorien gehören und Objekte können nach Kategorie gefiltert werden.',
+            'timelines'     => 'Stellen Sie die Geschichte Ihrer Welt mit Zeitleisten dar.',
         ],
         'title'         => 'Kampagne :name Module',
     ],

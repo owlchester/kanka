@@ -76,7 +76,7 @@ return [
         'leap_year_offset'      => 'Ogni',
         'leap_year_start'       => 'Anno bisestile',
         'length'                => 'Durata Evento',
-        'length_days'           => ':count giorno|:conteggio giorni',
+        'length_days'           => ':count giorno|:count giorni',
         'months'                => 'Mesi',
         'moons'                 => 'Lune',
         'name'                  => 'Nome',

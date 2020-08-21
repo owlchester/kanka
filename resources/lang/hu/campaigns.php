@@ -312,6 +312,7 @@ TEXT
             'quests'        => 'Számon tudod tartani a különböző küldetéseket a karakterekhez és a helyszínekhez kapcsolódóan.',
             'races'         => 'Ha a kampányodban több mint egy faj található, itt könnyen számon tarthatod azokat.',
             'tags'          => 'Minden entitásnak lehet több címkéje is. A címkék más címkékhez is tartozhatnak, és az entitásokat szűrni lehet a címkék alapján.',
+            'timelines'     => 'Mutasd be a világod történelmét idővonalak segítségével.',
         ],
         'title'         => ':name kampány moduljai',
     ],

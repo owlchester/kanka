@@ -10,16 +10,30 @@ return [
         'success'   => 'Mapa :name creado.',
         'title'     => 'Nuevo mapa',
     ],
+    'destroy'       => [
+        'success'   => 'Mapa :nombre eliminado.',
+    ],
     'edit'          => [
         'success'   => 'Mapa :name actualizado.',
         'title'     => 'Editar mapa :name',
+    ],
+    'errors'        => [
+        'dashboard' => [
+            'missing'   => 'Este mapa necesita una imagen para que se pueda mostrar en el tablero.',
+        ],
+        'explore'   => [
+            'missing'   => 'Por favor, añade una imagen al mapa para poder explorarlo.',
+        ],
     ],
     'fields'        => [
         'distance_measure'  => 'Medir distancia',
         'distance_name'     => 'Unidad de distancia',
         'grid'              => 'Cuadrícula',
+        'initial_zoom'      => 'Zoom inicial',
         'map'               => 'Mapa superior',
         'maps'              => 'Mapas',
+        'max_zoom'          => 'Zoom máximo',
+        'min_zoom'          => 'Zoom mínimo',
         'name'              => 'Nombre',
         'type'              => 'Tipo',
     ],
@@ -38,6 +52,7 @@ return [
         'title' => 'Mapas de :name',
     ],
     'panels'        => [
+        'groups'    => 'Grupos',
         'layers'    => 'Capas',
         'markers'   => 'Marcadores',
         'settings'  => 'Configuración',

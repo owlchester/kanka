@@ -46,4 +46,6 @@ return [
     'races'                 => 'Fajok',
     'tag'                   => 'Címke',
     'tags'                  => 'Címkék',
+    'timeline'              => 'Idővonal',
+    'timelines'             => 'Idővonalak',
 ];

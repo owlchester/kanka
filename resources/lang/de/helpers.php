@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'age'           => [
+        'description'   => 'Sie können einen Charakter mit einem Kalender der Kampagne verknüpfen, indem Sie einen Charakter anzeigen und zur Registerkarte Erinnerungen wechseln. Fügen Sie von dort aus eine neue Erinnerung hinzu und setzen Sie den Typ auf Geburt oder Tod, um das Alter des Charakters automatisch zu berechnen. Wenn sowohl Geburt als auch Tod vorliegen, werden beide Daten und das Todesalter angezeigt. Wenn nur die Geburt eingestellt ist, werden das Datum und das aktuelle Alter angezeigt. Wenn nur der Tod festgelegt ist, werden das Datum und die Jahre seit dem Tod angezeigt.',
+        'title'         => 'Charakter alter und Tod',
+    ],
     'description'   => 'Einige hilfreiche Tipps und Tricks, um dir mit Kanka zu helfen',
     'dice'          => [
         'description'               => 'Allgemeine Würfelwürfe sind möglich, wenn du "d20", "4d4+4", "d%" (Prozentwürfe) oder "df" (FUDGE-würfe) schreibst.',

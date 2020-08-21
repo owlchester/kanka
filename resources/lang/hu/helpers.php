@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'age'           => [
+        'description'   => 'Hivatkozhatsz egy Karakterre egy naptárban úgy, hogy az adott Karakter oldalán az Emlékeztetők fülre kattintasz. Itt hozzáadhatsz egy új emlékeztetőt, és beállíthatod a típusát Születés, vagy Halál típusúra, hogy a karakter életkora automatikusan számolódjon. Ha mind a Születés, mind a Halál események be vannak állítva, mind megjelennek, és a halál pillanatában aktuális életkora is. Amennyiben csak a születési dátum került beállításra, úgy ez a dátum, és a jelenlegi életkor kerül megjelenítésre. Ha csak a Halál ideje lett beállítva, akkor ez a dátum, és az azóta eltelt évek kerülnek kiírásra.',
+        'title'         => 'Karakter életkora, és halálának ideje',
+    ],
     'description'   => 'Tippek és trükkök, amik jól jöhetnek.',
     'dice'          => [
         'description'               => 'Az általános kockadobási kódokat használjuk. Egyaránt érvényes a "d20" és a "4d4+4" képlet is, valamint használhatod a "d%"-at százalékos, a "df"-et pedig fudge kockákhoz. A [ ] zárójeleket pedig, ha nem akarod összeadni az eredményt (pl. 6[d10] Storyteller rendszerben).',

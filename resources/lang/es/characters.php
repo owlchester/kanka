@@ -34,6 +34,7 @@ return [
         'image'                     => 'Imagen',
         'is_dead'                   => 'Muerto',
         'is_personality_visible'    => 'Personalidad visible',
+        'life'                      => 'Biografía',
         'location'                  => 'Procedencia',
         'name'                      => 'Nombre',
         'physical'                  => 'Apariencia',
@@ -45,6 +46,7 @@ return [
         'type'                      => 'Tipo',
     ],
     'helpers'       => [
+        'age'   => 'Puedes vincular esta entidad con un calendario de tu campaña para calcular automáticamente su edad. :more',
         'free'  => '¿No encuentras el campo "Libre"? Si este personaje tenía uno, ha sido movido a la nueva pestaña de Notas.',
     ],
     'hints'         => [

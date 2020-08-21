@@ -34,6 +34,7 @@ return [
         'image'                     => 'Obrázok',
         'is_dead'                   => 'Po smrti',
         'is_personality_visible'    => 'Osobnosť viditeľná',
+        'life'                      => 'Život',
         'location'                  => 'Umiestnenie',
         'name'                      => 'Meno',
         'physical'                  => 'Telesné črty',
@@ -45,6 +46,7 @@ return [
         'type'                      => 'Typ',
     ],
     'helpers'       => [
+        'age'   => 'Tento objekt môžeš referencovať v kalendári tvojej kampane a automaticky tak vypočítať vek. :more.',
         'free'  => 'Kde nájdem pole na voľný popis? Ak táto postava jedno mala, nájdeš ho v karte Poznámky.',
     ],
     'hints'         => [

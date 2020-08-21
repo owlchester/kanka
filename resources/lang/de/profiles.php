@@ -8,6 +8,10 @@ return [
     'edit'          => [
         'success'   => 'Profil aktualisert',
     ],
+    'editors'       => [
+        'default'       => 'Standard (TinyMCE 4)',
+        'summernote'    => 'Summernote (experimentell)',
+    ],
     'fields'        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'Email',
@@ -57,6 +61,7 @@ return [
             'advanced_mentions' => 'Fortgeschrittene Erwähnungen',
             'date_format'       => 'Datenformatierung',
             'default_nested'    => 'Verschachtelte Ansicht als Standard',
+            'editor'            => 'Texteditor',
             'pagination'        => 'Seitennummerierung (Objekte pro Seite)',
         ],
         'hints'     => [

@@ -8,6 +8,10 @@ return [
     'edit'          => [
         'success'   => 'Profil upravený',
     ],
+    'editors'       => [
+        'default'       => 'TinyMCE 4 (štandard)',
+        'summernote'    => 'Summernote (experimentálna verzia)',
+    ],
     'fields'        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'E-mail',
@@ -57,7 +61,11 @@ return [
             'advanced_mentions' => 'Pokročilé referencie',
             'date_format'       => 'Formát dátumu',
             'default_nested'    => 'Vnorené zobrazenie ako štandard',
+            'editor'            => 'Textový editor',
             'pagination'        => 'Stránkovanie (počet objektov na stránke)',
+        ],
+        'helpers'   => [
+            'editor'    => 'Štandardný editor (TinyMCE 4) je starší ale funguje dobre na desktope, nie však na mobile. Summernote je novší editor, ktorý správne funguje na všetkých zariadeniach, ale ešte stále ho testujeme.',
         ],
         'hints'     => [
             'advanced_mentions' => 'Ak je toto nastavenie aktívne, budú sa referencie pri úprave objektov zobrazovať vo forme [entity:123].',

@@ -10,11 +10,17 @@ return [
         'success'   => 'Karte :name erstellt',
         'title'     => 'neue Karte',
     ],
+    'destroy'       => [
+        'success'   => 'Karte :name entfernt',
+    ],
     'edit'          => [
         'success'   => 'Karte :name aktualisiert',
         'title'     => 'Karte :name editieren',
     ],
     'errors'        => [
+        'dashboard' => [
+            'missing'   => 'Diese Karte benötigt ein Bild, um im Dashboard gerendert werden zu können.',
+        ],
         'explore'   => [
             'missing'   => 'Bitte fügen Sie der Karte ein Bild hinzu, bevor Sie sie erkunden können.',
         ],
@@ -23,8 +29,11 @@ return [
         'distance_measure'  => 'Abstandsmaß',
         'distance_name'     => 'Entfernungseinheit',
         'grid'              => 'Gitter',
+        'initial_zoom'      => 'Initial Zoom',
         'map'               => 'Übergeordnete Karte',
         'maps'              => 'Karten',
+        'max_zoom'          => 'Maximal Zoom',
+        'min_zoom'          => 'Minimal Zoom',
         'name'              => 'Name',
         'type'              => 'Typ',
     ],
@@ -32,6 +41,9 @@ return [
         'descendants'       => 'Diese Liste enthält alle Karten, die Untergeordnete Karten dieser Karte sind, und nicht nur die direkt untergeordneten.',
         'distance_measure'  => 'Wenn Sie der Karte eine Entfernungsmessung geben, wird das Messwerkzeug im Erkundungsmodus aktiviert.',
         'grid'              => 'Definieren Sie eine Rastergröße, die im Erkundungsmodus angezeigt wird.',
+        'initial_zoom'      => 'Die anfängliche Zoomstufe, mit der eine Karte geladen wird. Der Standardwert ist :default, während der höchste zulässige Wert :max und der niedrigste zulässige Wert :min ist.',
+        'max_zoom'          => 'Eine Karte kann bis zu diesem Wert maximal vergrößert werden. Der Standardwert ist :default, während der höchstzulässige Wert :max ist.',
+        'min_zoom'          => 'Eine Karte kann bis zu diesem Wert maximal verkleinert werden. Der Standardwert ist :default, während der höchstzulässige Wert :min ist.',
         'missing_image'     => 'Speichern Sie die Karte mit einem Bild, bevor Sie Ebenen und Markierungen hinzufügen können.',
         'nested'            => 'In der verschachtelten Ansicht können Sie Ihre Karten verschachtelt anzeigen. Karten ohne übergeordnete Karte werden standardmäßig angezeigt. Karten mit untergeordneten Tags können angeklickt werden, um diese untergeordneten Elemente anzuzeigen. Sie können so lange klicken, bis keine untergeordneten Elemente mehr angezeigt werden.',
     ],

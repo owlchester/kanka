@@ -56,6 +56,7 @@ return [
             'boosted'       => 'Campaña mejorada',
             'css'           => 'CSS personalizado de la campaña',
             'description'   => 'Algunos niveles de mecenazgo otorgan mejoras a los usuarios, que pueden usar para mejorar campañas. Éstas obtienen los siguientes beneficios.',
+            'entity_files'  => 'Más archivos subidos por entidad (hasta 5, en vez de 3)',
             'header_image'  => 'Imagen de cabecera para la entidad',
             'images'        => 'Añadir imágenes por defecto a las entidades',
             'recovery'      => 'Recuperación de entidades de hasta 30 días',
