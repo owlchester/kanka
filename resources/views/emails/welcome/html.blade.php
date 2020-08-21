@@ -35,7 +35,7 @@
 
         <div class="header" style="background-image: url(https://kanka-app-assets.s3.amazonaws.com/emails/email-banner.jpg); background-position: top center; background-size: cover; width: 100%; height: 220px; text-align: center;">
             <a href="{{ route('home', ['utm_source' => 'newsletter', 'utm_medium' => 'email', 'utm_campaign' => 'onboarding']) }}">
-            <img src="https://kanka-app-assets.s3.amazonaws.com/emails/kanka_transparent.png" alt="Kanka logo" title="Kanka logo" style="margin: 50px;" width="120px" height="120px">
+            <img src="https://kanka-app-assets.s3.amazonaws.com/images/logos/logo-large.png" alt="Kanka logo" title="Kanka logo" style="margin: 50px;" width="120px" height="120px">
             </a>
         </div>
 
