@@ -10,12 +10,12 @@ return [
         'success'   => 'Timeline :name created.',
         'title'     => 'New Timeline',
     ],
+    'destroy'       => [
+        'success'   => 'Timeline :name removed.',
+    ],
     'edit'          => [
         'success'   => 'Timeline :name updated.',
         'title'     => 'Edit Timeline :name',
-    ],
-    'destroy'   => [
-        'success'   => 'Timeline :name removed.',
     ],
     'fields'        => [
         'copy_eras'     => 'Copy eras',

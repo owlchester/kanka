@@ -45,6 +45,10 @@ TEXT
         'answer'    => 'Accèdes au tableau de bord de ta campagne et cliques sur "Campagne" dans le menu de gauche. Un bouton de campagne "Supprimer" apparaîtra si tu es le seul administrateur de la campagne. La suppression d\'une campagne est une action permanente qui supprimera toutes les données stockées sur nos serveurs, y compris les images.',
         'question'  => 'Comment supprimer une campagne?',
     ],
+    'early-access'          => [
+        'answer'    => 'L\'accès anticipé est un moyen pour nous de récompenser nos incroyables abonnés en leur donnant une période exclusive de 30 jours où ils peuvent essayer les derniers nouveautés avant tout le monde.',
+        'question'  => 'Que-ce que l\'accès anticipé?',
+    ],
     'entity-notes'          => [
         'answer'    => 'Chaque entité a une section "Note d\'entité" qui peut contenir des informations cachées des autres membres de la campagne. Il est aussi possible de permettre à des membres de gérer les notes d\'entité sans leur donner le droit de modifier l\'entité.',
         'question'  => 'Comment gérer des informations privées?',
@@ -90,6 +94,10 @@ TEXT
 ,
         'question'  => 'Qu\'en est-t-il d\'une application mobile?',
     ],
+    'monsters'              => [
+        'answer'    => 'Il est recommandé d\'utiliser le module de Races pour tout ce qui est ethnicité, espèces, monstres et tout ce qui est vivant mais qui n\'est pas un personnage.',
+        'question'  => 'Où créer des monstres?',
+    ],
     'multiworld'            => [
         'answer'    => 'Non! Tu peux créer autant de campagnes que tu souhaites dans l\'application. Une campagne peut être un univers, un monde, un thème, ou quoi que ce soit d’autre. Quand tu as plusieurs campagnes, tu peux facilement passer d\'une campagne à l\'autre.',
         'question'  => 'Puis-je avoir plusieurs campagnes?',
@@ -97,6 +105,10 @@ TEXT
     'nested'                => [
         'answer'    => 'Si tu préfères afficher les entités dans une vue imbriquée par défaut (par exemple, le bouton Vue Imbriquée dans la liste des lieux), tu peux le faire en accédant à tes options Profil et Mise en Page. Là, tu peux cocher l\'option Vue imbriquée par défaut. Ceci est uniquement pour ton compte et non pour tes campagnes.',
         'question'  => 'Puis-je définir les listes pour qu\'elles s\'affichent de manières imbriquées par défaut?',
+    ],
+    'organise_play'         => [
+        'answer'    => 'Nous nous sommes associé avec :lfgm qui est une platforme pour organiser les sessions de jeux. Une campagns Kanka peut être synchronisée avec LFGM pour y afficher les prochaines session directement dans le tableau de bord de la campagne Kanka.',
+        'question'  => 'Comment organiser mes sessions avec mes joueurs?',
     ],
     'permissions'           => [
         'answer'    => 'Absolument, c\'est ce pourquoi nous avons créé Kanka! Vous pouvez inviter n’importe qui à votre campagne, et leur donner des rôles et des permissions. Nous avons créé un système extrêmement flexible (vous pouvez à la fois utiliser des optionsde permission et de restriction) pour couvrir toutes les situations possibles.',

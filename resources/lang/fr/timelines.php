@@ -10,6 +10,9 @@ return [
         'success'   => 'La chronologie :name a été créée.',
         'title'     => 'Nouvelle chronologie',
     ],
+    'destroy'       => [
+        'success'   => 'La chronologie :name a été supprimée.',
+    ],
     'edit'          => [
         'success'   => 'La chronologie :name a été modifiée.',
         'title'     => 'Modifier la chronologie :name',

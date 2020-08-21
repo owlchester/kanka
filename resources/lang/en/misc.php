@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'ads' => [
-        'remove' => 'Remove these ads by :login.',
+    'ads'   => [
         'login' => 'logging in',
-    ]
+        'remove'=> 'Remove these ads by :login.',
+    ],
 ];

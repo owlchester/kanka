@@ -42,7 +42,7 @@ TEXT
     ],
     'early-access'          => [
         'answer'    => 'Early Access is a way for us to reward our amazing subscribers by giving them an exclusive 30 day period where they can try out the latest modules before anyone else.',
-        'question' => 'What is Early Access?',
+        'question'  => 'What is Early Access?',
     ],
     'entity-notes'          => [
         'answer'    => 'All entities have an \'Entity Notes\' tab that are little snippets of text that can be set to only visible by you (great when co-dming), only for members of the admin role, or visible to all. You can also give your players permission to create and edit entity notes on entities without having to allow them editing a whole entity.',
@@ -82,7 +82,7 @@ TEXT
     ],
     'monsters'              => [
         'answer'    => 'We recommend using the Races module for folks, species, monsters, and anything living that isn\'t a character.',
-        'question' => 'Where to create monsters?',
+        'question'  => 'Where to create monsters?',
     ],
     'multiworld'            => [
         'answer'    => 'You can be a part of as many campaigns as you want, including those you\'ve created. To switch or create a new campaign, go to your campaign dashboard and in the top right you can click on your current campaign to display the campaign switcher interface.',
@@ -93,8 +93,8 @@ TEXT
         'question'  => 'Can I set the lists to be nested by default?',
     ],
     'organise_play'         => [
-        'question'  => 'How can I manage when I run my sessions?',
         'answer'    => 'We\'ve partnered with :lfgm which allows you to organise your sessions with your group. You can sync your Kanka campaign with your LGFM campaign to show your next availabilities directly on the campaign dashboard.',
+        'question'  => 'How can I manage when I run my sessions?',
     ],
     'permissions'           => [
         'answer'    => 'Absolutely, this is why we built Kanka! You can invite all your players to your campaigns, and give them roles and permissions. We built the system to be extremely flexible (you can both use an opt-in and opt-out configuration) to cover as many needs and situations as possible.',

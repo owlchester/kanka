@@ -105,6 +105,7 @@ return [
             'default_image'     => 'Images par défaut pour les entités',
             'description'       => 'Soutenir Kanka sur Patreon débloque pour un compte les fonctionalités suivantes.',
             'discord'           => 'Canal Discord privé',
+            'entities'          => 'Nombre d\'entités qui peuvent être créé dans une campagne',
             'free'              => 'Gratuit',
             'hall_of_fame'      => 'Nom dans la :link',
             'impact'            => 'Impact sur les futures fonctionalités',
@@ -114,6 +115,7 @@ return [
             'title'             => 'Support Patreon',
             'upload_limit'      => 'Taille des fichiers augmentés',
             'upload_limit_map'  => 'Taille des cartes augmentées',
+            'users_roles'       => 'Nombre d\'utilisateurs, rôles et permissions',
         ],
         'public'            => [
             'description'   => 'Les autorisations peuvent être définies par modules ou pour chaque entité. Les campagnes peuvent également être publiques ou privées.',
@@ -124,6 +126,7 @@ return [
             'title'         => 'Relations',
         ],
         'title'             => 'Beaucoup de fonctionnalités avec une flexibilité sans pareil',
+        'unlimited'         => 'Illimité',
         'updates'           => [
             'description'   => 'Kanka bénéficie de mises à jour régulières choisies par la communauté.',
             'title'         => 'Mise à jour Fréquentes',

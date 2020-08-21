@@ -228,16 +228,16 @@ return [
         'direct'    => 'Filter to direct descendants',
         'filtered'  => 'Showing :count of :total :entity.',
         'hide'      => 'Hide Filters',
+        'options'   => [
+            'exclude'   => 'Exclude',
+            'include'   => 'Include',
+            'none'      => 'None',
+        ],
         'show'      => 'Show Filters',
         'sorting'   => [
             'asc'       => ':field Ascending',
             'desc'      => ':field Descending',
             'helper'    => 'Control in which order results appear.',
-        ],
-        'options' => [
-            'include' => 'Include',
-            'exclude' => 'Exclude',
-            'none' => 'None',
         ],
         'title'     => 'Filters',
     ],

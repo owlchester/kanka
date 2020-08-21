@@ -186,6 +186,7 @@ return [
         'excerpt'               => 'Extrait',
         'family'                => 'Famille',
         'files'                 => 'Fichiers',
+        'has_image'             => 'Possède une image',
         'header_image'          => 'Image d\'en-tête',
         'image'                 => 'Image',
         'is_private'            => 'Privé',
@@ -227,6 +228,11 @@ return [
         'direct'    => 'Affichier seulement descendants directs',
         'filtered'  => 'Affichant :count de :total :entity.',
         'hide'      => 'Cacher les filtres',
+        'options'   => [
+            'exclude'   => 'Exclure',
+            'include'   => 'Inclure',
+            'none'      => 'Aucun(e)',
+        ],
         'show'      => 'Afficher les filtres',
         'sorting'   => [
             'asc'       => ':field ascendant',

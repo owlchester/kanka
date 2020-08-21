@@ -10,6 +10,9 @@ return [
         'success'   => 'Carte :name créée.',
         'title'     => 'Nouvelle carte',
     ],
+    'destroy'       => [
+        'success'   => 'Carte :name supprimée.',
+    ],
     'edit'          => [
         'success'   => 'Carte :name modifiée.',
         'title'     => 'Modifier la carte :name',
