@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Facades\Attributes;
 use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\Entity;
@@ -11,8 +12,6 @@ use App\Traits\MentionTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
 
 class MentionsService
 {
@@ -84,7 +83,9 @@ class MentionsService
     public function mapAttribute(Attribute $attribute)
     {
         $this->text = e($attribute->value);
-        return $this->extractAndReplace();
+        $attribute->value = $this->extractAndReplace();
+
+        return Attributes::parse($attribute);
     }
 
     /**
