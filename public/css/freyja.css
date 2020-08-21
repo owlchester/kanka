@@ -306,6 +306,10 @@ section.sidebar-campaign .campaign-block .campaign-head .campaign-updated {
   margin-left: 280px;
 }
 
+.skin-black .main-header.main-header-start {
+  background-color: #fff;
+}
+
 /** Mobile **/
 
 @media (max-width: 767px) {

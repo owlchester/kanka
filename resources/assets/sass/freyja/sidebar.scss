@@ -1,5 +1,4 @@
 
-
 .skin-black .main-header {
   box-shadow: unset;
 
@@ -297,6 +296,10 @@ padding-top: 96px;
 
 .main-footer {
   margin-left: 280px;
+}
+
+.skin-black .main-header.main-header-start {
+  background-color: #fff;
 }
 
 /** Mobile **/

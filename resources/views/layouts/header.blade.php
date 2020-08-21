@@ -2,7 +2,7 @@
 $currentCampaign = CampaignLocalization::getCampaign();
 ?>
 <!-- Main Header -->
-<header class="main-header">
+<header class="main-header @if(Auth::check() && !Auth::user()->hasCampaigns()) main-header-start @endif">
 
 {{--    @if ((Auth::check() && Auth::user()->hasCampaigns()) || !Auth::check())--}}
 {{--        <!-- Sidebar toggle button-->--}}
