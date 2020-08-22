@@ -109,7 +109,11 @@ class TimelineElementController extends Controller
     {
         $this->authorize('update', $timeline);
 
-        $timelineElement->update($request->only($this->fields));
+        $data = $request->only($this->fields);
+        if (!$request->has('entity_id')) {
+            $data['entity_id'] = null;
+        }
+        $timelineElement->update($data);
         $this->service->reorderElements($timelineElement);
 
         return redirect()

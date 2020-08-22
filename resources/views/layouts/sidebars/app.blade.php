@@ -80,7 +80,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                     <li class="{{ $sidebar->open('menu_links') }} sidebar-section">
                         <div class="sidebar-text">
                             <i class="fa fa-star"></i>
-                            <span>{{ trans('sidebar.custom_links') }}</span>
+                            <span>{{ trans('entities.menu_links') }}</span>
 
                             @if(Auth::check() && Auth::user()->isAdmin())
                                 <a href="{{ route('menu_links.index') }}" class="pull-right sidebar-icon-link">

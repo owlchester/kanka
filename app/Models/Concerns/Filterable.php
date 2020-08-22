@@ -82,6 +82,10 @@ trait Filterable
                     if (in_array($key, $this->explicitFilters)) {
                         $query->where($this->getTable() . '.' . $key, $operator, "$filterValue");
                     } elseif ($key == 'tags') {
+                        // "none" filter tags is handled later
+                        if (!empty($filterOption) && $filterOption === 'none') {
+                            continue;
+                        }
                         $query
                             ->distinct()
                             ->select($this->getTable() . '.*')
@@ -151,7 +155,7 @@ trait Filterable
                                     $filterValue
                                 )->orWhereNull($this->getTable() . '.' . $key);
                             });
-                            
+
                             continue;
                         }
                         $query->where(

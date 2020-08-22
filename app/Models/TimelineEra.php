@@ -59,6 +59,7 @@ class TimelineEra extends Model
     {
         return $query
             ->orderBy('start_year', ($revertOrder ? 'asc' : 'desc'))
+            ->orderBy('end_year', ($revertOrder ? 'desc' : 'asc'))
             ->orderBy('name');
     }
 }
