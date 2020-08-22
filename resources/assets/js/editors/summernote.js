@@ -71,6 +71,18 @@ window.initSummernote = function() {
                     return hintContent(item);
                 }
             },
+            {
+                match: /\B{(\w*)$/,
+                search: function (keyword, callback) {
+                    return attributeSearch(keyword, callback);
+                },
+                template: function (item) {
+                    return attributeTemplate(item);
+                },
+                content: function (item) {
+                    return attributeContent(item);
+                }
+            },
         ],
     });
 }
@@ -104,12 +116,40 @@ function hintMonths(keyword, callback) {
 }
 
 /**
+ * Search for attributes
+ * @param keyword
+ * @param callback
+ */
+function attributeSearch(keyword, callback) {
+    if (!summernoteConfig.data('attributes')) {
+        console.log('entity not yet created');
+        return false;
+    }
+
+    $.ajax({
+        url: summernoteConfig.data('attributes') + '?q=' + keyword,
+        type: 'get',
+        dataType: 'json',
+        async: true
+    }).done(callback);
+}
+
+/**
  * Hint template (results displayed in dropdown)
  * @param item
  * @returns {string}
  */
 function hintTemplate(item) {
     return (item.image ? item.image : '') + item.fullname + (item.type ? ' (' + item.type + ')' : '');
+}
+
+/**
+ * Attribute template
+ * @param item
+ * @returns {string}
+ */
+function attributeTemplate(item) {
+    return item.name +  (item.value ? ' (' + item.value + ')' : '');
 }
 
 /**
@@ -150,6 +190,21 @@ function hintContent(item) {
         })[0];
     }
     return item.fullname;
+}
+
+/**
+ *
+ * @param item
+ * @returns {jQuery|HTMLElement}
+ */
+function attributeContent(item)
+{
+    return $('<a>', {
+        href: '#',
+        class: 'attribute',
+        text: '{' + item.name + '}',
+        'data-attribute': '{attribute:' + item.id + '}'
+    })[0]
 }
 
 /**

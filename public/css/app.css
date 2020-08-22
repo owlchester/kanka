@@ -991,12 +991,20 @@ hr {
   display: none !important;
 }
 
-.note-editing-area .mention {
+.note-editing-area .mention,
+.note-editing-area .attribute {
   background-color: #eee;
   padding: 3px 5px;
   border-radius: 5px;
   color: #333;
   text-decoration: none;
+}
+
+.note-editing-area .attribute {
+  border-radius: 2px;
+  background-color: #ddd;
+  color: #333;
+  font-style: italic;
 }
 
 .calendar {

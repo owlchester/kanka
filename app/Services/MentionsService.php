@@ -19,12 +19,14 @@ class MentionsService
 
     protected $text = '';
     protected $entities = [];
+    protected $attributes = [];
 
     /**
      * @var array
      */
     protected $mentionedEntities = [];
     protected $mentionedEntityTypes = [];
+    protected $mentionedAttributes = [];
 
     /** @var array */
     protected $validEntityTypes = [];
@@ -152,17 +154,27 @@ class MentionsService
         if (empty($text)) {
             $text = '';
         }
+        // TinyMCE mentions
         $text = preg_replace(
             '`<a class="mention" href="#" data-mention="([^"]*)">(.*?)</a>`',
             '$1',
             $text
         );
+
         // Summernote will inject the link differently
         $text = preg_replace(
             '`<a href="#" class="mention" data-mention="([^"]*)">(.*?)</a>`',
             '$1',
             $text
         );
+
+        // Attributes
+        $text = preg_replace(
+            '`<a href="#" class="attribute" data-attribute="([^"]*)">(.*?)</a>`',
+            '$1',
+            $text
+        );
+
         return $text;
     }
 
@@ -230,6 +242,9 @@ class MentionsService
             return $replace;
         }, $this->text);
 
+        // And now for extra fun, let's do attributes!
+        $this->mapAttributes();
+
         return $this->text;
     }
 
@@ -276,6 +291,19 @@ class MentionsService
     }
 
     /**
+     * @param int $id
+     * @return mixed
+     */
+    protected function attribute(int $id)
+    {
+        if (!Arr::has($this->attributes, $id)) {
+            $this->attributes[$id] = Attribute::where(['id' => $id])->first();
+        }
+
+        return Arr::get($this->attributes, $id, null);
+    }
+
+    /**
      * Pre-fetch all mentioned entities
      */
     protected function prepareEntities()
@@ -296,6 +324,29 @@ class MentionsService
         $entities = Entity::whereIn('id', $ids)->with($this->mentionedEntityTypes)->get();
         foreach ($entities as $entity) {
             $this->entities[$entity->id] = $entity;
+        }
+    }
+
+    /**
+     * Pre fetch the attributes of the entity
+     */
+    protected function prepareAttributes()
+    {
+        // Remove those already cached in memory
+        $ids = [];
+        foreach ($this->mentionedAttributes as $id) {
+            if (!Arr::has($this->attributes, $id)) {
+                $ids[] = $id;
+            }
+        }
+
+        if (empty($ids)) {
+            return;
+        }
+
+        $attributes = Attribute::whereIn('id', $ids)->get();
+        foreach ($attributes as $attribute) {
+            $this->attributes[$attribute->id] = $attribute;
         }
     }
 
@@ -321,5 +372,35 @@ class MentionsService
 
         $validEntityTypes = array_keys(config('entities.ids'));
         return $this->validEntityTypes = $validEntityTypes;
+    }
+
+    protected function mapAttributes()
+    {
+        $this->mentionedAttributes = [];
+        preg_replace_callback('`\{attribute:(.*?)\}`i' , function($matches) {
+            $id = (int) $matches[1];
+            if (!in_array($id, $this->mentionedAttributes)) {
+                $this->mentionedAttributes[] = $id;
+            }
+        }, $this->text);
+
+        // Pre-fetch all the entities
+        $this->prepareAttributes();
+
+        // Extract links from the entry to foreign
+        $this->text = preg_replace_callback('`\{attribute:(.*?)\}`i' , function($matches) {
+            $id = (int) $matches[1];
+
+            /** @var Attribute $attribute */
+            $attribute = $this->attribute($id);
+
+            // No entity found, the user might not be allowed to see it
+            if (empty($attribute)) {
+                $replace = '<i>' . __('crud.history.unknown') . '</i>';
+            } else {
+                $replace = '<span class="attribute" title="' . e($attribute->name) . '" data-toggle="tooltip">' . $attribute->mappedValue() . '</span>';
+            }
+            return $replace;
+        }, $this->text);
     }
 }

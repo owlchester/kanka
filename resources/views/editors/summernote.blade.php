@@ -24,5 +24,9 @@
             data-mention="{{ route('search.live') }}"
             data-advanced-mention="{{ Auth::user()->advancedMentions }}"
             data-months="{{ route('search.calendar-months') }}"
+@if (!empty($model) && $model->entity)            data-attributes="{{ route('search.attributes', $model->entity) }}"
+@elseif (!empty($entity))            data-attributes="{{ route('search.attributes', $entity) }}"
+
+@endif
             data-locale="{{ app()->getLocale() }}"></div>
 @endsection

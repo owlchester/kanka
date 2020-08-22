@@ -300,6 +300,7 @@ Route::group([
 
         // Entity Search
         Route::get('/search/entity-calendars', 'Search\CalendarController@index')->name('search.calendars');
+        Route::get('/search/attributes/{entity}', 'Search\AttributeSearchController@index')->name('search.attributes');
 
         // Global Entity Search
         Route::get('/search/reminder-entities', 'Search\LiveController@reminderEntities')->name('search.entities-with-reminders');
