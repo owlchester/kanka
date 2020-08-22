@@ -77454,15 +77454,22 @@ function registerEntityNameCheck() {
     }
 
     var entityCreatorDuplicateWarning = $('.duplicate-entity-warning');
+    var currentEntityID = $(this).data('id');
     entityCreatorDuplicateWarning.hide(); // Check if an entity of the same type already exists, and warn when it does.
 
     $.ajax($(this).data('live') + '?q=' + $(this).val() + '&type=' + $(this).data('type')).done(function (res) {
       if (res.length > 0) {
-        var entities = Object.keys(res).map(function (k) {
+        var entities = Object.keys(res) // Filter out what isn't itself
+        .filter(function (k) {
+          return !currentEntityID || currentEntityID != res[k].id;
+        }).map(function (k) {
           return '<a href="' + res[k].url + '">' + res[k].name + '</a>';
-        }).join(', ');
-        $('#duplicate-entities').html(entities);
-        entityCreatorDuplicateWarning.fadeIn();
+        });
+
+        if (entities.length > 0) {
+          $('#duplicate-entities').html(entities.join(', '));
+          entityCreatorDuplicateWarning.fadeIn();
+        }
       } else {
         entityCreatorDuplicateWarning.hide();
       }
@@ -77821,18 +77828,26 @@ function registerEntityFormSubmit() {
       method: $(this).attr('method'),
       data: $(this).serialize()
     }).done(function (res) {
-      // If the validation succeeded, we can really submit the form
+      console.log('good?'); // If the validation succeeded, we can really submit the form
+
       validEntityForm = true;
       $('#entity-form').submit();
       return true;
     }).fail(function (err) {
-      // Reset any error fields
+      console.log('error', err); // Reset any error fields
+
       $('.input-error').removeClass('input-error');
       $('.text-danger').remove(); // If we have a 503 error status, let's assume it's from cloudflare and help the user
       // properly save their data.
 
       if (err.status === 503) {
         $('#entity-form-503-error').show();
+        resetEntityFormSubmitAnimation();
+      } // If it's 403, the session is gone
+
+
+      if (err.status === 403) {
+        $('#entity-form-403-error').show();
         resetEntityFormSubmitAnimation();
       } // Loop through the errors to add the class and error message
 

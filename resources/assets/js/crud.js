@@ -103,15 +103,23 @@ function registerEntityNameCheck() {
             return;
         }
         var entityCreatorDuplicateWarning = $('.duplicate-entity-warning');
+        let currentEntityID = $(this).data('id');
         entityCreatorDuplicateWarning.hide();
         // Check if an entity of the same type already exists, and warn when it does.
         $.ajax(
             $(this).data('live') + '?q=' + $(this).val() + '&type=' + $(this).data('type')
         ).done(function (res) {
             if (res.length > 0) {
-                let entities = Object.keys(res).map(function (k) { return '<a href="' + res[k].url + '">' + res[k].name + '</a>'}).join(', ');
-                $('#duplicate-entities').html(entities);
-                entityCreatorDuplicateWarning.fadeIn();
+                let entities = Object.keys(res)
+                    // Filter out what isn't itself
+                    .filter(function (k) { return !currentEntityID || currentEntityID != res[k].id })
+                    .map(function (k) { return '<a href="' + res[k].url + '">' + res[k].name + '</a>'})
+
+
+                if (entities.length > 0) {
+                    $('#duplicate-entities').html(entities.join(', '));
+                    entityCreatorDuplicateWarning.fadeIn();
+                }
             } else {
                 entityCreatorDuplicateWarning.hide();
             }
@@ -503,11 +511,13 @@ function registerEntityFormSubmit()
             method: $(this).attr('method'),
             data: $(this).serialize()
         }).done(function (res) {
+            console.log('good?');
             // If the validation succeeded, we can really submit the form
             validEntityForm = true;
             $('#entity-form').submit();
             return true;
         }).fail(function (err) {
+            console.log('error', err);
             // Reset any error fields
             $('.input-error').removeClass('input-error');
             $('.text-danger').remove();
@@ -516,6 +526,12 @@ function registerEntityFormSubmit()
             // properly save their data.
             if (err.status === 503) {
                 $('#entity-form-503-error').show();
+                resetEntityFormSubmitAnimation();
+            }
+
+            // If it's 403, the session is gone
+            if (err.status === 403) {
+                $('#entity-form-403-error').show();
                 resetEntityFormSubmitAnimation();
             }
 

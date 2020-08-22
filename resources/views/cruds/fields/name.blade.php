@@ -8,7 +8,8 @@
             'class' => 'form-control',
             'maxlength' => 191,
             'data-live' => route('search.live'),
-            'data-type' => \Illuminate\Support\Str::singular($trans)
+            'data-type' => \Illuminate\Support\Str::singular($trans),
+            'data-id' => (isset($model) ? $model->entity->id : null)
         ]
     ) !!}
 
