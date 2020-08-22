@@ -76607,7 +76607,7 @@ $(document).ready(function () {
   /*$.each($('.datagrid-search'), function(index) {
       $(this).submit(function(event) {
           event.preventDefault();
-            window.location.href =
+           window.location.href =
       });
   });*/
 
@@ -76802,13 +76802,13 @@ function entityCreatorUI() {
 }
 
 function initEntityCreatorDuplicateName() {
-  $('#entity-creator-selection input[name="name"]').focusout(function (e) {
+  $('#entity-creator-form input[name="name"]').focusout(function (e) {
     // Don't bother if the user didn't set any value
     if (!$(this).val()) {
       return;
     }
 
-    var entityCreatorDuplicateWarning = $('#entity-creator-selection .duplicate-entity-warning');
+    var entityCreatorDuplicateWarning = $('#entity-creator-form .duplicate-entity-warning');
     entityCreatorDuplicateWarning.hide(); // Check if an entity of the same type already exists, and warn when it does.
 
     $.ajax($(this).data('live') + '?q=' + $(this).val() + '&type=' + $(this).data('type')).done(function (res) {
@@ -76816,7 +76816,7 @@ function initEntityCreatorDuplicateName() {
         var entities = Object.keys(res).map(function (k) {
           return '<a href="' + res[k].url + '">' + res[k].name + '</a>';
         }).join(', ');
-        $('#duplicate-entities').html(entities);
+        $('#entity-creator-form #duplicate-entities').html(entities);
         entityCreatorDuplicateWarning.fadeIn();
       } else {
         entityCreatorDuplicateWarning.hide();
@@ -77371,6 +77371,7 @@ var entityCalendarAdd, entityCalendarForm, entityCalendarField;
 var entityCalendarMonthField, entityCalendarYearField, entityCalendarDayField;
 var entityCalendarCancel, entityCalendarLoading, entityCalendarSubForm;
 var entityCalendarModalField, entityCalendarModalForm;
+var entityName;
 var toggablePanels;
 var validEntityForm = false,
     validRelationForm = false;
@@ -77419,6 +77420,12 @@ $(document).ready(function () {
     registerUnsavedChanges();
   }
 
+  entityName = $('#form-entry input[name="name"]');
+
+  if (entityName.length === 1) {
+    registerEntityNameCheck();
+  }
+
   registerFormSubmitAnimation();
   registerEntityCalendarForm();
   registerToggablePanels();
@@ -77438,91 +77445,29 @@ function registerModalLoad() {
     registerEntityCalendarModal();
   });
 }
-/**
- * Filters
- */
 
-
-var previousFilterInputValue = '';
-
-function initCrudFilters() {
-  $('#crud-filters .element').on('click', function () {
-    $(this).children('.value').hide();
-    $(this).children('.input').show(); // Show the field and focus at the end of it
-
-    var input = $(this).children('.input').children('.input-field');
-    input.focus();
-    var tmp = input.val();
-    input.val('');
-    input.val(tmp);
-    previousFilterInputValue = input.is(':checkbox') ? input.prop('checked') ? 0 : 1 : tmp; //console.log('previous filter', input, previousFilterInputValue);
-  });
-  $('#crud-filters .element input').on('focusout', function (e) {
-    // Only submit on change
-    e.preventDefault();
-    filterSubmit($(this), false);
-  });
-  $('#crud-filters select.select2').on('change', function () {
-    $('#crud-filters-form').submit();
-  });
-  $('#crud-filters select.filter-select').on('change', function () {
-    $('#crud-filters-form').submit();
-  }); // Reset button
-
-  $('#crud-filters #filters-reset').on('click', function () {
-    // Redirect to page without params
-    window.location = window.location.href.split("?")[0] + '?reset-filter=true';
-  }); // Show on small displays
-
-  var filtersActionShow = $('#crud-filters #filters-show-action');
-  filtersActionHide = $('#crud-filters #filters-hide-action');
-  filtersActionShow.on('click', function () {
-    $('#crud-filters #available-filters').removeClass('hidden-xs').removeClass('hidden-sm');
-    $('#crud-filters #filter-reset').removeClass('hidden-xs').removeClass('hidden-sm');
-    filtersActionShow.hide();
-    filtersActionHide.show();
-  });
-  filtersActionHide.on('click', function () {
-    $('#crud-filters #available-filters').addClass('hidden-xs').addClass('hidden-sm');
-    $('#crud-filters #filter-reset').addClass('hidden-xs').addClass('hidden-sm');
-    filtersActionHide.hide();
-    filtersActionShow.show();
-  });
-  $('#crud-filters .input-field').keypress(function (e) {
-    if (e.which === 13) {
-      e.preventDefault();
-      filterSubmit($(this), true);
+function registerEntityNameCheck() {
+  entityName.focusout(function (e) {
+    // Don't bother if the user didn't set any value
+    if (!$(this).val()) {
+      return;
     }
+
+    var entityCreatorDuplicateWarning = $('.duplicate-entity-warning');
+    entityCreatorDuplicateWarning.hide(); // Check if an entity of the same type already exists, and warn when it does.
+
+    $.ajax($(this).data('live') + '?q=' + $(this).val() + '&type=' + $(this).data('type')).done(function (res) {
+      if (res.length > 0) {
+        var entities = Object.keys(res).map(function (k) {
+          return '<a href="' + res[k].url + '">' + res[k].name + '</a>';
+        }).join(', ');
+        $('#duplicate-entities').html(entities);
+        entityCreatorDuplicateWarning.fadeIn();
+      } else {
+        entityCreatorDuplicateWarning.hide();
+      }
+    });
   });
-}
-/**
- *
- * @param field
- * @param force
- */
-
-
-function filterSubmit(field, force) {
-  var element = field.parent().parent();
-  var input = element.children('.input');
-  input.hide();
-
-  if (field.is(':checkbox')) {
-    if (field.prop('checked')) {
-      element.children('.value').html('<i class="fa fa-check"></i>');
-    } else {
-      element.children('.value').html('');
-    }
-  } else {
-    element.children('.value').html(field.val());
-  }
-
-  element.children('.value').show();
-  var compare = field.is(':checkbox') ? field.prop('checked') ? 1 : 0 : field.val(); //console.log('compare', field, compare, previousFilterInputValue);
-
-  if (force || compare !== previousFilterInputValue) {
-    $('#crud-filters-form').submit();
-  }
 }
 /**
  *
