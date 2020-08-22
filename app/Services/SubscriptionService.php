@@ -435,7 +435,7 @@ class SubscriptionService
         $this->user = $source->user;
 
         // user was deleted
-        if (empty($this->user) || $this->userId == 27078) {
+        if (empty($this->user) || $this->user->id == 27078) {
             return true;
         }
         $source->update(['status' => 'failed']);
