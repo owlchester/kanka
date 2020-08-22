@@ -274,6 +274,22 @@ class MentionsService
             return '<a href="#" class="mention" data-mention="' . $matches[0] . '">' . $name . '</a>';
         }, $this->text);
 
+        // Extract links from the entry to attribute
+        $this->text = preg_replace_callback('`\{attribute:(.*?)\}`i' , function($matches) {
+            $id = (int) $matches[1];
+
+            /** @var Entity $entity */
+            $attribute = $this->attribute($id);
+
+            // No entity found, the user might not be allowed to see it
+            if (empty($attribute)) {
+                $name = __('crud.history.unknown');
+            } else {
+                $name = $attribute->name;
+            }
+            return '<a href="#" class="attribute" data-attribute="' . $matches[0] . '">{' . $name . '}</a>';
+        }, $this->text);
+
         return $this->text;
     }
 
@@ -374,6 +390,9 @@ class MentionsService
         return $this->validEntityTypes = $validEntityTypes;
     }
 
+    /**
+     * Replace all attributes with their values and a toolip
+     */
     protected function mapAttributes()
     {
         $this->mentionedAttributes = [];

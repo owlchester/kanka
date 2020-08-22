@@ -1000,11 +1000,13 @@ hr {
   text-decoration: none;
 }
 
-.note-editing-area .attribute {
+.attribute,
+.note-editing-area > .attribute {
   border-radius: 2px;
   background-color: #ddd;
   color: #333;
   font-style: italic;
+  padding: 2px 3px;
 }
 
 .calendar {
