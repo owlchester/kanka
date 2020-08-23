@@ -27,7 +27,7 @@ class DashboardSetupController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('dashboard', $campaign);
 
-        $widgets = CampaignDashboardWidget::with('tags')->positioned()->get();
+        $widgets = CampaignDashboardWidget::positioned()->get();
 
         return view('dashboard.setup')
             ->with('campaign', $campaign)

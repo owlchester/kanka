@@ -6,6 +6,7 @@ use App\Traits\AclTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Arr;
 
 /**
@@ -21,6 +22,8 @@ use Illuminate\Support\Arr;
  * @property integer $position
  * @property Tag[] $tags
  * @property Entity $entity
+ *
+ * @method static self|Builder positioned()
  */
 class CampaignDashboardWidget extends Model
 {
@@ -102,7 +105,7 @@ class CampaignDashboardWidget extends Model
      */
     public function scopePositioned($query)
     {
-        return $query->with(['entity'])
+        return $query->with(['entity', 'tags'])
             ->orderBy('position', 'asc');
     }
 

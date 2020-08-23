@@ -1,8 +1,13 @@
 <?php
-/** @var \App\Models\Quest $model */
+/**
+ * @var \App\Models\Entity $entity
+ * @var \App\Models\Character $model
+ * @var \App\Models\Quest $model
+ */
+$model = $entity->child;
 ?>
 <div class="panel panel-default widget-preview" id="dashboard-widget-{{ $widget->id }}">
-    <div class="panel-heading @if ($widget->conf('entity-header') && $campaign->boosted() && $widget->entity->header_image) panel-heading-entity" style="background-image: url({{ $widget->entity->getImageUrl(0, 0, 'header_image') }}) @elseif ($model->image) panel-heading-entity" style="background-image: url({{ $model->getImageUrl() }}) @endif">
+    <div class="panel-heading @if ($widget->conf('entity-header') && $campaign->boosted() && $entity->header_image) panel-heading-entity" style="background-image: url({{ $entity->getImageUrl(0, 0, 'header_image') }}) @elseif ($model->image) panel-heading-entity" style="background-image: url({{ $model->getImageUrl() }}) @endif">
         <h3 class="panel-title">
             <a href="{{ $model->getLink() }}">
                 @if ($model->is_private)
@@ -11,7 +16,7 @@
                 @if ($model->is_completed)
                     <i class="fa fa-check-circle pull-right margin-r-5" title="{{ trans('quests.fields.is_completed') }}"></i>
                 @endif
-                {{ $widget->entity->name }}
+                {{ $entity->name }}
             </a>
 
         </h3>

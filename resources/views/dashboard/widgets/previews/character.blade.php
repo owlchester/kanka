@@ -5,6 +5,7 @@
  * @var \App\Models\Campaign $campaign
  * @var \App\Models\CampaignDashboardWidget $widget
  */
+$model = $entity->child;
 ?>
 <div class="panel panel-default widget-preview" id="dashboard-widget-{{ $widget->id }}">
     <div class="panel-heading @if ($widget->conf('entity-header') && $campaign->boosted() && $entity->header_image) panel-heading-entity" style="background-image: url({{ $entity->getImageUrl(0, 0, 'header_image') }}) @elseif($entity->child->image) panel-heading-entity" style="background-image: url({{ $entity->child->getImageUrl() }}) @endif">

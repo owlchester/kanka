@@ -32,7 +32,7 @@
                             <span class="widget-type">{{ __('dashboard.setup.widgets.' . $widget->widget) }}</span>
                             @if ($widget->entity)
                                 <div class="widget-entity">
-                                    {{ link_to($widget->entity->child->getLink(), $widget->entity->name) }}
+                                    {{ link_to($widget->entity->url(), $widget->entity->name) }}
                                 </div>
                             @endif
 
