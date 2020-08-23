@@ -6,7 +6,7 @@
 $conversation = $widget->entity->child;
 ?>
 <div class="panel panel-default widget-preview direct-chat direct-chat-primary" id="dashboard-widget-{{ $widget->id }}">
-    <div class="panel-heading @if ($conversation->image) panel-heading-entity" style="background-image: url({{ $conversation->getImageUrl() }}) @endif">
+    <div class="panel-heading @if ($widget->conf('entity-header') && $campaign->boosted() && $widget->entity->header_image) panel-heading-entity" style="background-image: url({{ $widget->entity->getImageUrl(0, 0, 'header_image') }}) @elseif ($conversation->image) panel-heading-entity" style="background-image: url({{ $conversation->getImageUrl() }}) @endif">
         <h3 class="panel-title">
             <a href="{{ $conversation->getLink() }}">
                 @if ($conversation->is_private)

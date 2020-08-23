@@ -1,9 +1,13 @@
 <?php
-/** @var \App\Models\Character $model */
+/**
+ * @var \App\Models\Character $model
+ * @var \App\Models\Campaign $campaign
+ * @var \App\Models\CampaignDashboardWidget $widget
+ */
 $model = $widget->entity->child;
 ?>
 <div class="panel panel-default widget-preview" id="dashboard-widget-{{ $widget->id }}">
-    <div class="panel-heading @if ($model->image) panel-heading-entity" style="background-image: url({{ $model->getImageUrl() }}) @endif">
+    <div class="panel-heading @if ($widget->conf('entity-header') && $campaign->boosted() && $widget->entity->header_image) panel-heading-entity" style="background-image: url({{ $widget->entity->getImageUrl(0, 0, 'header_image') }}) @elseif($model->image) panel-heading-entity" style="background-image: url({{ $model->getImageUrl() }}) @endif">
         <h3 class="panel-title">
             <a href="{{ $model->getLink() }}">
                 @if ($model->is_private)
