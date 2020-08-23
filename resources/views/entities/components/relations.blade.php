@@ -13,7 +13,7 @@ $previousRelation = null;
             <span class="pull-right">
                 {!! $relation->target->tooltipedLink() !!}
             </span>
-            <br />
+            <br class="clear" />
         </li>
         @else
         <li class="list-group-item">
@@ -23,7 +23,7 @@ $previousRelation = null;
             <span class="pull-right">
                 {!! $relation->target->tooltipedLink() !!}
             </span>
-            <br />
+            <br class="clear" />
 @php $previousRelation = $relation->relation @endphp
         @endif
     @endforeach

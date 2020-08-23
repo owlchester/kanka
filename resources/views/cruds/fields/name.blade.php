@@ -1,5 +1,5 @@
 <div class="form-group required">
-    <label>{{ trans($trans . '.fields.name') }}</label>
+    <label>{{ __($trans . '.fields.name') }}</label>
     {!! Form::text(
         'name',
         FormCopy::field('name')->string(),
@@ -9,7 +9,7 @@
             'maxlength' => 191,
             'data-live' => route('search.live'),
             'data-type' => \Illuminate\Support\Str::singular($trans),
-            'data-id' => (isset($model) ? $model->entity->id : null)
+            'data-id' => (isset($model) && !empty($model->id) ? $model->entity->id : null)
         ]
     ) !!}
 
