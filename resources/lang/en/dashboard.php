@@ -52,9 +52,9 @@ return [
         'widgets'   => [
             'calendar'  => 'Calendar',
             'preview'   => 'Entity Preview',
-            'recent'    => 'Recent',
-            'unmentioned' => 'Unmentioned',
-            'random' => 'Random',
+            'recent'    => 'Recent Entity',
+            'unmentioned' => 'Unmentioned entities',
+            'random' => 'Random Entity',
         ],
     ],
     'title'             => 'Dashboard',
