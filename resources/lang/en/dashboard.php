@@ -51,8 +51,8 @@ return [
         'title'     => 'Campaign Dashboard Setup',
         'widgets'   => [
             'calendar'  => 'Calendar',
-            'preview'   => 'Entity Preview',
-            'recent'    => 'Recent Entity',
+            'preview'   => 'Entity preview',
+            'recent'    => 'Recently modified',
             'unmentioned' => 'Unmentioned entities',
             'random' => 'Random Entity',
         ],
