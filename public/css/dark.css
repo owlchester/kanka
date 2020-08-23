@@ -561,6 +561,10 @@ body {
   color: #fff !important;
 }
 
+.alert a {
+  color: #fff !important;
+}
+
 .mce-edit-area,
 .mce-content-body {
   -webkit-filter: invert(90%) !important;
