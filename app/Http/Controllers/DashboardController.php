@@ -59,6 +59,39 @@ class DashboardController extends Controller
             ->inTags($widget->tags->pluck('id')->toArray())
             ->type($widget->conf('entity'))
             ->acl()
+            ->with(['tags', 'updater'])
+            ->take(10)
+            ->offset($offset)
+            ->get();
+
+        return view('dashboard.widgets._recent_list')
+            ->with('entities', $entities)
+            ->with('widget', $widget)
+            ->with('campaign', $campaign)
+            ->with('offset', $offset);
+    }
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function unmentioned($id)
+    {
+        $widget = CampaignDashboardWidget::findOrFail($id);
+        $campaign = CampaignLocalization::getCampaign();
+        if ($widget->widget != CampaignDashboardWidget::WIDGET_UNMENTIONED) {
+            return response()->json([
+                'success' => true
+            ]);
+        }
+
+        $offset = request()->get('offset', 0);
+
+        $entities = \App\Models\Entity::unmentioned()
+            ->inTags($widget->tags->pluck('id')->toArray())
+            ->type($widget->conf('entity'))
+            ->acl()
+            ->with(['updater'])
             ->take(10)
             ->offset($offset)
             ->get();

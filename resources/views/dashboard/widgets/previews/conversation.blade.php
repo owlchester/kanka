@@ -1,12 +1,13 @@
 <?php
 /**
+ * @var \App\Models\Entity $entity
  * @var \App\Models\Conversation $conversation
  * @var \App\Models\ConversationMessage $message
  */
-$conversation = $widget->entity->child;
+$conversation = $entity->child;
 ?>
 <div class="panel panel-default widget-preview direct-chat direct-chat-primary" id="dashboard-widget-{{ $widget->id }}">
-    <div class="panel-heading @if ($widget->conf('entity-header') && $campaign->boosted() && $widget->entity->header_image) panel-heading-entity" style="background-image: url({{ $widget->entity->getImageUrl(0, 0, 'header_image') }}) @elseif ($conversation->image) panel-heading-entity" style="background-image: url({{ $conversation->getImageUrl() }}) @endif">
+    <div class="panel-heading @if ($widget->conf('entity-header') && $campaign->boosted() && $entity->header_image) panel-heading-entity" style="background-image: url({{ $entity->getImageUrl(0, 0, 'header_image') }}) @elseif ($conversation->image) panel-heading-entity" style="background-image: url({{ $conversation->getImageUrl() }}) @endif">
         <h3 class="panel-title">
             <a href="{{ $conversation->getLink() }}">
                 @if ($conversation->is_private)
@@ -17,7 +18,7 @@ $conversation = $widget->entity->child;
 
                     <span class="label label-default"><i class="fa fa-users"></i> {{ $conversation->participants()->count() }}</span>
                 </span>
-                {{ $widget->entity->name }}
+                {{ $entity->name }}
 
             </a>
         </h3>

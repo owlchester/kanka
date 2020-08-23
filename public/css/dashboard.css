@@ -268,16 +268,22 @@
   padding: 0;
 }
 
-.widget-recent .panel-body {
+.widget-recent .panel-body,
+.widget-unmentioned .panel-body,
+.widget-random .panel-body {
   padding: 5px;
 }
 
-.widget-recent .row {
+.widget-recent .row,
+.widget-unmentioned .row,
+.widget-random .row {
   margin: 4px 0;
   border-bottom: 1px solid #ccc;
 }
 
-.widget-recent .entity-image {
+.widget-recent .entity-image,
+.widget-unmentioned .entity-image,
+.widget-random .entity-image {
   display: inline-block;
   margin-right: 8px;
   width: 35px;
@@ -285,16 +291,22 @@
   vertical-align: middle;
 }
 
-.widget-recent .elapsed {
+.widget-recent .elapsed,
+.widget-unmentioned .elapsed,
+.widget-random .elapsed {
   font-size: 11px;
   color: #888;
 }
 
-.widget-recent .entity {
+.widget-recent .entity,
+.widget-unmentioned .entity,
+.widget-random .entity {
   padding: 5px;
 }
 
-.widget-recent .entity .entity-image {
+.widget-recent .entity .entity-image,
+.widget-unmentioned .entity .entity-image,
+.widget-random .entity .entity-image {
   display: inline-block;
   margin-right: 8px;
   width: 25px;
@@ -302,7 +314,9 @@
   vertical-align: middle;
 }
 
-.widget-recent .entity .name {
+.widget-recent .entity .name,
+.widget-unmentioned .entity .name,
+.widget-random .entity .name {
   padding-top: 2px;
 }
 

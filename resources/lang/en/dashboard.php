@@ -53,6 +53,8 @@ return [
             'calendar'  => 'Calendar',
             'preview'   => 'Entity Preview',
             'recent'    => 'Recent',
+            'unmentioned' => 'Unmentioned',
+            'random' => 'Random',
         ],
     ],
     'title'             => 'Dashboard',
@@ -85,6 +87,9 @@ return [
             ],
             'singular'  => 'Singular',
             'title'     => 'Recently modified',
+        ],
+        'unmentioned' => [
+            'title' => 'Unmentioned entities',
         ],
         'update'    => [
             'success'   => 'Widget modified.',

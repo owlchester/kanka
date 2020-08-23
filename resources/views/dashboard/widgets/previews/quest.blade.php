@@ -1,6 +1,5 @@
 <?php
 /** @var \App\Models\Quest $model */
-$model = $widget->entity->child;
 ?>
 <div class="panel panel-default widget-preview" id="dashboard-widget-{{ $widget->id }}">
     <div class="panel-heading @if ($widget->conf('entity-header') && $campaign->boosted() && $widget->entity->header_image) panel-heading-entity" style="background-image: url({{ $widget->entity->getImageUrl(0, 0, 'header_image') }}) @elseif ($model->image) panel-heading-entity" style="background-image: url({{ $model->getImageUrl() }}) @endif">

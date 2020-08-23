@@ -36,6 +36,12 @@
                                 </div>
                             @endif
 
+                            @if ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_UNMENTIONED)
+                                @if (!empty($widget->conf('entity')))
+                                <h5>{{ __('entities.' . $widget->conf('entity')) }}</h5>
+                                @endif
+                            @endif
+
                             @if ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_RECENT)
                                 @if (!empty($widget->conf('entity')))
                                 <h5>{{ __('entities.' . $widget->conf('entity')) }}</h5>
@@ -87,6 +93,12 @@
                         </div>
                         <div class="btn btn-block btn-default btn-lg" id="btn-widget-recent" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'recent']) }}">
                             <i class="fa fa-history"></i> {{ __('dashboard.setup.widgets.recent') }}
+                        </div>
+                        <div class="btn btn-block btn-default btn-lg" id="btn-widget-unmentioned" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'unmentioned']) }}">
+                            <i class="fa fa-question"></i> {{ __('dashboard.setup.widgets.unmentioned') }}
+                        </div>
+                        <div class="btn btn-block btn-default btn-lg" id="btn-widget-random" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'random']) }}">
+                            <i class="fas fa-dice-d20"></i> {{ __('dashboard.setup.widgets.random') }}
                         </div>
                     </div>
 
