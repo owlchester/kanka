@@ -9,7 +9,7 @@
             'maxlength' => 191,
             'data-live' => route('search.live'),
             'data-type' => \Illuminate\Support\Str::singular($trans),
-            'data-id' => (isset($model) && !empty($model->id) ? $model->entity->id : null)
+            'data-id' => (isset($model) && !empty($model->id) && !empty($model->entity) ? $model->entity->id : null)
         ]
     ) !!}
 
