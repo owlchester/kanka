@@ -43,6 +43,7 @@ return array(
         'de',
         'pt-br',
         'es',
+        'ca',
         'it',
         'hu',
         'nl',

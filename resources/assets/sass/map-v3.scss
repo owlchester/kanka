@@ -116,6 +116,22 @@
   }
 }
 
+
+.main-sidebar {
+  .map-legend {
+    ul {
+      li {
+        margin: 0;
+        padding: 0;
+        height: auto;
+        a {
+          text-transform: none;
+        }
+      }
+    }
+  }
+}
+
 .marker-close {
   &:hover {
     cursor: pointer;
@@ -130,6 +146,9 @@
     .content-wrapper, .main-footer {
       margin-left: 430px;
     }
+  }
+  .skin-black .main-header .navbar-static-top {
+    margin-left: 430px;
   }
 }
 

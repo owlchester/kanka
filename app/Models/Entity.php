@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use App\Facades\EntityCache;
 use App\Facades\Img;
 use App\Facades\Mentions;
@@ -197,6 +198,27 @@ class Entity extends Model
         $text = $this->child->tooltipAddTags($text, $this->tags);
 
         return "<div class='entity-header'>$avatar<div class='entity-names'>" . $name . $subtitle . '</div></div>' . $text;
+    }
+
+    /**
+     * Preview of the entity with mapped mentions. For map markers
+     * @return string
+     */
+    public function mappedPreview(): string
+    {
+        if (empty($this->child)) {
+            return '';
+        }
+        $campaign = CampaignLocalization::getCampaign();
+        if ($campaign->boosted()) {
+            $boostedTooltip = strip_tags($this->tooltip);
+            if (!empty(trim($boostedTooltip))) {
+                $text = Mentions::mapEntity($this);
+                return (string) strip_tags($text);
+            }
+        }
+        $text = Str::limit($this->child->entry(), 500);
+        return (string) strip_tags($text);
     }
 
 
