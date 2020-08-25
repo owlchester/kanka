@@ -18,6 +18,9 @@ $entity = \App\Models\Entity::
         ->first();
 
 $model = $entity->child;
+if (empty($model)) {
+    return;
+}
 
 $specificPreview = 'dashboard.widgets.previews.' . $entity->type;
 ?>
