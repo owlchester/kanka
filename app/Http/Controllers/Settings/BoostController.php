@@ -51,13 +51,11 @@ class BoostController extends Controller
             }
         }
 
-        $boosts = Auth::user()->boosts()->with('campaign')->get();
+        $boosts = Auth::user()->boosts()->with('campaign')->groupBy('campaign_id')->get();
 
         return view('settings.boost', compact(
             'campaign',
             'boosts'
         ));
     }
-
-
 }
