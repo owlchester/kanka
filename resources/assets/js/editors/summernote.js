@@ -162,17 +162,17 @@ function hintContent(item) {
         let mention = '[' + item.model_type + ':' + item.id + ']';
         if (summernoteConfig.data('advanced-mention')) {
             return mention;
-        } else {
-            if (advancedRequest) {
-                return mention;
-            }
-            return $('<a>', {
-                text: item.fullname,
-                href: '#',
-                class: 'mention',
-                'data-mention': mention,
-            })[0];
         }
+        if (advancedRequest) {
+            return mention;
+        }
+        return $('<a>', {
+            text: item.fullname,
+            href: '#',
+            class: 'mention',
+            'data-mention': mention,
+        })[0];
+
     }
     else if (item.url) {
         if (item.tooltip) {
@@ -199,6 +199,9 @@ function hintContent(item) {
  */
 function attributeContent(item)
 {
+    if (summernoteConfig.data('advanced-mention')) {
+        return '{attribute:' + item.id + '}';
+    }
     return $('<a>', {
         href: '#',
         class: 'attribute',

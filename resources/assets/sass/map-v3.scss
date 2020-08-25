@@ -147,8 +147,11 @@
       margin-left: 430px;
     }
   }
-  .skin-black .main-header .navbar-static-top {
+  #map-body.skin-black .main-header .navbar-static-top {
     margin-left: 430px;
+  }
+  #map-body.skin-black.sidebar-collapse .main-header .navbar-static-top {
+    margin-left: 0;
   }
 }
 
