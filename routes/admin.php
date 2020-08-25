@@ -18,6 +18,7 @@ Route::namespace('Admin')->name('admin.')->middleware(['moderator'])->prefix('ad
         'patrons' => 'PatronController',
         'campaigns' => 'CampaignController',
         'community-votes' => 'CommunityVoteController',
+        'community-events' => 'CommunityEventController',
         'app-releases' => 'ReleaseController'
     ]);
 

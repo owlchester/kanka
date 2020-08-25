@@ -19,4 +19,4 @@
     </div>
 @endsection
 
-@include('editors.editor')
+@include('editors.summernote')
