@@ -26,6 +26,7 @@ use Illuminate\Support\Str;
  * @property Carbon $end_at
  *
  * @property CommunityEventEntry[] $entries
+ * @property CommunityEventEntry[] $rankedResults
  */
 class CommunityEvent extends Model
 {
@@ -55,11 +56,11 @@ class CommunityEvent extends Model
     public function status(): string
     {
         if ($this->start_at->isFuture()) {
-            return __('community-events.status.upcoming');
+            return __('admin/community-events.status.upcoming');
         } elseif ($this->end_at->isPast()) {
-            return __('community-events.status.finished');
+            return __('admin/community-events.status.finished');
         }
-        return __('community-events.status.ongoing');
+        return __('admin/community-events.status.ongoing');
     }
 
     /**
@@ -112,7 +113,7 @@ class CommunityEvent extends Model
 
     public function rankedResults()
     {
-        return $this->entries()->whereNotNull('rank')->orderBy('rank');
+        return $this->entries()->with('user')->whereNotNull('rank')->orderBy('rank');
     }
 
     public function hasRankedResults(): bool

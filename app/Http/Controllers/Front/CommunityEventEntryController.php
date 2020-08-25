@@ -21,14 +21,26 @@ class CommunityEventEntryController extends Controller
         $this->service = $entityService;
     }
 
+    /**
+     * @param StoreCommunityEventEntry $request
+     * @param CommunityEvent $communityEvent
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(StoreCommunityEventEntry $request, CommunityEvent $communityEvent)
     {
         $data = $request->only(['link', 'comment']);
-        $entry = CommunityEventEntry::create($data);
+        $data['community_event_id'] = $communityEvent->id;
+        try {
+            $entry = CommunityEventEntry::create($data);
 
-        return redirect()
-            ->route('community-events.show', $communityEvent)
-            ->with('success', __('front/community-events.participate.success.submit'));
+            return redirect()
+                ->route('community-events.show', [$communityEvent, '#event-form'])
+                ->with('success', __('front/community-events.participate.success.submit'));
+        } catch (\Exception $e) {
+            // Tried sending a second submission?
+            return redirect()
+                ->route('community-events.show', [$communityEvent, '#event-form']);
+        }
     }
 
 
@@ -39,9 +51,20 @@ class CommunityEventEntryController extends Controller
      * @param  \App\Models\CommunityEventEntry  $communityEventEntry
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreCommunityEventEntry $request, CommunityEventEntry $communityEventEntry)
+    public function update(StoreCommunityEventEntry $request, CommunityEvent $communityEvent, CommunityEventEntry $communityEventEntry)
     {
-        //
+        $data = $request->only(['link', 'comment']);
+        try {
+            $communityEventEntry->update($data);
+
+            return redirect()
+                ->route('community-events.show', [$communityEvent, '#event-form'])
+                ->with('success', __('front/community-events.participate.success.modified'));
+        } catch (\Exception $e) {
+            // Tried sending a second submission?
+            return redirect()
+                ->route('community-events.show', [$communityEvent, '#event-form']);
+        }
     }
 
     /**
@@ -50,9 +73,15 @@ class CommunityEventEntryController extends Controller
      * @param  \App\Models\Release  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Release $post)
+    public function destroy(CommunityEvent $communityEvent, CommunityEventEntry $communityEventEntry)
     {
-        //
+        $this->authorize('delete', $communityEventEntry);
+
+        $communityEventEntry->delete();
+
+        return redirect()
+            ->route('community-events.show', [$communityEvent, '#event-form'])
+            ->with('success', __('front/community-events.participate.success.removed'));
     }
 
 }

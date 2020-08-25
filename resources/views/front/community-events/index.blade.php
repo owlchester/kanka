@@ -30,7 +30,7 @@
 
     <section class="community-events">
         <div class="container">
-@if (!empty($ongoing))
+@if (!$ongoing->isEmpty())
                 <h4>{{ __('front/community-events.index.ongoing') }}</h4>
                 @foreach($ongoing as $model)
                     @include('front.community-events._event', ['model' => $model, 'ongoing' => true])

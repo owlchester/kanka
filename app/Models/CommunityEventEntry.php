@@ -18,14 +18,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $vote
  *
  * @property CommunityEvent $event
- * @property Entity $entity
+ * @property User $created_by
  */
 class CommunityEventEntry extends Model
 {
     public $fillable = [
         'community_event_id',
-        'entry_id',
-        'comment'
+        'comment',
+        'link',
     ];
 
     /**
@@ -33,7 +33,7 @@ class CommunityEventEntry extends Model
      */
     public function event()
     {
-        return $this->belongsTo(CommunityEvent::class);
+        return $this->belongsTo(CommunityEvent::class, 'community_event_id');
     }
 
     /**
@@ -44,11 +44,11 @@ class CommunityEventEntry extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function entity()
-    {
-        return $this->belongsTo(Entity::class);
-    }
+//    /**
+//     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+//     */
+//    public function entity()
+//    {
+//        return $this->belongsTo(Entity::class);
+//    }
 }

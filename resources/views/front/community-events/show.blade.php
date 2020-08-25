@@ -42,58 +42,25 @@
                     <div class="card-text">
                             {!! $model->entry !!}
 
-                        <p class="text-muted mt-3">
+                        <p class="text-muted mt-3" id="event-form">
                             {!! trans_choice('front/community-events.show.participants', $model->entries->count(), ['number' => $model->entries->count()]) !!}
                         </p>
-
-                        @if($model->hasRankedResults())
-                            Winners
-
-                            @foreach ($model->rankedResults() as $entry)
-                                Winner {{ $entry->id }}
-                            @endforeach
-                        @endif
-
-
                     </div>
                 </div>
             </div>
 
 
-
-@if(auth()->check() && $model->isOngoing())
             <div class="card mb-4">
                 <div class="card-body">
-                    @include('partials.errors')
-                    <h2 class="cart-title mb 1">
-                        {{ __('front/community-events.participate.title') }}
-                    </h2>
-                    @if($participation = $model->userEntry(auth()->check()))
-
-                        <input type="submit" class="btn btn-primary" value="{{ __('front/community-events.actions.update') }}" />
-                    @else
-                        <p class="text-muted"> {{ __('front/community-events.participate.description') }}</p>
-
-                        {!! Form::open(['route' => ['community-events.community-event-entries.store', $model], 'method' => 'POST']) !!}
-
-                        <div class="col-md-6 mb-3">
-                            <label for="firstName">{{ __('front/community-events.fields.entity_link') }}</label>
-                            {!! Form::text('link', null, ['class' => 'form-control', 'placeholder' => __('front/community-events.placeholders.entity_link'), 'required']) !!}
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <label for="firstName">{{ __('front/community-events.fields.entity_link') }}</label>
-                            {!! Form::textarea('comment', null, ['class' => 'form-control', 'placeholder' => __('front/community-events.placeholders.comment'), 'rows' => 3]) !!}
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <input type="submit" class="btn btn-primary" value="{{ __('front/community-events.actions.send') }}" />
-                        </div>
-                        {!! Form::close() !!}
-                    @endif
+                @if($model->isOngoing())
+                    @include('front.community-events._participate')
+                @elseif($model->hasRankedResults())
+                    @include('front.community-events._results')
+                @else
+                    <p class="text-muted">{{ __('front/community-events.results.waiting_results') }}</p>
+                @endif
                 </div>
             </div>
-@endif
 
             <div class="mb-4">
                 <a href="{{ route('community-events.index') }}">

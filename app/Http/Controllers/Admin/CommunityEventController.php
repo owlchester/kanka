@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\StoreCommunityEvent;
 use App\Models\CommunityEvent;
+use App\Models\CommunityEventEntry;
 use Illuminate\Http\Request;
 
 class CommunityEventController extends AdminCrudController
@@ -66,6 +67,16 @@ class CommunityEventController extends AdminCrudController
     }
 
 
+
+    /**
+     * @param CommunityEvent $communityEvent
+     * @return \Illuminate\View\View
+     */
+    public function show(CommunityEvent $communityEvent)
+    {
+        return view('admin.community-events.show', ['event' => $communityEvent, 'entries' => $communityEvent->entries()->orderBy('rank', 'DESC')->with('user', 'user.apps')->paginate(50)]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -114,5 +125,15 @@ class CommunityEventController extends AdminCrudController
         return redirect()->route($this->route . '.index')
             ->with('success', trans($this->trans . '.destroy.success', ['name' => $communityEvent->name]));
 
+    }
+
+    public function rank(Request $request, CommunityEventEntry $communityEventEntry)
+    {
+        //$communityEventEntry = CommunityEventEntry::firstOrFail($request->get('entry'));
+        $communityEventEntry->rank = $request->post('rank');
+        $communityEventEntry->save();
+
+        return redirect()->route($this->route . '.show', $communityEventEntry->community_event_id)
+            ->with('success', 'Rank set.');
     }
 }

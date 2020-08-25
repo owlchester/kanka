@@ -20,7 +20,7 @@
 
         <div  class="mt-2">
             <a href="{{ route('community-events.show', $model->getSlug()) }}" class="btn btn-primary">
-                {{ __('front/community-events.actions.show') }}
+                {{ __('front/community-events.actions.show_' . ($ongoing ? 'ongoing' : 'past')) }}
             </a>
         </div>
     </div>
