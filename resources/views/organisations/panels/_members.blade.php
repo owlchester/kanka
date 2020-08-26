@@ -9,6 +9,8 @@ if (!request()->has('all_members')) {
     $filters['organisation_id'] = $model->id;
     $allMembers = false;
 }
+$datagridSorter = new \App\Datagrids\Sorters\OrganisationCharacterSorter();
+$datagridSorter->request(request()->all());
 ?>
 <div class="box box-solid">
     <div class="box-header with-border">
@@ -65,7 +67,7 @@ if (!request()->has('all_members')) {
                     'character', 'character.race', 'character.location', 'character.family', 'organisation',
                     'character.entity', 'character.race.entity', 'character.location.entity', 'organisation.entity'
                 ])
-                ->simpleSort(\App\Datagrids\Sorters\OrganisationCharacterSorter::class)
+                ->simpleSort($datagridSorter)
                 ->paginate();?>
             @foreach ($r as $relation)
                 <tr>
