@@ -86,6 +86,7 @@ return [
                 'entity-header' => 'If your entity has an entity header (boosted campaign feature), set this widget to use that image instead of the entity\'s image.',
             ],
             'singular'  => 'Singular',
+            'tags'      => 'Filter the list of recently modified entities on specified tags.',
             'title'     => 'Recently modified',
         ],
         'unmentioned' => [
