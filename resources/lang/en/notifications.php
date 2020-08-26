@@ -5,6 +5,7 @@ return [
         'boost'         => [
             'add'       => 'Campaign :campaign is being boosted by :user.',
             'remove'    => ':user is no longer boosting the :campaign campaign.',
+            'superboost' => 'Campaign :campaign is being superboosted by :user.',
         ],
         'export'        => 'An export of a campaign is available. You can download it by clicking <a href=":link">here</a>. The link is available for :time minutes.',
         'export_error'  => 'An error occurred while exporting your campaign. Please contact us if this problem persists.',
