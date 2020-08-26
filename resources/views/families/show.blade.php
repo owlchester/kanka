@@ -23,6 +23,8 @@
             </div>
         </div>
 
+        @include('families.panels.members')
+
         @include('cruds.boxes.history')
     </div>
 </div>

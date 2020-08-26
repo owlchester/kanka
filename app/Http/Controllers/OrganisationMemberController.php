@@ -16,7 +16,7 @@ class OrganisationMemberController extends Controller
      * @var string
      */
     protected $view = 'organisations.members';
-    
+
     /**
      * Create a new controller instance.
      *
@@ -55,7 +55,7 @@ class OrganisationMemberController extends Controller
         $this->authorize('member', $organisation);
 
         $relation = OrganisationMember::create($request->all());
-        return redirect()->route('organisations.members', $organisation->id)
+        return redirect()->route('organisations.show', $organisation->id)
             ->with('success', trans($this->view . '.create.success'));
     }
 
@@ -108,7 +108,7 @@ class OrganisationMemberController extends Controller
         $this->authorize('member', $organisation);
 
         $organisationMember->update($request->all());
-        return redirect()->route('organisations.members', $organisation->id)
+        return redirect()->route('organisations.show', $organisation->id)
             ->with('success', trans($this->view . '.edit.success'));
     }
 
@@ -123,7 +123,7 @@ class OrganisationMemberController extends Controller
         $this->authorize('member', $organisation);
 
         $organisationMember->delete();
-        return redirect()->route('organisations.members', $organisationMember->organisation_id)
+        return redirect()->route('organisations.show', $organisationMember->organisation_id)
             ->with('success', trans($this->view . '.destroy.success'));
     }
 }
