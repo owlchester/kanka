@@ -674,9 +674,9 @@ function registerDatagridSorter() {
     $('#datagrid-simple-sorter').change(function () {
         var options = '';
         if (this.value) {
-            options = '?' + this.name + '=' + this.value;
+            options = this.name + '=' + this.value;
         }
-        window.location = $(this).data('url') + options;
+        window.location = $(this).data('url') + ($(this).data('url').includes('?') ? '&' : '?') + options;
     });
 }
 
