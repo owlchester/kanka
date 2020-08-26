@@ -135,10 +135,7 @@ return [
 
     'ui'                 => [
         'fav'            => '/favicon.ico', // e.g.: /fav.png
-        'theme'          => 'light',
-        'code_theme'     => 'dark',
-        'back_to_top'    => true,
-        'show_side_bar'  => true,
+        'theme'          => 'dark',
         'fa_v4_shims'    => true, // Add FontAwesome v4 shims prevent BC break
         'colors'         => [
             'primary'    => '#787AF6',

@@ -202,14 +202,6 @@ class EntityObserver
      */
     public function updated(Entity $entity)
     {
-        // Creation log
-        $log = new EntityLog();
-        $log->entity_id = $entity->id;
-        $log->created_by = auth()->user()->id;
-        $log->impersonated_by = Identity::getImpersonatorId();
-        $log->action = EntityLog::ACTION_UPDATE;
-        $log->save();
-
         //EntityCache::clearEntity($entity->id);
 
         // Queue job when an entity was updated

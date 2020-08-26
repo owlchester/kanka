@@ -25,12 +25,13 @@
                     <i class="fa fa-spinner fa-spin fa-4x"></i>
                 </div>
                 <div class="pagination-ajax-content">
-                    <table class="table table-hover">
+                    <table class="table table-hover" style="word-break: break-all;">
                         <thead>
                         <tr>
                             <th>{{ __('entities/logs.fields.action') }}</th>
                             <th>{{ __('campaigns.members.fields.name') }}</th>
                             <th>{{ __('entities/logs.fields.date') }}</th>
+                            @if ($campaign->boosted(true))<th></th>@endif
                         </tr>
                         </thead>
                         <tbody>
@@ -52,7 +53,29 @@
                                 <td>
                                     {{ $log->created_at->diffForHumans() }}
                                 </td>
+                                @if ($campaign->boosted(true))
+                                    <td>
+                                        @if(!empty($log->changes))
+                                            <a href="#log-{{ $log->id }}" data-toggle="collapse">
+                                                <i class="far fa-eye"></i> <span class="hidden-xs">{{ __('crud.view') }}</span>
+                                            </a>
+                                        @endif
+                                    </td>
+                                @endif
                             </tr>
+
+                            @if ($campaign->boosted(true) && !empty($log->changes))
+                            <tr id="log-{{ $log->id }}" class="collapse">
+                                <td colspan="4">
+                                    <dl class="dl-horizontal">
+                                        @foreach ($log->changes as $attribute => $value)
+                                            <dt>{{ $log->attributeKey($transKey, $attribute) }}</dt>
+                                            <dd class="text-break">{{ $value }}</dd>
+                                        @endforeach
+                                    </dl>
+                                </td>
+                            </tr>
+                            @endif
                         @endforeach
                         </tbody>
                     </table>

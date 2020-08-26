@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 /**
  * Class EntityMention
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $created_by
  * @property integer $impersonated_by
  * @property integer $action
+ * @property string $changes
  * @property Entity $entity
  * @property User $user
  * @property User $impersonator
@@ -31,6 +33,10 @@ class EntityLog extends Model
         'impersonated_by',
         'action',
         'campaign_id',
+    ];
+
+    public $casts = [
+        'changes' => 'Array'
     ];
 
     /**
@@ -97,5 +103,16 @@ class EntityLog extends Model
     public function scopeAction($query, $action)
     {
         return $query->where(['action' => $action]);
+    }
+
+    public function attributeKey(string $transKey, string $attribute): string
+    {
+        $crudFields = array_keys(__('crud.fields'));
+        if (in_array($attribute, $crudFields)) {
+            return __('crud.fields.' . $attribute);
+        }
+        $name = Str::beforeLast($attribute, '_id');
+
+        return __($transKey . '.fields.' . $name);
     }
 }
