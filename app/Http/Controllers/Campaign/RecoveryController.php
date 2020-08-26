@@ -29,6 +29,7 @@ class RecoveryController extends Controller
         $this->authorize('recover', $campaign);
 
         $entities = Entity::onlyTrashed()
+            ->orderBy('deleted_at', 'DESC')
             ->paginate();
 
         return view('campaigns.recovery.index', compact('entities', 'campaign'));
