@@ -12,6 +12,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class SubscriptionFailedEmailJob implements ShouldQueue
@@ -26,7 +27,7 @@ class SubscriptionFailedEmailJob implements ShouldQueue
     /**
      *
      */
-    public $tries = 3;
+    public $tries = 1;
 
     /**
      * WelcomeEmailJob constructor.
@@ -42,6 +43,7 @@ class SubscriptionFailedEmailJob implements ShouldQueue
         // User deleted their account already? Sure thing
         $user = User::find($this->userId);
         if (empty($user)) {
+            Log::warning('Subscription Failed Email Job: unknown user id', ['userId' => $this->userId]);
             return;
         }
 

@@ -31,8 +31,12 @@ class WebhookController  extends CashierController
             /** @var SubscriptionService $service */
             $service = app()->make('App\Services\SubscriptionService');
 
-            //Log::info(Arr::get($payload, 'data.object.plan'));
-            $service->user($user)->webhook()->finish($payload['data']['object']['plan']['id']);
+            $data = $payload['data']['object'];
+            $status = Arr::get($data, 'status', false);
+            // If the status is past_due, we need to remind the user to update their credit card info
+            if ($status != 'past_due') {
+                $service->user($user)->webhook()->finish($payload['data']['object']['plan']['id']);
+            }
         }
         return $response;
     }
@@ -98,13 +102,22 @@ class WebhookController  extends CashierController
         return $this->successMethod();
     }
 
-
+    /**
+     * Charge Failed can happen on any medium (cc, sofort, giropay)
+     * @param array $payload
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
     public function handleChargeFailed(array $payload)
     {
-        /** @var SubscriptionService $subscription */
-        $subscription = app()->make(SubscriptionService::class);
-        $subscription
-            ->chargeFailed($payload);
+        if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
+            /** @var SubscriptionService $subscription */
+            $subscription = app()->make(SubscriptionService::class);
+            $subscription
+                ->user($user)
+                ->webhook()
+                ->chargeFailed($payload);
+        }
+        return $this->successMethod();
 
     }
 }
