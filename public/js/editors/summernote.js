@@ -253,7 +253,7 @@ function hintContent(item) {
       return mention;
     }
 
-    return $('<a>', {
+    return $('<a />', {
       text: item.fullname,
       href: '#',
       "class": 'mention',
@@ -261,7 +261,7 @@ function hintContent(item) {
     })[0];
   } else if (item.url) {
     if (item.tooltip) {
-      return $('<a>', {
+      return $('<a />', {
         text: item.fullname,
         href: item.url,
         title: item.tooltip.replace(/["]/g, '\''),
@@ -270,7 +270,7 @@ function hintContent(item) {
       })[0];
     }
 
-    return $('<a>', {
+    return $('<a />', {
       text: item.fullname,
       href: item.url
     })[0];
@@ -290,7 +290,7 @@ function attributeContent(item) {
     return '{attribute:' + item.id + '}';
   }
 
-  return $('<a>', {
+  return $('<a />', {
     href: '#',
     "class": 'attribute',
     text: '{' + item.name + '}',
