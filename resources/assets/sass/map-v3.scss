@@ -82,6 +82,9 @@
     max-height: calc(100vh - 60px);
   }
   .sidebar {
+    li {
+      height: unset;
+    }
     a {
       color: #fff;
     }
