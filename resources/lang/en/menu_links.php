@@ -2,15 +2,15 @@
 
 return [
     'create'        => [
-        'success'       => 'Quick Link \':name\' created.',
-        'title'         => 'New Quick Link',
+        'success'   => 'Quick Link \':name\' created.',
+        'title'     => 'New Quick Link',
     ],
     'destroy'       => [
         'success'   => 'Menu Quick \':name\' removed.',
     ],
     'edit'          => [
-        'success'       => 'Quick Link \':name\' updated.',
-        'title'         => 'Quick Link :name',
+        'success'   => 'Quick Link \':name\' updated.',
+        'title'     => 'Quick Link :name',
     ],
     'fields'        => [
         'entity'    => 'Entity',
@@ -27,8 +27,8 @@ return [
         'type'      => 'Set up this quick link to go directly to a list of entities. To filter the results, copy parts of the url on the filtered entity list after the :? sign into the :filter field.',
     ],
     'index'         => [
-        'add'           => 'New Quick Link',
-        'title'         => 'Quick Links',
+        'add'   => 'New Quick Link',
+        'title' => 'Quick Links',
     ],
     'placeholders'  => [
         'entity'    => 'Choose an entity',
@@ -38,9 +38,9 @@ return [
         'tab'       => 'entry, relations, notes',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'information'   => 'Information',
         ],
-        'title'         => 'Quick Link :name',
+        'title' => 'Quick Link :name',
     ],
 ];

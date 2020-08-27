@@ -1,17 +1,25 @@
 <?php
 
 return [
-    'age'       => [
+    'age'           => [
         'description'   => 'Il est possible de lier un personnage à un ou plusieurs calendriers de la campagne en allant sur la page Rappels du personnage. Sur cette page, ajouter un nouveau rappel et sélectionner la valeur Naissance ou Mort du champs type d\'événement. Si la naissance et la mort sont indiquées, l\'age à la mort sera affiché. Si seulement la mort est indiquée, le nombre d\'année depuis laquelle le personnage est décédé sera affiché.',
         'title'         => 'Age et mort d\'un personnage',
     ],
-    'dice'      => [
+    'attributes'    => [
+        'con'           => 'Con',
+        'description'   => 'Les attributs représentent des valeurs de l\'entité qui ne sont pas de longs texts. Il est possible de référencer d\'autres entités dans les attributs avec les mentions avancées :mention. Il est aussi possible de référencer d\'autres attributs de cette entité avec la syntaxe :attribute.',
+        'level'         => 'Niveau',
+        'link'          => 'Options pour les attributs',
+        'math'          => 'Il est aussi possible d\'être créatif avec des opérations mathématiques. Par example, :example multipliera le :level avec le :con de l\'entité. Pour arrondir les valeurs, utiliser :floor ou :ceil.',
+        'title'         => 'Attributs',
+    ],
+    'dice'          => [
         'description'               => 'Example de jet de dés: "d20", "4d4+4", "d%" pour un pourcent et "df" pour un jet Fudge.',
         'description_attributes'    => 'Il est aussi possible d\'accéder aux paramètres d\'un personnage en utilisant la syntax {character.nom_d_attribut}. Par example, {character.niveau}d6+{character.force}.',
         'more'                      => 'D\'autres options sont expliquées sur le site du plugin.',
         'title'                     => 'Jets de dés',
     ],
-    'filters'   => [
+    'filters'       => [
         'description'   => 'Utilises les filtres pour limiter le nombre de résultats. Les champs de texte supportent plusieurs fonctionalités pour plus de granularité.',
         'empty'         => 'Le code :tag: dans un champs cherche pour toutes les entités ou ce champs est vide.',
         'ending_with'   => 'En placant un :tag à la fin du text, seuls les résultats avec exactement ce term seront affichés.',
@@ -19,7 +27,8 @@ return [
         'starting_with' => 'En placant un :tag au début du text, seuls les résultats ne contenant pas ce text seront affichés.',
         'title'         => 'Comment utiliser les filtres',
     ],
-    'link'      => [
+    'link'          => [
+        'attributes'        => 'Pour référencer des attributs de cette entité, utiliser la touche :code. Ceci fonctionne seulement sur les attributs sauvegardés de l\'entité.',
         'auto_update'       => 'Les liens vers d\'autres entités seront automatiquement mis à jour lorsque le nom ou la description de l\'entitée cible est modifié.',
         'description'       => 'Un lien vers une entité peut être facilement inséré en utilisant \'@\' dans le text. \'#\' peut être utilisé pour avoir une liste de mois depuis les calendriers de la campagne.',
         'formatting'        => [
@@ -32,11 +41,11 @@ return [
         'months'            => 'Saisis :code pour avoid une liste de mois des calendriers de la campagne.',
         'title'             => 'Liens vers d\'autres éléments et raccourcis',
     ],
-    'map'       => [
+    'map'           => [
         'description'   => 'Uploader une carte à un lieu active le menu "Carte" sur un lieu, ainsi qu\'un lien vers la carte depuis la liste des lieux de la campagne. Les utilisateurs avec les droits de modification d\'une carte peuvent activer le mode \'Edition\' en visionnant la carte. Ceci permet d\'ajouter des Points sur la carte. Ceux-ci peuvent lier vers une entité existante ou être un text.',
         'private'       => 'Les membres du rôle Admin de la campagne peuvent rendre les cartes privées. Cela permet à un utilisateur de voir un lieu touot en guardant la carte secrète.',
         'title'         => 'Carte de lieux',
     ],
-    'public'    => 'Une vidéo sur Youtube explique comment fonctionne les campagnes publiques.',
-    'title'     => 'Aides',
+    'public'        => 'Une vidéo sur Youtube explique comment fonctionne les campagnes publiques.',
+    'title'         => 'Aides',
 ];

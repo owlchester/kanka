@@ -3,8 +3,9 @@
 return [
     'campaign'          => [
         'boost'         => [
-            'add'       => 'La campagne :campaign est à présent boostée par :user.',
-            'remove'    => ':user ne boost plus la campagne :campaign.',
+            'add'           => 'La campagne :campaign est à présent boostée par :user.',
+            'remove'        => ':user ne boost plus la campagne :campaign.',
+            'superboost'    => 'La campagne :campaign est superboostée par :user.',
         ],
         'export'        => 'Un export de la campagne est disponnible. <a href=":link">Télécharger</a>. Ce lien sera disponnible durant 30 minutes.',
         'export_error'  => 'Une erreure est survenue lors de l\'export de la campagne. Prière de nous contacter si ce problème persiste.',
@@ -28,7 +29,8 @@ return [
     'subscriptions'     => [
         'charge_fail'   => 'Une erreur est survenue lors du paiement. Kanka va ressayer encore une fois. Si rien ne change, prière de nous contacter.',
         'ended'         => 'Ta souscription a Kanka est terminée. Tes boosters de campagnes et des rôles Discord ont été retirés. Nous espérons te revoir bientôt!',
-        'failed'        => 'Ta souscription à Kanka a été annulée après trop d\'essais raté de débiter ta méthode de paiement. Va sur la page de ta souscription et mets à jour tes données de paiement.',
+        'failed'        => 'Problème lors du traitement de la méthode de paiement, prière de mettre les mettre à jour.',
+        'deleted'        => 'Ta souscription à Kanka a été annulée après trop d\'essais raté de débiter ta méthode de paiement. Va sur la page de ta souscription et mets à jour tes données de paiement.',
         'started'       => 'L\'abonnement à Kanka a commencé.',
     ],
 ];

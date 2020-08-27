@@ -50,16 +50,16 @@ return [
         ],
         'title'     => 'Campaign Dashboard Setup',
         'widgets'   => [
-            'calendar'  => 'Calendar',
-            'preview'   => 'Entity preview',
-            'recent'    => 'Recently modified',
-            'unmentioned' => 'Unmentioned entities',
-            'random' => 'Random Entity',
+            'calendar'      => 'Calendar',
+            'preview'       => 'Entity preview',
+            'random'        => 'Random Entity',
+            'recent'        => 'Recently modified',
+            'unmentioned'   => 'Unmentioned entities',
         ],
     ],
     'title'             => 'Dashboard',
     'widgets'           => [
-        'calendar'  => [
+        'calendar'      => [
             'actions'           => [
                 'next'      => 'Change date to next day',
                 'previous'  => 'Change date to previous day',
@@ -68,34 +68,34 @@ return [
             'previous_events'   => 'Previous',
             'upcoming_events'   => 'Upcoming',
         ],
-        'create'    => [
+        'create'        => [
             'success'   => 'Widget added to the dashboard.',
         ],
-        'delete'    => [
+        'delete'        => [
             'success'   => 'Widget removed from the dashboard.',
         ],
-        'fields'    => [
+        'fields'        => [
             'width' => 'Width',
         ],
-        'recent'    => [
-            'full'      => 'Full',
+        'recent'        => [
             'entity-header' => 'Use entity header as image',
-            'help'      => 'Only show the last updated entity, but show a whole preview of the entity',
-            'helpers'   => [
-                'full'  => 'Display the whole entity\'s entry by default instead of a preview.',
+            'full'          => 'Full',
+            'help'          => 'Only show the last updated entity, but show a whole preview of the entity',
+            'helpers'       => [
                 'entity-header' => 'If your entity has an entity header (boosted campaign feature), set this widget to use that image instead of the entity\'s image.',
+                'full'          => 'Display the whole entity\'s entry by default instead of a preview.',
             ],
-            'singular'  => 'Singular',
-            'tags'      => 'Filter the list of recently modified entities on specified tags.',
-            'title'     => 'Recently modified',
+            'singular'      => 'Singular',
+            'tags'          => 'Filter the list of recently modified entities on specified tags.',
+            'title'         => 'Recently modified',
         ],
-        'unmentioned' => [
+        'unmentioned'   => [
             'title' => 'Unmentioned entities',
         ],
-        'update'    => [
+        'update'        => [
             'success'   => 'Widget modified.',
         ],
-        'widths'    => [
+        'widths'        => [
             '0' => 'Auto',
             '12'=> 'Full',
             '4' => 'Small',

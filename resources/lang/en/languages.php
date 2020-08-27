@@ -2,8 +2,8 @@
 
 return [
     'codes' => [
-        'de'    => 'German',
         'ca'    => 'Catalan',
+        'de'    => 'German',
         'en'    => 'English',
         'en-US' => 'American English',
         'es'    => 'Spanish',
