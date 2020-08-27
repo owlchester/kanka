@@ -32,11 +32,11 @@
                         $.getJSON('{{ route('search.calendar-months') }}?q='+ query, function(data) {
                             process(data)
                         })
-                    } else if(delimiter === '{') {
+                    } @if(!empty($model) && $model->entity)else if(delimiter === '{') {
                         $.getJSON('{{ route('search.attributes', $model->entity) }}?q='+ query, function(data) {
                             process(data)
                         })
-                    } else {
+                    }@endif else {
                         if (delimiter === '[') {
                             advancedRequest = true;
                         } else {
