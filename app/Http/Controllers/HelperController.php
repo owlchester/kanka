@@ -44,6 +44,14 @@ class HelperController
         return $this->render('age');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function attributes()
+    {
+        return $this->render('attributes');
+    }
+
     protected function render(string $view)
     {
         $ajax = request()->ajax();

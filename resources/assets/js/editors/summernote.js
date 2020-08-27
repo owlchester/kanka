@@ -71,6 +71,18 @@ window.initSummernote = function() {
                     return hintContent(item);
                 }
             },
+            {
+                match: /\B{(\w*)$/,
+                search: function (keyword, callback) {
+                    return attributeSearch(keyword, callback);
+                },
+                template: function (item) {
+                    return attributeTemplate(item);
+                },
+                content: function (item) {
+                    return attributeContent(item);
+                }
+            },
         ],
     });
 }
@@ -104,12 +116,40 @@ function hintMonths(keyword, callback) {
 }
 
 /**
+ * Search for attributes
+ * @param keyword
+ * @param callback
+ */
+function attributeSearch(keyword, callback) {
+    if (!summernoteConfig.data('attributes')) {
+        console.log('entity not yet created');
+        return false;
+    }
+
+    $.ajax({
+        url: summernoteConfig.data('attributes') + '?q=' + keyword,
+        type: 'get',
+        dataType: 'json',
+        async: true
+    }).done(callback);
+}
+
+/**
  * Hint template (results displayed in dropdown)
  * @param item
  * @returns {string}
  */
 function hintTemplate(item) {
     return (item.image ? item.image : '') + item.fullname + (item.type ? ' (' + item.type + ')' : '');
+}
+
+/**
+ * Attribute template
+ * @param item
+ * @returns {string}
+ */
+function attributeTemplate(item) {
+    return item.name +  (item.value ? ' (' + item.value + ')' : '');
 }
 
 /**
@@ -122,21 +162,21 @@ function hintContent(item) {
         let mention = '[' + item.model_type + ':' + item.id + ']';
         if (summernoteConfig.data('advanced-mention')) {
             return mention;
-        } else {
-            if (advancedRequest) {
-                return mention;
-            }
-            return $('<a>', {
-                text: item.fullname,
-                href: '#',
-                class: 'mention',
-                'data-mention': mention,
-            })[0];
         }
+        if (advancedRequest) {
+            return mention;
+        }
+        return $('<a />', {
+            text: item.fullname,
+            href: '#',
+            class: 'mention',
+            'data-mention': mention,
+        })[0];
+
     }
     else if (item.url) {
         if (item.tooltip) {
-            return $('<a>', {
+            return $('<a />', {
                 text: item.fullname,
                 href: item.url,
                 title: item.tooltip.replace(/["]/g, '\''),
@@ -144,12 +184,30 @@ function hintContent(item) {
                 'data-html': 'true',
             })[0];
         }
-        return $('<a>', {
+        return $('<a />', {
             text: item.fullname,
             href: item.url,
         })[0];
     }
     return item.fullname;
+}
+
+/**
+ *
+ * @param item
+ * @returns {jQuery|HTMLElement}
+ */
+function attributeContent(item)
+{
+    if (summernoteConfig.data('advanced-mention')) {
+        return '{attribute:' + item.id + '}';
+    }
+    return $('<a />', {
+        href: '#',
+        class: 'attribute',
+        text: '{' + item.name + '}',
+        'data-attribute': '{attribute:' + item.id + '}'
+    })[0]
 }
 
 /**

@@ -1,14 +1,17 @@
 <?php
-/** @var \App\Models\MiscModel $model */
+/**
+ * @var \App\Models\CampaignDashboardWidget $widget
+ * @var \App\Models\MiscModel $model
+ */
 $model = $widget->entity->child;
 
 $specificPreview = 'dashboard.widgets.previews.' . $widget->entity->type;
 ?>
 @if(view()->exists($specificPreview))
-    @include($specificPreview)
+    @include($specificPreview, ['entity' => $widget->entity])
 @else
 <div class="panel panel-default widget-preview" id="dashboard-widget-{{ $widget->id }}">
-    <div class="panel-heading @if ($model->image) panel-heading-entity" style="background-image: url({{ $widget->entity->child->getImageUrl() }}) @endif">
+    <div class="panel-heading @if ($widget->conf('entity-header') && $campaign->boosted() && $widget->entity->header_image) panel-heading-entity" style="background-image: url({{ $widget->entity->getImageUrl(0, 0, 'header_image') }}) @elseif ($model->image) panel-heading-entity" style="background-image: url({{ $widget->entity->child->getImageUrl() }}) @endif">
         <h3 class="panel-title">
             <a href="{{ $widget->entity->url() }}">
                 @if ($model->is_private)

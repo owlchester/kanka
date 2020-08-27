@@ -994,7 +994,7 @@ hr {
 /** Summernote: hide file upload **/
 .note-group-select-from-files { display: none!important; }
 .note-editing-area {
-  .mention {
+  .mention, .attribute {
     background-color: #eee;
     padding: 3px 5px;
     border-radius: 5px;
@@ -1002,6 +1002,16 @@ hr {
     text-decoration: none;
   }
 }
+
+// Attributes in entities and text area
+.attribute, .note-editing-area > .attribute {
+  border-radius: 2px;
+  background-color: #ddd;
+  color: #333;
+  font-style: italic;
+  padding: 2px 3px;
+}
+
 
 // Other stylings
 @import "calendar";

@@ -13,6 +13,7 @@
                 'enableNew' => false
             ]
         ) !!}
+    <p class="help-block">{{ __('dashboard.widgets.recent.tags') }}</p>
 </div>
 
 <div class="form-group">

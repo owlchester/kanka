@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'helper'    => 'Ovaj entitet je označen na sljedećim mapama.',
-    'title'     => ':name točke na mapama',
+    'helper'    => 'Ovaj entitet je označen na sljedećim kartama.',
+    'title'     => ':name točke na kartama',
 ];

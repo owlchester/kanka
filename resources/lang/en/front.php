@@ -99,7 +99,7 @@ return [
             'title'         => 'Journals',
         ],
         'patreon'           => [
-            'api_calls'         => 'Increased API calls (90)',
+            'api_calls'         => 'Increased API calls (90 per minute)',
             'boosts'            => 'Campaign Boosters',
             'curation'          => 'Help curate the community vote items',
             'default_image'     => 'Custom default images for entities',

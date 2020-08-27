@@ -54,14 +54,15 @@ return [
         'boosts'            => [
             'beta'          => 'Beta pristup nekim novim značajkama 30 dana prije općeg izdanja.',
             'boosted'       => 'Pojačana kampanja',
-            'css'           => 'Prilagođeni CSS kampanje',
+            'css'           => 'Proizvoljni CSS kampanje',
             'description'   => 'Određene razine pretplate pružaju korisnicima pojačanja koja mogu koristiti za unaprijeđenje kampanja. Ona omogućuju sljedeće prednosti.',
+            'entity_files'  => 'Povećan maksimalan broj prenesenih datoteka po entitetu (do 5 umjesto 3)',
             'header_image'  => 'Slika zaglavlja entiteta',
             'images'        => 'Postavi proizvoljne zadane slike entiteta',
             'recovery'      => 'Oporavak entiteta do 30 dana',
             'theme'         => 'Fiksna tema kampanje',
             'title'         => 'Pojačane kampanje',
-            'tooltip'       => 'Prilagođeni kratki opisi entiteta',
+            'tooltip'       => 'Proizvoljni kratki opisi entiteta',
             'upload'        => 'Povećane dozvoljene veličine prijenosa za sve članove',
         ],
         'calendars'         => [
@@ -87,7 +88,7 @@ return [
         'learn_more'        => 'Saznaj više o funkcionalnostima Kanke',
         'maps'              => [
             'description'   => 'Prenesite karte svojih svjetova, gradova i špilja, te im dodajte korisne oznake i veze.',
-            'title'         => 'Mape',
+            'title'         => 'Karte',
         ],
         'modular'           => [
             'description'   => 'Svaki modul, poput likova ili lokacija, može se u bilo kojem trenutku omogućiti ili onemogućiti, što olakšava prilagođavanje kampanje.',
@@ -104,14 +105,17 @@ return [
             'default_image'     => 'Lijepe zadane slike za entitete',
             'description'       => 'Podrška Kanke s malom mjesečnom naknadom omogućava nam nastavak rada na Kanki i otključava sljedeće pogodnosti za račun.',
             'discord'           => 'Privatni Discord kanal',
+            'entities'          => 'Broj entiteta koji se mogu stvoriti u svakoj kampanji',
             'free'              => 'Besplatno',
             'hall_of_fame'      => 'Ime u :link',
             'impact'            => 'Utjecaj na budućne funkcionalnosti',
             'monthly_vote'      => 'Sudjelovanje u glasanju zajednice',
             'pagination'        => 'Povećan broj rezultata na stranici',
+            'pagination_help'   => 'Ovo je maksimalan broj prikazanih rezultata na stranici, a ne ograničenje broja entiteta u kampanji.',
             'title'             => 'Plaćene funkcionalnosti',
             'upload_limit'      => 'Veličine za prijenos',
-            'upload_limit_map'  => 'Veličine za prijenos mape',
+            'upload_limit_map'  => 'Veličine za prijenos karte',
+            'users_roles'       => 'Broj korisnika, uloge i kontrole dozvola',
         ],
         'public'            => [
             'description'   => 'Ovlasti se mogu postaviti za module ili za svaki pojedinačni entitet. Kampanje mogu biti javne i za <a href=":url">cijeli svijet</a>.',
@@ -122,6 +126,7 @@ return [
             'title'         => 'Odnosi',
         ],
         'title'             => 'Snažne funkcionalnosti s nevjerojatnom fleksibilnošću',
+        'unlimited'         => 'Neograničeno',
         'updates'           => [
             'description'   => 'Kanka prolazi kroz česta nadogradnje koje potiče zajednica.',
             'title'         => 'Česte nadogradnje',
@@ -225,16 +230,22 @@ return [
         'title'         => 'Izdanja',
     ],
     'roadmap'       => [
-        'backlog'       => [
+        'backlog'           => [
             'description'   => 'Ova Trello ploča sadrži sve funkcionalnosti koje je zajednica tražila, kao i sve planirane funkcionalnosti i poboljšanja koja će jednog dana biti dio aplikacije.',
             'title'         => 'Za obaviti kasnije',
         ],
-        'description'   => 'Naša glasanja zajednice oblikuju naš rad, tako da iako nemamo višemjesečni plan puta, lako je biti u tijeku s onim što je traženo i na čemu se trenutno radi.',
-        'next'          => [
+        'description'       => 'Naša glasanja zajednice oblikuju naš rad, tako da iako nemamo višemjesečni plan puta, lako je biti u tijeku s onim što je traženo i na čemu se trenutno radi.',
+        'featured_requests' => [
+            'title' => 'Zahtjevi za značajke',
+        ],
+        'next'              => [
             'description'   => 'Ova Trello ploča sadrži sve funkcionalnosti i poboljšanja na kojima se trenutno radi.',
             'title'         => 'Sljedeće',
         ],
-        'title'         => 'Plan',
+        'ongoing_progress'  => [
+            'title' => 'Napredak u tijeku',
+        ],
+        'title'             => 'Plan',
     ],
     'second_block'  => [
         'call_to_action'    => 'Registriraj besplatan račun!',

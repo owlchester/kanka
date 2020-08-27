@@ -41,6 +41,15 @@
         </div>
     </div>
 </div>
+<p><br /></p>
+<p class="text-muted">
+    <a href="{{ route('helpers.attributes') }}" data-url="{{ route('helpers.attributes') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.attributes.description', [
+    'mention' => '[entity:id]',
+    'attribute' => '{' . __('helpers.attributes.level') . '}',
+]) }}">
+        {{ __('helpers.attributes.link') }} <i class="fa fa-question-circle"></i>
+    </a>
+</p>
 
 @if (Auth::user()->isAdmin())
     <hr />

@@ -5,6 +5,9 @@ return [
         'body'  => 'Tu n\'as pas accès à cette page!',
         'title' => 'Accès refusé.',
     ],
+    '403-form'  => [
+        'help'  => 'Ceci peut être dû à la session qui n\'est plus active. Prière de se reconnecter dans une autre fenêtre avant de ressayer d\'enregistrer.',
+    ],
     '404'       => [
         'body'  => 'Désolé, la page demandée ne peut être trouvée.',
         'title' => 'Page Inconnue',

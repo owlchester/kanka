@@ -7,11 +7,11 @@ $headerImage = !empty($model->entity->header_image) && $campaign->campaign()->bo
 
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => trans($name . '.show.title', ['name' => $model->name]),
-    'description' => '',
     'breadcrumbs' => [
         ['url' => Breadcrumb::index($name), 'label' => trans($name . '.index.title')],
         $model->name,
     ],
+    'miscModel' => $model,
     'canonical' => true,
     'mainTitle' => false,
 ])

@@ -210,6 +210,9 @@ class DatagridRenderer
             'order' => $field ,
             'page' => request()->get('page')
         ];
+        if (request()->get('_from', false) == 'quicklink') {
+            $routeOptions['_from'] = 'quicklink';
+        }
 
         if (!empty($this->nestedFilter)) {
             $val = request()->get($this->nestedFilter, null);

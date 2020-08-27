@@ -114,7 +114,7 @@
 
     <div class="row">
     @foreach ($widgets as $widget)
-        <?php if ($widget->widget != \App\Models\CampaignDashboardWidget::WIDGET_RECENT && (empty($widget->entity) || !EntityPermission::canView($widget->entity))):
+        <?php if (!in_array($widget->widget, [\App\Models\CampaignDashboardWidget::WIDGET_RECENT, \App\Models\CampaignDashboardWidget::WIDGET_UNMENTIONED, \App\Models\CampaignDashboardWidget::WIDGET_RANDOM]) && (empty($widget->entity) || !EntityPermission::canView($widget->entity))):
             continue;
         elseif ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_PREVIEW && !EntityPermission::canView($widget->entity)):
             continue;

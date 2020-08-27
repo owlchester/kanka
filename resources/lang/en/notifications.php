@@ -3,8 +3,9 @@
 return [
     'campaign'          => [
         'boost'         => [
-            'add'       => 'Campaign :campaign is being boosted by :user.',
-            'remove'    => ':user is no longer boosting the :campaign campaign.',
+            'add'           => 'Campaign :campaign is being boosted by :user.',
+            'remove'        => ':user is no longer boosting the :campaign campaign.',
+            'superboost'    => 'Campaign :campaign is being superboosted by :user.',
         ],
         'export'        => 'An export of a campaign is available. You can download it by clicking <a href=":link">here</a>. The link is available for :time minutes.',
         'export_error'  => 'An error occurred while exporting your campaign. Please contact us if this problem persists.',
@@ -28,7 +29,8 @@ return [
     'subscriptions'     => [
         'charge_fail'   => 'An error occurred while processing your payment. Please wait a moment while we try again. If nothing changes, please contact us.',
         'ended'         => 'Your subscription to Kanka has ended. Your campaign boosts and Discord roles have been removed. We hope to see you back soon!',
-        'failed'        => 'Your subscription to Kanka was cancelled after too many failed attempts to charge your card. Please go to your Subscription settings and try updating your payment details.',
+        'failed'        => 'We couldn\'t charge your payment details. Please update them in your Payment Method settings.',
+        'deleted'       => 'Your subscription to Kanka was cancelled after too many failed attempts to charge your card. Please go to your Subscription settings and try updating your payment details.',
         'started'       => 'Your subscription to Kanka has started.',
     ],
 ];

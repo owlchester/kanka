@@ -34,6 +34,7 @@ return [
         'image'                     => 'Slika',
         'is_dead'                   => 'Mrtav/a/o',
         'is_personality_visible'    => 'Osobnost vidljiva',
+        'life'                      => 'Život',
         'location'                  => 'Lokacija',
         'name'                      => 'Ime',
         'physical'                  => 'Fizičke osobine',
@@ -45,6 +46,7 @@ return [
         'type'                      => 'Tip',
     ],
     'helpers'       => [
+        'age'   => 'Možeš povezati ovaj entitet s kalendarom kampanje kako bi umjesto toga automatski izračunali njihovu dob. :more.',
         'free'  => 'Gdje je "Slobodan/a/o" polje otišlo? Ako je ovaj lik imao to polje, ono je premješteno u novu karticu Bilješke!',
     ],
     'hints'         => [

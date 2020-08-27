@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\DB;
  * Trait EntityScopes
  * @package App\Models\Scopes
  *
- * @method static self recentlyModified()
+ * @method static self|Builder recentlyModified()
+ * @method static self|Builder unmentioned()
  * @method static self type(string $type)
  * @method static self inTags(array $tags)
  */
@@ -36,7 +37,6 @@ trait EntityScopes
         return $query
             ->orderBy($this->getTable() . '.updated_at', 'desc');
     }
-
 
     /**
      * @param $query
@@ -83,5 +83,17 @@ trait EntityScopes
         }
 
         return $query;
+    }
+
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeUnmentioned(Builder $query)
+    {
+        return $query->select($this->getTable() . '.*')
+            ->recentlyModified()
+            ->leftJoin('entity_mentions as em', 'em.target_id', $this->getTable() . '.id')
+            ->whereNull('em.id');
     }
 }

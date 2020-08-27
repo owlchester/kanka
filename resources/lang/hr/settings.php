@@ -52,6 +52,7 @@ return [
             'more'      => 'Saznaj više o svim značajkama.',
             'second'    => 'Pojačavanje kampanje omogućuje sljedeće prednosti:',
             'theme'     => 'Tema na razini kampanje i proizvoljno stiliziranje.',
+            'third'     => 'Da biste pojačali kampanju, idite na stranicu kampanje i kliknite gumb ":boost_button" iznad gumba ":edit_button".',
             'tooltip'   => 'Proizvoljni kratki opisi entiteta.',
             'upload'    => 'Povećana veličina prijenosa za svakog člana u kampanji.',
         ],
@@ -65,7 +66,7 @@ return [
         ],
         'success'       => [
             'boost' => 'Kampanja :name pojačana.',
-            'delete'=> 'Tvoje pojačanje uklonjeno s :name.',
+            'delete'=> 'Tvoje pojačanje je uklonjeno s :name.',
         ],
         'title'         => 'Pojačanje',
     ],
@@ -260,7 +261,8 @@ return [
             ],
         ],
         'warnings'              => [
-            'patreon'   => 'Tvoj račun je trenutno povezan s Patreonom. Prekini vezu s računom u tvojim postavkama :patreon prije prelaska na Kanka pretplatu.',
+            'incomplete'    => 'Nismo mogli naplatiti tvoju kreditnu karticu. Ažuriraj podatke o svojoj kreditnoj kartici, a mi ćemo je pokušati ponovo naplatiti u narednih nekoliko dana. Ako opet ne uspije, pretplata će se otkazati.',
+            'patreon'       => 'Tvoj račun je trenutno povezan s Patreonom. Prekini vezu s računom u tvojim postavkama :patreon prije prelaska na Kanka pretplatu.',
         ],
     ],
 ];

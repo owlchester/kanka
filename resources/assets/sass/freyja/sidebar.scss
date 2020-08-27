@@ -9,7 +9,14 @@
   }
   .navbar-static-top {
     margin-left: $sidebarWidth;
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+    //box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.33);
+  }
+  .navbar .navbar-custom-menu .navbar-nav > li > a, .navbar .navbar-right > li > a {
+    border: unset;
+    font-size: 18px;
+  }
+  .navbar .sidebar-toggle {
+    border: unset;
   }
 }
 .content-wrapper {

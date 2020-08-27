@@ -366,12 +366,12 @@ function entityCreatorUI() {
 }
 
 function initEntityCreatorDuplicateName() {
-    $('#entity-creator-selection input[name="name"]').focusout(function(e) {
+    $('#entity-creator-form input[name="name"]').focusout(function(e) {
         // Don't bother if the user didn't set any value
         if (!$(this).val()) {
             return;
         }
-        var entityCreatorDuplicateWarning = $('#entity-creator-selection .duplicate-entity-warning');
+        var entityCreatorDuplicateWarning = $('#entity-creator-form .duplicate-entity-warning');
         entityCreatorDuplicateWarning.hide();
         // Check if an entity of the same type already exists, and warn when it does.
         $.ajax(
@@ -379,7 +379,7 @@ function initEntityCreatorDuplicateName() {
         ).done(function (res) {
             if (res.length > 0) {
                 let entities = Object.keys(res).map(function (k) { return '<a href="' + res[k].url + '">' + res[k].name + '</a>'}).join(', ');
-                $('#duplicate-entities').html(entities);
+                $('#entity-creator-form #duplicate-entities').html(entities);
                 entityCreatorDuplicateWarning.fadeIn();
             } else {
                 entityCreatorDuplicateWarning.hide();

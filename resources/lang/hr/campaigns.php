@@ -4,9 +4,13 @@ return [
     'create'                            => [
         'description'           => 'Kreiraj novu kampanju',
         'helper'                => [
-            'first' => 'Hvala ti što isprobavaš našu aplikaciju! Prije nego možemo ići dalje, trebamo od tebe jednu jednostavu stvar, <b>naziv tvoje kampanje</b>. Ovo je naziv tvog svijeta koji ga razlikuje od drugih. Ako još nemaš dobro ime, ne brini, možeš ga <b>uvijek promijeniti kasnije</b>, ili kreirati više kampanja.',
-            'second'=> 'Ali dosta brbljanja! Dakle, što će biti?',
-            'title' => 'Dobro došli u :name!',
+            'title'     => 'Dobro došli u :name!',
+            'welcome'   => <<<'TEXT'
+Prije nego što nastaviš dalje, moraš odabrati naziv kampanje. To je ime tvog svijeta. Ako još nemaš dobro ime, ne brini, uvijek ga možeš promijeniti kasnije ili stvoriti više kampanja.
+
+Hvala što si se pridružio/la Kanki i dobrodošao/la u našu uspješnu zajednicu!
+TEXT
+,
         ],
         'success'               => 'Kampanja kreirana.',
         'success_first_time'    => 'Tvoja kampanja je kreirana! Budući da je tvoja prva kampanja, kreirali smo nekoliko stvari da ti pomognemo započeti i, po mogućnosti, pružimo malo inspiracije za što sve možeš napraviti.',
@@ -49,9 +53,12 @@ return [
         'excerpt'                       => 'Isječak',
         'followers'                     => 'Pratitelji',
         'header_image'                  => 'Slika zaglavlja',
+        'hide_history'                  => 'Sakrij povijest entiteta',
+        'hide_members'                  => 'Sakrij članove kampanje',
         'image'                         => 'Slika',
         'locale'                        => 'Jezik',
         'name'                          => 'Naziv',
+        'public_campaign_filters'       => 'Filteri javnih kampanja',
         'rpg_system'                    => 'Sustav igranja',
         'system'                        => 'Sustav',
         'theme'                         => 'Tema',
@@ -67,11 +74,15 @@ return [
         'entity_personality_visibility' => 'Prilikom kreiranja novog lika, opcija "Osobnost vidljiva" će automatski biti odznačena.',
         'entity_visibility'             => 'Prilikom kreiranja novog entiteta, opcija "Privatno" će automatski biti odabrana.',
         'excerpt'                       => 'Isječak kampanje će biti prikazan na naslovnoj ploči pa napiši nekoliko rečenica kao uvod u svoj svijet. Za najbolje rezultate, neka bude kratko.',
+        'hide_history'                  => 'Omogući ovu opciju za skrivanje povijesti entiteta članovima kampanje koji nisu administratori.',
+        'hide_members'                  => 'Omogući ovu opciju za sakrivanje popisa članova kampanje za članove koji nisu administratori.',
         'locale'                        => 'Jezik u kojem je tvoja kampanja napisana. Ovo se koristi za generiranje sadržaja i grupiranje javnih kampanja.',
         'name'                          => 'Tvoj svijet ili kampanja može imati bilo koje ime dok god sadrži 4 slova ili broja.',
+        'public_campaign_filters'       => 'Pomozi drugima da pronađu kampanju među ostalim javnim kampanjama pružanjem sljedećih informacija.',
         'system'                        => 'Ako je tvoja kampanja vidljiva javnosti, sustav je pokazan na stranici :link.',
         'systems'                       => 'Kako bi izbjegli zatrpavanje korisnika opcijama, neke funkcionalnosti Kanke su dostupne samo s određenim RPG sustavima (npr. D&D 5e blok sa statistikama za nemani). Dodavanje podržanih sustava na ovom mjestu će omogućiti te funkcionalnosti.',
         'theme'                         => 'Prisili korisnike da koriste ovu temu za kampanju, nadjačavajući njihov odabir.',
+        'view_public'                   => 'Da bi vidio/la svoju kampanju kao javni gledatelj, otvori :link u anonimnom prozoru.',
         'visibility'                    => 'Proglašavanje kampanje javnom znači da će ju moći vidjeti svi koji imaju s odgovarajućom poveznicom.',
     ],
     'index'                             => [
@@ -136,7 +147,7 @@ return [
     ],
     'members'                           => [
         'actions'               => [
-            'switch'        => 'Prebaci se',
+            'switch'        => 'Imitiraj',
             'switch-back'   => 'Povratak na mog korisnika',
         ],
         'create'                => [
@@ -156,11 +167,11 @@ return [
         ],
         'help'                  => 'Kampanje mogu imati neograničeni broj članova u njima.',
         'helpers'               => [
-            'admin' => 'Kao član uloge administratora kampanje, možeš pozivati nove korisnike, maknuti neaktivne, te promijeniti njihove ovlasti. Kako bi testirao dopuštenja člana, iskoriti "Prebaci se" gumb. Više o tome pročitaj na :link.',
-            'switch'=> 'Prebaci se na ovog korisnika',
+            'admin' => 'Kao član uloge administratora kampanje, možeš pozivati nove korisnike, maknuti neaktivne, te promijeniti njihove ovlasti. Kako bi testirao dopuštenja člana, iskoristi "Imitiraj" gumb. Više o tome pročitaj na :link.',
+            'switch'=> 'Imitiraj ovog korisnika',
         ],
         'impersonating'         => [
-            'message'   => 'Gledaš kampanju kao drugi korisnik. Neke funkcionalnosti su onemogućene, ali ostatak se ponaša jednako onako kako bi ih taj korisnik vidio. Da se prebaciš nazad na svog korisnika, iskoristi "Prebaci se nazad" gumb koji se nalazi tamo gdje se inače nalazi gumb za odjavu.',
+            'message'   => 'Gledaš kampanju kao drugi korisnik. Neke funkcionalnosti su onemogućene, ali ostatak se ponaša jednako onako kako bi ih taj korisnik vidio. Da se vratiš nazad na svog korisnika, iskoristi "Prekini imitaciju" gumb koji se nalazi tamo gdje se inače nalazi gumb za odjavu.',
             'title'     => 'Imitiranje :name',
         ],
         'invite'                => [
@@ -237,6 +248,9 @@ return [
                 'read'          => 'Pregled',
                 'toggle'        => 'Promijeni za sve',
             ],
+            'helpers'   => [
+                'entity_note'   => 'Ovo omogućava korisnicima koji nemaju dozvole uređivanja entiteta da dodaju Bilješke entiteta.',
+            ],
             'hint'      => 'Ova uloga automatski ima pristup svemu.',
         ],
         'placeholders'  => [
@@ -289,18 +303,21 @@ return [
             'items'         => 'Oružje, vozila, relikvije, napitci.',
             'journals'      => 'Opažanja napisana od strane likova ili priprema za sesiju za voditelja igre.',
             'locations'     => 'Planeti, ravni postojanja, kontinenti, rijeke, države, naselja, hramovi, krčme.',
-            'menu_links'    => 'Prilagođene poveznice izbornika u bočnoj traci.',
+            'maps'          => 'Prenesi karte sa slojevima i markerima koji upućuju na druge entitete u kampanji.',
+            'menu_links'    => 'Proizvoljne poveznice izbornika u bočnoj traci.',
             'notes'         => 'Legende, religije, povijest, magija, rase.',
             'organisations' => 'Kultovi, vojne jedinice, frakcije, cehovi.',
             'quests'        => 'Za praćenje raznih zadataka s likovima i lokacijama.',
             'races'         => 'Ako tvoja kampanja ima više od jedne rase, ovo će olakšati praćenje.',
             'tags'          => 'Svaki entitet može imati nekoliko oznaka. Oznake mogu pripadati drugim oznakama, a unosi se mogu filtrirati po oznakama.',
+            'timelines'     => 'Prikaži povijest svog svijeta s kronologijama.',
         ],
         'title'         => 'Moduli kampanje :name',
     ],
     'show'                              => [
         'actions'       => [
             'boost' => 'Pojačaj kampanju',
+            'edit'  => 'Uredi kampanju',
             'leave' => 'Napusti kampanju',
         ],
         'description'   => 'Detaljan pregled kampanje',

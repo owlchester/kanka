@@ -9,6 +9,7 @@ use App\Jobs\DiscordRoleJob;
 use App\Jobs\Emails\SubscriptionCancelEmailJob;
 use App\Jobs\Emails\SubscriptionCreatedEmailJob;
 use App\Jobs\Emails\SubscriptionDowngradedEmailJob;
+use App\Jobs\Emails\SubscriptionFailedEmailJob;
 use App\Jobs\SubscriptionEndJob;
 use App\Models\Patreon;
 use App\Models\SubscriptionSource;
@@ -208,6 +209,15 @@ class SubscriptionService
         SubscriptionCreatedEmailJob::dispatch($this->user, $period, $new);
 
         return $this;
+    }
+
+    /**
+     * A payment from a credit card failed so we need to warn the user and us
+     */
+    public function failed()
+    {
+        // Notify admin
+        SubscriptionFailedEmailJob::dispatch($this->user);
     }
 
     /**
@@ -431,13 +441,22 @@ class SubscriptionService
     {
         /** @var SubscriptionSource $source */
         $source = SubscriptionSource::where('charge_id', Arr::get($payload, 'data.object.charge'))
-            ->firstOrFail();
+            ->first();
+        if (empty($source)) {
+            // If the source is empty, means this is a failed charge for a credit card, not a sofort payment.
+            $this->failed();
+            return false;
+        }
+
+
         $this->user = $source->user;
 
         // user was deleted
-        if (empty($this->user) || $this->user->id == 27078) {
+        if (empty($this->user) || $this->userId == 27078) {
+            Log::info('Subscription charge failed for welterbrand');
             return true;
         }
+        Log::info('Subscription charge failed (giropay/sofort)', ['user_id' => $this->user->id]);
         $source->update(['status' => 'failed']);
 
 

@@ -73,6 +73,10 @@ class FilterService
         }
 
         $sessionKey = 'filterService-filter-' . $this->crud;
+
+        if (request()->get('_from', false) == 'quicklink') {
+            $sessionKey .= '-quicklink';
+        }
         $this->filters = session()->get($sessionKey);
 
         // If the request has _clean, we only want filters that are set in the url
@@ -82,7 +86,10 @@ class FilterService
 
         // If we have data but no "tags" array, it's empty
         if (!empty($this->data) && in_array('tags', $availableFilters) && !isset($this->data['tags'])) {
-            $this->data['tags'] = null;
+            // Not calling from a page or order result, we can junk the filters
+            if (empty($this->data['page']) && empty($this->data['order'])) {
+                $this->data['tags'] = null;
+            }
         }
 
         foreach ($this->data as $key => $value) {
@@ -281,10 +288,16 @@ class FilterService
      */
     public function pagination(): array
     {
-        if (empty($this->search)) {
-            return [];
+        $options = [];
+        if (!empty($this->search)) {
+            $options['search'] = $this->search;
         }
 
-        return ['search' => $this->search];
+        if (request()->get('_from', false) == 'quicklink') {
+            $options['_from'] = 'quicklink';
+        }
+
+
+        return $options;
     }
 }

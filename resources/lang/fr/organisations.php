@@ -55,7 +55,8 @@ return [
             'role'          => 'Rôle',
         ],
         'helpers'       => [
-            'members'   => 'Cette liste contient tous les personnages dans l\'organisation ainsi que ces descendants. Il est possible d\'afficher que les membres directs en utilisant le filtre.',
+            'all_members'   => 'Tous les personnages qui sont membres de cette organisation et des sous-organisations.',
+            'members'       => 'Tous les personnages directement membre de cette organisation.',
         ],
         'placeholders'  => [
             'character' => 'Choix du personnage',

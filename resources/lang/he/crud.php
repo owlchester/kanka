@@ -1,8 +1,12 @@
 <?php
 
 return [
+    'actions'           => [
+        'find_out_more' => 'לקריאה נוספת',
+    ],
     'boosted_campaigns' => 'מערכות מוגברות',
     'edit'              => 'עריכה',
+    'export'            => 'ייצא',
     'fields'            => [
         'ability'               => 'יכולת',
         'attribute_template'    => 'תבנית מאפיינים',
@@ -21,17 +25,21 @@ return [
         'excerpt'               => 'תקציר',
         'family'                => 'משפחה',
         'files'                 => 'קבצים',
+        'has_image'             => 'יש תמונה',
         'header_image'          => 'תמונת כותרת',
         'image'                 => 'תמונה',
         'is_private'            => 'פרטי',
         'is_star'               => 'מוצמד',
         'item'                  => 'חפץ',
         'location'              => 'מיקום',
+        'map'                   => 'מפה',
         'name'                  => 'שם',
         'organisation'          => 'ארגון',
+        'position'              => 'תפקיד',
         'race'                  => 'גזע',
         'tag'                   => 'תגית',
         'tags'                  => 'תגיות',
+        'timeline'              => 'ציר זמם',
         'tooltip'               => 'רמז',
         'type'                  => 'סוג',
         'visibility'            => 'נראות',
@@ -59,6 +67,10 @@ return [
         'direct'    => 'סנן לצאצאים ישירים',
         'filtered'  => 'מציג :count מתוך :total.',
         'hide'      => 'הסתר סינון',
+        'options'   => [
+            'exclude'   => 'לא כולל',
+            'include'   => 'כולל',
+        ],
         'show'      => 'הצג סינון',
         'sorting'   => [
             'asc'       => ':field עולה',
@@ -74,6 +86,12 @@ return [
         'copy_options'  => 'העתק הגדרות',
     ],
     'hidden'            => 'מוסתר',
+    'history'           => [
+        'created'       => 'נוצר על ידי <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'created_date'  => 'נוצר <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'updated'       => 'עדכון אחרון על ידי <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'updated_date'  => 'עדכון אחרון <span data-toggle="tooltip" title=":realdate">:date</span>',
+    ],
     'remove'            => 'הסר',
     'rename'            => 'שנה שם',
     'save'              => 'שמור',
@@ -99,6 +117,7 @@ return [
         'permissions'   => 'הרשאות',
         'relations'     => 'ייחסים',
         'reminders'     => 'תזכורות',
+        'timelines'     => 'צירי זמן',
         'tooltip'       => 'רמז',
     ],
     'update'            => 'עדכן',

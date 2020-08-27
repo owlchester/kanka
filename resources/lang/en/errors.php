@@ -5,6 +5,9 @@ return [
         'body'  => 'It looks like you don\'t have permission to access this page!',
         'title' => 'Permission Denied',
     ],
+    '403-form'  => [
+        'help'  => 'This might be due to your session timing out. Please try login in again in another window before saving.',
+    ],
     '404'       => [
         'body'  => 'Sorry, the page you are looking for could not be found.',
         'title' => 'Page Not Found',

@@ -105,6 +105,7 @@ return [
             'default_image'     => 'Jópofa alapértelmezett entitás képek',
             'description'       => 'A Kanka támogatásával a Patreon-on az alábbi előnyökhez juthatsz:',
             'discord'           => 'Privát Discord csatorna',
+            'entities'          => 'Entitások darabszáma, amely egy-egy kampány számára létrehozható.',
             'free'              => 'Ingyenes',
             'hall_of_fame'      => 'A neved bekerül a :link-ba.',
             'impact'            => 'A jövőbeli funkciók befolyásolása',
@@ -114,6 +115,7 @@ return [
             'title'             => 'Patreon támogatás',
             'upload_limit'      => 'Megnövelt feltöltési méret (8MB)',
             'upload_limit_map'  => 'Megnövelt térkép feltöltési méret (10MB)',
+            'users_roles'       => 'Felhasználók száma, szerepek, és jogosultság kezelés',
         ],
         'public'            => [
             'description'   => 'Beállíthatsz jogosultságokat a különböző modulokhoz, vagy akár egy-egy entitáshoz is. A kampányaidat nyilvánossá is teheted, hogy <a href=":url">az egész világ láthassa</a>.',
@@ -124,6 +126,7 @@ return [
             'title'         => 'Kapcsolatok',
         ],
         'title'             => 'Korlátlan lehetőségek, korlátlan móka',
+        'unlimited'         => 'Végtelen',
         'updates'           => [
             'description'   => 'A Kankát rendszeresen frissítjük a közösség ötleteinek megvalósításaival.',
             'title'         => 'Gyakori frissítések',

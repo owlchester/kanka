@@ -1,26 +1,20 @@
 <?php /** @var \App\Services\SidebarService $sidebar */?>
 @inject('sidebar', 'App\Services\SidebarService')
-<aside class="main-sidebar">
+<aside class="main-sidebar main-sidebar-placeholder">
+    <section class="sidebar-campaign">
+        <div class="campaign-block">
+            <div class="campaign-head">
+                <div class="campaign-name" data-toggle="collapse" data-target="#campaign-switcher">
+                    <i class="fa fa-caret-down pull-right"></i>
+                    {{ Auth::user()->name }}
+                </div>
+
+            </div>
+        </div>
+    </section>
+    @include('layouts.sidebars.campaign-switcher')
     <section class="sidebar" style="height: auto">
         <ul class="sidebar-menu tree" data-widget="tree">
-            <li class="treeview" style="height: auto;">
-                <a href="#">
-                    <i class="fas fa-globe"></i>
-                    <span>{{ __('entities.campaigns') }}</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu" style="display:none">
-
-                    @foreach (Auth::user()->campaigns as $campaign)
-                    <li class="campaign-name">
-                        <a href="{{ url(App::getLocale() . '/' . $campaign->getMiddlewareLink()) }}"><i class="fa fa-globe"></i> <span>{!! $campaign->name !!}</span></a>
-                    </li>
-                    @endforeach
-                </ul>
-            </li>
-
             <li class="{{ $sidebar->settings('profile') }}">
                 <a href="{{ route('settings.profile') }}">
                     <i class="fa fa-user"></i> <span>{{ __('settings.menu.profile') }}</span>

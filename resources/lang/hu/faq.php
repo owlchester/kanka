@@ -44,6 +44,10 @@ TEXT
         'answer'    => 'Navigálj a kampány főoldalára, majd kattints a "Kampány" gombra a baloldali menüsoron. Egy "Eltávolítás" gomb jelenik meg amennyiben te vagy az egyetlen tagja az adott kampánynak. A kampány törlése végleges, amely a kampány minden tárolt adatát is törli, beleértve a képeket is!',
         'question'  => 'Hogyan tudom törölni a kampányomat?',
     ],
+    'early-access'          => [
+        'answer'    => 'A korai hozzáférés egyfajta jutalom a fantasztikus előfizetőink számára, amellyel egy exkluzív, 30 napos periódust nyújtunk számukra, amely alatt kipróbálhatják a legújabb modulokat, még a nagyközönség előtt.',
+        'question'  => 'Mi a korai hozzáférés?',
+    ],
     'entity-notes'          => [
         'answer'    => 'Minden entitás rendelkezik egy \'Entitás jegyzet\' füllel, amelyek aprócska szöveges bejegyzések, amelyek egyenként beállíthatóak, hogy csak Te lásd őket, (praktikus, amikor több mesélős játékról van szó) vagy csak az Admin jogú felhasználók, eset bárki láthassa ezeket. Ezen felül beállítható, hogy a játékosok létrehozhassanak, és módosíthassanak ilyen Entitás jegyzeteket anélkül, hogy joguk lenne a teljes entitás szerkesztéséhez.',
         'question'  => 'Hogyan kezeli a Kanka a részlegesen rejtett információkat?',
@@ -85,6 +89,10 @@ TEXT
         'answer'    => 'Jelenleg nincs dedikált mobilos applikáció a Kankára, de a honlap legtöbb funkciója mobil eszközön is működik. Az egyetlen limitáció az Említések funkció, amely nem működik a mobilos szövegszerkesztőben. Ha a Patreon-os támogatások megengedik majd, remélem meg tudok bízni egy szakembert az app elkészítésével, de nem hinném, hogy a közeli jövőben sor kerülne erre.',
         'question'  => 'Létezik mobil app a Kankához? Tervben van esetleg?',
     ],
+    'monsters'              => [
+        'answer'    => 'A Fajok modult javasoljuk a népcsoportok, fajok, szörnyek, és minden olyan lény számára, amelyek nem indokolják, hogy külön Karakterként legyenek létrehozva.',
+        'question'  => 'Hol lenne érdemes szörnyeket létrehozni?',
+    ],
     'multiworld'            => [
         'answer'    => 'Nem! Annyi “kampányt” hozhatsz létre az alkalmazásban amennyit szeretnél, mindegyik jelképezhet egy önálló világot, környezetet vagy amit szeretnél. A kampányaid között egyazon fiókon belül könnyűszerrel váltogathatsz.',
         'question'  => 'Több világot építek több különböző környezetben. Külön fiókra van szükségem mindegyikükhöz?',
@@ -92,6 +100,10 @@ TEXT
     'nested'                => [
         'answer'    => 'Amennyiben kényelmesebb neked, hogy hierarchikusan jelenjenek meg az entitások (például a Hierarchikus nézet gomb a Helyszínek listás nézetén), ezt beállíthatod a Profilod \'Elrendezés\' menüpontjában a Alapértelmezetten hierarchikus nézet opciót kiválasztva. Érdemes megjegyezni, hogy ez a beállítás felhasználó-függő, nem pedig a kampány tulajdonsága.',
         'question'  => 'Beállíthatom, hogy alapértelmezetten Hierarchikus nézetben jelenjenek meg az entitások a lista felületeken?',
+    ],
+    'organise_play'         => [
+        'answer'    => 'Összefogtunk az :lfgmmel, amely segít a játékülések szervezetésében a csapatoddal. Össze tudod szinkronizálni a Kanka kampányod az LFGM kampányoddal, hogy megjelenítsd a következő alkalmas időpontokat a kampányod főoldalán.',
+        'question'  => 'Hol menedzselhetem, hogy mikor meséljek?',
     ],
     'permissions'           => [
         'answer'    => 'Teljességgel, ezért hoztuk létre a Kankát! Minden játékosodat meghívhatod a kampányaidba, és szerepeket és jogosultságokat adhatsz neki. Rendkívül rugalmasra építettük a rendszert (egyaránt használhatsz kizáró és megengedő jogosultságrendszereket), hogy lefedhessünk annyiféle helyzetet, amennyit csak lehet.',

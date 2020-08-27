@@ -210,6 +210,7 @@ return [
         App\Providers\BreadcrumbServiceProvider::class,
         App\Providers\CacheServiceProvider::class,
         App\Providers\ImgServiceProvider::class,
+        App\Providers\AttributesServiceProvider::class,
     ],
 
     /*
@@ -281,6 +282,7 @@ return [
         'CampaignCache' => App\Facades\CampaignCache::class,
         'UserCache' => App\Facades\UserCache::class,
         'Img' => App\Facades\Img::class,
+        'Attributes' => App\Facades\Attributes::class,
     ],
 
 ];

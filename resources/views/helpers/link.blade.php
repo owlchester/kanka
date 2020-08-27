@@ -35,6 +35,11 @@
                     'code' => '<code>#</code>'
                 ]) !!}
             </p>
+            <p>
+                {!! trans('helpers.link.attributes', [
+                    'code' => '<code>{</code>'
+                ]) !!}
+            </p>
             <p class="info">{{ __('helpers.link.limitations') }}</p>
 
             <hr />

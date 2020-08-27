@@ -5,11 +5,62 @@ namespace App\Services;
 use App\Models\Attribute;
 use App\Models\AttributeTemplate;
 use App\Models\Entity;
+use ChrisKonnertz\StringCalc\StringCalc;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Kanka\Dnd5eMonster\Template;
 
 class AttributeService
 {
+    /** @var array */
+    protected $loadedAttributes = [];
+
+    protected $loadedEntity = null;
+
+    /**
+     * @param Entity $entity
+     * @return string
+     */
+    public function parse(Attribute $attribute): string
+    {
+        if (!Str::contains($attribute->value, ['{', '}'])) {
+            return (string) $attribute->value;
+        }
+
+        if ($this->loadedEntity === null || $this->loadedEntity->id != $attribute->entity_id) {
+
+            $this->loadedEntity = $attribute->entity;
+        }
+
+        try {
+            // Replace {} with entity attributes
+            $value = preg_replace_callback('`\{(.*?)\}`i', function ($matches) {
+                $text = $matches[1];
+                if ($this->entityAttributes()->has($text)) {
+                    return $this->entityAttributes()->get($text);
+                }
+                return 0;
+            }, $attribute->value);
+
+            $calculator = new StringCalc();
+            return $calculator->calculate($value);
+        } catch(\Exception $e) {
+            return '';
+        }
+    }
+
+    /**
+     * @return array|\Illuminate\Support\Collection
+     */
+    protected function entityAttributes()
+    {
+        if (isset($this->loadedAttributes[$this->loadedEntity->id])) {
+            return $this->loadedAttributes[$this->loadedEntity->id];
+        }
+
+        return $this->loadedAttributes[$this->loadedEntity->id] = $this->loadedEntity->attributes()->pluck('value', 'name');
+    }
+
     /**
      * @param Entity $entity
      * @param $data

@@ -6,6 +6,7 @@ use App\Traits\AclTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Arr;
 
 /**
@@ -21,6 +22,8 @@ use Illuminate\Support\Arr;
  * @property integer $position
  * @property Tag[] $tags
  * @property Entity $entity
+ *
+ * @method static self|Builder positioned()
  */
 class CampaignDashboardWidget extends Model
 {
@@ -30,6 +33,8 @@ class CampaignDashboardWidget extends Model
     const WIDGET_PREVIEW = 'preview';
     const WIDGET_RECENT = 'recent';
     const WIDGET_CALENDAR = 'calendar';
+    const WIDGET_UNMENTIONED = 'unmentioned';
+    const WIDGET_RANDOM = 'random';
 
     /**
      * Traits
@@ -89,7 +94,7 @@ class CampaignDashboardWidget extends Model
         if (!empty($this->width)) {
             return $this->width;
         }
-        return ($this->widget == self::WIDGET_PREVIEW ||
+        return ($this->widget == self::WIDGET_PREVIEW || $this->widget == self::WIDGET_RANDOM ||
             ($this->widget == self::WIDGET_RECENT && $this->conf('singular')))
             ? 4 : 6;
     }
@@ -100,7 +105,7 @@ class CampaignDashboardWidget extends Model
      */
     public function scopePositioned($query)
     {
-        return $query->with(['entity'])
+        return $query->with(['entity', 'tags'])
             ->orderBy('position', 'asc');
     }
 

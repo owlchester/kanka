@@ -1,4 +1,5 @@
 @include('partials.errors')
+@inject('campaign', 'App\Services\CampaignService')
 
 @if (!empty($model))
     {!! Form::model(

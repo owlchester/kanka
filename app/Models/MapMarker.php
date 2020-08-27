@@ -149,11 +149,11 @@ class MapMarker extends Model
             })' . $this->popup();
         } elseif ($this->shape_id == MapMarker::SHAPE_POLY && !empty($this->custom_shape)) {
             $coords = [];
-            $segments = explode(' ', $this->custom_shape);
+            $segments = explode(' ', str_replace("\r\n", " ", $this->custom_shape));
             foreach ($segments as $segment) {
                 $coord = explode(',', $segment);
                 if (!empty($coord) && !empty($coord[0]) && !empty($coord[1])) {
-                    $coords[] = '[' . $coord[0] . ', ' . $coord[1] . ']';
+                    $coords[] = '[' . $coord[0] . ', ' . Str::before($coord[1], ' ') . ']';
                 }
             }
             // ' . implode(', ', $coords) . '
@@ -183,15 +183,25 @@ class MapMarker extends Model
         if ($this->editing) {
             return '';
         }
+
+        $body = null;
+        if (!empty($this->entity)) {
+            if (!empty($this->name)) { // Name is set, include link to the entity
+                $body .= "<p><a href=\"' . $this->entity->url() . '\">' . e($this->entity->name) . '</a>";
+            }
+            // No entry field, include the entity tooltip
+            if (empty($this->entry)) {
+                $body .= $this->entity->mappedPreview();
+            }
+        }
         if ($this->exploring) {
             return '
             .bindPopup(`
             <div class="marker-popup-content">
-                <h4 class="marker-header">' . $this->markerTitle() . '</h4>
+                <h4 class="marker-header">' . $this->markerTitle(true) . '</h4>
                 <p class="marker-text">' . Mentions::mapAny($this) . '</p>
             </div>
-            ' . (!empty($this->entity) ? '
-            <p><a href="' . $this->entity->url() . '">' . e($this->entity->name) . '</a>' : null) . '`)
+            ' . $body . '`)
             .on(`mouseover`, function (ev) {
                 this.openPopup();
             })
@@ -202,11 +212,10 @@ class MapMarker extends Model
 
         return '.bindPopup(`
             <div class="marker-popup-content">
-                <h4 class="marker-header">' . $this->markerTitle() . '</h4>
+                <h4 class="marker-header">' . $this->markerTitle(true) . '</h4>
                 <p class="marker-text">' . Mentions::mapAny($this) . '</p>
             </div>
-            ' . (!empty($this->entity) ? '
-            <p><a href="' . $this->entity->url() . '">' . e($this->entity->name) . '</a>' : null) . '
+            ' . $body . '
             <div class="marker-popup-actions">
                 <a href="' . route('maps.map_markers.edit', [$this->map_id, $this->id]). '" class="btn btn-xs btn-primary">' . __('crud.edit') . '</a>
 
@@ -308,11 +317,15 @@ class MapMarker extends Model
 
     /**
      * The name of the marker: name or entity
+     * @param bool $link = false
      * @return string
      */
-    public function markerTitle(): string
+    public function markerTitle(bool $link = false): string
     {
         if (empty($this->name) && !empty($this->entity)) {
+            if ($link) {
+                return '<a href="' . $this->entity->url() . '">' . e($this->entity->name) . '</a>';
+            }
             return e($this->entity->name);
         }
         return e($this->name);

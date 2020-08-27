@@ -1,19 +1,24 @@
 <?php
-/** @var \App\Models\Character $model */
-$model = $widget->entity->child;
+/**
+ * @var \App\Models\Entity $entity
+ * @var \App\Models\Character $model
+ * @var \App\Models\Campaign $campaign
+ * @var \App\Models\CampaignDashboardWidget $widget
+ */
+$model = $entity->child;
 ?>
 <div class="panel panel-default widget-preview" id="dashboard-widget-{{ $widget->id }}">
-    <div class="panel-heading @if ($model->image) panel-heading-entity" style="background-image: url({{ $model->getImageUrl() }}) @endif">
+    <div class="panel-heading @if ($widget->conf('entity-header') && $campaign->boosted() && $entity->header_image) panel-heading-entity" style="background-image: url({{ $entity->getImageUrl(0, 0, 'header_image') }}) @elseif($entity->child->image) panel-heading-entity" style="background-image: url({{ $entity->child->getImageUrl() }}) @endif">
         <h3 class="panel-title">
-            <a href="{{ $model->getLink() }}">
-                @if ($model->is_private)
+            <a href="{{ $entity->child->getLink() }}">
+                @if ($entity->child->is_private)
                     <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                 @endif
-                @if ($model->is_dead)
+                @if ($entity->child->is_dead)
                     <i class="ra ra-skull pull-right margin-r-5" title="{{ trans('characters.fields.is_dead') }}"></i>
                 @endif
 
-                {{ $widget->entity->name }}
+                {{ $entity->name }}
 
             </a>
         </h3>

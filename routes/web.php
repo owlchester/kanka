@@ -42,6 +42,7 @@ Route::group([
     Route::get('/helper/map', 'HelperController@map')->name('helpers.map');
     Route::get('/helper/filters', 'HelperController@filters')->name('helpers.filters');
     Route::get('/helper/age', 'HelperController@age')->name('helpers.age');
+    Route::get('/helper/attributes', 'HelperController@attributes')->name('helpers.attributes');
 
     // OAuth Routes
     Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider')->name('auth.provider');
@@ -300,6 +301,7 @@ Route::group([
 
         // Entity Search
         Route::get('/search/entity-calendars', 'Search\CalendarController@index')->name('search.calendars');
+        Route::get('/search/attributes/{entity}', 'Search\AttributeSearchController@index')->name('search.attributes');
 
         // Global Entity Search
         Route::get('/search/reminder-entities', 'Search\LiveController@reminderEntities')->name('search.entities-with-reminders');
@@ -315,6 +317,7 @@ Route::group([
         Route::post('/dashboard-setup', 'DashboardSetupController@save')->name('dashboard.setup');
         Route::post('/dashboard-setup/reorder', [\App\Http\Controllers\DashboardSetupController::class, 'reorder'])->name('dashboard.reorder');
         Route::get('/dashboard/widgets/recent/{id}', 'DashboardController@recent')->name('dashboard.recent');
+        Route::get('/dashboard/widgets/unmentioned/{id}', 'DashboardController@unmentioned')->name('dashboard.unmentioned');
         Route::post('/dashboard/widgets/calendar/{campaignDashboardWidget}/add', [\App\Http\Controllers\Widgets\CalendarWidgetController::class, 'add'])->name('dashboard.calendar.add');
         Route::post('/dashboard/widgets/calendar/{campaignDashboardWidget}/sub', [\App\Http\Controllers\Widgets\CalendarWidgetController::class, 'sub'])->name('dashboard.calendar.sub');
 
