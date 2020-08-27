@@ -92,7 +92,7 @@ return [
             'tab'       => 'El atributo se muestra solo en la pestaña de Atributos.',
         ],
     ],
-    'boosted'           => 'Mejorada',
+    'boosted'           => 'mejorada',
     'boosted_campaigns' => 'Campañas mejoradas',
     'bulk'              => [
         'actions'       => [
@@ -186,6 +186,7 @@ return [
         'excerpt'               => 'Extracto',
         'family'                => 'Familia',
         'files'                 => 'Archivos',
+        'has_image'             => 'Tiene imagen',
         'header_image'          => 'Imagen de cabecera',
         'image'                 => 'Imagen',
         'is_private'            => 'Privado',
@@ -227,6 +228,11 @@ return [
         'direct'    => 'Filtrar solo los descendientes directos',
         'filtered'  => 'Mostrando :count de :total :entity.',
         'hide'      => 'Ocultar filtros',
+        'options'   => [
+            'exclude'   => 'Excluir',
+            'include'   => 'Incluir',
+            'none'      => 'Nada',
+        ],
         'show'      => 'Mostrar filtros',
         'sorting'   => [
             'asc'       => 'Ascendiente por :field',

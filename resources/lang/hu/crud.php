@@ -186,6 +186,7 @@ return [
         'excerpt'               => 'Kivonat',
         'family'                => 'Család',
         'files'                 => 'Állományok',
+        'has_image'             => 'Rendelkezik képpel',
         'header_image'          => 'Fejléc kép',
         'image'                 => 'Kép',
         'is_private'            => 'Privát',
@@ -227,6 +228,11 @@ return [
         'direct'    => 'Szűrés közvetlen leszármazottakra',
         'filtered'  => ':count :entity a(z) :total elemből',
         'hide'      => 'Szűrők elrejtése',
+        'options'   => [
+            'exclude'   => 'Nem tartalmazza',
+            'include'   => 'Tartalmazza',
+            'none'      => 'Nincs',
+        ],
         'show'      => 'Szűrők megmutatása',
         'sorting'   => [
             'asc'       => ':field Növekvő sorrend',

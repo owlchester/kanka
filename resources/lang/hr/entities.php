@@ -14,6 +14,7 @@ return [
     'conversation'          => 'Razgovor',
     'conversations'         => 'Razgovori',
     'creator'               => [
+        'back'      => 'Natrag na odabir',
         'duplicate' => 'Postoje drugi entiteti ovog tipa s istim nazivom.',
         'error'     => 'Došlo je do pogreške s tvojim vrijednostima. Provjeri ih ponovo.',
         'helper'    => 'Odaberi vrstu entiteta koju želiš izraditi. Ako se ne pojavljuje nijedan entitet, to znači da nemaš dozvolu za stvaranje bilo kakvog entiteta u ovoj kampanji.',
@@ -32,6 +33,8 @@ return [
     'journals'              => 'Dnevnici',
     'location'              => 'Lokacija',
     'locations'             => 'Lokacije',
+    'map'                   => 'Karta',
+    'maps'                  => 'Karte',
     'menu_link'             => 'Poveznica izbornika',
     'menu_links'            => 'Poveznice izbornika',
     'note'                  => 'Bilješka',
@@ -44,4 +47,6 @@ return [
     'races'                 => 'Rase',
     'tag'                   => 'Oznaka',
     'tags'                  => 'Oznake',
+    'timeline'              => 'Kronologija',
+    'timelines'             => 'Kronologije',
 ];

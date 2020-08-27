@@ -8,6 +8,10 @@ return [
     'edit'          => [
         'success'   => 'A profilodat frissítettük.',
     ],
+    'editors'       => [
+        'default'       => 'Alapértelmezett (TinyMCE 4)',
+        'summernote'    => 'Summernote (Kísérleti)',
+    ],
     'fields'        => [
         'avatar'                    => 'Profilkép',
         'email'                     => 'Email',
@@ -57,7 +61,11 @@ return [
             'advanced_mentions' => 'Haladó Említések',
             'date_format'       => 'Dátumformátum',
             'default_nested'    => 'Alapértelmezetten hierarchikus nézet',
+            'editor'            => 'Szövegszerkesztő',
             'pagination'        => 'Lapméret (elemek száma egy lapon)',
+        ],
+        'helpers'   => [
+            'editor'    => 'Az alapértelmezett szerkesztő (TinyMCE 4) régi, jól működik desktop környezetben, de a mobil eszközökön nem. A Summernote egy újabb szerkesztő, amely minden eszközön egyaránt működik, de egyelőre még próbafázisban van.',
         ],
         'hints'     => [
             'advanced_mentions' => 'Kapcsold be, ha szeretnéd, hogy az említések minden esetben [entity:123] formában jelenjenek meg az entitás szerkesztése közben.',

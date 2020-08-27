@@ -40,6 +40,10 @@ TEXT
         'answer'    => 'Ve al tablero de campaña y haz clic en "Campaña" en el menú de la izquierda. Si eres el administrador de la campaña, te aparecerá el botón de "Eliminar". Ten en cuenta que eliminar una campaña es una acción permanente que eliminará todos los datos almacenados en nuestros servidores, incluyendo las imágenes.',
         'question'  => '¿Cómo puedo eliminar una campaña?',
     ],
+    'early-access'          => [
+        'answer'    => 'El acceso anticipado es nuestra manera de recompensar a nuestros increíbles suscriptores, dándoles un periodo exclusivo de 30 días en el que pueden probar las últimas novedades antes que el resto.',
+        'question'  => '¿Qué es el acceso anticipado?',
+    ],
     'entity-notes'          => [
         'answer'    => 'Todas las entidades tienen una pestaña de "Notas", que son pequeños fragmentos de texto que se pueden configurar para que solo sean visibles para ti (genial para los co-másters), solo para administradores o visibles para todos. También puedes dar permiso a tus jugadores para crear y editar estas notas sin darles acceso también a editar la entidad completa.',
         'question'  => '¿Como gestiona Kanka la información oculta?',
@@ -74,6 +78,10 @@ TEXT
         'answer'    => 'Actualmente no hay ninguna app móvil para Kanka, pero la web funciona perfectamente en un dispositivo móvil. La única limitación es que la herramienta de menciones no funciona en el editor de textos :( Si el soporte de Patreon lo permite, espero poder pagar a alguien para que haga una app móvil algún día, pero no va a ocurrir en un futuro próximo.',
         'question'  => '¿Hay una app móvil? ¿Hay alguna planeada?',
     ],
+    'monsters'              => [
+        'answer'    => 'Recomendamos usar el módulo de Razas para etnias, especies, monstruos y cualquier ser viviente que no sea un personaje.',
+        'question'  => '¿Dónde se crean los monstruos?',
+    ],
     'multiworld'            => [
         'answer'    => '¡No hace falta! Puedes crear tantas “campañas” como quieras en la aplicación, y hacer que cada una represente mundos, escenarios o lo que quieras. Una vez tengas varias campañas, puedes cambiar fácilmente entre ellas.',
         'question'  => 'Estoy construyendo varios mundos en escenarios diferentes. ¿Necesito una cuenta diferente para cada mundo?',
@@ -81,6 +89,10 @@ TEXT
     'nested'                => [
         'answer'    => 'Si prefieres ver tus entidades en vista anidada por defecto, puedes hacerlo desde las opciones de Diseño, dentro de tu Perfil. Allí puedes seleccionar la opción "Vista anidada por defecto". Esto solo afectará a tu cuenta.',
         'question'  => '¿Puedo configurar las listas para que aparezcan anidadas por defecto?',
+    ],
+    'organise_play'         => [
+        'answer'    => 'Nos hemos asociado con :lfgm para ayudarte a organizar tus sesiones en grupo. Puedes sincronizar tu campaña de Kanka con tu campaña de LFGM para mostrar tus próximas disponibilidades directamente en el tablero de la campaña.',
+        'question'  => '¿Cómo puedo gestionar mis sesiones?',
     ],
     'permissions'           => [
         'answer'    => '¡Por supuesto, para eso hemos creado Kanka! Puedes invitar a todos tus jugadores a tus campañas, y darles roles y permisos. Hemos construido el sistema para que sea extremadamente flexible (con opción de incluir o de excluir) para cubrir las máximas necesidades y situaciones posibles.',

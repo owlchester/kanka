@@ -52,7 +52,7 @@ return [
             'title'         => 'API',
         ],
         'boosts'            => [
-            'beta'          => 'Acceso beta a algunas funciones nuevas 30 días antes del lanzamiento general.',
+            'beta'          => 'Acceso anticipado a algunas funciones nuevas 30 días antes del lanzamiento general.',
             'boosted'       => 'Campaña mejorada',
             'css'           => 'CSS personalizado de la campaña',
             'description'   => 'Algunos niveles de mecenazgo otorgan mejoras a los usuarios, que pueden usar para mejorar campañas. Éstas obtienen los siguientes beneficios.',
@@ -105,6 +105,7 @@ return [
             'default_image'     => 'Imágenes bonitas por defecto para las entidades',
             'description'       => 'Apoyar a Kanka con una pequeña tarifa mensual nos permite seguir trabajando en ella y desbloquea los siguientes beneficios.',
             'discord'           => 'Canal privado de Discord',
+            'entities'          => 'Cantidad de entidades que se pueden crear en cada campaña',
             'free'              => 'Gratis',
             'hall_of_fame'      => 'Nombre en el :link',
             'impact'            => 'Influencia en futuras características',
@@ -114,6 +115,7 @@ return [
             'title'             => 'Funciones de pago',
             'upload_limit'      => 'Aumento del tamaño máximo de subida de archivos (8mb)',
             'upload_limit_map'  => 'Aumento del tamaño máximo de subida de mapas (10mb)',
+            'users_roles'       => 'Cantidad de usuarios, roles y permisos',
         ],
         'public'            => [
             'description'   => 'Se pueden establecer permisos en los módulos, o en cada entidad por separado. Las campañas también pueden hacerse públicas para que <a href=":url">todo el mundo las vea</a>.',
@@ -124,6 +126,7 @@ return [
             'title'         => 'Relaciones',
         ],
         'title'             => 'Poderosas funciones con increíble flexibilidad',
+        'unlimited'         => 'Ilimitado',
         'updates'           => [
             'description'   => 'Kanka se actualiza frecuentemente gracias a las aportaciones de la comunidad. Los detalles de dichas actualizaciones se discuten en profundidad en nuestro :discord.',
             'title'         => 'Actualizaciones frecuentes',

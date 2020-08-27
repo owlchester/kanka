@@ -8,6 +8,10 @@ return [
     'edit'          => [
         'success'   => 'Perfil actualizado',
     ],
+    'editors'       => [
+        'default'       => 'Por defecto (TinyMCE 4)',
+        'summernote'    => 'Experimental (Summernote)',
+    ],
     'fields'        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'Correo Electronico',
@@ -57,7 +61,11 @@ return [
             'advanced_mentions' => 'Menciones avanzadas',
             'date_format'       => 'Formato de fecha',
             'default_nested'    => 'Vista anidada por defecto',
+            'editor'            => 'Editor de texto',
             'pagination'        => 'Paginación (elementos por página)',
+        ],
+        'helpers'   => [
+            'editor'    => 'El editor de texto por defecto (TinyMCE 4) es antiguo pero funciona bien en escritorio, aunque no en móvil. Summernote es un editor más nuevo que funciona en todos los dispositivos, pero aún lo estamos probando.',
         ],
         'hints'     => [
             'advanced_mentions' => 'Al activarlo, las menciones siempre se renderizarán como [entity:123] al editar una entidad.',

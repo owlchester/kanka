@@ -18,6 +18,7 @@ return [
     'show'          => [
         'restricted'    => 'glasanja zajednice',
         'title'         => 'glasanja zajednice',
+        'vote_count'    => '{1} :number sudionik glasao.|[2,4] :number sudionika glasala.|[5,*] :number sudionika glasalo.',
         'voted_lasted'  => 'Glasanje je trajalo od :from GMT do :until GMT.',
         'voting_until'  => 'Glasanje je otvoreno do :until GMT.',
     ],

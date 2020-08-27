@@ -64,6 +64,9 @@ return [
             'editor'            => 'Texteditor',
             'pagination'        => 'Seitennummerierung (Objekte pro Seite)',
         ],
+        'helpers'   => [
+            'editor'    => 'Der Standardeditor (TinyMCE 4) ist veraltet, funktioniert aber immer noch gut auf dem Desktop, nicht aber auf Mobilengeräten. Summernote ist ein neuerer Editor, der auf allen Geräten funktioniert, aber wir befinden uns noch in der Testphase.',
+        ],
         'hints'     => [
             'advanced_mentions' => 'Wenn diese Option aktiviert ist, werden Erwähnungen beim Bearbeiten eines Objektes immer als [entity: 123] angezeigt.',
             'default_nested'    => 'Aktivier diese Option, wenn du Listen im Standard in der verschachtelten Ansicht sehen möchtest (soweit verfügbar).',

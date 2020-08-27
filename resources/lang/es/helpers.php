@@ -2,7 +2,8 @@
 
 return [
     'age'           => [
-        'title' => 'Edad y muerte de los personajes',
+        'description'   => 'Puedes vincular un personaje a un calendario de campaña desde la pestaña de Recordatorios del personaje. Desde allí, añade un nuevo recordatorio y dale el tipo Nacimiento o Muerte para calcular automáticamente la edad del personaje. Si ambas fechas están presentes, se mostrarán las dos junto con la edad de fallecimiento. Si solo se ha indicado el nacimiento, se mostrarán la fecha y la edad actual. Si solo se ha indicado la muerte, se mostrarán la fecha y los años desde la muerte.',
+        'title'         => 'Edad y muerte de los personajes',
     ],
     'description'   => 'Algunos trucos y consejos para que sea más sencilla tu estancia en Kanka',
     'dice'          => [
