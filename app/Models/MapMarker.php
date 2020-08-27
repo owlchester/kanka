@@ -191,7 +191,7 @@ class MapMarker extends Model
                 $body .= "<p><a href=\"$url\">" . $this->entity->name . "</a></p>";
             }
             // No entry field, include the entity tooltip
-            if (empty($this->entry)) {
+            if (empty(trim($this->entry))) {
                 $body .= $this->entity->mappedPreview();
             }
         }
