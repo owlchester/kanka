@@ -4,8 +4,7 @@
 namespace App\Jobs\Emails;
 
 
-use App\Mail\Subscription\Admin\FailedSubscriptionMail;
-use App\Mail\Subscription\User\FailedUserSubscriptionMail;
+use App\Mail\Subscription\Admin\DeletedSubscriptionMail;
 use App\Notifications\Header;
 use App\User;
 use Illuminate\Bus\Queueable;
@@ -16,7 +15,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
-class SubscriptionFailedEmailJob implements ShouldQueue
+class SubscriptionDeletedEmailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -44,12 +43,12 @@ class SubscriptionFailedEmailJob implements ShouldQueue
         // User deleted their account already? Sure thing
         $user = User::find($this->userId);
         if (empty($user)) {
-            Log::warning('Subscription Failed Email Job: unknown user id', ['userId' => $this->userId]);
+            Log::warning('Subscription Deleted Email Job: unknown user id', ['userId' => $this->userId]);
             return;
         }
 
         $user->notify(new Header(
-            'subscriptions.failed',
+            'subscriptions.notifications.deleted',
             'far fa-credit-card',
             'red'
         ));
@@ -57,14 +56,8 @@ class SubscriptionFailedEmailJob implements ShouldQueue
         // Send an email to the admins
         Mail::to('hello@kanka.io')
             ->send(
-                new FailedSubscriptionMail($user)
+                new DeletedSubscriptionMail($user)
             );
 
-        // Send an email to the user
-        Mail::to($user->email)
-            ->bcc('hello@kanka.io')
-            ->send(
-                new FailedUserSubscriptionMail($user)
-            );
     }
 }

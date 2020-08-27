@@ -3,6 +3,7 @@
 return [
     'codes' => [
         'de'    => 'German',
+        'ca'    => 'Catalan',
         'en'    => 'English',
         'en-US' => 'American English',
         'es'    => 'Spanish',
@@ -12,8 +13,10 @@ return [
         'hu'    => 'Hungarian',
         'it'    => 'Italian',
         'nl'    => 'Dutch',
+        'pl'    => 'Polish',
         'pt-BR' => 'Brazilian Portuguese',
         'ru'    => 'Russian',
+        'sk'    => 'Slovak',
     ],
     'header'=> 'Languages',
 ];

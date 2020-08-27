@@ -56,7 +56,7 @@ class CampaignBoostController extends Controller
                 'maroon',
                 [
                     'user' => e(Auth::user()->name),
-                    'campaign' => e($campaign->name)
+                    'campaign' => $campaign->name
                 ]
             );
 

@@ -6,7 +6,7 @@
 </head>
 <body>
     <p>
-        Failed payment too many times for user {{ $user->name }} (#{{ $user->id }}) <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>.
+        Failed payment for user {{ $user->name }} (#{{ $user->id }}) <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>.
     </p>
 </body>
 </html>

@@ -216,12 +216,6 @@ class SubscriptionService
      */
     public function failed()
     {
-        $this->user->notify(new Header(
-            'subscriptions.failed',
-            'far fa-credit-card',
-            'red'
-        ));
-
         // Notify admin
         SubscriptionFailedEmailJob::dispatch($this->user);
     }

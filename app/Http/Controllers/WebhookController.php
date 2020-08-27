@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Jobs\Emails\SubscriptionDeletedEmailJob;
 use App\Jobs\Emails\SubscriptionFailedEmailJob;
 use App\Jobs\SubscriptionEndJob;
 use App\Models\SubscriptionSource;
@@ -53,14 +54,9 @@ class WebhookController  extends CashierController
 
         // User notification. Maybe even an email
         if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
-            $user->notify(new Header(
-                'subscriptions.notifications.failed',
-                'far fa-credit-card',
-                'red'
-            ));
 
             // Notify admin
-            SubscriptionFailedEmailJob::dispatch($user);
+            SubscriptionDeletedEmailJob::dispatch($user);
 
             // Set the subscription to end when it's supposed to end (admittedly, this is already passed)
             SubscriptionEndJob::dispatch($user)->delay(
