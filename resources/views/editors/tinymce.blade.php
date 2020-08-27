@@ -25,11 +25,15 @@
             content_css: '{{ mix('css/tinymce.css') }}',
             extended_valid_elements: "+@[data-mention]",
             mentions: {
-                delimiter: ['@', '#', '['],
+                delimiter: ['@', '#', '['@if(!empty($model) && $model->entity), '{'@endif],
                 delay: 250,
                 source: function(query, process, delimiter) {
                     if (delimiter === '#') {
                         $.getJSON('{{ route('search.calendar-months') }}?q='+ query, function(data) {
+                            process(data)
+                        })
+                    } else if(delimiter === '{') {
+                        $.getJSON('{{ route('search.attributes', $model->entity) }}?q='+ query, function(data) {
                             process(data)
                         })
                     } else {
@@ -44,6 +48,14 @@
                     }
                 },
                 insert: function(item) {
+                    // Attribute
+                    if (item.value) {
+                        @if (Auth::user()->advancedMentions)
+                            return '{attribute:' + item.id + '}';
+                        @else
+                            return '<a href="#" class="attribute" data-attribute="{attribute:' + item.id + '">{' + item.name + '}</a>'
+                        @endif
+                    }
                     if (item.id) {
                         var mention = '[' + item.model_type + ':' + item.id + ']';
                         @if (Auth::user()->advancedMentions)
@@ -65,6 +77,9 @@
                     return item.fullname;
                 },
                 render: function(item) {
+                    if (item.value) {
+                        return '<li><a href="javascript:;"><span>' + item.name +  (item.value ? ' (' + item.value + ')' : '') + '</span></a></li>';
+                    }
                     return '<li>' +
                         '<a href="javascript:;"><span>' + (item.image ? item.image : '') + item.fullname + (item.type ? ' (' + item.type + ')' : '') + '</span></a>' +
                         '</li>';
