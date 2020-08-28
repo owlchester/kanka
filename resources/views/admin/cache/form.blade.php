@@ -28,7 +28,7 @@
         </div>
         <div class="col-md-6">
 
-            {!! Form::open(['route' => 'admin.cache.destroy','method' => 'DESTROY', 'data-shortcut' => '1']) !!}
+            {!! Form::open(['route' => 'admin.cache.destroy','method' => 'DELETE', 'data-shortcut' => '1']) !!}
             <div class="form-group required">
                 <label>{{ __('admin/cache.fields.key') }}</label>
                 {!! Form::text('key', old('key'), ['class' => 'form-control html-editor', 'name' => 'key']) !!}
