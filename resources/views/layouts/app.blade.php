@@ -32,9 +32,14 @@ $campaign = CampaignLocalization::getCampaign(); ?>
     @endif
     @yield('styles')
 
-    @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme))
-        @if ($campaign->theme_id !== 1)
-        <link href="{{ mix('css/' . $campaign->theme->name . '.css') }}" rel="stylesheet">
+    @if (!empty($campaign) && $campaign->boosted())
+        @if($campaign->hasPluginTheme())
+            <link href="{{ route('campaign_theme.css', ['ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">
+        @elseif(!empty($campaign->theme))
+            @if ($campaign->theme_id !== 1)
+            <link href="{{ mix('css/' . $campaign->theme->name . '.css') }}" rel="stylesheet">
+            @endif
+
         @endif
     @elseif (auth()->check() && !empty(auth()->user()->theme))
         <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">

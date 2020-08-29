@@ -402,4 +402,12 @@ class Campaign extends MiscModel
 
         return $data;
     }
+
+    /**
+     * @return bool
+     */
+    public function hasPluginTheme(): bool
+    {
+        return !empty(CampaignCache::theme());
+    }
 }

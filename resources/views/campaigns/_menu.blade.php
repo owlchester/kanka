@@ -130,6 +130,17 @@
                     </span>
                 </a>
             </li>
+            @if(config('marketplace.enabled'))
+                <li class="@if (!empty($active) && $active == 'plugins')active @endif">
+                    <a href="{{ route('campaign_plugins.index') }}">
+                        {{ __('campaigns.show.tabs.plugins') }}
+                        <span class="label label-default pull-right">
+                            {{ $campaign->plugins()->count() }}
+                        </span>
+                    </a>
+                </li>
+
+            @endif
             <li class="@if(!empty($active) && $active == 'export')active @endif">
                 <a href="{{ route('campaign_export') }}">
                     {{ __('campaigns.show.tabs.export') }}

@@ -274,6 +274,17 @@ Route::group([
         Route::get('/campaigns/{campaign}/leave', 'CampaignController@leave')->name('campaigns.leave');
         Route::post('/campaigns/{campaign}/campaign_settings', 'CampaignSettingController@save')->name('campaigns.settings.save');
 
+        // Marketplace plugin route
+        if(config('marketplace.enabled')) {
+            Route::get('/plugins', 'Campaign\CampaignPluginController@index')->name('campaign_plugins.index');
+            Route::delete('/plugins/{plugin}/delete', 'Campaign\CampaignPluginController@delete')->name('campaign_plugins.destroy');
+            Route::get('/plugins/{plugin}/enable', 'Campaign\CampaignPluginController@enable')->name('campaign_plugins.enable');
+            Route::get('/plugins/{plugin}/disable', 'Campaign\CampaignPluginController@disable')->name('campaign_plugins.disable');
+            Route::get('/plugins/{plugin}/update', 'Campaign\CampaignPluginController@updateInfo')->name('campaign_plugins.update-info');
+            Route::post('/plugins/{plugin}/update', 'Campaign\CampaignPluginController@update')->name('campaign_plugins.update');
+
+        }
+
         // Old Search
         Route::get('/search', 'SearchController@search')->name('search');
 
@@ -368,6 +379,7 @@ Route::group([
         Route::get('/campaign/export', 'CampaignExportController@index')->name('campaign_export');
         Route::post('/campaign/export', 'CampaignExportController@export')->name('campaign_export.save');
         Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');
+        Route::get('/campaign_plugin.styles', 'Campaign\CampaignPluginController@css')->name('campaign_theme.css');
 
 
 
