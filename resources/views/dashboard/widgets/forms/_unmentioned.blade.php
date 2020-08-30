@@ -13,4 +13,5 @@
                 'enableNew' => false
             ]
         ) !!}
+    <input type="hidden" name="save_tags" value="1" />
 </div>

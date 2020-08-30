@@ -46,7 +46,7 @@ class CampaignDashboardWidgetObserver
      */
     protected function saveTags(CampaignDashboardWidget $model)
     {
-        if (!request()->has('tags')) {
+        if (!request()->has('save_tags')) {
             return;
         }
 
