@@ -35,7 +35,7 @@ return [
         'title'         => 'Modifier Quête :name',
     ],
     'fields'        => [
-        'character'     => 'Auteur',
+        'character'     => 'Instigateur',
         'characters'    => 'Personnages',
         'date'          => 'Date',
         'description'   => 'Description',

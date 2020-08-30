@@ -174,6 +174,11 @@ class MentionsService
             '$1',
             $text
         );
+        $text = preg_replace(
+            '`<a class="attribute" href="#" data-attribute="([^"]*)">(.*?)</a>`',
+            '$1',
+            $text
+        );
 
         return $text;
     }

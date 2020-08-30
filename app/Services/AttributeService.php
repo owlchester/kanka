@@ -28,7 +28,6 @@ class AttributeService
         }
 
         if ($this->loadedEntity === null || $this->loadedEntity->id != $attribute->entity_id) {
-
             $this->loadedEntity = $attribute->entity;
         }
 
