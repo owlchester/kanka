@@ -2,31 +2,34 @@
 
 return [
     '403'       => [
-        'body'  => '¡Parece que no tienes permiso para acceder a esta página!',
-        'title' => 'Permiso denegado',
+        'body'  => 'No teniu permís per accedir a aquesta pàgina.',
+        'title' => 'Permís denegat',
+    ],
+    '403-form'  => [
+        'help'  => 'Pot ser que la vostra sessió hagi caducat. Proveu d\'iniciar sessió en una altra finestra abans de guardar.',
     ],
     '404'       => [
-        'body'  => 'Lo sentimos, la página que estás buscando no se encuentra.',
-        'title' => 'Página no encontrada',
+        'body'  => 'La pàgina que busqueu no s\'ha trobat.',
+        'title' => 'Pàgina no trobada',
     ],
     '500'       => [
         'body'  => [
-            '1' => 'Ups, parece que algo ha ido mal.',
-            '2' => 'Nos ha llegado un informe con este error, pero a veces nos ayuda saber un poco más sobre lo que estabas haciendo.',
+            '1' => 'Sembla que alguna cosa no va bé.',
+            '2' => 'S\'ha enviat un informe amb aquest error, però si ens podeu dir el que estàveu fent, ens seria de molta ajuda..',
         ],
         'title' => 'Error',
     ],
     '503'       => [
         'body'  => [
-            '1' => 'Kanka está en mantenimiento ahora mismo. ¡Suele ser porque hay una actualización en camino!',
-            '2' => 'Disculpa las molestias. Todo volverá a la normalidad en solo unos minutos.',
+            '1' => 'Kanka està en manteniment ara mateix. És possible que hi hagi una actualització en camí!',
+            '2' => 'Disculpeu les molèsties. Tot tornarà a la normalitat en tan sols uns minuts.',
         ],
-        'title' => 'Mantenimiento',
+        'title' => 'Manteniment',
     ],
     '503-form'  => [
-        'body'  => 'No hemos podido guardar tus datos por alguna de las siguientes razones. Por favor, abre Kanka en un :link. Si la app está en mantenimiento, guarda tus datos en algún otro sitio hasta que la app vuelva a estar en funcionamiento y vuelve a intentarlo. En cambio, si te sale un mensaje diciendo "Checking your browser", puedes intentar retroceder y volver a darle a Guardar.',
-        'link'  => 'Nueva ventana',
-        'title' => 'Ha ocurrido algo inesperado.',
+        'body'  => 'No s\'han pogut guardar les vostres dades, i això pot passar per dues raons. Obriu Kanka en una :link. Si l\'app està en manteniment, guardeu les vostres dades en algun altre lloc fins que torni a estar en funcionament. Si, per contra, apareix un missatge dient "Checking your browser", intenteu retrocedir i tornar a clicar a "Guarda".',
+        'link'  => 'nova finestra',
+        'title' => 'Ha passat quelcom inesperat.',
     ],
-    'footer'    => 'Si necesitas más asistencia, contáctanos en hello@kanka.io o en :discord',
+    'footer'    => 'Per a més assistència, contacteu-nos a hello@kanka.io o al :discord',
 ];

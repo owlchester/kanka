@@ -18,15 +18,15 @@ return [
     ],
     'create'        => [
         'description'   => 'Crear nuevo calendario',
-        'success'       => 'Calendario \':name\' creado.',
+        'success'       => 'Calendario ":name" creado.',
         'title'         => 'Nuevo Calendario',
     ],
     'destroy'       => [
-        'success'   => 'Calendario \':name\' eliminado.',
+        'success'   => 'Calendario ":name" eliminado.',
     ],
     'edit'          => [
         'description'   => 'Actualizar calendario',
-        'success'       => 'Calendario \':name\' actualizado.',
+        'success'       => 'Calendario ":name" actualizado.',
         'title'         => 'Editar calendario :name',
         'today'         => 'Fecha del calendario actualizada.',
     ],
@@ -41,7 +41,7 @@ return [
             'success'       => 'Evento creado en el calendario',
             'title'         => 'Añadir evento del calendario a :name',
         ],
-        'destroy'   => 'Evento eliminado del calendario \':name\'',
+        'destroy'   => 'Evento eliminado del calendario :name',
         'edit'      => [
             'description'   => 'Actualizar evento del calendario',
             'success'       => 'Evento del calendario actualizado',

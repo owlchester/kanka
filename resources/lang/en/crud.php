@@ -13,12 +13,9 @@ return [
         'find_out_more'     => 'Find out more',
         'go_to'             => 'Go to :name',
         'json-export'       => 'Export (JSON)',
-        'more'              => 'More Actions',
         'move'              => 'Move',
         'new'               => 'New',
         'next'              => 'Next',
-        'private'           => 'Private',
-        'public'            => 'Public',
         'reset'             => 'Reset',
     ],
     'add'               => 'Add',
@@ -27,26 +24,9 @@ return [
     ],
     'attributes'        => [
         'actions'       => [
-            'add'               => 'Add an attribute',
-            'add_block'         => 'Add a block',
-            'add_checkbox'      => 'Add a checkbox',
-            'add_text'          => 'Add a text',
             'apply_template'    => 'Apply an Attribute Template',
             'manage'            => 'Manage',
             'remove_all'        => 'Delete All',
-        ],
-        'create'        => [
-            'description'   => 'Create a new attribute',
-            'success'       => 'Attribute :name added to :entity.',
-            'title'         => 'New Attribute for :name',
-        ],
-        'destroy'       => [
-            'success'   => 'Attribute :name for :entity removed.',
-        ],
-        'edit'          => [
-            'description'   => 'Update an existing attribute',
-            'success'       => 'Attribute :name for :entity updated.',
-            'title'         => 'Update attribute for :name',
         ],
         'fields'        => [
             'attribute'             => 'Attribute',

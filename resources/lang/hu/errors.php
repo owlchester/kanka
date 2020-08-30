@@ -5,6 +5,9 @@ return [
         'body'  => 'Úgy tűnik, nincs jogosultságod a lap megtekintéséhez.',
         'title' => 'Hozzáférés megtagadva.',
     ],
+    '403-form'  => [
+        'help'  => 'Ezt okozhatja, hogy lejárt munkameneted. Kérlek próbálj meg bejelentkezni egy új böngészőablakban, mielőtt mentenél.',
+    ],
     '404'       => [
         'body'  => 'Sajnos nem találjuk a keresett oldalt.',
         'title' => 'Oldal nem található.',

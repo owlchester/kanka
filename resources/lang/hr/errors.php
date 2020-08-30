@@ -5,6 +5,9 @@ return [
         'body'  => 'Izgleda da nemaš dozvolu za pristup ovoj stranici!',
         'title' => 'Dozvola odbijena',
     ],
+    '403-form'  => [
+        'help'  => 'Ovo bi moglo biti zbog isteka sesije. Prije spremanja, pokušaj se ponovo prijaviti u drugom prozoru.',
+    ],
     '404'       => [
         'body'  => 'Nažalost, stranicu koju tražiš nije moguće pronaći.',
         'title' => 'Stranica nije pronađena',

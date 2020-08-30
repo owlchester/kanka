@@ -18,7 +18,7 @@ return [
         'duplicate' => 'Ya existen otras entidades de este tipo con el mismo nombre.',
         'error'     => 'Ha habido un error con los valores que has introducido. Por favor, revísalos.',
         'helper'    => 'Selecciona el tipo de entidad que quieres crear. Si no aparece ninguna, quiere decir que no tienes permiso para crear entidades en esta campaña.',
-        'success'   => 'Nueva entidad \':link\' creada.',
+        'success'   => 'Nueva entidad ":link" creada.',
         'title'     => 'Nueva entidad',
     ],
     'dice_roll'             => 'Tirada de dados',

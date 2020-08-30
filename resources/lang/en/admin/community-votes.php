@@ -19,7 +19,7 @@ return [
         'options'       => 'Options',
         'published_at'  => 'Published (when results are published)',
         'status'        => 'Status',
-        'visible_at'    => 'Visible (when patrons can vote)',
+        'visible_at'    => 'Visible (when patrons and subscribers can vote)',
         'votes'         => 'Votes',
     ],
     'index'     => [

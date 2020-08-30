@@ -3,8 +3,9 @@
 return [
     'campaign'          => [
         'boost'         => [
-            'add'       => 'A(z) :campaign kampány boost-olva lett :user által.',
-            'remove'    => ':user nem boost-olja már tovább a(z) :campaign kampányt.',
+            'add'           => 'A(z) :campaign kampány boost-olva lett :user által.',
+            'remove'        => ':user nem boost-olja már tovább a(z) :campaign kampányt.',
+            'superboost'    => ':campaign kampány szuperboost-olva van :user által!',
         ],
         'export'        => 'A kampány exportja elkészült, <a href=":link">ide kattintva</a> letöltheted. A hivatkozás 30 percig lesz elérhető.',
         'export_error'  => 'Hiba történt a kampány exportálása során. Kérlek vedd fel velünk a kapcsolatot, ha a probléma továbbra is fennállna!',
@@ -27,6 +28,7 @@ return [
     ],
     'subscriptions'     => [
         'charge_fail'   => 'Hiba lépett fel a fizetés feldolgozása közben. Kérlek várj egy picit, újra megpróbáljuk. Ha nem történik változás, kérlek vedd fel a kapcsolatot velünk.',
+        'deleted'       => 'A Kanka előfizetésed lemondásra került túl sok sikertelen próbálkozás után a bankkártyád megterhelésére. Kérlek navigálj az Előfizetések beállításodra a profilod alatt, és aktualizáld a fizetési beállításaid.',
         'ended'         => 'A Kanka előfizetésed lejárt. A kampány boost-jaid, és Discord szereped megszűntek. Reméljük hamarosan viszontláthatunk ismét!',
         'failed'        => 'A Kanka előfizetésed vissza lett utasítva, mivel túl sokszor sikertelen volt a bankkártyád megterhelése az előfizetés összegére. Kérlek látogasd meg a Előfizetés beállításaid, és próbáld meg frissíteni a fizetési beállításod részleteit.',
         'started'       => 'Kanka előfizetésed megkezdődött.',

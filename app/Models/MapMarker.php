@@ -187,16 +187,16 @@ class MapMarker extends Model
         $body = null;
         if (!empty($this->entity)) {
             if (!empty($this->name)) { // Name is set, include link to the entity
-                $body .= "<p><a href=\"' . $this->entity->url() . '\">' . e($this->entity->name) . '</a>";
+                $url = $this->entity->url();
+                $body .= "<p><a href=\"$url\">" . $this->entity->name . "</a></p>";
             }
             // No entry field, include the entity tooltip
-            if (empty($this->entry)) {
+            if (empty(trim($this->entry))) {
                 $body .= $this->entity->mappedPreview();
             }
         }
         if ($this->exploring) {
-            return '
-            .bindPopup(`
+            return '.bindPopup(`
             <div class="marker-popup-content">
                 <h4 class="marker-header">' . $this->markerTitle(true) . '</h4>
                 <p class="marker-text">' . Mentions::mapAny($this) . '</p>

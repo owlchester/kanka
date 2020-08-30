@@ -40,7 +40,7 @@ return [
         'success'   => 'Contraseña actualizada',
     ],
     'placeholders'  => [
-        'email'                     => 'Tu correo electronico',
+        'email'                     => 'Tu correo electrónico',
         'name'                      => 'Tu nombre de usuario',
         'new_password'              => 'Tu nueva contraseña',
         'new_password_confirmation' => 'Confirma tu nueva contraseña',

@@ -3,15 +3,15 @@
 return [
     'create'        => [
         'description'   => 'Crear nuevo objeto',
-        'success'       => 'Objeto \':name\' creado.',
-        'title'         => 'Nuevo Objeto',
+        'success'       => 'Objeto ":name" creado.',
+        'title'         => 'Nuevo objeto',
     ],
     'destroy'       => [
-        'success'   => 'Objeto \':name\' borrado.',
+        'success'   => 'Objeto ":name" eliminado.',
     ],
     'edit'          => [
-        'success'   => 'Objeto \':name\' actualizado.',
-        'title'     => 'Editar objeto :name',
+        'success'   => 'Objeto ":name" actualizado.',
+        'title'     => 'Editar :name',
     ],
     'fields'        => [
         'character' => 'Personaje',
@@ -24,7 +24,7 @@ return [
         'type'      => 'Tipo',
     ],
     'index'         => [
-        'add'           => 'Nuevo Objeto',
+        'add'           => 'Nuevo objeto',
         'description'   => 'Gestiona los objetos de :name.',
         'header'        => 'Objetos de :name',
         'title'         => 'Objetos',
@@ -39,7 +39,7 @@ return [
         'name'      => 'Nombre del objeto',
         'price'     => 'Precio del objeto',
         'size'      => 'Tamaño, peso, dimensiones',
-        'type'      => 'Arma, Poción, Artefacto',
+        'type'      => 'Arma, Poción, Artefacto...',
     ],
     'quests'        => [
         'description'   => 'Misiones en las que aparece el objeto.',

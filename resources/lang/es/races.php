@@ -7,14 +7,14 @@ return [
     ],
     'create'        => [
         'description'   => 'Crear nueva raza',
-        'success'       => 'Raza \':name\' creada.',
-        'title'         => 'Nueva Raza',
+        'success'       => 'Raza ":name" creada.',
+        'title'         => 'Nueva raza',
     ],
     'destroy'       => [
-        'success'   => 'Raza \':name\' eliminada.',
+        'success'   => 'Raza ":name" eliminada.',
     ],
     'edit'          => [
-        'success'   => 'Raza \':name\' actualizada.',
+        'success'   => 'Raza ":name" actualizada.',
         'title'     => 'Editar raza :name',
     ],
     'fields'        => [
@@ -35,7 +35,7 @@ return [
     ],
     'placeholders'  => [
         'name'  => 'Nombre de la raza',
-        'type'  => 'Humano, Elfo, Troll',
+        'type'  => 'Humano, Elfo, Troll...',
     ],
     'races'         => [
         'description'   => 'Razas pertenecientes a esta raza.',

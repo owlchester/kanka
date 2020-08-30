@@ -2,28 +2,28 @@
 
 return [
     'create'    => [
-        'success'   => 'Votación comunitaria creada.',
-        'title'     => 'Crear nueva votación comunitaria',
+        'success'   => 'S\'ha creat la votació comunitària.',
+        'title'     => 'Crea una nova votació comunitària',
     ],
     'destroy'   => [
-        'success'   => 'Votación comunitaria eliminada.',
+        'success'   => 'S\'ha eliminat la votació comunitària.',
     ],
     'edit'      => [
-        'success'   => 'Votación comunitaria editada.',
-        'title'     => 'Actualizar voto de la comunidad :name',
+        'success'   => 'S\'ha modificat la votació comunitària.',
+        'title'     => 'Actualiza la votació comunitària :name',
     ],
     'fields'    => [
-        'content'       => 'Contenido',
-        'excerpt'       => 'Extracto',
-        'name'          => 'Nombre',
-        'options'       => 'Opciones',
-        'published_at'  => 'Publicado (cuándo se publican los resultados)',
+        'content'       => 'Contingut',
+        'excerpt'       => 'Extracte',
+        'name'          => 'Nom',
+        'options'       => 'Opcions',
+        'published_at'  => 'Publicada (quan es publiquen els resultats)',
         'status'        => 'Estatus',
-        'visible_at'    => 'Visible (cuándo pueden votar los patrons)',
-        'votes'         => 'Votos',
+        'visible_at'    => 'Visible (quan poden votar els subscriptors)',
+        'votes'         => 'Vots',
     ],
     'index'     => [
-        'add'   => 'Nueva votación comunitaria',
-        'title' => 'Admin: votos de la comunidad',
+        'add'   => 'Nova votació comunitària',
+        'title' => 'Admin: votacions comunitàries',
     ],
 ];

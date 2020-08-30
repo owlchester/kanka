@@ -12,11 +12,11 @@ return [
     ],
     'create'        => [
         'description'   => 'Crear nuevo personaje',
-        'success'       => 'Se ha creado el personaje \':name\'.',
+        'success'       => 'Se ha creado el personaje ":name".',
         'title'         => 'Nuevo Personaje',
     ],
     'destroy'       => [
-        'success'   => 'Personaje \':name\' borrado.',
+        'success'   => 'Personaje ":name" eliminado.',
     ],
     'dice_rolls'    => [
         'description'   => 'Tiradas de dados asignadas al personaje.',
@@ -25,7 +25,7 @@ return [
     ],
     'edit'          => [
         'description'   => 'Editar personaje',
-        'success'       => 'Personaje \':name\' actualizado.',
+        'success'       => 'Personaje ":name" actualizado.',
         'title'         => 'Editar el personaje :name',
     ],
     'fields'        => [
@@ -42,7 +42,7 @@ return [
         'relation'                  => 'Relación',
         'sex'                       => 'Género',
         'title'                     => 'Título',
-        'traits'                    => 'Personalidad',
+        'traits'                    => 'Características',
         'type'                      => 'Tipo',
     ],
     'helpers'       => [
@@ -118,7 +118,7 @@ return [
         'race'              => 'Raza',
         'sex'               => 'Género',
         'title'             => 'Título',
-        'traits'            => 'Personalidad',
+        'traits'            => 'Características',
         'type'              => 'PNJ, Personaje Jugador, Divinidad...',
     ],
     'quests'        => [
@@ -143,7 +143,7 @@ return [
             'journals'      => 'Diarios',
             'map'           => 'Mapa de relaciones',
             'organisations' => 'Organizaciones',
-            'personality'   => 'Personalidad',
+            'personality'   => 'Características',
             'quests'        => 'Misiones',
         ],
         'title'         => 'Personaje :name',

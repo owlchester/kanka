@@ -17,10 +17,10 @@ $entity = \App\Models\Entity::
         ->inRandomOrder()
         ->first();
 
-$model = $entity->child;
-if (empty($model)) {
+if (empty($entity) || empty($entity->child)) {
     return;
 }
+$model = $entity->child;
 
 $specificPreview = 'dashboard.widgets.previews.' . $entity->type;
 ?>

@@ -50,9 +50,11 @@ return [
         ],
         'title'     => 'Kampagnen Dashboard Einrichtung',
         'widgets'   => [
-            'calendar'  => 'Kalender',
-            'preview'   => 'Objekt Vorschau',
-            'recent'    => 'Kürzlich',
+            'calendar'      => 'Kalender',
+            'preview'       => 'Objekt Vorschau',
+            'random'        => 'zufälliges Objekt',
+            'recent'        => 'Kürzlich',
+            'unmentioned'   => 'Unerwähntes Objekt',
         ],
     ],
     'title'             => 'Dashboard',
@@ -71,7 +73,7 @@ TEXT
 ,
     ],
     'widgets'           => [
-        'calendar'  => [
+        'calendar'      => [
             'actions'           => [
                 'next'      => 'Datum auf nächsten Tag ändern',
                 'previous'  => 'Datum auf vorigen Tag ändern',
@@ -80,28 +82,34 @@ TEXT
             'previous_events'   => 'Vorige',
             'upcoming_events'   => 'Bevorstehende',
         ],
-        'create'    => [
+        'create'        => [
             'success'   => 'Widget zum Dashboard hinzugefügt.',
         ],
-        'delete'    => [
+        'delete'        => [
             'success'   => 'Widget vom Dashboard entfernt.',
         ],
-        'fields'    => [
+        'fields'        => [
             'width' => 'Breite',
         ],
-        'recent'    => [
-            'full'      => 'Voll',
-            'help'      => 'Nur das zuletzt aktualisierte Objekt anzeigen, aber eine vollständige Vorschau des Objektes anzeigen',
-            'helpers'   => [
-                'full'  => 'Zeigen Sie standardmäßig den Eintrag des gesamten Objektes anstelle einer Vorschau an.',
+        'recent'        => [
+            'entity-header' => 'Verwenden Sie den Objekt-Header als Bild',
+            'full'          => 'Voll',
+            'help'          => 'Nur das zuletzt aktualisierte Objekt anzeigen, aber eine vollständige Vorschau des Objektes anzeigen',
+            'helpers'       => [
+                'entity-header' => 'Wenn Ihr Objekt über einen Objekt-Header verfügt (erweiterte Kampagnenfunktion), stellen Sie dieses Widget so ein, dass dieses Bild anstelle des Bilds des Objektes verwendet wird.',
+                'full'          => 'Zeigen Sie standardmäßig den Eintrag des gesamten Objektes anstelle einer Vorschau an.',
             ],
-            'singular'  => 'Einzelnes Objekt',
-            'title'     => 'Vor kurzem aktualisiert',
+            'singular'      => 'Einzelnes Objekt',
+            'tags'          => 'Filtern Sie die Liste der zuletzt geänderten Objekte nach bestimmten Tags.',
+            'title'         => 'Vor kurzem aktualisiert',
         ],
-        'update'    => [
+        'unmentioned'   => [
+            'title' => 'Unerwähnte Objekte',
+        ],
+        'update'        => [
             'success'   => 'Widget angepasst.',
         ],
-        'widths'    => [
+        'widths'        => [
             '0' => 'automatisch',
             '12'=> 'Komplett',
             '4' => 'Klein',

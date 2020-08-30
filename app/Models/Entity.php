@@ -291,7 +291,7 @@ class Entity extends Model
             return '';
         }
 
-        return Img::crop($width, $height ?? $width)->url($this->$field);
+        return Img::resetCrop()->crop($width, $height ?? $width)->url($this->$field);
     }
 
     /**
