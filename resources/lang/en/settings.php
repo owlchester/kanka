@@ -127,12 +127,6 @@ return [
         'benefits_features' => 'amazing features',
         'deprecated'        => 'Deprecated feature - if you wish to support Kanka, please do so with a :subscription. Patreon linking is still active for our Patrons who have linked their account before the move away from Patreon.',
         'description'       => 'Syncing with Patreon',
-        'errors'            => [
-            'invalid_token' => 'Invalid token! Patreon couldn\'t validate your request.',
-            'missing_code'  => 'Missing code! Patreon didn\'t send back a code identifying your account.',
-            'no_pledge'     => 'No pledge! Patreon identified your account, but doesn\'t know of any active pledge.',
-        ],
-        'link'              => 'Use the following button if you are currently supporting Kanka on :patreon. This will unlock the bonuses',
         'linked'            => 'Thank you for supporting Kanka on Patreon! Your account is linked.',
         'pledge'            => 'Pledge: :name',
         'remove'            => [
