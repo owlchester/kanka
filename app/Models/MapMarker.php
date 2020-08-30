@@ -400,6 +400,6 @@ class MapMarker extends Model
      */
     public function visible(): bool
     {
-        return empty($this->entity_id) || $this->entity->child;
+        return empty($this->entity_id) || (!empty($this->entity) && !empty($this->entity->child));
     }
 }
