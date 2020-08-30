@@ -129,6 +129,14 @@ trait Filterable
                             ->leftJoin('entity_tags as et', 'et.entity_id', 'e.id')
                             ->where('et.tag_id', $value);
                     } elseif ($key == 'organisation_member') {
+                        if (!empty($filterOption) && $filterOption == 'none')  {$query
+                            ->select($this->getTable() . '.*')
+                            ->leftJoin('organisation_member as om', function ($join) {
+                                $join->on('om.character_id', '=', $this->getTable() . '.id');
+                            })
+                            ->where('om.organisation_id', null);
+                            continue;
+                        }
                         $query
                             ->select($this->getTable() . '.*')
                             ->leftJoin('organisation_member as om', function ($join) {
@@ -180,6 +188,10 @@ trait Filterable
                 $key = Str::beforeLast($key, '_option');
                 // Validate the key is a filter
                 if (in_array($key, $fields)) {
+                    // Left join shenanigans
+                    if ($key == 'organisation_member') {
+                        continue;
+                    }
                     $query->whereNull($this->getTable() . '.' . $key);
                 }
             }
