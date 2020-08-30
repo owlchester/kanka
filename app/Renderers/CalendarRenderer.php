@@ -914,14 +914,14 @@ class CalendarRenderer
     protected function addMoonPhases($start, array $moon)
     {
         // Full & New Moon
-        $this->addMoonPhase($start, $moon, 'full', 'far fa-circle');
+        $this->addMoonPhase($start, $moon, 'full', 'fas fa-circle');
         $newMoon = $start + ($moon['fullmoon'] / 2);
-        $this->addMoonPhase($newMoon, $moon, 'new', 'fas fa-circle');
+        $this->addMoonPhase($newMoon, $moon, 'new', 'far fa-circle');
 
         if ($moon['fullmoon'] > 10) {
             $quarterMonth = $moon['fullmoon'] / 4;
-            $this->addMoonPhase($newMoon - $quarterMonth, $moon, 'waning', 'fas fa-moon');
-            $this->addMoonPhase($newMoon + $quarterMonth, $moon, 'waxing', 'far fa-moon');
+            $this->addMoonPhase($newMoon - $quarterMonth, $moon, 'waning', 'far fa-moon');
+            $this->addMoonPhase($newMoon + $quarterMonth, $moon, 'waxing', 'fas fa-moon');
         }
     }
 
