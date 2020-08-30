@@ -13,7 +13,7 @@ return [
     ],
     'edit'          => [
         'success'   => 'Ažurirano razdoblje :name.',
-        'title'     => 'Uredi razdoblje :name.',
+        'title'     => 'Uredi razdoblje :name',
     ],
     'fields'        => [
         'abbreviation'  => 'Skraćenica',
@@ -21,13 +21,13 @@ return [
         'start_year'    => 'Početna godina',
     ],
     'helpers'       => [
-        'eras'      => 'Kronologija mora biti stvorena prije nego što joj se dodaju razdoblja.',
-        'primary'   => 'Razdvoji svoju kronologiju po razdobljima. Kronologija treba imati barem jedno razdoblje kako bi pravilno funkcionirala.',
+        'eras'      => 'Kronologiju treba stvoriti prije nego što joj se mogu dodati razdoblja.',
+        'primary'   => 'Razdvoji kronologiju u razdolja. Kronologiji treba najmanje jedno razdoblje da bi ispravno funkcionirala.',
     ],
     'placeholders'  => [
-        'abbreviation'  => 'n.e., p.n.e., pne.',
-        'end_year'      => 'Godina kada završava razdoblje. Ostavi prazno ako je ovo trenutno razdoblje.',
-        'name'          => 'Moderno doba, Brončano doba, Galaktički ratovi',
-        'start_year'    => 'Godina u kojoj počinje era. Ostavi prazno ako je ovo prva era.',
+        'abbreviation'  => 'n.e., p.n.e., pr. Kr.',
+        'end_year'      => 'Godina kada razdoblje završava. Ostavi prazno ako je ovo trenutno razdoblje.',
+        'name'          => 'Moderno doba, Brončano doba, Galaktički Ratovi',
+        'start_year'    => 'Godina kada razdoblje počinje. Ostavi prazno ako je ovo prvo razdoblje.',
     ],
 ];

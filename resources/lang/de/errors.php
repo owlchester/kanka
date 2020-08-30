@@ -5,6 +5,9 @@ return [
         'body'  => 'Es sieht so aus, als hättest du keine Berechtigung, diese Seite anzuzeigen!',
         'title' => 'Zugang verweigert',
     ],
+    '403-form'  => [
+        'help'  => 'Dies kann an der Zeitüberschreitung Ihrer Sitzung liegen. Bitte versuchen Sie erneut, sich in einem anderen Fenster anzumelden, bevor Sie speichern.',
+    ],
     '404'       => [
         'body'  => 'Entschuldige, diese Seite haben wir leider nicht finden können.',
         'title' => 'Seite nicht gefunden',

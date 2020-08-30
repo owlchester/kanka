@@ -7,14 +7,14 @@ return [
         'explore'   => 'Explorar',
     ],
     'create'        => [
-        'success'   => 'Mapa :name creado.',
+        'success'   => 'Mapa ":name" creado.',
         'title'     => 'Nuevo mapa',
     ],
     'destroy'       => [
-        'success'   => 'Mapa :nombre eliminado.',
+        'success'   => 'Mapa ":nombre" eliminado.',
     ],
     'edit'          => [
-        'success'   => 'Mapa :name actualizado.',
+        'success'   => 'Mapa ":name" actualizado.',
         'title'     => 'Editar mapa :name',
     ],
     'errors'        => [

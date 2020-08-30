@@ -3,8 +3,9 @@
 return [
     'campaign'          => [
         'boost'         => [
-            'add'       => 'Kampanju :campaign je pojačao korisnik :user.',
-            'remove'    => 'Korisnik :user više ne pojačava kampanju :campaign.',
+            'add'           => 'Kampanju :campaign je pojačao korisnik :user.',
+            'remove'        => 'Korisnik :user više ne pojačava kampanju :campaign.',
+            'superboost'    => 'Kampanju :campaign podupire :user.',
         ],
         'export'        => 'Dostupan je izvoz kampanje. Možeš ga preuzeti klikom <a href=":link"> ovdje</a>. Veza je dostupna :time minuta.',
         'export_error'  => 'Došlo je do pogreške prilikom izvoza kampanje. Molimo kontaktiraj nas ako se ovaj problem nastavi.',
@@ -27,6 +28,7 @@ return [
     ],
     'subscriptions'     => [
         'charge_fail'   => 'Došlo je do pogreške tijekom obrade tvoje uplate. Pričekaj trenutak dok pokušavamo ponovo. Ako se ništa ne promijeni, kontaktiraj nas.',
+        'deleted'       => 'Tvoja pretplata na Kanku je otkazana nakon previše neuspjelih pokušaja naplate tvoje kartice. Idi u postavke pretplate i pokušaj ažurirati svoje podatke o plaćanju.',
         'ended'         => 'Tvoja pretplata na Kanku je završila. Pojačanja tvoje kampanje i Discord uloge su uklonjene. Nadamo će te nam se uskoro vratiti!',
         'failed'        => 'Tvoja pretplata na Kanku je otkazana nakon previše neuspjelih pokušaja naplate tvoje kartice. Idi u postavke pretplate i pokušaj ažurirati svoje podatke o plaćanju.',
         'started'       => 'Tvoja pretplata na Kanku je započela.',

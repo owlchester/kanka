@@ -14,7 +14,7 @@ return [
     'create'        => [
         'description'   => 'Crear nueva etiqueta',
         'success'       => 'Etiqueta ":name" creada.',
-        'title'         => 'Nueva Etiqueta',
+        'title'         => 'Nueva etiqueta',
     ],
     'destroy'       => [
         'success'   => 'Etiqueta ":name" eliminada.',
@@ -42,12 +42,12 @@ return [
         'actions'       => [
             'explore_view'  => 'Vista de exploración',
         ],
-        'add'           => 'Nueva Etiqueta',
+        'add'           => 'Nueva etiqueta',
         'description'   => 'Gestiona las etiquetas de :name.',
         'header'        => 'Etiquetas en :name',
         'title'         => 'Etiquetas',
     ],
-    'new_tag'       => 'Nueva Etiqueta',
+    'new_tag'       => 'Nueva etiqueta',
     'placeholders'  => [
         'name'  => 'Nombre de la etiqueta',
         'tag'   => 'Elige una etiqueta superior',

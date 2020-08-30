@@ -3,15 +3,15 @@
 return [
     'create'        => [
         'description'   => 'Crear nueva familia',
-        'success'       => 'Familia \':name\' creada.',
+        'success'       => 'Familia ":name" creada.',
         'title'         => 'Crear una nueva familia',
     ],
     'destroy'       => [
-        'success'   => 'Familia \':name\' borrada.',
+        'success'   => 'Familia ":name" eliminada.',
     ],
     'edit'          => [
-        'success'   => 'Familia \':name\' actualizada.',
-        'title'     => 'Editar familia \':name\'',
+        'success'   => 'Familia ":name" actualizada.',
+        'title'     => 'Editar familia ":name"',
     ],
     'families'      => [
         'title' => 'Familias de la familia :name',
@@ -34,7 +34,7 @@ return [
         'members'   => 'Aquí se enumeran los miembros de una familia. Se puede añadir un personaje a una familia en el menú de edición de dicho personaje, usando el desplegable "Familia".',
     ],
     'index'         => [
-        'add'           => 'Nueva Familia',
+        'add'           => 'Nueva familia',
         'description'   => 'Gestiona las familias de :name.',
         'header'        => 'Familias de :name',
         'title'         => 'Familias',

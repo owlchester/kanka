@@ -2,7 +2,7 @@
 
 return [
     'create'        => [
-        'success'   => 'Element zur Zeitstrahl hinzugefügt',
+        'success'   => 'Element zum Zeitstrahl hinzugefügt',
         'title'     => 'neues Zeitstrahlelement',
     ],
     'edit'          => [

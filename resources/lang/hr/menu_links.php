@@ -2,17 +2,15 @@
 
 return [
     'create'        => [
-        'description'   => 'Kreiraj novu poveznicu izbornika',
-        'success'       => 'Poveznica ":name" kreirana u izborniku.',
-        'title'         => 'Nova poveznica izbornika',
+        'success'   => 'Poveznica ":name" kreirana u izborniku.',
+        'title'     => 'Nova poveznica izbornika',
     ],
     'destroy'       => [
         'success'   => 'Poveznica ":name" uklonjena iz izbornika.',
     ],
     'edit'          => [
-        'description'   => 'Uredi stavku izbornika.',
-        'success'       => 'Poveznica ":name" ažurirana u izborniku.',
-        'title'         => 'Poveznica izbornika :name',
+        'success'   => 'Poveznica ":name" ažurirana u izborniku.',
+        'title'     => 'Poveznica izbornika :name',
     ],
     'fields'        => [
         'entity'    => 'Entitet',
@@ -29,10 +27,8 @@ return [
         'type'      => 'Postavi ovu poveznicu izbornika tako da vodi direktno na listu entiteta. Za filtriranje rezultata, kopiraj dijelove URL s filtrirane liste entiteta nakon znaka :? u polje :filter',
     ],
     'index'         => [
-        'add'           => 'Nova poveznica izbornika',
-        'description'   => 'Upravljanje poveznicama izbornika u :name.',
-        'header'        => 'Poveznice izbornika u :name',
-        'title'         => 'Poveznice izbornika',
+        'add'   => 'Nova poveznica izbornika',
+        'title' => 'Poveznice izbornika',
     ],
     'placeholders'  => [
         'entity'    => 'Odaberite entitet',
@@ -42,10 +38,9 @@ return [
         'tab'       => 'unos, odnosi, bilješke',
     ],
     'show'          => [
-        'description'   => 'poveznice izbornika',
-        'tabs'          => [
+        'tabs'  => [
             'information'   => 'Informacije',
         ],
-        'title'         => 'Poveznica izbornika :name',
+        'title' => 'Poveznica izbornika :name',
     ],
 ];

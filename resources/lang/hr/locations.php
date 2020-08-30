@@ -40,7 +40,7 @@ return [
         'descendants'       => 'Popis sadrži sve lokacije koje su unutar trenutne lokacije, a ne samo one koje su direktno ispod nje.',
         'families'          => 'Lokacije mogu biti sjedište moćnih obitelji.',
         'map'               => 'Dodavanje karte na lokaciju će omogućiti stavljanje "Točaka" na kartu, povezujući ih na druge entitete u kampanji.',
-        'map_deprecated'    => 'Karte su sada vlastiti modul! Ova je nova značajka trenutno dostupna u ranom pristupu za :boosted. Ovo trenutno sučelje postat će nedostupno kada novi modul bude dostupan svima, ali ćeš i dalje moći uređivati stare karte u ovom sučelju.',
+        'map_deprecated_2'  => 'Karte su sada vlastiti modul! Stare karte se i dalje mogu ažurirati, ali sve nove karte prelaze u novi modul Karte.',
         'nested'            => 'U "Ugniježđenom pregledu" možeš vidjeti lokacije na ugniježđeni način. Lokacije bez lokacije roditelj će biti prikazane na osnovnom pregledu. Lokacije s podlokacijama se mogu kliknuti kako bi se prikazale te podlokacije. Možeš nastaviti klikati dok ima podlokacija za prikazati.',
         'organisations'     => 'Pregledaj sve organizacije na ovoj lokaciji i njenim podlokacijama ili samo one locirane neposredno ovdje.',
     ],

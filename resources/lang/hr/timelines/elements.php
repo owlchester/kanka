@@ -2,12 +2,12 @@
 
 return [
     'create'        => [
-        'success'   => 'Element dodan u kronologiju.',
+        'success'   => 'Element je dodan kronologiji.',
         'title'     => 'Novi element kronologije',
     ],
     'edit'          => [
-        'success'   => 'Element ažuriran.',
-        'title'     => 'Uredi element kronologije',
+        'success'   => 'Element je ažuriran.',
+        'title'     => 'Uređivanje elementa kronologije',
     ],
     'fields'        => [
         'date'  => 'Datum',
@@ -15,11 +15,11 @@ return [
         'icon'  => 'Ikona',
     ],
     'helpers'       => [
-        'icon'  => 'Kopirajte HTML ikone iz :fontawesome ili :rpgawesome.',
+        'icon'  => 'Kopiraj HTML ikone iz :fontawesome ili :rpgawesome.',
     ],
     'placeholders'  => [
-        'date'      => 'Npr. 42. ožujak ili 1332-1337',
+        'date'      => 'npr 42. ožujka ili 1332-1377',
         'name'      => 'Obavezno ako nije odabran nijedan entitet',
-        'position'  => 'Pozicija na popisu elemenata za razdoblje. Ostavi prazno da za dodavanje na kraj.',
+        'position'  => 'Pozicija na popisu elemenata za razdoblje. Ostavi prazno da bi se dodalo na kraj.',
     ],
 ];

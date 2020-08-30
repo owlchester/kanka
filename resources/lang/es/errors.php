@@ -5,6 +5,9 @@ return [
         'body'  => '¡Parece que no tienes permiso para acceder a esta página!',
         'title' => 'Permiso denegado',
     ],
+    '403-form'  => [
+        'help'  => 'Puede que tu sesión haya caducado. Intenta volver a iniciar sesión en otra ventana antes de guardar.',
+    ],
     '404'       => [
         'body'  => 'Lo sentimos, la página que estás buscando no se encuentra.',
         'title' => 'Página no encontrada',

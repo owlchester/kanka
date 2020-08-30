@@ -21,7 +21,7 @@ return [
         'type'      => 'Type',
     ],
     'helpers'       => [
-        'date'  => 'Ce champ peut contenir n\'importe quelle valeur et n\'est pas lié aux calendriers de la campagne. Pour lier cet événement à un calendrier, il faut se rendre sur l\'onglet rappels de cet événement.',
+        'date'  => 'Ce champ peut contenir n\'importe quelle valeur et n\'est pas lié aux calendriers de la campagne. Pour lier cet événement à un calendrier, il faut se rendre sur la l\'onglet rappels de cet événement.',
     ],
     'index'         => [
         'add'           => 'Nouvel Événement',

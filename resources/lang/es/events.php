@@ -3,15 +3,15 @@
 return [
     'create'        => [
         'description'   => 'Crear nuevo evento',
-        'success'       => 'Evento \':name\' creado.',
+        'success'       => 'Se ha creado el evento ":name".',
         'title'         => 'Crear nuevo evento',
     ],
     'destroy'       => [
-        'success'   => 'Evento \':name\' borrado.',
+        'success'   => 'Se ha eliminado el evento ":name".',
     ],
     'edit'          => [
-        'success'   => 'Evento \':name\' actualizado.',
-        'title'     => 'Editar evento :name',
+        'success'   => 'Se ha actualizado el evento ":name".',
+        'title'     => 'Editar ":name"',
     ],
     'fields'        => [
         'date'      => 'Fecha',
@@ -40,7 +40,7 @@ return [
         'tabs'          => [
             'information'   => 'Información',
         ],
-        'title'         => 'Evento :name',
+        'title'         => 'Evento ":name"',
     ],
     'tabs'          => [
         'calendars' => 'Entradas del calendario',

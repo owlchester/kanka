@@ -5,7 +5,7 @@ return [
         'add'   => 'neue Epoche hinzufügen',
     ],
     'create'        => [
-        'success'   => 'Epoche :name erstellen',
+        'success'   => 'Epoche :name erstellt',
         'title'     => 'neue Epoche',
     ],
     'delete'        => [
@@ -13,16 +13,16 @@ return [
     ],
     'edit'          => [
         'success'   => 'Epoche :name aktualisiert',
-        'title'     => 'Epoche :name editiert',
+        'title'     => 'Epoche :name editieren',
     ],
     'fields'        => [
         'abbreviation'  => 'Abkürzung',
-        'end_year'      => 'Ende des Jahres',
+        'end_year'      => 'Endjahr',
         'start_year'    => 'Startjahr',
     ],
     'helpers'       => [
-        'eras'      => 'Der Zeitstrahl muss erstellt werden, bevor Epochen hinzugefügt werden können.',
-        'primary'   => 'Trennen Sie Ihren Zeitstrahlin Epochen. Ein Zeitstrahl benötigt mindestens eine Epoche, um ordnungsgemäß zu funktionieren.',
+        'eras'      => 'Der Zeitstahl muss erstellt werden, bevor Epochen hinzugefügt werden können.',
+        'primary'   => 'Trennen Sie Ihre Zeitstrahlen in Epochen. Ein Zeitstrahl benötigt mindestens eine Epoche, um ordnungsgemäß zu funktionieren.',
     ],
     'placeholders'  => [
         'abbreviation'  => 'AD, BC, BCE',
