@@ -2,8 +2,8 @@
 
 return [
     'edit'  => [
-        'success'   => 'Patron actualizado.',
-        'title'     => 'Editar :name de Patron',
+        'success'   => 'Patron actualitzat.',
+        'title'     => 'Edita el :name de Patron',
     ],
     'index' => [
         'title' => 'Patrons',

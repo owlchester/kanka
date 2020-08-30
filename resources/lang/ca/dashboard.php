@@ -2,110 +2,105 @@
 
 return [
     'actions'           => [
-        'follow'    => 'Seguir',
-        'unfollow'  => 'Dejar de seguir',
+        'follow'    => 'Segueix',
+        'unfollow'  => 'Deixa de seguir',
     ],
     'campaigns'         => [
-        'manage'    => 'Gestionar campaña',
+        'manage'    => 'Gestiona la campaña',
         'tabs'      => [
-            'modules'   => ':count módulos',
-            'roles'     => ':count roles',
-            'users'     => ':count usuarios',
+            'modules'   => ':count mòduls',
+            'roles'     => ':count rols',
+            'users'     => ':count usuaris',
         ],
     ],
-    'description'       => 'Tu plaza creativa',
+    'description'       => 'La llar de la creativitat',
     'helpers'           => [
-        'follow'    => 'Si sigues una campaña, esta aparecerá en el menú de cambio de campaña (arriba a la derecha) bajo tus campañas.',
-        'setup'     => 'Configura el tablero de tu campaña',
+        'follow'    => 'Les campanyes que seguiu apareixen al menú de canvi de campanya (adalt a l\'esquerra) sota les vostres campanyes.',
+        'setup'     => 'Configura el taulell de la campanya',
     ],
-    'latest_release'    => 'Publicación reciente',
+    'latest_release'    => 'Últim llançament',
     'notifications'     => [
         'modal' => [
-            'confirm'   => 'Entendido',
-            'title'     => 'Notificación importante',
+            'confirm'   => 'D\'acord',
+            'title'     => 'Notificació important',
         ],
     ],
     'recent'            => [
-        'add'           => 'Crear nuevo :name',
-        'no_entries'    => 'Actualmente no hay entradas de este tipo.',
-        'title'         => ':name recientemente modificados',
-        'view'          => 'Ver todos los :name',
+        'add'           => 'Crea un nou :name',
+        'no_entries'    => 'Actualment no hi ha entrades d\'aquest tipus.',
+        'title'         => ':name que s\'han modificat recentement',
+        'view'          => 'Veu tots els :name',
     ],
     'settings'          => [
-        'description'   => 'Personaliza lo que ves en tu tablero',
+        'description'   => 'Personalitza la vista del taulell',
         'edit'          => [
-            'success'   => 'Se han guardado tus modificaciones.',
+            'success'   => 'S\'han desat les modificacions.',
         ],
         'fields'        => [
-            'helper'        => 'Puedes cambiar fácilmente lo que ves en tu tablero. Por favor, ten en cuenta que todas tus campañas se verán afectadas, independientemente de los ajustes de estas.',
-            'recent_count'  => 'Numero de elementos recientes',
+            'helper'        => 'Es pot canviar fàcilment la vista del taulell. Tingueu en compte que totes les campanyes es veuran afectades, independentement de la configuració d\'aquestes.',
+            'recent_count'  => 'Nombre d\'elements recents',
         ],
-        'title'         => 'Ajustes del tablero',
+        'title'         => 'Configuració del taulell',
     ],
     'setup'             => [
         'actions'   => [
-            'add'               => 'Añadir widget',
-            'back_to_dashboard' => 'Volver al tablero',
-            'edit'              => 'Editar widget',
+            'add'               => 'Afegeix un giny',
+            'back_to_dashboard' => 'Torna al taulell',
+            'edit'              => 'Edita el giny',
         ],
-        'title'     => 'Configurar el tablero de campaña',
+        'title'     => 'Configura el taulell de la campanya',
         'widgets'   => [
-            'calendar'  => 'Calendario',
-            'preview'   => 'Previsualización de la entidad',
-            'recent'    => 'Reciente',
+            'calendar'      => 'Calendari',
+            'preview'       => 'Previsualització de l\'entitat',
+            'random'        => 'Entitat aleatòria',
+            'recent'        => 'Recent',
+            'unmentioned'   => 'Entitat no mencionada',
         ],
     ],
-    'title'             => 'Tablero de',
-    'welcome'           => [
-        'body'  => <<<'TEXT'
-¡Bienvenid@ a Kanka! Tu primera campaña ha sido creada y hemos incluido un par de entidades de ejemplo como inspiración (puedes borrarlas cuando quieras).
-
-Seguramente querrás ir empezando a crear algunas entidades propias, así que elige una categoría en el menú de la izquierda y da rienda suelta a tu imaginación. Puedes deshabilitar categorías innecesarias desde la configuración de la campaña: así las esconderás del menú.
-
-Un par de consejos para empezar:
-- Puedes escribir @nombreEntidad para enlazar a entidades específicas. El texto del enlace se actualizará automáticamente si renombras o cambias la entidad enlazada.
-- Puedes configurar ajustes de tu cuenta como los temas, la cantidad de entidades por página, etc. desde el botón de arriba a la derecha.
-- Tenemos una creciente lista de tutoriales en :youtube, que incluyen los atributos y cómo compartir tu campaña con otras personas. Las :faq también te serán útiles.
-- Si tienes preguntas, sugerencias o solo quieres charlar, únete a nosotros en :discord
-TEXT
-,
-    ],
+    'title'             => 'Taulell de',
+    'welcome'           => [],
     'widgets'           => [
-        'calendar'  => [
+        'calendar'      => [
             'actions'           => [
-                'next'      => 'Cambiar fecha al día siguiente',
-                'previous'  => 'Cambiar fecha al día anterior',
+                'next'      => 'Canvia la data al dia següent',
+                'previous'  => 'Canvia la data al dia anterior',
             ],
-            'events_today'      => 'Hoy',
-            'previous_events'   => 'Anterior',
-            'upcoming_events'   => 'Próximo',
+            'events_today'      => 'Avui',
+            'previous_events'   => 'Previ',
+            'upcoming_events'   => 'Proper',
         ],
-        'create'    => [
-            'success'   => 'Widget añadido al tablero.',
+        'create'        => [
+            'success'   => 'Giny afegit al taulell.',
         ],
-        'delete'    => [
-            'success'   => 'Widget eliminado del tablero.',
+        'delete'        => [
+            'success'   => 'Giny eliminat del taulell.',
         ],
-        'fields'    => [
-            'width' => 'Anchura',
+        'fields'        => [
+            'width' => 'Amplada',
         ],
-        'recent'    => [
-            'full'      => 'Completa',
-            'help'      => 'Solo muestra la previsualización de la última entidad actualizada.',
-            'helpers'   => [
-                'full'  => 'Muestra toda la entidad por defecto en lugar de una previsualización.',
+        'recent'        => [
+            'entity-header' => 'Utilitza la capçalera de l\'entitat com a imatge',
+            'full'          => 'Completa',
+            'help'          => 'Mostra només la previsualització de l\'última entitat actualitzada.',
+            'helpers'       => [
+                'entity-header' => 'Si l\'entitat té una capçalera (funcionalitat de campanyes millorades), podeu indicar que aquest giny la utilitzi en comptes de la imatge de l\'entitat.',
+                'full'          => 'Mostra tota l\'entitat per defecte en comptes d\'una previsualització.',
             ],
-            'singular'  => 'Singular',
-            'title'     => 'Modificado recientemente',
+            'singular'      => 'Singular',
+            'tags'          => 'Filtra la llista de les entitats modificades recentment amb etiquetes específiques.',
+            'title'         => 'Modificades recentment',
         ],
-        'update'    => [
-            'success'   => 'Widged modificado.',
+        'unmentioned'   => [
+            'title' => 'Entitats no mencionades',
         ],
-        'widths'    => [
+        'update'        => [
+            'success'   => 'Giny modificat.',
+        ],
+        'widths'        => [
             '0' => 'Auto',
             '12'=> 'Completa',
-            '4' => 'Pequeña',
-            '6' => 'Mitad',
+            '4' => 'Petita',
+            '6' => 'Meitat',
         ],
     ],
 ];

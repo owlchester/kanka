@@ -3,8 +3,8 @@
 return [
     'abilities'             => 'Sposobnosti',
     'ability'               => 'Sposobnost',
-    'attribute_template'    => 'Predložak sposobnosti',
-    'attribute_templates'   => 'Predlošci sposobnosti',
+    'attribute_template'    => 'Predložak atributa',
+    'attribute_templates'   => 'Predlošci atributa',
     'calendar'              => 'Kalendar',
     'calendars'             => 'Kalendari',
     'campaign'              => 'Kampanja',

@@ -4,23 +4,23 @@ return [
     'create'                            => [
         'description'           => 'Crear nueva campaña',
         'helper'                => [
-            'title'     => '¡Bienvenid@ a :name!',
+            'title'     => '¡Te damos la bienvenida a :name!',
             'welcome'   => <<<'TEXT'
 Antes de continuar, necesitas un nombre para tu campaña. Este será el nombre de tu mundo. Si no tienes un buen nombre aún, no te preocupes, pues puedes cambiarlo más tarde o crear nuevas campañas.
 
-¡Gracias por unirte a Kanka, y bienvenid@ a nuestra floreciente comunidad!
+¡Gracias por unirte a Kanka, y te damos la bienvenida a nuestra floreciente comunidad!
 TEXT
 ,
         ],
         'success'               => 'Campaña creada.',
-        'success_first_time'    => '¡Tu campaña ha sido creada! Como es tu primera campaña, hemos rellenado algunas cosas para que te familiarices y con suerte proveerte con algo de inspiración, para que veas que puedes conseguir.',
-        'title'                 => 'Nueva Campaña',
+        'success_first_time'    => '¡La campaña ha sido creada! Como es tu primera campaña, hemos rellenado algunas cosas para que te familiarices y con suerte proveerte con algo de inspiración, para que veas que puedes conseguir.',
+        'title'                 => 'Nueva campaña',
     ],
     'destroy'                           => [
-        'success'   => 'Campaña eliminada',
+        'success'   => 'Campaña eliminada.',
     ],
     'edit'                              => [
-        'description'   => 'Modifica tu campaña.',
+        'description'   => 'Modifica la campaña',
         'success'       => 'Campaña actualizada.',
         'title'         => 'Editar campaña :campaign',
     ],
@@ -39,7 +39,7 @@ TEXT
         'errors'        => [
             'limit' => 'Has alcanzado el máximo de una exportación por día. Por favor, inténtalo de nuevo mañana.',
         ],
-        'helper'        => 'Exportar campaña. Recibirás una notificación con el enlace de descarga.',
+        'helper'        => 'Exporta la campaña. Recibirás una notificación con el enlace de descarga.',
         'success'       => 'Tu campaña se está preparando para exportar. Recibirás una notificación en Kanka a un zip descargable en cuanto esté lista.',
         'title'         => 'Exportar campaña :name',
     ],
@@ -70,7 +70,7 @@ TEXT
     'helpers'                           => [
         'boost_required'                => 'Esta funcionalidad requiere mejorar la campaña. Más información en la página de :settings.',
         'boosted'                       => 'Algunas características están desbloqueadas porque esta campaña está mejorada. Para saber más sobre esto, echa un vistazo en la página de :settings.',
-        'css'                           => 'Escribe tu propio CSS para las páginas de tu campaña. Por favor, ten en cuenta que abusar de esta herramienta puede llevar a la eliminación de tu CSS personalizado. Incumplimientos repetidos o graves pueden llevar a la eliminación de tu campaña.',
+        'css'                           => 'Escribe tu propio CSS para las páginas de tu campaña. Ten en cuenta que abusar de esta herramienta puede llevar a la eliminación de tu CSS personalizado. Incumplimientos repetidos o graves pueden llevar a la eliminación de tu campaña.',
         'entity_personality_visibility' => 'Al crear un nuevo personaje, la opción de "Personalidad visible" estará deseleccionada automáticamente.',
         'entity_visibility'             => 'Al crear una nueva entidad, se seleccionará automáticamente la opción de "Privada".',
         'excerpt'                       => 'El extracto de la campaña se mostrará en el tablero principal. Escribe unas pocas líneas para introducir tu mundo.',
@@ -78,7 +78,7 @@ TEXT
         'hide_members'                  => 'Habilita esta opción para esconder la lista de miembros de la campaña a los no administradores.',
         'locale'                        => 'El idioma en que está escrita tu campaña. Esto se usa para generar contenido y agrupar campañas públicas.',
         'name'                          => 'Tu campaña/mundo puede tener cualquier nombre, siempre y cuando contenga al menos 4 letras o números.',
-        'public_campaign_filters'       => 'Ayuda a que otros encuentren tu campaña entre las demás proporcionando la siguiente información.',
+        'public_campaign_filters'       => 'Facilita que otros encuentren tu campaña entre las demás proporcionando la siguiente información.',
         'system'                        => 'Si tu campaña es visible públicamente, el sistema se mostrará en la página de :link.',
         'systems'                       => 'Para evitar líos, algunos elementos de Kanka solo están disponibles en sistemas RPG específicos (por ejemplo, el bloque de stats de monstruo de D&D 5e). Si eliges un sistema soportado, se activarán dichos elementos.',
         'theme'                         => 'Establece un tema único para la campaña, anulando las preferencias de los usuarios.',
@@ -115,10 +115,10 @@ TEXT
             'title'     => 'Invitación de :name',
         ],
         'error'                 => [
-            'already_member'    => 'Ya eres un miembro de esta campaña.',
-            'inactive_token'    => 'Este identificador ya ha sido usado o la campaña ya no existe.',
-            'invalid_token'     => 'El identificador ya no es valido.',
-            'login'             => 'Por favor inicia sesión o registrate para unirte a la campaña.',
+            'already_member'    => 'Ya eres miembro de esta campaña.',
+            'inactive_token'    => 'Este identificador ya se ha usado o la campaña ya no existe.',
+            'invalid_token'     => 'El identificador ya no es válido.',
+            'login'             => 'Inicia sesión o regístrate para unirte a la campaña.',
         ],
         'fields'                => [
             'created'   => 'Enviado',
@@ -129,7 +129,7 @@ TEXT
         ],
         'helpers'               => [
             'email'     => 'Puede ser que nuestros correos se marquen como spam y pueden tardar unas horas hasta aparecer en tu buzón de entrada.',
-            'validity'  => 'Cuántos usuarios pueden usar este enlace antes de que se desactive.',
+            'validity'  => 'Cuántos usuarios pueden usar este enlace antes de que se desactive. Déjalo en blanco para que sea ilimitado.',
         ],
         'placeholders'          => [
             'email' => 'Correo electrónico de la persona a la que quieres invitar',
@@ -141,7 +141,7 @@ TEXT
         'unlimited_validity'    => 'Ilimitado',
     ],
     'leave'                             => [
-        'confirm'   => '¿Seguro que quieres abandonar la campaña :name? No tendrás acceso a ella, a no ser que el dueño de la campaña te invite de nuevo.',
+        'confirm'   => '¿Seguro que quieres abandonar la campaña :name? No tendrás acceso a ella, a no ser que un administrador te invite de nuevo.',
         'error'     => 'No puedes abandonar la campaña.',
         'success'   => 'Has abandonado la campaña.',
     ],
@@ -151,21 +151,21 @@ TEXT
             'switch-back'   => 'Volver a mi usuario',
         ],
         'create'                => [
-            'title' => 'Añade un miembro a tu campaña.',
+            'title' => 'Añade un miembro a la campaña',
         ],
         'description'           => 'Gestionar miembros de la campaña',
         'edit'                  => [
-            'description'   => 'Editar un miembro de tu campaña',
+            'description'   => 'Editar un miembro de la campaña',
             'title'         => 'Editar miembro :name',
         ],
         'fields'                => [
             'joined'        => 'Inscrito',
-            'last_login'    => 'Última vez en línea',
+            'last_login'    => 'Última conexión',
             'name'          => 'Usuario',
             'role'          => 'Rol',
             'roles'         => 'Roles',
         ],
-        'help'                  => 'No hay límite de miembros que puede tener una campaña, y como Administrador de la campaña, puedes eliminar miembros que ya no están activos.',
+        'help'                  => 'No hay límite de miembros que puede tener una campaña.',
         'helpers'               => [
             'admin' => 'Como administrador de la campaña, puedes invitar a nuevos usuarios, eliminar usuarios inactivos y cambiar sus permisos. Para probar los permisos de un miembro, haz clic en "Ver como". Puedes leer más sobre esta herramienta en :link.',
             'switch'=> 'Ver como este usuario',
@@ -175,24 +175,24 @@ TEXT
             'title'     => 'Estás viendo como :name',
         ],
         'invite'                => [
-            'description'   => 'Puedes invitar a tus amigos a unirse a la campaña si provees su correo electrónico. Una vez acepten la invitación, les verás añadidos como "Visitante". Siempre puedes cancelar la invitación en cualquier momento.',
-            'more'          => 'Puedes añadir más roles desde este :link.',
+            'description'   => 'Puedes invitar a tus amigos a unirse a la campaña mediante un enlace de invitación. Una vez acepten la invitación, se añadirán con su rol correspondiente. También puedes enviarles la invitación por correo electrónico, siempre y cuando no sea una dirección de Hotmail, ya que siempre rechazan los mails de Kanka.',
+            'more'          => 'Puedes añadir más roles desde la :link.',
             'roles_page'    => 'Página de roles',
-            'title'         => 'Invitar',
+            'title'         => 'Invitaciones',
         ],
         'roles'                 => [
             'member'    => 'Miembro',
-            'owner'     => 'Admin',
+            'owner'     => 'Administrador',
             'player'    => 'Jugador',
             'public'    => 'Público',
             'viewer'    => 'Invitado',
         ],
         'switch_back_success'   => 'Has vuelto a tu usuario.',
         'title'                 => 'Miembros de la campaña :name',
-        'your_role'             => 'Tu eres un <i>:role</i>',
+        'your_role'             => 'Tu rol: <i>:role</i>',
     ],
     'panels'                            => [
-        'boosted'   => 'Mejorada',
+        'boosted'   => 'Mejoras',
         'dashboard' => 'Tablero',
         'permission'=> 'Permisos',
         'sharing'   => 'Compartir',
@@ -200,10 +200,10 @@ TEXT
         'ui'        => 'Interfaz',
     ],
     'placeholders'                      => [
-        'description'   => 'Corto resumen de tu campaña',
+        'description'   => 'Un breve resumen de tu campaña',
         'locale'        => 'Código de idioma',
-        'name'          => 'Nombre de tu campaña',
-        'system'        => 'D&D 5e, 3.5, Pathfinder, GURPS, DSA...',
+        'name'          => 'El nombre de tu campaña',
+        'system'        => 'D&D 5e, Pathfinder, Fate...',
     ],
     'roles'                             => [
         'actions'       => [
@@ -211,7 +211,7 @@ TEXT
         ],
         'create'        => [
             'success'   => 'Rol creado.',
-            'title'     => 'Crear un nuevo rol para :name',
+            'title'     => 'Crear un nuevo rol en :name',
         ],
         'description'   => 'Gestionar los roles de la campaña',
         'destroy'       => [
@@ -228,14 +228,14 @@ TEXT
             'users'         => 'Usuarios',
         ],
         'helper'        => [
-            '1' => 'Una campaña puede tener tantos roles como se quiera. El rol "Admin" tiene acceso automáticamente a todo dentro de una campaña, pero cada uno de los demás roles puede tener permisos específicos en diferentes tipos de entidades (personaje, localización, etc).',
+            '1' => 'Una campaña puede tener tantos roles como se quiera. El rol "Administrador" tiene acceso automáticamente a todo dentro de una campaña, pero cada uno de los demás roles puede tener permisos específicos en diferentes tipos de entidades (personajes, lugares, etc).',
             '2' => 'Las entidades pueden tener permisos más afinados mediante la pestaña "Permisos" de una entidad. Esta pestaña aparece cuando tu campaña tiene varios roles o miembros.',
             '3' => 'Se puede usar un sistema de "exclusión", donde los roles tienen acceso a todas las entidades, y usar la casilla de "Privado" en las entidades que se quieran ocultar. O bien, pueden darse pocos permisos a los roles, y configurar cada entidad para que sea visible individualmente.',
         ],
         'hints'         => [
-            'campaign_not_public'   => 'El rol público tiene permisos pero la campaña es privada. Puedes ajustar esto en la pestaña Compartir al editar la campaña.',
+            'campaign_not_public'   => 'El rol "Público" tiene permisos pero la campaña es privada. Puedes ajustar esto en la pestaña Compartir al editar la campaña.',
             'public'                => 'El rol "Público" se usa para los que visitan tu campaña pública.',
-            'role_permissions'      => 'Habilitar el rol \':name\' para realizar las siguientes acciones en todas las entidades.',
+            'role_permissions'      => 'Habilitar el rol ":name" para que pueda hacer las siguientes acciones en todas las entidades.',
         ],
         'members'       => 'Miembros',
         'permissions'   => [
@@ -258,17 +258,17 @@ TEXT
         ],
         'show'          => [
             'description'   => 'Miembros y permisos de un rol de campaña',
-            'title'         => 'Roles de campaña',
+            'title'         => 'Rol ":role"',
         ],
         'title'         => 'Roles de la campaña :name',
         'types'         => [
-            'owner'     => 'Propietario',
+            'owner'     => 'Administrador',
             'public'    => 'Público',
             'standard'  => 'Estándar',
         ],
         'users'         => [
             'actions'   => [
-                'add'   => 'Añadir',
+                'add'   => 'Añadir miembro',
             ],
             'create'    => [
                 'success'   => 'Usuario añadido al rol.',

@@ -2,47 +2,47 @@
 
 return [
     'attribute_templates'   => [
-        'title' => 'Plantillas de atributos de :name',
+        'title' => 'Plantilles d\'atributs de :name',
     ],
     'create'                => [
-        'description'   => 'Crear nueva plantilla de atributos',
-        'success'       => 'Plantilla de atributos \':name\' creada.',
-        'title'         => 'Nueva Plantilla de Atributos',
+        'description'   => 'Crea una nova plantilla d\'atributs',
+        'success'       => 'S\'ha creat la plantilla d\'atributs «:name».',
+        'title'         => 'Nova plantilla d\'atributs',
     ],
     'destroy'               => [
-        'success'   => 'Plantilla de atributos \':name\' eliminada.',
+        'success'   => 'S\'ha eliminat la plantilla d\'atributs «:name».',
     ],
     'edit'                  => [
-        'description'   => 'Editar plantilla de atributos',
-        'success'       => 'Plantilla de atributos \':name\' actualizada.',
-        'title'         => 'Editar plantilla de atributos :name',
+        'description'   => 'Edita la plantilla d\'atributs',
+        'success'       => 'S\'ha actualitzat la plantilla d\'atributs «:name».',
+        'title'         => 'Edició de la plantilla d\'atributs :name',
     ],
     'fields'                => [
-        'attribute_template'    => 'Plantilla de atributos superior',
-        'attributes'            => 'Atributos',
-        'name'                  => 'Nombre',
+        'attribute_template'    => 'Plantilla d\'atributs superior',
+        'attributes'            => 'Atributs',
+        'name'                  => 'Nom',
     ],
     'hints'                 => [
-        'automatic'                 => 'Atributos aplicados automáticamente desde la plantilla de atributos :link.',
-        'entity_type'               => 'Si se habilita, al crear una nueva entidad de este tipo se le añadirá esta plantilla de atributos automáticamente.',
-        'parent_attribute_template' => 'Esta plantilla de atributos puede ser descendiente de otra plantilla de atributos. Al aplicar una plantilla, se aplicará con todos sus descendientes.',
+        'automatic'                 => 'Atributs aplicats automàticament des de la plantilla d\'atributs :link.',
+        'entity_type'               => 'Si s\'habilita, al crear una nova entitat d\'aquest tipus s\'hi afegirà aquesta plantilla d\'atributs automàticament.',
+        'parent_attribute_template' => 'Aqusta plantilla d\'atributs pot ser descendent d\'una altra plantilla d\'atributs. En aplicar una plantilla, s\'aplicarà amb tots els seus descendents.',
     ],
     'index'                 => [
-        'add'           => 'Nueva plantilla de atributos',
-        'description'   => 'Administrar la plantilla de atributos de :name.',
-        'header'        => 'Plantillas de atributos de :name',
-        'title'         => 'Plantillas de atributos',
+        'add'           => 'Nova plantilla d\'atributs',
+        'description'   => 'Administra la plantilla d\'atributs de :name.',
+        'header'        => 'Plantilles d\'atributs de :name',
+        'title'         => 'Plantilles d\'atributs',
     ],
     'placeholders'          => [
-        'attribute_template'    => 'Elige una plantilla de atributos',
-        'name'                  => 'Nombre de la plantilla de atributos',
+        'attribute_template'    => 'Tria una plantilla d\'atributs',
+        'name'                  => 'Nom de la plantilla d\'atributs',
     ],
     'show'                  => [
-        'description'   => 'Vista detallada de la plantilla de atributos',
+        'description'   => 'Vista detallada de la plantilla d\'atributs',
         'tabs'          => [
-            'attribute_templates'   => 'Plantillas de atributos',
-            'attributes'            => 'Atributos',
+            'attribute_templates'   => 'Plantilles d\'atributs',
+            'attributes'            => 'Atributs',
         ],
-        'title'         => 'Plantilla de atributos :name',
+        'title'         => 'Plantilla d\'atributs :name',
     ],
 ];

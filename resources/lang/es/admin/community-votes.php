@@ -10,7 +10,7 @@ return [
     ],
     'edit'      => [
         'success'   => 'Votación comunitaria editada.',
-        'title'     => 'Actualizar voto de la comunidad :name',
+        'title'     => 'Actualizar votación comunitaria :name',
     ],
     'fields'    => [
         'content'       => 'Contenido',
@@ -24,6 +24,6 @@ return [
     ],
     'index'     => [
         'add'   => 'Nueva votación comunitaria',
-        'title' => 'Admin: votos de la comunidad',
+        'title' => 'Administrador: votaciones comunitarias',
     ],
 ];
