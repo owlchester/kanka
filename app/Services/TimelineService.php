@@ -4,7 +4,9 @@
 namespace App\Services;
 
 
+use App\Models\Timeline;
 use App\Models\TimelineElement;
+use App\Models\TimelineEra;
 
 class TimelineService
 {
@@ -31,6 +33,28 @@ class TimelineService
             $element->position = $position;
             $element->save();
             $position++;
+        }
+    }
+
+    /**
+     * @param TimelineEra $era
+     * @param array $ids
+     */
+    public function reorderEra(TimelineEra $era, array $ids)
+    {
+        if (empty($ids) || !is_array($ids)) {
+            return;
+        }
+
+        $position = 1;
+        foreach ($ids as $id) {
+            /** @var TimelineElement $element */
+            $element = $era->elements()->where('id', $id)->first();
+            if ($element) {
+                $element->position = $position;
+                $element->save();
+                $position += 1;
+            }
         }
     }
 }

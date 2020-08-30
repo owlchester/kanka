@@ -120,8 +120,7 @@ function initAttributeHandlers() {
         });
     });
 
-    $('[data-toggle="private"]').unbind('click');
-    $('[data-toggle="private"]').click(function() {
+    $('[data-toggle="private"]').unbind('click').click(function() {
         if ($(this).hasClass('fa-lock')) {
             // Unlock
             $(this).removeClass('fa-lock').addClass('fa-unlock-alt').prop('title', $(this).data('public'));
@@ -133,8 +132,7 @@ function initAttributeHandlers() {
         }
     });
 
-    $('[data-toggle="star"]').unbind('click');
-    $('[data-toggle="star"]').click(function () {
+    $('[data-toggle="star"]').unbind('click').click(function () {
         if ($(this).hasClass('far')) {
             // Unlock
             $(this).removeClass('far').addClass('fas').prop('title', $(this).data('entry'));

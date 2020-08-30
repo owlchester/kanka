@@ -274,6 +274,7 @@ Route::group([
         Route::get('/campaigns/{campaign}/leave', 'CampaignController@leave')->name('campaigns.leave');
         Route::post('/campaigns/{campaign}/campaign_settings', 'CampaignSettingController@save')->name('campaigns.settings.save');
 
+        Route::post('/timelines/{timeline}/timeline-era/{timeline_era}/reorder', 'Timelines\TimelineEraController@reorder')->name('timelines.reorder');
         // Old Search
         Route::get('/search', 'SearchController@search')->name('search');
 
