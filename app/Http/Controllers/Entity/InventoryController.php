@@ -49,13 +49,16 @@ class InventoryController extends Controller
         $datagridSorter->request(request()->all());
 
         $ajax = request()->ajax();
+
         $inventory = $entity
             ->inventories()
             ->with(['entity', 'item', 'item.entity'])
             ->has('entity')
-            ->acl()
             ->simpleSort($datagridSorter)
-            ->paginate();
+            ->get()
+            ->sortBy(function($model, $key) {
+                return !empty($model->position) ? $model->position : 'zzzz' . $model->itemName();
+            });
 
         return view('entities.pages.inventory.index', compact(
             'ajax',

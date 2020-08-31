@@ -31,10 +31,10 @@
 </div>
 <div class="form-group required">
     <label>{{ trans('entities/inventories.fields.amount') }}</label>
-    {!! Form::text('amount', null, ['placeholder' => trans('entities/inventories.placeholders.amount'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+    {!! Form::text('amount', (empty($inventory) ? 1 : null), ['placeholder' => trans('entities/inventories.placeholders.amount'), 'class' => 'form-control', 'maxlength' => 191]) !!}
 </div>
 
-<div class="form-group required">
+<div class="form-group">
     <label>{{ trans('entities/inventories.fields.position') }}</label>
     {!! Form::text('position', null, [
         'placeholder' => trans('entities/inventories.placeholders.position'),

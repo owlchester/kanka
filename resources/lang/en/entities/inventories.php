@@ -27,6 +27,7 @@ return [
     'show'          => [
         'helper'    => 'Entities can have items attached to them to create an inventory.',
         'title'     => 'Entity :name Inventory',
+        'unsorted' => 'Unsorted',
     ],
     'update'        => [
         'success'   => 'Item :item updated for :entity.',
