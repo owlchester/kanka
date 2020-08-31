@@ -48,11 +48,10 @@
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th class="avatar"></th>
+                            <th>{{ __('entities/inventories.fields.is_equipped') }}</th>
                             <th>{{ __('crud.fields.item') }}</th>
                             <th>{{ __('entities/inventories.fields.position') }}</th>
                             <th>{{ __('entities/inventories.fields.amount') }}</th>
-                            <th>{{ __('entities/inventories.fields.description') }}</th>
                             @if (Auth::check())
                             <th>{{ __('crud.fields.visibility') }}</th>
                             @endif
@@ -60,21 +59,29 @@
                         </thead>
                         <tbody>
                         @foreach ($inventory as $item)
+                            @if(!empty($item->item_id) && empty($item->item))
+                                @continue
+                            @endif
                             <tr>
-                                <td>
-                                    <a class="entity-image" style="background-image: url('{{ $item->item->getImageUrl(40) }}');" title="{{ $item->item->name }}" href="{{ $item->item->getLink() }}"></a>
+                                <td class="text-center">
+                                    @if($item->is_equipped)
+
+                                        <i class="fas fa-check" title="{{ __('entities/inventories.fields.is_equipped') }}"></i>
+                                    @endif
                                 </td>
                                 <td>
+                                    @if($item->item)
                                     {!! $item->item->tooltipedLink() !!}
+                                    @else
+                                    {!! $item->name !!}
+                                    @endif<br />
+                                        <small class="text-muted">{{ $item->description }}</small>
                                 </td>
                                 <td>
                                     {{ $item->position }}
                                 </td>
                                 <td>
                                     {{ $item->amount }}
-                                </td>
-                                <td>
-                                    {{ $item->description }}
                                 </td>
                                 @if (Auth::check())
                                     <td>
@@ -89,7 +96,7 @@
                                             <i class="fa fa-edit"></i>
                                         </a>
 
-                                        <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $item->item->name }}"
+                                        <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $item->itemName() }}"
                                                 data-target="#delete-confirm" data-delete-target="delete-form-{{ $item->id }}" title="{{ __('crud.remove') }}">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </button>

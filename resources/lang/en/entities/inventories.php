@@ -15,11 +15,14 @@ return [
         'amount'        => 'Amount',
         'description'   => 'Description',
         'position'      => 'Position',
+        'name'          => 'Name',
+        'is_equipped'   => 'Equipped',
     ],
     'placeholders'  => [
         'amount'        => 'Any amount',
         'description'   => 'Used, Damaged, Attuned',
         'position'      => 'Equipped, Backpack, Storage, Bank',
+        'name'          => 'Required if no item is selected',
     ],
     'show'          => [
         'helper'    => 'Entities can have items attached to them to create an inventory.',

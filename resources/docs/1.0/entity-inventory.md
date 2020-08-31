@@ -28,8 +28,10 @@ You can get a list of all items of an entity's inventory by using the following 
             "entity_id": 34,
             "item_id": 12,
             "amount": 3,
+            "is_equipped": false,
             "is_private": false,
             "item": {},
+            "name": null,
             "position":  "hand",
             "visibility": "all"
         }
@@ -52,10 +54,12 @@ To create an inventory, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `entity_id` | `integer` (Required) | The inventory's parent entity |
-| `item_id` | `integer` (Required) | The inventory's item id |
+| `item_id` | `integer` (Required without `name`) | The inventory's item id |
+| `name` | `string` (Required without `item_id`) | The inventory's item name |
 | `amount` | `string` (Required) | The amount of times the item is in the inventory |
 | `position` | `string` | Where the item is being stored |
 | `visiblity` | `string` | `all`, `admin`, `self` Who can view |
+| `is_equipped` | `boolean` | If the item is equipped |
 
 
 ### Results

@@ -15,11 +15,13 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property integer $entity_id
  * @property integer $item_id
+ * @property string $name
  * @property integer $amount
  * @property string $position
  * @property string $description
  * @property string $visibility
  * @property integer $created_by
+ * @property bool $is_equipped
  * @property Item $item
  * @property Entity $entity
  */
@@ -31,11 +33,13 @@ class Inventory extends Model
     public $fillable = [
         'entity_id',
         'item_id',
+        'name',
         'amount',
         'position',
         'description',
         'visibility',
         'created_by',
+        'is_equipped',
     ];
 
     use VisibilityTrait, SimpleSortableTrait;
@@ -116,5 +120,16 @@ class Inventory extends Model
                     })
                     ->whereNotIn('entities.id', $service->deniedEntityIds());
             });
+    }
+
+    /**
+     * @return string
+     */
+    public function itemName(): string
+    {
+        if (!empty($this->item)) {
+            return $this->item->name;
+        }
+        return (string) $this->name;
     }
 }
