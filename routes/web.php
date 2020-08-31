@@ -285,6 +285,7 @@ Route::group([
 
         }
 
+        Route::post('/timelines/{timeline}/timeline-era/{timeline_era}/reorder', 'Timelines\TimelineEraController@reorder')->name('timelines.reorder');
         // Old Search
         Route::get('/search', 'SearchController@search')->name('search');
 

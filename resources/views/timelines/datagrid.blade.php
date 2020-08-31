@@ -1,5 +1,5 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
-
+<?php /** @var \App\Models\Timeline $model */?>
 {!! $datagrid->filters($filters)
     ->render(
     $filterService,
@@ -12,6 +12,13 @@
         // Name
         'name',
         'type',
+        [
+            'label' => __('timelines.fields.eras'),
+            'render' => function($model) {
+                return $model->eras()->count();
+            },
+            'disableSort' => true,
+        ],
         [
             'type' => 'is_private',
         ]
