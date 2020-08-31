@@ -5,12 +5,6 @@
     <div class="box-body box-profile">
         @if (!View::hasSection('entity-header'))
             @include ('cruds._image')
-
-            <h1 class="profile-username text-center">{{ $model->name }}
-                @if ($model->is_private)
-                    <i class="fas fa-lock" title="{{ trans('crud.is_private') }}"></i>
-                @endif
-            </h1>
         @endif
 
         <ul class="list-group list-group-unbordered">

@@ -2,11 +2,6 @@
     <div class="box-body box-profile">
         @if (!View::hasSection('entity-header'))
             @include ('cruds._image')
-
-            <h1 class="profile-username text-center">{{ $model->name }}
-                @if ($model->is_private)
-                @endif
-            </h1>
         @endif
 
         <ul class="list-group list-group-unbordered">
