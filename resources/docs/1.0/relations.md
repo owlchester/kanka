@@ -4,9 +4,9 @@
 
 - [All Relations](#all-relations)
 - [Single Relation](#relation)
-- [Create an relation](#create-relation)
-- [Update an relation](#update-relation)
-- [Delete an relation](#delete-relation)
+- [Create a relation](#create-relation)
+- [Update a relation](#update-relation)
+- [Delete a relation](#delete-relation)
 - [All Campaign Relations](#all-campaign-relations)
 
 <a name="all-relations"></a>
@@ -69,9 +69,9 @@ To get the details of a single relation, use the following endpoint.
 
 
 <a name="create-relation"></a>
-## Create an relation
+## Create a relation
 
-To create an relation, use the following endpoint.
+To create a relation, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
@@ -84,8 +84,8 @@ To create an relation, use the following endpoint.
 | `relation` | `string` (Required, max 255) | Description of the relation |
 | `owner_id` | `integer` (Required) | The relation's entity |
 | `target_id` | `integer` (Required) | The relation's target entity |
-| `attitude` | `integer` (Required) | -100 to 100 |
-| `colour` | `string` (Required) | Hex colour of the attitude (with or without the `#`) |
+| `attitude` | `integer` | -100 to 100 |
+| `colour` | `string` | Hex colour of the attitude (with or without the `#`) |
 | `two_way` | `boolean` | If set, will duplicate the relation but in the other direction |
 | `is_star` | `boolean` | If the relation is visible on the entity's submenu |
 | `is_private` | `boolean` | If the relation is only visible to `admin` members of the campaign |
@@ -96,9 +96,9 @@ To create an relation, use the following endpoint.
 
 
 <a name="update-relation"></a>
-## Update an relation
+## Update a relation
 
-To update an relation, use the following endpoint.
+To update a relation, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
@@ -106,7 +106,7 @@ To update an relation, use the following endpoint.
 
 ### Body
 
-The same body parameters are available as for when creating an relation.
+The same body parameters are available as for when creating a relation.
 
 ### Results
 
@@ -114,9 +114,9 @@ The same body parameters are available as for when creating an relation.
 
 
 <a name="delete-relation"></a>
-## Delete an relation
+## Delete a relation
 
-To delete an relation, use the following endpoint.
+To delete a relation, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
