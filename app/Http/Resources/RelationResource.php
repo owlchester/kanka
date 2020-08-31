@@ -15,6 +15,7 @@ class RelationResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'owner_id' => $this->owner_id,
             'target_id' => $this->target_id,
             'relation' => $this->relation,

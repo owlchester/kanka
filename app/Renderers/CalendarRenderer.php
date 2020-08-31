@@ -914,9 +914,9 @@ class CalendarRenderer
     protected function addMoonPhases($start, array $moon)
     {
         // Full & New Moon
-        $this->addMoonPhase($start, $moon, 'full', 'fas fa-circle');
+        $this->addMoonPhase($start, $moon, 'full', 'far fa-circle');
         $newMoon = $start + ($moon['fullmoon'] / 2);
-        $this->addMoonPhase($newMoon, $moon, 'new', 'far fa-circle');
+        $this->addMoonPhase($newMoon, $moon, 'new', 'fas fa-circle');
 
         if ($moon['fullmoon'] > 10) {
             $quarterMonth = $moon['fullmoon'] / 4;
