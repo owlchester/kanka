@@ -23,7 +23,7 @@
                 </li>
             @endif
 
-            @if(!empty($model->notes))
+            @if(!$model->notes->empty())
                 <li class="list-group-item">
                     <b>{{ __('notes.fields.notes') }}</b>
                     @foreach ($model->notes->sortBy('name') as $subNote)
