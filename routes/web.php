@@ -163,6 +163,7 @@ Route::group([
 
         // Notes
         Route::get('/notes/{note}/map-points', 'NoteController@mapPoints')->name('notes.map-points');
+        Route::get('/notes/tree', 'NoteController@tree')->name('notes.tree');
 
         // Events
         Route::get('/events/{event}/map-points', 'EventController@mapPoints')->name('events.map-points');

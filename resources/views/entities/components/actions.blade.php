@@ -5,6 +5,9 @@
         <div class="actions text-right">
             <h1 class="hidden-xs pull-left">
                 {{ $model->name }}
+                @if ($model->is_private)
+                    <i class="fas fa-lock" title="{{ __('crud.is_private') }}"></i>
+                @endif
             </h1>
 
             @if ($model->entity)

@@ -1,1 +1,655 @@
-body{background-color:#222}header.masthead{background:linear-gradient(270deg,#3f44a1,#08083c)}header.masthead-img{background-color:#08083c;background-image:url(https://images.kanka.io/app/fRvHCH-8nraqMOxYiqN7rOJtq7I=/src/images%2Fbackgrounds%2Fmountain-background-desktop.jpg);background-position:0 0;background-size:cover}header.masthead-img .container{z-index:1;position:relative}header.masthead-img .overlay{position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.5)}header.masthead-img p{font-size:22px}header.masthead-img.webpfallback{background-image:url(https://images.kanka.io/app/fRvHCH-8nraqMOxYiqN7rOJtq7I=/src/images%2Fbackgrounds%2Fmountain-background-desktop.jpg?webpfallback=)!important}section.cta{background:linear-gradient(270deg,#3f44a1,#08083c)!important}header.reduced-masthead{min-height:325px;height:unset;padding-bottom:20px;padding-top:60px}header.reduced-masthead .header-content{margin-top:40px}.bg-primary{background:linear-gradient(#fff,#ededed)!important}#mainNav{top:34px;box-shadow:0 7px 6px rgba(50,50,93,.21)}#mainNav .navbar-brand{color:#73a6c0!important;font-family:Dubai,Catamaran,Helvetica,Arial,sans-serif!important}#mainNav .navbar-brand img{height:32px}#mainNav .nav-active,#mainNav .nav-link:hover{transition:all .2s ease-in-out;text-decoration:underline}.topbar{display:block;position:fixed;z-index:1030;top:0;right:0;left:0;background-color:#08083c;text-align:right;padding:5px 25px;height:36px}.topbar .topbar-list{list-style-type:none;margin-bottom:0}.topbar .topbar-list li{display:inline-block;margin:0 10px;line-height:12px}.topbar .topbar-list li a{color:#ededed}.topbar .topbar-list .login{margin-right:15px}.navbar a{color:#2828a1}@font-face{font-display:swap;font-family:Dubai;src:url(/fonts/DubaiW23-Light.eot?a75686285a131b29bf9fac9a9a5f846f);src:url(/fonts/DubaiW23-Light.woff2?bdb3096d629602b828bb50b5ee1ae2bc) format("woff2")}h1,h2,h3,h4,h5,h6{font-family:Dubai,Catamaran,Helvetica,Arial,sans-serif!important}section.contact-us p{font-size:24px}section.contact-us a{margin:0 10px}section.contact ul.list-social li.social-discord a{background-color:#7289da}section.contact ul.list-social li.social-discord a img{width:70%;margin-top:-7px}section{background-color:#fff}section.contact ul.list-social li.social-discord a:hover{background-color:#5078da}hr{max-width:250px;margin:25px auto}@media (min-width:992px){#mainNav{border-color:transparent;background-color:#08083c}}footer{padding-top:40px;padding-bottom:30px;text-align:left;background-color:#08083c}footer ul{list-style-type:none;padding:0;margin:0 0 20px}footer ul li{padding:0;display:block;margin:2px 0}footer ul li a{padding:5px 2px;font-size:14px!important;width:100%;color:hsla(0,0%,100%,.6)}footer h4{font-size:14px;font-weight:700;color:#ddd}footer h4 a{padding:5px;display:inline-block}footer h5{margin:0 0 8px;text-transform:uppercase;font-size:18px;color:#ccc}footer a,footer span{border-radius:4px;letter-spacing:1.1px}footer a:hover,footer span:hover{transition:all .2s ease;background:hsla(0,0%,100%,.4);text-decoration:none;letter-spacing:1.5px}footer .footer-social{text-align:center}footer .footer-social a{font-size:28px!important;margin:0 3px;color:#ccc}footer .footer-social a:hover{background:none;color:#c09853}footer .footer-social .email{margin-bottom:20px;border-radius:4px;padding:15px 25px;font-size:18px}footer .footer-social .email:hover{transition:all .2s ease;background:hsla(0,0%,100%,.4);text-decoration:none;display:block}footer .copyright{font-size:12px;color:hsla(0,0%,100%,.5)}footer .secondary-footer{margin-top:25px}footer .secondary-footer ul li{display:inline-block}footer .secondary-footer ul li a{font-size:12px!important}.campaign{overflow:hidden;display:block;margin-bottom:20px}.campaign .image-wrapper{max-width:100%;display:flex;align-items:flex-end;height:200px;background-color:#ebebeb;background-size:cover;background-repeat:no-repeat;background-position:50% 50%}.campaign .image-wrapper .labels{padding:7px;font-size:16pt}.campaign .image-wrapper .labels .label{margin-right:5px}.campaign .no-image{background:#dfdfdf;background:linear-gradient(135deg,#dfdfdf,#8787ac 76%,#7676aa)}.campaign .small-campaign{height:160px}.campaign .campaign-title{margin-top:6px;max-height:56px;padding:5px}.campaign:hover{box-shadow:0 4px 6px rgba(50,50,93,.11),0 1px 3px rgba(0,0,0,.08);transition:all .15s ease;text-decoration:none;color:#c09853}.featured-campaigns{padding-bottom:50px}.campaigns{padding-top:50px}h4 a{font-size:28px}h2{font-size:44px!important}section a{color:#fac134}section li a{color:#2828a1}ul.pagination li a{display:inline-block;padding:10px}ul.pagination li a:hover{box-shadow:0 4px 6px rgba(50,50,93,.11),0 1px 3px rgba(0,0,0,.08);transition:all .15s ease}ul.pagination li span{display:inline-block;padding:10px}.patreon-pledge{margin-bottom:30px}.label{display:inline;padding:.2em .5em .3em;font-size:50%;font-weight:700;line-height:1;color:#fff;text-align:center;white-space:nowrap;vertical-align:baseline;border-radius:.25em}.label-default{background-color:#dce0e8;color:#444}.login-page,.register-page{background-color:#eef1f4;background-position:50% 50%;background-size:cover;background-repeat:no-repeat;background-attachment:fixed}.login-page .login-logo img,.register-page .login-logo img{display:inline-block;width:96px;margin-top:-8px}.login-page .login-box .login-box-body,.login-page .login-box .register-box-body,.login-page .register-box .login-box-body,.login-page .register-box .register-box-body,.register-page .login-box .login-box-body,.register-page .login-box .register-box-body,.register-page .register-box .login-box-body,.register-page .register-box .register-box-body{box-shadow:0 2px 4px 0 rgba(0,0,0,.1);border-radius:10px}.login-page .btn-app .fab,.register-page .btn-app .fab{font-size:20px;display:block}.partners a{display:block;border-radius:4px}.minimal-padding{padding:50px 20px;background-color:#fff;width:100%}.table{text-align:center}.table .text{text-align:left}.landscape-helper{color:#555;font-style:italic;border:1px solid #dc2430;border-radius:10px;padding:15px}.team .card{height:100%}.team .card .card-body{padding-bottom:40px}.team .card .card-text{font-size:16px}.card .pull-bottom{margin-top:10px;position:absolute;bottom:20px}.card .card-image{margin-top:-75px;width:100px;height:100px;background-size:cover;background-repeat:no-repeat;background-position:50% 50%;display:block;margin-right:auto;margin-left:auto}.card .subscription-kobold{background-image:url(https://images.kanka.io/app/qys-P4Qdr8__OVuiejzh5grC3dg=/200x200/src/images%2Ftiers%2Fkobold-325.png)}.card .subscription-owlbear{background-image:url(https://images.kanka.io/app/pNUdiAGfWMlNpLnX7ZMJhnA4hFs=/200x200/src/images%2Ftiers%2Fowlbear-325.png)}.card .subscription-elemental{background-image:url(https://images.kanka.io/app/E6iultkgKe86CZBAiybu8nT9mwM=/200x200/src/images%2Ftiers%2Felemental-325.png)}.card .subscription-kobold.webpfallback{background-image:url(https://images.kanka.io/app/qys-P4Qdr8__OVuiejzh5grC3dg=/200x200/src/images%2Ftiers%2Fkobold-325.png?webpfallback=)}.card .subscription-owlbear.webpfallback{background-image:url(https://images.kanka.io/app/pNUdiAGfWMlNpLnX7ZMJhnA4hFs=/200x200/src/images%2Ftiers%2Fowlbear-325.png?webpfallback=)}.card .subscription-elemental.webpfallback{background-image:url(https://images.kanka.io/app/E6iultkgKe86CZBAiybu8nT9mwM=/200x200/src/images%2Ftiers%2Felemental-325.png?webpfallback=)}#news,#pricing{padding:50px 0}.pricing{margin-bottom:25px}.pricing .card{border:none;border-radius:1rem;transition:all .2s;box-shadow:0 .5rem 1rem 0 rgba(0,0,0,.1)}.pricing hr{margin:1.5rem 0}.pricing .card-title{margin:.5rem 0;font-size:.9rem;letter-spacing:.1rem;font-weight:700}.pricing .card-body ul{min-height:330px}.pricing .card-price{font-size:3rem;margin:0}.pricing .card-price .period{font-size:.8rem}.pricing ul li{margin-bottom:1rem}.pricing .text-muted{opacity:.7}.pricing .btn{font-size:80%;border-radius:5rem;letter-spacing:.1rem;font-weight:700;padding:1rem;opacity:.7;transition:all .2s}.pricing a.feature{text-decoration:underline}.patreons .card{margin-top:4em}.faqs ul{margin:0;padding:0;list-style-type:none}.faqs ul li{margin:0 0 20px}.faqs .faq-more a{margin-right:25px}.faqs .faq-more a i{display:inline-block}.btn-light{background-color:#ecedee}.landing-heading{margin-bottom:50px!important}@media (min-width:992px){.pricing .card:hover{margin-top:-.25rem;margin-bottom:.25rem;box-shadow:0 .5rem 1rem 0 rgba(0,0,0,.3)}.pricing .card:hover .btn{opacity:1}.login-box,.register-box{width:420px}.login-page,.register-page,header.masthead-img{background-image:url(https://images.kanka.io/app/fRvHCH-8nraqMOxYiqN7rOJtq7I=/src/images%2Fbackgrounds%2Fmountain-background-desktop.jpg)}.login-page.webpfallback,.register-page.webpfallback,header.masthead-img.webpfallback{background-image:url(https://images.kanka.io/app/fRvHCH-8nraqMOxYiqN7rOJtq7I=/src/images%2Fbackgrounds%2Fmountain-background-desktop.jpg?webpfallback=)}}@media (max-width:991px){.topbar{padding:0 15px;background-color:#fff}.topbar .container{padding-right:0;padding-left:0}.topbar .topbar-list li{margin:8px 6px}.topbar .topbar-list li a{color:#2828a1}.topbar .topbar-list .login{margin-right:5px}.login-page,.register-page,header.masthead-img{background-image:url(https://images.kanka.io/app/WgTgGlDmiswpJ1cBISY3xEcwL7U=/src/images%2Fbackgrounds%2Fmountain-background-mobile.jpg)!important}.login-page.webpfallback,.register-page.webpfallback,header.masthead-img.webpfallback{background-image:url(https://images.kanka.io/app/WgTgGlDmiswpJ1cBISY3xEcwL7U=/src/images%2Fbackgrounds%2Fmountain-background-mobile.jpg?webpfallback=)!important}}
+body {
+  background-color: #222;
+}
+
+header.masthead {
+  background: linear-gradient(to left, #3f44a1, #08083c);
+}
+
+header.masthead-img {
+  background-color: #08083c;
+  background-image: url(https://images.kanka.io/app/fRvHCH-8nraqMOxYiqN7rOJtq7I=/src/images%2Fbackgrounds%2Fmountain-background-desktop.jpg);
+  background-position: top left;
+  background-size: cover;
+}
+
+header.masthead-img .container {
+  z-index: 1;
+  position: relative;
+}
+
+header.masthead-img .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+header.masthead-img p {
+  font-size: 22px;
+}
+
+header.masthead-img.webpfallback {
+  background-image: url(https://images.kanka.io/app/fRvHCH-8nraqMOxYiqN7rOJtq7I=/src/images%2Fbackgrounds%2Fmountain-background-desktop.jpg?webpfallback) !important;
+}
+
+section.cta {
+  background: linear-gradient(to left, #3f44a1, #08083c) !important;
+}
+
+header.reduced-masthead {
+  min-height: 325px;
+  height: unset;
+  padding-bottom: 20px;
+  padding-top: 60px;
+}
+
+header.reduced-masthead .header-content {
+  margin-top: 40px;
+}
+
+.bg-primary {
+  background: linear-gradient(#FFFFFF, #EDEDED) !important;
+}
+
+#mainNav {
+  top: 34px;
+  box-shadow: 0 7px 6px rgba(50, 50, 93, 0.21);
+}
+
+#mainNav .navbar-brand {
+  color: #73a6c0 !important;
+  font-family: "Dubai", Catamaran, Helvetica, Arial, sans-serif !important;
+}
+
+#mainNav .navbar-brand img {
+  height: 32px;
+}
+
+#mainNav .nav-active,
+#mainNav .nav-link:hover {
+  transition: all 0.2s ease-in-out;
+  text-decoration: underline;
+}
+
+.topbar {
+  display: block;
+  position: fixed;
+  z-index: 1030;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: #08083c;
+  text-align: right;
+  padding: 5px 25px;
+  height: 36px;
+}
+
+.topbar .topbar-list {
+  list-style-type: none;
+  margin-bottom: 0;
+}
+
+.topbar .topbar-list li {
+  display: inline-block;
+  margin: 0 10px;
+  line-height: 12px;
+}
+
+.topbar .topbar-list li a {
+  color: #EDEDED;
+}
+
+.topbar .topbar-list .login {
+  margin-right: 15px;
+}
+
+.navbar a {
+  color: #2828A1;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Dubai";
+  src: url(/fonts/DubaiW23-Light.eot?a75686285a131b29bf9fac9a9a5f846f);
+  /* IE9 Compat Modes */
+  src: url(/fonts/DubaiW23-Light.woff2?bdb3096d629602b828bb50b5ee1ae2bc) format("woff2");
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Dubai", Catamaran, Helvetica, Arial, sans-serif !important;
+}
+
+section.contact-us p {
+  font-size: 24px;
+}
+
+section.contact-us a {
+  margin: 0 10px;
+}
+
+section.contact ul.list-social li.social-discord a {
+  background-color: #7289da;
+}
+
+section.contact ul.list-social li.social-discord a img {
+  width: 70%;
+  margin-top: -7px;
+}
+
+section {
+  background-color: #fff;
+}
+
+section.contact ul.list-social li.social-discord a:hover {
+  background-color: #5078da;
+}
+
+hr {
+  max-width: 250px;
+  margin: 25px auto;
+}
+
+@media (min-width: 992px) {
+  #mainNav {
+    border-color: transparent;
+    background-color: #08083c;
+  }
+}
+
+footer {
+  padding-top: 40px;
+  padding-bottom: 30px;
+  text-align: left;
+  background-color: #08083c;
+}
+
+footer ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+footer ul li {
+  padding: 0;
+  display: block;
+  margin: 2px 0;
+}
+
+footer ul li a {
+  padding: 5px 2px;
+  font-size: 14px !important;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+footer h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ddd;
+}
+
+footer h4 a {
+  padding: 5px;
+  display: inline-block;
+}
+
+footer h5 {
+  margin: 0;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  font-size: 18px;
+  color: #ccc;
+}
+
+footer a,
+footer span {
+  border-radius: 4px;
+  letter-spacing: 1.1px;
+}
+
+footer a:hover,
+footer span:hover {
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  letter-spacing: 1.5px;
+}
+
+footer .footer-social {
+  text-align: center;
+}
+
+footer .footer-social a {
+  font-size: 28px !important;
+  margin: 0 3px;
+  color: #ccc;
+}
+
+footer .footer-social a:hover {
+  background: none;
+  color: #c09853;
+}
+
+footer .footer-social .email {
+  margin-bottom: 20px;
+  border-radius: 4px;
+  padding: 15px 25px;
+  font-size: 18px;
+}
+
+footer .footer-social .email:hover {
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  display: block;
+}
+
+footer .copyright {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+footer .secondary-footer {
+  margin-top: 25px;
+}
+
+footer .secondary-footer ul li {
+  display: inline-block;
+}
+
+footer .secondary-footer ul li a {
+  font-size: 12px !important;
+}
+
+.campaign {
+  overflow: hidden;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.campaign .image-wrapper {
+  max-width: 100%;
+  display: flex;
+  align-items: flex-end;
+  height: 200px;
+  background-color: #ebebeb;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.campaign .image-wrapper .labels {
+  padding: 7px;
+  font-size: 16pt;
+}
+
+.campaign .image-wrapper .labels .label {
+  margin-right: 5px;
+}
+
+.campaign .no-image {
+  background: #dfdfdf;
+  background: linear-gradient(135deg, #dfdfdf 0%, #8787ac 76%, #7676aa 100%);
+}
+
+.campaign .small-campaign {
+  height: 160px;
+}
+
+.campaign .campaign-title {
+  margin-top: 6px;
+  max-height: 56px;
+  padding: 5px;
+}
+
+.campaign:hover {
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: all 0.15s ease;
+  text-decoration: none;
+  color: #c09853;
+}
+
+.featured-campaigns {
+  padding-bottom: 50px;
+}
+
+.campaigns {
+  padding-top: 50px;
+}
+
+h4 a {
+  font-size: 28px;
+}
+
+h2 {
+  font-size: 44px !important;
+}
+
+section a {
+  color: #fac134;
+}
+
+section li a {
+  color: #2828A1;
+}
+
+ul.pagination li a {
+  display: inline-block;
+  padding: 10px;
+}
+
+ul.pagination li a:hover {
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: all 0.15s ease;
+}
+
+ul.pagination li span {
+  display: inline-block;
+  padding: 10px;
+}
+
+.patreon-pledge {
+  margin-bottom: 30px;
+}
+
+.label {
+  display: inline;
+  padding: 0.2em 0.5em 0.3em;
+  font-size: 50%;
+  font-weight: bold;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25em;
+}
+
+.label-default {
+  background-color: #dce0e8;
+  color: #444;
+}
+
+.login-page,
+.register-page {
+  background-color: #eef1f4;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.login-page .login-logo img,
+.register-page .login-logo img {
+  display: inline-block;
+  width: 96px;
+  margin-top: -8px;
+}
+
+.login-page .login-box .login-box-body,
+.login-page .login-box .register-box-body,
+.login-page .register-box .login-box-body,
+.login-page .register-box .register-box-body,
+.register-page .login-box .login-box-body,
+.register-page .login-box .register-box-body,
+.register-page .register-box .login-box-body,
+.register-page .register-box .register-box-body {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.login-page .btn-app .fab,
+.register-page .btn-app .fab {
+  font-size: 20px;
+  display: block;
+}
+
+.partners a {
+  display: block;
+  border-radius: 4px;
+}
+
+.minimal-padding {
+  padding: 50px 20px;
+  background-color: #fff;
+  width: 100%;
+}
+
+.table {
+  text-align: center;
+}
+
+.table .text {
+  text-align: left;
+}
+
+.landscape-helper {
+  color: #555;
+  font-style: italic;
+  border: 1px solid #dc2430;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.team .card {
+  height: 100%;
+}
+
+.team .card .card-body {
+  padding-bottom: 40px;
+}
+
+.team .card .card-text {
+  font-size: 16px;
+}
+
+.card .pull-bottom {
+  margin-top: 10px;
+  position: absolute;
+  bottom: 20px;
+}
+
+.card .card-image {
+  margin-top: -75px;
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.card .subscription-kobold {
+  background-image: url(https://images.kanka.io/app/qys-P4Qdr8__OVuiejzh5grC3dg=/200x200/src/images%2Ftiers%2Fkobold-325.png);
+}
+
+.card .subscription-owlbear {
+  background-image: url(https://images.kanka.io/app/pNUdiAGfWMlNpLnX7ZMJhnA4hFs=/200x200/src/images%2Ftiers%2Fowlbear-325.png);
+}
+
+.card .subscription-elemental {
+  background-image: url(https://images.kanka.io/app/E6iultkgKe86CZBAiybu8nT9mwM=/200x200/src/images%2Ftiers%2Felemental-325.png);
+}
+
+.card .subscription-kobold.webpfallback {
+  background-image: url(https://images.kanka.io/app/qys-P4Qdr8__OVuiejzh5grC3dg=/200x200/src/images%2Ftiers%2Fkobold-325.png?webpfallback);
+}
+
+.card .subscription-owlbear.webpfallback {
+  background-image: url(https://images.kanka.io/app/pNUdiAGfWMlNpLnX7ZMJhnA4hFs=/200x200/src/images%2Ftiers%2Fowlbear-325.png?webpfallback);
+}
+
+.card .subscription-elemental.webpfallback {
+  background-image: url(https://images.kanka.io/app/E6iultkgKe86CZBAiybu8nT9mwM=/200x200/src/images%2Ftiers%2Felemental-325.png?webpfallback);
+}
+
+#pricing,
+#news {
+  padding: 50px 0;
+}
+
+.pricing {
+  margin-bottom: 25px;
+}
+
+.pricing .card {
+  border: none;
+  border-radius: 1rem;
+  transition: all 0.2s;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.pricing hr {
+  margin: 1.5rem 0;
+}
+
+.pricing .card-title {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+}
+
+.pricing .card-body ul {
+  min-height: 330px;
+}
+
+.pricing .card-price {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.pricing .card-price .period {
+  font-size: 0.8rem;
+}
+
+.pricing ul li {
+  margin-bottom: 1rem;
+}
+
+.pricing .text-muted {
+  opacity: 0.7;
+}
+
+.pricing .btn {
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+  padding: 1rem;
+  opacity: 0.7;
+  transition: all 0.2s;
+}
+
+.pricing a.feature {
+  text-decoration: underline;
+}
+
+.patreons .card {
+  margin-top: 4em;
+}
+
+.faqs ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.faqs ul li {
+  margin: 0 0 20px 0;
+}
+
+.faqs .faq-more a {
+  margin-right: 25px;
+}
+
+.faqs .faq-more a i {
+  display: inline-block;
+}
+
+.btn-light {
+  background-color: #ecedee;
+}
+
+.landing-heading {
+  margin-bottom: 50px !important;
+}
+
+/* Hover Effects on Card */
+
+@media (min-width: 992px) {
+  .pricing .card:hover {
+    margin-top: -0.25rem;
+    margin-bottom: 0.25rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .pricing .card:hover .btn {
+    opacity: 1;
+  }
+
+  .login-box,
+  .register-box {
+    width: 420px;
+  }
+
+  .login-page,
+  .register-page,
+  header.masthead-img {
+    background-image: url(https://images.kanka.io/app/fRvHCH-8nraqMOxYiqN7rOJtq7I=/src/images%2Fbackgrounds%2Fmountain-background-desktop.jpg);
+  }
+
+  .login-page.webpfallback,
+  .register-page.webpfallback,
+  header.masthead-img.webpfallback {
+    background-image: url(https://images.kanka.io/app/fRvHCH-8nraqMOxYiqN7rOJtq7I=/src/images%2Fbackgrounds%2Fmountain-background-desktop.jpg?webpfallback);
+  }
+}
+
+@media (max-width: 991px) {
+  .topbar {
+    padding: 0 15px;
+    background-color: #fff;
+  }
+
+  .topbar .container {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .topbar .topbar-list li {
+    margin: 8px 6px;
+  }
+
+  .topbar .topbar-list li a {
+    color: #2828A1;
+  }
+
+  .topbar .topbar-list .login {
+    margin-right: 5px;
+  }
+
+  .login-page,
+  .register-page,
+  header.masthead-img {
+    background-image: url(https://images.kanka.io/app/WgTgGlDmiswpJ1cBISY3xEcwL7U=/src/images%2Fbackgrounds%2Fmountain-background-mobile.jpg) !important;
+  }
+
+  .login-page.webpfallback,
+  .register-page.webpfallback,
+  header.masthead-img.webpfallback {
+    background-image: url(https://images.kanka.io/app/WgTgGlDmiswpJ1cBISY3xEcwL7U=/src/images%2Fbackgrounds%2Fmountain-background-mobile.jpg?webpfallback) !important;
+  }
+}
+

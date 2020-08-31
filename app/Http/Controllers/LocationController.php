@@ -6,18 +6,12 @@ use App\Datagrids\Filters\LocationFilter;
 use App\Datagrids\Sorters\LocationCharacterSorter;
 use App\Datagrids\Sorters\LocationFamilySorter;
 use App\Datagrids\Sorters\LocationLocationSorter;
-use App\Models\Character;
-use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StoreLocation;
 use App\Models\Location;
-use App\Models\Tag;
 use App\Services\LocationService;
 use App\Traits\TreeControllerTrait;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Session;
 
 class LocationController extends CrudController
 {

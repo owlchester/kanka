@@ -34,6 +34,7 @@ You can get a list of all the notes of a campaign by using the following endpoin
             "has_custom_image": false,
             "is_private": true,
             "entity_id": 7,
+            "note_id": null,
             "tags": [],
             "created_at":  "2019-01-30T00:01:44.000000Z",
             "created_by": 1,
@@ -69,6 +70,7 @@ To get the details of a single note, use the following endpoint.
         "has_custom_image": false,
         "is_private": true,
         "entity_id": 7,
+        "note_id": null,
         "tags": [],
         "created_at":  "2019-01-30T00:01:44.000000Z",
         "created_by": 1,
@@ -77,7 +79,7 @@ To get the details of a single note, use the following endpoint.
         "type": "Lore",
         "is_pinned": 0
     }
-    
+
 }
 ```
 
@@ -97,6 +99,7 @@ To create a note, use the following endpoint.
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the note |
 | `type` | `string` | The note's type |
+| `note_id` | `integer` | The parent note id |
 | `tags` | `array` | Array of tag ids |
 | `is_private` | `boolean` | If the note is only visible to `admin` members of the campaign |
 | `image` | `stream` | Stream to file uploaded to the note |

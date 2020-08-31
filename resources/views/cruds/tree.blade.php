@@ -63,7 +63,7 @@
 
     @include('cruds.datagrids.bulks.modals')
 
-    <input type="hidden" id="{{ $view }}-treeview" value="1" data-url="{{ route($route . '.tree') }}">
+    <input type="hidden" class="list-treeview" id="{{ $view }}-treeview" value="1" data-url="{{ route($route . '.tree') }}">
 @endsection
 
 @section('scripts')

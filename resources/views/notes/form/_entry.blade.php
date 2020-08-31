@@ -9,6 +9,22 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            {!! Form::select2(
+                'note_id',
+                (isset($model) && $model->note ? $model->note : FormCopy::field('note')->select()),
+                App\Models\Note::class,
+                true,
+                __('notes.fields.note'),
+                null,
+                __('notes.placeholders.note')
+            ) !!}
+        </div>
+    </div>
+</div>
+
 
 
 @include('cruds.fields.entry2')

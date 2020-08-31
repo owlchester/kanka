@@ -123,33 +123,7 @@ $(document).ready(function() {
 
 
     // Treeview for locations
-    var treeViewLoader = $('#locations-treeview');
-    if (treeViewLoader.length > 0) {
-        treeViewInit('locations');
-    }
-
-    // Treeview for tags
-    if ($('#tags-treeview').length > 0) {
-        treeViewInit('tags');
-    }
-    if ($('#quests-treeview').length > 0) {
-        treeViewInit('quests');
-    }
-    if ($('#organisations-treeview').length > 0) {
-        treeViewInit('organisations');
-    }
-    if ($('#families-treeview').length > 0) {
-        treeViewInit('families');
-    }
-    if ($('#races').length > 0) {
-        treeViewInit('races');
-    }
-    if ($('#abilities').length > 0) {
-        treeViewInit('abilities');
-    }
-    if ($('#maps').length > 0) {
-        treeViewInit('maps');
-    }
+    treeViewInit();
 
     manageTabs();
     manageDashboardNotifications();
@@ -206,10 +180,14 @@ function initSelect2() {
 /**
  * Go through table trs to add on click support
  */
-function treeViewInit(element) {
-    var treeViewLoader = $('#' + element + '-treeview');
+function treeViewInit() {
+    var treeViewLoader = $('.list-treeview');
+    if (treeViewLoader.length === 0) {
+        return;
+    }
+
     var link = treeViewLoader.data('url');
-    $.each($('#' + element + ' > tbody > tr'), function(index) {
+    $.each($('.table-nested > tbody > tr'), function(index) {
         var children = $(this).data('children');
         if (parseInt(children) > 0) {
             $(this).addClass('tr-hover');

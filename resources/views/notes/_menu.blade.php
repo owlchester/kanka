@@ -2,12 +2,6 @@
     <div class="box-body box-profile">
         @if (!View::hasSection('entity-header'))
             @include ('cruds._image')
-
-            <h1 class="profile-username text-center">{{ $model->name }}
-                @if ($model->is_private)
-                    <i class="fas fa-lock" title="{{ trans('crud.is_private') }}"></i>
-                @endif
-            </h1>
         @endif
 
         <ul class="list-group list-group-unbordered">
@@ -17,6 +11,28 @@
                     <br class="clear" />
                 </li>
             @endif
+            @if (!empty($model->note))
+                <li class="list-group-item">
+                    <b>{{ __('notes.fields.note') }}
+                    </b>
+
+                    <span class="pull-right">
+                    {!! $model->note->tooltipedLink() !!}
+                        </span>
+                    <br class="clear" />
+                </li>
+            @endif
+
+            @if(!empty($model->notes))
+                <li class="list-group-item">
+                    <b>{{ __('notes.fields.notes') }}</b>
+                    @foreach ($model->notes->sortBy('name') as $subNote)
+                        <span class="pull-right">
+                            {!! $subNote->tooltipedLink() !!}
+                        </span><br class="clear">
+                        @endforeach
+                </li>
+           @endif
             @include('entities.components.relations')
             @include('entities.components.attributes')
             @include('entities.components.tags')
