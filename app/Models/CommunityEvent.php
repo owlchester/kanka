@@ -8,6 +8,7 @@ use App\Facades\Img;
 use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
+use App\Models\Concerns\Uuid;
 use App\Models\Scopes\CommunityEventScopes;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -18,6 +19,7 @@ use Illuminate\Support\Str;
  * @package App\Models
  *
  * @property int $id
+ * @property string $uuid
  * @property string $name
  * @property string $entry
  * @property string $excerpt
@@ -30,7 +32,7 @@ use Illuminate\Support\Str;
  */
 class CommunityEvent extends Model
 {
-    use Filterable, Sortable, Searchable, CommunityEventScopes;
+    use Filterable, Sortable, Searchable, CommunityEventScopes, Uuid;
 
     public $searchableColumns = ['name'];
     public $sortableColumns = [];

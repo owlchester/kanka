@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\CommunityEvent;
 use App\Services\ImageService;
+use Illuminate\Support\Str;
 
 class CommunityEventObserver
 {

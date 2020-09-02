@@ -68,7 +68,7 @@ class CommunityEventController extends Controller
     public function show($id, $slug = '')
     {
         $this->middleware(['identity']);
-        $event = CommunityEvent::where('id', $id)->firstOrFail();
+        $event = CommunityEvent::where('uuid', $id)->firstOrFail();
 
         return view('front.community-events.show', [
             'model' => $event,

@@ -6,6 +6,7 @@ use App\Http\Requests\Admin\StoreCommunityEvent;
 use App\Models\CommunityEvent;
 use App\Models\CommunityEventEntry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CommunityEventController extends AdminCrudController
 {
