@@ -33,6 +33,9 @@
                                 <a href="{{ route('community-votes.index') }}">{{ __('front/community-votes.title') }}</a>
                             </li>
                             <li>
+                                <a href="{{ route('community-events.index') }}">{{ __('front/community-events.title') }}</a>
+                            </li>
+                            <li>
                                 <a href="{{ route('front.public_campaigns') }}">{{ __('front.menu.campaigns') }}</a>
                             </li>
                             <li>

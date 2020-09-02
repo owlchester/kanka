@@ -20,6 +20,9 @@
             <li class="{{ $sidebar->admin('community-votes') }}">
                 <a href="{{ route('admin.community-votes.index') }}"><i class="fas fa-check-square"></i> <span>Community Votes</span></a>
             </li>
+            <li class="{{ $sidebar->admin('community-events') }}">
+                <a href="{{ route('admin.community-events.index') }}"><i class="fas fa-calendar"></i> <span>Community Events</span></a>
+            </li>
             <li class="{{ $sidebar->admin('app-releases') }}">
                 <a href="{{ route('admin.app-releases.index') }}"><i class="fa fa-plus"></i> <span>Releases</span></a>
             </li>

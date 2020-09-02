@@ -22,6 +22,8 @@ Route::get('/releases/{id}-{slug?}', 'ReleaseController@show');
 Route::post('/community-votes/{community_vote}/vote', 'CommunityVoteController@vote')->name('community-votes.vote');
 Route::resources([
     'releases' => 'ReleaseController',
-    'community-votes' => 'CommunityVoteController'
+    'community-votes' => 'CommunityVoteController',
+    'community-events' => 'Front\CommunityEventController',
+    'community-events.community-event-entries' => 'Front\CommunityEventEntryController',
 ]);
 

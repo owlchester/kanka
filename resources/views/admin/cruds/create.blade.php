@@ -1,4 +1,4 @@
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.admin', [
     'title' => trans($trans . '.create.title'),
     'breadcrumbs' => [
         ['url' => route($route . '.index'), 'label' => trans($trans . '.index.title')],
@@ -19,4 +19,4 @@
     </div>
 @endsection
 
-@include('editors.editor')
+@include('editors.summernote')

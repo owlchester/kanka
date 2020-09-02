@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
+use Illuminate\Support\Str;
 
 class EntityService
 {
@@ -473,5 +474,23 @@ class EntityService
             }
         }
         return $entityTypes;
+    }
+
+    /**
+     * From a link to an entity, get the entity ID
+     * @param string $url
+     */
+    public function extractEntityIdFromUrl(string $url): int
+    {
+        // Strip stuff we don't want based on known urls
+        $url = Str::after($url, config('app.url') . '/');
+
+        // Remove language
+        $url = Str::after(trim($url, '/'), '/');
+
+        // left with characters/123 or entities/13223
+        if (Str::startsWith($url, 'entities')) {
+            // Easy peasy-ish
+        }
     }
 }
