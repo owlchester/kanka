@@ -14,7 +14,7 @@ class CommunityEventsAddUuid extends Migration
     public function up()
     {
         Schema::table('community_events', function (Blueprint $table) {
-            $table->uuid('uuid')->nullable()->unique();
+            $table->uuid('uuid')->unique();
         });
     }
 
