@@ -8,6 +8,7 @@ use App\Http\Requests\StoreRelation;
 use App\Models\Entity;
 use App\Models\Relation;
 use App\Models\MiscModel;
+use App\Services\Entity\EntityRelationService;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -30,6 +31,18 @@ class RelationController extends Controller
      * @var
      */
     protected $viewPath;
+
+    /** @var EntityRelationService */
+    protected $service;
+
+    /**
+     * RelationController constructor.
+     * @param EntityRelationService $entityRelationService
+     */
+    public function __construct(EntityRelationService $entityRelationService)
+    {
+        $this->service = $entityRelationService;
+    }
 
     /**
      * @param Entity $entity
@@ -192,5 +205,28 @@ class RelationController extends Controller
                 'target' => $relation->target->name,
                 'entity' => $entity->name
             ]));
+    }
+
+    /**
+     * @param Entity $entity
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function map(Entity  $entity)
+    {
+        if (empty($entity->child)) {
+            abort(404);
+        }
+
+        // Policies will always fail if they can't resolve the user.
+        if (Auth::check()) {
+            $this->authorize('view', $entity->child);
+        } else {
+            $this->authorizeEntityForGuest('read', $entity->child);
+        }
+
+        return response()->json(
+            $this->service->entity($entity)->map()
+        );
     }
 }

@@ -16,6 +16,7 @@ use Exception;
 /**
  * Class Relation
  * @package App\Models
+ * @property int $id
  * @property string $visibility
  * @property string $relation
  * @property int $attitude
