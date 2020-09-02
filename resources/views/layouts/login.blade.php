@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-@include('layouts._tracking')
+@include('layouts._tracking', ['noads' => true])
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ $title ?? trans('default.page_title') }} - {{ config('app.name', 'Laravel') }}</title>
