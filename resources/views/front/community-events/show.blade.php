@@ -9,7 +9,7 @@
 
 @section('og')
     <meta property="og:description" content="{{ $model->excerpt }}" />
-    <meta property="og:url" content="{{ route('community-events.show', $model->getSlug()) }}" />
+    <meta property="og:url" content="{{ route('community-events.show', $model) }}" />
     <link rel="alternate" type="application/rss+xml" title="{{ __('front/community-events.title') }}" href="{{ url('/feeds/community-events.rss') }}" />
 @endsection
 
@@ -35,7 +35,7 @@
                 @endif
                 <div class="card-body">
                     <h2 class="card-title mb-1">
-                        <a href="{{ route('community-events.show', $model->getSlug()) }}">{{ $model->name }}</a>
+                        <a href="{{ route('community-events.show', $model) }}">{{ $model->name }}</a>
                     </h2>
                     <div class="text-muted mb-2">{{ $model->start_at->isoFormat('MMMM D, Y') }} - {{ $model->end_at->isoFormat('MMMM D, Y') }}</div>
 

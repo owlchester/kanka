@@ -101,7 +101,7 @@ class CommunityEvent extends Model
      */
     public function getSlug(): string
     {
-        return $this->id . '-' . Str::slug($this->name);
+        return $this->uuid . '-' . Str::slug($this->name);
     }
 
     /**

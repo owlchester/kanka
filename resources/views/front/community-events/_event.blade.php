@@ -8,7 +8,7 @@
         <img class="card-img-top" src="{{ $model->getImageUrl() }}" alt="{{ $model->name }}">
     @endif
     <div class="card-body">
-        <a href="{{ route('community-events.show', $model->getSlug()) }}">
+        <a href="{{ route('community-events.show', $model) }}">
             <h3 class="card-title mb-1">
                 {{ $model->name }}
             </h3>
@@ -19,7 +19,7 @@
         </div>
 
         <div  class="mt-2">
-            <a href="{{ route('community-events.show', $model->getSlug()) }}" class="btn btn-primary">
+            <a href="{{ route('community-events.show', $model) }}" class="btn btn-primary">
                 {{ __('front/community-events.actions.show_' . ($ongoing ? 'ongoing' : 'past')) }}
             </a>
         </div>
