@@ -140,11 +140,13 @@ class RelationController extends Controller
         $this->authorize('update', $entity->child);
 
         $ajax = request()->ajax();
+        $from = (int) request()->get('from', 0);
 
         return view('entities.pages.relations.update', compact(
             'entity',
             'relation',
-            'ajax'
+            'ajax',
+            'from'
         ));
     }
 
@@ -162,6 +164,18 @@ class RelationController extends Controller
 
         $relation->update($data);
         $relation->refresh();
+
+        if (request()->has('from')) {
+            $from = (int) request()->post('from');
+            if (!empty($from)) {
+                return redirect()
+                    ->route('entities.relations.index', $from)
+                    ->with('success', trans('entities/relations' . '.update.success', [
+                        'target' => $relation->target->name,
+                        'entity' => $entity->name
+                    ]));
+            }
+        }
 
         return redirect()
             ->route('entities.relations.index', $entity)
@@ -225,8 +239,9 @@ class RelationController extends Controller
             $this->authorizeEntityForGuest('read', $entity->child);
         }
 
+        $map = $this->service->entity($entity)->map();
         return response()->json(
-            $this->service->entity($entity)->map()
+            $map
         );
     }
 }

@@ -32,6 +32,7 @@ function initCytoscape() {
                 'background-fit': 'cover',
                 'border-color': DEFAULT_COLOUR,
                 'border-width': 3,
+                'text-wrap': 'wrap',
                 'text-margin-y': '-8px',
                 'text-background-opacity': 1,
                 'text-background-color': '#ffffff',
@@ -74,7 +75,6 @@ function parseMap(json) {
     console.log('result from map api', json);
 
     for(entity in json.entities) {
-        console.log('try with entity', entity);
         let element = {
             group: 'nodes',
             data: {
@@ -97,6 +97,7 @@ function parseMap(json) {
                 colour: json.relations[relation].colour,
                 attitude: json.relations[relation].attitude,
                 shape: json.relations[relation].shape,
+                edit_url: json.relations[relation].edit_url,
             }
         };
         // if the relation does not have a colour, use the default
@@ -109,7 +110,7 @@ function parseMap(json) {
         element.data.attitude = getWidthFromAttitude(element.data.attitude);
         elementList.push(element);
     }
-    console.log('elements', elementList);
+    //console.log('elements', elementList);
 
     renderRelations();
 }
@@ -167,6 +168,22 @@ function addListeners() {
     // stop highlight on hover
     cy.nodes().on('mouseout', function(e) {
         entity.removeClass('node-hover');
+    });
+
+    // Double click on an edge to edit it
+    cy.edges().on('dblclick', function(e) {
+        console.log('e', e.target.data());
+        let editUrl = e.target.data().edit_url;
+        if (!editUrl) {
+            return;
+        }
+
+        $.ajax({
+            url: editUrl,
+        }).done(function (data) {
+            $('#entity-modal .modal-content').html(data);
+            $('#entity-modal').modal();
+        });
     });
 
     // highlight edges on hover to show relation

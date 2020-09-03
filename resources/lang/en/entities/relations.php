@@ -36,4 +36,7 @@ return [
         'success'   => 'Relation :target updated for :entity.',
         'title'     => 'Update relations for :name',
     ],
+    'types' => [
+        'family_member' => 'Family member',
+    ]
 ];

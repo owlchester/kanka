@@ -32,6 +32,12 @@ class EntityRelationService
     protected $family = false;
     protected $organisation = false;
 
+    /** @var array Entities that have had their relations already loaded */
+    protected $entityIds = [];
+
+    /** @var bool Enable or disable relations */
+    protected $withRelations = true;
+
     /**
      * @param Entity $entity
      * @return $this
@@ -54,26 +60,45 @@ class EntityRelationService
         return $this;
     }
 
+    protected function withoutRelations(bool $without = true) {
+        $this->withRelations = !$without;
+        return $this;
+    }
+
     /**
      * @return array
      */
     public function map(): array
     {
-        // Prepare self
-        $this->addEntity($this->entity);
 
-        // Family and orgs
+        // Character: Family and orgs
         if ($this->entity->typeId() == config('entities.ids.character')) {
+            // Prepare self
+            $this->addEntity($this->entity)->addRelations($this->entity);
             $this->addFamily()->addOrganisations();
         }
+        // Family: children and parent families
+        if ($this->entity->typeId() == config('entities.ids.family')) {
+            $this->initFamily();
+        }
+
+        $this->cleanup();
 
         return ['relations' => $this->relations, 'entities' => $this->entities];
     }
 
     /**
+     * Remove any relations that don't match up
+     */
+    protected function cleanup()
+    {
+
+    }
+
+    /**
      * @param Entity $entity
      */
-    protected function addEntity(Entity $entity, bool $withRelations = true, string $image = null): self
+    protected function addEntity(Entity $entity, string $image = null): self
     {
         if (Arr::has($this->entities, $entity->id)) {
             return $this;
@@ -81,24 +106,24 @@ class EntityRelationService
 
         $this->entities[$entity->id] = [
             'id' => $entity->id,
-            'name' => $entity->name . ($this->family || $this->organisation ? ' (' . __('entities.' . $entity->type) . ')' : null),
+            'name' => $entity->name . "\n(" . __('entities.' . $entity->type) . ')',
             'image' => $image ?? $entity->child->getImageUrl(80, 80),
             'link' => $entity->url(),
         ];
-
-        // Reset
-        $this->family(false)->organisation(false);
-
-        // Check relations of entity
-        if (!$withRelations) {
-            return $this;
-        }
-        $this->addRelations($entity);
         return $this;
     }
 
+    /**
+     * @param Entity $entity
+     * @param bool $limitToExisting
+     */
     protected function addRelations(Entity $entity, bool $limitToExisting = false)
     {
+        if (Arr::has($this->entityIds, $entity->id)) {
+            return;
+        }
+        $this->entityIds[$entity->id] = true;
+
         // Get the relations directly from this entity
         /** @var Relation[] $relations */
         $relations = $entity->relationships()
@@ -108,6 +133,7 @@ class EntityRelationService
             ->leftJoin('entities as t', 't.id', '=', 'relations.target_id')
             ->acl()
             ->get();
+
         foreach ($relations as $relation) {
             if (!$relation->target) {
                 continue;
@@ -122,7 +148,7 @@ class EntityRelationService
 
             // Don't add mirrored relations
             if ($relation->mirrored()) {
-                if (Arr::has($this->mirrors, $relation->mirror_id . '-' . $relation->id)) {
+                if ($relation->owner_id != $this->entity->id || Arr::has($this->mirrors, $relation->mirror_id . '-' . $relation->id)) {
                     continue;
                 }
             }
@@ -140,6 +166,7 @@ class EntityRelationService
                 'type' => 'entity-relation',
                 'is_mirrored' => $relation->mirrored(),
                 'shape' => $relation->mirrored() ? 'none' : 'triangle',
+                'edit_url' => route('entities.relations.edit', ['entity' => $relation->owner_id, 'relation' => $relation, 'from' => $this->entity->id])
             ];
 
             if ($relation->mirrored()) {
@@ -172,23 +199,7 @@ class EntityRelationService
         /** @var Family $family */
         $this->family()->addEntity($family->entity, false);
 
-        /** @var Character $member */
-        foreach ($family->members()->with('entity')->has('entity')->get() as $member) {
-            $this->addEntity($member->entity, false, $member->entity->getImageUrl(80, 80));
-
-            // Add relation
-            $this->relations[] = [
-                'source' => $family->entity->id,
-                'target' => $member->entity->id,
-                'text' => __('families.fields.members'),
-                'colour' => null,
-                'attitude' => null,
-                'type' => 'family-member',
-                'shape' => 'none',
-            ];
-
-            //dump('adding family member ' . $member->entity->name . '(' . $member->entity->id . ') to ' . $family->name);
-        }
+        $this->addFamilyMembers($family);
     }
 
     protected function addOrganisations() : self
@@ -203,6 +214,28 @@ class EntityRelationService
             if ($org->organisation && $org->organisation->entity) {
                 $this->addOrganisationRelations($org->organisation);
             }
+        }
+        return $this;
+    }
+
+    protected function addFamilyMembers(Family $family, bool $limitToExisting = false): self
+    {
+        /** @var Character $member */
+        foreach ($family->members()->with(['entity', 'entity.character'])->has('entity')->get() as $member) {
+            $this
+                ->addEntity($member->entity, $member->entity->character->getImageUrl(80, 80))
+                ->addRelations($member->entity, $limitToExisting);
+
+            // Add relation
+            $this->relations[] = [
+                'source' => $family->entity->id,
+                'target' => $member->entity->id,
+                'text' => __('entities/relations.types.family_member'),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'family-member',
+                'shape' => 'none',
+            ];
         }
         return $this;
     }
@@ -227,7 +260,7 @@ class EntityRelationService
                 'source' => $organisation->entity->id,
                 'target' => $member->character->entity->id,
                 'text' => $member->role,
-                'colour' => null,
+                'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'org-member',
                 'shape' => 'none',
@@ -237,5 +270,53 @@ class EntityRelationService
             $this->addRelations($member->character->entity, true);
 
         }
+    }
+
+    protected function initFamily()
+    {
+        $this->addEntity($this->entity); //->addRelations($this->entity);
+
+        $this->addFamilyMembers($this->entity->child, true);
+
+        //$this->addFamilies();
+
+    }
+
+    protected function addFamilies(): self
+    {
+        /** @var Family $family */
+        $family = $this->entity->child;
+
+        // Parent family
+        if (!empty($family->family)) {
+            $this->addEntity($family->family->entity);
+            $this->addRelations($family->family->entity, true);
+
+            $this->relations[] = [
+                'source' => $this->entity->id,
+                'target' => $family->family->entity->id,
+                'text' => __('families.fields.family'),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'sub-family',
+                'shape' => 'triangle',
+            ];
+        }
+
+        foreach ($family->families()->with('entity')->has('entity')->get() as $subfamily) {
+            $this->addEntity($subfamily->entity);
+            $this->addRelations($subfamily->entity, true);
+
+            $this->relations[] = [
+                'source' => $subfamily->entity->id,
+                'target' => $this->entity->id,
+                'text' => __('families.fields.family'),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'sub-family',
+                'shape' => 'triangle',
+            ];
+        }
+        return $this;
     }
 }
