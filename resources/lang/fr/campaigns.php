@@ -111,14 +111,14 @@ TEXT
         ],
         'email'                 => [
             'link'      => '<a href=":link">Joindre la campagne de :name</a>',
-            'subject'   => ':name t\'as invité à rejoindre la campagne \':campagne\' sur kanka.io! Utilise ce lien pour accepter leur invitation.',
+            'subject'   => ':name t\'as invité à rejoindre la campagne \':campagne\' sur kanka.io! Utilise ce lien pour accepter son invitation.',
             'title'     => 'Invitation de :name',
         ],
         'error'                 => [
             'already_member'    => 'Tu es déjà un membre de cette campagne.',
             'inactive_token'    => 'Ce code d\'activation a déjà été utilisé, ou la campagne n\'existe plus.',
             'invalid_token'     => 'Ce code d\'activation n\'est plus valide.',
-            'login'             => 'Connecte toi ou crée un compte pour joindre la campagne.',
+            'login'             => 'Connecte-toi ou crée un compte pour joindre la campagne.',
         ],
         'fields'                => [
             'created'   => 'Envoyé',
