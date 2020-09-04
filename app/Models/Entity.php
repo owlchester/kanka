@@ -310,6 +310,8 @@ class Entity extends Model
     public function touchSilently()
     {
         return static::withoutEvents(function() {
+            // Still logg who edited the entity
+            $this->updated_by = auth()->user()->id;
             return $this->touch();
         });
     }

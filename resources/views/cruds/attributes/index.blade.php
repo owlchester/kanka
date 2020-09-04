@@ -20,16 +20,12 @@ $isAdmin = Auth::user()->isAdmin();
 @endsection
 
 @section('content')
-    <div class="nav-tabs-custom">
-        <button class="btn btn-success pull-right">{{ trans('crud.save') }}</button>
-        <ul class="nav nav-tabs">
-            <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                <a href="#form-entry" title="{{ __('crud.tabs.attributes') }}" data-toggle="tooltip">
-                    {{ __('crud.tabs.attributes') }}
-                </a>
-            </li>
-        </ul>
-        <div class="tab-content">
+    <div class="box">
+        <div class="box-header">
+
+            <button class="btn btn-success pull-right">{{ trans('crud.save') }}</button>
+        </div>
+        <div class="box-body">
             <div class="row">
                 <div class="col-sm-4">{{ trans('crud.attributes.fields.attribute') }}</div>
                 <div class="col-sm-4">{{ trans('crud.attributes.fields.value') }}</div>
