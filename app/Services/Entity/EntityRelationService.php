@@ -92,7 +92,17 @@ class EntityRelationService
      */
     protected function cleanup()
     {
+        $relations = [];
+        foreach($this->relations as $relation) {
+            if (
+                isset($this->entities[$relation['source']]) &&
+                isset($this->entities[$relation['target']])
+            ) {
+                $relations[] = $relation;
+            }
+        }
 
+        $this->relations = $relations;
     }
 
     /**
@@ -117,7 +127,7 @@ class EntityRelationService
      * @param Entity $entity
      * @param bool $limitToExisting
      */
-    protected function addRelations(Entity $entity, bool $limitToExisting = false)
+    protected function addRelations(Entity $entity)
     {
         if (Arr::has($this->entityIds, $entity->id)) {
             return;
@@ -137,13 +147,6 @@ class EntityRelationService
         foreach ($relations as $relation) {
             if (!$relation->target) {
                 continue;
-            }
-            if (!$limitToExisting) {
-                $this->addEntity($relation->target);
-            } elseif ($limitToExisting) {
-                if (!Arr::has($this->entities, $relation->target_id)) {
-                    continue;
-                }
             }
 
             // Don't add mirrored relations
@@ -218,13 +221,13 @@ class EntityRelationService
         return $this;
     }
 
-    protected function addFamilyMembers(Family $family, bool $limitToExisting = false): self
+    protected function addFamilyMembers(Family $family): self
     {
         /** @var Character $member */
         foreach ($family->members()->with(['entity', 'entity.character'])->has('entity')->get() as $member) {
             $this
                 ->addEntity($member->entity, $member->entity->character->getImageUrl(80, 80))
-                ->addRelations($member->entity, $limitToExisting);
+                ->addRelations($member->entity);
 
             // Add relation
             $this->relations[] = [
@@ -267,7 +270,7 @@ class EntityRelationService
             ];
 
             // Show relations of org members if the target is shown here
-            $this->addRelations($member->character->entity, true);
+            $this->addRelations($member->character->entity);
 
         }
     }
@@ -278,7 +281,7 @@ class EntityRelationService
 
         $this->addFamilyMembers($this->entity->child, true);
 
-        //$this->addFamilies();
+        $this->addFamilies();
 
     }
 
@@ -290,7 +293,7 @@ class EntityRelationService
         // Parent family
         if (!empty($family->family)) {
             $this->addEntity($family->family->entity);
-            $this->addRelations($family->family->entity, true);
+            $this->addRelations($family->family->entity);
 
             $this->relations[] = [
                 'source' => $this->entity->id,
@@ -305,7 +308,7 @@ class EntityRelationService
 
         foreach ($family->families()->with('entity')->has('entity')->get() as $subfamily) {
             $this->addEntity($subfamily->entity);
-            $this->addRelations($subfamily->entity, true);
+            $this->addRelations($subfamily->entity);
 
             $this->relations[] = [
                 'source' => $subfamily->entity->id,
