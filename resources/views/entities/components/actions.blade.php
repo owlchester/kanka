@@ -52,7 +52,7 @@
                     </a>
                     @if (Auth::user()->isAdmin())
                     <button type="button" class="btn btn-default entity-private-toggle" data-url="{{ route('entities.privacy.toggle', $model->entity) }}">
-                        <i class="fa fa-{{ ($model->is_private ? 'lock' : 'unlock') }}" data-on="lock" data-off="unlock" title="{{ __('crud.is_private') }}"></i>
+                        <i class="fa fa-{{ ($model->is_private ? 'lock' : 'unlock') }}" data-on="lock" data-off="unlock" title="{{ __('crud.is_' . ($model->is_private ? '' : 'not_') . 'private') }}" data-title-on="{{ __('crud.is_private') }}" data-title-off="{{ __('crud.is_not_private') }}"></i>
                     </button>
                     @endif
                 </div>

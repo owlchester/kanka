@@ -120,7 +120,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                 @include('partials.success')
 
 @if(auth()->guest() && !empty(config('tracking.adsense')))
-                <!-- Side -->
+                <!-- Side -->d
                 <ins class="adsbygoogle"
                      style="display:block"
                      data-ad-client="ca-pub-1686281547359435"

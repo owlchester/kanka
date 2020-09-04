@@ -1,1 +1,235 @@
-!function(t){var e={};function r(n){if(e[n])return e[n].exports;var a=e[n]={i:n,l:!1,exports:{}};return t[n].call(a.exports,a,a.exports,r),a.l=!0,a.exports}r.m=t,r.c=e,r.d=function(t,e,n){r.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:n})},r.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},r.t=function(t,e){if(1&e&&(t=r(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var a in t)r.d(n,a,function(e){return t[e]}.bind(null,a));return n},r.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return r.d(e,"a",e),e},r.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},r.p="/",r(r.s=9)}({9:function(t,e,r){t.exports=r("n3iS")},n3iS:function(t,e){var r=-1e3;function n(){$(".entity-attributes").sortable({}),$.each($(".attribute_delete"),(function(){$(this).unbind("click"),$(this).on("click",(function(){$(this).parent().parent().parent().remove()}))})),$('[data-toggle="private"]').unbind("click").click((function(){$(this).hasClass("fa-lock")?($(this).removeClass("fa-lock").addClass("fa-unlock-alt").prop("title",$(this).data("public")),$(this).parent().find("input:hidden").val("0")):($(this).removeClass("fa-unlock-alt").addClass("fa-lock").prop("title",$(this).data("private")),$(this).parent().find("input:hidden").val("1"))})),$('[data-toggle="star"]').unbind("click").click((function(){$(this).hasClass("far")?($(this).removeClass("far").addClass("fas").prop("title",$(this).data("entry")),$(this).parent().find("input:hidden").val("1")):($(this).removeClass("fas").addClass("far").prop("title",$(this).data("tab")),$(this).parent().find("input:hidden").val("0"))}))}$(document).ready((function(){$("#add_attribute_target").length>0&&function(){var t=$("#add_attribute_target");$("#add_unsortable_attribute_target");n(),$("#attribute_add").on("click",(function(e){e.preventDefault(),r-=1;var a=$("#attribute_template").clone().removeClass("hidden").removeAttr("id"),i=a.html().replace(/\$TMP_ID\$/g,r);return a.html(i).insertBefore(t),n(),!1})),$("#block_add").click((function(e){e.preventDefault(),r-=1;var a=$("#block_template").clone().removeClass("hidden").removeAttr("id"),i=a.html().replace(/\$TMP_ID\$/g,r);return a.html(i).insertBefore(t),n(),!1})),$("#text_add").click((function(e){e.preventDefault(),r-=1;var a=$("#text_template").clone().removeClass("hidden").removeAttr("id"),i=a.html().replace(/\$TMP_ID\$/g,r);return a.html(i).insertBefore(t),n(),!1})),$("#checkbox_add").click((function(e){e.preventDefault(),r-=1;var a=$("#checkbox_template").clone().removeClass("hidden").removeAttr("id"),i=a.html().replace(/\$TMP_ID\$/g,r);return a.html(i).insertBefore(t),n(),!1})),$("#section_add").click((function(e){e.preventDefault(),r-=1;var a=$("#section_template").clone().removeClass("hidden").removeAttr("id"),i=a.html().replace(/\$TMP_ID\$/g,r);return a.html(i).insertBefore(t),n(),!1})),$("#entity_add").click((function(e){e.preventDefault(),r-=1;var a=$("#entity_template").clone().removeClass("hidden").removeAttr("id"),i=a.html().replace(/\$TMP_ID\$/g,r);return a.html(i).insertBefore(t),n(),!1})),$("#attributes-delete-all-confirm-submit").click((function(t){return t.preventDefault(),$("#entity-attributes-all .attribute_delete").click(),$("#attributes-delete-all-confirm").modal("hide"),!1})),$.each($('[data-toggle="private"]'),(function(){$(this).hasClass("fa-lock")?$(this).prop("title",$(this).data("private")):$(this).prop("title",$(this).data("public"))}))}()}))}});
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./resources/assets/js/attributes.js":
+/*!*******************************************!*\
+  !*** ./resources/assets/js/attributes.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * When adding a new attribute, we give it a negative id to avoid issues with checkboxes losing information
+ * @type {number}
+ */
+var attribute_id_count = -1000;
+$(document).ready(function () {
+  if ($('#add_attribute_target').length > 0) {
+    initAttributeUI();
+  }
+});
+/**
+ * Initiate on click handles for attribute interface
+ */
+
+function initAttributeUI() {
+  var target = $('#add_attribute_target');
+  var targetNew = $('#add_unsortable_attribute_target');
+  initAttributeHandlers();
+  $('#attribute_add').on('click', function (e) {
+    e.preventDefault();
+    attribute_id_count -= 1;
+    var body = $('#attribute_template').clone().removeClass('hidden').removeAttr('id');
+    var html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
+    body.html(html).insertBefore(target);
+    initAttributeHandlers();
+    return false;
+  });
+  $('#block_add').click(function (e) {
+    e.preventDefault();
+    attribute_id_count -= 1;
+    var body = $('#block_template').clone().removeClass('hidden').removeAttr('id');
+    var html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
+    body.html(html).insertBefore(target);
+    initAttributeHandlers();
+    return false;
+  });
+  $('#text_add').click(function (e) {
+    e.preventDefault();
+    attribute_id_count -= 1;
+    var body = $('#text_template').clone().removeClass('hidden').removeAttr('id');
+    var html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
+    body.html(html).insertBefore(target);
+    initAttributeHandlers();
+    return false;
+  });
+  $('#checkbox_add').click(function (e) {
+    e.preventDefault();
+    attribute_id_count -= 1;
+    var body = $('#checkbox_template').clone().removeClass('hidden').removeAttr('id');
+    var html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
+    body.html(html).insertBefore(target);
+    initAttributeHandlers();
+    return false;
+  });
+  $('#section_add').click(function (e) {
+    e.preventDefault();
+    attribute_id_count -= 1;
+    var body = $('#section_template').clone().removeClass('hidden').removeAttr('id');
+    var html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
+    body.html(html).insertBefore(target);
+    initAttributeHandlers();
+    return false;
+  });
+  $('#entity_add').click(function (e) {
+    e.preventDefault();
+    attribute_id_count -= 1;
+    var body = $('#entity_template').clone().removeClass('hidden').removeAttr('id');
+    var html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
+    body.html(html).insertBefore(target);
+    initAttributeHandlers();
+    return false;
+  }); // Delete all visible attributes
+
+  $('#attributes-delete-all-confirm-submit').click(function (e) {
+    e.preventDefault();
+    $('#entity-attributes-all .attribute_delete').click();
+    $('#attributes-delete-all-confirm').modal('hide');
+    return false;
+  });
+  $.each($('[data-toggle="private"]'), function () {
+    // Add the title first
+    if ($(this).hasClass('fa-lock')) {
+      $(this).prop('title', $(this).data('private'));
+    } else {
+      $(this).prop('title', $(this).data('public'));
+    }
+  });
+}
+/**
+ * This function rebinds the delete on all buttons
+ */
+
+
+function initAttributeHandlers() {
+  $('.entity-attributes').sortable({});
+  $.each($('.attribute_delete'), function () {
+    $(this).unbind('click');
+    $(this).on('click', function () {
+      $(this).parent().parent().parent().remove();
+    });
+  });
+  $('[data-toggle="private"]').unbind('click').click(function () {
+    if ($(this).hasClass('fa-lock')) {
+      // Unlock
+      $(this).removeClass('fa-lock').addClass('fa-unlock-alt').prop('title', $(this).data('public'));
+      $(this).parent().find('input:hidden').val("0");
+    } else {
+      // Lock
+      $(this).removeClass('fa-unlock-alt').addClass('fa-lock').prop('title', $(this).data('private'));
+      $(this).parent().find('input:hidden').val("1");
+    }
+  });
+  $('[data-toggle="star"]').unbind('click').click(function () {
+    if ($(this).hasClass('far')) {
+      // Unlock
+      $(this).removeClass('far').addClass('fas').prop('title', $(this).data('entry'));
+      $(this).parent().find('input:hidden').val("1");
+    } else {
+      // Lock
+      $(this).removeClass('fas').addClass('far').prop('title', $(this).data('tab'));
+      $(this).parent().find('input:hidden').val("0");
+    }
+  }); //window.initSelect2();
+}
+
+/***/ }),
+
+/***/ 9:
+/*!**********************************************!*\
+  !*** multi ./resources/assets/js/attributes ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\js\attributes */"./resources/assets/js/attributes.js");
+
+
+/***/ })
+
+/******/ });
