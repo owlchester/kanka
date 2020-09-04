@@ -113,6 +113,10 @@ TEXT
         'answer'    => 'You can browse the :public-campaigns page to see how others use Kanka for their campaigns.',
         'question'  => 'How do others use Kanka?',
     ],
+    'renaming-modules'      => [
+        'answer' => 'While this would be easy to do for English and other languages that don\'t use gendered names, being able to change the name of modules would break the grammatical correctness and user experience for a majority of languages Kanka is also available in.',
+        'question' => 'Can I rename modules? For example Families into Clans, or Organisations into Factions?',
+    ],
     'sections'              => [
         'community'     => 'Community',
         'general'       => 'General',
