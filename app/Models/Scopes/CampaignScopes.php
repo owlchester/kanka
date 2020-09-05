@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
  * @method static self|Builder visibility(string $visibility)
  * @method static self|Builder admin()
  * @method static self|Builder public()
+ * @method static self|Builder top()
  * @method static self|Builder front()
  * @method static self|Builder featured(bool $features = true)
  * @method static self|Builder filterPublic(array $filters)
