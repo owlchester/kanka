@@ -36,7 +36,7 @@ $specificPreview = 'dashboard.widgets.previews.' . $widget->entity->type;
         @endif
     </div>
 
-    @if ($widget->entity->type == \App\Models\Entity::TYPE_LOCATION)
+    @if ($widget->entity->typeId() == config('entities.ids.location'))
         @if (!empty($widget->entity->child->map))
             <div class="panel-footer text-right">
                 <a href="{{ $widget->entity->url('map') }}">

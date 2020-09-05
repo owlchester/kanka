@@ -15,6 +15,8 @@ class LogService
      */
     public function createMissingLogs(Entity $entity)
     {
+        return $entity;
+
         if ($entity->logs()->count() < 2) {
             if ($entity->logs()->action(EntityLog::ACTION_CREATE)->count() == 0) {
                 $entityLog = new EntityLog();
