@@ -7,6 +7,8 @@
     <script src="/vendor/summernote/plugin/summernote-table-headers/summernote-table-headers.js" defer></script>
     @if (app()->getLocale() == 'he')
         <script src="/vendor/summernote/lang/summernote-he-IL.js" defer></script>
+    @elseif (app()->getLocale() == 'ca')
+        <script src="/vendor/summernote/lang/summernote-ca-ES.js" defer></script>
     @elseif (!in_array(app()->getLocale(), ['en-US', 'en']))
         <script src="/vendor/summernote/lang/summernote-{{ app()->getLocale() }}-{{ strtoupper(app()->getLocale()) }}.js" defer></script>
     @endif
