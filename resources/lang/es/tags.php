@@ -21,7 +21,7 @@ return [
     ],
     'edit'          => [
         'success'   => 'Etiqueta ":name" actualizada.',
-        'title'     => 'Editar Etiqueta ":name"',
+        'title'     => 'Editar etiqueta :name',
     ],
     'fields'        => [
         'characters'    => 'Personajes',
@@ -32,15 +32,15 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'nested'    => 'En la Vista de Exploración puedes ver tus etiquetas de forma anidada. Las etiquetas que no tengan ninguna superior se mostrarán aquí por defecto. Las que tengan subetiquetas anidadas se pueden ir clicando para mostrarlas. Puedes seguir haciendo click hasta que no haya más etiquetas anidadas que ver.',
+        'nested'    => 'Con la vista anidada se muestran las etiquetas de forma agrupada. Las etiquetas que no tengan ninguna superior se mostrarán aquí por defecto. Las que tengan subetiquetas anidadas se pueden ir clicando para mostrarlas. Puedes seguir haciendo click hasta que no haya más etiquetas anidadas que ver.',
     ],
     'hints'         => [
-        'children'  => 'Esta lista contiene todas las entidades que pertenecen directamente a esta etiqueta y a todas las etiquetas anidadas.',
+        'children'  => 'Aquí se muestran todas las entidades que pertenecen directamente a esta etiqueta y a todas las etiquetas anidadas.',
         'tag'       => 'A continuación se muestran todas las etiquetas que están directamente bajo esta etiqueta.',
     ],
     'index'         => [
         'actions'       => [
-            'explore_view'  => 'Vista de exploración',
+            'explore_view'  => 'Vista anidada',
         ],
         'add'           => 'Nueva etiqueta',
         'description'   => 'Gestiona las etiquetas de :name.',
@@ -51,7 +51,7 @@ return [
     'placeholders'  => [
         'name'  => 'Nombre de la etiqueta',
         'tag'   => 'Elige una etiqueta superior',
-        'type'  => 'Tradiciones, Guerras, Historia, Religión...',
+        'type'  => 'Tradiciones, guerras, historia, religión...',
     ],
     'show'          => [
         'description'   => 'Vista detallada de la etiqueta',

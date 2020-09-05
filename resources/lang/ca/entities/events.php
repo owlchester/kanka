@@ -2,14 +2,14 @@
 
 return [
     'fields'    => [
-        'type'  => 'Tipo de evento',
+        'type'  => 'Tipus d\'esdeveniment',
     ],
     'helpers'   => [
-        'characters'    => 'Al seleccionar fecha de nacimiento o de fallecimiento, se calculará automáticamente la edad de este personaje. :more',
+        'characters'    => 'En seleccionar una data de naixement o de mort, l\'edat d\'aquest personatge es calcularà automàticament. :more',
     ],
     'types'     => [
-        'birth'     => 'Nacimiento',
-        'death'     => 'Muerte',
-        'primary'   => 'Primario',
+        'birth'     => 'Naixement',
+        'death'     => 'Mort',
+        'primary'   => 'Primari',
     ],
 ];

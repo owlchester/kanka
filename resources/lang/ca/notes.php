@@ -2,41 +2,41 @@
 
 return [
     'create'        => [
-        'description'   => 'Crear nueva nota',
-        'success'       => 'Nota \':name\' creada.',
-        'title'         => 'Nueva Nota',
+        'description'   => 'Crea una nota nova',
+        'success'       => 'S\'ha creat la nota «:name».',
+        'title'         => 'Nova nota',
     ],
     'destroy'       => [
-        'success'   => 'Nota \':name\' eliminada.',
+        'success'   => 'S\'ha eliminat la nota «:name».',
     ],
     'edit'          => [
-        'success'   => 'Nota \':name\' actualizada.',
-        'title'     => 'Editar nota :name',
+        'success'   => 'S\'ha actualitzat la nota «:name».',
+        'title'     => 'Edita la nota :name',
     ],
     'fields'        => [
-        'description'   => 'Descripción',
-        'image'         => 'Imagen',
-        'is_pinned'     => 'Fijada',
-        'name'          => 'Nombre',
-        'type'          => 'Tipo',
+        'description'   => 'Descripció',
+        'image'         => 'Imatge',
+        'is_pinned'     => 'Fixada',
+        'name'          => 'Nom',
+        'type'          => 'Tipus',
     ],
     'hints'         => [
-        'is_pinned' => 'Se pueden fijar hasta 3 notas para que se muestren en el tablero.',
+        'is_pinned' => 'Es poden fixar fins a 3 notes al tauler de la campanya.',
     ],
     'index'         => [
-        'add'           => 'Nueva Nota',
-        'description'   => 'Gestiona las notas de :name.',
-        'header'        => 'Notas de :name',
-        'title'         => 'Notas',
+        'add'           => 'Nova nota',
+        'description'   => 'Gestiona les notes de :name.',
+        'header'        => 'Notes de :name',
+        'title'         => 'Notes',
     ],
     'placeholders'  => [
-        'name'  => 'Nombre de la nota',
-        'type'  => 'Religión, Raza, Sistema politico',
+        'name'  => 'Nom de la nota',
+        'type'  => 'Religió, relat, sistema polític...',
     ],
     'show'          => [
         'description'   => 'Vista detallada de la nota',
         'tabs'          => [
-            'description'   => 'Descripción',
+            'description'   => 'Descripció',
         ],
         'title'         => 'Nota :name',
     ],

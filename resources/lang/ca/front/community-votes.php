@@ -2,25 +2,25 @@
 
 return [
     'actions'       => [
-        'pricing_info'  => 'Apoya a Kanka para participar en las votaciones comunitarias.',
-        'return'        => 'Volver a todas las votaciones comunitarias',
-        'show'          => 'Mostrar los resultados de la votación',
-        'vote'          => 'Votar',
+        'pricing_info'  => 'Feu suport a Kanka per a participar a les votacions comunitàries.',
+        'return'        => 'Torna a totes les votacions comunitàries',
+        'show'          => 'Mostra els resultats de la votació',
+        'vote'          => 'Vota',
     ],
-    'description'   => 'Los usuarios que apoyan a Kanka ayudan a moldear la evolución de la app mediante las frecuentes votaciones comunitarias.',
+    'description'   => 'Els usuaris que fan suport a Kanka ajuden a modelar l\'evolució de l\'app a través de les freqüents votacions comunitàries.',
     'index'         => [
-        'past'      => 'Votaciones comunitarias cerradas',
-        'voting'    => 'Votaciones comunitarias activas',
+        'past'      => 'Votacions comunitàries tancades',
+        'voting'    => 'Votacions comunitàries actives',
     ],
     'latest'        => [
-        'title' => 'Votaciones recientes',
+        'title' => 'Votacions recents',
     ],
     'show'          => [
-        'restricted'    => 'Las votaciones comunitarias solo están disponibles para los usuarios que apoyan a Kanka.',
-        'title'         => 'Votación comunitaria - :name',
-        'vote_count'    => 'Ha votado {1} :number participante.|Han votado [2,*] :number participantes.',
-        'voted_lasted'  => 'La votación tuvo lugar desde las :from GMT hasta las :until GMT.',
-        'voting_until'  => 'La votación está abierta hasta las :until GMT.',
+        'restricted'    => 'Les votacions comunitàries només estan disponibles per als usuaris que fan suport a Kanka.',
+        'title'         => 'Votació comunitària - :name',
+        'vote_count'    => 'Ha votat {1} :number participant.|Han votat [2,] :number participants.',
+        'voted_lasted'  => 'La votació va tenir lloc des de les :from GMT fins a les :until GMT.',
+        'voting_until'  => 'La votació està oberta fins a les :until GMT.',
     ],
-    'title'         => 'Votaciones comunitarias',
+    'title'         => 'Votacions comunitàries',
 ];

@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'helper'    => 'Las líneas de tiempo que tienen elementos vinculados a esta entidad se muestran a continuación.',
+    'helper'    => 'Aquí es mostren les línies de temps que tenen elements vinculats a aquesta entitat.',
     'show'      => [
-        'title' => 'Líneas de tiempo de :name',
+        'title' => 'Línies de temps de :name',
     ],
 ];

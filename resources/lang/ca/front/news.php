@@ -2,18 +2,18 @@
 
 return [
     'actions'       => [
-        'read'      => 'Leer artículo',
-        'return'    => 'Volver a la lista de artículos',
+        'read'      => 'Llegeix l\'article',
+        'return'    => 'Torna a la llista d\'articles',
     ],
-    'description'   => 'Mantente al día de la evolución continua de Kanka.',
+    'description'   => 'Manteniu-vos al dia de l\'evolució contínua de Kanka.',
     'index'         => [
-        'title' => 'Últimas noticias',
+        'title' => 'Últimes notícies',
     ],
     'latest'        => [
-        'title' => 'Últimas noticias',
+        'title' => 'Últimes notícies',
     ],
     'show'          => [
-        'title' => 'Lanzamiento :name',
+        'title' => 'Llançament :name',
     ],
-    'title'         => 'Novedades',
+    'title'         => 'Novetats',
 ];

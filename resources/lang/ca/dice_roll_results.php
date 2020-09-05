@@ -2,7 +2,7 @@
 
 return [
     'index' => [
-        'description'   => 'Resultados de la tirada de dados de :name.',
-        'title'         => 'Resultados de las tiradas de dados',
+        'description'   => 'Resultats de la tirada de daus de :name.',
+        'title'         => 'Resultats de les tirades de daus',
     ],
 ];

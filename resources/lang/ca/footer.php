@@ -2,8 +2,8 @@
 
 return [
     'copyright'         => 'Copyright © :year',
-    'patreon'           => 'Conviértete en Patreon',
+    'patreon'           => 'Esdeveniu un patró',
     'server_time'       => 'Hora del servidor: :time',
-    'subscribe'         => 'Suscribirse a Kanka',
-    'translator_call'   => 'Kanka está traducido a otras lenguas gracias a nuestra increíble comunidad. Si quieres ayudar a traducir Kanka en tu idioma, contáctanos en :discord!',
+    'subscribe'         => 'Subscriu-me a Kanka',
+    'translator_call'   => 'Kanka està traduït a altres llengües gràcies a la nostra increïble comunitat. Per ajudar a traduir Kanka al vostre idioma, contacteu-nos al :discord!',
 ];

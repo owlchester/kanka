@@ -2,7 +2,7 @@
 
 return [
     'errors'    => [
-        'description'   => 'Han habido problemas con lo que has introducido.',
-        'title'         => '¡Ups!',
+        'description'   => 'Hi ha hagut problemes amb les dades introduïdes.',
+        'title'         => 'Vaja!',
     ],
 ];

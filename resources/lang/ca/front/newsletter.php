@@ -2,19 +2,19 @@
 
 return [
     'actions'   => [
-        'learn_more'    => 'Saber más',
-        'subscribe'     => 'Suscribirse',
+        'learn_more'    => 'Saber-ne més',
+        'subscribe'     => 'Subscriu-me',
     ],
     'fields'    => [
-        'firstname'     => 'Nombre',
-        'lastname'      => 'Apellidos',
-        'notifications' => 'Notificaciones',
+        'firstname'     => 'Nom',
+        'lastname'      => 'Cognoms',
+        'notifications' => 'Notificacions',
     ],
     'groups'    => [
-        'community-votes'   => 'Votaciones comunitarias',
-        'news'              => 'Novedades',
+        'community-votes'   => 'Votacions comunitàries',
+        'news'              => 'Novetats',
         'newsletter'        => 'Newsletter',
     ],
-    'headline'  => 'Suscríbete a una (o a todas) nuestras newsletters para estar al día de las novedades de Kanka.',
-    'title'     => 'Correos de novedades',
+    'headline'  => 'Subscriviu-vos a una (o a totes) de les nostres newsletters per a estar al dia de les novetats de Kanka.',
+    'title'     => 'Correus de novetats',
 ];

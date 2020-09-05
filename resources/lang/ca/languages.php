@@ -6,7 +6,7 @@ return [
         'de'    => 'Alemany',
         'en'    => 'Anglès',
         'en-US' => 'Anglès (EEUU)',
-        'es'    => 'Espanyol',
+        'es'    => 'Castellà',
         'fr'    => 'Francès',
         'he'    => 'Hebreu',
         'hr'    => 'Croata',

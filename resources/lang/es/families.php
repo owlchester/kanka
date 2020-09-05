@@ -4,7 +4,7 @@ return [
     'create'        => [
         'description'   => 'Crear nueva familia',
         'success'       => 'Familia ":name" creada.',
-        'title'         => 'Crear una nueva familia',
+        'title'         => 'Nueva familia',
     ],
     'destroy'       => [
         'success'   => 'Familia ":name" eliminada.',
@@ -20,18 +20,18 @@ return [
         'families'  => 'Subfamilias',
         'family'    => 'Familia antecesora',
         'image'     => 'Imagen',
-        'location'  => 'Procedencia',
+        'location'  => 'Lugar',
         'members'   => 'Miembros',
         'name'      => 'Nombre',
         'relation'  => 'Relación',
         'type'      => 'Tipo',
     ],
     'helpers'       => [
-        'descendants'   => 'Esta lista contiene todas las familias que son descendientes de esta familia, no solo las que están directamente bajo ella.',
+        'descendants'   => 'Aquí se muestran todas las familias que descienden de esta, no solo las inmediatamente inferiores.',
         'nested'        => 'Con la vista anidada, puedes ver tus familias de forma anidada. Las familias que no tengan familia antecesora se mostrarán por defecto. A las familias con subfamilias se les puede hacer click para mostrar sus descendientes. Puedes seguir haciendo click hasta que no haya más descendientes que mostrar.',
     ],
     'hints'         => [
-        'members'   => 'Aquí se enumeran los miembros de una familia. Se puede añadir un personaje a una familia en el menú de edición de dicho personaje, usando el desplegable "Familia".',
+        'members'   => 'Aquí se muestran los miembros de la familia. Se puede añadir un personaje a una familia en el menú de edición de dicho personaje, usando el desplegable "Familia".',
     ],
     'index'         => [
         'add'           => 'Nueva familia',
@@ -41,13 +41,13 @@ return [
     ],
     'members'       => [
         'helpers'   => [
-            'all_members'       => 'Esta lista contiene todos los personajes que están en esta familia y en todas las subfamilias.',
-            'direct_members'    => 'Muchas familias tienen miembros que las hicieron famosas. Esta lista contiene los personajes que están directamente en esta familia.',
+            'all_members'       => 'Aquí se muestran todos los personajes de esta familia y de todas sus subfamilias.',
+            'direct_members'    => 'Muchas familias tienen miembros que las hicieron famosas. Aquí se muestran los personajes que están directamente en esta familia.',
         ],
         'title'     => 'Miembros de la familia :name',
     ],
     'placeholders'  => [
-        'location'  => 'Elegir una procedencia',
+        'location'  => 'Elige un lugar',
         'name'      => 'Nombre de la familia',
         'type'      => 'Real, noble, extinguida...',
     ],

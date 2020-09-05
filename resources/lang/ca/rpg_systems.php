@@ -6,7 +6,7 @@ return [
         '1' => 'Pathfinder',
         '10'=> 'GURPS',
         '11'=> 'DSA',
-        '12'=> 'Mundo de Tinieblas',
+        '12'=> 'Chronicles of Darkness',
         '13'=> 'Powered by the Apocalypse',
         '2' => 'Stars Without Numbers',
         '3' => 'Savage Worlds',
@@ -18,6 +18,6 @@ return [
         '9' => 'Fate',
     ],
     'systems'   => [
-        'dnd5'  => 'D&D 5ª edición',
+        'dnd5'  => 'D&D 5a edició',
     ],
 ];

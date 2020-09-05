@@ -2,7 +2,7 @@
 
 return [
     'ads'   => [
-        'login' => 'iniciando sesión',
-        'remove'=> 'Quita estos anuncios :login.',
+        'login' => 'iniciant sessió',
+        'remove'=> 'Treu aquests anuncis :login.',
     ],
 ];

@@ -2,22 +2,22 @@
 
 return [
     'create'        => [
-        'success'   => 'Relación de :name añadida.',
-        'title'     => 'Crear Relación',
+        'success'   => 'Relación :target añadida a :entity.',
+        'title'     => 'Nueva relación para :name',
     ],
     'destroy'       => [
-        'success'   => 'Relación de :name eliminada.',
+        'success'   => 'Relación :target eliminada de :entity.',
     ],
     'fields'        => [
         'attitude'  => 'Actitud',
         'is_star'   => 'Fijada',
         'relation'  => 'Relación',
         'target'    => 'Objetivo',
-        'two_way'   => 'Reflejar relación creada',
+        'two_way'   => 'Reflejar relación',
     ],
     'helper'        => 'Crea relaciones entre entidades y configura su actitud y visibilidad. Las relaciones también se pueden fijar al menú de la entidad.',
     'hints'         => [
-        'attitude'  => 'Este campo opcional puede usarse para definir el orden en el que las relaciones aparecen por defecto de forma descendiente.',
+        'attitude'  => 'Aquí se puede definir opcionalmente el orden en el que las relaciones aparecen por defecto de forma descendiente.',
         'mirrored'  => [
             'text'  => 'Esta relación está reflejada en :link.',
             'title' => 'Reflejada',
@@ -26,14 +26,14 @@ return [
     ],
     'placeholders'  => [
         'attitude'  => 'Desde -100 hasta 100, siendo 100 muy positiva.',
-        'relation'  => 'Naturaleza de la relación',
+        'relation'  => 'Rival, mejor amiga, hermano...',
         'target'    => 'Elige una entidad',
     ],
     'show'          => [
         'title' => 'Relaciones de :name',
     ],
     'update'        => [
-        'success'   => 'Relación de :name actualizada.',
-        'title'     => 'Actualizar relaciones',
+        'success'   => 'Relación :target de :entity actualizada.',
+        'title'     => 'Actualizar relaciones de :name',
     ],
 ];

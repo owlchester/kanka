@@ -2,24 +2,24 @@
 
 return [
     'create'        => [
-        'success'   => 'Elemento añadido a la línea de tiempo.',
-        'title'     => 'Nuevo elemento cronológico',
+        'success'   => 'S\'ha afegit l\'element a la línia de temps.',
+        'title'     => 'Nou element cronològic',
     ],
     'edit'          => [
-        'success'   => 'Elemento actualizado.',
-        'title'     => 'Editar elemento cronológico',
+        'success'   => 'S\'ha actualitzat l\'element.',
+        'title'     => 'Edita l\'element cronològic',
     ],
     'fields'        => [
-        'date'  => 'Fecha',
+        'date'  => 'Data',
         'era'   => 'Era',
-        'icon'  => 'Icono',
+        'icon'  => 'Icona',
     ],
     'helpers'       => [
-        'icon'  => 'Copia el HTML de un icono de :fontawesome o :rpgawesome.',
+        'icon'  => 'Copia l\'HTML d\'una icona de :fontawesome o :rpgawesome.',
     ],
     'placeholders'  => [
-        'date'      => '22 de marzo, 1332-1337...',
-        'name'      => 'Requerido si no hay ninguna entidad seleccionada',
-        'position'  => 'Posición en la lista de elementos de la era. Déjalo en blanco para añadirlo al final.',
+        'date'      => '22 de març, 1332-1337...',
+        'name'      => 'Requerit si no hi ha cap entitat seleccionada',
+        'position'  => 'Posició a la llista d\'elements de l\'era. Deixeu-ho en blanc per a afegir-lo al final.',
     ],
 ];

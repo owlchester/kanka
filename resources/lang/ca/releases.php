@@ -2,14 +2,14 @@
 
 return [
     'index' => [
-        'description'   => 'Ultimas novedades de kanka.io',
-        'title'         => 'Novedades',
+        'description'   => 'Ultimes novetats de kanka.io',
+        'title'         => 'Llançaments',
     ],
     'post'  => [
-        'footer'    => 'Por :name el :date',
+        'footer'    => 'Per :name el :date',
     ],
     'show'  => [
-        'return'    => 'Volver a novedades',
-        'title'     => 'Novedad :name',
+        'return'    => 'Torna als últims llançaments',
+        'title'     => 'Llançament :name',
     ],
 ];

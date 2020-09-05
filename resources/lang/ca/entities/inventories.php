@@ -2,31 +2,31 @@
 
 return [
     'actions'       => [
-        'add'   => 'Añadir objeto',
+        'add'   => 'Afegeix un objecte',
     ],
     'create'        => [
-        'success'   => 'Objeto :item añadido a :name',
-        'title'     => 'Añade un objeto a :name',
+        'success'   => 'S\'ha afegit l\'objecte :item a :name',
+        'title'     => 'Afegeix un objecte a :name',
     ],
     'destroy'       => [
-        'success'   => 'Objeto :item eliminado de :entity.',
+        'success'   => 'S\'ha tret l\'objecte :item de :entity.',
     ],
     'fields'        => [
-        'amount'        => 'Cantidad',
-        'description'   => 'Observaciones',
-        'position'      => 'Localización',
+        'amount'        => 'Quantitat',
+        'description'   => 'Observacions',
+        'position'      => 'Lloc',
     ],
     'placeholders'  => [
-        'amount'        => 'Cualquier cantidad',
-        'description'   => 'Usado, dañado, roto',
-        'position'      => 'Equipado, Mochila, Almacenamiento, Banco...',
+        'amount'        => 'Qualsevol quantitat',
+        'description'   => 'Utilitzat, estripat, trencat...',
+        'position'      => 'Equipat, motxilla, emmagatzemat, banc...',
     ],
     'show'          => [
-        'helper'    => 'Las entidades pueden tener objetos asociados a ellas, creando así un inventario.',
-        'title'     => 'Inventario de :name',
+        'helper'    => 'Per a crear un inventari, afegiu objectes a una entitat.',
+        'title'     => 'Inventari de :name',
     ],
     'update'        => [
-        'success'   => 'Objeto :item actualizado en :entity.',
-        'title'     => 'Actualizar un objeto de :name',
+        'success'   => 'S\'ha actualitzat l\'objecte :item a :entity.',
+        'title'     => 'Actualiza un objecte de :name',
     ],
 ];

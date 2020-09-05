@@ -2,38 +2,38 @@
 
 return [
     'create'        => [
-        'success'   => 'Relación de :name añadida.',
-        'title'     => 'Crear Relación',
+        'success'   => 'S\'ha afegit la relació :target a :entity.',
+        'title'     => 'Nova relació per :name',
     ],
     'destroy'       => [
-        'success'   => 'Relación de :name eliminada.',
+        'success'   => 'S\'ha eliminat la relació :target de :entity.',
     ],
     'fields'        => [
         'attitude'  => 'Actitud',
-        'is_star'   => 'Fijada',
-        'relation'  => 'Relación',
-        'target'    => 'Objetivo',
-        'two_way'   => 'Reflejar relación creada',
+        'is_star'   => 'Fixada',
+        'relation'  => 'Relació',
+        'target'    => 'Objectiu',
+        'two_way'   => 'Emmiralla la relació',
     ],
-    'helper'        => 'Crea relaciones entre entidades y configura su actitud y visibilidad. Las relaciones también se pueden fijar al menú de la entidad.',
+    'helper'        => 'Crea relacions entre entitats i configura\'n l\'actitud i visibilitat. Les relacions també poden fixar-se al menú de l\'entitat.',
     'hints'         => [
-        'attitude'  => 'Este campo opcional puede usarse para definir el orden en el que las relaciones aparecen por defecto de forma descendiente.',
+        'attitude'  => 'Aquí es pot definir opcionalment l\'ordre en què les relacions apareixen per defecte de forma descendent.',
         'mirrored'  => [
-            'text'  => 'Esta relación está reflejada en :link.',
-            'title' => 'Reflejada',
+            'text'  => 'Aquesta relació està emmirallada amb :link.',
+            'title' => 'Emmirallada',
         ],
-        'two_way'   => 'Al reflejar una relación, ésta se copiará en el objetivo seleccionado. Sin embargo, si editas una, la otra no se verá afectada.',
+        'two_way'   => 'Al emmirallar una relació, aquesta es copia a l\'objectiu seleccionat. Tanmateix, si editeu una, l\'atra no es veu afectada.',
     ],
     'placeholders'  => [
-        'attitude'  => 'Desde -100 hasta 100, siendo 100 muy positiva.',
-        'relation'  => 'Naturaleza de la relación',
-        'target'    => 'Elige una entidad',
+        'attitude'  => 'Des de -100 fins a 100, sent 100 molt positiva.',
+        'relation'  => 'Rival, millor amic, germà...',
+        'target'    => 'Trieu una entitat',
     ],
     'show'          => [
-        'title' => 'Relaciones de :name',
+        'title' => 'Relacions de :name',
     ],
     'update'        => [
-        'success'   => 'Relación de :name actualizada.',
-        'title'     => 'Actualizar relaciones',
+        'success'   => 'S\'ha actualitzat la relació :target de :entity.',
+        'title'     => 'Actualiza les relacions de :name',
     ],
 ];

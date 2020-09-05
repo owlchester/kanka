@@ -3,15 +3,15 @@
 return [
     'sync'  => [
         'actions'   => [
-            'sync'  => 'Sincronizar',
+            'sync'  => 'Sincronitza',
         ],
         'errors'    => [
-            'invalid_uuid'  => 'Id de campaña LFGM inválida. Por favor, vuelve a intentarlo.',
+            'invalid_uuid'  => 'La ID de la campanya LFGM no és vàlida. Si us plau, torneu a intentar-ho.',
         ],
-        'helper'    => 'Selecciona una campaña para sincronizar tus eventos con :lfgm. Así, se fijará una Nota al tablero de campaña con tus próximos eventos.',
+        'helper'    => 'Seleccioneu una campanya per a sincronitzar els vostres esdeveniments amb :lfgm. Així, es fixarà una nota al tauler de la campanya amb els propers esdeveniments.',
         'successes' => [
-            'sync'  => 'Calendario LFGM sincronizado.',
+            'sync'  => 'S\'ha sincronitzat el calendari de LFGM.',
         ],
-        'title'     => 'Sincronizar campaña con LookingForGM.com',
+        'title'     => 'Sincronitza la campanya amb LookingForGM.com',
     ],
 ];

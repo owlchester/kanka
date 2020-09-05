@@ -22,12 +22,12 @@ return [
         'type'          => 'Tipo',
     ],
     'hints'         => [
-        'participants'  => 'Por favor, añade participantes a la conversación.',
+        'participants'  => 'Añade participantes a la conversación mediante el icono :icon arriba a la derecha.',
     ],
     'index'         => [
-        'add'           => 'Nueva Conversación',
+        'add'           => 'Nueva conversación',
         'description'   => 'Gestiona las conversaciones de :name.',
-        'header'        => 'Conversaciones en :name',
+        'header'        => 'Conversaciones de :name',
         'title'         => 'Conversaciones',
     ],
     'messages'      => [
