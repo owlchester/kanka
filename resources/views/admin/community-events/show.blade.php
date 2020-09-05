@@ -57,7 +57,7 @@
                 </tr>
                 <tr class="collapse out" id="entry-id-{{ $entry->id }}">
                     <td colspan="6">
-                        <p class="text-muted">As soon as an entry has a rank, it will be shown on the results of the event's <a href="{{ route('community-events.show', $entry->community_event_id) }}" target="_blank">front page</a>.</p>
+                        <p class="text-muted">As soon as an entry has a rank, it will be shown on the results of the event's <a href="{{ route('community-events.show', $entry->event) }}" target="_blank">front page</a>.</p>
                         {!! Form::model($entry, ['route' => ['admin.community-entries.rank', $entry], 'method' => 'PUT', 'class' => 'form-inline']) !!}
                         <div class="form-group">
                             <label for="rank">Rank</label>

@@ -134,7 +134,7 @@ class CommunityEventController extends AdminCrudController
         $communityEventEntry->rank = $request->post('rank');
         $communityEventEntry->save();
 
-        return redirect()->route($this->route . '.show', $communityEventEntry->community_event_id)
+        return redirect()->route($this->route . '.show', $communityEventEntry->event)
             ->with('success', 'Rank set.');
     }
 }
