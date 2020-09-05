@@ -1,13 +1,13 @@
 <?php
 
 return [
-    'avatar'            => 'Imagen de usuario',
-    'logout'            => 'Salir',
-    'member_since'      => 'Miembro desde :date',
+    'avatar'            => 'Imatge d\'usuari',
+    'logout'            => 'Surt',
+    'member_since'      => 'Membre des del :date',
     'notifications'     => [
-        'header'    => 'Notificaciones',
-        'read_all'  => 'Leer todas',
+        'header'    => 'Notificacions',
+        'read_all'  => 'Llegeix totes',
     ],
     'profile'           => 'Perfil',
-    'toggle_navigation' => 'Activar menú',
+    'toggle_navigation' => 'Canvia el menú de navegació',
 ];

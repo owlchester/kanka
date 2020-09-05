@@ -2,47 +2,47 @@
 
 return [
     'create'        => [
-        'description'   => 'Crear nuevo evento',
-        'success'       => 'Evento \':name\' creado.',
-        'title'         => 'Crear nuevo evento',
+        'description'   => 'Crea un nou esdeveniment',
+        'success'       => 'S\'ha creat l\'esdeveniment «:name».',
+        'title'         => 'Nou esdeveniment',
     ],
     'destroy'       => [
-        'success'   => 'Evento \':name\' borrado.',
+        'success'   => 'S\'ha esborrat l\'esdeveniment «:name».',
     ],
     'edit'          => [
-        'success'   => 'Evento \':name\' actualizado.',
-        'title'     => 'Editar evento :name',
+        'success'   => 'S\'ha actualitzat l\'esdeveniment «:name».',
+        'title'     => 'Edita l\'esdeveniment :name',
     ],
     'fields'        => [
-        'date'      => 'Fecha',
-        'image'     => 'Imagen',
-        'location'  => 'Localización',
-        'name'      => 'Nombre',
-        'type'      => 'Tipo',
+        'date'      => 'Data',
+        'image'     => 'Imatge',
+        'location'  => 'Localització',
+        'name'      => 'Nomb',
+        'type'      => 'Tipus',
     ],
     'helpers'       => [
-        'date'  => 'Este campo puede contener cualquier cosa y no está vinculado a los calendarios de la campaña. Para vincular este evento con un calendario, añádelo desde la pestaña de recordatorios o desde el mismo calendario.',
+        'date'  => 'Aquest camp pot contenir qualsevol cosa i no està vinculat als calendaris de la campanya. Per vincular aquest esdeveniment amb un calendari, afegiu-lo des de la pestanya de recordatoris o des del mateix calendari.',
     ],
     'index'         => [
-        'add'           => 'Nuevo evento',
-        'description'   => 'Gestiona los eventos de :name.',
-        'header'        => 'Eventos de :name',
-        'title'         => 'Eventos',
+        'add'           => 'Nou esdeveniment',
+        'description'   => 'Gestiona els esdeveniments de :name.',
+        'header'        => 'Esdeveniments de :name',
+        'title'         => 'Esdeveniments',
     ],
     'placeholders'  => [
-        'date'      => 'Fecha para tu evento',
-        'location'  => 'Elige un lugar',
-        'name'      => 'Nombre del Evento',
-        'type'      => 'Ceremonia, Festival, Catástrofe, Batalla, Nacimiento...',
+        'date'      => 'Data de l\'esdeveniment',
+        'location'  => 'Trieu un indret',
+        'name'      => 'Nom de l\'esdeveniment',
+        'type'      => 'Cerimònia, festival, catàstrofe, batalla, naixement...',
     ],
     'show'          => [
-        'description'   => 'Vista detallada de evento',
+        'description'   => 'Vista detallada de l\'esdeveniment',
         'tabs'          => [
-            'information'   => 'Información',
+            'information'   => 'Informació',
         ],
-        'title'         => 'Evento :name',
+        'title'         => 'Esdeveniment :name',
     ],
     'tabs'          => [
-        'calendars' => 'Entradas del calendario',
+        'calendars' => 'Entrades del calendari',
     ],
 ];

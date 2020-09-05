@@ -6,7 +6,7 @@ return [
         'unfollow'  => 'Stop following',
     ],
     'campaigns'         => [
-        'tabs'      => [
+        'tabs'  => [
             'modules'   => ':count Modules',
             'roles'     => ':count Roles',
             'users'     => ':count Users',
@@ -25,10 +25,10 @@ return [
         ],
     ],
     'recent'            => [
-        'title'         => 'Recently modified :name',
+        'title' => 'Recently modified :name',
     ],
     'settings'          => [
-        'title'         => 'Dashboard Settings',
+        'title' => 'Dashboard Settings',
     ],
     'setup'             => [
         'actions'   => [

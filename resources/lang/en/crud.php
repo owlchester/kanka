@@ -251,6 +251,7 @@ return [
     'image'             => [
         'error' => 'We weren\'t able to get the image you requested. It could be that the website doesn\'t allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid. Please also make sure that the image isn\'t larger than :size.',
     ],
+    'is_not_private'    => 'This entity isn\'t currently set to private.',
     'is_private'        => 'This entity is private and only visible to members of the Admin role.',
     'linking_help'      => 'How can I link to other entries?',
     'manage'            => 'Manage',

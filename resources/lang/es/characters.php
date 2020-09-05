@@ -7,7 +7,7 @@ return [
         'add_personality'   => 'Añadir personalidad',
     ],
     'conversations' => [
-        'description'   => 'Conversaciones en las que el personaje está participando.',
+        'description'   => 'Conversaciones en las que participa el personaje.',
         'title'         => 'Conversaciones de :name',
     ],
     'create'        => [
@@ -46,13 +46,13 @@ return [
         'type'                      => 'Tipo',
     ],
     'helpers'       => [
-        'age'   => 'Puedes vincular esta entidad con un calendario de tu campaña para calcular automáticamente su edad. :more',
+        'age'   => 'Puedes vincular esta entidad con un calendario de la campaña para calcular automáticamente su edad. :more',
         'free'  => '¿No encuentras el campo "Libre"? Si este personaje tenía uno, ha sido movido a la nueva pestaña de Notas.',
     ],
     'hints'         => [
         'hide_personality'          => 'Esta pestaña puede ocultarse a los usuarios no administradores desactivando la opción "Personalidad visible" en la edición del personaje.',
         'is_dead'                   => 'Este personaje está muerto',
-        'is_personality_visible'    => 'Puedes ocultar a los Invitados la sección de personalidad.',
+        'is_personality_visible'    => 'Se puede ocultar la sección de personalidad a los usuarios no administradores.',
     ],
     'index'         => [
         'actions'       => [
@@ -65,7 +65,7 @@ return [
     ],
     'items'         => [
         'description'   => 'Los objetos que tiene el personaje.',
-        'hint'          => 'A los personajes se les puede asignar objetos, que se mostrarán aquí.',
+        'hint'          => 'Aquí se muestran los objetos que se han asignado a los personajes.',
         'title'         => 'Objetos de :name',
     ],
     'journals'      => [
@@ -87,12 +87,12 @@ return [
         ],
         'description'   => 'Organizaciones de las que el personaje forma parte.',
         'destroy'       => [
-            'success'   => 'Personaje borrado de la organización.',
+            'success'   => 'Personaje quitado de la organización.',
         ],
         'edit'          => [
             'description'   => 'Actualizar la organización de un personaje',
             'success'       => 'Organización del personaje actualizada.',
-            'title'         => 'Actualizar organización para :name',
+            'title'         => 'Actualizar organización de :name',
         ],
         'fields'        => [
             'organisation'  => 'Organización',
@@ -107,24 +107,24 @@ return [
     'placeholders'  => [
         'age'               => 'Edad',
         'appearance_entry'  => 'Descripción',
-        'appearance_name'   => 'Pelo, Ojos, Piel, Altura...',
-        'family'            => 'Por favor selecciona un personaje',
+        'appearance_name'   => 'Cabello, ojos, piel, altura...',
+        'family'            => 'Selecciona un personaje',
         'image'             => 'Imagen',
         'location'          => 'Selecciona una procedencia',
         'name'              => 'Nombre',
         'personality_entry' => 'Detalles',
-        'personality_name'  => 'Objetivos, Manías, Miedos, Lazos...',
+        'personality_name'  => 'Objetivos, manías, miedos, lazos...',
         'physical'          => 'Físico',
         'race'              => 'Raza',
         'sex'               => 'Género',
         'title'             => 'Título',
         'traits'            => 'Características',
-        'type'              => 'PNJ, Personaje Jugador, Divinidad...',
+        'type'              => 'PNJ, Personaje Jugador, divinidad...',
     ],
     'quests'        => [
         'description'   => 'Las misiones de las que el personaje forma parte.',
         'helpers'       => [
-            'quest_giver'   => 'Misiones que el personaje ha promovido',
+            'quest_giver'   => 'Misiones que el personaje ha promovido.',
             'quest_member'  => 'Misiones de las que el personaje es miembro.',
         ],
         'title'         => 'Misiones de :name',

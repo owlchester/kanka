@@ -5,8 +5,8 @@ return [
         'add_element'   => 'Add an element to era :era',
         'back'          => 'Back to :name',
         'edit'          => 'Edit timeline',
-        'save_order' => 'Save new order',
-        'reorder' => 'Redorder',
+        'reorder'       => 'Redorder',
+        'save_order'    => 'Save new order',
     ],
     'create'        => [
         'success'   => 'Timeline :name created.',
@@ -27,8 +27,8 @@ return [
         'type'          => 'Type',
     ],
     'helpers'       => [
+        'reorder'       => 'Drag and drop elements of the era to reorder them.',
         'reverse_order' => 'Enable to display eras in reverse chronological order (older era first)',
-        'reorder' => 'Drag and drop elements of the timeline to reorder them.',
     ],
     'index'         => [
         'add'   => 'New Timeline',

@@ -5,6 +5,9 @@ return [
         'success'   => 'Élément ajouter à la chronologie.',
         'title'     => 'Nouvel élément de chronologie',
     ],
+    'delete'        => [
+        'success'   => 'L\'élément :name a été supprimé.',
+    ],
     'edit'          => [
         'success'   => 'L\'élément a été modifié.',
         'title'     => 'Modifier l\'élément de la chronologie',

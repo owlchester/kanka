@@ -2,69 +2,69 @@
 
 return [
     'create'        => [
-        'description'   => 'Crear nueva conversación',
-        'success'       => 'Conversación \':name\' creada.',
-        'title'         => 'Nueva Conversación',
+        'description'   => 'Crea una nova conversa',
+        'success'       => 'S\'ha creat la conversa «:name».',
+        'title'         => 'Nova conversa',
     ],
     'destroy'       => [
-        'success'   => 'Conversación \':name\' eliminada.',
+        'success'   => 'S\'ha eliminat la conversa «:name».',
     ],
     'edit'          => [
-        'description'   => 'Actualizar la conversación',
-        'success'       => 'Conversación \':name\' actualizada.',
-        'title'         => 'Conversación :name',
+        'description'   => 'Actualiza la conversa',
+        'success'       => 'S\'ha actualitzat la conversa «:name».',
+        'title'         => 'Conversa :name',
     ],
     'fields'        => [
-        'messages'      => 'Mensajes',
-        'name'          => 'Nombre',
-        'participants'  => 'Participantes',
-        'target'        => 'Objetivo',
-        'type'          => 'Tipo',
+        'messages'      => 'Missatges',
+        'name'          => 'Nom',
+        'participants'  => 'Participants',
+        'target'        => 'Objectiu',
+        'type'          => 'Tipus',
     ],
     'hints'         => [
-        'participants'  => 'Por favor, añade participantes a la conversación.',
+        'participants'  => 'Afegiu participants a la conversa clicant a la icona :icon adalt a la dreta.',
     ],
     'index'         => [
-        'add'           => 'Nueva Conversación',
-        'description'   => 'Gestiona las conversaciones de :name.',
-        'header'        => 'Conversaciones en :name',
-        'title'         => 'Conversaciones',
+        'add'           => 'Nova conversa',
+        'description'   => 'Gestiona les converses de :name.',
+        'header'        => 'Converses de :name',
+        'title'         => 'Converses',
     ],
     'messages'      => [
         'destroy'       => [
-            'success'   => 'Mensaje eliminado.',
+            'success'   => 'S\'ha eliminat el missatge.',
         ],
-        'is_updated'    => 'Actualizado',
-        'load_previous' => 'Cargar mensajes previos',
+        'is_updated'    => 'Actualizat',
+        'load_previous' => 'Carrega els missatges previs',
         'placeholders'  => [
-            'message'   => 'Tu mensaje',
+            'message'   => 'El vostre missatge',
         ],
     ],
     'participants'  => [
         'create'        => [
-            'success'   => 'El participante :entity se ha añadido a la conversación.',
+            'success'   => 'S\'ha afegit el participant :entity a la conversa.',
         ],
-        'description'   => 'Añadir o eliminar participantes de una conversación',
+        'description'   => 'Afegeix o elimina participants d\'una conversa',
         'destroy'       => [
-            'success'   => 'El participante :entity se ha eliminado de la conversación.',
+            'success'   => 'El participant :entity s\'ha tret de la conversa.',
         ],
-        'modal'         => 'Participantes',
-        'title'         => 'Participantes de :name',
+        'modal'         => 'Participants',
+        'title'         => 'Participants de :name',
     ],
     'placeholders'  => [
-        'name'  => 'Nombre de la conversación',
-        'type'  => 'Dentro del juego, Preparación, Argumento',
+        'name'  => 'Nom de la conversa',
+        'type'  => 'Dins del joc, preparació, argument...',
     ],
     'show'          => [
-        'description'   => 'Vista detallada de conversación',
-        'title'         => 'Conversación :name',
+        'description'   => 'Vista detallada de conversa',
+        'title'         => 'Conversa :name',
     ],
     'tabs'          => [
-        'conversation'  => 'Conversación',
-        'participants'  => 'Participantes',
+        'conversation'  => 'Conversa',
+        'participants'  => 'Participants',
     ],
     'targets'       => [
-        'characters'    => 'Personajes',
-        'members'       => 'Miembros',
+        'characters'    => 'Personatges',
+        'members'       => 'Membres',
     ],
 ];

@@ -2,52 +2,52 @@
 
 return [
     'characters'    => [
-        'description'   => 'Personajes de esta raza.',
-        'title'         => 'Personajes de raza :name',
+        'description'   => 'Personatges d\'aquesta raça.',
+        'title'         => 'Personatges de la raça :name',
     ],
     'create'        => [
-        'description'   => 'Crear nueva raza',
-        'success'       => 'Raza \':name\' creada.',
-        'title'         => 'Nueva Raza',
+        'description'   => 'Crea una nova raça',
+        'success'       => 'S\'ha creat la raça «:name».',
+        'title'         => 'Nova raça',
     ],
     'destroy'       => [
-        'success'   => 'Raza \':name\' eliminada.',
+        'success'   => 'S\'ha eliminat la raça «:name».',
     ],
     'edit'          => [
-        'success'   => 'Raza \':name\' actualizada.',
-        'title'     => 'Editar raza :name',
+        'success'   => 'S\'ha actualitzat la raça «:name».',
+        'title'     => 'Edita la raça :name',
     ],
     'fields'        => [
-        'characters'    => 'Personajes',
-        'name'          => 'Nombre',
-        'race'          => 'Raza superior',
-        'races'         => 'Subrazas',
-        'type'          => 'Tipo',
+        'characters'    => 'Personatges',
+        'name'          => 'Nom',
+        'race'          => 'Raça superior',
+        'races'         => 'Sub-races',
+        'type'          => 'Tipus',
     ],
     'helpers'       => [
-        'nested'    => 'Con la vista anidada, puedes ver tus razas de forma anidada. Las razas que no tengan raza superior se mostrarán por defecto. A las razas con subrazas se les puede hacer click para mostrar sus descendientes. Puedes seguir haciendo click hasta que no haya más descendientes que mostrar.',
+        'nested'    => 'Amb la vista niada, les races es mostren de forma agrupada. Les races que no tinguin raça superior es mostraran per defecte. A les races amb sub-races se\'ls pot clicar per a mostrar els seus descendents. Es pot seguir clicant fins que no hi hagi més descendents a mostrar.',
     ],
     'index'         => [
-        'add'           => 'Nueva raza',
-        'description'   => 'Gestiona las razas de :name.',
-        'header'        => 'Razas de :name',
-        'title'         => 'Razas',
+        'add'           => 'Nova raça',
+        'description'   => 'Gestiona les races de :name.',
+        'header'        => 'Races de :name',
+        'title'         => 'Races',
     ],
     'placeholders'  => [
-        'name'  => 'Nombre de la raza',
-        'type'  => 'Humano, Elfo, Troll',
+        'name'  => 'Nom de la raça',
+        'type'  => 'Humà, elf, follet...',
     ],
     'races'         => [
-        'description'   => 'Razas pertenecientes a esta raza.',
-        'title'         => 'Subrazas de la raza :name',
+        'description'   => 'Races pertanyents a aquesta raça.',
+        'title'         => 'Sub-races de la raça :name',
     ],
     'show'          => [
-        'description'   => 'Vista detallada de la raza',
+        'description'   => 'Vista detallada de la raça',
         'tabs'          => [
-            'characters'    => 'Personajes',
+            'characters'    => 'Personatges',
             'menu'          => 'Menú',
-            'races'         => 'Subrazas',
+            'races'         => 'Sub-races',
         ],
-        'title'         => 'Raza :name',
+        'title'         => 'Raça :name',
     ],
 ];

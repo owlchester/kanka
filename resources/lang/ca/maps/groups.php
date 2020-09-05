@@ -2,28 +2,28 @@
 
 return [
     'actions'       => [
-        'add'   => 'Añadir nuevo grupo',
+        'add'   => 'Afegeix un grup nou',
     ],
     'create'        => [
-        'success'   => 'Grupo :name creado.',
-        'title'     => 'Nuevo grupo',
+        'success'   => 'S\'ha creat el grup «:name».',
+        'title'     => 'Nou grup',
     ],
     'delete'        => [
-        'success'   => 'Grupo :name eliminado.',
+        'success'   => 'S\'ha eliminat el grup «:name».',
     ],
     'edit'          => [
-        'success'   => 'Grupo :name actualizado.',
-        'title'     => 'Editar grupo :name',
+        'success'   => 'S\'ha actualitzat el grup «:name».',
+        'title'     => 'Edita el grup :name',
     ],
     'fields'        => [
-        'position'  => 'Posición',
+        'position'  => 'Posició',
     ],
     'helper'        => [
-        'amount'            => 'Incluir un marcador en un grupo permite mostrar o esconderlos todos a la vez (por ejemplo, mostrar o esconder todas las tiendas de una ciudad). Un mapa puede tener hasta :amount grupos.',
-        'boosted_campaign'  => 'Las :boosted pueden tener hasta :amount grupos.',
+        'amount'            => 'Incloure un marcador a un grup permet mostrar o amagar-los tots alhora (per exemple, mostrar o amagar totes les botigues d\'una ciutat). Un mapa pot tenir fins a :amount grups.',
+        'boosted_campaign'  => 'Les :boosted poden tenir fins a :amount grups.',
     ],
     'placeholders'  => [
-        'name'      => 'Tiendas, tesoros, PNJs...',
-        'position'  => 'Campo opcional para indicar el orden en el que aparecen los grupos.',
+        'name'      => 'Botigues, tresors, PNJs...',
+        'position'  => 'Camp opcional per a indicar l\'ordre en el qual apareixen els grups.',
     ],
 ];

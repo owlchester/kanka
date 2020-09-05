@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'helper'    => 'Esta entidad aparece en los siguientes mapas.',
-    'title'     => 'Puntos de mapa de :name',
+    'helper'    => 'Aquesta entitat apareix als mapes següents.',
+    'title'     => 'Punts cartogràfics de :name',
 ];

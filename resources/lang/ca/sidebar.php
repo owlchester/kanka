@@ -22,7 +22,7 @@ return [
     'events'                => 'Esdeveniments',
     'families'              => 'Famílies',
     'items'                 => 'Objectes',
-    'journals'              => 'Diaris',
+    'journals'              => 'Cròniques',
     'locations'             => 'Indrets',
     'manage_links'          => 'Administra els enllaços',
     'new-entity'            => 'Crea una entitat nova',

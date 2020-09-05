@@ -2,6 +2,6 @@
 
 return [
     'notifications' => [
-        'failed'    => 'Stripe no ha podido cargar tu método de pago. En consecuencia, tu suscripción se ha desactivado.',
+        'failed'    => 'Stripe no ha pogut carregar el vostre mètode de pagament. En conseqüència, la vostra subscripció s\'ha desactivat.',
     ],
 ];

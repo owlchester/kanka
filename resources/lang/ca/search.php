@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'description'   => 'Buscar en tu campaña',
-    'no_results'    => 'Sin resultados.',
-    'title'         => 'Buscar',
+    'description'   => 'Cerca a la campanya',
+    'no_results'    => 'No hi ha resultats.',
+    'title'         => 'Cerca',
 ];

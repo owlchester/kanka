@@ -313,7 +313,8 @@ function registerPrivacyToggle() {
 
             let child = $(this).children('i.fa');
             let cssClass = res.status ? $(child).data('off') : $(child).data('on');
-            child.removeClass().addClass('fa').addClass('fa-' + cssClass);
+            let title = res.status ? $(child).data('title-off') : $(child).data('title-on');
+            child.removeClass().addClass('fa').addClass('fa-' + cssClass).attr('title', title);
 
             $(this).removeClass('disabled');
         });

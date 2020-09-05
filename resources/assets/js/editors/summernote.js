@@ -222,6 +222,8 @@ function editorLang(locale) {
 
     if (locale == 'he') {
         return 'he-IL';
+    } else if (locale == 'ca') {
+        return 'ca-ES';
     } else if(locale == 'en') {
         return 'en-US';
     } else {

@@ -1,55 +1,54 @@
 <?php
 
 return [
-    'hall_of_fame'  => 'Salón de la fama',
+    'hall_of_fame'  => 'Saló de la fama',
     'index'         => [
-        'community'     => 'Comunidad',
-        'core'          => 'Esencia',
-        'description'   => 'Estas personas hacen que Kanka sea posible',
-        'other'         => 'Otro',
-        'qa'            => 'Garantía de calidad',
-        'support'       => 'Soporte',
-        'title'         => 'Equipo',
-        'translations'  => 'Traducciones',
+        'community'     => 'Comunitat',
+        'core'          => 'Essència',
+        'description'   => 'Aquestes persones fan que Kanka sigui possible',
+        'other'         => 'Altres',
+        'qa'            => 'Garantia de qualitat',
+        'support'       => 'Suport',
+        'title'         => 'Equip',
+        'translations'  => 'Traduccions',
     ],
     'patreon'       => [
-        'description'   => 'Estas personas maravillosas ayudan y apoyan a Kanka en Patreon.',
-        'learn_more'    => 'Saber más sobre los beneficios de Patreon',
-        'title'         => 'Patreon',
+        'description'   => 'Aquestes persones meravelloses ajuden i fan costat a Kanka des de Patreon o les subscripcions de l\'app.',
+        'learn_more'    => 'Saber més sobre els beneficis de les subscripcions',
     ],
     'people'        => [
         'iz'        => [
-            'title' => 'Desarrolladores',
+            'title' => 'Desenvolupadors',
         ],
         'jay'       => [
             'text'  => <<<'TEXT'
-Creé Kanka en octubre del 2017 porque no había ninguna herramienta con la que pudiera inventar un mundo con mis amigos, al mismo tiempo que controlar quién podía ver o hacer cualquier cosa.
+Vaig crear Kanka a l'octubre del 2017 perquè no hi havia cap eina amb la qual pogués inventar un món amb els meus amics, al mateix temps que controlar qui podia veure o fer qualsevol cosa.
 
-A principios del 2020 di un salto de fe para trabajar a tiempo completo en Kanka gracias al apoyo de mis amigos y de la comunidad.
+A principis del 2020 vaig fer un salt de fe per a treballar a temps complet en Kanka gràcies al suport dels meus amics i de la comunitat.
 TEXT
 ,
-            'title' => 'Fundador y desarrollador principal',
+            'title' => 'Fundador i desenvolupador principal',
         ],
         'jon'       => [
             'text'  => <<<'TEXT'
-Jay y yo llevamos casi una década siendo amigos, y ha sido genial verle desarrollar Kanka en los últimos años.
+Jay i jo portem gairebé una dècada sent amics, i ha estat genial veure-li desenvolupar Kanka en els últims anys.
 
-Desde comienzos del 2020, he estado ayudando con la faceta de negocio, y espero que podamos continuar ofreciendo una herramienta única y útil para creadores y jugadores de todas partes.
+Des de començaments del 2020, he estat ajudant amb la faceta de negoci, i espero que puguem continuar oferint una eina única i útil per a creadors i jugadors de tot arreu.
 TEXT
 ,
-            'title' => 'Cofundador y gerente',
+            'title' => 'Cofundador i gerent',
         ],
         'joseph'    => [
-            'title' => 'Control de calidad e incorporaciones',
+            'title' => 'Control de qualitat i noves incorporacions',
         ],
         'ryan'      => [
             'text'  => <<<'TEXT'
-Empecé a usar Kanka a principios del 2018 y fui una de las primeras personas en unirse al canal de Discord. Enseguida empecé a darle trabajo a Jay, enumerando una gran lista de posibles funciones para los (entonces inminentes) calendarios.
+Vaig començar a usar Kanka a principis del 2018 i vaig ser una de les primeres persones a unir-se al canal de Discord. De seguida vaig començar a donar-li treball al Jay, enumerant una gran llista de possibles funcions per als (llavors imminents) calendaris.
 
-Hoy en día ayudo a la comunidad en Discord y Reddit, y me cargo las primeras versiones para que vosotros no tengáis que hacerlo.
+Avui dia ajudo a la comunitat a Discord i Reddit, i em carrego les primeres versions perquè vosaltres no hagueu de fer-ho.
 TEXT
 ,
-            'title' => 'Community manager y líder de control de calidad',
+            'title' => 'Community manager i cap del control de qualitat',
         ],
     ],
 ];

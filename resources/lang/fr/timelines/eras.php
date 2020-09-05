@@ -30,4 +30,7 @@ return [
         'name'          => 'Age modern, age de bronze, guerres galactiques',
         'start_year'    => 'L\'année durant laquelle l\'ère commence. Laisser vide si c\'est la première ère.',
     ],
+    'reorder'       => [
+        'success'   => 'Les éléments de l\'ère :name ont été réorganisés.',
+    ],
 ];

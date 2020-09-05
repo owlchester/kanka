@@ -2,15 +2,15 @@
 
 return [
     'actions'       => [
-        'create'    => 'Crear',
-        'delete'    => 'Eliminar',
-        'update'    => 'Actualizar',
+        'create'    => 'Crea',
+        'delete'    => 'Elimina',
+        'update'    => 'Actualitza',
     ],
     'fields'        => [
-        'action'    => 'Acción',
-        'date'      => 'Fecha',
+        'action'    => 'Acció',
+        'date'      => 'Data',
     ],
-    'impersonated'  => 'Hecho pasar por :name',
+    'impersonated'  => 'Fet passar per :name',
     'show'          => [
         'title' => 'Historial de :name',
     ],

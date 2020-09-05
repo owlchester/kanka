@@ -5,6 +5,9 @@ return [
         'success'   => 'Element added to the timeline.',
         'title'     => 'New Timeline Element',
     ],
+    'delete'        => [
+        'success'   => 'Element :name removed.',
+    ],
     'edit'          => [
         'success'   => 'Element updated.',
         'title'     => 'Edit Timeline Element',

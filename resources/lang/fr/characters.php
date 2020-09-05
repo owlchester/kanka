@@ -47,7 +47,6 @@ return [
     ],
     'helpers'       => [
         'age'   => 'Il est possible de lier cette entité avec un calendrier de la campagne pour automatiquement calculer l\'age. :more.',
-        'free'  => 'Où est passé le champ "Texte Libre"? Si le personnage en avait un, il a été déplacé sur le nouvel onglet "Notes".',
     ],
     'hints'         => [
         'hide_personality'          => 'Cet onglet peut être caché des membres non-Administrateur en désactivant l\'option "Personnalité Visible" lors de l\'édition de ce personnage.',

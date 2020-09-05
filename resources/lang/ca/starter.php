@@ -2,60 +2,60 @@
 
 return [
     'character1'    => [
-        'fears'     => 'A James le asustan las explosiones y los ruidos fuertes.',
-        'history'   => 'Este es un ejemplo de personaje. Hijo de Mance Owlchester y Rige Dunton, James creció en el campo a las afueras de Genoria, y se mudó a la capital Unria para trabajar como escriba del rey.',
-        'name'      => 'James Owlchester (ejemplo)',
-        'race'      => 'Humano',
-        'sex'       => 'Hombre',
-        'title'     => 'Cazador Gris',
-        'traits'    => 'Siempre tuerce la verdad para su propia conveniencia.',
+        'fears'     => 'A l\'Oriol li espanten les explosions i els sorolls forts.',
+        'history'   => 'Aquest és un exemple de personatge. Fill d\'Arnau de Mataplana i Adalaisa de Montbador, n\'Oriol va créixer en el camp als afores de Corbaria, i es va mudar a la capital per a treballar com a escriba del bisbe.',
+        'name'      => 'Oriol de Mataplana (exemple)',
+        'race'      => 'Humà',
+        'sex'       => 'Home',
+        'title'     => 'Caçador gris',
+        'traits'    => 'Sempre deforma la veritat per a la seva pròpia conveniència.',
     ],
     'character2'    => [
-        'fears'     => 'Crear la explosión más grande posible',
-        'history'   => 'Este es un personaje de ejemplo. Desde tierna edad, a Irwie le fascinaban los explosivos, y ha dedicado su carrera al oficio.',
-        'name'      => 'Irwie Gemstone (ejemplo)',
-        'race'      => 'Gnomo',
-        'sex'       => 'Mujer',
-        'title'     => 'Reina de las Explosiones',
-        'traits'    => '¿Quieres añadir algo más? ¡Hazlo en esta sección de texto libre!',
+        'fears'     => 'Reunir l\'almanac medicinal més complet que s\'hagi vist mai',
+        'history'   => 'Aquest és un personatge d\'exemple. Des de tendra edat, a l\'Helena li fascinaven les plantes, i ha dedicat la seva carrera a l\'ofici de remeiera.',
+        'name'      => 'Helena Ceravella (exemple)',
+        'race'      => 'Elfa',
+        'sex'       => 'Dona',
+        'title'     => 'Bruixa encoberta',
+        'traits'    => 'Voleu afegir alguna cosa més? Feu-ho en aquesta secció de text lliure!',
     ],
     'item1'         => [
-        'description'   => 'Ejemplo de objeto.',
-        'history'       => 'Historia del objeto.',
-        'name'          => 'Daga de la Oscuridad (ejemplo)',
+        'description'   => 'Exemple d\'objecte.',
+        'history'       => 'Història de l\'objecte.',
+        'name'          => 'Daga de la Foscor (exemple)',
         'type'          => 'Arma',
     ],
     'kingdom1'      => [
-        'description'   => 'Esta localización es un ejemplo creado para enseñarte lo que se puede hacer en la app.',
-        'history'       => '(ejemplo) El reino de Genoria fue fundado por tribus genorianas a finales del siglo V, tras invadir las tierras de los hottenses.',
-        'name'          => 'Genoria (ejemplo)',
-        'type'          => 'Reino',
+        'description'   => 'Aquest indret és un exemple creat per a mostrar el que es pot fer a l\'app.',
+        'history'       => '(exemple) El regne de Genòria va ser fundat per tribus genorianes a la fi del segle V, després d\'envair les terres dels gegants.',
+        'name'          => 'Genòria (exemple)',
+        'type'          => 'Principat',
     ],
     'kingdom2'      => [
-        'description'   => '(ejemplo) Ulyss es la capital del reino de Genoria, y la tercera ciudad más grande de la Alianza Agagir.',
-        'history'       => '(ejemplo) Ulyss es la capital del reino de Genoria. Fue fundada por Frasan Irwen y se encuentra en el río Unri.',
-        'name'          => 'Ulyss (ejemplo)',
+        'description'   => '(exemple) Castellfèlix és la capital del principat de Genòria, i la tercera ciutat més gran de l\'Aliança Ibera.',
+        'history'       => '(exemple) Castellfèlix és la capital del regne de Genòria. Es fundà a mans de la comtessa Ivette d\'Avignon i es troba al Golf dels Almogàvers.',
+        'name'          => 'Castellfèlix (exemple)',
         'type'          => 'Capital',
     ],
     'note1'         => [
         'entry'         => <<<'TEXT'
-¡Bienvenido a Kanka! Tu primera campaña ha sido creada y hemos incluido un par de entidades de ejemplo como inspiración (puedes borrarlas cuando quieras).
+Us donem la benvinguda a Kanka! La vostra primera campanya ha estat creada i hem inclòs un parell d'entitats d'exemple com a inspiració (podeu esborrar-les en qualsevol moment).
 
-Seguramente querrás ir empezando a crear algunas entidades propias, así que elige una categoría en el menú de la izquierda y da rienda suelta a tu imaginación. Puedes deshabilitar categorías innecesarias desde la configuración de la campaña: así las esconderás del menú.
+Segurament voldreu anar començant a crear algunes entitats pròpies, així que trieu una categoria al menú de l'esquerra i allibereu la imaginació. Podeu deshabilitar les categories innecessàries des de la configuració de la campanya: així s'ocultaran del menú.
 
-Un par de consejos para empezar:
-- Puedes escribir @nombreEntidad para enlazar a entidades específicas. El texto del enlace se actualizará automáticamente si renombras o cambias la entidad enlazada.
-- Puedes configurar ajustes de tu cuenta como los temas, la cantidad de entidades por página, etc. desde el botón de arriba a la derecha.
-- Puedes ajustar los permisos para tipos de entidades, así como individualmente en cada entidad.
-- Tenemos una creciente lista de tutoriales en :youtube, que incluyen los atributos y cómo compartir tu campaña con otras personas. Las :faq también te serán útiles.
+Un parell de consells per a començar:
+- Es pot escriure @nomEntitat per a enllaçar entitats específiques. El text de l'enllaç s'actualitzarà automàticament si l'entitat enllaçada canvia de nom.
+- Es poden configurar aspectes del compte com els temes, la quantitat d'entitats per pàgina, etc. des del botó d'adalt a la dreta.
+- Es poden ajustar els permisos per a tipus d'entitats, així com individualment en cada entitat.
+- Tenim una creixent llista de tutorials a :youtube, que inclouen els atributs i com compartir la campanya amb altres persones. Les :faq també són molt útils.
 
-Por último, pero no menos importante:
-- Echa un vistazo a las :public para inspirarte viendo como otros usan Kanka.
-- Si tienes preguntas, sugerencias o solo quieres charlar, únete a nosotros en :discord.
-- ¿Te encanta la app y quieres apoyarla para que crezca? Puedes hacerlo mediante las :subscriptions.
+Finalment, però no menys important:
+- Feu un cop d'ull a les :public per a inspirar-vos veient com els altres fan servir Kanka.
+- Per a fer preguntes, suggeriments o simplement xerrar, uniu-vos a nosaltres al :discord.
+- Si us encanta l'app i voleu fer-li suport perquè creixi, podeu fer-ho mitjançant les :subscriptions.
 TEXT
 ,
-        'name'          => 'Nota de bienvenida',
-        'subscriptions' => 'Suscripciones',
+        'name'          => 'Nota de benvinguda',
+        'subscriptions' => 'Subscripcions',
     ],
 ];

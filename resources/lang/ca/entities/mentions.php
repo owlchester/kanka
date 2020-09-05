@@ -1,13 +1,13 @@
 <?php
 
 return [
-    'entity_note'   => ':name (Nota de entidad)',
+    'entity_note'   => ':name (anotació)',
     'fields'        => [
-        'entity'    => 'Entidad',
+        'entity'    => 'Entitat',
     ],
-    'helper'        => 'La lista siguiente contiene todas las entidades que mencionan esta entidad en el campo de "Presentación".',
-    'mentioned_in'  => 'Mencionada en :count entidades.',
+    'helper'        => 'Aquí es mostren totes les entitats que mencionen aquesta a la seva entrada.',
+    'mentioned_in'  => 'Mencionada a :count entitats.',
     'show'          => [
-        'title' => 'Menciones de :name',
+        'title' => 'Mencions de :name',
     ],
 ];

@@ -127,6 +127,10 @@ TEXT
         'answer'    => 'La page des :public-campaigns affiche toutes les campagnes publiques.',
         'question'  => 'Comment utiliser Kanka?',
     ],
+    'renaming-modules'      => [
+        'answer'    => 'Malheureusement cela dégraderait trop la grammaire de l\'interface et l\'expérience des utilisateurs, du coup ce genre de changement n\'est pas possible.',
+        'question'  => 'Est-ce possible de renommer les modules? Par example Familles en Clans?',
+    ],
     'sections'              => [
         'community'     => 'Communauté',
         'general'       => 'Général',

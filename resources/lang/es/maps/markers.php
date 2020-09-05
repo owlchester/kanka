@@ -28,7 +28,7 @@ return [
     'helpers'       => [
         'base'          => 'Añade marcadores al mapa haciendo clic en cualquier lugar.',
         'custom_icon'   => 'Copia el HTML de un icono de :fontawesome o :rpgawesome, o un icono SVG personalizado.',
-        'draggable'     => 'Permite mover un marcador en el modo de exploración.',
+        'draggable'     => 'Actívalo para poder mover el marcador en el modo de exploración.',
     ],
     'icons'         => [
         'custom'        => 'Personalizado',

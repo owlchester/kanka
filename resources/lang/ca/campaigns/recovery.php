@@ -2,13 +2,13 @@
 
 return [
     'actions'   => [
-        'recover'   => 'Recuperar',
+        'recover'   => 'Recupera',
     ],
-    'error'     => 'Ha habido un error tratando de recuperar entidades.',
+    'error'     => 'Hi ha hagut un error intentant recuperar les entitats.',
     'fields'    => [
-        'deleted'   => 'Eliminadas',
+        'deleted'   => 'Eliminades',
     ],
-    'helper'    => 'Las entidades eliminadas se pueden recuperar hasta :count días después mediante esta interfaz.',
-    'success'   => 'Se ha recuperado {1} :count entidad.|Se han recuperado [2,*] :count entidades.',
-    'title'     => 'Recuperación de entidades de :campaign',
+    'helper'    => 'Des d\'aquí es poden recuperar les entitats eliminades de fins a :count dies anteriors.',
+    'success'   => 'S\'ha recuperat {1} :count entitat.|S\'han recuperat [2,*] :count entitats.',
+    'title'     => 'Recuperació d\'entitats de :campaign',
 ];

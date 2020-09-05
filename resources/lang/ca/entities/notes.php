@@ -2,34 +2,34 @@
 
 return [
     'actions'       => [
-        'add'   => 'Nueva nota',
+        'add'   => 'Nova anotació',
     ],
     'create'        => [
-        'description'   => 'Crear nueva nota',
-        'success'       => 'Nota \':name\' añadida a :entity.',
-        'title'         => 'Nueva nota en :name',
+        'description'   => 'Crea una nova anotació',
+        'success'       => 'S\'ha afegit l\'anotació «:name» a :entity.',
+        'title'         => 'Nova anotació a :name',
     ],
     'destroy'       => [
-        'success'   => 'Nota \':name\' eliminada de :entity.',
+        'success'   => 'S\'ha eliminat l\'anotació «:name» de :entity.',
     ],
     'edit'          => [
-        'description'   => 'Actualizar nota',
-        'success'       => 'Nota \':name\' actualizada en :entity.',
-        'title'         => 'Actualizar nota de :name',
+        'description'   => 'Actualiza l\'anotació',
+        'success'       => 'S\'ha actualitzat l\'anotació «:name» de :entity.',
+        'title'         => 'Actualiza l\'anotació de :name',
     ],
     'fields'        => [
         'creator'   => 'Creador',
         'entry'     => 'Entrada',
-        'name'      => 'Nombre',
+        'name'      => 'Nom',
     ],
-    'hint'          => 'Aquí puedes añadir toda aquella información que no acaba de encajar en los campos por defecto de la entidad, o que quieres mantener en privado.',
+    'hint'          => 'Aquí podeu afegir tota aquella informació que no encaixa del tot als camps per defecte de l\'entitat, o que es vol mantenir en privat.',
     'index'         => [
-        'title' => 'Notas de :name',
+        'title' => 'Anotacions de :name',
     ],
     'placeholders'  => [
-        'name'  => 'Nombre de la nota, observación...',
+        'name'  => 'Secrets del màster, observacions, imatges extra, peticions...',
     ],
     'show'          => [
-        'title' => 'Nota :name de :entity',
+        'title' => 'Anotació :name de :entity',
     ],
 ];

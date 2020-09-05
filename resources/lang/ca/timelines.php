@@ -2,40 +2,40 @@
 
 return [
     'actions'       => [
-        'add_element'   => 'Añadir elemento a la era :era',
-        'back'          => 'Volver a :name',
-        'edit'          => 'Editar línea de tiempo',
+        'add_element'   => 'Afegeix un element a l\'era :era',
+        'back'          => 'Torna a :name',
+        'edit'          => 'Edita la línia de temps',
     ],
     'create'        => [
-        'success'   => 'Línea de tiempo :name creada.',
-        'title'     => 'Nueva línea de tiempo',
+        'success'   => 'S\'ha creat la línia de temps «:name».',
+        'title'     => 'Nova línia de temps',
     ],
     'destroy'       => [
-        'success'   => 'Línea de tiempo :name eliminada.',
+        'success'   => 'S\'ha eliminat la línia de temps «:name».',
     ],
     'edit'          => [
-        'success'   => 'Línea de tiempo :name actualizada.',
-        'title'     => 'Editar línea de tiempo :name',
+        'success'   => 'S\'ha actualitzat la línia de temps «:name».',
+        'title'     => 'Edita la línia de temps :name',
     ],
     'fields'        => [
-        'copy_eras'     => 'Copiar eras',
-        'eras'          => 'Eras',
-        'name'          => 'Nombre',
-        'reverse_order' => 'Era en orden inverso',
-        'type'          => 'Tipo',
+        'copy_eras'     => 'Copia les eres',
+        'eras'          => 'Eres',
+        'name'          => 'Nom',
+        'reverse_order' => 'Era en ordre invers',
+        'type'          => 'Tipus',
     ],
     'helpers'       => [
-        'reverse_order' => 'Habilitar para mostrar las eras en orden cronológico inverso (la era más antigua primero)',
+        'reverse_order' => 'Habiliteu-ho per a mostrar les eres en ordre cronològic invers (l\'era més antiga primer)',
     ],
     'index'         => [
-        'add'   => 'Nueva línea de tiempo',
-        'title' => 'Líneas de tiempo',
+        'add'   => 'Nova línia de temps',
+        'title' => 'Línies de temps',
     ],
     'placeholders'  => [
-        'name'  => 'Nombre de la línea de tiempo',
-        'type'  => 'Primaria, Crónica del mundo, Legado del reino...',
+        'name'  => 'Nom de la línia de temps',
+        'type'  => 'Primària, crònica del món, llegat del regne...',
     ],
     'show'          => [
-        'title' => 'Línea de tiempo :name',
+        'title' => 'Línia de temps :name',
     ],
 ];

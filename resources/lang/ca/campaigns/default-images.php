@@ -2,19 +2,19 @@
 
 return [
     'actions'   => [
-        'add'   => 'Añadir nueva imagen por defecto',
+        'add'   => 'Afegeix una nova imatge per defecte',
     ],
     'create'    => [
-        'error'     => 'Error al guardar las nuevas imágenes por defecto. ¿Has olvidado añadir un :type?',
-        'success'   => 'Imagen por defecto para :type creada.',
-        'title'     => 'Nueva imagen por defecto',
+        'error'     => 'Hi ha hagut un error en guardar les noves imatges per defecte. ¿Heu oblidat afegir-hi un :type?',
+        'success'   => 'S\'ha creat la imatge per defecte per a :type.',
+        'title'     => 'Nova imatge per defecte',
     ],
     'destroy'   => [
-        'success'   => 'Imagen por defecto para :type eliminada.',
+        'success'   => 'S\'ha eliminat la imatge per defecte per a :type.',
     ],
-    'helper'    => 'Pon imágenes personalizadas por defecto a las entidades de tu campaña. Se mostrarán en las listas, pero no en la entidad en sí.',
+    'helper'    => 'Agrega imatges personalitzades per defecte a les entitats de la campanya. Es mostraran a les llistes, però no a l\'entitat en sí.',
     'index'     => [
-        'title' => 'Imágenes por defecto',
+        'title' => 'Imatges per defecte',
     ],
-    'title'     => 'Imágenes por defecto de la campaña :campaign',
+    'title'     => 'Imatges per defecte de la campanya :campaign',
 ];

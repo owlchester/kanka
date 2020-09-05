@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'page_title'    => 'Titulo de página',
+    'page_title'    => 'Titol de la pàgina',
 ];
