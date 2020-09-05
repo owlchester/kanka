@@ -127,10 +127,20 @@
 
             <div class="box box-solid">
                 <div class="box-body">
+                    @if(!$campaign->campaign()->boosted())
                     <div class="loading text-center" id="spinner">
                         <i class="fa fa-spinner fa-spin fa-4x"></i>
                     </div>
                     <div id="cy" class="cy" style="display: none;" data-url="{{ route('entities.relations_map', $entity) }}"></div>
+
+                    @else
+
+                        <div class="visu-teaser text-center">
+                            <a href="{{ route('front.features', '#boost') }}" target="_blank">
+                                {!! __('entities/relations.teaser') !!}
+                            </a>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -138,6 +148,7 @@
 @endsection
 
 
+@if($campaign->campaign()->boosted())
 
 @section('scripts')
     <script src="/vendor/spectrum/spectrum.js" defer></script>
@@ -148,3 +159,5 @@
     <link href="/vendor/spectrum/spectrum.css" rel="stylesheet">
     <link href="{{ mix('css/relations.css') }}" rel="stylesheet">
 @endsection
+
+@endif

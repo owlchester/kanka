@@ -58,3 +58,32 @@
     }
   }
 }
+
+.visu-teaser {
+  background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/features/relation-visu-teaser.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  padding: 150px 0;
+
+  .bob {
+
+  }
+
+  a {
+    display: block;
+    padding: 30px;
+    transition: ease all 0.3s;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-shadow: $text-shadow;
+    font-size: 18px;
+    line-height: 22px;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: rgb(45, 127, 2370, 0.6);
+    }
+  }
+}
+
