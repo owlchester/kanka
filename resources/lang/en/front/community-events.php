@@ -15,7 +15,7 @@ return [
         ]
     ],
     'actions' => [
-        'send' => 'Submit submission',
+        'send' => 'Participate',
         'update' => 'Update submission',
         'return' => 'Return to all events',
         'view' => 'View submission',
