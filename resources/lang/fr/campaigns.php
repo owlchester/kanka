@@ -13,7 +13,7 @@ TEXT
 ,
         ],
         'success'               => 'Campagne créée.',
-        'success_first_time'    => 'La première campagne a été créée! Quelques éléments ont été créé pour aider à bien démarrer.',
+        'success_first_time'    => 'La première campagne a été créée! Quelques éléments ont été créés pour aider à bien démarrer.',
         'title'                 => 'Nouvelle Campagne',
     ],
     'destroy'                           => [
@@ -37,9 +37,9 @@ TEXT
     'export'                            => [
         'description'   => 'Exporter la campagne.',
         'errors'        => [
-            'limit' => 'Nombre d\'export maximal par jour excédé pour cette campagne.',
+            'limit' => 'Nombre d\'exports maximal par jour excédé pour cette campagne.',
         ],
-        'helper'        => 'Export de la campagne. Une notification content un lien de téléchargement sera généré.',
+        'helper'        => 'Export de la campagne. Une notification contenant un lien de téléchargement sera généré.',
         'success'       => 'L\'export de la campagne est en préparation. Une notification dans Kanka avec un lien de téléchargement sera généré dès que c\'est prêt.',
         'title'         => 'Export Campagne :name',
     ],
@@ -74,16 +74,16 @@ TEXT
         'entity_personality_visibility' => 'Lorsqu\'une nouvelle entité est créée, l\'option "Privé" sera automatiquement sélectionnée.',
         'entity_visibility'             => 'Lorsqu\'une nouvelle entité est créée, l\'option "Privé" sera automatiquement sélectionnée.',
         'excerpt'                       => 'L\'extrait de la campagne apparait sur le tableau de bord.',
-        'hide_history'                  => 'Activer cette option pour cacher l\'historique d\'une entité aux membres qui ne sont pas dans le group admin de la campagne.',
-        'hide_members'                  => 'Activer cette option pour cacher la list des membres de la campagne aux membres qui ne sont pas dans le group admin de celle-ci.',
+        'hide_history'                  => 'Activer cette option pour cacher l\'historique d\'une entité aux membres qui ne sont pas dans le groupe admin de la campagne.',
+        'hide_members'                  => 'Activer cette option pour cacher la liste des membres de la campagne aux membres qui ne sont pas dans le groupe admin de celle-ci.',
         'locale'                        => 'La langue dans laquelle la campagne est écrite. Ceci est utilisé pour générer du contenu ainsi que pour grouper les campagnes publiques.',
-        'name'                          => 'Le nom de la campagne doit contenir au minimum 4 caractère.',
+        'name'                          => 'Le nom de la campagne doit contenir au minimum 4 caractères.',
         'public_campaign_filters'       => 'Aides les autres utilisateurs à trouver la campagne parmi les autres campagnes publiques en fournissant les détails suivants.',
         'system'                        => 'Si la campagne est publiquement visible, elle sera affichée dans la page :link.',
         'systems'                       => 'A définir.',
         'theme'                         => 'Définir le thème pour la campagne qui surplante le thème de l\'utilisateur.',
-        'view_public'                   => 'Pour afficher la campagne comme le ferait un utilisateur public, ouvres :link dans une fenêtre de navigation privée.',
-        'visibility'                    => 'Une campagne public peut être vue par toute personne ayant un lien vers celle-ci.',
+        'view_public'                   => 'Pour afficher la campagne comme le ferait un utilisateur public, ouvre :link dans une fenêtre de navigation privée.',
+        'visibility'                    => 'Une campagne publique peut être vue par toute personne ayant un lien vers celle-ci.',
     ],
     'index'                             => [
         'actions'   => [
@@ -96,7 +96,7 @@ TEXT
     'invites'                           => [
         'actions'               => [
             'add'   => 'Inviter',
-            'copy'  => 'Copier le liens dans le presse-papier.',
+            'copy'  => 'Copier le lien dans le presse-papier.',
             'link'  => 'Nouveau Lien',
         ],
         'create'                => [
@@ -111,14 +111,14 @@ TEXT
         ],
         'email'                 => [
             'link'      => '<a href=":link">Joindre la campagne de :name</a>',
-            'subject'   => ':name t\'as invité à rejoindre la campagne \':campagne\' on kanka.io! Utilises ce lien pour accepter leur invitation.',
+            'subject'   => ':name t\'as invité à rejoindre la campagne \':campagne\' sur kanka.io! Utilise ce lien pour accepter son invitation.',
             'title'     => 'Invitation de :name',
         ],
         'error'                 => [
             'already_member'    => 'Tu es déjà un membre de cette campagne.',
             'inactive_token'    => 'Ce code d\'activation a déjà été utilisé, ou la campagne n\'existe plus.',
             'invalid_token'     => 'Ce code d\'activation n\'est plus valide.',
-            'login'             => 'Connectes toi ou créé un compte pour joindre la campagne.',
+            'login'             => 'Connecte-toi ou crée un compte pour joindre la campagne.',
         ],
         'fields'                => [
             'created'   => 'Envoyé',
@@ -128,8 +128,8 @@ TEXT
             'validity'  => 'Validité',
         ],
         'helpers'               => [
-            'email'     => 'Les emails de Kanka sont souvent traité comme du spam et peuvent prendre jusqu\'à quelques heures avant d\'apparaître dans ta boîte aux lettres.',
-            'validity'  => 'Nombre de fois que le lie peut être utilisé avant d\'être désactivé. Laisser vide pour illimité.',
+            'email'     => 'Les emails de Kanka sont souvent traités comme du spam et peuvent prendre jusqu\'à quelques heures avant d\'apparaître dans ta boîte aux lettres.',
+            'validity'  => 'Nombre de fois que le lien peut être utilisé avant d\'être désactivé. Laisser vide pour illimité.',
         ],
         'placeholders'          => [
             'email' => 'L\'adresse email de ton ami',
@@ -141,7 +141,7 @@ TEXT
         'unlimited_validity'    => 'Illimité',
     ],
     'leave'                             => [
-        'confirm'   => 'Est-tu sûr de vouloir quitter :name? Tu n\'aura plus accès aux données, sauf si un Proprio de la campagne t\'invites à nouveau.',
+        'confirm'   => 'Es-tu sûr de vouloir quitter :name? Tu n\'auras plus accès aux données, sauf si un Admin de la campagne t\'invite à nouveau.',
         'error'     => 'Impossible de quitter la campagne.',
         'success'   => 'Tu as quitté la campagne.',
     ],
@@ -165,9 +165,9 @@ TEXT
             'role'          => 'Rôle',
             'roles'         => 'Rôles',
         ],
-        'help'                  => 'Il n\'y a pas de limite sur le nombre de membre dans une campagne. En tant qu\'Admin d\'une campagne, tu peux retirer un membre qui n\'est plus actif à tout moment.',
+        'help'                  => 'Il n\'y a pas de limite sur le nombre de membres dans une campagne. En tant qu\'Admin d\'une campagne, tu peux retirer un membre qui n\'est plus actif à tout moment.',
         'helpers'               => [
-            'admin' => 'En tant que membre du rôle admin de la campagne, tu peux inviter de nouveaux membres, enlever ceux qui sont inactifs, et changer leurs permissions. Pour tester les permissions d\'un membre, utilises le bouton Basculer. Plus d\'infos sous :link.',
+            'admin' => 'En tant que membre du rôle admin de la campagne, tu peux inviter de nouveaux membres, enlever ceux qui sont inactifs, et changer leurs permissions. Pour tester les permissions d\'un membre, utilise le bouton Basculer. Plus d\'infos sous :link.',
             'switch'=> 'Basculer vers cet utilisateur',
         ],
         'impersonating'         => [
@@ -175,8 +175,8 @@ TEXT
             'title'     => 'Se faisant passer pour :name',
         ],
         'invite'                => [
-            'description'   => 'Invite tes amis à la campagne en fournissant une adresse email. Dès qu\'ils acceptent ton invitation, ils seront ajouté à la campagne. Tu peux annuler une invitation à tout moment.',
-            'more'          => 'Tu peux ajouter plus de rôle sur la :link.',
+            'description'   => 'Invite tes amis à la campagne en fournissant une adresse email. Dès qu\'ils auront accepté ton invitation, ils seront ajoutés à la campagne. Tu peux annuler une invitation à tout moment.',
+            'more'          => 'Tu peux ajouter plus de rôles sur la :link.',
             'roles_page'    => 'page des rôles',
             'title'         => 'Invitation',
         ],
@@ -184,7 +184,7 @@ TEXT
             'member'    => 'Membre',
             'owner'     => 'Administrateur',
             'player'    => 'Joueur',
-            'public'    => 'Publique',
+            'public'    => 'Public',
             'viewer'    => 'Observateur',
         ],
         'switch_back_success'   => 'Tu es de retour à ton compte.',
@@ -203,7 +203,7 @@ TEXT
         'description'   => 'Une petite description de la campagne',
         'locale'        => 'La langue utilisée',
         'name'          => 'Le nom de la campagne',
-        'system'        => 'D&D 5e, 3.5, Pathfinder, Tigres Volants, Grups',
+        'system'        => 'D&D 5e, 3.5, Pathfinder, Tigres Volants, Gurps',
     ],
     'roles'                             => [
         'actions'       => [
@@ -228,12 +228,12 @@ TEXT
             'users'         => 'Utilisateurs',
         ],
         'helper'        => [
-            '1' => 'Une campagne peut avoir autant de rôle que désiré. Le rôle "Admin" a automatiquement accès à tout dans une campagne, et chaque autre rôle peut être configuré pour avoir des accès spécifiques à divers entités (personnages, lieux, etc).',
-            '2' => 'Les entités individuelles peuvent avoir leurs propres permissions sous l\'onglet "Permissions" de celles-ci. Cet onglet apparait dès le moment qu\'une campagne à plusieurs membres ou rôles.',
+            '1' => 'Une campagne peut avoir autant de rôles que désiré. Le rôle "Admin" a automatiquement accès à tout dans une campagne, et chaque autre rôle peut être configuré pour avoir des accès spécifiques à divers entités (personnages, lieux, etc).',
+            '2' => 'Les entités individuelles peuvent avoir leurs propres permissions sous l\'onglet "Permissions" de celles-ci. Cet onglet apparait dès le moment qu\'une campagne a plusieurs membres ou rôles.',
             '3' => 'Il y a deux options possibles. Soit le mode "opt-out", ou les rôles ont le droit de lire toutes les entités, couplé à l\'option "Privé" sur les entités pour les cacher. Sinon, il est possible de ne pas donner de droits généraux aux rôles, et à la place donner des rôles individuellement sur les entités pour les rendre visibles.',
         ],
         'hints'         => [
-            'campaign_not_public'   => 'Le rôle Publique a des permissions mais la campagne est privée. La campagne peut être rendue publique sous l\'onglet Partager en modifiant la campagne.',
+            'campaign_not_public'   => 'Le rôle Public a des permissions mais la campagne est privée. La campagne peut être rendue publique sous l\'onglet Partager en modifiant la campagne.',
             'public'                => 'Si la campagne est en mode publique, ce rôle est utilisé pour les visiteurs qui ne font pas partie de la campagne. :more',
             'role_permissions'      => 'Permettre au rôle \':name\' les actions suivantes sur toutes les entités.',
         ],
@@ -249,7 +249,7 @@ TEXT
                 'toggle'        => 'Changer pour tous',
             ],
             'helpers'   => [
-                'entity_note'   => 'Ceci permets aux utilisateurs qui n\'ont pas la permission de modifier une entité de pouvoir ajouter des Notes d\'Entités sur celle-ci.',
+                'entity_note'   => 'Ceci permet aux utilisateurs qui n\'ont pas la permission de modifier une entité de pouvoir ajouter des Notes d\'Entités sur celle-ci.',
             ],
             'hint'      => 'Ce rôle a automatiquement accès à tout.',
         ],
@@ -291,26 +291,26 @@ TEXT
         'edit'          => [
             'success'   => 'Campagne modifiée.',
         ],
-        'helper'        => 'Tu peux facilement modifier les éléments disponnibles pour la campagne. Les éléments déjà créés seront simplement cachés',
+        'helper'        => 'Tu peux facilement modifier les éléments disponibles pour la campagne. Les éléments déjà créés seront simplement cachés',
         'helpers'       => [
-            'abilities'     => 'Créer des pouvoirs, compétences, sorts et exploits qui peuvent être assigné aux entités.',
+            'abilities'     => 'Créer des pouvoirs, compétences, sorts, etc. qui peuvent être assignés aux entités.',
             'calendars'     => 'Un endroit pour définir les calendriers de ton monde.',
-            'characters'    => 'Les peuples de ton monde.',
+            'characters'    => 'Les personnages de ton monde.',
             'conversations' => 'Conversations fictives entre des personnages ou entre membres de la campagne.',
             'dice_rolls'    => 'Pour ceux qui utilisent Kanka pour une campagne JdR, un système pour des jets de dés.',
             'events'        => 'Jours fériers, festivaux, désastres, anniversaires, guerres.',
-            'families'      => 'Clans ou familles, leurs relations et leur membres.',
+            'families'      => 'Clans ou familles, leurs relations et leurs membres.',
             'items'         => 'Armes, véhicules, artéfacts, objets légendaires.',
-            'journals'      => 'Observations écritent par des personnages, ou préparation de session pour le maître de jeu.',
-            'locations'     => 'Planetes, plaines, continents, rivières, pays, temples, tavernes.',
+            'journals'      => 'Observations écrites par des personnages, ou préparation de session pour le maître de jeu.',
+            'locations'     => 'Planètes, plaines, continents, rivières, pays, temples, tavernes.',
             'maps'          => 'Ajouter des cartes et y ajouter des couches et des marqueurs pointant vers des entités de la campagne.',
             'menu_links'    => 'Liens personnalisés dans la navigation.',
-            'notes'         => 'Histoires, légendes, religions, magies, races.',
+            'notes'         => 'Histoires, légendes, religions, magie, races.',
             'organisations' => 'Cultes, unités militaires, factions, guildes.',
             'quests'        => 'Gestionnaire de quêtes avec personnages et lieux.',
             'races'         => 'Si la campagne a plus d\'une race, ce module permet de facilement organiser celles-ci.',
             'tags'          => 'Chaque entité peut avoir plusieurs étiquettes. Les étiquettes peuvent appartenir à d\'autres étiquettes.',
-            'timelines'     => 'Représenter l\'histoire du monde de manière visuel avec des chronologies.',
+            'timelines'     => 'Représenter l\'histoire du monde de manière visuelle avec des chronologies.',
         ],
         'title'         => 'Modules de la campagne :name',
     ],
@@ -337,7 +337,7 @@ TEXT
         'helper'    => 'Ces paramètres permettent de changer la manière dont s\'affichent certains éléments dans la campagne.',
     ],
     'visibilities'                      => [
-        'private'   => 'Privé',
+        'private'   => 'Privée',
         'public'    => 'Publique',
         'review'    => 'En attente de revue',
     ],
