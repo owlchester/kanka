@@ -38,6 +38,9 @@ class EntityRelationService
     /** @var bool Enable or disable relations */
     protected $withRelations = true;
 
+    /** @var bool Enable loading entities on relations */
+    protected $withEntity = false;
+
     /**
      * @param Entity $entity
      * @return $this
@@ -60,8 +63,15 @@ class EntityRelationService
         return $this;
     }
 
-    protected function withoutRelations(bool $without = true) {
+    protected function withoutRelations(bool $without = true): self
+    {
         $this->withRelations = !$without;
+        return $this;
+    }
+
+    protected function withEntity(bool $with = true): self
+    {
+        $this->withEntity = $with;
         return $this;
     }
 
@@ -74,12 +84,24 @@ class EntityRelationService
         // Character: Family and orgs
         if ($this->entity->typeId() == config('entities.ids.character')) {
             // Prepare self
-            $this->addEntity($this->entity)->addRelations($this->entity);
-            $this->addFamily()->addOrganisations();
+            $this->addEntity($this->entity)
+                ->withEntity()
+                ->addRelations($this->entity)
+                ->withEntity(false);
+            $this->addFamily()->addOrganisation();
         }
         // Family: children and parent families
         if ($this->entity->typeId() == config('entities.ids.family')) {
             $this->initFamily();
+        }
+        // Organisation: children and parent organisations
+        if ($this->entity->typeId() == config('entities.ids.organisation')) {
+            $this->initOrganisation();
+        }
+
+        // Other: just relations
+        else {
+            $this->addEntity($this->entity)->withEntity()->addRelations($this->entity);
         }
 
         $this->cleanup();
@@ -114,10 +136,15 @@ class EntityRelationService
             return $this;
         }
 
+        $img = $image ?? $entity->child->getImageUrl(80, 80);
+        if (empty($img)) {
+            // Fallback?
+            $img = '';
+        }
         $this->entities[$entity->id] = [
             'id' => $entity->id,
             'name' => $entity->name . "\n(" . __('entities.' . $entity->type) . ')',
-            'image' => $image ?? $entity->child->getImageUrl(80, 80),
+            'image' => $img,
             'link' => $entity->url(),
         ];
         return $this;
@@ -127,10 +154,10 @@ class EntityRelationService
      * @param Entity $entity
      * @param bool $limitToExisting
      */
-    protected function addRelations(Entity $entity)
+    protected function addRelations(Entity $entity): self
     {
         if (Arr::has($this->entityIds, $entity->id)) {
-            return;
+            return $this;
         }
         $this->entityIds[$entity->id] = true;
 
@@ -151,13 +178,17 @@ class EntityRelationService
 
             // Don't add mirrored relations
             if ($relation->mirrored()) {
-                if ($relation->owner_id != $this->entity->id || Arr::has($this->mirrors, $relation->mirror_id . '-' . $relation->id)) {
+                if (Arr::has($this->mirrors, $relation->mirror_id . '-' . $relation->id)) {
                     continue;
                 }
             }
             // Relation already loaded
             if (in_array($relation->id, $this->relationIds)) {
                 continue;
+            }
+
+            if ($this->withEntity) {
+                $this->addEntity($relation->target);
             }
 
             $this->relations[] = [
@@ -177,6 +208,8 @@ class EntityRelationService
             }
             $this->relationIds[] = $relation->id;
         }
+
+        return $this;
     }
 
     protected function addFamily() : self
@@ -200,12 +233,12 @@ class EntityRelationService
     protected function addFamilyRelations(Family $family)
     {
         /** @var Family $family */
-        $this->family()->addEntity($family->entity, false);
+        $this->family()->addEntity($family->entity)->addRelations($family->entity);
 
         $this->addFamilyMembers($family);
     }
 
-    protected function addOrganisations() : self
+    protected function addOrganisation() : self
     {
         /** @var Character $character */
         $character = $this->entity->child;
@@ -218,6 +251,54 @@ class EntityRelationService
                 $this->addOrganisationRelations($org->organisation);
             }
         }
+        return $this;
+    }
+
+    protected function addOrganisationRelations(Organisation $organisation)
+    {
+        if (empty($organisation) || empty($organisation->entity)) {
+            return;
+        }
+        $this->organisation()->addEntity($organisation->entity);
+
+        /** @var OrganisationMember $member */
+        foreach ($organisation->members()->with('character.entity')->has('character.entity')->get() as $member) {
+            if (empty($member->character->entity)) {
+                return;
+            }
+            $this->addEntity($member->character->entity, $member->character->getImageUrl(80, 80));
+
+
+            // Add relation
+            $this->relations[] = [
+                'source' => $organisation->entity->id,
+                'target' => $member->character->entity->id,
+                'text' => $member->role,
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'org-member',
+                'shape' => 'none',
+            ];
+
+            // Show relations of org members if the target is shown here
+            $this->addRelations($member->character->entity);
+
+        }
+    }
+
+    /**
+     * Prepare a family
+     */
+    protected function initFamily(): self
+    {
+        $this->addEntity($this->entity)
+            ->withEntity()
+            ->addRelations($this->entity)
+            ->withEntity(false);
+
+        $this->addFamilyMembers($this->entity->child, true);
+
+        $this->addFamilies();
         return $this;
     }
 
@@ -241,48 +322,6 @@ class EntityRelationService
             ];
         }
         return $this;
-    }
-
-    protected function addOrganisationRelations(Organisation $organisation)
-    {
-        if (empty($organisation) || empty($organisation->entity)) {
-            return;
-        }
-        $this->organisation()->addEntity($organisation->entity, false);
-
-        /** @var OrganisationMember $member */
-        foreach ($organisation->members()->with('character.entity')->has('character.entity')->get() as $member) {
-            if (empty($member->character->entity)) {
-                return;
-            }
-            $this->addEntity($member->character->entity, false, $member->character->getImageUrl(80, 80));
-
-
-            // Add relation
-            $this->relations[] = [
-                'source' => $organisation->entity->id,
-                'target' => $member->character->entity->id,
-                'text' => $member->role,
-                'colour' => '#ccc',
-                'attitude' => null,
-                'type' => 'org-member',
-                'shape' => 'none',
-            ];
-
-            // Show relations of org members if the target is shown here
-            $this->addRelations($member->character->entity);
-
-        }
-    }
-
-    protected function initFamily()
-    {
-        $this->addEntity($this->entity); //->addRelations($this->entity);
-
-        $this->addFamilyMembers($this->entity->child, true);
-
-        $this->addFamilies();
-
     }
 
     protected function addFamilies(): self
@@ -317,6 +356,86 @@ class EntityRelationService
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'sub-family',
+                'shape' => 'triangle',
+            ];
+        }
+        return $this;
+    }
+
+    /**
+     * Prepare en organisation
+     * @return $this
+     */
+    protected function initOrganisation(): self
+    {
+        $this->addEntity($this->entity)
+            ->withEntity()
+            ->addRelations($this->entity)
+            ->withEntity(false);
+
+        $this->addOrganisationMembers($this->entity, true);
+
+        $this->addOrganisations();
+        return $this;
+    }
+
+    protected function addOrganisationMembers(Entity $entity): self
+    {
+        /** @var Organisation $organisation */
+        $organisation = $entity->child;
+
+        /** @var OrganisationMember $member */
+        foreach ($organisation->members()->with(['character', 'character.entity'])->has('character')->get() as $member) {
+            $this
+                ->addEntity($member->character->entity, $member->character->getImageUrl(80, 80))
+                ->addRelations($member->character->entity);
+
+            // Add relation
+            $this->relations[] = [
+                'source' => $entity->id,
+                'target' => $member->character->entity->id,
+                'text' => __('entities/relations.types.family_member'),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'family-member',
+                'shape' => 'none',
+            ];
+        }
+        return $this;
+    }
+
+    protected function addOrganisations(): self
+    {
+        /** @var Organisation $organisation */
+        $organisation = $this->entity->child;
+
+        // Parent org
+        if (!empty($organisation->organisation())) {
+            $this->addEntity($organisation->organisation->entity);
+            $this->addRelations($organisation->organisation->entity);
+
+            $this->relations[] = [
+                'source' => $this->entity->id,
+                'target' => $organisation->organisation->entity->id,
+                'text' => __('families.fields.family'),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'sub-family',
+                'shape' => 'triangle',
+            ];
+        }
+
+        foreach ($organisation->organisations()->with('entity')->has('entity')->get() as $sub) {
+            $this->addEntity($sub->entity);
+            $this->addRelations($sub->entity);
+
+            $this->relations[] = [
+                'source' => $sub->entity->id,
+                'target' => $this->entity->id,
+                'text' => __('organisations.fields.members'),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'sub-org',
                 'shape' => 'triangle',
             ];
         }

@@ -10,6 +10,11 @@ use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kalnoy\Nestedset\NodeTrait;
 
+/**
+ * Class Organisation
+ * @package App\Models
+ * @property Organisation $organisation
+ */
 class Organisation extends MiscModel
 {
     use CampaignTrait,
