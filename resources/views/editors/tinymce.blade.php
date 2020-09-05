@@ -24,6 +24,7 @@
             menubar: false,
             content_css: '{{ mix('css/tinymce.css') }}',
             extended_valid_elements: "+@[data-mention]",
+            directionality : '{{ App::getLocale() == 'he' ? 'rtl' : 'ltr' }}',
             mentions: {
                 delimiter: ['@', '#', '['@if(!empty($model) && $model->entity), '{'@endif],
                 delay: 250,

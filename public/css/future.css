@@ -20,6 +20,11 @@
   background: none !important;
 }
 
+.content-wrapper p {
+  text-align: justify;
+  color: #eee;
+}
+
 .box,
 .panel,
 .timeline-item {
@@ -56,6 +61,12 @@
 .timeline-item .panel-footer {
   background: none !important;
   border: none !important;
+}
+
+.box .panel-body,
+.panel .panel-body,
+.timeline-item .panel-body {
+  color: #eee;
 }
 
 .box .panel-body ul,
@@ -178,11 +189,6 @@ input[type=checkbox]:checked:after {
 .help-block {
   color: #bbb;
   font-style: italic;
-}
-
-.content-wrapper p {
-  text-align: justify;
-  color: #eee;
 }
 
 li {
@@ -526,6 +532,10 @@ footer .footer img.logo-white {
 
 .leaflet-container {
   background: #0C1416;
+}
+
+.leaflet-container .leaflet-popup-content {
+  color: #eee;
 }
 
 body {

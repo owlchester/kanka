@@ -110,7 +110,8 @@ window.initSummernote = function () {
   $('.html-editor').summernote({
     height: '300px',
     lang: editorLang(summernoteConfig.data('locale')),
-    toolbar: [['style', ['style']], ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']], ['color', ['color']], ['para', ['ul', 'ol', 'paragraph']], ['table', ['table']], ['insert', ['link', 'picture', 'video', 'embed', 'hr']], ['view', ['fullscreen', 'codeview', 'help']]],
+    toolbar: [['style', ['style']], ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']], ['color', ['color']], ['para', ['ul', 'ol', 'paragraph']], ['table', ['table']], ['insert', ['link', 'picture', 'video', 'embed', 'hr']], //['dir', ['ltr', 'rtl']],
+    ['view', ['fullscreen', 'codeview', 'help']]],
     popover: {
       table: [['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']], ['delete', ['deleteRow', 'deleteCol', 'deleteTable']], ['custom', ['tableHeaders']]]
     },
@@ -311,6 +312,8 @@ function editorLang(locale) {
 
   if (locale == 'he') {
     return 'he-IL';
+  } else if (locale == 'ca') {
+    return 'ca-ES';
   } else if (locale == 'en') {
     return 'en-US';
   } else {

@@ -22,6 +22,7 @@ window.initSummernote = function() {
             ['para', ['ul', 'ol', 'paragraph']],
             ['table', ['table']],
             ['insert', ['link', 'picture', 'video', 'embed', 'hr']],
+            //['dir', ['ltr', 'rtl']],
             ['view', ['fullscreen', 'codeview', 'help']],
         ],
         popover: {
