@@ -6,8 +6,7 @@ return [
         'unfollow'  => 'Ne plus suivre',
     ],
     'campaigns'         => [
-        'manage'    => 'Gérer la campagne',
-        'tabs'      => [
+        'tabs'  => [
             'modules'   => ':count modules',
             'roles'     => ':count rôles',
             'users'     => ':count membres',
@@ -26,21 +25,10 @@ return [
         ],
     ],
     'recent'            => [
-        'add'           => 'Nouveau :name',
-        'no_entries'    => 'Aucun élément de ce type pour l\'instant.',
-        'title'         => 'Modifications récentes sur les :name',
-        'view'          => 'Tous les :name',
+        'title' => 'Modifications récentes sur les :name',
     ],
     'settings'          => [
-        'description'   => 'Personnalisation du tableau de bord',
-        'edit'          => [
-            'success'   => 'Paramètres modifiés.',
-        ],
-        'fields'        => [
-            'helper'        => 'Il est possible changer le comportement du tableau de bord. Cela concerne toutes les campagnes dont le compte est membre.',
-            'recent_count'  => 'Nombre d\'élément récents',
-        ],
-        'title'         => 'Paramètre du tableau de bord',
+        'title' => 'Paramètre du tableau de bord',
     ],
     'setup'             => [
         'actions'   => [

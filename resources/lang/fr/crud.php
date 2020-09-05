@@ -13,12 +13,9 @@ return [
         'find_out_more'     => 'En savoir plus',
         'go_to'             => 'Aller à :name',
         'json-export'       => 'Export (JSON)',
-        'more'              => 'Autres Actions',
         'move'              => 'Déplacer',
         'new'               => 'Nouveau',
         'next'              => 'Prochain',
-        'private'           => 'Privé',
-        'public'            => 'Publique',
         'reset'             => 'Réinitialiser',
     ],
     'add'               => 'Ajouter',
@@ -27,26 +24,9 @@ return [
     ],
     'attributes'        => [
         'actions'       => [
-            'add'               => 'Ajouter un attribut',
-            'add_block'         => 'Ajouter un block',
-            'add_checkbox'      => 'Ajouter une case à docher',
-            'add_text'          => 'Ajouter un text',
             'apply_template'    => 'Appliquer un modèle d\'attribut',
             'manage'            => 'Gérer',
             'remove_all'        => 'Tout supprimer',
-        ],
-        'create'        => [
-            'description'   => 'Créer un nouvel attribut',
-            'success'       => 'Attribut :name ajouté à :entity.',
-            'title'         => 'Nouvel attribut pour :name',
-        ],
-        'destroy'       => [
-            'success'   => 'Attribut :name supprimé de :entity.',
-        ],
-        'edit'          => [
-            'description'   => 'Modifier un attribut existant',
-            'success'       => 'Attribut :name modifié pour :entity.',
-            'title'         => 'Modifier l\'attribut pour :name',
         ],
         'fields'        => [
             'attribute'             => 'Attribut',
@@ -271,6 +251,7 @@ return [
     'image'             => [
         'error' => 'Impossible de récupérer l\'image demandée. Il est possible que le site web ne nous permet pas de télécharger des images (cela arrive par example avec squarespace et DeviantArt), ou le lien n\'est plus valide.',
     ],
+    'is_not_private'    => 'Cette entité n\'est pas privée.',
     'is_private'        => 'Cet élément est privé et pas visible.',
     'linking_help'      => 'Comment lier vers d\'autres éléments?',
     'manage'            => 'Gérer',

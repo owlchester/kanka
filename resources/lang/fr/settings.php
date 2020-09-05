@@ -127,12 +127,6 @@ return [
         'benefits_features' => 'fonctionalités sympas',
         'deprecated'        => 'Fonction obsolète - si tu souhaites supporter Kanka, fais-le avec un abonnement. La liaison Patreon est toujours active pour nos Patrons qui ont lié leur compte avant le changement d\'abonnement.',
         'description'       => 'Synchronisation avec Patreon',
-        'errors'            => [
-            'invalid_token' => 'Token invalid! Patreon n\'a pas validé la requête.',
-            'missing_code'  => 'Code manquant! Patreon n\'a pas envoyé de code d\'authentification pour ton compte.',
-            'no_pledge'     => 'Pas de pledge! Patreon a identifié ton compte, mais ne croit pas que tu nous supportes.',
-        ],
-        'link'              => 'Si tu supportes Kanka sur Patreon, tu peux utiliser le bouton pour lier ton compte. Cela te donnera accès a des bonus sympas!',
         'linked'            => 'Merci pour ton support sur Patreon! Ton comptes est d\'orénavant lié.',
         'pledge'            => 'Pledge: :name',
         'remove'            => [
