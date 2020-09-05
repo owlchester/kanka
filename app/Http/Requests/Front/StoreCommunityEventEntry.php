@@ -31,4 +31,10 @@ class StoreCommunityEventEntry extends FormRequest
             'comment' => 'nullable|string',
         ];
     }
+
+    protected function getRedirectUrl()
+    {
+        $url = $this->redirector->getUrlGenerator();
+        return $url->previous() . '#event-form';
+    }
 }
