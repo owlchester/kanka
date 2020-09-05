@@ -127,7 +127,7 @@
 
             <div class="box box-solid">
                 <div class="box-body">
-                    @if(!$campaign->campaign()->boosted())
+                    @if($campaign->campaign()->boosted())
                     <div class="loading text-center" id="spinner">
                         <i class="fa fa-spinner fa-spin fa-4x"></i>
                     </div>

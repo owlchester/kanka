@@ -143,7 +143,7 @@ class EntityRelationService
         }
         $this->entities[$entity->id] = [
             'id' => $entity->id,
-            'name' => '', //$entity->name . "\n(" . __('entities.' . $entity->type) . ')',
+            'name' => $entity->name . "\n(" . __('entities.' . $entity->type) . ')',
             'image' => $img,
             'link' => $entity->url(),
         ];
@@ -394,7 +394,7 @@ class EntityRelationService
             $this->relations[] = [
                 'source' => $entity->id,
                 'target' => $member->character->entity->id,
-                'text' => __('entities/relations.types.family_member'),
+                'text' => __('entities/relations.types.organisation_member'),
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'family-member',
@@ -410,14 +410,14 @@ class EntityRelationService
         $organisation = $this->entity->child;
 
         // Parent org
-        if (!empty($organisation->organisation())) {
+        if (!empty($organisation->organisation)) {
             $this->addEntity($organisation->organisation->entity);
             $this->addRelations($organisation->organisation->entity);
 
             $this->relations[] = [
                 'source' => $this->entity->id,
                 'target' => $organisation->organisation->entity->id,
-                'text' => __('families.fields.family'),
+                'text' => __('entities/relations.types.organisation_member'),
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'sub-family',
@@ -432,7 +432,7 @@ class EntityRelationService
             $this->relations[] = [
                 'source' => $sub->entity->id,
                 'target' => $this->entity->id,
-                'text' => __('organisations.fields.members'),
+                'text' => __('entities/relations.types.organisation_member'),
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'sub-org',
