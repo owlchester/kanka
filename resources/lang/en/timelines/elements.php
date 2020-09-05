@@ -9,6 +9,9 @@ return [
         'success'   => 'Element updated.',
         'title'     => 'Edit Timeline Element',
     ],
+    'delete'        => [
+        'success'   => 'Element :name removed.',
+    ],
     'fields'        => [
         'date'  => 'Date',
         'era'   => 'Era',
