@@ -9,6 +9,7 @@ img.profile-user-img {
   border: none;
   width: auto;
   max-height: 400px;
+  padding: 0;
 }
 
 .content {
@@ -1252,6 +1253,10 @@ hr {
 
   section.content {
     padding-top: 5px;
+  }
+
+  .profile-user-img {
+    max-height: calc(30vh) !important;
   }
 }
 

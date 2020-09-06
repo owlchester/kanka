@@ -29,6 +29,7 @@ return array(
         'he',
         'hr',
         'pl',
+        'el',
     ],
     /**
      * Specify locales that you want to show in the web interface, if empty or not provided then all locales in the database
@@ -38,16 +39,10 @@ return array(
      */
     'show_locales' => [
         'en',
-        'en-US',
         'fr',
         'de',
-        'pt-br',
         'es',
-        'ca',
         'it',
-        'hu',
-        'nl',
-        'pl',
     ],
     /**
      * Specify the prefix used for all cookies, session data and cache persistence.
