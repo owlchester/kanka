@@ -115,6 +115,11 @@
   cursor: pointer;
 }
 
+.leaflet-top,
+.leaflet-bottom {
+  z-index: 800;
+}
+
 @media (min-width: 767px) {
   #map-body .main-sidebar {
     width: 430px;

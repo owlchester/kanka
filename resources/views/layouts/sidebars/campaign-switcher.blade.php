@@ -30,7 +30,10 @@
             <ul>
                 @foreach (\App\Facades\UserCache::follows() as $userCampaign)
                     @if (!isset($currentCampaign) || ($userCampaign->id != $currentCampaign->id && !\App\Facades\Identity::isImpersonating()))
-                        <li>
+                        <li>@if ($userCampaign->image)
+                                <div class="background-image" style="background-image: url({{ Img::crop(208, 48)->url($userCampaign->image) }})"></div>
+                                <div class="background-gradient"></div>
+                            @endif
                             <a href="{{ url(App::getLocale() . '/' . $userCampaign->getMiddlewareLink()) }}">
                                 {!! $userCampaign->name !!}
                             </a>

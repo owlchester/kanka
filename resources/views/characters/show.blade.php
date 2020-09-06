@@ -1,10 +1,10 @@
 <?php /** @var \App\Models\Character $model */?>
 <div class="row">
-    <div class="col-lg-2 col-md-3">
+    <div class="@if($model->showAppearance()) col-lg-2 col-md-3 @else col-md-3 @endif">
         @include('characters._menu')
     </div>
 
-    <div class="@if($model->showAppearance()) col-lg-8 col-md-6 @else col-lg-10 col-md-8 @endif">
+    <div class="@if($model->showAppearance()) col-lg-8 col-md-6 @else col-md-9 @endif">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
