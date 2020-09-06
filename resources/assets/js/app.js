@@ -445,7 +445,6 @@ function initSidebar() {
     let down = $('.sidebar-campaign .campaign-head .campaign-name .fa-caret-down');
 
     toggler.on('click', function(e) {
-        console.log('flippy');
         e.preventDefault();
         if (down.hasClass('flipped')) {
             down.removeClass('flipped');

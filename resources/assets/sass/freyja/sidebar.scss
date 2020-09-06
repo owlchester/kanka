@@ -24,80 +24,80 @@ margin-left: $sidebarWidth;
 }
 
 .main-sidebar {
-width: 280px;
-background-color: #333;
-color: #fff;
+  width: 280px;
+  background-color: #333;
+  color: #fff;
 
-background-size: 280px 210px;
-background-repeat: no-repeat;
+  background-size: 280px 210px;
+  background-repeat: no-repeat;
 
-a {
-color: #fff;
-}
-
-.sidebar {
-background-color: #333;
-margin-bottom: 60px;
-
-.sidebar-icon-link {
-  color: #474747;
-  font-size: 16px;
-
-  .fas, .fa, .far, .ra {
-    width: 20px;
-  }
-  &:hover {
-    color: #C2C2C2;
-    background: unset;
-  }
-}
-
-li.sidebar-section {
-  .sidebar-text {
-    padding: 6px 5px 6px 15px;
-  }
-}
-li {
-  .fa, .ra, .fas, .far {
-    font-size: 14px;
-    width: 22px;
-  }
-  padding: 6px 12px;
-  height: 38px;
-
-  &:hover {
-    a {
-      background: unset;
-    }
-  }
-  a, .sidebar-text {
-    font-size: 11px;
-    line-height: 22px;
-    color: #FFFFFF;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-  }
   a {
-    border-left: unset;
-    overflow: hidden;
-    &:hover {
-      background: rgba(0, 0, 0, 0.16);
-      border-radius: 8px;
+  color: #fff;
+  }
+
+  .sidebar {
+    background-color: #333;
+    margin-bottom: 60px;
+
+    .sidebar-icon-link {
+      color: #474747;
+      font-size: 16px;
+
+      .fas, .fa, .far, .ra {
+        width: 20px;
+      }
+      &:hover {
+        color: #C2C2C2;
+        background: unset;
+      }
+    }
+
+    li.sidebar-section {
+      .sidebar-text {
+        padding: 6px 5px 6px 15px;
+      }
+    }
+    li {
+      .fa, .ra, .fas, .far {
+        font-size: 14px;
+        width: 22px;
+      }
+      padding: 6px 12px;
+      height: 38px;
+
+      &:hover {
+        a {
+          background: unset;
+        }
+      }
+      a, .sidebar-text {
+        font-size: 11px;
+        line-height: 22px;
+        color: #FFFFFF;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+      a {
+        border-left: unset;
+        overflow: hidden;
+        &:hover {
+          background: rgba(0, 0, 0, 0.16);
+          border-radius: 8px;
+        }
+      }
+    }
+    li.active a, li.active.sidebar-section {
+        border: none;
+        background: rgba(0, 0, 0, 0.24);
+        box-shadow: inset 1px 2px 6px rgba(0, 0, 0, 0.16);
+        border-radius: 8px;
+    }
+
+    li.subsection {
+      padding-left: 24px;
+      margin: 1px 0;
     }
   }
-}
-li.active a, li.active.sidebar-section {
-    border: none;
-    background: rgba(0, 0, 0, 0.24);
-    box-shadow: inset 1px 2px 6px rgba(0, 0, 0, 0.16);
-    border-radius: 8px;
-}
-
-li.subsection {
-  padding-left: 24px;
-  margin: 1px 0;
-}
-}
 }
 .main-sidebar-placeholder {
 background-image: url(https://images.kanka.io/app/L5nSYCLgwtxR3wlUGk16fMZ0zAU=/280x210/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg);

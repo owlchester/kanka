@@ -314,6 +314,8 @@ function editorLang(locale) {
     return 'he-IL';
   } else if (locale == 'ca') {
     return 'ca-ES';
+  } else if (locale == 'el') {
+    return 'el-GR';
   } else if (locale == 'en') {
     return 'en-US';
   } else {
