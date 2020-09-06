@@ -5,7 +5,7 @@ return [
         'add_element'   => 'Add an element to era :era',
         'back'          => 'Back to :name',
         'edit'          => 'Edit timeline',
-        'reorder'       => 'Redorder',
+        'reorder'       => 'Reorder',
         'save_order'    => 'Save new order',
     ],
     'create'        => [
