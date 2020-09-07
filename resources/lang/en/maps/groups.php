@@ -17,10 +17,14 @@ return [
     ],
     'fields'        => [
         'position'  => 'Position',
+        'is_shown' => 'Show group markers',
     ],
     'helper'        => [
         'amount'            => 'A marker can be attached to a group, allowing you to show or hide all Shops of a city. A map can have up to :amount groups.',
         'boosted_campaign'  => ':boosted can have up to :amount groups.',
+    ],
+    'hints' => [
+        'is_shown' => 'If checked, the group markers will be shown on the map by default.',
     ],
     'placeholders'  => [
         'name'      => 'Shops, Treasure, NPCs',

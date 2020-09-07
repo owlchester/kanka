@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string $name
  * @property string $visibility
  * @property int $position
+ * @property boolean $is_shown
  *
  * @property Map $map
  *
@@ -32,6 +33,7 @@ class MapGroup extends Model
         'name',
         'position',
         'visibility',
+        'is_shown',
     ];
 
     /**

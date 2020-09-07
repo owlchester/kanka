@@ -23,6 +23,7 @@
     <tr>
         <th>{{ __('crud.fields.name') }}</th>
         <th>{{ __('maps/groups.fields.position') }}</th>
+        <th>{{ __('maps/groups.fields.is_shown') }}</th>
         <th>{{ __('crud.fields.visibility') }}</th>
         <th></th>
     </tr>
@@ -32,6 +33,7 @@
         <tr>
             <td>{{ $group->name }}</td>
             <td>{{ $group->position }}</td>
+            <td>@if($group->is_shown) <i class="fas fa-check"></i> @endif</td>
             <td>
                 @include('cruds.partials.visibility', ['model' => $group])
             </td>

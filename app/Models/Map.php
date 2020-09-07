@@ -269,7 +269,9 @@ class Map extends MiscModel
         $layers = ['baseLayer' . $this->id];
         if ($groups) {
             foreach ($this->groups as $group) {
-                $layers[] = 'group' . $group->id;
+                if ($group->is_shown) {
+                    $layers[] = 'group' . $group->id;
+                }
             }
         }
 
@@ -286,7 +288,10 @@ class Map extends MiscModel
         $groups = [];
 
         /** @var MapMarker $marker */
-        foreach ($this->markers()->with('group')->get() as $marker) {
+        foreach ($this->markers()->with(['group', 'entity'])->get() as $marker) {
+            if (!$marker->visible()) {
+                continue;
+            }
             if (!empty($marker->group)) {
                 if (empty($groups[$marker->group_id])) {
                     $groups[$marker->group_id] = [
