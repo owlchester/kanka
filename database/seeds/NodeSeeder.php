@@ -11,6 +11,7 @@ class NodeSeeder extends Seeder
      */
     public function run()
     {
+        \App\Models\Location::fixTree();
         \App\Models\Note::fixTree();
     }
 }
