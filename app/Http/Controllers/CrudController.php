@@ -265,6 +265,8 @@ class CrudController extends Controller
             } elseif ($request->has('submit-copy')) {
                 $route = route($this->route . '.create', ['copy' => $new->id]);
                 return response()->redirectTo($route);
+            } elseif (auth()->user()->new_entity_workflow == 'created') {
+                $redirectToCreated = true;
             }
 
             if ($redirectToCreated) {

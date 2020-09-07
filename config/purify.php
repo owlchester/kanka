@@ -168,7 +168,7 @@ return [
             . "docs.google.com/|"
             . "drive.google.com/|"
             . "www.google.com/maps/embed|"
-            . "lookingforgm\.com/campaign/"
+            . "lookingforgm\.com/campaign/|"
             . "p3d\.in/e/"
             . ")%",
     ],
