@@ -75,6 +75,11 @@
   color: #eee;
 }
 
+.panel-entity-files .well {
+  background-color: #0C1416;
+  color: #42FFFF;
+}
+
 .filters {
   background: #0B1F20 !important;
   color: white;

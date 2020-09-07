@@ -27,23 +27,18 @@ $campaign = CampaignLocalization::getCampaign(); ?>
     <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('css/freyja.css') }}" rel="stylesheet">
-    @if(app()->getLocale() == 'he')
+@if(app()->getLocale() == 'he')
         <link href="{{ mix('css/app-rtl.css') }}" rel="stylesheet">
-    @endif
-    @yield('styles')
+@endif
+@yield('styles')
 
-    @if (!empty($campaign) && $campaign->boosted())
-        @if($campaign->hasPluginTheme())
-            <link href="{{ route('campaign_theme.css', ['ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">
-        @elseif(!empty($campaign->theme))
-            @if ($campaign->theme_id !== 1)
-            <link href="{{ mix('css/' . $campaign->theme->name . '.css') }}" rel="stylesheet">
-            @endif
-
-        @endif
-    @elseif (auth()->check() && !empty(auth()->user()->theme))
-        <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">
+@if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme))
+    @if ($campaign->theme_id !== 1)
+        <link href="{{ mix('css/' . $campaign->theme->name . '.css') }}" rel="stylesheet">
     @endif
+@elseif (auth()->check() && !empty(auth()->user()->theme))
+    <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">
+@endif
 
     @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->css))
         <link href="{{ route('campaign.css', ['ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">
