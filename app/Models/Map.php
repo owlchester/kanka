@@ -283,8 +283,28 @@ class Map extends MiscModel
     public function legendMarkers(): array
     {
         $markers = new Collection();
+        $groups = [];
+
         /** @var MapMarker $marker */
-        foreach ($this->markers as $marker) {
+        foreach ($this->markers()->with('group')->get() as $marker) {
+            if (!empty($marker->group)) {
+                if (empty($groups[$marker->group_id])) {
+                    $groups[$marker->group_id] = [
+                        'name' => $marker->group->name,
+                        'lower' => strtolower($marker->group->name),
+                        'id' => $marker->group_id,
+                        'markers' => new Collection()
+                    ];
+                }
+                $groups[$marker->group_id]['markers']->add([
+                    'id' => $marker->id,
+                    'longitude' => $marker->longitude,
+                    'latitude' => $marker->latitude,
+                    'name' => $marker->markerTitle(),
+                    'lower_name' => strtolower($marker->markerTitle()),
+                ]);
+                continue;
+            }
             $markers->add([
                 'id' => $marker->id,
                 'longitude' => $marker->longitude,
@@ -294,7 +314,17 @@ class Map extends MiscModel
             ]);
         }
 
-        return $markers->sortBy('lower_name')->toArray();
+        $all = $markers->sortBy('lower_name')->toArray();
+
+        usort($groups, function ($a, $b) {
+            return $a['lower'] > $b['lower'];
+        });
+
+        foreach ($groups as $id => $group) {
+            $all[] = $group;
+        }
+
+        return $all;
     }
 
     /**
