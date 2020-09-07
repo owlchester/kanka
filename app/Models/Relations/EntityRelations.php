@@ -15,6 +15,7 @@ use App\Models\EntityTag;
 use App\Models\Inventory;
 use App\Models\Map;
 use App\Models\MiscModel;
+use App\Models\Quest;
 use App\Models\Relation;
 use App\Models\Tag;
 use App\Models\Timeline;
@@ -38,6 +39,7 @@ use App\User;
  * @property Campaign $campaign
  * @property Map $map
  * @property Timeline $timeline
+ * @property Quest $quest
  * @property Attribute[] $starredAttributes
  * @property Relation[] $starredRelations
  * @property Relation[] $relations
