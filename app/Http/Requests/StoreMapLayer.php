@@ -37,8 +37,8 @@ class StoreMapLayer extends FormRequest
         // If editing, don't need a new image
         $self = request()->segment(7);
         if (!empty($self)) {
-            $rules['image'] = 'image_url|image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize();
-            $rules['image_url'] = 'image|nullable|url|active_url';
+            $rules['image'] = 'nullable|image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize();
+            $rules['image_url'] = 'nullable|url|active_url';
         }
 
         return $rules;
