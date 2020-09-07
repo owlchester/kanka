@@ -60,6 +60,7 @@ return [
             'header_image'  => 'Entity header image',
             'images'        => 'Set custom default entity images',
             'recovery'      => 'Entity recovery for up to 30 days',
+            'relation-visualiser' => 'Explore the relations of entities visually',
             'theme'         => 'Fixed campaign theme',
             'title'         => 'Boosted Campaigns',
             'tooltip'       => 'Custom entity tooltips: show image, change text',

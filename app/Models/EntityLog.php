@@ -24,6 +24,7 @@ class EntityLog extends Model
     const ACTION_CREATE = 1;
     const ACTION_UPDATE = 2;
     const ACTION_DELETE = 3;
+    const ACTION_RESTORE = 4;
 
     public $fillable = [
         'entity_id',
@@ -76,6 +77,8 @@ class EntityLog extends Model
             return 'update';
         } elseif ($this->action == self::ACTION_DELETE) {
             return 'delete';
+        } elseif ($this->action == self::ACTION_RESTORE) {
+            return 'restore';
         }
         return 'unknown';
     }

@@ -1324,6 +1324,30 @@ hr {
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
+.visu-teaser {
+  background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/features/relation-visu-teaser.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  padding: 150px 0;
+}
+
+.visu-teaser a {
+  display: block;
+  padding: 30px;
+  transition: ease all 0.3s;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
+  font-size: 18px;
+  line-height: 22px;
+  border-radius: 5px;
+}
+
+.visu-teaser a:hover {
+  background-color: rgba(45, 127, 255, 0.6);
+}
+
 .entity-menu-head {
   text-align: center;
 }

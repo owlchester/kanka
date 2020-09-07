@@ -186,6 +186,8 @@ Route::group([
         Route::post('/entities/{entity}/attributes/saveMany', [\App\Http\Controllers\AttributeController::class, 'saveMany'])->name('entities.attributes.saveMany');
         Route::post('/entities/{entity}/toggle-privacy', [\App\Http\Controllers\Entity\PrivacyController::class, 'toggle'])->name('entities.privacy.toggle');
 
+        Route::get('/entities/{entity}/relations_map', 'Entity\RelationController@map')->name('entities.relations_map');
+
         // Permission save
         Route::post('/campaign_roles/{campaign_role}/savePermissions', 'CampaignRoleController@savePermissions')->name('campaign_roles.savePermissions');
 
@@ -215,12 +217,10 @@ Route::group([
             'calendars' => 'CalendarController',
             'calendar_event' => 'CalendarEventController',
             'calendars.calendar_weather' => 'Calendar\CalendarWeatherController',
-            //'calendars.relations' => 'CalendarRelationController',
             'campaigns' => 'CampaignController',
             'campaign_users' => 'CampaignUserController',
             'characters' => 'CharacterController',
             'characters.character_organisations' => 'CharacterOrganisationController',
-            //'characters.relations' => 'CharacterRelationController',
             'conversations' => 'ConversationController',
             'conversations.conversation_participants' => 'ConversationParticipantController',
             'conversations.conversation_messages' => 'ConversationMessageController',
@@ -228,7 +228,6 @@ Route::group([
             'dice_roll_results' => 'DiceRollResultController',
             'events' => 'EventController',
             'locations' => 'LocationController',
-            'locations.relations' => 'LocationRelationController',
             'locations.map_points' => 'LocationMapPointController',
             'families' => 'FamilyController',
             'items' => 'ItemController',
