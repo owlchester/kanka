@@ -15,11 +15,32 @@
 
 .marker {
   color: white;
-  background-color: rgba(0, 0, 0, 0.5);
-  background-position: 50% 50%;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-color: unset;
   text-align: center;
+}
+
+.marker-pin {
+  width: 40px;
+  height: 40px;
+  border-radius: 50% 50% 50% 0;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 50%;
+  top: 50%;
+  margin: -20px 0 0 -20px;
+
+  &:after {
+    content: '';
+    width: 36px;
+    height: 36px;
+    margin: 2px 0 0 -18px;
+    position: absolute;
+    border-radius: 50%;
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transform: rotate(45deg);
+  }
 }
 
 .marker.custom {

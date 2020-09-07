@@ -128,7 +128,7 @@ $sizeOptions = [
     </div>
     <div class="col-sm-6">
         <div class="form-group">
-            <label>{{ __('locations.map.points.fields.font_colour') }}</label><br />
+            <label>{{ __('maps/markers.fields.font_colour') }}</label><br />
             {!! Form::text('font_colour', null, ['class' => 'form-control spectrum', 'maxlength' => 6] ) !!}
         </div>
     </div>

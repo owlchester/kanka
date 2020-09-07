@@ -295,18 +295,26 @@ class MapMarker extends Model
             return '';
         }
 
-        $icon = '`<i class="fa fa-pin-marker"></i>`';
+        $iconStyles = [];
+        $iconStyles[] = 'background-color: ' . $this->backgroundColour();
+        if ($this->entity && $this->icon == 4) {
+            $entityImage = '<div class="marker-entity" style="background-image: url(' . $this->entity->child->getImageUrl(400) . ');"></div>';
+        }
+
+        $iconShape = '<div style="background-color: ' . $this->backgroundColour() . '" class="marker-pin"></div>';
+
+        $icon = '`' . $iconShape . '<i class="fa fa-pin-marker"></i>`';
         if (!empty($this->custom_icon)) {
             if (Str::startsWith($this->custom_icon, '<i')) {
-                $icon = '`' . $this->custom_icon . '`';
+                $icon = '`' . $iconShape . '' . $this->custom_icon . '`';
             } elseif(Str::startsWith($this->custom_icon, '<?xml')) {
                 $icon = 'L.Util.template(`<div class="custom-icon">' . $this->resizedCustomIcon() . '</div>`)';
             }
         }
         elseif ($this->icon == 2) {
-            $icon = '`<i class="fa fa-question"></i>`';
+            $icon = '`' . $iconShape . '<i class="fa fa-question"></i>`';
         } elseif ($this->icon == 3) {
-            $icon = '`<i class="fa fa-exclamation"></i`';
+            $icon = '`' . $iconShape . '<i class="fa fa-exclamation"></i>`';
         }
 
         return 'icon: L.divIcon({

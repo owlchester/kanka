@@ -93,11 +93,12 @@
 @if(!empty($marker->font_colour))
             color: {{ $marker->font_colour }};
 @endif
-            background-color: {{ $marker->backgroundColour() }};
+        }
+        .marker-{{ $marker->id }} .marker-pin::after {
 @if ($marker->entity && $marker->icon == 4)
             background-image: url({{ $marker->entity->child->getImageUrl(400) }});
 @endif
-}
+        }
         @endif
 @endforeach
     </style>
