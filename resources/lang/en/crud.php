@@ -229,7 +229,7 @@ return [
     ],
     'hidden'            => 'Hidden',
     'hints'             => [
-        'attribute_template'    => 'Apply an attribute template directly when creating this entity.',
+        'attribute_template'    => 'Apply an attribute template directly when creating or editing this entity.',
         'calendar_date'         => 'A calendar date allows easy filtering in lists, and also maintains a calendar event in the selected calendar.',
         'header_image'          => 'This image is placed above the entity. For best results, use a wide image.',
         'image_limitations'     => 'Supported formats: jpg, png and gif. Max file size: :size.',

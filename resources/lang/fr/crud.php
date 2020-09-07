@@ -229,7 +229,7 @@ return [
     ],
     'hidden'            => 'Caché',
     'hints'             => [
-        'attribute_template'    => 'Appliquer un modèl d\'attribut lors de la création de cette entité.',
+        'attribute_template'    => 'Appliquer un modèl d\'attribut lors de la création ou l\'édition de cette entité.',
         'calendar_date'         => 'Une date de calendrier permet un triage plus facile dans les listes, et garde à jour un événement de calendrier dans le calendrier sélectionné.',
         'header_image'          => 'Cette image s\'affiche au dela de l\'entité. Les images larges mènent a un meilleur résultat.',
         'image_limitations'     => 'Formats supportés: jpg, png et gif. Taille max: :size.',
