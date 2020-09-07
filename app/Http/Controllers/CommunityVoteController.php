@@ -65,10 +65,10 @@ class CommunityVoteController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function show($uuid, $slug = '')
+    public function show($id, $slug = '')
     {
         $this->middleware(['identity']);
-        $vote = CommunityVote::where('uuid', $uuid)->firstOrFail();
+        $vote = CommunityVote::where('id', $id)->firstOrFail();
 
         $recent = CommunityVote::recent()->get();
 
