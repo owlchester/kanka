@@ -18,6 +18,17 @@
                     <br class="clear" />
                 </li>
             @endif
+            @if ($campaign->enabled('organisations') && !$model->organisations->isEmpty())
+                <li class="list-group-item">
+                    <b>{{ __('characters.show.tabs.organisations') }}</b>
+                    <span class="pull-right">
+                        @foreach ($model->organisations->sortBy('organisation.name') as $Org)
+                            {!! $Org->organisation->tooltipedLink() !!}@if (!$loop->last),  @endif
+	                    @endforeach
+                    </span>
+                    <br class="clear" />
+                </li>
+            @endif
             @include('cruds.lists.location')
             @if ($campaign->enabled('races') && $model->race)
                 <li class="list-group-item">
