@@ -57,7 +57,7 @@ TEXT
     ],
     'free'                  => [
         'answer'    => <<<'TEXT'
-Yes! We strongly believe that your financial situation shouldn't impact your enjoyment of RPGs or world building and we will always keep the core app free. However, if you wish to take a more active role in this journey, support us, and vote on the features that matter the most to you, you can do so either through our website or on :patreon.
+Yes! We strongly believe that your financial situation shouldn't impact your enjoyment of RPGs or world building and we will always keep the core app free. However, if you wish to take a more active role in this journey, support us, and vote on the features that matter the most to you, you can do so through our subscriptions.
 
 In addition to voting on the direction that Kanka takes, supporting us allows you to gain access to :boosters, increase file size upload limits, add your name to the hall of fame, have nicer default icons, and more!
 TEXT

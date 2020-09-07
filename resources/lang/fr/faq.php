@@ -62,9 +62,9 @@ TEXT
     ],
     'free'                  => [
         'answer'    => <<<'TEXT'
-Oui ! Nous pensons que votre situation financière ne doit pas avoir d'impact sur votre plaisir de jouer à des jeux de rôles ou à créer votre propre univers, et donc l'application sera toujours gratuite. Merci à nos généreux Patrons sur :patreon, grâce à qui nous sommes capables de couvrir nos frais de serveurs mensuels et de vous offrir une application sans publicité !
+Oui ! Nous pensons que votre situation financière ne doit pas avoir d'impact sur votre plaisir de jouer à des jeux de rôles ou à créer votre propre univers, et donc l'application sera toujours gratuite. Cependant, ceux qui souhaitent voir l'application progresser, nous supporter, et voter sur les nouvelles fonctionalités, cela est possible à travers nos abonnements.
 
-Cependant, nous soutenir sur Patreon permet d'augmenter la taille maximale des images à uploader, d'apparaitre dans le "Hall of Fame Patreon", d'avoir des icones plus sympas, de voter sur les tickets a prioritiser, et bien plus!
+En plus de participer aux votes communautaires, nous supporter donne accès aux :boosters, augmenter la taille des fichiers, ajouter le nom sur le hall of fame, avoir accès à de meilleures images par défault, et bien plus!
 TEXT
 ,
         'question'  => 'Est-ce que l\'application restera gratuite ?',

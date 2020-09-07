@@ -74,12 +74,15 @@ $map = $entity->child;
 @if(!$marker->visible())
 @continue
 @endif
-        .marker-{{ $marker->id }}  {
-            background-color: {{ $marker->backgroundColour() }};
+    .marker-{{ $marker->id }}  {
+        color: {{ $model->font_colour }};
+    }
+
 @if ($marker->entity && $marker->icon == 4)
-            background-image: url({{ $marker->entity->child->getImageUrl(400) }});
+    .marker-{{ $marker->id }} .marker-pin::after {
+        background-image: url({{ $marker->entity->child->getImageUrl(400) }});
+    }
 @endif
-        }
 @endforeach
     </style>
 @endsection
