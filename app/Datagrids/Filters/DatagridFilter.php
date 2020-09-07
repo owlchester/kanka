@@ -106,9 +106,17 @@ abstract class DatagridFilter
      */
     protected function hasImage(): self
     {
-        // Add the is_private filter only for admins.
         $this->filters[] = 'has_image';
+        return $this;
+    }
 
+    /**
+     * Add the (real) date filter
+     * @return $this
+     */
+    protected function date(): self
+    {
+        $this->filters[] = 'date';
         return $this;
     }
 }
