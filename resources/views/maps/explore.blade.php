@@ -90,10 +90,13 @@
 @foreach ($map->markers as $marker)
 @if ($marker->visible())
         .marker-{{ $marker->id }}  {
+@if(!empty($marker->font_colour))
+            color: {{ $marker->font_colour }};
+@endif
             background-color: {{ $marker->backgroundColour() }};
-        @if ($marker->entity && $marker->icon == 4)
+@if ($marker->entity && $marker->icon == 4)
             background-image: url({{ $marker->entity->child->getImageUrl(400) }});
-        @endif
+@endif
 }
         @endif
 @endforeach

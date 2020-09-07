@@ -75,6 +75,9 @@
     <style>
 @foreach ($model->markers as $marker)
         .marker-{{ $marker->id }}  {
+@if(!empty($marker->font_colour))
+            color: {{ $marker->font_colour }};
+@endif
             background-color: {{ $marker->backgroundColour() }};
 @if ($marker->entity && $marker->icon == 4)
             /* entity {{ $marker->entity_id }} */

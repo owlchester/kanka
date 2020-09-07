@@ -23,6 +23,7 @@ use Illuminate\Support\Str;
  * @property int $longitude
  * @property int $latitude
  * @property string $colour
+ * @property string $font_colour
  * @property int $shape_id
  * @property int $size_id
  * @property int $icon
@@ -58,6 +59,7 @@ class MapMarker extends Model
         'custom_shape',
         'is_draggable',
         'colour',
+        'font_colour',
         'longitude',
         'latitude',
         'opacity',

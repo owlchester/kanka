@@ -20,7 +20,8 @@ class MapLayerResource extends ModelResource
             'position' => (int) $this->position,
             'width' => $this->width,
             'height' => $this->height,
-            'visibility' => $this->visibility
+            'visibility' => $this->visibility,
+            'is_shown' => (bool) $this->is_shown,
         ]);
     }
 }

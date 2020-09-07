@@ -16,6 +16,9 @@ class UpdateMapGroupsAddDefaultVisibility extends Migration
         Schema::table('map_groups', function (Blueprint $table) {
             $table->boolean('is_shown')->default(true);
         });
+        Schema::table('map_markers', function (Blueprint $table) {
+            $table->string('font_colour', 7)->nullable();
+        });
     }
 
     /**
@@ -27,6 +30,9 @@ class UpdateMapGroupsAddDefaultVisibility extends Migration
     {
         Schema::table('map_groups', function (Blueprint $table) {
             $table->dropColumn('is_shown');
+        });
+        Schema::table('map_markers', function (Blueprint $table) {
+            $table->dropColumn('font_colour');
         });
     }
 }

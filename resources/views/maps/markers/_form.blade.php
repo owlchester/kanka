@@ -123,18 +123,24 @@ $sizeOptions = [
     <div class="col-sm-6">
         <div class="form-group">
             <label>{{ __('locations.map.points.fields.colour') }}</label><br />
-            {!! Form::text('colour', null, ['class' => 'form-control spectrum', 'maxlength' => 20] ) !!}
+            {!! Form::text('colour', null, ['class' => 'form-control spectrum', 'maxlength' => 6] ) !!}
         </div>
     </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>{{ __('locations.map.points.fields.font_colour') }}</label><br />
+            {!! Form::text('font_colour', null, ['class' => 'form-control spectrum', 'maxlength' => 6] ) !!}
+        </div>
+    </div>
+</div>
+
+<div class="row">
     <div class="col-sm-6">
         <div class="form-group">
             <label>{{ __('maps/markers.fields.opacity') }}</label><br />
             {!! Form::number('opacity', (!isset($model) ? 100 : null), ['class' => 'form-control', 'maxlength' => 3, 'step' => 10, 'max' => 100, 'min' => 0] ) !!}
         </div>
     </div>
-</div>
-
-<div class="row">
     <div class="col-sm-6">
         <div class="form-group">
             {!! Form::hidden('is_draggable', 0) !!}
@@ -144,6 +150,8 @@ $sizeOptions = [
             <p class="help-block">{{ __('maps/markers.helpers.draggable') }}</p>
         </div>
     </div>
+</div>
+<div class="row">
     <div class="col-sm-6">
         <div class="form-group">
             <label for="visibility">
@@ -152,8 +160,6 @@ $sizeOptions = [
             {{ Form::select('group_id', $map->groupOptions(), null, ['class' => 'form-control', 'id' => 'group_id']) }}
         </div>
     </div>
-</div>
-<div class="row">
     <div class="col-sm-6">
         <div class="form-group">
         @include('cruds.fields.visibility')
