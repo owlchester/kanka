@@ -353,12 +353,12 @@ class Map extends MiscModel
      * Maximum zoom of a map
      * @return int
      */
-    public function maxZoom(): int
+    public function maxZoom(): float
     {
         if (!is_numeric($this->max_zoom)) {
-            return 5;
+            return 2.75;
         }
-        return (int) min($this->max_zoom, self::MAX_ZOOM);
+        return (float) min($this->max_zoom, self::MAX_ZOOM);
     }
 
     /**
