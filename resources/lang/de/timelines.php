@@ -5,6 +5,8 @@ return [
         'add_element'   => 'Fügen Sie der Epoche ein Element hinzu :era',
         'back'          => 'zurück zu :name',
         'edit'          => 'Zeitstrahl editieren',
+        'reorder'       => 'neue Reihenfolge erstellen',
+        'save_order'    => 'neue Reihenfolge speichern',
     ],
     'create'        => [
         'success'   => 'Zeitstrahl :name erstellt',
@@ -25,6 +27,7 @@ return [
         'type'          => 'Typ',
     ],
     'helpers'       => [
+        'reorder'       => 'Ziehen Sie Elemente der Epoche per Drag & Drop, um sie neu zu ordnen.',
         'reverse_order' => 'Aktivieren Sie diese Option, um Epochen in umgekehrter chronologischer Reihenfolge anzuzeigen (ältere Epoche zuerst).',
     ],
     'index'         => [

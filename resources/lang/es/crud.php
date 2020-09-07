@@ -271,7 +271,8 @@ return [
     'image'             => [
         'error' => 'No hemos podido obtener la imagen. Puede que la página web no nos permita descargarla (típico de Squarespace o DeviantArt), o que el enlace ya no sea válido. Asegúrate también de que la imagen no supera los :size.',
     ],
-    'is_private'        => 'Esta entidad es privada y solo se mostrará a los usuarios con el rol "Admin".',
+    'is_not_private'    => 'Esta entidad no es privada.',
+    'is_private'        => 'Esta entidad es privada y solo pueden verla los administradores.',
     'linking_help'      => '¿Como se enlazan otras entradas?',
     'manage'            => 'Administrar',
     'move'              => [

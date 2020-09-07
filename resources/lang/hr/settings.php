@@ -127,12 +127,6 @@ return [
         'benefits_features' => 'nevjerojatne funkcionalnosti',
         'deprecated'        => 'Zastarjela značajka - ako želite podržati Kanku, učinite to putem :subscription. Patreon povezivanje je i dalje aktivno za one koji su povezali svoj račun prije našeg odlaska iz Patreona.',
         'description'       => 'Sinkroniziranje s Patreonom',
-        'errors'            => [
-            'invalid_token' => 'Pogrešan token! Patreon nije mogao potvrditi tvoj zahtjev.',
-            'missing_code'  => 'Nedostaje kod! Patreon nije poslao kôd koji identificira tvoj račun.',
-            'no_pledge'     => 'Nema zaloga! Patreon je identificirao tvoj račun, ali ne zna za nijedan aktivan zalog.',
-        ],
-        'link'              => 'Upotrijebi sljedeći gumb ako trenutno podržavaš Kanka na :patreon. To će otključati bonuse',
         'linked'            => 'Hvala ti što podržavaš Kanku na Patreonu! Tvoj račun je povezan.',
         'pledge'            => 'Zalog: :name',
         'remove'            => [

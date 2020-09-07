@@ -271,6 +271,7 @@ return [
     'image'             => [
         'error' => 'Wir konnten das von dir angeforderte Bild nicht laden. Es könnte sein, dass die Website nicht erlaubt, Bilder herunterzuladen (typisch für Squarespace und DeviantArt) oder dass der Link nicht mehr gültig ist.',
     ],
+    'is_not_private'    => 'Dieses Objekt ist derzeit nicht auf privat eingestellt.',
     'is_private'        => 'Dieses Objekt ist privat und nicht von Zuschauern einsehbar.',
     'linking_help'      => 'Wie kann ich zu anderen Objekten verlinken?',
     'manage'            => 'Verwalten',

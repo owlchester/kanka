@@ -30,4 +30,7 @@ return [
         'name'          => 'Moderno doba, Brončano doba, Galaktički Ratovi',
         'start_year'    => 'Godina kada razdoblje počinje. Ostavi prazno ako je ovo prvo razdoblje.',
     ],
+    'reorder'       => [
+        'success'   => 'Elementi razdoblja :era presloženi.',
+    ],
 ];

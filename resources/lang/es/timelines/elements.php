@@ -5,6 +5,9 @@ return [
         'success'   => 'Elemento añadido a la línea de tiempo.',
         'title'     => 'Nuevo elemento cronológico',
     ],
+    'delete'        => [
+        'success'   => 'Elemento ":name" eliminado.',
+    ],
     'edit'          => [
         'success'   => 'Elemento actualizado.',
         'title'     => 'Editar elemento cronológico',

@@ -13,12 +13,9 @@ return [
         'find_out_more'     => 'Saznaj više',
         'go_to'             => 'Idi na :name',
         'json-export'       => 'Izvoz (json)',
-        'more'              => 'Više akcija',
         'move'              => 'Pomakni',
         'new'               => 'Novo',
         'next'              => 'Sljedeće',
-        'private'           => 'Privatno',
-        'public'            => 'Javno',
         'reset'             => 'Resetiraj',
     ],
     'add'               => 'Dodaj',
@@ -27,26 +24,9 @@ return [
     ],
     'attributes'        => [
         'actions'       => [
-            'add'               => 'Dodaj atribut',
-            'add_block'         => 'Dodaj blok',
-            'add_checkbox'      => 'Dodaj potvrdni okvir',
-            'add_text'          => 'Dodaj tekst',
             'apply_template'    => 'Primjeni predložak atributa',
             'manage'            => 'Upravljanje',
             'remove_all'        => 'Izbriši sve',
-        ],
-        'create'        => [
-            'description'   => 'Izradi novi atribut',
-            'success'       => 'Atribut :name dodan u :entity.',
-            'title'         => 'Novi atribut za :name',
-        ],
-        'destroy'       => [
-            'success'   => 'Uklonjen atribut :name s :entity.',
-        ],
-        'edit'          => [
-            'description'   => 'Ažuriraj postojeći atribut',
-            'success'       => 'Ažuriran atribut :name za :entity.',
-            'title'         => 'Ažuriraj atribut za :name',
         ],
         'fields'        => [
             'attribute'             => 'Atribut',
@@ -271,6 +251,7 @@ return [
     'image'             => [
         'error' => 'Nismo uspjeli dobiti sliku koju ste tražili. Može biti da nam web mjesto ne dopušta preuzimanje slike (uobičajeno za Squarespace i DeviantArt) ili da veza više nije valjana. Provjerite također da slika nije veća od :size.',
     ],
+    'is_not_private'    => 'Ovaj entitet trenutno nije postavljen kao privatni.',
     'is_private'        => 'Ovaj je entitet privatan i vidljiv samo članovima administratorske uloge.',
     'linking_help'      => 'Kako mogu povezati s ostalim unosima?',
     'manage'            => 'Upravljanje',

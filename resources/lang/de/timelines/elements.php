@@ -5,6 +5,9 @@ return [
         'success'   => 'Element zum Zeitstrahl hinzugefügt',
         'title'     => 'neues Zeitstrahlelement',
     ],
+    'delete'        => [
+        'success'   => 'Element :name entfernt',
+    ],
     'edit'          => [
         'success'   => 'Element aktualisiert',
         'title'     => 'Zeitstrahlelement editieren',

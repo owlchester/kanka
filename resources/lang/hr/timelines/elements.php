@@ -5,6 +5,9 @@ return [
         'success'   => 'Element je dodan kronologiji.',
         'title'     => 'Novi element kronologije',
     ],
+    'delete'        => [
+        'success'   => 'Uklonjen element :name.',
+    ],
     'edit'          => [
         'success'   => 'Element je ažuriran.',
         'title'     => 'Uređivanje elementa kronologije',

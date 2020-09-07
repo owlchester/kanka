@@ -6,8 +6,7 @@ return [
         'unfollow'  => 'Prekini pratiti',
     ],
     'campaigns'         => [
-        'manage'    => 'Upravljanje kampanjom',
-        'tabs'      => [
+        'tabs'  => [
             'modules'   => '{1} :count modul|{2,*} :count modula',
             'roles'     => '{1} :count uloga|{2,4} :count uloge|{5,*} :count uloga',
             'users'     => '{1} :count korisnik|{2,*} :count korisnika',
@@ -26,21 +25,10 @@ return [
         ],
     ],
     'recent'            => [
-        'add'           => 'Kreiraj :name',
-        'no_entries'    => 'Trenutno nema unosa ove vrste.',
-        'title'         => 'Nedavno izmijenjeno :name',
-        'view'          => 'Pregledaj sve :name',
+        'title' => 'Nedavno izmijenjeno :name',
     ],
     'settings'          => [
-        'description'   => 'Prilagodi što vidiš na naslovnoj ploči',
-        'edit'          => [
-            'success'   => 'Tvoje promjene su spremljene.',
-        ],
-        'fields'        => [
-            'helper'        => 'Možeš jednostavno promijeniti ono što vidiš na nadzornoj ploči. Imaj na umu da je to za sve tvoje kampanje, bez obzira na postavke kampanje.',
-            'recent_count'  => 'Broj nedavnih elemenata',
-        ],
-        'title'         => 'Postavke naslovne ploče',
+        'title' => 'Postavke naslovne ploče',
     ],
     'setup'             => [
         'actions'   => [

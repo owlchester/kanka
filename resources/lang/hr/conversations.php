@@ -18,7 +18,7 @@ return [
         'messages'      => 'Poruke',
         'name'          => 'Naziv',
         'participants'  => 'Sudionici',
-        'target'        => 'Meta',
+        'target'        => 'Otvaranje poveznice',
         'type'          => 'Tip',
     ],
     'hints'         => [

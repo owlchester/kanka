@@ -3,7 +3,7 @@
 return [
     'avatar'            => 'Imatge d\'usuari',
     'logout'            => 'Surt',
-    'member_since'      => 'Membre des del :date',
+    'member_since'      => 'Membre des de :date',
     'notifications'     => [
         'header'    => 'Notificacions',
         'read_all'  => 'Llegeix totes',

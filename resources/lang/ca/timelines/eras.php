@@ -30,4 +30,7 @@ return [
         'name'          => 'Era moderna, edat del bronze, guerres galàctiques...',
         'start_year'    => 'Any en què l\'era comença. Deixeu-ho en blanc si aquesta és la primera era.',
     ],
+    'reorder'       => [
+        'success'   => 'S\'han reordenat els elements de l\'era :era.',
+    ],
 ];

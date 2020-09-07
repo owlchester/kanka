@@ -5,6 +5,8 @@ return [
         'add_element'   => 'Elem hozzáadása az korszakhoz: :era',
         'back'          => 'Vissza ide: :name',
         'edit'          => 'Idővonal szerkesztése',
+        'reorder'       => 'Átrendezés',
+        'save_order'    => 'Új sorrend mentése',
     ],
     'create'        => [
         'success'   => 'A \':name\' idővonalat létrehoztuk.',

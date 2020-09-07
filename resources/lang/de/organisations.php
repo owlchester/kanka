@@ -56,7 +56,7 @@ return [
         ],
         'helpers'       => [
             'all_members'   => 'Alle Charaktere, die Mitglieder dieser Organisation und ihrer Unterorganisationen sind.',
-            'members'       => 'Die folgende Liste enthält alle Charaktere in dieser Organisation und alle untergeordneten Organisationen der Organisation. Du kannst die Seite filtern, um nur direkte Mitglieder anzuzeigen.',
+            'members'       => 'Alle Charaktere, die Mitglieder dieser Organisation sind.',
         ],
         'placeholders'  => [
             'character' => 'Wähle einen Charakter',

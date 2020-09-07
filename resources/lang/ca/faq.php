@@ -111,6 +111,10 @@ TEXT
         'answer'    => 'Podeu fer un cop d\'ull a les :public-campaigns per a veure com els altres fan servir Kanka a les seves campanyes.',
         'question'  => 'Com utilitzen Kanka altres persones?',
     ],
+    'renaming-modules'      => [
+        'answer'    => 'Encara que això seria fàcil de fer en anglès i altres llengues que no empren gèneres, canviar el nom dels mòduls trencaria la correcció gramatical i l\'experiència d\'usuari per una majoria d\'usuaris que utilitzen Kanka en altres idiomes.',
+        'question'  => 'Puc reanomenar els mòduls? Per exemple, Clans en comptes de Famílies, o Faccions en comptes d\'Organitzacions?',
+    ],
     'sections'              => [
         'community'     => 'Comunitat',
         'general'       => 'General',

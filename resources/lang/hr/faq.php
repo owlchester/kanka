@@ -113,6 +113,10 @@ TEXT
         'answer'    => 'Možeš pregledavati stranicu :public-campaigns da vidiš kako drugi koriste Kanku za svoje kampanje.',
         'question'  => 'Kako drugi koriste Kanka?',
     ],
+    'renaming-modules'      => [
+        'answer'    => 'Iako bi to bilo lako učiniti za engleski i druge jezike koji ne koriste rodovna imena, mogućnost promjene naziva modula narušila bi gramatičku ispravnost i korisničko iskustvo za većinu jezika na kojima je Kanka dostupna.',
+        'question'  => 'Mogu li preimenovati module? Na primjer Obitelji u Klanove ili Organizacije u Frakcije?',
+    ],
     'sections'              => [
         'community'     => 'Zajednica',
         'general'       => 'Općenito',

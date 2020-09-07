@@ -271,7 +271,8 @@ return [
     'image'             => [
         'error' => 'No s\'ha pogut obtenir la imatge. Pot ser que la pàgina web no permeti descarregar-la (habitual a Squarespace o DeviantArt), o que l\'enllaç ja no sigui vàlid. Assegureu-vos també que el pes de la imatge no supera els :size.',
     ],
-    'is_private'        => 'Aquesta entitat és privada i només es mostrarà als membres amb el rol d\'administrador.',
+    'is_not_private'    => 'Aquesta entitat no és privada.',
+    'is_private'        => 'Aquesta entitat és privada i només es mostra als administradors.',
     'linking_help'      => 'Com es poden enllaçar altres entitats?',
     'manage'            => 'Administra',
     'move'              => [

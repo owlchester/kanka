@@ -5,6 +5,8 @@ return [
         'add_element'   => 'Dodajte element u razdoblje :era',
         'back'          => 'Povratak na :name',
         'edit'          => 'Uredi kronologiju',
+        'reorder'       => 'Presloži',
+        'save_order'    => 'Spremi novi redoslijed',
     ],
     'create'        => [
         'success'   => 'Kreirana kronologija :name.',
@@ -25,6 +27,7 @@ return [
         'type'          => 'Tip',
     ],
     'helpers'       => [
+        'reorder'       => 'Povucite i ispustite elemente razdoblja da biste ih presložili.',
         'reverse_order' => 'Omogući za prikaz razdoblja obrnutim kronološkim redoslijedom (prvo starije ere)',
     ],
     'index'         => [
