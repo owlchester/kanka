@@ -12,7 +12,7 @@ class JournalFilter extends DatagridFilter
         $this
             ->add('name')
             ->add('type')
-            ->add('date')
+            ->date()
             ->character()
             ->location()
             ->isPrivate()
