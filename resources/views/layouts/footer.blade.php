@@ -1,7 +1,13 @@
 <!-- Main Footer -->
 <footer id="footer" class="main-footer">
     <div class="translator-call text-center hidden-xs">
-        <p class="text-muted">{!! __('footer.translator_call', ['discord' => link_to(config('discord.url'), 'Discord', ['target' => '_blank'])]) !!}</p>
+        @if(app()->getLocale() == 'pt-BR')
+            <p class="alert alert-warning">
+                Quer ajudar a traduzir Kanka para o português brasileiro? Junte-se ao nosso <a href="{{ config('discord.url') }}" target="_blank">Discord</a> e entre em contato pelo canal #assist-the-team!
+            </p>
+        @else
+            <p class="text-muted">{!! __('footer.translator_call', ['discord' => link_to(config('discord.url'), 'Discord', ['target' => '_blank'])]) !!}</p>
+        @endif
     </div>
     <div class="footer">
         <div class="row">
