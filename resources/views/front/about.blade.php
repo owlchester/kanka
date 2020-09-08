@@ -105,10 +105,10 @@
                             <strong>{{ __('languages.codes.de') }}</strong>: TheFurya, Yanila, Thogrim, Xoltax
                         </p>
                         <p>
-                            <strong>{{ __('languages.codes.en-US') }}</strong>: Oriek
+                            <strong>{{ __('languages.codes.es') }}</strong>: Helionking, Raigho
                         </p>
                         <p>
-                            <strong>{{ __('languages.codes.es') }}</strong>: Helionking, Raigho
+                            <strong>{{ __('languages.codes.ca') }}</strong>: Helionking
                         </p>
                         <p>
                             <strong>{{ __('languages.codes.it') }}</strong>: Dreadino, Arroagantes, VolpeNera
@@ -128,6 +128,12 @@
                         <p>
                             <strong>{{ __('languages.codes.ru') }}</strong>: Ilia
                         </p>
+{{--                        <p>--}}
+{{--                            <strong>{{ __('languages.codes.sk') }}</strong>: Babcom--}}
+{{--                        </p>--}}
+{{--                        <p>--}}
+{{--                            <strong>{{ __('languages.codes.el') }}</strong>: Charalampos Koundourakis--}}
+{{--                        </p>--}}
                         <p>
                             <strong>{{ __('languages.codes.fr') }}</strong>: Ilestis
                         </p>
