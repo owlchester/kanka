@@ -1,7 +1,6 @@
 # Miscellany
 
 [![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%207.3-8892BF.svg)](https://php.net/)
-[![Patreon](https://img.shields.io/badge/Patreon-Support-orange.svg)](https://patreon.com/kankaio)
 [![Discord](https://img.shields.io/discord/413623253366603777.svg)](https://discord.gg/rhsyZJ4)
 
 Miscellany is a collaborative world building and campaign management tool tailored for tabletop RPG players and game masters.
@@ -12,10 +11,11 @@ After cloning the project, create the following files.
 
 * `.env`
   * `cp .env.example .env`
-  * You'll need to fill it out to your needs.
+  * You'll need to fill it out to your needs (db access, smtp config, etc).
 * `public/.htaccess`
   * If on Apache. You can run `cp .htaccess.example public/.htaccess` for quick development on docker.
 
+Finish everything by running `composer install` to install all third party libraries.
 
 ## Using Vagrant
 Make sure you have [composer](https://getcomposer.org), [Vagrant](https://www.vagrantup.com/) and their dependencies installed and walk through the next steps:
@@ -114,7 +114,7 @@ The following rules apply when developing the application.
 
 ## Issues
 
-All improvements, features and bugs must be related to a ticket on github. Each commit must contain on the first row the name and ticket id of the issue related to the change.
+All improvements, features and bugs must be related to a ticket on the trello. Each PR must contain a link to the trello ticket.
 
 ## Standards
 
