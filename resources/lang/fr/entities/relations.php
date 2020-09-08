@@ -15,9 +15,9 @@ return [
         'target'    => 'Cible',
         'two_way'   => 'Créer une relation miroir',
     ],
-    'helper'        => 'Définir des relations entre entités avec leur description, attitude et visibilité. Les relations peuvent aussi être épinglée sur le menu de l\'entité.',
+    'helper'        => 'Définir des relations entre entités avec leurs description, attitude et visibilité. Les relations peuvent aussi être épinglées sur le menu de l\'entité.',
     'hints'         => [
-        'attitude'  => 'Ce champ optionnel peut être utilisé pour définir l\'ordre ascendant dans lequel s\'affiche les relations.',
+        'attitude'  => 'Ce champ optionnel peut être utilisé pour définir l\'ordre ascendant dans lequel s\'affichent les relations.',
         'mirrored'  => [
             'text'  => 'Cette relation est liée avec :link.',
             'title' => 'Lié',

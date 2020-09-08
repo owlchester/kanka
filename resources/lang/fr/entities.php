@@ -15,9 +15,9 @@ return [
     'conversations'         => 'Conversations',
     'creator'               => [
         'back'      => 'Retour à la sélection',
-        'duplicate' => 'Il y a d\'autre entités de ce type avec le même nom.',
-        'error'     => 'Erreure lors de la saisie, prière de vérifier les données.',
-        'helper'    => 'Sélection d\'un type d\'entité. Si aucun type n\'apparait, cela signifie que tu n\'as pas les permissions nécessaires pour créer des entités dans cette campagne.',
+        'duplicate' => 'Il y a d\'autres entités de ce type avec le même nom.',
+        'error'     => 'Erreur lors de la saisie, prière de vérifier les données.',
+        'helper'    => 'Sélection d\'un type d\'entité. Si aucun type n\'apparaît, cela signifie que tu n\'as pas les permissions nécessaires pour créer des entités dans cette campagne.',
         'success'   => 'Nouvelle entité \':link\' créée.',
         'title'     => 'Nouvelle Entité',
     ],

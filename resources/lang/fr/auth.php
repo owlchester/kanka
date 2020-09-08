@@ -41,7 +41,7 @@ return [
         ],
         'errors'                    => [
             'email_already_taken'   => 'Un compte avec cette adresse email est déjà enregistré.',
-            'general_error'         => 'Une erreure est survenue lors de la création du compte. Merci de ressayer.',
+            'general_error'         => 'Une erreur est survenue lors de la création du compte. Merci de ressayer.',
         ],
         'fields'                    => [
             'email'     => 'Adresse email',
@@ -55,7 +55,7 @@ return [
         'submit'                    => 'S\'inscrire',
         'title'                     => 'Inscription',
         'welcome_email'             => [
-            'header'        => 'Bienvenue à Kanka :name!',
+            'header'        => 'Bienvenue sur Kanka :name!',
             'header_sub'    => 'Félicitations, tu as fait le premier pas dans la création de ton monde sur :kanka!',
             'section_1'     => 'Que faire maintenant?',
             'section_10'    => 'Patrons',

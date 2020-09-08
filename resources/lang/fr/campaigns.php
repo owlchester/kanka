@@ -69,8 +69,8 @@ TEXT
     'following'                         => 'Suivant',
     'helpers'                           => [
         'boost_required'                => 'Cette fonctionnalité requiert une campagne boostée. Plus d\'info sur la page :settings.',
-        'boosted'                       => 'Cette campagne est boostée ce qui active certaines fonctionalités. Plus de détails sur la page :settings.',
-        'css'                           => 'Définir du code CSS pour la campagne qui sera chargé sur chaque page. Abuser de cette fonctionalité peut mener à une suppression du CSS. Les abus répétés peuvent mener à une suppression de la campagne.',
+        'boosted'                       => 'Cette campagne est boostée ce qui active certaines fonctionnalités. Plus de détails sur la page :settings.',
+        'css'                           => 'Définir du code CSS pour la campagne qui sera chargé sur chaque page. Abuser de cette fonctionnalité peut mener à une suppression du CSS. Les abus répétés peuvent mener à une suppression de la campagne.',
         'entity_personality_visibility' => 'Lorsqu\'une nouvelle entité est créée, l\'option "Privé" sera automatiquement sélectionnée.',
         'entity_visibility'             => 'Lorsqu\'une nouvelle entité est créée, l\'option "Privé" sera automatiquement sélectionnée.',
         'excerpt'                       => 'L\'extrait de la campagne apparait sur le tableau de bord.',
@@ -171,7 +171,7 @@ TEXT
             'switch'=> 'Basculer vers cet utilisateur',
         ],
         'impersonating'         => [
-            'message'   => 'Tu visualises la campagne en tant qu\'un autre utilisateur. Certaines fonctionalités ont été désactivées, mais le reste réagit exactement tel que l\'utilisateur le verrait. Tu peux revenir à ton utilisateur en cliquant sur le bouton "Retour à mon compte" situé à l\'emplacement du bouton de déconnexion.',
+            'message'   => 'Tu visualises la campagne en tant qu\'un autre utilisateur. Certaines fonctionnalités ont été désactivées, mais le reste réagit exactement tel que l\'utilisateur le verrait. Tu peux revenir à ton utilisateur en cliquant sur le bouton "Retour à mon compte" situé à l\'emplacement du bouton de déconnexion.',
             'title'     => 'Se faisant passer pour :name',
         ],
         'invite'                => [
@@ -286,7 +286,7 @@ TEXT
         'actions'       => [
             'enable'    => 'Activer',
         ],
-        'boosted'       => 'Cette fonctionalité est actuellement en beta et seulement accessible pour les :boosted.',
+        'boosted'       => 'Cette fonctionnalité est actuellement en beta et seulement accessible pour les :boosted.',
         'description'   => 'Activer ou désactiver des modules de la campagne.',
         'edit'          => [
             'success'   => 'Campagne modifiée.',

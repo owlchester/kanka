@@ -38,7 +38,7 @@ return [
         'location'  => 'Choix d\'un lieu',
         'name'      => 'Nom de l\'objet',
         'price'     => 'Prix de l\'objet',
-        'size'      => 'Taille, poid, dimensions.',
+        'size'      => 'Taille, poids, dimensions.',
         'type'      => 'Arme, Potion, Coffre',
     ],
     'quests'        => [

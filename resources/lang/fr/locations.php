@@ -3,7 +3,7 @@
 return [
     'characters'    => [
         'description'   => 'Personnages qui se trouvent dans ce lieu.',
-        'title'         => 'Personnages situé dans :name',
+        'title'         => 'Personnages situés dans :name',
     ],
     'create'        => [
         'description'   => 'Créer un nouveau lieu',
@@ -18,7 +18,7 @@ return [
         'title'     => 'Modifier Lieu :name',
     ],
     'events'        => [
-        'description'   => 'Evénements qui se sont déroulé dans ce lieu.',
+        'description'   => 'Evénements qui se sont déroulés dans ce lieu.',
         'title'         => 'Evénements du lieu :name',
     ],
     'families'      => [
@@ -28,7 +28,7 @@ return [
         'characters'        => 'Personnages',
         'image'             => 'Image',
         'is_map_private'    => 'Carte Privée',
-        'location'          => 'Lieu Parentale',
+        'location'          => 'Lieu Parent',
         'locations'         => 'Lieux',
         'map'               => 'Carte',
         'name'              => 'Nom',
@@ -36,8 +36,8 @@ return [
         'type'              => 'Type',
     ],
     'helpers'       => [
-        'characters'        => 'Afficher tous les personnages dans ce lieu et sous-lieux, ou simplement ceux directement ceux qui sont ici.',
-        'descendants'       => 'Cette liste contient tous les lieux qui sont descendants de celui-ci, pas uniquement ceux directes.',
+        'characters'        => 'Afficher tous les personnages dans ce lieu et sous-lieux, ou seulement ceux qui sont ici.',
+        'descendants'       => 'Cette liste contient tous les lieux descendants de celui-ci, pas uniquement les descendants directs.',
         'families'          => 'Un lien peut être le siège d\'une puissante famille.',
         'map'               => 'Ajouter une carte au lieu permet ensuite d\'ajouter des "Points" sur la carte, liant vers d\'autres entités de la campagne.',
         'map_deprecated_2'  => 'Les cartes ont désormais leur propre module! Les anciennes cartes peuvent toujours être modifiées, mais toutes les nouvelles cartes vont dans le module de Carte.',
@@ -61,7 +61,7 @@ return [
         'title'         => 'Objets du lieu :name',
     ],
     'journals'      => [
-        'description'   => 'Journaux écrit dans ce lieu.',
+        'description'   => 'Journaux écrits dans ce lieu.',
         'title'         => 'Journaux du lieu :name',
     ],
     'locations'     => [
@@ -82,10 +82,10 @@ return [
             'zoom_out'          => 'Dézoomer',
             'zoom_reset'        => 'Réinitialiser la vue',
         ],
-        'helper'    => 'Appuyes sur la carte pour ajouter un lien vers un lieu, ou appuie sur un lien pour le supprimer.',
+        'helper'    => 'Appuie sur la carte pour ajouter un lien vers un lieu, ou appuie sur un lien pour le supprimer.',
         'helpers'   => [
             'admin' => 'Cliquer pour activer le mode d\'édition qui permet d\'appuyer sur la carte pour ajouter de nouveaux points, appuyer sur des points pour les modifier, ou pour les déplacer.',
-            'info'  => 'Plus d\'infos sur le cartes.',
+            'info'  => 'Plus d\'infos sur les cartes.',
             'label' => 'Ce point est un label. Rien de plus, rien de moins.',
             'view'  => 'Appuyer sur un point pour voir les détails de celui-ci. Utiliser Ctrl+Zoom pour agrandir ou rétrécir la carte.',
         ],
@@ -98,8 +98,8 @@ return [
         'points'    => [
             'empty_label'   => 'Point sans nom',
             'fields'        => [
-                'axis_x'    => 'Axis X',
-                'axis_y'    => 'Axis Y',
+                'axis_x'    => 'Axe X',
+                'axis_y'    => 'Axe Y',
                 'colour'    => 'Couleur de fond',
                 'icon'      => 'Icône',
                 'name'      => 'Label',
@@ -134,7 +134,7 @@ return [
                 'entity'        => 'Image de l\'entité cible',
                 'fire'          => 'Feu',
                 'flask'         => 'Fiole',
-                'flower'        => 'Fleure',
+                'flower'        => 'Fleur',
                 'horseshoe'     => 'Fer à cheval',
                 'hourglass'     => 'Sablier',
                 'hydra'         => 'Hydre',
@@ -149,7 +149,7 @@ return [
                 'player'        => 'Personnage',
                 'potion'        => 'Potion',
                 'reactor'       => 'Réacteur',
-                'repair'        => 'Réparature',
+                'repair'        => 'Réparation',
                 'sheep'         => 'Mouton',
                 'shield'        => 'Bouclier',
                 'skull'         => 'Crâne',
@@ -176,7 +176,7 @@ return [
             'return'        => 'Retour à :name',
             'shapes'        => [
                 'circle'    => 'Cercle',
-                'custom'    => 'Personalisé',
+                'custom'    => 'Personnalisé',
                 'square'    => 'Carré',
             ],
             'sizes'         => [
@@ -199,7 +199,7 @@ return [
         'title' => 'Cartes du lieu :name',
     ],
     'organisations' => [
-        'description'   => 'Organisations se situant à ce lieu.',
+        'description'   => 'Organisations se situant dans ce lieu.',
         'title'         => 'Organisations du lieu :name',
     ],
     'panels'        => [

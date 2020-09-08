@@ -3,7 +3,7 @@
 return [
     'create'    => [
         'success'   => 'Vote communautaire créé.',
-        'title'     => 'Créer un nouveau vote communtaire',
+        'title'     => 'Créer un nouveau vote communautaire',
     ],
     'destroy'   => [
         'success'   => 'Vote communautaire supprimé.',

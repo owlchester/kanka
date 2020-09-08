@@ -3,7 +3,7 @@
 return [
     'actions'   => [
         'learn_more'    => 'En savoir plus',
-        'subscribe'     => 'Abonner',
+        'subscribe'     => 'S\'abonner',
     ],
     'fields'    => [
         'firstname'     => 'Prénom',
@@ -15,6 +15,6 @@ return [
         'news'              => 'News',
         'newsletter'        => 'Newsletter',
     ],
-    'headline'  => 'Abonner à une ou toutes nos newsletters pour rester à jours avec Kanka.',
-    'title'     => 'Mises à jours mail',
+    'headline'  => 'S\'abonner à une ou toutes nos newsletters pour rester à jour avec Kanka.',
+    'title'     => 'Mises à jour mail',
 ];
