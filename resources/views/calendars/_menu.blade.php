@@ -26,6 +26,12 @@
                     <br class="clear" />
                 </li>
             @endif
+            @if ($model->calendar)
+                <li class="list-group-item">
+                    <b>{{ trans('calendars.fields.calendar') }}</b> <span class="pull-right">{!! $model->calendar->tooltipedLink() !!}</span>
+                    <br class="clear" />
+                </li>
+            @endif
             @include('entities.components.relations')
             @include('entities.components.attributes')
             @include('entities.components.tags')

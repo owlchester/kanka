@@ -61,6 +61,7 @@ return [
         'title'         => 'Calendar :name Events',
     ],
     'fields'        => [
+        'calendar'              => 'Parent Calendar',
         'colour'                => 'Colour',
         'comment'               => 'Comment',
         'current_day'           => 'Current Day',
@@ -101,6 +102,7 @@ return [
         'is_recurring'      => 'An event can be set to recurring. It will reappear every year on the same date.',
         'months'            => 'Your calendar should have at least 2 months.',
         'moons'             => 'Adding moons will make them show up in the calendar on every full and new moon. If the full moon period is bigger than 10 days, waning and waxing moons will also be displayed.',
+        'parent_calendar'   => 'Giving the calendar a parent calendar will include the reminders and weather effects of the parent calendar.',
         'reset'             => 'Always start the beginning of the month or year on the first week day.',
         'seasons'           => 'Create seasons for your calendar by providing when each of them start. Kanka will take care of the rest.',
         'weekdays'          => 'Set your weekday names. At least 2 weekdays are required.',

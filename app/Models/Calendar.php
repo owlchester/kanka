@@ -24,9 +24,11 @@ use Illuminate\Support\Str;
  * @property string $seasons
  * @property string $moons
  * @property string $reset
+ * @property int $calendar_id
  *
  * @property CalendarEvent[] $calendarEvents
  * @property CalendarWeather[] $calendarWeather
+ * @property Calendar $calendar
  */
 class Calendar extends MiscModel
 {
@@ -66,6 +68,8 @@ class Calendar extends MiscModel
         'leap_year_month', // At the end of month X
         'leap_year_offset', // every X years
         'leap_year_start', // X year is a leap year
+
+        'calendar_id',
     ];
 
     /**
@@ -120,6 +124,7 @@ class Calendar extends MiscModel
         'is_private',
         'tags',
         'has_image',
+        'calendar_id',
     ];
 
     /**
@@ -171,6 +176,14 @@ class Calendar extends MiscModel
     public function calendarWeather()
     {
         return $this->hasMany(CalendarWeather::class, 'calendar_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function calendar()
+    {
+        return $this->belongsTo(Calendar::class);
     }
 
     /**
