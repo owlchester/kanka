@@ -7,6 +7,7 @@
         trans('locations.show.tabs.maps')
     ],
     'mainTitle' => false,
+    'miscModel' => $model,
 ])
 
 @section('content')

@@ -1,5 +1,8 @@
 <?php
-/** @var \App\Models\Campaign $campaign */
+/**
+ * @var \App\Models\Campaign $campaign
+ * @var \App\Models\MiscModel $miscModel
+ */
 $campaign = CampaignLocalization::getCampaign(); ?>
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" @if(app()->getLocale() == 'he') dir="rtl" @endif>
@@ -46,7 +49,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
-<body class="skin-black sidebar-mini @if (!empty($campaign) || (auth()->check() && auth()->user()->hasCampaigns()) || (!empty($sidebar) && $sidebar == 'settings')) @else layout-top-nav @endif">
+<body class="skin-black sidebar-mini @if (!empty($campaign) || (auth()->check() && auth()->user()->hasCampaigns()) || (!empty($sidebar) && $sidebar == 'settings')) @else layout-top-nav @endif @if(isset($miscModel) && !empty($miscModel->entity)) kanka-entity-{{ $miscModel->entity->id }} kanka-entity-{{ $miscModel->getEntityType() }} @if(!empty($miscModel->type)) kanka-type-{{ \Illuminate\Support\Str::slug($miscModel->type) }}@endif @endif">
 @include('layouts._tracking-fallback')
     <div id="app" class="wrapper">
         <!-- Header -->

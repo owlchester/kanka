@@ -8,6 +8,7 @@
     ],
     'canonical' => true,
     'mainTitle' => false,
+    'miscModel' => $model,
 ])
 
 @section('content')

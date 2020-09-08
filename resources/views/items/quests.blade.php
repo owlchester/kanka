@@ -6,6 +6,7 @@
         trans('items.show.tabs.quests')
     ],
     'mainTitle' => false,
+    'miscModel' => $model,
 ])
 
 @inject('campaign', 'App\Services\CampaignService')

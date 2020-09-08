@@ -7,6 +7,8 @@
         trans('characters.show.tabs.dice_rolls')
     ],
     'mainTitle' => false,
+    'miscModel' => $model,
+
 ])
 
 @inject('campaign', 'App\Services\CampaignService')

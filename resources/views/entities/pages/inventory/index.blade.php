@@ -9,6 +9,7 @@
         __('crud.tabs.inventory')
     ],
     'mainTitle' => false,
+    'miscModel' => $entity->child,
 ])
 @inject('campaign', 'App\Services\CampaignService')
 
