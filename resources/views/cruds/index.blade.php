@@ -2,7 +2,7 @@
     'title' => trans($name . '.index.title', ['name' => CampaignLocalization::getCampaign()->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route($name . '.index'), 'label' => trans($name . '.index.title')]
+        ['url' => Breadcrumb::index($name), 'label' => trans($name . '.index.title')],
     ],
     'canonical' => true,
 ])
