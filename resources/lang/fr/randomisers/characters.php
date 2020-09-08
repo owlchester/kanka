@@ -33,7 +33,7 @@ return [
         '12'=> 'Dieu',
         '13'=> 'Embarras',
         '14'=> 'Magie',
-        '15'=> 'Alchémie',
+        '15'=> 'Alchimie',
         '16'=> 'Combat',
         '17'=> 'Etre blessé',
         '18'=> 'La trahison',

@@ -32,11 +32,11 @@ return [
         'type'          => 'Type',
     ],
     'helpers'       => [
-        'nested'    => 'Ce mode de navigation permet d\'afficher les étiquettes de manière imbriquée. Les étiquettes sans étiquette parent seront affichés par défaut. Les étiquettes possédant des sous-étiquettes peuvent être cliqués pour afficher ces enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
+        'nested'    => 'Ce mode de navigation permet d\'afficher les étiquettes de manière imbriquée. Les étiquettes sans étiquette parent seront affichés par défaut. Les étiquettes possédant des sous-étiquettes peuvent être cliquées pour afficher leurs enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
     ],
     'hints'         => [
         'children'  => 'Cette liste contient toutes les entités directement dans cette étiquette et toutes les étiquettes enfants.',
-        'tag'       => 'Affiché ci-dessous sont toutes les étiquettes enfants de cette étiquette.',
+        'tag'       => 'Affichées ci-dessous sont toutes les étiquettes enfants de cette étiquette.',
     ],
     'index'         => [
         'actions'       => [

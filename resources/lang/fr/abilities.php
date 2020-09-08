@@ -23,8 +23,8 @@ return [
         'type'      => 'Type',
     ],
     'helpers'       => [
-        'descendants'   => 'Cette liste contient tous les pouvoirs qui sont descendant de ce pouvoir, et pas seulement les descendants directes.',
-        'nested'        => 'Ce mode de naviguation permet d\'afficher les pouvoirs de manière imbriqué. Les pouvoirs sans pouvoir parent seront affichés par défaut. Les pouvoirs possédant des sous-pouvoirs peuvent être cliqués pour afficher ces enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
+        'descendants'   => 'Cette liste contient tous les pouvoirs qui sont descendants de ce pouvoir, et pas seulement les descendants directs.',
+        'nested'        => 'Ce mode de navigation permet d\'afficher les pouvoirs de manière imbriquée. Les pouvoirs sans pouvoir parent seront affichés par défaut. Les pouvoirs possédant des sous-pouvoirs peuvent être cliqués pour afficher ces enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
     ],
     'index'         => [
         'add'           => 'Nouveau pouvoir',

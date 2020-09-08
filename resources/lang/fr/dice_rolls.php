@@ -16,7 +16,7 @@ return [
         'title'         => 'Modifier le jet de dés :name',
     ],
     'fields'        => [
-        'created_at'    => 'Jetté à',
+        'created_at'    => 'Jeté à',
         'name'          => 'Nom',
         'parameters'    => 'Paramètres',
         'results'       => 'Résultats',
@@ -51,7 +51,7 @@ return [
             'result'    => 'Résultat',
         ],
         'hint'      => 'Tous les jets de ce modèle.',
-        'success'   => 'Dés jettés.',
+        'success'   => 'Dés jetés.',
     ],
     'show'          => [
         'description'   => 'Détails d\'un jet de dés',

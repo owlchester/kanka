@@ -2,7 +2,7 @@
 
 return [
     'create'        => [
-        'success'   => 'Élément ajouter à la chronologie.',
+        'success'   => 'Élément ajouté à la chronologie.',
         'title'     => 'Nouvel élément de chronologie',
     ],
     'delete'        => [
@@ -18,7 +18,7 @@ return [
         'icon'  => 'Icône',
     ],
     'helpers'       => [
-        'icon'  => 'Copier le HTML d\'une icône depui :fontawesome ou :rpgawesome.',
+        'icon'  => 'Copier le HTML d\'une icône depuis :fontawesome ou :rpgawesome.',
     ],
     'placeholders'  => [
         'date'      => 'ex. Le 42 Mars, ou 1332-1337',
