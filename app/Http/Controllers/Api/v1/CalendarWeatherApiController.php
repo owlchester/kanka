@@ -49,8 +49,9 @@ class CalendarWeatherApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $calendar);
-        $model = CalendarWeather::create($request->all());
-        $model->calendar_id = $calendar->id;
+        $data = $request->all();
+        $data['calendar_id'] = $calendar->id;
+        $model = CalendarWeather::create($data);
         return new Resource($model);
     }
 
