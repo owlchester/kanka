@@ -20,7 +20,7 @@ return [
         'position'  => 'Position',
     ],
     'helper'        => [
-        'amount'            => 'Ajouter jusqu\'à :amount couches sur une carte pour changer l\'image affichée sour les marqueurs.',
+        'amount'            => 'Ajouter jusqu\'à :amount couches sur une carte pour changer l\'image affichée sous les marqueurs.',
         'boosted_campaign'  => 'Les :boosted peuvent avoir jusqu\'à :amount couches.',
     ],
     'placeholders'  => [

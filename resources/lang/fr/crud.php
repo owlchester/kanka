@@ -20,7 +20,7 @@ return [
     ],
     'add'               => 'Ajouter',
     'alerts'            => [
-        'copy_mention'  => 'La mention avancée de cette entité a été copier au presse-papier.',
+        'copy_mention'  => 'La mention avancée de cette entité a été copiée au presse-papier.',
     ],
     'attributes'        => [
         'actions'       => [
@@ -30,7 +30,7 @@ return [
         ],
         'fields'        => [
             'attribute'             => 'Attribut',
-            'community_templates'   => 'Modèles Communautaire',
+            'community_templates'   => 'Modèles Communautaires',
             'is_private'            => 'Attributs privés',
             'is_star'               => 'Épinglé',
             'template'              => 'Modèle',
@@ -48,7 +48,7 @@ return [
         ],
         'placeholders'  => [
             'attribute' => 'Nombre de quêtes, niveau de difficulté, initiative, population',
-            'block'     => 'Nom du bloque',
+            'block'     => 'Nom du bloc',
             'checkbox'  => 'Nom de la case à cocher',
             'section'   => 'Nom de la section',
             'template'  => 'Sélectionner un modèle',
@@ -60,7 +60,7 @@ return [
         ],
         'types'         => [
             'attribute' => 'Attribut',
-            'block'     => 'Block',
+            'block'     => 'Bloc',
             'checkbox'  => 'Case à cocher',
             'section'   => 'Section',
             'text'      => 'Texte multiligne',
@@ -79,7 +79,7 @@ return [
             'edit'  => 'Opération de masse',
         ],
         'age'           => [
-            'helper'    => 'Il est possible de préfixer le numéro avec + ou - pour modifier l\'age dynamiquement.',
+            'helper'    => 'Il est possible de préfixer le numéro avec + ou - pour modifier l\'âge dynamiquement.',
         ],
         'delete'        => [
             'title'     => 'Suppression de plusieurs entités',
@@ -94,7 +94,7 @@ return [
             'title'     => 'Modifications de plusieurs entités',
         ],
         'errors'        => [
-            'admin'     => 'Seulement les membres administrateur de la campagne peuvent changer le status des entités.',
+            'admin'     => 'Seulement les membres administrateur de la campagne peuvent changer le statut des entités.',
             'general'   => 'Un problème est survenu lors de l\'exécution. Prière de ressayer de nouveau ou nous contacter en cas de problème persistant. Message d\'erreur: :hint.',
         ],
         'permissions'   => [
@@ -102,7 +102,7 @@ return [
                 'override'  => 'Remplacer',
             ],
             'helpers'   => [
-                'override'  => 'Si sélectionné, les permissions des entités sélectionnées seront remplacer par ceux-ci. Si non-sélectionné, les permissions sélectionnées seront ajoutées à celles existantes.',
+                'override'  => 'Si sélectionné, les permissions des entités sélectionnées seront remplacées par celles-ci. Si non-sélectionné, les permissions sélectionnées seront ajoutées à celles existantes.',
             ],
             'title'     => 'Changer les permissions pour plusieurs entités',
         ],
@@ -132,20 +132,20 @@ return [
     'delete_modal'      => [
         'close'         => 'Fermer',
         'delete'        => 'Supprimer',
-        'description'   => 'Est-tu sûr de vouloir supprimer :tag?',
+        'description'   => 'Es-tu sûr de vouloir supprimer :tag?',
         'mirrored'      => 'Supprimer la relation liée.',
-        'title'         => 'Confirmation la suppression',
+        'title'         => 'Confirmation de la suppression',
     ],
     'destroy_many'      => [
         'success'   => ':count élément supprimé.|:count éléments supprimés.',
     ],
     'edit'              => 'Modifier',
     'errors'            => [
-        'boosted'                       => 'Cette fonctionalité n\'est que accessible pour aux campagnes boostées..',
+        'boosted'                       => 'Cette fonctionnalité n\'est accessible qu\'aux campagnes boostées..',
         'node_must_not_be_a_descendant' => 'Node invalide (étiquette, lieu parent): l\'entité serait un descendant de lui-même.',
     ],
     'events'            => [
-        'hint'  => 'Les événements de calendrier peuvent être associé à cette entité et être affiché ici.',
+        'hint'  => 'Les événements de calendrier peuvent être associés à cette entité et être affichés ici.',
     ],
     'export'            => 'Export',
     'fields'            => [
@@ -194,9 +194,9 @@ return [
             'max'       => 'Nombre maximal de fichier (:max) atteint pour cette entité.',
             'no_files'  => 'Aucun fichier.',
         ],
-        'files'     => 'Fichiers uploadé',
+        'files'     => 'Fichiers uploadés',
         'hints'     => [
-            'limit'         => 'Chaque entité peut avoir un nombre maximal de :max fichiers uploadé.',
+            'limit'         => 'Chaque entité peut avoir un nombre maximal de :max fichiers uploadés.',
             'limitations'   => 'Formats supportés: :formats. Taille maximale: :size',
         ],
         'title'     => 'Fichiers d\'entité pour :name',
@@ -205,7 +205,7 @@ return [
     'filters'           => [
         'all'       => 'Afficher tous les descendants',
         'clear'     => 'Effacer les filtres',
-        'direct'    => 'Affichier seulement descendants directs',
+        'direct'    => 'Afficher seulement les descendants directs',
         'filtered'  => 'Affichant :count de :total :entity.',
         'hide'      => 'Cacher les filtres',
         'options'   => [
@@ -217,7 +217,7 @@ return [
         'sorting'   => [
             'asc'       => ':field ascendant',
             'desc'      => ':field descendant',
-            'helper'    => 'Controler l\'ordre d\'affichage des résultats.',
+            'helper'    => 'Contrôler l\'ordre d\'affichage des résultats.',
         ],
         'title'     => 'Filtres',
     ],
@@ -229,16 +229,16 @@ return [
     ],
     'hidden'            => 'Caché',
     'hints'             => [
-        'attribute_template'    => 'Appliquer un modèl d\'attribut lors de la création ou l\'édition de cette entité.',
+        'attribute_template'    => 'Appliquer un modèle d\'attribut lors de la création ou l\'édition de cette entité.',
         'calendar_date'         => 'Une date de calendrier permet un triage plus facile dans les listes, et garde à jour un événement de calendrier dans le calendrier sélectionné.',
-        'header_image'          => 'Cette image s\'affiche au dela de l\'entité. Les images larges mènent a un meilleur résultat.',
+        'header_image'          => 'Cette image s\'affiche au-delà de l\'entité. Les images larges mènent a un meilleur résultat.',
         'image_limitations'     => 'Formats supportés: jpg, png et gif. Taille max: :size.',
         'image_patreon'         => 'Augmenter la taille limite?',
         'is_private'            => 'Cacher des membres de type non-Admin',
         'is_star'               => 'Les éléments épinglés sont affichés sur le menu de l\'entité.',
         'map_limitations'       => 'Formats supportés: jpg, png, gif et svg. Taille maximale: :size.',
-        'tooltip'               => 'Remplace l\'infobulle automatiquement généré avec le text ci-dessous.',
-        'visibility'            => 'Si la visibilité est définie à Admin, seuls les membres du rôle Admin de la campagne verront ceci. La visibilité "Soit-même" signifie que seulement tu peux le voir.',
+        'tooltip'               => 'Remplace l\'infobulle automatiquement généré avec le texte ci-dessous.',
+        'visibility'            => 'Si la visibilité est définie à Admin, seuls les membres du rôle Admin de la campagne verront ceci. La visibilité "Soi-même" signifie que tu es le seul à le voir.',
     ],
     'history'           => [
         'created'       => 'Créé par <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
@@ -256,7 +256,7 @@ return [
     'linking_help'      => 'Comment lier vers d\'autres éléments?',
     'manage'            => 'Gérer',
     'move'              => [
-        'description'   => 'Déplacer cet élément à un nouveau endroit',
+        'description'   => 'Déplacer cet élément vers un nouvel endroit',
         'errors'        => [
             'permission'        => 'Droits insuffisants pour créer une entité de ce type dans la campagne sélectionnée.',
             'same_campaign'     => 'Une autre campagne doit être sélectionnée pour y déplacer l\'entité.',
@@ -269,7 +269,7 @@ return [
         ],
         'hints'         => [
             'campaign'  => 'Il est aussi possible de déplacer cette entité vers une autre campagne.',
-            'copy'      => 'Activer cette option créé une copie dans la nouvelle campagne.',
+            'copy'      => 'Activer cette option crée une copie dans la nouvelle campagne.',
             'target'    => 'Attention! Certaines informations peuvent être perdues lors du déplacement d\'un élément.',
         ],
         'success'       => 'Elément :name déplacé.',
@@ -277,7 +277,7 @@ return [
         'title'         => 'Déplacer :name autre part',
     ],
     'new_entity'        => [
-        'error' => 'Vérifier les valeures.',
+        'error' => 'Vérifier les valeurs.',
         'fields'=> [
             'name'  => 'Nom',
         ],
@@ -389,8 +389,8 @@ return [
     'view'              => 'Voir',
     'visibilities'      => [
         'admin'         => 'Admin',
-        'admin-self'    => 'Sois-même & Admin',
+        'admin-self'    => 'Soi-même & Admin',
         'all'           => 'Tous',
-        'self'          => 'Sois-même',
+        'self'          => 'Soi-même',
     ],
 ];

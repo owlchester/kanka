@@ -6,7 +6,7 @@ return [
     ],
     'create'    => [
         'error'     => 'Problème lors de la sauvegarde. Est-ce que :type est déjà créé?',
-        'success'   => 'Image par défaut pour :type créé.',
+        'success'   => 'Image par défaut pour :type créée.',
         'title'     => 'Nouvelle image par défaut',
     ],
     'destroy'   => [

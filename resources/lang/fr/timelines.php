@@ -6,7 +6,7 @@ return [
         'back'          => 'Retour à :name',
         'edit'          => 'Modifier la chronologie',
         'reorder'       => 'Réordonner',
-        'save_order'    => 'Enregister les changements',
+        'save_order'    => 'Enregistrer les changements',
     ],
     'create'        => [
         'success'   => 'La chronologie :name a été créée.',
@@ -28,7 +28,7 @@ return [
     ],
     'helpers'       => [
         'reorder'       => 'Glisser déposer les éléments de l\'ère pour les réorganiser.',
-        'reverse_order' => 'Activer pour afficher les ères dans le sense chronologie inversé (plus ancien en premier)',
+        'reverse_order' => 'Activer pour afficher les ères dans le sens chronologique inversé (plus ancien en premier)',
     ],
     'index'         => [
         'add'   => 'Nouvelle chronologie',

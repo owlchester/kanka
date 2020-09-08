@@ -22,8 +22,8 @@ return [
         'type'      => 'Entité Type',
     ],
     'helpers'       => [
-        'entity'    => 'Mettre en place ce liens de menu pour aller directement sur une entité. Le champs :tab control quel onglet est ouvert. Le champs :menu control quel sous-menu est affiché.',
-        'position'  => 'Ce champ control dans quel ordre les liens de menus apparaissent.',
+        'entity'    => 'Mettre en place ce lien de menu pour aller directement sur une entité. Le champ :tab contrôle quel onglet est ouvert. Le champ :menu contrôle quel sous-menu est affiché.',
+        'position'  => 'Ce champ contrôle dans quel ordre les liens de menus apparaissent.',
         'type'      => 'Définir ce lien de menu pour aller directement sur une liste d\'entité. Pour filtrer les résultats, il faut copier l\'url de la page filtrée après le :? de l\'url dans le champs :filter.',
     ],
     'index'         => [
