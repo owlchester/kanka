@@ -1,8 +1,8 @@
-FROM php:7.2-apache
+FROM php:7.3-apache
 
 RUN apt-get update \
-    && apt-get install -y git zip authbind vim libpng-dev\
-    && docker-php-ext-install -j$(nproc) pdo_mysql bcmath gd mysqli \
+    && apt-get install -y git zip authbind vim libpng-dev libzip-dev libpq-dev \
+    && docker-php-ext-install -j$(nproc) bcmath gd pdo_mysql mysqli pdo_pgsql pgsql zip \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
 
