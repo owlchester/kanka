@@ -98,7 +98,7 @@ TEXT
         'question'  => 'Kann ich festlegen, dass die Listen standardmäßig verschachtelt sind?',
     ],
     'organise_play'         => [
-        'answer'    => 'Wir haben eine Partnerschaft mit :lfgm geschlossen, mit der Sie Ihre Sitzungen mit Ihrer Gruppe organisieren können. Sie können Ihre Kanka-Kampagne mit Ihrer LGFM-Kampagne synchronisieren, um Ihre nächsten Verfügbarkeiten direkt im Kampagnen-Dashboard anzuzeigen.',
+        'answer'    => 'Wir haben eine Partnerschaft mit :lfgm geschlossen, mit der Sie Ihre Sitzungen mit Ihrer Gruppe organisieren können. Sie können Ihre Kanka-Kampagne mit Ihrer LFGM-Kampagne synchronisieren, um Ihre nächsten Verfügbarkeiten direkt im Kampagnen-Dashboard anzuzeigen.',
         'question'  => 'Wie kann ich verwalten, während ich meine Sitzungen ausführe?',
     ],
     'permissions'           => [

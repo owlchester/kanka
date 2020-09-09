@@ -93,7 +93,7 @@ TEXT
         'question'  => 'Can I set the lists to be nested by default?',
     ],
     'organise_play'         => [
-        'answer'    => 'We\'ve partnered with :lfgm which allows you to organise your sessions with your group. You can sync your Kanka campaign with your LGFM campaign to show your next availabilities directly on the campaign dashboard.',
+        'answer'    => 'We\'ve partnered with :lfgm which allows you to organise your sessions with your group. You can sync your Kanka campaign with your LFGM campaign to show your next availabilities directly on the campaign dashboard.',
         'question'  => 'How can I manage when I run my sessions?',
     ],
     'permissions'           => [
