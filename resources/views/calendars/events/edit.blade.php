@@ -18,6 +18,13 @@
         <div class="panel-body">
             @include('partials.errors')
 
+            @if (!empty($from))
+                <div class="alert alert-warning">
+                    {!! __('calendars.event.helpers.other_calendar', ['calendar' => $from->tooltipedLink()]) !!}
+
+                </div>
+            @endif
+
             {!! Form::model($entityEvent, ['method' => 'PATCH', 'route' => ['entities.entity_events.update', $entity->id, $entityEvent->id], 'data-shortcut' => '1']) !!}
             @include('calendars.events._form')
 

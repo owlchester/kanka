@@ -169,6 +169,7 @@ Route::group([
         Route::get('/events/{event}/map-points', 'EventController@mapPoints')->name('events.map-points');
 
         // Calendar
+        Route::get('/calendars/tree', 'CalendarController@tree')->name('calendars.tree');
         Route::get('/calendars/{calendar}/event', 'CalendarController@event')->name('calendars.event.create');
         Route::post('/calendars/{calendar}/event', 'CalendarController@eventStore')->name('calendars.event.store');
         Route::get('/calendars/{calendar}/month-list', 'CalendarController@monthList')->name('calendars.month-list');

@@ -10,12 +10,15 @@ use App\Models\Calendar;
 use App\Models\CalendarEvent;
 use App\Models\Tag;
 use App\Services\CalendarService;
+use App\Traits\TreeControllerTrait;
 use Illuminate\Http\Request;
 use Response;
 use Illuminate\Support\Facades\Session;
 
 class CalendarController extends CrudController
 {
+    use TreeControllerTrait;
+    
     /**
      * @var string
      */

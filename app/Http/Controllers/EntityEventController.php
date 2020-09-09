@@ -11,6 +11,7 @@ use App\Models\EntityEvent;
 use App\Services\CalendarService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class EntityEventController extends Controller
 {
@@ -105,6 +106,10 @@ class EntityEventController extends Controller
         $calendar = $entityEvent->calendar;
         $ajax = request()->ajax();
         $next = request()->get('next', null);
+        $from = request()->get('from', null);
+        if (!empty($from)) {
+            $from = Calendar::find($from);
+        }
 
         return view('calendars.events.edit', compact(
             'entity',
@@ -114,7 +119,8 @@ class EntityEventController extends Controller
             'route',
             'parent',
             'ajax',
-            'next'
+            'next',
+            'from'
         ));
     }
 
@@ -129,7 +135,7 @@ class EntityEventController extends Controller
     {
         $this->authorize('update', $entityEvent->calendar);
 
-        $routeOptions = [$entityEvent->calendar->id, 'year' => request()->post('year')];
+        $routeOptions = ['calendar' => $entityEvent->calendar->id, 'year' => request()->post('year')];
         $entityEvent->update($request->all());
 
         if (request()->has('layout')) {
@@ -147,6 +153,9 @@ class EntityEventController extends Controller
             return redirect()
                 ->to($entity->url('show', 'tab_calendars'))
                 ->with('success', trans('calendars.event.edit.success'));
+        } elseif (Str::startsWith($next, 'calendar.')) {
+            $id = Str::after($next, 'calendar.');
+            $routeOptions['calendar'] = $id;
         }
 
         return redirect()->route('calendars.show', $routeOptions)

@@ -861,13 +861,7 @@ class CalendarRenderer
      */
     public function buildWeather()
     {
-        $weathers = $this->calendar->calendarWeather()->year($this->currentYear())->get();
-
-        /** @var CalendarWeather $weather */
-        foreach ($weathers as $weather) {
-            $this->weather[$weather->year . '-' . $weather->month . '-' . $weather->day] = $weather;
-        }
-
+        // First build parent weather, and override with local weather
         if ($this->calendar->calendar) {
             $weathers = $this->calendar->calendar->calendarWeather()->year($this->currentYear())->get();
 
@@ -875,6 +869,13 @@ class CalendarRenderer
             foreach ($weathers as $weather) {
                 $this->weather[$weather->year . '-' . $weather->month . '-' . $weather->day] = $weather;
             }
+        }
+
+        $weathers = $this->calendar->calendarWeather()->year($this->currentYear())->get();
+
+        /** @var CalendarWeather $weather */
+        foreach ($weathers as $weather) {
+            $this->weather[$weather->year . '-' . $weather->month . '-' . $weather->day] = $weather;
         }
     }
 

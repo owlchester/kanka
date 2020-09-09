@@ -48,7 +48,8 @@ class CalendarWeather extends Model
         'effect',
         'day',
         'month',
-        'year'
+        'year',
+        'visibility',
     ];
 
     /**

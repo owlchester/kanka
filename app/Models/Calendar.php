@@ -187,6 +187,14 @@ class Calendar extends MiscModel
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function calendars()
+    {
+        return $this->hasMany(Calendar::class);
+    }
+
+    /**
      * @param int $take
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection
      */

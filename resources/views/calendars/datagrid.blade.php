@@ -13,6 +13,13 @@
         'name',
         'type',
         [
+            'label' => __('calendars.fields.date'),
+            'render' => function($model) {
+                return $model->date;
+            },
+            'disableSort' => true,
+        ],
+        [
             'type' => 'is_private',
         ]
     ],

@@ -46,7 +46,7 @@
                         <?php /** @var \App\Models\EntityEvent $event */?>
                         <div class="label calendar-event-block {{ $event->getLabelColour() }}"
                             @if ($canEdit)
-                                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_events.edit', [$event->entity->id, $event->id]) }}"
+                                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_events.edit', ($event->calendar_id !== $model->id ? [$event->entity->id, $event->id, 'from' => $model->calendar_id, 'next' => 'calendar.' . $model->id] : [$event->entity->id, $event->id])) }}"
                             @else
                                 data-url="{{ $event->entity->url() }}"
                             @endif
