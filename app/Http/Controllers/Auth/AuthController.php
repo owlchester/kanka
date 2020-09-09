@@ -92,7 +92,7 @@ class AuthController extends Controller
         }
 
         // Only allow creating if it's set that way
-        if (env('APP_REGISTRATION_ENABLED') === false) {
+        if (!config('auth.register_enabled')) {
             throw new AccessDeniedHttpException('ACCOUNT REGISTRATION DISABLED');
         }
 

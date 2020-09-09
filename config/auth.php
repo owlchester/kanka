@@ -99,4 +99,6 @@ return [
         ],
     ],
 
+
+    'register_enabled' => env('APP_REGISTRATION_ENABLED', false),
 ];

@@ -26,7 +26,7 @@ Route::group([
     // Frontend stuff
     require base_path('routes/front.php');
 
-    Auth::routes();
+    Auth::routes(['register' => config('auth.register_enabled')]);
 
     require base_path('routes/profile.php');
 
