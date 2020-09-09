@@ -200,7 +200,7 @@ class MapMarker extends Model
         if ($this->exploring) {
             return '.bindPopup(`
             <div class="marker-popup-content">
-                <h4 class="marker-header">' . $this->markerTitle(true) . '</h4>
+                <h4 class="marker-header">' . str_replace('`', '\'', $this->markerTitle(true)) . '</h4>
                 <p class="marker-text">' . Mentions::mapAny($this) . '</p>
             </div>
             ' . $body . '`)
@@ -214,7 +214,7 @@ class MapMarker extends Model
 
         return '.bindPopup(`
             <div class="marker-popup-content">
-                <h4 class="marker-header">' . $this->markerTitle(true) . '</h4>
+                <h4 class="marker-header">' . str_replace('`', '\'', $this->markerTitle(true)) . '</h4>
                 <p class="marker-text">' . Mentions::mapAny($this) . '</p>
             </div>
             ' . $body . '
