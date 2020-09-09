@@ -54,7 +54,6 @@ class SubscriptionCancelEmailJob implements ShouldQueue
 
         // Send an email to the user
         Mail::to($user->email)
-            ->bcc('hello@kanka.io')
             ->send(
                 new CancelledUserSubscriptionMail($user, $this->reason)
             );

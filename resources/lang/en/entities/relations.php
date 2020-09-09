@@ -15,7 +15,7 @@ return [
         'target'    => 'Target',
         'two_way'   => 'Create mirror relation',
     ],
-    'helper'        => 'Set up relations between entities with attitudes and visibility. Relations can also be pinned to the entitiy\'s menu.',
+    'helper'        => 'Set up relations between entities with attitudes and visibility. Relations can also be pinned to the entity\'s menu.',
     'hints'         => [
         'attitude'  => 'This optional field can be used to define the default order relations appear in by descending order.',
         'mirrored'  => [
@@ -36,4 +36,8 @@ return [
         'success'   => 'Relation :target updated for :entity.',
         'title'     => 'Update relations for :name',
     ],
+    'teaser'         => 'Boost the campaign to get access to the relations visualiser. Click to learn more about boosted campaigns.',
+    'types' => [
+        'family_member' => 'Family member',
+    ]
 ];

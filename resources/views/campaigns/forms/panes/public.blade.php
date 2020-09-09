@@ -25,7 +25,7 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label>{{ __('campaigns.fields.locale') }}</label>
-                {!! Form::select('locale', $languages->getSupportedLanguagesList(true), \Mcamara\LaravelLocalization\Facades\LaravelLocalization::getCurrentLocale(), ['class' => 'form-control']) !!}
+                {!! Form::select('locale', $languages->getSupportedLanguagesList(true), null, ['class' => 'form-control']) !!}
                 <p class="help-block">{{ __('campaigns.helpers.locale') }}</p>
             </div>
         </div>

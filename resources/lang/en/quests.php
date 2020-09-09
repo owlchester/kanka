@@ -37,6 +37,7 @@ return [
     'fields'        => [
         'character'     => 'Instigator',
         'characters'    => 'Characters',
+        'copy_elements' => 'Copy elements attached to the quest',
         'date'          => 'Date',
         'description'   => 'Description',
         'image'         => 'Image',

@@ -221,7 +221,7 @@ class EntityEvent extends MiscModel
         } else {
             $year = $this->calendar->currentDate('year');
             $month = $this->calendar->currentDate('month');
-            $day = $this->calendar->currentDate('day');
+            $day = (int) $this->calendar->currentDate('date');
         }
 
         $years = $year - $this->year;
@@ -233,6 +233,6 @@ class EntityEvent extends MiscModel
         }
 
         // Same month
-        return $years - ($day < $this->day ? 1 : 0);
+        return $years - ($day > $this->day ? 1 : 0);
     }
 }

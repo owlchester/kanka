@@ -18,7 +18,7 @@ return [
     ],
     'people'        => [
         'iz'        => [
-            'title' => 'Dévelopment Produit',
+            'title' => 'Développement Produit',
         ],
         'jay'       => [
             'text'  => <<<'TEXT'
@@ -31,9 +31,9 @@ TEXT
         ],
         'jon'       => [
             'text'  => <<<'TEXT'
-Jay et moi sommes amis depuis près d'une décennie, et ça  a été une joie de le voir développer Kanka au cours des deux dernières années.
+Jay et moi sommes amis depuis près d'une décennie, et ça a été une joie de le voir développer Kanka au cours des deux dernières années.
 
-Début 2020, j'ai rejoint Jay pour gérer à la fois le développement commercial et le marketing, et je pour rien au monde je ne retournerais en arrière!
+Début 2020, j'ai rejoint Jay pour gérer à la fois le développement commercial et le marketing, et pour rien au monde je ne retournerais en arrière!
 TEXT
 ,
             'title' => 'Co-Foundateur & Business Manager',
@@ -43,12 +43,13 @@ TEXT
         ],
         'ryan'      => [
             'text'  => <<<'TEXT'
-I started using Kanka in early 2018 and was one of the first people to join the Discord. I promptly started making work for Jay by creating a whole list of possible features for the (then upcoming) calendars.
+J'ai commencé à utiliser Kanka début 2018, et un des premiers à rejoinrde le Discord. J'ai rapidement commencé à travailler avec Jay en listant de façon exhaustive les fonctionnalités des calendriers (encore à venir, alors).
 
-Nowdays I help out with the community on Discord and Reddit, and break new versions so you don't have to.
+A présent j'aide la communauté sur discord et reddit, et fait planter les nouvelles versions avant que ça ne t'arrive.
 TEXT
 ,
             'title' => 'Community Manager & Lead QA',
         ],
     ],
 ];
+'

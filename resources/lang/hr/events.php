@@ -20,6 +20,9 @@ return [
         'name'      => 'Naziv',
         'type'      => 'Tip',
     ],
+    'helpers'       => [
+        'date'  => 'Ovo polje može sadržavati bilo što i nije povezano s kalendarima kampanje. Da bi ovaj događaj bio povezan s kalendarom, dodaj ga u kalendar ili na karticu podsjetnika ovog događaja.',
+    ],
     'index'         => [
         'add'           => 'Novi događaj',
         'description'   => 'Upravljanje događajima u :name',

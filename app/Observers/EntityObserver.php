@@ -183,15 +183,6 @@ class EntityObserver
             $entity->reloadChild();
         }
 
-
-        // Creation log
-        $log = new EntityLog();
-        $log->entity_id = $entity->id;
-        $log->created_by = auth()->user()->id;
-        $log->impersonated_by = Identity::getImpersonatorId();
-        $log->action = EntityLog::ACTION_CREATE;
-        $log->save();
-
         if (!request()->has('attr_name')) {
             $this->attributeService->applyEntityTemplates($entity);
         }

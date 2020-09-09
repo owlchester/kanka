@@ -230,7 +230,7 @@ TEXT
         'helper'        => [
             '1' => 'A campaign can have as many roles as wanted. The "Admin" role automatically has access to everything in a campaign, but every other role can have specific permissions on different types of entities (character, location, etc).',
             '2' => 'Entities can have more fine-tuned permissions by viewing the "Permissions" tab of an entity. This tab appears once your campaign has several roles or members.',
-            '3' => 'One can either go with an "opt-out" system, where roles are given access to viewing all of the entities, and use the "Private" checkbox on entities to hide them. Or one can not give roles many permissions, but set each entitity to be visible individually.',
+            '3' => 'One can either go with an "opt-out" system, where roles are given access to viewing all of the entities, and use the "Private" checkbox on entities to hide them. Or one can not give roles many permissions, but set each entity to be visible individually.',
         ],
         'hints'         => [
             'campaign_not_public'   => 'The public role has permissions but the campaign is private. You can change this setting on the Sharing tab when editing the campaign.',
@@ -291,7 +291,7 @@ TEXT
         'edit'          => [
             'success'   => 'Campaign settings updated.',
         ],
-        'helper'        => 'All modules of a campaign can be enabled or disabled at will. Disabling a module will simply hide interface elements related to it, and pre-existing entities will be hidden but still exist in the background, in case you change your mind. These changes affect all users of a campaign, including Admin users.',
+        'helper'        => 'All modules of a campaign can be enabled or disabled at will. Disabling a module will simply hide interface elements related to it, and pre-existing entities will be hidden but still exist in the background, in case you change your mind. These change effect all users of a campaign, including Admin users.',
         'helpers'       => [
             'abilities'     => 'Create abilities, be it feats, spells, or powers that can be assigned to entities.',
             'calendars'     => 'A place to define the calendars of your world.',
@@ -304,7 +304,7 @@ TEXT
             'journals'      => 'Observations written by characters, or session prep for the dungeon master.',
             'locations'     => 'Planets, planes, continents, rivers, states, settlements, temples, taverns.',
             'maps'          => 'Upload maps with layers and markers pointing to other entities in the campaign.',
-            'menu_links'    => 'Set up links to entities or lists of the campaign in the sidebar.',
+            'menu_links'    => 'Custom menu links in the side bar.',
             'notes'         => 'Lore, religions, history, magic, races.',
             'organisations' => 'Cults, military units, factions, guilds.',
             'quests'        => 'To keep track of various quests with characters and locations.',
@@ -327,6 +327,7 @@ TEXT
             'information'       => 'Information',
             'members'           => 'Members',
             'menu'              => 'Menu',
+            'plugins'           => 'Plugins',
             'recovery'          => 'Recovery',
             'roles'             => 'Roles',
             'settings'          => 'Modules',

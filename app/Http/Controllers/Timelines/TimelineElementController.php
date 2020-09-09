@@ -38,6 +38,11 @@ class TimelineElementController extends Controller
         $this->service = $timelineService;
     }
 
+    public function show(Timeline $timeline, TimelineElement $timelineElement)
+    {
+        return redirect()->route('timelines.show', $timeline);
+    }
+
     /**
      * @param Timeline $timeline
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View

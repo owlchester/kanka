@@ -26,7 +26,7 @@ return [
             'cloud-rain'            => 'גשם',
             'cloud-showers-heavy'   => 'גשם כבד',
             'cloud-sun'             => 'מעונן חלקית',
-            'cloud-sun-rain'        => 'גשמים אזוריים',
+            'cloud-sun-rain'        => 'גשמים מקומיים',
             'meteor'                => 'מטאור',
             'smog'                  => 'ערפל',
             'snowflake'             => 'שלג',
@@ -36,7 +36,7 @@ return [
     ],
     'placeholders'  => [
         'effect'        => 'תופעה קסומה או טבעית',
-        'precipitation' => 'כמות מים',
+        'precipitation' => 'כמות משקעים',
         'temperature'   => 'מקסימום ומינימום יומי',
         'wind'          => 'מהירות רוח',
     ],

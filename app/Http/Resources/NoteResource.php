@@ -16,6 +16,7 @@ class NoteResource extends EntityResource
     {
         return $this->entity([
             'type' => $this->type,
+            'note_id' => $this->note_id,
             'is_pinned' => $this->is_pinned
         ]);
     }

@@ -23,6 +23,7 @@ use Illuminate\Support\Str;
  * @property int $longitude
  * @property int $latitude
  * @property string $colour
+ * @property string $font_colour
  * @property int $shape_id
  * @property int $size_id
  * @property int $icon
@@ -58,6 +59,7 @@ class MapMarker extends Model
         'custom_shape',
         'is_draggable',
         'colour',
+        'font_colour',
         'longitude',
         'latitude',
         'opacity',
@@ -187,18 +189,18 @@ class MapMarker extends Model
         $body = null;
         if (!empty($this->entity)) {
             if (!empty($this->name)) { // Name is set, include link to the entity
-                $body .= "<p><a href=\"' . $this->entity->url() . '\">' . e($this->entity->name) . '</a>";
+                $url = $this->entity->url();
+                $body .= "<p><a href=\"$url\">" . $this->entity->name . "</a></p>";
             }
             // No entry field, include the entity tooltip
-            if (empty($this->entry)) {
+            if (empty(trim($this->entry))) {
                 $body .= $this->entity->mappedPreview();
             }
         }
         if ($this->exploring) {
-            return '
-            .bindPopup(`
+            return '.bindPopup(`
             <div class="marker-popup-content">
-                <h4 class="marker-header">' . $this->markerTitle(true) . '</h4>
+                <h4 class="marker-header">' . str_replace('`', '\'', $this->markerTitle(true)) . '</h4>
                 <p class="marker-text">' . Mentions::mapAny($this) . '</p>
             </div>
             ' . $body . '`)
@@ -212,7 +214,7 @@ class MapMarker extends Model
 
         return '.bindPopup(`
             <div class="marker-popup-content">
-                <h4 class="marker-header">' . $this->markerTitle(true) . '</h4>
+                <h4 class="marker-header">' . str_replace('`', '\'', $this->markerTitle(true)) . '</h4>
                 <p class="marker-text">' . Mentions::mapAny($this) . '</p>
             </div>
             ' . $body . '
@@ -293,18 +295,26 @@ class MapMarker extends Model
             return '';
         }
 
-        $icon = '`<i class="fa fa-pin-marker"></i>`';
+        $iconStyles = [];
+        $iconStyles[] = 'background-color: ' . $this->backgroundColour();
+        if ($this->entity && $this->icon == 4) {
+            $entityImage = '<div class="marker-entity" style="background-image: url(' . $this->entity->child->getImageUrl(400) . ');"></div>';
+        }
+
+        $iconShape = '<div style="background-color: ' . $this->backgroundColour() . '" class="marker-pin"></div>';
+
+        $icon = '`' . $iconShape . '<i class="fa fa-pin-marker"></i>`';
         if (!empty($this->custom_icon)) {
             if (Str::startsWith($this->custom_icon, '<i')) {
-                $icon = '`' . $this->custom_icon . '`';
+                $icon = '`' . $iconShape . '' . $this->custom_icon . '`';
             } elseif(Str::startsWith($this->custom_icon, '<?xml')) {
                 $icon = 'L.Util.template(`<div class="custom-icon">' . $this->resizedCustomIcon() . '</div>`)';
             }
         }
         elseif ($this->icon == 2) {
-            $icon = '`<i class="fa fa-question"></i>`';
+            $icon = '`' . $iconShape . '<i class="fa fa-question"></i>`';
         } elseif ($this->icon == 3) {
-            $icon = '`<i class="fa fa-exclamation"></i`';
+            $icon = '`' . $iconShape . '<i class="fa fa-exclamation"></i>`';
         }
 
         return 'icon: L.divIcon({
@@ -400,6 +410,6 @@ class MapMarker extends Model
      */
     public function visible(): bool
     {
-        return empty($this->entity_id) || $this->entity->child;
+        return empty($this->entity_id) || (!empty($this->entity) && !empty($this->entity->child));
     }
 }

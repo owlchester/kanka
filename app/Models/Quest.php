@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $date
  * @property Character $character
  * @property Character[] $characters
+ * @property Location[] $locations
  * @property Quest $quest
  * @property Quest[] $quests
  * @property Item[] $items

@@ -15,12 +15,32 @@
 
 .marker {
   color: white;
-  background-color: rgba(0, 0, 0, 0.5);
-  background-position: 50% 50%;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-color: unset;
   text-align: center;
-  border-radius: 50%;
+}
+
+.marker-pin {
+  width: 40px;
+  height: 40px;
+  border-radius: 50% 50% 50% 0;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 50%;
+  top: 50%;
+  margin: -20px 0 0 -20px;
+
+  &:after {
+    content: '';
+    width: 36px;
+    height: 36px;
+    margin: 2px 0 0 -18px;
+    position: absolute;
+    border-radius: 50%;
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transform: rotate(45deg);
+  }
 }
 
 .marker.custom {
@@ -82,6 +102,9 @@
     max-height: calc(100vh - 60px);
   }
   .sidebar {
+    li {
+      height: unset;
+    }
     a {
       color: #fff;
     }
@@ -137,6 +160,11 @@
     cursor: pointer;
   }
 }
+
+.leaflet-top, .leaflet-bottom {
+  z-index: 800;
+}
+
 @media(min-width: 767px) {
   #map-body {
     .main-sidebar {

@@ -15,6 +15,7 @@ class RelationResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'owner_id' => $this->owner_id,
             'target_id' => $this->target_id,
             'relation' => $this->relation,
@@ -22,6 +23,7 @@ class RelationResource extends JsonResource
             'colour' => $this->colour,
             'is_private' => (bool) $this->is_private,
             'is_star' => (bool) $this->is_star,
+            'mirror_id' => $this->mirror_id,
 
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

@@ -123,33 +123,7 @@ $(document).ready(function() {
 
 
     // Treeview for locations
-    var treeViewLoader = $('#locations-treeview');
-    if (treeViewLoader.length > 0) {
-        treeViewInit('locations');
-    }
-
-    // Treeview for tags
-    if ($('#tags-treeview').length > 0) {
-        treeViewInit('tags');
-    }
-    if ($('#quests-treeview').length > 0) {
-        treeViewInit('quests');
-    }
-    if ($('#organisations-treeview').length > 0) {
-        treeViewInit('organisations');
-    }
-    if ($('#families-treeview').length > 0) {
-        treeViewInit('families');
-    }
-    if ($('#races').length > 0) {
-        treeViewInit('races');
-    }
-    if ($('#abilities').length > 0) {
-        treeViewInit('abilities');
-    }
-    if ($('#maps').length > 0) {
-        treeViewInit('maps');
-    }
+    treeViewInit();
 
     manageTabs();
     manageDashboardNotifications();
@@ -167,6 +141,7 @@ $(document).ready(function() {
     deleteConfirm();
     initTogglePasswordFields();
     initAjaxPagination();
+    initTimelineToggle();
 
     /**
      * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
@@ -205,10 +180,14 @@ function initSelect2() {
 /**
  * Go through table trs to add on click support
  */
-function treeViewInit(element) {
-    var treeViewLoader = $('#' + element + '-treeview');
+function treeViewInit() {
+    var treeViewLoader = $('.list-treeview');
+    if (treeViewLoader.length === 0) {
+        return;
+    }
+
     var link = treeViewLoader.data('url');
-    $.each($('#' + element + ' > tbody > tr'), function(index) {
+    $.each($('.table-nested > tbody > tr'), function(index) {
         var children = $(this).data('children');
         if (parseInt(children) > 0) {
             $(this).addClass('tr-hover');
@@ -434,18 +413,15 @@ function initCopyToClipboard() {
 /**
  * Register the tooltip and tooltip-ajax helper
  */
-function initTooltips()
-{
+function initTooltips() {
     $('[data-toggle="tooltip"]').tooltip();
-
     window.ajaxTooltip();
 }
 
 /**
  * Initiate spectrum for the various fields
  */
-function initSpectrum()
-{
+function initSpectrum() {
     if (!$.isFunction($.fn.spectrum)) {
         return;
     }
@@ -457,8 +433,10 @@ function initSpectrum()
     });
 }
 
-function initSidebar()
-{
+/**
+ *
+ */
+function initSidebar() {
     let toggler = $('.sidebar-campaign .campaign-head .campaign-name');
     if (toggler.length === 0) {
         return;
@@ -467,13 +445,33 @@ function initSidebar()
     let down = $('.sidebar-campaign .campaign-head .campaign-name .fa-caret-down');
 
     toggler.on('click', function(e) {
-        console.log('flippy');
         e.preventDefault();
         if (down.hasClass('flipped')) {
             down.removeClass('flipped');
         } else {
             down.addClass('flipped');
         }
+    });
+}
+
+/**
+ * Timeline toggle support
+ */
+function initTimelineToggle() {
+    $('.timeline-toggle').on('click', function() {
+        let id = $(this).data('short');
+        $('#' + id + "-show").toggle();
+        $('#' + id + "-hide").toggle();
+    });
+
+    $('.timeline-era-reorder').on('click', function(e) {
+        e.preventDefault();
+        let eraId = $(this).data('era-id');
+
+        $('#era-items-' + eraId + '').sortable();
+
+        $(this).parent().hide();
+        $('#era-items-' + eraId + '-save-reorder').show();
     });
 }
 

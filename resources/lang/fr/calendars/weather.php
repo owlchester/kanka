@@ -3,7 +3,7 @@
 return [
     'create'        => [
         'success'   => 'Météo ajoutée.',
-        'title'     => 'Nouveau effet météorologique',
+        'title'     => 'Nouvel effet météorologique',
     ],
     'destroy'       => [
         'success'   => 'Météo supprimée.',
@@ -14,7 +14,7 @@ return [
     ],
     'fields'        => [
         'effect'        => 'Effet',
-        'precipitation' => 'Précipidation',
+        'precipitation' => 'Précipitation',
         'temperature'   => 'Température',
         'weather'       => 'Météo',
         'wind'          => 'Vent',

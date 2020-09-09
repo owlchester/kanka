@@ -23,7 +23,10 @@ class AttributeSearchController extends Controller
 
     public function index(Request $request, Entity $entity)
     {
-        $attributes = $entity->attributes()->where('name', 'LIKE', '%' . $request->get('q') . '%')->get();
+        $attributes = $entity->attributes()
+            ->where('name', 'LIKE', '%' . $request->get('q') . '%')
+            //->whereNotIn('type', ['section'])
+            ->get();
         $data = [];
         foreach ($attributes as $attribute) {
             $data[] = [

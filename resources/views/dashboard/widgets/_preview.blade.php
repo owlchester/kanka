@@ -11,7 +11,7 @@ $specificPreview = 'dashboard.widgets.previews.' . $widget->entity->type;
     @include($specificPreview, ['entity' => $widget->entity])
 @else
 <div class="panel panel-default widget-preview" id="dashboard-widget-{{ $widget->id }}">
-    <div class="panel-heading @if ($widget->conf('entity-header') && $campaign->boosted() && $widget->entity->header_image) panel-heading-entity" style="background-image: url({{ $widget->entity->getImageUrl(0, 0, 'header_image') }}) @elseif ($model->image) panel-heading-entity" style="background-image: url({{ $widget->entity->child->getImageUrl() }}) @endif">
+    <div class="panel-heading @if ($widget->conf('entity-header') && $campaign->boosted() && $widget->entity->header_image) panel-heading-entity" style="background-image: url({{ $widget->entity->getImageUrl(1200, 400, 'header_image') }}) @elseif ($model->image) panel-heading-entity" style="background-image: url({{ $widget->entity->child->getImageUrl() }}) @endif">
         <h3 class="panel-title">
             <a href="{{ $widget->entity->url() }}">
                 @if ($model->is_private)
@@ -36,7 +36,7 @@ $specificPreview = 'dashboard.widgets.previews.' . $widget->entity->type;
         @endif
     </div>
 
-    @if ($widget->entity->type == \App\Models\Entity::TYPE_LOCATION)
+    @if ($widget->entity->typeId() == config('entities.ids.location'))
         @if (!empty($widget->entity->child->map))
             <div class="panel-footer text-right">
                 <a href="{{ $widget->entity->url('map') }}">

@@ -74,7 +74,7 @@ class DatagridRenderer
 
         $this->filterService = $filterService;
 
-        $html = '<table id="' . $this->getOption('baseRoute') . '" class="table table-striped">';
+        $html = '<table id="' . $this->getOption('baseRoute') . '" class="table table-striped' . ($this->nestedFilter ? ' table-nested' : null). '">';
         $html .= '<thead><tr>';
         $html .= $this->renderColumns();
         $html .=  '</tr></thead>';

@@ -5,6 +5,7 @@ return [
         'create'    => 'Create',
         'delete'    => 'Delete',
         'update'    => 'Update',
+        'restore'   => 'Restore',
     ],
     'fields'        => [
         'action'    => 'Action',

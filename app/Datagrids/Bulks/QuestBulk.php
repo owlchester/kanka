@@ -10,7 +10,6 @@ class QuestBulk extends Bulk
         'name',
         'type',
         'character_id',
-        'location_id',
         'completed_choice',
         'tags',
         'private_choice',

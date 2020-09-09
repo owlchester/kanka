@@ -6,6 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Facades\EntityCache;
 use App\Facades\Img;
 use App\Facades\Mentions;
+use App\Models\Concerns\EntityLogs;
 use App\Models\Concerns\Picture;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\SimpleSortableTrait;
@@ -14,6 +15,7 @@ use App\Models\Scopes\EntityScopes;
 use App\Traits\CampaignTrait;
 use App\Traits\EntityAclTrait;
 use App\Traits\TooltipTrait;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
@@ -34,11 +36,13 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property boolean $is_attributes_private
  * @property string $tooltip
  * @property string $header_image
+ *
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Carbon $deleted_at
  */
 class Entity extends Model
 {
-    const TYPE_LOCATION = 'location';
-
     /**
      * @var array
      */
@@ -64,7 +68,9 @@ class Entity extends Model
         TooltipTrait,
         Picture,
         SimpleSortableTrait,
-        SoftDeletes;
+        SoftDeletes,
+        EntityLogs
+    ;
 
     /**
      * Searchable fields
@@ -291,7 +297,7 @@ class Entity extends Model
             return '';
         }
 
-        return Img::crop($width, $height ?? $width)->url($this->$field);
+        return Img::resetCrop()->crop($width, $height ?? $width)->url($this->$field);
     }
 
     /**
@@ -310,6 +316,8 @@ class Entity extends Model
     public function touchSilently()
     {
         return static::withoutEvents(function() {
+            // Still logg who edited the entity
+            $this->updated_by = auth()->user()->id;
             return $this->touch();
         });
     }

@@ -72,6 +72,9 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\Race' => 'App\Policies\RacePolicy',
         'App\Models\Tag' => 'App\Policies\TagPolicy',
         'App\Models\Timeline' => 'App\Policies\TimelinePolicy',
+
+        // Front
+        'App\Models\CommunityEventEntry' => 'App\Policies\CommunityEventEntryPolicy',
     ];
 
     /**

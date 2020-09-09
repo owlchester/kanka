@@ -7,6 +7,7 @@
         trans('races.show.tabs.races')
     ],
     'mainTitle' => false,
+    'miscModel' => $model,
 ])
 
 @inject('campaign', 'App\Services\CampaignService')

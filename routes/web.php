@@ -163,11 +163,13 @@ Route::group([
 
         // Notes
         Route::get('/notes/{note}/map-points', 'NoteController@mapPoints')->name('notes.map-points');
+        Route::get('/notes/tree', 'NoteController@tree')->name('notes.tree');
 
         // Events
         Route::get('/events/{event}/map-points', 'EventController@mapPoints')->name('events.map-points');
 
         // Calendar
+        Route::get('/calendars/tree', 'CalendarController@tree')->name('calendars.tree');
         Route::get('/calendars/{calendar}/event', 'CalendarController@event')->name('calendars.event.create');
         Route::post('/calendars/{calendar}/event', 'CalendarController@eventStore')->name('calendars.event.store');
         Route::get('/calendars/{calendar}/month-list', 'CalendarController@monthList')->name('calendars.month-list');
@@ -184,6 +186,8 @@ Route::group([
         // Attribute multi-save
         Route::post('/entities/{entity}/attributes/saveMany', [\App\Http\Controllers\AttributeController::class, 'saveMany'])->name('entities.attributes.saveMany');
         Route::post('/entities/{entity}/toggle-privacy', [\App\Http\Controllers\Entity\PrivacyController::class, 'toggle'])->name('entities.privacy.toggle');
+
+        Route::get('/entities/{entity}/relations_map', 'Entity\RelationController@map')->name('entities.relations_map');
 
         // Permission save
         Route::post('/campaign_roles/{campaign_role}/savePermissions', 'CampaignRoleController@savePermissions')->name('campaign_roles.savePermissions');
@@ -214,12 +218,10 @@ Route::group([
             'calendars' => 'CalendarController',
             'calendar_event' => 'CalendarEventController',
             'calendars.calendar_weather' => 'Calendar\CalendarWeatherController',
-            //'calendars.relations' => 'CalendarRelationController',
             'campaigns' => 'CampaignController',
             'campaign_users' => 'CampaignUserController',
             'characters' => 'CharacterController',
             'characters.character_organisations' => 'CharacterOrganisationController',
-            //'characters.relations' => 'CharacterRelationController',
             'conversations' => 'ConversationController',
             'conversations.conversation_participants' => 'ConversationParticipantController',
             'conversations.conversation_messages' => 'ConversationMessageController',
@@ -227,7 +229,6 @@ Route::group([
             'dice_roll_results' => 'DiceRollResultController',
             'events' => 'EventController',
             'locations' => 'LocationController',
-            'locations.relations' => 'LocationRelationController',
             'locations.map_points' => 'LocationMapPointController',
             'families' => 'FamilyController',
             'items' => 'ItemController',
@@ -274,6 +275,18 @@ Route::group([
         Route::get('/campaigns/{campaign}/leave', 'CampaignController@leave')->name('campaigns.leave');
         Route::post('/campaigns/{campaign}/campaign_settings', 'CampaignSettingController@save')->name('campaigns.settings.save');
 
+        // Marketplace plugin route
+        if(config('marketplace.enabled')) {
+            Route::get('/plugins', 'Campaign\CampaignPluginController@index')->name('campaign_plugins.index');
+            Route::delete('/plugins/{plugin}/delete', 'Campaign\CampaignPluginController@delete')->name('campaign_plugins.destroy');
+            Route::get('/plugins/{plugin}/enable', 'Campaign\CampaignPluginController@enable')->name('campaign_plugins.enable');
+            Route::get('/plugins/{plugin}/disable', 'Campaign\CampaignPluginController@disable')->name('campaign_plugins.disable');
+            Route::get('/plugins/{plugin}/update', 'Campaign\CampaignPluginController@updateInfo')->name('campaign_plugins.update-info');
+            Route::post('/plugins/{plugin}/update', 'Campaign\CampaignPluginController@update')->name('campaign_plugins.update');
+
+        }
+
+        Route::post('/timelines/{timeline}/timeline-era/{timeline_era}/reorder', 'Timelines\TimelineEraController@reorder')->name('timelines.reorder');
         // Old Search
         Route::get('/search', 'SearchController@search')->name('search');
 
@@ -368,6 +381,7 @@ Route::group([
         Route::get('/campaign/export', 'CampaignExportController@index')->name('campaign_export');
         Route::post('/campaign/export', 'CampaignExportController@export')->name('campaign_export.save');
         Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');
+        Route::get('/campaign_plugin.styles', 'Campaign\CampaignPluginController@css')->name('campaign_theme.css');
 
 
 

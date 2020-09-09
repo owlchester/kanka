@@ -34,7 +34,7 @@ class MapGroupController extends Controller
         $this->authorize('update', $map);
 
         $model = new MapGroup();
-        $data = $request->only('name', 'position', 'entry', 'visibility');
+        $data = $request->only('name', 'position', 'entry', 'visibility', 'is_shown');
         $data['map_id'] = $map->id;
         $new = $model->create($data);
 
@@ -61,7 +61,7 @@ class MapGroupController extends Controller
     {
         $this->authorize('update', $map);
 
-        $mapGroup->update($request->only('name', 'position', 'entry', 'visibility'));
+        $mapGroup->update($request->only('name', 'position', 'entry', 'visibility', 'is_shown'));
 
         return redirect()
             ->route('maps.edit', [$map, '#tab_form-groups'])

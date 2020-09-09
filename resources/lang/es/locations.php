@@ -7,14 +7,14 @@ return [
     ],
     'create'        => [
         'description'   => 'Crear nuevo lugar',
-        'success'       => 'Lugar \':name\' creado.',
+        'success'       => 'Lugar ":name" creado.',
         'title'         => 'Nuevo lugar',
     ],
     'destroy'       => [
-        'success'   => 'Lugar \':name\' borrado.',
+        'success'   => 'Lugar ":name" eliminado.',
     ],
     'edit'          => [
-        'success'   => 'Lugar \':name\' actualizado.',
+        'success'   => 'Lugar ":name" actualizado.',
         'title'     => 'Editar lugar :name',
     ],
     'events'        => [
@@ -41,6 +41,7 @@ return [
         'families'          => 'Hay lugares donde se asientan poderosas familias.',
         'map'               => 'Al añadir un mapa a un lugar, podrás crear puntos en él y enlazar a otras entidades de la campaña.',
         'map_deprecated'    => '¡Los mapas son ahora un módulo por sí mismos! Esta nueva función está actualmente disponible como acceso temprano a las :boosted. La interfaz previa dejará de estar disponible cuando se abra el acceso al nuevo módulo, pero seguirás pudiendo editar mapas antiguos.',
+        'map_deprecated_2'  => '¡Ahora los mapas tienen su propio módulo! Aún se pueden editar los mapas antiguos, pero todos los nuevos estarán en el nuevo módulo.',
         'nested'            => 'En la vista anidada puedes ver tus lugares de forma anidada. Las localizaciones que no tengan ninguna superior se mostrarán aquí por defecto. Las que tengan localizaciones anidadas se pueden ir clicando para mostrarlas. Puedes seguir haciendo click hasta que no haya más lugares anidados que ver.',
         'organisations'     => 'Ver todas las organizaciones de esta localización y sus sublocalizaciones, o solo las que están directamente aquí.',
     ],
@@ -51,7 +52,7 @@ return [
         'actions'       => [
             'explore_view'  => 'Vista de exploración',
         ],
-        'add'           => 'Nuevo Lugar',
+        'add'           => 'Nuevo lugar',
         'description'   => 'Gestiona los lugares de :name.',
         'header'        => 'Lugares en :name',
         'title'         => 'Lugares',

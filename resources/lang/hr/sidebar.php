@@ -6,6 +6,12 @@ return [
     'attribute_templates'   => 'Predlošci atributa',
     'calendars'             => 'Kalendari',
     'campaign'              => 'Kampanja',
+    'campaign_switcher'     => [
+        'created_campaigns' => 'Tvoje kampanje',
+        'new_campaign'      => 'Nova kampanja',
+        'public_campaigns'  => 'Javne kampanje',
+        'updated'           => 'Ažurirano',
+    ],
     'campaigns'             => 'Kampanje',
     'characters'            => 'Likovi',
     'conversations'         => 'Razgovori',
@@ -19,6 +25,7 @@ return [
     'journals'              => 'Dnevnici',
     'locations'             => 'Lokacije',
     'manage_links'          => 'Upravljanje poveznicama',
+    'new-entity'            => 'Stvori novi entitet',
     'notes'                 => 'Bilješke',
     'organisations'         => 'Organizacije',
     'other'                 => 'Ostalo',
@@ -26,6 +33,7 @@ return [
     'races'                 => 'Rase',
     'search'                => 'Pretraži...',
     'tags'                  => 'Oznake',
+    'timelines'             => 'Kronologije',
     'translations'          => 'Prijevodi',
     'world'                 => 'Svijet',
 ];

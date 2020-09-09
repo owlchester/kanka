@@ -75,10 +75,13 @@
 
     <style>
         .marker-{{ $model->id }}  {
-            background-color: {{ $model->backgroundColour() }};
-        @if ($model->entity && $model->icon == 4)
+@if(!empty($model->font_colour))
+            color: {{ $model->font_colour }};
+@endif
+        }
+@if ($model->entity && $model->icon == 4)
+        .marker-{{ $model->id }} .marker-pin::after {
             background-image: url({{ $model->entity->child->getImageUrl(400) }});
-        @endif
-    }
+        }@endif
     </style>
 @endsection

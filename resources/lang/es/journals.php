@@ -3,14 +3,14 @@
 return [
     'create'        => [
         'description'   => 'Crear nuevo diario',
-        'success'       => 'Diario creado.',
-        'title'         => 'Nuevo Diario',
+        'success'       => 'Diario ":name" creado.',
+        'title'         => 'Nuevo diario',
     ],
     'destroy'       => [
-        'success'   => 'Diario borrado.',
+        'success'   => 'Diario ":name" eliminado.',
     ],
     'edit'          => [
-        'success'   => 'Diario actualizado.',
+        'success'   => 'Diario ":name" actualizado.',
         'title'     => 'Editar diario :name',
     ],
     'fields'        => [
@@ -22,7 +22,7 @@ return [
         'type'      => 'Tipo',
     ],
     'index'         => [
-        'add'           => 'Nuevo Diario',
+        'add'           => 'Nuevo diario',
         'description'   => 'Gestiona los diarios de :name',
         'header'        => 'Diarios de :name',
         'title'         => 'Diarios',

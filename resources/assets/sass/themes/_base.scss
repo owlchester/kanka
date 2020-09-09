@@ -32,6 +32,10 @@
 
 .content-wrapper {
   background: none !important;
+  p {
+    text-align: justify;
+    color: $White;
+  }
 }
 
 .box, .panel, .timeline-item
@@ -55,10 +59,16 @@
   }
 
   .panel-body {
+    color: $White;
     ul {
       color: $White;
     }
   }
+}
+
+.panel-entity-files .well {
+  background-color: $Soft;
+  color: $Hard;
 }
 
 .filters {
@@ -175,12 +185,6 @@ input[type=checkbox] {
 .help-block {
   color: #bbb;
   font-style: italic;
-}
-.content-wrapper {
-  p {
-    text-align: justify;
-    color: $White;
-  }
 }
 li {
   color: $White;
@@ -493,4 +497,8 @@ footer {
 }
 .leaflet-container {
   background: $Soft;
+
+  .leaflet-popup-content {
+    color: $White;
+  }
 }

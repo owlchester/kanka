@@ -7,6 +7,7 @@
         trans('locations.show.tabs.items')
     ],
     'mainTitle' => false,
+    'miscModel' => $model,
 ])
 
 @section('content')

@@ -3,6 +3,7 @@
 return [
     'hall_of_fame'  => 'Зал Славы',
     'index'         => [
+        'community'     => 'Сообщество',
         'core'          => 'Основное',
         'description'   => 'Эти люди сделали Kanka возможной.',
         'other'         => 'Другое',
@@ -14,7 +15,6 @@ return [
     'patreon'       => [
         'description'   => 'Эти удивительные люди помогали и поддерживали Kanka через Patreon или в само приложение.',
         'learn_more'    => 'Узнать больше о преимуществах подписки',
-        'title'         => 'Patreon',
     ],
     'people'        => [
         'iz'        => [

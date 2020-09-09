@@ -11,6 +11,21 @@ use App\Models\MapLayer;
 
 class MapLayerController extends Controller
 {
+    /**
+     * No index for this, redirect to the map
+     * @param Map $map
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function index(Map $map)
+    {
+        return redirect()->route('maps.show', $map);
+    }
+
+    /**
+     * @param Map $map
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function create(Map $map)
     {
         $this->authorize('update', $map);
@@ -44,6 +59,12 @@ class MapLayerController extends Controller
 
     }
 
+    /**
+     * @param Map $map
+     * @param MapLayer $mapLayer
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function edit(Map $map, MapLayer $mapLayer)
     {
         $this->authorize('update', $map);
@@ -57,6 +78,13 @@ class MapLayerController extends Controller
         );
     }
 
+    /**
+     * @param StoreMapLayer $request
+     * @param Map $map
+     * @param MapLayer $mapLayer
+     * @return mixed
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function update(StoreMapLayer $request, Map $map, MapLayer $mapLayer)
     {
         $this->authorize('update', $map);
@@ -69,6 +97,12 @@ class MapLayerController extends Controller
 
     }
 
+    /**
+     * @param Map $map
+     * @param MapLayer $mapLayer
+     * @return mixed
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function destroy(Map $map, MapLayer $mapLayer)
     {
         $this->authorize('update', $map);

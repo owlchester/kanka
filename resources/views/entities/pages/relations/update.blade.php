@@ -33,6 +33,10 @@
                 @endif
             </div>
 
+            @if(!empty($from))
+                <input type="hidden" name="from" value="{{ $from }}" />
+            @endif
+
             {!! Form::close() !!}
         </div>
     </div>

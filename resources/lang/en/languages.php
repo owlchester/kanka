@@ -2,6 +2,7 @@
 
 return [
     'codes' => [
+        'ca'    => 'Catalan',
         'de'    => 'German',
         'en'    => 'English',
         'en-US' => 'American English',
@@ -12,8 +13,10 @@ return [
         'hu'    => 'Hungarian',
         'it'    => 'Italian',
         'nl'    => 'Dutch',
+        'pl'    => 'Polish',
         'pt-BR' => 'Brazilian Portuguese',
         'ru'    => 'Russian',
+        'sk'    => 'Slovak',
     ],
     'header'=> 'Languages',
 ];

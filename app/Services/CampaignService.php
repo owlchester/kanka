@@ -115,7 +115,7 @@ class CampaignService
             'yellow',
             [
                 'user' => e(Auth::user()->name),
-                'campaign' => e($campaign->name)
+                'campaign' => $campaign->name
             ]
         );
 

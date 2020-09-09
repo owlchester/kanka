@@ -18,8 +18,17 @@ Route::namespace('Admin')->name('admin.')->middleware(['moderator'])->prefix('ad
         'patrons' => 'PatronController',
         'campaigns' => 'CampaignController',
         'community-votes' => 'CommunityVoteController',
+        //'community-event-entries' => 'CommunityEventEntryController',
+        'community-events' => 'CommunityEventController',
         'app-releases' => 'ReleaseController'
     ]);
+
+    Route::get('/community-events/{community_events}/entries', 'CommunityEventController@entries')
+        ->name('community-events.entries');
+
+    Route::model('community-event-entries', App\Models\CommunityEventEntry::class);
+    Route::put('/community-event-entries/{community_event_entries}/rank', 'CommunityEventController@rank')
+        ->name('community-entries.rank');
 
     Route::model('patron', \App\User::class);
 });

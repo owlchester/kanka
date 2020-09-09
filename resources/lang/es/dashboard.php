@@ -16,7 +16,7 @@ return [
     'description'       => 'Tu plaza creativa',
     'helpers'           => [
         'follow'    => 'Si sigues una campaña, esta aparecerá en el menú de cambio de campaña (arriba a la derecha) bajo tus campañas.',
-        'setup'     => 'Configura el tablero de tu campaña',
+        'setup'     => 'Configura el tablero de la campaña',
     ],
     'latest_release'    => 'Publicación reciente',
     'notifications'     => [
@@ -50,9 +50,11 @@ return [
         ],
         'title'     => 'Configurar el tablero de campaña',
         'widgets'   => [
-            'calendar'  => 'Calendario',
-            'preview'   => 'Previsualización de la entidad',
-            'recent'    => 'Reciente',
+            'calendar'      => 'Calendario',
+            'preview'       => 'Previsualización de la entidad',
+            'random'        => 'Entidad aleatoria',
+            'recent'        => 'Reciente',
+            'unmentioned'   => 'Entidades sin mención',
         ],
     ],
     'title'             => 'Tablero de',
@@ -71,7 +73,7 @@ TEXT
 ,
     ],
     'widgets'           => [
-        'calendar'  => [
+        'calendar'      => [
             'actions'           => [
                 'next'      => 'Cambiar fecha al día siguiente',
                 'previous'  => 'Cambiar fecha al día anterior',
@@ -80,28 +82,34 @@ TEXT
             'previous_events'   => 'Anterior',
             'upcoming_events'   => 'Próximo',
         ],
-        'create'    => [
+        'create'        => [
             'success'   => 'Widget añadido al tablero.',
         ],
-        'delete'    => [
+        'delete'        => [
             'success'   => 'Widget eliminado del tablero.',
         ],
-        'fields'    => [
+        'fields'        => [
             'width' => 'Anchura',
         ],
-        'recent'    => [
-            'full'      => 'Completa',
-            'help'      => 'Solo muestra la previsualización de la última entidad actualizada.',
-            'helpers'   => [
-                'full'  => 'Muestra toda la entidad por defecto en lugar de una previsualización.',
+        'recent'        => [
+            'entity-header' => 'Usar la cabecera de la entidad como imagen',
+            'full'          => 'Completa',
+            'help'          => 'Solo muestra la previsualización de la última entidad actualizada.',
+            'helpers'       => [
+                'entity-header' => 'Si la entidad tiene una imagen de cabecera (funcionalidad de campañas mejoradas), puedes habilitar que este widget use dicha imagen en lugar de la imagen de la entidad.',
+                'full'          => 'Muestra toda la entidad por defecto en lugar de una previsualización.',
             ],
-            'singular'  => 'Singular',
-            'title'     => 'Modificado recientemente',
+            'singular'      => 'Singular',
+            'tags'          => 'Filtra la lista de las entidades recientemente modificadas con etiquetas específicas.',
+            'title'         => 'Modificado recientemente',
         ],
-        'update'    => [
-            'success'   => 'Widged modificado.',
+        'unmentioned'   => [
+            'title' => 'Entidades no mencionadas',
         ],
-        'widths'    => [
+        'update'        => [
+            'success'   => 'Widget modificado.',
+        ],
+        'widths'        => [
             '0' => 'Auto',
             '12'=> 'Completa',
             '4' => 'Pequeña',

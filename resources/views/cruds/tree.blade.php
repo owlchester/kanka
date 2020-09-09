@@ -2,7 +2,7 @@
     'title' => trans($name . '.index.title', ['name' => CampaignLocalization::getCampaign()->name]),
     'description' => null,
     'breadcrumbs' => [
-        ['url' => route($name . '.index'), 'label' => trans($name . '.index.title')]
+        ['url' => Breadcrumb::index($name), 'label' => trans($name . '.index.title')],
     ],
     'canonical' => true,
 ])
@@ -63,7 +63,7 @@
 
     @include('cruds.datagrids.bulks.modals')
 
-    <input type="hidden" id="{{ $view }}-treeview" value="1" data-url="{{ route($route . '.tree') }}">
+    <input type="hidden" class="list-treeview" id="{{ $view }}-treeview" value="1" data-url="{{ route($route . '.tree') }}">
 @endsection
 
 @section('scripts')

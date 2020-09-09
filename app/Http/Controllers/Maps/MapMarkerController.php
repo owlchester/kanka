@@ -18,7 +18,7 @@ class MapMarkerController extends Controller
      */
     protected $fields = [
         'entity_id', 'name', 'entry', 'longitude', 'latitude',
-        'colour', 'opacity',
+        'colour', 'font_colour', 'opacity',
         'shape_id',
         'type_id', 'size_id', 'icon', 'custom_icon', 'custom_shape', 'visibility',
         'is_draggable',

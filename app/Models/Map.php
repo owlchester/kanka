@@ -269,7 +269,9 @@ class Map extends MiscModel
         $layers = ['baseLayer' . $this->id];
         if ($groups) {
             foreach ($this->groups as $group) {
-                $layers[] = 'group' . $group->id;
+                if ($group->is_shown) {
+                    $layers[] = 'group' . $group->id;
+                }
             }
         }
 
@@ -283,8 +285,31 @@ class Map extends MiscModel
     public function legendMarkers(): array
     {
         $markers = new Collection();
+        $groups = [];
+
         /** @var MapMarker $marker */
-        foreach ($this->markers as $marker) {
+        foreach ($this->markers()->with(['group', 'entity'])->get() as $marker) {
+            if (!$marker->visible()) {
+                continue;
+            }
+            if (!empty($marker->group)) {
+                if (empty($groups[$marker->group_id])) {
+                    $groups[$marker->group_id] = [
+                        'name' => $marker->group->name,
+                        'lower' => strtolower($marker->group->name),
+                        'id' => $marker->group_id,
+                        'markers' => new Collection()
+                    ];
+                }
+                $groups[$marker->group_id]['markers']->add([
+                    'id' => $marker->id,
+                    'longitude' => $marker->longitude,
+                    'latitude' => $marker->latitude,
+                    'name' => $marker->markerTitle(),
+                    'lower_name' => strtolower($marker->markerTitle()),
+                ]);
+                continue;
+            }
             $markers->add([
                 'id' => $marker->id,
                 'longitude' => $marker->longitude,
@@ -294,7 +319,17 @@ class Map extends MiscModel
             ]);
         }
 
-        return $markers->sortBy('lower_name')->toArray();
+        $all = $markers->sortBy('lower_name')->toArray();
+
+        usort($groups, function ($a, $b) {
+            return $a['lower'] > $b['lower'];
+        });
+
+        foreach ($groups as $id => $group) {
+            $all[] = $group;
+        }
+
+        return $all;
     }
 
     /**
@@ -318,12 +353,12 @@ class Map extends MiscModel
      * Maximum zoom of a map
      * @return int
      */
-    public function maxZoom(): int
+    public function maxZoom(): float
     {
         if (!is_numeric($this->max_zoom)) {
-            return 5;
+            return 2.75;
         }
-        return (int) min($this->max_zoom, self::MAX_ZOOM);
+        return (float) min($this->max_zoom, self::MAX_ZOOM);
     }
 
     /**

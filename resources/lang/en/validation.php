@@ -117,6 +117,9 @@ return [
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
+
+    'entity_link' => 'Invalid :attribute. Please verify that it is a valid Kanka link and that it points to a public campaign.',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

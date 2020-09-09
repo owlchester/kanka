@@ -20,7 +20,7 @@ return [
     ],
     'dice_rolls'    => [
         'description'   => 'Jet de dés attribué au personnage.',
-        'hint'          => 'Les jets de dés peuvent être assigné à des personnages.',
+        'hint'          => 'Les jets de dés peuvent être assignés à des personnages.',
         'title'         => 'Jet de dés de :name',
     ],
     'edit'          => [
@@ -46,8 +46,7 @@ return [
         'type'                      => 'Type',
     ],
     'helpers'       => [
-        'age'   => 'Il est possible de lier cette entité avec un calendrier de la campagne pour automatiquement calculer l\'age. :more.',
-        'free'  => 'Où est passé le champ "Texte Libre"? Si le personnage en avait un, il a été déplacé sur le nouvel onglet "Notes".',
+        'age'   => 'Il est possible de lier cette entité avec un calendrier de la campagne pour automatiquement calculer l\'âge. :more.',
     ],
     'hints'         => [
         'hide_personality'          => 'Cet onglet peut être caché des membres non-Administrateur en désactivant l\'option "Personnalité Visible" lors de l\'édition de ce personnage.',
@@ -64,8 +63,8 @@ return [
         'title'         => 'Personnes',
     ],
     'items'         => [
-        'description'   => 'Objets tenus ou apparenant au personnage.',
-        'hint'          => 'Des objets peuvent être assigné à des personnages et seront affichés ici.',
+        'description'   => 'Objets tenus ou appartenant au personnage.',
+        'hint'          => 'Des objets peuvent être assignés à des personnages et seront affichés ici.',
         'title'         => 'Objets de :name',
     ],
     'journals'      => [
@@ -81,11 +80,11 @@ return [
             'add'   => 'Nouvelle organisation',
         ],
         'create'        => [
-            'description'   => 'Associater une organisation à une personne',
+            'description'   => 'Associer une organisation à une personne',
             'success'       => 'Personne ajoutée à l\'organisation.',
             'title'         => 'Nouvelle Organisation pour :name',
         ],
-        'description'   => 'Organisations dont le personnage est un membre.',
+        'description'   => 'Organisations dont le personnage est membre.',
         'destroy'       => [
             'success'   => 'Organisation de personne supprimée.',
         ],
@@ -98,14 +97,14 @@ return [
             'organisation'  => 'Organisation',
             'role'          => 'Rôle',
         ],
-        'hint'          => 'Des personnages peuvent faire partie de nombreuses organisations, représentant leur employeur ou les sociétés auxquelles ils appartiennent.',
+        'hint'          => 'Les personnages peuvent faire partie de nombreuses organisations, représentant leur employeur ou les sociétés auxquelles ils appartiennent.',
         'placeholders'  => [
             'organisation'  => 'Choix d\'une organisation...',
         ],
         'title'         => 'Organisations de :name',
     ],
     'placeholders'  => [
-        'age'               => 'Age',
+        'age'               => 'Âge',
         'appearance_entry'  => 'Description',
         'appearance_name'   => 'Cheveux, Yeux, Peau, Taille',
         'family'            => 'Choix d\'une famille',
@@ -131,7 +130,7 @@ return [
     ],
     'sections'      => [
         'appearance'    => 'Physique',
-        'general'       => 'Inpourmation générale',
+        'general'       => 'Information générale',
         'personality'   => 'Personnalité',
     ],
     'show'          => [

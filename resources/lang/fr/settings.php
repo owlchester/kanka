@@ -14,16 +14,16 @@ return [
         'social'            => [
             'error'     => 'Tu utilises déjà le login Kanka pour ce compte.',
             'helper'    => 'Ton compte est géré par :provider. Tu peux changer au login Kanka en fournissant un login et un mot de passe.',
-            'success'   => 'Ton compte utilise d\'orénavant le login Kanka.',
+            'success'   => 'Ton compte utilise dorénavant le login Kanka.',
             'title'     => 'Social à Kanka',
         ],
         'title'             => 'Compte',
     ],
     'api'           => [
-        'experimental'          => 'Bienvenus aux API de Kanka! Ces fonctionalités sont encore experimental mais assez stable que tu puisses intéragire avec les APIs. Créé un jeton personnel pour utiliser dans tes requêtes API, ou un jeton client pour permettre à ton app d\'accéder à tes données.',
+        'experimental'          => 'Bienvenue aux API de Kanka! Ces fonctionnalités sont encore experimentales mais assez stables pour que tu puisses intéragir avec les APIs. Crée un jeton personnel à utiliser dans tes requêtes API, ou un jeton client pour permettre à ton app d\'accéder à tes données.',
         'help'                  => 'Kanka va prochainement mettre à disposition une API.',
         'link'                  => 'Lire la documentation',
-        'request_permission'    => 'Nous construisons en ce moment des API RESTful pour que des applications tièrces communiquent avec Kanka. Cependant nous limitons actuellement le nombre d\'utilisateurs qui peuvent intéragire avec nos API, du moins jusqu\'à ce que la qualité de nos APIs soit assez bonne. Si tu veux accéder aux API et construire des applications qui communiquent avec Kanka, prends contact avec nous et nous te donneront les infos dont tu as besoin!',
+        'request_permission'    => 'Nous construisons en ce moment des API RESTful pour que des applications tierces communiquent avec Kanka. Cependant nous limitons actuellement le nombre d\'utilisateurs qui peuvent intéragir avec nos API, du moins jusqu\'à ce que la qualité de nos APIs soit assez bonne. Si tu veux accéder aux API et construire des applications qui communiquent avec Kanka, prends contact avec nous et nous te donnerons les infos dont tu as besoin!',
         'title'                 => 'API',
     ],
     'apps'          => [
@@ -34,7 +34,7 @@ return [
         'benefits'  => 'Kanka supporte quelques intégrations avec d\'autres services. D\'autres services seront ajoutés dans le futur.',
         'discord'   => [
             'errors'    => [
-                'add'   => 'Une erreur est survenue lors de liage de Discord avec le compte Kanka.',
+                'add'   => 'Une erreur est survenue lors du liage de Discord avec le compte Kanka.',
             ],
             'success'   => [
                 'add'       => 'Compte Discord lié.',
@@ -42,19 +42,19 @@ return [
             ],
             'text'      => 'Accès aux rôles automatique.',
         ],
-        'title'     => 'Ingération d\'app',
+        'title'     => 'Intégration d\'app',
     ],
     'boost'         => [
         'benefits'      => [
-            'first'     => 'Pour assurer une évolution continue de Kanka, certaines fonctionnalités de l\'application sont débloquées lorsqu\'une campagne est boostée. Les boosts sont débloqués grâce a un abonnement. Une campagne peut être boostée par n\'importe qui, du moment que le compte a accès à la campagne en question. Une campagne reste boostée tant que le compte a un :subscription actif. Si une campagne n\'est plus boostée, les informations ne sont pas perdues mais deviennent simplement invisible jusqu\'à ce que la campagne sois à nouveau boostée..',
+            'first'     => 'Pour assurer une évolution continue de Kanka, certaines fonctionnalités de l\'application sont débloquées lorsqu\'une campagne est boostée. Les boosts sont débloqués grâce a un abonnement. Une campagne peut être boostée par n\'importe qui, du moment que le compte a accès à la campagne en question. Une campagne reste boostée tant que le compte a un :subscription actif. Si une campagne n\'est plus boostée, les informations ne sont pas perdues mais deviennent simplement invisibles jusqu\'à ce que la campagne soit à nouveau boostée.',
             'header'    => 'Image d\'en-tête pour entité.',
             'images'    => 'Images d\'entité par défaut personnalisées.',
-            'more'      => 'En savoir plus sur toutes les fonctionalités.',
-            'second'    => 'Booster une campagne débloques les bénéfices suivants:',
+            'more'      => 'En savoir plus sur toutes les fonctionnalités.',
+            'second'    => 'Booster une campagne débloque les bénéfices suivants:',
             'theme'     => 'Thème de campagne et style personnalisé.',
             'third'     => 'Pour booster une campagne, aller sur la page de la campagne et cliquer sur le bouton ":boost_button" situé au dessus du bouton ":edit_button".',
-            'tooltip'   => 'Infobulles personnalisés pour les entités.',
-            'upload'    => 'Taille de fichier uploadé plus grand pour tous les membres de la campagne.',
+            'tooltip'   => 'Infobulles personnalisées pour les entités.',
+            'upload'    => 'Taille des fichiers uploadés plus grande pour tous les membres de la campagne.',
         ],
         'buttons'       => [
             'boost' => 'Boost',
@@ -76,7 +76,7 @@ return [
         'france'        => 'France',
         'germany'       => 'Allemagne',
         'italy'         => 'Italie',
-        'netherlands'   => 'Pays Bas',
+        'netherlands'   => 'Pays-Bas',
         'spain'         => 'Espagne',
     ],
     'invoices'      => [
@@ -123,17 +123,11 @@ return [
             'link'  => 'Lier le compte',
             'view'  => 'Visiter Kanka sur Patreon',
         ],
-        'benefits'          => 'Nous supporter sur :patreon active plein de :features pour toi et tes campagnes, et nous permet de dédié plus de temps à travailler sur Kanka.',
-        'benefits_features' => 'fonctionalités sympas',
+        'benefits'          => 'Nous supporter sur :patreon active plein de :features pour toi et tes campagnes, et nous permet de dédier plus de temps à travailler sur Kanka.',
+        'benefits_features' => 'fonctionnalités sympas',
         'deprecated'        => 'Fonction obsolète - si tu souhaites supporter Kanka, fais-le avec un abonnement. La liaison Patreon est toujours active pour nos Patrons qui ont lié leur compte avant le changement d\'abonnement.',
         'description'       => 'Synchronisation avec Patreon',
-        'errors'            => [
-            'invalid_token' => 'Token invalid! Patreon n\'a pas validé la requête.',
-            'missing_code'  => 'Code manquant! Patreon n\'a pas envoyé de code d\'authentification pour ton compte.',
-            'no_pledge'     => 'Pas de pledge! Patreon a identifié ton compte, mais ne croit pas que tu nous supportes.',
-        ],
-        'link'              => 'Si tu supportes Kanka sur Patreon, tu peux utiliser le bouton pour lier ton compte. Cela te donnera accès a des bonus sympas!',
-        'linked'            => 'Merci pour ton support sur Patreon! Ton comptes est d\'orénavant lié.',
+        'linked'            => 'Merci pour ton support sur Patreon! Ton compte est dorénavant lié.',
         'pledge'            => 'Pledge: :name',
         'remove'            => [
             'button'    => 'Délier le compte Patreon',
@@ -143,7 +137,7 @@ return [
         ],
         'success'           => 'Merci pour ton support sur Patreon!',
         'title'             => 'Patreon',
-        'wrong_pledge'      => 'Ton pledge est inséré manuellement par nous, du coups ça peut prendre quelques jours pour être actualisé. Si ça reste faux longtemps, n\'hésites pas à nous contacter.',
+        'wrong_pledge'      => 'Ton pledge est inséré manuellement par nous, du coup ça peut prendre quelques jours pour être actualisé. Si ça prend longtemps, n\'hésite pas à nous contacter.',
     ],
     'profile'       => [
         'actions'   => [
@@ -159,14 +153,14 @@ return [
             'subscribe'         => 'Abonner',
             'update_currency'   => 'Changer la devise',
         ],
-        'benefits'              => 'En nous soutenant, tu peux débloquer de nouvelles fonctionnalités: et nous aider a investir plus de temps dans l\'amélioration de Kanka. Aucune information concernant ta carte de crédit n\'est stockée ou ne transite par nos serveurs. Nous utilisons :stripe pour gérer toutes les factures.',
+        'benefits'              => 'En nous soutenant, tu peux débloquer de nouvelles fonctionnalités et nous aider à investir plus de temps dans l\'amélioration de Kanka. Aucune information concernant ta carte de crédit n\'est stockée ou ne transite par nos serveurs. Nous utilisons :stripe pour gérer toutes les factures.',
         'billing'               => [
             'helper'    => 'Les informations de paiement sont gérées et sauvegardées de manière sécurisée à travers :stripe. Cette méthode de paiement sera utilisée pour tous les abonnements.',
             'saved'     => 'Méthode de paiement',
             'title'     => 'Modifier la méthode de paiement',
         ],
         'cancel'                => [
-            'text'  => 'Désolé de te voir partir! L\'annulation de ton abonnement le gardera actif jusqu\'au la fin du mois payé, après quoi tu perdras les bonus de ta campagne et les autres avantages liés au soutien de Kanka. N\'hésite pas à remplir le formulaire suivant pour nous informer de ce que nous pouvons faire mieux, ou de ce qui a conduit à ta décision.',
+            'text'  => 'Désolé de te voir partir! L\'annulation de ton abonnement le gardera actif jusqu\'au la fin du mois payé, après quoi tu perdras les bonus de ta campagne et les autres avantages liés au soutien de Kanka. N\'hésite pas à remplir le formulaire suivant pour nous informer de ce que nous pouvons améliorer, ou ce qui a conduit à ta décision.',
         ],
         'cancelled'             => 'L\'abonnement a été annulé. Un nouvel abonnement peut être fait dès que celui-ci arrive à terme.',
         'change'                => [
@@ -184,7 +178,7 @@ return [
             'title' => 'Changer la devise de facturation',
         ],
         'errors'                => [
-            'callback'      => 'Notre gestionnaire de paiement nous a remonté une erreur. Prière de ressayer et nous contacter si le problème persiste.',
+            'callback'      => 'Notre gestionnaire de paiement nous a remonté une erreur. Prière de réessayer et nous contacter si le problème persiste.',
             'subscribed'    => 'Erreur lors de la gestion de l\'abonnement. Stripe nous a fourni l\'erreur suivante.',
         ],
         'fields'                => [
@@ -199,7 +193,7 @@ return [
         'helpers'               => [
             'alternatives'          => 'Payez votre abonnement en utilisant :method. Ce mode de paiement ne sera pas renouvelé automatiquement à la fin de votre abonnement. :method n\'est disponible qu\'en Euros.',
             'alternatives_warning'  => 'La mise à niveau de l\'abonnement lors de l\'utilisation de cette méthode n\'est pas possible. Veuillez créer un nouvel abonnement à la fin de votre abonnement actuel.',
-            'alternatives_yearly'   => 'En raison des restrictions entourant les paiements récurrents,:method n\'est disponible que pour les abonnements annuels',
+            'alternatives_yearly'   => 'En raison des restrictions entourant les paiements récurrents, :method n\'est disponible que pour les abonnements annuels',
         ],
         'manage_subscription'   => 'Gérer l\'abonnement',
         'payment_method'        => [
@@ -210,7 +204,7 @@ return [
                 'show_alternatives' => 'Autres méthodes de paiement',
             ],
             'add_one'       => 'Aucune méthode de paiement actuellement saisie.',
-            'alternatives'  => 'Un abonnement peut être souscrit avec ces méthodes de paiement. Cette action générera qu\'une seule facture et ne renouera pas automatiquement l\'abonnement chaque mois.',
+            'alternatives'  => 'Un abonnement peut être souscrit avec ces méthodes de paiement. Cette action ne générera qu\'une seule facture et ne renouvellera pas automatiquement l\'abonnement chaque mois.',
             'card'          => 'Carte',
             'card_name'     => 'Nom sur la carte',
             'country'       => 'Pays de résidence',
@@ -236,14 +230,14 @@ return [
             ],
         ],
         'success'               => [
-            'alternative'   => 'Le paiement a été enregistré. Une notification sera générée dès le paiement a été traité et l\'abonnement activé.',
-            'callback'      => 'Ton abonnement est réussis! Ton compte sera mis à jour dès que notre gestionnaire de paiement nous informe des changement (cela peut prendre quelques minutes).',
-            'cancel'        => 'Ton abonnement est annulé. Il sera toujours actif jusqu\'à la fin de la période actuel.',
+            'alternative'   => 'Le paiement a été enregistré. Une notification sera générée dès le paiement traité et l\'abonnement activé.',
+            'callback'      => 'Ton abonnement est réussi! Ton compte sera mis à jour dès que notre gestionnaire de paiement nous informera des changements (cela peut prendre quelques minutes).',
+            'cancel'        => 'Ton abonnement est annulé. Il sera toujours actif jusqu\'à la fin de la période actuelle.',
             'currency'      => 'Devise préférée sauvegardée.',
-            'subscribed'    => 'Ton abonnement est réussis! N\'oublie pas de t\'abonner à la newsletter Community Vote pour être averti lorsqu\'un vote sera ouvert. Tu peux modifier tes paramètres de newsletter sur ta page de profil.',
+            'subscribed'    => 'Ton abonnement est réussi! N\'oublie pas de t\'abonner à la newsletter Community Vote pour être averti lorsqu\'un vote sera ouvert. Tu peux modifier tes paramètres de newsletter sur ta page de profil.',
         ],
         'tiers'                 => 'Niveaux d\'abonnements',
-        'trial_period'          => 'Les abonnements annuels ont une période d\'annulation de 14 jours. Nous contacter à  :email pour annuler un abonnement et recevoir un remboursement.',
+        'trial_period'          => 'Les abonnements annuels ont une période d\'annulation de 14 jours. Nous contacter à :email pour annuler un abonnement et recevoir un remboursement.',
         'upgrade_downgrade'     => [
             'button'    => 'Information sur l\'upgrade/downgrade',
             'downgrade' => [
@@ -261,8 +255,8 @@ return [
             ],
         ],
         'warnings'              => [
-            'incomplete'    => 'Ne n\'avons pas pu débiter la carte de crédit. Vérifier les informations de la carte et mettre à jour si nécessaire. Nous essayerons à nouveau durant les prochains jours. Si ça échoue de nouveau, l\'abonnement sera annulé.',
-            'patreon'       => 'Ce compte est actuellement lié à Patreon. Prière de délié le compte dans les paramètres :patreon avant de pouvoir s\'abonner à Kanka.',
+            'incomplete'    => 'Nous n\'avons pas pu débiter la carte de crédit. Vérifier les informations de la carte et mettre à jour si nécessaire. Nous essayerons à nouveau durant les prochains jours. Si ça échoue de nouveau, l\'abonnement sera annulé.',
+            'patreon'       => 'Ce compte est actuellement lié à Patreon. Prière de délier le compte dans les paramètres :patreon avant de pouvoir s\'abonner à Kanka.',
         ],
     ],
 ];

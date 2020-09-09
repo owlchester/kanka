@@ -7,6 +7,7 @@
         trans('families.show.tabs.members')
     ],
     'mainTitle' => false,
+    'miscModel' => $model,
 ])
 
 @inject('campaign', 'App\Services\CampaignService')

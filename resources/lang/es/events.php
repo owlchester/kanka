@@ -3,15 +3,15 @@
 return [
     'create'        => [
         'description'   => 'Crear nuevo evento',
-        'success'       => 'Evento \':name\' creado.',
-        'title'         => 'Crear nuevo evento',
+        'success'       => 'Se ha creado el evento ":name".',
+        'title'         => 'Nuevo evento',
     ],
     'destroy'       => [
-        'success'   => 'Evento \':name\' borrado.',
+        'success'   => 'Se ha eliminado el evento ":name".',
     ],
     'edit'          => [
-        'success'   => 'Evento \':name\' actualizado.',
-        'title'     => 'Editar evento :name',
+        'success'   => 'Se ha actualizado el evento ":name".',
+        'title'     => 'Editar ":name"',
     ],
     'fields'        => [
         'date'      => 'Fecha',
@@ -30,13 +30,13 @@ return [
         'title'         => 'Eventos',
     ],
     'placeholders'  => [
-        'date'      => 'Fecha para tu evento',
+        'date'      => 'Fecha del evento',
         'location'  => 'Elige un lugar',
-        'name'      => 'Nombre del Evento',
-        'type'      => 'Ceremonia, Festival, Catástrofe, Batalla, Nacimiento...',
+        'name'      => 'Nombre del evento',
+        'type'      => 'Ceremonia, festival, catástrofe, batalla, nacimiento...',
     ],
     'show'          => [
-        'description'   => 'Vista detallada de evento',
+        'description'   => 'Vista detallada del evento',
         'tabs'          => [
             'information'   => 'Información',
         ],

@@ -73,7 +73,7 @@ return [
             . 'strong,em,b,ul[class|style|id],ol[style],li[style],p,i[class],br,'
             . 'img[src|style|alt|width|height|class|title|id],'
             . 'a[href|class|target|rel|title|data-toggle|data-html|id],'
-            . 'p[class|style|id],span[class|style|id],'
+            . 'p[class|style|id|dir],span[class|style|id|dir],'
             . 'table[class|summary|style|border|cellpadding|cellspacing|id],tbody,thead,tfoot,tr[class|style|id],td[class|style|abbr|colspan],th[class|style|abbr|colspan],'
             . 'acronym[title],abbr[title],'
             . 'font[color|style],'
@@ -110,8 +110,8 @@ return [
         */
 
         'CSS.AllowedProperties' => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,' .
-            'color,background-color,text-align,width,border,border-collapse,max-width,max-height,' .
-            'border-style, border-color,' .
+            'color,background-color,text-align,width,height,border,border-collapse,max-width,max-height,' .
+            'border-style,border-color,' .
             'list-style-type',
 
         /*
@@ -168,7 +168,8 @@ return [
             . "docs.google.com/|"
             . "drive.google.com/|"
             . "www.google.com/maps/embed|"
-            . "lookingforgm\.com/campaign/"
+            . "lookingforgm\.com/campaign/|"
+            . "p3d\.in/e/"
             . ")%",
     ],
 

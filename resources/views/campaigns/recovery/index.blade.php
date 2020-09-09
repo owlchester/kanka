@@ -61,10 +61,17 @@
                 </table>
             </div>
             <div class="box-footer no-border">
+                <div class="row">
+                    <div class="col-sm-4">
 
-                    <button class="btn btn-primary">
-                        <i class="fa fa-history"></i> {{ __('campaigns/recovery.actions.recover') }}
-                    </button>
+                        <button class="btn btn-primary">
+                            <i class="fa fa-history"></i> {{ __('campaigns/recovery.actions.recover') }}
+                        </button>
+                    </div>
+                    <div class="col-sm-8 text-right">
+                        {!! $entities->links() !!}
+                    </div>
+                </div>
 
             </div>
         </div>

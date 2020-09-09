@@ -7,6 +7,7 @@
         trans('locations.show.tabs.characters')
     ],
     'mainTitle' => false,
+    'miscModel' => $model,
 ])
 
 @section('content')

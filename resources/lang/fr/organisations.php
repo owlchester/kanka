@@ -25,7 +25,7 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Cette liste contient toutes les organisations qui appartiennent directement ou indirectement à cette organisation.',
-        'nested'        => 'Ce mode de navigation permet d\'afficher les organisations de manière imbriquée. Les organisations sans organisation parent seront affichés par défaut. Les organisations possédant des sous-organisations peuvent être cliqués pour afficher ces enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
+        'nested'        => 'Ce mode de navigation permet d\'afficher les organisations de manière imbriquée. Les organisations sans organisation parent seront affichées par défaut. Les organisations possédant des sous-organisations peuvent être cliquées pour afficher leurs enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
     ],
     'index'         => [
         'add'           => 'Nouvelle Organisation',
@@ -47,7 +47,7 @@ return [
         ],
         'edit'          => [
             'success'   => 'Membre modifié.',
-            'title'     => 'Modifier Member pour :name',
+            'title'     => 'Modifier Membre pour :name',
         ],
         'fields'        => [
             'character'     => 'Personnage',
@@ -55,7 +55,8 @@ return [
             'role'          => 'Rôle',
         ],
         'helpers'       => [
-            'members'   => 'Cette liste contient tous les personnages dans l\'organisation ainsi que ces descendants. Il est possible d\'afficher que les membres directs en utilisant le filtre.',
+            'all_members'   => 'Tous les personnages qui sont membres de cette organisation et des sous-organisations.',
+            'members'       => 'Tous les personnages directement membres de cette organisation.',
         ],
         'placeholders'  => [
             'character' => 'Choix du personnage',

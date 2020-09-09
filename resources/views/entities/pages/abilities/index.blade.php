@@ -8,6 +8,7 @@
         __('crud.tabs.abilities')
     ],
     'mainTitle' => false,
+    'miscModel' => $entity->child,
 ])
 @inject('campaign', 'App\Services\CampaignService')
 

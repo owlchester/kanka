@@ -2,7 +2,7 @@
 
 return [
     'avatar'        => [
-        'success'   => 'Photo profile modifié.',
+        'success'   => 'Photo de profil modifiée.',
     ],
     'description'   => 'Modification du profil',
     'edit'          => [
@@ -26,13 +26,13 @@ return [
     ],
     'newsletter'    => [
         'links'     => [
-            'community-vote'    => 'Vote Communtaire',
+            'community-vote'    => 'Vote Communautaire',
             'news'              => 'News',
         ],
         'settings'  => [
             'news'          => 'News - être notifié lors de nouvelles :news.',
             'newsletter'    => 'Newsletter - recevoir la newsletter Kanka.',
-            'votes'         => 'Vote Communtaire - être notifié dès qu\'il y a un nouveau vote communtaire.',
+            'votes'         => 'Vote Communautaire - être notifié dès qu\'il y a un nouveau vote communautaire.',
         ],
         'title'     => 'Newsletter',
     ],
@@ -50,7 +50,7 @@ return [
         'delete'    => [
             'delete'    => 'Supprimer mon compte',
             'title'     => 'Suppression du compte',
-            'warning'   => 'Toutes les données relatives au compte seront supprimée. Êtes-vous certain?',
+            'warning'   => 'Toutes les données relatives au compte seront supprimées. Êtes-vous certain?',
         ],
         'password'  => [
             'title' => 'Modification du mot de passe',
@@ -61,15 +61,15 @@ return [
             'advanced_mentions' => 'Mentions Avancées',
             'date_format'       => 'Format de date',
             'default_nested'    => 'Vue imbriquée par défaut',
-            'editor'            => 'Editeur de text',
+            'editor'            => 'Editeur de texte',
             'pagination'        => 'Pagination (éléments par page)',
         ],
         'helpers'   => [
-            'editor'    => 'L\'éditeur par défaut (TinyMCE 4) est vieux et fonctionne sur un ordinateur, mais ne fonctionne pas bien sur les portables. Summernote est un éditeur plus récent qui fonctionne bien sur tout type de support mais que nous sommes en train d\'évaluer.',
+            'editor'    => 'L\'éditeur par défaut (TinyMCE 4) est vieux et fonctionne sur un ordinateur, mais ne fonctionne pas bien sur les mobiles. Summernote est un éditeur plus récent qui fonctionne bien sur tout type de support mais que nous sommes en train d\'évaluer.',
         ],
         'hints'     => [
             'advanced_mentions' => 'Lorsque cette option est activée, les mentions s\'afficheront tout le temps comme [entity:123] lors de l\'édition d\'une entité.',
-            'default_nested'    => 'Actives cette option pour que les listes s\'affichent par défaut de manière imbriquées.',
+            'default_nested'    => 'Active cette option pour que les listes s\'affichent par défaut de manière imbriquée.',
         ],
         'success'   => 'Paramètres modifiés.',
     ],

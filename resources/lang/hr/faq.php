@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'app_backup'            => [
+        'answer'    => 'Izvodimo dvije sigurnosne kopije dnevno kako bismo spriječili gubitak podataka. Naše se vlastite kampanje nalaze na poslužitelju, tako da ne želimo riskirati!',
+        'question'  => 'Koliko često se obavlja sigurnosno kopiranje podataka u Kanki?',
+    ],
     'attribute-templates'   => [
         'answer'    => <<<'TEXT'
 Najbolji način na koji možemo objasniti Predloške atributa je primjerom. Zamislimo da tvoj svijet ima puno lokacija, a na mnogim od tih lokacija želiš se sjetiti stvoriti prilagođeni atribut za "Stanovništvo", "Klima" i "Razina kriminala".
@@ -29,12 +33,16 @@ TEXT
         'question'  => 'Što su razgovori?',
     ],
     'custom'                => [
-        'answer'    => 'Kanka dolazi s nizom unaprijed definiranih tipova entiteta koji međusobno djeluju. Dopuštanje prilagođenih tipova entiteta zahtijeva rekonstrukciju aplikacije ispočetka i kosi se sa svrhom alata s unaprijed definiranim tipovima kako bi se ljudima pomoglo u izgradnji svijeta, a ne da se smišlja kako organizirati stvari. Nadalje, Kanka je fleksibilna s oznakama koje mogu predstavljati većinu prilagođenih tipova entiteta.',
-        'question'  => 'Mogu li stvoriti prilagođene vrste entiteta?',
+        'answer'    => 'Kanka dolazi s nizom unaprijed definiranih tipova entiteta koji međusobno djeluju. Dopuštanje proizvoljnih tipova entiteta zahtijeva rekonstrukciju aplikacije ispočetka i kosi se sa svrhom alata s unaprijed definiranim tipovima kako bi se ljudima pomoglo u izgradnji svijeta, a ne da se smišlja kako organizirati stvari. Nadalje, Kanka je fleksibilna s oznakama koje mogu predstavljati većinu proizvoljnih tipova entiteta.',
+        'question'  => 'Mogu li stvoriti proizvoljne vrste entiteta?',
     ],
     'delete-campaign'       => [
         'answer'    => 'Idi na naslovnu ploču kampanje i klikni na "Kampanja" na lijevom izborniku. Gumb "Izbriši" pojavit će se ako si posljednji član kampanje. Brisanje kampanje trajna je akcija kojom ćeš izbrisati sve podatke pohranjene na našim poslužiteljima, uključujući slike.',
         'question'  => 'Kako mogu izbrisati kampanju?',
+    ],
+    'early-access'          => [
+        'answer'    => 'Rani pristup način je da nagradimo naše nevjerojatne pretplatnike dajući im ekskluzivno razdoblje od 30 dana gdje mogu isprobati najnovije module prije bilo koga drugog.',
+        'question'  => 'Što je Rani pristup?',
     ],
     'entity-notes'          => [
         'answer'    => 'Svi entiteti imaju karticu "Bilješke entiteta" koje sadrže male isječke teksta koje možeš postaviti da su vidljivi samo tebi (odlično prilikom zajedničkog vođenja kampanje), samo članovima administratorske uloge ili vidljive svima. Također, možeš dati igračima dozvolu za kreiranje i uređivanje bilješki o entitetima bez ovlaštenja za uređivanjem čitavog entiteta.',
@@ -65,16 +73,28 @@ TEXT
         'question'  => 'Želim pomoći! Što mogu učiniti?',
     ],
     'map'                   => [
-        'answer'    => 'Svaka lokacija može sadržavati kartu (png, jpg ili svg) koja na sebi ima "točke mape" koje se mogu staviti uz kontrolu veličine, oblika, ikone i boje te kao veze do entiteta ili jednostavnih oznaka.',
+        'answer'    => 'Svaka lokacija može sadržavati kartu (png, jpg ili svg) koja na sebi ima "točke karte" koje se mogu staviti uz kontrolu veličine, oblika, ikone i boje te kao veze do entiteta ili jednostavnih oznaka.',
         'question'  => 'Mogu li učitati karte na Kanku?',
     ],
     'mobile'                => [
         'answer'    => 'Trenutačno nema posvećene mobilne aplikacije za Kanku, ali većina aplikacije radi na mobilnom uređaju. Jedno ograničenje je alat spominjanja koji ne radi u uređivaču teksta. Nadamo se da nam podrška na :patreon omogućiti da nekome platimo izradu mobilne aplikaciju, ali ne predviđamo da će se to dogoditi u skoroj budućnosti.',
         'question'  => 'Postoji li mobilna aplikacija? Planira li se?',
     ],
+    'monsters'              => [
+        'answer'    => 'Preporučujemo korištenje modula Rase za ljude, vrste, čudovišta i sve živo što nije lik.',
+        'question'  => 'Gdje stvoriti čudovišta?',
+    ],
     'multiworld'            => [
         'answer'    => 'Možeš biti dio onoliko kampanja koliko želiš, uključujući i one koje si kreirao/la. Za promjenu ili stvaranje nove kampanje, idi na preglednu ploču kampanje i u gornjem desnom kutu klikni na trenutnu kampanju za prikaz sučelja prebacivanja kampanje.',
         'question'  => 'Mogu li imati više kampanja?',
+    ],
+    'nested'                => [
+        'answer'    => 'Ako više voliš svoje entitete gledati u ugnježđenom prikazu prema zadanim postavkama (na primjeru gumb Uneseni prikaz na popisu lokacija), to možeš učiniti tako da otvoriš opcije profila i izgleda. Tamo možeš provjeriti mogućnost ugniježđenog pogleda. To se odnosi samo na tvoj račun, a ne i za tvoje kampanje.',
+        'question'  => 'Mogu li postaviti ugniježđene popise kao zadane?',
+    ],
+    'organise_play'         => [
+        'answer'    => 'U partnerstvu smo s :lfgm koji omogućuje organiziranje sesija sa svojom grupom. Možeš sinkronizirati Kanka kampanju sa svojom LFGM kampanjom da bi svoju sljedeću dostupnost pokazali izravno na nadzornoj ploči kampanje.',
+        'question'  => 'Kako mogu upravljati kada vodim seanse?',
     ],
     'permissions'           => [
         'answer'    => 'Apsolutno, zato smo izgradili Kanku! Možete pozvati sve svoje igrače u svoje kampanje i dodijeliti im uloge i dozvole. Izgradili smo sustav da bude izuzetno fleksibilan (možete koristiti i konfiguraciju za prijavu i isključivanje) kako bismo pokrili što više potreba i situacija.',
@@ -93,6 +113,10 @@ TEXT
         'answer'    => 'Možeš pregledavati stranicu :public-campaigns da vidiš kako drugi koriste Kanku za svoje kampanje.',
         'question'  => 'Kako drugi koriste Kanka?',
     ],
+    'renaming-modules'      => [
+        'answer'    => 'Iako bi to bilo lako učiniti za engleski i druge jezike koji ne koriste rodovna imena, mogućnost promjene naziva modula narušila bi gramatičku ispravnost i korisničko iskustvo za većinu jezika na kojima je Kanka dostupna.',
+        'question'  => 'Mogu li preimenovati module? Na primjer Obitelji u Klanove ili Organizacije u Frakcije?',
+    ],
     'sections'              => [
         'community'     => 'Zajednica',
         'general'       => 'Općenito',
@@ -107,7 +131,7 @@ TEXT
         'title'     => 'Često postavljana pitanja :name',
     ],
     'user-switch'           => [
-        'answer'    => 'Dozvole mogu postati škakljive, osobito kod velikih kampanja. Kao administrator kampanje, možeš doći do stranice članova kampanje i kliknuti gumb "Prebaci se" koji će se pojaviti pored članova koji nisu administratori. Tako ćeš se prijaviti kao korisnik, što će ti omogućiti pregled kampanje kakvu taj korisnik vidi. To je najlakši način za provjeru dozvola tvoje kampanje.',
+        'answer'    => 'Dozvole mogu postati škakljive, osobito kod velikih kampanja. Kao administrator kampanje, možeš doći do stranice članova kampanje i kliknuti gumb "Imitiraj" koji će se pojaviti pored članova koji nisu administratori. Tako ćeš se prijaviti kao korisnik, što će ti omogućiti pregled kampanje kakvu taj korisnik vidi. To je najlakši način za provjeru dozvola tvoje kampanje.',
         'question'  => 'Ovlasti u mojoj kampanji su postavljene, kako ih mogu testirati?',
     ],
     'visibility'            => [

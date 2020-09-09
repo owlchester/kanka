@@ -54,6 +54,7 @@ return [
             'more'      => 'Saber más sobre todas las características.',
             'second'    => 'Mejorar una campaña activa los siguientes beneficios:',
             'theme'     => 'Tema y estilo personalizado a nivel de campaña.',
+            'third'     => 'Para mejorar una campaña, dirígete a la página de la campaña y haz clic en el botón de ":boost_button" que hay sobre el botón de ":edit_button".',
             'tooltip'   => 'Descripciones emergentes personalizadas para las entidades.',
             'upload'    => 'Capacidad de subida de archivos ampliada para todos los miembros de la campaña.',
         ],

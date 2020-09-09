@@ -7,6 +7,7 @@
         trans('characters.show.tabs.maps')
     ],
     'mainTitle' => false,
+    'miscModel' => $model,
 ])
 
 @inject('campaign', 'App\Services\CampaignService')

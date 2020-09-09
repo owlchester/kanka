@@ -13,12 +13,9 @@ return [
         'find_out_more'     => 'Find out more',
         'go_to'             => 'Go to :name',
         'json-export'       => 'Export (JSON)',
-        'more'              => 'More Actions',
         'move'              => 'Move',
         'new'               => 'New',
         'next'              => 'Next',
-        'private'           => 'Private',
-        'public'            => 'Public',
         'reset'             => 'Reset',
     ],
     'add'               => 'Add',
@@ -27,26 +24,9 @@ return [
     ],
     'attributes'        => [
         'actions'       => [
-            'add'               => 'Add an attribute',
-            'add_block'         => 'Add a block',
-            'add_checkbox'      => 'Add a checkbox',
-            'add_text'          => 'Add a text',
             'apply_template'    => 'Apply an Attribute Template',
             'manage'            => 'Manage',
             'remove_all'        => 'Delete All',
-        ],
-        'create'        => [
-            'description'   => 'Create a new attribute',
-            'success'       => 'Attribute :name added to :entity.',
-            'title'         => 'New Attribute for :name',
-        ],
-        'destroy'       => [
-            'success'   => 'Attribute :name for :entity removed.',
-        ],
-        'edit'          => [
-            'description'   => 'Update an existing attribute',
-            'success'       => 'Attribute :name for :entity updated.',
-            'title'         => 'Update attribute for :name',
         ],
         'fields'        => [
             'attribute'             => 'Attribute',
@@ -249,7 +229,7 @@ return [
     ],
     'hidden'            => 'Hidden',
     'hints'             => [
-        'attribute_template'    => 'Apply an attribute template directly when creating this entity.',
+        'attribute_template'    => 'Apply an attribute template directly when creating or editing this entity.',
         'calendar_date'         => 'A calendar date allows easy filtering in lists, and also maintains a calendar event in the selected calendar.',
         'header_image'          => 'This image is placed above the entity. For best results, use a wide image.',
         'image_limitations'     => 'Supported formats: jpg, png and gif. Max file size: :size.',
@@ -271,6 +251,7 @@ return [
     'image'             => [
         'error' => 'We weren\'t able to get the image you requested. It could be that the website doesn\'t allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid. Please also make sure that the image isn\'t larger than :size.',
     ],
+    'is_not_private'    => 'This entity isn\'t currently set to private.',
     'is_private'        => 'This entity is private and only visible to members of the Admin role.',
     'linking_help'      => 'How can I link to other entries?',
     'manage'            => 'Manage',

@@ -57,7 +57,7 @@ TEXT
     ],
     'free'                  => [
         'answer'    => <<<'TEXT'
-Yes! We strongly believe that your financial situation shouldn't impact your enjoyment of RPGs or world building and we will always keep the core app free. However, if you wish to take a more active role in this journey, support us, and vote on the features that matter the most to you, you can do so either through our website or on :patreon.
+Yes! We strongly believe that your financial situation shouldn't impact your enjoyment of RPGs or world building and we will always keep the core app free. However, if you wish to take a more active role in this journey, support us, and vote on the features that matter the most to you, you can do so through our subscriptions.
 
 In addition to voting on the direction that Kanka takes, supporting us allows you to gain access to :boosters, increase file size upload limits, add your name to the hall of fame, have nicer default icons, and more!
 TEXT
@@ -93,7 +93,7 @@ TEXT
         'question'  => 'Can I set the lists to be nested by default?',
     ],
     'organise_play'         => [
-        'answer'    => 'We\'ve partnered with :lfgm which allows you to organise your sessions with your group. You can sync your Kanka campaign with your LGFM campaign to show your next availabilities directly on the campaign dashboard.',
+        'answer'    => 'We\'ve partnered with :lfgm which allows you to organise your sessions with your group. You can sync your Kanka campaign with your LFGM campaign to show your next availabilities directly on the campaign dashboard.',
         'question'  => 'How can I manage when I run my sessions?',
     ],
     'permissions'           => [
@@ -112,6 +112,10 @@ TEXT
     'public-campaigns'      => [
         'answer'    => 'You can browse the :public-campaigns page to see how others use Kanka for their campaigns.',
         'question'  => 'How do others use Kanka?',
+    ],
+    'renaming-modules'      => [
+        'answer'    => 'While this would be easy to do for English and other languages that don\'t use gendered names, being able to change the name of modules would break the grammatical correctness and user experience for a majority of languages Kanka is also available in.',
+        'question'  => 'Can I rename modules? For example Families into Clans, or Organisations into Factions?',
     ],
     'sections'              => [
         'community'     => 'Community',

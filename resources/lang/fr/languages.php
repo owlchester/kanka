@@ -3,6 +3,7 @@
 return [
     'available' => [],
     'codes'     => [
+        'ca'    => 'Catalan',
         'de'    => 'Allemand',
         'en'    => 'Anglais',
         'en-US' => 'Anglais Américain',
@@ -13,8 +14,10 @@ return [
         'hu'    => 'Hongrois',
         'it'    => 'Italien',
         'nl'    => 'Hollandais',
+        'pl'    => 'Polonais',
         'pt-BR' => 'Portugais Brésilien',
         'ru'    => 'Russe',
+        'sk'    => 'Slovaque',
     ],
     'header'    => 'Langues',
 ];

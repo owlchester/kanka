@@ -49,14 +49,16 @@ class InventoryController extends Controller
         $datagridSorter->request(request()->all());
 
         $ajax = request()->ajax();
+
         $inventory = $entity
             ->inventories()
             ->with(['entity', 'item', 'item.entity'])
-            ->has('item')
             ->has('entity')
-            ->acl()
             ->simpleSort($datagridSorter)
-            ->paginate();
+            ->get()
+            ->sortBy(function($model, $key) {
+                return !empty($model->position) ? $model->position : 'zzzz' . $model->itemName();
+            });
 
         return view('entities.pages.inventory.index', compact(
             'ajax',
@@ -92,7 +94,7 @@ class InventoryController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $data = $request->only(['amount', 'item_id', 'entity_id', 'position', 'description', 'visibility']);
+        $data = $request->only(['amount', 'name', 'item_id', 'entity_id', 'position', 'description', 'visibility', 'is_equipped']);
         $ajax = $request->ajax();
 
         $inventory = new Inventory();
@@ -101,7 +103,7 @@ class InventoryController extends Controller
         return redirect()
             ->route('entities.inventory', $entity)
             ->with('success', trans('entities/inventories.create.success', [
-                'item' => $inventory->item->name,
+                'item' => $inventory->itemName(),
                 'entity' => $entity->name
             ]));
     }
@@ -133,7 +135,7 @@ class InventoryController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $data = $request->only(['amount', 'item_id', 'entity_id', 'position', 'description', 'visibility']);
+        $data = $request->only(['amount', 'name', 'item_id', 'entity_id', 'position', 'description', 'visibility', 'is_equipped']);
         $ajax = $request->ajax();
 
         $inventory->update($data);
@@ -142,7 +144,7 @@ class InventoryController extends Controller
         return redirect()
             ->route('entities.inventory', $entity)
             ->with('success', trans('entities/inventories' . '.update.success', [
-                'item' => $inventory->item->name,
+                'item' => $inventory->itemName(),
                 'entity' => $entity->name
             ]));
     }
@@ -161,7 +163,7 @@ class InventoryController extends Controller
         return redirect()
             ->route('entities.inventory', [$entity->id])
             ->with('success', trans('entities/inventories.destroy.success', [
-                'item' => $inventory->item->name,
+                'item' => $inventory->itemName(),
                 'entity' => $entity->name
             ]));
     }

@@ -10,6 +10,7 @@ use App\Models\EntityEvent;
 use App\Models\Event;
 use Collective\Html\HtmlFacade;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class CalendarRenderer
@@ -562,7 +563,23 @@ class CalendarRenderer
     {
         /** @var EntityEvent $event */
         $this->events = [];
-        $reminders = $this->calendar->calendarEvents()
+        $reminders = $this->getReminders($this->calendar);
+        $this->parseReminders($reminders);
+
+        if ($this->calendar->calendar) {
+            $reminders = $this->getReminders($this->calendar->calendar);
+            $this->parseReminders($reminders);
+        }
+        return $this->events;
+    }
+
+    /**
+     * @param Calendar $calendar
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    protected function getReminders(Calendar $calendar)
+    {
+        return $calendar->calendarEvents()
             ->has('entity')
             ->with(['entity', 'entity.tags'])
             ->where(function ($query) {
@@ -603,13 +620,20 @@ class CalendarRenderer
                         $sub->where('is_recurring', true)
                             ->where('recurring_periodicity', 'month');
                     });
-            });
+            })
+            ->get();
+    }
 
+    /**
+     * @param Collection $reminders
+     */
+    protected function parseReminders(Collection $reminders)
+    {
         $totalMonths = count($this->calendar->months());
         if (!$this->isYearlyLayout()) {
             $totalMonths = $this->getMonth();
         }
-        foreach ($reminders->get() as $event) {
+        foreach ($reminders as $event) {
             $date = $event->year . '-' . $event->month . '-' . $event->day;
 
             // If the event is recurring, get the year to make sure it should start showing. This was previously
@@ -645,8 +669,6 @@ class CalendarRenderer
                 }
             }
         }
-//        dump($this->events);
-        return $this->events;
     }
 
     /**
@@ -839,6 +861,16 @@ class CalendarRenderer
      */
     public function buildWeather()
     {
+        // First build parent weather, and override with local weather
+        if ($this->calendar->calendar) {
+            $weathers = $this->calendar->calendar->calendarWeather()->year($this->currentYear())->get();
+
+            /** @var CalendarWeather $weather */
+            foreach ($weathers as $weather) {
+                $this->weather[$weather->year . '-' . $weather->month . '-' . $weather->day] = $weather;
+            }
+        }
+
         $weathers = $this->calendar->calendarWeather()->year($this->currentYear())->get();
 
         /** @var CalendarWeather $weather */

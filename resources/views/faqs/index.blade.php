@@ -102,16 +102,36 @@
                         </ul>
                     </div>
                     <div class="col-md-4">
-                        <h2>{{ __('faq.sections.community') }}</h2>
+                        <h2>{{ __('faq.sections.other') }}</h2>
                         <ul>
                             <li>
-                                <a href="{{ route('faq.show', ['key' => 'help', 'slug' => Str::slug(__('faq.help.question'))]) }}">
-                                    {{ __('faq.help.question') }}
+                                <a href="{{ route('faq.show', ['key' => 'mobile', 'slug' => Str::slug(__('faq.mobile.question'))]) }}">
+                                    {{ __('faq.mobile.question') }}
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('faq.show', ['key' => 'public-campaigns', 'slug' => Str::slug(__('faq.public-campaigns.question'))]) }}">
-                                    {{ __('faq.public-campaigns.question') }}
+                                <a href="{{ route('faq.show', ['key' => 'plans', 'slug' => Str::slug(__('faq.plans.question'))]) }}">
+                                    {{ __('faq.plans.question') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'app_backup', 'slug' => Str::slug(__('faq.app_backup.question'))]) }}">
+                                    {{ __('faq.app_backup.question') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'bugs', 'slug' => Str::slug(__('faq.bugs.question'))]) }}">
+                                    {{ __('faq.bugs.question') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'organise_play', 'slug' => Str::slug(__('faq.organise_play.question'))]) }}">
+                                    {{ __('faq.organise_play.question') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'renaming-modules', 'slug' => Str::slug(__('faq.renaming-modules.question'))]) }}">
+                                    {{ __('faq.renaming-modules.question') }}
                                 </a>
                             </li>
                         </ul>
@@ -150,36 +170,19 @@
                         </ul>
                     </div>
                     <div class="col-md-4">
-                        <h2>{{ __('faq.sections.other') }}</h2>
+                        <h2>{{ __('faq.sections.community') }}</h2>
                         <ul>
                             <li>
-                                <a href="{{ route('faq.show', ['key' => 'mobile', 'slug' => Str::slug(__('faq.mobile.question'))]) }}">
-                                    {{ __('faq.mobile.question') }}
+                                <a href="{{ route('faq.show', ['key' => 'help', 'slug' => Str::slug(__('faq.help.question'))]) }}">
+                                    {{ __('faq.help.question') }}
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('faq.show', ['key' => 'plans', 'slug' => Str::slug(__('faq.plans.question'))]) }}">
-                                    {{ __('faq.plans.question') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('faq.show', ['key' => 'app_backup', 'slug' => Str::slug(__('faq.app_backup.question'))]) }}">
-                                    {{ __('faq.app_backup.question') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('faq.show', ['key' => 'bugs', 'slug' => Str::slug(__('faq.bugs.question'))]) }}">
-                                    {{ __('faq.bugs.question') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('faq.show', ['key' => 'organise_play', 'slug' => Str::slug(__('faq.organise_play.question'))]) }}">
-                                    {{ __('faq.organise_play.question') }}
+                                <a href="{{ route('faq.show', ['key' => 'public-campaigns', 'slug' => Str::slug(__('faq.public-campaigns.question'))]) }}">
+                                    {{ __('faq.public-campaigns.question') }}
                                 </a>
                             </li>
                         </ul>
-                    </div>
-                    <div class="col-md-4">
                     </div>
                 </div>
 

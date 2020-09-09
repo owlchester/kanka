@@ -111,6 +111,9 @@ class Attribute extends Model
      */
     public function mappedValue(): string
     {
+        if ($this->type == self::TYPE_SECTION) {
+            return $this->name;
+        }
         return Mentions::mapAttribute($this);
     }
 

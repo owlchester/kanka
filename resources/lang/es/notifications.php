@@ -3,8 +3,9 @@
 return [
     'campaign'          => [
         'boost'         => [
-            'add'       => 'Tu campaña está siendo mejorada por :user.',
-            'remove'    => ':user ya no está mejorando la campaña :campaign.',
+            'add'           => ':user está mejorando la campaña :campaign.',
+            'remove'        => ':user ya no está mejorando la campaña :campaign.',
+            'superboost'    => ':user está supermejorando la campaña :campaign.',
         ],
         'export'        => 'Ya se ha exportado tu campaña. Puedes descargarla haciendo click en <a href=":link">aquí</a>. El enlace estará disponible durante 30 minutos.',
         'export_error'  => 'Ha ocurrido un error mientras se exportaba tu campaña. Por favor, contáctanos si el error persiste.',
@@ -26,9 +27,10 @@ return [
         'title' => 'Cambios en los permisos',
     ],
     'subscriptions'     => [
-        'charge_fail'   => 'Ha habido un error procesando tu pago. Por favor, espera un momento mientras volvemos a intentarlo. Si no se producen cambios, contacta con nosotros.',
+        'charge_fail'   => 'Ha habido un error procesando tu pago. Espera un momento mientras volvemos a intentarlo. Si no se producen cambios, contacta con nosotros.',
+        'deleted'       => 'Tu suscripción a Kanka se ha cancelado tras demasiados intentos fallidos de hacer el cobro en tu tarjeta. Dirígete a la configuración de tu suscripción e intenta actualizar tus datos de pago.',
         'ended'         => 'Tu suscripción a Kanka ha finalizado. Se han eliminado tus mejoras de campaña y tus roles de Discord. ¡Esperamos volver a verte pronto!',
-        'failed'        => 'Tu suscripción a Kanka se ha cancelado tras demasiados intentos de cargar el cobro en tu tarjeta. Por favor, dirígete a los ajustes de suscripción e intenta actualizar tus detalles de pago.',
+        'failed'        => 'Tu suscripción a Kanka se ha cancelado tras demasiados intentos de cargar el cobro en tu tarjeta. Dirígete a los ajustes de suscripción e intenta actualizar tus detalles de pago.',
         'started'       => 'Tu suscripción a Kanka ha empezado.',
     ],
 ];

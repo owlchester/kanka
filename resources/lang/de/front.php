@@ -105,6 +105,7 @@ return [
             'default_image'     => 'Schöne Standardbilder für Objekte',
             'description'       => 'Durch die Unterstützung von Kanka mit einer geringen monatlichen Gebühr können wir weiter an Kanka arbeiten und die folgenden Vorteile für ein Konto freischalten.',
             'discord'           => 'Privater Discord-Kanal',
+            'entities'          => 'Anzahl der Objekte, die in jeder Kampagne erstellt werden können',
             'free'              => 'Kostenlos',
             'hall_of_fame'      => 'Name in :link',
             'impact'            => 'Auswirkungen auf zukünftige Funktionen',
@@ -114,6 +115,7 @@ return [
             'title'             => 'Bezahlte Funktionen',
             'upload_limit'      => 'Upload Größe',
             'upload_limit_map'  => 'Kartenupload Größe',
+            'users_roles'       => 'Anzahl der Benutzer, Rollen und Berechtigungskontrollen',
         ],
         'public'            => [
             'description'   => 'Berechtigungen können für Module oder jedes einzelne Objekt gesetzt werden. Kampagnen können auch für die <a href=":url">ganze Welt</a> öffentlich gemacht werden.',
@@ -124,6 +126,7 @@ return [
             'title'         => 'Beziehungen',
         ],
         'title'             => 'Unbegrenzte Features, unbegrenzter Spaß',
+        'unlimited'         => 'unbegrenzt',
         'updates'           => [
             'description'   => 'Kanka erhält regelmäßige Update, die von der Community mitgestaltet werden.',
             'title'         => 'Regelmäßige Updates',

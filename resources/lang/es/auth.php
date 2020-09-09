@@ -14,7 +14,7 @@ return [
         'login_with_google'     => 'Acceder con Google',
         'login_with_twitter'    => 'Acceder con Twitter',
         'new_account'           => 'Crear cuenta',
-        'or'                    => 'O',
+        'or'                    => 'o bien',
         'password_forgotten'    => '¿Olvidaste tu contraseña?',
         'remember_me'           => 'Recordar',
         'submit'                => 'Acceder',
@@ -23,9 +23,9 @@ return [
     'register'  => [
         'already_account'           => '¿Ya tienes una cuenta?',
         'email'                     => [
-            'body'  => '<p>¡Bienvenido a kanka.io</p><p>Tu cuenta ha sido asociada con tu correo electronico</p>',
-            'login' => 'Crear',
-            'title' => '¡Bienvenido a kanka.io!',
+            'body'  => '<p>¡Te damos la bienvenida a kanka.io!</p><p>Tu cuenta ha sido asociada con tu correo electrónico.</p>',
+            'login' => 'Entrar',
+            'title' => 'Primeros pasos en Kanka',
         ],
         'errors'                    => [
             'email_already_taken'   => 'Ya existe una cuenta asociada a este correo electrónico.',
@@ -40,10 +40,10 @@ return [
         'register_with_facebook'    => 'Registrarse con Facebook',
         'register_with_google'      => 'Registrarse con Google',
         'register_with_twitter'     => 'Registrarse con Twitter',
-        'submit'                    => 'Crear cuenta',
-        'title'                     => 'Crear cuenta',
+        'submit'                    => 'Registrarse',
+        'title'                     => 'Registrarse',
         'welcome_email'             => [
-            'header'        => '¡Bienvenido a Kanka, :name!',
+            'header'        => '¡Te damos la bienvenida a Kanka, :name!',
             'header_sub'    => '¡Enhorabuena! Has completado el primer paso en la creación de tu mundo en :kanka.',
             'section_1'     => '¿Qué hago ahora?',
             'section_10'    => 'Patrons',

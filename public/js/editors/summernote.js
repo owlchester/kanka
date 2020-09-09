@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 20);
+/******/ 	return __webpack_require__(__webpack_require__.s = 21);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -110,7 +110,8 @@ window.initSummernote = function () {
   $('.html-editor').summernote({
     height: '300px',
     lang: editorLang(summernoteConfig.data('locale')),
-    toolbar: [['style', ['style']], ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']], ['color', ['color']], ['para', ['ul', 'ol', 'paragraph']], ['table', ['table']], ['insert', ['link', 'picture', 'video', 'embed', 'hr']], ['view', ['fullscreen', 'codeview', 'help']]],
+    toolbar: [['style', ['style']], ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']], ['color', ['color']], ['para', ['ul', 'ol', 'paragraph']], ['table', ['table']], ['insert', ['link', 'picture', 'video', 'embed', 'hr']], //['dir', ['ltr', 'rtl']],
+    ['view', ['fullscreen', 'codeview', 'help']]],
     popover: {
       table: [['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']], ['delete', ['deleteRow', 'deleteCol', 'deleteTable']], ['custom', ['tableHeaders']]]
     },
@@ -247,21 +248,21 @@ function hintContent(item) {
 
     if (summernoteConfig.data('advanced-mention')) {
       return mention;
-    } else {
-      if (advancedRequest) {
-        return mention;
-      }
-
-      return $('<a>', {
-        text: item.fullname,
-        href: '#',
-        "class": 'mention',
-        'data-mention': mention
-      })[0];
     }
+
+    if (advancedRequest) {
+      return mention;
+    }
+
+    return $('<a />', {
+      text: item.fullname,
+      href: '#',
+      "class": 'mention',
+      'data-mention': mention
+    })[0];
   } else if (item.url) {
     if (item.tooltip) {
-      return $('<a>', {
+      return $('<a />', {
         text: item.fullname,
         href: item.url,
         title: item.tooltip.replace(/["]/g, '\''),
@@ -270,7 +271,7 @@ function hintContent(item) {
       })[0];
     }
 
-    return $('<a>', {
+    return $('<a />', {
       text: item.fullname,
       href: item.url
     })[0];
@@ -286,7 +287,11 @@ function hintContent(item) {
 
 
 function attributeContent(item) {
-  return $('<a>', {
+  if (summernoteConfig.data('advanced-mention')) {
+    return '{attribute:' + item.id + '}';
+  }
+
+  return $('<a />', {
     href: '#',
     "class": 'attribute',
     text: '{' + item.name + '}',
@@ -307,6 +312,10 @@ function editorLang(locale) {
 
   if (locale == 'he') {
     return 'he-IL';
+  } else if (locale == 'ca') {
+    return 'ca-ES';
+  } else if (locale == 'el') {
+    return 'el-GR';
   } else if (locale == 'en') {
     return 'en-US';
   } else {
@@ -316,14 +325,14 @@ function editorLang(locale) {
 
 /***/ }),
 
-/***/ 20:
+/***/ 21:
 /*!******************************************************!*\
   !*** multi ./resources/assets/js/editors/summernote ***!
   \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\js\editors\summernote */"./resources/assets/js/editors/summernote.js");
+module.exports = __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/js/editors/summernote */"./resources/assets/js/editors/summernote.js");
 
 
 /***/ })

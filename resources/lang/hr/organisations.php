@@ -55,7 +55,8 @@ return [
             'role'          => 'Uloga',
         ],
         'helpers'       => [
-            'members'   => 'Sljedeća lista prikazuje sve likove koji su u ovoj organizaciji i svim njenim podorganizacijama. Možeš filtrirati stranicu da prikaže samo direktne članove.',
+            'all_members'   => 'Svi likovi koji su članovi ove organizacije i njenih podorganizacija.',
+            'members'       => 'Sljedeća lista prikazuje sve likove koji su u ovoj organizaciji i svim njenim podorganizacijama. Možeš filtrirati stranicu da prikaže samo direktne članove.',
         ],
         'placeholders'  => [
             'character' => 'Izaberi lika',

@@ -43,9 +43,9 @@ return [
         'grid'              => 'Définir une taille de grille qui s\'affichera dans le mode d\'exploration.',
         'initial_zoom'      => 'Le zoom initial est utilisé pour afficher la carte quand celle-ci est chargée. La valeur par défaut est de :default, la valeur max est de :max et la valeur min est de :min.',
         'max_zoom'          => 'La valeur maximale à laquelle la carte peut être agrandie. La valeur par défaut est de :default, et la valeur maximale est de :max.',
-        'min_zoom'          => 'La valeur minimal à laquelle la carte peut être rétrécie. La valeur par défaut est de :default, et la valeur minimale est de :min.',
+        'min_zoom'          => 'La valeur minimale à laquelle la carte peut être rétrécie. La valeur par défaut est de :default, et la valeur minimale est de :min.',
         'missing_image'     => 'Enregister la carte avec une image avant de pouvoir ajouter des couches et des marqueurs.',
-        'nested'            => 'Ce mode de navigation permet d\'afficher les cartes de manière imbriquées. Les cartes sans carte parent seront affichées par défaut. Les cartes possédant des sous-cartes peuvent être cliquées pour afficher ces enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
+        'nested'            => 'Ce mode de navigation permet d\'afficher les cartes de manière imbriquée. Les cartes sans carte parent seront affichées par défaut. Les cartes possédant des sous-cartes peuvent être cliquées pour afficher leurs enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
     ],
     'index'         => [
         'add'   => 'Nouvelle carte',
@@ -62,7 +62,7 @@ return [
     ],
     'placeholders'  => [
         'distance_measure'  => 'Unités par pixel',
-        'distance_name'     => 'Nom de l\'unité de distance (kilometre, mile)',
+        'distance_name'     => 'Nom de l\'unité de distance (kilomètre, mile)',
         'grid'              => 'Distance entre les éléments de la grille. Laisser vide pour cacher la grille.',
         'name'              => 'Nom de la carte',
         'type'              => 'Donjon, Ville, Univers',

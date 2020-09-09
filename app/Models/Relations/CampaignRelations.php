@@ -4,6 +4,7 @@
 namespace App\Models\Relations;
 
 
+use App\Models\CampaignPlugin;
 use App\Models\CampaignRole;
 use App\Models\CampaignSetting;
 use App\Models\CampaignUser;
@@ -12,6 +13,7 @@ use App\Models\Entity;
 use App\Models\EntityMention;
 use App\Models\Image;
 use App\Models\Location;
+use App\Models\Plugin;
 use App\Models\RpgSystem;
 use App\Models\Theme;
 use App\User;
@@ -35,6 +37,8 @@ use App\User;
  * @property Location[] $locations
  *
  * @property Image[] $images
+ * @property Plugin[] $plugins
+ * @property CampaignPlugin[] $campaignPlugins
  */
 trait CampaignRelations
 {
@@ -278,8 +282,41 @@ trait CampaignRelations
         return $this->belongsTo('App\Models\Theme');
     }
 
+    /**
+     * @return mixed
+     */
     public function entityRelations()
     {
         return $this->hasMany('App\Models\Relation');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function plugins()
+    {
+        // return $this->belongsToMany('Email', 'users_email', 'reciever_uid','email_id')->withPivot('sender_uid');
+        return $this->belongsToMany('App\Models\Plugin', 'campaign_plugins', 'campaign_id', 'plugin_id')
+            //->using('App\Models\CampaignPlugin')
+            ->withPivot('is_active')
+            ->withPivot('plugin_version_id')
+        ;
+
+//        return $this->hasManyThrough(
+//            Plugin::class,
+//            'App\Models\CampaignPlugin',
+//            'campaign_id',
+//            'id',
+//            'id',
+//            'plugin_id'
+//        )->withPivot('is_active');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function campaignPlugins()
+    {
+        return $this->hasMany(CampaignPlugin::class);
     }
 }

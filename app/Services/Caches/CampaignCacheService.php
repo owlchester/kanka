@@ -3,7 +3,10 @@
 namespace App\Services\Caches;
 
 use App\Models\Campaign;
+use App\Models\CampaignPlugin;
 use App\Models\CampaignSetting;
+use App\Models\Plugin;
+use App\Models\PluginVersion;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
@@ -202,6 +205,36 @@ class CampaignCacheService extends BaseCache
     }
 
     /**
+     * @return $this
+     */
+    public function clearTheme(): self
+    {
+        $this->forget(
+            $this->themeKey()
+        );
+        return $this;
+    }
+
+    public function theme()
+    {
+        $key = $this->themeKey();
+        if ($this->has($key)) {
+            return $this->get($key);
+        }
+
+        /** @var CampaignPlugin $plugin */
+        $plugin = CampaignPlugin::leftJoin('plugins as p', 'p.id', 'plugin_id')
+            ->where('campaign_id', $this->campaign->id)
+            ->where('p.type_id', 1)
+            ->where('is_active', true)
+            ->first();
+        $theme = $plugin ? $plugin->version : null;
+
+        $this->forever($key, $theme);
+        return $theme;
+    }
+
+    /**
      * Campaign members cache key
      * @return string
      */
@@ -235,5 +268,14 @@ class CampaignCacheService extends BaseCache
     protected function defaultImagesKey(): string
     {
         return 'campaign_' . $this->campaign->id . '_default_images';
+    }
+
+    /**
+     * Campaign plugin theme cache key
+     * @return string
+     */
+    protected function themeKey(): string
+    {
+        return 'campaign_' . $this->campaign->id . '_theme';
     }
 }

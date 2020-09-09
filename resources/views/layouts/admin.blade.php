@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-@include('layouts._tracking')
+@include('layouts._tracking', ['noads' => true])
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ $title ?? "" }} - {{ config('app.name') }}</title>
@@ -127,10 +127,11 @@
         </div>
     </div>
 
+@yield('modals')
+
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}"></script>
-    <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
     @yield('scripts')
 </body>
 </html>

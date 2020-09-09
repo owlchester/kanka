@@ -40,6 +40,7 @@
         tap: false,
         attributionControl: false,
         zoom: {{ $map->initialZoom() }},
+        zoomSnap: 0.25,
         minZoom: {{ $map->minZoom() }},
         maxZoom: {{ $map->maxZoom() }},
         layers: [{{ $map->activeLayers(!isset($single)) }}]

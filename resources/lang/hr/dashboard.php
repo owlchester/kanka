@@ -6,8 +6,7 @@ return [
         'unfollow'  => 'Prekini pratiti',
     ],
     'campaigns'         => [
-        'manage'    => 'Upravljanje kampanjom',
-        'tabs'      => [
+        'tabs'  => [
             'modules'   => '{1} :count modul|{2,*} :count modula',
             'roles'     => '{1} :count uloga|{2,4} :count uloge|{5,*} :count uloga',
             'users'     => '{1} :count korisnik|{2,*} :count korisnika',
@@ -26,21 +25,10 @@ return [
         ],
     ],
     'recent'            => [
-        'add'           => 'Kreiraj :name',
-        'no_entries'    => 'Trenutno nema unosa ove vrste.',
-        'title'         => 'Nedavno izmijenjeno :name',
-        'view'          => 'Pregledaj sve :name',
+        'title' => 'Nedavno izmijenjeno :name',
     ],
     'settings'          => [
-        'description'   => 'Prilagodi što vidiš na naslovnoj ploči',
-        'edit'          => [
-            'success'   => 'Tvoje promjene su spremljene.',
-        ],
-        'fields'        => [
-            'helper'        => 'Možeš jednostavno promijeniti ono što vidiš na nadzornoj ploči. Imaj na umu da je to za sve tvoje kampanje, bez obzira na postavke kampanje.',
-            'recent_count'  => 'Broj nedavnih elemenata',
-        ],
-        'title'         => 'Postavke naslovne ploče',
+        'title' => 'Postavke naslovne ploče',
     ],
     'setup'             => [
         'actions'   => [
@@ -50,14 +38,16 @@ return [
         ],
         'title'     => 'Postavljanje naslovne ploče kampanje',
         'widgets'   => [
-            'calendar'  => 'Kalendar',
-            'preview'   => 'Skraćeni pregled entiteta',
-            'recent'    => 'Nedavno',
+            'calendar'      => 'Kalendar',
+            'preview'       => 'Skraćeni pregled entiteta',
+            'random'        => 'Nasumični entitet',
+            'recent'        => 'Nedavno',
+            'unmentioned'   => 'Entiteti koji nisu nigdje spomenuti',
         ],
     ],
     'title'             => 'Naslovna ploča',
     'widgets'           => [
-        'calendar'  => [
+        'calendar'      => [
             'actions'           => [
                 'next'      => 'Promijeni trenutni datum na sljedeći dan',
                 'previous'  => 'Promijeni trenutni datum na prethodni dan',
@@ -66,28 +56,34 @@ return [
             'previous_events'   => 'Prošli događaji',
             'upcoming_events'   => 'Nadolazeći događaji',
         ],
-        'create'    => [
+        'create'        => [
             'success'   => 'Programčić dodan na naslovnu ploču.',
         ],
-        'delete'    => [
+        'delete'        => [
             'success'   => 'Programčić uklonjen s naslovne ploče.',
         ],
-        'fields'    => [
+        'fields'        => [
             'width' => 'Širina',
         ],
-        'recent'    => [
-            'full'      => 'Puna',
-            'help'      => 'Prikaži samo posljednji ažurirani entitet, ali prikaži cijeli pregled entiteta',
-            'helpers'   => [
-                'full'  => 'Prikaži unos cijelog entiteta umjesto skraćenog pregleda.',
+        'recent'        => [
+            'entity-header' => 'Koristi zaglavlje entiteta kao sliku',
+            'full'          => 'Puna',
+            'help'          => 'Prikaži samo posljednji ažurirani entitet, ali prikaži cijeli pregled entiteta',
+            'helpers'       => [
+                'entity-header' => 'Ako entitet ima zaglavlje entiteta (značajka pojačane kampanje), postavite ovaj programčić da koristi tu sliku umjesto slike entiteta.',
+                'full'          => 'Prikaži unos cijelog entiteta umjesto skraćenog pregleda.',
             ],
-            'singular'  => 'Jedan',
-            'title'     => 'Nedavno izmijenjeno',
+            'singular'      => 'Jedan',
+            'tags'          => 'Filtrirajte popis nedavno izmijenjenih entiteta po navedenim oznakama.',
+            'title'         => 'Nedavno izmijenjeno',
         ],
-        'update'    => [
+        'unmentioned'   => [
+            'title' => 'Entiteti koji nisu nigdje spomenuti',
+        ],
+        'update'        => [
             'success'   => 'Programčić ažuriran.',
         ],
-        'widths'    => [
+        'widths'        => [
             '0' => 'Automatski',
             '12'=> 'Puna',
             '4' => 'Mala',

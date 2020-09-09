@@ -5,6 +5,14 @@ return [
         'description'   => 'Sie können einen Charakter mit einem Kalender der Kampagne verknüpfen, indem Sie einen Charakter anzeigen und zur Registerkarte Erinnerungen wechseln. Fügen Sie von dort aus eine neue Erinnerung hinzu und setzen Sie den Typ auf Geburt oder Tod, um das Alter des Charakters automatisch zu berechnen. Wenn sowohl Geburt als auch Tod vorliegen, werden beide Daten und das Todesalter angezeigt. Wenn nur die Geburt eingestellt ist, werden das Datum und das aktuelle Alter angezeigt. Wenn nur der Tod festgelegt ist, werden das Datum und die Jahre seit dem Tod angezeigt.',
         'title'         => 'Charakter alter und Tod',
     ],
+    'attributes'    => [
+        'con'           => 'con',
+        'description'   => 'Verwenden Sie Attribute, um Werte darzustellen, die an ein Objekt angehängt sind, die keine Texte sind. Sie können Objekte in Attributen mithilfe der erweiterten Erwähnungssyntax referenzieren :mention. Sie können auch auf andere Attribute verweisen, indem Sie die :attribute syntax verwenden.',
+        'level'         => 'Level',
+        'link'          => 'Attributoptionen',
+        'math'          => 'Sie können auch mit einigen grundlegenden mathematischen Optionen kreativ werden. Beispiel :example multipliziert die Attribute :level und :con dieses Objektes. Wenn Sie auf- oder abrunden möchten, können Sie Folgendes verwenden :floor oder :ceil',
+        'title'         => 'Attribute',
+    ],
     'description'   => 'Einige hilfreiche Tipps und Tricks, um dir mit Kanka zu helfen',
     'dice'          => [
         'description'               => 'Allgemeine Würfelwürfe sind möglich, wenn du "d20", "4d4+4", "d%" (Prozentwürfe) oder "df" (FUDGE-würfe) schreibst.',
@@ -21,6 +29,7 @@ return [
         'title'         => 'Verwendung von Filtern',
     ],
     'link'          => [
+        'attributes'        => 'Sie können auf Attribute der Objekte verweisen, indem Sie Folgendes eingeben :code. Dies funktioniert nur für vorhandene Attribute der Objekte.',
         'auto_update'       => 'Links zu ändern Objekten werden automatisch aktualisiert, wenn der Name des Ziels oder die Beschreibung sich geändert hat.',
         'description'       => 'Mit einem "@" kannst du ganz einfach Links zu anderen Einträgen setzen. Ein "#" zeigt dir stattdessen eine Namensliste mit Monaten aus deinen Kalendern an.',
         'formatting'        => [

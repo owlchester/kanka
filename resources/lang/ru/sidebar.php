@@ -1,11 +1,17 @@
 <?php
 
 return [
-    'abilities'             => 'Способности.',
+    'abilities'             => 'Способности',
     'admin'                 => 'Админ',
     'attribute_templates'   => 'Шаблоны Атрибутов',
     'calendars'             => 'Календари',
     'campaign'              => 'Кампания',
+    'campaign_switcher'     => [
+        'created_campaigns' => 'Ваши Кампании',
+        'new_campaign'      => 'Новая Кампания',
+        'public_campaigns'  => 'Публичные Кампании',
+        'updated'           => 'Обновлено',
+    ],
     'campaigns'             => 'Кампании',
     'characters'            => 'Персонажи',
     'conversations'         => 'Разговоры',
@@ -19,6 +25,7 @@ return [
     'journals'              => 'Журналы',
     'locations'             => 'Локации',
     'manage_links'          => 'Управление Ссылками',
+    'new-entity'            => 'Создать новый объект',
     'notes'                 => 'Заметки',
     'organisations'         => 'Организации',
     'other'                 => 'Другое',
@@ -26,6 +33,7 @@ return [
     'races'                 => 'Расы',
     'search'                => 'Искать...',
     'tags'                  => 'Тэги',
+    'timelines'             => 'Хронологии',
     'translations'          => 'Переводы',
     'world'                 => 'Мир',
 ];

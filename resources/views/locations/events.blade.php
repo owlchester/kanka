@@ -7,6 +7,7 @@
         trans('locations.show.tabs.events')
     ],
     'mainTitle' => false,
+    'miscModel' => $model,
 ])
 
 @section('content')

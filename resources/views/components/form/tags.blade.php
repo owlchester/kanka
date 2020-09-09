@@ -44,7 +44,7 @@ elseif(!empty($model) && !empty($model->entity)) {
 <label>{{ trans('crud.fields.tags') }}</label>
 @endif
 
-<select multiple="multiple" name="tags[]" id="{{ Arr::get($options, 'id', 'tags') }}" class="form-control form-tags" style="width: 100%" data-url="{{ route('tags.find') }}" data-allow-new="{{ $enableNew ? 'true' : 'false' }}" data-allow-clear="{{ Arr::get($options, 'allowClear', 'true') }}" data-new-tag="{{ trans('tags.new_tag') }}">
+<select multiple="multiple" name="tags[]" id="{{ Arr::get($options, 'id', 'tags[]') }}" class="form-control form-tags" style="width: 100%" data-url="{{ route('tags.find') }}" data-allow-new="{{ $enableNew ? 'true' : 'false' }}" data-allow-clear="{{ Arr::get($options, 'allowClear', 'true') }}" data-new-tag="{{ trans('tags.new_tag') }}" data-placeholder="">
     @foreach ($selectedOption as $key => $tag)
         <option value="{{ $key }}" data-colour="{{ $tag->colourClass() }}" selected="selected">{{ $tag->name }}</option>
     @endforeach

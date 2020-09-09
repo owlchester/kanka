@@ -17,6 +17,7 @@ use Illuminate\Support\Arr;
  * @property string $patreon_email
  * @property string $patreon_fullname
  * @property int $patreon_pledge
+ * @property string $newEntityWorkflow
  * @property int $pledge
  */
 trait UserSetting
@@ -92,6 +93,22 @@ trait UserSetting
     public function getEditorAttribute()
     {
         return Arr::get($this->settings, 'editor', null);
+    }
+
+    /**
+     * @param $value
+     */
+    public function setNewEntityWorkflowAttribute($value)
+    {
+        $this->setSettingsOption('new_entity_workflow', $value);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNewEntityWorkflowAttribute()
+    {
+        return Arr::get($this->settings, 'new_entity_workflow', null);
     }
 
     /**
@@ -203,6 +220,10 @@ trait UserSetting
         $this->advanced_mentions = Arr::get($data, 'advanced_mentions', null);
         if (empty($this->advanced_mentions)) {
             unset($this->attributes['settings']['advanced_mentions']);
+        }
+        $this->new_entity_workflow = Arr::get($data, 'new_entity_workflow', null);
+        if (empty($this->new_entity_workflow)) {
+            unset($this->attributes['settings']['new_entity_workflow']);
         }
 
 

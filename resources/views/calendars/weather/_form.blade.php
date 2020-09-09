@@ -19,3 +19,5 @@
     <label>{{ trans('calendars/weather.fields.effect') }}</label>
     {!! Form::text('effect', null, ['class' => 'form-control', 'placeholder' => __('calendars/weather.placeholders.effect')]) !!}
 </div>
+
+@include('cruds.fields.visibility')

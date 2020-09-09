@@ -43,7 +43,7 @@
                 </a>
 
                 <a href="#" class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $era->name }}"
-                        data-target="#delete-confirm" data-delete-target="delete-form-timeline-{{ $era->id }}"
+                        data-target="#delete-confirm" data-delete-target="delete-form-era-{{ $era->id }}"
                         title="{{ __('crud.remove') }}">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                 </a>

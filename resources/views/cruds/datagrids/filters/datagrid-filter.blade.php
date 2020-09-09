@@ -137,6 +137,13 @@ $count = 0;
                                             @endforeach
                                         </datalist>
                                     </div>
+                                @elseif ($field === 'date')
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" class="form-control date-picker" name="{{ $field }}" value="{{ $filterService->single($field) }}" autocomplete="off" />
+                                    </div>
                                 @else
                                     <input type="text" class="form-control" name="{{ $field }}" value="{{ $filterService->single($field) }}" />
                                 @endif

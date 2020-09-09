@@ -9,6 +9,7 @@
         __('crud.tabs.inventory')
     ],
     'mainTitle' => false,
+    'miscModel' => $entity->child,
 ])
 @inject('campaign', 'App\Services\CampaignService')
 
@@ -27,11 +28,7 @@
 
                     <p class="help-block">{{ __('entities/inventories.show.helper') }}</p>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            @include('cruds.datagrids.sorters.simple-sorter')
-                        </div>
-                        <div class="col-md-6 text-right">
+                    <div class="text-right">
                             @can('inventory', $entity->child)
                                 <th class="text-right">
                                     <a href="{{ route('entities.inventories.create', ['entity' => $entity]) }}" class="btn btn-primary btn-sm"
@@ -43,38 +40,49 @@
                                 </th>
                             @endcan
                         </div>
-                    </div>
 
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th class="avatar"></th>
+                            <th>{{ __('entities/inventories.fields.is_equipped') }}</th>
                             <th>{{ __('crud.fields.item') }}</th>
-                            <th>{{ __('entities/inventories.fields.position') }}</th>
                             <th>{{ __('entities/inventories.fields.amount') }}</th>
-                            <th>{{ __('entities/inventories.fields.description') }}</th>
                             @if (Auth::check())
                             <th>{{ __('crud.fields.visibility') }}</th>
+                            <th></th>
                             @endif
                         </tr>
                         </thead>
                         <tbody>
+                        <?php $previousPosition = null; ?>
                         @foreach ($inventory as $item)
+                            @if(!empty($item->item_id) && empty($item->item))
+                                @continue
+                            @endif
+                            @if ($previousPosition != $item->position)
+                                <tr class="active">
+                                    <td colspan="@if(Auth::check())5 @else 4 @endif" class="text-muted">
+                                        {!! $item->position ?: '<i>' . __('entities/inventories.show.unsorted') . '</i>' !!}
+                                    </td>
+                                </tr>
+                                <?php $previousPosition = $item->position; ?>
+                            @endif
                             <tr>
-                                <td>
-                                    <a class="entity-image" style="background-image: url('{{ $item->item->getImageUrl(40) }}');" title="{{ $item->item->name }}" href="{{ $item->item->getLink() }}"></a>
+                                <td style="width: 50px">
+                                    @if($item->is_equipped)
+                                        <i class="fas fa-check" title="{{ __('entities/inventories.fields.is_equipped') }}"></i>
+                                    @endif
                                 </td>
                                 <td>
+                                    @if($item->item)
                                     {!! $item->item->tooltipedLink() !!}
-                                </td>
-                                <td>
-                                    {{ $item->position }}
+                                    @else
+                                    {!! $item->name !!}
+                                    @endif<br />
+                                        <small class="text-muted">{{ $item->description }}</small>
                                 </td>
                                 <td>
                                     {{ $item->amount }}
-                                </td>
-                                <td>
-                                    {{ $item->description }}
                                 </td>
                                 @if (Auth::check())
                                     <td>
@@ -89,7 +97,7 @@
                                             <i class="fa fa-edit"></i>
                                         </a>
 
-                                        <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $item->item->name }}"
+                                        <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $item->itemName() }}"
                                                 data-target="#delete-confirm" data-delete-target="delete-form-{{ $item->id }}" title="{{ __('crud.remove') }}">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </button>
@@ -102,7 +110,6 @@
                         @endforeach
                         </tbody>
                     </table>
-                    {{ $inventory->links() }}
                 </div>
             </div>
         </div>

@@ -7,14 +7,14 @@ return [
     ],
     'attribute-templates'   => [
         'answer'    => <<<'TEXT'
-Die beste Art Attributvorlagen zu erklären, ist mit einem Beispiel. Stellen wir uns, dass deine Welt eine Menge Orte hat. Für viele dieser Orte möchtest du eigene Attribute wie "Bewohnerzahl", "Klima" und "Kriminalitätsgrad" haben.
+Die beste Art Attributvorlagen zu erklären, ist mit einem Beispiel. Stellen wir uns vor, dass deine Welt eine Menge Orte hat. Für viele dieser Orte möchtest du eigene Attribute wie "Bewohnerzahl", "Klima" und "Kriminalitätsrate" haben.
 
-Nun kannst du diese Attribute in jedem Ort einzeln hinzufügen, das wird aber schnell mühsam und manchmal vergisst man das Attribut "Kriminalitätsgrad" zu hinterlegen. Hier kommen die Attributvorlagen zum Einsatz.
+Nun kannst du diese Attribute in jedem Ort einzeln hinzufügen, das wird aber schnell mühsam und manchmal vergisst man das Attribut "Kriminalitätsrate" zu hinterlegen. Hier kommen die Attributvorlagen zum Einsatz.
 
-Du kannst eine Attributvorlage mit deinen Attributen "Bewohnerzahl", "Klima" und "Kriminalitätsgrad" füllen und später diese Vorlage bei deinen Orten benutzen. Das wird die Attribute der Vorlage automatisch in dem Ort hinterlegen und du musst nur noch die Werte der Attribute füllen!
+Du kannst eine Attributvorlage mit deinen Attributen "Bewohnerzahl", "Klima" und "Kriminalitätsrate" füllen und später diese Vorlage bei deinen Orten benutzen. Die Attributvorlage wird automatisch in jedem Ort hinterlegt und du musst nur noch die Werte der Attribute füllen!
 TEXT
 ,
-        'question'  => 'Attributvorlagen, was sind die?',
+        'question'  => 'Was sind Attributvorlagen?',
     ],
     'backup'                => [
         'answer'    => 'Einmal am Tag können Sie alle Daten Ihrer Kampagne als ZIP-Datei exportieren. Klicken Sie in der App im linken Menü auf "Kampagne" und dann auf "Exportieren". Dadurch wird ein Export erstellt, der 30 Minuten lang verfügbar ist. Sie können diesen Export nicht auf Kanka hochladen. Er dient nur Ihrer eigenen Sicherheit oder wenn Sie die Anwendung nicht mehr verwenden möchten.',
@@ -40,6 +40,10 @@ TEXT
         'answer'    => 'Gehen Sie zu Ihrem Kampagnen-Dashboard und klicken Sie im linken Menü auf "Kampagne". Eine Schaltfläche "Löschen" wird angezeigt, wenn Sie das letzte Mitglied der Kampagne sind. Das Löschen einer Kampagne ist eine endgültige Aktion, mit der alle auf unseren Servern gespeicherten Daten, einschließlich Bilder, gelöscht werden.',
         'question'  => 'Wie kann ich eine Kampagne löschen?',
     ],
+    'early-access'          => [
+        'answer'    => 'Mit Early Access können wir unsere großartigen Abonnenten belohnen, indem wir ihnen einen exklusiven Zeitraum von 30 Tagen gewähren, in dem sie die neuesten Module vor allen anderen ausprobieren können.',
+        'question'  => 'Was ist ein early Access?',
+    ],
     'entity-notes'          => [
         'answer'    => 'Alle Objekte verfügen über den Reiter "Objekt-Notizen", bei der es sich um kleine Textausschnitte handelt, die nur für Sie sichtbar (vor allem  sinnvoll, wenn mehrere SLs an der Kampagne arbeiten), nur für Mitglieder der Administratorrolle oder für alle sichtbar sind. Du kannst deinen Spielern auch die Erlaubnis erteilen, Objekt-Notizen zu Objekten zu erstellen und zu bearbeiten, ohne dass sie ein ganzes Objekt bearbeiten müssen.',
         'question'  => 'Wie geht Kanka mit Informationen um, die nicht für jeden zugänglich sind?',
@@ -62,7 +66,7 @@ TEXT
     ],
     'gods-and-religions'    => [
         'answer'    => 'Wir empfehlen, Götter als Charaktere und Religionen als Organisationen zu schaffen. Wenn Sie Ihre Gottheiten schnell finden möchten, empfehlen wir, sie mit einem geeigneten Tag und / oder Typ zu versehen.',
-        'question'  => 'Wo kann man Götter und Religionen erschaffen?',
+        'question'  => 'Wo kann man Götter und Religionen erstellen?',
     ],
     'help'                  => [
         'answer'    => 'Als Erstes: Danke, dass du helfen möchtest! Wir sind immer an Leuten interessiert, die uns bei Übersetzungen unterstützen, neue Funktionen testen oder die neuen Usern helfen können. Wir lieben es auch wenn Leute Kanka weiterempfehlen, um neue User an Orten zu erreichen an die wir nicht gedacht haben. Am besten ist es, wenn du auf :discord zu uns stößt, wo es einen Kanal für\'s Aushelfen gibt. Wir lieben auch unsere Patrone auf Patreon, wenn du uns unterstützen möchtest und ein paar Extras bekommen möchtest!',
@@ -81,6 +85,10 @@ TEXT
         'answer'    => 'Derzeit gibt es keine extra Kanka-App für mobile Geräte, aber der Großteil der App funktioniert mobil. Eine Einschränkung ist die Linkhilfe (@), das nicht im Texteditor funktioniert. Wenn genug Unterstützung über Patreon kommt, hoffe ich, dass ich eines Tages jemanden bezahlen kann, der eine mobile App erstellt.',
         'question'  => 'Gibt es eine mobile App? Ist etwas in der Richtung geplant?',
     ],
+    'monsters'              => [
+        'answer'    => 'Wir empfehlen die Verwendung des Rassen-Moduls für Völker, Spezien, Monster und alles Lebende, das kein Charakter ist.',
+        'question'  => 'Wo kann man Monster erstellen?',
+    ],
     'multiworld'            => [
         'answer'    => 'Nein, brauchst du nicht! Du kannst so viele "Kampagnen" in der App haben, wie du möchtest. Jede Kampagne kann für eine Welt, ein Setting oder was immer du willst genutzt werden. Sobald du mehrere Kampagnen hast, kannst du einfach zwischen ihnen wechseln.',
         'question'  => 'Ich baue mehrere Welten in verschiedenen Settings auf. benötige ich für jede Welt einen anderes Konto?',
@@ -88,6 +96,10 @@ TEXT
     'nested'                => [
         'answer'    => 'Wenn Sie Ihre Objekte standardmäßig in einer verschachtelten Ansicht anzeigen möchten (z. B. die Schaltfläche Verschachtelte Ansicht in der Liste der Speicherorte), können Sie dies tun, indem Sie in die Optionen Profil und Layout wechseln. Dort können Sie die Option Verschachtelte Ansicht aktivieren. Dies gilt nur für Ihr Konto und nicht für Ihre Kampagnen.',
         'question'  => 'Kann ich festlegen, dass die Listen standardmäßig verschachtelt sind?',
+    ],
+    'organise_play'         => [
+        'answer'    => 'Wir haben eine Partnerschaft mit :lfgm geschlossen, mit der Sie Ihre Sitzungen mit Ihrer Gruppe organisieren können. Sie können Ihre Kanka-Kampagne mit Ihrer LFGM-Kampagne synchronisieren, um Ihre nächsten Verfügbarkeiten direkt im Kampagnen-Dashboard anzuzeigen.',
+        'question'  => 'Wie kann ich verwalten, während ich meine Sitzungen ausführe?',
     ],
     'permissions'           => [
         'answer'    => 'Ja absolut, deswegen haben wir Kanka gemacht! Du kannst all deine Spieler zu deiner Kampagne einladen und ihnen Rollen und Berechtigungen erteilen.  Wir haben das System für  große Flexibiliät gebaut (sowohl opt-in als auch opt-out Konfigurationen möglich), um so viele Ansprüche und Situationen wie möglich abzudecken.',
@@ -105,6 +117,10 @@ TEXT
     'public-campaigns'      => [
         'answer'    => 'Auf der Seite :public-campaigns können Sie sehen, wie andere Kanka für ihre Kampagnen verwenden.',
         'question'  => 'Wie benutzen andere Kanka?',
+    ],
+    'renaming-modules'      => [
+        'answer'    => 'Während dies für Englisch und andere Sprachen, die keine geschlechtsspezifischen Namen verwenden, einfach wäre, würde die Möglichkeit, den Namen von Modulen zu ändern, die grammatikalische Korrektheit und Benutzererfahrung für die meisten Sprachen beeinträchtigen, in denen Kanka auch verfügbar ist.',
+        'question'  => 'Kann ich Module umbenennen? Zum Beispiel Familien in Clans oder Organisationen in Fraktionen?',
     ],
     'sections'              => [
         'community'     => 'Community',

@@ -50,6 +50,7 @@ return [
         'helpers'   => [
             'add'   => 'Add an existing event to this calendar.',
             'new'   => 'Or create a new event by simply providing a name.',
+            'other_calendar' => 'You are editing a reminder that is on the :calendar calendar.'
         ],
         'modal'     => [
             'title' => 'Add an event to the calendar',
@@ -61,6 +62,8 @@ return [
         'title'         => 'Calendar :name Events',
     ],
     'fields'        => [
+        'calendar'              => 'Parent Calendar',
+        'calendars'             => 'Calendars',
         'colour'                => 'Colour',
         'comment'               => 'Comment',
         'current_day'           => 'Current Day',
@@ -94,6 +97,7 @@ return [
     'helpers'       => [
         'month_type'    => 'Intercalary months don\'t use week days, but still influence moons and seasons.',
         'start_offset'  => 'By default, the calendar starts on the first weekday of year 0. Changing this field influences where the calendar\'s first day is placed.',
+        'nested'    => 'Displaying calendars that have no parent calendar first. Click on a calendar to explore it\'s sub calendars.',
     ],
     'hints'         => [
         'intercalary'       => 'Days that fall outside of the standard months and weeks. They don\'t influence week days but influence moon cycles.',
@@ -101,6 +105,7 @@ return [
         'is_recurring'      => 'An event can be set to recurring. It will reappear every year on the same date.',
         'months'            => 'Your calendar should have at least 2 months.',
         'moons'             => 'Adding moons will make them show up in the calendar on every full and new moon. If the full moon period is bigger than 10 days, waning and waxing moons will also be displayed.',
+        'parent_calendar'   => 'Giving the calendar a parent calendar will include the reminders and weather effects of the parent calendar.',
         'reset'             => 'Always start the beginning of the month or year on the first week day.',
         'seasons'           => 'Create seasons for your calendar by providing when each of them start. Kanka will take care of the rest.',
         'weekdays'          => 'Set your weekday names. At least 2 weekdays are required.',

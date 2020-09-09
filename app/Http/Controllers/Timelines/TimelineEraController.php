@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTimelineEra;
 use App\Models\Timeline;
 use App\Models\TimelineEra;
+use App\Services\TimelineService;
 
 class TimelineEraController extends Controller
 {
@@ -19,6 +20,14 @@ class TimelineEraController extends Controller
         'start_year',
         'end_year',
     ];
+
+    /** @var TimelineService */
+    protected $service;
+
+    public function __construct(TimelineService $timelineService)
+    {
+        $this->service = $timelineService;
+    }
 
     /**
      * @param Timeline $timeline
@@ -125,5 +134,17 @@ class TimelineEraController extends Controller
         return redirect()
             ->route('timelines.edit', [$timeline, '#tab_form-eras'])
             ->withSuccess(__('timelines/eras.delete.success', ['name' => $timelineEra->name]));
+    }
+
+
+    public function reorder(Timeline $timeline, TimelineEra $timelineEra)
+    {
+        $this->authorize('update', $timelineEra->timeline);
+
+        $this->service->reorderEra($timelineEra, request()->post('element_ids', []));
+        return redirect()
+            ->route('timelines.show', [$timeline, '#era-' . $timelineEra->id])
+            ->withSuccess(__('timelines/eras.reorder.success', ['era' => $timelineEra->name]));
+
     }
 }

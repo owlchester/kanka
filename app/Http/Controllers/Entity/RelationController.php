@@ -8,6 +8,7 @@ use App\Http\Requests\StoreRelation;
 use App\Models\Entity;
 use App\Models\Relation;
 use App\Models\MiscModel;
+use App\Services\Entity\EntityRelationService;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -30,6 +31,18 @@ class RelationController extends Controller
      * @var
      */
     protected $viewPath;
+
+    /** @var EntityRelationService */
+    protected $service;
+
+    /**
+     * RelationController constructor.
+     * @param EntityRelationService $entityRelationService
+     */
+    public function __construct(EntityRelationService $entityRelationService)
+    {
+        $this->service = $entityRelationService;
+    }
 
     /**
      * @param Entity $entity
@@ -127,11 +140,13 @@ class RelationController extends Controller
         $this->authorize('update', $entity->child);
 
         $ajax = request()->ajax();
+        $from = (int) request()->get('from', 0);
 
         return view('entities.pages.relations.update', compact(
             'entity',
             'relation',
-            'ajax'
+            'ajax',
+            'from'
         ));
     }
 
@@ -149,6 +164,18 @@ class RelationController extends Controller
 
         $relation->update($data);
         $relation->refresh();
+
+        if (request()->has('from')) {
+            $from = (int) request()->post('from');
+            if (!empty($from)) {
+                return redirect()
+                    ->route('entities.relations.index', $from)
+                    ->with('success', trans('entities/relations' . '.update.success', [
+                        'target' => $relation->target->name,
+                        'entity' => $entity->name
+                    ]));
+            }
+        }
 
         return redirect()
             ->route('entities.relations.index', $entity)
@@ -192,5 +219,29 @@ class RelationController extends Controller
                 'target' => $relation->target->name,
                 'entity' => $entity->name
             ]));
+    }
+
+    /**
+     * @param Entity $entity
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function map(Entity  $entity)
+    {
+        if (empty($entity->child)) {
+            abort(404);
+        }
+
+        // Policies will always fail if they can't resolve the user.
+        if (Auth::check()) {
+            $this->authorize('view', $entity->child);
+        } else {
+            $this->authorizeEntityForGuest('read', $entity->child);
+        }
+
+        $map = $this->service->entity($entity)->map();
+        return response()->json(
+            $map
+        );
     }
 }

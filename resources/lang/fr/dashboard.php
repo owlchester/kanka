@@ -6,8 +6,7 @@ return [
         'unfollow'  => 'Ne plus suivre',
     ],
     'campaigns'         => [
-        'manage'    => 'Gérer la campagne',
-        'tabs'      => [
+        'tabs'  => [
             'modules'   => ':count modules',
             'roles'     => ':count rôles',
             'users'     => ':count membres',
@@ -26,21 +25,10 @@ return [
         ],
     ],
     'recent'            => [
-        'add'           => 'Nouveau :name',
-        'no_entries'    => 'Aucun élément de ce type pour l\'instant.',
-        'title'         => 'Modifications récentes sur les :name',
-        'view'          => 'Tous les :name',
+        'title' => 'Modifications récentes sur les :name',
     ],
     'settings'          => [
-        'description'   => 'Personnalisation du tableau de bord',
-        'edit'          => [
-            'success'   => 'Paramètres modifiés.',
-        ],
-        'fields'        => [
-            'helper'        => 'Il est possible changer le comportement du tableau de bord. Cela concerne toutes les campagnes dont le compte est membre.',
-            'recent_count'  => 'Nombre d\'élément récents',
-        ],
-        'title'         => 'Paramètre du tableau de bord',
+        'title' => 'Paramètres du tableau de bord',
     ],
     'setup'             => [
         'actions'   => [
@@ -50,15 +38,17 @@ return [
         ],
         'title'     => 'Configuration du tableau de bord de campagne',
         'widgets'   => [
-            'calendar'  => 'Calendrier',
-            'preview'   => 'Extrait d\'entité',
-            'recent'    => 'Récent',
+            'calendar'      => 'Calendrier',
+            'preview'       => 'Extrait d\'entité',
+            'random'        => 'Entité au hasard',
+            'recent'        => 'Récent',
+            'unmentioned'   => 'Entités non-mentionnées',
         ],
     ],
     'title'             => 'Tableau de bord',
     'welcome'           => [],
     'widgets'           => [
-        'calendar'  => [
+        'calendar'      => [
             'actions'           => [
                 'next'      => 'Changer la date au prochain jour',
                 'previous'  => 'Changer la date au jour précédent',
@@ -67,28 +57,34 @@ return [
             'previous_events'   => 'Précédents',
             'upcoming_events'   => 'Prochainement',
         ],
-        'create'    => [
+        'create'        => [
             'success'   => 'Widget ajouté au tableau de bord.',
         ],
-        'delete'    => [
+        'delete'        => [
             'success'   => 'Widget retiré du tableau de bord.',
         ],
-        'fields'    => [
+        'fields'        => [
             'width' => 'Largeur',
         ],
-        'recent'    => [
-            'full'      => 'Entier',
-            'help'      => 'Afficher seulement la dernière entité modifiée avec un aperçu de celle-ci.',
-            'helpers'   => [
-                'full'  => 'Afficher le contenu entier de l\'entité au lieu d\'un aperçu.',
+        'recent'        => [
+            'entity-header' => 'Utiliser l\'image d\'en-tête de l\'entité',
+            'full'          => 'Entier',
+            'help'          => 'Afficher seulement la dernière entité modifiée avec un aperçu de celle-ci.',
+            'helpers'       => [
+                'entity-header' => 'Si l\'entité à une image d\'en-tête (limité aux campagnes boostées), le widget utilisera cette image au lieu de l\'image principale de l\'entité.',
+                'full'          => 'Afficher le contenu entier de l\'entité au lieu d\'un aperçu.',
             ],
-            'singular'  => 'Singulier',
-            'title'     => 'Récemment modifié',
+            'singular'      => 'Singulier',
+            'tags'          => 'Filtrer la liste des entités récemment modifiées sur une ou plusieurs étiquettes.',
+            'title'         => 'Récemment modifié',
         ],
-        'update'    => [
+        'unmentioned'   => [
+            'title' => 'Entité non mentionnées',
+        ],
+        'update'        => [
             'success'   => 'Widget modifié.',
         ],
-        'widths'    => [
+        'widths'        => [
             '0' => 'Automatique',
             '12'=> 'Complet',
             '4' => 'Petit',

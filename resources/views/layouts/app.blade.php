@@ -1,5 +1,8 @@
 <?php
-/** @var \App\Models\Campaign $campaign */
+/**
+ * @var \App\Models\Campaign $campaign
+ * @var \App\Models\MiscModel $miscModel
+ */
 $campaign = CampaignLocalization::getCampaign(); ?>
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" @if(app()->getLocale() == 'he') dir="rtl" @endif>
@@ -27,18 +30,18 @@ $campaign = CampaignLocalization::getCampaign(); ?>
     <link href="{{ mix('css/vendor.css') }}" rel="stylesheet">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('css/freyja.css') }}" rel="stylesheet">
-    @if(app()->getLocale() == 'he')
+@if(app()->getLocale() == 'he')
         <link href="{{ mix('css/app-rtl.css') }}" rel="stylesheet">
-    @endif
-    @yield('styles')
+@endif
+@yield('styles')
 
-    @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme))
-        @if ($campaign->theme_id !== 1)
+@if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme))
+    @if ($campaign->theme_id !== 1)
         <link href="{{ mix('css/' . $campaign->theme->name . '.css') }}" rel="stylesheet">
-        @endif
-    @elseif (auth()->check() && !empty(auth()->user()->theme))
-        <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">
     @endif
+@elseif (auth()->check() && !empty(auth()->user()->theme))
+    <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">
+@endif
 
     @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->css))
         <link href="{{ route('campaign.css', ['ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">
@@ -46,7 +49,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
-<body class="skin-black sidebar-mini @if (!empty($campaign) || (auth()->check() && auth()->user()->hasCampaigns()) || (!empty($sidebar) && $sidebar == 'settings')) @else layout-top-nav @endif">
+<body class="skin-black sidebar-mini @if (!empty($campaign) || (auth()->check() && auth()->user()->hasCampaigns()) || (!empty($sidebar) && $sidebar == 'settings')) @else layout-top-nav @endif @if(isset($miscModel) && !empty($miscModel->entity)) kanka-entity-{{ $miscModel->entity->id }} kanka-entity-{{ $miscModel->getEntityType() }} @if(!empty($miscModel->type)) kanka-type-{{ \Illuminate\Support\Str::slug($miscModel->type) }}@endif @endif">
 @include('layouts._tracking-fallback')
     <div id="app" class="wrapper">
         <!-- Header -->
@@ -120,20 +123,16 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                 @include('partials.success')
 
 @if(auth()->guest() && !empty(config('tracking.adsense')))
-                <div class="row">
-                    <div class="col-md-6 col-sm-8 col-md-offset-3 col-sm-offset-1">
-                        <ins class="adsbygoogle"
-                             style="display:inline-block;width:728px;height:90px"@if (config('app.env') != 'prod')
-                             data-adtest="on"@endif
-                             data-ad-client="{{ config('tracking.adsense') }}"
-                             data-ad-slot="2711573107"
-                             data-full-width-responsive="true"></ins>
-                        <script>
-                            (adsbygoogle = window.adsbygoogle || []).push({});
-                        </script>
-                        <p class="text-center text-muted">{!! __('misc.ads.remove', ['login' => link_to_route('login', __('misc.ads.login'))]) !!}</p>
-                    </div>
-                </div>
+                <!-- Side -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-1686281547359435"
+                     data-ad-slot="2711573107"
+                     data-ad-format="auto"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+                <p class="text-center text-muted">{!! __('misc.ads.remove', ['login' => link_to_route('login', __('misc.ads.login'))]) !!}</p>
 @endif
 
                 @yield('entity-actions')

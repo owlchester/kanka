@@ -47,7 +47,6 @@ return [
     ],
     'helpers'       => [
         'age'   => 'You can link this entity with a calendar of your campaign to automatically calculate their age instead. :more.',
-        'free'  => 'Where did the "Free" field go? If this character had one, it\'s been moved over to the new Notes tab!',
     ],
     'hints'         => [
         'hide_personality'          => 'This tab can be hidden from non "Admin" users by disabling the "Personality Visible" option when editing this character.',

@@ -3,15 +3,15 @@
 return [
     'create'        => [
         'description'   => 'Crear nueva conversación',
-        'success'       => 'Conversación \':name\' creada.',
+        'success'       => 'Conversación ":name" creada.',
         'title'         => 'Nueva Conversación',
     ],
     'destroy'       => [
-        'success'   => 'Conversación \':name\' eliminada.',
+        'success'   => 'Conversación ":name" eliminada.',
     ],
     'edit'          => [
         'description'   => 'Actualizar la conversación',
-        'success'       => 'Conversación \':name\' actualizada.',
+        'success'       => 'Conversación ":name" actualizada.',
         'title'         => 'Conversación :name',
     ],
     'fields'        => [
@@ -22,12 +22,12 @@ return [
         'type'          => 'Tipo',
     ],
     'hints'         => [
-        'participants'  => 'Por favor, añade participantes a la conversación.',
+        'participants'  => 'Añade participantes a la conversación mediante el icono :icon arriba a la derecha.',
     ],
     'index'         => [
-        'add'           => 'Nueva Conversación',
+        'add'           => 'Nueva conversación',
         'description'   => 'Gestiona las conversaciones de :name.',
-        'header'        => 'Conversaciones en :name',
+        'header'        => 'Conversaciones de :name',
         'title'         => 'Conversaciones',
     ],
     'messages'      => [
@@ -53,7 +53,7 @@ return [
     ],
     'placeholders'  => [
         'name'  => 'Nombre de la conversación',
-        'type'  => 'Dentro del juego, Preparación, Argumento',
+        'type'  => 'Dentro del juego, Preparación, Argumento...',
     ],
     'show'          => [
         'description'   => 'Vista detallada de conversación',

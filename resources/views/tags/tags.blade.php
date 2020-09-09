@@ -7,6 +7,7 @@
         trans('tags.show.tabs.tags')
     ],
     'mainTitle' => false,
+    'miscModel' => $model,
 ])
 
 @section('content')

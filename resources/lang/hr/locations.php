@@ -27,24 +27,25 @@ return [
     'fields'        => [
         'characters'        => 'Likovi',
         'image'             => 'Slika',
-        'is_map_private'    => 'Privatna mapa',
+        'is_map_private'    => 'Privatna karta',
         'location'          => 'Lokacija roditelj',
         'locations'         => 'Lokacije',
-        'map'               => 'Mapa',
+        'map'               => 'Karta',
         'name'              => 'Naziv',
         'relation'          => 'Odnos',
         'type'              => 'Tip',
     ],
     'helpers'       => [
-        'characters'    => 'Pregledaj sve likove na ovoj lokaciji i njenim podlokacijama ili samo one neposredno na toj lokaciji.',
-        'descendants'   => 'Popis sadrži sve lokacije koje su unutar trenutne lokacije, a ne samo one koje su direktno ispod nje.',
-        'families'      => 'Lokacije mogu biti sjedište moćnih obitelji.',
-        'map'           => 'Dodavanje mape na lokaciju će omogućiti stavljanje "Točaka" na mapu, povezujući ih na druge entitete u kampanji.',
-        'nested'        => 'U "Ugniježđenom pregledu" možeš vidjeti lokacije na ugniježđeni način. Lokacije bez lokacije roditelj će biti prikazane na osnovnom pregledu. Lokacije s podlokacijama se mogu kliknuti kako bi se prikazale te podlokacije. Možeš nastaviti klikati dok ima podlokacija za prikazati.',
-        'organisations' => 'Pregledaj sve organizacije na ovoj lokaciji i njenim podlokacijama ili samo one locirane neposredno ovdje.',
+        'characters'        => 'Pregledaj sve likove na ovoj lokaciji i njenim podlokacijama ili samo one neposredno na toj lokaciji.',
+        'descendants'       => 'Popis sadrži sve lokacije koje su unutar trenutne lokacije, a ne samo one koje su direktno ispod nje.',
+        'families'          => 'Lokacije mogu biti sjedište moćnih obitelji.',
+        'map'               => 'Dodavanje karte na lokaciju će omogućiti stavljanje "Točaka" na kartu, povezujući ih na druge entitete u kampanji.',
+        'map_deprecated_2'  => 'Karte su sada vlastiti modul! Stare karte se i dalje mogu ažurirati, ali sve nove karte prelaze u novi modul Karte.',
+        'nested'            => 'U "Ugniježđenom pregledu" možeš vidjeti lokacije na ugniježđeni način. Lokacije bez lokacije roditelj će biti prikazane na osnovnom pregledu. Lokacije s podlokacijama se mogu kliknuti kako bi se prikazale te podlokacije. Možeš nastaviti klikati dok ima podlokacija za prikazati.',
+        'organisations'     => 'Pregledaj sve organizacije na ovoj lokaciji i njenim podlokacijama ili samo one locirane neposredno ovdje.',
     ],
     'hints'         => [
-        'is_map_private'    => 'Privatna mapa je vidljiva samo članovima "Administrator" uloge u kampanji.',
+        'is_map_private'    => 'Privatna karta je vidljiva samo članovima "Administrator" uloge u kampanji.',
     ],
     'index'         => [
         'actions'       => [
@@ -71,7 +72,7 @@ return [
         'actions'   => [
             'admin_mode'        => 'Omogući Način uređivanja',
             'big'               => 'Puni pregled',
-            'confirm_delete'    => 'Sigurno želiš obrisati ovu točku na mapi?',
+            'confirm_delete'    => 'Sigurno želiš obrisati ovu točku na karti?',
             'download'          => 'Preuzimanje',
             'points'            => 'Uredi točke',
             'toggle_hide'       => 'Sakrij točke',
@@ -81,19 +82,19 @@ return [
             'zoom_out'          => 'Udalji',
             'zoom_reset'        => 'Vrati izvorno povećanje',
         ],
-        'helper'    => 'Klikni na mapu za dodavanje nove točke na lokaciji ili klikni na postojeću točku da ju izmjeniš ili izbrišeš.',
+        'helper'    => 'Klikni na kartu za dodavanje nove točke na lokaciji ili klikni na postojeću točku da ju izmjeniš ili izbrišeš.',
         'helpers'   => [
-            'admin' => 'Omogući dodavanje točaka klikanjem bilo gdje na mapi, uređivanje točaka klikanjem na postojeće, te pomicanje točaka povlačenjem.',
-            'info'  => 'Više informacija o mapama.',
+            'admin' => 'Omogući dodavanje točaka klikanjem bilo gdje na karti, uređivanje točaka klikanjem na postojeće, te pomicanje točaka povlačenjem.',
+            'info'  => 'Više informacija o kartama.',
             'label' => 'Ova točka je natpis. Ništa više, ništa manje.',
-            'view'  => 'Klikni na bilo koju točku mape za prikaz njenih detalja. Koristi Ctrl + kotačić miša za približavanje i udaljavanje na mapi.',
+            'view'  => 'Klikni na bilo koju točku karte za prikaz njenih detalja. Koristi Ctrl + kotačić miša za približavanje i udaljavanje na karti.',
         ],
         'legend'    => 'Legenda',
         'modal'     => [
             'submit'    => 'Dodaj',
             'title'     => 'Meta nove točke',
         ],
-        'no_map'    => 'Možeš učitati mapu na ovu lokaciju dok je uređuješ. Kad je mapa učitana, prikazat će se ovdje.',
+        'no_map'    => 'Možeš učitati kartu na ovu lokaciju dok je uređuješ. Kad je karta učitana, prikazat će se ovdje.',
         'points'    => [
             'empty_label'   => 'Neimenovana točka',
             'fields'        => [
@@ -106,7 +107,7 @@ return [
                 'size'      => 'Veličina',
             ],
             'helpers'       => [
-                'location_or_name'  => 'Točka mape može biti postojeći entitet ili samo natpis.',
+                'location_or_name'  => 'Točka karte može biti postojeći entitet ili samo natpis.',
             ],
             'icons'         => [
                 'anchor'        => 'Sidro',
@@ -166,7 +167,7 @@ return [
                 'wooden-sign'   => 'Zadatak',
                 'wrench'        => 'Odvijač',
             ],
-            'modal'         => 'Kreiraj ili uredi točku na mapi',
+            'modal'         => 'Kreiraj ili uredi točku na karti',
             'placeholders'  => [
                 'axis_x'    => 'Lijeva pozicija',
                 'axis_y'    => 'Gornja pozicija',
@@ -175,6 +176,7 @@ return [
             'return'        => 'Povratak na :name',
             'shapes'        => [
                 'circle'    => 'Krug',
+                'custom'    => 'Proizvoljno',
                 'square'    => 'Kvadrat',
             ],
             'sizes'         => [
@@ -186,19 +188,22 @@ return [
             ],
             'success'       => [
                 'create'    => 'Točka lokacije kreirana.',
-                'delete'    => 'Točka lokacije uklonjena.',
+                'delete'    => 'Točka lokacije obrisana.',
                 'update'    => 'Točka lokacije ažurirana.',
             ],
             'title'         => 'Točka lokacije :name',
         ],
         'success'   => 'Točka spremljene.',
     ],
+    'maps'          => [
+        'title' => 'Karte lokacije :name',
+    ],
     'organisations' => [
         'description'   => 'Organizacije smještene na lokaciji.',
         'title'         => 'Organizacije lokacije :name',
     ],
     'panels'        => [
-        'map'   => 'Mapa',
+        'map'   => 'Karta',
     ],
     'placeholders'  => [
         'location'  => 'Odaberi lokaciju roditelj',
@@ -219,7 +224,8 @@ return [
             'items'         => 'Predmeti',
             'journals'      => 'Dnevnici',
             'locations'     => 'Lokacije',
-            'map'           => 'Mapa',
+            'map'           => 'Karta',
+            'maps'          => 'Karte',
             'menu'          => 'Izbornik',
             'organisations' => 'Organizacije',
             'quests'        => 'Zadaci',

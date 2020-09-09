@@ -194,8 +194,7 @@ function initAttributeHandlers() {
       $(this).parent().parent().parent().remove();
     });
   });
-  $('[data-toggle="private"]').unbind('click');
-  $('[data-toggle="private"]').click(function () {
+  $('[data-toggle="private"]').unbind('click').click(function () {
     if ($(this).hasClass('fa-lock')) {
       // Unlock
       $(this).removeClass('fa-lock').addClass('fa-unlock-alt').prop('title', $(this).data('public'));
@@ -206,8 +205,7 @@ function initAttributeHandlers() {
       $(this).parent().find('input:hidden').val("1");
     }
   });
-  $('[data-toggle="star"]').unbind('click');
-  $('[data-toggle="star"]').click(function () {
+  $('[data-toggle="star"]').unbind('click').click(function () {
     if ($(this).hasClass('far')) {
       // Unlock
       $(this).removeClass('far').addClass('fas').prop('title', $(this).data('entry'));
@@ -229,7 +227,7 @@ function initAttributeHandlers() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Payne\Php\kanka\resources\assets\js\attributes */"./resources/assets/js/attributes.js");
+module.exports = __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/js/attributes */"./resources/assets/js/attributes.js");
 
 
 /***/ })

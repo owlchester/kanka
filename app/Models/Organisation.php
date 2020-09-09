@@ -10,6 +10,11 @@ use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kalnoy\Nestedset\NodeTrait;
 
+/**
+ * Class Organisation
+ * @package App\Models
+ * @property Organisation $organisation
+ */
 class Organisation extends MiscModel
 {
     use CampaignTrait,
@@ -239,15 +244,6 @@ class Organisation extends MiscModel
             ];
         }
 
-        $count = $this->members()->has('character')->count();
-        $countAll = $this->allMembers()->has('character')->count();
-        if ($campaign->enabled('characters')) {
-            $items['members'] = [
-                'name' => 'organisations.fields.members',
-                'route' => 'organisations.members',
-                'count' => $count . ' / ' . $countAll
-            ];
-        }
         $count = $this->relatedQuests()->count();
         if ($campaign->enabled('quests') && $count > 0) {
             $items['quests'] = [

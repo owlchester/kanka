@@ -20,6 +20,29 @@
 
         <hr />
 
+        @if ($campaign->enabled('calendars'))
+            <?php
+            $preset = null;
+            if (isset($model) && $model->calendar) {
+                $preset = $model->calendar;
+            } elseif (isset($isRandom) && $isRandom) {
+                $preset = $random->generateForeign(\App\Models\Calendar::class);
+            } else {
+                $preset = FormCopy::field('calendar')->select();
+            }?>
+            <div class="form-group">
+                {!! Form::select2(
+                    'calendar_id',
+                    $preset,
+                    App\Models\Calendar::class,
+                    false,
+                    'calendars.fields.calendar'
+                ) !!}
+                <p class="help-block">{{ __('calendars.hints.parent_calendar') }}</p>
+            </div>
+            <hr />
+        @endif
+
         <div class="form-group checkbox">
             {!! Form::hidden('is_incrementing', 0) !!}
             <label>{!! Form::checkbox('is_incrementing', 1, FormCopy::field('is_incrementing')->string()) !!}
@@ -109,9 +132,6 @@
             </div>
         </div>
         <hr>
-        <div class="form-group">
-            <label>{{ trans('calendars.panels.leap_year') }}</label>
-        </div>
         <div class="form-group checkbox">
             {!! Form::hidden('has_leap_year', 0) !!}
             <label>{!! Form::checkbox('has_leap_year', 1, FormCopy::field('has_leap_year')->string()) !!}

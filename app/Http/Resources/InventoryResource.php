@@ -16,9 +16,11 @@ class InventoryResource extends EntityChild
     {
         return $this->entity([
             'item_id' => $this->item_id,
+            'name' => $this->name,
             'position' => $this->position,
             'amount' => $this->amount,
-            'visibility' => $this->visibility
+            'visibility' => $this->visibility,
+            'is_equipped' => (bool) $this->is_equipped,
         ]);
     }
 }

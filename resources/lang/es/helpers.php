@@ -2,7 +2,16 @@
 
 return [
     'age'           => [
-        'title' => 'Edad y muerte de los personajes',
+        'description'   => 'Se puede vincular un personaje a un calendario de campaña desde la pestaña de Recordatorios del personaje. Desde allí, añade un nuevo recordatorio y dale el tipo Nacimiento o Muerte para calcular automáticamente la edad del personaje. Si ambas fechas están presentes, se mostrarán las dos junto con la edad de fallecimiento. Si solo se ha indicado el nacimiento, se mostrarán la fecha y la edad actual. Si solo se ha indicado la muerte, se mostrarán la fecha y los años desde la muerte.',
+        'title'         => 'Edad y muerte de los personajes',
+    ],
+    'attributes'    => [
+        'con'           => 'Con',
+        'description'   => 'Puedes usar atributos para representar valores no textuales de una entidad. Puedes hacer referencia a otras entidades dentro de un atributo usando la sintaxis de :mention avanzada. También puedes vincular otros atributos usando la sintaxis de :attribute.',
+        'level'         => 'Nivel',
+        'link'          => 'Opciones de atributos',
+        'math'          => 'También puedes ponerte creativo con algunas matemáticas básicas. Por ejemplo, :example hará la multiplicación de los atributos :level y :con de esta entidad. Si quieres redondear el resultado hacia arriba o abajo, puedes usar :floor o :ceil respectivamente.',
+        'title'         => 'Atributos',
     ],
     'description'   => 'Algunos trucos y consejos para que sea más sencilla tu estancia en Kanka',
     'dice'          => [
@@ -20,6 +29,7 @@ return [
         'title'         => 'Cómo usar los filtros',
     ],
     'link'          => [
+        'attributes'        => 'Puedes vincular atributos de la entidad escribiendo :code. Esto solo funciona para los atributos existentes de la entidad.',
         'auto_update'       => 'Los enlaces a otras entidades se actualizarán automáticamente cuando se cambie el nombre o la descripción de éstas.',
         'description'       => 'Puedes enlazar fácilmente otras entidades usando los siguientes atajos.',
         'formatting'        => [
@@ -35,7 +45,7 @@ return [
     'map'           => [
         'description'   => 'Al subir un mapa a un lugar, se habilitará el menú de Mapa en la página de ese lugar con un enlace directo al mapa. Desde la vista de mapa, los usuarios que tienen permiso para editar la localización podrán, a su vez, editar el mapa y añadirle puntos. Estos pueden enlazar a una entidad existente o ser simples etiquetas, y pueden tener varias formas y tamaños.',
         'private'       => 'Los administradores de la campaña pueden hacer que un mapa sea privado. Esto permite que los usuarios puedan ver un lugar, pero los admins puedan mantener el mapa en secreto.',
-        'title'         => 'Mapas del lugar',
+        'title'         => 'Mapas de los lugares',
     ],
     'public'        => 'Mira el vídeo tutorial en Youtube acerca de las campañas públicas.',
     'title'         => 'Consejos',

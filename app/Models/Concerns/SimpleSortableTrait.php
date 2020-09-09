@@ -14,14 +14,18 @@ trait SimpleSortableTrait
 {
     /**
      * @param Builder $builder
-     * @param DatagridSorter $datagridSorter
+     * @param DatagridSorter|string $datagridSorter
      * @return Builder
      */
-    public function scopeSimpleSort(Builder $builder, ?DatagridSorter $datagridSorter)
+    public function scopeSimpleSort(Builder $builder, $datagridSorter = null)
     {
         // DatagridSorter can be empty on exports
         if (empty($datagridSorter)) {
             return $builder;
+        }
+        if (is_string($datagridSorter)) {
+            $datagridSorter = new $datagridSorter;
+            $datagridSorter->request(request()->all());
         }
 
         $columns = $datagridSorter->column();

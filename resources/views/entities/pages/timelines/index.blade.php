@@ -12,6 +12,7 @@
     ],
     'canonical' => true,
     'mainTitle' => false,
+    'miscModel' => $entity->child,
 ])
 @inject('campaign', 'App\Services\CampaignService')
 
