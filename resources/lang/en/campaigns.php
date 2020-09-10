@@ -33,6 +33,7 @@ TEXT
     'errors'                            => [
         'access'        => 'You don\'t have access to this campaign.',
         'unknown_id'    => 'Unknown Campaign.',
+        'superboosted'  => 'This feature is only available to superboosted campaigns.',
     ],
     'export'                            => [
         'description'   => 'Export the campaign.',

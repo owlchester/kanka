@@ -62,6 +62,11 @@ Route::group([
 
         Route::post('/follow', 'CampaignFollowController@update')->name('campaign.follow');
 
+        Route::get('/gallery', 'Campaign\GalleryController@index')->name('campaign.gallery.index');
+        Route::get('/gallery/load', 'Campaign\GalleryController@load')->name('campaign.gallery.load');
+        Route::get('/gallery/search', 'Campaign\GalleryController@search')->name('campaign.gallery.search');
+        Route::get('/gallery/ajax-gallery', 'Campaign\AjaxGalleryController@index')->name('campaign.gallery.summernote');
+
         // Abilities
         Route::get('/abilities/{ability}/map-points', 'AbilityController@mapPoints')->name('abilities.map-points');
         Route::get('/abilities/{ability}/abilities', 'AbilityController@abilities')->name('abilities.abilities');
@@ -271,6 +276,8 @@ Route::group([
             //'campaigns.campaign_roles.campaign_permissions' => 'CampaignPermissions',
 
             'campaign_dashboard_widgets' => 'CampaignDashboardWidgetController',
+
+            'images' => 'Campaign\GalleryController',
         ]);
         Route::get('/campaigns/{campaign}/leave', 'CampaignController@leave')->name('campaigns.leave');
         Route::post('/campaigns/{campaign}/campaign_settings', 'CampaignSettingController@save')->name('campaigns.settings.save');

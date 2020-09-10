@@ -106,8 +106,6 @@
                                         </button>
                                         @endif
                                         </div>
-                                    @else
-                                        <div class="col-sm-3"></div>
                                     @endif
                                     <div class="col-sm-6">
 

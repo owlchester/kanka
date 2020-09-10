@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 21);
+/******/ 	return __webpack_require__(__webpack_require__.s = 22);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -107,13 +107,33 @@ $(document).ready(function () {
  */
 
 window.initSummernote = function () {
+  var galleryText = summernoteConfig.data('gallery-texts');
+  console.log('texts', galleryText);
   $('.html-editor').summernote({
     height: '300px',
     lang: editorLang(summernoteConfig.data('locale')),
     toolbar: [['style', ['style']], ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']], ['color', ['color']], ['para', ['ul', 'ol', 'paragraph']], ['table', ['table']], ['insert', ['link', 'picture', 'video', 'embed', 'hr']], //['dir', ['ltr', 'rtl']],
-    ['view', ['fullscreen', 'codeview', 'help']]],
+    ['view', ['fullscreen', 'codeview', 'help']], summernoteConfig.data('gallery') !== '' ? ['extensions', ['gallery']] : null],
     popover: {
       table: [['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']], ['delete', ['deleteRow', 'deleteCol', 'deleteTable']], ['custom', ['tableHeaders']]]
+    },
+    gallery: {
+      source: {
+        // data: [],
+        url: summernoteConfig.data('gallery'),
+        responseDataKey: 'data',
+        nextPageKey: 'links.next'
+      },
+      modal: {
+        loadOnScroll: true,
+        maxHeight: 300,
+        title: summernoteConfig.data('gallery-title'),
+        close_text: summernoteConfig.data('gallery-close'),
+        ok_text: summernoteConfig.data('gallery-add'),
+        selectAll_text: summernoteConfig.data('gallery-select-all'),
+        deselectAll_text: summernoteConfig.data('gallery-deselect-all'),
+        noImageSelected_msg: summernoteConfig.data('gallery-error')
+      }
     },
     hint: [{
       match: /\B@(\w*)$/,
@@ -325,7 +345,7 @@ function editorLang(locale) {
 
 /***/ }),
 
-/***/ 21:
+/***/ 22:
 /*!******************************************************!*\
   !*** multi ./resources/assets/js/editors/summernote ***!
   \******************************************************/

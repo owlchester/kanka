@@ -62,7 +62,7 @@ class DefaultImageService
         $image = new Image();
         $image->campaign_id = $this->campaign->id;
         $image->created_by = $request->user()->id;
-        $image->id = $uuid;
+        $image->uuid = $uuid;
         $image->ext = $source->extension();
         $image->size = ceil($source->getSize() / 1024); // kb
         $image->name = substr($source->getFileName(), 0, 45);

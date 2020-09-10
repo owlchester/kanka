@@ -128,9 +128,9 @@ $(document).ready(function () {
 function initEntityFileModal() {
   if (!openingEntityFileModal) {
     return;
-  }
+  } //console.log('file modal loaded');
 
-  console.log('file modal loaded');
+
   openingEntityFileModal = false;
   entityFileDrop = $('.entity-files-drop');
   entityFileProgress = $('#entity-file-progress');

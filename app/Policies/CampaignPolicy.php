@@ -177,4 +177,14 @@ class CampaignPolicy
     {
         return UserCache::user($user)->admin() || !($campaign->boosted() && $campaign->hide_members);
     }
+
+    /**
+     * @param User|null $user
+     * @param Campaign $campaign
+     * @return bool
+     */
+    public function gallery(?User $user, Campaign $campaign): bool
+    {
+        return $user && UserCache::user($user)->admin() && $campaign->boosted(true);
+    }
 }

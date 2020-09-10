@@ -12,6 +12,9 @@ $(document).ready(function () {
  * Initialize summernote when available
  */
 window.initSummernote = function() {
+    let galleryText = summernoteConfig.data('gallery-texts');
+    console.log('texts', galleryText);
+
     $('.html-editor').summernote({
         height: '300px',
         lang: editorLang(summernoteConfig.data('locale')),
@@ -24,6 +27,7 @@ window.initSummernote = function() {
             ['insert', ['link', 'picture', 'video', 'embed', 'hr']],
             //['dir', ['ltr', 'rtl']],
             ['view', ['fullscreen', 'codeview', 'help']],
+            summernoteConfig.data('gallery') !== '' ? ['extensions', ['gallery']] : null,
         ],
         popover: {
             table: [
@@ -31,6 +35,24 @@ window.initSummernote = function() {
                 ['delete', ['deleteRow', 'deleteCol', 'deleteTable']],
                 ['custom', ['tableHeaders']]
             ],
+        },
+        gallery: {
+            source: {
+                // data: [],
+                url: summernoteConfig.data('gallery'),
+                responseDataKey: 'data',
+                nextPageKey: 'links.next',
+            },
+            modal: {
+                loadOnScroll: true,
+                maxHeight: 300,
+                title: summernoteConfig.data('gallery-title'),
+                close_text: summernoteConfig.data('gallery-close'),
+                ok_text: summernoteConfig.data('gallery-add'),
+                selectAll_text: summernoteConfig.data('gallery-select-all'),
+                deselectAll_text: summernoteConfig.data('gallery-deselect-all'),
+                noImageSelected_msg: summernoteConfig.data('gallery-error'),
+            }
         },
         hint: [
             {

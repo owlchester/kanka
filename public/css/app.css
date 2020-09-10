@@ -165,6 +165,10 @@ table label {
   width: 100% !important;
 }
 
+.tab-content img {
+  max-width: 100%;
+}
+
 .clear {
   clear: both;
 }
@@ -999,6 +1003,15 @@ hr {
   border-radius: 5px;
   color: #333 !important;
   text-decoration: none;
+}
+
+.images-list .img-item {
+  overflow: hidden;
+}
+
+.images-list .img-item .thumbnail {
+  height: 120px;
+  overflow: hidden;
 }
 
 .attribute,

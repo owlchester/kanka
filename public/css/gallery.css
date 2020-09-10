@@ -1,0 +1,68 @@
+.gallery ul {
+  position: static;
+  right: 0;
+  margin-right: 0;
+  padding: 0;
+}
+
+.gallery ul li {
+  width: 12.5%;
+  float: left;
+  padding: 8px;
+  margin: 0;
+  cursor: pointer;
+  list-style: none;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.gallery ul li .image-preview {
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+  background: #eee;
+  cursor: pointer;
+}
+
+.gallery ul li .image-preview .gallery-thumbnail {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 1;
+  transition: opacity 0.1s;
+  height: 100px;
+}
+
+.gallery ul li .image-preview:focus,
+.gallery ul li .image-preview:hover {
+  box-shadow: 0 0 0 1px #5b9dd9, 0 0 2px 1px rgba(30, 140, 190, 0.8);
+  color: #124964;
+  outline: 1px solid transparent;
+}
+
+.panel-image-edit img {
+  max-width: 100%;
+}
+
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  height: 100%;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  font-size: 200px !important;
+  direction: ltr;
+  cursor: pointer;
+}
+

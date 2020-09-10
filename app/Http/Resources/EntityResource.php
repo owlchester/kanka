@@ -36,6 +36,7 @@ class EntityResource extends JsonResource
             'is_attributes_private' => (bool) $entity->is_attributes_private,
             'tooltip' => $entity->tooltip,
             'header_image' => $entity->header_image,
+            'image_id' => $entity->image_id,
 
             'created_at' => $entity->created_at,
             'created_by' => $entity->created_by,
