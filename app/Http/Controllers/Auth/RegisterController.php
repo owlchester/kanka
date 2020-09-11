@@ -39,7 +39,7 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
 
-        if (env('APP_REGISTRATION_ENABLED') === false) {
+        if (!config('auth.register_enabled')) {
             throw new AccessDeniedHttpException('ACCOUNT REGISTRATION DISABLED');
         }
     }

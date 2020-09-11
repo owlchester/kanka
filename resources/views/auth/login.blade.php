@@ -62,7 +62,7 @@
         </div>
     </form>
 
-@if(env('APP_REGISTRATION_ENABLED'))
+@if(config('auth.register_enabled'))
     <div class="row">
         <div class="col-md-12">
             <div class="social-auth-links text-center">
@@ -89,12 +89,12 @@
                 <a class="btn btn-link" href="{{ route('password.request') }}">
                     {{ trans('auth.login.password_forgotten') }}
                 </a>
-            </div>
+            </div>@if(config('auth.register_enabled'))
             <div class="col-md-6 text-right">
                 <a class="btn btn-link" href="{{ route('register') }}">
                     {{ trans('auth.login.new_account') }}
                 </a>
-            </div>
+            </div>@endif
         </div>
         <div class="visible-xs visible-sm">
 
@@ -102,12 +102,12 @@
                 <a class="btn btn-link" href="{{ route('password.request') }}">
                     {{ trans('auth.login.password_forgotten') }}
                 </a>
-            </div>
+            </div>@if(config('auth.register_enabled'))
             <div class="col-md-12 text-center">
                 <a class="btn btn-link" href="{{ route('register') }}">
                     {{ trans('auth.login.new_account') }}
                 </a>
-            </div>
+            </div>@endif
         </div>
     </div>
 @endsection
