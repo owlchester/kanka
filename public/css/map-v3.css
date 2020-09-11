@@ -100,8 +100,10 @@
   color: #fff;
 }
 
-.skin-map.sidebar-collapse .sidebar {
-  display: none !important;
+.skin-map.sidebar-collapse {
+  /*.sidebar {
+    display: none !important;
+  }*/
 }
 
 .skin-map .main-sidebar {
