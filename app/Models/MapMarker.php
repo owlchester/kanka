@@ -321,6 +321,7 @@ class MapMarker extends Model
         return 'icon: L.divIcon({
                 html: ' . $icon . ',
                 iconSize: [40, 40],
+                iconAnchor: [20, 40],
                 className: \'marker marker-' . $this->id . '\'
         })';
 
