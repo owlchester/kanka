@@ -20,13 +20,19 @@
 @section('scripts')
     @parent
     <!-- Make sure you put this AFTER Leaflet's CSS -->
-    <script src="//unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
             crossorigin=""></script>
     <script src="{{ mix('js/location/map-v3.js') }}" defer></script>
     <script src="/vendor/spectrum/spectrum.js" defer></script>
 
     <script type="text/javascript">
+        var labelShapeIcon = new L.Icon({
+            iconUrl: '/images/transparent.png',
+            iconSize: [150, 35],
+            iconAnchor: [0, 0],
+            popupAnchor: [75, -10],
+        });
 
         var markers = {};
 @foreach ($model->markers as $marker)
@@ -43,7 +49,7 @@
 
         map{{ $model->id }}.on('click', function(ev) {
             let position = ev.latlng;
-            console.log('Click', 'lat', position.lat, 'lng', position.lng);
+            //console.log('Click', 'lat', position.lat, 'lng', position.lng);
             // AJAX request
     //console.log('do', "$('#marker-latitude').val(" + position.lat.toFixed(3) + ");");
             $('#marker-latitude').val(position.lat.toFixed(3));
@@ -66,8 +72,8 @@
 
 @section('styles')
     @parent
-    <link rel="stylesheet" href="//unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
           crossorigin=""/>
     <link href="{{ mix('css/map-v3.css') }}" rel="stylesheet">
     <link href="/vendor/spectrum/spectrum.css" rel="stylesheet">

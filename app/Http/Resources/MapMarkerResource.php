@@ -27,7 +27,7 @@ class MapMarkerResource extends ModelResource
             'icon' => $this->icon,
             'custom_icon' => $this->custom_icon,
             'custom_shape' => $this->custom_shape,
-            'is_draggabe' => (bool) $this->is_draggable,
+            'is_draggable' => (bool) $this->is_draggable,
             'opacity' => $this->opacity,
             'visibility' => $this->visibility
         ]);

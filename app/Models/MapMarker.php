@@ -142,7 +142,8 @@ class MapMarker extends Model
         }
         elseif ($this->shape_id == MapMarker::SHAPE_LABEL) {
             return 'L.marker([' . ($this->latitude ). ', ' . $this->longitude . '], {
-                opacity: 0,'
+                opacity: 0,
+                icon: labelShapeIcon,'
                 . ($this->editing ? 'draggable: true' : null) . '
             }).bindTooltip(`' . $this->name . '`, {
                 direction: \'center\',
@@ -193,7 +194,7 @@ class MapMarker extends Model
                 $body .= "<p><a href=\"$url\">" . $this->entity->name . "</a></p>";
             }
             // No entry field, include the entity tooltip
-            if (empty(trim($this->entry))) {
+            if ($this->shape_id != MapMarker::SHAPE_LABEL) {
                 $body .= $this->entity->mappedPreview();
             }
         }
@@ -201,7 +202,7 @@ class MapMarker extends Model
             return '.bindPopup(`
             <div class="marker-popup-content">
                 <h4 class="marker-header">' . str_replace('`', '\'', $this->markerTitle(true)) . '</h4>
-                <p class="marker-text">' . Mentions::mapAny($this) . '</p>
+                ' . ($this->shape_id == MapMarker::SHAPE_LABEL ? '<p class="marker-text">' . Mentions::mapAny($this) . '</p>' : null) . '
             </div>
             ' . $body . '`)
             .on(`mouseover`, function (ev) {
@@ -215,7 +216,7 @@ class MapMarker extends Model
         return '.bindPopup(`
             <div class="marker-popup-content">
                 <h4 class="marker-header">' . str_replace('`', '\'', $this->markerTitle(true)) . '</h4>
-                <p class="marker-text">' . Mentions::mapAny($this) . '</p>
+                ' . ($this->shape_id == MapMarker::SHAPE_LABEL ? '<p class="marker-text">' . Mentions::mapAny($this) . '</p>' : null) . '
             </div>
             ' . $body . '
             <div class="marker-popup-actions">
