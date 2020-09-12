@@ -30,7 +30,7 @@
         @forelse ($plugins as $plugin)
             <tr>
                 <td>
-                    <a href="{{ config('marketplace.url') }}/plugins/{{ $plugin->id }}" target="_blank">
+                    <a href="{{ config('marketplace.url') }}/plugins/{{ $plugin->uuid }}" target="_blank">
                         {{ $plugin->name }}
                     </a><br />
                     @if($plugin->hasUpdate())
