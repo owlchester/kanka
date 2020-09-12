@@ -37,8 +37,14 @@
             }
         ],
         'type',
-        'sex',
-        'is_dead',
+        [
+            'label' => '<i class="fas fa-transgender-alt" title="' . __('characters.fields.sex') . '"></i>',
+            'field' => 'sex',
+        ],
+        [
+            'label' => '<i class="ra ra-skull" title="' . __('characters.fields.is_dead') . '"></i>',
+            'field' => 'is_dead',
+        ],
         [
             'type' => 'is_private',
         ]
