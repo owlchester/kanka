@@ -381,7 +381,7 @@ Route::group([
         Route::get('/campaign/export', 'CampaignExportController@index')->name('campaign_export');
         Route::post('/campaign/export', 'CampaignExportController@export')->name('campaign_export.save');
         Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');
-        Route::get('/campaign_plugin.styles', 'Campaign\CampaignPluginController@css')->name('campaign_theme.css');
+        Route::get('/campaign_plugin.styles', 'Campaign\CampaignPluginController@css')->name('campaign_plugins.css');
 
 
 

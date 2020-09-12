@@ -408,6 +408,6 @@ class Campaign extends MiscModel
      */
     public function hasPluginTheme(): bool
     {
-        return !empty(CampaignCache::theme());
+        return !empty(CampaignCache::themes());
     }
 }

@@ -34,12 +34,10 @@
                         {{ $plugin->name }}
                     </a><br />
                     @if($plugin->hasUpdate())
-                    <br />
-                        <p class="text-muted">
-                            This plugin has a new version available!<br />
-                            <a href="{{ route('campaign_plugins.update-info', $plugin) }}" class="btn btn-xs btn-info"
-                               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_plugins.update-info', $plugin) }}">Learn more</a>
-                        </p>
+                    <a href="{{ route('campaign_plugins.update-info', $plugin) }}" class="btn btn-xs btn-info"
+                       data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_plugins.update-info', $plugin) }}">
+                        {{ __('campaigns/plugins.actions.update_available') }}
+                    </a>
                     @endif
                 </td>
                 <td>

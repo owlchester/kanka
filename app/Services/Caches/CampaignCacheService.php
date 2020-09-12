@@ -215,23 +215,31 @@ class CampaignCacheService extends BaseCache
         return $this;
     }
 
-    public function theme()
+    /**
+     * List of themes the campaign has acticated
+     * @return PluginVersion|mixed|null
+     */
+    public function themes(): string
     {
         $key = $this->themeKey();
         if ($this->has($key)) {
-            return $this->get($key);
+            return (string) $this->get($key);
         }
 
         /** @var CampaignPlugin $plugin */
-        $plugin = CampaignPlugin::leftJoin('plugins as p', 'p.id', 'plugin_id')
+        $theme = '';
+        $plugins = CampaignPlugin::leftJoin('plugins as p', 'p.id', 'plugin_id')
             ->where('campaign_id', $this->campaign->id)
             ->where('p.type_id', 1)
             ->where('is_active', true)
-            ->first();
-        $theme = $plugin ? $plugin->version : null;
+            ->with('version')
+            ->get();
+        foreach ($plugins as $plugin) {
+            $theme .= $plugin->version->content."\n";
+        }
 
         $this->forever($key, $theme);
-        return $theme;
+        return (string) $theme;
     }
 
     /**

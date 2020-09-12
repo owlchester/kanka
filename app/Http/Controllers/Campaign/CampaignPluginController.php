@@ -114,10 +114,9 @@ class CampaignPluginController extends Controller
     {
         $campaign = CampaignLocalization::getCampaign();
 
-        /** @var PluginVersion $version */
-        $version = CampaignCache::theme();
+        $themes = CampaignCache::themes();
 
-        $response = \Illuminate\Support\Facades\Response::make($version->content);
+        $response = \Illuminate\Support\Facades\Response::make($themes);
         $response->header('Content-Type', 'text/css');
         $response->header('Expires', Carbon::now()->addMonth(1)->toDateTimeString());
 

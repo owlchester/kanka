@@ -44,7 +44,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
 @endif
 
 @if(!empty($campaign) && $campaign->boosted() && $campaign->hasPluginTheme())
-    <link href="{{ route('campaign_theme.css', ['ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">
+    <link href="{{ route('campaign_plugins.css', ['ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">
 @endif
 @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->css))
     <link href="{{ route('campaign.css', ['ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">

@@ -7,6 +7,7 @@ return [
         'disable' => 'Disable plugin',
         'remove' => 'Remove plugin',
         'update' => 'Update plugin',
+        'update_available' => 'Update available!',
     ],
     'title' => 'Campaign :name Plugins',
     'helper' => 'The Kanka community is constantly creating amazing plugins on our marketplace. If your campaign is boosted, you can install plugins from the marketplace. Use this interface to uninstall plugins in your campaign.',
@@ -24,6 +25,7 @@ return [
         'title' => 'Plugin :plugin updates',
         'updates' => 'Updates',
         'helper' => 'When a new version of a plugin is released, you can update it to the latest version for your campaign.',
+        'your_version' => 'Your version'
     ],
     'status' => [
         'enabled' => 'Enabled',
