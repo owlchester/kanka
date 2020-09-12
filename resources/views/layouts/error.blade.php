@@ -65,10 +65,10 @@
                 @if (!Auth::check())
                     <p>
                         <a href="/login" class="btn btn-outline btn-xl">{{ __('front.menu.login') }}</a>
-                    </p>
+                    </p>@if(config('auth.register_enabled'))
                     <p>
                         <a href="/register" class="btn btn-outline btn-xl">{{ __('front.menu.register') }}</a>
-                    </p>
+                    </p>@endif
                 @endif
 
                     <p>

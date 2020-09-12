@@ -13,8 +13,13 @@
         <div class="row">
             <div class="col-lg-2 col-md-2 col-xs-12 text-center">
                 <h4 class="margin-bottom"><a href="{{ route('home') }}">
-                    <img class="logo-blue" src="https://images.kanka.io/app/DEy2otI4qKGIJHMX_JFxeEFGRls=/64x64/src/images%2Flogos%2Flogo-small.png" alt="Kanka logo blue" title="Kanka" />
-                    <img class="logo-white" src="https://images.kanka.io/app/0HdWv4egPu6lBQ30iWTcS9MPgRo=/64x64/src/images%2Flogos%2Flogo-small-white.png" alt="Kanka logo white" title="Kanka" />
+                    @if(\App\Facades\Img::nowebp())
+                        <img class="logo-blue" src="https://images.kanka.io/app/DEy2otI4qKGIJHMX_JFxeEFGRls=/64x64/src/images%2Flogos%2Flogo-small.png?webpfallback" alt="Kanka logo blue" title="Kanka" />
+                        <img class="logo-white" src="https://images.kanka.io/app/0HdWv4egPu6lBQ30iWTcS9MPgRo=/64x64/src/images%2Flogos%2Flogo-small-white.png?webpfallback" alt="Kanka logo white" title="Kanka" />
+                    @else
+                        <img class="logo-blue" src="https://images.kanka.io/app/DEy2otI4qKGIJHMX_JFxeEFGRls=/64x64/src/images%2Flogos%2Flogo-small.png" alt="Kanka logo blue" title="Kanka" />
+                        <img class="logo-white" src="https://images.kanka.io/app/0HdWv4egPu6lBQ30iWTcS9MPgRo=/64x64/src/images%2Flogos%2Flogo-small-white.png" alt="Kanka logo white" title="Kanka" />
+                    @endif
                 </a></h4>
             </div>
             <div class="col-lg-7 col-md-7 col-xs-12">

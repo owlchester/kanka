@@ -232,6 +232,7 @@ class CrudController extends Controller
         }
 
         try {
+            /** @var MiscModel $model */
             $model = new $this->model;
             $new = $model->create($request->all());
 
@@ -253,6 +254,7 @@ class CrudController extends Controller
 
             session()->flash('success_raw', $success);
 
+
             if ($request->has('submit-new')) {
                 $route = route($this->route . '.create');
                 return response()->redirectTo($route);
@@ -267,6 +269,10 @@ class CrudController extends Controller
                 return response()->redirectTo($route);
             } elseif (auth()->user()->new_entity_workflow == 'created') {
                 $redirectToCreated = true;
+            } elseif ($model->getEntityType() == 'maps') {
+                // If creating a map, go to edit it directly
+                $route = route($this->route . '.edit', $new);
+                return response()->redirectTo($route);
             }
 
             if ($redirectToCreated) {

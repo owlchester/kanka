@@ -63,9 +63,11 @@
                         {{ __('front.menu.login') }}
                     </a>
                 </li>
+                @if(config('auth.register_enabled'))
                 <li class="d-none d-sm-inline-block">
                     <a class="nav-link" href="{{ route('register') }}">{{ __('front.menu.register') }}</a>
                 </li>
+                @endif
             @endauth
             <li>
                 <a href="{{ config('social.discord') }}" target="discord" title="Discord" rel="noreferrer">
@@ -91,18 +93,19 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
-            <img class="d-none d-lg-block" src="https://images.kanka.io/app/lYYwvb1TENQSosFKdgDCLd2oLdU=/228x77/src/images%2Flogos%2Ftext-white.png" title="Kanka logo text white" alt="kanka logo text white" />
-            <img class="d-xl-none d-lg-none" src="https://images.kanka.io/app/G2bnfyER8xMuMzPX4LM0Phdrjew=/228x77/src/images%
-2Flogos%2Ftext-blue.png" title="Kanka logo text blue" alt="Kanka logo text blue" />
+            <img class="d-none d-lg-block" @if(\App\Facades\Img::nowebp()) src="https://images.kanka.io/app/lYYwvb1TENQSosFKdgDCLd2oLdU=/228x77/src/images%2Flogos%2Ftext-white.png?webpfallback?webpfallback" @else src="https://images.kanka.io/app/lYYwvb1TENQSosFKdgDCLd2oLdU=/228x77/src/images%2Flogos%2Ftext-white.png?webpfallback" @endif title="Kanka logo text white" alt="kanka logo text white" />
+            <img class="d-xl-none d-lg-none" @if(\App\Facades\Img::nowebp()) src="https://images.kanka.io/app/G2bnfyER8xMuMzPX4LM0Phdrjew=/228x77/src/images%
+2Flogos%2Ftext-blue.png?webpfallback" @else src="https://images.kanka.io/app/G2bnfyER8xMuMzPX4LM0Phdrjew=/228x77/src/images%
+2Flogos%2Ftext-blue.png" @endif title="Kanka logo text blue" alt="Kanka logo text blue" />
         </a>
         @auth
         @else
             <a href="{{ route('login') }}" class="d-sm-none">
                 {{ __('front.menu.login') }}
-            </a>
+            </a>@if(config('auth.register_enabled'))
             <a class="d-sm-none" href="{{ route('register') }}">
                 {{ __('front.menu.register') }}
-            </a>
+            </a>@endif
         @endauth
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fa fa-bars"></i>

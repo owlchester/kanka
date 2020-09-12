@@ -7,10 +7,10 @@
             <div class="col-lg-7">
                 <div class="header-content">
                     <p class="mb-5">{{ trans('front.master.description') }}</p>
-
+                    @if(config('auth.register_enabled'))
                     <a href="{{ route('register') }}" class="btn btn-outline btn-xl">
                         {{ trans('front.master.call_to_action') }}
-                    </a>
+                    </a>@endif
                 </div>
             </div>
             <div class="col-lg-5 text-center">

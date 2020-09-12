@@ -8,15 +8,17 @@ use Illuminate\Support\Facades\Cache;
 
 trait Tooltip
 {
-
     /**
      * Wrapper for short entry
      * @return mixed
      */
     public function tooltip($limit = 250, $stripSpecial = true)
     {
+        // Replace return chars to space to avoid "text blabla.New sentence"
+        $pureHistory = str_replace('<br />', " ", $this->{$this->tooltipField});
+
         // Always remove tags. ALWAYS.
-        $pureHistory = strip_tags($this->{$this->tooltipField});
+        $pureHistory = strip_tags($pureHistory);
 
         if ($stripSpecial) {
             // Remove double quotes because they are the spawn of the devil.
@@ -27,11 +29,6 @@ trait Tooltip
             $pureHistory = str_replace('&gt;', null, $pureHistory);
             $pureHistory = str_replace('&lt;', null, $pureHistory);
             //$pureHistory = htmlentities(htmlspecialchars($pureHistory));
-
-//            if ($this->id == 70) {
-//                dump($this->{$this->tooltipField});
-//                dd($pureHistory);
-//            }
         }
 
         $pureHistory = preg_replace("/\s/ui", ' ', $pureHistory);
