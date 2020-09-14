@@ -102,7 +102,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                         <a href="{{ route('calendars.index') }}"><i class="fa fa-calendar"></i> <span>{{ trans('sidebar.calendars') }}</span></a>
                     </li>
                 @endif
-                @if ($campaign->enabled('timelines') && $currentCampaign->boosted())
+                @if ($campaign->enabled('timelines'))
                     <li class="{{ $sidebar->active('timelines') }} subsection">
                         <a href="{{ route('timelines.index') }}"><i class="fas fa-hourglass-half"></i> <span>{{ trans('sidebar.timelines') }}</span></a>
                     </li>
