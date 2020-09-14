@@ -32,12 +32,12 @@ return [
     'show'          => [
         'title' => 'Relations for :name',
     ],
+    'teaser'        => 'Boost the campaign to get access to the relations visualiser. Click to learn more about boosted campaigns.',
+    'types'         => [
+        'family_member' => 'Family member',
+    ],
     'update'        => [
         'success'   => 'Relation :target updated for :entity.',
         'title'     => 'Update relations for :name',
     ],
-    'teaser'         => 'Boost the campaign to get access to the relations visualiser. Click to learn more about boosted campaigns.',
-    'types' => [
-        'family_member' => 'Family member',
-    ]
 ];

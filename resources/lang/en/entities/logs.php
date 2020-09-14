@@ -4,8 +4,8 @@ return [
     'actions'       => [
         'create'    => 'Create',
         'delete'    => 'Delete',
-        'update'    => 'Update',
         'restore'   => 'Restore',
+        'update'    => 'Update',
     ],
     'fields'        => [
         'action'    => 'Action',

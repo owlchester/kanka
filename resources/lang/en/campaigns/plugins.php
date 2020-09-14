@@ -1,44 +1,44 @@
 <?php
 
 return [
-    'actions' => [
+    'actions'       => [
+        'disable'           => 'Disable plugin',
+        'enable'            => 'Enable plugin',
         'go_to_marketplace' => 'Go to the Marketplace',
-        'enable' => 'Enable plugin',
-        'disable' => 'Disable plugin',
-        'remove' => 'Remove plugin',
-        'update' => 'Update plugin',
-        'update_available' => 'Update available!',
+        'remove'            => 'Remove plugin',
+        'update'            => 'Update plugin',
+        'update_available'  => 'Update available!',
     ],
-    'title' => 'Campaign :name Plugins',
-    'helper' => 'The Kanka community is constantly creating amazing plugins on our marketplace. If your campaign is boosted, you can install plugins from the marketplace. Use this interface to uninstall plugins in your campaign.',
-    'fields' => [
-        'name' => 'Plugin name',
-        'type' => 'Plugin type',
-        'status' => 'Status',
+    'disabled'      => [
+        'success'   => 'Plugin :plugin disabled.',
     ],
-    'types' => [
-        'theme' => 'Theme',
-        'attributes' => 'Attribute Template',
-        'pack' => 'Content Pack',
+    'empty_list'    => 'The campaign doesn\'t currently have any plugins. Go to the marketplace to install a few and come back to activate them.',
+    'enabled'       => [
+        'success'   => 'Plugin :plugin enabled.',
     ],
-    'info' => [
-        'title' => 'Plugin :plugin updates',
-        'updates' => 'Updates',
-        'helper' => 'When a new version of a plugin is released, you can update it to the latest version for your campaign.',
-        'your_version' => 'Your version'
+    'fields'        => [
+        'name'      => 'Plugin name',
+        'status'    => 'Status',
+        'type'      => 'Plugin type',
     ],
-    'status' => [
-        'enabled' => 'Enabled',
-        'disabled' => 'Disabled',
+    'helper'        => 'The Kanka community is constantly creating amazing plugins on our marketplace. If your campaign is boosted, you can install plugins from the marketplace. Use this interface to uninstall plugins in your campaign.',
+    'info'          => [
+        'helper'        => 'When a new version of a plugin is released, you can update it to the latest version for your campaign.',
+        'title'         => 'Plugin :plugin updates',
+        'updates'       => 'Updates',
+        'your_version'  => 'Your version',
     ],
-    'enabled' => [
-        'success' => 'Plugin :plugin enabled.',
+    'status'        => [
+        'disabled'  => 'Disabled',
+        'enabled'   => 'Enabled',
     ],
-    'disabled' => [
-        'success' => 'Plugin :plugin disabled.',
+    'title'         => 'Campaign :name Plugins',
+    'types'         => [
+        'attributes'    => 'Attribute Template',
+        'pack'          => 'Content Pack',
+        'theme'         => 'Theme',
     ],
-    'update' => [
-        'success' => 'Plugin :plugin updated.',
+    'update'        => [
+        'success'   => 'Plugin :plugin updated.',
     ],
-    'empty_list' => 'The campaign doesn\'t currently have any plugins. Go to the marketplace to install a few and come back to activate them.',
 ];

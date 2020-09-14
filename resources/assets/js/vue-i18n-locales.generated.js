@@ -16,484 +16,485 @@ export default {
         "campaigns": [],
         "conversations": {
             "create": {
-                "description": "Crear nueva conversación",
-                "success": "Conversación '{name}' creada.",
-                "title": "Nueva Conversación"
+                "description": "Crea una nova conversa",
+                "success": "S'ha creat la conversa «{name}».",
+                "title": "Nova conversa"
             },
             "destroy": {
-                "success": "Conversación '{name}' eliminada."
+                "success": "S'ha eliminat la conversa «{name}»."
             },
             "edit": {
-                "description": "Actualizar la conversación",
-                "success": "Conversación '{name}' actualizada.",
-                "title": "Conversación {name}"
+                "description": "Actualiza la conversa",
+                "success": "S'ha actualitzat la conversa «{name}».",
+                "title": "Conversa {name}"
             },
             "fields": {
-                "messages": "Mensajes",
-                "name": "Nombre",
-                "participants": "Participantes",
-                "target": "Objetivo",
-                "type": "Tipo"
+                "messages": "Missatges",
+                "name": "Nom",
+                "participants": "Participants",
+                "target": "Objectiu",
+                "type": "Tipus"
             },
             "hints": {
-                "participants": "Por favor, añade participantes a la conversación."
+                "participants": "Afegiu participants a la conversa clicant a la icona {icon} adalt a la dreta."
             },
             "index": {
-                "add": "Nueva Conversación",
-                "description": "Gestiona las conversaciones de {name}.",
-                "header": "Conversaciones en {name}",
-                "title": "Conversaciones"
+                "add": "Nova conversa",
+                "description": "Gestiona les converses de {name}.",
+                "header": "Converses de {name}",
+                "title": "Converses"
             },
             "messages": {
                 "destroy": {
-                    "success": "Mensaje eliminado."
+                    "success": "S'ha eliminat el missatge."
                 },
-                "is_updated": "Actualizado",
-                "load_previous": "Cargar mensajes previos",
+                "is_updated": "Actualizat",
+                "load_previous": "Carrega els missatges previs",
                 "placeholders": {
-                    "message": "Tu mensaje"
+                    "message": "El vostre missatge"
                 }
             },
             "participants": {
                 "create": {
-                    "success": "El participante {entity} se ha añadido a la conversación."
+                    "success": "S'ha afegit el participant {entity} a la conversa."
                 },
-                "description": "Añadir o eliminar participantes de una conversación",
+                "description": "Afegeix o elimina participants d'una conversa",
                 "destroy": {
-                    "success": "El participante {entity} se ha eliminado de la conversación."
+                    "success": "El participant {entity} s'ha tret de la conversa."
                 },
-                "modal": "Participantes",
-                "title": "Participantes de {name}"
+                "modal": "Participants",
+                "title": "Participants de {name}"
             },
             "placeholders": {
-                "name": "Nombre de la conversación",
-                "type": "Dentro del juego, Preparación, Argumento"
+                "name": "Nom de la conversa",
+                "type": "Dins del joc, preparació, argument..."
             },
             "show": {
-                "description": "Vista detallada de conversación",
-                "title": "Conversación {name}"
+                "description": "Vista detallada de conversa",
+                "title": "Conversa {name}"
             },
             "tabs": {
-                "conversation": "Conversación",
-                "participants": "Participantes"
+                "conversation": "Conversa",
+                "participants": "Participants"
             },
             "targets": {
-                "characters": "Personajes",
-                "members": "Miembros"
+                "characters": "Personatges",
+                "members": "Membres"
             }
         },
         "crud": {
             "actions": {
-                "actions": "Acciones",
-                "apply": "Aplicar",
-                "back": "Atrás",
-                "copy": "Copiar",
-                "copy_mention": "Copiar mención [ ]",
-                "copy_to_campaign": "Copiar a campaña",
-                "explore_view": "Vista anidada",
-                "export": "Exportar",
-                "find_out_more": "Saber más",
-                "go_to": "Ir a {name}",
-                "json-export": "Exportar (JSON)",
-                "more": "Más acciones",
-                "move": "Mover",
-                "new": "Nuevo",
-                "next": "Siguiente",
-                "private": "Privado",
-                "public": "Público",
-                "reset": "Restablecer"
+                "actions": "Accions",
+                "apply": "Aplica",
+                "back": "Enrere",
+                "copy": "Copia",
+                "copy_mention": "Copia la menció [ ]",
+                "copy_to_campaign": "Copia a la campanya",
+                "explore_view": "Vista de niu",
+                "export": "Exporta",
+                "find_out_more": "Saber-ne més",
+                "go_to": "Ves a {name}",
+                "json-export": "Exporta (JSON)",
+                "more": "Més accions",
+                "move": "Mou",
+                "new": "Nou",
+                "next": "Següent",
+                "private": "Privat",
+                "public": "Públic",
+                "reset": "Restableix"
             },
-            "add": "Añadir",
+            "add": "Afegeix",
             "alerts": {
-                "copy_mention": "La mención avanzada de la entidad se ha copiado a tu portapapeles."
+                "copy_mention": "S'ha copiat la menció avançada de l'entitat al porta-retalls."
             },
             "attributes": {
                 "actions": {
-                    "add": "Añadir atributo",
-                    "add_block": "Añadir un bloque",
-                    "add_checkbox": "Añadir una casilla",
-                    "add_text": "Añadir texto",
-                    "apply_template": "Aplicar una plantilla de atributos",
-                    "manage": "Administrar",
-                    "remove_all": "Eliminar todos"
+                    "add": "Afegeix un atribut",
+                    "add_block": "Afegeix un bloc",
+                    "add_checkbox": "Afegeix una casella",
+                    "add_text": "Afegeix un text",
+                    "apply_template": "Aplica una plantilla d'atributs",
+                    "manage": "Administra",
+                    "remove_all": "Elimina'ls tots"
                 },
                 "create": {
-                    "description": "Crear nuevo atributo",
-                    "success": "Atributo {name} añadido a {entity}.",
-                    "title": "Nuevo atributo para {name}"
+                    "description": "Crea un nou atribut",
+                    "success": "S'ha afegit l'atribut {name} a {entity}.",
+                    "title": "Atribut nou per a {name}"
                 },
                 "destroy": {
-                    "success": "Atributo {name} de {entity} eliminado."
+                    "success": "S'ha eliminat l'atribut {name} de {entity}."
                 },
                 "edit": {
-                    "description": "Actualizar un atributo existente",
-                    "success": "Atributo {name} de {entity} actualizado.",
-                    "title": "Actualizar atributo a {name}"
+                    "description": "Actualitza un atribut existent",
+                    "success": "S'ha actualitzat l'atribut {name} de {entity}.",
+                    "title": "Actualitza l'atribut de {name}"
                 },
                 "fields": {
-                    "attribute": "Atributo",
-                    "community_templates": "Plantillas de la comunidad",
-                    "is_private": "Atributos privados",
-                    "is_star": "Fijado",
+                    "attribute": "Atribut",
+                    "community_templates": "Plantilles de la comunitat",
+                    "is_private": "Atributs privats",
+                    "is_star": "Fixat",
                     "template": "Plantilla",
                     "value": "Valor"
                 },
                 "helpers": {
-                    "delete_all": "¿Seguro que quieres eliminar todos los atributos de esta entidad?"
+                    "delete_all": "¿Segur que voleu eliminar tots els atributs d'aquesta entitat?"
                 },
                 "hints": {
-                    "is_private": "Puedes ocultar todos los atributos de una entidad a todos los miembros no administradores haciéndola privada."
+                    "is_private": "Podeu amagar tots els atributs d'una entitat a tots els membres no administradors fent-la privada."
                 },
                 "index": {
-                    "success": "Atributos de {entity} actualizados.",
-                    "title": "Atributos de {name}"
+                    "success": "S'han actualitzat els atributs de {entity}.",
+                    "title": "Atributs de {name}"
                 },
                 "placeholders": {
-                    "attribute": "Número de conquistas, Iniciativa, Población",
-                    "block": "Nombre del bloque",
-                    "checkbox": "Nombre de la casilla",
-                    "section": "Nombre de la sección",
-                    "template": "Seleccionar plantilla",
-                    "value": "Valor del atributo"
+                    "attribute": "Nombre de conquestes, Iniciativa, Població...",
+                    "block": "Nom del bloc",
+                    "checkbox": "Nom de la casella",
+                    "section": "Nom de la secció",
+                    "template": "Selecciona una plantilla",
+                    "value": "Valor de l'atribut"
                 },
                 "template": {
-                    "success": "Plantilla de atributos {name} aplicada en {entity}",
-                    "title": "Aplicar plantilla de atributos a {name}"
+                    "success": "S'ha aplicat la plantilla d'atributs {name} a {entity}",
+                    "title": "Aplica una plantilla d'atributs a {name}"
                 },
                 "types": {
-                    "attribute": "Atributo",
-                    "block": "Bloque",
-                    "checkbox": "Casilla",
-                    "section": "Sección",
-                    "text": "Texto multilínea"
+                    "attribute": "Atribut",
+                    "block": "Bloc",
+                    "checkbox": "Casella",
+                    "section": "Secció",
+                    "text": "Text multilínia"
                 },
                 "visibility": {
-                    "entry": "El atributo se muestra en el menú de la entidad.",
-                    "private": "Atributo visible solo para miembros con el rol \"Admin\".",
-                    "public": "Atributo visible por todos los miembros.",
-                    "tab": "El atributo se muestra solo en la pestaña de Atributos."
+                    "entry": "L'atribut es mostra al menú de l'entitat.",
+                    "private": "L'atribut només és visible per a membres amb el rol \"Admin\".",
+                    "public": "L'atribut és visible per a tots els membres.",
+                    "tab": "L'atribut només es mostra a la pestanya d'atributs."
                 }
             },
-            "boosted": "mejorada",
-            "boosted_campaigns": "Campañas mejoradas",
+            "boosted": "millorada",
+            "boosted_campaigns": "Campanyes millorades",
             "bulk": {
                 "actions": {
-                    "edit": "Editar y etiquetar en lote"
+                    "edit": "Edita i etiqueta en grup"
                 },
                 "age": {
-                    "helper": "Puedes usar + y - antes del número para actualizar la edad en dicha cantidad."
+                    "helper": "Utilitza + i - abans del número per a canviar l'edat."
                 },
                 "delete": {
-                    "title": "Eliminar múltiples entidades",
-                    "warning": "¿Seguro que quieres eliminar las entidades seleccionadas?"
+                    "title": "Eliminació de múltiples entitats",
+                    "warning": "¿Segur que voleu eliminar les entitats seleccionades?"
                 },
                 "edit": {
-                    "tagging": "Acción para las etiquetas",
+                    "tagging": "Acció per a les etiquetes",
                     "tags": {
-                        "add": "Añadir",
-                        "remove": "Eliminar"
+                        "add": "Afegeix",
+                        "remove": "Elimina"
                     },
-                    "title": "Editando múltiples entidades"
+                    "title": "Edició de múltiples entitats"
                 },
                 "errors": {
-                    "admin": "Solamente los administradores de la campaña pueden cambiar el estatus privado de las entidades.",
-                    "general": "Ha habido un error al procesar la acción. Vuelve a intentarlo o contáctanos si el problema persiste. Mensaje de error: {hint}."
+                    "admin": "Només els administradors de la campanya poden canviar l'estatus privat de les entitats.",
+                    "general": "Hi ha hagut un error en processar l'acció. Torneu a intentar-ho o contacteu-nos si el problema persisteix. Missatge d'error: {hint}."
                 },
                 "permissions": {
                     "fields": {
-                        "override": "Ignorar"
+                        "override": "Ignora"
                     },
                     "helpers": {
-                        "override": "Si está seleccionado, los permisos de las entidades seleccionadas serán ignorados y en cambio usarán estos ajustes. Si no está seleccionado, los estos permisos se añadirán a los existentes."
+                        "override": "Si està seleccionat, els permisos de les entitats seleccionades s'ignoraran i utilitzaran aquesta configuració. Si no està seleccionat, aquests permisos s'afegiran als existents."
                     },
-                    "title": "Cambiar permisos a varias entidades"
+                    "title": "Canvia els permisos a diverses entitats"
                 },
                 "success": {
-                    "copy_to_campaign": "{1} {count} entidad copiada a {campaign}.|[2,*] {count} entidades copiadas a {campaign}.",
-                    "editing": "{count} entidad se ha actualizado.|{count} entidades se han actualizado.",
-                    "permissions": "Permisos cambiados en {count} entidad.|Permisos cambiados en {count} entidades.",
-                    "private": "{count} entidad es ahora privada|{count} entidades son ahora privadas.",
-                    "public": "{count} entidad es ahora visible|{count} son ahora visibles."
+                    "copy_to_campaign": "{1} {count} entitat copiada a {campaign}.|[2,*] {count} entitats copiades a {campaign}.",
+                    "editing": "{1} S'ha actualitzat {count} entitat.|[2,*] S'han actualitzat {count} entitats.",
+                    "permissions": "{1} S'han canviat els permisos a {count} entitat.|[2,*] S'han canviat els permisos a {count} entitats.",
+                    "private": "{1} Ara {count} entitat és privada.|[2,*] Ara {count} entitats són privades.",
+                    "public": "{1} Ara {count} entitat és visible.|[2,*] Ara {count} entitats són visibles."
                 }
             },
-            "cancel": "Cancelar",
+            "cancel": "Cancela",
             "click_modal": {
-                "close": "Cerrar",
-                "confirm": "Confirmar",
-                "title": "Confirmar acción"
+                "close": "Tanca",
+                "confirm": "Confirma",
+                "title": "Confirma l'acció"
             },
             "copy_to_campaign": {
-                "bulk_title": "Copiar entidades a otra campaña",
-                "panel": "Copiar",
-                "title": "Copiar '{name}' a otra campaña"
+                "bulk_title": "Copia entitats a una altra campanya",
+                "panel": "Copia",
+                "title": "Copia «{name}» a una altra campaña"
             },
-            "create": "Crear",
+            "create": "Crea",
             "datagrid": {
-                "empty": "Aún no hay nada que mostrar."
+                "empty": "Encara no hi ha res a mostrar."
             },
             "delete_modal": {
-                "close": "Cerrar",
-                "delete": "Eliminar",
-                "description": "¿Seguro que quieres eliminar {tag}?",
-                "mirrored": "Eliminar relación reflejada",
-                "title": "Eliminar"
+                "close": "Tanca",
+                "delete": "Elimina",
+                "description": "¿Segur que voleu eliminar {tag}?",
+                "mirrored": "Elimina la relació emmirallada",
+                "title": "Confirmació de l'eliminació"
             },
             "destroy_many": {
-                "success": "{count} entidad eliminada|{count} entidades eliminadas."
+                "success": "{1} S'ha eliminat {count} entitat.|[2,*] S'han eliminat {count} entitats."
             },
-            "edit": "Editar",
+            "edit": "Edita",
             "errors": {
-                "boosted": "Esta función solo está disponible para las campañas mejoradas.",
-                "node_must_not_be_a_descendant": "Nodo inválido (categoría, localización superior): sería un descendiente de sí mismo."
+                "boosted": "Aquesta funció només està disponible per a les campanyes millorades.",
+                "node_must_not_be_a_descendant": "Node invàlid (etiqueta, localització superior): seria un descendent de si mateix."
             },
             "events": {
-                "hint": "Los eventos del calendario asociados a esta entidad se muestran aquí."
+                "hint": "Aquí es mostren els esdeveniments del calendari associats a aquesta entitat."
             },
-            "export": "Exportar",
+            "export": "Exporta",
             "fields": {
-                "ability": "Habilidad",
-                "attribute_template": "Plantilla de atributos",
-                "calendar": "Calendario",
-                "calendar_date": "Fecha del calendario",
-                "character": "Personaje",
+                "ability": "Habilitat",
+                "attribute_template": "Plantilla d'atributs",
+                "calendar": "Calendari",
+                "calendar_date": "Data del calendari",
+                "character": "Personatge",
                 "colour": "Color",
-                "copy_attributes": "Copiar atributos",
-                "copy_notes": "Copiar notas de la entidad",
+                "copy_attributes": "Copia els atributs",
+                "copy_notes": "Copia les anotacions de l'entitat",
                 "creator": "Creador",
-                "dice_roll": "Tirada de dados",
-                "entity": "Entidad",
-                "entity_type": "Tipo de entidad",
+                "dice_roll": "Tirada de daus",
+                "entity": "Entitat",
+                "entity_type": "Tipus d'entitat",
                 "entry": "Entrada",
-                "event": "Evento",
-                "excerpt": "Extracto",
-                "family": "Familia",
-                "files": "Archivos",
-                "has_image": "Tiene imagen",
-                "header_image": "Imagen de cabecera",
-                "image": "Imagen",
-                "is_private": "Privado",
-                "is_star": "Fijada",
-                "item": "Objeto",
-                "location": "Localización",
+                "event": "Esdeveniment",
+                "excerpt": "Extracte",
+                "family": "Família",
+                "files": "Fitxers",
+                "has_image": "Té imatge",
+                "header_image": "Imatge de capçalera",
+                "image": "Imatge",
+                "is_private": "Privada",
+                "is_star": "Fixada",
+                "item": "Objecte",
+                "location": "Localització",
                 "map": "Mapa",
-                "name": "Nombre",
-                "organisation": "Organización",
-                "position": "Posición",
-                "race": "Raza",
+                "name": "Nom",
+                "organisation": "Organització",
+                "position": "Posició",
+                "race": "Raça",
                 "tag": "Etiqueta",
-                "tags": "Etiquetas",
-                "timeline": "Línea de tiempo",
-                "tooltip": "Descripción emergente",
-                "type": "Tipo",
-                "visibility": "Visibilidad"
+                "tags": "Etiquetes",
+                "timeline": "Línia de temps",
+                "tooltip": "Descripció emergent",
+                "type": "Tipus",
+                "visibility": "Visibilitat"
             },
             "files": {
                 "actions": {
-                    "drop": "Haz clic para añadir o arrastra un archivo",
-                    "manage": "Administrar archivos de la entidad"
+                    "drop": "Feu clic per a afegir o arrossegueu un fitxer",
+                    "manage": "Administra els fitxers de l'entitat"
                 },
                 "errors": {
-                    "max": "Has alcanzado el número máximo ({max}) de archivos para esta entidad.",
-                    "no_files": "No hay archivos."
+                    "max": "Heu arribat al nombre màxim ({max}) de fitxers per a aquesta entitat.",
+                    "no_files": "No hi ha fitxers."
                 },
-                "files": "Archivos subidos",
+                "files": "Fitxers pujats",
                 "hints": {
-                    "limit": "Cada entidad puede tener un máximo de {max} archivos.",
-                    "limitations": "Formatos soportados: jpg, png, gif y pdf. Tamaño máximo de archivo: {size}"
+                    "limit": "Cada entitat pot tenir un màxim de {max} fitxers.",
+                    "limitations": "Formats acceptats: JPG, PNG, GIF i PDF. Tamany màxim del fitxer: {size}."
                 },
-                "title": "Archivos de {name}"
+                "title": "Fitxers de {name}"
             },
-            "filter": "Filtrar",
+            "filter": "Filtra",
             "filters": {
-                "all": "Mostrar todos los descendientes",
-                "clear": "Quitar filtros",
-                "direct": "Filtrar solo los descendientes directos",
-                "filtered": "Mostrando {count} de {total} {entity}.",
-                "hide": "Ocultar filtros",
+                "all": "Mostra tots els descendents",
+                "clear": "Treu els filtres",
+                "direct": "Filtra només els descendents directes",
+                "filtered": "Es mostren {count} de {total} {entity}.",
+                "hide": "Amaga els filtres",
                 "options": {
-                    "exclude": "Excluir",
-                    "include": "Incluir",
-                    "none": "Nada"
+                    "exclude": "Exclou",
+                    "include": "Inclou",
+                    "none": "Res"
                 },
-                "show": "Mostrar filtros",
+                "show": "Mostra els filtres",
                 "sorting": {
-                    "asc": "Ascendiente por {field}",
-                    "desc": "Descendiente por {field}",
-                    "helper": "Controla en qué orden aparecen los resultados."
+                    "asc": "Ascendent per {field}",
+                    "desc": "Descendent per {field}",
+                    "helper": "Controla en quin ordre apareixen els resultats."
                 },
-                "title": "Filtros"
+                "title": "Filtres"
             },
             "forms": {
                 "actions": {
-                    "calendar": "Añadir fecha de calendario"
+                    "calendar": "Afegeix una data del calendari"
                 },
-                "copy_options": "Opciones de copia"
+                "copy_options": "Opcions de còpia"
             },
-            "hidden": "Oculto",
+            "hidden": "Amagat",
             "hints": {
-                "attribute_template": "Aplica una plantilla de atributos directamente al crear esta entidad.",
-                "calendar_date": "Las fechas de calendario hacen que sea más fácil filtrar las listas, y también fijan los eventos al calendario seleccionado.",
-                "header_image": "Esta imagen está situada sobre la entidad. Para obtener mejores resultados, usa una imagen apaisada.",
-                "image_limitations": "Formatos soportados: jpg, png y gif. Tamaño máximo del archivo: {size}.",
-                "image_patreon": "Aumenta el límite apoyándonos en Patreon",
-                "is_private": "Ocultar a los \"Invitados\"",
-                "is_star": "Los elementos fijados aparecerán en el menú principal de la entidad.",
-                "map_limitations": "Formatos soportados: jpg, png, gif y svg. Tamaño máximo del archivo: {size}.",
-                "tooltip": "Reemplaza la descripción emergente automática con uno de los siguientes contenidos.",
-                "visibility": "Al seleccionar \"Administrador\", solo los miembros con el rol de administrador podrán ver esto. \"Solo yo\" significa que solo tú puedes ver esto."
+                "attribute_template": "Aplica una plantilla d'atributs directament al crear aquesta entitat.",
+                "calendar_date": "Les dates del calendari faciliten el filtrat de les llistes, i també fixen els esdeveniments al calendari seleccionat.",
+                "header_image": "Aquesta imatge es troba sobre la entitat. Per a obtenir resultats millors, feu servir una imatge apaisada.",
+                "image_limitations": "Formats acceptats: JPG, PNG, GIF i SVG. Tamany màxim del fitxer: {size}.",
+                "image_patreon": "¿Com s'augmenta el tamany màxim dels fitxers?",
+                "is_private": "Si és privada, aquesta entitat només es mostrarà als membres que tinguin el rol \"Admin\".",
+                "is_star": "Els elements fixats es mostraran al menú principal de l'entitat.",
+                "map_limitations": "Formats acceptats: JPG, PNG, GIF i SVG. Tamany màxim del fitxer: {size}.",
+                "tooltip": "Reemplaça la descripció emergent automàtica amb el contingut següent.",
+                "visibility": "En seleccionar \"Administrador\", només els membres amb el rol d'administrador podran veure això. \"Només jo\" vol dir que només vós podeu veure això."
             },
             "history": {
-                "created": "Creado por <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "created_date": "Creado <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "unknown": "Desconocido",
-                "updated": "Última modificación por <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "updated_date": "Última modificación <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "view": "Historial de cambios de la entidad"
+                "created": "Creada per <strong>{name}</strong> el <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "created_date": "Creada el <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "unknown": "Desconegut",
+                "updated": "Última modificació per <strong>{name}</strong> el <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "updated_date": "Última modificació el <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "view": "Historial de canvis de l'entitat"
             },
             "image": {
-                "error": "No hemos podido obtener la imagen. Puede que la página web no nos permita descargarla (típico de Squarespace o DeviantArt), o que el enlace ya no es válido."
+                "error": "No s'ha pogut obtenir la imatge. Pot ser que la pàgina web no permeti descarregar-la (habitual a Squarespace o DeviantArt), o que l'enllaç ja no sigui vàlid. Assegureu-vos també que el pes de la imatge no supera els {size}."
             },
-            "is_private": "Esta entidad es privada y no será visible por los usuarios Invitados.",
-            "linking_help": "¿Como puedo enlazar otras entradas?",
-            "manage": "Administrar",
+            "is_not_private": "Aquesta entitat no és privada.",
+            "is_private": "Aquesta entitat és privada i només es mostra als administradors.",
+            "linking_help": "Com es poden enllaçar altres entitats?",
+            "manage": "Administra",
             "move": {
-                "description": "Mover esta entidad a otro lugar",
+                "description": "Mou aquesta entitat a un altre lloc",
                 "errors": {
-                    "permission": "No tienes permiso para crear entidades de este tipo en la campaña seleccionada.",
-                    "same_campaign": "Debes seleccionar otra campaña donde mover la entidad.",
-                    "unknown_campaign": "Campaña desconocida."
+                    "permission": "No teniu permís per a crear entitats d'aquest tipus a la campanya seleccionada.",
+                    "same_campaign": "Heu de seleccionar una altra campanya per moure-hi l'entitat.",
+                    "unknown_campaign": "Campanya desconeguda."
                 },
                 "fields": {
-                    "campaign": "Nueva campaña",
-                    "copy": "Hacer una copia",
-                    "target": "Nuevo tipo"
+                    "campaign": "Nova campanya",
+                    "copy": "Fes una còpia",
+                    "target": "Nou tipus"
                 },
                 "hints": {
-                    "campaign": "También puedes intentar mover esta entidad a otra campaña.",
-                    "copy": "Selecciona esta opción si quieres crear una copia en la nueva campaña.",
-                    "target": "Por favor ten en cuenta que algunos datos pueden perderse al mover un elemento de un tipo a otro."
+                    "campaign": "També podeu intentar moure aquesta entitat a una altra campanya.",
+                    "copy": "Seleccioneu aquesta opció si voleu crear una còpia a la nova campanya.",
+                    "target": "Tingueu en compte que algunes dades es poden perdre al moure un element d'un tipus a un altre."
                 },
-                "success": "Entidad '{name}' movida.",
-                "success_copy": "Entidad '{name}' copiada.",
-                "title": "Mover {name}"
+                "success": "S'ha mogut l'entitat «{name}».",
+                "success_copy": "S'ha copiat l'entitat «{name}».",
+                "title": "Mou {name}"
             },
             "new_entity": {
-                "error": "Por favor revisa lo introducido.",
+                "error": "Reviseu les dades introduïdes.",
                 "fields": {
-                    "name": "Nombre"
+                    "name": "Nom"
                 },
-                "title": "Nueva entidad"
+                "title": "Nova entitat"
             },
-            "or_cancel": "o <a href=\"{url}\">Cancelar</a>",
+            "or_cancel": "o <a href=\"{url}\">Cancela</a>",
             "panels": {
-                "appearance": "Apariencia",
-                "attribute_template": "Plantilla de atributos",
-                "calendar_date": "Fecha de calendario",
-                "entry": "Presentación",
-                "general_information": "Información general",
-                "move": "Mover",
+                "appearance": "Aparença",
+                "attribute_template": "Plantilla d'atributs",
+                "calendar_date": "Data del calendari",
+                "entry": "Presentació",
+                "general_information": "Informació general",
+                "move": "Mou",
                 "system": "Sistema"
             },
             "permissions": {
-                "action": "Acción",
+                "action": "Acció",
                 "actions": {
                     "bulk": {
-                        "add": "Permitir",
-                        "deny": "Denegar",
-                        "ignore": "Ignorar",
-                        "remove": "Quitar"
+                        "add": "Permet",
+                        "deny": "Denega",
+                        "ignore": "Ignora",
+                        "remove": "Treu"
                     },
                     "bulk_entity": {
-                        "allow": "Permitir",
-                        "deny": "Denegar",
-                        "inherit": "Heredar"
+                        "allow": "Permet",
+                        "deny": "Denega",
+                        "inherit": "Hereta"
                     },
                     "delete": "Eliminar",
                     "edit": "Editar",
-                    "entity_note": "Notas de entidad",
-                    "read": "Leer",
-                    "toggle": "Cambiar"
+                    "entity_note": "Anotacions",
+                    "read": "Llegir",
+                    "toggle": "Canvia"
                 },
-                "allowed": "Permitido",
+                "allowed": "Permès",
                 "fields": {
-                    "member": "Miembro",
+                    "member": "Membre",
                     "role": "Rol"
                 },
-                "helper": "Usa esta interfaz para afinar qué usuarios y roles pueden interactuar con esta entidad.",
+                "helper": "Des d'aquí podeu afinar quins usuaris i rols poden interactuar amb aquesta entitat.",
                 "helpers": {
                     "entity_note": "Permite a los usuarios crear notas dentro de esta entidad. Sin este permiso, podrán seguir viendo las notas de entidad que se muestren a todos.",
-                    "setup": "Usa esta interfaz para afinar cómo los diferentes roles y usuarios pueden interactuar con esta entidad. {allow} les permitirá hacer dicha acción; {deny} se la denegará, y {inherit} usará el permiso que ya tenga el rol o usuario. Un usuario con una acción puesta en {allow} podrá hacerla, aunque su rol esté en {deny}."
+                    "setup": "Des d'aquí podeu afinar com els diferents rols i usuaris poden interactuar amb aquesta entitat. {allow} els permetrà fer l'acció; {deny} els la denegarà, i {inherit} utilitzarà el permís que ja tingui el rol o l'usuari. Un usuari amb una acció en {allow} podrà fer-la, malgrat que el seu rol estigui en {deny}."
                 },
-                "inherited": "Este rol ya tiene este permiso en esta entidad.",
-                "inherited_by": "Este usuario forma parte del rol \"{role}\", que le otorga este permiso en esta entidad.",
-                "success": "Permisos guardados.",
+                "inherited": "Aquest rol ja té aquest permís a aquesta entitat.",
+                "inherited_by": "Aquest usuari forma part del rol «{role}», que li atorga aquest permís en aquesta entitat.",
+                "success": "Permisos guardats.",
                 "title": "Permisos",
-                "too_many_members": "Esta campaña tiene demasiados miembros (>10) para mostrarlos todos en esta interfaz. Puedes usar el botón de permisos en la vista de entidad para controlar los permisos detalladamente."
+                "too_many_members": "Aquesta campanya té massa membres (>10) per a poder mostrar-los tots aquí. Utilitzeu el botó de permisos a la vista d'entitat per a controlar els permisos detalladament."
             },
             "placeholders": {
-                "ability": "Escoge una habilidad",
-                "calendar": "Escoge un calendario",
-                "character": "Escoge un personaje",
-                "entity": "Entidad",
-                "event": "Elige un evento",
-                "family": "Elige una familia",
-                "image_url": "Puedes subir una imagen desde una URL",
-                "item": "Elige un objeto",
-                "location": "Escoge una localización",
-                "map": "Elige un mapa",
-                "organisation": "Elige una organización",
-                "race": "Elige una raza",
-                "tag": "Elige una etiqueta"
+                "ability": "Trieu una habilitat",
+                "calendar": "Trieu un calendari",
+                "character": "Trieu un personatge",
+                "entity": "Entitat",
+                "event": "Trieu un esdeveniment",
+                "family": "Trieu una família",
+                "image_url": "Podeu pujar una imatge des d'una URL",
+                "item": "Trieu un objecte",
+                "location": "Trieu una localització",
+                "map": "Trieu un mapa",
+                "organisation": "Trieu una organització",
+                "race": "Trieu una raça",
+                "tag": "Trieu una etiqueta"
             },
             "relations": {
                 "actions": {
-                    "add": "Añadir una relación"
+                    "add": "Afegeix una relació"
                 },
                 "fields": {
-                    "location": "Localización",
-                    "name": "Nombre",
-                    "relation": "Relación"
+                    "location": "Localització",
+                    "name": "Nom",
+                    "relation": "Relació"
                 },
-                "hint": "Se pueden relacionar entidades para representar sus conexiones."
+                "hint": "Es poden relacionar entitats per a representar les seves connexions."
             },
-            "remove": "Eliminar",
-            "rename": "Renombrar",
-            "save": "Guardar",
-            "save_and_close": "Guardar y cerrar",
-            "save_and_copy": "Guardar y copiar",
-            "save_and_new": "Guardar y crear nuevo",
-            "save_and_update": "Guardar y seguir editando",
-            "save_and_view": "Guardar y ver",
-            "search": "Buscar",
-            "select": "Seleccionar",
+            "remove": "Elimina",
+            "rename": "Canvia el nom",
+            "save": "Guarda",
+            "save_and_close": "Guarda i tanca",
+            "save_and_copy": "Guarda i copia",
+            "save_and_new": "Guarda i crea de nou",
+            "save_and_update": "Guarda i segueix editant",
+            "save_and_view": "Guarda i veu",
+            "search": "Cerca",
+            "select": "Selecciona",
             "tabs": {
-                "abilities": "Habilidades",
-                "attributes": "Atributos",
-                "boost": "Mejorar",
-                "calendars": "Calendarios",
-                "default": "Por defecto",
-                "events": "Eventos",
-                "inventory": "Inventario",
-                "map-points": "Puntos del mapa",
-                "mentions": "Menciones",
+                "abilities": "Habilitats",
+                "attributes": "Atributs",
+                "boost": "Millora",
+                "calendars": "Calendaris",
+                "default": "Per defecte",
+                "events": "Esdeveniments",
+                "inventory": "Inventari",
+                "map-points": "Punts del mapa",
+                "mentions": "Mencions",
                 "menu": "Menú",
-                "notes": "Notas",
+                "notes": "Anotacions",
                 "permissions": "Permisos",
-                "relations": "Relaciones",
-                "reminders": "Recordatorios",
-                "timelines": "Líneas de tiempo",
-                "tooltip": "Descripción emergente"
+                "relations": "Relacions",
+                "reminders": "Recordatoris",
+                "timelines": "Línies de temps",
+                "tooltip": "Descripció emergent"
             },
-            "update": "Actualizar",
+            "update": "Actualitza",
             "users": {
-                "unknown": "Desconocido"
+                "unknown": "Desconegut"
             },
-            "view": "Ver",
+            "view": "Veu",
             "visibilities": {
                 "admin": "Admin",
-                "admin-self": "Yo + Admin",
-                "all": "Todos",
-                "self": "Solo yo"
+                "admin-self": "Admin i jo",
+                "all": "Tothom",
+                "self": "Només jo"
             }
         },
         "entities": [],
@@ -503,274 +504,270 @@ export default {
         "settings": {
             "account": {
                 "actions": {
-                    "social": "Cambiar a inicio de sesión en Kanka",
-                    "update_email": "Actualizar email",
-                    "update_password": "Actualizar contraseña"
+                    "social": "Canvia a l'inici de sessió des de Kanka",
+                    "update_email": "Actualitza l'adreça de mail",
+                    "update_password": "Actualitza la contrasenya"
                 },
-                "description": "Actualizar cuenta",
-                "email": "Cambiar email",
-                "email_success": "Email actualizado.",
-                "password": "Cambiar contraseña",
-                "password_success": "Contraseña actualizada.",
+                "email": "Canvia l'adreça de mail",
+                "email_success": "S'ha actualitzat l'adreça de mail.",
+                "password": "Canvia la contrasenya",
+                "password_success": "S'ha actualitzat la contrasenya.",
                 "social": {
-                    "error": "Ya estás utilizando el inicio de sesión de Kanka con esta cuenta.",
-                    "helper": "Tu cuenta está vinculada con {provider}. Puedes dejar de usarla y cambiar al inicio de sesión estándar de Kanka escribiendo una contraseña.",
-                    "success": "Tu cuenta ahora usa el inicio de sesión de Kanka.",
+                    "error": "Ja esteu utilitzant l'inici de sessió de Kanka amb aquest compte.",
+                    "helper": "El compte està vinculat amb {provider}. Podeu desvincular-la i canviar a l'inici de sessió estàndard de Kanka escrivint una contrasenya.",
+                    "success": "El compte ara fa servir l'inici de sessió de Kanka.",
                     "title": "De social a Kanka"
                 },
-                "title": "Cuenta"
+                "title": "Compte"
             },
             "api": {
-                "description": "Actualizar configuración de API",
-                "experimental": "¡Bienvenido a las APIs de Kanka! Estas prestaciones aún son experimentales pero deberían ser lo suficientemente estables para que puedas comunicarte con las APIs. Crea un Token de Acceso Personal para usar en tus solicitudes de API, o usa el Token Cliente si quieres que tu app tenga acceso a datos de usuario.",
-                "help": "Kanka ofrecerá próximamente una RESTful API para que aplicaciones terceras puedan conectarse a la app. Aquí se irán mostrando los detalles sobre cómo gestionar tus claves API.",
-                "link": "Leer la documentación de la API",
-                "request_permission": "Actualmente estamos construyendo una poderosa RESTful API para que aplicaciones terceras puedan conectarse a la app. Sin embargo, de momento limitamos el número de usuarios que pueden interactuar con la API mientras la pulimos. Si quieres acceder a la API y construir apps guays que interactúan con Kanka, contáctanos y te enviaremos toda la información que necesitas.",
+                "experimental": "Benvingut a les APIs de Kanka! Aquestes prestacions encara són experimentals però haurien de ser prou estables perquè permetin comunicar-se amb les APIs. Creeu un Token d'Accés Personal per a usar a les vostres sol·licituds d'API, o useu el Token Client si voleu que la vostra app tingui accés a dades d'usuari.",
+                "help": "Kanka oferirà pròximament una RESTful API perquè aplicacions terceres puguin connectar-se a l'app. Aquí s'aniran mostrant els detalls sobre com gestionar les claus API.",
+                "link": "Llegeix la documentació de l'API",
+                "request_permission": "Actualment estem construint una poderosa RESTful API perquè aplicacions terceres puguin connectar-se a l'app. No obstant això, de moment limitem el nombre d'usuaris que poden interactuar amb la API mentre la polim. Si voleu accedir a l'API i construir apps interessants que interactuin amb Kanka, contacteu-nos i us enviarem tota la informació que calgui.",
                 "title": "API"
             },
             "apps": {
                 "actions": {
-                    "connect": "Conectar",
-                    "remove": "Eliminar"
+                    "connect": "Connecta",
+                    "remove": "Elimina"
                 },
-                "benefits": "Kanka ofrece algunas integraciones con servicios de terceros. Hay más integraciones planeadas para el futuro.",
+                "benefits": "Kanka ofereix algunes integracions amb serveis de tercers. Hi ha més integracions planejades per al futur.",
                 "discord": {
                     "errors": {
-                        "add": "Ha ocurrido un error tratando de vincular tu cuenta de Discord con Kanka. Por favor, inténtalo de nuevo."
+                        "add": "Hi ha hagut un error vinculant el vostre compte de Discord amb Kanka. Si us plau, torneu a intentar-ho."
                     },
                     "success": {
-                        "add": "Se ha vinculado tu cuenta de Discord.",
-                        "remove": "Se ha desvinculado tu cuenta de Discord."
+                        "add": "S'ha vinculat el vostre compte de Discord.",
+                        "remove": "S'ha desvinculat el vostre compte de Discord."
                     },
-                    "text": "Accede a los roles de suscripción automáticamente."
+                    "text": "Accediu als rols de subscripció automàticament."
                 },
-                "title": "Integración de aplicaciones"
+                "title": "Integració d'aplicacions"
             },
             "boost": {
                 "benefits": {
-                    "first": "Para asegurar un progreso contínuo en Kanka, algunas características de campaña se pueden desbloquear mejorando la campaña. Las mejoras se desbloquean mediante {patreon}. Cualquiera que pueda ver una campaña puede mejorarla; así el máster no tiene que pagar la cuenta siempre. Una campaña permanece mejorada mientras un usuario la esté mejorando y continúe apoyando a Kanka en {patreon}. Si una campaña deja de estar mejorada, los datos no se pierden: solo permanecen ocultos hasta que la campaña vuelva a ser mejorada.",
-                    "header": "Imágenes de cabecera para las entidades.",
-                    "images": "Imágenes por defecto personalizadas",
-                    "more": "Saber más sobre todas las características.",
-                    "second": "Mejorar una campaña activa los siguientes beneficios:",
-                    "theme": "Tema y estilo personalizado a nivel de campaña.",
-                    "third": "Para mejorar una campaña, dirígete a la página de la campaña y haz clic en el botón de \"{boost_button}\" que hay sobre el botón de \"{edit_button}\".",
-                    "tooltip": "Descripciones emergentes personalizadas para las entidades.",
-                    "upload": "Capacidad de subida de archivos ampliada para todos los miembros de la campaña."
+                    "first": "Per a assegurar un progrés continu a Kanka, algunes característiques de la campanya es poden desbloquejar millorant-la. Les millores es desbloquegen a través de les subscripcions. Qualsevol que pugui veure una campanya pot millorar-la; així el màster no ha de pagar sempre el compte. Una campanya roman millorada mentre un usuari l'estigui millorant i continuï fent suport a Kanka. Si una campanya deixa d'estar millorada, les dades no es perden: només romanen ocultes fins que la campanya torni a ser millorada.",
+                    "header": "Imatges de capçalera per a les entitats.",
+                    "images": "Imatges per defecte personalitzades",
+                    "more": "Saber més sobre totes les característiques.",
+                    "second": "Millorar una campanya activa els següents beneficis:",
+                    "theme": "Tema i estil personalitzat a nivell de campanya.",
+                    "third": "Per a millorar una campanya, dirigiu-vos a la pàgina de la campanya i cliqueu el botó de \"{boost_button}\" que hi ha sobre el botó de \"{edit_button}\".",
+                    "tooltip": "Descripcions emergents personalitzades per a les entitats.",
+                    "upload": "Capacitat de pujada d'arxius ampliada per a tots els membres de la campanya."
                 },
                 "buttons": {
-                    "boost": "Mejorar"
+                    "boost": "Millora"
                 },
-                "campaigns": "Campañas mejoradas {count} / {max}",
+                "campaigns": "Campanyes millorades {count}/{max}",
                 "exceptions": {
-                    "already_boosted": "La campaña {name} ya está mejorada.",
-                    "exhausted_boosts": "Te has quedado sin mejoras. Elimina tu mejora de una campaña antes de dársela a otra."
+                    "already_boosted": "La campanya {name} ja està millorada.",
+                    "exhausted_boosts": "Us heu quedat sense millores. Elimineu una millora d'una campanya abans de donar-la-hi a una altra."
                 },
                 "success": {
-                    "boost": "Campaña {name} mejorada.",
-                    "delete": "Tu mejora de {name} se ha eliminado."
+                    "boost": "S'ha millorat la campanya {name}.",
+                    "delete": "La vostra millora s'ha tret de {name}."
                 },
-                "title": "Mejorar"
+                "title": "Millorar"
             },
             "countries": {
-                "austria": "Austria",
-                "belgium": "Bégica",
-                "france": "Francia",
-                "germany": "Alemania",
-                "italy": "Italia",
-                "netherlands": "Holanda",
-                "spain": "España"
+                "austria": "Àustria",
+                "belgium": "Bèlgica",
+                "france": "França",
+                "germany": "Alemanya",
+                "italy": "Itàlia",
+                "netherlands": "Països Baixos",
+                "spain": "Espanya"
             },
             "invoices": {
                 "actions": {
-                    "download": "Descargar PDF",
-                    "view_all": "Ver todas"
+                    "download": "Descarrega el PDF",
+                    "view_all": "Veu-les totes"
                 },
-                "empty": "Sin facturas",
+                "empty": "Sense factures",
                 "fields": {
-                    "amount": "Cantidad",
-                    "date": "Fecha",
+                    "amount": "Quantitat",
+                    "date": "Data",
                     "invoice": "Factura",
-                    "status": "Estado"
+                    "status": "Estat"
                 },
-                "header": "Puedes descargar tus últimas 24 facturas a continuación.",
+                "header": "Podeu descarregar les últimes 24 factures a continuació.",
                 "status": {
                     "paid": "Pagada",
-                    "pending": "Pendiente"
+                    "pending": "Pendent"
                 },
-                "title": "Facturas"
+                "title": "Factures"
             },
             "layout": {
-                "description": "Actualizar opciones de diseño",
-                "success": "Opciones de diseño actualizadas.",
-                "title": "Diseño"
+                "success": "S'han actualitzat les opcions de disseny.",
+                "title": "Disseny"
             },
             "menu": {
-                "account": "Cuenta",
+                "account": "Compte",
                 "api": "API",
-                "apps": "Aplicaciones",
-                "billing": "Método de pago",
-                "boost": "Mejorar",
-                "invoices": "Facturas",
-                "layout": "Diseño",
-                "other": "Otros",
+                "apps": "Aplicacions",
+                "billing": "Mètode de pagament",
+                "boost": "Millorar",
+                "invoices": "Factures",
+                "layout": "Disseny",
+                "other": "Altres",
                 "patreon": "Patreon",
-                "payment_options": "Opciones de pago",
-                "personal_settings": "Ajustes personales",
+                "payment_options": "Opcions de pagament",
+                "personal_settings": "Configuració personal",
                 "profile": "Perfil",
-                "subscription": "Suscripción",
-                "subscription_status": "Estado de la suscripción"
+                "subscription": "Subscripció",
+                "subscription_status": "Estat de la subscripció"
             },
             "patreon": {
                 "actions": {
-                    "link": "Enlazar cuenta",
-                    "view": "Visita la página de Patreon de Kanka"
+                    "link": "Vincula el compte",
+                    "view": "Visita la pàgina de Patreon de Kanka"
                 },
-                "benefits": "Si nos ayudas en Patreon podrás subir imágenes más pesadas, y así nos ayudarás a cubrir los costes del servidor y a dedicarle más tiempo a trabajar en Kanka.",
-                "benefits_features": "Funciones increíbles",
-                "deprecated": "Funcionalidad discontinuada. Si deseas apoyar a Kanka, puedes hacerlo mediante una {subscription}. La vinculación con Patreon aún sigue activa para nuestros Patrons que vincularon sus cuentas antes de la mudanza de Patreon.",
-                "description": "Sincronizando con Patreon",
+                "benefits": "Fer-nos suport a Patreon desbloqueja moltes {features} per a les campanyes, i ens ajuda a dedicar-li més temps a treballar en Kanka.",
+                "benefits_features": "funcions increïbles",
+                "deprecated": "Funcionalitat discontinuada. Si desitgeu fer suport a Kanka, podeu fer-ho mitjançant una {subscription}. La vinculació amb Patreon encara continua activa per als nostres Patrons que van vincular els seus comptes abans de la mudança de Patreon.",
+                "description": "Sincronizant amb Patreon",
                 "errors": {
-                    "invalid_token": "¡Token no válido! Patreon no ha podido validar tu petición.",
-                    "missing_code": "¡Falta el código! Patreon no ha enviado un código para identificar tu cuenta.",
-                    "no_pledge": "¡Sin \"pledge\"! Patreon ha identificado tu cuenta, pero no detecta ningún \"pledge\" activo."
+                    "invalid_token": "Token no vàlid! Patreon no ha pogut validar la vostra petició.",
+                    "missing_code": "Manca el codi! Patreon no ha enviat un codi per a identificar el vostre compte.",
+                    "no_pledge": "Sense \"pledge\"! Patreon ha identificat el vostre compte, però no detecta cap \"pledge\" actiu."
                 },
-                "link": "Usa el siguiente botón si estás apoyando a Kanka en Patreon actualmente. ¡Esto te dará acceso a más cosas fantásticas extras!",
-                "linked": "¡Gracias por apoyar a Kanka en Patreon! Se ha enlazado tu cuenta.",
+                "link": "Cliqueu següent botó si esteu fent suport a Kanka en Patreon actualment. Això us donarà accés a més coses fantàstiques extres!",
+                "linked": "Gràcies per fer suport a Kanka en Patreon! S'ha vinculat el vostre compte.",
                 "pledge": "Pledge {name}",
                 "remove": {
-                    "button": "Desvincular mi cuenta de Patreon",
-                    "success": "Tu cuenta de Patreon se ha desvinculado.",
-                    "text": "Desvincular tu cuenta de Patreon de Kanka eliminará tus bonus, tu nombre en el salón de la fama, tus mejoras y otras funcionalidades vinculadas. Sin embargo, tu contenido mejorado no se perderá: si vuelves a suscribirte, volverás a tener acceso a esos datos, incluyendo la posibilidad de volver a mejorar dicha campaña.",
-                    "title": "Desvincular mi cuenta de Patreon de Kanka"
+                    "button": "Desvincula el meu compte de Patreon",
+                    "success": "S'ha desvinculat el vostre compte de Patreon.",
+                    "text": "Desvincular el vostre compte de Patreon de Kanka eliminarà els vostres bonus, el vostre nom del saló de la fama, les vostres millores i altres funcionalitats vinculades. No obstant això, el vostre contingut millorat no es perdrà: si torneu a subscriure-us, tornareu a tenir accés a aquestes dades, incloent la possibilitat de tornar a millorar aquesta campanya.",
+                    "title": "Desvincular el compte de Patreon de Kanka"
                 },
-                "success": "¡Gracias por apoyar a Kanka en Patreon!",
+                "success": "Gràcies per fer suport a Kanka a Patreon!",
                 "title": "Patreon",
-                "wrong_pledge": "Añadimos manualmente tu nivel de \"pledge\", así que ten en cuenta que podemos tardar unos pocos días. Si al cabo de un tiempo sigue sin estar bien, contáctanos por favor."
+                "wrong_pledge": "Afegim manualment el vostre nivell de \"pledge\", així que tingueu en compte que podem trigar uns pocs dies. Si al cap d'un temps segueix sense estar bé, contacteu amb nosaltres."
             },
             "profile": {
                 "actions": {
-                    "update_profile": "Actualizar perfil"
+                    "update_profile": "Actualiza el perfil"
                 },
                 "avatar": "Foto de perfil",
-                "description": "Actualizar perfil",
-                "success": "Perfil actualizado.",
+                "success": "S'ha actualitzat el perfil.",
                 "title": "Perfil personal"
             },
             "subscription": {
                 "actions": {
-                    "cancel_sub": "Cancelar suscripción",
-                    "subscribe": "Suscribirse",
-                    "update_currency": "Guardar moneda preferida"
+                    "cancel_sub": "Cancela la subscripció",
+                    "subscribe": "Subscriu-me",
+                    "update_currency": "Guarda com a moneda preferida"
                 },
-                "benefits": "Si nos apoyas, desbloquearás algunas nuevas {features} y nos ayudarás a dedicar más tiempo a la mejora de Kanka. No guardaremos tu información bancaria. Usamos {stripe} para gestionar los cobros.",
+                "benefits": "En donar-nos suport, es desbloquegen noves {features} i ens ajudeu a dedicar més temps a la millora de Kanka. No es guarda cap informació bancària. Usem {stripe} per a gestionar els cobraments.",
                 "billing": {
-                    "helper": "Tu información de pago se procesa y se guarda de forma segura mediante {stripe}. Este método de pago se usará para todas tus suscripciones.",
-                    "saved": "Método de pago guardado",
-                    "title": "Editar método de pago"
+                    "helper": "La vostra informació de pagament es processa i es guarda de manera segura mitjançant {stripe}. Aquest mètode de pagament s'usarà per a totes les vostres subscripcions.",
+                    "saved": "Mètode de pagament guardat",
+                    "title": "Edita el mètode de pagament"
                 },
                 "cancel": {
-                    "text": "¡Lamentamos verte marchar! Al cancelar tu suscripción, esta seguirá activa hasta el nuevo ciclo de facturación, tras lo cual perderás tus mejoras de campaña y otros beneficios relacionados. No tengas miedo de informarnos sobre cómo podemos mejorar o qué te ha llevado a tomar esta decisión."
+                    "text": "Ens sap greu que marxeu! En cancel·lar la vostra subscripció, aquesta continuarà activa fins al nou cicle de facturació, després del qual perdreu les millores de campanya i altres beneficis relacionats. No dubteu en informar-nos sobre com podem millorar o què us ha dut a prendre aquesta decisió."
                 },
-                "cancelled": "Se ha cancelado tu suscripción. Puedes renovarla una vez el período de la suscripción actual termine.",
+                "cancelled": "S'ha cancel·lat la subscripció. Podeu renovar-la una vegada el període de la subscripció actual hagi acabat.",
                 "change": {
                     "text": {
-                        "monthly": "Estás suscribiéndote al nivel {tier}, que cuesta {amount} mensuales.",
-                        "yearly": "Estás suscribiéndote al nivel {tier}, que cuesta {amount} anuales."
+                        "monthly": "Us esteu subscrivint al nivell {tier}, que costa {amount} mensuals.",
+                        "yearly": "Us esteu subscrivint al nivell {tier}, que costa {amount} anuals."
                     },
-                    "title": "Cambiar nivel de suscripción"
+                    "title": "Canvia el nivell de subscripció"
                 },
                 "currencies": {
                     "eur": "Euros",
-                    "usd": "Dólares estadounidenses"
+                    "usd": "Dòlars estatunidencs"
                 },
                 "currency": {
-                    "title": "Cambia la moneda de facturación"
+                    "title": "Canvia la moneda de facturació"
                 },
                 "errors": {
-                    "callback": "Nuestro proveedor de pagos nos ha informado de un error. Por favor, vuelve a intentarlo o infórmanos si el problema persiste.",
-                    "subscribed": "No se ha podido procesar tu suscripción. Stripe nos ha dado este mensaje:"
+                    "callback": "El nostre proveïdor de pagaments ens ha informat d'un error. Si us plau, torneu a intentar-ho o informeu-nos si el problema persisteix.",
+                    "subscribed": "No s'ha pogut processar la subscripció. Stripe ens ha donat aquest missatge:"
                 },
                 "fields": {
-                    "active_since": "Activa desde",
-                    "active_until": "Activa hasta",
-                    "billed_monthly": "Cobro mensual",
-                    "billing": "Cobro",
-                    "currency": "Moneda de cobro",
-                    "payment_method": "Método de pago",
-                    "plan": "Plan actual",
-                    "reason": "Razón"
+                    "active_since": "Activa des del",
+                    "active_until": "Activa fins el",
+                    "billing": "Cobrament",
+                    "currency": "Moneda de cobrament",
+                    "payment_method": "Mètode de pagament",
+                    "plan": "Pla actual",
+                    "reason": "Raó"
                 },
                 "helpers": {
-                    "alternatives": "Paga por tu suscripción usando {method}. Este método de pago no se renovará automáticamente al final de tu suscripción. {method} solo está disponible en euros.",
-                    "alternatives_warning": "No se puede mejorar la suscripción usando este método. Por favor, crea una nueva suscripción cuando la actual termine.",
-                    "alternatives_yearly": "Debido a las restricciones de los pagos recurrentes, {method} solo está disponible para las suscripciones anuales."
+                    "alternatives": "Paga per la subscripció usant {method}. Aquest mètode de pagament no es renovarà automàticament al final de la subscripció. {method} només està disponible amb euros.",
+                    "alternatives_warning": "No es pot millorar la subscripció usant aquest mètode. Si us plau, feu una nova subscripció quan l'actual acabi.",
+                    "alternatives_yearly": "A causa de les restriccions dels pagaments recurrents, {method} només està disponible per a les subscripcions anuals."
                 },
-                "manage_subscription": "Gestionar suscripción",
+                "manage_subscription": "Gestiona la subscripció",
                 "payment_method": {
                     "actions": {
-                        "add_new": "Añadir nuevo método de pago",
-                        "change": "Cambiar método de pago",
-                        "save": "Guardar método de pago",
-                        "show_alternatives": "Métodos de pago alternativos"
+                        "add_new": "Afegeix un nou mètode de pagament",
+                        "change": "Canvia el mètode de pagament",
+                        "save": "Guarda el mètode de pagament",
+                        "show_alternatives": "Mètodes de pagament alternatius"
                     },
-                    "add_one": "Aún no tienes ningún método de pago guardado.",
-                    "alternatives": "Puedes suscribirte usando estos métodos de pago alternativos. Esto hará un solo cobro en tu cuenta y no se renovará automáticamente cada mes.",
-                    "card": "Tarjeta",
-                    "card_name": "Nombre en la tarjeta",
-                    "country": "País de residencia",
-                    "ending": "Termina en",
-                    "helper": "Se usará esta tarjeta para todas tus suscripciones.",
-                    "new_card": "Añadir nuevo método de pago",
-                    "saved": "{brand} que termina en {last4}"
+                    "add_one": "Encara no teniu cap mètode de pagament guardat.",
+                    "alternatives": "Podeu subscriure-us usant aquests mètodes de pagament alternatius. Això farà un sol cobrament al vostre compte i no es renovarà automàticament cada mes.",
+                    "card": "Targeta",
+                    "card_name": "Nom a la targeta",
+                    "country": "País de residència",
+                    "ending": "Acaba en",
+                    "helper": "S'usarà aquesta targeta per a totes les vostres subscripcions.",
+                    "new_card": "Afegeix un nou mètode de pagament",
+                    "saved": "{brand} que acaba en {last4}"
                 },
                 "placeholders": {
-                    "reason": "Opcionalmente, puedes contarnos por qué ya no apoyas a Kanka. ¿Faltaba algo? ¿Cambió tu situación financiera?"
+                    "reason": "Opcionalment, podeu explicar-nos per què ja no feu suport a Kanka. Que faltava alguna cosa? Va canviar la vostra situació financera?"
                 },
                 "plans": {
-                    "cost_monthly": "{amount} {currency} mensuales",
-                    "cost_yearly": "{amount} {currency} anuales"
+                    "cost_monthly": "{amount} {currency} mensuals",
+                    "cost_yearly": "{amount} {currency} anuals"
                 },
-                "sub_status": "Información sobre la suscripción",
+                "sub_status": "Informació sobre la subscripció",
                 "subscription": {
                     "actions": {
-                        "downgrading": "Contáctanos para bajar de nivel",
-                        "rollback": "Cambiar a Kobold",
-                        "subscribe": "Cambiar a {tier} al mes",
-                        "subscribe_annual": "Cambiar a {tier} anualmente"
+                        "downgrading": "Contacteu-nos per a baixar de nivell",
+                        "rollback": "Canvia a Kobold",
+                        "subscribe": "Canvia a {tier} mensualment",
+                        "subscribe_annual": "Canvia a {tier} anualmente"
                     }
                 },
                 "success": {
-                    "alternative": "Se ha registrado tu pago. Recibirás una notificación en cuanto terminemos de procesarlo y se active tu suscripción.",
-                    "callback": "Tu suscripción ha tenido éxito. Tu cuenta será actualizada en cuanto nuestro proveedor de pagos nos informe del cambio (puede llevar algunos minutos).",
-                    "cancel": "Se ha cancelado tu suscripción. Continuará activa hasta el final del período de pago.",
-                    "currency": "Se ha actualizado tu moneda preferida.",
-                    "subscribed": "Tu suscripción ha tenido éxito. ¡No te olvides de suscribirte a la newsletter de votaciones comunitarias para enterarte cuando se abra una votación! Puedes cambiar tu configuración de newsletters en tu perfil."
+                    "alternative": "S'ha registrat el pagament. Rebreu una notificació quan acabem de processar-ho i s'activi la subscripció.",
+                    "callback": "La subscripció ha tingut èxit. El vostre compte s'actualitzarà quan el nostre proveïdor de pagaments ens informi del canvi (pot portar alguns minuts).",
+                    "cancel": "S'ha cancel·lat la vostra subscripció. Continuarà activa fins al final del període de pagament.",
+                    "currency": "S'ha actualitzat la vostra moneda preferida.",
+                    "subscribed": "La subscripció ha tingut èxit. No oblideu subscriure-us a la newsletter de votacions comunitàries per a assabentar-vos quan s'obri una votació! Podeu canviar la configuració de newsletters des del perfil."
                 },
-                "tiers": "Niveles de suscripción",
-                "trial_period": "Las suscripciones anuales tienen un período de cancelación de 14 días. Contáctanos en {email} si quieres cancelar tu suscripción anual y recuperar el dinero.",
+                "tiers": "Nivells de subscripció",
+                "trial_period": "Les subscripcions anuals tenen un període de cancel·lació de 14 dies. Contacteu-nos per {email} si vols cancel·lar la subscripció anual i recuperar els diners.",
                 "upgrade_downgrade": {
-                    "button": "Información acerca de subir o bajar de nivel",
+                    "button": "Informació sobre pujar o baixar de nivell",
                     "downgrade": {
                         "bullets": {
-                            "end": "Tu nivel actual estará activo hasta el final de tu ciclo de pago actual, tras el cual se bajará tu suscripción al nuevo nivel."
+                            "end": "El vostre nivell actual estarà actiu fins al final del cicle de pagament actual, després del qual es baixarà la subscripció al nou nivell."
                         },
-                        "title": "Bajar de nivel"
+                        "title": "Baixar de nivell"
                     },
                     "upgrade": {
                         "bullets": {
-                            "immediate": "Se cobrará en tu método de pago inmediatamente y tendrás acceso al nuevo nivel.",
-                            "prorate": "Al subir de nivel de Owlbear a Elemental, solo se te cobrará la diferencia entre los dos niveles."
+                            "immediate": "Es cobrarà amb el vostre mètode de pagament immediatament i tindreu accés al nou nivell.",
+                            "prorate": "En pujar de nivell de Owlbear a Elemental, només es cobrarà la diferència entre els dos nivells."
                         },
-                        "title": "Subir de nivel"
+                        "title": "Pujar de nivell"
                     }
                 },
                 "warnings": {
-                    "incomplete": "No hemos podido hacer el cobro en tu tarjeta de crédito. Por favor, actualiza la información de la tarjeta y volveremos a intentarlo en los próximos días. Si vuelve a fallar, tu suscripción será cancelada.",
-                    "patreon": "Tu cuenta se encuentra vinculada con Patreon. Desvincúlala en la configuración de {patreon} antes de cambiarla por una suscripción de Kanka."
+                    "incomplete": "No hem pogut fer el cobrament a la vostra targeta de crèdit. Si us plau, actualitzeu la informació de la targeta i tornarem a intentar-ho en els pròxims dies. Si torna a fallar, la  subscripció serà cancel·lada.",
+                    "patreon": "El vostre compte es troba vinculat amb Patreon. Desvinculeu-lo des de la configuració de {patreon} abans de canviar-la per una subscripció de Kanka."
                 }
             }
-        }
+        },
+        "timelines": []
     },
     "de": {
         "admin": [],
@@ -1115,6 +1112,7 @@ export default {
             "image": {
                 "error": "Wir konnten das von dir angeforderte Bild nicht laden. Es könnte sein, dass die Website nicht erlaubt, Bilder herunterzuladen (typisch für Squarespace und DeviantArt) oder dass der Link nicht mehr gültig ist."
             },
+            "is_not_private": "Dieses Objekt ist derzeit nicht auf privat eingestellt.",
             "is_private": "Dieses Objekt ist privat und nicht von Zuschauern einsehbar.",
             "linking_help": "Wie kann ich zu anderen Objekten verlinken?",
             "manage": "Verwalten",
@@ -1532,7 +1530,18 @@ export default {
                     "patreon": "Ihr Konto ist derzeit mit Patreon verknüpft. Bitte trennen Sie die Verknüpfung Ihres Kontos in Ihren {patreon}-Einstellungen, bevor Sie zu einem Kanka-Abonnement wechseln."
                 }
             }
-        }
+        },
+        "timelines": []
+    },
+    "el": {
+        "admin": [],
+        "calendars": [],
+        "campaigns": [],
+        "entities": [],
+        "front": [],
+        "maps": [],
+        "randomizers": [],
+        "timelines": []
     },
     "en": {
         "admin": [],
@@ -1619,12 +1628,9 @@ export default {
                 "find_out_more": "Find out more",
                 "go_to": "Go to {name}",
                 "json-export": "Export (JSON)",
-                "more": "More Actions",
                 "move": "Move",
                 "new": "New",
                 "next": "Next",
-                "private": "Private",
-                "public": "Public",
                 "reset": "Reset"
             },
             "add": "Add",
@@ -1633,26 +1639,9 @@ export default {
             },
             "attributes": {
                 "actions": {
-                    "add": "Add an attribute",
-                    "add_block": "Add a block",
-                    "add_checkbox": "Add a checkbox",
-                    "add_text": "Add a text",
                     "apply_template": "Apply an Attribute Template",
                     "manage": "Manage",
                     "remove_all": "Delete All"
-                },
-                "create": {
-                    "description": "Create a new attribute",
-                    "success": "Attribute {name} added to {entity}.",
-                    "title": "New Attribute for {name}"
-                },
-                "destroy": {
-                    "success": "Attribute {name} for {entity} removed."
-                },
-                "edit": {
-                    "description": "Update an existing attribute",
-                    "success": "Attribute {name} for {entity} updated.",
-                    "title": "Update attribute for {name}"
                 },
                 "fields": {
                     "attribute": "Attribute",
@@ -1855,7 +1844,7 @@ export default {
             },
             "hidden": "Hidden",
             "hints": {
-                "attribute_template": "Apply an attribute template directly when creating this entity.",
+                "attribute_template": "Apply an attribute template directly when creating or editing this entity.",
                 "calendar_date": "A calendar date allows easy filtering in lists, and also maintains a calendar event in the selected calendar.",
                 "header_image": "This image is placed above the entity. For best results, use a wide image.",
                 "image_limitations": "Supported formats: jpg, png and gif. Max file size: {size}.",
@@ -1877,6 +1866,7 @@ export default {
             "image": {
                 "error": "We weren't able to get the image you requested. It could be that the website doesn't allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid. Please also make sure that the image isn't larger than {size}."
             },
+            "is_not_private": "This entity isn't currently set to private.",
             "is_private": "This entity is private and only visible to members of the Admin role.",
             "linking_help": "How can I link to other entries?",
             "manage": "Manage",
@@ -2150,12 +2140,6 @@ export default {
                 "benefits_features": "amazing features",
                 "deprecated": "Deprecated feature - if you wish to support Kanka, please do so with a {subscription}. Patreon linking is still active for our Patrons who have linked their account before the move away from Patreon.",
                 "description": "Syncing with Patreon",
-                "errors": {
-                    "invalid_token": "Invalid token! Patreon couldn't validate your request.",
-                    "missing_code": "Missing code! Patreon didn't send back a code identifying your account.",
-                    "no_pledge": "No pledge! Patreon identified your account, but doesn't know of any active pledge."
-                },
-                "link": "Use the following button if you are currently supporting Kanka on {patreon}. This will unlock the bonuses",
                 "linked": "Thank you for supporting Kanka on Patreon! Your account is linked.",
                 "pledge": "Pledge: {name}",
                 "remove": {
@@ -2312,15 +2296,15 @@ export default {
         "conversations": {
             "create": {
                 "description": "Crear nueva conversación",
-                "success": "Conversación '{name}' creada.",
+                "success": "Conversación \"{name}\" creada.",
                 "title": "Nueva Conversación"
             },
             "destroy": {
-                "success": "Conversación '{name}' eliminada."
+                "success": "Conversación \"{name}\" eliminada."
             },
             "edit": {
                 "description": "Actualizar la conversación",
-                "success": "Conversación '{name}' actualizada.",
+                "success": "Conversación \"{name}\" actualizada.",
                 "title": "Conversación {name}"
             },
             "fields": {
@@ -2331,12 +2315,12 @@ export default {
                 "type": "Tipo"
             },
             "hints": {
-                "participants": "Por favor, añade participantes a la conversación."
+                "participants": "Añade participantes a la conversación mediante el icono {icon} arriba a la derecha."
             },
             "index": {
-                "add": "Nueva Conversación",
+                "add": "Nueva conversación",
                 "description": "Gestiona las conversaciones de {name}.",
-                "header": "Conversaciones en {name}",
+                "header": "Conversaciones de {name}",
                 "title": "Conversaciones"
             },
             "messages": {
@@ -2362,7 +2346,7 @@ export default {
             },
             "placeholders": {
                 "name": "Nombre de la conversación",
-                "type": "Dentro del juego, Preparación, Argumento"
+                "type": "Dentro del juego, Preparación, Argumento..."
             },
             "show": {
                 "description": "Vista detallada de conversación",
@@ -2400,15 +2384,15 @@ export default {
             },
             "add": "Añadir",
             "alerts": {
-                "copy_mention": "La mención avanzada de la entidad se ha copiado a tu portapapeles."
+                "copy_mention": "La mención avanzada de la entidad se ha copiado al portapapeles."
             },
             "attributes": {
                 "actions": {
                     "add": "Añadir atributo",
-                    "add_block": "Añadir un bloque",
-                    "add_checkbox": "Añadir una casilla",
+                    "add_block": "Añadir bloque",
+                    "add_checkbox": "Añadir casilla",
                     "add_text": "Añadir texto",
-                    "apply_template": "Aplicar una plantilla de atributos",
+                    "apply_template": "Aplicar plantilla de atributos",
                     "manage": "Administrar",
                     "remove_all": "Eliminar todos"
                 },
@@ -2423,7 +2407,7 @@ export default {
                 "edit": {
                     "description": "Actualizar un atributo existente",
                     "success": "Atributo {name} de {entity} actualizado.",
-                    "title": "Actualizar atributo a {name}"
+                    "title": "Actualizar atributo de {name}"
                 },
                 "fields": {
                     "attribute": "Atributo",
@@ -2437,14 +2421,14 @@ export default {
                     "delete_all": "¿Seguro que quieres eliminar todos los atributos de esta entidad?"
                 },
                 "hints": {
-                    "is_private": "Puedes ocultar todos los atributos de una entidad a todos los miembros no administradores haciéndola privada."
+                    "is_private": "Oculta todos los atributos de una entidad a todos los miembros no administradores haciéndola privada."
                 },
                 "index": {
                     "success": "Atributos de {entity} actualizados.",
                     "title": "Atributos de {name}"
                 },
                 "placeholders": {
-                    "attribute": "Número de conquistas, Iniciativa, Población",
+                    "attribute": "Número de conquistas, Iniciativa, Población...",
                     "block": "Nombre del bloque",
                     "checkbox": "Nombre de la casilla",
                     "section": "Nombre de la sección",
@@ -2452,7 +2436,7 @@ export default {
                     "value": "Valor del atributo"
                 },
                 "template": {
-                    "success": "Plantilla de atributos {name} aplicada en {entity}",
+                    "success": "Plantilla de atributos {name} aplicada a {entity}",
                     "title": "Aplicar plantilla de atributos a {name}"
                 },
                 "types": {
@@ -2476,7 +2460,7 @@ export default {
                     "edit": "Editar y etiquetar en lote"
                 },
                 "age": {
-                    "helper": "Puedes usar + y - antes del número para actualizar la edad en dicha cantidad."
+                    "helper": "Puedes usar + y - antes del número para modificar la edad."
                 },
                 "delete": {
                     "title": "Eliminar múltiples entidades",
@@ -2488,7 +2472,7 @@ export default {
                         "add": "Añadir",
                         "remove": "Eliminar"
                     },
-                    "title": "Editando múltiples entidades"
+                    "title": "Edición múltiple"
                 },
                 "errors": {
                     "admin": "Solamente los administradores de la campaña pueden cambiar el estatus privado de las entidades.",
@@ -2499,16 +2483,16 @@ export default {
                         "override": "Ignorar"
                     },
                     "helpers": {
-                        "override": "Si está seleccionado, los permisos de las entidades seleccionadas serán ignorados y en cambio usarán estos ajustes. Si no está seleccionado, los estos permisos se añadirán a los existentes."
+                        "override": "Si está seleccionado, los permisos de las entidades seleccionadas serán ignorados y usarán estos ajustes en su lugar. Si no está seleccionado, estos permisos se añadirán a los existentes."
                     },
                     "title": "Cambiar permisos a varias entidades"
                 },
                 "success": {
                     "copy_to_campaign": "{1} {count} entidad copiada a {campaign}.|[2,*] {count} entidades copiadas a {campaign}.",
-                    "editing": "{count} entidad se ha actualizado.|{count} entidades se han actualizado.",
-                    "permissions": "Permisos cambiados en {count} entidad.|Permisos cambiados en {count} entidades.",
-                    "private": "{count} entidad es ahora privada|{count} entidades son ahora privadas.",
-                    "public": "{count} entidad es ahora visible|{count} son ahora visibles."
+                    "editing": "{1} Se ha actualizado {count} entidad .|[2,*] Se han actualizado {count} entidades.",
+                    "permissions": "{1} Permisos cambiados en {count} entidad.|[2,*] Permisos cambiados en {count} entidades.",
+                    "private": "{1} Ahora {count} entidad es privada.|[2,*] Ahora {count} entidades son privadas.",
+                    "public": "{1} Ahora {count} entidad es visible|[2,*] Ahora {count} son visibles."
                 }
             },
             "cancel": "Cancelar",
@@ -2520,7 +2504,7 @@ export default {
             "copy_to_campaign": {
                 "bulk_title": "Copiar entidades a otra campaña",
                 "panel": "Copiar",
-                "title": "Copiar '{name}' a otra campaña"
+                "title": "Copiar \"{name}\" a otra campaña"
             },
             "create": "Crear",
             "datagrid": {
@@ -2534,12 +2518,12 @@ export default {
                 "title": "Eliminar"
             },
             "destroy_many": {
-                "success": "{count} entidad eliminada|{count} entidades eliminadas."
+                "success": "{1} Se ha eliminado {count} entidad .|[2,*] Se han eliminado {count} entidades."
             },
             "edit": "Editar",
             "errors": {
                 "boosted": "Esta función solo está disponible para las campañas mejoradas.",
-                "node_must_not_be_a_descendant": "Nodo inválido (categoría, localización superior): sería un descendiente de sí mismo."
+                "node_must_not_be_a_descendant": "Nodo inválido (etiqueta, localización superior): sería un descendiente de sí mismo."
             },
             "events": {
                 "hint": "Los eventos del calendario asociados a esta entidad se muestran aquí."
@@ -2630,26 +2614,27 @@ export default {
                 "calendar_date": "Las fechas de calendario hacen que sea más fácil filtrar las listas, y también fijan los eventos al calendario seleccionado.",
                 "header_image": "Esta imagen está situada sobre la entidad. Para obtener mejores resultados, usa una imagen apaisada.",
                 "image_limitations": "Formatos soportados: jpg, png y gif. Tamaño máximo del archivo: {size}.",
-                "image_patreon": "Aumenta el límite apoyándonos en Patreon",
-                "is_private": "Ocultar a los \"Invitados\"",
+                "image_patreon": "¿Cómo se puede aumentar el tamaño máximo de los archivos?",
+                "is_private": "Si es privada, esta entidad solo se mostrará a los miembros de la campaña que tengan el rol \"Admin\".",
                 "is_star": "Los elementos fijados aparecerán en el menú principal de la entidad.",
                 "map_limitations": "Formatos soportados: jpg, png, gif y svg. Tamaño máximo del archivo: {size}.",
-                "tooltip": "Reemplaza la descripción emergente automática con uno de los siguientes contenidos.",
+                "tooltip": "Reemplaza la descripción emergente automática con el siguiente contenido.",
                 "visibility": "Al seleccionar \"Administrador\", solo los miembros con el rol de administrador podrán ver esto. \"Solo yo\" significa que solo tú puedes ver esto."
             },
             "history": {
                 "created": "Creado por <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "created_date": "Creado <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "created_date": "Creado el <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "unknown": "Desconocido",
                 "updated": "Última modificación por <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "updated_date": "Última modificación <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "view": "Historial de cambios de la entidad"
             },
             "image": {
-                "error": "No hemos podido obtener la imagen. Puede que la página web no nos permita descargarla (típico de Squarespace o DeviantArt), o que el enlace ya no es válido."
+                "error": "No hemos podido obtener la imagen. Puede que la página web no nos permita descargarla (típico de Squarespace o DeviantArt), o que el enlace ya no sea válido. Asegúrate también de que la imagen no supera los {size}."
             },
-            "is_private": "Esta entidad es privada y no será visible por los usuarios Invitados.",
-            "linking_help": "¿Como puedo enlazar otras entradas?",
+            "is_not_private": "Esta entidad no es privada.",
+            "is_private": "Esta entidad es privada y solo pueden verla los administradores.",
+            "linking_help": "¿Como se enlazan otras entradas?",
             "manage": "Administrar",
             "move": {
                 "description": "Mover esta entidad a otro lugar",
@@ -2666,14 +2651,14 @@ export default {
                 "hints": {
                     "campaign": "También puedes intentar mover esta entidad a otra campaña.",
                     "copy": "Selecciona esta opción si quieres crear una copia en la nueva campaña.",
-                    "target": "Por favor ten en cuenta que algunos datos pueden perderse al mover un elemento de un tipo a otro."
+                    "target": "Ten en cuenta que algunos datos pueden perderse al mover un elemento de un tipo a otro."
                 },
                 "success": "Entidad '{name}' movida.",
                 "success_copy": "Entidad '{name}' copiada.",
                 "title": "Mover {name}"
             },
             "new_entity": {
-                "error": "Por favor revisa lo introducido.",
+                "error": "Revisa los datos introducidos.",
                 "fields": {
                     "name": "Nombre"
                 },
@@ -2714,16 +2699,16 @@ export default {
                     "member": "Miembro",
                     "role": "Rol"
                 },
-                "helper": "Usa esta interfaz para afinar qué usuarios y roles pueden interactuar con esta entidad.",
+                "helper": "Desde aquí puedes afinar qué usuarios y roles pueden interactuar con esta entidad.",
                 "helpers": {
                     "entity_note": "Permite a los usuarios crear notas dentro de esta entidad. Sin este permiso, podrán seguir viendo las notas de entidad que se muestren a todos.",
-                    "setup": "Usa esta interfaz para afinar cómo los diferentes roles y usuarios pueden interactuar con esta entidad. {allow} les permitirá hacer dicha acción; {deny} se la denegará, y {inherit} usará el permiso que ya tenga el rol o usuario. Un usuario con una acción puesta en {allow} podrá hacerla, aunque su rol esté en {deny}."
+                    "setup": "Desde aquí puedes afinar cómo los diferentes roles y usuarios pueden interactuar con esta entidad. {allow} les permitirá hacer dicha acción; {deny} se la denegará, y {inherit} usará el permiso que ya tenga el rol o usuario. Un usuario con una acción puesta en {allow} podrá hacerla, aunque su rol esté en {deny}."
                 },
                 "inherited": "Este rol ya tiene este permiso en esta entidad.",
                 "inherited_by": "Este usuario forma parte del rol \"{role}\", que le otorga este permiso en esta entidad.",
                 "success": "Permisos guardados.",
                 "title": "Permisos",
-                "too_many_members": "Esta campaña tiene demasiados miembros (>10) para mostrarlos todos en esta interfaz. Puedes usar el botón de permisos en la vista de entidad para controlar los permisos detalladamente."
+                "too_many_members": "Esta campaña tiene demasiados miembros (>10) para poder mostrarlos todos aquí. Usa el botón de permisos en la vista de entidad para controlar los permisos detalladamente."
             },
             "placeholders": {
                 "ability": "Escoge una habilidad",
@@ -2734,7 +2719,7 @@ export default {
                 "family": "Elige una familia",
                 "image_url": "Puedes subir una imagen desde una URL",
                 "item": "Elige un objeto",
-                "location": "Escoge una localización",
+                "location": "Elige una localización",
                 "map": "Elige un mapa",
                 "organisation": "Elige una organización",
                 "race": "Elige una raza",
@@ -2742,7 +2727,7 @@ export default {
             },
             "relations": {
                 "actions": {
-                    "add": "Añadir una relación"
+                    "add": "Añadir relación"
                 },
                 "fields": {
                     "location": "Localización",
@@ -3065,7 +3050,8 @@ export default {
                     "patreon": "Tu cuenta se encuentra vinculada con Patreon. Desvincúlala en la configuración de {patreon} antes de cambiarla por una suscripción de Kanka."
                 }
             }
-        }
+        },
+        "timelines": []
     },
     "fr": {
         "admin": [],
@@ -3089,7 +3075,7 @@ export default {
                 "messages": "Messages",
                 "name": "Nom",
                 "participants": "Participants",
-                "target": "CIble",
+                "target": "Cible",
                 "type": "Type"
             },
             "hints": {
@@ -3106,7 +3092,7 @@ export default {
                     "success": "Message supprimé."
                 },
                 "is_updated": "Modifié",
-                "load_previous": "Messages précédants",
+                "load_previous": "Messages précédents",
                 "placeholders": {
                     "message": "Ton message"
                 }
@@ -3152,44 +3138,24 @@ export default {
                 "find_out_more": "En savoir plus",
                 "go_to": "Aller à {name}",
                 "json-export": "Export (JSON)",
-                "more": "Autres Actions",
                 "move": "Déplacer",
                 "new": "Nouveau",
                 "next": "Prochain",
-                "private": "Privé",
-                "public": "Publique",
                 "reset": "Réinitialiser"
             },
             "add": "Ajouter",
             "alerts": {
-                "copy_mention": "La mention avancée de cette entité a été copier au presse-papier."
+                "copy_mention": "La mention avancée de cette entité a été copiée au presse-papier."
             },
             "attributes": {
                 "actions": {
-                    "add": "Ajouter un attribut",
-                    "add_block": "Ajouter un block",
-                    "add_checkbox": "Ajouter une case à docher",
-                    "add_text": "Ajouter un text",
                     "apply_template": "Appliquer un modèle d'attribut",
                     "manage": "Gérer",
                     "remove_all": "Tout supprimer"
                 },
-                "create": {
-                    "description": "Créer un nouvel attribut",
-                    "success": "Attribut {name} ajouté à {entity}.",
-                    "title": "Nouvel attribut pour {name}"
-                },
-                "destroy": {
-                    "success": "Attribut {name} supprimé de {entity}."
-                },
-                "edit": {
-                    "description": "Modifier un attribut existant",
-                    "success": "Attribut {name} modifié pour {entity}.",
-                    "title": "Modifier l'attribut pour {name}"
-                },
                 "fields": {
                     "attribute": "Attribut",
-                    "community_templates": "Modèles Communautaire",
+                    "community_templates": "Modèles Communautaires",
                     "is_private": "Attributs privés",
                     "is_star": "Épinglé",
                     "template": "Modèle",
@@ -3207,7 +3173,7 @@ export default {
                 },
                 "placeholders": {
                     "attribute": "Nombre de quêtes, niveau de difficulté, initiative, population",
-                    "block": "Nom du bloque",
+                    "block": "Nom du bloc",
                     "checkbox": "Nom de la case à cocher",
                     "section": "Nom de la section",
                     "template": "Sélectionner un modèle",
@@ -3219,7 +3185,7 @@ export default {
                 },
                 "types": {
                     "attribute": "Attribut",
-                    "block": "Block",
+                    "block": "Bloc",
                     "checkbox": "Case à cocher",
                     "section": "Section",
                     "text": "Texte multiligne"
@@ -3238,7 +3204,7 @@ export default {
                     "edit": "Opération de masse"
                 },
                 "age": {
-                    "helper": "Il est possible de préfixer le numéro avec + ou - pour modifier l'age dynamiquement."
+                    "helper": "Il est possible de préfixer le numéro avec + ou - pour modifier l'âge dynamiquement."
                 },
                 "delete": {
                     "title": "Suppression de plusieurs entités",
@@ -3253,7 +3219,7 @@ export default {
                     "title": "Modifications de plusieurs entités"
                 },
                 "errors": {
-                    "admin": "Seulement les membres administrateur de la campagne peuvent changer le status des entités.",
+                    "admin": "Seulement les membres administrateur de la campagne peuvent changer le statut des entités.",
                     "general": "Un problème est survenu lors de l'exécution. Prière de ressayer de nouveau ou nous contacter en cas de problème persistant. Message d'erreur: {hint}."
                 },
                 "permissions": {
@@ -3261,7 +3227,7 @@ export default {
                         "override": "Remplacer"
                     },
                     "helpers": {
-                        "override": "Si sélectionné, les permissions des entités sélectionnées seront remplacer par ceux-ci. Si non-sélectionné, les permissions sélectionnées seront ajoutées à celles existantes."
+                        "override": "Si sélectionné, les permissions des entités sélectionnées seront remplacées par celles-ci. Si non-sélectionné, les permissions sélectionnées seront ajoutées à celles existantes."
                     },
                     "title": "Changer les permissions pour plusieurs entités"
                 },
@@ -3291,20 +3257,20 @@ export default {
             "delete_modal": {
                 "close": "Fermer",
                 "delete": "Supprimer",
-                "description": "Est-tu sûr de vouloir supprimer {tag}?",
+                "description": "Es-tu sûr de vouloir supprimer {tag}?",
                 "mirrored": "Supprimer la relation liée.",
-                "title": "Confirmation la suppression"
+                "title": "Confirmation de la suppression"
             },
             "destroy_many": {
                 "success": "{count} élément supprimé.|{count} éléments supprimés."
             },
             "edit": "Modifier",
             "errors": {
-                "boosted": "Cette fonctionalité n'est que accessible pour aux campagnes boostées..",
+                "boosted": "Cette fonctionnalité n'est accessible qu'aux campagnes boostées..",
                 "node_must_not_be_a_descendant": "Node invalide (étiquette, lieu parent): l'entité serait un descendant de lui-même."
             },
             "events": {
-                "hint": "Les événements de calendrier peuvent être associé à cette entité et être affiché ici."
+                "hint": "Les événements de calendrier peuvent être associés à cette entité et être affichés ici."
             },
             "export": "Export",
             "fields": {
@@ -3353,9 +3319,9 @@ export default {
                     "max": "Nombre maximal de fichier ({max}) atteint pour cette entité.",
                     "no_files": "Aucun fichier."
                 },
-                "files": "Fichiers uploadé",
+                "files": "Fichiers uploadés",
                 "hints": {
-                    "limit": "Chaque entité peut avoir un nombre maximal de {max} fichiers uploadé.",
+                    "limit": "Chaque entité peut avoir un nombre maximal de {max} fichiers uploadés.",
                     "limitations": "Formats supportés: {formats}. Taille maximale: {size}"
                 },
                 "title": "Fichiers d'entité pour {name}"
@@ -3364,7 +3330,7 @@ export default {
             "filters": {
                 "all": "Afficher tous les descendants",
                 "clear": "Effacer les filtres",
-                "direct": "Affichier seulement descendants directs",
+                "direct": "Afficher seulement les descendants directs",
                 "filtered": "Affichant {count} de {total} {entity}.",
                 "hide": "Cacher les filtres",
                 "options": {
@@ -3376,7 +3342,7 @@ export default {
                 "sorting": {
                     "asc": "{field} ascendant",
                     "desc": "{field} descendant",
-                    "helper": "Controler l'ordre d'affichage des résultats."
+                    "helper": "Contrôler l'ordre d'affichage des résultats."
                 },
                 "title": "Filtres"
             },
@@ -3388,16 +3354,16 @@ export default {
             },
             "hidden": "Caché",
             "hints": {
-                "attribute_template": "Appliquer un modèl d'attribut lors de la création de cette entité.",
+                "attribute_template": "Appliquer un modèle d'attribut lors de la création ou l'édition de cette entité.",
                 "calendar_date": "Une date de calendrier permet un triage plus facile dans les listes, et garde à jour un événement de calendrier dans le calendrier sélectionné.",
-                "header_image": "Cette image s'affiche au dela de l'entité. Les images larges mènent a un meilleur résultat.",
+                "header_image": "Cette image s'affiche au-delà de l'entité. Les images larges mènent a un meilleur résultat.",
                 "image_limitations": "Formats supportés: jpg, png et gif. Taille max: {size}.",
                 "image_patreon": "Augmenter la taille limite?",
                 "is_private": "Cacher des membres de type non-Admin",
                 "is_star": "Les éléments épinglés sont affichés sur le menu de l'entité.",
                 "map_limitations": "Formats supportés: jpg, png, gif et svg. Taille maximale: {size}.",
-                "tooltip": "Remplace l'infobulle automatiquement généré avec le text ci-dessous.",
-                "visibility": "Si la visibilité est définie à Admin, seuls les membres du rôle Admin de la campagne verront ceci. La visibilité \"Soit-même\" signifie que seulement tu peux le voir."
+                "tooltip": "Remplace l'infobulle automatiquement généré avec le texte ci-dessous.",
+                "visibility": "Si la visibilité est définie à Admin, seuls les membres du rôle Admin de la campagne verront ceci. La visibilité \"Soi-même\" signifie que tu es le seul à le voir."
             },
             "history": {
                 "created": "Créé par <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
@@ -3410,11 +3376,12 @@ export default {
             "image": {
                 "error": "Impossible de récupérer l'image demandée. Il est possible que le site web ne nous permet pas de télécharger des images (cela arrive par example avec squarespace et DeviantArt), ou le lien n'est plus valide."
             },
+            "is_not_private": "Cette entité n'est pas privée.",
             "is_private": "Cet élément est privé et pas visible.",
             "linking_help": "Comment lier vers d'autres éléments?",
             "manage": "Gérer",
             "move": {
-                "description": "Déplacer cet élément à un nouveau endroit",
+                "description": "Déplacer cet élément vers un nouvel endroit",
                 "errors": {
                     "permission": "Droits insuffisants pour créer une entité de ce type dans la campagne sélectionnée.",
                     "same_campaign": "Une autre campagne doit être sélectionnée pour y déplacer l'entité.",
@@ -3427,7 +3394,7 @@ export default {
                 },
                 "hints": {
                     "campaign": "Il est aussi possible de déplacer cette entité vers une autre campagne.",
-                    "copy": "Activer cette option créé une copie dans la nouvelle campagne.",
+                    "copy": "Activer cette option crée une copie dans la nouvelle campagne.",
                     "target": "Attention! Certaines informations peuvent être perdues lors du déplacement d'un élément."
                 },
                 "success": "Elément {name} déplacé.",
@@ -3435,7 +3402,7 @@ export default {
                 "title": "Déplacer {name} autre part"
             },
             "new_entity": {
-                "error": "Vérifier les valeures.",
+                "error": "Vérifier les valeurs.",
                 "fields": {
                     "name": "Nom"
                 },
@@ -3547,9 +3514,9 @@ export default {
             "view": "Voir",
             "visibilities": {
                 "admin": "Admin",
-                "admin-self": "Sois-même & Admin",
+                "admin-self": "Soi-même & Admin",
                 "all": "Tous",
-                "self": "Sois-même"
+                "self": "Soi-même"
             }
         },
         "entities": [],
@@ -3570,16 +3537,16 @@ export default {
                 "social": {
                     "error": "Tu utilises déjà le login Kanka pour ce compte.",
                     "helper": "Ton compte est géré par {provider}. Tu peux changer au login Kanka en fournissant un login et un mot de passe.",
-                    "success": "Ton compte utilise d'orénavant le login Kanka.",
+                    "success": "Ton compte utilise dorénavant le login Kanka.",
                     "title": "Social à Kanka"
                 },
                 "title": "Compte"
             },
             "api": {
-                "experimental": "Bienvenus aux API de Kanka! Ces fonctionalités sont encore experimental mais assez stable que tu puisses intéragire avec les APIs. Créé un jeton personnel pour utiliser dans tes requêtes API, ou un jeton client pour permettre à ton app d'accéder à tes données.",
+                "experimental": "Bienvenue aux API de Kanka! Ces fonctionnalités sont encore experimentales mais assez stables pour que tu puisses intéragir avec les APIs. Crée un jeton personnel à utiliser dans tes requêtes API, ou un jeton client pour permettre à ton app d'accéder à tes données.",
                 "help": "Kanka va prochainement mettre à disposition une API.",
                 "link": "Lire la documentation",
-                "request_permission": "Nous construisons en ce moment des API RESTful pour que des applications tièrces communiquent avec Kanka. Cependant nous limitons actuellement le nombre d'utilisateurs qui peuvent intéragire avec nos API, du moins jusqu'à ce que la qualité de nos APIs soit assez bonne. Si tu veux accéder aux API et construire des applications qui communiquent avec Kanka, prends contact avec nous et nous te donneront les infos dont tu as besoin!",
+                "request_permission": "Nous construisons en ce moment des API RESTful pour que des applications tierces communiquent avec Kanka. Cependant nous limitons actuellement le nombre d'utilisateurs qui peuvent intéragir avec nos API, du moins jusqu'à ce que la qualité de nos APIs soit assez bonne. Si tu veux accéder aux API et construire des applications qui communiquent avec Kanka, prends contact avec nous et nous te donnerons les infos dont tu as besoin!",
                 "title": "API"
             },
             "apps": {
@@ -3590,7 +3557,7 @@ export default {
                 "benefits": "Kanka supporte quelques intégrations avec d'autres services. D'autres services seront ajoutés dans le futur.",
                 "discord": {
                     "errors": {
-                        "add": "Une erreur est survenue lors de liage de Discord avec le compte Kanka."
+                        "add": "Une erreur est survenue lors du liage de Discord avec le compte Kanka."
                     },
                     "success": {
                         "add": "Compte Discord lié.",
@@ -3598,19 +3565,19 @@ export default {
                     },
                     "text": "Accès aux rôles automatique."
                 },
-                "title": "Ingération d'app"
+                "title": "Intégration d'app"
             },
             "boost": {
                 "benefits": {
-                    "first": "Pour assurer une évolution continue de Kanka, certaines fonctionnalités de l'application sont débloquées lorsqu'une campagne est boostée. Les boosts sont débloqués grâce a un abonnement. Une campagne peut être boostée par n'importe qui, du moment que le compte a accès à la campagne en question. Une campagne reste boostée tant que le compte a un {subscription} actif. Si une campagne n'est plus boostée, les informations ne sont pas perdues mais deviennent simplement invisible jusqu'à ce que la campagne sois à nouveau boostée..",
+                    "first": "Pour assurer une évolution continue de Kanka, certaines fonctionnalités de l'application sont débloquées lorsqu'une campagne est boostée. Les boosts sont débloqués grâce a un abonnement. Une campagne peut être boostée par n'importe qui, du moment que le compte a accès à la campagne en question. Une campagne reste boostée tant que le compte a un {subscription} actif. Si une campagne n'est plus boostée, les informations ne sont pas perdues mais deviennent simplement invisibles jusqu'à ce que la campagne soit à nouveau boostée.",
                     "header": "Image d'en-tête pour entité.",
                     "images": "Images d'entité par défaut personnalisées.",
-                    "more": "En savoir plus sur toutes les fonctionalités.",
-                    "second": "Booster une campagne débloques les bénéfices suivants:",
+                    "more": "En savoir plus sur toutes les fonctionnalités.",
+                    "second": "Booster une campagne débloque les bénéfices suivants:",
                     "theme": "Thème de campagne et style personnalisé.",
                     "third": "Pour booster une campagne, aller sur la page de la campagne et cliquer sur le bouton \"{boost_button}\" situé au dessus du bouton \"{edit_button}\".",
-                    "tooltip": "Infobulles personnalisés pour les entités.",
-                    "upload": "Taille de fichier uploadé plus grand pour tous les membres de la campagne."
+                    "tooltip": "Infobulles personnalisées pour les entités.",
+                    "upload": "Taille des fichiers uploadés plus grande pour tous les membres de la campagne."
                 },
                 "buttons": {
                     "boost": "Boost"
@@ -3632,7 +3599,7 @@ export default {
                 "france": "France",
                 "germany": "Allemagne",
                 "italy": "Italie",
-                "netherlands": "Pays Bas",
+                "netherlands": "Pays-Bas",
                 "spain": "Espagne"
             },
             "invoices": {
@@ -3679,17 +3646,11 @@ export default {
                     "link": "Lier le compte",
                     "view": "Visiter Kanka sur Patreon"
                 },
-                "benefits": "Nous supporter sur {patreon} active plein de {features} pour toi et tes campagnes, et nous permet de dédié plus de temps à travailler sur Kanka.",
-                "benefits_features": "fonctionalités sympas",
+                "benefits": "Nous supporter sur {patreon} active plein de {features} pour toi et tes campagnes, et nous permet de dédier plus de temps à travailler sur Kanka.",
+                "benefits_features": "fonctionnalités sympas",
                 "deprecated": "Fonction obsolète - si tu souhaites supporter Kanka, fais-le avec un abonnement. La liaison Patreon est toujours active pour nos Patrons qui ont lié leur compte avant le changement d'abonnement.",
                 "description": "Synchronisation avec Patreon",
-                "errors": {
-                    "invalid_token": "Token invalid! Patreon n'a pas validé la requête.",
-                    "missing_code": "Code manquant! Patreon n'a pas envoyé de code d'authentification pour ton compte.",
-                    "no_pledge": "Pas de pledge! Patreon a identifié ton compte, mais ne croit pas que tu nous supportes."
-                },
-                "link": "Si tu supportes Kanka sur Patreon, tu peux utiliser le bouton pour lier ton compte. Cela te donnera accès a des bonus sympas!",
-                "linked": "Merci pour ton support sur Patreon! Ton comptes est d'orénavant lié.",
+                "linked": "Merci pour ton support sur Patreon! Ton compte est dorénavant lié.",
                 "pledge": "Pledge: {name}",
                 "remove": {
                     "button": "Délier le compte Patreon",
@@ -3699,7 +3660,7 @@ export default {
                 },
                 "success": "Merci pour ton support sur Patreon!",
                 "title": "Patreon",
-                "wrong_pledge": "Ton pledge est inséré manuellement par nous, du coups ça peut prendre quelques jours pour être actualisé. Si ça reste faux longtemps, n'hésites pas à nous contacter."
+                "wrong_pledge": "Ton pledge est inséré manuellement par nous, du coup ça peut prendre quelques jours pour être actualisé. Si ça prend longtemps, n'hésite pas à nous contacter."
             },
             "profile": {
                 "actions": {
@@ -3715,14 +3676,14 @@ export default {
                     "subscribe": "Abonner",
                     "update_currency": "Changer la devise"
                 },
-                "benefits": "En nous soutenant, tu peux débloquer de nouvelles fonctionnalités: et nous aider a investir plus de temps dans l'amélioration de Kanka. Aucune information concernant ta carte de crédit n'est stockée ou ne transite par nos serveurs. Nous utilisons {stripe} pour gérer toutes les factures.",
+                "benefits": "En nous soutenant, tu peux débloquer de nouvelles fonctionnalités et nous aider à investir plus de temps dans l'amélioration de Kanka. Aucune information concernant ta carte de crédit n'est stockée ou ne transite par nos serveurs. Nous utilisons {stripe} pour gérer toutes les factures.",
                 "billing": {
                     "helper": "Les informations de paiement sont gérées et sauvegardées de manière sécurisée à travers {stripe}. Cette méthode de paiement sera utilisée pour tous les abonnements.",
                     "saved": "Méthode de paiement",
                     "title": "Modifier la méthode de paiement"
                 },
                 "cancel": {
-                    "text": "Désolé de te voir partir! L'annulation de ton abonnement le gardera actif jusqu'au la fin du mois payé, après quoi tu perdras les bonus de ta campagne et les autres avantages liés au soutien de Kanka. N'hésite pas à remplir le formulaire suivant pour nous informer de ce que nous pouvons faire mieux, ou de ce qui a conduit à ta décision."
+                    "text": "Désolé de te voir partir! L'annulation de ton abonnement le gardera actif jusqu'au la fin du mois payé, après quoi tu perdras les bonus de ta campagne et les autres avantages liés au soutien de Kanka. N'hésite pas à remplir le formulaire suivant pour nous informer de ce que nous pouvons améliorer, ou ce qui a conduit à ta décision."
                 },
                 "cancelled": "L'abonnement a été annulé. Un nouvel abonnement peut être fait dès que celui-ci arrive à terme.",
                 "change": {
@@ -3740,7 +3701,7 @@ export default {
                     "title": "Changer la devise de facturation"
                 },
                 "errors": {
-                    "callback": "Notre gestionnaire de paiement nous a remonté une erreur. Prière de ressayer et nous contacter si le problème persiste.",
+                    "callback": "Notre gestionnaire de paiement nous a remonté une erreur. Prière de réessayer et nous contacter si le problème persiste.",
                     "subscribed": "Erreur lors de la gestion de l'abonnement. Stripe nous a fourni l'erreur suivante."
                 },
                 "fields": {
@@ -3755,7 +3716,7 @@ export default {
                 "helpers": {
                     "alternatives": "Payez votre abonnement en utilisant {method}. Ce mode de paiement ne sera pas renouvelé automatiquement à la fin de votre abonnement. {method} n'est disponible qu'en Euros.",
                     "alternatives_warning": "La mise à niveau de l'abonnement lors de l'utilisation de cette méthode n'est pas possible. Veuillez créer un nouvel abonnement à la fin de votre abonnement actuel.",
-                    "alternatives_yearly": "En raison des restrictions entourant les paiements récurrents,{method} n'est disponible que pour les abonnements annuels"
+                    "alternatives_yearly": "En raison des restrictions entourant les paiements récurrents, {method} n'est disponible que pour les abonnements annuels"
                 },
                 "manage_subscription": "Gérer l'abonnement",
                 "payment_method": {
@@ -3766,7 +3727,7 @@ export default {
                         "show_alternatives": "Autres méthodes de paiement"
                     },
                     "add_one": "Aucune méthode de paiement actuellement saisie.",
-                    "alternatives": "Un abonnement peut être souscrit avec ces méthodes de paiement. Cette action générera qu'une seule facture et ne renouera pas automatiquement l'abonnement chaque mois.",
+                    "alternatives": "Un abonnement peut être souscrit avec ces méthodes de paiement. Cette action ne générera qu'une seule facture et ne renouvellera pas automatiquement l'abonnement chaque mois.",
                     "card": "Carte",
                     "card_name": "Nom sur la carte",
                     "country": "Pays de résidence",
@@ -3792,14 +3753,14 @@ export default {
                     }
                 },
                 "success": {
-                    "alternative": "Le paiement a été enregistré. Une notification sera générée dès le paiement a été traité et l'abonnement activé.",
-                    "callback": "Ton abonnement est réussis! Ton compte sera mis à jour dès que notre gestionnaire de paiement nous informe des changement (cela peut prendre quelques minutes).",
-                    "cancel": "Ton abonnement est annulé. Il sera toujours actif jusqu'à la fin de la période actuel.",
+                    "alternative": "Le paiement a été enregistré. Une notification sera générée dès le paiement traité et l'abonnement activé.",
+                    "callback": "Ton abonnement est réussi! Ton compte sera mis à jour dès que notre gestionnaire de paiement nous informera des changements (cela peut prendre quelques minutes).",
+                    "cancel": "Ton abonnement est annulé. Il sera toujours actif jusqu'à la fin de la période actuelle.",
                     "currency": "Devise préférée sauvegardée.",
-                    "subscribed": "Ton abonnement est réussis! N'oublie pas de t'abonner à la newsletter Community Vote pour être averti lorsqu'un vote sera ouvert. Tu peux modifier tes paramètres de newsletter sur ta page de profil."
+                    "subscribed": "Ton abonnement est réussi! N'oublie pas de t'abonner à la newsletter Community Vote pour être averti lorsqu'un vote sera ouvert. Tu peux modifier tes paramètres de newsletter sur ta page de profil."
                 },
                 "tiers": "Niveaux d'abonnements",
-                "trial_period": "Les abonnements annuels ont une période d'annulation de 14 jours. Nous contacter à  {email} pour annuler un abonnement et recevoir un remboursement.",
+                "trial_period": "Les abonnements annuels ont une période d'annulation de 14 jours. Nous contacter à {email} pour annuler un abonnement et recevoir un remboursement.",
                 "upgrade_downgrade": {
                     "button": "Information sur l'upgrade/downgrade",
                     "downgrade": {
@@ -3817,8 +3778,8 @@ export default {
                     }
                 },
                 "warnings": {
-                    "incomplete": "Ne n'avons pas pu débiter la carte de crédit. Vérifier les informations de la carte et mettre à jour si nécessaire. Nous essayerons à nouveau durant les prochains jours. Si ça échoue de nouveau, l'abonnement sera annulé.",
-                    "patreon": "Ce compte est actuellement lié à Patreon. Prière de délié le compte dans les paramètres {patreon} avant de pouvoir s'abonner à Kanka."
+                    "incomplete": "Nous n'avons pas pu débiter la carte de crédit. Vérifier les informations de la carte et mettre à jour si nécessaire. Nous essayerons à nouveau durant les prochains jours. Si ça échoue de nouveau, l'abonnement sera annulé.",
+                    "patreon": "Ce compte est actuellement lié à Patreon. Prière de délier le compte dans les paramètres {patreon} avant de pouvoir s'abonner à Kanka."
                 }
             }
         },
@@ -4031,7 +3992,8 @@ export default {
         "entities": [],
         "front": [],
         "maps": [],
-        "randomisers": []
+        "randomisers": [],
+        "timelines": []
     },
     "hr": {
         "admin": [],
@@ -4055,7 +4017,7 @@ export default {
                 "messages": "Poruke",
                 "name": "Naziv",
                 "participants": "Sudionici",
-                "target": "Meta",
+                "target": "Otvaranje poveznice",
                 "type": "Tip"
             },
             "hints": {
@@ -4118,12 +4080,9 @@ export default {
                 "find_out_more": "Saznaj više",
                 "go_to": "Idi na {name}",
                 "json-export": "Izvoz (json)",
-                "more": "Više akcija",
                 "move": "Pomakni",
                 "new": "Novo",
                 "next": "Sljedeće",
-                "private": "Privatno",
-                "public": "Javno",
                 "reset": "Resetiraj"
             },
             "add": "Dodaj",
@@ -4132,26 +4091,9 @@ export default {
             },
             "attributes": {
                 "actions": {
-                    "add": "Dodaj atribut",
-                    "add_block": "Dodaj blok",
-                    "add_checkbox": "Dodaj potvrdni okvir",
-                    "add_text": "Dodaj tekst",
                     "apply_template": "Primjeni predložak atributa",
                     "manage": "Upravljanje",
                     "remove_all": "Izbriši sve"
-                },
-                "create": {
-                    "description": "Izradi novi atribut",
-                    "success": "Atribut {name} dodan u {entity}.",
-                    "title": "Novi atribut za {name}"
-                },
-                "destroy": {
-                    "success": "Uklonjen atribut {name} s {entity}."
-                },
-                "edit": {
-                    "description": "Ažuriraj postojeći atribut",
-                    "success": "Ažuriran atribut {name} za {entity}.",
-                    "title": "Ažuriraj atribut za {name}"
                 },
                 "fields": {
                     "attribute": "Atribut",
@@ -4376,6 +4318,7 @@ export default {
             "image": {
                 "error": "Nismo uspjeli dobiti sliku koju ste tražili. Može biti da nam web mjesto ne dopušta preuzimanje slike (uobičajeno za Squarespace i DeviantArt) ili da veza više nije valjana. Provjerite također da slika nije veća od {size}."
             },
+            "is_not_private": "Ovaj entitet trenutno nije postavljen kao privatni.",
             "is_private": "Ovaj je entitet privatan i vidljiv samo članovima administratorske uloge.",
             "linking_help": "Kako mogu povezati s ostalim unosima?",
             "manage": "Upravljanje",
@@ -4649,12 +4592,6 @@ export default {
                 "benefits_features": "nevjerojatne funkcionalnosti",
                 "deprecated": "Zastarjela značajka - ako želite podržati Kanku, učinite to putem {subscription}. Patreon povezivanje je i dalje aktivno za one koji su povezali svoj račun prije našeg odlaska iz Patreona.",
                 "description": "Sinkroniziranje s Patreonom",
-                "errors": {
-                    "invalid_token": "Pogrešan token! Patreon nije mogao potvrditi tvoj zahtjev.",
-                    "missing_code": "Nedostaje kod! Patreon nije poslao kôd koji identificira tvoj račun.",
-                    "no_pledge": "Nema zaloga! Patreon je identificirao tvoj račun, ali ne zna za nijedan aktivan zalog."
-                },
-                "link": "Upotrijebi sljedeći gumb ako trenutno podržavaš Kanka na {patreon}. To će otključati bonuse",
                 "linked": "Hvala ti što podržavaš Kanku na Patreonu! Tvoj račun je povezan.",
                 "pledge": "Zalog: {name}",
                 "remove": {
@@ -4787,7 +4724,8 @@ export default {
                     "patreon": "Tvoj račun je trenutno povezan s Patreonom. Prekini vezu s računom u tvojim postavkama {patreon} prije prelaska na Kanka pretplatu."
                 }
             }
-        }
+        },
+        "timelines": []
     },
     "hu": {
         "admin": [],
@@ -5550,7 +5488,8 @@ export default {
                     "patreon": "A fiókod jelenleg a Patreon-nal van összekapcsolva. Kérlek csatlakoztasd le a fiókod a {patreon} beállításaiban, mielőtt Kanka előfizetésre váltanál!"
                 }
             }
-        }
+        },
+        "timelines": []
     },
     "it": {
         "admin": [],
@@ -6102,7 +6041,8 @@ export default {
                 "success": "Profilo aggiornato.",
                 "title": "Profilo Personale"
             }
-        }
+        },
+        "timelines": []
     },
     "nl": {
         "admin": [],
@@ -6379,12 +6319,9 @@ export default {
                 "find_out_more": "Узнать больше",
                 "go_to": "Перейти к {name}",
                 "json-export": "Экспортировать (JSON)",
-                "more": "Больше действий",
                 "move": "Переместить",
                 "new": "Новый",
                 "next": "Следующее",
-                "private": "Приватный",
-                "public": "Публичный",
                 "reset": "Сброс"
             },
             "add": "Добавить",
@@ -6393,26 +6330,9 @@ export default {
             },
             "attributes": {
                 "actions": {
-                    "add": "Добавить атрибут",
-                    "add_block": "Добавить блок",
-                    "add_checkbox": "Добавить флажок",
-                    "add_text": "Добавить текст",
                     "apply_template": "Применить Шаблон Атрибутов",
                     "manage": "Управление",
                     "remove_all": "Удалить все"
-                },
-                "create": {
-                    "description": "Создание нового атрибута.",
-                    "success": "Атрибут {name} добавлен к {entity}.",
-                    "title": "Новый Атрибут для {name}"
-                },
-                "destroy": {
-                    "success": "Атрибут {name} для {entity} удален."
-                },
-                "edit": {
-                    "description": "Обновление существующего атрибута.",
-                    "success": "Атрибут {name} для {entity} обновлен.",
-                    "title": "Обновление атрибута для {name}"
                 },
                 "fields": {
                     "attribute": "Атрибут",
@@ -6637,6 +6557,7 @@ export default {
             "image": {
                 "error": "Нам не удалось получить запрошенное изображение. Возможно, сайт не позволяет нам скачать изображение (типично для Squarespace и DeviantArt) или эта ссылка уже не действительна. Пожалуйста, убедитесь также, что изображение не превышает {size}."
             },
+            "is_not_private": "В данный момент этот объект не приватен.",
             "is_private": "Этот объект приватен и виден только участникам с ролью \"Админ\".",
             "linking_help": "Как я могу ссылаться на другие объекты.",
             "manage": "Управление",
@@ -6910,12 +6831,6 @@ export default {
                 "benefits_features": "потрясающие функции",
                 "deprecated": "Устаревшая функция - если вы хотите поддержать Kanka, пожалуйста сделайте это с помощью {subscription}. Ссылка на Patreon до сих пор активна для наших патреонцев, которые подключили их аккаунты до выхода с Patreon.",
                 "description": "Синхронизация с Patreon.",
-                "errors": {
-                    "invalid_token": "Недействительный токен! Patreon не может утвердить ваш запрос.",
-                    "missing_code": "Код отсутствует! Patreon вернул код, определяющий ваш аккаунт.",
-                    "no_pledge": "Залог отсутствует! Patreon определил ваш аккаунт, но у вас нет на нем активного залога."
-                },
-                "link": "Используйте следующую кнопку, если вы уже поддерживаете Kanka на {patreon}. Это разблокирует бонусы.",
                 "linked": "Спасибо за поддержку на Patreon! Ваш аккаунт подключен.",
                 "pledge": "Залог: {name}",
                 "remove": {
@@ -7048,7 +6963,8 @@ export default {
                     "patreon": "Ваш аккаунт подключен к Patreon. Пожалуйста, отключите ваш аккаунт в ваших настройках {patreon} перед включением Kanka подписки."
                 }
             }
-        }
+        },
+        "timelines": []
     },
     "sk": {
         "admin": [],
@@ -7533,7 +7449,8 @@ export default {
         "entities": [],
         "front": [],
         "maps": [],
-        "randomisers": []
+        "randomisers": [],
+        "timelines": []
     },
     "tr": [],
     "zh_CN": []
