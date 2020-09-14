@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Campaign;
 use App\Models\Faq;
 use App\Services\PatreonService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
@@ -38,7 +39,7 @@ class FrontController extends Controller
      */
     public function tos()
     {
-        return view('front.tos');
+        return $this->cachedResponse('front.tos');
     }
 
     /**
@@ -46,7 +47,7 @@ class FrontController extends Controller
      */
     public function privacy()
     {
-        return view('front.privacy');
+        return $this->cachedResponse('front.privacy');
     }
 
     /**
@@ -54,7 +55,7 @@ class FrontController extends Controller
      */
     public function terms()
     {
-        return view('front.terms');
+        return $this->cachedResponse('front.terms');
     }
 
     /**
@@ -62,7 +63,7 @@ class FrontController extends Controller
      */
     public function help()
     {
-        return view('front.help');
+        return $this->cachedResponse('front.help');
     }
 
     /**
@@ -70,7 +71,7 @@ class FrontController extends Controller
      */
     public function features()
     {
-        return view('front.features');
+        return $this->cachedResponse('front.features');
     }
 
     /**
@@ -78,7 +79,9 @@ class FrontController extends Controller
      */
     public function community()
     {
+        response()->header('Expires', Carbon::now()->addDays(7)->toDateTimeString());
         return view('front.community');
+        return $this->cachedResponse('front.contact');
     }
 
     /**
@@ -86,7 +89,7 @@ class FrontController extends Controller
      */
     public function roadmap()
     {
-        return view('front.roadmap');
+        return $this->cachedResponse('front.roadmap');
     }
 
 
@@ -95,7 +98,7 @@ class FrontController extends Controller
      */
     public function pricing()
     {
-        return view('front.pricing');
+        return $this->cachedResponse('front.pricing');
     }
 
     /**
@@ -103,7 +106,7 @@ class FrontController extends Controller
      */
     public function contact()
     {
-        return view('front.contact');
+        return $this->cachedResponse('front.contact');
     }
 
     /**
@@ -122,5 +125,11 @@ class FrontController extends Controller
         return view('front.campaigns')
             ->with('featured', $features)
             ->with('campaigns', $campaigns);
+    }
+
+    protected function cachedResponse(string $view, int $days = 7)
+    {
+        return response(view($view))
+            ->header('Expires', Carbon::now()->addDays($days)->toDateTimeString());
     }
 }

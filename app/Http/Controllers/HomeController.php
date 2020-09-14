@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -38,7 +39,7 @@ class HomeController extends Controller
      */
     protected function front()
     {
-        return view('front.home');
+        return response(view('front.home'))->header('Expires', Carbon::now()->addDays(7)->toDateTimeString());
     }
 
     /**

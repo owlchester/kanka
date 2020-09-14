@@ -50,7 +50,7 @@
 </noscript>
 
 <!-- Navigation -->
-<div class="topbar">
+<div class="topbar d-none d-sm-block">
     <div class="container">
         <ul class="topbar-list">
             @auth
@@ -100,10 +100,10 @@
         </a>
         @auth
         @else
-            <a href="{{ route('login') }}" class="d-sm-none">
+            <a href="{{ route('login') }}" class="d-lg-none">
                 {{ __('front.menu.login') }}
             </a>@if(config('auth.register_enabled'))
-            <a class="d-sm-none" href="{{ route('register') }}">
+            <a href="{{ route('register') }}" class="d-lg-none">
                 {{ __('front.menu.register') }}
             </a>@endif
         @endauth
@@ -155,6 +155,7 @@
 <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{{ mix('js/front.js') }}" async></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
 <script src="https://kit.fontawesome.com/d7f0be4a8d.js" crossorigin="anonymous"></script>
