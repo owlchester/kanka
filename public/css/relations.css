@@ -1,8 +1,1 @@
-#cy {
-  min-height: calc(90vh);
-}
-
-#cy .node-hover {
-  border: 5px solid pink;
-}
-
+#cy{min-height:90vh}#cy .node-hover{border:5px solid pink}
