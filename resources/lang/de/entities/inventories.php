@@ -14,16 +14,20 @@ return [
     'fields'        => [
         'amount'        => 'Menge',
         'description'   => 'Beschreibung',
+        'is_equipped'   => 'Ausgestattet',
+        'name'          => 'Name',
         'position'      => 'Position',
     ],
     'placeholders'  => [
         'amount'        => 'Die Menge',
         'description'   => 'Benutzt, Beschädigt, usw.',
+        'name'          => 'Erforderlich, wenn kein Element ausgewählt ist',
         'position'      => 'Ausgerüstet, Rucksack, Lager, Bank',
     ],
     'show'          => [
         'helper'    => 'Objekten können Gegenstände zugeordnet werden um ein Inventar zu generieren.',
         'title'     => 'Objekt :name: Inventar',
+        'unsorted'  => 'Unsortiert',
     ],
     'update'        => [
         'success'   => 'Gegenstand \':name\' für :entity aktualisiert',

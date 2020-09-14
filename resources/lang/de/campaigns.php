@@ -333,6 +333,7 @@ TEXT
             'information'       => 'Informationen',
             'members'           => 'Mitglieder',
             'menu'              => 'Menü',
+            'plugins'           => 'Plugins',
             'recovery'          => 'Wiederherstellen',
             'roles'             => 'Rollen',
             'settings'          => 'Einstellungen',
