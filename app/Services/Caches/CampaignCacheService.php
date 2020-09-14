@@ -221,6 +221,7 @@ class CampaignCacheService extends BaseCache
      */
     public function themes(): string
     {
+        return '';
         $key = $this->themeKey();
         if ($this->has($key)) {
             return (string) $this->get($key);
