@@ -1,1 +1,419 @@
-.campaign-dashboard .content-header{min-height:28px}.dashboard-actions{display:inline-block;float:right;margin-top:-7px}.campaign{margin-top:10px;padding:40px;margin-bottom:15px}.campaign .content{margin-top:80px;padding:20px 20px 10px;border-radius:5px;min-height:0;text-align:justify;color:#fff;background-color:rgba(0,0,0,.5)}.campaign .content .more,.campaign .content .preview,.campaign .content h1{text-shadow:rgba(0,0,0,.5) 0 1px 4px}.campaign .content h1{font-size:18pt;margin:0;padding:0;line-height:1.3em}.campaign .content h1 .img-circle{width:50px;height:50px;margin-right:0}.campaign .content h1 .img-circle:hover{box-shadow:0 4px 6px rgba(50,50,93,.31),0 1px 3px rgba(0,0,0,.08)}.campaign .content h1 a{color:#fff}.campaign .content h1 a:active,.campaign .content h1 a:focus,.campaign .content h1 a:hover{color:#72afd2}.campaign .content h2{font-size:16pt}.campaign .content h3,.campaign .content h4,.campaign .content h5,.campaign .content h6{font-size:15pt}.campaign .content .preview{position:relative;font-size:11pt}.campaign .content .preview .preview-action{text-align:center}.campaign .content .more{font-size:1.2em}.campaign .content .more a{padding:5px 0;display:inline-block}.campaign .content .campaign-link{display:block;padding:8px 12px;background:rgba(0,0,0,.1);text-align:center;font-size:1.1em}.campaign .content .campaign-link:hover{color:#fff;background:#3c8dbc;box-shadow:0 4px 6px rgba(50,50,93,.31),0 1px 3px rgba(0,0,0,.08)}.cover-background .campaign-link{background:rgba(0,0,0,.6)!important}.cover-background .campaign-link:hover{background:#3c8dbc!important}.no-header{padding:0}.no-header .content{margin-top:0;background-color:#fff;border-radius:2px;color:#333;border:1px solid #d3e0e9}.no-header .content .more,.no-header .content .preview,.no-header .content h1{text-shadow:none}.no-header .content h1 a{color:#3c8dbc}.no-header .content ul.campaign-links li a{border:1px solid #d3e0e9;background:hsla(0,0%,100%,.2)}.no-header .content ul.campaign-links li a:hover{background:hsla(0,0%,100%,.5)}.panel h1{font-size:20pt}.panel h2{font-size:18pt}.panel h3,.panel h4,.panel h5,.panel h6{font-size:12pt}.panel .panel-heading-entity{transition:all 3s ease;padding:0;background-size:cover;background-repeat:no-repeat;background-position:50% 10%}.panel .panel-heading-entity:hover{background-position:50% 50%}.panel .panel-heading-entity h3{transition:none;background-color:rgba(0,0,0,.2)}.panel .panel-heading-entity h3 a{padding:30px 20px;display:inline-block;width:100%;color:#fff!important;text-shadow:rgba(0,0,0,.9) 0 1px 4px;font-size:18px}.panel .panel-body .pinned-entity{transition:all .5s ease}.panel .panel-body .preview{max-height:200px;position:relative;overflow:hidden;padding-top:0}.panel .panel-body .preview:before{content:"";width:100%;height:30%;position:absolute;left:0;bottom:0;background:linear-gradient(transparent,#fff)}.panel .panel-body .preview-switch{width:100%;padding-left:auto;padding-right:auto;display:block;text-align:center}.panel ul{padding-left:25px}.panel ul.list-unstyled{padding-left:10px}.campaign-dashboard-widgets .widget{border-radius:3px;font-size:24px;cursor:pointer;text-align:center;border:1px solid #ccc;margin-bottom:20px;height:160px;overflow:hidden}.campaign-dashboard-widgets .widget:hover{background-color:hsla(0,0%,100%,.8)}.campaign-dashboard-widgets .widget .widget-overlay{background-color:hsla(0,0%,100%,.7);padding:40px 20px;height:160px}.campaign-dashboard-widgets .widget .widget-overlay .tags span{font-size:8pt}.campaign-dashboard-widgets .widget .widget-type{display:block}.campaign-dashboard-widgets .widget .widget-entity{margin-top:8px}.campaign-dashboard-widgets .add{border:2px dashed #ccc}.widget-calendar .current-date{text-align:center;font-size:22px}.widget-calendar .current-date i{font-size:14px;cursor:pointer}.widget-map .panel-body{padding:0}.widget-recent .panel-body,.widget-unmentioned .panel-body{padding:5px}.widget-recent .row,.widget-unmentioned .row{margin:4px 0;border-bottom:1px solid #ccc}.widget-recent .entity-image,.widget-unmentioned .entity-image{display:inline-block;margin-right:8px;width:35px;height:35px;vertical-align:middle}.widget-recent .elapsed,.widget-unmentioned .elapsed{font-size:11px;color:#888}.widget-recent .entity,.widget-unmentioned .entity{padding:5px}.widget-recent .entity .entity-image,.widget-unmentioned .entity .entity-image{display:inline-block;margin-right:8px;width:25px;height:25px;vertical-align:middle}.widget-recent .entity .name,.widget-unmentioned .entity .name{padding-top:2px}.widget-recent-list{overflow:auto;max-height:400px}.widget-recent-list .flex{display:flex;justify-content:flex-start;align-items:center;min-height:45px;padding:3px}.widget-recent-list .flex:hover{background-color:rgba(50,50,50,.05)}.widget-recent-list .flex .entity-image{min-width:35px}.widget-recent-list .flex .blame{margin-left:auto;font-size:10pt;text-align:right}.widget-user-header{padding:0!important;height:auto!important}.widget-user-header .widget-user-overlay{background-color:hsla(0,0%,100%,.8);padding:20px;height:120px}.widget-user-header .widget-user-username i{font-size:16px}.widget-preview .panel-title{vertical-align:middle}.widget-preview .panel-title .entity-image{display:inline-block;vertical-align:middle;margin-right:6px}.widget-preview table{width:100%!important;word-break:break-all}.widget-preview iframe{max-width:100%!important}@media (max-width:787px){.campaign{padding:10px}.campaign .content{padding:10px;margin-top:20px}.campaign .content .title .img-circle{margin-left:0;height:30px;width:30px}.campaign .content ul.campaign-links{margin-bottom:0}.campaign .content ul.campaign-links li{display:inline-block!important;width:49%;margin-right:0;text-align:center}.campaign .content ul.campaign-links li a{text-align:center;width:100%}.campaign .content ul.campaign-links li:last-child{display:none!important}}.box .box-tools{position:absolute;right:10px;top:5px}
+.campaign-dashboard .content-header {
+  min-height: 28px;
+}
+
+.dashboard-actions {
+  display: inline-block;
+  float: right;
+  margin-top: -7px;
+}
+
+.campaign {
+  margin-top: 10px;
+  padding: 40px;
+  margin-bottom: 15px;
+}
+
+.campaign .content {
+  margin-top: 80px;
+  padding: 20px 20px 10px 20px;
+  border-radius: 5px;
+  min-height: 0;
+  text-align: justify;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.campaign .content h1,
+.campaign .content .more,
+.campaign .content .preview {
+  text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
+}
+
+.campaign .content h1 {
+  font-size: 18pt;
+  margin: 0;
+  padding: 0;
+  line-height: 1.3em;
+}
+
+.campaign .content h1 .img-circle {
+  width: 50px;
+  height: 50px;
+  margin-right: 0;
+}
+
+.campaign .content h1 .img-circle:hover {
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.campaign .content h1 a {
+  color: #fff;
+}
+
+.campaign .content h1 a:hover,
+.campaign .content h1 a:focus,
+.campaign .content h1 a:active {
+  color: #72afd2;
+}
+
+.campaign .content h2 {
+  font-size: 16pt;
+}
+
+.campaign .content h3,
+.campaign .content h4,
+.campaign .content h5,
+.campaign .content h6 {
+  font-size: 15pt;
+}
+
+.campaign .content .preview {
+  position: relative;
+  font-size: 11pt;
+}
+
+.campaign .content .preview .preview-action {
+  text-align: center;
+}
+
+.campaign .content .more {
+  font-size: 1.2em;
+}
+
+.campaign .content .more a {
+  padding: 5px 0;
+  display: inline-block;
+}
+
+.campaign .content .campaign-link {
+  display: block;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-size: 1.1em;
+}
+
+.campaign .content .campaign-link:hover {
+  color: white;
+  background: #3c8dbc;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.cover-background .campaign-link {
+  background: rgba(0, 0, 0, 0.6) !important;
+}
+
+.cover-background .campaign-link:hover {
+  background: #3c8dbc !important;
+}
+
+.no-header {
+  padding: 0;
+}
+
+.no-header .content {
+  margin-top: 0;
+  background-color: #fff;
+  border-radius: 2px;
+  color: #333;
+  border: 1px solid #d3e0e9;
+}
+
+.no-header .content h1,
+.no-header .content .more,
+.no-header .content .preview {
+  text-shadow: none;
+}
+
+.no-header .content h1 a {
+  color: #3c8dbc;
+}
+
+.no-header .content ul.campaign-links li a {
+  border: 1px solid #d3e0e9;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.no-header .content ul.campaign-links li a:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.panel h1 {
+  font-size: 20pt;
+}
+
+.panel h2 {
+  font-size: 18pt;
+}
+
+.panel h3,
+.panel h4,
+.panel h5,
+.panel h6 {
+  font-size: 12pt;
+}
+
+.panel .panel-heading-entity {
+  transition: all 3s ease;
+  padding: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 10%;
+}
+
+.panel .panel-heading-entity:hover {
+  background-position: 50% 50%;
+}
+
+.panel .panel-heading-entity h3 {
+  transition: none;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.panel .panel-heading-entity h3 a {
+  padding: 30px 20px;
+  display: inline-block;
+  width: 100%;
+  color: white !important;
+  text-shadow: rgba(0, 0, 0, 0.9) 0px 1px 4px;
+  font-size: 18px;
+}
+
+.panel .panel-body .pinned-entity {
+  transition: all 0.5s ease;
+}
+
+.panel .panel-body .preview {
+  max-height: 200px;
+  position: relative;
+  overflow: hidden;
+  padding-top: 0;
+}
+
+.panel .panel-body .preview:before {
+  content: "";
+  width: 100%;
+  height: 30%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: linear-gradient(transparent 0px, white);
+}
+
+.panel .panel-body .preview-switch {
+  width: 100%;
+  padding-left: auto;
+  padding-right: auto;
+  display: block;
+  text-align: center;
+}
+
+.panel ul {
+  padding-left: 25px;
+}
+
+.panel ul.list-unstyled {
+  padding-left: 10px;
+}
+
+.campaign-dashboard-widgets .widget {
+  border-radius: 3px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  height: 160px;
+  overflow: hidden;
+}
+
+.campaign-dashboard-widgets .widget:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.campaign-dashboard-widgets .widget .widget-overlay {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 40px 20px;
+  height: 160px;
+}
+
+.campaign-dashboard-widgets .widget .widget-overlay .tags span {
+  font-size: 8pt;
+}
+
+.campaign-dashboard-widgets .widget .widget-type {
+  display: block;
+}
+
+.campaign-dashboard-widgets .widget .widget-entity {
+  margin-top: 8px;
+}
+
+.campaign-dashboard-widgets .add {
+  border: 2px dashed #ccc;
+}
+
+.widget-calendar .current-date {
+  text-align: center;
+  font-size: 22px;
+}
+
+.widget-calendar .current-date i {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.widget-map .panel-body {
+  padding: 0;
+}
+
+.widget-recent .panel-body,
+.widget-unmentioned .panel-body {
+  padding: 5px;
+}
+
+.widget-recent .row,
+.widget-unmentioned .row {
+  margin: 4px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.widget-recent .entity-image,
+.widget-unmentioned .entity-image {
+  display: inline-block;
+  margin-right: 8px;
+  width: 35px;
+  height: 35px;
+  vertical-align: middle;
+}
+
+.widget-recent .elapsed,
+.widget-unmentioned .elapsed {
+  font-size: 11px;
+  color: #888;
+}
+
+.widget-recent .entity,
+.widget-unmentioned .entity {
+  padding: 5px;
+}
+
+.widget-recent .entity .entity-image,
+.widget-unmentioned .entity .entity-image {
+  display: inline-block;
+  margin-right: 8px;
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.widget-recent .entity .name,
+.widget-unmentioned .entity .name {
+  padding-top: 2px;
+}
+
+.widget-recent-list {
+  overflow: auto;
+  max-height: 400px;
+}
+
+.widget-recent-list .flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 45px;
+  padding: 3px;
+}
+
+.widget-recent-list .flex:hover {
+  background-color: rgba(50, 50, 50, 0.05);
+}
+
+.widget-recent-list .flex .entity-image {
+  min-width: 35px;
+}
+
+.widget-recent-list .flex .blame {
+  margin-left: auto;
+  font-size: 10pt;
+  text-align: right;
+}
+
+.widget-user-header {
+  padding: 0 !important;
+  height: auto !important;
+}
+
+.widget-user-header .widget-user-overlay {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  height: 120px;
+}
+
+.widget-user-header .widget-user-username i {
+  font-size: 16px;
+}
+
+.widget-preview .panel-title {
+  vertical-align: middle;
+}
+
+.widget-preview .panel-title .entity-image {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.widget-preview table {
+  width: 100% !important;
+  word-break: break-all;
+}
+
+.widget-preview iframe {
+  max-width: 100% !important;
+}
+
+@media (max-width: 787px) {
+  .campaign {
+    padding: 10px;
+  }
+
+  .campaign .content {
+    padding: 10px;
+    margin-top: 20px;
+  }
+
+  .campaign .content .title .img-circle {
+    margin-left: 0;
+    height: 30px;
+    width: 30px;
+  }
+
+  .campaign .content ul.campaign-links {
+    margin-bottom: 0;
+  }
+
+  .campaign .content ul.campaign-links li {
+    display: inline-block !important;
+    width: 49%;
+    margin-right: 0;
+    text-align: center;
+  }
+
+  .campaign .content ul.campaign-links li a {
+    text-align: center;
+    width: 100%;
+  }
+
+  .campaign .content ul.campaign-links li:nth-last-child(1) {
+    display: none !important;
+  }
+}
+
+.box .box-tools {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+

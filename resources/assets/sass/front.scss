@@ -565,6 +565,13 @@ ul.pagination {
   }
 }
 
+.youtube-placeholder {
+  overflow: hidden;
+}
+.play-youtube-video {
+  width: 100%;
+  cursor: pointer;
+}
 
 .btn-light {
   background-color: #ecedee;
@@ -601,6 +608,9 @@ ul.pagination {
 }
 
 @media (max-width:991px) {
+  #mainNav {
+    top: 0;
+  }
   .topbar {
     padding: 0 15px;
     background-color: #fff;
