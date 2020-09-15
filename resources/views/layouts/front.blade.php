@@ -36,7 +36,6 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/vendor/bootstrap/css/bootstrap.min.css?v=4.4" rel="stylesheet">
-    <link href="/css/front/new-age.min.css" rel="stylesheet">
     <link href="{{ mix('css/front.css') }}" rel="stylesheet">
     @if(app()->getLocale() == 'he')
         <link href="{{ mix('css/front-rtl.css') }}" rel="stylesheet">
@@ -118,7 +117,6 @@
                 <li class="nav-item">
                     <a class="nav-link @if(!empty($active) && $active == 'pricing') nav-active @endif" href="{{ route("front.pricing") }}">{{ __('front.menu.pricing') }}</a>
                 </li>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="https://blog.kanka.io" target="_blank">{{ __('front.menu.news') }}</a>
                 </li>
@@ -154,10 +152,9 @@
 
 <!-- Bootstrap core JavaScript -->
 <script src="/vendor/jquery/jquery.min.js"></script>
-<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!--<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>-->
 <script src="{{ mix('js/front.js') }}" async></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
 <script src="https://kit.fontawesome.com/d7f0be4a8d.js" crossorigin="anonymous"></script>
 
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" media="print" onload="this.media='all'" />
