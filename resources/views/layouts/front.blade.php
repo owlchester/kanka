@@ -31,11 +31,13 @@
 @endforeach
 @endif
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="//ajax.googleapis.com">
+    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+    <link rel="dns-prefetch" href="//code.jquery.com">
     <link rel="dns-prefetch" href="//kit.fontawesome.com">
 
     <!-- Bootstrap core CSS -->
-    <link href="/vendor/bootstrap/css/bootstrap.min.css?v=4.4" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <link href="{{ mix('css/front.css') }}" rel="stylesheet">
     @if(app()->getLocale() == 'he')
         <link href="{{ mix('css/front-rtl.css') }}" rel="stylesheet">
@@ -151,7 +153,11 @@
 @include('front.footer')
 
 <!-- Bootstrap core JavaScript -->
-<script src="/vendor/jquery/jquery.min.js"></script>
+<script
+        src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+        crossorigin="anonymous"></script>
+
 <!--<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>-->
 <script src="{{ mix('js/front.js') }}" async></script>
 
