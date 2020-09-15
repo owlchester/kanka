@@ -199,7 +199,6 @@ return [
         'title' => 'Location :name Maps',
     ],
     'organisations' => [
-        'description'   => 'Organisations situated in the location.',
         'title'         => 'Location :name Organisations',
     ],
     'panels'        => [
