@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}" @if(app()->getLocale() == 'he') dir="rtl" @endif>
 <head>
-@include('layouts._tracking', ['frontLayout' => true, 'noads' => true])
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no">
     <meta name="author" content="{{ config('app.name') }}">
@@ -34,9 +33,6 @@
     <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
     <link rel="dns-prefetch" href="//code.jquery.com">
     <link rel="dns-prefetch" href="//kit.fontawesome.com">
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link href="{{ mix('css/front.css') }}" rel="stylesheet">
     @if(app()->getLocale() == 'he')
@@ -193,7 +189,26 @@
             } } }
     window.onload = init;
 </script>
-
+<!-- Async Bootstrap Loading - add this to your footer -->
+<script async>
+    var cb = function () {
+        var l = document.createElement('link');
+        l.rel = 'stylesheet';
+        l.href = 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
+        var h = document.getElementsByTagName('head')[0];
+        h.parentNode.insertBefore(l, h);
+    };
+    var raf = requestAnimationFrame || mozRequestAnimationFrame || webkitRequestAnimationFrame || msRequestAnimationFrame;
+    if (raf) raf(cb);
+    else window.addEventListener('load', cb);
+</script>
+<noscript>
+    <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</noscript>
+@include('layouts._tracking', ['frontLayout' => true, 'noads' => true])
 @yield('scripts')
 </body>
 </html>
