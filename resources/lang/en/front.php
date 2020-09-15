@@ -77,8 +77,8 @@ return [
         'description'       => 'Kanka has a large number of features. Keep track of your world\'s Characters and their relations, Locations and their history, Quests and their objectives, Calendars and their events and weather effects, and many more. Best of all, Kanka receives several updates every month based on user feedback.',
         'description_full'  => 'Kanka is constantly being updated with new features and improvements, but here are some of the most important ones we think you’ll love.',
         'free'              => [
-            'bonuses'       => 'bonuses',
-            'description'   => 'All core features of Kanka are absolutely free, with :bonuses for :patreon supporters.',
+            'bonuses'       => 'bonuses for our subscribers',
+            'description'   => 'All core features of Kanka are absolutely free, with :bonuses.',
             'title'         => 'Free to Use',
         ],
         'landscape'         => 'Please switch your device to landscape mode to display the list of features.',
@@ -86,7 +86,7 @@ return [
             'description'   => 'Keep track of characters, their families, their whereabouts and lots more at all times.',
             'title'         => 'Characters, Families, Location',
         ],
-        'learn_more'        => 'Learn more about Kanka\'s features',
+        'learn_more'        => 'Full list of Kanka\'s features',
         'maps'              => [
             'description'   => 'Upload maps of your worlds, cities and caves, and add handy markers and links on them.',
             'title'         => 'Maps',
@@ -119,7 +119,7 @@ return [
             'users_roles'       => 'Number of users, roles and permission controls',
         ],
         'public'            => [
-            'description'   => 'Permissions can be set for modules, or for each single entity. Campaigns can also be public for the <a href=":url">whole world to see</a>.',
+            'description'   => 'Permissions can be set for modules, or for each single entity. Campaigns can also be <a href=":url">set to public</a> for the whole world to see.',
             'title'         => 'Permissions',
         ],
         'relations'         => [
@@ -164,7 +164,7 @@ return [
         ],
     ],
     'master'        => [
-        'call_to_action'    => 'Sign up',
+        'call_to_action'    => 'Create an account',
         'description'       => 'Kanka is an easy, intuitive, and flexible tool for worldbuilders, authors, story tellers and tabletop RPG players to digitally track their worlds and campaigns. Create and organize people, places, organisations, events and much more for free.',
         'heading'           => 'Tabletop RPG Campaign Management and Worldbuilding made easy',
         'title'             => 'Kanka',
@@ -202,8 +202,8 @@ return [
     ],
     'pricing'       => [
         'actions'       => [
-            'more'      => 'Learn more about all the features unlocked by supporting Kanka',
-            'subscribe' => 'Subscribe',
+            'more'      => 'Full list of features unlocked by supporting Kanka',
+            'subscribe' => 'Become a subscriber',
             'support'   => 'Support',
         ],
         'benefits'      => [
