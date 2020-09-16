@@ -148,7 +148,6 @@
             <div class="section-body">
                 <h1>{{ __('teams.hall_of_fame') }}</h1>
                 <p class="text-muted">{{ __('teams.patreon.description') }}
-                    <a href="{{ route('settings.subscription') }}">{{ __('footer.subscribe') }}</a>.
                     <a href="{{ route('front.features', ['#patreon']) }}">{{ __('teams.patreon.learn_more') }}</a>.
                 </p>
 
