@@ -160,7 +160,7 @@ return [
     ],
     'home'          => [
         'seo'   => [
-            'meta-description'  => 'Kanka is a community driven tabletop RPG Campaign Manager and Worldbuilding tool, that makes it easy to organise, plan and enjoy your tabletop RPG campaigns',
+            'meta-description'  => 'Are you a Game Master, Dungeon Master, or simply a worldbuilder? We offer a tabletop campaign manager and worldbuilding tool that makes it easy to organise, plan, and enjoy your TTRPG campaigns. We are community driven, and best of all, our core features are free!',
         ],
     ],
     'master'        => [
