@@ -10,6 +10,8 @@ services:
     env_file:
       - .docker/web/variables.env
     environment:
+      APP_DEBUG: ${APP_DEBUG}
+      APP_LOG_LEVEL: ${APP_LOG_LEVEL}
       DB_HOST: database
       REDIS_HOST: redis
     depends_on:
