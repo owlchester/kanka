@@ -581,6 +581,12 @@ ul.pagination {
 }
 
 
+.community-events, .community-event {
+  .card .card-img-top {
+    max-height: 280px;
+  }
+}
+
 /* Hover Effects on Card */
 
 @media (min-width: 992px) {
