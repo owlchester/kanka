@@ -221,6 +221,10 @@ class CampaignCacheService extends BaseCache
      */
     public function themes(): string
     {
+        if (!config('marketplace.enabled')) {
+            return false;
+        }
+
         $key = $this->themeKey();
         if ($this->has($key)) {
             return (string) $this->get($key);

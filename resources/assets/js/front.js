@@ -5,7 +5,6 @@ $(document).ready(function(e) {
     if(video_wrapper.length){
 // If user clicks on the video wrapper load the video.
         $('.youtube-placeholder').on('click', function(){
-            console.log('yooo', $(this).data('yt-url'));
             /* Dynamically inject the iframe on demand of the user.
              Pull the youtube url from the data attribute on the wrapper element. */
             let html = '<div class="embed-responsive embed-responsive-16by9">' +
@@ -18,7 +17,17 @@ $(document).ready(function(e) {
             $(this).hide().after(html);
         });
     }
-});
 
+
+    $('[data-toggle="dropdown"]').on('click', function(e) {
+        e.preventDefault();
+        let sub = $(this).next('.dropdown-menu');
+        if (sub.hasClass('show')) {
+            sub.removeClass('show');
+        } else {
+            sub.addClass('show');
+        }
+    })
+});
 
 
