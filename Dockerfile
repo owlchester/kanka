@@ -41,6 +41,6 @@ RUN groupadd -g 999 deploy \
 USER deploy
 WORKDIR /var/www/html
 
-RUN composer install
+RUN DB_CONNECTION=sqlite DB_DATABASE=:memory: composer install
 
 CMD ["/usr/local/bin/run.sh"]

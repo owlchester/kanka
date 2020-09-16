@@ -13,6 +13,10 @@ services:
       APP_DEBUG: ${APP_DEBUG}
       APP_LOG_LEVEL: ${APP_LOG_LEVEL}
       DB_HOST: database
+      # DB_CONNECTION: mysql
+      # DB_DATABASE: kanka_test
+      # DB_USERNAME: homestead
+      # DB_PASSWORD: secret
       REDIS_HOST: redis
     depends_on:
       - database
