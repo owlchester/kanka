@@ -23,21 +23,7 @@ Miscellany is a collaborative world building and campaign management tool tailor
 
 ## Run
 
-You can start kanka with docker. The only prerequisite is [docker](https://www.docker.com/).  
-Copy the docker env file and update it according to your specific needs:
-
-```bash
-cp .docker/env .env
-chmod -R a+w public
-```
-
-Start the containers with the following command:
-
-```bash
-docker-compose up --build
-```
-
-Open the url <http://localhost:8001>.
+See [documentation](./docs/running.md).
 
 ## Concepts
 
