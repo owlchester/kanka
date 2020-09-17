@@ -145,7 +145,7 @@ class EntityRelationService
             'id' => $entity->id,
             'name' => $entity->name . "\n(" . __('entities.' . $entity->type) . ')',
             'image' => $img,
-            'link' => $entity->url(),
+            'link' => route('entities.relations.index', $entity->id),
         ];
         return $this;
     }

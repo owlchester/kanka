@@ -2584,6 +2584,13 @@ cytoscape-dblclick@^0.3.1:
   resolved "https://registry.yarnpkg.com/cytoscape-dblclick/-/cytoscape-dblclick-0.3.1.tgz#007c1d6b7889afebea74113bc97a2130529f43d0"
   integrity sha512-xeL6lP2Td0RIvVSTxsBDY94KM0JfDsi9X6BPr6Y7PQGi5CP2RXx+1fNEtageXpk+gDkKFylW0pjoGbk2uc1J7Q==
 
+cytoscape-panzoom@^2.5.3:
+  version "2.5.3"
+  resolved "https://registry.yarnpkg.com/cytoscape-panzoom/-/cytoscape-panzoom-2.5.3.tgz#edf041b5aa8be1cbe3c001f16a8b2193b46127a7"
+  integrity sha512-//qLOqbbFUCGddarNKHDZArItOJHgnkQ1TvxI9nV2/8aOOl/5wuEOHmra3fL/aWSjB4AYpYTG4LX7w96uWfRTQ==
+  dependencies:
+    jquery "^1.4 || ^2.0 || ^3.0"
+
 cytoscape@^3.15.2:
   version "3.15.2"
   resolved "https://registry.yarnpkg.com/cytoscape/-/cytoscape-3.15.2.tgz#a26bb3053471babfe0178e740672cd99a46b28de"
@@ -4622,7 +4629,7 @@ jquery-ui@^1.12.1:
   resolved "https://registry.yarnpkg.com/jquery-ui/-/jquery-ui-1.12.1.tgz#bcb4045c8dd0539c134bc1488cdd3e768a7a9e51"
   integrity sha1-vLQEXI3QU5wTS8FIjN0+dop6nlE=
 
-jquery@>=1.10, jquery@>=1.11, jquery@>=1.5, jquery@>=1.7, "jquery@>=1.7.1 <4.0.0", "jquery@^1.8.3 || ^2.0 || ^3.0", jquery@^3.4.1:
+jquery@>=1.10, jquery@>=1.11, jquery@>=1.5, jquery@>=1.7, "jquery@>=1.7.1 <4.0.0", "jquery@^1.4 || ^2.0 || ^3.0", "jquery@^1.8.3 || ^2.0 || ^3.0", jquery@^3.4.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
   integrity sha512-XwIBPqcMn57FxfT+Go5pzySnm4KWkT1Tv7gjrpT1srtf8Weynl6R273VJ5GjkRb51IzMp5nbaPjJXMWeju2MKg==

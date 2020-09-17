@@ -1,9 +1,13 @@
 #cy {
   min-height: calc(90vh);
 
+  background-color: #fff;
+  color: #636b6f;
+
 
   .node-hover {
     border: 5px solid pink;
   }
 }
 
+@import '~cytoscape-panzoom/cytoscape.js-panzoom.css';
