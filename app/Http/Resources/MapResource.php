@@ -23,6 +23,10 @@ class MapResource extends EntityResource
             'min_zoom' => $this->minZoom(),
             'max_zoom' => $this->maxZoom(),
             'initial_zoom' => $this->initialZoom(),
+            'center_x' => $this->center_x,
+            'center_y' => $this->center_y,
+            'layers' => MapLayerResource::collection($this->layers),
+            'groups' => MapGroupResource::collection($this->layers),
         ]);
     }
 }

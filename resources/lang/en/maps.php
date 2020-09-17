@@ -26,6 +26,8 @@ return [
         ],
     ],
     'fields'        => [
+        'center_x'          => 'Default Longitude Position',
+        'center_y'          => 'Default Latitude Position',
         'distance_measure'  => 'Distance Measure',
         'distance_name'     => 'Distance Unit',
         'grid'              => 'Grid',
@@ -38,6 +40,7 @@ return [
         'type'              => 'Type',
     ],
     'helpers'       => [
+        'center'            => 'Changing the following values will control which area of the map is focused on. Leaving these values empty will result in the center of the map being focued on.',
         'descendants'       => 'This list contains all maps which are descendants of this map, and not only those directly under it.',
         'distance_measure'  => 'Giving the map a distance measurement will enable the measurement tool on the exploration mode.',
         'grid'              => 'Define a grid size that will be displayed on the exploration mode.',
@@ -61,6 +64,8 @@ return [
         'settings'  => 'Settings',
     ],
     'placeholders'  => [
+        'center_x'          => 'Leave empty to load the map in the middle',
+        'center_y'          => 'Leave empty to load the map in the middle',
         'distance_measure'  => 'Units per pixel',
         'distance_name'     => 'Name of the distance unit (kilometer, mile)',
         'grid'              => 'Distance in pixel between grid elements. Leave empty to hide the grid.',

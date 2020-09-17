@@ -24,6 +24,8 @@ use Kalnoy\Nestedset\NodeTrait;
  * @property int $min_zoom
  * @property int $max_zoom
  * @property int $initial_zoom
+ * @property int $center_x
+ * @property int $center_y
  * @property Map $map
  * @property Map[] $maps
  * @property Location $location
@@ -64,6 +66,8 @@ class Map extends MiscModel
         'min_zoom',
         'max_zoom',
         'initial_zoom',
+        'center_x',
+        'center_y',
     ];
 
     /**
@@ -268,10 +272,11 @@ class Map extends MiscModel
     {
         $layers = ['baseLayer' . $this->id];
         if ($groups) {
-            foreach ($this->groups as $group) {
-                if ($group->is_shown) {
-                    $layers[] = 'group' . $group->id;
-                }
+            foreach ($this->groups->where('is_shown', true) as $group) {
+                $layers[] = 'group' . $group->id;
+            }
+            foreach ($this->layers->where('type_id', 2) as $layer) {
+                $layers[] = 'layer' . $layer->id;
             }
         }
 
@@ -380,5 +385,17 @@ class Map extends MiscModel
         return (int) $this->initial_zoom;
     }
 
+    public function centerFocus(): string
+    {
+        $latitude = floor($this->height / 2);
+        if (!empty($this->center_y)) {
+            $latitude = $this->center_y;
+        }
+        $longitude = floor($this->width / 2);
+        if (!empty($this->center_x)) {
+            $longitude = $this->center_x;
+        }
 
+        return "$latitude, $longitude";
+    }
 }

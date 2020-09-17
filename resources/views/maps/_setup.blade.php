@@ -12,7 +12,7 @@
 @endforeach
 
     var baseMaps{{ $map->id }} = {
-@foreach ($map->layers as $layer)
+@foreach ($map->layers->whereNull('type_id') as $layer)
         "{{ $layer->name }}": layer{{ $layer->id }},
 @endforeach
         "{{ __('maps/layers.base') }}": baseLayer{{ $map->id }}
@@ -25,6 +25,9 @@
 @endforeach
 
     var overlayMaps{{ $map->id }} = {
+@foreach($map->layers->whereNotNull('type_id') as $layer)
+        "{{ $layer->name }}": layer{{ $layer->id }},
+@endforeach
 @foreach($map->groups as $group)
         "{{ $group->name }}": group{{ $group->id }},
 @endforeach
@@ -34,7 +37,7 @@
 @endif
     var map{{ $map->id }} = L.map('map{{ $map->id }}', {
         crs: L.CRS.Simple,
-        center: [ @if(isset($single) && $single) {{ $model->latitude }}, {{ $model->longitude }} @else {{ floor($map->height / 2)  }}, {{ floor($map->width / 2) }} @endif ],
+        center: [ @if(isset($single) && $single) {{ $model->latitude }}, {{ $model->longitude }} @else {{ $map->centerFocus() }} @endif ],
         noWrap: true,
         dragging: true,
         tap: false,

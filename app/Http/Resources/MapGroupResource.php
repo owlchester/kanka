@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class MapLayerResource extends ModelResource
+class MapGroupResource extends ModelResource
 {
     /**
      * Transform the resource into an array.
@@ -15,14 +15,11 @@ class MapLayerResource extends ModelResource
     public function toArray($request)
     {
         return $this->entity([
-            'map_id' => (int) $this->map_id,
+            'map_id' => $this->map_id,
             'name' => $this->name,
             'position' => (int) $this->position,
-            'width' => (int) $this->width,
-            'height' => (int) $this->height,
             'visibility' => $this->visibility,
-            'type_id' => (bool) $this->type_id,
-            'type' => (string) $this->typeName(),
+            'is_shown' => (bool) $this->is_shown,
         ]);
     }
 }
