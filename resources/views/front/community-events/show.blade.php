@@ -10,7 +10,7 @@
 @section('og')
     <meta property="og:description" content="{{ $model->excerpt }}" />
     <meta property="og:url" content="{{ route('community-events.show', $model) }}" />
-    @if ($model->image)<meta property="og:image" content="{{ $model->getImageUrl(1200, 280)  }}" />@endif
+    @if ($model->image)<meta property="og:image" content="{{ $model->getImageUrl(280, 280)  }}" />@endif
     <link rel="alternate" type="application/rss+xml" title="{{ __('front/community-events.title') }}" href="{{ url('/feeds/community-events.rss') }}" />
 @endsection
 
