@@ -5,7 +5,7 @@
 ?>
 <div class="card mb-3 @if($ongoing) voting @endif">
     @if (!empty($model->image))
-        <img class="card-img-top" src="{{ $model->getImageUrl() }}" alt="{{ $model->name }}">
+        <img class="card-img-top" src="{{ $model->getImageUrl(1200, 280) }}" alt="{{ $model->name }}">
     @endif
     <div class="card-body">
         <a href="{{ route('community-events.show', $model) }}">
@@ -18,7 +18,7 @@
             {!! nl2br($model->excerpt) !!}
         </div>
 
-        <div  class="mt-2">
+        <div class="mt-2">
             <a href="{{ route('community-events.show', $model) }}" class="btn btn-primary">
                 {{ __('front/community-events.actions.show_' . ($ongoing ? 'ongoing' : 'past')) }}
             </a>

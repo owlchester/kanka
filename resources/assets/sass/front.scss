@@ -2,6 +2,8 @@
 // This is kind of a mess, since the plugin uses bootstrap 4.0.0, but adminlte still uses the previous bootstrap.
 // will have to reevaluate when adminlte supports b-4.0.0
 
+@import 'front/new-age.min.css';
+
 $KankaBlue: #2828A1;
 $KankaDarkBlue: #08083c;
 $KankaGrey: #EDEDED;
@@ -63,7 +65,7 @@ header.reduced-masthead {
   box-shadow: 0 7px 6px rgba(50, 50, 93, 0.21);
   .navbar-brand {
     color: #73a6c0 !important;
-    font-family: 'Dubai',Catamaran,Helvetica,Arial,sans-serif !important;
+    font-family: Catamaran,Helvetica,Arial,sans-serif !important;
 
     img {
       height: 32px;
@@ -110,15 +112,8 @@ header.reduced-masthead {
   }
 }
 
-@font-face {
-  font-display: swap;
-  font-family: 'Dubai';
-  src: url('../fonts/dubai/DubaiW23-Light.eot'); /* IE9 Compat Modes */
-  src: url('../fonts/dubai/DubaiW23-Light.woff2') format('woff2');
-}
-
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Dubai',Catamaran,Helvetica,Arial,sans-serif !important;
+  font-family: Catamaran,Helvetica,Arial,sans-serif !important;
 }
 
 section.contact-us {
@@ -581,6 +576,16 @@ ul.pagination {
   margin-bottom: 50px !important;
 }
 
+.cc-window {
+  transition: none !important;
+}
+
+
+.community-events, .community-event {
+  .card .card-img-top {
+    max-height: 280px;
+  }
+}
 
 /* Hover Effects on Card */
 

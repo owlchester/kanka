@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}" @if(app()->getLocale() == 'he') dir="rtl" @endif>
 <head>
-@include('layouts._tracking', ['frontLayout' => true, 'noads' => true])
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no">
     <meta name="author" content="{{ config('app.name') }}">
@@ -31,12 +30,10 @@
 @endforeach
 @endif
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="//ajax.googleapis.com">
+    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
+    <link rel="dns-prefetch" href="//code.jquery.com">
     <link rel="dns-prefetch" href="//kit.fontawesome.com">
 
-    <!-- Bootstrap core CSS -->
-    <link href="/vendor/bootstrap/css/bootstrap.min.css?v=4.4" rel="stylesheet">
-    <link href="/css/front/new-age.min.css" rel="stylesheet">
     <link href="{{ mix('css/front.css') }}" rel="stylesheet">
     @if(app()->getLocale() == 'he')
         <link href="{{ mix('css/front-rtl.css') }}" rel="stylesheet">
@@ -118,7 +115,6 @@
                 <li class="nav-item">
                     <a class="nav-link @if(!empty($active) && $active == 'pricing') nav-active @endif" href="{{ route("front.pricing") }}">{{ __('front.menu.pricing') }}</a>
                 </li>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="https://blog.kanka.io" target="_blank">{{ __('front.menu.news') }}</a>
                 </li>
@@ -153,11 +149,14 @@
 @include('front.footer')
 
 <!-- Bootstrap core JavaScript -->
-<script src="/vendor/jquery/jquery.min.js"></script>
-<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script
+        src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+        crossorigin="anonymous"></script>
+
+<!--<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>-->
 <script src="{{ mix('js/front.js') }}" async></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
 <script src="https://kit.fontawesome.com/d7f0be4a8d.js" crossorigin="anonymous"></script>
 
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" media="print" onload="this.media='all'" />
@@ -190,7 +189,26 @@
             } } }
     window.onload = init;
 </script>
-
+<!-- Async Bootstrap Loading - add this to your footer -->
+<script async>
+    var cb = function () {
+        var l = document.createElement('link');
+        l.rel = 'stylesheet';
+        l.href = 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
+        var h = document.getElementsByTagName('head')[0];
+        h.parentNode.insertBefore(l, h);
+    };
+    var raf = requestAnimationFrame || mozRequestAnimationFrame || webkitRequestAnimationFrame || msRequestAnimationFrame;
+    if (raf) raf(cb);
+    else window.addEventListener('load', cb);
+</script>
+<noscript>
+    <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</noscript>
+@include('layouts._tracking', ['frontLayout' => true, 'noads' => true])
 @yield('scripts')
 </body>
 </html>

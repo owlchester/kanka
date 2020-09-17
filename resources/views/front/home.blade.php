@@ -85,7 +85,7 @@
                 </div>
             </div>
             <div class="text-center mt-5">
-                <h4>
+                <h4 class="mb-0">
                     <a href="{{ route('front.features') }}">{{ trans('front.features.learn_more') }}
                         <i class="fa fa-arrow-right"></i>
                     </a>

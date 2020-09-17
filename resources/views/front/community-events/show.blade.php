@@ -31,7 +31,7 @@
         <div class="container">
             <div class="card mb-4">
                 @if (!empty($model->image))
-                    <img class="card-img-top" src="{{ $model->getImageUrl() }}" alt="{{ $model->name }}">
+                    <img class="card-img-top" src="{{ $model->getImageUrl(1200, 280) }}" alt="{{ $model->name }}">
                 @endif
                 <div class="card-body">
                     <h2 class="card-title mb-1">
