@@ -37,7 +37,7 @@
 @endif
     var map{{ $map->id }} = L.map('map{{ $map->id }}', {
         crs: L.CRS.Simple,
-        center: [ @if(isset($single) && $single) {{ $model->latitude }}, {{ $model->longitude }} @else {{ floor($map->height / 2)  }}, {{ floor($map->width / 2) }} @endif ],
+        center: [ @if(isset($single) && $single) {{ $model->latitude }}, {{ $model->longitude }} @else {{ $map->centerFocus() }} @endif ],
         noWrap: true,
         dragging: true,
         tap: false,
