@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int $position
  * @property int $height
  * @property int $width
+ * @property int $type_id
  *
  * @property Map $map
  *
@@ -40,6 +41,7 @@ class MapLayer extends Model
         'image',
         'position',
         'visibility',
+        'type_id',
     ];
 
     /**
@@ -70,5 +72,18 @@ class MapLayer extends Model
     public function getImageUrl(int $width = 400, int $height = null)
     {
         return Img::crop($width, (!empty($height) ? $height : $width))->url($this->image);
+    }
+
+    /**
+     * @return string
+     */
+    public function typeName(): string
+    {
+        if (empty($this->type_id)) {
+            return 'standard';
+        } elseif ($this->type_id == 1) {
+            return 'overlay';
+        }
+        return 'overlay_shown';
     }
 }

@@ -268,10 +268,11 @@ class Map extends MiscModel
     {
         $layers = ['baseLayer' . $this->id];
         if ($groups) {
-            foreach ($this->groups as $group) {
-                if ($group->is_shown) {
-                    $layers[] = 'group' . $group->id;
-                }
+            foreach ($this->groups->where('is_shown', true) as $group) {
+                $layers[] = 'group' . $group->id;
+            }
+            foreach ($this->layers->where('type_id', 2) as $layer) {
+                $layers[] = 'layer' . $layer->id;
             }
         }
 

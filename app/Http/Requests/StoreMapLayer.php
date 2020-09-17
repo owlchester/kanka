@@ -32,6 +32,7 @@ class StoreMapLayer extends FormRequest
             'image' => 'required_without:image_url|image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'required_without:image|nullable|url|active_url',
             'position' => 'nullable|string|max:3',
+            'type_id' => 'nullable|integer',
         ];
 
         // If editing, don't need a new image

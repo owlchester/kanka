@@ -32,6 +32,11 @@ class MapLayerObserver
             }
         }
 
+        // Trying to cheat the options
+        if ($mapLayer->type_id > 2) {
+            $mapLayer->type_id = null;
+        }
+
         // When saving a map layer that has an image but no height, force the height and width
         // attribute to null to be handled in the ImageHandler. It uses getAttributes on the
         // model but these aren't present for some reason.
