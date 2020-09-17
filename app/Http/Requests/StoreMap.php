@@ -31,6 +31,8 @@ class StoreMap extends FormRequest
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:' . auth()->user()->maxUploadSize(false, 'map'),
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable|exists:attribute_templates,id',
+            'center_x' => 'nullable|integer|min:0',
+            'center_y' => 'nullable|integer|min:0',
         ];
 
         $self = request()->segment(5);
