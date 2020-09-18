@@ -5,6 +5,7 @@ namespace App\Models;
 
 
 use App\Facades\Mentions;
+use App\Models\Concerns\Paginatable;
 use App\Traits\VisibilityTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -37,7 +38,7 @@ use Illuminate\Support\Str;
  */
 class MapMarker extends Model
 {
-    use VisibilityTrait;
+    use VisibilityTrait, Paginatable;
 
     const SHAPE_MARKER = 1;
     const SHAPE_LABEL = 2;

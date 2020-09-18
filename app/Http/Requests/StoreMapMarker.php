@@ -41,6 +41,7 @@ class StoreMapMarker extends FormRequest
 
             'shape_id' => 'required|integer',
             'custom_shape' => 'nullable|string',
+            'is_draggable' => 'nullable|boolean',
 
             'icon' => 'required|integer',
             'custom_icon' => 'nullable|string',
