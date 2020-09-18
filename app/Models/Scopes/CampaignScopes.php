@@ -147,6 +147,10 @@ trait CampaignScopes
                 $query->where('system', $system);
             }
         }
+        if (Arr::has($options, 'is_boosted')) {
+            $boosted = Arr::get($options, 'is_boosted');
+            $query->where('boost_count', ($boosted ? '>' : '='), 0);
+        }
 
         return $query;
     }

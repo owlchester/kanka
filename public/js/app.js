@@ -76674,7 +76674,6 @@ function treeViewInit() {
   }
 
   var link = treeViewLoader.data('url');
-  var treeViewPrevent = false;
   $.each($('.table-nested > tbody > tr'), function (index) {
     var children = $(this).data('children');
 

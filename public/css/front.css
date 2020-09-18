@@ -267,56 +267,66 @@ footer .secondary-footer ul li a {
   font-size: 12px !important;
 }
 
-.campaign {
+.campaign-container {
   overflow: hidden;
-  display: block;
   margin-bottom: 20px;
+  position: relative;
+  height: 200px;
 }
 
-.campaign .image-wrapper {
-  max-width: 100%;
-  display: flex;
-  align-items: flex-end;
-  height: 200px;
-  background-color: #ebebeb;
+.campaign-container .campaign {
+  transition: all 0.5s;
+}
+
+.campaign-container .campaign .campaign-image {
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: 50% 50%;
+  background-position: center;
+  height: 200px;
+  width: 100%;
+  transition: all 0.5s;
+  position: absolute;
+  top: 0;
 }
 
-.campaign .image-wrapper .labels {
-  padding: 7px;
-  font-size: 16pt;
-}
-
-.campaign .image-wrapper .labels .label {
-  margin-right: 5px;
-}
-
-.campaign .no-image {
-  background: #dfdfdf;
-  background: linear-gradient(135deg, #dfdfdf 0%, #8787ac 76%, #7676aa 100%);
-}
-
-.campaign .small-campaign {
+.campaign-container .campaign .small-campaign {
   height: 160px;
 }
 
-.campaign .campaign-title {
-  margin-top: 6px;
-  max-height: 56px;
-  padding: 5px;
-}
-
-.campaign:hover {
+.campaign-container .campaign:hover {
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  transition: all 0.15s ease;
   text-decoration: none;
-  color: #c09853;
 }
 
-.featured-campaigns {
-  padding-bottom: 50px;
+.campaign-container .campaign:hover .campaign-image {
+  transform: scale(1.1);
+}
+
+.campaign-container .campaign .bottom {
+  position: absolute;
+  bottom: 0;
+  padding: 20px 5px 5px 5px;
+  background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, #333333 100%);
+  width: 100%;
+}
+
+.campaign-container .campaign .bottom .labels {
+  font-size: 14pt;
+}
+
+.campaign-container .campaign .bottom h4.campaign-title {
+  margin: 0;
+  max-height: 50px;
+  overflow: hidden;
+  font-size: 20px;
+}
+
+.campaign-boosted {
+  box-shadow: 0 4px 6px rgba(98, 46, 116, 0.3), 0 1px 3px rgba(69, 17, 82, 0.08);
+}
+
+.campaign-placeholder {
+  background-image: url(https://images.kanka.io/app/L5nSYCLgwtxR3wlUGk16fMZ0zAU=/280x210/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg);
 }
 
 .campaigns {
