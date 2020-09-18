@@ -49,7 +49,7 @@ class MapLayerController extends Controller
         $this->authorize('update', $map);
 
         $model = new MapLayer();
-        $data = $request->only('name', 'position', 'entry', 'visibility');
+        $data = $request->only('name', 'position', 'entry', 'visibility', 'type_id');
         $data['map_id'] = $map->id;
         $new = $model->create($data);
 
@@ -89,7 +89,7 @@ class MapLayerController extends Controller
     {
         $this->authorize('update', $map);
 
-        $mapLayer->update($request->only('name', 'position', 'entry', 'visibility'));
+        $mapLayer->update($request->only('name', 'position', 'entry', 'visibility', 'type_id'));
 
         return redirect()
             ->route('maps.edit', [$map, '#tab_form-layers'])

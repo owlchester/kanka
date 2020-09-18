@@ -1,73 +1,29 @@
-# Miscellany
+# Miscellany <!-- omit in toc -->
 
 [![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%207.3-8892BF.svg)](https://php.net/)
 [![Discord](https://img.shields.io/discord/413623253366603777.svg)](https://discord.gg/rhsyZJ4)
 
 Miscellany is a collaborative world building and campaign management tool tailored for tabletop RPG players and game masters.
 
-## Installation
+- [Run](#run)
+- [Concepts](#concepts)
+  - [Structure](#structure)
+  - [Sub content](#sub-content)
+  - [Assets](#assets)
+- [Development](#development)
+  - [Issues](#issues)
+  - [Standards](#standards)
+  - [Migrations](#migrations)
+  - [GIT](#git)
+  - [Production](#production)
+- [Translations](#translations)
+  - [Vue translations](#vue-translations)
+  - [Database Backup](#database-backup)
+- [Testing](#testing)
 
-After cloning the project, create the following files.
+## Run
 
-* `.env`
-  * `cp .env.example .env`
-  * You'll need to fill it out to your needs (db access, smtp config, etc).
-* `public/.htaccess`
-  * If on Apache. You can run `cp .htaccess.example public/.htaccess` for quick development on docker.
-
-Finish everything by running `composer install` to install all third party libraries.
-
-## Using Vagrant
-Make sure you have [composer](https://getcomposer.org), [Vagrant](https://www.vagrantup.com/) and their dependencies installed and walk through the next steps:
-
-Run command `composer install` - This will install all PHP dependencies of the project.
-
-Then for Mac/Linux users, run:
-
-`php vendor/bin/homestead make`
-
-For Windows users, run:
-
-`vendor\\bin\\homestead make`
-
-Now you can run `vagrant up` to start your virtualized local dev environment.
-
-_For more information on Laravel Homestead check [this](https://laravel.com/docs/5.8/homestead) link. We currently use the per-project installation._
-
-You should now be able to `vagrant ssh` into your virtual machine.
-
-Run the commands below after changing directory to `code`.
-
-```
-php artisan key:generate
-php artisan storage:link
-php artisan voyager:install
-php artisan migrate
-php artisan db:seed
-```
-
-That should cover you. You can now create an account. If you have errors on the dashboard, check that your `roles` table has entries, and that your user has a valid `role_id` value.
-
-## Using Docker
-Follow the step given above for creating the .env file, then modify it by deleting the following:
-```bash
-DB_HOST=mysql
-```
-Now add the following lines to your .env file:
-```bash
-# Docker
-DOCKER_WEB_PORT=8000
-DOCKER_MYSQL_PORT=3306
-```
-Start the container by issuing the following command:
-```bash
-> docker-compose up -d --build
-```
-Note that the output stops before the web container is finished with everything that it needs to do, so it may appear that everything is ready before you'll get a response from localhost in your browser. You can check the logs to see the status of the scripts that are run once the container is up.
-```bash
-docker-container logs -t
-```
-
+See [documentation](./docs/running.md).
 
 ## Concepts
 
@@ -77,7 +33,7 @@ The app revolves around the concept of `Entities`. These include, for example:
 * Items
 * Locations
 
-## Structure
+### Structure
 
 Each entity is split between two tables:
 
@@ -85,11 +41,12 @@ Each entity is split between two tables:
 * A table for the specific data of the entity.
 
 ### Sub content
+
 Most entities can have n-to-n relations to other entities.
 
 For example, there are `Relations` that link two entities together, as well as `Attributes` which contain n-to-1 custom data of an entity.
 
-## Assets
+### Assets
 
 Assets can be compiled by following the [Laravel Documentation](https://laravel.com/docs/5.6/mix)
 
@@ -108,37 +65,38 @@ The following will produce assets for production:
 
 > npm run prod
 
-# Development
+## Development
 
 The following rules apply when developing the application.
 
-## Issues
+### Issues
 
-All improvements, features and bugs must be related to a ticket on the trello. Each PR must contain a link to the trello ticket.
+To discuss an issue, please use [discord](https://discord.gg/rhsyZJ4).
+All improvements, features and bugs must be related to a ticket on the trello. Each PR must contain a link to the trello ticket (see [contributing](./docs/CONTRIBUTING.md)).
 
-## Standards
+### Standards
 
 Code must follow PSR-4 recommendations.
 
-## Migrations
+### Migrations
 
 All migrations should have a working `down()` function. Exceptions are allowed for migrations that alter lots of content.
 
-## GIT
+### GIT
 
 Development should be done on your own fork of the repository in the `develop` branch, with substantial new features done in a separate branch.
 
 **Tagging** is only done on the master branch.
 
-## Production
+### Production
 
 Once a feature is ready and tested, the admin will merge it into the master branch. There is no auto-deploy to the servers.
 
-# Translations
+## Translations
 
 To work on translations, execute the following command to clean your translations and re-import them.
 
-```php
+```sh
 php artisan translations:reset
 php artisan translations:import
 ```
@@ -147,41 +105,54 @@ In the database, change your user's `is_translator` to `true`._Navigate to `/tra
 
 When you are finished, export your changes.
 
-```php
+```sh
 php artisan translations:export *
 ```
 
-## Vue translations
+The following translations can be ignored, as they are imported from thirdparty software:
+
+- `voyager.php`.
+
+### Vue translations
 
 To generate the vue translations:
 
+```sh
     php artisan vue-i18n:generate
+```
 
-# Database Backup
+### Database Backup
 
 To back up your database in a gzip file, Kanka uses the [laravel backup manager](https://github.com/backup-manager/laravel). Execute the following command (adapt to your config):
 
+```sh
     php artisan db:backup --database=mysql --destination=s3 --compression=gzip --destinationPath=prod/ --timestamp="d-m-Y"
-
+```
 
 To restore a db, use the following:
 
+```sh
     php artisan db:restore
+```
 
-# Testing
+## Testing
 
 The configuration for PHPUnit-Tests is in the file /phpunit.xml.
 Before the first run you have to run
-```php
+
+```sh
 php artisan setupTestDB --env=testing
 ```
+
 to create and set up the TestDatabase. Also if the Database-Schema changes or new migrations are added, you have to reset the Testing Database with this command.
 
 The Configuration for the TestEnvironment can be found in the files /phpunit.xml and .env.testing.
 The Environment-Variables in both files need to be the same.
 
 If everything is set up correctly, you can run the tests by just calling
-```php
+
+```sh
 phpunit
 ```
+
 in the project directory.

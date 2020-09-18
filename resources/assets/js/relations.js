@@ -1,5 +1,6 @@
 import cytoscape from 'cytoscape';
 import coseBilkent from 'cytoscape-cose-bilkent';
+import panzoom from 'cytoscape-panzoom';
 import dblclick from 'cytoscape-dblclick';
 
 $(document).ready(function () {
@@ -17,11 +18,13 @@ function initCytoscape() {
     // Libraries
     cytoscape.use( dblclick );
     cytoscape.use( coseBilkent );
+    cytoscape.use( panzoom );
     // Selector
     cySelector = $('#cy');
 
     cy = cytoscape({
         container: document.getElementById('cy'), // container to render in
+        wheelSensitivity: 0.5,
         style: cytoscape.stylesheet()
             .selector('node')
             .css({
@@ -30,13 +33,14 @@ function initCytoscape() {
                 'height': 80,
                 'width': 80,
                 'background-fit': 'cover',
-                'border-color': DEFAULT_COLOUR,
+                'border-color': $('#cy').parent().css('color'),
                 'border-width': 3,
+                'color': $('#cy').css('color'),
                 'text-wrap': 'wrap',
                 'text-margin-y': '-8px',
                 'text-background-opacity': 1,
-                'text-background-color': '#ffffff',
-                'text-border-color': '#ffffff',
+                'text-background-color': $('#cy').css('background-color'),
+                'text-border-color': $('#cy').css('background-color'),
                 'text-border-width': 3,
                 'text-border-opacity': 1
             })
@@ -49,11 +53,18 @@ function initCytoscape() {
                 'target-arrow-color': 'data(colour)',
                 'width': 'data(attitude)',
                 'text-background-opacity': 1,
-                'text-background-color': '#ffffff',
-                'text-border-color': '#ffffff',
+                'color': $('#cy').css('color'),
+                'text-background-color': $('#cy').css('background-color'),
+                'text-border-color': $('#cy').css('background-color'),
                 'text-border-width': 3,
                 'text-border-opacity': 1
             }),
+    });
+
+    // enable pan/zoom buttons
+    cy.panzoom({
+        maxZoom: 2,
+        minZoom: 0.3,
     });
 
     // enable double-click event
@@ -72,7 +83,7 @@ function loadMap() {
 }
 
 function parseMap(json) {
-    console.log('result from map api', json);
+    //console.log('result from map api', json);
 
     for(entity in json.entities) {
         let element = {
@@ -172,7 +183,7 @@ function addListeners() {
 
     // Double click on an edge to edit it
     cy.edges().on('dblclick', function(e) {
-        console.log('e', e.target.data());
+        //console.log('e', e.target.data());
         let editUrl = e.target.data().edit_url;
         if (!editUrl) {
             return;

@@ -32,6 +32,7 @@
     "cytoscape": "^3.15.2",
     "cytoscape-cose-bilkent": "^4.1.0",
     "cytoscape-dblclick": "^0.3.1",
+    "cytoscape-panzoom": "^2.5.3",
     "eonasdan-bootstrap-datetimepicker": "^4.17.47",
     "grunt": "^1.0.3",
     "laravel-mix-brotli": "^1.0.0",

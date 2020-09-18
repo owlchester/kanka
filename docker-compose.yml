@@ -3,20 +3,41 @@ services:
   web:
     build:
       context: .
-      dockerfile: .docker/web/Dockerfile
+    image: kanka
+    container_name: kanka
     ports:
       - ${DOCKER_WEB_PORT}:80
+    env_file:
+      - .docker/web/variables.env
     environment:
-      DB_HOST: mysql
-    volumes:
-      - .:/var/www/html
+      APP_DEBUG: ${APP_DEBUG}
+      APP_LOG_LEVEL: ${APP_LOG_LEVEL}
+      DB_HOST: database
+      # DB_CONNECTION: mysql
+      # DB_DATABASE: kanka_test
+      # DB_USERNAME: homestead
+      # DB_PASSWORD: secret
+      REDIS_HOST: redis
+    depends_on:
+      - database
+      - redis
 
-  mysql:
-    image: mysql:5.7
+  database:
+    image: mariadb:10
+    restart: unless-stopped
     environment:
-      MYSQL_USER: ${DB_USERNAME}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-      MYSQL_DATABASE: ${DB_DATABASE}
+     MYSQL_USER: ${DB_USERNAME}
+     MYSQL_PASSWORD: ${DB_PASSWORD}
+     MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+     MYSQL_DATABASE: ${DB_DATABASE}
     ports:
-      - ${DOCKER_MYSQL_PORT}:3306
+     - ${DOCKER_DB_PORT}:3306
+
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    # volumes:
+    #   - /data/redis:/data
+ 
