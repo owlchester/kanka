@@ -253,7 +253,7 @@ class Map extends MiscModel
     public function groupOptions(): array
     {
         $options = [null => ''];
-        $groups = $this->groups()->orderBy('name')->get();
+        $groups = $this->groups->sortBy('name');
         foreach ($groups as $group) {
             $options[$group->id] = $group->name;
         }
