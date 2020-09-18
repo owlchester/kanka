@@ -29,6 +29,7 @@ Route::apiResources([
     'campaigns.locations.map_points' => 'LocationMapPointApiController',
     'campaigns.maps' => 'MapApiController',
     'campaigns.maps.map_layers' => 'MapLayerApiController',
+    'campaigns.maps.map_groups' => 'MapGroupApiController',
     'campaigns.maps.map_markers' => 'MapMarkerApiController',
     'campaigns.notes' => 'NoteApiController',
     'campaigns.organisations' => 'OrganisationApiController',
