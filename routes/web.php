@@ -366,6 +366,8 @@ Route::group([
         // Export
         Route::get('/entities/export/{entity}', 'EntityController@export')->name('entities.export');
 
+        Route::get('/entities/{entity}/template', 'EntityController@template')->name('entities.template');
+
         // Attribute template
         Route::get('/entities/{entity}/attribute/template', 'AttributeController@template')->name('entities.attributes.template');
         Route::post('/entities/{entity}/attribute/template', 'AttributeController@applyTemplate')->name('entities.attributes.template');

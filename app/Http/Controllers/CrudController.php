@@ -7,6 +7,7 @@ use App\Datagrids\Sorters\DatagridSorter;
 use App\Facades\CampaignLocalization;
 use App\Facades\FormCopy;
 use App\Http\Resources\AttributeResource;
+use App\Models\Entity;
 use App\Models\AttributeTemplate;
 use App\Models\MiscModel;
 use App\Services\FilterService;
@@ -121,6 +122,7 @@ class CrudController extends Controller
     {
         //$this->authorize('browse', $this->model);
 
+        /** @var MiscModel $model */
         $model = new $this->model;
         $this->filterService->make($this->view, request()->all(), $model);
         $name = $this->view;
@@ -131,6 +133,9 @@ class CrudController extends Controller
         $nestedView = method_exists($this, 'tree');
         $route = $this->route;
         $bulk = $this->bulkModel();
+
+        // Entity templates
+        $templates = auth()->check() && auth()->user()->isAdmin() ? Entity::templates($model->getEntityType())->get() : null;
 
         $datagrid = !empty($this->datagrid) ? new $this->datagrid : null;
 
@@ -174,7 +179,8 @@ class CrudController extends Controller
             'filteredCount',
             'unfilteredCount',
             'bulk',
-            'datagrid'
+            'datagrid',
+            'templates'
         ));
     }
 

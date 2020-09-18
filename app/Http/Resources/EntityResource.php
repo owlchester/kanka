@@ -32,6 +32,7 @@ class EntityResource extends JsonResource
             'child_id' => $entity->id,
             'tags' => $entity->tags()->pluck('tags.id')->toArray(),
             'is_private' => (bool) $entity->is_private,
+            'is_template' => (bool) $entity->is_template,
             'campaign_id' => $entity->campaign_id,
             'is_attributes_private' => (bool) $entity->is_attributes_private,
             'tooltip' => $entity->tooltip,

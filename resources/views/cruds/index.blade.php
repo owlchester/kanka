@@ -15,9 +15,25 @@
             @include('layouts.datagrid.search', ['route' => route($name . '.index')])
 
             @can('create', $model)
-                <a href="{{ route($name . '.create') }}" class="btn btn-primary pull-right">
-                    <i class="fa fa-plus"></i> <span class="hidden-xs hidden-sm">{{ trans($name . '.index.add') }}</span>
-                </a>
+                <div class="btn-group pull-right">
+                    <a href="{{ route($name . '.create') }}" class="btn btn-primary">
+                        <i class="fa fa-plus"></i> <span class="hidden-xs hidden-sm">{{ trans($name . '.index.add') }}</span>
+                    </a>
+                    @if(!empty($templates) && !$templates->isEmpty())
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            @foreach ($templates as $entityTemplate)
+                            <li>
+                                <a href="{{ route($name . '.create', ['copy' => $entityTemplate->entity_id]) }}">
+                                    <i class="fa fa-star-o"></i> {{ $entityTemplate->name  }}</span>
+                                </a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
             @endcan
             @foreach ($actions as $action)
                 @if (empty($action['policy']) || (Auth::check() && Auth::user()->can($action['policy'], $model)))

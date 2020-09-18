@@ -493,4 +493,16 @@ class EntityService
             // Easy peasy-ish
         }
     }
+
+    /**
+     * Toggle the entity's template status
+     * @param Entity $entity
+     * @return Entity
+     */
+    public function toggleTemplate(Entity $entity): Entity
+    {
+        $entity->is_template = !$entity->is_template;
+        $entity->save();
+        return $entity;
+    }
 }

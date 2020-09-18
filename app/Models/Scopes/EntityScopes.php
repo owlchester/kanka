@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
  * @method static self|Builder unmentioned()
  * @method static self type(string $type)
  * @method static self inTags(array $tags)
+ * @method static self|Builder templates(string $entityType)
  */
 trait EntityScopes
 {
@@ -95,5 +96,17 @@ trait EntityScopes
             ->recentlyModified()
             ->leftJoin('entity_mentions as em', 'em.target_id', $this->getTable() . '.id')
             ->whereNull('em.id');
+    }
+
+    /**
+     * @param Builder $query
+     * @param string $entityType
+     * @return Builder
+     */
+    public function scopeTemplates(Builder $query, string $entityType)
+    {
+        return $query
+            ->where('type', $entityType)
+            ->where('is_template', 1);
     }
 }
