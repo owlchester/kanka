@@ -196,12 +196,13 @@ class SearchService
                         . $model->child->getImageUrl(40) . '\');"></span> ';
                 }
 
+                $parsedName = str_replace('&#039;', '\'', e($model->name));
                 if ($this->full) {
                     $searchResults[] = [
                         'id' => $model->id,
-                        'fullname' => e($model->name),
+                        'fullname' => $parsedName,
                         'image' => $img,
-                        'name' => e($model->name),
+                        'name' => $parsedName,
                         'type' => __('entities.' . $model->type),
                         'model_type' => $model->type,
                         'tooltip' => $model->tooltip(),
@@ -210,7 +211,7 @@ class SearchService
                 } else {
                     $searchResults[] = [
                         'id' => $model->id,
-                        'text' => e($model->name) . ' (' . trans('entities.' . $model->type) . ')'
+                        'text' => $parsedName . ' (' . trans('entities.' . $model->type) . ')'
                     ];
                 }
             }
