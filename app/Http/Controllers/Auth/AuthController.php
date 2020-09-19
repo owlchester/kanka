@@ -61,7 +61,7 @@ class AuthController extends Controller
 
             $authUser = $this->findOrCreateUser($user, $provider);
             Auth::login($authUser, true);
-            return redirect($this->redirectTo);
+            return redirect()->route('home');
         } catch (\Exception $ex) {
             if ($ex->getCode() == '1') {
                 return redirect()->route('register')->withErrors(trans('auth.register.errors.email_already_taken'));

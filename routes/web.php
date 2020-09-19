@@ -46,7 +46,6 @@ Route::group([
 
     // OAuth Routes
     Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider')->name('auth.provider');
-    Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback')->name('auth.provider.callback');
 
     Route::get('/start', 'StartController@index')->name('start');
     Route::post('/start', 'StartController@store')->name('start');
@@ -420,6 +419,9 @@ Route::group([
     });
 
 });
+
+// Auth callback without language segment in url
+Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback')->name('auth.provider.callback');
 
 Route::group(['prefix' => 'subscription-api'], function () {
     Route::get('setup-intent', 'Settings\SubscriptionApiController@setupIntent');

@@ -39,7 +39,7 @@ class HomeController extends Controller
      */
     protected function front()
     {
-        return response(view('front.home'))->header('Expires', Carbon::now()->addDays(7)->toDateTimeString());
+        return response(view('front.home'));
     }
 
     /**
