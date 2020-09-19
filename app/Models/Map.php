@@ -253,7 +253,7 @@ class Map extends MiscModel
     public function groupOptions(): array
     {
         $options = [null => ''];
-        $groups = $this->groups()->orderBy('name')->get();
+        $groups = $this->groups->sortBy('name');
         foreach ($groups as $group) {
             $options[$group->id] = $group->name;
         }
@@ -296,7 +296,7 @@ class Map extends MiscModel
                 if (empty($groups[$marker->group_id])) {
                     $groups[$marker->group_id] = [
                         'name' => $marker->group->name,
-                        'lower' => strtolower($marker->group->name),
+                        'lower_name' => strtolower($marker->group->name),
                         'id' => $marker->group_id,
                         'markers' => new Collection()
                     ];
@@ -322,12 +322,18 @@ class Map extends MiscModel
         $all = $markers->sortBy('lower_name')->toArray();
 
         usort($groups, function ($a, $b) {
-            return $a['lower'] > $b['lower'];
+            return $a['lower_name'] > $b['lower_name'];
         });
 
         foreach ($groups as $id => $group) {
+            // Reorder group
+            $group['markers'] = $group['markers']->sortBy('lower_name')->toArray();
             $all[] = $group;
         }
+
+        usort($all, function ($a, $b) {
+            return $a['lower_name'] > $b['lower_name'];
+        });
 
         return $all;
     }

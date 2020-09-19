@@ -336,6 +336,7 @@ class User extends \TCG\Voyager\Models\User
     }
 
     /**
+     * Determine if a user is a goblin (deprecated)
      * @return bool
      */
     public function isGoblinPatron(): bool
@@ -347,11 +348,13 @@ class User extends \TCG\Voyager\Models\User
     }
 
     /**
+     * Determine if a user is an elemental
      * @return bool
      */
     public function isElementalPatreon(): bool
     {
-        return !empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_ELEMENTAL;
+        return (!empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_ELEMENTAL) ||
+            $this->campaignRoles->where('id', '61105')->count();
     }
 
     /**
