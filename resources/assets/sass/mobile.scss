@@ -86,4 +86,20 @@
     max-height: calc(30vh) !important;
   }
 
+  .nav-tabs-custom {
+    ul.nav-tabs {
+      display: inline-flex;
+      width: 100%;
+      overflow-x: auto;
+      -ms-overflow-style: none; /*// IE 10+*/
+      overflow: -moz-scrollbars-none;/*// Firefox*/
+    }
+    .form-group {
+      margin-bottom: 0;
+    }
+    .nav-tabs::-webkit-scrollbar {
+      display: none; /*Safari and Chrome*/
+    }
+  }
+
 }

@@ -26,12 +26,7 @@ $isAdmin = Auth::user()->isAdmin();
             <button class="btn btn-success pull-right">{{ trans('crud.save') }}</button>
         </div>
         <div class="box-body">
-            <div class="row">
-                <div class="col-sm-4">{{ trans('crud.attributes.fields.attribute') }}</div>
-                <div class="col-sm-4">{{ trans('crud.attributes.fields.value') }}</div>
-                <div class="col-xs-1"><span class="hidden-xs">{{ trans('crud.attributes.fields.is_star') }}</span></div>
-                @if ($isAdmin)<div class="col-sm-2">{{ trans('crud.fields.is_private') }}</div>@endif
-            </div>
+
             <div id="entity-attributes-all">
                 <div class="entity-attributes">
                 @foreach ($r = $entity->attributes()->ordered()->get() as $attribute)

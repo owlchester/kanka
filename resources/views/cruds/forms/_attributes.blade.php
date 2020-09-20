@@ -1,6 +1,6 @@
 <?php
 /**
- * @var Attribute $attribute
+ * @var \App\Models\Attribute $attribute
  * @var \App\Models\AttributeTemplate $attributeTemplate
  */
 $attributes = [];
@@ -18,12 +18,6 @@ foreach ($attributes as $attribute) {
 
 @include('cruds.fields.attribute_template')
 
-<div class="row">
-    <div class="col-xs-4">{{ trans('crud.attributes.fields.attribute') }}</div>
-    <div class="col-xs-4">{{ trans('crud.attributes.fields.value') }}</div>
-    <div class="col-xs-1"><span class="hidden-xs">{{ trans('crud.attributes.fields.is_star') }}</span></div>
-    @if ($isAdmin)<div class="col-xs-2"><span class="hidden-xs">{{ trans('crud.fields.is_private') }}</span></div>@endif
-</div>
 <div id="entity-attributes-all">
     <div class="entity-attributes">
         @foreach ($attributes as $attribute)
