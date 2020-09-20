@@ -19,6 +19,7 @@ return [
     'fields'        => [
         'custom_icon'   => 'Особый значок',
         'custom_shape'  => 'Особая форма',
+        'font_colour'   => 'Цвет иконки',
         'group'         => 'Группа меток',
         'is_draggable'  => 'Подвижная',
         'latitude'      => 'Широта',

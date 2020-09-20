@@ -7,6 +7,7 @@ return [
         'go_to_marketplace' => 'Gehe zum Marktplatz',
         'remove'            => 'Plugin entfernen',
         'update'            => 'Plugin aktualisieren',
+        'update_available'  => 'Update verfügbar!',
     ],
     'disabled'      => [
         'success'   => 'Plugin :plugin deaktiviert',
@@ -22,9 +23,10 @@ return [
     ],
     'helper'        => 'Die Kanka-Community erstellt ständig erstaunliche Plugins auf unserem Marktplatz. Wenn Ihre Kampagne geboostet wird, können Sie Plugins vom Marktplatz installieren. Verwenden Sie diese Schnittstelle, um Plugins in Ihrer Kampagne zu deinstallieren.',
     'info'          => [
-        'helper'    => 'Wenn eine neue Version eines Plugins veröffentlicht wird, können Sie es auf die neueste Version für Ihre Kampagne aktualisieren.',
-        'title'     => 'Plugin :plugin Aktualisierungen',
-        'updates'   => 'Aktualisierungen',
+        'helper'        => 'Wenn eine neue Version eines Plugins veröffentlicht wird, können Sie es auf die neueste Version für Ihre Kampagne aktualisieren.',
+        'title'         => 'Plugin :plugin Aktualisierungen',
+        'updates'       => 'Aktualisierungen',
+        'your_version'  => 'Deine Version',
     ],
     'status'        => [
         'disabled'  => 'Deaktiviert',

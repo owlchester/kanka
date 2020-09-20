@@ -19,6 +19,7 @@ return [
     'fields'        => [
         'custom_icon'   => 'Benutzerdefiniertes Symbol',
         'custom_shape'  => 'Benutzerdefinierte Form',
+        'font_colour'   => 'Icon Farbe',
         'group'         => 'Markergruppe',
         'is_draggable'  => 'Verschiebbar',
         'latitude'      => 'Breitengrad',

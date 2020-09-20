@@ -86,6 +86,7 @@ return [
         'widths'        => [
             '0' => 'Automatski',
             '12'=> 'Puna (100%)',
+            '3' => 'Sićušna (25%)',
             '4' => 'Mala (33%)',
             '6' => 'Pola (50%)',
             '8' => 'Široko (66%)',

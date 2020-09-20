@@ -4,6 +4,7 @@ return [
     'actions'       => [
         'create'    => 'Kreiraj',
         'delete'    => 'Obriši',
+        'restore'   => 'Oporavi',
         'update'    => 'Ažuriraj',
     ],
     'fields'        => [

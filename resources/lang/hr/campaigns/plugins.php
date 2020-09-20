@@ -7,6 +7,7 @@ return [
         'go_to_marketplace' => 'Idi na Tržnicu',
         'remove'            => 'Ukloni dodatak',
         'update'            => 'Ažuriraj dodatak',
+        'update_available'  => 'Ažuriranje dostupno!',
     ],
     'disabled'      => [
         'success'   => 'Dodatak :plugin je onemogućen.',
@@ -22,9 +23,10 @@ return [
     ],
     'helper'        => 'Kanka zajednica neprestano stvara nevjerojatne dodatke na našoj Tržnici. Ako je tvoja kampanja pojačana, dodatke možeš instalirati s Tržnice. Upotrijebi ovo sučelje za deinstalaciju dodataka u kampanji.',
     'info'          => [
-        'helper'    => 'Kad izađe nova verzija dodatka, možeš ga ažurirati na najnoviju verziju za svoju kampanju.',
-        'title'     => 'Ažuriranja dodatka :plugin',
-        'updates'   => 'Ažuriranja',
+        'helper'        => 'Kad izađe nova verzija dodatka, možeš ga ažurirati na najnoviju verziju za svoju kampanju.',
+        'title'         => 'Ažuriranja dodatka :plugin',
+        'updates'       => 'Ažuriranja',
+        'your_version'  => 'Tvoja verzija',
     ],
     'status'        => [
         'disabled'  => 'Onemogućeno',
