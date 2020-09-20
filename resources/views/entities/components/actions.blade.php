@@ -99,7 +99,7 @@
                         @endif
 
                         @if ($model->entity)
-                            @can('update', $model)
+                            @if (Auth::user()->isAdmin())
                                 <li>
                                     <a href="{{ route('entities.template', $model->entity) }}">
                                         @if($model->entity->is_template)
@@ -109,7 +109,7 @@
                                         @endif
                                     </a>
                                 </li>
-                            @endcan
+                            @endif
                             <li>
                                 <a href="{{ route('entities.export', $model->entity) }}">
                                     <i class="fa fa-download" aria-hidden="true"></i> {{ __('crud.actions.export') }}
