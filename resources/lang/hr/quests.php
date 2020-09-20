@@ -37,6 +37,7 @@ return [
     'fields'        => [
         'character'     => 'Inicijator',
         'characters'    => 'Likovi',
+        'copy_elements' => 'Kopirajte elemente pridružene zadatku',
         'date'          => 'Datum',
         'description'   => 'Opis',
         'image'         => 'Slika',

@@ -32,6 +32,10 @@ return [
     'show'          => [
         'title' => 'Relaciones de :name',
     ],
+    'teaser'        => 'Mejora la campaña para acceder al mapa de relaciones. Haz clic aquí para saber más sobre las campañas mejoradas.',
+    'types'         => [
+        'family_member' => 'Familiar',
+    ],
     'update'        => [
         'success'   => 'Relación :target de :entity actualizada.',
         'title'     => 'Actualizar relaciones de :name',

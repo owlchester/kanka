@@ -48,8 +48,9 @@ return [
             'title'         => 'Aktualisiere das Kalender Ereignis in :name',
         ],
         'helpers'   => [
-            'add'   => 'Füge ein bestehendes Ereignis aus der Liste hinzu.',
-            'new'   => 'Oder gebe einfach einen Namen für ein neues Ereignis ein.',
+            'add'               => 'Füge ein bestehendes Ereignis aus der Liste hinzu.',
+            'new'               => 'Oder gebe einfach einen Namen für ein neues Ereignis ein.',
+            'other_calendar'    => 'Sie bearbeiten eine Erinnerung, die sich im :calender befindet.',
         ],
         'modal'     => [
             'title' => 'Füge ein Event zum Kalender hinzu',
@@ -61,6 +62,8 @@ return [
         'title'         => 'Kalender :name Events',
     ],
     'fields'        => [
+        'calendar'              => 'Übergeordneter Kalender',
+        'calendars'             => 'Kalender',
         'colour'                => 'Farbe',
         'comment'               => 'Kommentar',
         'current_day'           => 'Aktueller Tag',
@@ -93,6 +96,7 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Schaltmonate benutzen keine Wochentage, aber beeinflussen trotzdem Monde und Jahreszeiten.',
+        'nested'        => 'Anzeigen von Kalendern ohne übergeordneten Kalender. Klicken Sie auf einen Kalender, um dessen Unterkalender anzuzeigen.',
         'start_offset'  => 'Standardmäßig startet der Kalender am ersten Wochentag des Jahres 0. Das Ändern dieses Felds beeinflusst, wo der erste Tag des Kalenders platziert wird.',
     ],
     'hints'         => [
@@ -101,6 +105,7 @@ return [
         'is_recurring'      => 'Ein Event kann wiederkehrend sein. Es wird dann jedes Jahr am gleichen Tag erscheinen.',
         'months'            => 'Dein Kalender sollte mindestens 2 Monate haben.',
         'moons'             => 'Hinzugefügte Monde werden bei jedem Vollmond im Kalender angezeigt.',
+        'parent_calendar'   => 'Wenn Sie dem Kalender einen übergeordneten Kalender geben, werden die Erinnerungen und Wettereffekte des übergeordneten Kalenders angezeigt.',
         'reset'             => 'Beginnen Sie den Anfang des Monats oder Jahres immer am ersten Wochentag.',
         'seasons'           => 'Erstelle Jahreszeiten in dem du den jeweiligen Start festlegst. Kanka übernimmt den Rest.',
         'weekdays'          => 'Lege die Namen deiner Wochentage fest. Es werden mindestens 2 Wochentage benötigt.',

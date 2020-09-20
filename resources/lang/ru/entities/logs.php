@@ -4,6 +4,7 @@ return [
     'actions'       => [
         'create'    => 'Создать',
         'delete'    => 'Удалить',
+        'restore'   => 'Восстановить',
         'update'    => 'Обновить',
     ],
     'fields'        => [

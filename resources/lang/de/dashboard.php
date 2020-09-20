@@ -112,6 +112,7 @@ TEXT
         'widths'        => [
             '0' => 'automatisch',
             '12'=> 'Komplett (100%)',
+            '3' => 'winzig (25%)',
             '4' => 'Klein (33%)',
             '6' => 'Halb (50%)',
             '8' => 'Weit (66%)',

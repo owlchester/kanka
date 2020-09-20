@@ -32,6 +32,10 @@ return [
     'show'          => [
         'title' => 'Beziehungen für :name',
     ],
+    'teaser'        => 'Boosten Sie die Kampagne, um Zugriff auf den Relations Visualizer zu erhalten. Klicken Sie hier, um mehr über geboostete Kampagnen zu erfahren.',
+    'types'         => [
+        'family_member' => 'Familienmitglied',
+    ],
     'update'        => [
         'success'   => 'Beziehung für :name aktualisiert',
         'title'     => 'Beziehungen aktualisieren',

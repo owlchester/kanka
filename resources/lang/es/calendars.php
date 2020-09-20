@@ -48,8 +48,9 @@ return [
             'title'         => 'Actualizar evento del calendario de :name',
         ],
         'helpers'   => [
-            'add'   => 'Añade un evento existente a este calendario.',
-            'new'   => 'O crea un nuevo evento simplemente proporcionando un nombre.',
+            'add'               => 'Añade un evento existente a este calendario.',
+            'new'               => 'O crea un nuevo evento simplemente proporcionando un nombre.',
+            'other_calendar'    => 'Estás editando un recordatorio del calendario :calendar.',
         ],
         'modal'     => [
             'title' => 'Añadir evento al calendario',
@@ -61,6 +62,8 @@ return [
         'title'         => 'Eventos del calendario :name',
     ],
     'fields'        => [
+        'calendar'              => 'Calendario superior',
+        'calendars'             => 'Calendarios',
         'colour'                => 'Color',
         'comment'               => 'Comentario',
         'current_day'           => 'Día actual',
@@ -93,6 +96,7 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Los meses intercalares no usan los días de la semana, pero influyen en las lunas y las estaciones.',
+        'nested'        => 'Se muestran primero los calendarios que no tienen un calendario superior. Haz clic en un calendario para explorar sus subcalendarios.',
         'start_offset'  => 'Por defecto, el calendario empieza en el primer día de la semana del año 0. En este campo puedes cambiar dónde se situará el primer día del calendario.',
     ],
     'hints'         => [
@@ -101,6 +105,7 @@ return [
         'is_recurring'      => 'Si un evento es recurrente, reaparecerá cada año en la misma fecha.',
         'months'            => 'Tu calendario debe tener al menos 2 meses.',
         'moons'             => 'Si añades lunas, aparecerán en el calendario cada luna llena y nueva. Si el período entre estas es mayor que 10 días, también se mostrarán los cuartos creciente y menguante.',
+        'parent_calendar'   => 'Los calendarios incluyen los recordatorios y efectos climáticos de su calendario superior.',
         'reset'             => 'Empezar siempre el siguiente mes o año en el primer día de la semana.',
         'seasons'           => 'Crea estaciones en tu calendario estableciendo cuándo empieza cada una. Kanka se encargará del resto.',
         'weekdays'          => 'Escribe los nombres de los días de la semana. Se requiere un mínimo de 2 días.',

@@ -327,6 +327,7 @@ TEXT
             'information'       => 'Информация',
             'members'           => 'Участники',
             'menu'              => 'Меню',
+            'plugins'           => 'Плагины',
             'recovery'          => 'Восстановление',
             'roles'             => 'Роли',
             'settings'          => 'Модули',

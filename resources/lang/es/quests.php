@@ -37,6 +37,7 @@ return [
     'fields'        => [
         'character'     => 'Instigador',
         'characters'    => 'Personajes',
+        'copy_elements' => 'Copiar elementos vinculados a la misión',
         'date'          => 'Fecha',
         'description'   => 'Descripción',
         'image'         => 'Imagen',

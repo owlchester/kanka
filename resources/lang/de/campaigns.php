@@ -58,7 +58,7 @@ TEXT
         'hide_history'                  => 'Objektverlauf ausblenden',
         'hide_members'                  => 'Kampagnenmitglieder ausblenden',
         'image'                         => 'Bild',
-        'locale'                        => 'Schauplatz',
+        'locale'                        => 'Sprache',
         'name'                          => 'Name',
         'public_campaign_filters'       => 'Öffentliche Kampagnenfilter',
         'rpg_system'                    => 'Rollenspielsysteme',
