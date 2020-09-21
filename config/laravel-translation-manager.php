@@ -153,7 +153,10 @@ return array(
         'pagination',
         'passwords',
         'voyager',
-        'admin',
+        'admin.community-events',
+        'admin.community-votes',
+        'admin.home',
+        'admin.patrons',
     ),
     /**
      * Exclude specific groups from Laravel Translation Manager in page edit mode.
@@ -162,6 +165,7 @@ return array(
      * @type array
      */
     'exclude_page_edit_groups' => array(
+        'auth',
         //'page-titles',
         'reminders',
         'validation',
