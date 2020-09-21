@@ -146,8 +146,10 @@ return array(
      * @type array
      */
     'exclude_groups' => array(
+        'auth',
         'reminders',
         'validation',
+        'validation-inline',
         'pagination',
         'passwords',
         'voyager',
