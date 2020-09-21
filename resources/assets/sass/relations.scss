@@ -9,5 +9,7 @@
     border: 5px solid pink;
   }
 }
-
+.cy-panzoom {
+  z-index: 800;
+}
 @import '~cytoscape-panzoom/cytoscape.js-panzoom.css';

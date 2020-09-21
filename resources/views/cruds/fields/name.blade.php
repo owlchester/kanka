@@ -2,14 +2,15 @@
     <label>{{ __($trans . '.fields.name') }}</label>
     {!! Form::text(
         'name',
-        FormCopy::field('name')->string(),
+        null,
         [
             'placeholder' => trans($trans . '.placeholders.name'),
             'class' => 'form-control',
             'maxlength' => 191,
             'data-live' => route('search.live'),
             'data-type' => \Illuminate\Support\Str::singular($trans),
-            'data-id' => (isset($model) && !empty($model->id) && !empty($model->entity) ? $model->entity->id : null)
+            'data-id' => (isset($model) && !empty($model->id) && !empty($model->entity) ? $model->entity->id : null),
+            'required' => 'required'
         ]
     ) !!}
 

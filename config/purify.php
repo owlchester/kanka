@@ -70,7 +70,7 @@ return [
         'HTML.Allowed' =>
             'big,small,h1[class|style|id],h2[class|style|id],h3[class|style|id],h4[class|style|id],h5[class|style|id],h6[class|style|id],'
             . 'div[class|style|id],ins,del,pre,blockquote[cite],sup,sub,hr,caption,'
-            . 'strong,em,b,ul[class|style|id],ol[style],li[style],p,i[class],br,'
+            . 'strong,em,b,ul[class|style|id],ol[style],li[style],p,i[class],br,strike,u,'
             . 'img[src|style|alt|width|height|class|title|id],'
             . 'a[href|class|target|rel|title|data-toggle|data-html|id],'
             . 'p[class|style|id|dir],span[class|style|id|dir],'
