@@ -187,6 +187,7 @@ return [
         'help'      => 'Help',
         'home'      => 'Home',
         'login'     => 'Login',
+        'marketplace' => 'Marketplace',
         'news'      => 'News',
         'newsletter'=> 'Newsletter',
         'pricing'   => 'Pricing',

@@ -69,6 +69,9 @@
                         </ul>
                         <ul>
                             <li>
+                                <a href="https://marketplace.kanka.io">{{ __('front.menu.marketplace') }}</a>
+                            </li>
+                            <li>
                                 <a href="/docs/1.0">{{ __('front.menu.api') }}</a>
                             </li>
                             <li>
