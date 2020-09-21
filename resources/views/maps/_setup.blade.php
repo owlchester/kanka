@@ -12,7 +12,7 @@
 @endforeach
 
     var baseMaps{{ $map->id }} = {
-@foreach ($map->layers->whereNull('type_id') as $layer)
+@foreach ($map->layers->where('type_id', '<', 1) as $layer)
         "{{ $layer->name }}": layer{{ $layer->id }},
 @endforeach
         "{{ __('maps/layers.base') }}": baseLayer{{ $map->id }}
@@ -25,7 +25,7 @@
 @endforeach
 
     var overlayMaps{{ $map->id }} = {
-@foreach($map->layers->whereNotNull('type_id') as $layer)
+@foreach($map->layers->where('type_id', '>', 0) as $layer)
         "{{ $layer->name }}": layer{{ $layer->id }},
 @endforeach
 @foreach($map->groups as $group)
