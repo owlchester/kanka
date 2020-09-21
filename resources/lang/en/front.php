@@ -13,13 +13,13 @@ return [
         ],
         'public'            => [
             'description'   => 'Take a look at the Public Campaigns for inspiration.',
+            'filters'       => [
+                'all'       => 'Boosted Status',
+                'boosted'   => 'Boosted campaigns',
+                'unboosted' => 'Unboosted campaigns',
+            ],
             'no-results'    => 'No public campaign with these filters could be found. Please try again.',
             'title'         => 'Public Campaigns',
-            'filters' => [
-                'all' => 'Boosted Status',
-                'boosted' => 'Boosted campaigns',
-                'unboosted' => 'Unboosted campaigns',
-            ]
         ],
         'title'             => 'Public Campaigns',
     ],

@@ -327,6 +327,7 @@ TEXT
             'information'       => 'Information',
             'members'           => 'Membres',
             'menu'              => 'Menu',
+            'plugins'           => 'Plugins',
             'recovery'          => 'Récupération',
             'roles'             => 'Rôles',
             'settings'          => 'Modules',

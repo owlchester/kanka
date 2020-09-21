@@ -18,6 +18,7 @@ return [
     ],
     'fields'        => [
         'position'  => 'Position',
+        'type'      => 'Type de couche',
     ],
     'helper'        => [
         'amount'            => 'Ajouter jusqu\'à :amount couches sur une carte pour changer l\'image affichée sous les marqueurs.',
@@ -26,5 +27,15 @@ return [
     'placeholders'  => [
         'name'      => 'Sous-sol, Niveau 2, Epave',
         'position'  => 'Champ optionnel pour définir l\'ordre d\'affichage des couches.',
+    ],
+    'short_types'   => [
+        'overlay'       => 'Overlay',
+        'overlay_shown' => 'Overlay (affiché par défaut)',
+        'standard'      => 'Standard',
+    ],
+    'types'         => [
+        'overlay'       => 'Overlay (affiché par défaut la couche active)',
+        'overlay_shown' => 'Overlay affiché par défaut',
+        'standard'      => 'Couche standard (basculer entre les couches)',
     ],
 ];

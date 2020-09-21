@@ -32,6 +32,10 @@ return [
     'show'          => [
         'title' => 'Relations de :name',
     ],
+    'teaser'        => 'Les campagnes boostées ont accès à l\'explorateur de relation. Cliquer pour en savoir plus sur les campagnes boostées.',
+    'types'         => [
+        'family_member' => 'Membre de famille',
+    ],
     'update'        => [
         'success'   => 'Relation modifiée pour :name.',
         'title'     => 'Modifier la relation de :name',

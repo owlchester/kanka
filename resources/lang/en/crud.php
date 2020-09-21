@@ -24,9 +24,9 @@ return [
     ],
     'attributes'        => [
         'actions'       => [
-            'more'              => 'More options',
             'apply_template'    => 'Apply an Attribute Template',
             'manage'            => 'Manage',
+            'more'              => 'More options',
             'remove_all'        => 'Delete All',
         ],
         'fields'        => [

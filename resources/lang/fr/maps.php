@@ -26,6 +26,8 @@ return [
         ],
     ],
     'fields'        => [
+        'center_x'          => 'Longitude par défaut',
+        'center_y'          => 'Latitude par défaut',
         'distance_measure'  => 'Mesure de distance',
         'distance_name'     => 'Unité de distance',
         'grid'              => 'Grille',
@@ -38,6 +40,7 @@ return [
         'type'              => 'Type',
     ],
     'helpers'       => [
+        'center'            => 'Modifier les valeurs par défaut défini le centre de la carte lors de l\'affichage de celle-ci. Ci les champs sont vides, le centre de la carte sera utilisé.',
         'descendants'       => 'Liste des cartes qui sont groupées dans cette carte.',
         'distance_measure'  => 'Définir une unité de distance activera l\'outil de calcul de distance dans le mode d\'exploration.',
         'grid'              => 'Définir une taille de grille qui s\'affichera dans le mode d\'exploration.',
@@ -61,6 +64,8 @@ return [
         'settings'  => 'Paramètres',
     ],
     'placeholders'  => [
+        'center_x'          => 'Laisser vide pour afficher au milieu',
+        'center_y'          => 'Laisser vide pour afficher au milieu',
         'distance_measure'  => 'Unités par pixel',
         'distance_name'     => 'Nom de l\'unité de distance (kilomètre, mile)',
         'grid'              => 'Distance entre les éléments de la grille. Laisser vide pour cacher la grille.',

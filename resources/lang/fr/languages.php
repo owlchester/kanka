@@ -5,6 +5,7 @@ return [
     'codes'     => [
         'ca'    => 'Catalan',
         'de'    => 'Allemand',
+        'el'    => 'Grèque',
         'en'    => 'Anglais',
         'en-US' => 'Anglais Américain',
         'es'    => 'Espagnol',

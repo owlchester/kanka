@@ -14,16 +14,20 @@ return [
     'fields'        => [
         'amount'        => 'Nombre',
         'description'   => 'Description',
+        'is_equipped'   => 'Equippé',
+        'name'          => 'Nom',
         'position'      => 'Position',
     ],
     'placeholders'  => [
         'amount'        => 'Un nombre',
         'description'   => 'Usé, abimé, atténué',
+        'name'          => 'Requis si aucun object n\'est sélectionné',
         'position'      => 'Equipé, Sac-à-dos, Entrepôt, Banque',
     ],
     'show'          => [
         'helper'    => 'Les entités peuvent avoir des objets attachés pour créer un inventaire.',
         'title'     => 'Inventaire de l\'entité :name',
+        'unsorted'  => 'Autre',
     ],
     'update'        => [
         'success'   => 'Objet :item modifié pour :entity.',

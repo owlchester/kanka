@@ -199,7 +199,7 @@ return [
         'title' => 'Location :name Maps',
     ],
     'organisations' => [
-        'title'         => 'Location :name Organisations',
+        'title' => 'Location :name Organisations',
     ],
     'panels'        => [
         'map'   => 'Map',

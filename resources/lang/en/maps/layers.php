@@ -28,14 +28,14 @@ return [
         'name'      => 'Underground, Level 2, Shipwreck',
         'position'  => 'Optional field to set the order in which the layers appear.',
     ],
-    'types' => [
-        'standard' => 'Standard layer (toggle between layers)',
-        'overlay' => 'Overlay (displayed above the active layer)',
-        'overlay_shown' => 'Overlay shown by default',
-    ],
-    'short_types' => [
-        'standard' => 'Standard',
-        'overlay' => 'Overlay',
+    'short_types'   => [
+        'overlay'       => 'Overlay',
         'overlay_shown' => 'Overlay (auto show)',
-    ]
+        'standard'      => 'Standard',
+    ],
+    'types'         => [
+        'overlay'       => 'Overlay (displayed above the active layer)',
+        'overlay_shown' => 'Overlay shown by default',
+        'standard'      => 'Standard layer (toggle between layers)',
+    ],
 ];

@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'helpers' => [
-        'organisations'     => 'View all organizations in this location and its children locations, or just those directly located here.',
+    'helpers'       => [
+        'organisations' => 'View all organizations in this location and its children locations, or just those directly located here.',
     ],
-    'map'   => [
+    'map'           => [
         'points'    => [
             'fields'    => [
                 'colour'    => 'Color',
@@ -12,11 +12,11 @@ return [
         ],
     ],
     'organisations' => [
-        'title'         => 'Location :name Organizations',
+        'title' => 'Location :name Organizations',
     ],
-    'show'   => [
-        'tabs'      => [
+    'show'          => [
+        'tabs'  => [
             'organisations' => 'Organizations',
-        ]
-    ]
+        ],
+    ],
 ];

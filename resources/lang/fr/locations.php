@@ -199,8 +199,7 @@ return [
         'title' => 'Cartes du lieu :name',
     ],
     'organisations' => [
-        'description'   => 'Organisations se situant dans ce lieu.',
-        'title'         => 'Organisations du lieu :name',
+        'title' => 'Organisations du lieu :name',
     ],
     'panels'        => [
         'map'   => 'Carte',

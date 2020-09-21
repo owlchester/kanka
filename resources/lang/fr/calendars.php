@@ -48,8 +48,9 @@ return [
             'title'         => 'Modifier un événement de calendrier pour :name',
         ],
         'helpers'   => [
-            'add'   => 'Ajouter un événement à ce calendrier en utilisant la liste à choix.',
-            'new'   => 'Ou créer un nouveu événement en indiquant un nom.',
+            'add'               => 'Ajouter un événement à ce calendrier en utilisant la liste à choix.',
+            'new'               => 'Ou créer un nouveu événement en indiquant un nom.',
+            'other_calendar'    => 'Modification d\'un événement du calendrier :calendar.',
         ],
         'modal'     => [
             'title' => 'Ajouter un événement au calendrier',
@@ -61,6 +62,8 @@ return [
         'title'         => 'Evénements du calendrier :name',
     ],
     'fields'        => [
+        'calendar'              => 'Calendrier parent',
+        'calendars'             => 'Calendriers',
         'colour'                => 'Couleur',
         'comment'               => 'Commentaire',
         'current_day'           => 'Jour Actuel',
@@ -93,6 +96,7 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Les mois intercalaires n\'utilisent pas les jours de la semaine, mais ont quand-même une influence sur les lunes et saisons.',
+        'nested'        => 'Affichage de calendriers sans calendrier parent. Cliquer sur un calendrier affiche les sous-calendriers de celui-ci.',
         'start_offset'  => 'Un calendrier commence par défaut le premier jour de la première semaine de l\'année 0. Modifier ce champ permet d\'influencer quand le premier jour tombe.',
     ],
     'hints'         => [
@@ -101,6 +105,7 @@ return [
         'is_recurring'      => 'Un événement peut être récurrent. Il réapparaitera chaque année à la même date.',
         'months'            => 'Le calendrier doit avoir au moins 2 mois.',
         'moons'             => 'Chaque lune sera affichée dans le calendrier lors de la pleine lune.',
+        'parent_calendar'   => 'Définir un calendrier parent inclura les événements et la météo du celui-ci.',
         'reset'             => 'Toujours commencer le début du mois sur le premier jour de la semaine.',
         'seasons'           => 'Les saisons seront affichées dans le calendrier lorsqu\'elles commencent.',
         'weekdays'          => 'Un calendrier doit posséder au moins 2 jours dans la semaine.',

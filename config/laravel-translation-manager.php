@@ -151,6 +151,7 @@ return array(
         'pagination',
         'passwords',
         'voyager',
+        'admin',
     ),
     /**
      * Exclude specific groups from Laravel Translation Manager in page edit mode.
