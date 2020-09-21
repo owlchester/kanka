@@ -135,7 +135,10 @@ class CrudController extends Controller
         $bulk = $this->bulkModel();
 
         // Entity templates
-        $templates = auth()->check() && auth()->user()->isAdmin() ? Entity::templates($model->getEntityType())->get() : null;
+        $templates = null;
+        if (auth()->check() && auth()->user()->isAdmin() && !empty($model->getEntityType())) {
+            $templates = Entity::templates($model->getEntityType())->get();
+        }
 
         $datagrid = !empty($this->datagrid) ? new $this->datagrid : null;
 
