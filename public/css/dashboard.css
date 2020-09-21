@@ -370,7 +370,8 @@
   word-break: break-all;
 }
 
-.widget-preview iframe {
+.widget-preview ifram,
+.widget-preview img {
   max-width: 100% !important;
 }
 

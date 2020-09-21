@@ -757,6 +757,10 @@ div.mce-fullscreen {
   color: rgba(0, 0, 0, 0.8);
 }
 
+#attribute_add i {
+  line-height: 1.5em;
+}
+
 .entity-creator a {
   display: block;
   padding: 20px 10px;
@@ -827,6 +831,10 @@ td.breakable {
 .entity-form ul.nav li {
   background-color: #f5f8fa;
   margin-right: 2px;
+}
+
+.entity-form .select2-container--default .select2-selection--multiple .select2-selection__choice {
+  color: #333;
 }
 
 .shortcut {
