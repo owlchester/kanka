@@ -301,7 +301,7 @@ class Campaign extends MiscModel
      */
     public function dashboard(): string
     {
-        return link_to(App::getLocale() . '/' . $this->getMiddlewareLink(), e($this->name));
+        return link_to(App::getLocale() . '/' . $this->getMiddlewareLink(), $this->name);
     }
 
     /**

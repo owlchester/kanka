@@ -35,6 +35,7 @@ use Laravel\Passport\HasApiTokens;
  * @property boolean $has_last_login_sharing
  * @property string $patreon_pledge
  * @property int $booster_count
+ * @property int $referral_id
  *
  * Virtual
  * @property bool $advancedMentions

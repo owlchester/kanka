@@ -1,3 +1,4 @@
+<?php /** @var \App\User $user */?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +15,9 @@
         <p>
             Discord: {{ $discord->settings['username'] }}#{{ $discord->settings['discriminator'] }}
         </p>
+    @endif
+    @if ($user->referral)
+        <p>Referral: {{ $user->referrer->code }}</p>
     @endif
 </body>
 </html>

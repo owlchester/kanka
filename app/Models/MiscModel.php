@@ -14,6 +14,7 @@ use App\Models\Concerns\Sortable;
 use App\Models\Concerns\Tooltip;
 use App\Models\Scopes\SubEntityScopes;
 use App\Traits\AclTrait;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
@@ -37,6 +38,8 @@ use Exception;
  * @property string $header_image
  * @property boolean $is_private
  * @property [] $nullableForeignKeys
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
 abstract class MiscModel extends Model

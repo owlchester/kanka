@@ -11,6 +11,9 @@
             <li class="{{ $sidebar->admin('dashboard') }}">
                 <a href="{{ route('admin.home') }}"><i class="fa fa-th-large"></i> <span>{{ __('sidebar.dashboard') }}</span></a>
             </li>
+            <li class="{{ $sidebar->admin('users') }}">
+                <a href="{{ route('admin.users.index') }}"><i class="fa fa-users"></i> <span>Users</span></a>
+            </li>
             <li class="{{ $sidebar->admin('campaigns') }}">
                 <a href="{{ route('admin.campaigns.index') }}"><i class="fa fa-globe"></i> <span>{{ __('sidebar.campaigns') }}</span></a>
             </li>
