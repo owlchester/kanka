@@ -100,6 +100,9 @@
                     <a href="{{ config('social.discord') }}" target="discord" rel="nofollow" title="Discord" rel="noreferrer">
                         <i class="fab fa-discord"></i>
                     </a>
+                    <a href="{{ config('social.twitch') }}" target="twitch" rel="nofollow" title="Twitch" rel="noreferrer">
+                        <i class="fab fa-twitch"></i>
+                    </a>
                     <a href="{{ config('social.facebook') }}" target="facebook" rel="nofollow" title="Facebook" rel="noreferrer">
                         <i class="fab fa-facebook"></i>
                     </a>
