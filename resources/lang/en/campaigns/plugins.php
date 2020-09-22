@@ -9,6 +9,9 @@ return [
         'update'            => 'Update plugin',
         'update_available'  => 'Update available!',
     ],
+    'destroy'       => [
+        'success'   => 'Plugin :plugin removed.',
+    ],
     'disabled'      => [
         'success'   => 'Plugin :plugin disabled.',
     ],

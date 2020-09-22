@@ -1,4 +1,5 @@
-<div class="form-group required">
+<?php $required = !isset($bulk); ?>
+<div class="form-group @if ($required) required @endif">
     <label>{{ __($trans . '.fields.name') }}</label>
     {!! Form::text(
         'name',
@@ -10,7 +11,7 @@
             'data-live' => route('search.live'),
             'data-type' => \Illuminate\Support\Str::singular($trans),
             'data-id' => (isset($model) && !empty($model->id) && !empty($model->entity) ? $model->entity->id : null),
-            'required' => 'required'
+            'required' => $required ? 'required' : null
         ]
     ) !!}
 
