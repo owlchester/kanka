@@ -79,7 +79,7 @@ if (!empty($moonNames)) {
             </div>
         </div>
         <div class="col-md-2">
-            {!! Form::number('moon_fullmoon[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.fullmoon'), 'step' => '0.01']) !!}
+            {!! Form::number('moon_fullmoon[]', null, ['class' => 'form-control', 'placeholder' => __('calendars.parameters.moon.fullmoon'), 'step' => '0.01', 'min' => 1]) !!}
         </div>
         <div class="col-md-2">
             {!! Form::select('moon_colour[]', \App\Facades\FormCopy::colours(false), 'grey', ['class' => 'form-control']) !!}
