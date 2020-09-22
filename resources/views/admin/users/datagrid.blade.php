@@ -22,7 +22,11 @@
                 @endif
             </td>
             <td>
-                {{ $model->patreon_pledge }}
+                @if ($model->subscribed('kanka'))
+                    Subscribed
+                @else
+                    {{ $model->patreon_pledge }}
+                @endif
             </td>
             <td>
                 @if ($model->referrer)

@@ -21,7 +21,8 @@ Route::namespace('Admin')->name('admin.')->middleware(['moderator'])->prefix('ad
         'community-votes' => 'CommunityVoteController',
         //'community-event-entries' => 'CommunityEventEntryController',
         'community-events' => 'CommunityEventController',
-        'app-releases' => 'ReleaseController'
+        'app-releases' => 'ReleaseController',
+        'referrals' => 'ReferralController',
     ]);
 
     Route::get('/community-events/{community_events}/entries', 'CommunityEventController@entries')

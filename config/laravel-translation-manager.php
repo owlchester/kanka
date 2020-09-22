@@ -156,6 +156,8 @@ return array(
         'admin.community-events',
         'admin.community-votes',
         'admin.home',
+        'admin.users',
+        'admin.referrals',
         'admin.patrons',
     ),
     /**

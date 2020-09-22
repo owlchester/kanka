@@ -16,6 +16,17 @@ class UserAdmin extends User
 
     public $table = 'users';
 
+    public $searchableColumns = [
+        'email',
+        'settings',
+        'name',
+    ];
+
+    public function getForeignKey()
+    {
+        return 'id';
+    }
+
     public function scopePreparedWith(Builder $builder)
     {
         return $builder->with(['referrer', 'apps']);
@@ -28,6 +39,6 @@ class UserAdmin extends User
 
     public function scopeAdmin(Builder $builder)
     {
-
+        return $builder;
     }
 }

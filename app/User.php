@@ -64,7 +64,7 @@ class User extends \TCG\Voyager\Models\User
 
     public $searchableColumns = ['email', 'settings'];
     public $sortableColumns = [];
-    public $filterableColumns = ['patreon_pledge'];
+    public $filterableColumns = ['patreon_pledge', 'referral_id'];
 
     /**
      * The attributes that are mass assignable.

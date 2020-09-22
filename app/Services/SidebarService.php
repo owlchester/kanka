@@ -118,6 +118,9 @@ class SidebarService
         'cache' => [
             'cache',
         ],
+        'referrals' => [
+            'referrals',
+        ],
     ];
 
     /**

@@ -24,8 +24,8 @@ $(document).ready(function() {
     });
 
     $.each($('[data-toggle="preview"]'), function(i) {
-       // If we are exactly the height of 200, some content is hidden
-       if ($(this).height() === 200) {
+       // If we are exactly the max-height, some content is hidden
+       if ($(this).height() === $(this).css('max-height')) {
            $(this).next().removeClass('hidden')
        } else {
            $(this).removeClass('pinned-entity preview');

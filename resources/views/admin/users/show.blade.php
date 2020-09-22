@@ -99,8 +99,14 @@
             <tr>
                 <th>Campaign</th>
                 <th>User Roles</th>
-                <th>Members</th>
-                <th>Boosted</th>
+                <th>
+                    <span class="hidden-xs">Members</span>
+                    <i class="fa fa-users visible-xs"></i>
+                </th>
+                <th>
+                    <span class="hidden-xs">Boosted</span>
+                    <i class="fa fa-rocket visible-xs"></i>
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -125,9 +131,16 @@
                 </td>
                 <td>
                     @if ($campaign->boost_count > 1)
-                        <span class="label label-info">Superboosted</span>
+                        <span class="label label-info hidden-xs">
+                            Superboosted
+                        </span>
+
+                        <span class="label label-info visible-xs">
+                            SB
+                        </span>
                     @elseif ($campaign->boost_count == 1)
-                        <span class="label label-info">Boosted</span>
+                        <span class="label label-info hidden-xs">Boosted</span>
+                        <i class="fa fa-rocker visible-xs"></i>
                     @endif
                 </td>
             </tr>
