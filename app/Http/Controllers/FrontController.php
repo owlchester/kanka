@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Campaign;
 use App\Models\Faq;
 use App\Services\PatreonService;
+use App\Services\ReferralService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -20,9 +21,10 @@ class FrontController extends Controller
      * FrontController constructor.
      * @param PatreonService $patreonService
      */
-    public function __construct(PatreonService $patreonService)
+    public function __construct(PatreonService $patreonService, ReferralService $referralService)
     {
         $this->patreon = $patreonService;
+        $referralService->validate(request());
     }
 
     /**

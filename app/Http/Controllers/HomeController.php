@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
+use App\Services\ReferralService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -15,9 +16,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(ReferralService $referralService)
     {
         $this->middleware('auth', ['only' => ['back']]);
+        $referralService->validate(request());
     }
 
     /**

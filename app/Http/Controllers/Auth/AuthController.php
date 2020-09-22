@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Services\ReferralService;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
@@ -18,14 +19,18 @@ class AuthController extends Controller
      */
     protected $redirectTo = '/';
 
+    /** @var ReferralService */
+    protected $referralService;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(ReferralService $referralService)
     {
         $this->middleware('guest')->except('logout');
+        $this->referralService = $referralService;
     }
 
     /**
@@ -101,7 +106,8 @@ class AuthController extends Controller
             'email'    => $user->email,
             'password' => $user->email,
             'provider' => $provider,
-            'provider_id' => $user->id
+            'provider_id' => $user->id,
+            'referral_id' => $this->referralService->referralId(),
         ]);
     }
 
