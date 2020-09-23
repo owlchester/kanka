@@ -111,7 +111,7 @@ return [
 
         'CSS.AllowedProperties' => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,' .
             'color,background-color,text-align,width,height,border,border-collapse,max-width,max-height,' .
-            'border-style,border-color,' .
+            'border-style,border-color,margin-left,margin-right,margin,padding,' .
             'list-style-type',
 
         /*
