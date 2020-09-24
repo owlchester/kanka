@@ -37,7 +37,7 @@ return [
     ],
     'helpers'       => [
         'characters'        => 'Bu konumdaki ve onun alt konumlarındaki tüm karakterleri, ya da sadece doğrudan burada olanları göster.',
-        'descendants'       => 'Bu liste bu konumdan gelen tüm konumları içerir, doğrudan altında olanları değil.',
+        'descendants'       => 'Bu liste bu konumdan gelen tüm konumları içerir, yalnızca doğrudan altında olanları değil.',
         'families'          => 'Konumlar güçlü ailelerin merkezleri olabilir.',
         'map'               => 'Bir konuma harita eklemek o konuma serüvendeki diğer Varlıkları ilişkilendirmenize olanak sağlayan "Noktalar" eklemenize olanak sağlar.',
         'map_deprecated_2'  => 'Haritalar artık kendi modülü! Eski haritalar hala güncellenebilir ancak tüm yeni haritalar yeni Haritalar modülüne gider.',
@@ -214,7 +214,7 @@ return [
         'title'         => ':name Konumundaki Görevler',
     ],
     'show'          => [
-        'description'   => 'Konuma detaylı bir bakış.',
+        'description'   => 'Konuma detaylı bir bakış',
         'tabs'          => [
             'characters'    => 'Karakterler',
             'events'        => 'Olaylar',

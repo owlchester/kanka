@@ -33,6 +33,7 @@ return [
             'add_text'          => 'Text hinzufügen',
             'apply_template'    => 'Eine Attributvorlage anwenden',
             'manage'            => 'Verwalten',
+            'more'              => 'Mehr Optionen',
             'remove_all'        => 'Alles löschen',
         ],
         'create'        => [

@@ -14,12 +14,18 @@ return [
         'title'     => 'Editar Organização :name',
     ],
     'fields'        => [
-        'image'     => 'Imagem',
-        'location'  => 'Local',
-        'members'   => 'Membros',
-        'name'      => 'Nome',
-        'relation'  => 'Relação',
-        'type'      => 'Tipo',
+        'image'         => 'Imagem',
+        'location'      => 'Local',
+        'members'       => 'Membros',
+        'name'          => 'Nome',
+        'organisation'  => 'Organização Primária',
+        'organisations' => 'Suborganizações',
+        'relation'      => 'Relação',
+        'type'          => 'Tipo',
+    ],
+    'helpers'       => [
+        'descendants'   => 'Esta lista contém todas organizações que descendem desta organização, e não apenas aquelas diretamente relacionadas a ela.',
+        'nested'        => 'Quando em Visão Aninhada, você pode ver suas Organizações de uma maneira aninhada. Organizações que não fazem parte de uma Organização Primária serão mostradas por padrão. Organizações com suborganizações podem ser clicadas para ver essas suborganizações. Você pode continuar clicando até que não haja mais suborganizações para ver.',
     ],
     'index'         => [
         'add'           => 'Nova Organização',
@@ -44,24 +50,39 @@ return [
             'title'     => 'Atualizar Membro para :name',
         ],
         'fields'        => [
-            'character' => 'Personagem',
-            'role'      => 'Função',
+            'character'     => 'Personagem',
+            'organisation'  => 'Organização',
+            'role'          => 'Função',
+        ],
+        'helpers'       => [
+            'all_members'   => 'Todos personagens que são membros desta Organização e suas suborganizações',
+            'members'       => 'Todos personagens que são membros desta Organização.',
         ],
         'placeholders'  => [
             'character' => 'Escolha um personagem',
             'role'      => 'Líder, Membro, Alto Septão, Mestre em Espionagem',
         ],
+        'title'         => 'Membros da Organização :name',
+    ],
+    'organisations' => [
+        'title' => 'Organizações da Organização :name',
     ],
     'placeholders'  => [
         'location'  => 'Escolha um local',
         'name'      => 'Nome da organização',
         'type'      => 'Culto, Gangue, Rebelião, Fanáticos',
     ],
+    'quests'        => [
+        'description'   => 'Missões das quais a Organização faz parte.',
+        'title'         => 'Missões dadad pela Organização :name',
+    ],
     'show'          => [
         'description'   => 'Uma visão detalhada de uma organização',
         'tabs'          => [
-            'members'   => 'Membros',
-            'relations' => 'Relações',
+            'members'       => 'Membros',
+            'organisations' => 'Organizações',
+            'quests'        => 'Missões',
+            'relations'     => 'Relações',
         ],
         'title'         => 'Organização :name',
     ],

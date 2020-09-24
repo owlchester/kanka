@@ -26,6 +26,7 @@ return [
         'actions'       => [
             'apply_template'    => 'Применить Шаблон Атрибутов',
             'manage'            => 'Управление',
+            'more'              => 'Другое',
             'remove_all'        => 'Удалить все',
         ],
         'fields'        => [

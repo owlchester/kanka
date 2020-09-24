@@ -30,6 +30,7 @@ return [
             'add_text'          => 'Añadir texto',
             'apply_template'    => 'Aplicar plantilla de atributos',
             'manage'            => 'Administrar',
+            'more'              => 'Más opciones',
             'remove_all'        => 'Eliminar todos',
         ],
         'create'        => [

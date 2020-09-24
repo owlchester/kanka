@@ -20,6 +20,9 @@ return [
         'name'      => 'Nome',
         'type'      => 'Tipo',
     ],
+    'helpers'       => [
+        'date'  => 'Este campo pode conter qualquer coisa e não está vinculado aos calendários da campanha. Para vincular este evento a uma agenda, adicione-o na agenda ou na guia de lembretes deste evento.',
+    ],
     'index'         => [
         'add'           => 'Novo Evento',
         'description'   => 'Gerencie os eventos de :name.',

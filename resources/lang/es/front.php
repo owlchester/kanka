@@ -13,6 +13,11 @@ return [
         ],
         'public'            => [
             'description'   => 'Échale un vistazo a las campañas públicas para inspirarte.',
+            'filters'       => [
+                'all'       => 'Estatus de mejora',
+                'boosted'   => 'Campañas mejoradas',
+                'unboosted' => 'Campañas no mejoradas',
+            ],
             'no-results'    => 'No se encuentra ninguna campaña pública con estos filtros. Por favor, vuelve a intentarlo.',
             'title'         => 'Campañas públicas',
         ],

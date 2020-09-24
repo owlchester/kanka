@@ -13,6 +13,11 @@ return [
         ],
         'public'            => [
             'description'   => 'Potraži inspiraciju u javnim kampanjama.',
+            'filters'       => [
+                'all'       => 'Pojačani status',
+                'boosted'   => 'Pojačane kampanje',
+                'unboosted' => 'Nepojačane kampanje',
+            ],
             'no-results'    => 'Nije pronađena nijedna javna kampanja s ovim filterima. Pokušaj ponovno.',
             'title'         => 'Javne kampanje',
         ],

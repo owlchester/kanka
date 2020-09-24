@@ -26,6 +26,7 @@ return [
         'actions'       => [
             'apply_template'    => 'Primjeni predložak atributa',
             'manage'            => 'Upravljanje',
+            'more'              => 'Više opcija',
             'remove_all'        => 'Izbriši sve',
         ],
         'fields'        => [

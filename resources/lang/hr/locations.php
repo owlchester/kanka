@@ -199,8 +199,7 @@ return [
         'title' => 'Karte lokacije :name',
     ],
     'organisations' => [
-        'description'   => 'Organizacije smještene na lokaciji.',
-        'title'         => 'Organizacije lokacije :name',
+        'title' => 'Organizacije lokacije :name',
     ],
     'panels'        => [
         'map'   => 'Karta',

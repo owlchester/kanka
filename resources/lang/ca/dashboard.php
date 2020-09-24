@@ -98,9 +98,11 @@ return [
         ],
         'widths'        => [
             '0' => 'Auto',
-            '12'=> 'Completa',
-            '4' => 'Petita',
-            '6' => 'Meitat',
+            '12'=> 'Completa (100%)',
+            '3' => 'Quart (25%)',
+            '4' => 'Terç (33%)',
+            '6' => 'Meitat (50%)',
+            '8' => 'Ampla (66%)',
         ],
     ],
 ];

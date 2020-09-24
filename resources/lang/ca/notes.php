@@ -18,7 +18,12 @@ return [
         'image'         => 'Imatge',
         'is_pinned'     => 'Fixada',
         'name'          => 'Nom',
+        'note'          => 'Nota superior',
+        'notes'         => 'Subnotes',
         'type'          => 'Tipus',
+    ],
+    'helpers'       => [
+        'nested'    => 'Primer es mostren les notes que no tenen cap superior. Cliqueu a una nota per a explorar-ne les subnotes.',
     ],
     'hints'         => [
         'is_pinned' => 'Es poden fixar fins a 3 notes al tauler de la campanya.',
@@ -31,6 +36,7 @@ return [
     ],
     'placeholders'  => [
         'name'  => 'Nom de la nota',
+        'note'  => 'Trieu una nota superior',
         'type'  => 'Religió, relat, sistema polític...',
     ],
     'show'          => [

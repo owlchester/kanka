@@ -26,6 +26,8 @@ return [
         ],
     ],
     'fields'        => [
+        'center_x'          => 'Posició X per defecte (longitud)',
+        'center_y'          => 'Posició Y per defecte (latitud)',
         'distance_measure'  => 'Medeix distàncies',
         'distance_name'     => 'Unitat de distància',
         'grid'              => 'Cuadrícula',
@@ -38,6 +40,7 @@ return [
         'type'              => 'Tipus',
     ],
     'helpers'       => [
+        'center'            => 'Mitjançant aquests valors, es pot controlar quina àrea del mapa es focalitza en carregar-lo. Si es deixen en blanc, el mapa es carregarà focalitzat al centre.',
         'descendants'       => 'Aquí es mostren tots els mapes descendents d\'aquest, i no només els directament inferiors.',
         'distance_measure'  => 'En donar-li al mapa una mesura de distància, s\'habilitarà l\'eina de mesures al mode d\'exploració.',
         'grid'              => 'Definiu una grandària per a la quadrícula que es mostrarà al mode d\'exploració.',
@@ -61,6 +64,8 @@ return [
         'settings'  => 'Configuració',
     ],
     'placeholders'  => [
+        'center_x'          => 'Deixeu-ho en blanc per a carregar el mapa al centre',
+        'center_y'          => 'Deixeu-ho en blanc per a carregar el mapa al centre',
         'distance_measure'  => 'Unitats per píxel',
         'distance_name'     => 'Nom de la unitat de distància (kilòmetre, milla...)',
         'grid'              => 'Distància en píxels entre els elements de la quadrícula. Deixeu-ho en blanc per a amagar la quadrícula.',

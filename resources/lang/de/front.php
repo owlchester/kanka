@@ -13,6 +13,11 @@ return [
         ],
         'public'            => [
             'description'   => 'Schau dir zur Inspiration die öffentliche Kampagne an.',
+            'filters'       => [
+                'all'       => 'geboosteter Status',
+                'boosted'   => 'geboostete Kampagne',
+                'unboosted' => 'nicht geboostete Kampagne',
+            ],
             'no-results'    => 'Es konnte keine öffentliche Kampagne mit diesen Filtern gefunden werden. Bitte versuche es erneut.',
             'title'         => 'Öffentliche Kampagnen',
         ],

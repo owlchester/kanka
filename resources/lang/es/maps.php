@@ -26,6 +26,8 @@ return [
         ],
     ],
     'fields'        => [
+        'center_x'          => 'Posicionamiento (longitud) por defecto',
+        'center_y'          => 'Posicionamiento (latitud) por defecto',
         'distance_measure'  => 'Medir distancia',
         'distance_name'     => 'Unidad de distancia',
         'grid'              => 'Cuadrícula',
@@ -38,6 +40,7 @@ return [
         'type'              => 'Tipo',
     ],
     'helpers'       => [
+        'center'            => 'Cambia estos valores para controlar en qué área está focalizado el mapa. Si lo dejas en blanco, se mostrará el centro del mapa por defecto.',
         'descendants'       => 'Esta lista contiene todos los mapas descendientes de este, y no solo los que están directamente debajo.',
         'distance_measure'  => 'Al darle al mapa una medida de distancia, se habilitará la herramienta de medidas en el modo de exploración.',
         'grid'              => 'Define un tamaño para la cuadrícula que se mostrará en el modo de exploración.',
@@ -61,6 +64,8 @@ return [
         'settings'  => 'Configuración',
     ],
     'placeholders'  => [
+        'center_x'          => 'Dejar en blanco para cargar el mapa en el centro',
+        'center_y'          => 'Dejar en blanco para cargar el mapa en el centro',
         'distance_measure'  => 'Unidades por píxel',
         'distance_name'     => 'Nombre de la unidad de distancia (kilómetro, milla...)',
         'grid'              => 'Distancia en píxeles entre los elementos de la cuadrícula. Déjalo en blanco para esconder la cuadrícula.',

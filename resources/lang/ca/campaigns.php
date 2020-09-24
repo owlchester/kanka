@@ -327,6 +327,7 @@ TEXT
             'information'       => 'Informació',
             'members'           => 'Membres',
             'menu'              => 'Menú',
+            'plugins'           => 'Connectors',
             'recovery'          => 'Recuperació',
             'roles'             => 'Rols',
             'settings'          => 'Mòduls',

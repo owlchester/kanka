@@ -18,6 +18,7 @@ return [
     ],
     'fields'        => [
         'position'  => 'Position',
+        'type'      => 'Ebenentyp',
     ],
     'helper'        => [
         'amount'            => 'Sie können folgende :amount Ebenen auf einer Karte hinzufügen, um auf das unter Ihren Markierungen angezeigte Hintergrundbild zu wechseln.',
@@ -26,5 +27,15 @@ return [
     'placeholders'  => [
         'name'      => 'Untergrund, Ebene 2, Schiffbruch',
         'position'  => 'Optionales Feld zum Festlegen der Reihenfolge, in der die Ebenen angezeigt werden.',
+    ],
+    'short_types'   => [
+        'overlay'       => 'Überlagerung',
+        'overlay_shown' => 'Überlagerung (automatisch gezeigt)',
+        'standard'      => 'Standard',
+    ],
+    'types'         => [
+        'overlay'       => 'Überlagerung (über der aktiven Ebene angezeigt)',
+        'overlay_shown' => 'Standardmäßig wird die Überlagerung angezeigt',
+        'standard'      => 'Standardebene (zwischen Ebenen wechseln)',
     ],
 ];
