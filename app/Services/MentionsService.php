@@ -221,7 +221,7 @@ class MentionsService
 
             // No entity found, the user might not be allowed to see it
             if (empty($entity) || empty($entity->child)) {
-                $replace = Arr::get($data, 'text', '<i>' . __('crud.history.unknown') . '</i>');
+                $replace = Arr::get($data, 'text', '<i class="unknown-mention unknown-entity">' . __('crud.history.unknown') . '</i>');
             } else {
                 $tab = Arr::get($data, 'tab', null);
                 $url = $entity->url('show', $tab);
@@ -420,7 +420,7 @@ class MentionsService
 
             // No entity found, the user might not be allowed to see it
             if (empty($attribute)) {
-                $replace = '<i>' . __('crud.history.unknown') . '</i>';
+                $replace = '<i class="unknown-mention unknown-attribute">' . __('crud.history.unknown') . '</i>';
             } else {
                 $replace = '<span class="attribute" title="' . e($attribute->name) . '" data-toggle="tooltip">' . $attribute->mappedValue() . '</span>';
             }
