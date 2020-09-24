@@ -19,7 +19,7 @@ window.initSummernote = function() {
             ['style', ['style']],
             ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
             ['color', ['color']],
-            ['para', ['ul', 'ol', 'paragraph']],
+            ['para', ['ul', 'ol', 'kanka-indent', 'kanka-outdent', 'paragraph']],
             ['table', ['table']],
             ['insert', ['link', 'picture', 'video', 'embed', 'hr']],
             //['dir', ['ltr', 'rtl']],
