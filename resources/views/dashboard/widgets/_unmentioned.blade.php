@@ -22,7 +22,7 @@ $entityString = !empty($entityType) ? Str::plural($entityType) : null;
 ?>
 <div class="panel panel-default" id="dashboard-widget-{{ $widget->id }}">
     <div class="panel-heading">
-        <h4 class="panel-title">
+        <h3 class="panel-title">
             @if ($widget->conf('entity'))
                 {{ __('entities.' . $entityString) }} -
             @endif{{ __('dashboard.widgets.unmentioned.title') }}
@@ -34,7 +34,7 @@ $entityString = !empty($entityType) ? Str::plural($entityType) : null;
                     @endforeach
                 </span>
             @endif
-        </h4>
+        </h3>
     </div>
     <div class="panel-body widget-recent-list">
         <?php /** @var \App\Models\Entity $entity */?>

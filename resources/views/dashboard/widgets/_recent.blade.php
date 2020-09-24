@@ -22,7 +22,7 @@ $entityString = !empty($entityType) ? ($widget->conf('singular') ? $entityType :
 ?>
 <div class="panel panel-default" id="dashboard-widget-{{ $widget->id }}">
     <div class="panel-heading">
-        <h4 class="panel-title">
+        <h3 class="panel-title">
             @if ($widget->conf('entity'))
                 {{ __('entities.' . $entityString) }} -
             @endif{{ __('dashboard.widgets.recent.title') }}
@@ -34,7 +34,7 @@ $entityString = !empty($entityType) ? ($widget->conf('singular') ? $entityType :
                     @endforeach
                 </span>
             @endif
-        </h4>
+        </h3>
     </div>
     @if (!empty($widget->conf('singular')))
     <div class="panel-body widget-recent-body">
