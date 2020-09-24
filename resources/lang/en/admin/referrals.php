@@ -13,7 +13,7 @@ return [
         'success' => 'Referral created.',
     ],
     'edit' => [
-        'title' => 'Edit referra :name',
+        'title' => 'Edit referral :name',
         'success' => 'Referral updated.',
     ],
 ];

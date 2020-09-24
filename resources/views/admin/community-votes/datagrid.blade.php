@@ -12,7 +12,7 @@
     @foreach ($models as $model)
         <tr>
             <td>
-                <a href="{{ route('community-votes.show', $model) }}">{{ $model->name }}</a>
+                <a href="{{ $model->getSlug() }}">{{ $model->name }}</a>
             </td>
             <td>{{ $model->status() }}</td>
             <td>{{ $model->ballots->count() }}</td>

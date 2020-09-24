@@ -156,9 +156,10 @@ return array(
         'admin.community-events',
         'admin.community-votes',
         'admin.home',
-        'admin.users',
-        'admin.referrals',
         'admin.patrons',
+        'admin.referrals',
+        'admin.releases',
+        'admin.users',
     ),
     /**
      * Exclude specific groups from Laravel Translation Manager in page edit mode.
