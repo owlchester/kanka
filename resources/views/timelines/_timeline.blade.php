@@ -109,7 +109,8 @@ $eras = $timeline->eras()->ordered($timeline->revert_order)->get();
                     data-toggle="ajax-modal" data-target="#entity-modal"
                     data-url="{{ route('timelines.timeline_elements.create', [$model, 'era_id' => $era, 'position' => $position]) }}"
                 >
-                    <i class="fa fa-plus"></i> {{  __('timelines.actions.add_element', ['era' => $era->name]) }}
+                    <i class="fa fa-plus"></i>
+                    <span class="hidden-xs inline">{{  __('timelines.actions.add_element', ['era' => $era->name]) }}</span>
                 </a>
                 @if($era->elements()->count() > 1)
                 <a href="#" class="timeline-era-reorder btn btn-default" data-era-id="{{ $era->id }}">

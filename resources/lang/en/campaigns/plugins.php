@@ -19,6 +19,9 @@ return [
     'enabled'       => [
         'success'   => 'Plugin :plugin enabled.',
     ],
+    'errors'        => [
+        'invalid_plugin' => 'Invalid plugin.'
+    ],
     'fields'        => [
         'name'      => 'Plugin name',
         'status'    => 'Status',

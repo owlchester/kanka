@@ -1013,6 +1013,11 @@ hr {
   padding: 2px 3px;
 }
 
+// Allow buttons to be multi-lined
+.btn {
+  white-space: normal;
+}
+
 
 // Other stylings
 @import "calendar";

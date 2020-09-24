@@ -93,6 +93,7 @@ function parseMap(json) {
                 name: json.entities[entity].name,
                 image: json.entities[entity].image,
                 link: json.entities[entity].link,
+                //tooltip: json.entities[entity].tooltip,
             }
         };
         elementList.push(element);
@@ -162,13 +163,14 @@ function runLayout() {
 
 function addListeners() {
     // open on double click
-    cy.nodes().on('dblclick', function(e) {
+    cy.nodes().on('click', function(e) {
         entity = cy.getElementById(e.target.id());
         let data = e.target.data();
         if (data.link) {
             window.location = data.link;
         }
     });
+
 
     // highlight on hover
     cy.nodes().on('mouseover', function(e) {
@@ -182,7 +184,7 @@ function addListeners() {
     });
 
     // Double click on an edge to edit it
-    cy.edges().on('dblclick', function(e) {
+    cy.edges().on('click', function(e) {
         //console.log('e', e.target.data());
         let editUrl = e.target.data().edit_url;
         if (!editUrl) {
