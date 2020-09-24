@@ -21,7 +21,7 @@ return [
         'status'    => 'Status',
         'type'      => 'Type de plugin',
     ],
-    'helper'        => 'La communauté de Kanka est constamment en train d\'ajouter de nouveaux plugins incroyables sur le marketplace. Les campagnes boostées peuvent installer les plugins du m marketplace. Cette interface permet de gérer les plugins installés sur la campagne.',
+    'helper'        => 'La communauté de Kanka est constamment en train d\'ajouter de nouveaux plugins incroyables sur le marketplace. Les campagnes boostées peuvent installer les plugins du marketplace. Cette interface permet de gérer les plugins installés sur la campagne.',
     'info'          => [
         'helper'        => 'Dès qu\'un plugin a une nouvelle version, tu peux mettre à jour le plugin à la version la plus récente.',
         'title'         => 'Mise-à-jours du plugin :plugin',
