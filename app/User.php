@@ -266,7 +266,7 @@ class User extends \TCG\Voyager\Models\User
     {
         $campaign = CampaignLocalization::getCampaign();
         return (!empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_ELEMENTAL) ||
-            $this->campaignRoles->where('campaign_id', $campaign->id)->where('id', '61105')->count() == 1;
+            (!empty($campaign) && $this->campaignRoles->where('campaign_id', $campaign->id)->where('id', '61105')->count() == 1);
     }
 
     /**
