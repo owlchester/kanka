@@ -16,6 +16,7 @@
                     </li>
                 @endif
             @endforeach
+            @if (!isset($newCampaign))
             @can('create', \App\Models\Campaign::class)
                 <li class="bordered">
                     <a href="{{ !Auth::user()->hasCampaigns() ? route('start') : route('campaigns.create') }}">
@@ -23,6 +24,7 @@
                     </a>
                 </li>
             @endcan
+            @endif
         </ul>
 
         @if (\App\Facades\UserCache::follows()->count() > 0)

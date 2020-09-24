@@ -12,7 +12,7 @@
             </div>
         </div>
     </section>
-    @include('layouts.sidebars.campaign-switcher')
+    @include('layouts.sidebars.campaign-switcher', ['newCampaign' => false])
     <section class="sidebar" style="height: auto">
         <ul class="sidebar-menu tree" data-widget="tree">
             <li class="{{ $sidebar->settings('profile') }}">

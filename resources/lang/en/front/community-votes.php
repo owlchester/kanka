@@ -18,7 +18,7 @@ return [
     'show'          => [
         'restricted'    => 'Community Votes are only available for users who support Kanka.',
         'title'         => 'Community Vote - :name',
-        'vote_count'    => '{1} :number participant voted.|[2,*] :number participants votes.',
+        'vote_count'    => '{1} :number participant voted.|[2,*] :number participants voted.',
         'voted_lasted'  => 'Voting lasted from :from GMT until :until GMT.',
         'voting_until'  => 'Voting is open until :until GMT.',
     ],
