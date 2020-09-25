@@ -51,7 +51,7 @@ return [
     'placeholders'  => [
         'name'  => 'Name of the tag',
         'tag'   => 'Choose a parent tag',
-        'type'  => 'Lore, Wars, History, Religion, Vexology',
+        'type'  => 'Lore, Wars, History, Religion, Vexillology',
     ],
     'show'          => [
         'description'   => 'A detailed view of a tag',
