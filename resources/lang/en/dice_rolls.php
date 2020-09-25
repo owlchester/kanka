@@ -31,7 +31,7 @@ return [
             'results'   => 'Results',
         ],
         'add'           => 'New Dice Roll',
-        'description'   => 'Manage the dice Rolls of :name.',
+        'description'   => 'Manage the dice rolls of :name.',
         'header'        => 'Dice Rolls of :name',
         'title'         => 'Dice Rolls',
     ],
