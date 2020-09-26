@@ -328,7 +328,17 @@ class CalendarRenderer
         $data = [];
 
         $events = $this->events();
-        $offset = !empty($this->calendar->reset) ? 0 : $this->weekStartoffset();
+
+        $offset = 0;
+        if (empty($this->calendar->reset) || ($this->calendar->reset === 'year' && $this->getMonth() != 1)) {
+            $offset = $this->weekStartoffset();
+
+            if ($this->calendar->start_offset > 0) {
+                $offset += $this->calendar->start_offset;
+            } elseif ($this->calendar->start_offset < 0) {
+                $offset += count($weekdays) + $this->calendar->start_offset;
+            }
+        }
 
         // Add empty days for the beginning of the year
         for ($i = $offset; $i>0; $i--) {
