@@ -21,7 +21,7 @@ class CampaignPluginController extends Controller
 
     public function __construct(CampaignPluginService $service)
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'css']);
         $this->middleware('campaign.boosted', ['except' => 'index']);
 
         $this->service = $service;
