@@ -804,7 +804,7 @@ class CalendarRenderer
      */
     public function currentYear(): int
     {
-        return $this->year;
+        return (int) $this->year;
     }
 
     /**
