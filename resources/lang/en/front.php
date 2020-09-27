@@ -165,13 +165,13 @@ return [
     ],
     'home'          => [
         'seo'   => [
-            'meta-description'  => 'Are you a Game Master, Dungeon Master, or simply a worldbuilder? We offer a tabletop campaign manager and worldbuilding tool that makes it easy to organise, plan, and enjoy your TTRPG campaigns. We are community driven, and best of all, our core features are free!',
+            'meta-description'  => 'Are you a game master, worldbuilder, or a storyteller? We offer a tabletop campaign manager and worldbuilding tool that makes it easy to organise, plan, and enjoy your TTRPG campaigns. We are community driven, and best of all, our core features are free!',
         ],
     ],
     'master'        => [
         'call_to_action'    => 'Create an account',
-        'description'       => 'Kanka is an easy, intuitive, and flexible tool for worldbuilders, authors, story tellers and tabletop RPG players to digitally track their worlds and campaigns. Create and organize people, places, organisations, events and much more for free.',
-        'heading'           => 'Tabletop RPG Campaign Management and Worldbuilding made easy',
+        'description'       => 'Kanka is a community driven worldbuilding and tabletop RPG campaign management tool perfect for worldbuilders and game masters alike. We help you create and organize your campaigns and worlds with our @mentions system and a whole range of features such as calendars, interactive maps, timelines, organisations, families, and as many characters as you can come up with!',
+        'heading'           => 'Worldbuilding, tabletop RPG campaign management, storytelling. All in one',
         'title'             => 'Kanka',
     ],
     'menu'          => [
@@ -256,7 +256,6 @@ return [
     ],
     'second_block'  => [
         'call_to_action'    => 'Register a free account!',
-        'title'             => 'Spend less time organising and more time worldbuilding.',
     ],
     'seo'           => [
         'keywords'  => 'Worldbuilding, Tabletop RPG, RPG Campaign Manager',
