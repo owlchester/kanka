@@ -49,4 +49,12 @@ return [
     'tags'                  => 'Tags',
     'timeline'              => 'Timeline',
     'timelines'             => 'Timelines',
+
+
+    'new' => [
+        'ability' => 'New ability',
+        'calendar' => 'New calendar',
+        'character' => 'New character',
+        'location' => 'New location',
+    ],
 ];

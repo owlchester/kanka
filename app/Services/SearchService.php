@@ -4,7 +4,15 @@ namespace App\Services;
 
 use App\Models\Calendar;
 use App\Models\Campaign;
+use App\Models\Character;
 use App\Models\Entity;
+use App\Models\Event;
+use App\Models\Family;
+use App\Models\Item;
+use App\Models\Location;
+use App\Models\Note;
+use App\Models\Race;
+use App\Models\Tag;
 use Illuminate\Support\Arr;
 
 class SearchService
@@ -63,6 +71,25 @@ class SearchService
     protected $full = false;
 
     /**
+     * Set to true to return new entity options
+     * @var bool
+     */
+    protected $new = false;
+
+    /**
+     * @var string[]
+     */
+    protected $newTypes = [
+        'character' => Character::class,
+        'location' => Location::class,
+        'item' => Item::class,
+        'note' => Note::class,
+        'family' => Family::class,
+        'event' => Event::class,
+        'tag' => Tag::class,
+    ];
+
+    /**
      * SearchService constructor.
      * @param EntityService $entityService
      */
@@ -102,6 +129,16 @@ class SearchService
     public function campaign(Campaign $campaign)
     {
         $this->campaign = $campaign;
+        return $this;
+    }
+
+    /**
+     * @param bool $new = false
+     * @return $this
+     */
+    public function new(bool $new = false)
+    {
+        $this->new = $new;
         return $this;
     }
 
@@ -217,6 +254,10 @@ class SearchService
             }
         }
 
+        if (empty($searchResults) && $this->new) {
+            return $this->newOptions();
+        }
+
         return $searchResults;
     }
 
@@ -244,5 +285,28 @@ class SearchService
         }
 
         return $searchResults;
+    }
+
+    /**
+     * List of elements that can be created on the fly
+     * @return array
+     */
+    protected function newOptions()
+    {
+        $options = [];
+        $term = str_replace('_', ' ', $this->term);
+        foreach ($this->newTypes as $type => $class) {
+            if (auth()->user()->can('create', $class)) {
+                $options[] = [
+                    'new' => true,
+                    'inject' => '[new:' . $type . '|' . $term . ']',
+                    'fullname' => $term,
+                    'type' => __('entities.new.' . $type),
+                    'text' => $term
+                ];
+            }
+        }
+
+        return $options;
     }
 }

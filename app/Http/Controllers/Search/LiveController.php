@@ -33,12 +33,14 @@ class LiveController extends Controller
         $term = trim($request->q);
         $type = trim($request->type);
         $campaign = CampaignLocalization::getCampaign();
+        $new = request()->has('new');
 
         return Response::json(
             $this->search
                 ->term($term)
                 ->type($type)
                 ->campaign($campaign)
+                ->new($new)
                 ->full()
                 ->find()
         );
