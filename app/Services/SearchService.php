@@ -11,9 +11,11 @@ use App\Models\Family;
 use App\Models\Item;
 use App\Models\Location;
 use App\Models\Note;
+use App\Models\Organisation;
 use App\Models\Race;
 use App\Models\Tag;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class SearchService
 {
@@ -75,19 +77,6 @@ class SearchService
      * @var bool
      */
     protected $new = false;
-
-    /**
-     * @var string[]
-     */
-    protected $newTypes = [
-        'character' => Character::class,
-        'location' => Location::class,
-        'item' => Item::class,
-        'note' => Note::class,
-        'family' => Family::class,
-        'event' => Event::class,
-        'tag' => Tag::class,
-    ];
 
     /**
      * SearchService constructor.
@@ -295,16 +284,14 @@ class SearchService
     {
         $options = [];
         $term = str_replace('_', ' ', $this->term);
-        foreach ($this->newTypes as $type => $class) {
-            if (auth()->user()->can('create', $class)) {
-                $options[] = [
-                    'new' => true,
-                    'inject' => '[new:' . $type . '|' . $term . ']',
-                    'fullname' => $term,
-                    'type' => __('entities.new.' . $type),
-                    'text' => $term
-                ];
-            }
+        foreach ($this->entityService->newEntityTypes() as $type => $class) {
+            $options[] = [
+                'new' => true,
+                'inject' => '[new:' . $type . '|' . $term . ']',
+                'fullname' => $term,
+                'type' => __('entities.new.' . $type),
+                'text' => $term
+            ];
         }
 
         return $options;

@@ -52,9 +52,12 @@ return [
 
 
     'new' => [
-        'ability' => 'New ability',
-        'calendar' => 'New calendar',
         'character' => 'New character',
         'location' => 'New location',
+        'item' => 'New item',
+        'note' => 'New note',
+        'family' => 'New family',
+        'event' => 'New event',
+        'organisation' => 'New organisation',
     ],
 ];
