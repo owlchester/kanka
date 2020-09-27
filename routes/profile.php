@@ -45,3 +45,6 @@ Route::get('/settings/discord-callback', 'Settings\Apps\DiscordController@callba
 Route::get('/settings/discord-setup', 'Settings\Apps\DiscordController@seup');
 
 Route::post('settings/newsletter-api', 'Settings\NewsletterApiController@update')->name('settings.newsletter-api');
+
+Route::get('/settings/marketplace', 'Settings\MarketplaceController@index')->name('settings.marketplace');
+Route::post('/settings/marketplace', 'Settings\MarketplaceController@save')->name('settings.marketplace.save');
