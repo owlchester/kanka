@@ -106,22 +106,4 @@
             </div>
         </div>
     </section>
-
-    <section class="cta">
-        <div class="cta-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-md-5 offset-md-7">
-                        <h2>{!! trans('front.second_block.title') !!}</h2>@if(config('auth.register_enabled'))
-                        <div class="text-center text-sm-left">
-                            <a href="{{ route('register') }}" class="btn btn-outline btn-xl">
-                                {{ trans('front.second_block.call_to_action') }}
-                            </a>
-                        </div>@endif
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="overlay"></div>
-    </section>
 @endsection
