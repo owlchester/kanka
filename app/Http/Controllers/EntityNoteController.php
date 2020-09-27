@@ -97,6 +97,9 @@ class EntityNoteController extends Controller
         if (Auth::check()) {
             $this->authorize('view', $entity->child);
         } else {
+            if (empty($entity->child)) {
+                abort(404);
+            }
             $this->authorizeEntityForGuest('read', $entity->child);
         }
 
