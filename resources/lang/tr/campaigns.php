@@ -80,5 +80,160 @@ TEXT
         'name'                          => 'Serüveniniz/Dünyanız en az 4 harf ya da sayı içerdiği sürece istediğiniz ada sahip olabilir.',
         'public_campaign_filters'       => 'Diğerlerinin serüveninizi diğer serüvenlerin arasında bulabilmesi için aşağıdaki bilgileri doldurun.',
         'system'                        => 'Eğer serüveniniz herkese görünür ise, sistem onu :link sayfasında görüntüler.',
+        'theme'                         => 'Serüven için bir kullanıcının seçeneği yerine bir temayı zorunlu tutun.',
+        'view_public'                   => 'Serüveninizi dışarıdan bir kullanıcının gözünden görmek için :link linkini gizli sekmede açın.',
+        'visibility'                    => 'Bir serüveni açık yapmak linkine sahip olan herkesin onu görebileceği anlamına gelir.',
+    ],
+    'index'                             => [
+        'actions'   => [
+            'new'   => [
+                'title' => 'Yeni Serüven',
+            ],
+        ],
+        'title'     => 'Serüven',
+    ],
+    'invites'                           => [
+        'actions'               => [
+            'add'   => 'Davet Et',
+            'copy'  => 'Linki panoya kopyala',
+            'link'  => 'Yeni Link',
+        ],
+        'create'                => [
+            'button'        => 'Davet Et',
+            'description'   => 'Bir arkadaşınızı serüveninize davet edin',
+            'link'          => 'Link yaratıldı: <a href=":url" target="_blank">:url</a>',
+            'success'       => 'Davet gönderildi.',
+            'title'         => 'Birini serüveninize davet edin',
+        ],
+        'destroy'               => [
+            'success'   => 'Davet kaldırıldı.',
+        ],
+        'email'                 => [
+            'link'      => '<a href=":link">:name kullanıcısının serüvenine katıl</a>',
+            'subject'   => ':name sizi kanka.io\'daki \':campaign\' serüvenine katılmanız için davet etti! Kabul etmek için aşağıdaki linke tıklayın.',
+            'title'     => ':name tarafından davet',
+        ],
+        'error'                 => [
+            'already_member'    => 'Zaten bu serüvenin bir üyesisiniz.',
+            'inactive_token'    => 'Bu token zaten kullanıldı, ya da serüven artık mevcut değil.',
+            'invalid_token'     => 'Bu token artık geçerli değil.',
+            'login'             => 'Bu serüvene katılmak için lüften giriş yapın ya da kaydolun.',
+        ],
+        'fields'                => [
+            'created'   => 'Gönderildi',
+            'email'     => 'E-posta',
+            'role'      => 'Rol',
+            'type'      => 'Tür',
+            'validity'  => 'Geçerlilik',
+        ],
+        'helpers'               => [
+            'email'     => 'E-postalarımız sık sık spam olarak işaretlenir ve gelen kutunuzda belirmesi birkaç saati bulabilir.',
+            'validity'  => 'Bu link geçersiz kılınana kadar kaç tane kullanıcının bu linki kullanabileceği. Sınırsız olması için boş bırakın.',
+        ],
+        'placeholders'          => [
+            'email' => 'Davet etmek istediğiniz kişinin e-posta adresi',
+        ],
+        'types'                 => [
+            'email' => 'E-posta',
+            'link'  => 'Link',
+        ],
+        'unlimited_validity'    => 'Sınırsız',
+    ],
+    'leave'                             => [
+        'confirm'   => ':name serüveninden ayrılmak istediğinize emin misiniz? Bir Yönetici sizi tekrar davet edene kadar serüvene tekrar erişemeyeceksiniz.',
+        'error'     => 'Serüvenden ayrılma başarısız.',
+        'success'   => 'Serüvenden ayrıldınız.',
+    ],
+    'members'                           => [
+        'actions'               => [
+            'switch'        => 'Geçiş yap',
+            'switch-back'   => 'Kullanıcıma geri dön',
+        ],
+        'create'                => [
+            'title' => 'Serüveninize bir üye ekleyin',
+        ],
+        'description'           => 'Serüveninizin üyelerini yönetin',
+        'edit'                  => [
+            'description'   => 'Serüveninin bir üyesini düzenle',
+            'title'         => ':name üyesini düzenle',
+        ],
+        'fields'                => [
+            'joined'        => 'Katıldı',
+            'last_login'    => 'Son Giriş',
+            'name'          => 'Kullanıcı',
+            'role'          => 'Rol',
+            'roles'         => 'Roller',
+        ],
+        'help'                  => 'Serüvenler sınırsız sayıda üyeye sahip olabilir.',
+        'helpers'               => [
+            'admin' => 'Serüvenin yönetici rolüne sahip bir üyesi olarak yeni üyeler davet edebilir, inaktif olanları kaldırabilir, ve yetkilerini değiştirebilirsiniz. Bir üyenin yetkilerini test etmek için Geçiş yap butonunu kullanın. Bu özellik hakkında daha fazla bilgiye :link sayfasından erişebilirsiniz.',
+            'switch'=> 'Bu kullanıcıya geçiş yap',
+        ],
+        'impersonating'         => [
+            'message'   => 'Serüveni başka bir kullanıcı olarak görüntülüyorsunuz. Bazı özellikler devre dışı bırakıldı, ancak geri kalanı kullanıcının göreceği ile aynı. Kendi kullanıcınıza geri dönmek için normalde Çıkış Yap butonunun yerinde olan Geri Dön butonunu tıklayın.',
+            'title'     => ':name kılığındasınız',
+        ],
+        'invite'                => [
+            'description'   => 'Dostlarınızı serüveninize Davet Linki aracılığı ile davet edebilirsiniz. Davetinizi kabul ettiklerinde, istenen rolde bir üye olarak eklenecekler. Onlara davet isteğinizi Hotmail adresi olmadığı sürece e-posta ile gönderebilirsiniz, zira onlar Kanka\'nın e-postalarını her zaman engelliyor.',
+            'more'          => ':link sayfasında daha fazla rol ekleyebilirsiniz.',
+            'roles_page'    => 'Roller sayfası',
+            'title'         => 'Davet Et',
+        ],
+        'roles'                 => [
+            'member'    => 'Üye',
+            'owner'     => 'Yönetici',
+            'player'    => 'Oyuncu',
+            'public'    => 'Genel',
+            'viewer'    => 'Seyirci',
+        ],
+        'switch_back_success'   => 'Artık tekrar orijinal kullanıcınızdasınız.',
+        'title'                 => ':name Serüveni Üyeleri',
+        'your_role'             => 'Rolünüz: <i>:role</i>',
+    ],
+    'panels'                            => [
+        'boosted'   => 'Destekli',
+        'dashboard' => 'Kontrol Paneli',
+        'permission'=> 'İzin',
+        'sharing'   => 'Paylaşım',
+        'systems'   => 'Sistemler',
+        'ui'        => 'Arayüz',
+    ],
+    'placeholders'                      => [
+        'description'   => 'Serüveninizin kısa bir özeti',
+        'locale'        => 'Dil kodu',
+        'name'          => 'Serüveninizin adı',
+        'system'        => 'D&D, Pathfinder, Fate, DSA',
+    ],
+    'roles'                             => [
+        'actions'       => [
+            'add'   => 'Bir rol ekleyin',
+        ],
+        'create'        => [
+            'success'   => 'Rol yaratıldı.',
+            'title'     => ':name için bir rol yarat',
+        ],
+        'description'   => 'Serüvenin rollerini yönet',
+        'destroy'       => [
+            'success'   => 'Rol kaldırıldı',
+        ],
+        'edit'          => [
+            'success'   => 'Rol güncellendi.',
+            'title'     => ':name Rolünü Düzenle',
+        ],
+        'fields'        => [
+            'name'          => 'Ad',
+            'permissions'   => 'İzinler',
+            'type'          => 'Tür',
+            'users'         => 'Kullanıcılar',
+        ],
+        'helper'        => [
+            '1' => 'Bir serüven istediğiniz kadar fazla role sahip olabilir. "Yönetici" rolünün otomatik olarak serüvendeki her şeye erişimi vardır, ancak diğer her rol değişik varlık türlerinde (karakter, konum, vs.) özel izinlere sahip olabilir.',
+            '2' => 'Varlıklar varlığın "İzinler" sekmesi aracılığı ile daha ince ayarlı izinlere sahip olabilir. Bu sekme serüveninizde birkaç rol ya da üye olduğu zaman ortaya çıkar.',
+            '3' => 'Rollerin tüm varlıkları görüntüleme yetkisinin olduğu, ve sizin varlıklardaki "Özel" kutucuğunu onları saklamak için kullandığınız bir "dışta kalma" sistemi ile işinizi yürütebilirsiniz. Ya da rollere fazla izin vermeyebilir, ama her bir varlığı bireysel olarak görünür olacak şekilde ayarlayabilirsiniz.',
+        ],
+        'hints'         => [
+            'campaign_not_public'   => 'Açık rolü izinlere sahip ancak serüven özel. Bu ayarı serüveni düzenlerken Paylaşım sekmesinden değiştirebilirsiniz.',
+            'public'                => 'Açık rolü birisi sizin açık serüveninize bakarken kullanılır. :more',
+        ],
     ],
 ];

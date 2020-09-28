@@ -34,7 +34,8 @@ return [
     ],
     'teaser'        => 'Impulsione a campanha para ter acesso ao explorador de relações. Clique para saber mais sobre campanhas impulsionadas.',
     'types'         => [
-        'family_member' => 'Membro da família',
+        'family_member'         => 'Membro da família',
+        'organisation_member'   => 'Membro da organização',
     ],
     'update'        => [
         'success'   => 'Relação de :name atualizada.',

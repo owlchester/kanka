@@ -3,17 +3,17 @@
 return [
     'characters'    => [
         'create'    => [
-            'description'   => 'Adicione um personagem em uma Missão',
+            'description'   => 'Adicione um personagem à Missão',
             'success'       => 'Personagem adicionado a :name.',
             'title'         => 'Novo Personagem para :name',
         ],
         'destroy'   => [
-            'success'   => 'Missão do personagem para :name removida.',
+            'success'   => 'Personagem removido da misão :name.',
         ],
         'edit'      => [
             'description'   => 'Atualizar o personagem da missão',
-            'success'       => 'Personagem da Missão para :name atualizado.',
-            'title'         => 'Atualizar personagem para :name',
+            'success'       => 'Personagem da Missão :name atualizado.',
+            'title'         => 'Atualizar personagem em :name',
         ],
         'fields'    => [
             'character'     => 'Personagem',
@@ -73,9 +73,9 @@ return [
             'success'   => 'Item da missão :name removido',
         ],
         'edit'      => [
-            'description'   => 'Atualizar o item de uma missão',
+            'description'   => 'Atualize o item de uma missão',
             'success'       => 'Item da missão :name atualizado com sucesso.',
-            'title'         => 'Atualizar item de :name',
+            'title'         => 'Atualizar item em :name',
         ],
         'fields'    => [
             'description'   => 'Descrição',
@@ -90,11 +90,11 @@ return [
             'title'         => 'Novo Local para :name',
         ],
         'destroy'   => [
-            'success'   => 'Local da Missão para :name removido.',
+            'success'   => 'Local da Missão :name removido.',
         ],
         'edit'      => [
             'description'   => 'Atualize o local de uma missão',
-            'success'       => 'Local da Missão para :name atualizado.',
+            'success'       => 'Local da Missão :name atualizado.',
             'title'         => 'Atualizar local para :name',
         ],
         'fields'    => [
@@ -106,14 +106,14 @@ return [
     'organisations' => [
         'create'    => [
             'description'   => 'Escolha uma Organização para a missão',
-            'success'       => 'Organização adicionada em :name',
+            'success'       => 'Organização adicionada a :name',
             'title'         => 'Nova organização para :name',
         ],
         'destroy'   => [
             'success'   => 'Organização removida da missão :name',
         ],
         'edit'      => [
-            'description'   => 'Atualizar uma organização da missão',
+            'description'   => 'Atualize uma organização da missão',
             'success'       => 'Organização da missão :name atualizada',
             'title'         => 'Atualizar organização para :name',
         ],
