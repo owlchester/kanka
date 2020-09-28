@@ -51,6 +51,18 @@ return [
         'title'         => 'FAQ',
     ],
     'features'      => [
+        'actions' => [
+            'rpg'           => 'For RPG Campaigns',
+            'worldbuilder'  => 'For Worldbuilders',
+        ],
+        'abilities' => [
+            'title' => 'Abilities and Items',
+            'description' => 'Manage entity inventories. Attach spells and powers to characters through abilities.',
+        ],
+        'audio' => [
+            'title' => 'Embed Audio & Video',
+            'description' => 'No need to cycle through 10 playlists, just embed your audio and video in your entities',
+        ],
         'api'               => [
             'description'   => 'Want to build cool tools that integrate with Kanka? Head over to the :link.',
             'link'          => 'API docs',
@@ -79,7 +91,7 @@ return [
             'description'   => 'Not alone? We\'ve got you covered! You can invite your friends and co-dungeon master to help you build your campaign!',
             'title'         => 'Collaborative',
         ],
-        'description'       => 'Kanka has a large number of features. Keep track of your world\'s Characters and their relations, Locations and their history, Quests and their objectives, Calendars and their events and weather effects, and many more. Best of all, Kanka receives several updates every month based on user feedback.',
+        'description'       => 'With our @mentions, our tags, and our in-depth permissions system, Kanka makes it easy to keep track of your world or campaign. This includes Characters and their relations, Locations and their history, Quests and their objectives, Timelines and their eras, and Calendars with both events and weather effects. Best of all, Kanka’s users have a say in which new features are developed through regular Community Votes.',
         'description_full'  => 'Kanka is constantly being updated with new features and improvements, but here are some of the most important ones we think you’ll love.',
         'free'              => [
             'bonuses'       => 'bonuses for our subscribers',
@@ -104,12 +116,24 @@ return [
             'description'   => 'Prepare your next session or log events with our advanced journaling feature!',
             'title'         => 'Journals',
         ],
+        'timelines' => [
+            'title' => 'Timelines',
+            'description' => 'Visually represent the timelines of your worlds, empires, noble families, or even a single character.',
+        ],
+        'notes' => [
+            'title' => 'Notes',
+            'description' => 'xxx',
+        ],
+        'flora' => [
+            'title' => 'Flora & Fauna',
+            'description' => 'Track the living world of creatures using our Races module, and build a complex ecosystem using our nested Notes.',
+        ],
         'patreon'           => [
             'api_calls'         => 'Increased API calls (90 per minute)',
             'boosts'            => 'Campaign Boosters',
             'curation'          => 'Help curate the community vote items',
             'default_image'     => 'Custom default images for entities',
-            'description'       => 'Supporting Kanka with a small monthly fee allows us to keep working on Kanka and unlocks the following benefits for an account.',
+            'description'       => 'Supporting Kanka with a subscription gives you access to the following features and improvements.',
             'discord'           => 'Private Discord channel',
             'entities'          => 'Number of entities that can be created in each campaign',
             'free'              => 'Free',
@@ -127,6 +151,10 @@ return [
             'description'   => 'Permissions can be set for modules, or for each single entity. Campaigns can also be <a href=":url">set to public</a> for the whole world to see.',
             'title'         => 'Permissions',
         ],
+        'quests' => [
+            'title' => 'Quests & Journals',
+            'description' => 'Prepare your next session or log events with our advanced journaling feature!',
+        ],
         'relations'         => [
             'description'   => 'Every entity can have a complex web of relations with other entities, including secret relations invisible to your players.',
             'title'         => 'Relations',
@@ -137,10 +165,18 @@ return [
             'description'   => 'Kanka goes through frequent community driven updates, with new features added every month. We go into details about these updates on our :discord.',
             'title'         => 'Frequent Community Driven Updates',
         ],
+        'rpg'     => [
+            'description'   => 'From and in-depth permission system, to Quests, Journals, Characters, Abilities and embedded audio and video, we help you manage your campaign and upcoming tpk.',
+            'title'         => 'RPG Campaign Management',
+        ],
+        'worldbuilding'     => [
+            'description'   => 'With modules covering everything from from Maps to Timelines, and Calendars to Events, Kanka makes it easy to organize complex worlds.',
+            'title'         => 'Worldbuilding',
+        ],
     ],
     'first_block'   => [
-        'description'   => 'Kanka is available on any mobile device and browser. There is no need to install anything, and you always have the latest version and new features. Forget about losing track of your scattered notes, in Kanka everything is in one place and easy to find.',
-        'title'         => 'A novel way to keep track of your worlds and campaigns.',
+        'description'   => 'Kanka is available on any device and is updated regularly with new features and improvements. Forget about losing track of your scattered notes, in Kanka everything is in one place, easy to find, and accessible on the go.',
+        'title'         => 'A novel way to keep track of your worldbuilding and RPG campaigns.',
     ],
     'footer'        => [
         'app'       => 'App',

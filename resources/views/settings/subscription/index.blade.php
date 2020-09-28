@@ -18,7 +18,7 @@
             <h3 class="page-header with-border">{{ __('settings.subscription.manage_subscription') }}</h3>
             <p>
                 {!! __('settings.subscription.benefits', [
-                    'features' => link_to_route('front.features', __('settings.patreon.benefits_features'), '#patreon', ['target' => '_blank']),
+                    'features' => link_to_route('front.features', __('settings.patreon.benefits_features'), '#paid-features', ['target' => '_blank']),
                     'stripe' => link_to('https://www.stripe.com', 'Stripe', ['target' => '_blank'])
                 ]) !!}
             </p>

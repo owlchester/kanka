@@ -16,7 +16,7 @@
             <p>
                 {!! __('settings.patreon.benefits', [
                     'patreon' => link_to(config('patreon.url'), 'Patreon', ['target' => '_blank']),
-                    'features' => link_to_route('front.features', __('settings.patreon.benefits_features'), '#patreon', ['target' => '_blank'])
+                    'features' => link_to_route('front.features', __('settings.patreon.benefits_features'), '#paid-features', ['target' => '_blank'])
                 ]) !!}
             </p>
         </div>
