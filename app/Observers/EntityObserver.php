@@ -3,13 +3,10 @@
 namespace App\Observers;
 
 use App\Facades\CampaignLocalization;
-use App\Facades\EntityCache;
 use App\Facades\EntityPermission;
-use App\Facades\Identity;
 use App\Jobs\EntityUpdatedJob;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
-use App\Models\EntityLog;
 use App\Models\Tag;
 use App\Services\AttributeService;
 use App\Services\ImageService;
