@@ -170,6 +170,7 @@ return [
             . "drive.google.com/|"
             . "www.google.com/maps/embed|"
             . "lookingforgm\.com/campaign/|"
+            . "w.soundcloud.com/player/|"
             . "p3d\.in/e/"
             . ")%",
     ],
