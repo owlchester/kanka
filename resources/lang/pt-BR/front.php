@@ -51,10 +51,22 @@ return [
         'title'         => 'FAQ',
     ],
     'features'      => [
+        'abilities'         => [
+            'description'   => 'Gerencie o inventário da entidade. Adicione poderes e magias aos personagens através das habilidades.',
+            'title'         => 'Habilidades e itens',
+        ],
+        'actions'           => [
+            'rpg'           => 'Para campanhas de RPG',
+            'worldbuilder'  => 'Para criadores de mundos',
+        ],
         'api'               => [
             'description'   => 'Quer criar ferramentas interessantes que se integrem ao Kanka? Acesse o link.',
             'link'          => 'Documentos API',
             'title'         => 'API',
+        ],
+        'audio'             => [
+            'description'   => 'Chega de procurar músicas em 10 playlists diferentes! Incorpore seus áudios e vídeos em suas entidades.',
+            'title'         => 'Incorporar áudio e vídeo.',
         ],
         'boosts'            => [
             'beta'                  => 'Acesso beta a alguns novos recursos por 30 dias antes do lançamento geral.',
@@ -81,6 +93,10 @@ return [
         ],
         'description'       => 'Aqui estão algumas coisas que nós acreditamos que você amará em nosso app!',
         'description_full'  => 'Kanka é constantemente atualizado com novos recursos e melhorias, mas aqui estão alguns dos mais importantes que achamos que você vai adorar.',
+        'flora'             => [
+            'description'   => 'Organize as criaturas de seu mundo usando nosso módulo Raças, e construa um ecossistema complexo usando as notas aninhadas.',
+            'title'         => 'Fauna e flora',
+        ],
         'free'              => [
             'bonuses'       => 'Bônus para nossos assinantes',
             'description'   => 'As melhores coisas da vida são aquelas que são de graça.',
@@ -103,6 +119,10 @@ return [
         'notebook'          => [
             'description'   => 'Prepare sua próxima sessão ou registre o que aconteceu com o nosso recurso jornal!',
             'title'         => 'Jornais',
+        ],
+        'notes'             => [
+            'description'   => '...',
+            'title'         => 'Notas',
         ],
         'patreon'           => [
             'api_calls'         => 'Aumento de chamadas de API (90 por minuto)',
@@ -127,15 +147,31 @@ return [
             'description'   => 'As permissões podem ser definidas para módulos ou para cada entidade individual. As campanhas também podem ser <a href=":url">definidas como públicas </a> para que todo o mundo veja.',
             'title'         => 'Permissões',
         ],
+        'quests'            => [
+            'description'   => 'Prepare sua próxima sessão ou registre eventos de sua mesa com nosso recurso de registro avançado de diários!',
+            'title'         => 'Missões e Diários',
+        ],
         'relations'         => [
             'description'   => 'Cada entidade pode ter uma rede complexa de relações com outras entidades, incluindo relações secretas invisíveis para seus jogadores.',
             'title'         => 'Relações',
+        ],
+        'rpg'               => [
+            'description'   => 'De um sistema de permissão aprofundado, a missões, diários, personagens, habilidades e áudio e vídeo incorporados, ajudamos você a gerenciar sua campanha e futuros tpk!',
+            'title'         => 'Gerenciamento de Campanha',
+        ],
+        'timelines'         => [
+            'description'   => 'Represente visualmente as linhas do tempo de seus mundos, impérios, famílias nobres ou até mesmo de um único personagem.',
+            'title'         => 'Linhas do tempo',
         ],
         'title'             => 'Recursos Ilimitados, Diversão Ilimitada',
         'unlimited'         => 'Ilimitadas',
         'updates'           => [
             'description'   => 'Kanka passa por atualizações freqüentes conduzidas pela comunidade, com novos recursos adicionados a cada mês. Entramos em detalhes sobre essas atualizações em nosso :discord.',
             'title'         => 'Atualizações frequentes baseadas na comunidade',
+        ],
+        'worldbuilding'     => [
+            'description'   => 'Com módulos que abrangem tudo, de mapas a linhas do tempo, e calendários a eventos, o Kanka facilita a organização de mundos complexos.',
+            'title'         => 'Criação de Mundos',
         ],
     ],
     'first_block'   => [

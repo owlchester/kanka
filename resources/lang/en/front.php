@@ -120,10 +120,6 @@ return [
             'title' => 'Timelines',
             'description' => 'Visually represent the timelines of your worlds, empires, noble families, or even a single character.',
         ],
-        'notes' => [
-            'title' => 'Notes',
-            'description' => 'xxx',
-        ],
         'flora' => [
             'title' => 'Flora & Fauna',
             'description' => 'Track the living world of creatures using our Races module, and build a complex ecosystem using our nested Notes.',
