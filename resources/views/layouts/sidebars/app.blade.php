@@ -150,7 +150,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
 
                 @if ($campaign->enabled('notes'))
                     <li class="{{ $sidebar->active('notes') }}">
-                        <a href="{{ route('notes.index') }}"><i class="fas fa-book-open"></i> <span>{{ trans('sidebar.notes') }}</span></a>
+                        <a href="{{ route('notes.' . $defaultIndex) }}"><i class="fas fa-book-open"></i> <span>{{ trans('sidebar.notes') }}</span></a>
                     </li>
                 @endif
 
