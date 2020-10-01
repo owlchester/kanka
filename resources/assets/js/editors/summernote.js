@@ -34,8 +34,11 @@ window.initSummernote = function() {
         },
         hint: [
             {
-                match: /\B@(\w*)$/,
+                match: /\B@((\w|[\u00C0-\u00FF])*)$/,
                 search: function (keyword, callback) {
+                    if (keyword.length < 3) {
+                        return [];
+                    }
                     return hintEntities(keyword, callback);
                 },
                 template: function (item) {
@@ -94,8 +97,9 @@ window.initSummernote = function() {
  * @param callback
  */
 function hintEntities(keyword, callback) {
+
     $.ajax({
-        url: summernoteConfig.data('mention') + '?q=' + keyword,
+        url: summernoteConfig.data('mention') + '?q=' + keyword + '&new=1',
         type: 'get',
         dataType: 'json',
         async: true
@@ -108,6 +112,7 @@ function hintEntities(keyword, callback) {
  * @param callback
  */
 function hintMonths(keyword, callback) {
+
     $.ajax({
         url: summernoteConfig.data('months') + '?q=' + keyword,
         type: 'get',
@@ -189,6 +194,9 @@ function hintContent(item) {
             text: item.fullname,
             href: item.url,
         })[0];
+    }
+    else if (item.inject) {
+        return item.inject;
     }
     return item.fullname;
 }

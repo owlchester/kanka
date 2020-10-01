@@ -7,7 +7,13 @@ use App\Models\Character;
 use App\Models\CharacterTrait;
 use App\Models\Entity;
 use App\Models\EntityNote;
+use App\Models\Event;
+use App\Models\Family;
+use App\Models\Item;
+use App\Models\Location;
 use App\Models\MiscModel;
+use App\Models\Note;
+use App\Models\Organisation;
 use App\Models\OrganisationMember;
 use App\Models\Timeline;
 use App\Models\TimelineEra;
@@ -54,6 +60,9 @@ class EntityService
             'menu_links' => 'App\Models\MenuLink',
         ];
     }
+
+    /** @var bool|array */
+    protected $cachedNewEntityTypes = false;
 
     /**
      * Get the entities
@@ -504,5 +513,51 @@ class EntityService
         $entity->is_template = !$entity->is_template;
         $entity->save();
         return $entity;
+    }
+
+    public function newEntityTypes(): array
+    {
+        if ($this->cachedNewEntityTypes !== false) {
+            return $this->cachedNewEntityTypes;
+        }
+
+        // Save and keep the current campaign before updating the entity
+        $campaign = CampaignLocalization::getCampaign();
+
+        $newTypes = [
+            'character' => Character::class,
+            'location' => Location::class,
+            'item' => Item::class,
+            'note' => Note::class,
+            'family' => Family::class,
+            'organisation' => Organisation::class,
+            'event' => Event::class,
+        ];
+        $entities = [];
+        foreach ($newTypes as $type => $class) {
+            if ($campaign->enabled(Str::plural($type)) && auth()->user()->can('create', $class)) {
+                $entities[$type] = $class;
+            }
+        }
+
+        return $this->cachedNewEntityTypes = $entities;
+    }
+
+    /**
+     * @param MiscModel $model
+     * @param string $name
+     * @return MiscModel
+     */
+    public function makeNewMentionEntity(MiscModel $model, string $name)
+    {
+        $campaign = CampaignLocalization::getCampaign();
+
+        $model->name = $name;
+        $model->savingObserver = false;
+        $model->forceSavedObserver = true;
+        $model->is_private = $campaign->entity_visibility;
+        $model->save();
+
+        return $model;
     }
 }

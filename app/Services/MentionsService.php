@@ -154,6 +154,19 @@ class MentionsService
         if (empty($text)) {
             $text = '';
         }
+        // New entities
+        $text = preg_replace_callback(
+            '`\[new:([a-z_]+)\|(.*?)\]`i',
+            function ($data) {
+                if (count($data) !== 3) {
+                    return $data[0];
+                }
+                // check type is valid
+                return $this->newEntityMention($data[1], $data[2]);
+            },
+            $text
+        );
+
         // TinyMCE mentions
         $text = preg_replace(
             '`<a class="mention" href="#" data-mention="([^"]*)">(.*?)</a>`',
@@ -426,5 +439,35 @@ class MentionsService
             }
             return $replace;
         }, $this->text);
+    }
+
+    /**
+     * Replace new entity mentions with entities.
+     * @param $data
+     * @return string
+     */
+    protected function newEntityMention(string $type, string $name): string
+    {
+        if (empty($type) || empty($name)) {
+            return (string) $name;
+        }
+
+        /** @var EntityService $service */
+        $service = app()->make(EntityService::class);
+        $types = $service->newEntityTypes();
+
+        // Invalid type
+        if (!isset($types[$type])) {
+            return (string) $name;
+        }
+
+        // Create the new misc  model
+        /** @var MiscModel $newMisc */
+        $newMisc = new $types[$type]();
+
+        $new = $service->makeNewMentionEntity($newMisc, $name);
+
+        return '[' . $type . ':' . $new->entity->id . ']';
+
     }
 }

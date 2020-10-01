@@ -61,6 +61,11 @@ abstract class MiscModel extends Model
     public $savingObserver = true;
 
     /**
+     * @var bool
+     */
+    public $forceSavedObserver = false;
+
+    /**
      * If set to false, the save observer in MiscObserver will be skipped
      * @var bool
      */
