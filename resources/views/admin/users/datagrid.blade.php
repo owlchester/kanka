@@ -37,10 +37,6 @@
                 <a href="{{ route('admin.users.show', $model) }}" class="margin-r-5">
                     <i class="fa fa-eye"></i>
                 </a>
-
-                <a href="{{ route('admin.users.edit', $model) }}">
-                    <i class="fa fa-edit"></i>
-                </a>
             </td>
         </tr>
     @endforeach

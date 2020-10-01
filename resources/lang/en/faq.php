@@ -11,7 +11,7 @@ The best way we can explain Attribute Templates is with an example. Let's imagin
 
 Now, you could easily do that on every Location, but it can get tedious, and you might forget sometimes to create the attribute "Crime Level". This is where Attribute Templates come into play.
 
-You can create an Attribute Template with those attributes (Population, Climate, Crime Level, etc), and later apply that template our your locations. This will create the attributes from the template on the locations, so all you have to do is change the values and not have to remember about the attributes!
+You can create an Attribute Template with those attributes (Population, Climate, Crime Level, etc), and later apply that template to your locations. This will create the attributes from the template on the locations, so all you have to do is change the values and not have to remember about the attributes!
 TEXT
 ,
         'question'  => 'Attribute Templates, what are they?',
@@ -73,7 +73,7 @@ TEXT
         'question'  => 'How can I help?',
     ],
     'map'                   => [
-        'answer'    => 'The Maps module supports PNG, JPG, and SVG images. These maps can have layers, groups, and markers pointing of various shapes and sizes pointint to other entities in a campaign.',
+        'answer'    => 'The Maps module supports PNG, JPG, and SVG images. These maps can have layers, groups, and markers pointing of various shapes and sizes that point to other entities in a campaign.',
         'question'  => 'Can I upload maps to Kanka?',
     ],
     'mobile'                => [

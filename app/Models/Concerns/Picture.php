@@ -2,7 +2,10 @@
 
 namespace App\Models\Concerns;
 
+use App\Facades\CampaignCache;
+use App\Facades\CampaignLocalization;
 use App\Facades\Img;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
@@ -50,6 +53,12 @@ trait Picture
     {
         // If it's a default image, patreons have the nicer pictures
         if (Str::contains($avatar, '/images/defaults/')) {
+            // Check if the campaign has a default image first
+            $campaign = CampaignLocalization::getCampaign();
+            if ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->type)) {
+                return Img::crop(40, 40)->url(CampaignCache::defaultImages()[$this->type]['path']);
+            }
+
             if (auth()->check() && auth()->user()->isGoblinPatron()) {
                 return str_replace(['defaults/', '.jpg'], ['defaults/patreon/', '.png'], $avatar);
             }

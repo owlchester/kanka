@@ -35,12 +35,18 @@ $campaign = CampaignLocalization::getCampaign(); ?>
 @endif
 @yield('styles')
 
-@if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme))
-@if ($campaign->theme_id !== 1)
-    <link href="{{ mix('css/' . $campaign->theme->name . '.css') }}" rel="stylesheet">
-@endif
-@elseif (auth()->check() && !empty(auth()->user()->theme))
-    <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">
+@if (request()->has('_theme') && in_array(request()->get('_theme'), ['dark', 'midnight', 'future', 'base']))
+    @if(request()->get('_theme') != 'base')
+    <link href="{{ mix('css/' . request()->get('_theme') . '.css') }}" rel="stylesheet">
+    @endif
+@else
+    @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme))
+    @if ($campaign->theme_id !== 1)
+        <link href="{{ mix('css/' . $campaign->theme->name . '.css') }}" rel="stylesheet">
+    @endif
+    @elseif (auth()->check() && !empty(auth()->user()->theme))
+        <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">
+    @endif
 @endif
 
 @if(!empty($campaign) && $campaign->boosted() && $campaign->hasPluginTheme())

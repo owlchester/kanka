@@ -32,9 +32,10 @@ class EntityLogObserver
     public function updated(Entity $entity)
     {
         // Don't log updates if just did one (typically when creating or restoring)
-        if (!$entity->updated_at->addSecond()->isPast()) {
+        if ($entity->updated_at == $entity->created_at || !empty($entity->getOriginal('deleted_at'))) {
             return;
         }
+        //dd('not same');
 
         $log = new EntityLog();
         $log->entity_id = $entity->id;

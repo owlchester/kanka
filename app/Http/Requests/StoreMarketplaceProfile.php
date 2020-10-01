@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreEntityFile extends FormRequest
+class StoreMarketplaceProfile extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class StoreEntityFile extends FormRequest
     public function rules()
     {
         return [
-            'file' => 'required|file|mimes:jpeg,png,jpg,gif,pdf,xls,xlsx,mp3,ogg|max:' . auth()->user()->maxUploadSize(),
+            'marketplace_name' => 'nullable|string|min:4'
         ];
     }
 }
