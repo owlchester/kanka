@@ -27,7 +27,7 @@ return [
         'title' => 'Entity Notes for :name',
     ],
     'placeholders'  => [
-        'name'  => 'Name of the entity note, observation or remark.',
+        'name'  => 'Name of the entity note, observation or remark',
     ],
     'show'          => [
         'title' => 'Entity Note :name for :entity',

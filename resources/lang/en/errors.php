@@ -6,7 +6,7 @@ return [
         'title' => 'Permission Denied',
     ],
     '403-form'  => [
-        'help'  => 'This might be due to your session timing out. Please try login in again in another window before saving.',
+        'help'  => 'This might be due to your session timing out. Please try logging in again in another window before saving.',
     ],
     '404'       => [
         'body'  => 'Sorry, the page you are looking for could not be found.',
