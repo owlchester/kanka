@@ -54,6 +54,10 @@ class CampaignDashboardWidget extends Model
         'is_full',
     ];
 
+    protected $casts = [
+        'config' => 'Array',
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -114,7 +118,21 @@ class CampaignDashboardWidget extends Model
      */
     public function conf($value)
     {
-        $data = json_decode($this->config, true);
-        return Arr::get($data, $value, null);
+        return Arr::get($this->config, $value, null);
+    }
+
+
+    /**
+     * Used by the API to get models updated since a previous date
+     * @param $query
+     * @param $lastSync
+     * @return mixed
+     */
+    public function scopeLastSync(\Illuminate\Database\Eloquent\Builder $query, $lastSync)
+    {
+        if (empty($lastSync)) {
+            return $query;
+        }
+        return $query->where('updated_at', '>', $lastSync);
     }
 }
