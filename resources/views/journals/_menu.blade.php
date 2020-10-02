@@ -18,6 +18,16 @@
                     <br class="clear" />
                 </li>
             @endif
+            @if (!empty($model->journal))
+                <li class="list-group-item">
+                    <b>{{ __('journals.fields.journal') }}</b>
+
+                    <span class="pull-right">
+                        {!! $model->journal->tooltipedLink() !!}
+                    </span>
+                    <br class="clear" />
+                </li>
+            @endif
             @if ($model->character)
                 <li class="list-group-item">
                     <b>{{ trans('journals.fields.author') }}</b>

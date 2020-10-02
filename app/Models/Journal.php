@@ -7,6 +7,7 @@ use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Kalnoy\Nestedset\NodeTrait;
 
 /**
  * Class Journal
@@ -16,6 +17,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $date
  * @property int $character_id
  * @property int $journal_id
+ * @property Journal $journal
+ * @property Journal[] $journals
  */
 class Journal extends MiscModel
 {
@@ -23,6 +26,7 @@ class Journal extends MiscModel
         VisibleTrait,
         ExportableTrait,
         CalendarDateTrait,
+        NodeTrait,
         SoftDeletes;
 
     /**
@@ -39,6 +43,7 @@ class Journal extends MiscModel
         'character_id',
         'location_id',
         'is_private',
+        'journal_id',
 
         // calendar date
         'calendar_id',
@@ -73,6 +78,7 @@ class Journal extends MiscModel
         'is_private',
         'tags',
         'has_image',
+        'journal_id',
     ];
 
     /**
@@ -93,6 +99,7 @@ class Journal extends MiscModel
         'location_id',
         'character_id',
         'calendar_id',
+        'journal_id',
     ];
 
     /**
@@ -102,7 +109,25 @@ class Journal extends MiscModel
      */
     public function scopePreparedWith($query)
     {
-        return $query->with(['entity', 'character', 'character.entity', 'location', 'location.entity']);
+        return $query->with([
+            'entity',
+            'character', 'character.entity',
+            'location', 'location.entity',
+            'journal', 'journal.entity'
+        ]);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function journal()
+    {
+        return $this->belongsTo(Journal::class);
+    }
+
+    public function journals()
+    {
+        return $this->hasMany(Journal::class);
     }
 
     /**
@@ -128,5 +153,23 @@ class Journal extends MiscModel
     public function entityTypeId(): int
     {
         return (int) config('entities.ids.journal');
+    }
+
+    /**
+     * Parent ID field for the Node trait
+     * @return string
+     */
+    public function getParentIdName()
+    {
+        return 'journal_id';
+    }
+
+    /**
+     * Specify parent id attribute mutator
+     * @param $value
+     */
+    public function setJournalIdAttribute($value)
+    {
+        $this->setParentIdAttribute($value);
     }
 }

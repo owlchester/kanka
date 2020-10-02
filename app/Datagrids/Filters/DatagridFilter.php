@@ -5,6 +5,7 @@ namespace App\Datagrids\Filters;
 
 
 use App\Models\Character;
+use App\Models\Journal;
 use App\Models\Location;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
@@ -65,6 +66,23 @@ abstract class DatagridFilter
             'route' => route('characters.find'),
             'placeholder' =>  trans('crud.placeholders.character'),
             'model' => Character::class,
+        ];
+        return $this;
+    }
+
+    /**
+     * Add the character filters
+     * @return $this
+     */
+    protected function journal(): self
+    {
+        $this->filters[] = [
+            'field' => 'journal_id',
+            'label' => trans('journals.fields.journal'),
+            'type' => 'select2',
+            'route' => route('journals.find'),
+            'placeholder' =>  trans('crud.placeholders.journal'),
+            'model' => Journal::class,
         ];
         return $this;
     }

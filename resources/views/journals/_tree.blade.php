@@ -1,6 +1,6 @@
 <?php /**
  * @var \App\Renderers\DatagridRenderer $datagrid
- * @var \App\Models\Note $model
+ * @var \App\Models\Journal $model
  */?>
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
@@ -18,22 +18,26 @@
         // Name
         'name',
         'type',
+        'date',
         [
-            'label' => trans('notes.fields.notes'),
+            'type' => 'calendar_date',
+        ],
+        [
+            'label' => trans('journals.fields.journals'),
             'render' => function($model) {
-                $count = $model->notes->count();
+                $count = $model->journals->count();
                 return !empty($count) ? $count : '';
             },
             'disableSort' => true,
         ],
         [
-            'label' => trans('notes.fields.note'),
+            'label' => trans('journals.fields.journal'),
             'render' => function($model) {
                 if ($model->note) {
-                    return '<a href="' . route('notes.show', $model->note) . '">' . e($model->note->name) . '</a>';
+                    return '<a href="' . route('journals.show', $model->journal) . '">' . e($model->journal->name) . '</a>';
                 }
             },
-            'field' => 'note.name',
+            'field' => 'journal.name',
             'disableSort' => true,
         ],
         [
@@ -44,13 +48,13 @@
     $models,
     // Options
     [
-        'route' => 'notes.tree',
-        'baseRoute' => 'notes',
-        'trans' => 'notes.fields.',
+        'route' => 'journals.tree',
+        'baseRoute' => 'journals',
+        'trans' => 'journals.fields.',
         'row' => [
             'data' => [
                 'data-children' => function($model) {
-                    return $model->notes->count();
+                    return $model->journals->count();
                 }
             ],
         ]

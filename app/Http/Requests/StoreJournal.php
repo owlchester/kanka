@@ -31,6 +31,7 @@ class StoreJournal extends FormRequest
             'character_id' => 'nullable|exists:characters,id',
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable|exists:attribute_templates,id',
+            'journal_id' => 'nullable|integer|exists:journals,id',
         ];
 
         if (request()->has('calendar_id') && request()->post('calendar_id') !== null) {
@@ -40,6 +41,10 @@ class StoreJournal extends FormRequest
             if (request()->has('length')) {
                 $rules['length'] = 'required_with:calendar_id|min:1';
             }
+        }
+        $self = request()->segment(5);
+        if (!empty($self)) {
+            $rules['journal_id'] = 'integer|not_in:' . ((int) $self) . '|exists:journals,id';
         }
 
         return $rules;

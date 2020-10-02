@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use App\Datagrids\Filters\JournalFilter;
 use App\Models\Journal;
 use App\Http\Requests\StoreJournal;
+use App\Traits\TreeControllerTrait;
 
 class JournalController extends CrudController
 {
+    /**
+     * Tree / Nested Mode
+     */
+    use TreeControllerTrait;
+    protected $treeControllerParentKey = 'journal_id';
+
     /**
      * @var string
      */

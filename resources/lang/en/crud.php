@@ -338,6 +338,7 @@ return [
         'family'        => 'Choose a family',
         'image_url'     => 'You can upload an image from a URL instead',
         'item'          => 'Choose an item',
+        'journal'       => 'Choose a journal',
         'location'      => 'Choose a location',
         'map'           => 'Choose a map',
         'organisation'  => 'Choose an organisation',

@@ -164,6 +164,8 @@ Route::group([
         Route::get('/notes/{note}/map-points', 'NoteController@mapPoints')->name('notes.map-points');
         Route::get('/notes/tree', 'NoteController@tree')->name('notes.tree');
 
+        Route::get('/journals/tree', 'JournalController@tree')->name('journals.tree');
+
         // Events
         Route::get('/events/{event}/map-points', 'EventController@mapPoints')->name('events.map-points');
 
@@ -298,6 +300,7 @@ Route::group([
         Route::get('/search/item', 'Search\MiscController@items')->name('items.find');
         Route::get('/search/locations', 'Search\MiscController@locations')->name('locations.find');
         Route::get('/search/notes', 'Search\MiscController@notes')->name('notes.find');
+        Route::get('/search/journals', 'Search\MiscController@journals')->name('journals.find');
         Route::get('/search/organisations', 'Search\MiscController@organisations')->name('organisations.find');
         Route::get('/search/tags', 'Search\MiscController@tags')->name('tags.find');
         Route::get('/search/dice-rolls', 'Search\MiscController@diceRolls')->name('dice_rolls.find');
