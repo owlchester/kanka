@@ -31,16 +31,6 @@
             'disableSort' => true,
         ],
         [
-            'label' => trans('journals.fields.journal'),
-            'render' => function($model) {
-                if ($model->note) {
-                    return '<a href="' . route('journals.show', $model->journal) . '">' . e($model->journal->name) . '</a>';
-                }
-            },
-            'field' => 'journal.name',
-            'disableSort' => true,
-        ],
-        [
             'type' => 'is_private',
         ]
     ],
