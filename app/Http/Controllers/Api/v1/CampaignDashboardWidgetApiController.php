@@ -29,8 +29,7 @@ class CampaignDashboardWidgetApiController extends ApiController
      */
     public function show(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('view', $campaignDashboardWidget);
+        $this->authorize('update', $campaign);
         return new Resource($campaignDashboardWidget);
     }
 
@@ -42,8 +41,8 @@ class CampaignDashboardWidgetApiController extends ApiController
      */
     public function store(Request $request, Campaign $campaign)
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('create', CampaignDashboardWidget::class);
+        $this->authorize('update', $campaign);
+
         $data = array_merge(['campaign_id' => $campaign->id], $request->all());
         $model = CampaignDashboardWidget::create($data);
         return new Resource($model);
@@ -57,8 +56,7 @@ class CampaignDashboardWidgetApiController extends ApiController
      */
     public function update(Request $request, Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('update', $campaignDashboardWidget);
+        $this->authorize('update', $campaign);
         $campaignDashboardWidget->update($request->all());
 
         return new Resource($campaignDashboardWidget);
@@ -73,8 +71,7 @@ class CampaignDashboardWidgetApiController extends ApiController
      */
     public function delete(Request $request, Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
-        $this->authorize('access', $campaign);
-        $this->authorize('delete', $campaignDashboardWidget);
+        $this->authorize('update', $campaign);
         $campaignDashboardWidget->delete();
 
         return response()->json(null, 204);

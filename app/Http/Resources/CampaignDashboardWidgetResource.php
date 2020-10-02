@@ -24,8 +24,8 @@ class CampaignDashboardWidgetResource extends EntityChild
             'entity_id' => $model->entity_id,
             'widget' => $model->widget,
             'config' => $model->config,
-            'width' => $model->width,
-            'position' => $model->position,
+            'width' => (int) $model->width,
+            'position' => (int) $model->position,
             'tags' => $model->tags()->pluck('id')->toArray(),
 
             'created_at' => $model->created_at,
