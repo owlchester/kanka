@@ -46,4 +46,7 @@ return [
             'journals' => 'Journals',
         ]
     ],
+    'journals' => [
+        'title' => 'Journal :name sub journals',
+    ]
 ];
