@@ -51,10 +51,22 @@ return [
         'title'         => 'Često postavljana pitanja',
     ],
     'features'      => [
+        'abilities'         => [
+            'description'   => 'Upravljanje zalihama entiteta. Pričvrsti čarolije i moći likovima kroz sposobnosti.',
+            'title'         => 'Sposobnosti i predmeti',
+        ],
+        'actions'           => [
+            'rpg'           => 'Za RPG kampanje',
+            'worldbuilder'  => 'Za graditelje svjetova',
+        ],
         'api'               => [
             'description'   => 'Želite li izraditi zanimljive alate koji se integriraju s Kankom? Posjetite :link.',
             'link'          => 'API dokumentaciju',
             'title'         => 'API',
+        ],
+        'audio'             => [
+            'description'   => 'Ne trebate prolaziti kroz 10 popisa za reprodukciju, samo ugradi svoj audio i video u svoje entitete',
+            'title'         => 'Ugradi audio i video',
         ],
         'boosts'            => [
             'beta'                  => 'Beta pristup nekim novim značajkama 30 dana prije općeg izdanja.',
@@ -81,6 +93,10 @@ return [
         ],
         'description'       => 'Kanka ima veliki broj funkcionalnosti. Pratite likove svog svijeta i njihove odnose, lokacije i njihovu povijest, zadatke i njihove ciljeve, kalendare i njihove događaje i vremenske učinke, te još puno toga. Najbolje od svega je što Kanka dobiva nekoliko nadogradnji svakog mjeseca na temelju povratnih informacija korisnika.',
         'description_full'  => 'Neprestano dodajemo nove funkcionalnosti i poboljšanja Kanki, a sve temeljne funkcionalnosti su besplatne.',
+        'flora'             => [
+            'description'   => 'Prati živi svijet stvorenja pomoću našeg modula Rasa i izgradite složeni ekosustav koristeći naše ugniježđene Bilješke.',
+            'title'         => 'Flora i fauna',
+        ],
         'free'              => [
             'bonuses'       => 'bonuse',
             'description'   => 'Sve temeljne funkcionalnosti Kanke su apsolutno besplatne, uz :bonuses za pretplatnike.',
@@ -103,6 +119,10 @@ return [
         'notebook'          => [
             'description'   => 'Pripremi svoju sljedeću sesiju ili zapiši događaje uz pomoć naše napredne mogućnosti pisanja dnevnika!',
             'title'         => 'Dnevnici',
+        ],
+        'notes'             => [
+            'description'   => 'xxx',
+            'title'         => 'Bilješke',
         ],
         'patreon'           => [
             'api_calls'         => 'Povećani API pozivi (90)',
@@ -127,15 +147,31 @@ return [
             'description'   => 'Ovlasti se mogu postaviti za module ili za svaki pojedinačni entitet. Kampanje mogu biti javne i za <a href=":url">cijeli svijet</a>.',
             'title'         => 'Ovlasti',
         ],
+        'quests'            => [
+            'description'   => 'Pripremi svoju sljedeću sesiju ili zapisuj događaje pomoću naših naprednih dnevnika!',
+            'title'         => 'Zadaci i dnevnici',
+        ],
         'relations'         => [
             'description'   => 'Svaki entitet može imati složenu mrežu odnosa s drugim entitetima, uključujući tajne odnose nevidljive za igrače.',
             'title'         => 'Odnosi',
+        ],
+        'rpg'               => [
+            'description'   => 'Od dubinskog sustava dozvola, do zadataka, dnevnika, likova, sposobnosti i ugrađenih audio i video zapisa, pomažemo vam u upravljanju kampanjom i nadolazećem porazu cijele družine.',
+            'title'         => 'Upravljanje RPG kampanjom',
+        ],
+        'timelines'         => [
+            'description'   => 'Vizualno predstavi vremenske crte svojih svjetova, carstava, plemićkih obitelji ili čak jednog lika.',
+            'title'         => 'Kronologije',
         ],
         'title'             => 'Snažne funkcionalnosti s nevjerojatnom fleksibilnošću',
         'unlimited'         => 'Neograničeno',
         'updates'           => [
             'description'   => 'Kanka prolazi kroz česta nadogradnje koje potiče zajednica.',
             'title'         => 'Česte nadogradnje',
+        ],
+        'worldbuilding'     => [
+            'description'   => 'Modulima koji pokrivaju sve, od Karti do Kronologija, od Kalendara do događaja, Kanka olakšava organizaciju složenih svjetova.',
+            'title'         => 'Izgradnja svijeta',
         ],
     ],
     'first_block'   => [
@@ -175,27 +211,28 @@ return [
         'title'             => 'Kanka',
     ],
     'menu'          => [
-        'about'     => 'O nama',
-        'api'       => 'API',
-        'campaigns' => 'Javne kampanje',
-        'community' => 'Zajednica',
-        'contact'   => 'Kontakt',
-        'contact_us'=> 'Kontaktiraj nas',
-        'dashboard' => 'Naslovna ploča',
-        'faq'       => 'Često postavljana pitanja',
-        'features'  => 'Funkcionalnosti',
-        'help'      => 'Pomoć',
-        'home'      => 'Početna stranica',
-        'login'     => 'Prijava',
-        'news'      => 'Vijesti',
-        'newsletter'=> 'Bilten',
-        'pricing'   => 'Cijena',
-        'privacy'   => 'Pravila privatnosti',
-        'register'  => 'Registracija',
-        'releases'  => 'Izdanja',
-        'roadmap'   => 'Plan',
-        'terms'     => 'Uvjeti korištenja',
-        'title'     => 'Izbornik',
+        'about'         => 'O nama',
+        'api'           => 'API',
+        'campaigns'     => 'Javne kampanje',
+        'community'     => 'Zajednica',
+        'contact'       => 'Kontakt',
+        'contact_us'    => 'Kontaktiraj nas',
+        'dashboard'     => 'Naslovna ploča',
+        'faq'           => 'Često postavljana pitanja',
+        'features'      => 'Funkcionalnosti',
+        'help'          => 'Pomoć',
+        'home'          => 'Početna stranica',
+        'login'         => 'Prijava',
+        'marketplace'   => 'Tržnica',
+        'news'          => 'Vijesti',
+        'newsletter'    => 'Bilten',
+        'pricing'       => 'Cijena',
+        'privacy'       => 'Pravila privatnosti',
+        'register'      => 'Registracija',
+        'releases'      => 'Izdanja',
+        'roadmap'       => 'Plan',
+        'terms'         => 'Uvjeti korištenja',
+        'title'         => 'Izbornik',
     ],
     'meta'          => [
         'description'   => 'Kanka je fleksibilni graditelj digitalnih svijetova i alat za upravljanje internetskim RPG kampanjama',
@@ -255,7 +292,6 @@ return [
     ],
     'second_block'  => [
         'call_to_action'    => 'Registriraj besplatan račun!',
-        'title'             => 'Provedite manje vremena organizirajući i više vremena gradeći svijet.',
     ],
     'seo'           => [
         'keywords'  => 'Izgradnja svjetova, RPG koji se igraju na stolu, upravitelj RPG kampanjama',

@@ -9,12 +9,18 @@ return [
         'update'            => 'Plugin aktualisieren',
         'update_available'  => 'Update verfügbar!',
     ],
+    'destroy'       => [
+        'success'   => 'Plugin :plugin entfernt.',
+    ],
     'disabled'      => [
         'success'   => 'Plugin :plugin deaktiviert',
     ],
     'empty_list'    => 'Die Kampagne hat derzeit keine Plugins. Gehen Sie zum Marktplatz, um einige zu installieren, und kehren Sie zurück, um sie zu aktivieren.',
     'enabled'       => [
         'success'   => 'Plugin :plugin aktiviert',
+    ],
+    'errors'        => [
+        'invalid_plugin'    => 'Ungültiges Plugin.',
     ],
     'fields'        => [
         'name'      => 'Plugin Name',

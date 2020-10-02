@@ -34,7 +34,8 @@ return [
     ],
     'teaser'        => 'Boosten Sie die Kampagne, um Zugriff auf den Relations Visualizer zu erhalten. Klicken Sie hier, um mehr über geboostete Kampagnen zu erfahren.',
     'types'         => [
-        'family_member' => 'Familienmitglied',
+        'family_member'         => 'Familienmitglied',
+        'organisation_member'   => 'Organisationsmitlgied',
     ],
     'update'        => [
         'success'   => 'Beziehung für :name aktualisiert',

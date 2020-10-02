@@ -112,6 +112,22 @@ class FrontController extends Controller
     }
 
     /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function gmFeatures()
+    {
+        return $this->cachedResponse('front.features.gm');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function wbFeatures()
+    {
+        return $this->cachedResponse('front.features.worldbuilding');
+    }
+
+    /**
      * Public Campaigns
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

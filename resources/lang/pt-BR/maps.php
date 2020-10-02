@@ -32,7 +32,7 @@ return [
         'distance_name'     => 'Unidade de distância',
         'grid'              => 'Grid',
         'initial_zoom'      => 'Zoom inicial',
-        'map'               => 'Mapa prmário',
+        'map'               => 'Mapa primário',
         'maps'              => 'Mapas',
         'max_zoom'          => 'Zoom máximo',
         'min_zoom'          => 'Zoom mínimo',

@@ -18,7 +18,7 @@ return [
         'image'     => 'Imagem',
         'location'  => 'Local',
         'name'      => 'Nome',
-        'price'     => 'preço',
+        'price'     => 'Preço',
         'relation'  => 'Relação',
         'size'      => 'Tamanho',
         'type'      => 'Tipo',

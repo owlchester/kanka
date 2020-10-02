@@ -9,12 +9,18 @@ return [
         'update'            => 'Ažuriraj dodatak',
         'update_available'  => 'Ažuriranje dostupno!',
     ],
+    'destroy'       => [
+        'success'   => 'Uklonjen dodatak :plugin.',
+    ],
     'disabled'      => [
         'success'   => 'Dodatak :plugin je onemogućen.',
     ],
     'empty_list'    => 'Kampanja trenutno nema dodataka. Idi na Tržnicu da ih instaliraš nekoliko pa se vrati da ih aktiviraš.',
     'enabled'       => [
         'success'   => 'Dodatak :plugin je omogućen.',
+    ],
+    'errors'        => [
+        'invalid_plugin'    => 'Neispravan dodatak.',
     ],
     'fields'        => [
         'name'      => 'Naziv dodatka',

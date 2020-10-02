@@ -7,6 +7,8 @@ Route::get('/terms-and-conditions', 'FrontController@terms')->name('front.terms'
 Route::get('/faq', 'FaqController@index')->name('faq.index');
 Route::get('/faq/{key}/{slug?}', 'FaqController@show')->name('faq.show');
 Route::get('/features', 'FrontController@features')->name('front.features');
+Route::get('/gm-features', 'FrontController@gmFeatures')->name('front.gm-features');
+Route::get('/worldbuilding-features', 'FrontController@wbFeatures')->name('front.worldbuilder-features');
 Route::get('/roadmap', 'FrontController@roadmap')->name('front.roadmap');
 Route::get('/community', 'FrontController@community')->name('front.community');
 Route::get('/public-campaigns', 'FrontController@campaigns')->name('front.public_campaigns');

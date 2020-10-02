@@ -24,11 +24,9 @@
 {{--                <p class="text-muted">{{ __('front.index.description') }}</p>--}}
 
                 @include('front._pricing')
-
-                <a href="{{ route('front.features', '#patreon') }}" class="lead">
-                    {{ __('front.pricing.actions.more') }} <i class="fa fa-arrow-right"></i>
-                </a>
             </div>
         </div>
     </section>
+
+    @include('front._paid_features')
 @endsection

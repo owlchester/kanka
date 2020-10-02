@@ -25,7 +25,7 @@ return [
         'two_way'   => 'If you select to create a mirror relation, the same relation will be created on the target. However, if you edit one, the mirror won\'t be updated.',
     ],
     'placeholders'  => [
-        'attitude'  => '-100 to 100, 100 being very positive.',
+        'attitude'  => '-100 to 100, 100 being very positive',
         'relation'  => 'Rival, Best Friend, Sibling',
         'target'    => 'Choose an entity',
     ],

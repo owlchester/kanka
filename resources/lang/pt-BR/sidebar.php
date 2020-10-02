@@ -37,7 +37,7 @@ return [
     'releases'              => 'Notas de atualização',
     'search'                => 'Buscar...',
     'support'               => 'Suporte / Comunidade',
-    'tags'                  => 'Etiquetas',
+    'tags'                  => 'Tags',
     'team'                  => 'Time',
     'timelines'             => 'Linhas do tempo',
     'translations'          => 'Traduções',

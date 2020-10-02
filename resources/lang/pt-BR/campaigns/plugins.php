@@ -9,12 +9,18 @@ return [
         'update'            => 'Atualizar plug-in',
         'update_available'  => 'Atualização disponível!',
     ],
+    'destroy'       => [
+        'success'   => 'Plug-in :plugin removido',
+    ],
     'disabled'      => [
         'success'   => 'Plug-in :plugin desativado',
     ],
     'empty_list'    => 'A campanha não tem nenhum plug-in no momento. Vá ao mercado para instalar alguns e volte para ativá-los.',
     'enabled'       => [
         'success'   => 'Plug-in :plugin ativado',
+    ],
+    'errors'        => [
+        'invalid_plugin'    => 'Plug-in inválido',
     ],
     'fields'        => [
         'name'      => 'Nome do plug-in',

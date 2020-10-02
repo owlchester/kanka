@@ -51,10 +51,22 @@ return [
         'title'         => 'FAQ',
     ],
     'features'      => [
+        'abilities'         => [
+            'description'   => 'Objektbestände verwalten. Bringen Sie durch Fähigkeiten Zauber und Kräfte an Charaktere an.',
+            'title'         => 'Fähigkeiten und Gegenstände',
+        ],
+        'actions'           => [
+            'rpg'           => 'Für RPG-Kampagnen',
+            'worldbuilder'  => 'für Worldbuilder',
+        ],
         'api'               => [
             'description'   => 'Möchten Sie coole Tools erstellen, die sich in Kanka integrieren lassen? Gehen Sie zum :link.',
             'link'          => 'API-Dokumente',
             'title'         => 'API',
+        ],
+        'audio'             => [
+            'description'   => 'Sie müssen nicht durch 10 Wiedergabelisten blättern, sondern müssen nur Audio und Video in Ihre Objekte einbetten',
+            'title'         => 'Audio & Video einbetten',
         ],
         'boosts'            => [
             'beta'                  => 'Beta-Zugriff auf einige neue Funktionen für 30 Tage vor der allgemeinen Veröffentlichung.',
@@ -81,6 +93,10 @@ return [
         ],
         'description'       => 'Hier sind einige Dinge, die du an unserer App lieben wirst!',
         'description_full'  => 'Hier einige unserer besten und beliebtesten Features.',
+        'flora'             => [
+            'description'   => 'Verfolgen Sie die lebende Welt der Kreaturen mit unserem Rassen-Modul und bauen Sie mit unseren verschachtelten Notizen ein komplexes Ökosystem auf.',
+            'title'         => 'Flora & Fauna',
+        ],
         'free'              => [
             'bonuses'       => 'Boni',
             'description'   => 'Die besten Dinge im leben sind kostenlos.',
@@ -103,6 +119,10 @@ return [
         'notebook'          => [
             'description'   => 'Bereite deine nächste Session vor oder protokoliere was passiert ist mit unserem Rich Text Logbuch Feature!',
             'title'         => 'Logbücher',
+        ],
+        'notes'             => [
+            'description'   => 'xxx',
+            'title'         => 'Anmerkungen',
         ],
         'patreon'           => [
             'api_calls'         => 'Erhöhte API-Aufrufe (90)',
@@ -127,15 +147,31 @@ return [
             'description'   => 'Berechtigungen können für Module oder jedes einzelne Objekt gesetzt werden. Kampagnen können auch für die <a href=":url">ganze Welt</a> öffentlich gemacht werden.',
             'title'         => 'Berechtigungen',
         ],
+        'quests'            => [
+            'description'   => 'Bereiten Sie Ihre nächste Sitzung vor oder protokollieren Sie Ereignisse mit unserer erweiterten Journalfunktion!',
+            'title'         => 'Quests & Zeitschriften',
+        ],
         'relations'         => [
             'description'   => 'Jedes Objekt kann ein komplexes Netz an Beziehungen mit anderen Objekten haben. Inklusive geheimer Beziehungen, die für deine Spieler unsichtbar sind.',
             'title'         => 'Beziehungen',
+        ],
+        'rpg'               => [
+            'description'   => 'Vom detaillierten Berechtigungssystem bis hin zu Quests, Journalen, Charakteren, Fähigkeiten und eingebettetem Audio und Video unterstützen wir Sie bei der Verwaltung Ihrer Kampagne und des bevorstehenden TPK.',
+            'title'         => 'RPG-Kampagnenverwaltung',
+        ],
+        'timelines'         => [
+            'description'   => 'Stellen Sie visuell die Zeitstrahlen Ihrer Welten, Reiche, Adelsfamilien oder sogar eines einzelnen Charakters dar.',
+            'title'         => 'Zeitstrahlen',
         ],
         'title'             => 'Unbegrenzte Features, unbegrenzter Spaß',
         'unlimited'         => 'unbegrenzt',
         'updates'           => [
             'description'   => 'Kanka erhält regelmäßige Update, die von der Community mitgestaltet werden.',
             'title'         => 'Regelmäßige Updates',
+        ],
+        'worldbuilding'     => [
+            'description'   => 'Mit Modulen, die alles von Karten über Zeitstrahlen und Kalender bis hin zu Ereignissen abdecken, erleichtert Kanka die Organisation komplexer Welten.',
+            'title'         => 'Worldbuilding',
         ],
     ],
     'first_block'   => [
@@ -175,27 +211,28 @@ return [
         'title'             => 'Kanka',
     ],
     'menu'          => [
-        'about'     => 'Über Kanka',
-        'api'       => 'API',
-        'campaigns' => 'Öffentliche Kampagnen',
-        'community' => 'Community',
-        'contact'   => 'Kontakt',
-        'contact_us'=> 'Kontaktiere uns',
-        'dashboard' => 'Dashboard',
-        'faq'       => 'FAQ',
-        'features'  => 'Features',
-        'help'      => 'Hilfe',
-        'home'      => 'Home',
-        'login'     => 'Login',
-        'news'      => 'Neuigkeiten',
-        'newsletter'=> 'Newsletter',
-        'pricing'   => 'Preisgestaltung',
-        'privacy'   => 'Datenschutz-Bestimmung',
-        'register'  => 'Registrieren',
-        'releases'  => 'Versionen',
-        'roadmap'   => 'Roadmap',
-        'terms'     => 'Bedingungen',
-        'title'     => 'Menü',
+        'about'         => 'Über Kanka',
+        'api'           => 'API',
+        'campaigns'     => 'Öffentliche Kampagnen',
+        'community'     => 'Community',
+        'contact'       => 'Kontakt',
+        'contact_us'    => 'Kontaktiere uns',
+        'dashboard'     => 'Dashboard',
+        'faq'           => 'FAQ',
+        'features'      => 'Features',
+        'help'          => 'Hilfe',
+        'home'          => 'Home',
+        'login'         => 'Login',
+        'marketplace'   => 'Marktplatz',
+        'news'          => 'Neuigkeiten',
+        'newsletter'    => 'Newsletter',
+        'pricing'       => 'Preisgestaltung',
+        'privacy'       => 'Datenschutz-Bestimmung',
+        'register'      => 'Registrieren',
+        'releases'      => 'Versionen',
+        'roadmap'       => 'Roadmap',
+        'terms'         => 'Bedingungen',
+        'title'         => 'Menü',
     ],
     'meta'          => [
         'description'   => 'Kanka ist ein flexibles digitales Tool zum weltenbauen und verwalten deiner Rollenspielkampagnen',

@@ -35,7 +35,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                     </a>
                 </li>
                 @if ($campaign->enabled('menu_links'))
-                    <li class="{{ $sidebar->open('menu_links') }} sidebar-section">
+                    <li class="{{ $sidebar->open('menu_links') }} sidebar-section sidebar-quick-links">
                         <div class="sidebar-text">
                             <i class="fa fa-star"></i>
                             <span>{{ trans('entities.menu_links') }}</span>
@@ -50,7 +50,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                     @foreach ($currentCampaign->menuLinks()->with(['target'])->ordered()->get() as $menuLink)
                         <?php /** @var \App\Models\MenuLink $menuLink */ ?>
                         @if ($menuLink->target && $menuLink->target)
-                            <li class="subsection">
+                            <li class="subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }}">
                                 <a href="{{ $menuLink->getRoute() }}">
                                     <i class="fa fa-arrow-circle-right"></i> <span>{{ $menuLink->name }}</span>
                                 </a>
@@ -150,7 +150,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
 
                 @if ($campaign->enabled('notes'))
                     <li class="{{ $sidebar->active('notes') }}">
-                        <a href="{{ route('notes.index') }}"><i class="fas fa-book-open"></i> <span>{{ trans('sidebar.notes') }}</span></a>
+                        <a href="{{ route('notes.' . $defaultIndex) }}"><i class="fas fa-book-open"></i> <span>{{ trans('sidebar.notes') }}</span></a>
                     </li>
                 @endif
 

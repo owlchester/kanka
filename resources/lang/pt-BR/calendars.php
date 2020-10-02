@@ -62,7 +62,7 @@ return [
         'title'         => 'Calendário :name Eventos',
     ],
     'fields'        => [
-        'calendar'              => 'Calendário pai',
+        'calendar'              => 'Calendário Principal',
         'calendars'             => 'Calendários',
         'colour'                => 'Cor',
         'comment'               => 'Comentar',
@@ -96,7 +96,7 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Os meses intercalares não usam os dias da semana, mas ainda influenciam as luas e as estações.',
-        'nested'        => 'Exibindo calendários que não possuem calendário pai primeiro. Clique em um calendário para explorar seus subcalendários.',
+        'nested'        => 'Exibindo calendários que não são parte de um calendário principal primeiro. Clique em um calendário para explorar seus subcalendários.',
         'start_offset'  => 'Por padrão, o calendário começa no primeiro dia da semana do ano 0. A alteração deste campo influencia onde o primeiro dia do calendário é colocado.',
     ],
     'hints'         => [
@@ -105,9 +105,9 @@ return [
         'is_recurring'      => 'Um evento pode ser marcado como recorrente. Ele reaparecerá todo ano na mesma data.',
         'months'            => 'Seu calendário deve ter pelo menos 2 meses.',
         'moons'             => 'Adicionar luas fará com que elas apareçam no calendário em cada lua cheia e nova. Se o período da lua cheia for maior que 10 dias, as luas minguantes e crescentes também serão exibidas.',
-        'parent_calendar'   => 'Dar ao calendário um calendário pai incluirá os lembretes e os efeitos do clima do calendário pai.',
+        'parent_calendar'   => 'Relacionar o calendário a um calendário principal incluirá os lembretes e os efeitos do clima do calendário principal.',
         'reset'             => 'Sempre comece no início do mês ou ano no primeiro dia da semana.',
-        'seasons'           => 'Crie temporadas para o seu calendário, informando quando cada uma delas começa. Kanka cuidará do resto.',
+        'seasons'           => 'Crie estações para o seu calendário, informando quando cada uma delas começa. Kanka cuidará do resto.',
         'weekdays'          => 'Defina os nomes dos dias da semana. São necessários pelo menos 2 dias de semana.',
         'weeks'             => 'Defina alguns nomes para as semanas mais importantes do seu calendário.',
         'years'             => 'Alguns anos são tão importantes que têm um nome próprio.',
