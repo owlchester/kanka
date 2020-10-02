@@ -31,6 +31,9 @@ class MentionsService
     /** @var array */
     protected $validEntityTypes = [];
 
+    /** @var array Created new mentions to avoid duplicates */
+    protected $newEntityMentions = [];
+
     /**
      * Map the mentions in an entity
      * @param MiscModel $model
@@ -461,11 +464,18 @@ class MentionsService
             return (string) $name;
         }
 
+        // Do we already have it cached?
+        $key = $type . ':' . strtolower($name);
+        if (isset($this->newEntityMentions[$key])) {
+            return "[$type:" . $this->newEntityMentions[$key] . ']';
+        }
+
         // Create the new misc  model
         /** @var MiscModel $newMisc */
         $newMisc = new $types[$type]();
 
         $new = $service->makeNewMentionEntity($newMisc, $name);
+        $this->newEntityMentions[$key] = $new->entity->id;
 
         return '[' . $type . ':' . $new->entity->id . ']';
 
