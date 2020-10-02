@@ -36,8 +36,14 @@ return [
         'journal'   => 'Choose a parent journal',
         'type'      => 'Session, One Shot, Draft',
     ],
+    'helpers' => [
+        'journals' => 'Display all or only the direct sub journals of this journal.',
+    ],
     'show'          => [
         'description'   => 'A detailed view of a journal',
         'title'         => 'Journal :name',
+        'tabs' => [
+            'journals' => 'Journals',
+        ]
     ],
 ];

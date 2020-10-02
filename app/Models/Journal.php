@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
+use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CalendarDateTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
@@ -27,6 +29,7 @@ class Journal extends MiscModel
         ExportableTrait,
         CalendarDateTrait,
         NodeTrait,
+        SimpleSortableTrait,
         SoftDeletes;
 
     /**
@@ -118,6 +121,19 @@ class Journal extends MiscModel
     }
 
     /**
+     * @return array
+     */
+    public function menuItems($items = [])
+    {
+        $items['journals'] = [
+            'name' => 'journals.show.tabs.journals',
+            'route' => 'journals.journals',
+            'count' => $this->descendants()->count()
+        ];
+        return parent::menuItems($items);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function journal()
@@ -129,6 +145,20 @@ class Journal extends MiscModel
     {
         return $this->hasMany(Journal::class);
     }
+    /**
+     * Get all journals in the journal and descendants
+     */
+    public function allJournals()
+    {
+        $locationIds = [$this->id];
+        foreach ($this->descendants as $descendant) {
+            $locationIds[] = $descendant->id;
+        };
+
+        $table = new Journal();
+        return Journal::whereIn($table->getTable() . '.journal_id', $locationIds)->with('journal');
+    }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

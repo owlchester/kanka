@@ -115,7 +115,8 @@ Route::group([
         Route::get('/organisations/{organisation}/map-points', 'OrganisationController@mapPoints')->name('organisations.map-points');
 
         // Families menu
-        Route::get('/families/{family}/members', 'FamilyController@members')->name('families.members');        Route::get('/families/{family}/all-members', 'FamilyController@allMembers')->name('families.all-members');
+        Route::get('/families/{family}/members', 'FamilyController@members')->name('families.members');
+        Route::get('/families/{family}/all-members', 'FamilyController@allMembers')->name('families.all-members');
 
         Route::get('/families/{family}/families', 'FamilyController@families')->name('families.families');
         Route::get('/families/tree', 'FamilyController@tree')->name('families.tree');
@@ -142,6 +143,7 @@ Route::group([
 
         // Journal
         Route::get('/journals/{journal}/map-points', 'JournalController@mapPoints')->name('journals.map-points');
+        Route::get('/journals/{journal}/journals', 'JournalController@journals')->name('journals.journals');
 
         // Tag menus
         Route::get('/tags/tree', 'TagController@tree')->name('tags.tree');
