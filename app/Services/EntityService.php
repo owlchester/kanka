@@ -15,6 +15,7 @@ use App\Models\MiscModel;
 use App\Models\Note;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
+use App\Models\Race;
 use App\Models\Timeline;
 use App\Models\TimelineEra;
 use Illuminate\Support\Arr;
@@ -527,6 +528,7 @@ class EntityService
         $newTypes = [
             'character' => Character::class,
             'location' => Location::class,
+            'race' => Race::class,
             'item' => Item::class,
             'note' => Note::class,
             'family' => Family::class,
