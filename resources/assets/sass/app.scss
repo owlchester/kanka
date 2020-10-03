@@ -1018,6 +1018,9 @@ hr {
   white-space: normal;
 }
 
+// Bootstrap3 sets summary to display:block which isn't correct
+summary { display: list-item; }
+
 
 // Other stylings
 @import "calendar";

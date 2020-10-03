@@ -26,11 +26,11 @@
             @if(!$model->notes->isEmpty())
                 <li class="list-group-item">
                     <b>{{ __('notes.fields.notes') }}</b>
+                    <div class="text-center">
                     @foreach ($model->notes->sortBy('name') as $subNote)
-                        <span class="pull-right">
-                            {!! $subNote->tooltipedLink() !!}
-                        </span><br class="clear">
-                        @endforeach
+                        {!! $subNote->tooltipedLink() !!}<br />
+                    @endforeach
+                    </div>
                 </li>
            @endif
             @include('entities.components.relations')

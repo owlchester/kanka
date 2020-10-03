@@ -9,7 +9,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
 @if (!empty($currentCampaign))
     @inject('sidebar', 'App\Services\SidebarService')
     @inject('campaign', 'App\Services\CampaignService')
-    <aside class="main-sidebar main-sidebar-placeholder" @if ($currentCampaign->image) style="background-image: url({{ Img::crop(280, 210)->url($currentCampaign->image) }})" @endif>
+    <aside class="main-sidebar main-sidebar-placeholder @if(auth()->check() && $currentCampaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($currentCampaign->image) style="background-image: url({{ Img::crop(280, 210)->url($currentCampaign->image) }})" @endif>
         <section class="sidebar-campaign">
             <div class="campaign-block">
                 <div class="campaign-head">
@@ -49,14 +49,14 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                     </li>
                     @foreach ($currentCampaign->menuLinks()->with(['target'])->ordered()->get() as $menuLink)
                         <?php /** @var \App\Models\MenuLink $menuLink */ ?>
-                        @if ($menuLink->target && $menuLink->target)
+                        @if ($menuLink->target)
                             <li class="subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }}">
                                 <a href="{{ $menuLink->getRoute() }}">
                                     <i class="fa fa-arrow-circle-right"></i> <span>{{ $menuLink->name }}</span>
                                 </a>
                             </li>
                         @elseif ($menuLink->type)
-                            <li class="subsection">
+                            <li class="subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }}">
                                 <a href="{{ $menuLink->getRoute() }}">
                                     <i class="fa fa-th-list"></i> <span>{{ $menuLink->name }}</span>
                                 </a>
