@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Entity;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntityAbility;
+use App\Models\Ability;
 use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Services\Entity\AbilityService;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
 class AbilityController extends Controller
@@ -73,19 +75,42 @@ class AbilityController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $data = $request->only(['ability_id', 'visibility']);
+        $data = $request->only(['abilities', 'ability_id', 'visibility']);
         $data['entity_id'] = $entity->id;
 
         /** @var EntityAbility $entityAbility */
-        $entityAbility = new EntityAbility();
-        $entityAbility = $entityAbility->create($data);
+        if (is_array($data['abilities'])) {
+            $abilities = [];
+            foreach ($data['abilities'] as $abilityId) {
+                $ability = Ability::find($abilityId);
+                if ($ability) {
+                    $entityAbility = EntityAbility::create([
+                        'entity_id' => $entity->id,
+                        'ability_id' => $abilityId,
+                        'visibility' => $data['visibility'],
+                    ]);
+                    $abilities[] = $ability->name;
+                }
+            }
+            $success = trans('entities/abilities.create.success_multiple', [
+                'abilities' => implode(', ', $abilities),
+                'entity' => $entity->name
+            ]);
+        } elseif (!empty($data['ability_id'])) {
+            // Allow adding a single ability through the API
+            $entityAbility = new EntityAbility();
+            unset($data['abilities']);
+            $entityAbility = $entityAbility->create($data);
+
+            $success = trans('entities/abilities.create.success', [
+                'ability' => $entityAbility->ability->name,
+                'entity' => $entity->name
+            ]);
+        }
 
         return redirect()
             ->route('entities.entity_abilities.index', $entity)
-            ->with('success', trans('entities/abilities.create.success', [
-                'ability' => $entityAbility->ability->name,
-                'entity' => $entity->name
-            ]));
+            ->with('success', $success);
     }
 
     /**

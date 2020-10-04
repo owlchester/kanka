@@ -24,7 +24,8 @@ class StoreEntityAbility extends FormRequest
     public function rules()
     {
         return [
-            'ability_id' => 'required|exists:abilities,id',
+            'ability_id' => 'required_without:abilities|exists:abilities,id',
+            'abilities' => 'required_without:ability_id|array|min:1',
             'visibility' => 'string',
         ];
     }
