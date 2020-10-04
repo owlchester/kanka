@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
  * @method static self|Builder recentlyModified()
  * @method static self|Builder unmentioned()
  * @method static self type(string $type)
- * @method static self inTags(array $tags)
+ * @method static self|Builder inTags(array $tags)
  * @method static self|Builder templates(string $entityType)
  */
 trait EntityScopes

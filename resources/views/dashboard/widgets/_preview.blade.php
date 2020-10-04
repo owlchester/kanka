@@ -6,6 +6,8 @@
 $model = $widget->entity->child;
 
 $specificPreview = 'dashboard.widgets.previews.' . $widget->entity->type;
+
+\App\Facades\Dashboard::add($widget->entity);
 ?>
 @if(view()->exists($specificPreview))
     @include($specificPreview, ['entity' => $widget->entity])
