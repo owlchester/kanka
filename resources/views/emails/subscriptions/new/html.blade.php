@@ -7,9 +7,11 @@
 </head>
 <body>
     <p>
-        New subscription for user {{ $user->name }} (#{{ $user->id }}) <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>.
+        New subscription for user {{ $user->name }} in {{ $user->currencySymbol() }} (#{{ $user->id }}) <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>.
     </p>
-    <p>Account created {{ $user->created_at }}.</p>
+    <p>
+        Account created {{ $user->created_at }}.
+    </p>
 
     @if ($discord = $user->apps->where('app', 'discord')->first())
         <p>
