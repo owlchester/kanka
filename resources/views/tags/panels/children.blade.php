@@ -4,6 +4,10 @@
 $filters = [];
 $r = null;
 $addEntityUrl = route('tags.entity-add', $model);
+
+$datagridSorter = new \App\Datagrids\Sorters\TagChildrenSorter();
+$datagridSorter->request(request()->all());
+
 if (request()->has('tag_id')) {
     $filters['tag_id'] = request()->get('tag_id');
     $r = $model->entities()->acl()->simpleSort($datagridSorter)->paginate();
