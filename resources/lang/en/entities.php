@@ -59,5 +59,6 @@ return [
         'family' => 'New family',
         'event' => 'New event',
         'organisation' => 'New organisation',
+        'race' => 'New race',
     ],
 ];
