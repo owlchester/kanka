@@ -38,6 +38,7 @@ return [
     ],
     'helpers' => [
         'journals' => 'Display all or only the direct sub journals of this journal.',
+        'nested' => 'Displaying journals with no parent journal first. Click on a row to explore the journal\'s sub journals.',
     ],
     'show'          => [
         'description'   => 'A detailed view of a journal',

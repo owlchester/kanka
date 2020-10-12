@@ -200,9 +200,7 @@ class SearchService
         }
 
         $query = Entity::whereIn('type', $availableEntityTypes);
-        if (empty($this->term)) {
-            $query->orderBy('updated_at', 'DESC');
-        } else {
+        if (!empty($this->term)) {
             $query->where('name', 'like', '%' . $this->term . '%');
         }
 
@@ -210,7 +208,8 @@ class SearchService
         $query
             ->whereNotIn('id', $this->excludeIds)
             ->acl()
-            ->limit($this->limit);
+            ->limit($this->limit)
+            ->orderBy('updated_at', 'DESC');
 
         $searchResults = [];
         foreach ($query->get() as $model) {
