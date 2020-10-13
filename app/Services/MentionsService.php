@@ -266,6 +266,9 @@ class MentionsService
         // And now for extra fun, let's do attributes!
         $this->mapAttributes();
 
+        // Clean up weird ` chars that break the js
+        $this->text = str_replace('`', '\'', $this->text);
+
         return $this->text;
     }
 
