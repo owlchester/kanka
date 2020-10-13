@@ -48,8 +48,9 @@ return [
             'title'         => 'Upraviť udalosť v :name',
         ],
         'helpers'   => [
-            'add'   => 'Pridať existujúcu udalosť do tohto kalendára.',
-            'new'   => 'Alebo vytvoriť novú udalosť zadaním jej názvu.',
+            'add'               => 'Pridať existujúcu udalosť do tohto kalendára.',
+            'new'               => 'Alebo vytvoriť novú udalosť zadaním jej názvu.',
+            'other_calendar'    => 'Upravuješ pripomienku, ktorá je v kalendári :calendar.',
         ],
         'modal'     => [
             'title' => 'Pridať udalosť do kalendára',
@@ -61,6 +62,8 @@ return [
         'title'         => 'Udalosti kalendára :name',
     ],
     'fields'        => [
+        'calendar'              => 'Nadradený kalendár',
+        'calendars'             => 'Kalendáre',
         'colour'                => 'Farba',
         'comment'               => 'Komentár',
         'current_day'           => 'Aktuálny deň',
@@ -93,6 +96,7 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Priestupné mesiace nepoužívajú dni v týždni, ale ovplyvňujú družice a ročné obdobia.',
+        'nested'        => 'Najprv sa zobrazujú kalendáre nepodradené žiadnemu inému kalendáru. Klikni na kalendár, aby sa zobrazili podradené kalendáre.',
         'start_offset'  => 'Štandardne začína kalendár prvý deň v týždni v roku 0. Nastavenie tejto hodnoty ovplyvňuje, na ktorý deň v kalendári pripadne prvý deň.',
     ],
     'hints'         => [
@@ -101,6 +105,7 @@ return [
         'is_recurring'      => 'Udalosť je možné nastaviť ako opakujúcu sa. Bude sa následne zobrazovať každý rok v ten istý deň.',
         'months'            => 'Kalendár by mal mať min. 2 mesiace.',
         'moons'             => 'Pridané družice sa zobrazia v kalendári počas ich splnu.',
+        'parent_calendar'   => 'Ak kalendáru priradíš nadradený kalendár, priradíš mu aj pripomienky a efekty počasia z tohto nadradeného kalendáru.',
         'reset'             => 'Začiatok mesiaca alebo roku začína stále na prvom dni týždňa.',
         'seasons'           => 'Vytvor v tvojom kalendári ročné obdobia tým, že označíš, kedy sa začínajú. O ostatné sa už postará Kanka.',
         'weekdays'          => 'Nastav názvy tvojich dní v týždni. Podmienkou je pridanie min. 2 dní v týždni.',

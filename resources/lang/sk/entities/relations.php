@@ -32,6 +32,11 @@ return [
     'show'          => [
         'title' => 'Vzťahy pre :name',
     ],
+    'teaser'        => 'Boostni kampaň pre prístup k správcovi vzťahov. Viac informácií o boostnutých kampaniach získaš kliknutím sem.',
+    'types'         => [
+        'family_member'         => 'Člen rodu',
+        'organisation_member'   => 'Člen organizácie',
+    ],
     'update'        => [
         'success'   => 'Vzťah pre :name bol upravený',
         'title'     => 'Upraviť vzťahy',

@@ -120,10 +120,6 @@ return [
             'description'   => 'Pripremi svoju sljedeću sesiju ili zapiši događaje uz pomoć naše napredne mogućnosti pisanja dnevnika!',
             'title'         => 'Dnevnici',
         ],
-        'notes'             => [
-            'description'   => 'xxx',
-            'title'         => 'Bilješke',
-        ],
         'patreon'           => [
             'api_calls'         => 'Povećani API pozivi (90)',
             'boosts'            => 'Pojačivačima kampanje',

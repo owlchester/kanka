@@ -55,7 +55,8 @@ return [
             'role'          => 'Rola',
         ],
         'helpers'       => [
-            'members'   => 'Tento zoznam obsahuje všetky postavy, ktoré sú členmi tejto a všetkých podradených organizácií. Zoznam môžeš filtrovať tak, aby zobrazovala len priamych členov.',
+            'all_members'   => 'Všetky postavy, ktoré sú členmi tejto a podradených organizácií.',
+            'members'       => 'Všetky postavy, ktoré sú členmi tejto organizácie',
         ],
         'placeholders'  => [
             'character' => 'Vyber postavu',

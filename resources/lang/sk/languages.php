@@ -2,7 +2,9 @@
 
 return [
     'codes' => [
+        'ca'    => 'Katalánčina',
         'de'    => 'Nemčina',
+        'el'    => 'Gréčtina',
         'en'    => 'Angličtina',
         'en-US' => 'Americká angličtina',
         'es'    => 'Španielčina',
@@ -12,8 +14,10 @@ return [
         'hu'    => 'Maďarčina',
         'it'    => 'Taliančina',
         'nl'    => 'Holandština',
+        'pl'    => 'Poľština',
         'pt-BR' => 'Brazílska portugalčina',
         'ru'    => 'Ruština',
+        'sk'    => 'Slovenčina',
     ],
     'header'=> 'Jazyky',
 ];

@@ -173,7 +173,7 @@ return [
         'ability'               => 'Fähigkeit',
         'attribute_template'    => 'Attributsvorlage',
         'calendar'              => 'Kalender',
-        'calendar_date'         => 'Datum',
+        'calendar_date'         => 'Kalenderdatum',
         'character'             => 'Charakter',
         'colour'                => 'Farbe',
         'copy_attributes'       => 'Kopiere Attribute',

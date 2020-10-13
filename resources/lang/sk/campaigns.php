@@ -4,9 +4,15 @@ return [
     'create'                            => [
         'description'           => 'Vytvoriť novú kampaň',
         'helper'                => [
-            'first' => 'Ďakujeme za vyskúšanie našej apky! Predtým, než sa pohneme ďalej, budeme potrebovať jednu maličkosť - <b>názov tvojej kampane</b>. Je to názov, ktorý ju odlišuje od ostatných. Ak ešte nemáš vymyslený dobrý názov, žiadne starosti, môžeš ho <b>hocikedy zmeniť</b> alebo vytvoriť ďalšie kampane.',
-            'second'=> 'Dosť bolo kecania! Čo to teda bude?',
-            'title' => 'Vitaj v :name!',
+            'first'     => 'Ďakujeme za vyskúšanie našej apky! Predtým, než sa pohneme ďalej, budeme potrebovať jednu maličkosť - <b>názov tvojej kampane</b>. Je to názov, ktorý ju odlišuje od ostatných. Ak ešte nemáš vymyslený dobrý názov, žiadne starosti, môžeš ho <b>hocikedy zmeniť</b> alebo vytvoriť ďalšie kampane.',
+            'second'    => 'Dosť bolo kecania! Čo to teda bude?',
+            'title'     => 'Vitaj v :name!',
+            'welcome'   => <<<'TEXT'
+Predtým, než budeš pokračovať, musíš zvoliť názov kampane. Je to meno tvojho sveta. Ak ešte nemáš žiadne vymyslené, nič sa nedeje, môžeš ho stále zmeniť neskôr alebo vytvoriť ďalšiu kampaň.
+
+Vďaka za to, že používaš Kanku a vitaj v našej rozkvitajúcej komunite!
+TEXT
+,
         ],
         'success'               => 'Kampaň vytvorená.',
         'success_first_time'    => 'Tvoja kampaň bola vytvorená! Keďže je to tvoja prvá kampaň, vytvorili sme v nej pár vecí, ktoré ti pomôžu začať a dúfame, že ti poskytnú inšpiráciu, čo všetko je možné.',
@@ -70,11 +76,15 @@ return [
         'entity_personality_visibility' => 'Keď vytvoríš novú postavu, nebude nastavenie "Viditeľnosť osobnosti" automaticky aktivované.',
         'entity_visibility'             => 'Keď vytvoríš nový objekt, bude nastavenie "Súkromný" automaticky aktivované.',
         'excerpt'                       => 'Krátky popis kampane sa zobrazí na nástenke, napíš teda pár pár viet ako úvod do tvojho sveta. Nemusíš sa rozpisovať, stačí pár slov.',
+        'hide_history'                  => 'Aktivuj toto nastavenie, ak chceš skryť prehľad minulých zmien objektov pre neadministrátorov.',
+        'hide_members'                  => 'Aktivuj toto nastavenie, ak chceš skryť zoznam členov kampane pre neadministrátorov.',
         'locale'                        => 'Regionálne nastavenie, ktoré sa vzťahuje na tvoju kampaň. Používa sa na vytváranie obsahu a filtrovanie verejných kampaní.',
         'name'                          => 'Tvoja kampaň / svet môže mať ľubovoľné meno, pokiaľ sa skladá z min. 4 písmen alebo čísel.',
+        'public_campaign_filters'       => 'Pomôž iným nájsť tvoju kampaň medzi ostatnými verejnými doplnením týchto informácií.',
         'system'                        => 'Ak je tvoja kampaň verejne viditeľná, systém sa zobrazuje na stránke :link.',
         'systems'                       => 'Aby sme užívateľov nezahltili nespočetnými možnosťami, niektoré funkcionality Kanky sú prístupné len pre špecifické RPG systémy (napr. štatistický popis príšer pre D&D 5e). Priradením systému na tomto mieste aktivuješ dané funkcionality.',
         'theme'                         => 'Nastav tému pevne pre kampaň a prepíš nastavenie užívateľov.',
+        'view_public'                   => 'Ak si chceš pozrieť tvoju kampaň ako verejnú, otvor tento :link v novom inkognito okne.',
         'visibility'                    => 'Ak nastavíte kampaň ako verejnú, bude ju vidieť každý, kto k nej bude mať link.',
     ],
     'index'                             => [
@@ -240,6 +250,9 @@ return [
                 'read'          => 'Zobraziť',
                 'toggle'        => 'Zmeniť u všetkých',
             ],
+            'helpers'   => [
+                'entity_note'   => 'Toto dovolí užívateľom, ktorí nemajú právomoci k úpravám, aby mali možnosť pridať Poznámky k objektu.',
+            ],
             'hint'      => 'Táto rola má automaticky prístup ku všetkému.',
         ],
         'placeholders'  => [
@@ -292,6 +305,7 @@ return [
             'items'         => 'Zbrane, vozidlá, relikvie, elixíry.',
             'journals'      => 'Zistenia a pozorovania spísané postavami alebo príprava na hry pre Rozprávača.',
             'locations'     => 'Planéty, sféry, kontinenty, rieky, štáty, osídlia, chrámy, hostince.',
+            'maps'          => 'Nahraj mapy s úrovňami a značkami, ktoré sú prelinkované s inými objektami tvojej kampane.',
             'menu_links'    => 'Vlastné linky v menu.',
             'notes'         => 'Báje, náboženstvá, dejiny, mágia, rasy.',
             'organisations' => 'Kulty, vojenské jednotky, frakcie, cechy.',
@@ -315,6 +329,7 @@ return [
             'information'       => 'Informácie',
             'members'           => 'Členovia',
             'menu'              => 'Menu',
+            'plugins'           => 'Pluginy',
             'recovery'          => 'Obnovenie',
             'roles'             => 'Roly',
             'settings'          => 'Moduly',

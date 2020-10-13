@@ -1,9 +1,7 @@
 <?php
 
 return [
+    'new'           => [],
     'organisation'  => 'Organization',
     'organisations' => 'Organizations',
-    'new' => [
-        'organisation' => 'Organization',
-    ]
 ];

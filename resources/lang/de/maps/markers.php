@@ -33,7 +33,7 @@ return [
     ],
     'icons'         => [
         'custom'        => 'Benutzerdefiniert',
-        'entity'        => 'Entität',
+        'entity'        => 'Objekt',
         'exclamation'   => 'Ausruf',
         'marker'        => 'Marker',
         'question'      => 'Frage',

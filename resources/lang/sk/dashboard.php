@@ -50,9 +50,11 @@ return [
         ],
         'title'     => 'Nastavenie nástenky kampane',
         'widgets'   => [
-            'calendar'  => 'Kalendár',
-            'preview'   => 'Náhľad objektu',
-            'recent'    => 'Nedávne',
+            'calendar'      => 'Kalendár',
+            'preview'       => 'Náhľad objektu',
+            'random'        => 'Náhodný objekt',
+            'recent'        => 'Nedávne',
+            'unmentioned'   => 'Objekty bez referencií',
         ],
     ],
     'title'             => 'Nástenka',
@@ -71,7 +73,7 @@ TEXT
 ,
     ],
     'widgets'           => [
-        'calendar'  => [
+        'calendar'      => [
             'actions'           => [
                 'next'      => 'Zmeniť dátum na nasledujúci deň',
                 'previous'  => 'Zmeniť dátum na predošlý deň',
@@ -80,32 +82,40 @@ TEXT
             'previous_events'   => 'Predošlé',
             'upcoming_events'   => 'Nasledujúce',
         ],
-        'create'    => [
+        'create'        => [
             'success'   => 'Widget bol pridaný na nástenku.',
         ],
-        'delete'    => [
+        'delete'        => [
             'success'   => 'Widget bol odstránený z nástenky.',
         ],
-        'fields'    => [
+        'fields'        => [
             'width' => 'Šírka',
         ],
-        'recent'    => [
-            'full'      => 'Plná',
-            'help'      => 'Zobraziť iba posledný upravený objekt, no zobraziť celý náhľad na objekt',
-            'helpers'   => [
-                'full'  => 'Zobraziť celý zápis objektu namiesto jeho náhľadu.',
+        'recent'        => [
+            'entity-header' => 'Použiť záhlavie objektu ako obrázok',
+            'full'          => 'Plná',
+            'help'          => 'Zobraziť iba posledný upravený objekt, no zobraziť celý náhľad na objekt',
+            'helpers'       => [
+                'entity-header' => 'Ak má daný objekt záhlavie (funkcia boostnutých kampaní), nastav tento widget, aby použil tento obrázok namiesto obrázku objektu.',
+                'full'          => 'Zobraziť celý zápis objektu namiesto jeho náhľadu.',
             ],
-            'singular'  => 'Jednotlivý objekt',
-            'title'     => 'Nedávno upravené',
+            'singular'      => 'Jednotlivý objekt',
+            'tags'          => 'Filtrovať zoznam nedávno upravených objektov podľa určitých tagov.',
+            'title'         => 'Nedávno upravené',
         ],
-        'update'    => [
+        'unmentioned'   => [
+            'title' => 'Objekty bez referencií',
+        ],
+        'update'        => [
             'success'   => 'Widget bol upravený.',
         ],
-        'widths'    => [
+        'widths'        => [
             '0' => 'Automatická',
-            '12'=> 'Plná',
-            '4' => 'Malá',
-            '6' => 'Polovičná',
+            '12'=> 'Plná (100%)',
+            '3' => 'Mini (25%)',
+            '4' => 'Malá (33%)',
+            '6' => 'Polovičná (50%)',
+            '8' => 'Široká (66%)',
         ],
     ],
 ];

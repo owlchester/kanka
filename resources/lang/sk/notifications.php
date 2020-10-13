@@ -3,8 +3,9 @@
 return [
     'campaign'          => [
         'boost'         => [
-            'add'       => 'Kampaň :campaign bola boostnutá používateľom :user.',
-            'remove'    => 'Kampaň :campaign už nie je boostovaná používateľom :user.',
+            'add'           => 'Kampaň :campaign bola boostnutá používateľom :user.',
+            'remove'        => 'Kampaň :campaign už nie je boostovaná používateľom :user.',
+            'superboost'    => ':user superboostol kampaň :campaign.',
         ],
         'export'        => 'Export kampane je dostupný. Môžeš si ho stiahnuť kliknutím <a href=":link">sem</a>. Link je platný po dobu 30 minút.',
         'export_error'  => 'Počas exportu tvojej kampane došlo k chybe. Prosím, kontaktuj nás, ak problém pretrváva.',
@@ -32,6 +33,7 @@ TEXT
     ],
     'subscriptions'     => [
         'charge_fail'   => 'Pri spracovaní tvojej platby došlo k chybe. Prosím, počkaj chvíľu, zatiaľ čo sa o jej spracovanie opäť pokúšame. Ak sa nič nezmení, kontaktuj nás.',
+        'deleted'       => 'Tvoje predplatné Kanky bolo zrušené po viacerých neúspešných pokusoch o žiadosť o platbu prostredníctvom tvojej karty. Prosím, uprav detaily platby v Nastaveniach predplatného.',
         'ended'         => 'Tvoje predplatné Kanky bolo ukončené. Tvoje boosty kampaní a roly na Discorde boli odstránené. Dúfame, že sa čoskoro zasa uvidíme!',
         'failed'        => 'Tvoje predplatné Kanky bolo zrušené po prekročení limitu pokusov o spracovanie platby. Prosím, prejdi na Nastavenia predplatného a skús zmeniť tvoje detaily platby.',
         'started'       => 'Tvoje predplatné Kanky bolo spustené.',

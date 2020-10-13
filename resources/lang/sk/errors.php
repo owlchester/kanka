@@ -5,6 +5,9 @@ return [
         'body'  => 'Vyzerá to tak, že nemáš oprávnenie na zobrazenie tejto stránky!',
         'title' => 'Prístup zamietnutý',
     ],
+    '403-form'  => [
+        'help'  => 'Dôvod môže byť uplynutie doby prihlásenia. Prosím, skús sa opätovne prihlásiť v novom okne pred uložením zmien.',
+    ],
     '404'       => [
         'body'  => 'Prepáč, ale hľadanú stránku sme nenašli.',
         'title' => 'Stránka nebola nájdená',
