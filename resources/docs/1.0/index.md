@@ -50,3 +50,4 @@
 - ## Other Concepts
     - [Last Sync](/docs/{{version}}/last-sync)
     - [Pagination](/docs/{{version}}/pagination)
+    - [Dashboard Widgets](/docs/{{version}}/dashboard-widgets)

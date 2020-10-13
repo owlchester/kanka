@@ -24,6 +24,8 @@
                 @include('cruds._panes')
             </div>
         </div>
+        @include('races.panels.characters')
+
         @include('cruds.boxes.history')
     </div>
 </div>

@@ -39,6 +39,11 @@ class MacroServiceProvider extends HtmlServiceProvider
             'options' => []
         ]);
 
+        Form::component('abilities', 'components.form.abilities', [
+            'fieldId',
+            'options' => []
+        ]);
+
         Form::component('rpg_systems', 'components.form.rpg_systems', [
             'fieldId',
             'options' => []

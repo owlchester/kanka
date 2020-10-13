@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Ability;
 use App\Models\Family;
+use App\Models\Journal;
 use App\Models\Location;
 use App\Models\Organisation;
 use App\Models\Quest;
@@ -32,7 +33,10 @@ class GenerateTrees extends Command
      */
     public function handle()
     {
-        Race::fixTree();
+        Journal::fixTree();
+        $this->info("Fixed journals.");
+
+        /*Race::fixTree();
         $this->info("Fixed races.");
         Location::fixTree();
         $this->info("Fixed locations.");
@@ -43,7 +47,7 @@ class GenerateTrees extends Command
         Tag::fixTree();
         $this->info("Fixed tags.");
         Ability::fixTree();
-        $this->info("Fixed abilities.");
-        $this->info("Fixed quests.");
+        $this->info("Fixed abilities.");*/
+        //$this->info("Fixed quests.");
     }
 }

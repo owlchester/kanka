@@ -24,7 +24,8 @@
             </div>
         </div>
 
-        <!-- actions -->
+        @include('tags.panels.children')
+
         @include('cruds.boxes.history')
     </div>
 </div>

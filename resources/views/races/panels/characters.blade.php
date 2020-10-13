@@ -1,26 +1,64 @@
+<?php
+/**
+ * @var \App\Models\Race $model
+ * @var \App\Models\Character $character
+ */
+$filters = [];
+$allMembers = true;
+if (!request()->has('all_members')) {
+    $filters['race_id'] = $model->id;
+    $allMembers = false;
+}
+$datagridSorter = new \App\Datagrids\Sorters\RaceCharacterSorter();
+$datagridSorter->request(request()->all());
+
+?>
 <div class="box box-solid">
+    <div class="box-header with-border">
+        <h3 class="box-title">{{ __('races.show.tabs.characters') }}</h3>
+
+        <div class="box-tools pull-right">
+            @if (!$allMembers)
+                <a href="{{ route('races.show', [$model, 'all_members' => true]) }}" class="btn btn-default btn-sm">
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allCharacters()->has('entity')->count() }})
+                </a>
+            @else
+                <a href="{{ route('races.show', $model) }}" class="btn btn-default btn-sm">
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->characters()->has('entity')->count() }})
+                </a>
+            @endif
+        </div>
+    </div>
     <div class="box-body">
-        <h2 class="page-header with-border">
-            {{ trans('races.show.tabs.characters') }}
-        </h2>
 
-        <?php  $r = $model->characters()->simpleSort($datagridSorter)->with(['family', 'location', 'entity', 'entity.tags'])->paginate(); ?>
-        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('races.show.tabs.characters') }}</p>
+        <p class="help-block export-hidden">
+            {{ __('races.characters.helpers.' . ($allMembers ? 'all_' : null) . 'characters') }}
+        </p>
 
-        @include('cruds.datagrids.sorters.simple-sorter')
+        <div class="export-hidden">
+            @include('cruds.datagrids.sorters.simple-sorter')
+        </div>
 
-        <table id="characters" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+        <table id="characters" class="table table-hover">
             <tbody><tr>
                 <th class="avatar"><br /></th>
-                <th>{{ trans('characters.fields.name') }}</th>
+                <th>{{ __('characters.fields.name') }}</th>
                 @if ($campaign->enabled('locations'))
-                    <th>{{ trans('crud.fields.location') }}</th>
+                    <th>{{ __('crud.fields.location') }}</th>
                 @endif
                 @if ($campaign->enabled('families'))
-                    <th>{{ trans('characters.fields.family') }}</th>
+                    <th>{{ __('characters.fields.family') }}</th>
                 @endif
                 <th>&nbsp;</th>
             </tr>
+
+<?php
+$r = $model->allCharacters()
+    ->has('entity')
+    ->with(['family', 'location', 'entity'])
+    ->filter($filters)
+    ->simpleSort($datagridSorter)
+    ->paginate(); ?>
             @foreach ($r as $character)
                 <tr>
                     <td>
@@ -45,7 +83,7 @@
                     @endif
                     <td class="text-right">
                         <a href="{{ route('characters.show', [$character]) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
+                            <i class="fa fa-eye" aria-hidden="true"></i> {{ __('crud.view') }}
                         </a>
                     </td>
                 </tr>
@@ -53,6 +91,6 @@
             </tbody>
         </table>
 
-        {{ $r->links() }}
+        {{ $r->appends('all_members', request()->get('all_members'))->links() }}
     </div>
     </div>

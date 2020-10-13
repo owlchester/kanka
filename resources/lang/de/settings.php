@@ -105,6 +105,14 @@ return [
         'success'       => 'Layout Optionen aktualisiert.',
         'title'         => 'Layout',
     ],
+    'marketplace'   => [
+        'fields'    => [
+            'name'  => 'Marktplatzname',
+        ],
+        'helper'    => 'Standardmäßig wird Ihr Benutzername auf dem :marketplace angezeigt. Sie können diesen Wert mit diesem Feld überschreiben.',
+        'title'     => 'Marktplatz Einstellungen',
+        'update'    => 'Marktplatz Einstellungen gespeichert',
+    ],
     'menu'          => [
         'account'               => 'Account',
         'api'                   => 'API',
@@ -113,6 +121,7 @@ return [
         'boost'                 => 'Boost',
         'invoices'              => 'Rechnungen',
         'layout'                => 'Layout',
+        'marketplace'           => 'Marktplatz',
         'other'                 => 'Andere',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Zahlungsmöglichkeiten',

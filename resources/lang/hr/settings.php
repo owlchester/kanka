@@ -102,6 +102,14 @@ return [
         'success'   => 'Ažurirane opcije rasporeda.',
         'title'     => 'Izgled',
     ],
+    'marketplace'   => [
+        'fields'    => [
+            'name'  => 'Naziv Tržnice',
+        ],
+        'helper'    => 'Prema zadanim postavkama tvoje korisničko se prikazuje na :marketplace. Možeš to promijeniti ovim poljem.',
+        'title'     => 'Postavke Tržnice',
+        'update'    => 'Postavke Tržnice spremljene.',
+    ],
     'menu'          => [
         'account'               => 'Račun',
         'api'                   => 'API',
@@ -110,6 +118,7 @@ return [
         'boost'                 => 'Pojačanje',
         'invoices'              => 'Fakture',
         'layout'                => 'Raspored',
+        'marketplace'           => 'Tržnica',
         'other'                 => 'Ostalo',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Mogućnosti plaćanja',

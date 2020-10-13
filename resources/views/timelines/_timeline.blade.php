@@ -113,8 +113,8 @@ $eras = $timeline->eras()->ordered($timeline->revert_order)->get();
                     <span class="hidden-xs inline">{{  __('timelines.actions.add_element', ['era' => $era->name]) }}</span>
                 </a>
                 @if($era->elements()->count() > 1)
-                <a href="#" class="timeline-era-reorder btn btn-default" data-era-id="{{ $era->id }}">
-                    <i class="fa fa-refresh"></i> {{ __('timelines.actions.reorder') }}
+                <a href="#" class="timeline-era-reorder btn btn-default" data-era-id="{{ $era->id }}" data-toggle="tooltip" title="{{ __('timelines.helpers.reorder_tooltip') }}">
+                    <i class="fa fa-arrows-alt-v"></i> {{ __('timelines.actions.reorder') }}
                 </a>
                 @endif
         </div>

@@ -102,6 +102,14 @@ return [
         'success'   => 'Opções de layout atualizadas.',
         'title'     => 'Layout',
     ],
+    'marketplace'   => [
+        'fields'    => [
+            'name'  => 'Nome do Mercado',
+        ],
+        'helper'    => 'Como padrão, seu nome de usuário é mostrado no :marketplace:. Você pode alterar isso neste campo.',
+        'title'     => 'Configurações do Mercado',
+        'update'    => 'Configurações do Mercado salvas com sucesso.',
+    ],
     'menu'          => [
         'account'               => 'Conta',
         'api'                   => 'API',
@@ -110,6 +118,7 @@ return [
         'boost'                 => 'Impulsionamento',
         'invoices'              => 'Faturas',
         'layout'                => 'Layout',
+        'marketplace'           => 'Mercado',
         'other'                 => 'Outros',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Formas de pagamento',

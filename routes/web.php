@@ -115,7 +115,8 @@ Route::group([
         Route::get('/organisations/{organisation}/map-points', 'OrganisationController@mapPoints')->name('organisations.map-points');
 
         // Families menu
-        Route::get('/families/{family}/members', 'FamilyController@members')->name('families.members');        Route::get('/families/{family}/all-members', 'FamilyController@allMembers')->name('families.all-members');
+        Route::get('/families/{family}/members', 'FamilyController@members')->name('families.members');
+        Route::get('/families/{family}/all-members', 'FamilyController@allMembers')->name('families.all-members');
 
         Route::get('/families/{family}/families', 'FamilyController@families')->name('families.families');
         Route::get('/families/tree', 'FamilyController@tree')->name('families.tree');
@@ -142,6 +143,7 @@ Route::group([
 
         // Journal
         Route::get('/journals/{journal}/map-points', 'JournalController@mapPoints')->name('journals.map-points');
+        Route::get('/journals/{journal}/journals', 'JournalController@journals')->name('journals.journals');
 
         // Tag menus
         Route::get('/tags/tree', 'TagController@tree')->name('tags.tree');
@@ -163,6 +165,8 @@ Route::group([
         // Notes
         Route::get('/notes/{note}/map-points', 'NoteController@mapPoints')->name('notes.map-points');
         Route::get('/notes/tree', 'NoteController@tree')->name('notes.tree');
+
+        Route::get('/journals/tree', 'JournalController@tree')->name('journals.tree');
 
         // Events
         Route::get('/events/{event}/map-points', 'EventController@mapPoints')->name('events.map-points');
@@ -298,6 +302,7 @@ Route::group([
         Route::get('/search/item', 'Search\MiscController@items')->name('items.find');
         Route::get('/search/locations', 'Search\MiscController@locations')->name('locations.find');
         Route::get('/search/notes', 'Search\MiscController@notes')->name('notes.find');
+        Route::get('/search/journals', 'Search\MiscController@journals')->name('journals.find');
         Route::get('/search/organisations', 'Search\MiscController@organisations')->name('organisations.find');
         Route::get('/search/tags', 'Search\MiscController@tags')->name('tags.find');
         Route::get('/search/dice-rolls', 'Search\MiscController@diceRolls')->name('dice_rolls.find');

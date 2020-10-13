@@ -4,14 +4,25 @@
 $filters = [];
 $r = null;
 $addEntityUrl = route('tags.entity-add', $model);
-if (request()->has('tag_id')) {
-    $filters['tag_id'] = request()->get('tag_id');
-    $r = $model->entities()->acl()->simpleSort($datagridSorter)->paginate();
 
-    $addEntityUrl = route('tags.entity-add', ['tag' => $model, 'from-children' => true]);
-} else {
-    $r = $model->allChildren()->acl()->simpleSort($datagridSorter)->paginate();
+$datagridSorter = new \App\Datagrids\Sorters\TagChildrenSorter();
+$datagridSorter->request(request()->all());
+
+$filters = [];
+$allMembers = true;
+if (!request()->has('all_members')) {
+    $filters['tag_id'] = $model->id;
+    $allMembers = false;
 }
+
+if ($allMembers) {
+    $r = $model->allChildren();
+} else {
+    $r = $model->entities();
+}
+$r = $r->acl()
+    ->simpleSort($datagridSorter)
+    ->paginate();
 
 ?>
 <div class="box box-solid">
@@ -29,12 +40,12 @@ if (request()->has('tag_id')) {
                 @include('cruds.datagrids.sorters.simple-sorter')
             </div>
             <div class="col-md-6 text-right">
-                @if (request()->has('tag_id'))
-                    <a href="{{ route('tags.children', $model) }}" class="btn btn-default btn-sm pull-right">
+                @if (!$allMembers)
+                    <a href="{{ route('tags.children', [$model, 'all_members' => true]) }}" class="btn btn-default btn-sm pull-right">
                         <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allChildren()->acl()->count() }})
                     </a>
                 @else
-                    <a href="{{ route('tags.children', [$model, 'tag_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
+                    <a href="{{ route('tags.children', [$model]) }}" class="btn btn-default btn-sm pull-right">
                         <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->entities()->acl()->count() }})
                     </a>
                 @endif

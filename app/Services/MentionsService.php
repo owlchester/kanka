@@ -31,6 +31,9 @@ class MentionsService
     /** @var array */
     protected $validEntityTypes = [];
 
+    /** @var array Created new mentions to avoid duplicates */
+    protected $newEntityMentions = [];
+
     /**
      * Map the mentions in an entity
      * @param MiscModel $model
@@ -154,6 +157,19 @@ class MentionsService
         if (empty($text)) {
             $text = '';
         }
+        // New entities
+        $text = preg_replace_callback(
+            '`\[new:([a-z_]+)\|(.*?)\]`i',
+            function ($data) {
+                if (count($data) !== 3) {
+                    return $data[0];
+                }
+                // check type is valid
+                return $this->newEntityMention($data[1], $data[2]);
+            },
+            $text
+        );
+
         // TinyMCE mentions
         $text = preg_replace(
             '`<a class="mention" href="#" data-mention="([^"]*)">(.*?)</a>`',
@@ -249,6 +265,9 @@ class MentionsService
 
         // And now for extra fun, let's do attributes!
         $this->mapAttributes();
+
+        // Clean up weird ` chars that break the js
+        $this->text = str_replace('`', '\'', $this->text);
 
         return $this->text;
     }
@@ -426,5 +445,42 @@ class MentionsService
             }
             return $replace;
         }, $this->text);
+    }
+
+    /**
+     * Replace new entity mentions with entities.
+     * @param $data
+     * @return string
+     */
+    protected function newEntityMention(string $type, string $name): string
+    {
+        if (empty($type) || empty($name)) {
+            return (string) $name;
+        }
+
+        /** @var EntityService $service */
+        $service = app()->make(EntityService::class);
+        $types = $service->newEntityTypes();
+
+        // Invalid type
+        if (!isset($types[$type])) {
+            return (string) $name;
+        }
+
+        // Do we already have it cached?
+        $key = $type . ':' . strtolower($name);
+        if (isset($this->newEntityMentions[$key])) {
+            return "[$type:" . $this->newEntityMentions[$key] . ']';
+        }
+
+        // Create the new misc  model
+        /** @var MiscModel $newMisc */
+        $newMisc = new $types[$type]();
+
+        $new = $service->makeNewMentionEntity($newMisc, $name);
+        $this->newEntityMentions[$key] = $new->entity->id;
+
+        return '[' . $type . ':' . $new->entity->id . ']';
+
     }
 }

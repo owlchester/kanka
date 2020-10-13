@@ -126,7 +126,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                 @endif
                 @if ($campaign->enabled('journals'))
                     <li class="{{ $sidebar->active('journals') }} subsection">
-                        <a href="{{ route('journals.index') }}"><i class="ra ra-quill-ink"></i> <span>{{ trans('sidebar.journals') }}</span></a>
+                        <a href="{{ route('journals.' . $defaultIndex) }}"><i class="ra ra-quill-ink"></i> <span>{{ trans('sidebar.journals') }}</span></a>
                     </li>
                 @endif
 

@@ -8,7 +8,7 @@ return [
         'copy'              => 'Kopírovať',
         'copy_mention'      => 'Kopírovať [ ] referenciu',
         'copy_to_campaign'  => 'Kopírovať do kampane',
-        'explore_view'      => 'Vložené zobrazenie',
+        'explore_view'      => 'Vnorené zobrazenie',
         'export'            => 'Exportovať (PDF)',
         'find_out_more'     => 'Dozvedieť sa viac',
         'go_to'             => 'Prejsť na :name',
@@ -33,6 +33,7 @@ return [
             'add_text'          => 'Pridať text',
             'apply_template'    => 'Použiť šablónu atribútov',
             'manage'            => 'Spravovať',
+            'more'              => 'Ďalšie možnosti',
             'remove_all'        => 'Odstrániť všetko',
         ],
         'create'        => [
@@ -186,6 +187,7 @@ return [
         'excerpt'               => 'Výpis',
         'family'                => 'Rod',
         'files'                 => 'Súbory',
+        'has_image'             => 'S obrázkom',
         'header_image'          => 'Obrázok záhlavia',
         'image'                 => 'Obrázok',
         'is_private'            => 'Súkromný',
@@ -227,7 +229,12 @@ return [
         'direct'    => 'Filter zobrazenia iba priamych podobjektov',
         'filtered'  => 'Zobraziť :count z :total :entity.',
         'hide'      => 'Skryť',
-        'show'      => 'Zobraziť',
+        'options'   => [
+            'exclude'   => 'Vylúčiť',
+            'include'   => 'Zahrnúť',
+            'none'      => 'Žiadne',
+        ],
+        'show'      => 'Zobraziť filtre',
         'sorting'   => [
             'asc'       => ':field vzostupne',
             'desc'      => ':field zostupne',
@@ -265,7 +272,8 @@ return [
     'image'             => [
         'error' => 'Požadovaný obrázok nebolo možné stiahnuť. Zdá sa, že daná webová stránka nepovoľuje sťahovanie obrázkov (typické správanie Squarescape a DeviantArt) alebo že link už nie je platný.',
     ],
-    'is_private'        => 'Tento objekt je súkromný a neviditeľný pre divákov.',
+    'is_not_private'    => 'Tento objekt nie je aktuálne nastavený ako súkromný.',
+    'is_private'        => 'Tento objekt je súkromný a viditeľný len pre členov s rolou Admin.',
     'linking_help'      => 'Ako môžem prepojiť ďalšie objekty?',
     'manage'            => 'Spravovať',
     'move'              => [

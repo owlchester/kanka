@@ -27,9 +27,16 @@
         @if (((Auth::check() && Auth::user()->can('personality', $model)) || $model->is_personality_visible) && $model->characterTraits()->personality()->count() > 0)
         <div class="box box-solid">
             <div class="box-header">
+            @if(auth()->check() && auth()->user()->can('personality', $model))
+                <span class="pull-right">
                 @if (!$model->is_personality_visible)
-                <span class="pull-right"><i class="fa fa-lock" title="{{ __('characters.hints.is_personality_visible') }}"></i></span>
+                    <i class="fa fa-lock" title="{{ __('characters.hints.personality_not_visible') }}" data-toggle="tooltip"></i>
+                @else
+                    <i class="fa fa-lock-open" title="{{ __('characters.hints.personality_visible') }}" data-toggle="tooltip"></i>
                 @endif
+                </span>
+            @endif
+
                 <h3 class="box-title">{{ trans('characters.show.tabs.personality') }}</h3>
             </div>
             <!-- /.box-header -->
@@ -37,10 +44,6 @@
                 @foreach ($model->characterTraits()->personality()->orderBy('default_order')->get() as $trait)
                     <p><b>{{ $trait->name }}</b><br />{!! nl2br(e($trait->entry)) !!}</p>
                 @endforeach
-
-                @if (Auth::check() && Auth::user()->can('personality', $model))
-                <p class="help-block export-hidden">{{ trans('characters.hints.hide_personality') }}</p>
-                @endif
             </div>
         </div>
         @endif

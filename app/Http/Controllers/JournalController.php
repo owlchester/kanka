@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use App\Datagrids\Filters\JournalFilter;
 use App\Models\Journal;
 use App\Http\Requests\StoreJournal;
+use App\Traits\TreeControllerTrait;
 
 class JournalController extends CrudController
 {
+    /**
+     * Tree / Nested Mode
+     */
+    use TreeControllerTrait;
+    protected $treeControllerParentKey = 'journal_id';
+
     /**
      * @var string
      */
@@ -85,5 +92,16 @@ class JournalController extends CrudController
     public function mapPoints(Journal $journal)
     {
         return $this->menuView($journal, 'map-points', true);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Location  $location
+     * @return \Illuminate\Http\Response
+     */
+    public function journals(Journal $journal)
+    {
+        return $this->menuView($journal, 'journals');
     }
 }

@@ -15,7 +15,7 @@ return [
         'target'    => 'Ziel',
         'two_way'   => 'Gespiegelte Beziehung erstellen',
     ],
-    'helper'        => 'Richten Sie Beziehungen zwischen Entitäten mit Einstellungen und Sichtbarkeit ein. Beziehungen können auch an das Menü der Berechtigung angeheftet werden.',
+    'helper'        => 'Richten Sie Beziehungen zwischen Objekten mit Einstellungen und Sichtbarkeit ein. Beziehungen können auch an das Menü der Berechtigung angeheftet werden.',
     'hints'         => [
         'attitude'  => 'In diesem optionalen Feld können Sie die Standardordnungsbeziehungen definieren, sie wird in absteigender Reihenfolge angezeigt.',
         'mirrored'  => [

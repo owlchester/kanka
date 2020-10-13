@@ -49,9 +49,10 @@ return [
         'age'   => 'You can link this entity with a calendar of your campaign to automatically calculate their age instead. :more.',
     ],
     'hints'         => [
-        'hide_personality'          => 'This tab can be hidden from non "Admin" users by disabling the "Personality Visible" option when editing this character.',
         'is_dead'                   => 'This character is dead',
-        'is_personality_visible'    => 'You can hide the whole personality section from non "Admin" users.',
+        'is_personality_visible'    => 'Uncheck this option to hide the whole personality section from non Admin users.',
+        'personality_visible'       => 'Personality traits of this character are visible to all.',
+        'personality_not_visible'   => 'Personality traits of this character are currently only visible to Admin users.',
     ],
     'index'         => [
         'actions'       => [
