@@ -17,6 +17,11 @@
         <a href="{{ route('maps.explore', $model) }}" target="_blank" class="btn btn-primary btn-map-explore"><i class="fa fa-map"></i> {{ __('maps.actions.explore') }}</a>
     </div>
 
+
+    <div class="map-legend">
+    @include('maps.explore.legend', ['map' => $model])
+    </div>
+
 @section('scripts')
     @parent
     <!-- Make sure you put this AFTER Leaflet's CSS -->
