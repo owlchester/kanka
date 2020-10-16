@@ -200,16 +200,18 @@ class SearchService
         }
 
         $query = Entity::whereIn('type', $availableEntityTypes);
-        if (!empty($this->term)) {
-            $query->where('name', 'like', '%' . $this->term . '%');
+        if (empty($this->term)) {
+            $query->orderBy('updated_at', 'DESC');
+        } else {
+            if (!empty($this->term)) {
+                $query->where('name', 'like', '%' . $this->term . '%');
+            }
         }
-
 
         $query
             ->whereNotIn('id', $this->excludeIds)
             ->acl()
-            ->limit($this->limit)
-            ->orderBy('updated_at', 'DESC');
+            ->limit($this->limit);
 
         $searchResults = [];
         foreach ($query->get() as $model) {
@@ -289,7 +291,8 @@ class SearchService
                 'inject' => '[new:' . $type . '|' . $term . ']',
                 'fullname' => $term,
                 'type' => __('entities.new.' . $type),
-                'text' => $term
+                'text' => $term,
+                'name' => $term,
             ];
         }
 
