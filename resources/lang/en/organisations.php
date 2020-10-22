@@ -55,8 +55,8 @@ return [
             'role'          => 'Role',
         ],
         'helpers'       => [
-            'all_members'   => 'All the characters that are members of this organisations and it\'s sub-organisations.',
-            'members'       => 'All the characters that are members of this organisation.',
+            'all_members'   => 'All characters that are members of this organisations and it\'s sub-organisations.',
+            'members'       => 'All characters that are members of this organisation.',
         ],
         'placeholders'  => [
             'character' => 'Choose a character',
