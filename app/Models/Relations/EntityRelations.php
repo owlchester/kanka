@@ -352,4 +352,12 @@ trait EntityRelations
     {
         return $this->hasMany('App\Models\MapPoint', 'target_entity_id', 'id');
     }
+
+    /**
+     * @return mixed
+     */
+    public function mapMarkers()
+    {
+        return $this->hasMany('App\Models\MapMarker', 'entity_id', 'id');
+    }
 }
