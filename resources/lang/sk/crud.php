@@ -359,6 +359,7 @@ return [
         'family'        => 'Vybrať rod',
         'image_url'     => 'Obrázok je možné pridať aj nahratím cez URL.',
         'item'          => 'Vyber predmet',
+        'journal'       => 'Vyber denník',
         'location'      => 'Vyber miesto',
         'map'           => 'Vyber mapu',
         'organisation'  => 'Vyber organizáciu',

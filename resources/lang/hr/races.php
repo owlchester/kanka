@@ -3,6 +3,10 @@
 return [
     'characters'    => [
         'description'   => 'Likovi koji pripadaju toj rasi.',
+        'helpers'       => [
+            'all_characters'    => 'Prikaz svih likova povezanih s ovom rasom i njenim podrasama.',
+            'characters'        => 'Prikazuju se svi likovi izravno povezani s ovom rasom.',
+        ],
         'title'         => 'Likovi rase :name',
     ],
     'create'        => [

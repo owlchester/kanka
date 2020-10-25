@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'gm' => [
+    'gm'            => [
         'title' => 'Game Masters',
     ],
     'worldbuilding' => [

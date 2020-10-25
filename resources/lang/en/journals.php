@@ -17,11 +17,15 @@ return [
         'author'    => 'Author',
         'date'      => 'Date',
         'image'     => 'Image',
-        'journal' => 'Parent Journal',
-        'journals' => 'Sub Journals',
+        'journal'   => 'Parent Journal',
+        'journals'  => 'Sub Journals',
         'name'      => 'Name',
         'relation'  => 'Relation',
         'type'      => 'Type',
+    ],
+    'helpers'       => [
+        'journals'  => 'Display all or only the direct sub journals of this journal.',
+        'nested'    => 'Displaying journals with no parent journal first. Click on a row to explore the journal\'s sub journals.',
     ],
     'index'         => [
         'add'           => 'New Journal',
@@ -29,25 +33,21 @@ return [
         'header'        => 'Journals of :name',
         'title'         => 'Journals',
     ],
+    'journals'      => [
+        'title' => 'Journal :name sub journals',
+    ],
     'placeholders'  => [
         'author'    => 'Who wrote the journal',
         'date'      => 'Real world date of the journal',
-        'name'      => 'Name of the journal',
         'journal'   => 'Choose a parent journal',
+        'name'      => 'Name of the journal',
         'type'      => 'Session, One Shot, Draft',
-    ],
-    'helpers' => [
-        'journals' => 'Display all or only the direct sub journals of this journal.',
-        'nested' => 'Displaying journals with no parent journal first. Click on a row to explore the journal\'s sub journals.',
     ],
     'show'          => [
         'description'   => 'A detailed view of a journal',
+        'tabs'          => [
+            'journals'  => 'Journals',
+        ],
         'title'         => 'Journal :name',
-        'tabs' => [
-            'journals' => 'Journals',
-        ]
     ],
-    'journals' => [
-        'title' => 'Journal :name sub journals',
-    ]
 ];

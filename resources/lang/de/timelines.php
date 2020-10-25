@@ -27,8 +27,9 @@ return [
         'type'          => 'Typ',
     ],
     'helpers'       => [
-        'reorder'       => 'Ziehen Sie Elemente der Epoche per Drag & Drop, um sie neu zu ordnen.',
-        'reverse_order' => 'Aktivieren Sie diese Option, um Epochen in umgekehrter chronologischer Reihenfolge anzuzeigen (ältere Epoche zuerst).',
+        'reorder'           => 'Ziehen Sie Elemente der Epoche per Drag & Drop, um sie neu zu ordnen.',
+        'reorder_tooltip'   => 'Klicken Sie hier, um die manuelle Neuordnung von Elementen per Drag & Drop zu aktivieren.',
+        'reverse_order'     => 'Aktivieren Sie diese Option, um Epochen in umgekehrter chronologischer Reihenfolge anzuzeigen (ältere Epoche zuerst).',
     ],
     'index'         => [
         'add'   => 'neuer Zeitstrahl',

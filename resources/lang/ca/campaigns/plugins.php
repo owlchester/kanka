@@ -9,12 +9,18 @@ return [
         'update'            => 'Actualitza el connector',
         'update_available'  => 'Hi ha una actualització disponible!',
     ],
+    'destroy'       => [
+        'success'   => 'S\'ha eliminat el connector :plugin.',
+    ],
     'disabled'      => [
         'success'   => 'S\'ha desactivat el connector :plugin.',
     ],
     'empty_list'    => 'Actualment no hi ha cap connector en aquesta campanya. Aneu al mercat per a instal·lar algun i torneu aquí per a activar-los.',
     'enabled'       => [
         'success'   => 'S\'ha activat el connector :plugin.',
+    ],
+    'errors'        => [
+        'invalid_plugin'    => 'El connector no és vàlid.',
     ],
     'fields'        => [
         'name'      => 'Nom del connector',

@@ -49,9 +49,10 @@ return [
         'age'   => 'Možeš povezati ovaj entitet s kalendarom kampanje kako bi umjesto toga automatski izračunali njihovu dob. :more.',
     ],
     'hints'         => [
-        'hide_personality'          => 'Ova kartica se može sakriti od korisnika koji nisu "Administratori" tako što se onemogući opcija "Osobnost vidljiva" prilikom uređivanja ovog lika.',
         'is_dead'                   => 'Ovaj lik je mrtav',
         'is_personality_visible'    => 'Možeš sakriti cijelu sekciju osobnosti od korisnika koji nisu "Administratori".',
+        'personality_not_visible'   => 'Osobine ličnosti ovog lika su trenutno vidljive samo administratorima.',
+        'personality_visible'       => 'Osobine ličnosti ovog lika su vidljive svima.',
     ],
     'index'         => [
         'actions'       => [

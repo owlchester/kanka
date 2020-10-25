@@ -129,9 +129,144 @@ return [
         'subscription_status'   => 'Stav predplatného',
     ],
     'patreon'       => [
-        'actions'   => [
+        'actions'           => [
             'link'  => 'Prepojiť konto',
             'view'  => 'Navštív Kanku na Patreone',
+        ],
+        'benefits'          => 'Ak nás podporíš na :patreon, odomknú sa ti rôzne :features pre tvoje kampane, a tiež nám pomôžeš, aby sme viac času mohli venovať Kanke.',
+        'benefits_features' => 'úžasné funkcionality',
+        'deprecated'        => 'Zastaralá funkcionalita - Ak chceš podporiť Kanku, urob tak cez :subscription. Prepojenie na Patreon je ešte stále aktívne pre osoby, ktoré nás podporili predtým, než sme z neho odišli.',
+        'description'       => 'Synchronizácia s Patreonom',
+        'linked'            => 'Ďakujeme, že podporuješ Kanku na Patreone! Tvoje konto je prepojené.',
+        'pledge'            => 'Úroveň: :name',
+        'remove'            => [
+            'button'    => 'Zrušiť prepojenie s Patreonom',
+            'success'   => 'Prepojenie s tvojím Patreon kontom bolo zrušené.',
+            'text'      => 'Ak zrušíš prepojenie tvojho Patreon konta s Kankou, stratíš tvoje bonusy, meno v sieni slávy, boosty pre kampane a iné funkcionality získané vďaka podpore Kanky. Nestratíš ale žiaden obsah (napr. záhlavia objektov). Ak si nás neskôr zasa predplatíš, prístup k dátam sa ti obnoví, vrátane možnosti boostnuť predtým boostnuté kampane.',
+            'title'     => 'Zrušiť prepojenie Patreon konta s Kankou',
+        ],
+        'success'           => 'Ďakujeme, že Kanku podporuješ na Patreone!',
+        'title'             => 'Patreon',
+        'wrong_pledge'      => 'Tvoju úroveň podpory nastavujeme ručne, takže nám na to prosím daj pár dní. Ak by nemala byť dlhší čas ešte stále správna, kontaktuj nás.',
+    ],
+    'profile'       => [
+        'actions'   => [
+            'update_profile'    => 'Aktualizovať profil',
+        ],
+        'avatar'    => 'Profilový obrázok',
+        'success'   => 'Profil aktualizovaný.',
+        'title'     => 'Osobný profil',
+    ],
+    'subscription'  => [
+        'actions'               => [
+            'cancel_sub'        => 'Ukončiť predplatné',
+            'subscribe'         => 'Predplatiť',
+            'update_currency'   => 'Uložiť preferovanú menu',
+        ],
+        'benefits'              => 'Ak nás podporíš, odomknú sa ti rôzne :features, a tiež nám pomôžeš, aby sme viac času mohli venovať Kanke. Neukladáme informácie o tvojej platobnej karte, ani s ňou nijak nenarábame. Všetky platby realizujeme cez :stripe.',
+        'billing'               => [
+            'helper'    => 'Tvoje platobné údaje sú spracované a uložené bezpečne na :stripe. Túto platobnú metódu používame pre všetky platby predplatného.',
+            'saved'     => 'Uložený spôsob platby',
+            'title'     => 'Upraviť spôsob platby',
+        ],
+        'cancel'                => [
+            'text'  => 'Ľutujeme, že odchádzaš! Zrušením tvojho predplatného ostáva toto aktívne do ďalšieho platobného obdobia, po ktorom stratíš tvoje boosty kampaní a ostatné výhody vďaka podpore Kanky. Vyplnením následného formulára nám pomôžeš zistiť, čo by sme mali robiť lepšie, alebo čo ťa viedlo k tomuto rozhodnutiu.',
+        ],
+        'cancelled'             => 'Tvoje predplatné bolo zrušené. Môžeš ho obnoviť, keď ti aktívne predplatné skončí.',
+        'change'                => [
+            'text'  => [
+                'monthly'   => 'Máte predplatenú úroveň :tier, splatnú mesačne vo výške :amount.',
+                'yearly'    => 'Máte predplatenú úroveň :tier, splatnú ročne vo výške :amount.',
+            ],
+            'title' => 'Zmeniť úroveň predplatného',
+        ],
+        'currencies'            => [
+            'eur'   => 'EUR',
+            'usd'   => 'USD',
+        ],
+        'currency'              => [
+            'title' => 'Zmeň tebou preferovanú menu',
+        ],
+        'errors'                => [
+            'callback'      => 'Náš spracovateľ platieb nám nahlásil chybu. Prosím, skús ešte raz alebo nás kontaktuj, ak problém pretrváva.',
+            'subscribed'    => 'Tvoje predplatné sa nám nepodarilo spracovať. Stripe nám poskytlo nasledujúcu informáciu prečo.',
+        ],
+        'fields'                => [
+            'active_since'      => 'Aktívne od',
+            'active_until'      => 'Aktívne do',
+            'billing'           => 'Zúčtovanie',
+            'currency'          => 'Mena zúčtovania',
+            'payment_method'    => 'Spôsob platby',
+            'plan'              => 'Súčasná úroveň',
+            'reason'            => 'Dôvod',
+        ],
+        'helpers'               => [
+            'alternatives'          => 'Zaplať za tvoje predplatné pomocou :method. Tento spôsob platby nebude automaticky obnovený na konci tvojho predplatného. :method je iba dostupný v eurách.',
+            'alternatives_warning'  => 'Aktualizácia predplatného týmto spôsobom nie je možná. Prosím, vytvor nové predplatné, keď tvoje súčasné skončí.',
+            'alternatives_yearly'   => 'Kvôli obmedzeniam ohľadom opakovaných platieb, :method je dostupný len pre ročné zúčtovanie.',
+        ],
+        'manage_subscription'   => 'Spravovať predplatné',
+        'payment_method'        => [
+            'actions'       => [
+                'add_new'           => 'Pridať nový spôsob platby',
+                'change'            => 'Zmeniť spôsob platby',
+                'save'              => 'Uložiť spôsob platby',
+                'show_alternatives' => 'Alternatívne možnosti platby',
+            ],
+            'add_one'       => 'Aktuálne nemáš uložený žiadny spôsob platby.',
+            'alternatives'  => 'Predplatné môžeš zaplatiť aj týmito alternatívnymi platobnými možnosťami. Tvoje konto bude jednorázovo zaťažené a predplatné nebude automaticky predĺžené na konci mesiaca.',
+            'card'          => 'Karta',
+            'card_name'     => 'Meno na karte',
+            'country'       => 'Krajina bydliska',
+            'ending'        => 'Platná do',
+            'helper'        => 'Táto karta bude použitá na všetky tvoje predplatné.',
+            'new_card'      => 'Pridať nový spôsob platby',
+            'saved'         => ':brand končiac na :last4',
+        ],
+        'placeholders'          => [
+            'reason'    => 'Alternatívne nám daj vedieť, prečo už nepodporuješ Kanku. Chýbala ti nejaká funkcionalita? Zmenila sa tvoja finančná situácia?',
+        ],
+        'plans'                 => [
+            'cost_monthly'  => ':amount :currency účtovaných mesačne',
+            'cost_yearly'   => ':amount :currency účtovaných ročne',
+        ],
+        'sub_status'            => 'Informácie o predplatnom',
+        'subscription'          => [
+            'actions'   => [
+                'downgrading'       => 'Prosím, kontaktuj nás ohľadom zníženia úrovne',
+                'rollback'          => 'Zmeniť na Kobolda',
+                'subscribe'         => 'Zmeniť na :tier mesačný',
+                'subscribe_annual'  => 'Zmeniť na :tier ročný',
+            ],
+        ],
+        'success'               => [
+            'alternative'   => 'Tvoja platba bola zaregistrovaná. Obdržíš oznámenie akonáhle bude spracovaná a tvoje predplatné aktívne.',
+            'callback'      => 'Úspešne predplatené. Tvoje konto bude čoskoro aktualizované akonáhle nás spracovateľ platieb informuje o zmene (môže to pár minút trvať).',
+            'cancel'        => 'Predplatné bolo zrušené. Aktívne bude do konca aktuálneho platobného obdobia.',
+            'currency'      => 'Nastavenie preferovanej meny bolo aktualizované.',
+            'subscribed'    => 'Úspešne predplatené. Nezabudni sa pridať do newsletteru Komunitných hlasovaní, aby sme ťa mohli informovať, keď bude hlasovanie otvorené. Nastavenie newsletteru si môžeš zmeniť v tvojom profile.',
+        ],
+        'tiers'                 => 'Úrovne predplatného',
+        'trial_period'          => 'Ročné predplatné má 14-dňovú skúšobnú lehotu. Kontaktuj nás prostredníctvom :email, ak vypovieš tvoje ročné predplatné a požaduješ vrátenie peňazí.',
+        'upgrade_downgrade'     => [
+            'button'    => 'Informácie o zmene úrovne predplatného',
+            'downgrade' => [
+                'bullets'   => [
+                    'end'   => 'Tvoja aktuálna úroveň ostáva aktívna do konca aktuálneho platobného obdobia. Potom bude znížená na novú úroveň.',
+                ],
+                'title'     => 'Pri prechode na nižšiu úroveň',
+            ],
+            'upgrade'   => [
+                'bullets'   => [
+                    'immediate' => 'Vybraný spôsob platby bude okamžite zaťažený a hneď budeš mať prístup k novej úrovni.',
+                    'prorate'   => 'Ak sa ti úroveň zvýši z Owlbear na Elemental, budeš musieť zaplatiť len rozdiel k vyššej úrovni.',
+                ],
+                'title'     => 'Pri prechode na vyššiu úroveň',
+            ],
+        ],
+        'warnings'              => [
+            'incomplete'    => 'Nepodarilo sa nám zaťažiť tvoju platobnú kartu. Prosím, aktualizuj tvoje platobné údaje karty a my sa o to pokúsime opäť o pár dní. Ak to nebude možné, tvoje predplatné bude zrušené.',
+            'patreon'       => 'Tvoje konto je aktuálne prepojené s Patreonom. Prosím, odstráňte prepojenie v nastaveniach tvojho :patreon konta predtým, než zmeníš tvoje predplatné v Kanke.',
         ],
     ],
 ];

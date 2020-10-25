@@ -359,6 +359,7 @@ return [
         'family'        => 'Wähle eine Familie',
         'image_url'     => 'Du kannst ein Bild auch von einer URL hochladen',
         'item'          => 'Wähle einen Gegenstand',
+        'journal'       => 'Wähle ein Logbuch',
         'location'      => 'Wähle einen Ort',
         'map'           => 'Wähle eine Karte',
         'organisation'  => 'Wähle eine Organisation',

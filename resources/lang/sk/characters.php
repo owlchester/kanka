@@ -53,6 +53,8 @@ return [
         'hide_personality'          => 'Túto kartu môžeš ukryť pred užívateľmi, ktorí nemajú rolu Admin, deaktivovaním nastavenia "Osobnosť viditeľná".',
         'is_dead'                   => 'Táto postava je mŕtva.',
         'is_personality_visible'    => 'Celú sekciu o osobnosti vieš skryť pred užívateľmi, ktorí nemajú rolu Admin.',
+        'personality_not_visible'   => 'Osobnostné črty tejto postavy sú aktuálne viditeľné len pre užívateľov s rolou Admin.',
+        'personality_visible'       => 'Osobnostné črty tejto postavy sú viditeľné pre všetkých.',
     ],
     'index'         => [
         'actions'       => [

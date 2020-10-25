@@ -53,6 +53,8 @@ return [
         'hide_personality'          => 'Essa aba pode ser escondida de usuários não "Administradores"  desabilitando a opção "Personalidade Visível" quando editando esse personagem.',
         'is_dead'                   => 'Esse personagem está morto',
         'is_personality_visible'    => 'Você pode ocultar toda a seção de personalidade dos seus Espectadores.',
+        'personality_not_visible'   => 'Os traços de personalidade deste personagem estão visíveis apenas para os Administradores.',
+        'personality_visible'       => 'Os traços de personalidade deste personagem estão visíveis para todos.',
     ],
     'index'         => [
         'actions'       => [

@@ -102,13 +102,13 @@ return [
         'success'   => 'Layout options updated.',
         'title'     => 'Layout',
     ],
-    'marketplace' => [
-        'title' => 'Marketplace Settings',
-        'helper' => 'By default, your user name is shown on the :marketplace. You can override this value with this field.',
-        'fields' => [
-            'name' => 'Marketplace name',
+    'marketplace'   => [
+        'fields'    => [
+            'name'  => 'Marketplace name',
         ],
-        'update' => 'Marketplace settings saved.',
+        'helper'    => 'By default, your user name is shown on the :marketplace. You can override this value with this field.',
+        'title'     => 'Marketplace Settings',
+        'update'    => 'Marketplace settings saved.',
     ],
     'menu'          => [
         'account'               => 'Account',

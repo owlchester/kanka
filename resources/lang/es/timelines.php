@@ -27,8 +27,9 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'reorder'       => 'Arrastra los elementos de la era para reordenarlos.',
-        'reverse_order' => 'Habilitar para mostrar las eras en orden cronológico inverso (la era más antigua primero)',
+        'reorder'           => 'Arrastra los elementos de la era para reordenarlos.',
+        'reorder_tooltip'   => 'Haz clic para habilitar la reordenación manual de los elementos mediante arrastrar y soltar.',
+        'reverse_order'     => 'Habilitar para mostrar las eras en orden cronológico inverso (la era más antigua primero)',
     ],
     'index'         => [
         'add'   => 'Nueva línea de tiempo',

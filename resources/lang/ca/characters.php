@@ -53,6 +53,8 @@ return [
         'hide_personality'          => 'Es pot ocultar aquesta pestanya puede ocultarse als usuaris no administradors desactivant la opció «Personalitat visible» a l\'edició del personatge.',
         'is_dead'                   => 'Aquest personatge és mort',
         'is_personality_visible'    => 'La secció de la personalitat es pot ocultar als usuaris no administradors.',
+        'personality_not_visible'   => 'Els trets de personalitat d\'aquest personatge ara només són visibles pels administradors.',
+        'personality_visible'       => 'Els trets de personalitat d\'aquest personatge són visibles per a tothom.',
     ],
     'index'         => [
         'actions'       => [
