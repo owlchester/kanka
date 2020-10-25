@@ -117,7 +117,7 @@
                             <strong>{{ __('languages.codes.hu') }}</strong>: Kildar, Orkogo, orwen89
                         </p>
                         <p>
-                            <strong>{{ __('languages.codes.pt-BR') }}</strong>: Republik
+                            <strong>{{ __('languages.codes.pt-BR') }}</strong>: Mire, JP, Republik
                         </p>
                         <p>
                             <strong>{{ __('languages.codes.hr') }}</strong>: Blaze
@@ -128,12 +128,18 @@
                         <p>
                             <strong>{{ __('languages.codes.ru') }}</strong>: Ilia
                         </p>
-{{--                        <p>--}}
-{{--                            <strong>{{ __('languages.codes.sk') }}</strong>: Babcom--}}
-{{--                        </p>--}}
-{{--                        <p>--}}
-{{--                            <strong>{{ __('languages.codes.el') }}</strong>: Charalampos Koundourakis--}}
-{{--                        </p>--}}
+                        <p>
+                            <strong>{{ __('languages.codes.sk') }}</strong>: Babcom
+                        </p>
+                        {{--<p>
+                            <strong>{{ __('languages.codes.el') }}</strong>: Charalampos Koundourakis
+                        </p>
+                        <p>
+                            <strong>{{ __('languages.codes.tr') }}</strong>: Lxran
+                        </p>
+                        <p>
+                            <strong>{{ __('languages.codes.pl') }}</strong>: Xazaks
+                        </p>--}}
                         <p>
                             <strong>{{ __('languages.codes.fr') }}</strong>: Ilestis
                         </p>
