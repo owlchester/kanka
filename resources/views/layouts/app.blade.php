@@ -131,13 +131,14 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                 @endif
                 @include('partials.success')
 
-@if(auth()->guest() && !empty(config('tracking.adsense')))
+@if(!empty(config('tracking.adsense')) && (auth()->guest() || auth()->user()->showAds()))
                 <!-- Side -->
                 <ins class="adsbygoogle"
-                     style="display:block"
+                     style="display:block"@if (config('app.env') != 'prod')
+                     data-adtest="on"@endif
                      data-ad-client="ca-pub-1686281547359435"
                      data-ad-slot="2711573107"
-                     data-ad-format="auto"></ins>
+                     data-full-width-responsive="true"></ins>
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
