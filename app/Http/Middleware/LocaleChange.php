@@ -17,7 +17,12 @@ class LocaleChange
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!$request->is('subscription-api/*', 'feeds/*', '*/sitemap.xml') && !Auth::guest() && $request->isMethod('get')) {
+        if (!$request->is(
+                'subscription-api/*',
+                'feeds/*',
+                '*/sitemap.xml',
+                'oauth/*'
+            ) && !Auth::guest() && $request->isMethod('get')) {
             $change = $request->query('updateLocale');
             $locale = LaravelLocalization::getCurrentLocale();
             $user = Auth::user();
