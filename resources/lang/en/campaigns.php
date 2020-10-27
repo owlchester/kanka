@@ -175,7 +175,7 @@ TEXT
             'title'     => 'Impersonating :name',
         ],
         'invite'                => [
-            'description'   => 'You can invite friends to join your campaign by providing them with an Invite Link. Upon accepting their invitation, they will be added as a member in the requested role. You can also send them a request by email as long as it\'s not a Hotmail address, as they always reject Kanka\'s emails.',
+            'description'   => 'You can invite friends to join your campaign by providing them with an Invite Link. Upon accepting their invitation, they will be added as a member in the requested role. You can also send them a request by email.',
             'more'          => 'You can add more roles on the :link.',
             'roles_page'    => 'Roles page',
             'title'         => 'Invite',
