@@ -33,6 +33,7 @@ return [
             'add_text'          => 'Text hinzufügen',
             'apply_template'    => 'Eine Attributvorlage anwenden',
             'manage'            => 'Verwalten',
+            'more'              => 'Mehr Optionen',
             'remove_all'        => 'Alles löschen',
         ],
         'create'        => [
@@ -172,7 +173,7 @@ return [
         'ability'               => 'Fähigkeit',
         'attribute_template'    => 'Attributsvorlage',
         'calendar'              => 'Kalender',
-        'calendar_date'         => 'Datum',
+        'calendar_date'         => 'Kalenderdatum',
         'character'             => 'Charakter',
         'colour'                => 'Farbe',
         'copy_attributes'       => 'Kopiere Attribute',

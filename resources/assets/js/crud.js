@@ -511,13 +511,13 @@ function registerEntityFormSubmit()
             method: $(this).attr('method'),
             data: $(this).serialize()
         }).done(function (res) {
-            console.log('good?');
+            //console.log('good?');
             // If the validation succeeded, we can really submit the form
             validEntityForm = true;
             $('#entity-form').submit();
             return true;
         }).fail(function (err) {
-            console.log('error', err);
+            //console.log('error', err);
             // Reset any error fields
             $('.input-error').removeClass('input-error');
             $('.text-danger').remove();

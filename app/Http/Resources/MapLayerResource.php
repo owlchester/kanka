@@ -15,13 +15,14 @@ class MapLayerResource extends ModelResource
     public function toArray($request)
     {
         return $this->entity([
-            'map_id' => $this->map_id,
+            'map_id' => (int) $this->map_id,
             'name' => $this->name,
             'position' => (int) $this->position,
-            'width' => $this->width,
-            'height' => $this->height,
+            'width' => (int) $this->width,
+            'height' => (int) $this->height,
             'visibility' => $this->visibility,
-            'is_shown' => (bool) $this->is_shown,
+            'type_id' => (bool) $this->type_id,
+            'type' => (string) $this->typeName(),
         ]);
     }
 }

@@ -30,6 +30,7 @@ return array(
         'hr',
         'pl',
         'el',
+        'tr',
     ],
     /**
      * Specify locales that you want to show in the web interface, if empty or not provided then all locales in the database
@@ -145,11 +146,20 @@ return array(
      * @type array
      */
     'exclude_groups' => array(
+        'auth',
         'reminders',
         'validation',
+        'validation-inline',
         'pagination',
         'passwords',
         'voyager',
+        'admin.community-events',
+        'admin.community-votes',
+        'admin.home',
+        'admin.patrons',
+        'admin.referrals',
+        'admin.releases',
+        'admin.users',
     ),
     /**
      * Exclude specific groups from Laravel Translation Manager in page edit mode.
@@ -158,6 +168,7 @@ return array(
      * @type array
      */
     'exclude_page_edit_groups' => array(
+        'auth',
         //'page-titles',
         'reminders',
         'validation',

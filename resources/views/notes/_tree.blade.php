@@ -21,7 +21,8 @@
         [
             'label' => trans('notes.fields.notes'),
             'render' => function($model) {
-                return $model->notes->count();
+                $count = $model->notes->count();
+                return !empty($count) ? $count : '';
             },
             'disableSort' => true,
         ],

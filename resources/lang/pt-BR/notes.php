@@ -16,8 +16,17 @@ return [
     'fields'        => [
         'description'   => 'Descrição',
         'image'         => 'Imagem',
+        'is_pinned'     => 'Fixada',
         'name'          => 'Nome',
+        'note'          => 'Nota Primária',
+        'notes'         => 'Notas secundárias',
         'type'          => 'Tipo',
+    ],
+    'helpers'       => [
+        'nested'    => 'Mostrando primeiro notas que não tem uma Nota Primária. Clique em uma nota para explorar suas notas secundárias.',
+    ],
+    'hints'         => [
+        'is_pinned' => 'Até 3 notas podem ser fixadas no dashboard',
     ],
     'index'         => [
         'add'           => 'Nova Nota',
@@ -27,6 +36,7 @@ return [
     ],
     'placeholders'  => [
         'name'  => 'Nome da nota',
+        'note'  => 'Escolha uma nota Primária',
         'type'  => 'Religião, Raça, Sistema político',
     ],
     'show'          => [

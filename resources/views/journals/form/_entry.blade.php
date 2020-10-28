@@ -31,6 +31,18 @@
         @include('cruds.fields.private')
     </div>
     <div class="col-md-6">
+        <div class="form-group">
+            {!! Form::select2(
+                'journal_id',
+                (isset($model) && $model->journal ? $model->journal : FormCopy::field('journal')->select()),
+                App\Models\Journal::class,
+                true,
+                __('journals.fields.journal'),
+                null,
+                __('journals.placeholders.journal')
+            ) !!}
+        </div>
+
         @include('cruds.fields.image')
     </div>
 </div>

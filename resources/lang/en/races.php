@@ -4,6 +4,10 @@ return [
     'characters'    => [
         'description'   => 'Characters belonging to the race.',
         'title'         => 'Race :name Characters',
+        'helpers' => [
+            'characters' => 'Displaying all the characters directly related to this race.',
+            'all_characters' => 'Displaying all the characters related to this race and it\'s sub races.',
+        ]
     ],
     'create'        => [
         'description'   => 'Create a new race',

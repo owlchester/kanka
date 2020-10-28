@@ -33,6 +33,7 @@ return [
             'add_text'          => 'Afegeix un text',
             'apply_template'    => 'Aplica una plantilla d\'atributs',
             'manage'            => 'Administra',
+            'more'              => 'Més opcions',
             'remove_all'        => 'Elimina\'ls tots',
         ],
         'create'        => [

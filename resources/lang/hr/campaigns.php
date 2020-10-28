@@ -327,6 +327,7 @@ TEXT
             'information'       => 'Informacije',
             'members'           => 'Članovi',
             'menu'              => 'Izbornik',
+            'plugins'           => 'Dodaci',
             'recovery'          => 'Oporavak',
             'roles'             => 'Uloge',
             'settings'          => 'Moduli',

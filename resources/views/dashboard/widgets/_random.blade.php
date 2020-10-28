@@ -14,12 +14,14 @@ $entity = \App\Models\Entity::
         ->type($entityType)
         ->acl()
         ->with(['updater'])
+        ->whereNotIn('entities.id', \App\Facades\Dashboard::excluding())
         ->inRandomOrder()
         ->first();
 
 if (empty($entity) || empty($entity->child)) {
     return;
 }
+\App\Facades\Dashboard::add($entity);
 $model = $entity->child;
 
 $specificPreview = 'dashboard.widgets.previews.' . $entity->type;

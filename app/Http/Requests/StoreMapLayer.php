@@ -29,15 +29,16 @@ class StoreMapLayer extends FormRequest
             'name' => 'required',
             'entry' => 'nullable',
             'visibility' => 'string',
-            'image' => 'required_without:image_url|image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
+            'image' => 'required_without:image_url|image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(false, 'map'),
             'image_url' => 'required_without:image|nullable|url|active_url',
             'position' => 'nullable|string|max:3',
+            'type_id' => 'nullable|integer',
         ];
 
         // If editing, don't need a new image
         $self = request()->segment(7);
         if (!empty($self)) {
-            $rules['image'] = 'nullable|image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize();
+            $rules['image'] = 'nullable|image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(false, 'map');
             $rules['image_url'] = 'nullable|url|active_url';
         }
 

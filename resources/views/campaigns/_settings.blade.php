@@ -62,7 +62,7 @@
         @include('campaigns.settings.box', ['icon' => 'fa fa-map', 'module' => 'maps'])
     </div>
     <div class="col-md-4">
-        @include('campaigns.settings.box', ['icon' => 'fa fa-clock', 'module' => 'timelines', 'boosted' => true])
+        @include('campaigns.settings.box', ['icon' => 'fa fa-clock', 'module' => 'timelines'])
     </div>
 </div>
 <div class="row">

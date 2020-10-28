@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Campaign;
 use App\Models\Faq;
 use App\Services\PatreonService;
+use App\Services\ReferralService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
@@ -19,9 +21,10 @@ class FrontController extends Controller
      * FrontController constructor.
      * @param PatreonService $patreonService
      */
-    public function __construct(PatreonService $patreonService)
+    public function __construct(PatreonService $patreonService, ReferralService $referralService)
     {
         $this->patreon = $patreonService;
+        $referralService->validate(request());
     }
 
     /**
@@ -38,7 +41,7 @@ class FrontController extends Controller
      */
     public function tos()
     {
-        return view('front.tos');
+        return $this->cachedResponse('front.tos');
     }
 
     /**
@@ -46,7 +49,7 @@ class FrontController extends Controller
      */
     public function privacy()
     {
-        return view('front.privacy');
+        return $this->cachedResponse('front.privacy');
     }
 
     /**
@@ -54,7 +57,7 @@ class FrontController extends Controller
      */
     public function terms()
     {
-        return view('front.terms');
+        return $this->cachedResponse('front.terms');
     }
 
     /**
@@ -62,7 +65,7 @@ class FrontController extends Controller
      */
     public function help()
     {
-        return view('front.help');
+        return $this->cachedResponse('front.help');
     }
 
     /**
@@ -70,7 +73,7 @@ class FrontController extends Controller
      */
     public function features()
     {
-        return view('front.features');
+        return $this->cachedResponse('front.features');
     }
 
     /**
@@ -78,7 +81,9 @@ class FrontController extends Controller
      */
     public function community()
     {
+        response()->header('Expires', Carbon::now()->addDays(7)->toDateTimeString());
         return view('front.community');
+        return $this->cachedResponse('front.contact');
     }
 
     /**
@@ -86,7 +91,7 @@ class FrontController extends Controller
      */
     public function roadmap()
     {
-        return view('front.roadmap');
+        return $this->cachedResponse('front.roadmap');
     }
 
 
@@ -95,7 +100,7 @@ class FrontController extends Controller
      */
     public function pricing()
     {
-        return view('front.pricing');
+        return $this->cachedResponse('front.pricing');
     }
 
     /**
@@ -103,7 +108,23 @@ class FrontController extends Controller
      */
     public function contact()
     {
-        return view('front.contact');
+        return $this->cachedResponse('front.contact');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function gmFeatures()
+    {
+        return $this->cachedResponse('front.features.gm');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function wbFeatures()
+    {
+        return $this->cachedResponse('front.features.worldbuilding');
     }
 
     /**
@@ -113,7 +134,7 @@ class FrontController extends Controller
     public function campaigns(Request $request)
     {
         $features = Campaign::public()->front()->featured()->get();
-        $campaigns = Campaign::public()->front()->featured(false)->filterPublic($request->only(['language', 'system']))->paginate();
+        $campaigns = Campaign::public()->front()->featured(false)->filterPublic($request->only(['language', 'system', 'is_boosted']))->paginate();
 
         if (getenv('APP_ENV') === 'shadow') {
             $features = $campaigns = new Collection();
@@ -122,5 +143,11 @@ class FrontController extends Controller
         return view('front.campaigns')
             ->with('featured', $features)
             ->with('campaigns', $campaigns);
+    }
+
+    protected function cachedResponse(string $view, int $days = 7)
+    {
+        return response(view($view))
+            ->header('Expires', Carbon::now()->addDays($days)->toDateTimeString());
     }
 }

@@ -31,6 +31,7 @@ class CampaignPluginObserver
             CampaignCache::clearTheme();
         }
 
+        $campaignPlugin->campaign->withObservers = false;
         $campaignPlugin->campaign->touch();
     }
 

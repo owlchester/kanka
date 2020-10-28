@@ -146,7 +146,6 @@ To create a timeline, use the following endpoint.
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the timeline |
 | `type` | `string` | The timeline's type |
-| `eras` | `array` | Eras of the calendar |
 | `revert_order` | `boolean` | Revert era rendering order (older first) |
 | `tags` | `array` | Array of tag ids |
 | `is_private` | `boolean` | If the timeline is only visible to `admin` members of the campaign |

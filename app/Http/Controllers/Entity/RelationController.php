@@ -130,6 +130,12 @@ class RelationController extends Controller
             ]));
     }
 
+    // This page doesn't exist, but crawlers will try
+    public function show(Entity $entity, Relation $relation)
+    {
+        abort(404);
+    }
+
     /**
      * @param Entity $entity
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

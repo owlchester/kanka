@@ -21,7 +21,7 @@ class CampaignPluginController extends Controller
 
     public function __construct(CampaignPluginService $service)
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'css']);
         $this->middleware('campaign.boosted', ['except' => 'index']);
 
         $this->service = $service;
@@ -114,12 +114,13 @@ class CampaignPluginController extends Controller
     {
         $campaign = CampaignLocalization::getCampaign();
 
-        /** @var PluginVersion $version */
-        $version = CampaignCache::theme();
+        $themes = CampaignCache::themes();
 
-        $response = \Illuminate\Support\Facades\Response::make($version->content);
+        $response = \Illuminate\Support\Facades\Response::make($themes);
         $response->header('Content-Type', 'text/css');
         $response->header('Expires', Carbon::now()->addMonth(1)->toDateTimeString());
+        $month = 2592000;
+        $response->header('Cache-Control', 'public, max_age=' . $month);
 
         return $response;
     }

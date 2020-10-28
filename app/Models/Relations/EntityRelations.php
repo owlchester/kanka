@@ -358,6 +358,14 @@ trait EntityRelations
     /**
      * @return mixed
      */
+    public function mapMarkers()
+    {
+        return $this->hasMany('App\Models\MapMarker', 'entity_id', 'id');
+    }
+
+    /**
+     * @return mixed
+     */
     public function image()
     {
         return $this->hasOne('App\Models\Image', 'image_id', 'id');

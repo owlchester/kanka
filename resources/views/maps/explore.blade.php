@@ -16,6 +16,13 @@
 @section('scripts')
     @parent
     <script type="text/javascript">
+        var labelShapeIcon = new L.Icon({
+            iconUrl: '/images/transparent.png',
+            iconSize: [150, 35],
+            iconAnchor: [75, 15],
+            popupAnchor: [0, -20],
+        });
+
         var markers = [];
 @foreach ($map->markers as $marker)
 @if(!$marker->visible())

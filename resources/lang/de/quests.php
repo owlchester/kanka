@@ -37,6 +37,7 @@ return [
     'fields'        => [
         'character'     => 'Auslöser',
         'characters'    => 'Charaktere',
+        'copy_elements' => 'Kopiere Elemente, die an die Queste angehängt sind',
         'date'          => 'Datum',
         'description'   => 'Beschreibung',
         'image'         => 'Bild',

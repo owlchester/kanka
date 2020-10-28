@@ -53,6 +53,7 @@ class CommunityVoteController extends AdminCrudController
             ->with('ballots')
             ->filter(request()->all())
             ->search($filterService->search())
+            ->orderByDesc('visible_at')
             ->paginate();
         return view('admin.cruds.index', compact(
             'models',

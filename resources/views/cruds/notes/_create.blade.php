@@ -6,18 +6,9 @@
         </div>
     @endif
     <div class="panel-body">
-
-        {!! Form::open(['route' => ['entities.entity_notes.store', $entity->id], 'method'=>'POST', 'data-shortcut' => '1', 'id' => 'entity-form']) !!}
         @include('cruds.notes._form')
 
-        <div class="form-group">
-            <button class="btn btn-success">{{ trans('crud.save') }}</button>
-            @if (!$ajax)
-                {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous() . (strpos(url()->previous(), '#notes') === false ? '#notes' : null))]) !!}
-            @endif
-        </div>
-
-        {!! Form::close() !!}
+        @include('cruds.notes._saveOptions')
     </div>
 </div>
 

@@ -26,7 +26,7 @@
     </header>
 
     @if ($featured->count() > 0)
-    <section class="featured-campaigns" id="featured">
+    <section class="featured-campaigns pb-1" id="featured">
         <div class="container">
             <div class="section-body">
                 <h1>{{ trans('front.campaigns.featured.title') }}</h1>
@@ -35,29 +35,7 @@
                 <div class="row">
                     @foreach ($featured as $camp)
                     <div class="col-lg-4 col-md-6">
-                        <a class="campaign" href="{{ url(app()->getLocale() . '/' . $camp->getMiddlewareLink()) }}" title="{{ $camp->name }}">
-                            <div class="image-wrapper @if ($camp->image)" style="background-color: transparent !important; background-image: url('{{ $camp->getImageUrl() }}') @else no-image @endif">
-                                <div class="labels">
-                                    <span class="label label-default count" title="{{ __('campaigns.fields.entity_count') }}">
-                                        <i class="fa fa-eye"></i> {{ number_format($camp->visible_entity_count) }}
-                                    </span>
-                                    @if ($camp->locale)
-                                        <span class="label label-default" title="{{ __('languages.codes.' . $camp->locale) }}">{{ $camp->locale }}</span>
-                                    @endif
-                                    @if (!empty($camp->system))
-                                        <span class="label label-default" title="{{ __('campaigns.fields.system') }}">{{ $camp->system }}</span>
-                                    @endif
-                                    @if ($camp->boosted())
-                                        <span class="label label-default" title="{{ __('campaigns.panels.boosted') }}">
-                                            <i class="fa fa-rocket"></i>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                            <h4 class="campaign-title">
-                                {!! $camp->name !!}
-                            </h4>
-                        </a>
+                        @include('front._campaign', ['campaign' => $camp, 'featured' => true])
                     </div>
                     @endforeach
                 </div>
@@ -81,6 +59,10 @@
                         {!! Form::select('system', array_merge(['' => __('campaigns.fields.system')], \App\Facades\CampaignCache::systems(), ['other' => __('sidebar.other')]), request()->get('system'), ['class' => 'form-control']) !!}
                     </div>
                     <div class="col">
+                        {!! Form::select('is_boosted', ['' => __('front.campaigns.public.filters.all'),
+ 0 => __('front.campaigns.public.filters.unboosted'), 1 => __('front.campaigns.public.filters.boosted')], request()->get('is_boosted'), ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="col">
                         <input type="submit" class="btn btn-primary" value="{{ __('crud.actions.apply') }}" />
                     </div>
                 </div>
@@ -92,38 +74,16 @@
                 <div class="row">
                     @foreach ($campaigns as $camp)
                         <div class="col-lg-3 col-md-4">
-                            <a class="campaign" href="{{ url(app()->getLocale() . '/' . $camp->getMiddlewareLink()) }}" title="{{ $camp->name }}" >
-                                <div class="image-wrapper small-campaign @if ($camp->image)" style="background-color: transparent !important; background-image: url('{{ $camp->getImageUrl() }}')" @else no-image @endif">
-                                    <div class="labels">
-                                        <span class="label label-default count" title="{{ __('campaigns.fields.entity_count') }}">
-                                            <i class="fa fa-eye"></i> {{ number_format($camp->visible_entity_count) }}
-                                        </span>
-                                        @if ($camp->locale)
-                                            <span class="label label-default" title="{{ __('languages.codes.' . $camp->locale) }}">
-                                                {{ $camp->locale }}
-                                            </span>
-                                        @endif
-                                        @if (!empty($camp->system))
-                                            <span class="label label-default" title="{{ __('campaigns.fields.system') }}">
-                                                {{ $camp->system }}
-                                            </span>
-                                        @endif
-                                        @if ($camp->boosted())
-                                            <span class="label label-default" title="{{ __('campaigns.panels.boosted') }}">
-                                                <i class="fa fa-rocket"></i>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-                                <h4 class="campaign-title">
-                                    {!! $camp->name !!}
-                                </h4>
-                            </a>
+                            @include('front._campaign', ['campaign' => $camp, 'featured' => false])
                         </div>
                     @endforeach
                 </div>
 
-                {{ $campaigns->fragment('public-campaigns')->appends('language', request()->get('language'))->appends('system', request()->get('system'))->links() }}
+                {{ $campaigns->fragment('public-campaigns')
+                    ->appends('language', request()->get('language'))
+                    ->appends('system', request()->get('system'))
+                    ->appends('is_boosted', request()->get('is_boosted'))
+                    ->links() }}
                 @endif
             </div>
         </div>

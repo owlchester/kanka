@@ -48,8 +48,9 @@ return [
             'title'         => 'Actualitza l\'esdeveniment del calendari :name',
         ],
         'helpers'   => [
-            'add'   => 'Afegeix un esdeveniment existent a aquest calendari.',
-            'new'   => 'O crea un nou esdeveniment proporcionant un nom.',
+            'add'               => 'Afegeix un esdeveniment existent a aquest calendari.',
+            'new'               => 'O crea un nou esdeveniment proporcionant un nom.',
+            'other_calendar'    => 'Esteu editant un recordatori del calendari :calendar.',
         ],
         'modal'     => [
             'title' => 'Afegeix un esdeveniment al calendari',
@@ -61,6 +62,8 @@ return [
         'title'         => 'Esdeveniments del calendari :name',
     ],
     'fields'        => [
+        'calendar'              => 'Calendari superior',
+        'calendars'             => 'Calendaris',
         'colour'                => 'Color',
         'comment'               => 'Comentari',
         'current_day'           => 'Dia actual',
@@ -93,6 +96,7 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Els mesos intercalars no utilitzen els dies de la setmana, però influeixen a les llunes i les estacions.',
+        'nested'        => 'Primer es mostren els calendaris que no tenen un superior. Cliqueu en un calendari per explorar-ne els subcalendaris.',
         'start_offset'  => 'Per defecte, el calendari comença el primer dia de la setmana de l\'any 0. Aquí es pot canviar on se situarà el primer dia del calendari.',
     ],
     'hints'         => [
@@ -101,6 +105,7 @@ return [
         'is_recurring'      => 'Si un esdeveniment és recurrent, reapareixerà cada any a la mateixa data.',
         'months'            => 'Els calendaris han de tenir com a mínim 2 mesos.',
         'moons'             => 'Si afegiu llunes, apareixeran al calendari cada lluna plena i nova. Si el periode entre aquestes és major que 10 dies, també es mostraran els quarts creixent i minvant.',
+        'parent_calendar'   => 'Els calendaris inclouen els recordatoris i fenomens climàtics del seu calendari superior.',
         'reset'             => 'Comença sempre els mesos o els anys al primer dia de la setmana.',
         'seasons'           => 'Per a crear estacions al calendari, establiu quan comença cadascuna. Kanka s\'encarregarà de tota la resta.',
         'weekdays'          => 'Escriviu els noms dels dies de la setmana. Es requereix un mínim de 2 dies.',

@@ -27,7 +27,7 @@
         @if (Auth::user()->isAdmin())
         <div class="form-group">
             {!! Form::hidden('is_private', 0) !!}
-            <label>{!! Form::checkbox('is_private', 1, CampaignLocalization::getCampaign()->entity_visibility) !!}
+            <label>{!! Form::checkbox('is_private', 1, (isset($model) ? $model->is_private : CampaignLocalization::getCampaign()->entity_visibility)) !!}
                 {{ __('crud.fields.is_private') }}
             </label>
             <p class="help-block">{{ __('crud.hints.is_private') }}</p>

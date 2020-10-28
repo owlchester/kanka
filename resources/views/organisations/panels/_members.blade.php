@@ -29,7 +29,7 @@ $datagridSorter->request(request()->all());
         </div>
     </div>
     <div class="box-body">
-        <p class="help-block">
+        <p class="help-block export-hidden">
             {{ __('organisations.members.helpers.' . ($allMembers ? 'all_' : null) . 'members') }}
         </p>
 

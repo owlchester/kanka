@@ -19,6 +19,7 @@ return [
     'fields'        => [
         'custom_icon'   => 'Proizvoljna ikona',
         'custom_shape'  => 'Proizvoljni oblik',
+        'font_colour'   => 'Boja ikone',
         'group'         => 'Grupa markera',
         'is_draggable'  => 'Moguće povlačenje',
         'latitude'      => 'Geografska širina',

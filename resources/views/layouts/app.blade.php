@@ -31,21 +31,30 @@ $campaign = CampaignLocalization::getCampaign(); ?>
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('css/freyja.css') }}" rel="stylesheet">
 @if(app()->getLocale() == 'he')
-        <link href="{{ mix('css/app-rtl.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app-rtl.css') }}" rel="stylesheet">
 @endif
 @yield('styles')
 
-@if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme))
+@if (request()->has('_theme') && in_array(request()->get('_theme'), ['dark', 'midnight', 'future', 'base']))
+    @if(request()->get('_theme') != 'base')
+    <link href="{{ mix('css/' . request()->get('_theme') . '.css') }}" rel="stylesheet">
+    @endif
+@else
+    @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme))
     @if ($campaign->theme_id !== 1)
         <link href="{{ mix('css/' . $campaign->theme->name . '.css') }}" rel="stylesheet">
     @endif
-@elseif (auth()->check() && !empty(auth()->user()->theme))
-    <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">
+    @elseif (auth()->check() && !empty(auth()->user()->theme))
+        <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">
+    @endif
 @endif
 
-    @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->css))
-        <link href="{{ route('campaign.css', ['ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">
-    @endif
+@if(!empty($campaign) && $campaign->boosted() && $campaign->hasPluginTheme())
+    <link href="{{ route('campaign_plugins.css', ['ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">
+@endif
+@if (!empty($campaign) && $campaign->boosted() && !empty($campaign->css))
+    <link href="{{ route('campaign.css', ['ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">
+@endif
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
@@ -122,13 +131,14 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                 @endif
                 @include('partials.success')
 
-@if(auth()->guest() && !empty(config('tracking.adsense')))
+@if(!empty(config('tracking.adsense')) && (auth()->guest() || auth()->user()->showAds()))
                 <!-- Side -->
                 <ins class="adsbygoogle"
-                     style="display:block"
+                     style="display:block"@if (config('app.env') != 'prod')
+                     data-adtest="on"@endif
                      data-ad-client="ca-pub-1686281547359435"
                      data-ad-slot="2711573107"
-                     data-ad-format="auto"></ins>
+                     data-full-width-responsive="true"></ins>
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>

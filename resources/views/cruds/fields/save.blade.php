@@ -10,14 +10,14 @@
             <ul class="dropdown-menu {{ isset($disableCancel) ? 'dropdown-menu-right' : '' }}" role="menu">
                 <li><a href="#" class="form-submit-actions">
                         {{ trans('crud.save') }}
-                        <span class="shortcut">CTRL+S</span>
+                        <span class="shortcut hidden-xs">CTRL+S</span>
                     </a></li>
                 <li><a href="#" class="form-submit-actions" data-action="submit-new">
                         {{ trans('crud.save_and_new') }}
                 </a></li>
                 <li><a href="#" class="form-submit-actions" data-action="submit-update">
                         {{ trans('crud.save_and_update') }}
-                        <span class="shortcut">CTRL+SHIFT+S</span>
+                        <span class="shortcut hidden-xs">CTRL+SHIFT+S</span>
                 </a></li>
                 @if (empty($model))
                 <li><a href="#" class="form-submit-actions" data-action="submit-view">{{ trans('crud.save_and_view') }}</a></li>

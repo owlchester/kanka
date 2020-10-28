@@ -18,7 +18,12 @@ return [
         'image'         => 'Slika',
         'is_pinned'     => 'Pričvršćena',
         'name'          => 'Naslov',
+        'note'          => 'Bilješka roditelj',
+        'notes'         => 'Bilješka dijete',
         'type'          => 'Tip',
+    ],
+    'helpers'       => [
+        'nested'    => 'Prvo se prikazuju bilješke bez bilješke roditelja. Klikni bilješku da bi istražio/la njezine bilješke djecu.',
     ],
     'hints'         => [
         'is_pinned' => 'Do 3 bilješke mogu biti prikazane na nadzornoj ploči tako što su pričvršćene.',
@@ -31,6 +36,7 @@ return [
     ],
     'placeholders'  => [
         'name'  => 'Naslov bilješke',
+        'note'  => 'Odaberite bilješku roditelja',
         'type'  => 'Religija, Rasa, Politički sustav',
     ],
     'show'          => [

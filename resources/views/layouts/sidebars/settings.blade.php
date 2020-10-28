@@ -12,7 +12,7 @@
             </div>
         </div>
     </section>
-    @include('layouts.sidebars.campaign-switcher')
+    @include('layouts.sidebars.campaign-switcher', ['newCampaign' => false])
     <section class="sidebar" style="height: auto">
         <ul class="sidebar-menu tree" data-widget="tree">
             <li class="{{ $sidebar->settings('profile') }}">
@@ -28,6 +28,11 @@
             <li class="{{ $sidebar->settings('layout') }}">
                 <a href="{{ route('settings.layout') }}">
                     <i class="fas fa-th-large"></i> <span>{{ __('settings.menu.layout') }}</span>
+                </a>
+            </li>
+            <li class="{{ $sidebar->settings('marketplace') }}">
+                <a href="{{ route('settings.marketplace') }}">
+                    <i class="fas fa-shopping-cart"></i> <span>{{ __('settings.menu.marketplace') }}</span>
                 </a>
             </li>
 

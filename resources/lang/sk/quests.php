@@ -37,6 +37,7 @@ return [
     'fields'        => [
         'character'     => 'Zadávateľ/ka',
         'characters'    => 'Postavy',
+        'copy_elements' => 'Kopírovať objekty priradené úlohám',
         'date'          => 'Dátum',
         'description'   => 'Popis',
         'image'         => 'Obrázok',

@@ -87,8 +87,10 @@ return [
         'widths'        => [
             '0' => 'Automatique',
             '12'=> 'Complet',
+            '3' => 'Minuscule (25%)',
             '4' => 'Petit',
             '6' => 'Moitié',
+            '8' => 'Large (66%)',
         ],
     ],
 ];

@@ -2,6 +2,8 @@
 
 namespace App\Traits;
 
+use App\Models\Entity;
+use App\Models\MiscModel;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -21,12 +23,16 @@ trait TreeControllerTrait
      */
     public function tree(Request $request)
     {
+        /** @var MiscModel $model */
         $model = new $this->model;
         $this->filterService->make($this->view . 'tree', request()->all(), $model);
         $name = $this->view;
         $filters = $this->filters;
         $filterService = $this->filterService;
         $filter = !empty($this->filter) ? new $this->filter : null;
+
+        // Entity templates
+        $templates = auth()->check() && auth()->user()->isAdmin() ? Entity::templates($model->getEntityType())->get() : null;
 
         $actions = [[
             'route' => route($this->route . '.index'),
@@ -107,7 +113,8 @@ trait TreeControllerTrait
             'bulk',
             'unfilteredCount',
             'filteredCount',
-            'createOptions'
+            'createOptions',
+            'templates'
         ));
     }
 }

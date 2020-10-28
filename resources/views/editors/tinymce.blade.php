@@ -43,7 +43,7 @@
                         } else {
                             advancedRequest = false;
                         }
-                        $.getJSON('{{ route('search.live') }}?q='+ query, function(data) {
+                        $.getJSON('{{ route('search.live') }}?q='+ query + '&new=1', function(data) {
                             process(data)
                         })
                     }
@@ -57,7 +57,7 @@
                             return '<a href="#" class="attribute" data-attribute="{attribute:' + item.id + '}">{' + item.name + '}</a>'
                         @endif
                     }
-                    if (item.id) {
+                    else if (item.id) {
                         var mention = '[' + item.model_type + ':' + item.id + ']';
                         @if (Auth::user()->advancedMentions)
                         return mention;
@@ -74,6 +74,9 @@
                             return str;
                         }
                         return '<a href="' + item.url + '">' + item.fullname + '</a>';
+                    }
+                    else if (item.inject) {
+                        return item.inject;
                     }
                     return item.fullname;
                 },

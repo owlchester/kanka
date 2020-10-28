@@ -199,6 +199,7 @@
     }
 
     .full {
+      max-height: unset;
     }
 
     .preview-switch {
@@ -375,11 +376,15 @@
   }
 
   table {
-    width: 100% !important;
+    max-width: 100% !important;
     word-break: break-all;
   }
-  iframe {
+  iframe, img {
     max-width: 100% !important;
+  }
+
+  div[data-toggle="preview"] {
+    max-height: 200px;
   }
 }
 

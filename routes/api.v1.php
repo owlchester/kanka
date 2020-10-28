@@ -29,6 +29,7 @@ Route::apiResources([
     'campaigns.locations.map_points' => 'LocationMapPointApiController',
     'campaigns.maps' => 'MapApiController',
     'campaigns.maps.map_layers' => 'MapLayerApiController',
+    'campaigns.maps.map_groups' => 'MapGroupApiController',
     'campaigns.maps.map_markers' => 'MapMarkerApiController',
     'campaigns.notes' => 'NoteApiController',
     'campaigns.organisations' => 'OrganisationApiController',
@@ -57,6 +58,8 @@ Route::apiResources([
     'campaigns.entities.entity_tags' => 'EntityTagApiController',
     'campaigns.entities.inventory' => 'EntityInventoryApiController',
     'campaigns.entities.entity_abilities' => 'EntityAbilityApiController',
+
+    'campaigns.campaign_dashboard_widgets' => 'CampaignDashboardWidgetApiController'
 ]);
 
 Route::get('campaigns/{campaign}/users', 'CampaignUserApiController@index');

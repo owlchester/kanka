@@ -9,4 +9,5 @@ return [
     'reddit' => '//www.reddit.com/r/kanka',
     'facebook' => '//www.facebook.com/kanka.io.ch',
     'youtube' => '//www.youtube.com/c/kankaio/videos',
+    'twitch' => '//twitch.tv/kankaio',
 ];

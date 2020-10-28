@@ -32,6 +32,10 @@ return [
     'show'          => [
         'title' => 'Relacions de :name',
     ],
+    'teaser'        => 'Milloreu la campanya per a accedir a l\'explorador de relacions. Cliqueu aquí per saber més sobre les campanyes millorades.',
+    'types'         => [
+        'family_member' => 'Familiar',
+    ],
     'update'        => [
         'success'   => 'S\'ha actualitzat la relació :target de :entity.',
         'title'     => 'Actualiza les relacions de :name',

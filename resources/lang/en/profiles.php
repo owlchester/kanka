@@ -69,9 +69,9 @@ return [
             'editor'    => 'The default editor (TinyMCE 4) is old but works well on desktop, but doesn\'t work on mobile. Summernote is a newer editor that works on all devices but we are still trying it out.',
         ],
         'hints'     => [
-            'advanced_mentions' => 'If activated, mentions will always render as [entity:123] when editing an entity.',
-            'default_nested'    => 'Activate this option if you wish for the default lists to be Nested by default (when available).',
-            'new_entity_workflow'       => 'When creating a new entity, the default workflow is to go to the list of entities. You can change this to view the newly created entity instead.',
+            'advanced_mentions'     => 'If activated, mentions will always render as [entity:123] when editing an entity.',
+            'default_nested'        => 'Activate this option if you wish for the default lists to be Nested by default (when available).',
+            'new_entity_workflow'   => 'When creating a new entity, the default workflow is to go to the list of entities. You can change this to view the newly created entity instead.',
         ],
         'success'   => 'Settings changed.',
     ],
@@ -86,7 +86,7 @@ return [
     ],
     'title'         => 'Update your profile',
     'workflows'     => [
-        'default'   => 'List of entities',
         'created'   => 'Go to created entity',
+        'default'   => 'List of entities',
     ],
 ];

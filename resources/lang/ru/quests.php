@@ -37,6 +37,7 @@ return [
     'fields'        => [
         'character'     => 'Предлагающий',
         'characters'    => 'Персонажи',
+        'copy_elements' => 'Копировать элементы квеста',
         'date'          => 'Дата',
         'description'   => 'Описание',
         'image'         => 'Изображение',

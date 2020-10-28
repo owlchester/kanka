@@ -58,18 +58,20 @@ return [
     ],
     'settings'      => [
         'fields'    => [
-            'advanced_mentions' => 'Mencions avançades',
-            'date_format'       => 'Format de data',
-            'default_nested'    => 'Vista niada per defecte',
-            'editor'            => 'Editor de text',
-            'pagination'        => 'Paginació (elements per pàgina)',
+            'advanced_mentions'     => 'Mencions avançades',
+            'date_format'           => 'Format de data',
+            'default_nested'        => 'Vista niada per defecte',
+            'editor'                => 'Editor de text',
+            'new_entity_workflow'   => 'Nou flux de treball',
+            'pagination'            => 'Paginació (elements per pàgina)',
         ],
         'helpers'   => [
             'editor'    => 'L\'editor de text per defecte (TinyMCE 4) és antic però funciona bé en escriptori, encara que no en mòbil. Summernote és un editor més nou que funciona a tots els dispositius, però encara l\'estem provant.',
         ],
         'hints'     => [
-            'advanced_mentions' => 'En activar-ho, les mencions sempre es renderitzaran com a [entity:123] en editar una entitat.',
-            'default_nested'    => 'Activeu aquesta opció perquè les llistes estiguin en vista niada per defecte (quan sigui possible).',
+            'advanced_mentions'     => 'En activar-ho, les mencions sempre es renderitzaran com a [entity:123] en editar una entitat.',
+            'default_nested'        => 'Activeu aquesta opció perquè les llistes estiguin en vista niada per defecte (quan sigui possible).',
+            'new_entity_workflow'   => 'En crear una entitat nova, per defecte es redirigeix a la lista d\'entitats. Enlloc d\'això, podeu canviar-ho per a anar a l\'entitat que acabeu de crear.',
         ],
         'success'   => 'S\'ha canviat la configuració.',
     ],
@@ -83,4 +85,8 @@ return [
         ],
     ],
     'title'         => 'Actualitza el perfil',
+    'workflows'     => [
+        'created'   => 'Anar a l\'entitat nova',
+        'default'   => 'Llista d\'entitats',
+    ],
 ];

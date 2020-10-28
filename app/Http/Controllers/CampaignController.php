@@ -177,6 +177,8 @@ class CampaignController extends Controller
         $response = \Illuminate\Support\Facades\Response::make($css);
         $response->header('Content-Type', 'text/css');
         $response->header('Expires', Carbon::now()->addMonth(1)->toDateTimeString());
+        $month = 2592000;
+        $response->header('Cache-Control', 'public, max_age=' . $month);
 
         return $response;
     }

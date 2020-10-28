@@ -30,10 +30,10 @@
 {{--                        <span class="fa-li"><i class="fas fa-times"></i></span> {{ __('front.pricing.benefits.boosters') }}--}}
 {{--                    </li>--}}
                 </ul>
-
+                @if(config('auth.register_enabled'))
                 <a href="{{ route('register') }}" class="btn btn-block btn-primary text-uppercase">
                     {{ __('front.second_block.call_to_action') }}
-                </a>
+                </a>@endif
             </div>
         </div>
     </div>

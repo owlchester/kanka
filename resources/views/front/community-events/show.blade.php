@@ -10,6 +10,7 @@
 @section('og')
     <meta property="og:description" content="{{ $model->excerpt }}" />
     <meta property="og:url" content="{{ route('community-events.show', $model) }}" />
+    @if ($model->image)<meta property="og:image" content="{{ $model->getImageUrl(280, 280)  }}" />@endif
     <link rel="alternate" type="application/rss+xml" title="{{ __('front/community-events.title') }}" href="{{ url('/feeds/community-events.rss') }}" />
 @endsection
 
@@ -31,7 +32,7 @@
         <div class="container">
             <div class="card mb-4">
                 @if (!empty($model->image))
-                    <img class="card-img-top" src="{{ $model->getImageUrl() }}" alt="{{ $model->name }}">
+                    <img class="card-img-top" src="{{ $model->getImageUrl(1200, 280) }}" alt="{{ $model->name }}">
                 @endif
                 <div class="card-body">
                     <h2 class="card-title mb-1">

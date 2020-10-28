@@ -82,7 +82,7 @@ abstract class MiscObserver
     public function saved(MiscModel $model)
     {
         // If we're from the "move" service, we can skip this part.
-        if ($model->savingObserver === false) {
+        if ($model->savingObserver === false && $model->forceSavedObserver === false) {
             return;
         }
 

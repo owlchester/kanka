@@ -111,9 +111,11 @@ TEXT
         ],
         'widths'        => [
             '0' => 'Auto',
-            '12'=> 'Completa',
-            '4' => 'Pequeña',
-            '6' => 'Mitad',
+            '12'=> 'Completa (100%)',
+            '3' => 'Cuarto (25%)',
+            '4' => 'Tercio (33%)',
+            '6' => 'Mitad (50%)',
+            '8' => 'Dos tercios (66%)',
         ],
     ],
 ];

@@ -13,6 +13,7 @@ class CharacterBulk extends Bulk
         'location_id',
         'race_id',
         'type',
+        'sex',
         'dead_choice',
         'age',
         'tags',

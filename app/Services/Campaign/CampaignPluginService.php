@@ -41,19 +41,6 @@ class CampaignPluginService
     public function enable()
     {
         $plugin = $this->campaignPlugin();
-
-        // If it's a theme, let's disable any other theme already enabled in the campaign
-        if ($this->plugin->type_id == 1) {
-            $activeTheme = CampaignPlugin::leftJoin('plugins as p', 'p.id', 'plugin_id')
-                ->where('is_active', true)
-                ->where('p.type_id', 1)
-                ->first();
-            if (!empty($activeTheme)) {
-                $activeTheme->is_active = false;
-                $activeTheme->save();
-            }
-        }
-
         $plugin->is_active = true;
         $plugin->save();
     }

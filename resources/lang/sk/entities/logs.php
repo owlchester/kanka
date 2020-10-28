@@ -4,6 +4,7 @@ return [
     'actions'       => [
         'create'    => 'Vytvoriť',
         'delete'    => 'Zmazať',
+        'restore'   => 'Obnoviť',
         'update'    => 'Upraviť',
     ],
     'fields'        => [

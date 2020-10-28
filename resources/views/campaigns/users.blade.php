@@ -2,7 +2,7 @@
     'title' => trans('campaigns.members.title', ['name' => $campaign->name]),
     'description' => trans('campaigns.members.description'),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => $campaign->name],
+        ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
         trans('campaigns.show.tabs.members')
     ],
     'canonical' => true,

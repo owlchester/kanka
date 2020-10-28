@@ -177,6 +177,20 @@ class AdminCrudController extends Controller
     }
 
     /**
+     * @param Model $model
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function crudShow(Model $model, array $with = [])
+    {
+        return view('admin.cruds.show', array_merge([
+            'model' => $model,
+            'view' => $this->view,
+            'trans' => $this->trans,
+            'route' => $this->route,
+        ], $with));
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Character  $character

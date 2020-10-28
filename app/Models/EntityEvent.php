@@ -233,6 +233,6 @@ class EntityEvent extends MiscModel
         }
 
         // Same month
-        return $years - ($day > $this->day ? 1 : 0);
+        return $years - ($day < $this->day ? 1 : 0);
     }
 }

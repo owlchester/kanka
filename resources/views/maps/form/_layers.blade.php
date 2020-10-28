@@ -23,6 +23,7 @@
     <tr>
         <th>{{ __('crud.fields.name') }}</th>
         <th>{{ __('maps/layers.fields.position') }}</th>
+        <th>{{ __('maps/layers.fields.type') }}</th>
         <th>{{ __('crud.fields.visibility') }}</th>
         <th></th>
     </tr>
@@ -32,6 +33,7 @@
         <tr>
             <td>{{ $layer->name }}</td>
             <td>{{ $layer->position }}</td>
+            <td>{{ __('maps/layers.short_types.' . $layer->typeName()) }}</td>
             <td>
                 @include('cruds.partials.visibility', ['model' => $layer])
             </td>

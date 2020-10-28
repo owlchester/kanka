@@ -15,7 +15,7 @@ return [
         'target'    => 'Ziel',
         'two_way'   => 'Gespiegelte Beziehung erstellen',
     ],
-    'helper'        => 'Richten Sie Beziehungen zwischen Entitäten mit Einstellungen und Sichtbarkeit ein. Beziehungen können auch an das Menü der Berechtigung angeheftet werden.',
+    'helper'        => 'Richten Sie Beziehungen zwischen Objekten mit Einstellungen und Sichtbarkeit ein. Beziehungen können auch an das Menü der Berechtigung angeheftet werden.',
     'hints'         => [
         'attitude'  => 'In diesem optionalen Feld können Sie die Standardordnungsbeziehungen definieren, sie wird in absteigender Reihenfolge angezeigt.',
         'mirrored'  => [
@@ -31,6 +31,11 @@ return [
     ],
     'show'          => [
         'title' => 'Beziehungen für :name',
+    ],
+    'teaser'        => 'Boosten Sie die Kampagne, um Zugriff auf den Relations Visualizer zu erhalten. Klicken Sie hier, um mehr über geboostete Kampagnen zu erfahren.',
+    'types'         => [
+        'family_member'         => 'Familienmitglied',
+        'organisation_member'   => 'Organisationsmitlgied',
     ],
     'update'        => [
         'success'   => 'Beziehung für :name aktualisiert',

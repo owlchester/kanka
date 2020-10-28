@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Facades\Img;
 use App\Models\Concerns\Blameable;
+use App\Models\Concerns\Paginatable;
 use App\Traits\VisibilityTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -23,6 +24,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int $position
  * @property int $height
  * @property int $width
+ * @property int $type_id
  *
  * @property Map $map
  *
@@ -30,7 +32,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class MapLayer extends Model
 {
-    use VisibilityTrait, Blameable;
+    use VisibilityTrait, Blameable, Paginatable;
 
     /** Fillable fields */
     protected $fillable = [
@@ -40,6 +42,7 @@ class MapLayer extends Model
         'image',
         'position',
         'visibility',
+        'type_id',
     ];
 
     /**
@@ -70,5 +73,18 @@ class MapLayer extends Model
     public function getImageUrl(int $width = 400, int $height = null)
     {
         return Img::crop($width, (!empty($height) ? $height : $width))->url($this->image);
+    }
+
+    /**
+     * @return string
+     */
+    public function typeName(): string
+    {
+        if (empty($this->type_id)) {
+            return 'standard';
+        } elseif ($this->type_id == 1) {
+            return 'overlay';
+        }
+        return 'overlay_shown';
     }
 }

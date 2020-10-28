@@ -37,6 +37,7 @@ return [
     'fields'        => [
         'character'     => 'Auteur',
         'characters'    => 'Personnages',
+        'copy_elements' => 'Copier les éléments de la quête',
         'date'          => 'Date',
         'description'   => 'Description',
         'image'         => 'Image',

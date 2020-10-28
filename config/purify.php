@@ -70,12 +70,13 @@ return [
         'HTML.Allowed' =>
             'big,small,h1[class|style|id],h2[class|style|id],h3[class|style|id],h4[class|style|id],h5[class|style|id],h6[class|style|id],'
             . 'div[class|style|id],ins,del,pre,blockquote[cite],sup,sub,hr,caption,'
-            . 'strong,em,b,ul[class|style|id],ol[style],li[style],p,i[class],br,'
+            . 'strong,em,b,ul[class|style|id],ol[style],li[style],p,i[class],br,strike,u,'
             . 'img[src|style|alt|width|height|class|title|id],'
             . 'a[href|class|target|rel|title|data-toggle|data-html|id],'
             . 'p[class|style|id|dir],span[class|style|id|dir],'
             . 'table[class|summary|style|border|cellpadding|cellspacing|id],tbody,thead,tfoot,tr[class|style|id],td[class|style|abbr|colspan],th[class|style|abbr|colspan],'
             . 'acronym[title],abbr[title],'
+            . 'code[style|class|id],'
             . 'font[color|style],'
             . 'summary[class|style|id],details[class|style|id|open],'
             . 'iframe[src|width|height|style|class|scrolling|id]', // only use this with HTML.SafeIframe
@@ -111,7 +112,7 @@ return [
 
         'CSS.AllowedProperties' => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,' .
             'color,background-color,text-align,width,height,border,border-collapse,max-width,max-height,' .
-            'border-style,border-color,' .
+            'border-style,border-color,margin-left,margin-right,margin,padding,' .
             'list-style-type',
 
         /*
@@ -169,6 +170,7 @@ return [
             . "drive.google.com/|"
             . "www.google.com/maps/embed|"
             . "lookingforgm\.com/campaign/|"
+            . "w.soundcloud.com/player/|"
             . "p3d\.in/e/"
             . ")%",
     ],

@@ -58,18 +58,20 @@ return [
     ],
     'settings'      => [
         'fields'    => [
-            'advanced_mentions' => 'Mentions Avancées',
-            'date_format'       => 'Format de date',
-            'default_nested'    => 'Vue imbriquée par défaut',
-            'editor'            => 'Editeur de texte',
-            'pagination'        => 'Pagination (éléments par page)',
+            'advanced_mentions'     => 'Mentions Avancées',
+            'date_format'           => 'Format de date',
+            'default_nested'        => 'Vue imbriquée par défaut',
+            'editor'                => 'Editeur de texte',
+            'new_entity_workflow'   => 'Workflow de nouvelle entité',
+            'pagination'            => 'Pagination (éléments par page)',
         ],
         'helpers'   => [
             'editor'    => 'L\'éditeur par défaut (TinyMCE 4) est vieux et fonctionne sur un ordinateur, mais ne fonctionne pas bien sur les mobiles. Summernote est un éditeur plus récent qui fonctionne bien sur tout type de support mais que nous sommes en train d\'évaluer.',
         ],
         'hints'     => [
-            'advanced_mentions' => 'Lorsque cette option est activée, les mentions s\'afficheront tout le temps comme [entity:123] lors de l\'édition d\'une entité.',
-            'default_nested'    => 'Active cette option pour que les listes s\'affichent par défaut de manière imbriquée.',
+            'advanced_mentions'     => 'Lorsque cette option est activée, les mentions s\'afficheront tout le temps comme [entity:123] lors de l\'édition d\'une entité.',
+            'default_nested'        => 'Active cette option pour que les listes s\'affichent par défaut de manière imbriquée.',
+            'new_entity_workflow'   => 'Lorsqu\'une entité est créée, le workflow par défaut est de naviguer à la liste des entités. Ce workflow peut être changé pour afficher la nouvelle entité.',
         ],
         'success'   => 'Paramètres modifiés.',
     ],
@@ -83,4 +85,8 @@ return [
         ],
     ],
     'title'         => 'Profil',
+    'workflows'     => [
+        'created'   => 'Afficher l\'entité créée',
+        'default'   => 'Liste des entités',
+    ],
 ];

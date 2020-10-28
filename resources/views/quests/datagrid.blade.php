@@ -12,13 +12,6 @@
         // Name
         'name',
         'type',
-        // Character
-        [
-            'type' => 'avatar',
-            'parent' => 'character',
-            'parent_route' => 'characters',
-            'visible' => $campaign->enabled('characters'),
-        ],
         [
             'type' => 'character',
             'visible' => $campaign->enabled('characters'),
@@ -57,7 +50,13 @@
             },
             'disableSort' => true,
         ],
-        'is_completed',
+        [
+            'label' => '<i class="fa fa-check-circle" title="' . __('quests.fields.is_completed') . '"></i>',
+            'render' => function ($model) {
+                return $model->is_completed ? '<i class="fa fa-check-circle" title="' . __('quests.fields.is_completed') . '"></i>' : null;
+            },
+            'field' => 'is_completed',
+        ],
         [
             'type' => 'calendar_date',
         ],

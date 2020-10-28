@@ -32,6 +32,11 @@ return [
     'show'          => [
         'title' => 'Odnosi za :name',
     ],
+    'teaser'        => 'Pojačaj kampanju da bi dobio/la pristup vizualizatoru odnosa. Klikni da bi saznao/la više o pojačanim kampanjama.',
+    'types'         => [
+        'family_member'         => 'Član obitelji',
+        'organisation_member'   => 'Član organizacije',
+    ],
     'update'        => [
         'success'   => 'Ažuriran odnos :target za :entity.',
         'title'     => 'Ažuriraj odnose za :name',

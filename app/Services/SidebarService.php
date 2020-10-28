@@ -100,6 +100,27 @@ class SidebarService
         'faqs' => [
             'faqs'
         ],
+        'users' => [
+            'users',
+        ],
+        'app-releases' => [
+            'app-releases',
+        ],
+        'community-events' => [
+            'community-events',
+        ],
+        'community-votes' => [
+            'community-votes',
+        ],
+        'patrons' => [
+            'patrons',
+        ],
+        'cache' => [
+            'cache',
+        ],
+        'referrals' => [
+            'referrals',
+        ],
     ];
 
     /**

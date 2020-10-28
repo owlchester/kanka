@@ -7,6 +7,7 @@ use App\Datagrids\Sorters\DatagridSorter;
 use App\Facades\CampaignLocalization;
 use App\Facades\FormCopy;
 use App\Http\Resources\AttributeResource;
+use App\Models\Entity;
 use App\Models\AttributeTemplate;
 use App\Models\MiscModel;
 use App\Services\FilterService;
@@ -121,6 +122,7 @@ class CrudController extends Controller
     {
         //$this->authorize('browse', $this->model);
 
+        /** @var MiscModel $model */
         $model = new $this->model;
         $this->filterService->make($this->view, request()->all(), $model);
         $name = $this->view;
@@ -131,6 +133,12 @@ class CrudController extends Controller
         $nestedView = method_exists($this, 'tree');
         $route = $this->route;
         $bulk = $this->bulkModel();
+
+        // Entity templates
+        $templates = null;
+        if (auth()->check() && auth()->user()->isAdmin() && !empty($model->getEntityType())) {
+            $templates = Entity::templates($model->getEntityType())->get();
+        }
 
         $datagrid = !empty($this->datagrid) ? new $this->datagrid : null;
 
@@ -174,7 +182,8 @@ class CrudController extends Controller
             'filteredCount',
             'unfilteredCount',
             'bulk',
-            'datagrid'
+            'datagrid',
+            'templates'
         ));
     }
 
@@ -232,6 +241,7 @@ class CrudController extends Controller
         }
 
         try {
+            /** @var MiscModel $model */
             $model = new $this->model;
             $new = $model->create($request->all());
 
@@ -253,6 +263,7 @@ class CrudController extends Controller
 
             session()->flash('success_raw', $success);
 
+
             if ($request->has('submit-new')) {
                 $route = route($this->route . '.create');
                 return response()->redirectTo($route);
@@ -267,6 +278,10 @@ class CrudController extends Controller
                 return response()->redirectTo($route);
             } elseif (auth()->user()->new_entity_workflow == 'created') {
                 $redirectToCreated = true;
+            } elseif ($model->getEntityType() == 'maps') {
+                // If creating a map, go to edit it directly
+                $route = route($this->route . '.edit', $new);
+                return response()->redirectTo($route);
             }
 
             if ($redirectToCreated) {
@@ -468,7 +483,7 @@ class CrudController extends Controller
             $fullview = 'cruds.subpage.' . $view;
         }
 
-        $data = [];
+        $data = $markers = [];
         $datagridSorter = $this->datagridSorter;
 
         if ($view == 'map-points') {
@@ -478,6 +493,14 @@ class CrudController extends Controller
                 ->orderBy('name', 'ASC')
                 ->with(['location'])
                 ->has('location')
+                ->get();
+
+            $markers = $model
+                ->entity
+                ->mapMarkers()
+                ->orderBy('map_id', 'DESC')
+                ->with('map')
+                ->has('map')
                 ->paginate();
         }
 
@@ -486,7 +509,8 @@ class CrudController extends Controller
             'model',
             'name',
             'datagridSorter',
-            'data'
+            'data',
+            'markers'
         ));
     }
 

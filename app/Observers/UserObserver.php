@@ -76,7 +76,7 @@ class UserObserver
         }
 
         // Send notification that an account has been removed
-        GoodbyeEmailJob::dispatch($user, app()->getLocale());
+        //GoodbyeEmailJob::dispatch($user, app()->getLocale());
 
         UserCache::user($user)->clearName()->clearCampaigns()->clearRoles();
     }

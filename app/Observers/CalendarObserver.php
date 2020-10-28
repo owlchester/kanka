@@ -10,7 +10,7 @@ class CalendarObserver extends MiscObserver
 {
     /**
      * Before the calendar model is saved
-     * @param MiscModel $model
+     * @param Calendar $model
      */
     public function saving(MiscModel $model)
     {
@@ -145,7 +145,7 @@ class CalendarObserver extends MiscObserver
         $day = ltrim(request()->post('current_day', 1), 0);
 
         // Empty values
-        if (empty($year)) {
+        if ($year === null) {
             $year = 1;
         }
         if (empty($month)) {

@@ -93,17 +93,17 @@
             @can('update', $campaign)
             <div class="row">
                 <div class="col-xs-6 col-sm-6 col-md-2">
-                    <a href="{{ route('campaign_users.index') }}" class="campaign-link" title="{{ __('dashboard.campaigns.tabs.users', ['count' => \App\Facades\CampaignCache::members()->count()]) }}">
+                    <a href="{{ route('campaign_users.index') }}" class="campaign-link" title="{{ trans_choice('dashboard.campaigns.tabs.users', \App\Facades\CampaignCache::members()->count(), ['count' => \App\Facades\CampaignCache::members()->count()]) }}">
                         <i class="fa fa-user"></i> {{ \App\Facades\CampaignCache::members()->count() }}
                     </a>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-2">
-                    <a href="{{ route('campaign_roles.index') }}" class="campaign-link" title="{{  __('dashboard.campaigns.tabs.roles', ['count' => \App\Facades\CampaignCache::roles()->count()]) }}">
+                    <a href="{{ route('campaign_roles.index') }}" class="campaign-link" title="{{ trans_choice('dashboard.campaigns.tabs.roles', \App\Facades\CampaignCache::roles()->count(), ['count' => \App\Facades\CampaignCache::roles()->count()]) }}">
                         <i class="fa fa-lock"></i> {{ \App\Facades\CampaignCache::roles()->count() }}
                     </a>
                 </div>
                 <div class="col-md-2 hidden-xs hidden-sm">
-                    <a href="{{ route('campaign_settings') }}" class="campaign-link" title="{{ __('dashboard.campaigns.tabs.modules', ['count' => $campaign->setting->countEnabledModules()]) }}">
+                    <a href="{{ route('campaign_settings') }}" class="campaign-link" title="{{ trans_choice('dashboard.campaigns.tabs.modules', $campaign->setting->countEnabledModules(), ['count' => $campaign->setting->countEnabledModules()]) }}">
                         <i class="fa fa-cogs"></i> {{ $campaign->setting->countEnabledModules() }}
                     </a>
                 </div>
@@ -136,8 +136,8 @@
     @if ($settings)
         <div class="row margin-top">
             <div class="col-md-12 text-center">
-                <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-lg" title="{{ trans('dashboard.settings.title') }}">
-                    <i class="fa fa-cog"></i> {{ trans('dashboard.settings.title') }}
+                <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-lg" title="{{ __('dashboard.settings.title') }}">
+                    <i class="fa fa-cog"></i> {{ __('dashboard.settings.title') }}
                 </a>
             </div>
         </div>
@@ -148,14 +148,14 @@
     <script src="{{ mix('js/dashboard.js') }}" defer></script>
 
     <!-- Make sure you put this AFTER Leaflet's CSS -->
-    <script src="//unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
             crossorigin=""></script>
 @endsection
 
 @section('styles')
-    <link rel="stylesheet" href="//unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+          integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
           crossorigin=""/>
     <link href="{{ mix('css/dashboard.css') }}" rel="stylesheet">
     <link href="{{ mix('css/map-v3.css') }}" rel="stylesheet">

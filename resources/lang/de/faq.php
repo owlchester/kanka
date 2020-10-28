@@ -42,7 +42,7 @@ TEXT
     ],
     'early-access'          => [
         'answer'    => 'Mit Early Access können wir unsere großartigen Abonnenten belohnen, indem wir ihnen einen exklusiven Zeitraum von 30 Tagen gewähren, in dem sie die neuesten Module vor allen anderen ausprobieren können.',
-        'question'  => 'Was ist ein early Access?',
+        'question'  => 'Was ist ein Early Access?',
     ],
     'entity-notes'          => [
         'answer'    => 'Alle Objekte verfügen über den Reiter "Objekt-Notizen", bei der es sich um kleine Textausschnitte handelt, die nur für Sie sichtbar (vor allem  sinnvoll, wenn mehrere SLs an der Kampagne arbeiten), nur für Mitglieder der Administratorrolle oder für alle sichtbar sind. Du kannst deinen Spielern auch die Erlaubnis erteilen, Objekt-Notizen zu Objekten zu erstellen und zu bearbeiten, ohne dass sie ein ganzes Objekt bearbeiten müssen.',
@@ -98,8 +98,8 @@ TEXT
         'question'  => 'Kann ich festlegen, dass die Listen standardmäßig verschachtelt sind?',
     ],
     'organise_play'         => [
-        'answer'    => 'Wir haben eine Partnerschaft mit :lfgm geschlossen, mit der Sie Ihre Sitzungen mit Ihrer Gruppe organisieren können. Sie können Ihre Kanka-Kampagne mit Ihrer LFGM-Kampagne synchronisieren, um Ihre nächsten Verfügbarkeiten direkt im Kampagnen-Dashboard anzuzeigen.',
-        'question'  => 'Wie kann ich verwalten, während ich meine Sitzungen ausführe?',
+        'answer'    => 'Wir haben eine Partnerschaft mit :lfgm geschlossen, mit der Sie Ihre Sitzungen mit Ihrer Gruppe organisieren können. Sie können Ihre Kanka-Kampagne mit Ihrer LGFM-Kampagne synchronisieren, um Ihre nächsten Verfügbarkeiten direkt im Kampagnen-Dashboard anzuzeigen.',
+        'question'  => 'Wie kann ich verwalten, wann ich meine Sitzungen ausführe?',
     ],
     'permissions'           => [
         'answer'    => 'Ja absolut, deswegen haben wir Kanka gemacht! Du kannst all deine Spieler zu deiner Kampagne einladen und ihnen Rollen und Berechtigungen erteilen.  Wir haben das System für  große Flexibiliät gebaut (sowohl opt-in als auch opt-out Konfigurationen möglich), um so viele Ansprüche und Situationen wie möglich abzudecken.',

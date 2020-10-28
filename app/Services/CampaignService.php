@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
 use App\Exceptions\TranslatableException;
@@ -82,7 +83,7 @@ class CampaignService
             ->where('user_id', Auth::user()->id)
             ->first();
         if (empty($member)) {
-            // Shouldn't be able to leave a campaign he isn't a part of...?
+            // Shouldn't be able to leave a campaign they aren't a part of...?
             // Switch to the next available campaign?
             $member = CampaignUser::where('user_id', Auth::user()->id)->first();
             if ($member) {
@@ -118,6 +119,9 @@ class CampaignService
                 'campaign' => $campaign->name
             ]
         );
+
+        // Clear cache
+        UserCache::clearCampaigns();
 
         self::switchToNext();
     }

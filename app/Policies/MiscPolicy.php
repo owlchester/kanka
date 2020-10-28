@@ -74,7 +74,7 @@ class MiscPolicy
             }
         }
 
-        return Auth::check() && !$this->shadow() && $this->checkPermission('add', $user, null, $campaign);
+        return Auth::check() && $this->checkPermission('add', $user, null, $campaign);
     }
 
     /**
@@ -99,7 +99,7 @@ class MiscPolicy
      */
     public function delete(User $user, $entity)
     {
-        return Auth::check() && !$this->shadow() &&  (!empty($entity->campaign_id) ? $user->campaign->id == $entity->campaign_id : true)
+        return Auth::check() &&  (!empty($entity->campaign_id) ? $user->campaign->id == $entity->campaign_id : true)
             && $this->checkPermission('delete', $user, $entity);
     }
 
@@ -125,7 +125,7 @@ class MiscPolicy
         if ($subAction == 'browse') {
             return $user && $this->view($user, $entity);
         } else {
-            return $user && $this->update($user, $entity) && !$this->shadow();
+            return $user && $this->update($user, $entity) ;
         }
     }
 
@@ -147,7 +147,7 @@ class MiscPolicy
         return Auth::check() && (
             $this->update($user, $entity) ||
             $this->checkPermission('entity-note', $user, $entity)
-        ) && !$this->shadow();
+        ) ;
     }
 
     /**
@@ -173,7 +173,7 @@ class MiscPolicy
      */
     public function move(User $user, $entity)
     {
-        return !$this->shadow() && $this->update($user, $entity);
+        return $this->update($user, $entity);
     }
 
     /**
@@ -182,7 +182,7 @@ class MiscPolicy
      */
     public function events(User $user, $entity)
     {
-        return !$this->shadow() && $this->update($user, $entity);
+        return $this->update($user, $entity);
     }
 
     /**
@@ -191,7 +191,7 @@ class MiscPolicy
      */
     public function inventory(User $user, $entity)
     {
-        return !$this->shadow() && $this->update($user, $entity);
+        return $this->update($user, $entity);
     }
 
     /**

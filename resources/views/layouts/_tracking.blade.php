@@ -52,6 +52,6 @@
     </script>
 @endif
 
-@if(!empty(config('tracking.adsense')) && auth()->guest() && !isset($noads))
+@if(!empty(config('tracking.adsense')) && (auth()->guest() || auth()->user()->showAds()) && !isset($noads))
     <script data-ad-client="{{ config('tracking.adsense') }}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 @endif

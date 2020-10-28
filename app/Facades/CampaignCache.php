@@ -30,7 +30,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static self|CampaignCacheService clearDefaultImages();
  * @method static array systems();
  * @method static self|CampaignCacheService clearTheme();
- * @method static null|PluginVersion theme();
+ * @method static string themes();
  *
  * @see \App\Services\Caches\CampaignCacheService
  */

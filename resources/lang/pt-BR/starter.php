@@ -37,4 +37,26 @@ return [
         'name'          => 'Ulyss (exemplo)',
         'type'          => 'Capital',
     ],
+    'note1'         => [
+        'entry'         => <<<'TEXT'
+Bem-vindo(a) ao Kanka! Sua primeira campanha foi criada e nós incluímos algumas entidades de exemplo para você se inspirar (você pode deletá-las quando quiser).
+
+Você provavelmente vai querer começar adicionando algumas das suas próprias entidades, então escolha uma categoria do menu à esquerda e mãos à obra! Você pode desativar categorias de entidade que não vai precisar nas configurações da campanha, isso as esconderá do menu.
+
+Algumas dicas para lhe ajudar a começar:
+- Você pode digitar @NomeDaEntidade para vincular a entidades específicas. O texto vinculado vai se atualizar automaticamente se você renomear ou atualizar a entidade mencionada.
+- Você pode alterar configurações específicas da conta como tema e número de entidades mostradas por página em seu perfil, que pode ser encontrado no canto superior direito da tela.
+- Você pode configurar permissões nas entidades como um todo, ou individualmente para cada uma.
+- Há uma lista crescente de tutoriais no :youtube. Os tutoriais incluem atributos e como compartilhar sua campanha com outras pessoas. A página de :faq também pode lhe ser útil.
+
+Por último, porém não menos importante:
+- Dê uma olhada em :public para encontrar inspiração em como outras pessoas usam o Kanka.
+- Se você tiver perguntas, sugestões ou apenas quiser conversar, una-se a nós, em nosso servidor do :discord
+- Planeje quando seu grupo jogará a próxima sessão com nossos amigos em :lfgm e sincronize seu calendário LFGM com a sua campanha no Kanka
+- Ama o app e quer apoiar seu crescimento? Considere apoiar o Kanka via :subscriptions.
+TEXT
+,
+        'name'          => 'Nota de boas-vindas',
+        'subscriptions' => 'Assinaturas',
+    ],
 ];

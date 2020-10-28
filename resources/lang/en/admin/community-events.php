@@ -1,27 +1,28 @@
 <?php
+
 return [
-    'index' => [
-        'title' => 'Community Events',
-        'add' => 'New event',
-    ],
-    'fields' => [
-        'name' => 'Event name',
-        'status' => 'Status',
-        'entries' => 'Submissions',
-        'content' => 'Content',
-        'excerpt' => 'Excerpt (shown in the list)',
-        'start_at' => 'Start at (date it becomes visible)',
-        'end_at' => 'End date (when submissions stop)',
-    ],
-    'create' => [
+    'create'    => [
         'title' => 'New community event',
     ],
-    'edit' => [
+    'edit'      => [
         'title' => 'Edit community event :name',
     ],
-    'status' => [
-        'ongoing' => 'Ongoing',
-        'finished' => 'Finished',
-        'upcoming' => 'Upcoming',
-    ]
+    'fields'    => [
+        'content'   => 'Content',
+        'end_at'    => 'End date (when submissions stop)',
+        'entries'   => 'Submissions',
+        'excerpt'   => 'Excerpt (shown in the list)',
+        'name'      => 'Event name',
+        'start_at'  => 'Start at (date it becomes visible)',
+        'status'    => 'Status',
+    ],
+    'index'     => [
+        'add'   => 'New event',
+        'title' => 'Community Events',
+    ],
+    'status'    => [
+        'finished'  => 'Finished',
+        'ongoing'   => 'Ongoing',
+        'upcoming'  => 'Upcoming',
+    ],
 ];

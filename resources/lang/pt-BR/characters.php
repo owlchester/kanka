@@ -3,7 +3,12 @@
 return [
     'actions'       => [
         'add_appearance'    => 'Adicionar uma aparência',
+        'add_organisation'  => 'Adicionar uma organização',
         'add_personality'   => 'Adicionar uma personalidade',
+    ],
+    'conversations' => [
+        'description'   => 'Conversas das quais o personagem está participando',
+        'title'         => 'Conversas de :name',
     ],
     'create'        => [
         'description'   => 'Criar um novo personagem',
@@ -14,7 +19,9 @@ return [
         'success'   => 'Personagem \':name\' removido.',
     ],
     'dice_rolls'    => [
-        'hint'  => 'Rolagens de dados podem ser vinculadas a um personagem para uso no jogo.',
+        'description'   => 'Rolagens de dado atribuídas ao personagem',
+        'hint'          => 'Rolagens de dados podem ser vinculadas a um personagem para uso no jogo.',
+        'title'         => 'Rolagens de dado de :name',
     ],
     'edit'          => [
         'description'   => 'Editar um personagem',
@@ -27,6 +34,7 @@ return [
         'image'                     => 'Imagem',
         'is_dead'                   => 'Morto',
         'is_personality_visible'    => 'A personalidade é visível',
+        'life'                      => 'Vida',
         'location'                  => 'Local',
         'name'                      => 'Nome',
         'physical'                  => 'Físico',
@@ -38,6 +46,7 @@ return [
         'type'                      => 'Tipo',
     ],
     'helpers'       => [
+        'age'   => 'Você pode vincular essa entidade a um calendário de sua campanha para calcular automaticamente sua idade. :more.',
         'free'  => 'Onde o campo "Livre" foi parar? Se esse personagem possuía um, ele foi movido para a nova aba Anotações!',
     ],
     'hints'         => [
@@ -55,7 +64,17 @@ return [
         'title'         => 'Personagens',
     ],
     'items'         => [
-        'hint'  => 'Itens podem ser vinculados a personagens e serão mostrados aqui.',
+        'description'   => 'Itens carregados ou que pertencem ao personagem',
+        'hint'          => 'Itens podem ser vinculados a personagens e serão mostrados aqui.',
+        'title'         => 'Itens de :name',
+    ],
+    'journals'      => [
+        'description'   => 'Jornais dos quais o(a) personagem é autor(a)',
+        'title'         => 'Jornais de :name',
+    ],
+    'maps'          => [
+        'description'   => 'Mapa de relações de um personagem',
+        'title'         => 'Mapa de relações de :name',
     ],
     'organisations' => [
         'actions'       => [
@@ -66,6 +85,7 @@ return [
             'success'       => 'Personagem adicionado à organização',
             'title'         => 'Nova Organização para :name',
         ],
+        'description'   => 'Organizações das queis o personagem é parte.',
         'destroy'       => [
             'success'   => 'Organização do personagem removida.',
         ],
@@ -82,6 +102,7 @@ return [
         'placeholders'  => [
             'organisation'  => 'Escolha uma organização...',
         ],
+        'title'         => 'Organizações de :name',
     ],
     'placeholders'  => [
         'age'               => 'Idade',
@@ -100,6 +121,14 @@ return [
         'traits'            => 'Traços de Personalidade',
         'type'              => 'NPC, Personagem de Jogador, Divindade',
     ],
+    'quests'        => [
+        'description'   => 'Missões das quais o personagem faz parte',
+        'helpers'       => [
+            'quest_giver'   => 'Missões que o personagem deu.',
+            'quest_member'  => 'Missões das quais o personagem é membro.',
+        ],
+        'title'         => 'Missões de :name',
+    ],
     'sections'      => [
         'appearance'    => 'Aparência',
         'general'       => 'Informações Gerais',
@@ -108,14 +137,19 @@ return [
     'show'          => [
         'description'   => 'Uma visão geral do personagem',
         'tabs'          => [
+            'conversations' => 'Conversas',
             'dice_rolls'    => 'Rolagem de Dados',
             'free'          => 'Texto Livre',
             'items'         => 'Itens',
             'journals'      => 'Jornais',
+            'map'           => 'Mapa de relações',
             'organisations' => 'Organizações',
             'personality'   => 'Personalidade',
             'quests'        => 'Missões',
         ],
         'title'         => 'Personagem :name',
+    ],
+    'warnings'      => [
+        'personality_hidden'    => 'Você não tem permissão para editar traços de personalidade neste personagem.',
     ],
 ];

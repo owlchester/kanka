@@ -19,6 +19,7 @@ use Illuminate\Support\Arr;
  * @property int $patreon_pledge
  * @property string $newEntityWorkflow
  * @property int $pledge
+ * @property string $marketplaceName
  */
 trait UserSetting
 {
@@ -193,6 +194,23 @@ trait UserSetting
         return Arr::get($this->settings, 'mail_vote', false);
     }
 
+
+    /**
+     * @param $value
+     */
+    public function setMarketplaceNameAttribute($value)
+    {
+        $this->setSettingsOption('marketplace_name', $value);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMarketplaceNameAttribute()
+    {
+        return Arr::get($this->settings, 'marketplace_name', '');
+    }
+
     /**
      * @param $key
      * @param $value
@@ -206,7 +224,7 @@ trait UserSetting
      * @param $data
      * @return $this
      */
-    public function saveSettings($data)
+    public function saveSettings($data): self
     {
         // Todo: refactor into an array
         $this->editor = Arr::get($data, 'editor', null);
@@ -225,7 +243,10 @@ trait UserSetting
         if (empty($this->new_entity_workflow)) {
             unset($this->attributes['settings']['new_entity_workflow']);
         }
-
+        $this->marketplace_name = Arr::get($data, 'marketplace_name', null);
+        if (empty($this->marketplace_name)) {
+            unset($this->attributes['settings']['marketplace_name']);
+        }
 
         return $this;
     }

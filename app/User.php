@@ -6,14 +6,12 @@ use App\Facades\Img;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
-use App\Models\CampaignBoost;
-use App\Models\CampaignRole;
 use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
 use App\Models\Patreon;
+use App\Models\Relations\UserRelations;
 use App\Models\Scopes\UserScope;
-use App\Models\UserApp;
 use App\Models\UserSetting;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Arr;
@@ -37,21 +35,20 @@ use Laravel\Passport\HasApiTokens;
  * @property boolean $has_last_login_sharing
  * @property string $patreon_pledge
  * @property int $booster_count
+ * @property int $referral_id
  *
  * Virtual
  * @property bool $advancedMentions
  * @property bool $defaultNested
  * @property string $patreon_fullname
  * @property string $patreon_email
- * @property CampaignBoost[] $boosts
- * @property CampaignRole $campaignRoles
- * @property Campaign $campaigns
  */
 class User extends \TCG\Voyager\Models\User
 {
     use Notifiable,
         HasApiTokens,
         UserScope,
+        UserRelations,
         UserSetting,
         Searchable,
         Filterable,
@@ -67,7 +64,7 @@ class User extends \TCG\Voyager\Models\User
 
     public $searchableColumns = ['email', 'settings'];
     public $sortableColumns = [];
-    public $filterableColumns = ['patreon_pledge'];
+    public $filterableColumns = ['patreon_pledge', 'referral_id'];
 
     /**
      * The attributes that are mass assignable.
@@ -90,7 +87,8 @@ class User extends \TCG\Voyager\Models\User
         'locale', // Keep this for the LocaleChange middleware
         'last_login_at',
         'has_last_login_sharing',
-        'patreon_pledge'
+        'patreon_pledge',
+        'referral_id',
     ];
 
     /**
@@ -126,45 +124,6 @@ class User extends \TCG\Voyager\Models\User
         return self::$currentCampaign;
     }
 
-    /**
-     * Last campaign the user switched to.
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function lastCampaign()
-    {
-        return $this->belongsTo(Campaign::class, 'last_campaign_id', 'id');
-    }
-
-    /**
-     * Get a list of campaigns the user is in
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
-     */
-    public function campaigns()
-    {
-        return $this->hasManyThrough(
-            'App\Models\Campaign',
-            'App\Models\CampaignUser',
-            'user_id',
-            'id',
-            'id',
-            'campaign_id'
-        );
-    }
-
-    /**
-     * @return mixed
-     */
-    public function following()
-    {
-        return $this->hasManyThrough(
-            'App\Models\Campaign',
-            'App\Models\CampaignFollower',
-            'user_id',
-            'id',
-            'id',
-            'campaign_id'
-        );
-    }
 
     /**
      * Get the other campaigns of the user
@@ -194,30 +153,6 @@ class User extends \TCG\Voyager\Models\User
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function logs()
-    {
-        return $this->hasMany('App\Models\UserLog', 'user_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function apps()
-    {
-        return $this->hasMany(UserApp::class, 'user_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function permissions()
-    {
-        return $this->hasMany('App\Models\CampaignPermission', 'user_id');
-    }
-
-    /**
      * @param null $campaignId
      * @return mixed
      */
@@ -228,31 +163,6 @@ class User extends \TCG\Voyager\Models\User
         }
         $roles = $this->campaignRoles->where('campaign_id', $campaignId);
         return $roles->implode('name', ', ');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
-     */
-    public function campaignRoles()
-    {
-        return $this->hasManyThrough(
-            'App\Models\CampaignRole',
-            'App\Models\CampaignRoleUser',
-            'user_id',
-            'id',
-            'id',
-            'campaign_role_id'
-        );
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     * @deprecated User::campaignRoleUser is deprecated
-     */
-    public function campaignRoleUser()
-    {
-        return $this->hasMany('App\Models\CampaignRoleUser')
-            ->where('campaign_id', $this->campaign->id);
     }
 
     /**
@@ -305,13 +215,11 @@ class User extends \TCG\Voyager\Models\User
             // Elementals get massive upload sizes
             if ($this->isElementalPatreon()) {
                 return $readable ? '25MB' : 25600;
-            }
-            elseif ($what == 'map') {
+            } elseif ($what == 'map') {
                 return $readable ? '10MB' : 10240;
             }
             return $readable ? '8MB' : 8192;
-        }
-        elseif ($what == 'map') {
+        } elseif ($what == 'map') {
             return $readable ? '3MB' : 3072;
         }
         return $readable ? '1MB' : 2048;
@@ -336,22 +244,25 @@ class User extends \TCG\Voyager\Models\User
     }
 
     /**
+     * Determine if a user is a goblin (deprecated)
      * @return bool
      */
     public function isGoblinPatron(): bool
     {
         return ($this->hasRole('patreon') && !empty($this->patreon_pledge)
                 && $this->patreon_pledge != Patreon::PLEDGE_KOBOLD)
-           || $this->hasRole('admin')
-        ;
+            || $this->hasRole('admin');
     }
 
     /**
+     * Determine if a user is an elemental
      * @return bool
      */
     public function isElementalPatreon(): bool
     {
-        return !empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_ELEMENTAL;
+        $campaign = CampaignLocalization::getCampaign();
+        return (!empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_ELEMENTAL) ||
+            (!empty($campaign) && $this->campaignRoles->where('campaign_id', $campaign->id)->where('id', '61105')->count() == 1);
     }
 
     /**
@@ -362,15 +273,6 @@ class User extends \TCG\Voyager\Models\User
         return !empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_OWLBEAR;
     }
 
-
-    /**
-     * List of boosts the user is giving
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function boosts()
-    {
-        return $this->hasMany('App\Models\CampaignBoost', 'user_id', 'id');
-    }
 
     /**
      * Get available boosts for the user
@@ -439,5 +341,25 @@ class User extends \TCG\Voyager\Models\User
             return '€';
         }
         return 'US$';
+    }
+
+    /**
+     * Determine if ads should be shown for the user or campaign
+     * @return bool
+     */
+    public function showAds(): bool
+    {
+        // Patrons and subs don't have ads
+        if ($this->isPatron()) {
+            return false;
+        }
+
+        // Campaigns that are boosted don't eirhter
+        $campaign = CampaignLocalization::getCampaign();
+        if (!empty($campaign) && $campaign->boosted()) {
+            return false;
+        }
+
+        return true;
     }
 }

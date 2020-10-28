@@ -48,9 +48,9 @@ return [
             'title'         => 'Update Calendar Event for :name',
         ],
         'helpers'   => [
-            'add'   => 'Add an existing event to this calendar.',
-            'new'   => 'Or create a new event by simply providing a name.',
-            'other_calendar' => 'You are editing a reminder that is on the :calendar calendar.'
+            'add'               => 'Add an existing event to this calendar.',
+            'new'               => 'Or create a new event by simply providing a name.',
+            'other_calendar'    => 'You are editing a reminder that is on the :calendar calendar.',
         ],
         'modal'     => [
             'title' => 'Add an event to the calendar',
@@ -96,8 +96,8 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Intercalary months don\'t use week days, but still influence moons and seasons.',
+        'nested'        => 'Displaying calendars that have no parent calendar first. Click on a calendar to explore it\'s sub calendars.',
         'start_offset'  => 'By default, the calendar starts on the first weekday of year 0. Changing this field influences where the calendar\'s first day is placed.',
-        'nested'    => 'Displaying calendars that have no parent calendar first. Click on a calendar to explore it\'s sub calendars.',
     ],
     'hints'         => [
         'intercalary'       => 'Days that fall outside of the standard months and weeks. They don\'t influence week days but influence moon cycles.',

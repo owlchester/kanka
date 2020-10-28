@@ -38,7 +38,7 @@
                     <button id="map-zoom-reset" class="btn btn-default" title="{{ trans('locations.map.actions.zoom_reset') }}"><i class="fa fa-undo"></i></button>
                     <button id="map-toggle-hide" class="btn btn-default" title="{{ trans('locations.map.actions.toggle_hide') }}"><i class="fa fa-eye-slash"></i></button>
                     <button id="map-toggle-show" class="btn btn-default" style="display: none;" title="{{ trans('locations.map.actions.toggle_show') }}"><i class="fa fa-eye"></i></button>
-                    <a href="{{ Img::url($location->map) }}" target="_blank" class="btn btn-default" title="{{ trans('locations.map.actions.download') }}" download><i class="fa fa-download"></i></a>
+                    <a href="{{ Storage::url($location->map) }}" target="_blank" class="btn btn-default" title="{{ trans('locations.map.actions.download') }}" download><i class="fa fa-download"></i></a>
                 </div>
                 <div class="map-helper hidden-xs">
                     <p>{{ __('locations.map.helpers.view') }}</p>

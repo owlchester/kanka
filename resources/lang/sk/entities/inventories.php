@@ -14,16 +14,20 @@ return [
     'fields'        => [
         'amount'        => 'Počet',
         'description'   => 'Popis',
+        'is_equipped'   => 'Vybavený',
+        'name'          => 'Názov',
         'position'      => 'Umiestnenie',
     ],
     'placeholders'  => [
         'amount'        => 'Hocijaké množstvo',
         'description'   => 'Použitý, Zničený, Zžitý',
+        'name'          => 'Potrebný, ak nie je zvolený žiaden objekt',
         'position'      => 'V rukách, V ruksaku, V sklade, V banke',
     ],
     'show'          => [
         'helper'    => 'Objekty môžu mať priradené Predmety, čím sa vytvára ich Inventár.',
         'title'     => 'Objekt :name Inventár',
+        'unsorted'  => 'Nezoradené',
     ],
     'update'        => [
         'success'   => 'Predmet :item pre :entity upravený.',

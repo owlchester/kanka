@@ -18,7 +18,12 @@ return [
         'image'         => 'Bild',
         'is_pinned'     => 'Angepinnt',
         'name'          => 'Name',
+        'note'          => 'übergeordnete Notiz',
+        'notes'         => 'untergeordnete Notiz',
         'type'          => 'Typ',
+    ],
+    'helpers'       => [
+        'nested'    => 'Anzeigen von Notizen, die keine übergeordnete Notiz haben. Klicken Sie auf eine Notiz, um die Untergeordnete Notizen zu erkunden.',
     ],
     'hints'         => [
         'is_pinned' => 'Bis zu 3 Notizen können angepinnt werden und werden dann auf dem Dashboard angezeigt.',
@@ -31,6 +36,7 @@ return [
     ],
     'placeholders'  => [
         'name'  => 'Name der Notiz',
+        'note'  => 'Wähle eine übergeordnete Notiz',
         'type'  => 'Religion, Rasse, Politisches System',
     ],
     'show'          => [

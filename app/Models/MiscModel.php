@@ -14,6 +14,7 @@ use App\Models\Concerns\Sortable;
 use App\Models\Concerns\Tooltip;
 use App\Models\Scopes\SubEntityScopes;
 use App\Traits\AclTrait;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
@@ -37,6 +38,8 @@ use Exception;
  * @property string $header_image
  * @property boolean $is_private
  * @property [] $nullableForeignKeys
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  * @property Campaign $campaign
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -57,6 +60,11 @@ abstract class MiscModel extends Model
      * @var bool
      */
     public $savingObserver = true;
+
+    /**
+     * @var bool
+     */
+    public $forceSavedObserver = false;
 
     /**
      * If set to false, the save observer in MiscObserver will be skipped
@@ -300,11 +308,12 @@ abstract class MiscModel extends Model
 
         // Todo: point to the new points
         $mapPoints = $this->entity->targetMapPoints()->has('location')->count();
-        if ($mapPoints > 0) {
+        $newMapPoints = $this->entity->mapMarkers()->has('map')->count();
+        if (($mapPoints + $newMapPoints) > 0) {
             $items['map-points'] = [
                 'name' => 'crud.tabs.map-points',
                 'route' => $this->entity->pluralType() . '.map-points',
-                'count' => $mapPoints,
+                'count' => $mapPoints + $newMapPoints,
                 'icon' => 'fa fa-map-marked',
             ];
         }

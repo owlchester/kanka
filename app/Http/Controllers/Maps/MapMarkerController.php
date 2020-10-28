@@ -52,6 +52,11 @@ class MapMarkerController extends Controller
     {
         $this->authorize('update', $map);
 
+        // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
         $model = new MapMarker();
         $data = $request->only($this->fields);
         $data['map_id'] = $map->id;
@@ -93,6 +98,11 @@ class MapMarkerController extends Controller
     public function update(StoreMapMarker $request, Map $map, MapMarker $mapMarker)
     {
         $this->authorize('update', $map);
+
+        // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $mapMarker->update($request->only($this->fields));
 

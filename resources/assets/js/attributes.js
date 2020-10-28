@@ -124,11 +124,11 @@ function initAttributeHandlers() {
         if ($(this).hasClass('fa-lock')) {
             // Unlock
             $(this).removeClass('fa-lock').addClass('fa-unlock-alt').prop('title', $(this).data('public'));
-            $(this).parent().find('input:hidden').val("0");
+            $(this).prev('input:hidden').val("0");
         } else {
             // Lock
             $(this).removeClass('fa-unlock-alt').addClass('fa-lock').prop('title', $(this).data('private'));
-            $(this).parent().find('input:hidden').val("1");
+            $(this).prev('input:hidden').val("1");
         }
     });
 
@@ -136,11 +136,11 @@ function initAttributeHandlers() {
         if ($(this).hasClass('far')) {
             // Unlock
             $(this).removeClass('far').addClass('fas').prop('title', $(this).data('entry'));
-            $(this).parent().find('input:hidden').val("1");
+            $(this).prev('input:hidden').val("1");
         } else {
             // Lock
             $(this).removeClass('fas').addClass('far').prop('title', $(this).data('tab'));
-            $(this).parent().find('input:hidden').val("0");
+            $(this).prev('input:hidden').val("0");
         }
     });
 

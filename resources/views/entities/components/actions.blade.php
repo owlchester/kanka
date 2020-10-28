@@ -82,7 +82,7 @@
                                 </a>
                             </li>
                         @endcan
-                        @if ((empty($disableCopyCampaign) || !$disableCopyCampaign) && getenv('APP_ENV') !== 'shadow' && Auth::check() && Auth::user()->hasOtherCampaigns($model->campaign_id))
+                        @if ((empty($disableCopyCampaign) || !$disableCopyCampaign) && Auth::check() && Auth::user()->hasOtherCampaigns($model->campaign_id))
                             <li>
                                 <a href="{{ route('entities.copy_to_campaign', $model->entity->id) }}">
                                     <i class="fa fa-clone" aria-hidden="true"></i> {{ __('crud.actions.copy_to_campaign') }}
@@ -90,7 +90,7 @@
                             </li>
                         @endif
 
-                        @if ((empty($disableMove) || !$disableMove) && getenv('APP_ENV') !== 'shadow' && Auth::user()->can('move', $model))
+                        @if ((empty($disableMove) || !$disableMove) && Auth::user()->can('move', $model))
                             <li>
                                 <a href="{{ route('entities.move', $model->entity->id) }}">
                                     <i class="fa fa-exchange-alt" aria-hidden="true"></i> {{ __('crud.actions.move') }}
@@ -99,6 +99,17 @@
                         @endif
 
                         @if ($model->entity)
+                            @if (Auth::user()->isAdmin())
+                                <li>
+                                    <a href="{{ route('entities.template', $model->entity) }}">
+                                        @if($model->entity->is_template)
+                                            <i class="fa fa-star-o" aria-hidden="true"></i> {{ __('entities/actions.templates.unset') }}
+                                        @else
+                                            <i class="fa fa-star-o" aria-hidden="true"></i> {{ __('entities/actions.templates.set') }}
+                                        @endif
+                                    </a>
+                                </li>
+                            @endif
                             <li>
                                 <a href="{{ route('entities.export', $model->entity) }}">
                                     <i class="fa fa-download" aria-hidden="true"></i> {{ __('crud.actions.export') }}

@@ -26,6 +26,8 @@ return [
         ],
     ],
     'fields'        => [
+        'center_x'          => 'Standard-Längengradposition',
+        'center_y'          => 'Standard-Breitengradposition',
         'distance_measure'  => 'Abstandsmaß',
         'distance_name'     => 'Entfernungseinheit',
         'grid'              => 'Gitter',
@@ -38,6 +40,7 @@ return [
         'type'              => 'Typ',
     ],
     'helpers'       => [
+        'center'            => 'Durch Ändern der folgenden Werte wird gesteuert, auf welchen Bereich der Karte der Fokus liegt. Wenn Sie diese Werte leer lassen, wird die Mitte der Karte fokussiert.',
         'descendants'       => 'Diese Liste enthält alle Karten, die Untergeordnete Karten dieser Karte sind, und nicht nur die direkt untergeordneten.',
         'distance_measure'  => 'Wenn Sie der Karte eine Entfernungsmessung geben, wird das Messwerkzeug im Erkundungsmodus aktiviert.',
         'grid'              => 'Definieren Sie eine Rastergröße, die im Erkundungsmodus angezeigt wird.',
@@ -61,6 +64,8 @@ return [
         'settings'  => 'Einstellungen',
     ],
     'placeholders'  => [
+        'center_x'          => 'Lassen Sie das Feld leer, um die Karte in der Mitte zu laden (X-Koordinate)',
+        'center_y'          => 'Lassen Sie das Feld leer, um die Karte in der Mitte zu laden (Y-Koordinate)',
         'distance_measure'  => 'Einheiten pro Pixel',
         'distance_name'     => 'Name der Entfernungseinheit (Kilometer, Meile)',
         'grid'              => 'Abstand in Pixel zwischen Gitterelementen. Leer lassen, um das Raster auszublenden.',

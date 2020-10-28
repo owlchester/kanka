@@ -1,20 +1,19 @@
 <!-- Main Footer -->
 <footer id="footer" class="main-footer">
     <div class="translator-call text-center hidden-xs">
-        @if(app()->getLocale() == 'pt-BR')
-            <p class="alert alert-warning">
-                Quer ajudar a traduzir Kanka para o português brasileiro? Junte-se ao nosso <a href="{{ config('discord.url') }}" target="_blank">Discord</a> e entre em contato pelo canal #assist-the-team!
-            </p>
-        @else
-            <p class="text-muted">{!! __('footer.translator_call', ['discord' => link_to(config('discord.url'), 'Discord', ['target' => '_blank'])]) !!}</p>
-        @endif
+        <p class="text-muted">{!! __('footer.translator_call', ['discord' => link_to(config('discord.url'), 'Discord', ['target' => '_blank'])]) !!}</p>
     </div>
     <div class="footer">
         <div class="row">
             <div class="col-lg-2 col-md-2 col-xs-12 text-center">
                 <h4 class="margin-bottom"><a href="{{ route('home') }}">
-                    <img class="logo-blue" src="https://images.kanka.io/app/DEy2otI4qKGIJHMX_JFxeEFGRls=/64x64/src/images%2Flogos%2Flogo-small.png" alt="Kanka logo blue" title="Kanka" />
-                    <img class="logo-white" src="https://images.kanka.io/app/0HdWv4egPu6lBQ30iWTcS9MPgRo=/64x64/src/images%2Flogos%2Flogo-small-white.png" alt="Kanka logo white" title="Kanka" />
+                    @if(\App\Facades\Img::nowebp())
+                        <img class="logo-blue" src="https://images.kanka.io/app/DEy2otI4qKGIJHMX_JFxeEFGRls=/64x64/src/images%2Flogos%2Flogo-small.png?webpfallback" alt="Kanka logo blue" title="Kanka" />
+                        <img class="logo-white" src="https://images.kanka.io/app/0HdWv4egPu6lBQ30iWTcS9MPgRo=/64x64/src/images%2Flogos%2Flogo-small-white.png?webpfallback" alt="Kanka logo white" title="Kanka" />
+                    @else
+                        <img class="logo-blue" src="https://images.kanka.io/app/DEy2otI4qKGIJHMX_JFxeEFGRls=/64x64/src/images%2Flogos%2Flogo-small.png" alt="Kanka logo blue" title="Kanka" />
+                        <img class="logo-white" src="https://images.kanka.io/app/0HdWv4egPu6lBQ30iWTcS9MPgRo=/64x64/src/images%2Flogos%2Flogo-small-white.png" alt="Kanka logo white" title="Kanka" />
+                    @endif
                 </a></h4>
             </div>
             <div class="col-lg-7 col-md-7 col-xs-12">
@@ -64,6 +63,9 @@
                         </ul>
                         <ul>
                             <li>
+                                <a href="https://marketplace.kanka.io">{{ __('front.menu.marketplace') }}</a>
+                            </li>
+                            <li>
                                 <a href="/docs/1.0">{{ __('front.menu.api') }}</a>
                             </li>
                             <li>
@@ -91,6 +93,9 @@
                 <div class="socials">
                     <a href="{{ config('social.discord') }}" target="discord" rel="nofollow" title="Discord" rel="noreferrer">
                         <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="{{ config('social.twitch') }}" target="twitch" rel="nofollow" title="Twitch" rel="noreferrer">
+                        <i class="fab fa-twitch"></i>
                     </a>
                     <a href="{{ config('social.facebook') }}" target="facebook" rel="nofollow" title="Facebook" rel="noreferrer">
                         <i class="fab fa-facebook"></i>

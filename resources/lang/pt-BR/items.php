@@ -18,7 +18,9 @@ return [
         'image'     => 'Imagem',
         'location'  => 'Local',
         'name'      => 'Nome',
+        'price'     => 'Preço',
         'relation'  => 'Relação',
+        'size'      => 'Tamanho',
         'type'      => 'Tipo',
     ],
     'index'         => [
@@ -27,16 +29,28 @@ return [
         'header'        => 'Itens de :name',
         'title'         => 'Itens',
     ],
+    'inventories'   => [
+        'description'   => 'Inventários da entidade na qual o item está.',
+        'title'         => 'Item :name inventários',
+    ],
     'placeholders'  => [
         'character' => 'Escolha um personagem',
         'location'  => 'Escolha um local',
         'name'      => 'Nome do item',
+        'price'     => 'Preço do item',
+        'size'      => 'Tamanho, Peso, Dimensões',
         'type'      => 'Arma, Poção, Artefato',
+    ],
+    'quests'        => [
+        'description'   => 'Missões das quais este item faz parte',
+        'title'         => 'Missões do item :name',
     ],
     'show'          => [
         'description'   => 'Uma visão detalhada de um item',
         'tabs'          => [
             'information'   => 'Informações',
+            'inventories'   => 'Inventários',
+            'quests'        => 'Missões',
         ],
         'title'         => 'Item :name',
     ],

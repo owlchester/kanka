@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\EntityFileRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreEntityFile extends FormRequest
@@ -24,7 +25,12 @@ class StoreEntityFile extends FormRequest
     public function rules()
     {
         return [
-            'file' => 'required|file|mimes:jpeg,png,jpg,gif,pdf,xls,xlsx|max:' . auth()->user()->maxUploadSize(),
+            'file' => [
+                'required',
+                'file',
+                'max:' . auth()->user()->maxUploadSize(),
+                new EntityFileRule
+            ],
         ];
     }
 }

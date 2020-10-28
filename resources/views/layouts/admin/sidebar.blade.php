@@ -11,6 +11,9 @@
             <li class="{{ $sidebar->admin('dashboard') }}">
                 <a href="{{ route('admin.home') }}"><i class="fa fa-th-large"></i> <span>{{ __('sidebar.dashboard') }}</span></a>
             </li>
+            <li class="{{ $sidebar->admin('users') }}">
+                <a href="{{ route('admin.users.index') }}"><i class="fa fa-users"></i> <span>Users</span></a>
+            </li>
             <li class="{{ $sidebar->admin('campaigns') }}">
                 <a href="{{ route('admin.campaigns.index') }}"><i class="fa fa-globe"></i> <span>{{ __('sidebar.campaigns') }}</span></a>
             </li>
@@ -25,6 +28,9 @@
             </li>
             <li class="{{ $sidebar->admin('app-releases') }}">
                 <a href="{{ route('admin.app-releases.index') }}"><i class="fa fa-plus"></i> <span>Releases</span></a>
+            </li>
+            <li class="{{ $sidebar->admin('referrals') }}">
+                <a href="{{ route('admin.referrals.index') }}"><i class="fa fa-user-tag"></i> <span>Referrals</span></a>
             </li>
             <li class="{{ $sidebar->admin('cache') }}">
                 <a href="{{ route('admin.cache') }}"><i class="fa fa-hourglass-half"></i> <span>Cache</span></a>

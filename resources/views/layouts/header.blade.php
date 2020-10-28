@@ -66,10 +66,10 @@ $currentCampaign = CampaignLocalization::getCampaign();
                 @if(!Auth::check())
                     <li class="messages-menu">
                         <a href="{{ route('login') }}">{{ trans('front.menu.login') }}</a>
-                    </li>
+                    </li>@if(config('auth.register_enabled'))
                     <li class="messages-menu hidden-xs">
                         <a href="{{ route('register') }}">{{ trans('front.menu.register') }}</a>
-                    </li>
+                    </li>@endif
                 @endif
 
                 @if (Auth::check())

@@ -26,6 +26,7 @@ return [
         'actions'       => [
             'apply_template'    => 'Appliquer un modèle d\'attribut',
             'manage'            => 'Gérer',
+            'more'              => 'Plus d\'options',
             'remove_all'        => 'Tout supprimer',
         ],
         'fields'        => [

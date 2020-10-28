@@ -48,8 +48,9 @@ return [
             'title'         => 'Ažuriraj događaj kalendara u :name',
         ],
         'helpers'   => [
-            'add'   => 'Dodaj postojeći događaj na ovaj kalendar.',
-            'new'   => 'Ili kreiraj novi događaj tako što upišeš naziv.',
+            'add'               => 'Dodaj postojeći događaj na ovaj kalendar.',
+            'new'               => 'Ili kreiraj novi događaj tako što upišeš naziv.',
+            'other_calendar'    => 'Uređujete podsjetnik koji se nalazi na kalendaru :calendar.',
         ],
         'modal'     => [
             'title' => 'Dodaj događaj u kalendar',
@@ -61,6 +62,8 @@ return [
         'title'         => 'Događaji kalendara :name',
     ],
     'fields'        => [
+        'calendar'              => 'Kalendar roditelj',
+        'calendars'             => 'Kalendari',
         'colour'                => 'Boja',
         'comment'               => 'Komentar',
         'current_day'           => 'Trenutni dan',
@@ -93,6 +96,7 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Interkalarni mjeseci ne koriste dane, ali utječu na mjesece i sezone.',
+        'nested'        => 'Prvo se prikazuju kalendari koji nemaju kalendar roditelj. Klikni kalendar da bi istražio/la njegove kalendare djecu.',
         'start_offset'  => 'Zadano je da kalendar počinje od prvog dana u tjednu nulte godine. Promjena ovog polja utječe na to gdje je prvi dan kalendar postavljen.',
     ],
     'hints'         => [
@@ -101,6 +105,7 @@ return [
         'is_recurring'      => 'Događaj se može postaviti kao ponavljajući. Pojavit će se svake godine na isti datum.',
         'months'            => 'Tvoj kalendar bi trebao imati barem 2 kalendarska mjeseca.',
         'moons'             => 'Dodavanje mjeseci (nebeskih tijela) će ih dodati na kalendar za svaki puni i mladi mjesec. Ako je period punog mjeseca duži od 10 dana, prikazat će se i prva i posljednja četvrt.',
+        'parent_calendar'   => 'Dodavanje roditeljskog kalendara uključuje podsjetnike i vremenske uvjete tog roditeljskog kalendara.',
         'reset'             => 'Uvijek započni početak mjeseca ili godine na prvi dan tjedna.',
         'seasons'           => 'Stvori sezone za svoj kalendar tako što odrediš kad svaka počinje. Kanka će se pobrinuti za ostalo.',
         'weekdays'          => 'Postavi nazive za dane u tjednu. Barem 2 dana u tjednu su potrebna.',

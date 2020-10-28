@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Services\ReferralService;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -30,18 +31,24 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/';
 
+    /** @var ReferralService */
+    protected $referralService;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(ReferralService $service)
     {
         $this->middleware('guest');
 
-        if (env('APP_REGISTRATION_ENABLED') === false) {
+        if (!config('auth.register_enabled')) {
             throw new AccessDeniedHttpException('ACCOUNT REGISTRATION DISABLED');
         }
+
+        $this->referralService = $service;
+        $this->referralService->validate(request());
     }
 
     /**
@@ -72,6 +79,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'referral_id' => $this->referralService->referralId(),
         ]);
     }
 }

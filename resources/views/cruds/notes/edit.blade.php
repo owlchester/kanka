@@ -7,6 +7,11 @@
         trans('crud.update'),
     ]
 ])
+
+@section('fullpage-form')
+    {!! Form::model($model, ['method' => 'PATCH', 'route' => ['entities.entity_notes.update', $entity->id, $model->id], 'data-shortcut' => '1', 'class' => 'entity-note-form', 'id' => 'entity-form']) !!}
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-md-12 col-md-offset">
@@ -14,15 +19,10 @@
                 <div class="panel-body">
                     @include('partials.errors')
 
-                    {!! Form::model($model, ['method' => 'PATCH', 'route' => ['entities.entity_notes.update', $entity->id, $model->id], 'data-shortcut' => '1', 'id' => 'entity-form']) !!}
+
                     @include('cruds.notes._form')
 
-                    <div class="form-group">
-                        <button class="btn btn-success">{{ trans('crud.save') }}</button>
-                        {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous() . (strpos(url()->previous(), '#note') === false ? '#note' : null))]) !!}
-                    </div>
-
-                    {!! Form::close() !!}
+                    @include('cruds.notes._saveOptions')
                 </div>
             </div>
         </div>
@@ -30,3 +30,7 @@
 @endsection
 
 @include('editors.editor')
+
+@section('fullpage-form-end')
+    {!! Form::close() !!}
+@endsection

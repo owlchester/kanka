@@ -176,7 +176,7 @@ table {
 }
 .tab-content {
   table {
-    width: 100% !important;
+    max-width: 100% !important;
   }
   img {
     max-width: 100%;
@@ -734,6 +734,12 @@ div.mce-fullscreen {
   }
 }
 
+#attribute_add {
+  i {
+    line-height: 1.5em;
+  }
+}
+
 .entity-creator {
 
   a {
@@ -808,6 +814,10 @@ td.breakable {
     //overflow-y: auto;
     //height: calc(100vh - 200px);
   }
+
+  .select2-container--default .select2-selection--multiple .select2-selection__choice {
+    color: #333;
+  }
 }
 .shortcut {
   margin-left: 14px;
@@ -879,6 +889,7 @@ td.breakable {
 .margin-top {
   margin-top: 25px;
 }
+
 
 
 // Quest panels
@@ -1012,6 +1023,11 @@ hr {
   color: #333;
   font-style: italic;
   padding: 2px 3px;
+}
+
+// Allow buttons to be multi-lined
+.btn {
+  white-space: normal;
 }
 
 

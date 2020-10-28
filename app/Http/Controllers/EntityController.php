@@ -156,4 +156,18 @@ class EntityController extends Controller
 
         return view('entities.components._files', compact('entity'));
     }
+
+    /**
+     * @param Entity $entity
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function template(Entity $entity)
+    {
+        $entity = $this->entityService->toggleTemplate($entity);
+        return redirect()->back()
+            ->with(
+                'success',
+                __('entities/actions.templates.success.' . ($entity->is_template ? 'set' : 'unset'), ['name' => $entity->name])
+            );
+    }
 }
