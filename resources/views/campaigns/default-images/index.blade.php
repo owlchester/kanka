@@ -3,6 +3,7 @@
     'title' => trans('campaigns/default-images.title', ['campaign' => $campaign->name]),
     'breadcrumbs' => [
         ['url' => route('campaign'), 'label' => trans('campaigns.index.title')],
+        __('campaigns.show.tabs.default-images')
     ],
 ])
 

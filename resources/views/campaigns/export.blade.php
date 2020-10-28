@@ -2,7 +2,7 @@
     'title' => trans('campaigns.export.title', ['name' => $campaign->name]),
     'description' => trans('campaigns.export.description'),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => $campaign->name],
+        ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
         trans('campaigns.show.tabs.export')
     ],
     'canonical' => true,
