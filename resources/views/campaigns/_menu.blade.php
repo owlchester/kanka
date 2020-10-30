@@ -162,6 +162,11 @@
                         {{ __('campaigns.show.tabs.recovery') }}
                     </a>
                 </li>
+                <li class="@if(!empty($active) && $active == 'stats')active @endif">
+                    <a href="{{ route('stats') }}">
+                        {{ __('campaigns.show.tabs.stats') }}
+                    </a>
+                </li>
             @endif
             @endcan
         </ul>

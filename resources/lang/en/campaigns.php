@@ -332,6 +332,7 @@ TEXT
             'recovery'          => 'Recovery',
             'roles'             => 'Roles',
             'settings'          => 'Modules',
+            'stats'             => 'Stats',
         ],
         'title'         => 'Campaign :name',
     ],

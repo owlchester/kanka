@@ -126,6 +126,16 @@ class CampaignPolicy
      * @param Campaign $campaign
      * @return bool
      */
+    public function stats(User $user, Campaign $campaign): bool
+    {
+        return $user->campaign->id == $campaign->id && UserCache::user($user)->admin();
+    }
+
+    /**
+     * @param User $user
+     * @param Campaign $campaign
+     * @return bool
+     */
     public function search(User $user, Campaign $campaign): bool
     {
         return $user->campaign->id == $campaign->id && UserCache::user($user)->admin();

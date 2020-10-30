@@ -208,6 +208,9 @@ Route::group([
         Route::get('/recovery', 'Campaign\RecoveryController@index')->name('recovery');
         Route::post('/recovery', 'Campaign\RecoveryController@recover')->name('recovery');
 
+        // Stats
+        Route::get('/stats', 'Campaign\StatController@index')->name('stats');
+
 
         Route::get('/default-images', 'Campaign\DefaultImageController@index')->name('campaign.default-images');
         Route::get('/default-images/create', 'Campaign\DefaultImageController@create')->name('campaign.default-images.create');
