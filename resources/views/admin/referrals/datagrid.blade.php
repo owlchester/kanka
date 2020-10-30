@@ -3,6 +3,7 @@
     <thead>
     <tr>
         <th>Referral</th>
+        <th>Partner</th>
         <th>Status</th>
         <th>Users</th>
         <th></th>
@@ -13,6 +14,13 @@
         <tr>
             <td>
                 {{ $model->code }}
+            </td>
+            <td>
+                @if ($model->user_id)
+                    <a href="{{ route('admin.users.show', $model->user) }}">
+                        {{ $model->user->name }}
+                    </a>
+                @endif
             </td>
             <td>
                 @if($model->is_valid) active @else disabled @endif

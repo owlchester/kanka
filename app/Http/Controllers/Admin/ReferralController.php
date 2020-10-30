@@ -49,6 +49,7 @@ class ReferralController extends AdminCrudController
         $filterService = $this->filterService;
 
         $models = $model
+            ->with(['user'])
             ->filter(request()->all())
             ->search($filterService->search())
             ->paginate();

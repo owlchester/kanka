@@ -28,7 +28,7 @@
         @include('layouts.admin.header')
 
         <!-- Sidebar -->
-        @include('layouts.admin.sidebar')
+        @include('layouts.partner.sidebar')
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -46,7 +46,6 @@
                     </div>
                 </div>
                 <ol class="breadcrumb">
-                    <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
                     @if (isset($breadcrumbs))
                     @foreach ($breadcrumbs as $breadcrumb)
                         <li>
