@@ -566,10 +566,9 @@ class CalendarRenderer
         $totalDays = $negativeYear ? abs($totalDays) : $totalDays;
         $offset = floor($totalDays % $weekLength);
 
-
         // If we are in a negative year, we need to reduce the offset from the week length, as we want the last
         // month before the calendar really "starts" to end on the last day of the week.
-        return $negativeYear ? $weekLength - $offset : $offset;
+        return $negativeYear && $this->calendar->reset != 'year' ? $weekLength - $offset : $offset;
     }
 
     /**
