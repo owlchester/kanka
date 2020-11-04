@@ -130,6 +130,10 @@ TEXT
         'timestamp' => 'Last updated :date',
         'title'     => 'FAQ :name',
     ],
+    'unboost'               => [
+        'answer'    => 'Unboosting a campaign doesn\'t delete any of the data that was created while boosted, but simply hides the information and features. If you re-boost a campaign, the information and features will be available again with the same setup as they were before unboosting a campaign.',
+        'question'  => 'What happens if a campaign is no longer boosted?',
+    ],
     'user-switch'           => [
         'answer'    => 'Permissions can get tricky, especially with large campaigns. As a campaign admin, you can navigate to the campaign\'s members page and click the "Switch" button which will appear next to non-admin members of the campaign. Doing so will log you in as that user and allow you to see the campaign as they would. This is the easiest way to check your campaign\'s permissions.',
         'question'  => 'My campaign permissions are set up, how can I test them?',
