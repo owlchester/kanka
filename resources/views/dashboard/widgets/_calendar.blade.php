@@ -12,7 +12,7 @@ $calendar = $entity->child;
     @if (!$calendar->image)
     <div class="panel-heading">
        <h3 class="panel-title">
-           {{ link_to($calendar->getLink(), $entity->name) }}
+           {{ link_to($calendar->getLink(), (!empty($widget->conf('text')) ? $widget->conf('text') : $entity->name)) }}
        </h3>
     </div>
     @else

@@ -46,7 +46,12 @@
                                 @if (!empty($widget->conf('text')))
                                 <h3>{{ $widget->conf('text') }}</h3>
                                 @endif
+                            @elseif (!empty($widget->conf('text')))
+                                <span class="custom-name" title="{{ __('dashboard.widgets.fields.name') }}">
+                                    <i class="fas fa-paragraph"></i> {{ $widget->conf('text') }}
+                                </span>
                             @endif
+
 
                             @if ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_UNMENTIONED)
                                 @if (!empty($widget->conf('entity')))

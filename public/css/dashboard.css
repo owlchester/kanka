@@ -254,6 +254,10 @@
   margin-top: 8px;
 }
 
+.campaign-dashboard-widgets .widget .custom-name {
+  font-size: 10pt;
+}
+
 .campaign-dashboard-widgets .add {
   border: 2px dashed #ccc;
 }
