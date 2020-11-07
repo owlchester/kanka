@@ -32,16 +32,25 @@
                         @endif
                     >
                         <div class="widget-overlay">
+                            @if ($widget->widget != \App\Models\CampaignDashboardWidget::WIDGET_HEADER)
                             <span class="widget-type">{{ __('dashboard.setup.widgets.' . $widget->widget) }}</span>
+                            @endif
+
                             @if ($widget->entity)
                                 <div class="widget-entity">
                                     {{ link_to($widget->entity->url(), $widget->entity->name) }}
                                 </div>
                             @endif
 
+                            @if ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_HEADER)
+                                @if (!empty($widget->conf('text')))
+                                <h3>{{ $widget->conf('text') }}</h3>
+                                @endif
+                            @endif
+
                             @if ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_UNMENTIONED)
                                 @if (!empty($widget->conf('entity')))
-                                <h5>{{ __('entities.' . $widget->conf('entity')) }}</h5>
+                                    <h5>{{ __('entities.' . $widget->conf('entity')) }}</h5>
                                 @endif
                             @endif
 
@@ -96,6 +105,9 @@
                         </div>
                         <div class="btn btn-block btn-default btn-lg" id="btn-widget-recent" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'recent']) }}">
                             <i class="fa fa-history"></i> {{ __('dashboard.setup.widgets.recent') }}
+                        </div>
+                        <div class="btn btn-block btn-default btn-lg" id="btn-widget-header" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => \App\Models\CampaignDashboardWidget::WIDGET_HEADER]) }}">
+                            <i class="fas fa-heading"></i> {{ __('dashboard.setup.widgets.header') }}
                         </div>
                         <div class="btn btn-block btn-default btn-lg" id="btn-widget-unmentioned" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'unmentioned']) }}">
                             <i class="fa fa-question"></i> {{ __('dashboard.setup.widgets.unmentioned') }}

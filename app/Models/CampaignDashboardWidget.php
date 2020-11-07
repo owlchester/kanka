@@ -35,6 +35,15 @@ class CampaignDashboardWidget extends Model
     const WIDGET_CALENDAR = 'calendar';
     const WIDGET_UNMENTIONED = 'unmentioned';
     const WIDGET_RANDOM = 'random';
+    const WIDGET_HEADER = 'header';
+
+    // Widgets that are automatically visible on the dashboard
+    const WIDGET_VISIBLE = [
+        self::WIDGET_RECENT,
+        self::WIDGET_UNMENTIONED,
+        self::WIDGET_RANDOM,
+        self::WIDGET_HEADER,
+    ];
 
     /**
      * Traits
