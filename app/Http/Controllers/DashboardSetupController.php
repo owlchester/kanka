@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
+use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
 
 class DashboardSetupController extends Controller
@@ -27,10 +28,16 @@ class DashboardSetupController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('dashboard', $campaign);
 
-        $widgets = CampaignDashboardWidget::positioned()->get();
+        // Validate dashboard
+        $dashboard = request()->has('dashboard') ? CampaignDashboard::where('id', request()->get('dashboard'))->first() : null;
+        $dashboards = CampaignDashboard::exclude($dashboard)->orderBy('name')->get();
+
+        $widgets = CampaignDashboardWidget::onDashboard($dashboard)->positioned()->get();
 
         return view('dashboard.setup')
             ->with('campaign', $campaign)
+            ->with('dashboards', $dashboards)
+            ->with('dashboard', $dashboard)
             ->with('widgets', $widgets);
     }
 

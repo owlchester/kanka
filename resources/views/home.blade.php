@@ -19,7 +19,41 @@
 
 @section('header-extra')
     <div class="dashboard-actions">
-        @if($settings)
+        @if(!empty($dashboards))
+            <div class="btn-group pull-right">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-cog"></i>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    @if (!empty($dashboard))
+                        <li>
+                            <a href="{{ route('dashboard', ['dashboard' => 'default']) }}">
+                                {{ __('dashboard.dashboards.default.title')}}
+                            </a>
+                        </li>
+                    @endif
+                    @foreach ($dashboards as $dash)
+                        @if (!empty($dashboard) && $dash->id == $dashboard->id)
+                            @continue
+                        @endif
+                        <li>
+                            <a href="{{ route('dashboard', ['dashboard' => $dash->id]) }}">
+                                {{ $dash->name }}
+                            </a>
+                        </li>
+                    @endforeach
+
+                    @if($settings)
+                        <li class="divider"></li>
+                        <li>
+                            <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}">
+                                {{ __('dashboard.settings.title') }}
+                            </a>
+                        </li>
+                    @endif
+                </ul>
+            </div>
+        @elseif($settings)
             <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-xl" title="{{ __('dashboard.settings.title') }}">
                 <i class="fa fa-cog"></i>
             </a>

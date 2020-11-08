@@ -4,6 +4,7 @@ namespace App\Services\Caches;
 
 use App\Models\Campaign;
 use App\Models\CampaignPlugin;
+use App\Models\CampaignRole;
 use App\Models\CampaignSetting;
 use App\Models\Plugin;
 use App\Models\PluginVersion;
@@ -247,6 +248,54 @@ class CampaignCacheService extends BaseCache
     }
 
     /**
+     * Build a list of dashboards setup for the campaign
+     * @return array[]
+     */
+    public function dashboards(): array
+    {
+        $cacheKey = $this->dashboardsKey();
+        if ($this->has($cacheKey)) {
+            return (array) $this->get($cacheKey);
+        }
+
+        $available = [
+            'admin' => [],
+            'public' => [],
+        ];
+
+        /** @var CampaignRole[] $roles */
+        $roles = $this->campaign->roles()->with(['dashboardRoles', 'dashboardRoles.dashboard'])->get();
+        foreach ($roles as $role) {
+            $dashboards = $role->dashboardRoles;
+            if ($dashboards->isEmpty()) {
+                continue;
+            }
+
+            $key = 'role_' . $role->id;
+            if ($role->is_admin) {
+                $key = 'admin';
+            } elseif ($role->is_public) {
+                $key = 'public';
+            }
+            $available[$key] = $dashboards;
+        }
+
+        $this->forever($cacheKey, $available);
+        return (array) $available;
+    }
+
+    /**
+     * @return $this
+     */
+    public function clearDashboards(): self
+    {
+        $this->forget(
+            $this->dashboardsKey()
+        );
+        return $this;
+    }
+
+    /**
      * Campaign members cache key
      * @return string
      */
@@ -289,5 +338,14 @@ class CampaignCacheService extends BaseCache
     protected function themeKey(): string
     {
         return 'campaign_' . $this->campaign->id . '_theme';
+    }
+
+    /**
+     * Campaign dashboards cache key
+     * @return string
+     */
+    protected function dashboardsKey(): string
+    {
+        return 'campaign_' . $this->campaign->id . '_dashboards';
     }
 }

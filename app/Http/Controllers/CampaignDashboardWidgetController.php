@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
 use App\Http\Requests\StoreCampaignDashboardWidget;
+use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
 use App\Services\EntityService;
 
@@ -52,9 +53,12 @@ class CampaignDashboardWidgetController extends Controller
         $widget = request()->get('widget', 'preview');
         $entities = $this->buildEntities();
 
+        $dashboard = request()->has('dashboard') ? CampaignDashboard::where('id', request()->get('dashboard'))->first() : null;
+
         return view('dashboard.widgets.forms.form', [
             'widget' => $widget,
-            'entities' => $entities
+            'entities' => $entities,
+            'dashboard' => $dashboard
         ]);
     }
 
@@ -69,9 +73,9 @@ class CampaignDashboardWidgetController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('dashboard', $campaign);
 
-        CampaignDashboardWidget::create($request->all());
+        $widget = CampaignDashboardWidget::create($request->all());
 
-        return redirect()->route('dashboard.setup')
+        return redirect()->route('dashboard.setup', $widget->dashboard_id ? ['dashboard' => $widget->dashboard_id] : null)
             ->with('success', trans('dashboard.widgets.create.success'));
     }
 
@@ -106,7 +110,7 @@ class CampaignDashboardWidgetController extends Controller
 
         $campaignDashboardWidget->update($request->all());
 
-        return redirect()->route('dashboard.setup')
+        return redirect()->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ? ['dashboard' => $campaignDashboardWidget->dashboard_id] : null)
             ->with('success', trans('dashboard.widgets.update.success'));
     }
 
@@ -124,7 +128,7 @@ class CampaignDashboardWidgetController extends Controller
 
         $campaignDashboardWidget->delete();
 
-        return redirect()->route('dashboard.setup')
+        return redirect()->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ? ['dashboard' => $campaignDashboardWidget->dashboard_id] : null)
             ->with('success', trans('dashboard.widgets.delete.success'));
     }
 

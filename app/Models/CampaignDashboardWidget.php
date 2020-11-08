@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
-use App\Traits\AclTrait;
 use App\Traits\CampaignTrait;
-use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 
 /**
@@ -16,14 +14,17 @@ use Illuminate\Support\Arr;
  * @property integer $id
  * @property integer $campaign_id
  * @property integer $entity_id
+ * @property int $dashboard_id
  * @property string $widget
  * @property string $config
  * @property integer $width
  * @property integer $position
  * @property Tag[] $tags
  * @property Entity $entity
+ * @property CampaignDashboard $dashboard
  *
  * @method static self|Builder positioned()
+ * @method static self|Builder onDashboard(CampaignDashboard $dashboard = null)
  */
 class CampaignDashboardWidget extends Model
 {
@@ -61,6 +62,7 @@ class CampaignDashboardWidget extends Model
         'position',
         'width',
         'is_full',
+        'dashboard_id',
     ];
 
     protected $casts = [
@@ -81,6 +83,14 @@ class CampaignDashboardWidget extends Model
     public function entity()
     {
         return $this->belongsTo(\App\Models\Entity::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function dashboard()
+    {
+        return $this->belongsTo(\App\Models\CampaignDashboard::class, 'dashboard_id', 'id');
     }
 
     /**
@@ -123,6 +133,19 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeOnDashboard(Builder $query, CampaignDashboard $dashboard = null)
+    {
+        if (empty($dashboard)) {
+            return $query->whereNull('dashboard_id');
+        }
+
+        return $query->where('dashboard_id', $dashboard->id);
+    }
+
+    /**
      * @param $value
      */
     public function conf($value)
@@ -137,7 +160,7 @@ class CampaignDashboardWidget extends Model
      * @param $lastSync
      * @return mixed
      */
-    public function scopeLastSync(\Illuminate\Database\Eloquent\Builder $query, $lastSync)
+    public function scopeLastSync(Builder $query, $lastSync)
     {
         if (empty($lastSync)) {
             return $query;

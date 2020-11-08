@@ -273,6 +273,7 @@ Route::group([
             'campaign_roles.campaign_role_users' => 'CampaignRoleUserController',
             //'campaigns.campaign_roles.campaign_permissions' => 'CampaignPermissions',
 
+            'campaign_dashboards' => 'Campaign\CampaignDashboardController',
             'campaign_dashboard_widgets' => 'CampaignDashboardWidgetController',
         ]);
         Route::get('/campaigns/{campaign}/leave', 'CampaignController@leave')->name('campaigns.leave');

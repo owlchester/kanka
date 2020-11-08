@@ -13,11 +13,13 @@ use Illuminate\Database\Eloquent\Builder;
  * Class Attribute
  * @package App\Models
  *
+ * @property integer $id
  * @property integer $campaign_id
  * @property string $name
  * @property boolean $is_admin
  * @property boolean $is_public
  * @property HasMany $permissions
+ * @property CampaignDashboardRole[] $dashboardRoles
  */
 class CampaignRole extends Model
 {
@@ -42,7 +44,7 @@ class CampaignRole extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function campaign()
     {
@@ -50,12 +52,20 @@ class CampaignRole extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function users()
     {
         return $this->hasMany('App\Models\CampaignRoleUser', 'campaign_role_id');
         //return $this->belongsToMany('App\User', 'campaign_role_users');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function dashboardRoles()
+    {
+        return $this->hasMany(CampaignDashboardRole::class, 'campaign_role_id', 'id');
     }
 
     /**

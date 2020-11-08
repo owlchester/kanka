@@ -4,6 +4,7 @@
 namespace App\Models\Relations;
 
 
+use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignPlugin;
 use App\Models\CampaignRole;
@@ -42,6 +43,7 @@ use App\User;
  * @property CampaignPlugin[] $campaignPlugins
  *
  * @property CampaignDashboardWidget[] $widgets
+ * @property CampaignDashboard[] $dashboards
  */
 trait CampaignRelations
 {
@@ -326,5 +328,10 @@ trait CampaignRelations
     public function widgets()
     {
         return $this->hasMany(CampaignDashboardWidget::class);
+    }
+
+    public function dashboards()
+    {
+        return $this->hasMany(CampaignDashboard::class);
     }
 }
