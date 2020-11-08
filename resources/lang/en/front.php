@@ -72,6 +72,7 @@ return [
             'beta'                  => 'Beta access to some new features for 30 days before general release.',
             'boosted'               => 'Boosted campaign',
             'css'                   => 'Custom campaign css',
+            'dashboards'            => 'Set custom dashboards for roles of the campaign',
             'description'           => 'Certain pledge levels provide users with boosters that they can use to boost campaigns. These provide the following benefits.',
             'entity_files'          => 'Increased max uploaded files per entity (up to 5 instead of 3)',
             'header_image'          => 'Entity header image',
