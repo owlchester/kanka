@@ -60,6 +60,12 @@
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
+                <td class="text">{{ __('front.features.patreon.no_ads') }}</td>
+                <td></td>
+                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa fa-check-circle"></i></td>
+            </tr>
+            <tr>
                 <td class="text">{{ __('front.features.patreon.api_calls') }}</td>
                 <td></td>
                 <td><i class="fa fa-check-circle"></i></td>
@@ -136,6 +142,10 @@
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.images') }}</td>
+                <td><i class="fa fa-check-circle"></i></td>
+            </tr>
+            <tr>
+                <td class="text">{{ __('front.features.boosts.no_ads') }}</td>
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>

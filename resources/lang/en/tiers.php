@@ -12,6 +12,7 @@ return [
         'hall_of_fame'      => 'Hall of Fame',
         'map_size'          => ':size Map size uploads',
         'nice_image'        => 'Default entity images',
+        'no_ads'            => 'No ads',
         'pagination'        => ':amount Max paginated results (entities displayed per page)',
         'vote_influence'    => 'Community vote influence',
     ],

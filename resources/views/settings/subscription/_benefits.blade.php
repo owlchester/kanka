@@ -36,6 +36,11 @@
 </tr>
 <tr>
     <td></td>
+    <td><i class="fa fa-check"></i> {{ __('tiers.features.no_ads') }}</td>
+    <td><i class="fa fa-check"></i> {{ __('tiers.features.no_ads') }}</td>
+</tr>
+<tr>
+    <td></td>
     <td><i class="fa fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), ['target' => '_blank']) !!}</td>
     <td><i class="fa fa-check"></i> {!! link_to_route('community-votes.index', __('tiers.features.community_vote'), ['target' => '_blank']) !!}</td>
 </tr>

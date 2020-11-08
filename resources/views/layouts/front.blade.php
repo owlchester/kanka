@@ -35,7 +35,11 @@
     <link rel="dns-prefetch" href="//kit.fontawesome.com">
 
     <link href="{{ mix('css/front.css') }}" rel="stylesheet">
-    @if(app()->getLocale() == 'he')
+    @if(isset($skipPerf))
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    @endif
+
+@if(app()->getLocale() == 'he')
         <link href="{{ mix('css/front-rtl.css') }}" rel="stylesheet">
     @endif
     @yield('styles')
@@ -190,6 +194,7 @@
     window.onload = init;
 </script>
 <!-- Async Bootstrap Loading - add this to your footer -->
+@if(!isset($skipPerf))
 <script async>
     var cb = function () {
         var l = document.createElement('link');
@@ -208,6 +213,7 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
 </noscript>
+@endif
 @include('layouts._tracking', ['frontLayout' => true, 'noads' => true])
 @yield('scripts')
 </body>

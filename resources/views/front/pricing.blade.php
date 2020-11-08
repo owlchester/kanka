@@ -1,6 +1,7 @@
 @extends('layouts.front', [
     'title' => __('front.menu.pricing'),
-    'active' => 'pricing'
+    'active' => 'pricing',
+    'skipPerf' => true,
 ])
 @section('content')
 
