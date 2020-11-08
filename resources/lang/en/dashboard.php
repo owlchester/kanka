@@ -74,9 +74,10 @@ return [
         'title'     => 'Campaign Dashboard Setup',
         'widgets'   => [
             'calendar'      => 'Calendar',
+            'campaign'      => 'Campaign header',
             'header'        => 'Header',
             'preview'       => 'Entity preview',
-            'random'        => 'Random Entity',
+            'random'        => 'Random entity',
             'recent'        => 'Recently modified',
             'unmentioned'   => 'Unmentioned entities',
         ],
@@ -91,6 +92,9 @@ return [
             'events_today'      => 'Today',
             'previous_events'   => 'Previous',
             'upcoming_events'   => 'Upcoming',
+        ],
+        'campaign' => [
+            'helper' => 'This widget displayed the campaign header. This widget is always shown on the default dashboard.',
         ],
         'create'        => [
             'success'   => 'Widget added to the dashboard.',

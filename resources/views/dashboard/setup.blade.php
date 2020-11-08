@@ -191,6 +191,12 @@
                         <div class="btn btn-block btn-default btn-lg" id="btn-widget-random" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'random', 'dashboard' => $dashboard]) }}">
                             <i class="fas fa-dice-d20"></i> {{ __('dashboard.setup.widgets.random') }}
                         </div>
+                        @if(!empty($dashboard))
+
+                            <div class="btn btn-block btn-default btn-lg" id="btn-widget-campaign" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'campaign', 'dashboard' => $dashboard]) }}">
+                                <i class="fas fa-th-list"></i> {{ __('dashboard.setup.widgets.campaign') }}
+                            </div>
+                        @endif
                     </div>
 
                     <div id="modal-content-target">

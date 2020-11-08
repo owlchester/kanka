@@ -37,6 +37,7 @@ class CampaignDashboardWidget extends Model
     const WIDGET_UNMENTIONED = 'unmentioned';
     const WIDGET_RANDOM = 'random';
     const WIDGET_HEADER = 'header';
+    const WIDGET_CAMPAIGN = 'campaign';
 
     // Widgets that are automatically visible on the dashboard
     const WIDGET_VISIBLE = [
@@ -114,6 +115,9 @@ class CampaignDashboardWidget extends Model
      */
     public function colSize(): int
     {
+        if ($this->widget == self::WIDGET_CAMPAIGN) {
+            return 12;
+        }
         if (!empty($this->width)) {
             return $this->width;
         }
