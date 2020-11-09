@@ -52,9 +52,14 @@
                         @foreach (trans('errors.' . $error . '.body') as $text)
                             <p class="mb-5">{{ $text }}</p>
                         @endforeach
+
+                        @if($error == 503)
+                                <p class="text-warning">This downtime will last until roughly 09:00 AM UTC as we fix some issues with the servers.</p>
+                        @endif
                     @else
                     <p class="mb-5">{{ trans('errors.' . $error . '.body') }}</p>
                     @endif
+
 
                     <p>{!! trans('errors.footer', ['discord' => link_to(config('social.discord'), 'Discord')]) !!}</p>
 
