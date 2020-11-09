@@ -51,8 +51,8 @@ return [
     'hints'         => [
         'is_dead'                   => 'This character is dead',
         'is_personality_visible'    => 'Uncheck this option to hide the whole personality section from non Admin users.',
-        'personality_visible'       => 'Personality traits of this character are visible to all.',
         'personality_not_visible'   => 'Personality traits of this character are currently only visible to Admin users.',
+        'personality_visible'       => 'Personality traits of this character are visible to all.',
     ],
     'index'         => [
         'actions'       => [

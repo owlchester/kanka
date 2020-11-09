@@ -54,10 +54,18 @@ return [
         'abilities'         => [
             'title' => 'Pouvoirs et Inventaires',
         ],
+        'actions'           => [
+            'rpg'           => 'Pour les campagnes JDR',
+            'worldbuilder'  => 'Pour les créateurs d\'univers',
+        ],
         'api'               => [
             'description'   => 'Envie de développer des outils qui interagissent avec Kanka? C\'est possible! Aller à la :link.',
             'link'          => 'Documentation d\'API',
             'title'         => 'API',
+        ],
+        'audio'             => [
+            'description'   => 'Simplement incorporer des videos et clips audio dans les entités.',
+            'title'         => 'Son & Video',
         ],
         'boosts'            => [
             'beta'                  => 'Accès beta à certaines fonctionnalités 30 jours avant leur sortie générale.',
@@ -122,6 +130,7 @@ return [
             'hall_of_fame'      => 'Nom dans la :link',
             'impact'            => 'Impact sur les futures fonctionnalités',
             'monthly_vote'      => 'Participation dans les votes Patreon',
+            'no_ads'            => 'Aucune publicité ne sera affichée',
             'pagination'        => 'Augmentation de la limite des résultats paginés',
             'pagination_help'   => 'Ceci est le nombre maximal de résultats affichés par page, et non de la limite du nombre d\'entités par campagne.',
             'title'             => 'Support Patreon',
@@ -134,7 +143,8 @@ return [
             'title'         => 'Permissions',
         ],
         'quests'            => [
-            'title' => 'Quêtes & Journaux',
+            'description'   => 'Préparer la prochaine session ou garder trace des événements avec notre fonction de journalisation avancée!',
+            'title'         => 'Quêtes & Journaux',
         ],
         'relations'         => [
             'description'   => 'Chaque entité peut avoir un réseau complexe de relations avec d\'autres entités, y compris des relations secrètes et invisibles aux joueurs.',
@@ -143,11 +153,19 @@ return [
         'rpg'               => [
             'title' => 'Gestion de campagne JDR',
         ],
+        'timelines'         => [
+            'description'   => 'Représenter visuellement les chronologies des mondes, empires, familles, ou d\'un personnage.',
+            'title'         => 'Chronologies',
+        ],
         'title'             => 'Beaucoup de fonctionnalités avec une flexibilité sans pareil',
         'unlimited'         => 'Illimité',
         'updates'           => [
             'description'   => 'Kanka bénéficie de mises à jour régulières choisies par la communauté.',
             'title'         => 'Mise à jour Fréquentes',
+        ],
+        'worldbuilding'     => [
+            'description'   => 'Kanka rend la création d\'univers complexes faciles avec nos modules de Cartes, Chronologies, Calendriers et Événements.',
+            'title'         => 'Création d\'univers',
         ],
     ],
     'first_block'   => [

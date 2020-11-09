@@ -273,8 +273,8 @@ return [
             'target'    => 'Please be aware that some data might be lost when moving an element from one type to another.',
         ],
         'panels'        => [
-          'change' => 'Change entity type',
-          'move' => 'Move to another campaign',
+            'change'    => 'Change entity type',
+            'move'      => 'Move to another campaign',
         ],
         'success'       => 'Entity \':name\' moved.',
         'success_copy'  => 'Entity \':name\' copied.',

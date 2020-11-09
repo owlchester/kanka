@@ -27,9 +27,9 @@ return [
         'type'          => 'Type',
     ],
     'helpers'       => [
-        'reorder'       => 'Drag and drop elements of the era to reorder them.',
-        'reorder_tooltip' => 'Click to enable manual reordering of elements using drag and drop.',
-        'reverse_order' => 'Enable to display eras in reverse chronological order (older era first)',
+        'reorder'           => 'Drag and drop elements of the era to reorder them.',
+        'reorder_tooltip'   => 'Click to enable manual reordering of elements using drag and drop.',
+        'reverse_order'     => 'Enable to display eras in reverse chronological order (older era first)',
     ],
     'index'         => [
         'add'   => 'New Timeline',

@@ -37,6 +37,16 @@ return [
     'maps'                  => 'Maps',
     'menu_link'             => 'Quick Link',
     'menu_links'            => 'Quick Links',
+    'new'                   => [
+        'character'     => 'New character',
+        'event'         => 'New event',
+        'family'        => 'New family',
+        'item'          => 'New item',
+        'location'      => 'New location',
+        'note'          => 'New note',
+        'organisation'  => 'New organisation',
+        'race'          => 'New race',
+    ],
     'note'                  => 'Note',
     'notes'                 => 'Notes',
     'organisation'          => 'Organisation',
@@ -49,16 +59,4 @@ return [
     'tags'                  => 'Tags',
     'timeline'              => 'Timeline',
     'timelines'             => 'Timelines',
-
-
-    'new' => [
-        'character' => 'New character',
-        'location' => 'New location',
-        'item' => 'New item',
-        'note' => 'New note',
-        'family' => 'New family',
-        'event' => 'New event',
-        'organisation' => 'New organisation',
-        'race' => 'New race',
-    ],
 ];
