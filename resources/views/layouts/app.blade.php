@@ -132,20 +132,23 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                 @include('partials.success')
 
 @if(!empty(config('tracking.adsense')) && (auth()->guest() || auth()->user()->showAds()) && !isset($skipBannerAd) && (!isset($sidebar) || $sidebar != 'settings'))
-                <!-- Side -->
-                <ins class="adsbygoogle"
-                     style="display:block"@if (config('app.env') != 'prod')
-                     data-adtest="on"@endif
-                     data-ad-client="ca-pub-1686281547359435"
-                     data-ad-slot="2711573107"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-                <p class="text-center text-muted">{!! __('misc.ads.remove_v2', [
-    'supporting' => link_to_route('settings.subscription', __('misc.ads.supporting'), [], ['target' => '_blank']),
-    'boosting' => link_to_route('front.features', __('misc.ads.boosting'), ['#boost'], ['target' => '_blank']),
-    ]) !!}</p>
+                <div class="row">
+                    <div class="col-md-6 col-sm-8 col-md-offset-3 col-sm-offset-1">
+                        <ins class="adsbygoogle"
+                             style="display:block"@if (config('app.env') != 'prod')
+                             data-adtest="on"@endif
+                             data-ad-client="ca-pub-1686281547359435"
+                             data-ad-slot="2711573107"
+                             data-full-width-responsive="true"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                        <p class="text-center text-muted">{!! __('misc.ads.remove_v2', [
+            'supporting' => link_to_route('settings.subscription', __('misc.ads.supporting'), [], ['target' => '_blank']),
+            'boosting' => link_to_route('front.features', __('misc.ads.boosting'), ['#boost'], ['target' => '_blank']),
+            ]) !!}</p>
+                </div>
+            </div>
 @endif
 
                 @yield('entity-actions')
