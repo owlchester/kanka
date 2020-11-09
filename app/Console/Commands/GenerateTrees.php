@@ -33,8 +33,8 @@ class GenerateTrees extends Command
      */
     public function handle()
     {
-        Journal::fixTree();
-        $this->info("Fixed journals.");
+        Location::fixTree();
+        $this->info("Fixed locations.");
 
         /*Race::fixTree();
         $this->info("Fixed races.");
@@ -47,7 +47,9 @@ class GenerateTrees extends Command
         Tag::fixTree();
         $this->info("Fixed tags.");
         Ability::fixTree();
-        $this->info("Fixed abilities.");*/
+        $this->info("Fixed abilities.");
+        Journal::fixTree();
+        $this->info("Fixed journals.");*/
         //$this->info("Fixed quests.");
     }
 }
