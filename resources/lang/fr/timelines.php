@@ -27,8 +27,9 @@ return [
         'type'          => 'Type',
     ],
     'helpers'       => [
-        'reorder'       => 'Glisser déposer les éléments de l\'ère pour les réorganiser.',
-        'reverse_order' => 'Activer pour afficher les ères dans le sens chronologique inversé (plus ancien en premier)',
+        'reorder'           => 'Glisser déposer les éléments de l\'ère pour les réorganiser.',
+        'reorder_tooltip'   => 'Cliquer pour activer la réorganisation des éléments, puis les glisser-déposer pour les réordonner.',
+        'reverse_order'     => 'Activer pour afficher les ères dans le sens chronologique inversé (plus ancien en premier)',
     ],
     'index'         => [
         'add'   => 'Nouvelle chronologie',

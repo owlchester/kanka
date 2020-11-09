@@ -483,7 +483,7 @@ class CrudController extends Controller
             $fullview = 'cruds.subpage.' . $view;
         }
 
-        $data = [];
+        $data = $markers = [];
         $datagridSorter = $this->datagridSorter;
 
         if ($view == 'map-points') {
@@ -493,6 +493,14 @@ class CrudController extends Controller
                 ->orderBy('name', 'ASC')
                 ->with(['location'])
                 ->has('location')
+                ->get();
+
+            $markers = $model
+                ->entity
+                ->mapMarkers()
+                ->orderBy('map_id', 'DESC')
+                ->with('map')
+                ->has('map')
                 ->paginate();
         }
 
@@ -501,7 +509,8 @@ class CrudController extends Controller
             'model',
             'name',
             'datagridSorter',
-            'data'
+            'data',
+            'markers'
         ));
     }
 

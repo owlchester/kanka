@@ -2,7 +2,7 @@
 
 return [
     'actions'       => [
-        'add_element'   => 'Pridať k veku :era',
+        'add_element'   => 'Pridať prvok k veku :era',
         'back'          => 'Späť k :name',
         'edit'          => 'Upraviť časovú os',
         'reorder'       => 'Upraviť poradie',
@@ -27,7 +27,7 @@ return [
         'type'          => 'Typ',
     ],
     'helpers'       => [
-        'reorder'           => 'Pretiahni prvky vo veku pomocou Drag & Drop, aby ste ich nanovo usporiadali.',
+        'reorder'           => 'Pretiahni prvky vo veku pomocou Drag & Drop a usporiadaj ich podľa seba.',
         'reorder_tooltip'   => 'Kliknutím aktivuješ ručné usporiadanie prvkov pomocou Drag & Drop.',
         'reverse_order'     => 'Aktivovaním zobrazíš veky v spätnom chronologickom poradí (najstarší vek ako prvý).',
     ],

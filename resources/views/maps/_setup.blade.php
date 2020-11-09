@@ -2,6 +2,13 @@
 /**
  * @var \App\Models\Map $map
  */
+$focus = $map->centerFocus();
+if (isset($single) && $single) {
+    $focus = "$model->latitude, $model->longitude";
+} elseif (request()->has('lat') && request()->has('lng')) {
+    $focus = ((float) request()->get('lat')) . ', ' . ((float) request()->get('lng'));
+}
+
 ?><script type="text/javascript">
     var bounds{{ $map->id }} = [[0, 0], [{{ floor($map->height / 1) }}, {{ floor($map->width / 1) }}]];
     var baseLayer{{ $map->id }} = L.imageOverlay('{{ Storage::url($map->image) }}', bounds{{ $map->id }});
@@ -37,7 +44,7 @@
 @endif
     var map{{ $map->id }} = L.map('map{{ $map->id }}', {
         crs: L.CRS.Simple,
-        center: [ @if(isset($single) && $single) {{ $model->latitude }}, {{ $model->longitude }} @else {{ $map->centerFocus() }} @endif ],
+        center: [ {{ $focus }} ],
         noWrap: true,
         dragging: true,
         tap: false,

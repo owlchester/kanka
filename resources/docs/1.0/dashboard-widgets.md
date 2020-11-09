@@ -18,7 +18,7 @@ You can get a list of all the dashboard Widgets of a campaign by using the follo
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| GET/HEAD | `campaign-dashboard-widgets` | Default |
+| GET/HEAD | `campaign_dashboard_widgets` | Default |
 
 ### Results
 ```json
@@ -50,7 +50,7 @@ To get the details of a single dashboard Widget, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| GET/HEAD | `campaign-dashboard-widgets/{campaign-dashboard-widget.id}` | Default |
+| GET/HEAD | `campaign_dashboard_widgets/{campaign-dashboard-widget.id}` | Default |
 
 ### Results
 ```json
@@ -81,7 +81,7 @@ To create a dashboard Widget, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| POST | `campaign-dashboard-widgets` | Default |
+| POST | `campaign_dashboard_widgets` | Default |
 
 ### Body
 
@@ -107,7 +107,7 @@ To update a dashboard widget, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| PUT/PATCH | `campaign-dashboard-widgets/{campaign-dashboard-widget.id}` | Default |
+| PUT/PATCH | `campaign_dashboard_widgets/{campaign-dashboard-widget.id}` | Default |
 
 ### Body
 
@@ -125,7 +125,7 @@ To delete a dashboard widget, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| DELETE | `campaign-dashboard-widgets/{campaign-dashboard-widget.id}` | Default |
+| DELETE | `campaign_dashboard_widgets/{campaign-dashboard-widget.id}` | Default |
 
 ### Results
 

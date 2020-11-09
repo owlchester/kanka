@@ -6,6 +6,7 @@
 @extends('layouts.front', [
     'title' => __('front/community-votes.title'),
     'description' => __('front/community-votes.description'),
+    'skipPerf' => true,
 ])
 
 @section('og')

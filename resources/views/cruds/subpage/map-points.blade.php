@@ -1,4 +1,7 @@
-<?php /** @var \App\Models\MiscModel $model */ ?>
+<?php /**
+ * @var \App\Models\MiscModel $model
+ * @var \App\Models\MapMarker $marker
+ */ ?>
 @extends('layouts.app', [
     'title' => trans('entities/map-points.title', ['name' => $model->name]),
     'description' => '',
@@ -27,15 +30,23 @@
 
                     <table id="entity-map-points" class="table table-hover {{ $data->count() === 0 ? 'export-hidden' : '' }}">
                         <tbody><tr>
-                            <th class="avatar"><br /></th>
                             <th>{{ trans('locations.fields.name') }}</th>
                             <th>{{ trans('locations.fields.map') }}</th>
                         </tr>
-                        @foreach ($data as $location)
+                        @foreach ($markers as $marker)
                             <tr>
                                 <td>
-                                    <a class="entity-image" style="background-image: url('{{ $location->location->getImageUrl(40) }}');" title="{{ $location->location->name }}" href="{{ route('locations.show', $location->location_id) }}"></a>
+                                    {!! $marker->map->tooltipedLink() !!}
                                 </td>
+                                <td>
+                                    <a href="{{ route('maps.explore', [$marker->map_id, 'lat' => $marker->latitude, 'lng' => $marker->longitude]) }}" target="_blank">
+                                        <i class="fa fa-map"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                        @foreach ($data as $location)
+                            <tr>
                                 <td>
                                     {!! $location->location->tooltipedLink() !!}
                                 </td>
@@ -49,7 +60,7 @@
                         </tbody>
                     </table>
 
-                    {{ $data->links() }}
+                    {{ $markers->links() }}
                 </div>
             </div>
         </div>

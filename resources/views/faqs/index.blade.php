@@ -167,6 +167,11 @@
                                     {{ __('faq.early-access.question') }}
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'unboost', 'slug' => Str::slug(__('faq.unboost.question'))]) }}">
+                                    {{ __('faq.unboost.question') }}
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <div class="col-md-4">

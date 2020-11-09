@@ -129,7 +129,7 @@ return [
         ],
         'success'       => [
             'copy_to_campaign'  => '{1} :count der in :campaign kopierten Objekte. | [2, *] :count  der in :campaign kopierten Objekte.',
-            'editing'           => '1} :count objekt wurde aktualisiert. | [2, *] :count objekte wurden aktualisiert.',
+            'editing'           => '{1} :count objekt wurde aktualisiert. | [2, *] :count objekte wurden aktualisiert.',
             'permissions'       => 'Berechtigungen für :count Objekt geändert.|Berechtigungen für :count Objekte geändert.',
             'private'           => ':count Objekt ist jetzt privat.|:count Objekte sind jetzt privat.',
             'public'            => ':count Objekt ist jetzt sichtbar.|:count Objekte sind jetzt sichtbar.',

@@ -254,7 +254,7 @@ return [
         'calendar_date'         => 'Dátum umožňuje filtrovať zoznamy a zadať udalosť do vybraného kalendára.',
         'header_image'          => 'Tento obrázok je umiestnený nad objekt. Odporúčame používať obrázok na šírku.',
         'image_limitations'     => 'Podporované formáty: jpg, png a gif. Max. veľkosť súboru: :size.',
-        'image_patreon'         => 'Zvýš svoj limit tým, že nás podporíš na Patreone.',
+        'image_patreon'         => 'Chceš zvýšiť limit pre veľkosť súborov?',
         'is_private'            => 'Nastaviť ako súkromný.',
         'is_star'               => 'Pripnuté objekty sa zobrazia v menu objektu.',
         'map_limitations'       => 'Podporované formáty: jpg, png, gif a svg. Max. veľkosť súboru: :size.',

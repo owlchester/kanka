@@ -125,7 +125,6 @@ class User extends \TCG\Voyager\Models\User
     }
 
 
-
     /**
      * Get the other campaigns of the user
      * @param bool $hasEmpty
@@ -216,13 +215,11 @@ class User extends \TCG\Voyager\Models\User
             // Elementals get massive upload sizes
             if ($this->isElementalPatreon()) {
                 return $readable ? '25MB' : 25600;
-            }
-            elseif ($what == 'map') {
+            } elseif ($what == 'map') {
                 return $readable ? '10MB' : 10240;
             }
             return $readable ? '8MB' : 8192;
-        }
-        elseif ($what == 'map') {
+        } elseif ($what == 'map') {
             return $readable ? '3MB' : 3072;
         }
         return $readable ? '1MB' : 2048;
@@ -254,8 +251,7 @@ class User extends \TCG\Voyager\Models\User
     {
         return ($this->hasRole('patreon') && !empty($this->patreon_pledge)
                 && $this->patreon_pledge != Patreon::PLEDGE_KOBOLD)
-           || $this->hasRole('admin')
-        ;
+            || $this->hasRole('admin');
     }
 
     /**
@@ -276,7 +272,6 @@ class User extends \TCG\Voyager\Models\User
     {
         return !empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_OWLBEAR;
     }
-
 
 
     /**
@@ -346,5 +341,25 @@ class User extends \TCG\Voyager\Models\User
             return '€';
         }
         return 'US$';
+    }
+
+    /**
+     * Determine if ads should be shown for the user or campaign
+     * @return bool
+     */
+    public function showAds(): bool
+    {
+        // Patrons and subs don't have ads
+        if ($this->isPatron()) {
+            return false;
+        }
+
+        // Campaigns that are boosted don't eirhter
+        $campaign = CampaignLocalization::getCampaign();
+        if (!empty($campaign) && $campaign->boosted()) {
+            return false;
+        }
+
+        return true;
     }
 }

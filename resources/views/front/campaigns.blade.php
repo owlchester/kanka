@@ -2,6 +2,7 @@
 /** @var \App\Models\Campaign $camp */
 ?>@extends('layouts.front', [
     'title' => trans('front.menu.campaigns'),
+    'skipPerf' => true,
 ])
 
 @inject('languages', 'App\Services\LanguageService')

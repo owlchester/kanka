@@ -17,7 +17,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $code
  * @property boolean $is_valid
+ * @property int $user_id
  *
+ * @property User $user
  * @property User[] $users
  */
 class Referral extends Model
@@ -27,6 +29,7 @@ class Referral extends Model
     public $fillable = [
         'code',
         'is_valid',
+        'user_id',
     ];
 
     public $sortableColumns = [
@@ -34,8 +37,21 @@ class Referral extends Model
         'is_valid',
     ];
 
+    /**
+     * Users who used the referral
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function users()
     {
         return $this->hasMany(User::class);
+    }
+
+    /**
+     * Partner attached to the referral
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

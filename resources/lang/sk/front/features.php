@@ -2,9 +2,9 @@
 
 return [
     'gm'            => [
-        'title' => 'Rozprávači/ky',
+        'title' => 'Rozprávači a rozprávačky príbehov',
     ],
     'worldbuilding' => [
-        'title' => 'Tvorcovia/kyne svetov',
+        'title' => 'Tvorcovia a tvorkyne svetov',
     ],
 ];

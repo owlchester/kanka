@@ -131,17 +131,21 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                 @endif
                 @include('partials.success')
 
-@if(auth()->guest() && !empty(config('tracking.adsense')))
+@if(!empty(config('tracking.adsense')) && (auth()->guest() || auth()->user()->showAds()) && !isset($skipBannerAd) && (!isset($sidebar) || $sidebar != 'settings'))
                 <!-- Side -->
                 <ins class="adsbygoogle"
-                     style="display:block"
+                     style="display:block"@if (config('app.env') != 'prod')
+                     data-adtest="on"@endif
                      data-ad-client="ca-pub-1686281547359435"
                      data-ad-slot="2711573107"
-                     data-ad-format="auto"></ins>
+                     data-full-width-responsive="true"></ins>
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
-                <p class="text-center text-muted">{!! __('misc.ads.remove', ['login' => link_to_route('login', __('misc.ads.login'))]) !!}</p>
+                <p class="text-center text-muted">{!! __('misc.ads.remove_v2', [
+    'supporting' => link_to_route('settings.subscription', __('misc.ads.supporting'), [], ['target' => '_blank']),
+    'boosting' => link_to_route('front.features', __('misc.ads.boosting'), ['#boost'], ['target' => '_blank']),
+    ]) !!}</p>
 @endif
 
                 @yield('entity-actions')

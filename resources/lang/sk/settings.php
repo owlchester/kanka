@@ -53,7 +53,7 @@ return [
             'more'      => 'Zisti viac o všetkých funkcionalitách.',
             'second'    => 'Boostnutie kampane odomkne nasledujúce výhody:',
             'theme'     => 'Nastaviteľnú tému a vizuálny štýl kampane.',
-            'third'     => 'Ak chceš boostnuť kampaň, prejdi na stránku kampane a klikni na ":boost_button" tlačidlo nad ":edit_button" tlačidlom.',
+            'third'     => 'Ak chceš boostnuť kampaň, prejdi na stránku kampane a klikni na tlačidlo ":boost_button" nad tlačidlom ":edit_button".',
             'tooltip'   => 'Nastaviteľné bubliny pre objekty.',
             'upload'    => 'Navýšená veľkosť pre nahrávanie súborov pre každého člena kampane.',
         ],

@@ -12,6 +12,7 @@ return [
         'hall_of_fame'      => 'Hall of Fame',
         'map_size'          => ':size taille de carte uploadée',
         'nice_image'        => 'Image d\'entité par défaut',
+        'no_ads'            => 'Pas de publicité',
         'pagination'        => ':amount résultats max paginés',
         'vote_influence'    => 'Influence sur les votes communautaires',
     ],

@@ -1,7 +1,7 @@
 @extends('layouts.app', [
     'title' => trans('campaigns.show.title', ['name' => $campaign->name]),
     'breadcrumbs' => [
-        ['url' => route('campaigns.index'), 'label' => trans('campaigns.index.title')]
+        ['url' => route('campaign'), 'label' => trans('campaigns.index.title')]
     ],
     'canonical' => true,
     'mainTitle' => false,

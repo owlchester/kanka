@@ -144,6 +144,10 @@ TEXT
         'timestamp' => 'Dernière mise à jour :date',
         'title'     => 'FAQ :name',
     ],
+    'unboost'               => [
+        'answer'    => 'Les éléments et données d\'une campagne boostée ne sont pas supprimé mais simplement cachés. Si une campagne est à nouveau boostée dans le future, les données sont à nouveau visible.',
+        'question'  => 'Que ce passe-t-il si une campagne n\'est plus boostée?',
+    ],
     'user-switch'           => [
         'answer'    => 'Les permissions peuvent rapidement devenir compliquées, surtout au sein de grande campagne. En tant qu\'administateur d\'une campagne, naviguer vers la page affichant les membres d\'une campagne permet de cliquer sur le bouton "Basculer". Cela permet d\'afficher la campagne avec les permissions de ce compte.',
         'question'  => 'Les permissions de ma campagne sont définies, comment les tester?',

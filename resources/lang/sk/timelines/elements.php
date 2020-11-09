@@ -3,7 +3,7 @@
 return [
     'create'        => [
         'success'   => 'Prvok pridaný na časovú os.',
-        'title'     => 'Nový prvok na časovej osy',
+        'title'     => 'Nový prvok na časovej osi',
     ],
     'delete'        => [
         'success'   => 'Prvok :name odstránený.',

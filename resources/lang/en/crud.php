@@ -13,7 +13,7 @@ return [
         'find_out_more'     => 'Find out more',
         'go_to'             => 'Go to :name',
         'json-export'       => 'Export (JSON)',
-        'move'              => 'Move',
+        'move'              => 'Change or Move',
         'new'               => 'New',
         'next'              => 'Next',
         'reset'             => 'Reset',
@@ -257,7 +257,6 @@ return [
     'linking_help'      => 'How can I link to other entries?',
     'manage'            => 'Manage',
     'move'              => [
-        'description'   => 'Move this entity to another place',
         'errors'        => [
             'permission'        => 'You aren\'t allowed to create entities of that type in the target campaign.',
             'same_campaign'     => 'You need to select another campaign to move the entity to.',
@@ -273,9 +272,13 @@ return [
             'copy'      => 'Select this option if you want to create copy in the new campaign.',
             'target'    => 'Please be aware that some data might be lost when moving an element from one type to another.',
         ],
+        'panels'        => [
+            'change'    => 'Change entity type',
+            'move'      => 'Move to another campaign',
+        ],
         'success'       => 'Entity \':name\' moved.',
         'success_copy'  => 'Entity \':name\' copied.',
-        'title'         => 'Move :name',
+        'title'         => 'Change or Move :name',
     ],
     'new_entity'        => [
         'error' => 'Please review your values.',

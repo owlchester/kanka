@@ -2,6 +2,7 @@
 @extends('layouts.front', [
     'title' => __('front/community-votes.show.title', ['name' => $model->name]),
     'description' => '',
+    'skipPerf' => true,
 ])
 
 @section('og')

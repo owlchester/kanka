@@ -2,7 +2,7 @@
 
 return [
     'errors'    => [
-        'description'   => 'Vami zadaná hodnota nebola správna.',
+        'description'   => 'Zadaná hodnota nebola správna.',
         'title'         => 'Ojojoj!',
     ],
 ];

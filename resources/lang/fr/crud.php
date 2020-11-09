@@ -257,7 +257,6 @@ return [
     'linking_help'      => 'Comment lier vers d\'autres éléments?',
     'manage'            => 'Gérer',
     'move'              => [
-        'description'   => 'Déplacer cet élément vers un nouvel endroit',
         'errors'        => [
             'permission'        => 'Droits insuffisants pour créer une entité de ce type dans la campagne sélectionnée.',
             'same_campaign'     => 'Une autre campagne doit être sélectionnée pour y déplacer l\'entité.',
@@ -272,6 +271,10 @@ return [
             'campaign'  => 'Il est aussi possible de déplacer cette entité vers une autre campagne.',
             'copy'      => 'Activer cette option crée une copie dans la nouvelle campagne.',
             'target'    => 'Attention! Certaines informations peuvent être perdues lors du déplacement d\'un élément.',
+        ],
+        'panels'        => [
+            'change'    => 'Changer le type d\'entité',
+            'move'      => 'Déplacer vers une autre campagne',
         ],
         'success'       => 'Elément :name déplacé.',
         'success_copy'  => 'Entité \':name\' copiée.',
@@ -338,6 +341,7 @@ return [
         'family'        => 'Choix de la famille',
         'image_url'     => 'Ou depuis une URL',
         'item'          => 'Choix d\'un objet',
+        'journal'       => 'Choix d\'un journal',
         'location'      => 'Choix du lieu',
         'map'           => 'Choix d\'une carte',
         'organisation'  => 'Choix d\'une organisation',

@@ -9,10 +9,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMapMarker;
 use App\Models\Map;
 use App\Models\MapMarker;
+use App\Traits\GuestAuthTrait;
 use Illuminate\Http\Request;
 
 class MapMarkerController extends Controller
 {
+    /**
+     * Auth for guests with model
+     */
+    use GuestAuthTrait;
+    protected $model = Map::class;
+
     /**
      * @var array fields from the input sent to the model
      */
@@ -143,9 +150,16 @@ class MapMarkerController extends Controller
      */
     public function details(Map $map, MapMarker $mapMarker)
     {
-        $this->authorize('view', $map);
-        if ($mapMarker->entity_id) {
-            $this->authorize('view', $mapMarker->entity->child);
+        if (auth()->check()) {
+            $this->authorize('view', $map);
+            if ($mapMarker->entity_id) {
+                $this->authorize('view', $mapMarker->entity->child);
+            }
+        } else {
+            $this->authorizeForGuest('read', $map);
+            if ($mapMarker->entity_id) {
+                $this->authorizeForGuest('read', $mapMarker->entity->child);
+            }
         }
 
         return response()->json([

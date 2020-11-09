@@ -131,6 +131,14 @@ class EntityNoteController extends Controller
         $note->entity_id = $entity->id;
         $note = $note->create($request->all());
 
+        if ($request->has('submit-new')) {
+            $route = route('entities.entity_notes.create', [$entity]);
+            return response()->redirectTo($route);
+        } elseif ($request->has('submit-update')) {
+            $route = route('entities.entity_notes.edit', [$entity, $note]);
+            return response()->redirectTo($route);
+        }
+
         return redirect()
             ->route($entity->pluralType() . '.show', [$entity->child->id, $this->tab])
             ->with('success', trans('entities/notes.create.success', [
@@ -153,13 +161,15 @@ class EntityNoteController extends Controller
         $route = 'entities.' . $this->route;
         $parentRoute = $entity->pluralType();
         $model = $entityNote;
+        $ajax = request()->ajax();
 
         return view('cruds.notes.edit', compact(
             'entity',
             'model',
             'name',
             'route',
-            'parentRoute'
+            'parentRoute',
+            'ajax'
         ));
     }
 
@@ -180,6 +190,14 @@ class EntityNoteController extends Controller
         }
 
         $entityNote->update($request->all());
+
+        if ($request->has('submit-new')) {
+            $route = route('entities.entity_notes.create', [$entity]);
+            return response()->redirectTo($route);
+        } elseif ($request->has('submit-update')) {
+            $route = route('entities.entity_notes.edit', [$entity, $entityNote]);
+            return response()->redirectTo($route);
+        }
 
         return redirect()->route($entity->pluralType() . '.show', [$entity->child->id, $this->tab])
             ->with('success', trans('entities/notes.edit.success', [

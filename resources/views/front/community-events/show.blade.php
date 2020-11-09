@@ -5,6 +5,7 @@
 @extends('layouts.front', [
     'title' => __('front/community-events.show.title', ['name' => $model->name]),
     'description' => '',
+    'skipPerf' => true,
 ])
 
 @section('og')

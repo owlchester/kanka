@@ -557,12 +557,18 @@ class CalendarRenderer
         if ($weekLength == 0) {
             $weekLength = 1;
         }
+
+        // If the calendar resets on the first day of the year, we can switch this around
+        if ($this->calendar->reset == 'year') {
+            $totalDays = $this->daysToDateForYear();
+        }
+
         $totalDays = $negativeYear ? abs($totalDays) : $totalDays;
         $offset = floor($totalDays % $weekLength);
 
         // If we are in a negative year, we need to reduce the offset from the week length, as we want the last
         // month before the calendar really "starts" to end on the last day of the week.
-        return $negativeYear ? $weekLength - $offset : $offset;
+        return $negativeYear && $this->calendar->reset != 'year' ? $weekLength - $offset : $offset;
     }
 
     /**
@@ -1051,5 +1057,31 @@ class CalendarRenderer
         $weekNumber = floor($daysInAYear / $weekdaysCount) + 1;
 
         return $weekNumber;
+    }
+
+    /**
+     * Get the number of days since the beginning of the year. This is used to calculate the month start offset on
+     * calendars with first days resetting on the year.
+     * @return int
+     */
+    protected function daysToDateForYear(): int
+    {
+        $offset = 0;
+
+        $daysInAYear = $days = $leapDays = 0;
+        foreach ($this->calendar->months() as $count => $month) {
+            if (Arr::get($month, 'type') == 'intercalary') {
+                continue;
+            }
+            $length = $month['length'];
+            $daysInAYear += $length;
+
+            // If the month has already passed, add it to the days for this year
+            if ($count < $this->getMonth()-1) {
+                $days += $length;
+            }
+        }
+
+        return $days;
     }
 }

@@ -13,10 +13,7 @@
 @inject('campaign', 'App\Services\CampaignService')
 
 @section('fullpage-form')
-    @env('shadow')
-    @else
     {!! Form::model($model, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => [$name . '.update', $model->id], 'data-shortcut' => '1', 'class' => 'entity-form', 'id' => 'entity-form']) !!}
-    @endenv
 @endsection
 
 @section('content')
@@ -90,8 +87,5 @@
 
 
 @section('fullpage-form-end')
-    @env('shadow')
-    @else
     {!! Form::close() !!}
-    @endenv
 @endsection

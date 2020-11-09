@@ -75,13 +75,10 @@ function initMapExplore()
             type: 'GET',
             async: true,
             success: function (result) {
-                // console.log('result');
                 if (result) {
                     if (window.kankaIsMobile.matches) {
-                        console.log('mobile result');
                         markerModalTitle.html(result.name);
                         markerModalContent.html(result.body);
-                        console.log('markerModal', markerModal);
                     } else {
                         sidebarMarker.html(result.body);
                         handleCloseMarker();
@@ -111,7 +108,6 @@ function initMapForms()
     let newMarkerForm = $('#map-marker-new-form');
     let groupForm = $('#map-group-form');
     if (layerForm.length === 0 && markerForm.length === 0 && groupForm.length === 0 && newMarkerForm.length === 0) {
-        console.log('found nothing');
         return;
     }
 
@@ -148,7 +144,6 @@ function initMapForms()
             method: $(this).attr('method'),
             data: $(this).serialize()
         }).done(function (res) {
-            //console.log('good?');
             // If the validation succeeded, we can really submit the form
             validEntityForm = true;
             newMarkerForm.submit();

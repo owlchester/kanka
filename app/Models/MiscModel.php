@@ -307,11 +307,12 @@ abstract class MiscModel extends Model
 
         // Todo: point to the new points
         $mapPoints = $this->entity->targetMapPoints()->has('location')->count();
-        if ($mapPoints > 0) {
+        $newMapPoints = $this->entity->mapMarkers()->has('map')->count();
+        if (($mapPoints + $newMapPoints) > 0) {
             $items['map-points'] = [
                 'name' => 'crud.tabs.map-points',
                 'route' => $this->entity->pluralType() . '.map-points',
-                'count' => $mapPoints,
+                'count' => $mapPoints + $newMapPoints,
                 'icon' => 'fa fa-map-marked',
             ];
         }

@@ -37,7 +37,7 @@ return [
     'releases'              => 'Zmeny vo verziách',
     'search'                => 'Hľadať...',
     'support'               => 'Podpora / Komunita',
-    'tags'                  => 'Tagy',
+    'tags'                  => 'Kategórie',
     'team'                  => 'Tím',
     'timelines'             => 'Časové osi',
     'translations'          => 'Preklady',

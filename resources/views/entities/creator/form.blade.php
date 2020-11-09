@@ -3,7 +3,7 @@
 
 <div class="panel-heading">
     <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-    <h4>{{ trans($type . '.create.title') }}</h4>
+    <h4 class="panel-title">{{ trans($type . '.create.title') }}</h4>
 </div>
 <div class="panel-body">
     <form method="post" id="entity-creator-form" action="{{ route('entity-creator.store', ['type' => $type]) }}" autocomplete="off">

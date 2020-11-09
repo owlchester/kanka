@@ -411,6 +411,11 @@ Route::group([
         Translator::routes();
     });
 
+    // Partners
+    Route::namespace('Partner')->name('partner.')->middleware(['auth', 'partner'])->prefix('partner')->group(function () {
+        Route::get('/referrals', 'ReferralController@index')->name('referrals');
+    });
+
     // Admin/Moderation tools
     require base_path('routes/admin.php');
 

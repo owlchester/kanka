@@ -49,9 +49,10 @@ return [
         'age'   => 'Il est possible de lier cette entité avec un calendrier de la campagne pour automatiquement calculer l\'âge. :more.',
     ],
     'hints'         => [
-        'hide_personality'          => 'Cet onglet peut être caché des membres non-Administrateur en désactivant l\'option "Personnalité Visible" lors de l\'édition de ce personnage.',
         'is_dead'                   => 'Ce personnage est mort.',
         'is_personality_visible'    => 'Tu peux cacher toute la personnalité des membres de type non Admin.',
+        'personality_not_visible'   => 'Les traits de personnalités de ce personnage sont actuellement seulement visibles pour les Admin de la campagne.',
+        'personality_visible'       => 'Les traits de personnalités sont visibles pour tous.',
     ],
     'index'         => [
         'actions'       => [

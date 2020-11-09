@@ -9,6 +9,7 @@
 namespace App\Models;
 
 use App\Models\Scopes\CalendarWeatherScopes;
+use App\Traits\VisibilityTrait;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -29,7 +30,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CalendarWeather extends Model
 {
-    use CalendarWeatherScopes;
+    use CalendarWeatherScopes, VisibilityTrait;
 
     /**
      * @var string
