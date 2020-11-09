@@ -51,6 +51,8 @@ TEXT
     'fields'                => [
         'answer'    => 'Respuesta',
         'category'  => 'Categoría',
+        'locale'    => 'Locale',
+        'order'     => 'Order',
         'question'  => 'Pregunta',
     ],
     'free'                  => [

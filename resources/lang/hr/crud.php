@@ -338,6 +338,7 @@ return [
         'family'        => 'Izaberi obitelj',
         'image_url'     => 'Umjesto toga možete prenijeti sliku sa URL-a',
         'item'          => 'Izaberi predmet',
+        'journal'       => 'Odaberi dnevnik',
         'location'      => 'Izaberi lokaciju',
         'map'           => 'Izaberi kartu',
         'organisation'  => 'Izaberi organizaciju',

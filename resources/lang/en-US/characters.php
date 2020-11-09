@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'actions'       => [
-        'add_organisation' => 'Add an organization',
-    ],
+    'actions'       => [],
     'fields'        => [
         'eye'   => 'Eye color',
     ],

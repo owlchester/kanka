@@ -102,6 +102,14 @@ return [
         'success'   => 'S\'han actualitzat les opcions de disseny.',
         'title'     => 'Disseny',
     ],
+    'marketplace'   => [
+        'fields'    => [
+            'name'  => 'Nom al mercat',
+        ],
+        'helper'    => 'Per defecte, el vostre nom d\'usuari es mostra al :marketplace. Podeu canviar-lo en aquest camp.',
+        'title'     => 'Configuració del Mercat',
+        'update'    => 'S\'ha guardat la configuració del Mercat.',
+    ],
     'menu'          => [
         'account'               => 'Compte',
         'api'                   => 'API',
@@ -110,6 +118,7 @@ return [
         'boost'                 => 'Millorar',
         'invoices'              => 'Factures',
         'layout'                => 'Disseny',
+        'marketplace'           => 'Mercat',
         'other'                 => 'Altres',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Opcions de pagament',

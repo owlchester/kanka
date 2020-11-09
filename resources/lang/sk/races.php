@@ -3,6 +3,10 @@
 return [
     'characters'    => [
         'description'   => 'Postavy patriace k danej rase.',
+        'helpers'       => [
+            'all_characters'    => 'Zobrazí všetky postavy tejto rasy a jej podradených rás.',
+            'characters'        => 'Zobrazí všetky postavy iba tejto rasy.',
+        ],
         'title'         => 'Postavy rasy :name',
     ],
     'create'        => [

@@ -3,6 +3,10 @@
 return [
     'characters'    => [
         'description'   => 'Personnages de la race.',
+        'helpers'       => [
+            'all_characters'    => 'Affichage des personnages de cette race et de toutes les sous-races.',
+            'characters'        => 'Affichage de tous les personnages de cette race.',
+        ],
         'title'         => 'Personnages de :name',
     ],
     'create'        => [

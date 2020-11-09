@@ -6,8 +6,9 @@ return [
         'reset' => 'Fähigkeit zurücksetzen',
     ],
     'create'    => [
-        'success'   => 'Fähigkeit :ability hinzugefügt zu :entity',
-        'title'     => 'Fügen Sie eine Fähigkeit hinzu zu :name',
+        'success'           => 'Fähigkeit :ability hinzugefügt zu :entity',
+        'success_multiple'  => 'Fähigkeiten :abilities hinzugefügt zu :entity',
+        'title'             => 'Fügen Sie eine Fähigkeit hinzu zu :name',
     ],
     'show'      => [
         'helper'    => 'Fügen Sie diesem Objekt Fähigkeiten hinzu. Sie können die Sichtbarkeit jederzeit bearbeiten oder eine Fähigkeit entfernen. Fähigkeiten, die zu derselben übergeordneten Fähigkeit gehören, werden als Filterfelder angezeigt.',

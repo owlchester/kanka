@@ -355,6 +355,7 @@ return [
         'family'        => 'Escolha uma família',
         'image_url'     => 'Você também pode dar upload de uma imagem por uma URL',
         'item'          => 'Escolha um item',
+        'journal'       => 'Escolha um Jornal',
         'location'      => 'Escolha um local',
         'map'           => 'Escolha um mapa',
         'organisation'  => 'Escolha uma organização',

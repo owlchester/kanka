@@ -27,8 +27,9 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'reorder'       => 'Arraste e solte elementos da linha do tempo para reorganizá-los',
-        'reverse_order' => 'Habilite para mostrar linhas do tempo em ordem cronológica reversa (eras antigas primeiro)',
+        'reorder'           => 'Arraste e solte elementos da linha do tempo para reorganizá-los',
+        'reorder_tooltip'   => 'Clique aqui para permitir a ordenação manual dos elementos ao arrastar e soltar',
+        'reverse_order'     => 'Habilite para mostrar linhas do tempo em ordem cronológica reversa (eras antigas primeiro)',
     ],
     'index'         => [
         'add'   => 'Nova linha do tempo',

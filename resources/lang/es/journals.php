@@ -17,9 +17,15 @@ return [
         'author'    => 'Autor',
         'date'      => 'Fecha',
         'image'     => 'Imagen',
+        'journal'   => 'Diario superior',
+        'journals'  => 'Subdiarios',
         'name'      => 'Nombre',
         'relation'  => 'Relación',
         'type'      => 'Tipo',
+    ],
+    'helpers'       => [
+        'journals'  => 'Muestra todos o solo los descendientes directos de este diario.',
+        'nested'    => 'Primero se muestran los diarios sin ningún superior. Haz clic en una fila para explorar los subdiarios de cada uno.',
     ],
     'index'         => [
         'add'           => 'Nuevo diario',
@@ -27,14 +33,21 @@ return [
         'header'        => 'Diarios de :name',
         'title'         => 'Diarios',
     ],
+    'journals'      => [
+        'title' => 'Subdiarios del diario :name',
+    ],
     'placeholders'  => [
         'author'    => 'Quién ha escrito el diario',
         'date'      => 'Fecha del diario',
+        'journal'   => 'Elige un diario superior',
         'name'      => 'Nombre del diario',
         'type'      => 'Sesión, Borrador...',
     ],
     'show'          => [
         'description'   => 'Vista detallada del diario',
+        'tabs'          => [
+            'journals'  => 'Diarios',
+        ],
         'title'         => 'Diario :name',
     ],
 ];

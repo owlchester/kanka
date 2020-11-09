@@ -9,12 +9,18 @@ return [
         'update'            => 'Actualizar plugin',
         'update_available'  => '¡Actualización disponible!',
     ],
+    'destroy'       => [
+        'success'   => 'Se ha eliminado el plugin :plugin.',
+    ],
     'disabled'      => [
         'success'   => 'Se ha desactivado el plugin :plugin.',
     ],
     'empty_list'    => 'Esta campaña no contiene ningún plugin actualmente. Dirígete a la tienda para instalar alguno y vuelve para activarlo.',
     'enabled'       => [
         'success'   => 'Se ha activado el plugin :plugin.',
+    ],
+    'errors'        => [
+        'invalid_plugin'    => 'Plugin no válido.',
     ],
     'fields'        => [
         'name'      => 'Nombre del plugin',

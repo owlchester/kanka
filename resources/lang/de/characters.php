@@ -53,6 +53,8 @@ return [
         'hide_personality'          => 'Dieser Tab kann vor nicht "Admin" Nutzern versteckt werden, in dem die "Persönlichkeit sichtbar" Option deaktiviert wird, wenn man den Charakter bearbeitet.',
         'is_dead'                   => 'Dieser Charakter ist tot',
         'is_personality_visible'    => 'Du kannst den kompletten Persönlichkeitsbereich vor deinen Zuschauern verstecken.',
+        'personality_not_visible'   => 'Persönlichkeitsmerkmale dieses Charakters sind derzeit nur für Administratoren sichtbar.',
+        'personality_visible'       => 'Persönlichkeitsmerkmale dieses Charakters sind für alle sichtbar.',
     ],
     'index'         => [
         'actions'       => [

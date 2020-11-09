@@ -49,9 +49,10 @@ return [
         'age'   => 'Puedes vincular esta entidad con un calendario de la campaña para calcular automáticamente su edad. :more',
     ],
     'hints'         => [
-        'hide_personality'          => 'Esta pestaña puede ocultarse a los usuarios no administradores desactivando la opción "Personalidad visible" en la edición del personaje.',
         'is_dead'                   => 'Este personaje está muerto',
         'is_personality_visible'    => 'Se puede ocultar la sección de personalidad a los usuarios no administradores.',
+        'personality_not_visible'   => 'Los rasgos de personalidad de este personaje actualmente solo son visibles para los administradores.',
+        'personality_visible'       => 'Los rasgos de personalidad de este personaje son visibles para todos.',
     ],
     'index'         => [
         'actions'       => [

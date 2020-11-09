@@ -9,12 +9,18 @@ return [
         'update'            => 'Mettre à jour le plugin',
         'update_available'  => 'Mise-à-jour disponnible!',
     ],
+    'destroy'       => [
+        'success'   => 'Le plugin :plugin a été retiré.',
+    ],
     'disabled'      => [
         'success'   => 'Le plugin :plugin a été désactivé.',
     ],
     'empty_list'    => 'La campagne n\'a actuellement aucun plugin. Visiter le marketplace pour ajouter des plugins à la campagne, et revenir ici pour les activer.',
     'enabled'       => [
         'success'   => 'Le plugin :plugin a été activé.',
+    ],
+    'errors'        => [
+        'invalid_plugin'    => 'Plugin invalide.',
     ],
     'fields'        => [
         'name'      => 'Nom du plugin',

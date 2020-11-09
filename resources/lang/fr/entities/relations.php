@@ -34,7 +34,8 @@ return [
     ],
     'teaser'        => 'Les campagnes boostées ont accès à l\'explorateur de relation. Cliquer pour en savoir plus sur les campagnes boostées.',
     'types'         => [
-        'family_member' => 'Membre de famille',
+        'family_member'         => 'Membre de famille',
+        'organisation_member'   => 'Membre d\'organisation',
     ],
     'update'        => [
         'success'   => 'Relation modifiée pour :name.',

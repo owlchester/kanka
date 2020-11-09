@@ -40,7 +40,7 @@ return [
         'physical'                  => 'Telesné črty',
         'race'                      => 'Rasa',
         'relation'                  => 'Vzťah',
-        'sex'                       => 'Rod',
+        'sex'                       => 'Pohlavie',
         'title'                     => 'Titul',
         'traits'                    => 'Vlastnosti',
         'type'                      => 'Typ',
@@ -53,6 +53,8 @@ return [
         'hide_personality'          => 'Túto kartu môžeš ukryť pred užívateľmi, ktorí nemajú rolu Admin, deaktivovaním nastavenia "Osobnosť viditeľná".',
         'is_dead'                   => 'Táto postava je mŕtva.',
         'is_personality_visible'    => 'Celú sekciu o osobnosti vieš skryť pred užívateľmi, ktorí nemajú rolu Admin.',
+        'personality_not_visible'   => 'Osobnostné črty tejto postavy sú aktuálne viditeľné len pre užívateľov s rolou Admin.',
+        'personality_visible'       => 'Osobnostné črty tejto postavy sú viditeľné pre všetkých.',
     ],
     'index'         => [
         'actions'       => [
@@ -116,7 +118,7 @@ return [
         'personality_name'  => 'Ciele, maniere, slabosti, vzťahy,...',
         'physical'          => 'Telesné črty',
         'race'              => 'Rasa',
-        'sex'               => 'Rod',
+        'sex'               => 'Pohlavie',
         'title'             => 'Titul',
         'traits'            => 'Vlastnosti',
         'type'              => 'NPC, postava hráča, božstvo',

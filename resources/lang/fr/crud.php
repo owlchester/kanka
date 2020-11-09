@@ -338,6 +338,7 @@ return [
         'family'        => 'Choix de la famille',
         'image_url'     => 'Ou depuis une URL',
         'item'          => 'Choix d\'un objet',
+        'journal'       => 'Choix d\'un journal',
         'location'      => 'Choix du lieu',
         'map'           => 'Choix d\'une carte',
         'organisation'  => 'Choix d\'une organisation',

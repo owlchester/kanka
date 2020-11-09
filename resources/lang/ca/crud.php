@@ -359,6 +359,7 @@ return [
         'family'        => 'Trieu una família',
         'image_url'     => 'Podeu pujar una imatge des d\'una URL',
         'item'          => 'Trieu un objecte',
+        'journal'       => 'Trieu una crònica',
         'location'      => 'Trieu una localització',
         'map'           => 'Trieu un mapa',
         'organisation'  => 'Trieu una organització',

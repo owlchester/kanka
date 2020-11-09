@@ -27,8 +27,9 @@ return [
         'type'          => 'Tip',
     ],
     'helpers'       => [
-        'reorder'       => 'Povucite i ispustite elemente razdoblja da biste ih presložili.',
-        'reverse_order' => 'Omogući za prikaz razdoblja obrnutim kronološkim redoslijedom (prvo starije ere)',
+        'reorder'           => 'Povucite i ispustite elemente razdoblja da biste ih presložili.',
+        'reorder_tooltip'   => 'Klikni da omogućiš ručno preuređivanje elemenata pomoću povlačenja i ispuštanja.',
+        'reverse_order'     => 'Omogući za prikaz razdoblja obrnutim kronološkim redoslijedom (prvo starije ere)',
     ],
     'index'         => [
         'add'   => 'Nova kronologija',
