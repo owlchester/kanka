@@ -31,7 +31,10 @@ class CampaignDashboardWidgetObserver
     {
         // Get position
         $model->position = 0;
-        $last = CampaignDashboardWidget::with('entity')->orderBy('position', 'desc')->first();
+        $last = CampaignDashboardWidget::onDashboard($model->dashboard)
+            ->with('entity')
+            ->orderBy('position', 'desc')
+            ->first();
         if (!empty($last)) {
             $model->position = $last->position + 1;
         }

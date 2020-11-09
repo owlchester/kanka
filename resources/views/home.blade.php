@@ -19,7 +19,41 @@
 
 @section('header-extra')
     <div class="dashboard-actions">
-        @if($settings)
+        @if(!empty($dashboards))
+            <div class="btn-group pull-right">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-cog"></i>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    @if (!empty($dashboard))
+                        <li>
+                            <a href="{{ route('dashboard', ['dashboard' => 'default']) }}">
+                                {{ __('dashboard.dashboards.default.title')}}
+                            </a>
+                        </li>
+                    @endif
+                    @foreach ($dashboards as $dash)
+                        @if (!empty($dashboard) && $dash->id == $dashboard->id)
+                            @continue
+                        @endif
+                        <li>
+                            <a href="{{ route('dashboard', ['dashboard' => $dash->id]) }}">
+                                {{ $dash->name }}
+                            </a>
+                        </li>
+                    @endforeach
+
+                    @if($settings)
+                        <li class="divider"></li>
+                        <li>
+                            <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}">
+                                {{ __('dashboard.settings.title') }}
+                            </a>
+                        </li>
+                    @endif
+                </ul>
+            </div>
+        @elseif($settings)
             <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-xl" title="{{ __('dashboard.settings.title') }}">
                 <i class="fa fa-cog"></i>
             </a>
@@ -71,50 +105,19 @@
         </div>
     @endif
 
-    <div class="campaign @if(!empty($campaign->header_image))cover-background" style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }}) @else no-header @endif ">
-        <div class="content">
-            <div class="title">
-                <h1>
-                    @if (!empty($campaign->image))
-                        <img class="img-circle cover-background" src="{{ Img::crop(50, 50)->url($campaign->image) }}" alt="{{ $campaign->name }} picture">
-                    @endif
-                    <a href="{{ route('campaigns.show', $campaign) }}" title="{!! $campaign->name !!}">{!! $campaign->name !!}</a>
-                </h1>
-            </div>
-            @if ($campaign->hasPreview())
-                <div class="preview">
-                    {!! $campaign->preview() !!}
-                </div>
-                <div class="more">
-                    <a href="{{ route('campaigns.show', $campaign) }}">{{ __('crud.actions.find_out_more') }}</a>
-                </div>
-            @endif
-
-            @can('update', $campaign)
-            <div class="row">
-                <div class="col-xs-6 col-sm-6 col-md-2">
-                    <a href="{{ route('campaign_users.index') }}" class="campaign-link" title="{{ trans_choice('dashboard.campaigns.tabs.users', \App\Facades\CampaignCache::members()->count(), ['count' => \App\Facades\CampaignCache::members()->count()]) }}">
-                        <i class="fa fa-user"></i> {{ \App\Facades\CampaignCache::members()->count() }}
-                    </a>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-2">
-                    <a href="{{ route('campaign_roles.index') }}" class="campaign-link" title="{{ trans_choice('dashboard.campaigns.tabs.roles', \App\Facades\CampaignCache::roles()->count(), ['count' => \App\Facades\CampaignCache::roles()->count()]) }}">
-                        <i class="fa fa-lock"></i> {{ \App\Facades\CampaignCache::roles()->count() }}
-                    </a>
-                </div>
-                <div class="col-md-2 hidden-xs hidden-sm">
-                    <a href="{{ route('campaign_settings') }}" class="campaign-link" title="{{ trans_choice('dashboard.campaigns.tabs.modules', $campaign->setting->countEnabledModules(), ['count' => $campaign->setting->countEnabledModules()]) }}">
-                        <i class="fa fa-cogs"></i> {{ $campaign->setting->countEnabledModules() }}
-                    </a>
-                </div>
-            </div>
-            @endcan
-        </div>
-    </div>
+    @if (empty($dashboard))
+        @include('dashboard.widgets._campaign')
+    @endif
 
     <div class="row">
     @foreach ($widgets as $widget)
-        <?php if (!in_array($widget->widget, [\App\Models\CampaignDashboardWidget::WIDGET_RECENT, \App\Models\CampaignDashboardWidget::WIDGET_UNMENTIONED, \App\Models\CampaignDashboardWidget::WIDGET_RANDOM]) && (empty($widget->entity) || !EntityPermission::canView($widget->entity))):
+        @if($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_CAMPAIGN)
+            <div class="col-md-{{ $widget->colSize() }}">
+                @include('dashboard.widgets._campaign')
+            </div>
+            @continue;
+        @endif
+        <?php if (!in_array($widget->widget, \App\Models\CampaignDashboardWidget::WIDGET_VISIBLE) && (empty($widget->entity) || !EntityPermission::canView($widget->entity))):
             continue;
         elseif ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_PREVIEW && !EntityPermission::canView($widget->entity)):
             continue;
@@ -136,7 +139,7 @@
     @if ($settings)
         <div class="row margin-top">
             <div class="col-md-12 text-center">
-                <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-lg" title="{{ __('dashboard.settings.title') }}">
+                <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}" class="btn btn-default btn-lg" title="{{ __('dashboard.settings.title') }}">
                     <i class="fa fa-cog"></i> {{ __('dashboard.settings.title') }}
                 </a>
             </div>

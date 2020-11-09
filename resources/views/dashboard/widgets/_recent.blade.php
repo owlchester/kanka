@@ -23,9 +23,13 @@ $entityString = !empty($entityType) ? ($widget->conf('singular') ? $entityType :
 <div class="panel panel-default" id="dashboard-widget-{{ $widget->id }}">
     <div class="panel-heading">
         <h3 class="panel-title">
-            @if ($widget->conf('entity'))
-                {{ __('entities.' . $entityString) }} -
-            @endif{{ __('dashboard.widgets.recent.title') }}
+            @if (!empty($widget->conf('text')))
+                {{ $widget->conf('text') }}
+            @else
+                @if ($widget->conf('entity'))
+                    {{ __('entities.' . $entityString) }} -
+                @endif{{ __('dashboard.widgets.recent.title') }}
+            @endif
 
             @if (!empty($widget->tags))
                 <span class="pull-right">

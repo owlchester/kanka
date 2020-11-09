@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
+use App\Facades\Dashboard;
 use App\Facades\PostCache;
 use App\Models\CampaignDashboardWidget;
+use App\Providers\DashboardServiceProvider;
+use App\Services\DashboardService;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Release;
@@ -28,14 +31,25 @@ class DashboardController extends Controller
             $settings = true;
         }
 
-        $widgets = CampaignDashboardWidget::positioned()->get();
+        // Determine the user's dashboard
+        $requestedDashboard = request()->get('dashboard');
+        if ($requestedDashboard == 'default') {
+            $requestedDashboard = -1;
+        }
+        $dashboard = Dashboard::campaign($campaign)
+            ->getDashboard((int) $requestedDashboard);
+        $dashboards = Dashboard::getDashboards();
+
+        $widgets = CampaignDashboardWidget::onDashboard($dashboard)->positioned()->get();
         $release = PostCache::latest();
 
         return view('home', compact(
             'campaign',
             'settings',
             'release',
-            'widgets'
+            'widgets',
+            'dashboard',
+            'dashboards'
         ));
     }
 

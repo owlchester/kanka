@@ -12,6 +12,41 @@ return [
             'users'     => ':count Users',
         ],
     ],
+    'dashboards'        => [
+        'actions' => [
+            'new' => 'New Dashboard',
+            'edit' => 'Edit',
+            'switch' => 'Switch to dashboard',
+        ],
+        'boosted' => ':boosted_campaigns can create custom dashboards for each of the campaign roles.',
+        'create' => [
+            'title' => 'New Campaign Dashboard',
+            'success' => 'New campaign dashboard :name created.',
+        ],
+        'default' => [
+            'title' => 'Default Dashboard',
+            'text' => 'You are currently editing the default dashboard of the campaign.',
+        ],
+        'custom' => [
+            'text' => 'You are currently editing the :name dashboard of the campaign.',
+        ],
+        'fields' => [
+            'name' => 'Dashboard name',
+            'visibility' => 'Visibility',
+        ],
+        'placeholders' => [
+            'name' => 'Name of the dashboard',
+        ],
+        'update' => [
+            'title' => 'Update campaign dashboard :name',
+            'success' => 'Campaign dashboard :name updated.',
+        ],
+        'visibility' => [
+            'none' => 'None',
+            'visible' => 'Visible',
+            'default' => 'Default',
+        ],
+    ],
     'description'       => 'The home for your creativity',
     'helpers'           => [
         'follow'    => 'Following a campaign will make it appear in the campaign switcher (top-left) below your campaigns.',
@@ -39,8 +74,10 @@ return [
         'title'     => 'Campaign Dashboard Setup',
         'widgets'   => [
             'calendar'      => 'Calendar',
+            'campaign'      => 'Campaign header',
+            'header'        => 'Header',
             'preview'       => 'Entity preview',
-            'random'        => 'Random Entity',
+            'random'        => 'Random entity',
             'recent'        => 'Recently modified',
             'unmentioned'   => 'Unmentioned entities',
         ],
@@ -56,6 +93,9 @@ return [
             'previous_events'   => 'Previous',
             'upcoming_events'   => 'Upcoming',
         ],
+        'campaign' => [
+            'helper' => 'This widget displayed the campaign header. This widget is always shown on the default dashboard.',
+        ],
         'create'        => [
             'success'   => 'Widget added to the dashboard.',
         ],
@@ -63,6 +103,8 @@ return [
             'success'   => 'Widget removed from the dashboard.',
         ],
         'fields'        => [
+            'name'  => 'Custom widget name',
+            'text'  => 'Text',
             'width' => 'Width',
         ],
         'recent'        => [

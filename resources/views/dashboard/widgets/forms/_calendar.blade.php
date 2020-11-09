@@ -8,3 +8,8 @@
         'search.calendars'
     ) !!}
 </div>
+
+<div class="form-group">
+    <label>{{ __('dashboard.widgets.fields.name') }}</label>
+    {!! Form::text('config[text]', null, ['class' => 'form-control', 'placeholder' => __('dashboard.widgets.recent.title')]) !!}
+</div>

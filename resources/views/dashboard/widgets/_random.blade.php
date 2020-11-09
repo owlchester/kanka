@@ -36,7 +36,11 @@ $specificPreview = 'dashboard.widgets.previews.' . $entity->type;
                 @if ($model->is_private)
                     <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                 @endif
-                {{ $entity->name }}
+                @if (!empty($widget->conf('text')))
+                    {{ $widget->conf('text') }}
+                @else
+                    {{ $entity->name }}
+                @endif
             </a>
 
         </h3>

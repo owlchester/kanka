@@ -256,9 +256,25 @@
     .widget-entity {
       margin-top: 8px;
     }
+
+    .custom-name {
+      font-size: 10pt;
+    }
   }
   .add {
     border: 2px dashed #ccc;
+  }
+
+  .widget-header {
+    height: auto;
+    .widget-overlay {
+      height: auto;
+      padding: 10px 20px;
+
+      h3 {
+        margin: 10px 0;
+      }
+    }
   }
 }
 

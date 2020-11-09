@@ -25,8 +25,6 @@
     ]) !!}
 @endif
 
-    {{ csrf_field() }}
-
     @include('dashboard.widgets.forms._' . $widget)
 
     <div class="form-group required">
@@ -40,6 +38,9 @@
                 <button class="btn btn-success">{{ trans('crud.save') }}</button>
             </div>
             <input type="hidden" name="widget" value="{{ $widget }}">
+            @if(!empty($dashboard))
+                <input type="hidden" name="dashboard_id" value="{{ $dashboard->id }}">
+            @endif
             {!! Form::close() !!}
         </div>
         <div class="col-md-6 text-right">

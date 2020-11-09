@@ -32,6 +32,9 @@ use Illuminate\Support\Facades\Facade;
  * @method static self|CampaignCacheService clearTheme();
  * @method static string themes();
  *
+ * @method static array dashboards();
+ * @method static self|CampaignCacheService clearDashboards();
+ *
  * @see \App\Services\Caches\CampaignCacheService
  */
 class CampaignCache extends Facade

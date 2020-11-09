@@ -27,6 +27,7 @@ class StoreCampaignDashboardWidget extends FormRequest
         return [
             'widget' => 'required',
             'entity_id' => 'nullable|exists:entities,id',
+            'dashboard_id' => 'nullable|exists:campaign_dashboards,id',
         ];
     }
 }
