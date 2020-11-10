@@ -82,8 +82,10 @@ class CampaignBoostController extends Controller
      */
     public function update(\Illuminate\Http\Request $request, CampaignBoost $campaignBoost) {
         $campaign = $campaignBoost->campaign;
-        CampaignCache::campaign($campaign);
-        $this->authorize('access', $campaign);
+
+        // If the user created the boost, allow them to update it. We don't check the campaign because there is
+        // no campaign in the url.
+        $this->authorize('destroy', $campaignBoost);
 
         try {
             $this->campaignBoostService

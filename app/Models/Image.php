@@ -14,13 +14,13 @@ use Illuminate\Support\Facades\Storage;
  * Class Image
  * @package App\Models
  *
- * @property int $id
- * @property string $uuid
+ * @property string $id
  * @property int $campaign_id
  * @property string $name
  * @property string $ext
  * @property int $size
  * @property int $created_by
+ * @property bool $is_default
  * @property Carbon $created_at
  * @property Carbon $updated_at
  *
@@ -54,6 +54,22 @@ class Image extends Model
     }
 
     /**
+     * @return bool
+     */
+    public function getIncrementing()
+    {
+        return false;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKeyType()
+    {
+        return 'string';
+    }
+
+    /**
      * @return string
      */
     public function getPathAttribute(): string
@@ -66,7 +82,7 @@ class Image extends Model
      */
     public function getFileAttribute(): string
     {
-        return $this->uuid . '.' . $this->ext;
+        return $this->id . '.' . $this->ext;
     }
 
     /**

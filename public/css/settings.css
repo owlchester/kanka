@@ -13,6 +13,11 @@
   align-items: center;
 }
 
+.campaign .campaign-name {
+  display: block;
+  margin-bottom: 10px;
+}
+
 .campaign .actions {
   text-align: center;
 }
@@ -28,6 +33,10 @@
 .campaign .actions .btn {
   font-size: 10pt;
   text-shadow: none;
+}
+
+.campaign form {
+  display: inline;
 }
 
 .campaign.clickable {

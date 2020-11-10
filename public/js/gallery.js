@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 21);
+/******/ 	return __webpack_require__(__webpack_require__.s = 22);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -93,11 +93,141 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/Users/jay/Documents/GitHub/miscellany/resources/assets/js/gallery.js'");
+var loader, gallery, search;
+var fileDrop, fileProgress, fileUploadField, fileError;
+$(document).ready(function () {
+  initGallery();
+  initUploader();
+  registerEvents();
+});
+
+function initGallery() {
+  loader = $('#gallery-loader');
+  gallery = $('#gallery-images');
+  search = $('#gallery-search');
+  fileDrop = $('.uploader');
+  fileProgress = $('.progress');
+  fileUploadField = $('#file-upload');
+  fileError = $('.gallery-error');
+  search.on('blur', function (e) {
+    e.preventDefault();
+    initSearch();
+  }).on('submit', function (e) {
+    e.preventDefault();
+    initSearch();
+  });
+}
+
+function loadGallery(url) {
+  $.ajax({
+    url: url,
+    dataType: 'json'
+  }).done(function (data) {
+    console.log('data', data);
+    gallery.html(data.content);
+    loader.hide();
+    gallery.show();
+  });
+}
+/**
+ *
+ */
+
+
+function initSearch() {
+  gallery.hide();
+  loader.show();
+  console.log('searching');
+  $.ajax({
+    url: search.data('url') + '?q=' + search.val()
+  }).done(function (data) {
+    loader.hide();
+    gallery.html(data).show();
+    registerEvents();
+  });
+}
+/**
+ *
+ */
+
+
+function initUploader() {
+  console.log('init uploader');
+  fileDrop.unbind('drop dragover').bind('drop dragover', function (e) {
+    e.preventDefault();
+    fileProgress.show();
+  });
+  $('.file-upload-form').fileupload({
+    dropZone: fileDrop,
+    dataType: 'json',
+    add: function add(e, data) {
+      console.log('added file');
+      fileError.hide();
+      data.submit();
+    },
+    progressall: function progressall(e, data) {
+      var progress = parseInt(data.loaded / data.total * 100, 10);
+      fileProgress.show();
+      $('.progress .progress-bar').css('width', progress + '%');
+    },
+    done: function done(e, data) {
+      console.log('file uploaded');
+      fileProgress.hide(); //fileDrop.collapse('hide');
+
+      console.log('result', data.result);
+
+      if (data.result.success) {
+        gallery.prepend(data.result.html);
+        registerEvents();
+      }
+    },
+    fail: function fail(e, data) {
+      fileProgress.hide();
+
+      if (data.jqXHR.responseJSON) {
+        fileError.text(buildErrors(data.jqXHR.responseJSON.errors)).fadeToggle();
+      }
+
+      registerEvents();
+    }
+  });
+}
+/**
+ *
+ * @param data
+ * @returns {string}
+ */
+
+
+function buildErrors(data) {
+  var errors = '';
+
+  for (var key in data) {
+    // skip loop if the property is from prototype
+    if (!data.hasOwnProperty(key)) continue;
+
+    for (var e in data[key]) {
+      errors += data[key][e] + "\n";
+    }
+  }
+
+  return errors;
+}
+
+function registerEvents() {
+  $('#gallery-images li').unbind('click').on('click', function (e) {
+    $.ajax({
+      url: $(this).data('url')
+    }).done(function (data) {
+      $('#large-modal-content').html(data);
+      $('#large-modal').modal('show');
+    });
+  });
+}
 
 /***/ }),
 
-/***/ 21:
+/***/ 22:
 /*!*******************************************!*\
   !*** multi ./resources/assets/js/gallery ***!
   \*******************************************/

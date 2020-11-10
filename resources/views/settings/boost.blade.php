@@ -52,13 +52,15 @@
             </h3>
             @if ($campaign)
                 <div class="row margin-bottom">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="campaign boost" @if ($campaign->image) style="background-image: url('{{ Img::crop(500, 200)->url($campaign->image) }}');" @endif>
                             <div class="actions">
-                                <a href="{{ url(App::getLocale() . '/' . $campaign->getMiddlewareLink()) }}">{!! $campaign->name !!}</a>
+                                <a href="{{ url(App::getLocale() . '/' . $campaign->getMiddlewareLink()) }}" class="campaign-name">
+                                    {!! $campaign->name !!}
+                                </a>
 
                                 @if(Auth::user()->availableBoosts() > 0)
-                                    {!! Form::open(['route' => 'campaign_boost.store']) !!}
+                                    {!! Form::open(['route' => 'campaign_boosts.store']) !!}
                                     <button type="submit" class="btn btn-primary boost" name="action" value="boost" title="{{ __('settings.boost.buttons.tooltips.boost', ['amount' => 1]) }}" data-toggle="tooltip">
                                         <i class="fa fa-rocket"></i> {{ __('settings.boost.buttons.boost') }}
                                     </button>
@@ -86,38 +88,33 @@
             @endif
                 <div class="row">
                     @foreach ($boosts as $boost)
-                    <div class="col-md-4 margin-bottom">
+                    <div class="col-md-6 margin-bottom">
                         <div class="campaign" @if ($boost->campaign->image) style="background-image: url('{{ Img::crop(500, 200)->url($boost->campaign->image) }}');" @endif>
                             <div class="actions">
-                                <a href="{{ url(App::getLocale() . '/' . $boost->campaign->getMiddlewareLink()) }}">{!! $boost->campaign->name !!}</a><br />
+                                <a href="{{ url(App::getLocale() . '/' . $boost->campaign->getMiddlewareLink()) }}" class="campaign-name">
+                                    {!! $boost->campaign->name !!}
+                                </a>
 
-                                <div class="row">
-                                    @if(!$boost->campaign->boosted(true))
-                                        <div class="col-sm-6">
+                                @if(!$boost->campaign->boosted(true))
                                         @if(auth()->user()->availableBoosts() >= 3)
-                                        {!! Form::model($boost, ['route' => ['campaign_boost.update', $boost], 'method' => 'PATCH']) !!}
-                                        <button type="submit" class="btn bg-maroon" value="superboost" title="{{ __('settings.boost.buttons.tooltips.boost', ['amount' => 3]) }}" data-toggle="tooltip">
-                                            <i class="fa fa-rocket"></i> {{ __('settings.boost.buttons.superboost') }}
-                                        </button>
+                                        {!! Form::model($boost, ['route' => ['campaign_boosts.update', $boost], 'method' => 'PATCH']) !!}
+                                            <button type="submit" class="btn bg-maroon" value="superboost" title="{{ __('settings.boost.buttons.tooltips.boost', ['amount' => 3]) }}" data-toggle="tooltip">
+                                                <i class="fa fa-rocket"></i> {{ __('settings.boost.buttons.superboost') }}
+                                            </button>
                                         {!! Form::close() !!}
                                         @else
                                         <button type="submit" disabled="disabled" class="btn bg-maroon" value="superboost" title="{{ __('settings.boost.buttons.tooltips.boost', ['amount' => 3]) }}" data-toggle="tooltip">
                                             <i class="fa fa-rocket"></i> {{ __('settings.boost.buttons.superboost') }}
                                         </button>
                                         @endif
-                                        </div>
-                                    @endif
-                                    <div class="col-sm-6">
-
-                                    @can('destroy', $boost)
+                                @endif
+                                @can('destroy', $boost)
                                     <a href="#" class="delete-confirm btn btn-danger" data-name="{{ $boost->campaign->name }}" data-toggle="modal" data-target="#delete-confirm" data-delete-target="delete-confirm-form-{{ $boost->id }}">
                                         <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                                     </a>
-                                    {!! Form::open(['method' => 'DELETE', 'route' => ['campaign_boost.destroy', $boost->id], 'style' => 'display:inline', 'id' => 'delete-confirm-form-' . $boost->id]) !!}
+                                    {!! Form::open(['method' => 'DELETE', 'route' => ['campaign_boosts.destroy', $boost->id], 'style' => 'display:inline', 'id' => 'delete-confirm-form-' . $boost->id]) !!}
                                     {!! Form::close() !!}
-                                    @endif
-                                    </div>
-                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -31,7 +31,7 @@ Route::group([
     require base_path('routes/profile.php');
 
     Route::resources([
-        'campaign_boost' => 'CampaignBoostController',
+        'campaign_boosts' => 'CampaignBoostController',
     ]);
 
     Route::post('/logout', 'Auth\AuthController@logout')->name('logout');

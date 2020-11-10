@@ -258,7 +258,8 @@ trait CampaignRelations
      */
     public function images()
     {
-        return $this->hasMany(Image::class);
+        return $this->hasMany(Image::class)
+            ->where('is_default', false);
     }
 
     /**

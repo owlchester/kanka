@@ -35,7 +35,11 @@ class AjaxGalleryController extends Controller
             'data' => [],
             'links' => []
         ];
-        $images = Image::orderBy('updated_at', 'desc')->offset($offset)->take(20)->get();
+        $images = Image::where('is_default', false)
+            ->orderBy('updated_at', 'desc')
+            ->offset($offset)
+            ->take(20)
+            ->get();
         foreach ($images as $image) {
             $response['data'][] = [
                 'src' => Storage::url($image->path),
