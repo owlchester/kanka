@@ -8,8 +8,6 @@ use App\Models\Campaign;
 use App\Models\CampaignBoost;
 use App\Services\CampaignBoostService;
 use App\Services\CampaignService;
-use http\Client\Request;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
 class CampaignBoostController extends Controller
@@ -48,10 +46,54 @@ class CampaignBoostController extends Controller
         $this->authorize('access', $campaign);
 
         try {
-            $this->campaignBoostService->campaign($campaign)->boost();
+            $this->campaignBoostService
+                ->campaign($campaign)
+                ->action($request->post('action'))
+                ->boost();
+
+            $superboost = $request->post('action') == 'superboost';
+
             $this->campaignService->notify(
                 $campaign,
-                'boost.add',
+                'boost.' . ($superboost ? 'superboost' : 'add'),
+                'rocket',
+                'maroon',
+                [
+                    'user' => e(Auth::user()->name),
+                    'campaign' => e($campaign->name)
+                ]
+            );
+
+            return redirect()
+                ->route('settings.boost')
+                ->with('success', trans('settings.boost.success.' . ($superboost ? 'superboost' : 'boost'), ['name' => $campaign->name]));
+        } catch (TranslatableException $e) {
+            return redirect()
+                ->route('settings.boost')
+                ->with('error', $e->getTranslatedMessage());
+        }
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param CampaignBoost $campaignBoost
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function update(\Illuminate\Http\Request $request, CampaignBoost $campaignBoost) {
+        $campaign = $campaignBoost->campaign;
+        CampaignCache::campaign($campaign);
+        $this->authorize('access', $campaign);
+
+        try {
+            $this->campaignBoostService
+                ->campaign($campaign)
+                ->upgrade()
+                ->boost();
+
+            $this->campaignService->notify(
+                $campaign,
+                'boost.superboost',
                 'rocket',
                 'maroon',
                 [
@@ -62,7 +104,7 @@ class CampaignBoostController extends Controller
 
             return redirect()
                 ->route('settings.boost')
-                ->with('success', trans('settings.boost.success.boost', ['name' => $campaign->name]));
+                ->with('success', trans('settings.boost.success.superboost', ['name' => $campaign->name]));
         } catch (TranslatableException $e) {
             return redirect()
                 ->route('settings.boost')

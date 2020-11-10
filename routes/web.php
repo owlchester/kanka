@@ -61,6 +61,11 @@ Route::group([
 
         Route::post('/follow', 'CampaignFollowController@update')->name('campaign.follow');
 
+        Route::get('/gallery', 'Campaign\GalleryController@index')->name('campaign.gallery.index');
+        Route::get('/gallery/load', 'Campaign\GalleryController@load')->name('campaign.gallery.load');
+        Route::get('/gallery/search', 'Campaign\GalleryController@search')->name('campaign.gallery.search');
+        Route::get('/gallery/ajax-gallery', 'Campaign\AjaxGalleryController@index')->name('campaign.gallery.summernote');
+
         // Abilities
         Route::get('/abilities/{ability}/map-points', 'AbilityController@mapPoints')->name('abilities.map-points');
         Route::get('/abilities/{ability}/abilities', 'AbilityController@abilities')->name('abilities.abilities');
@@ -204,6 +209,9 @@ Route::group([
         Route::get('/recovery', 'Campaign\RecoveryController@index')->name('recovery');
         Route::post('/recovery', 'Campaign\RecoveryController@recover')->name('recovery');
 
+        // Stats
+        Route::get('/stats', 'Campaign\StatController@index')->name('stats');
+
 
         Route::get('/default-images', 'Campaign\DefaultImageController@index')->name('campaign.default-images');
         Route::get('/default-images/create', 'Campaign\DefaultImageController@create')->name('campaign.default-images.create');
@@ -276,6 +284,8 @@ Route::group([
 
             'campaign_dashboards' => 'Campaign\CampaignDashboardController',
             'campaign_dashboard_widgets' => 'CampaignDashboardWidgetController',
+
+            'images' => 'Campaign\GalleryController',
         ]);
         Route::get('/campaigns/{campaign}/leave', 'CampaignController@leave')->name('campaigns.leave');
         Route::post('/campaigns/{campaign}/campaign_settings', 'CampaignSettingController@save')->name('campaigns.settings.save');

@@ -4,8 +4,11 @@ namespace App\Observers;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\EntityCache;
+use App\Facades\Identity;
 use App\Facades\Mentions;
 use App\Models\Entity;
+use App\Models\EntityLog;
+use App\Models\Location;
 use App\Models\MiscModel;
 use App\Services\EntityMappingService;
 use App\Services\ImageService;
@@ -158,6 +161,33 @@ abstract class MiscObserver
         // Check if the entity exists, because it won't while moving an entity from one type to another.
         if ($model->entity) {
             $model->entity->touch();
+
+            // Updated log. We do this here to have the dirty attributes of the child
+            $log = new EntityLog();
+            $log->entity_id = $model->entity->id;
+            $log->created_by = auth()->user()->id;
+            $log->impersonated_by = Identity::getImpersonatorId();
+            $log->action = EntityLog::ACTION_UPDATE;
+            // Full logs for superboosted campaigns. RIP sql server
+            if ($model->campaign->boosted(true)) {
+                $logs = [];
+                $dirty = $model->getDirty();
+                foreach ($dirty as $attribute => $value) {
+                    if (in_array($attribute, $model->ignoredLogAttributes())) {
+                        continue;
+                    }
+                    // We log the old value
+                    $value = $model->getOriginal($attribute);
+                    if (Str::endsWith($attribute, '_id')) {
+                        // Foreign? Try and get the related model
+                        $value = $this->getForeignOriginal($model, $attribute, $value);
+                    }
+
+                    $logs[$attribute] = $value;
+                }
+                $log->changes = $logs;
+            }
+            $log->save();
         }
     }
 
@@ -175,5 +205,42 @@ abstract class MiscObserver
         if ($model->isDirty('entry')) {
             $this->entityMappingService->silent()->mapEntity($entity);
         }
+    }
+
+    /**
+     * @param MiscModel $model
+     * @param string $attribute
+     * @param string $original
+     * @return string
+     */
+    protected function getForeignOriginal(MiscModel $model, string $attribute, string $original): string
+    {
+        if (empty($original)) {
+            return '';
+        }
+
+        try {
+            if ($attribute == 'parent_location_id') {
+                $originalLocation = Location::where('id', $original)->first();
+                if (!empty($originalLocation)) {
+                    return (string) $originalLocation->name;
+                }
+                return '';
+            }
+            // Let's try based off of the attribute name
+            $relationName = Str::before($attribute, '_id');
+            $relationName = Str::camel($relationName);
+
+            $relationClass = 'App\Models\\' . $relationName;
+            /** @var MiscModel $relationModel */
+            $relationModel = new $relationClass();
+            $result = $relationModel->where('id', $original)->firstOrFail();
+            return $result->name;
+        }
+        catch (\Exception $e) {
+            dd($e);
+            return '';
+        }
+
     }
 }

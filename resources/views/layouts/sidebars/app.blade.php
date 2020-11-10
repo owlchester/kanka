@@ -147,7 +147,6 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                 @endif
 
 
-
                 @if ($campaign->enabled('notes'))
                     <li class="{{ $sidebar->active('notes') }}">
                         <a href="{{ route('notes.' . $defaultIndex) }}"><i class="fas fa-book-open"></i> <span>{{ trans('sidebar.notes') }}</span></a>
@@ -176,6 +175,11 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                         <a href="{{ route('dice_rolls.index') }}"><i class="ra ra-dice-five"></i> <span>{{ trans('sidebar.dice_rolls') }}</span></a>
                     </li>
                 @endif
+                @can('gallery', $currentCampaign)
+                    <li class="{{ $sidebar->active('gallery') }} subsection">
+                        <a href="{{ route('campaign.gallery.index') }}"><i class="fas fa-images"></i> <span>{{ trans('sidebar.gallery') }}</span></a>
+                    </li>
+                @endcan
                 <li class="{{ $sidebar->active('attribute_templates') }} subsection">
                     <a href="{{ route('attribute_templates.index') }}"><i class="fa fa-copy"></i> <span>{{ trans('sidebar.attribute_templates') }}</span></a>
                 </li>

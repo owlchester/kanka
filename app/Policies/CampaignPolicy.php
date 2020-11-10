@@ -126,6 +126,16 @@ class CampaignPolicy
      * @param Campaign $campaign
      * @return bool
      */
+    public function stats(User $user, Campaign $campaign): bool
+    {
+        return $user->campaign->id == $campaign->id && UserCache::user($user)->admin();
+    }
+
+    /**
+     * @param User $user
+     * @param Campaign $campaign
+     * @return bool
+     */
     public function search(User $user, Campaign $campaign): bool
     {
         return $user->campaign->id == $campaign->id && UserCache::user($user)->admin();
@@ -176,5 +186,15 @@ class CampaignPolicy
     public function members(?User $user, Campaign $campaign)
     {
         return UserCache::user($user)->admin() || !($campaign->boosted() && $campaign->hide_members);
+    }
+
+    /**
+     * @param User|null $user
+     * @param Campaign $campaign
+     * @return bool
+     */
+    public function gallery(?User $user, Campaign $campaign): bool
+    {
+        return $user && UserCache::user($user)->admin() && $campaign->boosted(true);
     }
 }

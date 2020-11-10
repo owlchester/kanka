@@ -178,6 +178,9 @@ table {
   table {
     max-width: 100% !important;
   }
+  img {
+    max-width: 100%;
+  }
 }
 
 .clear {
@@ -1001,6 +1004,15 @@ hr {
     border-radius: 5px;
     color: #333 !important;
     text-decoration: none;
+  }
+}
+.images-list {
+  .img-item {
+    overflow: hidden;
+    .thumbnail {
+      height: 120px;
+      overflow: hidden;
+    }
   }
 }
 

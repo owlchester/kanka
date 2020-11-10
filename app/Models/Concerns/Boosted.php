@@ -21,10 +21,11 @@ trait Boosted
 
     /**
      * Determine if the campaign is boosted
+     * @param bool $superboosted false
      * @return bool
      */
-    public function boosted(): bool
+    public function boosted(bool $superboosted = false): bool
     {
-        return $this->boost_count > 0;
+        return $this->boost_count > ($superboosted ? 2 : 0);
     }
 }

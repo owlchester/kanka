@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
  * @package App\Models
  *
  * @property int $id
+ * @property string $uuid
  * @property int $campaign_id
  * @property string $name
  * @property string $ext
@@ -32,14 +33,16 @@ use Illuminate\Support\Facades\Storage;
  */
 class Image extends Model
 {
-    public $incrementing = false;
+    public $fillable = [
+        'name',
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'created_by');
     }
 
     /**
@@ -63,7 +66,7 @@ class Image extends Model
      */
     public function getFileAttribute(): string
     {
-        return $this->id . '.' . $this->ext;
+        return $this->uuid . '.' . $this->ext;
     }
 
     /**
@@ -72,5 +75,17 @@ class Image extends Model
     public function getFolderAttribute(): string
     {
         return 'campaigns/' . $this->campaign_id;
+    }
+
+    /**
+     * @return string
+     */
+    public function niceSize(): string
+    {
+        if ($this->size > 1000) {
+            return round($this->size / 1024, 2) . ' MB';
+        }
+
+        return $this->size . ' KB';
     }
 }

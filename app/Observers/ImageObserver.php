@@ -10,6 +10,16 @@ use Illuminate\Support\Facades\Storage;
 
 class ImageObserver
 {
+    use PurifiableTrait;
+
+    /**
+     * @param Image $image
+     */
+    public function saving(Image $image)
+    {
+        $image->name = $this->purify($image->name);
+    }
+
     /**
      * @param Image $image
      */

@@ -12,6 +12,7 @@ use App\Models\EntityEvent;
 use App\Models\EntityMention;
 use App\Models\EntityNote;
 use App\Models\EntityTag;
+use App\Models\Image;
 use App\Models\Inventory;
 use App\Models\Map;
 use App\Models\MiscModel;
@@ -44,6 +45,7 @@ use App\User;
  * @property Relation[] $starredRelations
  * @property Relation[] $relations
  * @property EntityEvent[] $elapsedEvents
+ * @property Image $image
  */
 trait EntityRelations
 {
@@ -359,5 +361,13 @@ trait EntityRelations
     public function mapMarkers()
     {
         return $this->hasMany('App\Models\MapMarker', 'entity_id', 'id');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function image()
+    {
+        return $this->hasOne('App\Models\Image', 'image_id', 'id');
     }
 }

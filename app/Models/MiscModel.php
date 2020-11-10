@@ -40,6 +40,7 @@ use Exception;
  * @property [] $nullableForeignKeys
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @property Campaign $campaign
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
 abstract class MiscModel extends Model
@@ -452,5 +453,16 @@ abstract class MiscModel extends Model
         return static::withoutEvents(function() {
             return $this->touch();
         });
+    }
+
+    public function ignoredLogAttributes(): array
+    {
+        return [
+            'slug',
+            'campaign_id',
+            'updated_at',
+            '_lft',
+            '_rgt',
+        ];
     }
 }

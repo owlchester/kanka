@@ -40,10 +40,14 @@ class LogController extends Controller
         $entity = $this->logService->createMissingLogs($entity);
         $logs = $entity->logs()->with(['user', 'impersonator'])->recent()->paginate();
 
+        $transKey = $entity->pluralType();
+
         return view('entities.pages.logs.logs', compact(
             'ajax',
             'entity',
-            'logs'
+            'logs',
+            'campaign',
+            'transKey'
         ));
     }
 }

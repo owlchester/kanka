@@ -156,6 +156,7 @@ $(document).ready(function() {
         initTooltips();
         initCategories();
         initSpectrum();
+        deleteConfirm();
 
         // Handle when opening the entity-creator ui
         entityCreatorUI();
