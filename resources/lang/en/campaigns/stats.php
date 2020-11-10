@@ -11,17 +11,26 @@ return [
           'goal' => 'Calendars'
       ],
     ],
-    'helper' => 'Statistics and achievements of the campaign. These numbers are updated every 24 hours.',
+    'helper' => 'Track your progress to unlocking various achievements for your campaign. These numbers are updated once every 24 hours.',
     'placeholder' => ':amount of :target',
-    'title' => ':campaign stats and achievements',
+    'title' => 'Campaign :campaign Achievements',
 
     'titles' => [
-        'primary' => [
-            '1' => 'New World',
-            '2' => 'Settlement',
-            '3' => 'City',
-            '4' => 'Region',
-            '5' => 'World',
-        ],
-    ]
+        'characters' => 'Name Giver level :level',
+        'locations' => 'Builder level :level',
+        'quests' => 'Mastermind level :level',
+        'calendars' => 'Time Keeper level :level',
+        'dead' => 'Murderer level :level',
+        'families' => 'Family Planning level :level',
+        'races' => 'Breeder level :level',
+    ],
+
+    'targets' => [
+        'characters' => 'Create :target characters',
+        'locations' => 'Create :target locations',
+        'dead' => 'Kill :target characters',
+        'calendars' => 'Create :target calendars',
+        'families' => 'Create :target families',
+        'races' => 'Create :target races',
+    ],
 ];

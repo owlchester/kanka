@@ -164,7 +164,7 @@ return [
             'boosted' => 'Superboosted',
             'gallery' => 'Campaign Gallery and integrations with the Summernote text editor',
             'logs' => 'Full change logs on entities (up to 30 days)',
-            'stats' => 'Stats and Achievements page',
+            'stats' => 'Campaign achievements page',
             'files' => 'Up to 10 files uploaded to each entity',
         ],
         'timelines'         => [

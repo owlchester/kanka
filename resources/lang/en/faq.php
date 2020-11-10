@@ -114,7 +114,7 @@ TEXT
         'question'  => 'How do others use Kanka?',
     ],
     'renaming-modules'      => [
-        'answer'    => 'While this would be easy to do for English and other languages that don\'t use gendered names, being able to change the name of modules would break the grammatical correctness and user experience for a majority of languages Kanka is also available in.',
+        'answer'    => 'By default, Kanka does not allow you to change the name of modules. This is due to the grammatical correctness and user experiences for languages that use gendered words.  However, a boosted campaign can change the name of modules in the sidebar by using Custom CSS.',
         'question'  => 'Can I rename modules? For example Families into Clans, or Organisations into Factions?',
     ],
     'sections'              => [

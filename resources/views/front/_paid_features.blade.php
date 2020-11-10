@@ -215,7 +215,7 @@
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
-                <td class="text">{{ __('front.features.boosts.files') }}</td>
+                <td class="text">{{ __('front.features.superboosts.files') }}</td>
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             </tbody>
