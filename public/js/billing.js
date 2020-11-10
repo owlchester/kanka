@@ -20611,6 +20611,14 @@ __webpack_require__.r(__webpack_exports__);
         "success": "S'han actualitzat les opcions de disseny.",
         "title": "Disseny"
       },
+      "marketplace": {
+        "fields": {
+          "name": "Nom al mercat"
+        },
+        "helper": "Per defecte, el vostre nom d'usuari es mostra al {marketplace}. Podeu canviar-lo en aquest camp.",
+        "title": "Configuració del Mercat",
+        "update": "S'ha guardat la configuració del Mercat."
+      },
       "menu": {
         "account": "Compte",
         "api": "API",
@@ -20619,6 +20627,7 @@ __webpack_require__.r(__webpack_exports__);
         "boost": "Millorar",
         "invoices": "Factures",
         "layout": "Disseny",
+        "marketplace": "Mercat",
         "other": "Altres",
         "patreon": "Patreon",
         "payment_options": "Opcions de pagament",
@@ -21204,6 +21213,7 @@ __webpack_require__.r(__webpack_exports__);
         "family": "Trieu una família",
         "image_url": "Podeu pujar una imatge des d'una URL",
         "item": "Trieu un objecte",
+        "journal": "Trieu una crònica",
         "location": "Trieu una localització",
         "map": "Trieu un mapa",
         "organisation": "Trieu una organització",
@@ -21266,6 +21276,7 @@ __webpack_require__.r(__webpack_exports__);
     "randomisers": [],
     "entities": []
   },
+  "cz": [],
   "de": {
     "maps": [],
     "calendars": [],
@@ -21748,7 +21759,7 @@ __webpack_require__.r(__webpack_exports__);
         },
         "success": {
           "copy_to_campaign": "{1} {count} der in {campaign} kopierten Objekte. | [2, *] {count}  der in {campaign} kopierten Objekte.",
-          "editing": "1} {count} objekt wurde aktualisiert. | [2, *] {count} objekte wurden aktualisiert.",
+          "editing": "{1} {count} objekt wurde aktualisiert. | [2, *] {count} objekte wurden aktualisiert.",
           "permissions": "Berechtigungen für {count} Objekt geändert.|Berechtigungen für {count} Objekte geändert.",
           "private": "{count} Objekt ist jetzt privat.|{count} Objekte sind jetzt privat.",
           "public": "{count} Objekt ist jetzt sichtbar.|{count} Objekte sind jetzt sichtbar."
@@ -21978,6 +21989,7 @@ __webpack_require__.r(__webpack_exports__);
         "family": "Wähle eine Familie",
         "image_url": "Du kannst ein Bild auch von einer URL hochladen",
         "item": "Wähle einen Gegenstand",
+        "journal": "Wähle ein Logbuch",
         "location": "Wähle einen Ort",
         "map": "Wähle eine Karte",
         "organisation": "Wähle eine Organisation",
@@ -22405,7 +22417,7 @@ __webpack_require__.r(__webpack_exports__);
         "find_out_more": "Find out more",
         "go_to": "Go to {name}",
         "json-export": "Export (JSON)",
-        "move": "Move",
+        "move": "Change or Move",
         "new": "New",
         "next": "Next",
         "reset": "Reset"
@@ -22649,7 +22661,6 @@ __webpack_require__.r(__webpack_exports__);
       "linking_help": "How can I link to other entries?",
       "manage": "Manage",
       "move": {
-        "description": "Move this entity to another place",
         "errors": {
           "permission": "You aren't allowed to create entities of that type in the target campaign.",
           "same_campaign": "You need to select another campaign to move the entity to.",
@@ -22665,9 +22676,13 @@ __webpack_require__.r(__webpack_exports__);
           "copy": "Select this option if you want to create copy in the new campaign.",
           "target": "Please be aware that some data might be lost when moving an element from one type to another."
         },
+        "panels": {
+          "change": "Change entity type",
+          "move": "Move to another campaign"
+        },
         "success": "Entity '{name}' moved.",
         "success_copy": "Entity '{name}' copied.",
-        "title": "Move {name}"
+        "title": "Change or Move {name}"
       },
       "new_entity": {
         "error": "Please review your values.",
@@ -22914,6 +22929,14 @@ __webpack_require__.r(__webpack_exports__);
         "success": "Opciones de diseño actualizadas.",
         "title": "Diseño"
       },
+      "marketplace": {
+        "fields": {
+          "name": "Nombre del marketplace"
+        },
+        "helper": "Por defecto, tu nombre de usuario se muestra en el {marketplace}. Puedes modificarlo en este campo.",
+        "title": "Configuración del Marketplace",
+        "update": "Configuración de Marketplace guardada."
+      },
       "menu": {
         "account": "Cuenta",
         "api": "API",
@@ -22922,6 +22945,7 @@ __webpack_require__.r(__webpack_exports__);
         "boost": "Mejorar",
         "invoices": "Facturas",
         "layout": "Diseño",
+        "marketplace": "Marketplace",
         "other": "Otros",
         "patreon": "Patreon",
         "payment_options": "Opciones de pago",
@@ -23506,6 +23530,7 @@ __webpack_require__.r(__webpack_exports__);
         "family": "Elige una familia",
         "image_url": "Puedes subir una imagen desde una URL",
         "item": "Elige un objeto",
+        "journal": "Elige un diario",
         "location": "Elige una localización",
         "map": "Elige un mapa",
         "organisation": "Elige una organización",
@@ -23673,6 +23698,14 @@ __webpack_require__.r(__webpack_exports__);
         "success": "Options de mise en page modifiées.",
         "title": "Mise en page"
       },
+      "marketplace": {
+        "fields": {
+          "name": "Nom sur le marketplace"
+        },
+        "helper": "Par défaut, le nom d'utilisateur est affiché sur le {marketplace}. Le nom affiché peut être modifié avec ce champs.",
+        "title": "Paramètres du Marketplace",
+        "update": "Paramètres du marketplace sauvegardés."
+      },
       "menu": {
         "account": "Compte",
         "api": "API",
@@ -23681,6 +23714,7 @@ __webpack_require__.r(__webpack_exports__);
         "boost": "Boost",
         "invoices": "Factures",
         "layout": "Mise en Page",
+        "marketplace": "Marketplace",
         "other": "Autre",
         "patreon": "Patreon",
         "payment_options": "Options de paiement",
@@ -24239,6 +24273,7 @@ __webpack_require__.r(__webpack_exports__);
         "family": "Choix de la famille",
         "image_url": "Ou depuis une URL",
         "item": "Choix d'un objet",
+        "journal": "Choix d'un journal",
         "location": "Choix du lieu",
         "map": "Choix d'une carte",
         "organisation": "Choix d'une organisation",
@@ -24300,6 +24335,492 @@ __webpack_require__.r(__webpack_exports__);
     "front": [],
     "randomisers": [],
     "entities": []
+  },
+  "gl": {
+    "calendars": [],
+    "conversations": {
+      "create": {
+        "description": "Crear unha nova conversa",
+        "success": "Conversa \"{name}\" creada.",
+        "title": "Nova conversa"
+      },
+      "destroy": {
+        "success": "Conversa \"{name}\" eliminada."
+      },
+      "edit": {
+        "description": "Actualizar a conversa",
+        "success": "Conversa \"{name}\" actualizada.",
+        "title": "Conversa \"{name}\""
+      },
+      "fields": {
+        "messages": "Mensaxes",
+        "name": "Nome",
+        "participants": "Participantes",
+        "target": "Obxetivo",
+        "type": "Tipo"
+      },
+      "hints": {
+        "participants": "Engade participantes á conversa presionando a icona {icon} arriba á dereita."
+      },
+      "index": {
+        "add": "Nova conversa",
+        "description": "Administra a categoría de \"{name}\".",
+        "header": "Conversas en \"{name}\"",
+        "title": "Conversas"
+      },
+      "messages": {
+        "destroy": {
+          "success": "Mensaxe eliminada."
+        },
+        "is_updated": "Actualizada",
+        "load_previous": "Cargar mensaxes previas",
+        "placeholders": {
+          "message": "A túa mensaxe"
+        }
+      },
+      "participants": {
+        "create": {
+          "success": "Participante {entity} engadida á conversa."
+        },
+        "description": "Engade ou elimina participantes da conversa",
+        "destroy": {
+          "success": "Participante {entity} eliminada da conversa."
+        },
+        "modal": "Participantes",
+        "title": "Participantes de \"{name}\""
+      },
+      "placeholders": {
+        "name": "Nome da conversa",
+        "type": "Dentro do xogo, preparación, argumento..."
+      },
+      "show": {
+        "description": "Vista detallada dunha conversa",
+        "title": "Conversa \"{name}\""
+      },
+      "tabs": {
+        "conversation": "Conversa",
+        "participants": "Participantes"
+      },
+      "targets": {
+        "characters": "Personaxes",
+        "members": "Membras"
+      }
+    },
+    "crud": {
+      "actions": {
+        "actions": "Accións",
+        "apply": "Aplicar",
+        "back": "Voltar",
+        "copy": "Copiar",
+        "copy_mention": "Copiar mención [ ]",
+        "copy_to_campaign": "Copiar a campaña",
+        "explore_view": "Vista en árbore",
+        "export": "Exportar (PDF)",
+        "find_out_more": "Saber máis",
+        "go_to": "Ir a {name}",
+        "json-export": "Exportar (JSON)",
+        "more": "Máis",
+        "move": "Mover",
+        "new": "Crear nova",
+        "next": "Seguinte",
+        "reset": "Restablecer"
+      },
+      "add": "Engadir",
+      "alerts": {
+        "copy_mention": "A mención avanzada da entidade foi copiada ao portapapeis."
+      },
+      "attributes": {
+        "actions": {
+          "add": "Engadir atributo",
+          "add_block": "Engadir bloque",
+          "add_checkbox": "Engadir caixa de selección",
+          "add_text": "Engadir texto",
+          "apply_template": "Aplicar un padrón de atributos",
+          "manage": "Administrar",
+          "more": "Máis opcións",
+          "remove_all": "Eliminar todos"
+        },
+        "create": {
+          "description": "Crear novo atributo",
+          "success": "Atributo \"{name}\" engadido a {entity}.",
+          "title": "Novo atributo para {name}"
+        },
+        "destroy": {
+          "success": "Atributo \"{name}\" de {entity} eliminado."
+        },
+        "edit": {
+          "description": "Actualizar un atributo existente",
+          "success": "Atributo \"{name}\" de {entity} actualizado.",
+          "title": "Actualizar atributo de {name}"
+        },
+        "fields": {
+          "attribute": "Atributo",
+          "community_templates": "Padróns da comunidade",
+          "is_private": "Atributos privados",
+          "is_star": "Fixado",
+          "template": "Padrón",
+          "value": "Valor"
+        },
+        "helpers": {
+          "delete_all": "Seguro que queres eliminar todos os atributos desta entidade?"
+        },
+        "hints": {
+          "is_private": "Podes ocultar todos os atributos a todos os usuarios non administradores facendo que a entidade sexa privada."
+        },
+        "index": {
+          "success": "Atributos de {entity} actualizados.",
+          "title": "Atributos de {name}"
+        },
+        "placeholders": {
+          "attribute": "Nivel, iniciativa, populación...",
+          "block": "Nome do bloque",
+          "checkbox": "Nome da caixa de selección",
+          "section": "Nome da sección",
+          "template": "Selecciona un padrón",
+          "value": "Valor do atributo"
+        },
+        "template": {
+          "success": "Padrón de atributos \"{name}\" aplicado a {entity}",
+          "title": "Aplicar un padrón de atributos a {name}"
+        },
+        "types": {
+          "attribute": "Atributo",
+          "block": "Bloque",
+          "checkbox": "Caixa de selección",
+          "section": "Sección",
+          "text": "Texto multiliña"
+        },
+        "visibility": {
+          "entry": "O atributo é mostrado no menú da entidade.",
+          "private": "Atributo só visíbel para administradoras.",
+          "public": "Atributo visíbel a todas as membras.",
+          "tab": "O atributo é mostrado na lapela \"Atributos\"."
+        }
+      },
+      "boosted": "Potenciada",
+      "boosted_campaigns": "Campañas potenciadas",
+      "bulk": {
+        "actions": {
+          "edit": "Editar e etiquetar en masa"
+        },
+        "age": {
+          "helper": "Usa + e - antes do número para modificar a idade nesa cantidade."
+        },
+        "delete": {
+          "title": "Eliminar múltiples entidades",
+          "warning": "Seguro que queres eliminar as entidades seleccionadas?"
+        },
+        "edit": {
+          "tagging": "Acción para as etiquetas",
+          "tags": {
+            "add": "Engadir",
+            "remove": "Eliminar"
+          },
+          "title": "Editando múltiples entidades"
+        },
+        "errors": {
+          "admin": "Só as administradoras da campaña poden cambiar o estado de privacidade das entidades.",
+          "general": "Houbo un erro ao procesar a acción. Inténtao de novo e contáctanos se o problema persiste. Mesaxe do erro: {hint}."
+        },
+        "permissions": {
+          "fields": {
+            "override": "Substituir"
+          },
+          "helpers": {
+            "override": "Se está seleccionado, os permisos das entidades seleccionadas serán substituidos por estes. Se non está seleccionado, os permisos seleccionados serán engadidos aos existentes."
+          },
+          "title": "Cambiar os permisos a varias entidades"
+        },
+        "success": {
+          "copy_to_campaign": "{1} {count} entidade copiada a \"{campaign}\".|[2,*] {count} entidades copiadas a \"{campaign}\".",
+          "editing": "{1} {count} entidade actualizada.|[2,*] {count} entidades actualizadas.",
+          "permissions": "{1} Permisos alterados para {count} entidade.|[2,*] Permisos alterados para {count} entidades.",
+          "private": "{1} {count} entidade é agora privada|[2,*] {count} entidades son agora privadas.",
+          "public": "{1} {count} entidade é agora visíbel|[2,*] {count} entidades son agora visíbeis."
+        }
+      },
+      "cancel": "Canvelar",
+      "click_modal": {
+        "close": "Pechar",
+        "confirm": "Confirmar",
+        "title": "Confirma a túa acción"
+      },
+      "copy_to_campaign": {
+        "bulk_title": "Copiar entidades a outra campaña",
+        "panel": "Copiar",
+        "title": "Copiar \"{name}\" a outra campaña"
+      },
+      "create": "Crear",
+      "datagrid": {
+        "empty": "Nada que mostrar (aínda)."
+      },
+      "delete_modal": {
+        "close": "Pechar",
+        "delete": "Eliminar",
+        "description": "Seguro que queres eliminar {tag}?",
+        "mirrored": "Eliminar relación espellada.",
+        "title": "Confirmación de eliminación"
+      },
+      "destroy_many": {
+        "success": "Eliminouse {count} entidade|Elimináronse {count} entidades."
+      },
+      "edit": "Editar",
+      "errors": {
+        "boosted": "Esta función só está dispoñíbel para campañas potenciadas.",
+        "node_must_not_be_a_descendant": "Nó inválido (etiqueta, localización nai): sería un descendente de si mesmo."
+      },
+      "events": {
+        "hint": "Abaixo tes unha lista de todos os calendarios nos que esta entidade foi engadida usando a interface \"Engadir un evento a un calendario\"."
+      },
+      "export": "Exportar",
+      "fields": {
+        "ability": "Habilidade",
+        "attribute_template": "Padrón de atributos",
+        "calendar": "Calendario",
+        "calendar_date": "Data do calendario",
+        "character": "Personaxe",
+        "colour": "Cor",
+        "copy_attributes": "Copiar atributos",
+        "copy_notes": "Copiar notas de entidade",
+        "creator": "Creadora",
+        "dice_roll": "Tirada de dados",
+        "entity": "Entidade",
+        "entity_type": "Tipo de entidade",
+        "entry": "Entrada",
+        "event": "Evento",
+        "excerpt": "Limiar",
+        "family": "Familia",
+        "files": "Arquivos",
+        "has_image": "Contén unha imaxe",
+        "header_image": "Imaxe de cabeceira",
+        "image": "Imaxe",
+        "is_private": "Privada",
+        "is_star": "Fixada",
+        "item": "Obxeto",
+        "location": "Localización",
+        "map": "Mapa",
+        "name": "Nome",
+        "organisation": "Organización",
+        "position": "Posición",
+        "race": "Raza",
+        "tag": "Etiqueta",
+        "tags": "Etiquetas",
+        "timeline": "Liña temporal",
+        "tooltip": "Previsualización emerxente",
+        "type": "Tipo",
+        "visibility": "Visibilidade"
+      },
+      "files": {
+        "actions": {
+          "drop": "Fai click para engadir un arquivo, ou arrástrao ata aquí.",
+          "manage": "Administrar arquivos de entidade"
+        },
+        "errors": {
+          "max": "Chegaches ao número máximo ({max}) de arquivos para esta entidade.",
+          "no_files": "Non hai arquivos."
+        },
+        "files": "Arquivos subidos.",
+        "hints": {
+          "limit": "Cada entidade pode ter ata {max} arquivos subidos.",
+          "limitations": "Formatos soportados: {formats}. Tamaño máximo do arquivo: {size}"
+        },
+        "title": "Arquivos da entidade \"{name}\""
+      },
+      "filter": "Filtrar",
+      "filters": {
+        "all": "Filtrar para todas as entidades descendentes",
+        "clear": "Quitar filtros",
+        "direct": "Filtrar só descendentes directas",
+        "filtered": "Mostrando {count} de {total} {entity}.",
+        "hide": "Ocultar filtros",
+        "options": {
+          "exclude": "Excluír",
+          "include": "Incluír",
+          "none": "Ningún"
+        },
+        "show": "Mostrar filtros",
+        "sorting": {
+          "asc": "Ascendente segundo {field}",
+          "desc": "Descendente segundo {field}",
+          "helper": "Controla en que orde aparecen os resultados."
+        },
+        "title": "Filtros"
+      },
+      "forms": {
+        "actions": {
+          "calendar": "Engadir unha data de calendario"
+        },
+        "copy_options": "Opcións de copia"
+      },
+      "hidden": "Oculto",
+      "hints": {
+        "attribute_template": "Aplica un padrón de atributos directamente ao crear ou editar esta entidade.",
+        "calendar_date": "Unha data de calendario permite filtrar facilmente en listas, e tamén asigna un evento ao calendario seleccionado.",
+        "header_image": "Esta imaxe é situada enriba da entidade. Para obter os mellores resultados, usa unha imaxe ancha.",
+        "image_limitations": "Formatos soportados: jpg, png, e gif. Tamaño máximo do arquivo: {size}.",
+        "image_patreon": "Queres aumentar o tamaño máximo dos arquivos?",
+        "is_private": "Se está marcada como privada, a entidade será visíbel só para usuarios que teñen o rol \"Administrador\" nesta campaña.",
+        "is_star": "Os elementos fixados aparecerán no menú da entidade",
+        "map_limitations": "Formatos soportados: jpg, png, gif, e svg. Tamaño máximo do arquivo: {size}.",
+        "tooltip": "Substitúe a previsualización emerxente por defecto polo seguinte contido.",
+        "visibility": "Seleccionando \"Administrador\", só os usuarios co rol \"Administrador\" poderán ver isto. \"Só eu\" significa que só ti poderás velo."
+      },
+      "history": {
+        "created": "Creado por <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+        "created_date": "Creado o <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+        "unknown": "Descoñecido",
+        "updated": "Modificado por última vez por <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+        "updated_date": "Modificado por última vez o <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+        "view": "Ver historial de cambios da entidade"
+      },
+      "image": {
+        "error": "Non fomos capaces de obter a imaxe solicitada. Pode ser que a páxina web non nos deixe descargala (típico de Squarespace e DevianArt), ou pode que a ligazón non sexa válida. Asegúrate de que a imaxe non supera os {size}."
+      },
+      "is_not_private": "Actualmente, esta entidade non é privada.",
+      "is_private": "Est aentidade é privada e só visíbel para administradoras.",
+      "linking_help": "Como enlazar outras entidades?",
+      "manage": "Administrar",
+      "move": {
+        "description": "Mover esta entidade a outro lugar",
+        "errors": {
+          "permission": "Non tes permiso para crear entidades deste tipo na campaña seleccionada.",
+          "same_campaign": "Debes seleccionar outra campaña á que mover a entidade.",
+          "unknown_campaign": "Campaña descoñecida."
+        },
+        "fields": {
+          "campaign": "Nova campaña",
+          "copy": "Facer unha copia",
+          "target": "Novo tipo"
+        },
+        "hints": {
+          "campaign": "Tamén podes intentar mover esta entidade a outra campaña.",
+          "copy": "Selecciona esta opción se queres crear unha copia na nova campaña.",
+          "target": "Ten en conta que algúns datos poden perderse ao mover un elemento dun tipo a outro."
+        },
+        "success": "Entidade \"{name}\" movida.",
+        "success_copy": "Entidade \"{name}\" copiada.",
+        "title": "Mover \"{name}\""
+      },
+      "new_entity": {
+        "error": "Por favor, revisa os valores introducidos.",
+        "fields": {
+          "name": "Nome"
+        },
+        "title": "Nova entidade"
+      },
+      "or_cancel": "ou <a href=\"{url}\">cancelar</a>",
+      "panels": {
+        "appearance": "Aparencia",
+        "attribute_template": "Padrón de atributos",
+        "calendar_date": "Data de calendario",
+        "entry": "Entrada",
+        "general_information": "Información xeral",
+        "move": "Mover",
+        "system": "Sistema"
+      },
+      "permissions": {
+        "action": "Acción",
+        "actions": {
+          "bulk": {
+            "add": "Permitir",
+            "deny": "Denegar",
+            "ignore": "Ignorar",
+            "remove": "Quitar"
+          },
+          "bulk_entity": {
+            "allow": "Permitir",
+            "deny": "Denegar",
+            "inherit": "Herdar"
+          },
+          "delete": "Eliminar",
+          "edit": "Editar",
+          "entity_note": "Notas de entidade",
+          "read": "Ler",
+          "toggle": "Alternar"
+        },
+        "allowed": "Permitido",
+        "fields": {
+          "member": "Membra",
+          "role": "Rol"
+        },
+        "helper": "Usa esta interface para axustar que usuarios e que roles poden interaccionar con esta entidade. {allow}",
+        "helpers": {
+          "setup": "Usa esta interface para axustar como os diferentes roles e usuarios poden interaccionar con esta entidade. {allow} permitirá ao usuario/rol realizar a acción correspondente. {deny} non lles deixará realizar a acción. {inherit} usará os permisos do rol do usuario ou do rol principal. Un usuario cunha acción establecida en {allow} poderá realizar esa acción, aínda que no seu rol esté en {deny}."
+        },
+        "inherited": "Este rol xa ten este permiso establecido para este tipo de entidade.",
+        "inherited_by": "Este usuario é parte do rol \"{role}\", o cal lle otorga permisos neste tipo de entidade.",
+        "success": "Permisos guardados.",
+        "title": "Permisos",
+        "too_many_members": "Est acampaña ten demasiadas membras (>10) para poder mostralas todas nesta interface. Usa o botón \"Permisos\" na vista de entidade para controlar os permisos detalladamente."
+      },
+      "placeholders": {
+        "ability": "Escolle unha habilidade",
+        "calendar": "Escolle un calendario",
+        "character": "Escolle unha personaxe",
+        "entity": "Entidade",
+        "event": "Escolle un evento",
+        "family": "Escolle unha familia",
+        "image_url": "Tamén podes subir unha imaxe dende a súa URL",
+        "item": "Escolle un obxeto",
+        "journal": "Escolle un caderno",
+        "location": "Escolle un lugar",
+        "map": "Escolle un mapa",
+        "organisation": "Escolle unha organización",
+        "race": "Escolle unha raza",
+        "tag": "Escolle unha etiqueta"
+      },
+      "relations": {
+        "actions": {
+          "add": "Engade unha relación"
+        },
+        "fields": {
+          "location": "Localización",
+          "name": "Nome",
+          "relation": "Relación"
+        },
+        "hint": "As relacións entre entidades poden representar como están conectadas entre elas."
+      },
+      "remove": "Eliminar",
+      "rename": "Renomear",
+      "save": "Guardar",
+      "save_and_close": "Guardar e pechar",
+      "save_and_copy": "Guardar e copiar",
+      "save_and_new": "Guardar e crear nova",
+      "save_and_update": "Guardar e editar",
+      "save_and_view": "Guardar e visualizar",
+      "search": "Buscar",
+      "select": "Seleccionar",
+      "tabs": {
+        "abilities": "Habilidades",
+        "attributes": "Atributos",
+        "boost": "Potenciar",
+        "calendars": "Calendarios",
+        "default": "Por defecto",
+        "events": "Eventos",
+        "inventory": "Inventario",
+        "map-points": "Puntos do mapa",
+        "mentions": "Mencións",
+        "menu": "Menú",
+        "notes": "Notas da entidade",
+        "permissions": "Permisos",
+        "relations": "Relacións",
+        "reminders": "Lembretes",
+        "timelines": "Liñas temporais",
+        "tooltip": "Previsualización emerxente"
+      },
+      "update": "Actualizar",
+      "users": {
+        "unknown": "Descoñecido"
+      },
+      "view": "Ver",
+      "visibilities": {
+        "admin": "Administradoras",
+        "admin-self": "Eu e Administradoras",
+        "all": "Todas",
+        "self": "Só eu"
+      }
+    },
+    "campaigns": []
   },
   "he": {
     "maps": [],
@@ -25189,6 +25710,7 @@ __webpack_require__.r(__webpack_exports__);
         "family": "Izaberi obitelj",
         "image_url": "Umjesto toga možete prenijeti sliku sa URL-a",
         "item": "Izaberi predmet",
+        "journal": "Odaberi dnevnik",
         "location": "Izaberi lokaciju",
         "map": "Izaberi kartu",
         "organisation": "Izaberi organizaciju",
@@ -26566,6 +27088,20 @@ __webpack_require__.r(__webpack_exports__);
     "randomisers": [],
     "entities": []
   },
+  "nb": {
+    "crud": {
+      "fields": {
+        "colour": "Farge",
+        "organisation": "Organisasjon"
+      },
+      "placeholders": {
+        "organisation": "Velg en organisasjon"
+      }
+    },
+    "campaigns": [],
+    "front": [],
+    "entities": []
+  },
   "nl": {
     "admin": []
   },
@@ -27277,6 +27813,7 @@ __webpack_require__.r(__webpack_exports__);
         "family": "Escolha uma família",
         "image_url": "Você também pode dar upload de uma imagem por uma URL",
         "item": "Escolha um item",
+        "journal": "Escolha um Jornal",
         "location": "Escolha um local",
         "map": "Escolha um mapa",
         "organisation": "Escolha uma organização",
@@ -28010,6 +28547,7 @@ __webpack_require__.r(__webpack_exports__);
         "family": "Выберите Семью",
         "image_url": "Вы также можете загрузить изображение из URL",
         "item": "Выберите Предмет",
+        "journal": "Выберите Журнал",
         "location": "Выберите Локацию",
         "map": "Выберите Карту",
         "organisation": "Выберите Организацию",
@@ -28127,7 +28665,7 @@ __webpack_require__.r(__webpack_exports__);
           "more": "Zisti viac o všetkých funkcionalitách.",
           "second": "Boostnutie kampane odomkne nasledujúce výhody:",
           "theme": "Nastaviteľnú tému a vizuálny štýl kampane.",
-          "third": "Ak chceš boostnuť kampaň, prejdi na stránku kampane a klikni na \"{boost_button}\" tlačidlo nad \"{edit_button}\" tlačidlom.",
+          "third": "Ak chceš boostnuť kampaň, prejdi na stránku kampane a klikni na tlačidlo \"{boost_button}\" nad tlačidlom \"{edit_button}\".",
           "tooltip": "Nastaviteľné bubliny pre objekty.",
           "upload": "Navýšená veľkosť pre nahrávanie súborov pre každého člena kampane."
         },
@@ -28206,6 +28744,141 @@ __webpack_require__.r(__webpack_exports__);
         "actions": {
           "link": "Prepojiť konto",
           "view": "Navštív Kanku na Patreone"
+        },
+        "benefits": "Ak nás podporíš na {patreon}, odomknú sa ti rôzne {features} pre tvoje kampane, a tiež nám pomôžeš, aby sme viac času mohli venovať Kanke.",
+        "benefits_features": "úžasné funkcionality",
+        "deprecated": "Zastaralá funkcionalita - Ak chceš podporiť Kanku, urob tak cez {subscription}. Prepojenie na Patreon je ešte stále aktívne pre osoby, ktoré nás podporili predtým, než sme z neho odišli.",
+        "description": "Synchronizácia s Patreonom",
+        "linked": "Ďakujeme, že podporuješ Kanku na Patreone! Tvoje konto je prepojené.",
+        "pledge": "Úroveň: {name}",
+        "remove": {
+          "button": "Zrušiť prepojenie s Patreonom",
+          "success": "Prepojenie s tvojím Patreon kontom bolo zrušené.",
+          "text": "Ak zrušíš prepojenie tvojho Patreon konta s Kankou, stratíš tvoje bonusy, meno v sieni slávy, boosty pre kampane a iné funkcionality získané vďaka podpore Kanky. Nestratíš ale žiaden obsah (napr. záhlavia objektov). Ak si nás neskôr zasa predplatíš, prístup k dátam sa ti obnoví, vrátane možnosti boostnuť predtým boostnuté kampane.",
+          "title": "Zrušiť prepojenie Patreon konta s Kankou"
+        },
+        "success": "Ďakujeme, že Kanku podporuješ na Patreone!",
+        "title": "Patreon",
+        "wrong_pledge": "Tvoju úroveň podpory nastavujeme ručne, takže nám na to prosím daj pár dní. Ak by nemala byť dlhší čas ešte stále správna, kontaktuj nás."
+      },
+      "profile": {
+        "actions": {
+          "update_profile": "Aktualizovať profil"
+        },
+        "avatar": "Profilový obrázok",
+        "success": "Profil aktualizovaný.",
+        "title": "Osobný profil"
+      },
+      "subscription": {
+        "actions": {
+          "cancel_sub": "Ukončiť predplatné",
+          "subscribe": "Predplatiť",
+          "update_currency": "Uložiť preferovanú menu"
+        },
+        "benefits": "Ak nás podporíš, odomknú sa ti rôzne {features}, a tiež nám pomôžeš, aby sme viac času mohli venovať Kanke. Neukladáme informácie o tvojej platobnej karte, ani s ňou nijak nenarábame. Všetky platby realizujeme cez {stripe}.",
+        "billing": {
+          "helper": "Tvoje platobné údaje sú spracované a uložené bezpečne na {stripe}. Túto platobnú metódu používame pre všetky platby predplatného.",
+          "saved": "Uložený spôsob platby",
+          "title": "Upraviť spôsob platby"
+        },
+        "cancel": {
+          "text": "Ľutujeme, že odchádzaš! Zrušením tvojho predplatného ostáva toto aktívne do ďalšieho platobného obdobia, po ktorom stratíš tvoje boosty kampaní a ostatné výhody vďaka podpore Kanky. Vyplnením následného formulára nám pomôžeš zistiť, čo by sme mali robiť lepšie, alebo čo ťa viedlo k tomuto rozhodnutiu."
+        },
+        "cancelled": "Tvoje predplatné bolo zrušené. Môžeš ho obnoviť, keď ti aktívne predplatné skončí.",
+        "change": {
+          "text": {
+            "monthly": "Máte predplatenú úroveň {tier}, splatnú mesačne vo výške {amount}.",
+            "yearly": "Máte predplatenú úroveň {tier}, splatnú ročne vo výške {amount}."
+          },
+          "title": "Zmeniť úroveň predplatného"
+        },
+        "currencies": {
+          "eur": "EUR",
+          "usd": "USD"
+        },
+        "currency": {
+          "title": "Zmeň tebou preferovanú menu"
+        },
+        "errors": {
+          "callback": "Náš spracovateľ platieb nám nahlásil chybu. Prosím, skús ešte raz alebo nás kontaktuj, ak problém pretrváva.",
+          "subscribed": "Tvoje predplatné sa nám nepodarilo spracovať. Stripe nám poskytlo nasledujúcu informáciu prečo."
+        },
+        "fields": {
+          "active_since": "Aktívne od",
+          "active_until": "Aktívne do",
+          "billing": "Zúčtovanie",
+          "currency": "Mena zúčtovania",
+          "payment_method": "Spôsob platby",
+          "plan": "Súčasná úroveň",
+          "reason": "Dôvod"
+        },
+        "helpers": {
+          "alternatives": "Zaplať za tvoje predplatné pomocou {method}. Tento spôsob platby nebude automaticky obnovený na konci tvojho predplatného. {method} je iba dostupný v eurách.",
+          "alternatives_warning": "Aktualizácia predplatného týmto spôsobom nie je možná. Prosím, vytvor nové predplatné, keď tvoje súčasné skončí.",
+          "alternatives_yearly": "Kvôli obmedzeniam ohľadom opakovaných platieb, {method} je dostupný len pre ročné zúčtovanie."
+        },
+        "manage_subscription": "Spravovať predplatné",
+        "payment_method": {
+          "actions": {
+            "add_new": "Pridať nový spôsob platby",
+            "change": "Zmeniť spôsob platby",
+            "save": "Uložiť spôsob platby",
+            "show_alternatives": "Alternatívne možnosti platby"
+          },
+          "add_one": "Aktuálne nemáš uložený žiadny spôsob platby.",
+          "alternatives": "Predplatné môžeš zaplatiť aj týmito alternatívnymi platobnými možnosťami. Tvoje konto bude jednorázovo zaťažené a predplatné nebude automaticky predĺžené na konci mesiaca.",
+          "card": "Karta",
+          "card_name": "Meno na karte",
+          "country": "Krajina bydliska",
+          "ending": "Platná do",
+          "helper": "Táto karta bude použitá na všetky tvoje predplatné.",
+          "new_card": "Pridať nový spôsob platby",
+          "saved": "{brand} končiac na {last4}"
+        },
+        "placeholders": {
+          "reason": "Alternatívne nám daj vedieť, prečo už nepodporuješ Kanku. Chýbala ti nejaká funkcionalita? Zmenila sa tvoja finančná situácia?"
+        },
+        "plans": {
+          "cost_monthly": "{amount} {currency} účtovaných mesačne",
+          "cost_yearly": "{amount} {currency} účtovaných ročne"
+        },
+        "sub_status": "Informácie o predplatnom",
+        "subscription": {
+          "actions": {
+            "downgrading": "Prosím, kontaktuj nás ohľadom zníženia úrovne",
+            "rollback": "Zmeniť na Kobolda",
+            "subscribe": "Zmeniť na {tier} mesačný",
+            "subscribe_annual": "Zmeniť na {tier} ročný"
+          }
+        },
+        "success": {
+          "alternative": "Tvoja platba bola zaregistrovaná. Obdržíš oznámenie akonáhle bude spracovaná a tvoje predplatné aktívne.",
+          "callback": "Úspešne predplatené. Tvoje konto bude čoskoro aktualizované akonáhle nás spracovateľ platieb informuje o zmene (môže to pár minút trvať).",
+          "cancel": "Predplatné bolo zrušené. Aktívne bude do konca aktuálneho platobného obdobia.",
+          "currency": "Nastavenie preferovanej meny bolo aktualizované.",
+          "subscribed": "Úspešne predplatené. Nezabudni sa pridať do newsletteru Komunitných hlasovaní, aby sme ťa mohli informovať, keď bude hlasovanie otvorené. Nastavenie newsletteru si môžeš zmeniť v tvojom profile."
+        },
+        "tiers": "Úrovne predplatného",
+        "trial_period": "Ročné predplatné má 14-dňovú skúšobnú lehotu. Kontaktuj nás prostredníctvom {email}, ak vypovieš tvoje ročné predplatné a požaduješ vrátenie peňazí.",
+        "upgrade_downgrade": {
+          "button": "Informácie o zmene úrovne predplatného",
+          "downgrade": {
+            "bullets": {
+              "end": "Tvoja aktuálna úroveň ostáva aktívna do konca aktuálneho platobného obdobia. Potom bude znížená na novú úroveň."
+            },
+            "title": "Pri prechode na nižšiu úroveň"
+          },
+          "upgrade": {
+            "bullets": {
+              "immediate": "Vybraný spôsob platby bude okamžite zaťažený a hneď budeš mať prístup k novej úrovni.",
+              "prorate": "Ak sa ti úroveň zvýši z Owlbear na Elemental, budeš musieť zaplatiť len rozdiel k vyššej úrovni."
+            },
+            "title": "Pri prechode na vyššiu úroveň"
+          }
+        },
+        "warnings": {
+          "incomplete": "Nepodarilo sa nám zaťažiť tvoju platobnú kartu. Prosím, aktualizuj tvoje platobné údaje karty a my sa o to pokúsime opäť o pár dní. Ak to nebude možné, tvoje predplatné bude zrušené.",
+          "patreon": "Tvoje konto je aktuálne prepojené s Patreonom. Prosím, odstráňte prepojenie v nastaveniach tvojho {patreon} konta predtým, než zmeníš tvoje predplatné v Kanke."
         }
       }
     },
@@ -28278,6 +28951,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     "admin": [],
+    "timelines": [],
     "crud": {
       "actions": {
         "actions": "Akcie",
@@ -28532,7 +29206,7 @@ __webpack_require__.r(__webpack_exports__);
         "calendar_date": "Dátum umožňuje filtrovať zoznamy a zadať udalosť do vybraného kalendára.",
         "header_image": "Tento obrázok je umiestnený nad objekt. Odporúčame používať obrázok na šírku.",
         "image_limitations": "Podporované formáty: jpg, png a gif. Max. veľkosť súboru: {size}.",
-        "image_patreon": "Zvýš svoj limit tým, že nás podporíš na Patreone.",
+        "image_patreon": "Chceš zvýšiť limit pre veľkosť súborov?",
         "is_private": "Nastaviť ako súkromný.",
         "is_star": "Pripnuté objekty sa zobrazia v menu objektu.",
         "map_limitations": "Podporované formáty: jpg, png, gif a svg. Max. veľkosť súboru: {size}.",
@@ -28637,6 +29311,7 @@ __webpack_require__.r(__webpack_exports__);
         "family": "Vybrať rod",
         "image_url": "Obrázok je možné pridať aj nahratím cez URL.",
         "item": "Vyber predmet",
+        "journal": "Vyber denník",
         "location": "Vyber miesto",
         "map": "Vyber mapu",
         "organisation": "Vyber organizáciu",

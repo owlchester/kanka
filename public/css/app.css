@@ -1022,6 +1022,10 @@ hr {
   white-space: normal;
 }
 
+summary {
+  display: list-item;
+}
+
 .calendar {
   table-layout: fixed;
 }
