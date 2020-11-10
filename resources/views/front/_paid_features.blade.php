@@ -183,3 +183,42 @@
         </div>
     </div>
 </section>
+
+
+<section class="minimal-padding" id="superboost">
+    <div class="container">
+        <div class="col-lg-12 my-auto">
+            <div class="header-content mx-auto">
+                <h1 class="mb-5">{{ __('front.features.superboosts.title') }}</h1>
+                <p class="mb-5">{{ __('front.features.superboosts.description') }}</p>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th></th>
+                <th>{{ __('front.features.superboosts.boosted') }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="text">{{ __('front.features.superboosts.gallery') }}</td>
+                <td><i class="fa fa-check-circle"></i></td>
+            </tr>
+            <tr>
+                <td class="text">{{ __('front.features.superboosts.logs') }}</td>
+                <td><i class="fa fa-check-circle"></i></td>
+            </tr>
+            <tr>
+                <td class="text">{{ __('front.features.superboosts.stats') }}</td>
+                <td><i class="fa fa-check-circle"></i></td>
+            </tr>
+            <tr>
+                <td class="text">{{ __('front.features.boosts.files') }}</td>
+                <td><i class="fa fa-check-circle"></i></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

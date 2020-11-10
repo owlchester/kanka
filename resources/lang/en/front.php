@@ -158,6 +158,15 @@ return [
             'description'   => 'From and in-depth permission system, to Quests, Journals, Characters, Abilities and embedded audio and video, we help you manage your campaign and upcoming tpk.',
             'title'         => 'RPG Campaign Management',
         ],
+        'superboosts'       => [
+            'title' => 'Superbsooted Campaigns',
+            'description' => 'Using three campaign boosters on a campaign will make it Superboosted, unlocking the following features.',
+            'boosted' => 'Superboosted',
+            'gallery' => 'Campaign Gallery and integrations with the Summernote text editor',
+            'logs' => 'Full change logs on entities (up to 30 days)',
+            'stats' => 'Stats and Achievements page',
+            'files' => 'Up to 10 files uploaded to each entity',
+        ],
         'timelines'         => [
             'description'   => 'Visually represent the timelines of your worlds, empires, noble families, or even a single character.',
             'title'         => 'Timelines',
