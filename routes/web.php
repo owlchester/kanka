@@ -73,6 +73,7 @@ Route::group([
         Route::get('/maps/{map}/{map_marker}/details', 'Maps\MapMarkerController@details')->name('maps.markers.details');
         Route::post('/maps/{map}/{map_marker}/move', 'Maps\MapMarkerController@move')->name('maps.markers.move');
         Route::get('/maps/tree', 'Maps\MapController@tree')->name('maps.tree');
+        Route::get('/maps/{map}/map-points', 'Maps\MapController@mapPoints')->name('maps.map-points');
 
         // Character
         Route::get('/characters/random', 'CharacterController@random')->name('characters.random');
