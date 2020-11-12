@@ -998,12 +998,6 @@ hr {
   min-width: 200px;
 }
 
-/** Summernote: hide file upload **/
-
-.note-group-select-from-files {
-  display: none !important;
-}
-
 .note-editing-area .mention,
 .note-editing-area .attribute {
   background-color: #eee;

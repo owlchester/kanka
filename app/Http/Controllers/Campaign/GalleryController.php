@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Campaign;
 
 
 use App\Facades\CampaignLocalization;
+use App\Facades\Img;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Campaigns\GalleryImageStore;
 use App\Http\Requests\Campaigns\GalleryImageUpdate;
@@ -62,6 +63,18 @@ class GalleryController extends Controller
             'success' => true,
             'html' => $body
         ]);
+    }
+
+    public function ajaxUpload(GalleryImageStore $request)
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('update', $campaign);
+
+        $image = $this->service
+            ->campaign($campaign)
+            ->store($request);
+
+        return response()->json(Img::resetCrop()->url($image->path));
     }
 
     /**

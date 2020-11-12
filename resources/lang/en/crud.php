@@ -75,6 +75,7 @@ return [
     ],
     'boosted'           => 'Boosted',
     'boosted_campaigns' => 'Boosted Campaigns',
+    'superboosted_campaigns' => 'Superboosted Campaigns',
     'bulk'              => [
         'actions'       => [
             'edit'  => 'Bulk Edit & Tagging',

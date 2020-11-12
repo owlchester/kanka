@@ -336,6 +336,14 @@ TEXT
         ],
         'title'         => 'Campaign :name',
     ],
+    'superboosted' => [
+        'gallery' => [
+            'error' => [
+                'title' => 'Campaign Gallery Image Upload',
+                'text' => 'Uploading images in the text editor is a feature only available to :superboosted.',
+            ]
+        ]
+    ],
     'ui'                                => [
         'helper'    => 'Use these settings to change the way some elements will be displayed in the campaign.',
     ],

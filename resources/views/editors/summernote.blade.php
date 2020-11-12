@@ -35,10 +35,31 @@
         data-gallery-add="{{ __('crud.add') }}"
         data-gallery-select-all="{{ __('voyager.generic.select_all') }}"
         data-gallery-deselect-all="{{ __('voyager.generic.deselect_all') }}"
-        data-gallery-error="SuperbAAGallery"
+        data-gallery-error="generic.gallery.error"
+@if($campaign->campaign()->boosted(true)) data-gallery-upload="{{ route('campaign.gallery.ajax-upload') }}" @endif
 @if (!empty($model) && $model->entity)        data-attributes="{{ route('search.attributes', $model->entity) }}"
 @elseif (!empty($entity))        data-attributes="{{ route('search.attributes', $entity) }}"
 
 @endif
         data-locale="{{ app()->getLocale() }}"></div>
+
+    <div class="modal fade" id="campaign-imageupload-error" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ __('campaigns.superboosted.gallery.error.title') }}</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="superboosted-error">{!! __('campaigns.superboosted.gallery.error.text', [
+    'superboosted' => link_to_route('front.features', __('crud.superboosted_campaigns'), '#superboost', ['target' => '_blank'])
+]) !!}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('crud.cancel') }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection

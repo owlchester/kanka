@@ -109,13 +109,18 @@ $(document).ready(function () {
 window.initSummernote = function () {
   var galleryText = summernoteConfig.data('gallery-texts');
   console.log('texts', galleryText);
-  $('.html-editor').summernote({
+  var $summernote = $('.html-editor').summernote({
     height: '300px',
     lang: editorLang(summernoteConfig.data('locale')),
     toolbar: [['style', ['style']], ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']], ['color', ['color']], ['para', ['ul', 'ol', 'kanka-indent', 'kanka-outdent', 'paragraph']], ['table', ['table']], ['insert', ['link', 'picture', 'video', 'embed', 'hr']], //['dir', ['ltr', 'rtl']],
     ['view', ['fullscreen', 'codeview', 'help']], summernoteConfig.data('gallery') !== '' ? ['extensions', ['gallery']] : null],
     popover: {
       table: [['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']], ['delete', ['deleteRow', 'deleteCol', 'deleteTable']], ['custom', ['tableHeaders']]]
+    },
+    callbacks: {
+      onImageUpload: function onImageUpload(files) {
+        uploadImage($summernote, files[0]);
+      }
     },
     gallery: {
       source: {
@@ -347,6 +352,61 @@ function editorLang(locale) {
   } else {
     return locale + '-' + locale.toUpperCase();
   }
+}
+/**
+ * Upload a file through summernote
+ * @param file
+ */
+
+
+function uploadImage($summernote, file) {
+  // Check if the campaign is superboosted
+  if (!summernoteConfig.data('gallery-upload')) {
+    $('#campaign-imageupload-error').modal();
+    console.warn('Campaign isn\'t superboosted');
+    return;
+  }
+
+  formData = new FormData();
+  formData.append("file", file);
+  formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
+  $.ajax({
+    url: summernoteConfig.data('gallery-upload'),
+    data: formData,
+    cache: false,
+    contentType: false,
+    processData: false,
+    type: 'POST',
+    success: function success(result) {
+      console.log('result', result);
+      $summernote.summernote('insertImage', result, function ($image) {
+        $image.attr('src', result);
+      });
+    },
+    error: function error(jqXHR, textStatus, errorThrown) {
+      console.log(textStatus + " " + errorThrown);
+      $('#superboosted-error').text(buildErrors(jqXHR.responseJSON.errors));
+      $('#campaign-imageupload-error').modal();
+    }
+  });
+}
+/**
+ *
+ * @param data
+ * @returns {string}
+ */
+
+
+function buildErrors(data) {
+  var errors = '';
+
+  for (var key in data) {
+    // skip loop if the property is from prototype
+    if (!data.hasOwnProperty(key)) continue;
+    errors += data[key] + "\n";
+  }
+
+  return errors;
 }
 
 /***/ }),
