@@ -111,12 +111,12 @@ class EntityLog extends Model
     public function attributeKey(string $transKey, string $attribute): string
     {
         // Try with crud first
-        $key = 'crud.fields.' . $attribute;
+        $name = Str::beforeLast($attribute, '_id');
+        $key = 'crud.fields.' . $name;
         $translation = __($key);
         if ($key !== $transKey) {
             return $translation;
         }
-        $name = Str::beforeLast($attribute, '_id');
 
         return __($transKey . '.fields.' . $name);
     }

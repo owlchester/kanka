@@ -36,7 +36,6 @@ class CampaignPolicy
      */
     public function access(User $user, Campaign $campaign): bool
     {
-        dd('wat mate');
         if ($campaign->visibility == 'public') {
             return true;
         }

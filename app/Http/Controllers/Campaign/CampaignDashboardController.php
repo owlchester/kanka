@@ -71,4 +71,16 @@ class CampaignDashboardController extends Controller
         return redirect()->route('dashboard.setup', ['dashboard' => $dashboard->id])
             ->with('success', __('dashboard.dashboards.update.success', ['name' => $dashboard->name]));
     }
+
+    public function destroy(CampaignDashboard $campaignDashboard)
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('dashboard', $campaign);
+
+        $campaignDashboard->delete();
+
+        return redirect()->route('dashboard.setup')
+            ->with('success', __('dashboard.dashboards.delete.success', ['name' => $campaignDashboard->name]));
+
+    }
 }

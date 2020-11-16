@@ -213,7 +213,7 @@ abstract class MiscObserver
      * @param string $original
      * @return string
      */
-    protected function getForeignOriginal(MiscModel $model, string $attribute, string $original): string
+    protected function getForeignOriginal(MiscModel $model, string $attribute, $original): string
     {
         if (empty($original)) {
             return '';

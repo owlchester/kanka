@@ -332,7 +332,7 @@ TEXT
             'recovery'          => 'Recovery',
             'roles'             => 'Roles',
             'settings'          => 'Modules',
-            'stats'             => 'Stats',
+            'achievements'      => 'Achievements',
         ],
         'title'         => 'Campaign :name',
     ],

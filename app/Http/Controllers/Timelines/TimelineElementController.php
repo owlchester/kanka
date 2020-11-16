@@ -42,6 +42,10 @@ class TimelineElementController extends Controller
     {
         return redirect()->route('timelines.show', $timeline);
     }
+    public function index(Timeline $timeline)
+    {
+        return redirect()->route('timelines.show', $timeline);
+    }
 
     /**
      * @param Timeline $timeline

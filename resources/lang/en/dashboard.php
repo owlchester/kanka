@@ -27,6 +27,9 @@ return [
             'title' => 'Default Dashboard',
             'text' => 'You are currently editing the default dashboard of the campaign.',
         ],
+        'delete'            => [
+            'success' => 'Dashboard :name removed.',
+        ],
         'custom' => [
             'text' => 'You are currently editing the :name dashboard of the campaign.',
         ],

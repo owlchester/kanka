@@ -164,7 +164,7 @@
                 </li>
                 <li class="@if(!empty($active) && $active == 'stats')active @endif">
                     <a href="{{ route('stats') }}">
-                        {{ __('campaigns.show.tabs.stats') }}
+                        {{ __('campaigns.show.tabs.achievements') }}
                     </a>
                 </li>
             @endif

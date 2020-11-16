@@ -38,7 +38,7 @@
                         @endif
                         <li>
                             <a href="{{ route('dashboard', ['dashboard' => $dash->id]) }}">
-                                {{ $dash->name }}
+                                {!! $dash->name !!}
                             </a>
                         </li>
                     @endforeach

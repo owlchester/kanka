@@ -16,7 +16,9 @@ class EntityTooltipController extends Controller
      */
     public function show(Entity $entity)
     {
-        if (Auth::check()) {
+        if (!$entity->child) {
+            abort('403');
+        } elseif (Auth::check()) {
             $this->authorize('view', $entity->child);
         } else {
             $this->authorizeEntityForGuest('read', $entity->child);

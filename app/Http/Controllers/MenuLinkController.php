@@ -60,6 +60,9 @@ class MenuLinkController extends CrudController
      */
     public function show(MenuLink $menuLink)
     {
+        if (!auth()->check()) {
+            abort(403);
+        }
         return $this->crudShow($menuLink);
     }
 

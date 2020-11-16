@@ -19,6 +19,7 @@ class AttributeResource extends EntityChild
             'value' => $this->value,
             'type' => $this->type,
             'default_order' => $this->default_order,
+            'is_star' => (bool) $this->is_star,
             'api_key' => $this->api_key
         ]);
     }

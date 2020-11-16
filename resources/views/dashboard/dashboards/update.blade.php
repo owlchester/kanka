@@ -10,7 +10,7 @@
             <div class="panel-heading">
                 <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
                 <h4>
-                    {{ __('dashboard.dashboards.update.title', ['name' => $dashboard->name]) }}
+                    {!! __('dashboard.dashboards.update.title', ['name' => $dashboard->name]) !!}
                 </h4>
             </div>
         @endif

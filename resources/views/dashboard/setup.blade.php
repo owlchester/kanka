@@ -15,11 +15,11 @@
 
     <div class="box box-solid">
         <div class="box-header with-border">
-            <h4 class="box-title">@if ($dashboard) {{ $dashboard->name }} @else {{ __('dashboard.dashboards.default.title') }} @endif</h4>
+            <h4 class="box-title">@if ($dashboard) {!! $dashboard->name !!} @else {{ __('dashboard.dashboards.default.title') }} @endif</h4>
         </div>
         <div class="box-body">
             @if ($dashboard)
-                {{ __('dashboard.dashboards.custom.text', ['name' => $dashboard->name]) }}
+                {!! __('dashboard.dashboards.custom.text', ['name' => $dashboard->name]) !!}
             @else
                 {{ __('dashboard.dashboards.default.text') }}
             @endif
@@ -56,7 +56,7 @@
                         @foreach ($dashboards as $dash)
                         <li>
                             <a href="{{ route('dashboard.setup', ['dashboard' => $dash->id]) }}">
-                                {{ $dash->name }}
+                                {!! $dash->name !!}
                             </a>
                         </li>
                         @endforeach
@@ -74,6 +74,15 @@
                     <i class="fas fa-pencil-alt"></i>
                     <span class="hidden-xs">{{ __('dashboard.dashboards.actions.edit') }}</span>
                 </a>
+                <a href="#" class="delete-confirm btn btn-danger" data-toggle="modal" data-name="{{ $dashboard->name }}"
+                   data-target="#delete-confirm" data-delete-target="delete-dashboard-{{ $dashboard->id }}"
+                   title="{{ __('crud.remove') }}">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    <span class="hidden-xs">{{ __('crud.remove') }}</span>
+                </a>
+                {!! Form::open(['method' => 'DELETE', 'route' => ['campaign_dashboards.destroy', $dashboard], 'style '=> 'display:inline', 'id' => 'delete-dashboard-' . $dashboard->id]) !!}
+                    {!! Form::close() !!}
+
                 <a href="{{ route('dashboard', ['dashboard' => $dashboard->id]) }}" target="_blank"
                    class="btn btn-default">
                     <i class="fas fa-external-link-alt"></i> {{ __('crud.view') }}
