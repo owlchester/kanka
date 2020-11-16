@@ -192,6 +192,9 @@ class MapMarker extends Model
         if (!empty($this->entity)) {
             if (!empty($this->name)) { // Name is set, include link to the entity
                 $url = $this->entity->url();
+                if ($this->entity->typeId() == config('entities.ids.map')) {
+                    $url = $this->entity->url('explore');
+                }
                 $body .= "<p><a href=\"$url\">" . $this->entity->name . "</a></p>";
             }
             // No entry field, include the entity tooltip
@@ -338,7 +341,11 @@ class MapMarker extends Model
     {
         if (empty($this->name) && !empty($this->entity)) {
             if ($link) {
-                return '<a href="' . $this->entity->url() . '">' . e($this->entity->name) . '</a>';
+                $url = $this->entity->url();
+                if ($this->entity->typeId() == config('entities.ids.map')) {
+                    $url = $this->entity->url('explore');
+                }
+                return '<a href="' . $url . '">' . e($this->entity->name) . '</a>';
             }
             return e($this->entity->name);
         }
