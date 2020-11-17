@@ -96,7 +96,7 @@
                                 </a>
 
                                 @if(!$boost->campaign->boosted(true))
-                                        @if(auth()->user()->availableBoosts() >= 3)
+                                        @if(auth()->user()->availableBoosts() >= 2)
                                         {!! Form::model($boost, ['route' => ['campaign_boosts.update', $boost], 'method' => 'PATCH']) !!}
                                             <button type="submit" class="btn bg-maroon" value="superboost" title="{{ __('settings.boost.buttons.tooltips.boost', ['amount' => 3]) }}" data-toggle="tooltip">
                                                 <i class="fa fa-rocket"></i> {{ __('settings.boost.buttons.superboost') }}
