@@ -5,7 +5,7 @@ use \Illuminate\Support\Arr;
     'title' => trans('campaigns/stats.title', ['campaign' => $campaign->name]),
     'breadcrumbs' => [
         ['url' => route('campaign'), 'label' => trans('campaigns.index.title')],
-        __('campaigns.show.tabs.stats')
+        __('campaigns.show.tabs.achievements')
     ],
 ])
 

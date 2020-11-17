@@ -14,9 +14,11 @@ class StatService
      */
     protected $campaign;
 
-    protected $primaryTargets = [50, 200, 500, 1000, 3000];
+    protected $primaryTargets = [25, 50, 100, 250, 500];
 
-    protected $secondaryTargets = [10, 25, 50, 100, 500];
+    protected $secondaryTargets = [10, 20, 45, 100, 200];
+
+    protected $tertiaryTargets = [1, 2, 5, 10, 20];
     //protected $secondaryTargets = [1, 2, 3, 4, 5];
     /**
      * @param Campaign $campaign
@@ -66,20 +68,20 @@ class StatService
             'families' => [
                 'icon' => 'fa fa-users',
                 'amount' => $families,
-                'target' => $this->target($families),
-                'level' => $this->level($families),
+                'target' => $this->target($families, 2),
+                'level' => $this->level($families, 2),
             ],
             'calendars' => [
                 'icon' => 'fa fa-calendar',
                 'amount' => $calendars,
-                'target' => $this->target($calendars, false),
-                'level' => $this->level($calendars, false),
+                'target' => $this->target($calendars, 3),
+                'level' => $this->level($calendars, 3),
             ],
             'dead' => [
                 'icon' => 'ra ra-skull',
                 'amount' => $dead,
-                'target' => $this->target($dead, false),
-                'level' => $this->level($dead, false),
+                'target' => $this->target($dead, 2),
+                'level' => $this->level($dead, 2),
             ],
         ];
 
@@ -100,12 +102,12 @@ class StatService
 
     /**
      * @param int $amount
-     * @param bool $primary
+     * @param int $level = 1
      * @return int
      */
-    public function target(int $amount, bool $primary = true): int
+    public function target(int $amount, int $level = 1): int
     {
-        $targets = $primary ? $this->primaryTargets : $this->secondaryTargets;
+        $targets = $level == 1 ? $this->primaryTargets : ($level == 2 ? $this->secondaryTargets : $this->tertiaryTargets);
 
         foreach ($targets as $target) {
             if ($amount < $target) {
@@ -118,13 +120,12 @@ class StatService
 
     /**
      * @param int $amount
-     * @param bool $primary
+     * @param int $level = 1
      * @return int
      */
-    public function level(int $amount, bool $primary = true): int
+    public function level(int $amount, int $level = 1): int
     {
-        $targets = $primary ? $this->primaryTargets : $this->secondaryTargets;
-
+        $targets = $level == 1 ? $this->primaryTargets : ($level == 2 ? $this->secondaryTargets : $this->tertiaryTargets);
         $level = 0;
         foreach ($targets as $target) {
             if ($amount >= $target) {
@@ -137,22 +138,25 @@ class StatService
 
     /**
      * @param int $amount
-     * @param bool $primary
+     * @param int $level = 1
      * @return string
      */
-    public function title(int $amount, bool $primary = true): string
+    public function title(int $amount, int $level = 1): string
     {
         $level = 1;
-        $targets = $primary ? $this->primaryTargets : $this->secondaryTargets;
+        $targets = $level == 1 ? $this->primaryTargets : ($level == 2 ? $this->secondaryTargets : $this->tertiaryTargets);
         foreach ($targets as $target) {
             if ($amount > $target) {
                 $level ++;
             }
         }
 
-        return __('campaigns/stats.titles.' . ($primary ? 'primary' : 'secondary') . '.' . $level);
+        return __('campaigns/stats.titles.' . ($level == 1 ? 'primary' : ($level == 2 ? 'secondary' : 'tertiary')) . '.' . $level);
     }
 
+    /**
+     * @return array[]
+     */
     public function achievements(): array
     {
 
