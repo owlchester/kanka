@@ -29,14 +29,16 @@
         data-mention="{{ route('search.live') }}"
         data-advanced-mention="{{ Auth::user()->advancedMentions }}"
         data-months="{{ route('search.calendar-months') }}"
-        data-gallery="{{ $campaign->campaign()->boosted(true) ? route('campaign.gallery.summernote') : null }}"
         data-gallery-title="Superboosted Gallery"
         data-gallery-close="{{ __('crud.click_modal.close') }}"
         data-gallery-add="{{ __('crud.add') }}"
         data-gallery-select-all="{{ __('voyager.generic.select_all') }}"
         data-gallery-deselect-all="{{ __('voyager.generic.deselect_all') }}"
         data-gallery-error="generic.gallery.error"
-@if($campaign->campaign()->boosted(true)) data-gallery-upload="{{ route('campaign.gallery.ajax-upload') }}" @endif
+@if(isset($campaign))
+        data-gallery="{{ $campaign->campaign()->boosted(true) ? route('campaign.gallery.summernote') : null }}"
+    @if($campaign->campaign()->boosted(true)) data-gallery-upload="{{ route('campaign.gallery.ajax-upload') }}" @endif
+@endif
 @if (!empty($model) && $model->entity)        data-attributes="{{ route('search.attributes', $model->entity) }}"
 @elseif (!empty($entity))        data-attributes="{{ route('search.attributes', $entity) }}"
 
