@@ -107,6 +107,9 @@ class DashboardService
         $dashboards = [];
         foreach ($roles as $role) {
             $key = 'role_' . $role->id;
+            if (!isset($available[$key])) {
+                continue;
+            }
             foreach ($available[$key] as $role) {
                 $dashboards[] = $role->dashboard;
             }
@@ -271,6 +274,9 @@ class DashboardService
         $roles = UserCache::roles();
         foreach ($roles as $role) {
             $key = 'role_' . $role->id;
+            if (!isset($available[$key])) {
+                continue;
+            }
             foreach ($available[$key] as $role) {
                 if ($role->is_default) {
                     return $role->dashboard;
