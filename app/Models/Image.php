@@ -5,6 +5,7 @@ namespace App\Models;
 
 
 use App\Facades\Img;
+use App\Traits\CampaignTrait;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -33,6 +34,8 @@ use Illuminate\Support\Facades\Storage;
  */
 class Image extends Model
 {
+    use CampaignTrait;
+
     public $fillable = [
         'name',
     ];
