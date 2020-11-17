@@ -13,41 +13,41 @@ return [
         ],
     ],
     'dashboards'        => [
-        'actions' => [
-            'new' => 'New Dashboard',
-            'edit' => 'Edit',
-            'switch' => 'Switch to dashboard',
+        'actions'       => [
+            'edit'      => 'Edit',
+            'new'       => 'New Dashboard',
+            'switch'    => 'Switch to dashboard',
         ],
-        'boosted' => ':boosted_campaigns can create custom dashboards for each of the campaign roles.',
-        'create' => [
-            'title' => 'New Campaign Dashboard',
-            'success' => 'New campaign dashboard :name created.',
+        'boosted'       => ':boosted_campaigns can create custom dashboards for each of the campaign roles.',
+        'create'        => [
+            'success'   => 'New campaign dashboard :name created.',
+            'title'     => 'New Campaign Dashboard',
         ],
-        'default' => [
+        'custom'        => [
+            'text'  => 'You are currently editing the :name dashboard of the campaign.',
+        ],
+        'default'       => [
+            'text'  => 'You are currently editing the default dashboard of the campaign.',
             'title' => 'Default Dashboard',
-            'text' => 'You are currently editing the default dashboard of the campaign.',
         ],
-        'delete'            => [
-            'success' => 'Dashboard :name removed.',
+        'delete'        => [
+            'success'   => 'Dashboard :name removed.',
         ],
-        'custom' => [
-            'text' => 'You are currently editing the :name dashboard of the campaign.',
+        'fields'        => [
+            'name'          => 'Dashboard name',
+            'visibility'    => 'Visibility',
         ],
-        'fields' => [
-            'name' => 'Dashboard name',
-            'visibility' => 'Visibility',
+        'placeholders'  => [
+            'name'  => 'Name of the dashboard',
         ],
-        'placeholders' => [
-            'name' => 'Name of the dashboard',
+        'update'        => [
+            'success'   => 'Campaign dashboard :name updated.',
+            'title'     => 'Update campaign dashboard :name',
         ],
-        'update' => [
-            'title' => 'Update campaign dashboard :name',
-            'success' => 'Campaign dashboard :name updated.',
-        ],
-        'visibility' => [
-            'none' => 'None',
-            'visible' => 'Visible',
-            'default' => 'Default',
+        'visibility'    => [
+            'default'   => 'Default',
+            'none'      => 'None',
+            'visible'   => 'Visible',
         ],
     ],
     'description'       => 'The home for your creativity',
@@ -96,8 +96,8 @@ return [
             'previous_events'   => 'Previous',
             'upcoming_events'   => 'Upcoming',
         ],
-        'campaign' => [
-            'helper' => 'This widget displayed the campaign header. This widget is always shown on the default dashboard.',
+        'campaign'      => [
+            'helper'    => 'This widget displayed the campaign header. This widget is always shown on the default dashboard.',
         ],
         'create'        => [
             'success'   => 'Widget added to the dashboard.',

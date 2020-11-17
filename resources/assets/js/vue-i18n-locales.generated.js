@@ -651,6 +651,10 @@ export default {
                     "copy": "Seleccioneu aquesta opció si voleu crear una còpia a la nova campanya.",
                     "target": "Tingueu en compte que algunes dades es poden perdre al moure un element d'un tipus a un altre."
                 },
+                "panels": {
+                    "change": "Canvia el tipus d'entitat",
+                    "move": "Mou a una altra campanya"
+                },
                 "success": "S'ha mogut l'entitat «{name}».",
                 "success_copy": "S'ha copiat l'entitat «{name}».",
                 "title": "Mou {name}"
@@ -780,7 +784,19 @@ export default {
         "randomisers": [],
         "entities": []
     },
-    "cz": [],
+    "cs": {
+        "maps": [],
+        "calendars": [],
+        "randomizers": [],
+        "admin": [],
+        "timelines": [],
+        "campaigns": [],
+        "front": [],
+        "entities": []
+    },
+    "cz": {
+        "randomisers": []
+    },
     "de": {
         "maps": [],
         "calendars": [],
@@ -1427,6 +1443,10 @@ export default {
                     "copy": "Wähle diese Option, wenn du eine Kopie in der neuen Kampagne erstellen willst.",
                     "target": "Bitte beachte, das einige Daten verloren gehen können, wenn ein Objekt von einem Typ zu einem anderen verschoben wird."
                 },
+                "panels": {
+                    "change": "Objekttyp ändern",
+                    "move": "Verschiebe in eine andere Kampagne"
+                },
                 "success": "Objekt '{name}' verschoben",
                 "success_copy": "Objekt '{name}' kopiert",
                 "title": "Verschiebe {name} an einen anderen Ort"
@@ -1672,11 +1692,11 @@ export default {
                 "title": "Layout"
             },
             "marketplace": {
-                "title": "Marketplace Settings",
-                "helper": "By default, your user name is shown on the {marketplace}. You can override this value with this field.",
                 "fields": {
                     "name": "Marketplace name"
                 },
+                "helper": "By default, your user name is shown on the {marketplace}. You can override this value with this field.",
+                "title": "Marketplace Settings",
                 "update": "Marketplace settings saved."
             },
             "menu": {
@@ -2277,6 +2297,7 @@ export default {
             "save_and_view": "Save and View",
             "search": "Search",
             "select": "Select",
+            "superboosted_campaigns": "Superboosted Campaigns",
             "tabs": {
                 "abilities": "Abilities",
                 "attributes": "Attributes",
@@ -2967,6 +2988,10 @@ export default {
                     "campaign": "También puedes intentar mover esta entidad a otra campaña.",
                     "copy": "Selecciona esta opción si quieres crear una copia en la nueva campaña.",
                     "target": "Ten en cuenta que algunos datos pueden perderse al mover un elemento de un tipo a otro."
+                },
+                "panels": {
+                    "change": "Cambiar tipo de entidad",
+                    "move": "Mover a otra campaña"
                 },
                 "success": "Entidad '{name}' movida.",
                 "success_copy": "Entidad '{name}' copiada.",
@@ -3696,7 +3721,6 @@ export default {
             "linking_help": "Comment lier vers d'autres éléments?",
             "manage": "Gérer",
             "move": {
-                "description": "Déplacer cet élément vers un nouvel endroit",
                 "errors": {
                     "permission": "Droits insuffisants pour créer une entité de ce type dans la campagne sélectionnée.",
                     "same_campaign": "Une autre campagne doit être sélectionnée pour y déplacer l'entité.",
@@ -3711,6 +3735,10 @@ export default {
                     "campaign": "Il est aussi possible de déplacer cette entité vers une autre campagne.",
                     "copy": "Activer cette option crée une copie dans la nouvelle campagne.",
                     "target": "Attention! Certaines informations peuvent être perdues lors du déplacement d'un élément."
+                },
+                "panels": {
+                    "change": "Changer le type d'entité",
+                    "move": "Déplacer vers une autre campagne"
                 },
                 "success": "Elément {name} déplacé.",
                 "success_copy": "Entité '{name}' copiée.",
@@ -3805,6 +3833,7 @@ export default {
             "save_and_view": "Enregistrer et Afficher",
             "search": "Rechercher",
             "select": "Sélection",
+            "superboosted_campaigns": "Campagnes Superboostées",
             "tabs": {
                 "abilities": "Pouvoirs",
                 "attributes": "Attributs",
@@ -3841,6 +3870,7 @@ export default {
         "entities": []
     },
     "gl": {
+        "maps": [],
         "calendars": [],
         "conversations": {
             "create": {
@@ -3910,6 +3940,9 @@ export default {
                 "members": "Membras"
             }
         },
+        "randomizers": [],
+        "admin": [],
+        "timelines": [],
         "crud": {
             "actions": {
                 "actions": "Accións",
@@ -4324,7 +4357,9 @@ export default {
                 "self": "Só eu"
             }
         },
-        "campaigns": []
+        "campaigns": [],
+        "front": [],
+        "entities": []
     },
     "he": {
         "maps": [],
@@ -5133,7 +5168,6 @@ export default {
             "linking_help": "Kako mogu povezati s ostalim unosima?",
             "manage": "Upravljanje",
             "move": {
-                "description": "Premjesti ovaj entitet na drugo mjesto",
                 "errors": {
                     "permission": "Nije ti dopušteno stvarati entitete tog tipa u ciljanoj kampanji.",
                     "same_campaign": "Trebaš odabrati drugu kampanju u koju će se entitet premjestiti.",
@@ -5148,6 +5182,10 @@ export default {
                     "campaign": "Možeš pokušati premjestiti ovaj entitet u drugu kampanju.",
                     "copy": "Odaberi ovu opciju ako želiš stvoriti kopiju u novoj kampanji.",
                     "target": "Imaj na umu da se neki podaci mogu izgubiti prilikom premještanja elementa iz jedne vrste u drugu."
+                },
+                "panels": {
+                    "change": "Promijeni tip entiteta",
+                    "move": "Premjesti u drugu kampanju"
                 },
                 "success": "Premješten entitet \"{name}\".",
                 "success_copy": "Kopiran entitet \"{name}\".",
@@ -6593,6 +6631,11 @@ export default {
         "entities": []
     },
     "nb": {
+        "maps": [],
+        "calendars": [],
+        "randomizers": [],
+        "admin": [],
+        "timelines": [],
         "crud": {
             "fields": {
                 "colour": "Farge",
@@ -7251,6 +7294,10 @@ export default {
                     "campaign": "Você também pode mover esta entidade para outra camapnha",
                     "copy": "Selecione esta opção se você deseja criar uma cópia na nova campanha",
                     "target": "Esteja ciente que alguns dados podem ser perdidos ao mudar um elemento de um tipo para outro."
+                },
+                "panels": {
+                    "change": "Mudar tipo de entidade",
+                    "move": "Copiar para outra campanha"
                 },
                 "success": "Entidade {name} movida.",
                 "success_copy": "Entidade {name} copiada",
@@ -7970,7 +8017,6 @@ export default {
             "linking_help": "Как я могу ссылаться на другие объекты.",
             "manage": "Управление",
             "move": {
-                "description": "Перемещение этого объекта в другое место.",
                 "errors": {
                     "permission": "Вам не разрешено создавать объекты этого типа в этой Кампании.",
                     "same_campaign": "Вам нужно выбрать другую Кампанию, чтобы переместить в нее этот объект.",
@@ -8748,6 +8794,10 @@ export default {
                     "campaign": "Môžeš tiež skúsiť premiestniť tento objekt do inej kampane.",
                     "copy": "Vyber si túto možnosť, ak chceš vytvoriť kópiu v novej kampani.",
                     "target": "Prosím, uvedom si, že niektoré dáta môžu zmiznúť, ak sa objekt premiestni do iného typu."
+                },
+                "panels": {
+                    "change": "Zmeniť typ objektu",
+                    "move": "Premiestniť do inej kampane"
                 },
                 "success": "Objekt {name} premiestnený",
                 "success_copy": "Objekt {name} skopírovaný",

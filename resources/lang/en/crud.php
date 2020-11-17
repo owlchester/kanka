@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'actions'           => [
+    'actions'                   => [
         'actions'           => 'Actions',
         'apply'             => 'Apply',
         'back'              => 'Back',
@@ -18,11 +18,11 @@ return [
         'next'              => 'Next',
         'reset'             => 'Reset',
     ],
-    'add'               => 'Add',
-    'alerts'            => [
+    'add'                       => 'Add',
+    'alerts'                    => [
         'copy_mention'  => 'The entity\'s advanced mention was copied to your clipboard.',
     ],
-    'attributes'        => [
+    'attributes'                => [
         'actions'       => [
             'apply_template'    => 'Apply an Attribute Template',
             'manage'            => 'Manage',
@@ -73,10 +73,9 @@ return [
             'tab'       => 'Attribute is displayed only on the Attributes tab.',
         ],
     ],
-    'boosted'           => 'Boosted',
-    'boosted_campaigns' => 'Boosted Campaigns',
-    'superboosted_campaigns' => 'Superboosted Campaigns',
-    'bulk'              => [
+    'boosted'                   => 'Boosted',
+    'boosted_campaigns'         => 'Boosted Campaigns',
+    'bulk'                      => [
         'actions'       => [
             'edit'  => 'Bulk Edit & Tagging',
         ],
@@ -116,41 +115,41 @@ return [
             'public'            => '{1} :count entity is now visible|[2,*] :count entities are now visible.',
         ],
     ],
-    'cancel'            => 'Cancel',
-    'click_modal'       => [
+    'cancel'                    => 'Cancel',
+    'click_modal'               => [
         'close'     => 'Close',
         'confirm'   => 'Confirm',
         'title'     => 'Confirm your action',
     ],
-    'copy_to_campaign'  => [
+    'copy_to_campaign'          => [
         'bulk_title'    => 'Copy entities to another campaign',
         'panel'         => 'Copy',
         'title'         => 'Copy \':name\' to another campaign',
     ],
-    'create'            => 'Create',
-    'datagrid'          => [
+    'create'                    => 'Create',
+    'datagrid'                  => [
         'empty' => 'Nothing to show yet.',
     ],
-    'delete_modal'      => [
+    'delete_modal'              => [
         'close'         => 'Close',
         'delete'        => 'Delete',
         'description'   => 'Are you sure you want to remove :tag?',
         'mirrored'      => 'Remove mirrored relation.',
         'title'         => 'Delete confirmation',
     ],
-    'destroy_many'      => [
+    'destroy_many'              => [
         'success'   => 'Deleted :count entity|Deleted :count entities.',
     ],
-    'edit'              => 'Edit',
-    'errors'            => [
+    'edit'                      => 'Edit',
+    'errors'                    => [
         'boosted'                       => 'This feature is only available to boosted campaigns.',
         'node_must_not_be_a_descendant' => 'Invalid node (tag, parent location): it would be a descendant of itself.',
     ],
-    'events'            => [
+    'events'                    => [
         'hint'  => 'Shown below is a list of all the Calendars in which this entity was added using the "Add an event to a calendar" interface.',
     ],
-    'export'            => 'Export',
-    'fields'            => [
+    'export'                    => 'Export',
+    'fields'                    => [
         'ability'               => 'Ability',
         'attribute_template'    => 'Attribute Template',
         'calendar'              => 'Calendar',
@@ -187,7 +186,7 @@ return [
         'type'                  => 'Type',
         'visibility'            => 'Visibility',
     ],
-    'files'             => [
+    'files'                     => [
         'actions'   => [
             'drop'      => 'Click to Add or Drop a file',
             'manage'    => 'Manage Entity Files',
@@ -203,8 +202,8 @@ return [
         ],
         'title'     => 'Entity Files for :name',
     ],
-    'filter'            => 'Filter',
-    'filters'           => [
+    'filter'                    => 'Filter',
+    'filters'                   => [
         'all'       => 'Filter to all descendants',
         'clear'     => 'Clear Filters',
         'direct'    => 'Filter to direct descendants',
@@ -223,14 +222,14 @@ return [
         ],
         'title'     => 'Filters',
     ],
-    'forms'             => [
+    'forms'                     => [
         'actions'       => [
             'calendar'  => 'Add a calendar date',
         ],
         'copy_options'  => 'Copy Options',
     ],
-    'hidden'            => 'Hidden',
-    'hints'             => [
+    'hidden'                    => 'Hidden',
+    'hints'                     => [
         'attribute_template'    => 'Apply an attribute template directly when creating or editing this entity.',
         'calendar_date'         => 'A calendar date allows easy filtering in lists, and also maintains a calendar event in the selected calendar.',
         'header_image'          => 'This image is placed above the entity. For best results, use a wide image.',
@@ -242,7 +241,7 @@ return [
         'tooltip'               => 'Replace the automatically generated tooltip with the following contents.',
         'visibility'            => 'Setting the visibility to admin means only members in the Admin campaign role can view this. Setting it to self means only you can view this.',
     ],
-    'history'           => [
+    'history'                   => [
         'created'       => 'Created by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
         'created_date'  => 'Created <span data-toggle="tooltip" title=":realdate">:date</span>',
         'unknown'       => 'Unknown',
@@ -250,14 +249,14 @@ return [
         'updated_date'  => 'Last modified <span data-toggle="tooltip" title=":realdate">:date</span>',
         'view'          => 'View entity log',
     ],
-    'image'             => [
+    'image'                     => [
         'error' => 'We weren\'t able to get the image you requested. It could be that the website doesn\'t allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid. Please also make sure that the image isn\'t larger than :size.',
     ],
-    'is_not_private'    => 'This entity isn\'t currently set to private.',
-    'is_private'        => 'This entity is private and only visible to members of the Admin role.',
-    'linking_help'      => 'How can I link to other entries?',
-    'manage'            => 'Manage',
-    'move'              => [
+    'is_not_private'            => 'This entity isn\'t currently set to private.',
+    'is_private'                => 'This entity is private and only visible to members of the Admin role.',
+    'linking_help'              => 'How can I link to other entries?',
+    'manage'                    => 'Manage',
+    'move'                      => [
         'errors'        => [
             'permission'        => 'You aren\'t allowed to create entities of that type in the target campaign.',
             'same_campaign'     => 'You need to select another campaign to move the entity to.',
@@ -281,15 +280,15 @@ return [
         'success_copy'  => 'Entity \':name\' copied.',
         'title'         => 'Change or Move :name',
     ],
-    'new_entity'        => [
+    'new_entity'                => [
         'error' => 'Please review your values.',
         'fields'=> [
             'name'  => 'Name',
         ],
         'title' => 'New entity',
     ],
-    'or_cancel'         => 'or <a href=":url">cancel</a>',
-    'panels'            => [
+    'or_cancel'                 => 'or <a href=":url">cancel</a>',
+    'panels'                    => [
         'appearance'            => 'Appearance',
         'attribute_template'    => 'Attribute Template',
         'calendar_date'         => 'Calendar Date',
@@ -298,7 +297,7 @@ return [
         'move'                  => 'Move',
         'system'                => 'System',
     ],
-    'permissions'       => [
+    'permissions'               => [
         'action'            => 'Action',
         'actions'           => [
             'bulk'          => [
@@ -333,7 +332,7 @@ return [
         'title'             => 'Permissions',
         'too_many_members'  => 'This campaign has too many members (>10) to display in this interface. Please use the Permission button on the entity view to control permissions in detail.',
     ],
-    'placeholders'      => [
+    'placeholders'              => [
         'ability'       => 'Choose an ability',
         'calendar'      => 'Choose a calendar',
         'character'     => 'Choose a character',
@@ -349,7 +348,7 @@ return [
         'race'          => 'Choose a race',
         'tag'           => 'Choose a tag',
     ],
-    'relations'         => [
+    'relations'                 => [
         'actions'   => [
             'add'   => 'Add a relation',
         ],
@@ -360,17 +359,18 @@ return [
         ],
         'hint'      => 'Relations between entities can be set up to represent their connections.',
     ],
-    'remove'            => 'Remove',
-    'rename'            => 'Rename',
-    'save'              => 'Save',
-    'save_and_close'    => 'Save and Close',
-    'save_and_copy'     => 'Save and Copy',
-    'save_and_new'      => 'Save and New',
-    'save_and_update'   => 'Save and Edit',
-    'save_and_view'     => 'Save and View',
-    'search'            => 'Search',
-    'select'            => 'Select',
-    'tabs'              => [
+    'remove'                    => 'Remove',
+    'rename'                    => 'Rename',
+    'save'                      => 'Save',
+    'save_and_close'            => 'Save and Close',
+    'save_and_copy'             => 'Save and Copy',
+    'save_and_new'              => 'Save and New',
+    'save_and_update'           => 'Save and Edit',
+    'save_and_view'             => 'Save and View',
+    'search'                    => 'Search',
+    'select'                    => 'Select',
+    'superboosted_campaigns'    => 'Superboosted Campaigns',
+    'tabs'                      => [
         'abilities'     => 'Abilities',
         'attributes'    => 'Attributes',
         'boost'         => 'Boost',
@@ -388,12 +388,12 @@ return [
         'timelines'     => 'Timelines',
         'tooltip'       => 'Tooltip',
     ],
-    'update'            => 'Update',
-    'users'             => [
+    'update'                    => 'Update',
+    'users'                     => [
         'unknown'   => 'Unknown',
     ],
-    'view'              => 'View',
-    'visibilities'      => [
+    'view'                      => 'View',
+    'visibilities'              => [
         'admin'         => 'Admin',
         'admin-self'    => 'Self & Admin',
         'all'           => 'All',

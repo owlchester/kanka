@@ -19,8 +19,8 @@ return [
         'restricted'    => 'Голосования доступны только для пользователей, поддерживающих Kanka.',
         'title'         => 'Голосование - :name',
         'vote_count'    => '{1} :number участник проголосовал.|[2,4] :number участника проголосовало.|[5,*] :number участников проголосовало.',
-        'voted_lasted'  => 'Голосование длиться с :from GMT до :until GMT.',
-        'voting_until'  => 'Голосование открыто до :until GMT.',
+        'voted_lasted'  => 'Голосование длится с :from по GMT до :until по GMT.',
+        'voting_until'  => 'Голосование открыто до :until по GMT.',
     ],
     'title'         => 'Голосования',
 ];

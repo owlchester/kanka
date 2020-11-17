@@ -12,6 +12,7 @@ return [
         'hall_of_fame'      => 'Ruhmeshalle',
         'map_size'          => ':size Upload Kartengröße',
         'nice_image'        => 'Standardobjektbilder',
+        'no_ads'            => 'keine ads',
         'pagination'        => ':amount Max paginierte Ergebnisse',
         'vote_influence'    => 'Einfluss der Community Votes',
     ],

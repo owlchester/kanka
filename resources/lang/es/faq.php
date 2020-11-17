@@ -130,6 +130,10 @@ TEXT
         'timestamp' => 'Última actualización el :date',
         'title'     => 'FAQ :name',
     ],
+    'unboost'               => [
+        'answer'    => 'Al dejar de mejorar una campaña, no se elimina ningún dato, sino que se esconde. Si vuelves a mejorar la campaña, toda la información y funcionalidades volverán a estar disponibles con la misma configuración de antes.',
+        'question'  => '¿Qué pasa si dejo de mejorar una campaña?',
+    ],
     'user-switch'           => [
         'answer'    => 'Manejar los permisos puede ser complicado, sobre todo en campañas grandes. Como administrador de campaña, puedes navegar por la página de miembros y hacer clic en el botón de "Ver como" junto a cada miembro. Así, podrás navegar por la campaña y verla como ellos lo harán. Esta es la manera más fácil de comprobar los permisos de tu campaña.',
         'question'  => 'Los permisos de mi campaña ya están configurados, ¿cómo puedo comprobarlos?',

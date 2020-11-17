@@ -290,6 +290,10 @@ return [
             'copy'      => 'Selecciona esta opción si quieres crear una copia en la nueva campaña.',
             'target'    => 'Ten en cuenta que algunos datos pueden perderse al mover un elemento de un tipo a otro.',
         ],
+        'panels'        => [
+            'change'    => 'Cambiar tipo de entidad',
+            'move'      => 'Mover a otra campaña',
+        ],
         'success'       => 'Entidad \':name\' movida.',
         'success_copy'  => 'Entidad \':name\' copiada.',
         'title'         => 'Mover :name',

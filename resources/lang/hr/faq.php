@@ -130,6 +130,10 @@ TEXT
         'timestamp' => 'Posljednji put ažurirano :date',
         'title'     => 'Često postavljana pitanja :name',
     ],
+    'unboost'               => [
+        'answer'    => 'Poništavanjem pojačavanja kampanje ne brišu se podaci koji su stvoreni tijekom pojačavanja, već se jednostavno sakrivaju podaci i značajke. Ako ponovno pojačate kampanju, podaci i značajke bit će ponovno dostupni s istim postavkama kao i prije opoziva kampanje.',
+        'question'  => 'Što se događa ako se prestane pojačavati kampanju?',
+    ],
     'user-switch'           => [
         'answer'    => 'Dozvole mogu postati škakljive, osobito kod velikih kampanja. Kao administrator kampanje, možeš doći do stranice članova kampanje i kliknuti gumb "Imitiraj" koji će se pojaviti pored članova koji nisu administratori. Tako ćeš se prijaviti kao korisnik, što će ti omogućiti pregled kampanje kakvu taj korisnik vidi. To je najlakši način za provjeru dozvola tvoje kampanje.',
         'question'  => 'Ovlasti u mojoj kampanji su postavljene, kako ih mogu testirati?',

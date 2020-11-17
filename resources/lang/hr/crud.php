@@ -257,7 +257,6 @@ return [
     'linking_help'      => 'Kako mogu povezati s ostalim unosima?',
     'manage'            => 'Upravljanje',
     'move'              => [
-        'description'   => 'Premjesti ovaj entitet na drugo mjesto',
         'errors'        => [
             'permission'        => 'Nije ti dopušteno stvarati entitete tog tipa u ciljanoj kampanji.',
             'same_campaign'     => 'Trebaš odabrati drugu kampanju u koju će se entitet premjestiti.',
@@ -272,6 +271,10 @@ return [
             'campaign'  => 'Možeš pokušati premjestiti ovaj entitet u drugu kampanju.',
             'copy'      => 'Odaberi ovu opciju ako želiš stvoriti kopiju u novoj kampanji.',
             'target'    => 'Imaj na umu da se neki podaci mogu izgubiti prilikom premještanja elementa iz jedne vrste u drugu.',
+        ],
+        'panels'        => [
+            'change'    => 'Promijeni tip entiteta',
+            'move'      => 'Premjesti u drugu kampanju',
         ],
         'success'       => 'Premješten entitet ":name".',
         'success_copy'  => 'Kopiran entitet ":name".',

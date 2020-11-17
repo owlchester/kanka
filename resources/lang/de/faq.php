@@ -135,6 +135,10 @@ TEXT
         'timestamp' => 'Letzte Aktualisierung am :date',
         'title'     => 'FAQ :name',
     ],
+    'unboost'               => [
+        'answer'    => 'Durch das Aufheben des Boostings einer Kampagne werden keine Daten gelöscht, die während des Boostings erstellt wurden, sondern lediglich die Informationen und Funktionen ausgeblendet. Wenn Sie eine Kampagne erneut boosten, sind die Informationen und Funktionen mit demselben Setup wieder verfügbar wie vor dem Aufheben des Boostens einer Kampagne.',
+        'question'  => 'Was passiert, wenn eine Kampagne nicht mehr geboosted wird?',
+    ],
     'user-switch'           => [
         'answer'    => 'Berechtigungen können schwierig werden, insbesondere bei großen Kampagnen. Als Kampagnenadministrator können Sie zur Mitgliederseite der Kampagne navigieren und auf die Schaltfläche "Wechseln" klicken, die neben Nicht-Administratormitgliedern der Kampagne angezeigt wird. Wenn Sie dies tun, melden Sie sich als dieser Benutzer an und können die Kampagne so sehen, wie sie es tun würde. Dies ist der einfachste Weg, um die Berechtigungen Ihrer Kampagne zu überprüfen.',
         'question'  => 'Meine Kampagnenberechtigungen sind festgelegt. Wie kann ich sie testen?',

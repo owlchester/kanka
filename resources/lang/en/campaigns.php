@@ -32,8 +32,8 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'You don\'t have access to this campaign.',
-        'unknown_id'    => 'Unknown Campaign.',
         'superboosted'  => 'This feature is only available to superboosted campaigns.',
+        'unknown_id'    => 'Unknown Campaign.',
     ],
     'export'                            => [
         'description'   => 'Export the campaign.',
@@ -323,6 +323,7 @@ TEXT
         ],
         'description'   => 'A detailed view of a campaign',
         'tabs'          => [
+            'achievements'      => 'Achievements',
             'default-images'    => 'Default Images',
             'export'            => 'Export',
             'information'       => 'Information',
@@ -332,17 +333,16 @@ TEXT
             'recovery'          => 'Recovery',
             'roles'             => 'Roles',
             'settings'          => 'Modules',
-            'achievements'      => 'Achievements',
         ],
         'title'         => 'Campaign :name',
     ],
-    'superboosted' => [
-        'gallery' => [
+    'superboosted'                      => [
+        'gallery'   => [
             'error' => [
+                'text'  => 'Uploading images in the text editor is a feature only available to :superboosted.',
                 'title' => 'Campaign Gallery Image Upload',
-                'text' => 'Uploading images in the text editor is a feature only available to :superboosted.',
-            ]
-        ]
+            ],
+        ],
     ],
     'ui'                                => [
         'helper'    => 'Use these settings to change the way some elements will be displayed in the campaign.',

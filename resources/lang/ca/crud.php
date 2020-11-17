@@ -293,6 +293,10 @@ return [
             'copy'      => 'Seleccioneu aquesta opció si voleu crear una còpia a la nova campanya.',
             'target'    => 'Tingueu en compte que algunes dades es poden perdre al moure un element d\'un tipus a un altre.',
         ],
+        'panels'        => [
+            'change'    => 'Canvia el tipus d\'entitat',
+            'move'      => 'Mou a una altra campanya',
+        ],
         'success'       => 'S\'ha mogut l\'entitat «:name».',
         'success_copy'  => 'S\'ha copiat l\'entitat «:name».',
         'title'         => 'Mou :name',

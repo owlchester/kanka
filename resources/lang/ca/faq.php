@@ -130,6 +130,10 @@ TEXT
         'timestamp' => 'Última actualizació el :date',
         'title'     => 'FAQ :name',
     ],
+    'unboost'               => [
+        'answer'    => 'En deixar de millorar una campanya, no s\'elimina cap dada, sinó que s\'amaga. Si tornes a millorar la campanya, tota la informació i funcionalitats tornaran a estar disponibles amb la mateixa configuració d\'abans.',
+        'question'  => 'Què passa si una campanya deixa de millorar-se?',
+    ],
     'user-switch'           => [
         'answer'    => 'Configurar els permisos pot ser complicat, sobretot a campanyes grans. L\'administrador de la campanya pot navegar per la pàgina de membres i clicar el botó de "Veure com" al costat de cada membre. D\'aquesta manera pot navegar per la campanya i veure-la com ells ho farien. Aquesta és la manera més fàcil de comprovar els permisos de la campanya.',
         'question'  => 'Els permisos de la campanya ja estan configurats, com puc comprovar-los?',

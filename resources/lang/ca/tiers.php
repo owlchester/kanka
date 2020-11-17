@@ -12,6 +12,7 @@ return [
         'hall_of_fame'      => 'Saló de la fama',
         'map_size'          => 'Puja mapes de fins a :size',
         'nice_image'        => 'Imatges per defecte a les entitats',
+        'no_ads'            => 'Sense anuncis',
         'pagination'        => 'Màxim de fins a :amount resultats en una pàgina',
         'vote_influence'    => 'Influència a les votacions comunitàries',
     ],

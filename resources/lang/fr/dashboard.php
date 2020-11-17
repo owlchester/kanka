@@ -12,6 +12,44 @@ return [
             'users'     => ':count membres',
         ],
     ],
+    'dashboards'        => [
+        'actions'       => [
+            'edit'      => 'Modifier',
+            'new'       => 'Nouveau',
+            'switch'    => 'Basculer vers',
+        ],
+        'boosted'       => 'Les :boosted_campaigns peuvent créer des tableaux de bords supplémentaires pour chaque rôle.',
+        'create'        => [
+            'success'   => 'Nouveau tableau de bord :name créé.',
+            'title'     => 'Nouveau tableau de bord',
+        ],
+        'custom'        => [
+            'text'  => 'Modification du tableau de bord :name de la campagne.',
+        ],
+        'default'       => [
+            'text'  => 'Modification du tableau de bord par défaut de la campagne.',
+            'title' => 'Tableau de bord par défaut',
+        ],
+        'delete'        => [
+            'success'   => 'Tableau de bord :name supprimé.',
+        ],
+        'fields'        => [
+            'name'          => 'Nom du tableau de bord',
+            'visibility'    => 'Visibilité',
+        ],
+        'placeholders'  => [
+            'name'  => 'Nom du tableau de bord',
+        ],
+        'update'        => [
+            'success'   => 'Tableau de bord :name modifié.',
+            'title'     => 'Modifier le tableau de bord :name',
+        ],
+        'visibility'    => [
+            'default'   => 'Défaut',
+            'none'      => 'Aucune',
+            'visible'   => 'Visible',
+        ],
+    ],
     'description'       => 'Place à la créativité',
     'helpers'           => [
         'follow'    => 'Suivre une campagne la rend visibile dans le changeur de campagne (en haut à droite) après tes campagnes.',
@@ -39,6 +77,8 @@ return [
         'title'     => 'Configuration du tableau de bord de campagne',
         'widgets'   => [
             'calendar'      => 'Calendrier',
+            'campaign'      => 'Entête de campagne',
+            'header'        => 'Entête',
             'preview'       => 'Extrait d\'entité',
             'random'        => 'Entité au hasard',
             'recent'        => 'Récent',
@@ -57,6 +97,9 @@ return [
             'previous_events'   => 'Précédents',
             'upcoming_events'   => 'Prochainement',
         ],
+        'campaign'      => [
+            'helper'    => 'Ce widget affiche l\'entête de campagne. Ce widget est tout le temps visible sur le tableau de bord de défaut.',
+        ],
         'create'        => [
             'success'   => 'Widget ajouté au tableau de bord.',
         ],
@@ -64,6 +107,8 @@ return [
             'success'   => 'Widget retiré du tableau de bord.',
         ],
         'fields'        => [
+            'name'  => 'Nom de widget personnalisé',
+            'text'  => 'Texte',
             'width' => 'Largeur',
         ],
         'recent'        => [

@@ -293,6 +293,10 @@ return [
             'copy'      => 'Wähle diese Option, wenn du eine Kopie in der neuen Kampagne erstellen willst.',
             'target'    => 'Bitte beachte, das einige Daten verloren gehen können, wenn ein Objekt von einem Typ zu einem anderen verschoben wird.',
         ],
+        'panels'        => [
+            'change'    => 'Objekttyp ändern',
+            'move'      => 'Verschiebe in eine andere Kampagne',
+        ],
         'success'       => 'Objekt \':name\' verschoben',
         'success_copy'  => 'Objekt \':name\' kopiert',
         'title'         => 'Verschiebe :name an einen anderen Ort',

@@ -130,6 +130,10 @@ TEXT
         'timestamp' => 'Posledná úprava dňa :date',
         'title'     => 'FAQ :name',
     ],
+    'unboost'               => [
+        'answer'    => 'Ukončenie boostnutia kampane nezmaže žiadne údaje z nej, ktoré boli vytvorené počas boostnutia, ale jednoducho skryje tieto dodatočné informácie a funkcionality. Ak bude kampaň opätovne boostnutá, tieto informácie a funkcionality sa opätovne zobrazia s rovnakými nastaveniami.',
+        'question'  => 'Čo sa stane, ak kampaň prestane byť boostnutá?',
+    ],
     'user-switch'           => [
         'answer'    => 'Oprávnenia môžu byť trochu zložitejšie, najmä vo väčších kampaniach. Ako administrátor kampane môžeš na stránke členov kampane kliknúť na "Prepnúť", ktorý sa zobrazí vedľa mena člena kampane. Po kliknutí ťa systém prihlási ako daného užívateľa a povolí ti vidieť kampaň cez jeho oči. Toto je najjednoduchší spôsob, akým môžeš skontrolovať nastavenie oprávnení tvojej kampane.',
         'question'  => 'Mám nastavené oprávnenia v mojej kampani. Ako ich otestujem?',

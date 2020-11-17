@@ -52,7 +52,8 @@ return [
     ],
     'features'      => [
         'abilities'         => [
-            'title' => 'Pouvoirs et Inventaires',
+            'description'   => 'Gérez les inventaires d\'entités. Attribue des sorts à tes personnages avec le module Pouvoirs.',
+            'title'         => 'Pouvoirs et Inventaires',
         ],
         'actions'           => [
             'rpg'           => 'Pour les campagnes JDR',
@@ -71,10 +72,12 @@ return [
             'beta'                  => 'Accès beta à certaines fonctionnalités 30 jours avant leur sortie générale.',
             'boosted'               => 'Campagne Boostée',
             'css'                   => 'CSS personnalisé pour la campagne',
+            'dashboards'            => 'Créer des tableaux de bords personnalisé pour les rôles d\'une campagne.',
             'description'           => 'Certains niveaux de soutien donnent aux utilisateurs des boosters qu\'ils peuvent utiliser pour booster des campagnes. Ceci donne les avantages suivants.',
             'entity_files'          => 'Augmenter le nombre de fichiers maximal sur chaque entité (5 au lieu de 3)',
             'header_image'          => 'Image d\'entête pour entité',
             'images'                => 'Définir des images d\'entité par défaut',
+            'no_ads'                => 'Pas de publicité',
             'recovery'              => 'Récupération d\'entité pendant 30 jours',
             'relation-visualiser'   => 'Explorer les relations des entités visuellement',
             'theme'                 => 'Thème de campagne fixe',
@@ -93,7 +96,8 @@ return [
         'description'       => 'Voici quelques éléments de notre application que vous allez adorer!',
         'description_full'  => 'Un aperçu de certaines de nos fonctionnalités les plus aimées.',
         'flora'             => [
-            'title' => 'Faune & Flore',
+            'description'   => 'A l\'aide de notre module Races, tu peux organiser les créatures de ton monde. Tu peux aussi utiliser des Notes pour enrichir un écosystème.',
+            'title'         => 'Faune & Flore',
         ],
         'free'              => [
             'bonuses'       => 'bonus',
@@ -151,7 +155,17 @@ return [
             'title'         => 'Relations',
         ],
         'rpg'               => [
-            'title' => 'Gestion de campagne JDR',
+            'description'   => 'En passant part un système de permissions approfondi aux Quêtes, Journaux, Personnages, Pouvoirs, sans oublier les possibilités d\'audio et de vidéos intégrés, on t\'aide à gérer ta campagne.',
+            'title'         => 'Gestion de campagne JDR',
+        ],
+        'superboosts'       => [
+            'boosted'       => 'Superboosté',
+            'description'   => 'Une campagne devient superboostée quand trois boosters sont utilisés. Cela débloque les fonctionnalités suivantes.',
+            'files'         => 'Jusqu\'à 10 fichiers par entité',
+            'gallery'       => 'Galerie de campagne et intégration avec l\'éditeur de texte Summernote',
+            'logs'          => 'Historique complet des modifications d\'une entité (jusqu\'à 30 jours)',
+            'stats'         => 'Accomplissements de campagne',
+            'title'         => 'Campagnes Superboostées',
         ],
         'timelines'         => [
             'description'   => 'Représenter visuellement les chronologies des mondes, empires, familles, ou d\'un personnage.',

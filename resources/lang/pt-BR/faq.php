@@ -130,6 +130,10 @@ TEXT
         'timestamp' => 'Atualizado pela última vez em :date',
         'title'     => 'Perguntas Frequentes :name',
     ],
+    'unboost'               => [
+        'answer'    => 'Deixar de impulsionar uma campanha não exclui nenhum dos dados que foram criados enquanto ela era impulsionada, mas simplesmente oculta as informações e recursos. Se você impulsionar a campanha novamente, as informações e recursos voltarão a estar disponíveis com a mesma configuração de antes do impulso ser removido.',
+        'question'  => 'O que acontece se a campanha não for mais impulsionada?',
+    ],
     'user-switch'           => [
         'answer'    => 'As permissões podem ser complicadas, especialmente com grandes campanhas. Como administrador da campanha, você pode navegar até a página dos membros da campanha e clicar no botão "Alternar" que aparecerá ao lado dos membros não administradores da campanha. Isso fará com que você se conecte como esse usuário e permitirá que você veja a campanha como eles o veriam. Esta é a maneira mais fácil de verificar as permissões de sua campanha.',
         'question'  => 'Minhas permissões de campanha estão configuradas, como posso testá-las?',

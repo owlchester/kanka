@@ -20,7 +20,6 @@ return [
     'dice_rolls'            => 'Dice Rolls',
     'entity-creator'        => 'Quick Creator',
     'events'                => 'Events',
-    'gallery'               => 'Gallery',
     'families'              => 'Families',
     'items'                 => 'Items',
     'journals'              => 'Journals',

@@ -1,31 +1,31 @@
 <?php
 
 return [
-    'actions' => [
-        'save' => 'Save',
+    'actions'       => [
         'close' => 'Close',
-        'full' => 'Image link',
+        'full'  => 'Image link',
+        'save'  => 'Save',
     ],
-    'destroy' => [
-        'success' => 'Image :name deleted.',
+    'destroy'       => [
+        'success'   => 'Image :name deleted.',
     ],
-    'uploader' => [
-        'add' => 'Add new',
-        'well' => 'Drop file to upload',
-        'or' => 'or',
-        'select_file' => 'Select a file',
+    'fields'        => [
+        'created_by'    => 'Uploaded by',
+        'ext'           => 'Ext',
+        'size'          => 'Size',
     ],
-    'placeholders' => [
-        'search' => 'Search image name...',
+    'placeholders'  => [
+        'search'    => 'Search image name...',
     ],
-    'fields' => [
-        'ext' => 'Ext',
-        'size' => 'Size',
-        'created_by' => 'Uploaded by',
+    'title'         => 'Campaign :campaign Gallery',
+    'update'        => [
+        'success'   => 'Image modified.',
+        'title'     => 'Image details',
     ],
-    'title' => 'Campaign :campaign Gallery',
-    'update' => [
-        'success' => 'Image modified.',
-        'title' => 'Image details',
+    'uploader'      => [
+        'add'           => 'Add new',
+        'or'            => 'or',
+        'select_file'   => 'Select a file',
+        'well'          => 'Drop file to upload',
     ],
 ];

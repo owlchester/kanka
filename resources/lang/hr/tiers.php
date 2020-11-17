@@ -12,6 +12,7 @@ return [
         'hall_of_fame'      => 'Kući slavnih',
         'map_size'          => ':size veličina učitane karte',
         'nice_image'        => 'Zadane slike entiteta',
+        'no_ads'            => 'Bez reklama',
         'pagination'        => ':amount maksimalna paginacija rezultata',
         'vote_influence'    => 'Utjecaj na glasanje zajednice',
     ],

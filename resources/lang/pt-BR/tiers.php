@@ -12,6 +12,7 @@ return [
         'hall_of_fame'      => 'Hall da fama',
         'map_size'          => ':size tamanho de upload de mapas',
         'nice_image'        => 'Imagens de entidade padrão',
+        'no_ads'            => 'Sem anúncios',
         'pagination'        => ':amount Máximo de resultados paginados (entidades exibidas por página)',
         'vote_influence'    => 'Influência do voto da comunidade',
     ],

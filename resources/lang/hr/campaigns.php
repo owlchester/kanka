@@ -4,7 +4,6 @@ return [
     'create'                            => [
         'description'           => 'Kreiraj novu kampanju',
         'helper'                => [
-            'first'     => 'Hvala ti što si isprobao/la našu aplikaciju! Prije nego što nastavimo dalje, trebaš nam dostaviti jednu jednostavnu stvar: svoj <b>naziv kampanje</b>. Ovo je ime tvog svijeta koje ga odvaja od drugih, tako da mora biti jedinstveno. Ako još nemaš dobro ime, ne brini, možeš ga <b>uvijek promijeniti kasnije</b> ili stvoriti više kampanja.',
             'title'     => 'Dobro došli u :name!',
             'welcome'   => <<<'TEXT'
 Prije nego što nastaviš dalje, moraš odabrati naziv kampanje. To je ime tvog svijeta. Ako još nemaš dobro ime, ne brini, uvijek ga možeš promijeniti kasnije ili stvoriti više kampanja.

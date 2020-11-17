@@ -32,6 +32,7 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'Accès refusé pour cette campagne.',
+        'superboosted'  => 'Cette fonctionnalité est seulement accessible pour les campagnes superboostées.',
         'unknown_id'    => 'Campagne inconnue.',
     ],
     'export'                            => [
@@ -322,6 +323,7 @@ TEXT
         ],
         'description'   => 'Détail d\'une campagne',
         'tabs'          => [
+            'achievements'      => 'Accomplissements',
             'default-images'    => 'Image par défaut',
             'export'            => 'Export',
             'information'       => 'Information',
@@ -333,6 +335,14 @@ TEXT
             'settings'          => 'Modules',
         ],
         'title'         => 'Campagne :name',
+    ],
+    'superboosted'                      => [
+        'gallery'   => [
+            'error' => [
+                'text'  => 'Uploader des images dans l\'éditeur de text est une fonctionnalité seulement accessible pour les :superboosted.',
+                'title' => 'Galerie de campagne',
+            ],
+        ],
     ],
     'ui'                                => [
         'helper'    => 'Ces paramètres permettent de changer la manière dont s\'affichent certains éléments dans la campagne.',

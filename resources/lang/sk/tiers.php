@@ -12,6 +12,7 @@ return [
         'hall_of_fame'      => 'Sieň slávy',
         'map_size'          => ':size Veľkosť nahrávaných máp',
         'nice_image'        => 'Štandardné obrázky objektov',
+        'no_ads'            => 'Bez reklamy',
         'pagination'        => ':amount max. objektov v zoznamoch',
         'vote_influence'    => 'Vplyv cez hlasovanie komunity',
     ],

@@ -293,6 +293,10 @@ return [
             'copy'      => 'Vyber si túto možnosť, ak chceš vytvoriť kópiu v novej kampani.',
             'target'    => 'Prosím, uvedom si, že niektoré dáta môžu zmiznúť, ak sa objekt premiestni do iného typu.',
         ],
+        'panels'        => [
+            'change'    => 'Zmeniť typ objektu',
+            'move'      => 'Premiestniť do inej kampane',
+        ],
         'success'       => 'Objekt :name premiestnený',
         'success_copy'  => 'Objekt :name skopírovaný',
         'title'         => 'Premiestniť :name na iné miesto',
