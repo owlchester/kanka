@@ -30,7 +30,7 @@ class GalleryController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
-        $images = $campaign->images()->with('user')->orderBy('updated_at', 'desc')->take(50)->get();
+        $images = $campaign->images()->with('user')->orderBy('updated_at', 'desc')->paginate(50);
 
         return view('gallery.index', compact('campaign', 'images'));
     }

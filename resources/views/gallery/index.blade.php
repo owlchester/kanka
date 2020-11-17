@@ -63,6 +63,8 @@
             </ul>
         </div>
     </div>
+
+    {{ $images->links() }}
 @endsection
 
 @section('scripts')

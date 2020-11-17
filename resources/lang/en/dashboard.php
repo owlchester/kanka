@@ -97,7 +97,7 @@ return [
             'upcoming_events'   => 'Upcoming',
         ],
         'campaign'      => [
-            'helper'    => 'This widget displayed the campaign header. This widget is always shown on the default dashboard.',
+            'helper'    => 'This widget displays the campaign header. This widget is always shown on the default dashboard.',
         ],
         'create'        => [
             'success'   => 'Widget added to the dashboard.',
