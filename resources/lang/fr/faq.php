@@ -70,7 +70,7 @@ TEXT
         'question'  => 'Est-ce que l\'application restera gratuite ?',
     ],
     'gods-and-religions'    => [
-        'answer'    => 'Les Dieux sont des personnage, et les religions sont des organisations dans Kanka. Pour rapidement trouver les dieux, nous recommandons aussi d\'utiliser des étiquettes.',
+        'answer'    => 'Les Dieux sont des personnages, et les religions sont des organisations dans Kanka. Pour rapidement trouver les dieux, nous recommandons aussi d\'utiliser des étiquettes.',
         'question'  => 'Où crérer les Dieux et religions?',
     ],
     'help'                  => [
