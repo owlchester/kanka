@@ -4,6 +4,7 @@
 namespace App\Models;
 
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -19,6 +20,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Plugin $plugin
  * @property Campaign $campaign
  * @property PluginVersion $version
+ *
+ * @method Builder|CampaignPlugin templates(Campaign $campaign)
  */
 class CampaignPlugin extends Model
 {
@@ -35,5 +38,14 @@ class CampaignPlugin extends Model
     public function version()
     {
         return $this->belongsTo(PluginVersion::class, 'plugin_version_id');
+    }
+
+    public function scopeTemplates(Builder $builder, Campaign $campaign)
+    {
+        return $builder->leftJoin('plugins as p', 'p.id', 'plugin_id')
+            ->where('campaign_id', $campaign->id)
+            ->where('p.type_id', 2)
+            ->where('is_active', true)
+            ->with('version');
     }
 }

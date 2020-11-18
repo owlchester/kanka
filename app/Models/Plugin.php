@@ -4,6 +4,7 @@
 namespace App\Models;
 
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @package App\Models
  *
  * @property int $id
+ * @property string $uuid
  * @property int $type_id
  * @property int $status_id
  * @property string $name

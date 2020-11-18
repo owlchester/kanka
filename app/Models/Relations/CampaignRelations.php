@@ -307,15 +307,6 @@ trait CampaignRelations
             ->withPivot('is_active')
             ->withPivot('plugin_version_id')
         ;
-
-//        return $this->hasManyThrough(
-//            Plugin::class,
-//            'App\Models\CampaignPlugin',
-//            'campaign_id',
-//            'id',
-//            'id',
-//            'plugin_id'
-//        )->withPivot('is_active');
     }
 
     /**

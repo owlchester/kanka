@@ -38,9 +38,12 @@ return [
         'disabled'  => 'Disabled',
         'enabled'   => 'Enabled',
     ],
+    'templates'     => [
+        'name'      => ':name (Marketplace)',
+    ],
     'title'         => 'Campaign :name Plugins',
     'types'         => [
-        'attributes'    => 'Attribute Template',
+        'attribute'    => 'Attribute Template',
         'pack'          => 'Content Pack',
         'theme'         => 'Theme',
     ],
