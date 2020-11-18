@@ -11,7 +11,7 @@
         </div>
         <div class="form-group">
             <label>{{ __('quests.fields.role') }}</label>
-            {!! Form::text('role', null, ['placeholder' => __('quests.placeholders.role'), 'class' => 'form-control', 'maxlength' => 45]) !!}
+            {!! Form::text('role', null, ['placeholder' => __('quests.placeholders.role'), 'class' => 'form-control', 'maxlength' => 45, 'spellcheck' => 'true']) !!}
         </div>
 
         <div class="form-group">

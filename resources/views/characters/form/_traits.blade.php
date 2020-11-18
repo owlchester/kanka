@@ -23,7 +23,8 @@ if (request()->route()->getName() == 'characters.random') {
                                 {!! Form::text('appearance_name[' . $trait->id . ']', $trait->name, [
                                     'class' => 'form-control',
                                     'maxlength' => 191,
-                                    'placeholder' => trans('characters.placeholders.appearance_name')
+                                    'placeholder' => trans('characters.placeholders.appearance_name'),
+                                    'spellcheck' => 'true'
                                 ]) !!}
                             </div>
                         </div>
@@ -31,7 +32,8 @@ if (request()->route()->getName() == 'characters.random') {
                             <div class="input-group">
                                 {!! Form::text('appearance_entry[' . $trait->id . ']', $trait->entry, [
                                     'class' => 'form-control',
-                                    'placeholder' => trans('characters.placeholders.appearance_entry')
+                                    'placeholder' => trans('characters.placeholders.appearance_entry'),
+                                    'spellcheck' => 'true'
                                 ]) !!}
                                 <span class="input-group-btn">
                                         <span class="personality-delete btn btn-danger" title="{{ trans('crud.remove') }}">
@@ -57,7 +59,8 @@ if (request()->route()->getName() == 'characters.random') {
                                     </span>
                             {!! Form::text('appearance_name[]', null, [
                                 'class' => 'form-control',
-                                'placeholder' => trans('characters.placeholders.appearance_name')
+                                'placeholder' => trans('characters.placeholders.appearance_name'),
+                                'spellcheck' => 'true'
                             ]) !!}
                         </div>
                     </div>
@@ -65,7 +68,8 @@ if (request()->route()->getName() == 'characters.random') {
                         <div class="input-group">
                             {!! Form::text('appearance_entry[]', null, [
                                 'class' => 'form-control',
-                                'placeholder' => trans('characters.placeholders.appearance_entry')
+                                'placeholder' => trans('characters.placeholders.appearance_entry'),
+                                'spellcheck' => 'true'
                             ]) !!}
                             <span class="input-group-btn">
                                 <span class="personality-delete btn btn-danger" title="{{ trans('crud.remove') }}">
@@ -93,7 +97,8 @@ if (request()->route()->getName() == 'characters.random') {
                             </span>
                                 {!! Form::text('personality_name[' . $trait->id . ']', $trait->name, [
                                     'class' => 'form-control',
-                                    'placeholder' => trans('characters.placeholders.personality_name')
+                                    'placeholder' => trans('characters.placeholders.personality_name'),
+                                    'spellcheck' => 'true'
                                 ]) !!}
                                 <span class="input-group-btn">
                                 <span class="personality-delete btn btn-danger" title="{{ trans('crud.remove') }}">
@@ -106,6 +111,7 @@ if (request()->route()->getName() == 'characters.random') {
                             {!! Form::textarea('personality_entry[' . $trait->id . ']', $trait->entry, [
                                 'class' => 'form-control',
                                 'placeholder' => trans('characters.placeholders.personality_entry'),
+                                'spellcheck' => 'true',
                                 'rows' => 3
                             ]) !!}
                         </div>
@@ -124,7 +130,8 @@ if (request()->route()->getName() == 'characters.random') {
                             </span>
                             {!! Form::text('personality_name[]', null, [
                                 'class' => 'form-control',
-                                'placeholder' => trans('characters.placeholders.personality_name')
+                                'placeholder' => trans('characters.placeholders.personality_name'),
+                                'spellcheck' => 'true'
                             ]) !!}
                             <span class="input-group-btn">
                                 <span class="personality-delete btn btn-danger" title="{{ trans('crud.remove') }}">
@@ -137,6 +144,7 @@ if (request()->route()->getName() == 'characters.random') {
                         {!! Form::textarea('personality_entry[]', null, [
                             'class' => 'form-control',
                             'placeholder' => trans('characters.placeholders.personality_entry'),
+                            'spellcheck' => 'true',
                             'rows' => 3
                         ]) !!}
                     </div>
