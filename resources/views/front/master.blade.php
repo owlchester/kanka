@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="col-lg-5 text-center">
-                <div class="youtube-placeholder" data-yt-url="https://www.youtube.com/embed/TUAMJf22XeM">
+                <div class="youtube-placeholder" data-yt-url="https://www.youtube.com/embed/ZWVf7JAWKPg">
                     <img src="https://kanka-app-assets.s3.amazonaws.com/images/front/play-youtube.jpg" async loading="lazy" class="play-youtube-video" alt="Youtube video" title="What is Kanka?" >
                 </div>
             </div>

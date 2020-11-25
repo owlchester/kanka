@@ -40,6 +40,22 @@ class LocationObserver extends MiscObserver
 
         // We need to refresh our foreign relations to avoid deleting our children nodes again
         $location->refresh();
+
+        // Check that we have no descendants anymore.
+        if ($location->descendants()->count() > 0) {
+            foreach ($location->descendants as $sub) {
+                if (!empty($sub->parent_location_id)) {
+                    continue;
+                }
+
+                // Got a descendant with the parent id null. Let's get them out of the tree
+                $sub->{$sub->getLftName()} = null;
+                $sub->{$sub->getRgtName()} = null;
+                $sub->save();
+                //dump('sub ' . $sub->id . ' was still a child');
+            }
+            //dump('this location still has descendants when it shouldn\'t.');
+        }
     }
 
     /**
