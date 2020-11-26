@@ -15,6 +15,7 @@ class JournalResource extends EntityResource
     public function toArray($request)
     {
         return $this->entity([
+            'journal_id' => $this->journal_id,
             'date' => $this->date,
             'type' => $this->type,
         ]);

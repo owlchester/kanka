@@ -22,6 +22,8 @@ class QuestResource extends EntityResource
             'character_id' => $this->character_id,
             'characters' => $this->characters->count(),
             'locations' => $this->locations->count(),
+            'items' => $this->items->count(),
+            'organisations' => $this->organisations->count(),
         ]);
     }
 }
