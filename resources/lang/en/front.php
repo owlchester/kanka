@@ -165,7 +165,7 @@ return [
             'gallery'       => 'Campaign Gallery and integrations with the Summernote text editor',
             'logs'          => 'Full change logs on entities (up to 30 days)',
             'stats'         => 'Campaign achievements page',
-            'title'         => 'Superbsooted Campaigns',
+            'title'         => 'Superboosted Campaigns',
         ],
         'timelines'         => [
             'description'   => 'Visually represent the timelines of your worlds, empires, noble families, or even a single character.',
