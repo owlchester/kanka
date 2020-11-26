@@ -11,7 +11,12 @@
             <div class="box-body">
                 <dl class="dl-horizontal">
                     <dt>Email</dt>
-                    <dd>{{ $model->email }} @if ($model->provider) ({{ $model->provider }})@endif</dd>
+                    <dd>{{ $model->email }}</dd>
+
+                    @if ($model->provider)
+                    <dt>Login with</dt>
+                    <dd>({{ $model->provider }})</dd>
+                    @endif
 
                     <dt>Created at</dt>
                     <dd>{{ $model->created_at }}</dd>
@@ -20,8 +25,8 @@
                     <dd>{{ $model->last_login_at }}</dd>
 
                     @if($model->referrer)
-                        <dt>Referral</dt>
-                        <dd>{{ $model->referrer->code }}</dd>
+                    <dt>Referral</dt>
+                    <dd>{{ $model->referrer->code }}</dd>
                     @endif
 
                     @if ($discord = $model->apps->where('app', 'discord')->first())

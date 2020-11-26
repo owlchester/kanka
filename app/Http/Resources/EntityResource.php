@@ -29,7 +29,7 @@ class EntityResource extends JsonResource
             'id' => $entity->id,
             'name' => $entity->name,
             'type' => $entity->type,
-            'child_id' => $entity->id,
+            'child_id' => $entity->entity_id,
             'tags' => $entity->tags()->pluck('tags.id')->toArray(),
             'is_private' => (bool) $entity->is_private,
             'is_template' => (bool) $entity->is_template,
