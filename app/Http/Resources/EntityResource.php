@@ -73,7 +73,7 @@ class EntityResource extends JsonResource
             'entry' => $this->hasEntry() ? $this->entry : null,
             'entry_parsed' => $this->hasEntry() ? Mentions::map($this->resource) : null,
             'image' => $this->image,
-            'image_full' => $this->getImageUrl(),
+            'image_full' => $this->getImageUrl(0),
             'image_thumb' => $this->getImageUrl(40),
             'has_custom_image' => !empty($this->image),
 

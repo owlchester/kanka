@@ -15,6 +15,7 @@ class QuestItemResource extends ModelResource
     public function toArray($request)
     {
         return $this->entity([
+            'item_id' => $this->item_id,
             'description' => $this->description,
             'role' => $this->role,
         ]);

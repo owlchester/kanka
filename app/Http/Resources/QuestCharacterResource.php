@@ -15,6 +15,7 @@ class QuestCharacterResource extends ModelResource
     public function toArray($request)
     {
         return $this->entity([
+            'character_id' => $this->character_id,
             'description' => $this->description,
             'role' => $this->role,
         ]);
