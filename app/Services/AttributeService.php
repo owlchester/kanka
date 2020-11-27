@@ -367,7 +367,7 @@ class AttributeService
 
         $plugin = CampaignPlugin::templates($campaign)
             ->select('campaign_plugins.*')
-            ->leftJoin('plugins as p', 'p.id', 'plugin_id')
+            //->leftJoin('plugins as p', 'p.id', 'plugin_id')
             ->where('p.uuid', $id)
             ->first();
         if (empty($plugin)) {
