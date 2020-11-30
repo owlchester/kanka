@@ -26,7 +26,7 @@
         - [Map Markers](/docs/{{version}}/map_markers)
         - [Map Groups](/docs/{{version}}/map_groups)
         - [Map Layers](/docs/{{version}}/map_layers)
-       - [Journals](/docs/{{version}}/journals)
+    - [Journals](/docs/{{version}}/journals)
     - [Abilities](/docs/{{version}}/abilities)
     - [Tags](/docs/{{version}}/tags)
     - [Conversations](/docs/{{version}}/conversations)
