@@ -39,7 +39,7 @@ return [
         'enabled'   => 'Enabled',
     ],
     'templates'     => [
-        'name'      => ':name (Marketplace)',
+        'name'      => ':name by :user',
     ],
     'title'         => 'Campaign :name Plugins',
     'types'         => [

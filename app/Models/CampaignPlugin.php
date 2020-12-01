@@ -46,6 +46,7 @@ class CampaignPlugin extends Model
             ->where('campaign_id', $campaign->id)
             ->where('p.type_id', 2)
             ->where('is_active', true)
-            ->with('version');
+            ->with('version')
+            ->orderBy('p.name');
     }
 }
