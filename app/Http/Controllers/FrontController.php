@@ -81,6 +81,7 @@ class FrontController extends Controller
      */
     public function community()
     {
+        return abort(404);
         return $this->cachedResponse('front.contact');
     }
 
