@@ -3,6 +3,7 @@
 <div class="row">
     <div class="col-md-6">
         <div class="form-group required">
+            <input type="hidden" name="item_id" value="" />
             {!! Form::select2(
                 'item_id',
                 (!empty($inventory) && $inventory->item ? $inventory->item: null),

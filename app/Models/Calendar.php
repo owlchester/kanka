@@ -362,9 +362,9 @@ class Calendar extends MiscModel
 
         $this->cacheCurrentDate();
         if ($value == 'year') {
-            return $this->cachedCurrentDate[0] ?: 0;
+            return $this->cachedCurrentDate[0] ?? 0;
         } elseif ($value == 'month') {
-            return $this->cachedCurrentDate[1] ?: 1;
+            return $this->cachedCurrentDate[1] ?? 1;
         } elseif ($value == 'date') {
             return $this->cachedCurrentDate[2] ?? 1;
         }
