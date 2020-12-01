@@ -81,8 +81,6 @@ class FrontController extends Controller
      */
     public function community()
     {
-        response()->header('Expires', Carbon::now()->addDays(7)->toDateTimeString());
-        return view('front.community');
         return $this->cachedResponse('front.contact');
     }
 
