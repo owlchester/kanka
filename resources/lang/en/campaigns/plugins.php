@@ -43,7 +43,7 @@ return [
     ],
     'title'         => 'Campaign :name Plugins',
     'types'         => [
-        'attribute'    => 'Attribute Template',
+        'attribute'     => 'Attribute Template',
         'pack'          => 'Content Pack',
         'theme'         => 'Theme',
     ],

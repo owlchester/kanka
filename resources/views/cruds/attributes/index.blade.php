@@ -20,7 +20,7 @@ $isAdmin = Auth::user()->isAdmin();
 @endsection
 
 @section('content')
-    <div class="box">
+    <div class="box box-solid">
         <div class="box-header">
 
             <button class="btn btn-success pull-right">{{ trans('crud.save') }}</button>

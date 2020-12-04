@@ -86,6 +86,9 @@ class PluginVersion extends Model
         /** @var Attribute $attr */
         $attr = $this->entityAttributes->where('name', $name)->first();
         if (!empty($attr)) {
+            if ($attr->isText()) {
+                return nl2br($attr->mappedValue());
+            }
             return $attr->mappedValue();
         }
 
@@ -99,7 +102,8 @@ class PluginVersion extends Model
      */
     protected function ifElseBlock(array $matches)
     {
-        $condition = trim($matches[1]);
+        // Strip tags to remove html brs on multilines
+        $condition = strip_tags(trim($matches[1]));
         if (Str::contains($condition, ['=', '>', '<'])) {
             if ($this->evaluateCondition($condition)) {
                 return $matches[2];
@@ -120,7 +124,8 @@ class PluginVersion extends Model
      */
     protected function ifBlock(array $matches)
     {
-        $condition = trim($matches[1]);
+        // Strip tags to remove html brs on multilines
+        $condition = strip_tags(trim($matches[1]));
         if (Str::contains($condition, ['=', '>', '<'])) {
             if ($this->evaluateCondition($condition)) {
                 return $matches[2];
