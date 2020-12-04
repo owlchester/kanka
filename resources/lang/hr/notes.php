@@ -26,7 +26,7 @@ return [
         'nested'    => 'Prvo se prikazuju bilješke bez bilješke roditelja. Klikni bilješku da bi istražio/la njezine bilješke djecu.',
     ],
     'hints'         => [
-        'is_pinned' => 'Do 3 bilješke mogu biti prikazane na nadzornoj ploči tako što su pričvršćene.',
+        'is_pinned' => 'Do 3 bilješke mogu biti prikazane na naslovnoj ploči tako što su pričvršćene.',
     ],
     'index'         => [
         'add'           => 'Nova bilješka',

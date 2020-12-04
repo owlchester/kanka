@@ -38,11 +38,14 @@ return [
         'disabled'  => 'Désactivé',
         'enabled'   => 'Activé',
     ],
+    'templates'     => [
+        'name'  => ':name de :user',
+    ],
     'title'         => 'Plugins de la campagne :name',
     'types'         => [
-        'attributes'    => 'Modèle d\'attributs',
-        'pack'          => 'Content Pack',
-        'theme'         => 'Thème',
+        'attribute' => 'Modèle d\'attributs',
+        'pack'      => 'Content Pack',
+        'theme'     => 'Thème',
     ],
     'update'        => [
         'success'   => 'Le plugin :plugin a été mis à jour.',

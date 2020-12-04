@@ -52,6 +52,8 @@ return [
         'hide_personality'          => 'Bu sekme "Yönetici" olmayan kullanıcılardan "Kişiliği Görünür" seçeneği karakteri düzenlerken kaldırılarak saklanabilir.',
         'is_dead'                   => 'Bu karakter ölü',
         'is_personality_visible'    => 'Bütün kişilik sekmesini "Yönetici" olmayan kullanıcılardan saklayabilirsiniz.',
+        'personality_not_visible'   => 'Bu karakterin kişilik özellikleri şu anda yalnızca Yönetici kullanıcılara görünür.',
+        'personality_visible'       => 'Bu karakterin kişilik özelliklere herkese görünür.',
     ],
     'index'         => [
         'actions'       => [

@@ -34,6 +34,7 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'K tejto kampani nemáš prístup.',
+        'superboosted'  => 'Táto funkcionalita je dostupná len pre superboostnuté kampane.',
         'unknown_id'    => 'Neznáma kampaň.',
     ],
     'export'                            => [
@@ -324,6 +325,7 @@ TEXT
         ],
         'description'   => 'Detailné zobrazenie kampane',
         'tabs'          => [
+            'achievements'      => 'Úspechy',
             'default-images'    => 'Prednastavené obrázky',
             'export'            => 'Export',
             'information'       => 'Informácie',
@@ -335,6 +337,14 @@ TEXT
             'settings'          => 'Moduly',
         ],
         'title'         => 'Kampaň :name',
+    ],
+    'superboosted'                      => [
+        'gallery'   => [
+            'error' => [
+                'text'  => 'Nahrávanie obrázkov v textovom editore je dostupné len pre :superboosted.',
+                'title' => 'Nahrávanie obrázkov do galérie kampane',
+            ],
+        ],
     ],
     'ui'                                => [
         'helper'    => 'Použi tieto nastavenia na zmenu zobrazenia určitých prvkov v kampani.',

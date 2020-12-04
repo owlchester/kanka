@@ -130,6 +130,10 @@ TEXT
         'timestamp' => 'Son güncelleme :date',
         'title'     => ':name SSS',
     ],
+    'unboost'               => [
+        'answer'    => 'Bir serüvenden desteğinizi kaldırmak serüven destekli iken yaratılan hiçbir verinin silinmesine yol açmaz, yalnızca veri ve özellikleri gizler. Eğer bir serüveni tekrar desteklerseniz, veri ve özellikler destek kaldırılmadan önceki düzeninde tekrar görünür kılınır.',
+        'question'  => 'Eğer bir serüven artık desteklenmiyorsa ne olur?',
+    ],
     'user-switch'           => [
         'answer'    => 'İzinler incelik ister, özellikle büyük serüvenlerde. Serüven yöneticisi olarak, serüveninizin üyeler sayfasına gidebilir ve yönetici olmayan kullanıcıların yanında beliren "Değiş" butonuna tıklayabilirsiniz. Bu sizi o kullanıcı olarak giriş yapmanızı ve serüveni onların gözünden görmenize olanak sağlar. Serüveninizin izinlerini kontrol etmenin en kolay yolu budur.',
         'question'  => 'Serüvenimin izinleri ayarlandı, onları nasıl test edebilirim?',

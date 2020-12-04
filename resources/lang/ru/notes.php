@@ -10,7 +10,7 @@ return [
         'success'   => 'Заметка ":name" удалена.',
     ],
     'edit'          => [
-        'success'   => 'Заметка ":note" обновлена.',
+        'success'   => 'Заметка ":name" обновлена.',
         'title'     => 'Редактирование Заметки :name',
     ],
     'fields'        => [
@@ -38,6 +38,6 @@ return [
         'tabs'          => [
             'description'   => 'Описание',
         ],
-        'title'         => 'Заметка :note',
+        'title'         => 'Заметка :name',
     ],
 ];

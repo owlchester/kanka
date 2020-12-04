@@ -72,6 +72,7 @@ return [
             'beta'                  => 'Beta pristup nekim novim značajkama 30 dana prije općeg izdanja.',
             'boosted'               => 'Pojačana kampanja',
             'css'                   => 'Proizvoljni CSS kampanje',
+            'dashboards'            => 'Postavi prilagođene naslove ploče za uloge kampanje',
             'description'           => 'Određene razine pretplate pružaju korisnicima pojačanja koja mogu koristiti za unaprijeđenje kampanja. Ona omogućuju sljedeće prednosti.',
             'entity_files'          => 'Povećan maksimalan broj prenesenih datoteka po entitetu (do 5 umjesto 3)',
             'header_image'          => 'Slika zaglavlja entiteta',
@@ -156,6 +157,15 @@ return [
         'rpg'               => [
             'description'   => 'Od dubinskog sustava dozvola, do zadataka, dnevnika, likova, sposobnosti i ugrađenih audio i video zapisa, pomažemo vam u upravljanju kampanjom i nadolazećem porazu cijele družine.',
             'title'         => 'Upravljanje RPG kampanjom',
+        ],
+        'superboosts'       => [
+            'boosted'       => 'Super pojačano',
+            'description'   => 'Korištenje tri pojačanja kampanje za jednu kampanju će je učiniti Super pojačanom, što otključava sljedeće značajke.',
+            'files'         => 'Učitaj do 10 slika po entitetu.',
+            'gallery'       => 'Galerija slika kampanje i integracije s uređivačem teksta Summernote',
+            'logs'          => 'Potpuni zapisnici promjena na entitetima (do 30 dana)',
+            'stats'         => 'Stranica postignuća kampanje',
+            'title'         => 'Super pojačane kampanje',
         ],
         'timelines'         => [
             'description'   => 'Vizualno predstavi vremenske crte svojih svjetova, carstava, plemićkih obitelji ili čak jednog lika.',

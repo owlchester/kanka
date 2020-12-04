@@ -32,6 +32,7 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'Bu serüvene erişiminiz yok.',
+        'superboosted'  => 'Bu özellik yalnızca süperdesteklenmiş serüvenler için mevcuttur.',
         'unknown_id'    => 'Bilinmeyen Serüven.',
     ],
     'export'                            => [
@@ -80,6 +81,7 @@ TEXT
         'name'                          => 'Serüveniniz/Dünyanız en az 4 harf ya da sayı içerdiği sürece istediğiniz ada sahip olabilir.',
         'public_campaign_filters'       => 'Diğerlerinin serüveninizi diğer serüvenlerin arasında bulabilmesi için aşağıdaki bilgileri doldurun.',
         'system'                        => 'Eğer serüveniniz herkese görünür ise, sistem onu :link sayfasında görüntüler.',
+        'systems'                       => 'Kullanıcıları seçeneklerle boğmamak için Kanka\'nın bazı özellikleri sadece belirli RYO sistemleri ile beraber (örn. D&D 5e canavar kağıtları) mevcuttur. Desteklenen sistemler eklemek bu özellikleri devreye sokar.',
         'theme'                         => 'Serüven için bir kullanıcının seçeneği yerine bir temayı zorunlu tutun.',
         'view_public'                   => 'Serüveninizi dışarıdan bir kullanıcının gözünden görmek için :link linkini gizli sekmede açın.',
         'visibility'                    => 'Bir serüveni açık yapmak linkine sahip olan herkesin onu görebileceği anlamına gelir.',
@@ -234,6 +236,120 @@ TEXT
         'hints'         => [
             'campaign_not_public'   => 'Açık rolü izinlere sahip ancak serüven özel. Bu ayarı serüveni düzenlerken Paylaşım sekmesinden değiştirebilirsiniz.',
             'public'                => 'Açık rolü birisi sizin açık serüveninize bakarken kullanılır. :more',
+            'role_permissions'      => '\':name\' rolüne aşağıdaki eylemleri yapabilme yetkisi verin.',
         ],
+        'members'       => 'Üyeler',
+        'permissions'   => [
+            'actions'   => [
+                'add'           => 'Yarat',
+                'delete'        => 'Kaldır',
+                'edit'          => 'Düzenle',
+                'entity-note'   => 'Varlık Notu',
+                'permission'    => 'İzinler',
+                'read'          => 'Görünüm',
+                'toggle'        => 'Herkes için değiştir',
+            ],
+            'helpers'   => [
+                'entity_note'   => 'Bu, bir Varlık için Düzenle yetkisine sahip olmayan kullanıcıların da Varlıklara Varlık Notu eklemelerine izin verir.',
+            ],
+            'hint'      => 'Bu rol otomatik olarak her şeye erişim sahibidir.',
+        ],
+        'placeholders'  => [
+            'name'  => 'Rolün adı',
+        ],
+        'show'          => [
+            'description'   => 'Bir serüven rolünün Üyeleri ve İzinleri',
+            'title'         => '\':name\' Serüven Rolü',
+        ],
+        'title'         => ':name Serüveni Rolleri',
+        'types'         => [
+            'owner'     => 'Yönetici',
+            'public'    => 'Açık',
+            'standard'  => 'Standart',
+        ],
+        'users'         => [
+            'actions'   => [
+                'add'   => 'Bir üye ekle',
+            ],
+            'create'    => [
+                'success'   => 'Kullanıcı role eklendi.',
+                'title'     => ':name rolüne bir kullanıcı ekle',
+            ],
+            'destroy'   => [
+                'success'   => 'Kullanıcı rolden kaldırıldı.',
+            ],
+            'fields'    => [
+                'name'  => 'Ad',
+            ],
+        ],
+    ],
+    'settings'                          => [
+        'actions'       => [
+            'enable'    => 'Etkinleştir',
+        ],
+        'boosted'       => 'Bu özellik şu anda erken erişimde ve yalnızca :boosted aracılığı ile mevcut.',
+        'description'   => 'Serüvenin modüllerini etkinleştirin ya da devre dışı bırakın.',
+        'edit'          => [
+            'success'   => 'Serüven seçenekleri güncellendi.',
+        ],
+        'helper'        => 'Bir serüvenin tüm modülleri istediğiniz zaman etkinletirilebilir ya da devre dışı bırakılabilir. Bir modülü devre dışı bırakmak onunla alakalı bütün arayüz ögelerini saklar, ve halihazırda mevcut varlıklar ileride fikrinizi değiştirmeniz durumuna karşı arka planda varlıklarını korur ama saklanır. Bu değişiklikler serüveninizin tüm üyelerini, Yöneticiler dahil olmak üzere, etkiler.',
+        'helpers'       => [
+            'abilities'     => 'Varlıklara atayabileceğiniz yetenekler oluşturun; hünerler, büyüler, ya da güçler gibi.',
+            'calendars'     => 'Dünyanızın takvimlerini tanımlayabileceğiniz bir yer.',
+            'characters'    => 'Dünyanızda yaşayan kişiler.',
+            'conversations' => 'Karakterler ya da serüven kullanıcı arasındaki hayali konuşmalar. Bu modül kullanım dışıdır.',
+            'dice_rolls'    => 'Kanka\'yı RYO serüvenleri için kullananlar için, zar atışlarını halletmenin bir yolu. Bu modül kullanım dışıdır.',
+            'events'        => 'Tatiller, festivaller, felaketler, doğum günleri, savaşlar.',
+            'families'      => 'Klanlar ya da aileler, ilişkileri ve üyeleri.',
+            'items'         => 'Silahlar, araçlar, yadigârlar, iksirler.',
+            'journals'      => 'Karakterler tarafından yapılan yazılı gözlemler, ya da zindan efendisi için oturum notları.',
+            'locations'     => 'Gezegenler, düzlemler, kıtalar, nehirler, eyaletler, yerleşkeler, tapınaklar, hanlar.',
+            'maps'          => 'Katmanları ve serüvenin diğer varlıklarına yönlendiren işaretleri olan haritalar yükleyin.',
+            'menu_links'    => 'Yan çubukta gösterilecek özel menü linkleri.',
+            'notes'         => 'İlim, din, tarih, sihir, ırklar.',
+            'organisations' => 'Kültler, askeri birimler, gruplar, loncalar.',
+            'quests'        => 'Karakterleri ve konumları ile bir çok görevi takip etmek için.',
+            'races'         => 'Eğer serüveninizde birden fazla ırk varsa, bu onları takip etmeyi kolaylaştıracak.',
+            'tags'          => 'Her bir varlık birden fazla etikete sahip olabilir. Etiketler diğer etiketlere ait olabilir, ve varlıklar etiketlerine göre filtrelenebilir.',
+            'timelines'     => 'Dünyanızın tarihçesini zaman çizgileri ile temsil edin.',
+        ],
+        'title'         => ':name Serüven Modülleri',
+    ],
+    'show'                              => [
+        'actions'       => [
+            'boost' => 'Serüveni destekle',
+            'edit'  => 'Serüveni Düzenle',
+            'leave' => 'Serüvenden ayrıl',
+        ],
+        'description'   => 'Bir serüvene detaylı bir bakış',
+        'tabs'          => [
+            'achievements'      => 'Başarımlar',
+            'default-images'    => 'Varsayılan Görseller',
+            'export'            => 'Dışa Aktar',
+            'information'       => 'Bilgi',
+            'members'           => 'Üyeler',
+            'menu'              => 'Menü',
+            'plugins'           => 'Eklentiler',
+            'recovery'          => 'Kurtarma',
+            'roles'             => 'Roller',
+            'settings'          => 'Modüller',
+        ],
+        'title'         => ':name Serüveni',
+    ],
+    'superboosted'                      => [
+        'gallery'   => [
+            'error' => [
+                'text'  => 'Metin düzenleyicide görsel yükleme yalnızca :superboosted serüvenler için mevcut bir özelliktir.',
+                'title' => 'Serüven Galerisi Görsel Yükleme',
+            ],
+        ],
+    ],
+    'ui'                                => [
+        'helper'    => 'Serüvendeki bazı elementlerin gösterilme şeklini değiştirmek için bu seçenekleri kullanın.',
+    ],
+    'visibilities'                      => [
+        'private'   => 'Özel',
+        'public'    => 'Açık',
+        'review'    => 'İnceleme Bekliyor',
     ],
 ];

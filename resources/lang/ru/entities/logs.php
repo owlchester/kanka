@@ -13,6 +13,6 @@ return [
     ],
     'impersonated'  => 'Выполнено :name',
     'show'          => [
-        'title' => 'Журналы Объекта :name',
+        'title' => 'Журналы объекта :name',
     ],
 ];

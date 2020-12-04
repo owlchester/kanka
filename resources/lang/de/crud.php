@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'actions'           => [
+    'actions'                   => [
         'actions'           => 'Aktionen',
         'apply'             => 'Übernehmen',
         'back'              => 'Zurück',
@@ -21,11 +21,11 @@ return [
         'public'            => 'Öffentlich',
         'reset'             => 'Zurücksetzen',
     ],
-    'add'               => 'Hinzufügen',
-    'alerts'            => [
+    'add'                       => 'Hinzufügen',
+    'alerts'                    => [
         'copy_mention'  => 'Die erweiterte Erwähnung dieses Objekts wurde in Ihre Zwischenablage kopiert.',
     ],
-    'attributes'        => [
+    'attributes'                => [
         'actions'       => [
             'add'               => 'Attribut hinzufügen',
             'add_block'         => 'Block hinzufügen',
@@ -93,9 +93,9 @@ return [
             'tab'       => 'Das Attribut wird nur im Attribute-Reiter angezeigt.',
         ],
     ],
-    'boosted'           => 'geboostet',
-    'boosted_campaigns' => 'geboostete Kampagne',
-    'bulk'              => [
+    'boosted'                   => 'geboostet',
+    'boosted_campaigns'         => 'geboostete Kampagne',
+    'bulk'                      => [
         'actions'       => [
             'edit'  => 'Bearbeitung vieler Objekte',
         ],
@@ -135,41 +135,41 @@ return [
             'public'            => ':count Objekt ist jetzt sichtbar.|:count Objekte sind jetzt sichtbar.',
         ],
     ],
-    'cancel'            => 'Abbrechen',
-    'click_modal'       => [
+    'cancel'                    => 'Abbrechen',
+    'click_modal'               => [
         'close'     => 'Schließen',
         'confirm'   => 'Bestätigen',
         'title'     => 'Bestätige deine Aktion',
     ],
-    'copy_to_campaign'  => [
+    'copy_to_campaign'          => [
         'bulk_title'    => 'Kopieren Sie Objekte in eine andere Kampagne',
         'panel'         => 'Kopieren',
         'title'         => 'Kopiere :name in eine andere Kampagne',
     ],
-    'create'            => 'Erstellen',
-    'datagrid'          => [
+    'create'                    => 'Erstellen',
+    'datagrid'                  => [
         'empty' => 'Nichts zu sehen bisher.',
     ],
-    'delete_modal'      => [
+    'delete_modal'              => [
         'close'         => 'Schließen',
         'delete'        => 'Löschen',
         'description'   => 'Bist du sicher das du :tag entfernen möchtest?',
         'mirrored'      => 'Entferne gespiegelte Beziehung.',
         'title'         => 'Löschen bestätigen',
     ],
-    'destroy_many'      => [
+    'destroy_many'              => [
         'success'   => ':count Objekt gelöscht|:count Objekte gelöscht',
     ],
-    'edit'              => 'Bearbeiten',
-    'errors'            => [
+    'edit'                      => 'Bearbeiten',
+    'errors'                    => [
         'boosted'                       => 'Diese Funktion ist nur für geboostete Kampagnen verfügbar.',
         'node_must_not_be_a_descendant' => 'Ungültiges Objekt (Kategorie, Ort): es würde ein Nachkomme von sich selbst sein.',
     ],
-    'events'            => [
+    'events'                    => [
         'hint'  => 'Kalenderereignisse, die mit diesem Objekt verknüpft sind, werden hier dargestellt.',
     ],
-    'export'            => 'Exportieren',
-    'fields'            => [
+    'export'                    => 'Exportieren',
+    'fields'                    => [
         'ability'               => 'Fähigkeit',
         'attribute_template'    => 'Attributsvorlage',
         'calendar'              => 'Kalender',
@@ -206,7 +206,7 @@ return [
         'type'                  => 'Typ',
         'visibility'            => 'Sichtbarkeit',
     ],
-    'files'             => [
+    'files'                     => [
         'actions'   => [
             'drop'      => 'Klicken zum Hinzufügen oder Datei hierher ziehen (Drag & Drop).',
             'manage'    => 'Verwalte Objektdateien',
@@ -222,8 +222,8 @@ return [
         ],
         'title'     => 'Objektdateien für :name',
     ],
-    'filter'            => 'Filter',
-    'filters'           => [
+    'filter'                    => 'Filter',
+    'filters'                   => [
         'all'       => 'Filter um alle Unterobjekte zu sehen',
         'clear'     => 'Filter zurücksetzen',
         'direct'    => 'Filter um nur direkte Unterobjekte zu sehen',
@@ -242,14 +242,14 @@ return [
         ],
         'title'     => 'Filter',
     ],
-    'forms'             => [
+    'forms'                     => [
         'actions'       => [
             'calendar'  => 'Füge Datum hinzu',
         ],
         'copy_options'  => 'Kopiere Optionen',
     ],
-    'hidden'            => 'Versteckt',
-    'hints'             => [
+    'hidden'                    => 'Versteckt',
+    'hints'                     => [
         'attribute_template'    => 'Wende eine Attributsvorlage direkt beim erstellen des Objektes an.',
         'calendar_date'         => 'Ein Datum erlaubt es, Listen einfach zu filtern und pflegt ein Ereignis im ausgewählten Kalender.',
         'header_image'          => 'Dieses Bild wird über dem Objekt platziert. Verwenden Sie ein breites Bild, um optimale Ergebnisse zu erzielen.',
@@ -261,7 +261,7 @@ return [
         'tooltip'               => 'Ersetzen Sie die automatisch generierte Kurzinfo durch den folgenden Inhalt.',
         'visibility'            => 'Wenn die Sichtbarkeit auf Admin festgelegt wird, können dies nur Mitglieder in der Rolle Admin sehen. Wird es auf "Selbst" gesetzt, kannst es nur du sehen.',
     ],
-    'history'           => [
+    'history'                   => [
         'created'       => 'Erstellt von <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
         'created_date'  => 'Erstelle <span data-toggle="tooltip" title=":realdate">:date</span>',
         'unknown'       => 'Unbekannt',
@@ -269,14 +269,14 @@ return [
         'updated_date'  => 'Letzte Änderung <span data-toggle = "tooltip" title = ": realdate">: Datum </ span>',
         'view'          => 'Zeige Objektprotokoll',
     ],
-    'image'             => [
+    'image'                     => [
         'error' => 'Wir konnten das von dir angeforderte Bild nicht laden. Es könnte sein, dass die Website nicht erlaubt, Bilder herunterzuladen (typisch für Squarespace und DeviantArt) oder dass der Link nicht mehr gültig ist.',
     ],
-    'is_not_private'    => 'Dieses Objekt ist derzeit nicht auf privat eingestellt.',
-    'is_private'        => 'Dieses Objekt ist privat und nicht von Zuschauern einsehbar.',
-    'linking_help'      => 'Wie kann ich zu anderen Objekten verlinken?',
-    'manage'            => 'Verwalten',
-    'move'              => [
+    'is_not_private'            => 'Dieses Objekt ist derzeit nicht auf privat eingestellt.',
+    'is_private'                => 'Dieses Objekt ist privat und nicht von Zuschauern einsehbar.',
+    'linking_help'              => 'Wie kann ich zu anderen Objekten verlinken?',
+    'manage'                    => 'Verwalten',
+    'move'                      => [
         'description'   => 'Verschiebe diese Objekt an einen anderen Ort',
         'errors'        => [
             'permission'        => 'Du hast keine Berechtigung, Objekte diesen Typs in dieser Kampagne zu erstellen.',
@@ -301,15 +301,15 @@ return [
         'success_copy'  => 'Objekt \':name\' kopiert',
         'title'         => 'Verschiebe :name an einen anderen Ort',
     ],
-    'new_entity'        => [
+    'new_entity'                => [
         'error' => 'Bitte überprüfe deine Eingabe.',
         'fields'=> [
             'name'  => 'Name',
         ],
         'title' => 'Neues Objekt',
     ],
-    'or_cancel'         => 'oder <a href=":url">abbrechen</a>',
-    'panels'            => [
+    'or_cancel'                 => 'oder <a href=":url">abbrechen</a>',
+    'panels'                    => [
         'appearance'            => 'Aussehen',
         'attribute_template'    => 'Attributsvorlage',
         'calendar_date'         => 'Datum',
@@ -318,7 +318,7 @@ return [
         'move'                  => 'Verschieben',
         'system'                => 'System',
     ],
-    'permissions'       => [
+    'permissions'               => [
         'action'            => 'Aktion',
         'actions'           => [
             'bulk'          => [
@@ -354,7 +354,7 @@ return [
         'title'             => 'Berechtigungen',
         'too_many_members'  => 'Diese Kampagne hat zu viele Mitglieder (> 10), um in dieser Benutzeroberfläche angezeigt zu werden. Verwenden Sie die Schaltfläche Berechtigung in der Objektansicht, um die Berechtigungen im Detail zu steuern.',
     ],
-    'placeholders'      => [
+    'placeholders'              => [
         'ability'       => 'Wähle eine Fähigkeit',
         'calendar'      => 'Wähle einen Kalender',
         'character'     => 'Wähle einen Character',
@@ -370,7 +370,7 @@ return [
         'race'          => 'Wähle eine Rasse',
         'tag'           => 'Wähle ein Tag',
     ],
-    'relations'         => [
+    'relations'                 => [
         'actions'   => [
             'add'   => 'Füge eine Beziehung hinzu',
         ],
@@ -381,17 +381,18 @@ return [
         ],
         'hint'      => 'Beziehungen zwischen Objekten können erstellt werden, um deren Verbindung darzustellen.',
     ],
-    'remove'            => 'Löschen',
-    'rename'            => 'Umbenennen',
-    'save'              => 'Speichern',
-    'save_and_close'    => 'Speichern und schließen',
-    'save_and_copy'     => 'Speichern und kopieren',
-    'save_and_new'      => 'Speichern und neu',
-    'save_and_update'   => 'Speichern und aktualisieren',
-    'save_and_view'     => 'Speichern und ansehen',
-    'search'            => 'Suchen',
-    'select'            => 'Auswählen',
-    'tabs'              => [
+    'remove'                    => 'Löschen',
+    'rename'                    => 'Umbenennen',
+    'save'                      => 'Speichern',
+    'save_and_close'            => 'Speichern und schließen',
+    'save_and_copy'             => 'Speichern und kopieren',
+    'save_and_new'              => 'Speichern und neu',
+    'save_and_update'           => 'Speichern und aktualisieren',
+    'save_and_view'             => 'Speichern und ansehen',
+    'search'                    => 'Suchen',
+    'select'                    => 'Auswählen',
+    'superboosted_campaigns'    => 'Supergeboostete Kampagne',
+    'tabs'                      => [
         'abilities'     => 'Fähigkeiten',
         'attributes'    => 'Attribute',
         'boost'         => 'Boost',
@@ -409,12 +410,12 @@ return [
         'timelines'     => 'Zeitstrahlen',
         'tooltip'       => 'Kurztip',
     ],
-    'update'            => 'Bearbeiten',
-    'users'             => [
+    'update'                    => 'Bearbeiten',
+    'users'                     => [
         'unknown'   => 'Unbekannt',
     ],
-    'view'              => 'Ansehen',
-    'visibilities'      => [
+    'view'                      => 'Ansehen',
+    'visibilities'              => [
         'admin'         => 'Admin',
         'admin-self'    => 'Selbst & Admin',
         'all'           => 'Jeder',

@@ -6,8 +6,9 @@ return [
         'reset' => 'Yetenek kullanımını sıfırla',
     ],
     'create'    => [
-        'success'   => ':ability yeteneği :entity varlığına eklendi.',
-        'title'     => ':name için yetenek ekle',
+        'success'           => ':ability yeteneği :entity varlığına eklendi.',
+        'success_multiple'  => ':abilities yeteneği :entity varlığına eklendi.',
+        'title'             => ':name için yetenek ekle',
     ],
     'show'      => [
         'helper'    => 'Bu varlığa yetenekler iliştirin. İstediğiniz zaman yeteneğin görünürlüğünü değiştirebilir ya da yeteneği kaldırabilirsiniz. Aynı ana yeteneğe ait yetenekler filtre kutuları olarak görünecektir.',

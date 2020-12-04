@@ -72,6 +72,7 @@ return [
             'beta'                  => 'Acesso beta a alguns novos recursos por 30 dias antes do lançamento geral.',
             'boosted'               => 'Campanha impulsionada',
             'css'                   => 'CSS personalizados para a campanha',
+            'dashboards'            => 'Definir dashboards personalizados para cargos da campanha',
             'description'           => 'Certos níveis de pledge fornecem aos usuários boosters, que podem ser usados para impulsionar campanhas. Eles fornecem os seguintes benefícios.',
             'entity_files'          => 'Aumento da quantidade máxima de arquivos enviados por entidade (até 5 em vez de 3)',
             'header_image'          => 'Imagem do cabeçalho da entidade',
@@ -160,6 +161,15 @@ return [
         'rpg'               => [
             'description'   => 'De um sistema de permissão aprofundado, a missões, diários, personagens, habilidades e áudio e vídeo incorporados, ajudamos você a gerenciar sua campanha e futuros tpk!',
             'title'         => 'Gerenciamento de Campanha',
+        ],
+        'superboosts'       => [
+            'boosted'       => 'Super impulsionada',
+            'description'   => 'Usar três impulsionadores de campanha em uma campanha irá torná-la Super Impulsionada, desbloqueando os seguintes recursos.',
+            'files'         => 'Até 10 arquivos adicionadas a cada entidade',
+            'gallery'       => 'Galeria de campanhas e integrações com o editor de texto Summernote',
+            'logs'          => 'Relatórios completos de mudanças em entidades (por até 30 dias).',
+            'stats'         => 'Página de Conquistas da campanha',
+            'title'         => 'Campanhas super impulsionadas',
         ],
         'timelines'         => [
             'description'   => 'Represente visualmente as linhas do tempo de seus mundos, impérios, famílias nobres ou até mesmo de um único personagem.',

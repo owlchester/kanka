@@ -12,6 +12,7 @@ return [
         'hall_of_fame'      => 'Salón da fama',
         'map_size'          => 'Subir mapas de ata :size',
         'nice_image'        => 'Imaxes por defecto nas entidades',
+        'no_ads'            => 'Sen anuncios',
         'pagination'        => 'Máximo de :amount entidades mostradas por páxina',
         'vote_influence'    => 'Influencia nas votacións da comunidade',
     ],

@@ -32,6 +32,7 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'Nemaš pristup ovoj kampanji.',
+        'superboosted'  => 'Ova je značajka dostupna samo za super pojačane kampanje.',
         'unknown_id'    => 'Nepoznata kampanja.',
     ],
     'export'                            => [
@@ -322,6 +323,7 @@ TEXT
         ],
         'description'   => 'Detaljan pregled kampanje',
         'tabs'          => [
+            'achievements'      => 'Postignuća',
             'default-images'    => 'Zadane slike',
             'export'            => 'Izvoz',
             'information'       => 'Informacije',
@@ -333,6 +335,14 @@ TEXT
             'settings'          => 'Moduli',
         ],
         'title'         => 'Kampanja :name',
+    ],
+    'superboosted'                      => [
+        'gallery'   => [
+            'error' => [
+                'text'  => 'Učitavanje  slika u uređivač teksta je značajka dostupna samo :superboosted.',
+                'title' => 'Učitavanje slike galerije kampanje',
+            ],
+        ],
     ],
     'ui'                                => [
         'helper'    => 'Pomoću ovih postavki promijeni način na koji će se neki elementi prikazivati ​​u kampanji.',

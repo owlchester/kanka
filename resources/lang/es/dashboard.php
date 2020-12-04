@@ -13,6 +13,28 @@ return [
             'users'     => ':count usuarios',
         ],
     ],
+    'dashboards'        => [
+        'actions'   => [
+            'edit'      => 'Editar',
+            'new'       => 'Nuevo tablero',
+            'switch'    => 'Cambiar a otro tablero',
+        ],
+        'boosted'   => 'Las :boosted_campaigns pueden crear tableros personalizados para cada uno de los roles de la campaña.',
+        'create'    => [
+            'success'   => 'Tablero :name creado.',
+            'title'     => 'Nuevo tablero de campaña',
+        ],
+        'custom'    => [
+            'text'  => 'Estás editando el tablero :name de la campaña.',
+        ],
+        'default'   => [
+            'text'  => 'Estás editando el tablero por defecto de la campaña.',
+            'title' => 'Tablero por defecto',
+        ],
+        'delete'    => [
+            'success'   => 'Tablero :name eliminado.',
+        ],
+    ],
     'description'       => 'Tu plaza creativa',
     'helpers'           => [
         'follow'    => 'Si sigues una campaña, esta aparecerá en el menú de cambio de campaña (arriba a la derecha) bajo tus campañas.',

@@ -33,6 +33,7 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'Du har ikke tilgang til denne kampanjen.',
+        'superboosted'  => 'Denne funksjonen er kun tilgjengelig i superboostede kampanjer.',
         'unknown_id'    => 'Ukjent kampanje.',
     ],
     'export'                            => [
@@ -323,6 +324,7 @@ TEXT
         ],
         'description'   => 'Et detaljert overblikk på en kampanje',
         'tabs'          => [
+            'achievements'      => 'Prestasjoner',
             'default-images'    => 'Standard Bilder',
             'export'            => 'Eksport',
             'information'       => 'Informasjon',
@@ -334,6 +336,14 @@ TEXT
             'settings'          => 'Moduler',
         ],
         'title'         => 'Kampanje :name',
+    ],
+    'superboosted'                      => [
+        'gallery'   => [
+            'error' => [
+                'text'  => 'Å laste opp bilder i tekst redigereren er en funskjon kun tilgjengelig til :superboosted.',
+                'title' => 'Kampanje Galleri Bildeopplasting',
+            ],
+        ],
     ],
     'ui'                                => [
         'helper'    => 'Bruk disse innstillingene for å endre måten enkelte elementer blir vist i kampanjen.',

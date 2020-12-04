@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'actions'           => [
+    'actions'                   => [
         'actions'           => 'Ações',
         'apply'             => 'Aplicar',
         'back'              => 'Voltar',
@@ -21,11 +21,11 @@ return [
         'public'            => 'Público',
         'reset'             => 'Redefinir',
     ],
-    'add'               => 'Adicionar',
-    'alerts'            => [
+    'add'                       => 'Adicionar',
+    'alerts'                    => [
         'copy_mention'  => 'A menção avançada da entidade foi copiada para sua área de transferência.',
     ],
-    'attributes'        => [
+    'attributes'                => [
         'actions'       => [
             'add'               => 'Adicionar um atributo',
             'apply_template'    => 'Aplicar um Modelo de Atributo',
@@ -90,9 +90,9 @@ return [
             'tab'       => 'Atributos mostrados apenas na aba de atributos',
         ],
     ],
-    'boosted'           => 'Impulsionada',
-    'boosted_campaigns' => 'Campanhas impulsionadas',
-    'bulk'              => [
+    'boosted'                   => 'Impulsionada',
+    'boosted_campaigns'         => 'Campanhas impulsionadas',
+    'bulk'                      => [
         'actions'       => [
             'edit'  => 'Edição em massa e tagging',
         ],
@@ -132,41 +132,41 @@ return [
             'public'            => '{1} :count entidade agora é visível | [2, *] :count entidades agora são visíveis',
         ],
     ],
-    'cancel'            => 'Cancelar',
-    'click_modal'       => [
+    'cancel'                    => 'Cancelar',
+    'click_modal'               => [
         'close'     => 'Fechar',
         'confirm'   => 'Confirmar',
         'title'     => 'Confirmar sua ação',
     ],
-    'copy_to_campaign'  => [
+    'copy_to_campaign'          => [
         'bulk_title'    => 'Copiar entidades para outra campanha',
         'panel'         => 'Copiar',
         'title'         => 'Copiar :name para outra campanha',
     ],
-    'create'            => 'Criar',
-    'datagrid'          => [
+    'create'                    => 'Criar',
+    'datagrid'                  => [
         'empty' => 'Nada para mostrar (ainda)',
     ],
-    'delete_modal'      => [
+    'delete_modal'              => [
         'close'         => 'Fechar',
         'delete'        => 'Deletar',
         'description'   => 'Tem certeza que deseja remover :tag?',
         'mirrored'      => 'Remover relação espelhada',
         'title'         => 'Confirmação de apagamento',
     ],
-    'destroy_many'      => [
+    'destroy_many'              => [
         'success'   => 'Deletado :count entity|Deletado :count entities.',
     ],
-    'edit'              => 'Editar',
-    'errors'            => [
+    'edit'                      => 'Editar',
+    'errors'                    => [
         'boosted'                       => 'Esta função está disponível apenas para campanhas impulsionadas',
         'node_must_not_be_a_descendant' => 'Nó inválido (tag, localização principal): seria um descendente de si mesmo.',
     ],
-    'events'            => [
+    'events'                    => [
         'hint'  => 'Abaixo é mostrada uma lista de todos os calendários em que esta entidade foi adicionada usando a interface "Adicionar um evento a um calendário".',
     ],
-    'export'            => 'Exportar',
-    'fields'            => [
+    'export'                    => 'Exportar',
+    'fields'                    => [
         'ability'               => 'Habilidade',
         'attribute_template'    => 'Modelo de atributo',
         'calendar'              => 'Calendário',
@@ -203,7 +203,7 @@ return [
         'type'                  => 'Tipo',
         'visibility'            => 'Visibilidade',
     ],
-    'files'             => [
+    'files'                     => [
         'actions'   => [
             'drop'      => 'Clique ou arraste e solte para adicionar um arquivo',
             'manage'    => 'Gerencias arquivos de entidade',
@@ -219,8 +219,8 @@ return [
         ],
         'title'     => 'Arquivos de entidade de :name',
     ],
-    'filter'            => 'Filtro',
-    'filters'           => [
+    'filter'                    => 'Filtro',
+    'filters'                   => [
         'all'       => 'Filtrar para todos descendentes',
         'clear'     => 'Limpar filtros',
         'direct'    => 'Filtrar para descendentes diretos',
@@ -239,14 +239,14 @@ return [
         ],
         'title'     => 'Filtros',
     ],
-    'forms'             => [
+    'forms'                     => [
         'actions'       => [
             'calendar'  => 'Adicionar uma data no calendário',
         ],
         'copy_options'  => 'Copiar opções',
     ],
-    'hidden'            => 'Esconder',
-    'hints'             => [
+    'hidden'                    => 'Esconder',
+    'hints'                     => [
         'attribute_template'    => 'Aplique um modelo de atributo diretamente ao criar ou editar esta entidade.',
         'calendar_date'         => 'Uma data de calendário permite fácil filtragem em listas e também mantém um evento de calendário no calendário selecionado.',
         'header_image'          => 'Esta imagem é colocada acima da entidade. Para obter melhores resultados, use uma imagem larga.',
@@ -258,7 +258,7 @@ return [
         'tooltip'               => 'Substitua a dica de ferramenta gerada automaticamente pelo conteúdo a seguir.',
         'visibility'            => 'Definir a visibilidade para admin significa que apenas os membros no cargo de admnistrador de campanha  podem ver isso. Definir como apenas eu significa que apenas você pode ver isso.',
     ],
-    'history'           => [
+    'history'                   => [
         'created'       => 'Criado por <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
         'created_date'  => 'Criado <span data-toggle="tooltip" title=":realdate">:date</span>',
         'unknown'       => 'Desconhecido',
@@ -266,14 +266,14 @@ return [
         'updated_date'  => 'Modificado pela última vez em <span data-toggle="tooltip" title=":realdate">:date</span>',
         'view'          => 'Ver histórico da entidade',
     ],
-    'image'             => [
+    'image'                     => [
         'error' => 'Nós não fomos capazes de conseguir a imagem requisitada. Pode ser que o site não autorize o download da imagem por nós (tipicamente para Squarespace e DeviantArt), ou o link não está mais válido.',
     ],
-    'is_not_private'    => 'Atualmente, esta entidade é privada',
-    'is_private'        => 'Essa entidade é privada e não visível para usuários espectadores.',
-    'linking_help'      => 'Como eu posso vincular a outras entidades?',
-    'manage'            => 'Gerenciar',
-    'move'              => [
+    'is_not_private'            => 'Atualmente, esta entidade é privada',
+    'is_private'                => 'Essa entidade é privada e não visível para usuários espectadores.',
+    'linking_help'              => 'Como eu posso vincular a outras entidades?',
+    'manage'                    => 'Gerenciar',
+    'move'                      => [
         'description'   => 'Mover a entidade para outro lugar',
         'errors'        => [
             'permission'        => 'Você não tem permissão para criar entidades deste tipo na campanha escolhida',
@@ -298,15 +298,15 @@ return [
         'success_copy'  => 'Entidade :name copiada',
         'title'         => 'Mover :name para outro lugar',
     ],
-    'new_entity'        => [
+    'new_entity'                => [
         'error' => 'Por favor cheque seus valores',
         'fields'=> [
             'name'  => 'Nome',
         ],
         'title' => 'Nova entidade',
     ],
-    'or_cancel'         => 'ou <a href=":url">cancel</a>',
-    'panels'            => [
+    'or_cancel'                 => 'ou <a href=":url">cancel</a>',
+    'panels'                    => [
         'appearance'            => 'Aparência',
         'attribute_template'    => 'Modelo de atributo',
         'calendar_date'         => 'Data do calendário',
@@ -315,7 +315,7 @@ return [
         'move'                  => 'Mover',
         'system'                => 'Sistema',
     ],
-    'permissions'       => [
+    'permissions'               => [
         'action'            => 'Ação',
         'actions'           => [
             'bulk'          => [
@@ -350,7 +350,7 @@ return [
         'title'             => 'Permissões',
         'too_many_members'  => 'Esta campanha tem muitos membros (> 10) para exibir nesta interface. Use o botão permissão na visualização da entidade para controlar as permissões em detalhes.',
     ],
-    'placeholders'      => [
+    'placeholders'              => [
         'ability'       => 'Escolha uma habilidade',
         'calendar'      => 'Escolha um calendário',
         'character'     => 'Escolha um personagem',
@@ -366,7 +366,7 @@ return [
         'race'          => 'Escolha uma raça',
         'tag'           => 'Escolha uma tag',
     ],
-    'relations'         => [
+    'relations'                 => [
         'actions'   => [
             'add'   => 'Adicionar uma relação',
         ],
@@ -377,17 +377,18 @@ return [
         ],
         'hint'      => 'As relações entre entidades podem ser configuradas para representar suas conexões.',
     ],
-    'remove'            => 'Remover',
-    'rename'            => 'Renomear',
-    'save'              => 'Salvar',
-    'save_and_close'    => 'Salvar e Fechar',
-    'save_and_copy'     => 'Salvar e Copiar',
-    'save_and_new'      => 'Salvar e Novo',
-    'save_and_update'   => 'Salvar e Editar',
-    'save_and_view'     => 'Salvar e Visualizar',
-    'search'            => 'Buscar',
-    'select'            => 'Selecionar',
-    'tabs'              => [
+    'remove'                    => 'Remover',
+    'rename'                    => 'Renomear',
+    'save'                      => 'Salvar',
+    'save_and_close'            => 'Salvar e Fechar',
+    'save_and_copy'             => 'Salvar e Copiar',
+    'save_and_new'              => 'Salvar e Novo',
+    'save_and_update'           => 'Salvar e Editar',
+    'save_and_view'             => 'Salvar e Visualizar',
+    'search'                    => 'Buscar',
+    'select'                    => 'Selecionar',
+    'superboosted_campaigns'    => 'Campanhas Super Impulsionadas',
+    'tabs'                      => [
         'abilities'     => 'Habilidades',
         'attributes'    => 'Atributos',
         'boost'         => 'Impulso',
@@ -405,12 +406,12 @@ return [
         'timelines'     => 'Linhas do Tempo',
         'tooltip'       => 'Dica',
     ],
-    'update'            => 'Atualizar',
-    'users'             => [
+    'update'                    => 'Atualizar',
+    'users'                     => [
         'unknown'   => 'Desconhecido',
     ],
-    'view'              => 'Ver',
-    'visibilities'      => [
+    'view'                      => 'Ver',
+    'visibilities'              => [
         'admin'         => 'Adm',
         'admin-self'    => 'Eu e o Adm',
         'all'           => 'Todos',
