@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'actions'           => [
+    'actions'                   => [
         'actions'           => 'Akcie',
         'apply'             => 'Použiť',
         'back'              => 'Naspäť',
@@ -21,11 +21,11 @@ return [
         'public'            => 'Verejný',
         'reset'             => 'Resetovať',
     ],
-    'add'               => 'Pridať',
-    'alerts'            => [
+    'add'                       => 'Pridať',
+    'alerts'                    => [
         'copy_mention'  => 'Rozšírená referencia objektu bola skopírovaná do tvojej schránky.',
     ],
-    'attributes'        => [
+    'attributes'                => [
         'actions'       => [
             'add'               => 'Pridať atribúť',
             'add_block'         => 'Pridať blok',
@@ -93,9 +93,9 @@ return [
             'tab'       => 'Atribút je zobrazený len v karte atribútov.',
         ],
     ],
-    'boosted'           => 'Boostnutá',
-    'boosted_campaigns' => 'Boostnuté kampane',
-    'bulk'              => [
+    'boosted'                   => 'Boostnutá',
+    'boosted_campaigns'         => 'Boostnuté kampane',
+    'bulk'                      => [
         'actions'       => [
             'edit'  => 'Hromadná úprava a kategórie',
         ],
@@ -135,41 +135,41 @@ return [
             'public'            => '{1} :count objekt je teraz viditeľný.|[2,4] :count objekty sú teraz viditeľné.|[5,*] :count objektov je teraz viditeľných.',
         ],
     ],
-    'cancel'            => 'Zrušiť',
-    'click_modal'       => [
+    'cancel'                    => 'Zrušiť',
+    'click_modal'               => [
         'close'     => 'Zavrieť',
         'confirm'   => 'Potvrdiť',
         'title'     => 'Potvrdiť akciu',
     ],
-    'copy_to_campaign'  => [
+    'copy_to_campaign'          => [
         'bulk_title'    => 'Kopírovať objekty do inej kampane',
         'panel'         => 'Kopírovať',
         'title'         => 'Kopírovať :name do inej kampane',
     ],
-    'create'            => 'Vytvoriť',
-    'datagrid'          => [
+    'create'                    => 'Vytvoriť',
+    'datagrid'                  => [
         'empty' => 'Zatiaľ je tu prázdno.',
     ],
-    'delete_modal'      => [
+    'delete_modal'              => [
         'close'         => 'Zatvoriť',
         'delete'        => 'Odstrániť',
         'description'   => 'Naozaj chceš odstrániť :tag?',
         'mirrored'      => 'Odstrániť zrkadlený vzťah.',
         'title'         => 'Potvrdiť odstránenie',
     ],
-    'destroy_many'      => [
+    'destroy_many'              => [
         'success'   => ':count objekt zmazaný|:count objekty zmazané',
     ],
-    'edit'              => 'Upraviť',
-    'errors'            => [
+    'edit'                      => 'Upraviť',
+    'errors'                    => [
         'boosted'                       => 'Táto funkcia je dostupná iba pre boostnuté kampane.',
         'node_must_not_be_a_descendant' => 'Neplatný objekt (kategória, miesto): bol by potomok samého seba.',
     ],
-    'events'            => [
+    'events'                    => [
         'hint'  => 'Kalendárne udalosti, ktoré sú prepojené s týmto objektom, sa zobrazujú na tomto mieste.',
     ],
-    'export'            => 'Exportovať',
-    'fields'            => [
+    'export'                    => 'Exportovať',
+    'fields'                    => [
         'ability'               => 'Schopnosť',
         'attribute_template'    => 'Šablóna atribútov',
         'calendar'              => 'Kalendár',
@@ -206,7 +206,7 @@ return [
         'type'                  => 'Typ',
         'visibility'            => 'Viditeľnosť',
     ],
-    'files'             => [
+    'files'                     => [
         'actions'   => [
             'drop'      => 'Kliknutím pridať alebo súbor pretiahnuť na toto miesto (Drag & Drop).',
             'manage'    => 'Spravovať súbory objektov',
@@ -222,8 +222,8 @@ return [
         ],
         'title'     => 'Súbory objektu :name',
     ],
-    'filter'            => 'Filter',
-    'filters'           => [
+    'filter'                    => 'Filter',
+    'filters'                   => [
         'all'       => 'Filter zobrazenia všetkých podobjektov',
         'clear'     => 'Resetovať filter',
         'direct'    => 'Filter zobrazenia iba priamych podobjektov',
@@ -242,14 +242,14 @@ return [
         ],
         'title'     => 'Filter',
     ],
-    'forms'             => [
+    'forms'                     => [
         'actions'       => [
             'calendar'  => 'Doplniť dátum',
         ],
         'copy_options'  => 'Kopírovať nastavenia',
     ],
-    'hidden'            => 'Skrytý',
-    'hints'             => [
+    'hidden'                    => 'Skrytý',
+    'hints'                     => [
         'attribute_template'    => 'Aplikovať šablónu atribútov automaticky pri vytvorení objektu.',
         'calendar_date'         => 'Dátum umožňuje filtrovať zoznamy a zadať udalosť do vybraného kalendára.',
         'header_image'          => 'Tento obrázok je umiestnený nad objekt. Odporúčame používať obrázok na šírku.',
@@ -261,7 +261,7 @@ return [
         'tooltip'               => 'Nahradiť automaticky generovaný obsah bubliny týmto obsahom.',
         'visibility'            => 'Ak je viditeľnosť nastavená na "Admin", vidia to len členovia a členky roly Admin. Ak je nastavená na "Vlastník", môže to vidieť len ty.',
     ],
-    'history'           => [
+    'history'                   => [
         'created'       => 'Vytvorené: <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
         'created_date'  => 'Vytvorené: <span data-toggle="tooltip" title=":realdate">:date</span>',
         'unknown'       => 'Neznámy',
@@ -269,14 +269,14 @@ return [
         'updated_date'  => 'Posledná úprava: <span data-toggle="tooltip" title=":realdate">:date</span>',
         'view'          => 'Zobraziť protokol objektu',
     ],
-    'image'             => [
+    'image'                     => [
         'error' => 'Požadovaný obrázok nebolo možné stiahnuť. Zdá sa, že daná webová stránka nepovoľuje sťahovanie obrázkov (typické správanie Squarescape a DeviantArt) alebo že link už nie je platný.',
     ],
-    'is_not_private'    => 'Tento objekt nie je aktuálne nastavený ako súkromný.',
-    'is_private'        => 'Tento objekt je súkromný a viditeľný len pre členov s rolou Admin.',
-    'linking_help'      => 'Ako môžem prepojiť ďalšie objekty?',
-    'manage'            => 'Spravovať',
-    'move'              => [
+    'is_not_private'            => 'Tento objekt nie je aktuálne nastavený ako súkromný.',
+    'is_private'                => 'Tento objekt je súkromný a viditeľný len pre členov s rolou Admin.',
+    'linking_help'              => 'Ako môžem prepojiť ďalšie objekty?',
+    'manage'                    => 'Spravovať',
+    'move'                      => [
         'description'   => 'Premiestniť objekt na iné miesto',
         'errors'        => [
             'permission'        => 'Nemáš oprávnenie vytvoriť objekty tohto typu v tejto kampani.',
@@ -301,15 +301,15 @@ return [
         'success_copy'  => 'Objekt :name skopírovaný',
         'title'         => 'Premiestniť :name na iné miesto',
     ],
-    'new_entity'        => [
+    'new_entity'                => [
         'error' => 'Prosím, prekontroluj tvoje zadanie.',
         'fields'=> [
             'name'  => 'Názov',
         ],
         'title' => 'Nový objekt',
     ],
-    'or_cancel'         => 'alebo <a href=":url">Zrušiť</a>',
-    'panels'            => [
+    'or_cancel'                 => 'alebo <a href=":url">Zrušiť</a>',
+    'panels'                    => [
         'appearance'            => 'Výzor',
         'attribute_template'    => 'Šablóna atribútov',
         'calendar_date'         => 'Dátum',
@@ -318,7 +318,7 @@ return [
         'move'                  => 'Premiestniť',
         'system'                => 'Systém',
     ],
-    'permissions'       => [
+    'permissions'               => [
         'action'            => 'Akcie',
         'actions'           => [
             'bulk'          => [
@@ -354,7 +354,7 @@ return [
         'title'             => 'Oprávnenia',
         'too_many_members'  => 'Táto kampaň má príliš veľa členov (> 10), aby boli zobrazení v tomto rozhraní. Prosím, použi tlačidlo Oprávnení na danom objekte, aby sa zobrazili detaily nastavenia oprávnení.',
     ],
-    'placeholders'      => [
+    'placeholders'              => [
         'ability'       => 'Vybrať schopnosť',
         'calendar'      => 'Vybrať kalendár',
         'character'     => 'Vybrať postavu',
@@ -370,7 +370,7 @@ return [
         'race'          => 'Vyber rasu',
         'tag'           => 'Vyber kategóriu',
     ],
-    'relations'         => [
+    'relations'                 => [
         'actions'   => [
             'add'   => 'Pridať vzťah',
         ],
@@ -381,17 +381,18 @@ return [
         ],
         'hint'      => 'Vzťahy je možné vytvoriť medzi objektami a zobraziť tak ich prepojenie.',
     ],
-    'remove'            => 'Zmazať',
-    'rename'            => 'Premenovať',
-    'save'              => 'Uložiť',
-    'save_and_close'    => 'Uložiť a zavrieť',
-    'save_and_copy'     => 'Uložiť a kopírovať',
-    'save_and_new'      => 'Uložiť a nový',
-    'save_and_update'   => 'Uložiť a upraviť',
-    'save_and_view'     => 'Uložiť a zobraziť',
-    'search'            => 'Hľadať',
-    'select'            => 'Vybrať',
-    'tabs'              => [
+    'remove'                    => 'Zmazať',
+    'rename'                    => 'Premenovať',
+    'save'                      => 'Uložiť',
+    'save_and_close'            => 'Uložiť a zavrieť',
+    'save_and_copy'             => 'Uložiť a kopírovať',
+    'save_and_new'              => 'Uložiť a nový',
+    'save_and_update'           => 'Uložiť a upraviť',
+    'save_and_view'             => 'Uložiť a zobraziť',
+    'search'                    => 'Hľadať',
+    'select'                    => 'Vybrať',
+    'superboosted_campaigns'    => 'Superboostnuté kampane',
+    'tabs'                      => [
         'abilities'     => 'Schopnosti',
         'attributes'    => 'Atribúty',
         'boost'         => 'Boost',
@@ -409,12 +410,12 @@ return [
         'timelines'     => 'Časové osi',
         'tooltip'       => 'Bublina',
     ],
-    'update'            => 'Upraviť',
-    'users'             => [
+    'update'                    => 'Upraviť',
+    'users'                     => [
         'unknown'   => 'Neznámy',
     ],
-    'view'              => 'Zobraziť',
-    'visibilities'      => [
+    'view'                      => 'Zobraziť',
+    'visibilities'              => [
         'admin'         => 'Admin',
         'admin-self'    => 'Vlastník a Admin',
         'all'           => 'Všetci',

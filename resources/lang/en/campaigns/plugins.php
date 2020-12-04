@@ -38,11 +38,14 @@ return [
         'disabled'  => 'Disabled',
         'enabled'   => 'Enabled',
     ],
+    'templates'     => [
+        'name'  => ':name by :user',
+    ],
     'title'         => 'Campaign :name Plugins',
     'types'         => [
-        'attributes'    => 'Attribute Template',
-        'pack'          => 'Content Pack',
-        'theme'         => 'Theme',
+        'attribute' => 'Attribute Template',
+        'pack'      => 'Content Pack',
+        'theme'     => 'Theme',
     ],
     'update'        => [
         'success'   => 'Plugin :plugin updated.',

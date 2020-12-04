@@ -5,14 +5,14 @@ return [
         'add'   => 'Добавить новую эру',
     ],
     'create'        => [
-        'success'   => 'Эра ":name" создана.',
+        'success'   => 'Эра ":name" создана',
         'title'     => 'Новая эра',
     ],
     'delete'        => [
-        'success'   => 'Эра ":name" удалена.',
+        'success'   => 'Эра ":name" удалена',
     ],
     'edit'          => [
-        'success'   => 'Эра ":name" обновлена.',
+        'success'   => 'Эра ":name" обновлена',
         'title'     => 'Редактирование эры :name',
     ],
     'fields'        => [

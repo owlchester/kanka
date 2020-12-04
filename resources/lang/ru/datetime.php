@@ -5,7 +5,7 @@ return [
     'days'          => 'дней',
     'elapsed_ago'   => ':duration назад',
     'hour'          => 'час',
-    'hours'         => 'часов',
+    'hours'         => 'чаcов',
     'just_now'      => 'только что',
     'minute'        => 'минуту',
     'minutes'       => 'минут',

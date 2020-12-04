@@ -30,6 +30,7 @@ $isAdmin = Auth::user()->isAdmin();
                     {!! Form::text('organisation_roles[' . $organisation->id . ']', $organisation->role, [
                         'class' => 'form-control',
                         'placeholder' => __('organisations.members.placeholders.role'),
+                        'spellcheck' => 'true',
                     ]) !!}
                 </div>
                 @if ($isAdmin)
@@ -67,6 +68,7 @@ $isAdmin = Auth::user()->isAdmin();
             {!! Form::text('organisation_roles[]', null, [
                 'class' => 'form-control',
                 'placeholder' => __('organisations.members.placeholders.role'),
+                'spellcheck' => 'true'
             ]) !!}
         </div>
         @if ($isAdmin)

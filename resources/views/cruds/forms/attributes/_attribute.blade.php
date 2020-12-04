@@ -10,7 +10,13 @@ $id = isset($resetAttributeId) ? -$attribute->id : $attribute->id;
                 <span class="input-group-addon hidden-xs hidden-sm">
                     <span class="fa fa-arrows-alt-v"></span>
                 </span>
+                @if($attribute->name == '_layout')
+
+                    {!! Form::text('attr_name[' . $id . ']', $attribute->name, ['placeholder' => trans('crud.attributes.placeholders.attribute'), 'class' => 'form-control', 'maxlength' => 191, 'disabled' => 'disabled']) !!}
+                    {!! Form::hidden('attr_name[' . $id . ']', $attribute->name) !!}
+                @else
                 {!! Form::text('attr_name[' . $id . ']', $attribute->name, ['placeholder' => trans('crud.attributes.placeholders.attribute'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                @endif
             </div>
         </div>
         <div class="col-xs-7 col-sm-4 col-md-5 col-lg-6">
@@ -23,6 +29,9 @@ $id = isset($resetAttributeId) ? -$attribute->id : $attribute->id;
                 {!! Form::textarea('attr_value[' . $id . ']', $attribute->value, ['placeholder' => __('crud.attributes.placeholders.value'), 'class' => 'form-control', 'rows' => 4]) !!}
             @elseif ($attribute->isSection())
                 {!! Form::hidden('attr_value[' . $id . ']', $attribute->value) !!}
+            @elseif($attribute->name == '_layout')
+                {!! Form::hidden('attr_value[' . $id . ']', $attribute->value) !!}
+                {{ $attribute->value }}
             @else
                 {!! Form::text('attr_value[' . $id . ']', $attribute->value, ['placeholder' => trans('crud.attributes.placeholders.value'), 'class' => 'form-control', 'maxlength' => 191]) !!}
             @endif

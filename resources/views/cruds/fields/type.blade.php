@@ -12,7 +12,8 @@ $entityTypeListModel = new $base;
             'class' => 'form-control',
             'maxlength' => 45,
             'list' => 'entity-type-list-' . $trans,
-            'autocomplete' => 'off'
+            'autocomplete' => 'off',
+            'spellcheck' => 'true'
         ]
     ) !!}
 </div>

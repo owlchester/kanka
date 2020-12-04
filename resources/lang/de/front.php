@@ -72,6 +72,7 @@ return [
             'beta'                  => 'Beta-Zugriff auf einige neue Funktionen für 30 Tage vor der allgemeinen Veröffentlichung.',
             'boosted'               => 'geboostete Kampagne',
             'css'                   => 'Benutzerdefinierte Kampagne CSS',
+            'dashboards'            => 'Legen Sie benutzerdefinierte Dashboards für die Rollen der Kampagne fest',
             'description'           => 'Bestimmte Versprechen bieten Benutzern mit Booster, mit denen sie Kampagnen steigern können. Diese bieten die folgenden Vorteile.',
             'entity_files'          => 'Maximal hochgeladene Dateien pro Objekt erhöht (bis zu 5 statt 3)',
             'header_image'          => 'Objekt-Header-Bild',
@@ -160,6 +161,15 @@ return [
         'rpg'               => [
             'description'   => 'Vom detaillierten Berechtigungssystem bis hin zu Quests, Journalen, Charakteren, Fähigkeiten und eingebettetem Audio und Video unterstützen wir Sie bei der Verwaltung Ihrer Kampagne und des bevorstehenden TPK.',
             'title'         => 'RPG-Kampagnenverwaltung',
+        ],
+        'superboosts'       => [
+            'boosted'       => 'Superboosted',
+            'description'   => 'Durch die Verwendung von drei Kampagnen-Boostern für eine Kampagne wird sie superboosted, wodurch die folgenden Funktionen freigeschaltet werden.',
+            'files'         => 'Bis zu 10 Dateien werden auf jedes Objekt hochgeladen',
+            'gallery'       => 'Kampagnengalerie und Integrationen mit dem Summernote-Texteditor',
+            'logs'          => 'Vollständige Änderungsprotokolle für Objekte (bis zu 30 Tage)',
+            'stats'         => 'Seite mit den Kampagnenerfolgen',
+            'title'         => 'Supergeboostete Kampagne',
         ],
         'timelines'         => [
             'description'   => 'Stellen Sie visuell die Zeitstrahlen Ihrer Welten, Reiche, Adelsfamilien oder sogar eines einzelnen Charakters dar.',

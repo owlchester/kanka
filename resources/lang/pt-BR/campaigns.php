@@ -34,6 +34,7 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'Você não tem acesso a esta campanha.',
+        'superboosted'  => 'Este recurso está disponível apenas para campanhas Super Impulsionadas',
         'unknown_id'    => 'Campanha desconhecida',
     ],
     'export'                            => [
@@ -325,6 +326,7 @@ TEXT
         ],
         'description'   => 'Uma visão detalhada da campanha',
         'tabs'          => [
+            'achievements'      => 'Conquistas',
             'default-images'    => 'Imagens Padrão',
             'export'            => 'Exportar',
             'information'       => 'Informações',
@@ -336,6 +338,14 @@ TEXT
             'settings'          => 'Configurações',
         ],
         'title'         => 'Campanha :name',
+    ],
+    'superboosted'                      => [
+        'gallery'   => [
+            'error' => [
+                'text'  => 'Carregar imagens no editor de texto é um recurso disponível apenas para :superboosted',
+                'title' => 'Upload de imagem da galeria da campanha',
+            ],
+        ],
     ],
     'ui'                                => [
         'helper'    => 'Use essas configurações para alterar a forma como alguns elementos serão exibidos na campanha.',

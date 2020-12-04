@@ -848,27 +848,38 @@ export default {
             },
             "boost": {
                 "benefits": {
+                    "campaign_gallery": "Eine Kampagnengalerie zum Hochladen von Bildern, die Sie während der Kampagne wiederverwenden können.",
+                    "entity_files": "Laden Sie bis zu 10 Dateien pro Objekt hoch.",
+                    "entity_logs": "Vollständige Objektprotokolle der Änderungen an einem Objekt bei jeder Aktualisierung.",
                     "first": "Um weitere Fortschritte bei Kanka zu erzielen, werden einige Kampagnenfunktionen durch Boosten einer Kampagne freigeschaltet. Boosts werden durch Abonnements freigeschaltet. Jeder, der eine Kampagne anzeigen kann, kann sie verbessern, sodass der DM nicht immer die Rechnung bezahlen muss. Eine Kampagne bleibt verstärkt, solange ein Benutzer die Kampagne verstärkt und Kanka weiterhin unterstützt. Wenn eine Kampagne nicht mehr verstärkt wird, gehen keine Daten verloren, sondern werden nur ausgeblendet, bis die Kampagne erneut erhöht wird.",
                     "header": "Objekt Header Bilder.",
                     "images": "Benutzerdefinitierte Standardobjektbilder.",
                     "more": "Erfahren Sie mehr über alle Funktionen.",
                     "second": "Das Boosten einer Kampagne bietet die folgenden Vorteile:",
+                    "superboost": "Beim Superboosting einer Kampagne werden 3 Ihrer Boosts verwendet und zusätzliche Funktionen für Boosted-Kampagnen freigeschaltet.",
                     "theme": "Leitmotiv auf Kampagnenebene und benutzerdefiniertes Design.",
                     "third": "Um eine Kampagne zu boosten, rufen Sie die Seite der Kampagne auf und klicken Sie auf die Schaltfläche \"{boost_button}\" über der Schaltfläche \"{edit_button}\".",
                     "tooltip": "Benutzerdefinierte Kurzinfo für Objekt.",
                     "upload": "Erhöhte Upload-Größe für jedes Mitglied in der Kampagne."
                 },
                 "buttons": {
-                    "boost": "Boost"
+                    "boost": "Boost",
+                    "superboost": "Superboost",
+                    "tooltips": {
+                        "boost": "Das Boosten einer Kampagne verbraucht {amount} Ihrer Boosts",
+                        "superboost": "Das Superboosten einer Kampagne verbraucht {amount} Ihrer Boosts"
+                    }
                 },
                 "campaigns": "Geboostete Kampagne {count} / {max}",
                 "exceptions": {
                     "already_boosted": "Kampagne {name} ist bereits geboostet",
-                    "exhausted_boosts": "Sie haben keine Boosts mehr zu geben. Entfernen Sie Ihren Boost aus einer Kampagne, bevor Sie ihn einer anderen geben."
+                    "exhausted_boosts": "Sie haben keine Boosts mehr zu geben. Entfernen Sie Ihren Boost aus einer Kampagne, bevor Sie ihn einer anderen geben.",
+                    "exhausted_superboosts": "Sie haben keine Boosts mehr. Sie benötigen 3 Booster, um eine Kampagne zu verbessern."
                 },
                 "success": {
                     "boost": "Kampagne {name} geboostet",
-                    "delete": "Entferne den boost von {name}"
+                    "delete": "Entferne den boost von {name}",
+                    "superboost": "Kampagne {name} supergeboostet"
                 },
                 "title": "Boost"
             },
@@ -1541,6 +1552,7 @@ export default {
             "save_and_view": "Speichern und ansehen",
             "search": "Suchen",
             "select": "Auswählen",
+            "superboosted_campaigns": "Supergeboostete Kampagne",
             "tabs": {
                 "abilities": "Fähigkeiten",
                 "attributes": "Attribute",
@@ -1635,27 +1647,38 @@ export default {
             },
             "boost": {
                 "benefits": {
+                    "campaign_gallery": "A campaign gallery to upload images that you can re-use through the campaign.",
+                    "entity_files": "Upload up to 10 files per entity.",
+                    "entity_logs": "Full entity logs of what was changed on an entity with each update.",
                     "first": "To secure continued progress on Kanka, some campaign features are unlocked by boosting a campaign. Boosts are unlocked through subscriptions. Anyone who can view a campaign can boost it, so that the DM doesn't always have to foot the bill. A campaign remains boosted as long as a user is boosting the campaign and they continue supporting Kanka. If a campaign is no longer boosted, data isn't lost, it is only hidden until the campaign is boosted again.",
                     "header": "Entity header images.",
                     "images": "Custom default entity images.",
                     "more": "Find out more about all features.",
                     "second": "Boosting a campaign enables the following benefits:",
+                    "superboost": "Superboosting a campaign uses 3 of your boosts and unlockes additional features on top of those for boosted campaigns.",
                     "theme": "Campaign level theme and custom styling.",
                     "third": "To boost a campaign, go to the campaign's page, and click on the \"{boost_button}\" button above the \"{edit_button}\" button.",
                     "tooltip": "Custom tooltips for entities.",
                     "upload": "Increased upload size for every member in the campaign."
                 },
                 "buttons": {
-                    "boost": "Boost"
+                    "boost": "Boost",
+                    "superboost": "Superboost",
+                    "tooltips": {
+                        "boost": "Boosting a campaign uses up {amount} of your boosts",
+                        "superboost": "Superboosting a campaign uses {amount} of your boosts"
+                    }
                 },
                 "campaigns": "Boosted Campaigns {count} / {max}",
                 "exceptions": {
                     "already_boosted": "Campaign {name} is already boosted.",
-                    "exhausted_boosts": "You are out of boosts to give. Remove your boost from a campaign before giving it to another."
+                    "exhausted_boosts": "You are out of boosts to give. Remove your boost from a campaign before giving it to another.",
+                    "exhausted_superboosts": "You are out of boosts. You need 3 boosters to superboost a campaign."
                 },
                 "success": {
                     "boost": "Campaign {name} boosted.",
-                    "delete": "Removed your boost from {name}."
+                    "delete": "Removed your boost from {name}.",
+                    "superboost": "Campaign {name} superboosted"
                 },
                 "title": "Boost"
             },
@@ -3087,6 +3110,7 @@ export default {
             "save_and_view": "Guardar y ver",
             "search": "Buscar",
             "select": "Seleccionar",
+            "superboosted_campaigns": "Campañas supermejoradas",
             "tabs": {
                 "abilities": "Habilidades",
                 "attributes": "Atributos",
@@ -3171,27 +3195,38 @@ export default {
             },
             "boost": {
                 "benefits": {
+                    "campaign_gallery": "Une galerie d'image pour télécharger des images réutilisables dans toute la campagne.",
+                    "entity_files": "Télécharger jusqu'à 10 fichiers par entité.",
+                    "entity_logs": "Historique complet des changements sur une entité.",
                     "first": "Pour assurer une évolution continue de Kanka, certaines fonctionnalités de l'application sont débloquées lorsqu'une campagne est boostée. Les boosts sont débloqués grâce a un abonnement. Une campagne peut être boostée par n'importe qui, du moment que le compte a accès à la campagne en question. Une campagne reste boostée tant que le compte a un {subscription} actif. Si une campagne n'est plus boostée, les informations ne sont pas perdues mais deviennent simplement invisibles jusqu'à ce que la campagne soit à nouveau boostée.",
                     "header": "Image d'en-tête pour entité.",
                     "images": "Images d'entité par défaut personnalisées.",
                     "more": "En savoir plus sur toutes les fonctionnalités.",
                     "second": "Booster une campagne débloque les bénéfices suivants:",
+                    "superboost": "Superbooster une campagne utilise 3 boosts et permet d'autres fonctionnalités en plus de celles débloquées par les campagnes boostées.",
                     "theme": "Thème de campagne et style personnalisé.",
                     "third": "Pour booster une campagne, aller sur la page de la campagne et cliquer sur le bouton \"{boost_button}\" situé au dessus du bouton \"{edit_button}\".",
                     "tooltip": "Infobulles personnalisées pour les entités.",
                     "upload": "Taille des fichiers uploadés plus grande pour tous les membres de la campagne."
                 },
                 "buttons": {
-                    "boost": "Boost"
+                    "boost": "Boost",
+                    "superboost": "Superboost",
+                    "tooltips": {
+                        "boost": "Booster une campagne utilise {amount} boosts.",
+                        "superboost": "Superbooster une campagne utilise {amount} boosts."
+                    }
                 },
                 "campaigns": "Campagnes boostées {count} / {max}",
                 "exceptions": {
                     "already_boosted": "La campagne {name} est déjà boostée.",
-                    "exhausted_boosts": "Tu n'as plus de boost disponnible. Retire un boost d'une campagne avant de pouvoir l'attribuer à une autre."
+                    "exhausted_boosts": "Tu n'as plus de boost disponnible. Retire un boost d'une campagne avant de pouvoir l'attribuer à une autre.",
+                    "exhausted_superboosts": "Tu n'as plus de boosts. Tu as besoin de 3 boosts pour superbooster une campagne."
                 },
                 "success": {
-                    "boost": "Campagne {name} boostée.",
-                    "delete": "Boost retiré de {name}."
+                    "boost": "La campagne {name} est boostée.",
+                    "delete": "Boost retiré de {name}.",
+                    "superboost": "La campagne {name} est superboostée."
                 },
                 "title": "Boost"
             },
@@ -4234,6 +4269,10 @@ export default {
                     "copy": "Selecciona esta opción se queres crear unha copia na nova campaña.",
                     "target": "Ten en conta que algúns datos poden perderse ao mover un elemento dun tipo a outro."
                 },
+                "panels": {
+                    "change": "Cambiar tipo de entidade",
+                    "move": "Mover a outra campaña"
+                },
                 "success": "Entidade \"{name}\" movida.",
                 "success_copy": "Entidade \"{name}\" copiada.",
                 "title": "Mover \"{name}\""
@@ -4327,6 +4366,7 @@ export default {
             "save_and_view": "Guardar e visualizar",
             "search": "Buscar",
             "select": "Seleccionar",
+            "superboosted_campaigns": "Campañas superpotenciadas",
             "tabs": {
                 "abilities": "Habilidades",
                 "attributes": "Atributos",
@@ -4618,27 +4658,38 @@ export default {
             },
             "boost": {
                 "benefits": {
+                    "campaign_gallery": "Galerija slika u koju možeš učitati slike za ponovo korištenje kroz kampanju.",
+                    "entity_files": "Učitaj do 10 slika po entitetu.",
+                    "entity_logs": "Cjeloviti zapisnici entiteta onoga što je promijenjeno na entitetu sa svakim ažuriranjem.",
                     "first": "Kako bi osigurali kontinuirani napredak na Kanki, pojedine značajke kampanje otključavaju se pojačavanjem kampanje. Pojačanja se otključavaju putem pretplate. Svatko tko može pogledati kampanju može ju pojačati tako da ne mora uvijek ista osoba plaćati račun. Kampanja ostaje pojačana sve dok korisnik pojačava kampanju i oni nastave podržavati Kanku. Ako se kampanja više ne pojačava, podaci se ne gube već su samo skriveni dok se kampanja ponovno ne pojača.",
                     "header": "Slike zaglavlja entiteta.",
                     "images": "Proizvoljne zadane slike entiteta.",
                     "more": "Saznaj više o svim značajkama.",
                     "second": "Pojačavanje kampanje omogućuje sljedeće prednosti:",
+                    "superboost": "Super pojačanje kampanja koristi tvoja 3 pojačanja i otključava dodatne značajke povrh onih za pojačane kampanje.",
                     "theme": "Tema na razini kampanje i proizvoljno stiliziranje.",
                     "third": "Da biste pojačali kampanju, idite na stranicu kampanje i kliknite gumb \"{boost_button}\" iznad gumba \"{edit_button}\".",
                     "tooltip": "Proizvoljni kratki opisi entiteta.",
                     "upload": "Povećana veličina prijenosa za svakog člana u kampanji."
                 },
                 "buttons": {
-                    "boost": "Pojačaj"
+                    "boost": "Pojačaj",
+                    "superboost": "Super pojačanje",
+                    "tooltips": {
+                        "boost": "Pojačanje kampanje troši {1} tvoje {amount} pojačanje.|{2,4} tvoja {amount} pojačanja.|{5,*} tvojih {amount} pojačanja.",
+                        "superboost": "Super pojačanje kampanje troši {1} tvoje {amount} pojačanje.|{2,4} tvoja {amount} pojačanja.|{5,*} tvojih {amount} pojačanja."
+                    }
                 },
                 "campaigns": "Pojačane kampanje {count} / {max}",
                 "exceptions": {
                     "already_boosted": "Kampanja {name} je već pojačana.",
-                    "exhausted_boosts": "Nemaš više pojačanja za pokloniti. Ukloni svoje pojačanje iz neke kampanje prije nego što ga daš drugoj."
+                    "exhausted_boosts": "Nemaš više pojačanja za pokloniti. Ukloni svoje pojačanje iz neke kampanje prije nego što ga daš drugoj.",
+                    "exhausted_superboosts": "Nemaš više pojačanja. Trebaš 3 pojačanja da bi super pojačao kampanju."
                 },
                 "success": {
                     "boost": "Kampanja {name} pojačana.",
-                    "delete": "Tvoje pojačanje je uklonjeno s {name}."
+                    "delete": "Tvoje pojačanje je uklonjeno s {name}.",
+                    "superboost": "Super pojačana kampanja {name}"
                 },
                 "title": "Pojačanje"
             },
@@ -5280,6 +5331,7 @@ export default {
             "save_and_view": "Spremi i pogledaj",
             "search": "Pretraži",
             "select": "Odaberi",
+            "superboosted_campaigns": "Super pojačane kampanje",
             "tabs": {
                 "abilities": "Sposobnosti",
                 "attributes": "Atributi",
@@ -6712,27 +6764,38 @@ export default {
             },
             "boost": {
                 "benefits": {
+                    "campaign_gallery": "Uma galeria de campanha que você pode reusar por toda campanha",
+                    "entity_files": "Adicione até 10 arquivos por entidade",
+                    "entity_logs": "Relatórios completos do que foi mudado nas entidades em cada uma das atualizações.",
                     "first": "Para garantir o progresso contínuo no Kanka, alguns recursos da campanha são desbloqueados ao impulsionar uma campanha. Os impulsos são desbloqueados por meio de assinaturas. Qualquer um que pode ver uma campanha pode impulsioná-la, para que o Mestre nem sempre tenha que pagar a conta. Uma campanha permanece impulsionada enquanto um usuário estiver impulsionando a campanha e eles continuarem apoiando Kanka. Se uma campanha não é mais impulsionada, os dados não são perdidos, só ficam ocultos até que a campanha seja impulsionada novamente.",
                     "header": "Imagens de cabeçalho da entidade.",
                     "images": "Imagens de entidade padrão personalizadas.",
                     "more": "Descubra mais sobre todos os recursos.",
                     "second": "Impulsionar uma campanha oferece os seguintes benefícios:",
+                    "superboost": "Super impulsionar uma campanha usa 3 de seus impulsos e desbloqueia recursos adicionais além dos presentes em campanhas impulsionadas.",
                     "theme": "Tema nível da campanha e estilo personalizado.",
                     "third": "Para impulsionar uma campanha, vá até a página da campanha e clique no botão \"{boost_button}\" acima do botão \"{edit_button}\".",
                     "tooltip": "Dicas de ferramentas personalizadas para entidades.",
                     "upload": "Aumento do tamanho de upload para todos os membros da campanha."
                 },
                 "buttons": {
-                    "boost": "Impulsionamento"
+                    "boost": "Impulsionamento",
+                    "superboost": "Super Impulso",
+                    "tooltips": {
+                        "boost": "Impulsionar uma campanha usa {amount} de seus impulsos",
+                        "superboost": "Super impulsionar uma campanha usa {amount} de seus impulsos"
+                    }
                 },
                 "campaigns": "Campanhas impulsionadas {count} / {max}",
                 "exceptions": {
                     "already_boosted": "Campanha {name} já está sendo impulsionada",
-                    "exhausted_boosts": "Você está sem impulsos para dar. Remova o impulso de uma campanha antes de dar a outra."
+                    "exhausted_boosts": "Você está sem impulsos para dar. Remova o impulso de uma campanha antes de dar a outra.",
+                    "exhausted_superboosts": "Você está sem impulsionamentos. Você precisa de 3 impulsos para tornar uma campanha Super Impulsionada."
                 },
                 "success": {
                     "boost": "Campanha {name} impulsionada",
-                    "delete": "Seu impulsionamento foi removido de {name}"
+                    "delete": "Seu impulsionamento foi removido de {name}",
+                    "superboost": "Campanha {name} foi Super Impulsionada"
                 },
                 "title": "Impulso"
             },
@@ -7392,6 +7455,7 @@ export default {
             "save_and_view": "Salvar e Visualizar",
             "search": "Buscar",
             "select": "Selecionar",
+            "superboosted_campaigns": "Campanhas Super Impulsionadas",
             "tabs": {
                 "abilities": "Habilidades",
                 "attributes": "Atributos",
@@ -7692,37 +7756,37 @@ export default {
         },
         "conversations": {
             "create": {
-                "description": "Создание нового Разговора",
-                "success": "Разговор \"{name}\" создан.",
-                "title": "Новый Разговор"
+                "description": "Создание нового разговора",
+                "success": "Разговор \"{name}\" создан",
+                "title": "Новый разговор"
             },
             "destroy": {
-                "success": "Разговор \"{name}\" удален."
+                "success": "Разговор \"{name}\" удален"
             },
             "edit": {
-                "description": "Обновление Разговора",
-                "success": "Разговор \"{name}\" обновлен.",
+                "description": "Обновление разговора",
+                "success": "Разговор \"{name}\" обновлен",
                 "title": "Разговор {name}"
             },
             "fields": {
                 "messages": "Сообщения",
                 "name": "Названия",
                 "participants": "Участники",
-                "target": "Участники",
+                "target": "Цель",
                 "type": "Тип"
             },
             "hints": {
-                "participants": "Добавьте в свой Разговор участников, нажав на иконку {icon} справа вверху."
+                "participants": "Добавьте в свой разговор участников, нажав на иконку {icon} справа вверху."
             },
             "index": {
-                "add": "Новый Разговор",
-                "description": "Управление категорией {name}.",
+                "add": "Новый разговор",
+                "description": "Управление категорией {name}",
                 "header": "Разговоры в {name}",
                 "title": "Разговоры"
             },
             "messages": {
                 "destroy": {
-                    "success": "Сообщение удалено."
+                    "success": "Сообщение удалено"
                 },
                 "is_updated": "Обновлено",
                 "load_previous": "Загрузить предыдущие сообщения",
@@ -7732,21 +7796,21 @@ export default {
             },
             "participants": {
                 "create": {
-                    "success": "Участник {entity} добавлен в Разговор."
+                    "success": "Участник \"{entity}\" добавлен в разговор"
                 },
-                "description": "Добавление или удаление участников Разговора.",
+                "description": "Добавление или удаление участников разговора",
                 "destroy": {
-                    "success": "Участник {entity} удален из Разговора"
+                    "success": "Участник \"{entity}\" удален из Разговора"
                 },
                 "modal": "Участники",
                 "title": "Участники {name}"
             },
             "placeholders": {
-                "name": "Название Разговора",
-                "type": "Игровой, подготовка, выдуманный"
+                "name": "Название разговора",
+                "type": "Игра, подготовка, сюжет"
             },
             "show": {
-                "description": "Детальный вид разговора.",
+                "description": "Детальный вид разговора",
                 "title": "Разговор {name}"
             },
             "tabs": {
@@ -7755,7 +7819,7 @@ export default {
             },
             "targets": {
                 "characters": "Персонажи",
-                "members": "Члены"
+                "members": "Члены кампании"
             }
         },
         "admin": [],
@@ -7766,25 +7830,25 @@ export default {
                 "apply": "Применить",
                 "back": "Назад",
                 "copy": "Копировать",
-                "copy_mention": "Копировать [ ] ссылку",
-                "copy_to_campaign": "Копировать в Кампанию",
+                "copy_mention": "Копировать [ссылку]",
+                "copy_to_campaign": "Копировать в кампанию",
                 "explore_view": "Свернутый вид",
                 "export": "Экспортировать (PDF)",
                 "find_out_more": "Узнать больше",
                 "go_to": "Перейти к {name}",
                 "json-export": "Экспортировать (JSON)",
-                "move": "Переместить",
+                "move": "Изменить или переместить",
                 "new": "Новый",
-                "next": "Следующее",
+                "next": "Далее",
                 "reset": "Сброс"
             },
             "add": "Добавить",
             "alerts": {
-                "copy_mention": "Специальная ссылка на объект скопирована в ваш буфер обмена."
+                "copy_mention": "Ссылка на объект скопирована в ваш буфер обмена"
             },
             "attributes": {
                 "actions": {
-                    "apply_template": "Применить Шаблон Атрибутов",
+                    "apply_template": "Применить шаблон атрибутов",
                     "manage": "Управление",
                     "more": "Другое",
                     "remove_all": "Удалить все"
@@ -7792,7 +7856,7 @@ export default {
                 "fields": {
                     "attribute": "Атрибут",
                     "community_templates": "Шаблоны сообщества",
-                    "is_private": "Приватные атрибуты",
+                    "is_private": "Скрытые атрибуты",
                     "is_star": "Закреплен",
                     "template": "Шаблон",
                     "value": "Значение"
@@ -7801,23 +7865,23 @@ export default {
                     "delete_all": "Вы уверены, что хотите удалить все атрибуты этого объекта?"
                 },
                 "hints": {
-                    "is_private": "Вы можете скрыть все атрибуты объекта для всех участников без роли \"Админ\", сделав их приватными."
+                    "is_private": "Вы можете скрыть все атрибуты этого объекта от всех участников, кроме админов."
                 },
                 "index": {
-                    "success": "Атрибуты для {name} обновлены.",
-                    "title": "Атрибуты для {name}"
+                    "success": "Атрибуты объекта {entity} обновлены",
+                    "title": "Атрибуты объекта {name}"
                 },
                 "placeholders": {
-                    "attribute": "Число завоеваний, оценка испытаний, инициатива, население",
+                    "attribute": "Число побед, рейтинг опасности, инициатива, население",
                     "block": "Название блока",
                     "checkbox": "Название флажка",
                     "section": "Название раздела",
-                    "template": "Выберите Шаблон",
+                    "template": "Выберите шаблон",
                     "value": "Значение атрибута"
                 },
                 "template": {
-                    "success": "Шаблон Атрибутов {name} применен к {entity}",
-                    "title": "Применение Шаблона Атрибутов к {name}"
+                    "success": "Шаблон атрибутов {name} применен к объекту {entity}",
+                    "title": "Применение шаблона атрибутов к объекту {name}"
                 },
                 "types": {
                     "attribute": "Атрибут",
@@ -7827,20 +7891,20 @@ export default {
                     "text": "Большой текст"
                 },
                 "visibility": {
-                    "entry": "Атрибут расположен в меню объектов.",
-                    "private": "Атрибут виден только участникам с ролью \"Админ\".",
-                    "public": "Атрибут виден всем участникам.",
-                    "tab": "Атрибут отображается только во вкладке атрибутов."
+                    "entry": "Атрибут отображается в меню объектов",
+                    "private": "Атрибут виден только участникам роли \"Админ\"",
+                    "public": "Атрибут виден всем участникам",
+                    "tab": "Атрибут отображается только во вкладке \"Атрибуты\""
                 }
             },
             "boosted": "Усилена",
-            "boosted_campaigns": "Усиленные Кампании",
+            "boosted_campaigns": "Усиленные кампании",
             "bulk": {
                 "actions": {
-                    "edit": "Массовый редактор и Тэги"
+                    "edit": "Массовый редактор и тэги"
                 },
                 "age": {
-                    "helper": "Вы можете использовать + и - перед числом, чтобы изменить возраст на это число."
+                    "helper": "Перед числом можно поставить + или - , чтобы увеличить или уменьшить возраст на это число."
                 },
                 "delete": {
                     "title": "Удаление нескольких объектов",
@@ -7855,7 +7919,7 @@ export default {
                     "title": "Редактирование нескольких объектов"
                 },
                 "errors": {
-                    "admin": "Статус приватности объектов могут редактировать только Админы Кампании.",
+                    "admin": "Скрывать и открывать объекты могут только админы кампании",
                     "general": "При выполнении вашего действия произошла ошибка. Пожалуйста, попробуйте снова и свяжитесь с нами, если проблема повторится. Сообщение ошибки: {hint}."
                 },
                 "permissions": {
@@ -7863,16 +7927,16 @@ export default {
                         "override": "Перезапись"
                     },
                     "helpers": {
-                        "override": "Если включена, то разрешения выбранных объектов будут заменены. Если нет, эти разрешения будут добавлены к существующим."
+                        "override": "Разрешения выбранных объектов будут перезаписаны. Если не включать, то выбранные разрешения будут добавлены к уже существующим."
                     },
                     "title": "Изменение разрешений нескольких объектов"
                 },
                 "success": {
-                    "copy_to_campaign": "{1} {count} объект скопирован в {campaign}.|[2, 4] {count} объекта скопировано в {campaign}.|[5, *] {count} объектов скопировано в {campaign}.",
-                    "editing": "{1} {count} объект обновлен.|[2, 4] {count} объекта обновлено.|[5, *] {count} объектов обновлено.",
-                    "permissions": "{1} Разрешения изменены для {count} объекта.|[2, *] Разрешения изменены для {count} объектов.",
-                    "private": "{1} {count} объект теперь приватен.|[2, 4] {count} объекта теперь приватно.|[5, *] {count} объектов теперь приватны.",
-                    "public": "{1} {count} объект теперь невидим.|[2, 4] {count} объекта теперь невидимы.|[5, *] {count} объектов теперь невидимы."
+                    "copy_to_campaign": "{1} В кампанию {campaign} скопирован {count} объект|[2, 4] В кампанию {campaign} скопировано {count} объекта|[5, *] В кампанию {campaign} скопировано {count} объектов",
+                    "editing": "{1} Обновлен {count} объект|[2, 4] Обновлено {count} объекта|[5, *] Обновлено {count} объектов",
+                    "permissions": "{1} Изменены разрешения {count} объекта|[2, *] Изменены разрешения {count} объектов",
+                    "private": "{1} Скрыт {count} объект|[2, 4] Скрыто {count} объекта|[5, *] Скрыто {count} объектов",
+                    "public": "{1} Открыт {count} объект|[2, 4] Открыто {count} объекта|[5, *] Открыто {count} объектов"
                 }
             },
             "cancel": "Отмена",
@@ -7882,13 +7946,13 @@ export default {
                 "title": "Подтверждение вашего действия"
             },
             "copy_to_campaign": {
-                "bulk_title": "Копирование объектов в другую Кампанию",
+                "bulk_title": "Копирование объектов в другую кампанию",
                 "panel": "Копировать",
-                "title": "Копирование \"{name}\" в другую Кампанию"
+                "title": "Копирование {name} в другую кампанию"
             },
             "create": "Создать",
             "datagrid": {
-                "empty": "Нечего показать."
+                "empty": "Здесь пока ничего нет"
             },
             "delete_modal": {
                 "close": "Закрыть",
@@ -7898,40 +7962,40 @@ export default {
                 "title": "Подтверждение удаления"
             },
             "destroy_many": {
-                "success": "Удален {count} объект.|Удалено {count} объектов."
+                "success": "{1} Удален {count} объект|[2,4] Удалено {count} объекта|[5,*] Удалено {count} объектов"
             },
             "edit": "Редактировать",
             "errors": {
-                "boosted": "Эта функция доступна только для усиленный Кампаний.",
-                "node_must_not_be_a_descendant": "Неправильный узел (Тэг, родительская Локация): это потомок самого себя."
+                "boosted": "Эта функция доступна только для усиленный кампаний.",
+                "node_must_not_be_a_descendant": "Недопустимая привязка (тэг, родительская локация): объект является потомком самого себя"
             },
             "events": {
-                "hint": "Ниже расположен список всех Календарей, в которые добавлено это событие с помощью \"Добавить Событие в Календарь\"."
+                "hint": "Список ниже содержит все календари, в которые было добавлено это событие."
             },
             "export": "Экспортировать",
             "fields": {
                 "ability": "Способность",
-                "attribute_template": "Шаблон Артибутов",
+                "attribute_template": "Шаблон атрибутов",
                 "calendar": "Календарь",
-                "calendar_date": "Дата Календаря",
+                "calendar_date": "Дата календаря",
                 "character": "Персонаж",
                 "colour": "Цвет",
                 "copy_attributes": "Копировать атрибуты",
                 "copy_notes": "Копировать заметки объекта",
                 "creator": "Создатель",
-                "dice_roll": "Бросок Кубика",
+                "dice_roll": "Бросок костей",
                 "entity": "Объект",
                 "entity_type": "Тип объекта",
-                "entry": "Текст",
+                "entry": "Статья",
                 "event": "Событие",
-                "excerpt": "Выдержка",
+                "excerpt": "Краткое описание",
                 "family": "Семья",
                 "files": "Файлы",
                 "has_image": "Есть изображение",
                 "header_image": "Изображение заголовка",
                 "image": "Изображение",
-                "is_private": "Приватный",
-                "is_star": "Закреплен",
+                "is_private": "Скрытый",
+                "is_star": "Закрепить",
                 "item": "Предмет",
                 "location": "Локация",
                 "map": "Карта",
@@ -7944,100 +8008,104 @@ export default {
                 "timeline": "Хронология",
                 "tooltip": "Подсказка",
                 "type": "Тип",
-                "visibility": "Видимость"
+                "visibility": "Доступ"
             },
             "files": {
                 "actions": {
-                    "drop": "Нажмите, чтобы добавить или удалить файл",
-                    "manage": "Управление файлами объектов"
+                    "drop": "Нажмите здесь или перетащите сюда файл",
+                    "manage": "Управление файлами объекта"
                 },
                 "errors": {
-                    "max": "Вы достигли лимита ({max}) файлов для этого объекта.",
-                    "no_files": "Нет файлов."
+                    "max": "Вы достигли максимального количества ({max}) файлов для этого объекта",
+                    "no_files": "Нет файлов"
                 },
-                "files": "Обновленные файлы",
+                "files": "Загруженные файлы",
                 "hints": {
-                    "limit": "Каждый объект может иметь не более {max} загруженных файлов.",
-                    "limitations": "Форматы: jpg, png, gif и pdf. Макс. размер файла: {size}."
+                    "limit": "Каждому объекту можно загрузить не больше {max} файлов.",
+                    "limitations": "Форматы: jpg, png, gif и pdf. Размер файла: до {size}."
                 },
                 "title": "Файлы объекта {name}"
             },
-            "filter": "Фильтр",
+            "filter": "Фильтровать",
             "filters": {
-                "all": "Фильтр для всех потомков",
-                "clear": "Очистить фильтры",
-                "direct": "Фильтр для прямых потомков",
-                "filtered": "Показано {count} из {total} {entity}",
+                "all": "Фильтр всех потомков",
+                "clear": "Убрать фильтры",
+                "direct": "Фильтр непосредственных потомков",
+                "filtered": "Показано {count} из {total} объектов типа {entity}",
                 "hide": "Скрыть фильтры",
                 "options": {
-                    "exclude": "Исключить",
-                    "include": "Включить",
+                    "exclude": "Не показывать",
+                    "include": "Показывать",
                     "none": "Нет"
                 },
                 "show": "Показать фильтры",
                 "sorting": {
-                    "asc": "По возрастанию {field}",
-                    "desc": "По убыванию {field}",
-                    "helper": "Управление порядком сортировки результатов"
+                    "asc": "{field} - возрастание",
+                    "desc": "{field} - убывание",
+                    "helper": "Управление порядком показа результатов"
                 },
                 "title": "Фильтры"
             },
             "forms": {
                 "actions": {
-                    "calendar": "Добавить дату Календаря."
+                    "calendar": "Добавить дату календаря"
                 },
                 "copy_options": "Копировать опции"
             },
             "hidden": "Скрытый",
             "hints": {
-                "attribute_template": "Применять Шаблон Атрибутов непосредственно при создании объекта.",
-                "calendar_date": "Дата Календаря позволяет легко фильтровать в списках, а также хранит Событие выбранного Календаря.",
-                "header_image": "Это изображение будет расположено над объектом. Лучше использовать широкое изображение.",
-                "image_limitations": "Форматы: jpg, png и gif. Макс. размер файла: {size}.",
-                "image_patreon": "Увеличить лимит размера файла?",
-                "is_private": "Если установлено на \"Приватный\", то этот объект могут видеть только участники Кампании с ролью \"Админ\".",
-                "is_star": "Закрепленные элементы появятся в меню объектов.",
-                "map_limitations": "Форматы: jpg, png, gif и svg. Макс. размер файла: {size}.",
-                "tooltip": "Заменить автоматически сгенерированную подсказку на следующее содержание.",
-                "visibility": "Значение видимости \"Админ\" означает, что это могут видеть только участники Кампании с ролью \"Админ\". Значение \"Я\" означает, что это можете видеть только вы."
+                "attribute_template": "Применять шаблон атрибутов непосредственно при создании или изменении объекта.",
+                "calendar_date": "Дата календаря позволяет легко фильтровать списки, а также хранит событие выбранного календаря.",
+                "header_image": "Это изображение будет находиться над объектом. Лучше использовать широкое изображение.",
+                "image_limitations": "Форматы: jpg, png и gif. Размер файла: до {size}.",
+                "image_patreon": "Увеличить максимальный размер файла?",
+                "is_private": "Скрытые объекты могут видеть только участники кампании роли \"Админ\".",
+                "is_star": "Закрепленные элементы появятся в меню объекта.",
+                "map_limitations": "Форматы: jpg, png, gif и svg. Размер файла: до {size}.",
+                "tooltip": "Замените подсказку, созданную автоматически, на содержание этого поля.",
+                "visibility": "Значение \"Админ\" означает, что видеть этот объект могут только админы. Значение \"Вы\" означает, что его можете видеть только вы."
             },
             "history": {
-                "created": "Создан <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>.",
-                "created_date": "Создан <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>.",
+                "created": "Создано <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "created_date": "Создано <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>.",
                 "unknown": "Неизвестно",
-                "updated": "Последнее изменение от <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>.",
-                "updated_date": "Последнее изменение <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>.",
-                "view": "Показать журнал объекта"
+                "updated": "Изменено <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>.",
+                "updated_date": "Изменено <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>.",
+                "view": "Показать историю объекта"
             },
             "image": {
-                "error": "Нам не удалось получить запрошенное изображение. Возможно, сайт не позволяет нам скачать изображение (типично для Squarespace и DeviantArt) или эта ссылка уже не действительна. Пожалуйста, убедитесь также, что изображение не превышает {size}."
+                "error": "Нам не удалось получить запрошенное изображение. Возможно, сайт не позволяет нам скачать изображение (такое случается с Squarespace и DeviantArt) или эта ссылка уже не действительна. Пожалуйста, убедитесь также, что изображение не превышает {size}."
             },
-            "is_not_private": "В данный момент этот объект не приватен.",
-            "is_private": "Этот объект приватен и виден только участникам с ролью \"Админ\".",
-            "linking_help": "Как я могу ссылаться на другие объекты.",
+            "is_not_private": "В данный момент этот объект открыт",
+            "is_private": "Этот объект скрыт и виден только участникам роли \"Админ\"",
+            "linking_help": "Как создавать ссылки на другие объекты?",
             "manage": "Управление",
             "move": {
                 "errors": {
-                    "permission": "Вам не разрешено создавать объекты этого типа в этой Кампании.",
-                    "same_campaign": "Вам нужно выбрать другую Кампанию, чтобы переместить в нее этот объект.",
-                    "unknown_campaign": "Неизвестная Кампания."
+                    "permission": "У вас нет разрешения создавать объекты этого типа в данной кампании.",
+                    "same_campaign": "Вам нужно выбрать другую кампанию, чтобы переместить в нее этот объект.",
+                    "unknown_campaign": "Неизвестная кампания."
                 },
                 "fields": {
-                    "campaign": "Новая Кампания",
+                    "campaign": "Новая кампания",
                     "copy": "Создать копию",
                     "target": "Новый тип"
                 },
                 "hints": {
-                    "campaign": "Вы также можете попробовать переместить этот объект в другую Кампанию.",
-                    "copy": "Выберите эту опцию, если хотите создать копию в новой Кампании.",
+                    "campaign": "Вы также можете попробовать переместить этот объект в другую кампанию.",
+                    "copy": "Выберите это, если хотите создать копию в новой кампании.",
                     "target": "Пожалуйста, учтите, что некоторые данные могут быть потеряны при перемещении элемента из одного типа в другой."
                 },
-                "success": "Объект \"{name}\" перемещен.",
-                "success_copy": "Объект \"{name}\" скопирован.",
-                "title": "Перемещение {name}"
+                "panels": {
+                    "change": "Изменить тип объекта",
+                    "move": "Переместить в другую кампанию"
+                },
+                "success": "Объект \"{name}\" перемещен",
+                "success_copy": "Объект \"{name}\" скопирован",
+                "title": "Изменение или перемещение {name}"
             },
             "new_entity": {
-                "error": "Пожалуйста, проверьте ваши значения.",
+                "error": "Пожалуйста, проверьте значения.",
                 "fields": {
                     "name": "Название"
                 },
@@ -8046,20 +8114,20 @@ export default {
             "or_cancel": "или <a href=\"{url}\">отменить</a>",
             "panels": {
                 "appearance": "Оформление",
-                "attribute_template": "Шаблон Атрибутов",
-                "calendar_date": "Дата Календаря",
-                "entry": "Текст",
+                "attribute_template": "Шаблон атрибутов",
+                "calendar_date": "Дата календаря",
+                "entry": "Статья",
                 "general_information": "Основная информация",
                 "move": "Переместить",
                 "system": "Система"
             },
             "permissions": {
-                "action": "Действия",
+                "action": "Действие",
                 "actions": {
                     "bulk": {
                         "add": "Разрешить",
                         "deny": "Запретить",
-                        "ignore": "Пропустить",
+                        "ignore": "Не изменять",
                         "remove": "Удалить"
                     },
                     "bulk_entity": {
@@ -8078,59 +8146,60 @@ export default {
                     "member": "Участник",
                     "role": "Роль"
                 },
-                "helper": "Используйте этот интерфейс, чтобы настроить, какие пользователи и роли могут взаимодействовать с этим объектом. {allow}",
+                "helper": "Используйте эту страницу, чтобы назначить, как пользователи и роли могут взаимодействовать с этим объектом. {allow}",
                 "helpers": {
-                    "setup": "Используйте этот интерфейс, чтобы настроить то, как роли и пользователи могут взаимодействовать с этим объектом. {allow} позволит пользователю или роли совершать это действие. {deny} запретит им это действие. {inherit} будет использовать разрешение роли пользователя или основной роли. Пользователь с {allow} может совершать даже те действия, которые для его роли установлены как {deny}."
+                    "setup": "Используйте эту страницу, чтобы назначить, как пользователи и роли могут взаимодействовать с этим объектом. {allow} позволяет пользователю или роли совершать это действие. {deny} запрещает им это действие. {inherit} будет использовать основное разрешение роли пользователя или основной роли. Пользователь с {allow} может совершать действие, которое запрещено для его роли."
                 },
-                "inherited": "У этой роли уже есть это разрешение для этого типа объектов.",
+                "inherited": "Это разрешение у этой роли уже назначено для этого типа объектов.",
                 "inherited_by": "Этот пользователь входит в роль \"{role}\", у которой есть эти разрешения для этого типа объектов.",
-                "success": "Разрешения сохранены.",
+                "success": "Разрешения сохранены",
                 "title": "Разрешения",
-                "too_many_members": "В этой Кампании слишком много участников (>10) для отображения этого интерфейса. Пожалуйста, используйте кнопку \"Разрешения\" объекта для детального контроля разрешений."
+                "too_many_members": "В этой кампании слишком много участников (>10) для отображения этой страницы. Пожалуйста, используйте кнопку \"Разрешения\" объекта для детальной настройки разрешений."
             },
             "placeholders": {
-                "ability": "Выберите Способность",
-                "calendar": "Выберите Календарь",
-                "character": "Выберите Персонажа",
-                "entity": "Объект",
-                "event": "Выберите Событие",
-                "family": "Выберите Семью",
-                "image_url": "Вы также можете загрузить изображение из URL",
-                "item": "Выберите Предмет",
-                "journal": "Выберите Журнал",
-                "location": "Выберите Локацию",
-                "map": "Выберите Карту",
-                "organisation": "Выберите Организацию",
-                "race": "Выберите Расу",
-                "tag": "Выберите Тэг"
+                "ability": "Выберите способность",
+                "calendar": "Выберите календарь",
+                "character": "Выберите персонажа",
+                "entity": "Выберите объект",
+                "event": "Выберите событие",
+                "family": "Выберите семью",
+                "image_url": "Вы также можете ввести URL изображения",
+                "item": "Выберите предмет",
+                "journal": "Выберите журнал",
+                "location": "Выберите локацию",
+                "map": "Выберите карту",
+                "organisation": "Выберите организацию",
+                "race": "Выберите расу",
+                "tag": "Выберите тэг"
             },
             "relations": {
                 "actions": {
                     "add": "Добавить связь"
                 },
                 "fields": {
-                    "location": "Локация",
+                    "location": "Положение",
                     "name": "Название",
                     "relation": "Связь"
                 },
-                "hint": "Связи между объектами можно назначить для обозначения их отношений друг с другом."
+                "hint": "Для обозначения отношений между объектами между ними можно создавать связи."
             },
             "remove": "Удалить",
             "rename": "Переименовать",
             "save": "Сохранить",
-            "save_and_close": "Сохранить и Копировать",
+            "save_and_close": "Сохранить и Закрыть",
             "save_and_copy": "Сохранить и Копировать",
             "save_and_new": "Сохранить и Создать",
-            "save_and_update": "Сохранить и Обновить",
-            "save_and_view": "Сохранить и Показать",
+            "save_and_update": "Сохранить и Изменить",
+            "save_and_view": "Сохранить и Открыть",
             "search": "Искать",
             "select": "Выбрать",
+            "superboosted_campaigns": "Супер-усиленные кампании",
             "tabs": {
                 "abilities": "Способности",
                 "attributes": "Атрибуты",
                 "boost": "Усиление",
                 "calendars": "Календари",
-                "default": "Умолчание",
+                "default": "Умолчания",
                 "events": "События",
                 "inventory": "Инвентарь",
                 "map-points": "Точки на карте",
@@ -8145,7 +8214,7 @@ export default {
             },
             "update": "Обновить",
             "users": {
-                "unknown": "Неизвестно"
+                "unknown": "Неизвестный"
             },
             "view": "Показать",
             "visibilities": {
@@ -8893,6 +8962,7 @@ export default {
             "save_and_view": "Uložiť a zobraziť",
             "search": "Hľadať",
             "select": "Vybrať",
+            "superboosted_campaigns": "Superboostnuté kampane",
             "tabs": {
                 "abilities": "Schopnosti",
                 "attributes": "Atribúty",
@@ -8931,6 +9001,218 @@ export default {
     "tr": {
         "maps": [],
         "calendars": [],
+        "settings": {
+            "account": {
+                "actions": {
+                    "social": "Kanka Girişine Geç",
+                    "update_email": "E-posta güncelle",
+                    "update_password": "Şifre güncelle"
+                },
+                "email": "E-posta değiştir.",
+                "email_success": "E-posta güncellendi.",
+                "password": "Şifre değiştir",
+                "password_success": "Şifre güncellendi.",
+                "social": {
+                    "error": "Bu hesap için halihazırda Kanka Girişi kullanıyorsunuz.",
+                    "helper": "Hesabınız şu anda {provider} tarafından yönetiliyor. Bir şifre belirleyerek onu kullanmayı bırakıp standart Kanka girişini kullanmaya başlayabilirsiniz.",
+                    "success": "Hesabınız artık Kanka girişini kullanıyor.",
+                    "title": "Sosyal Medya'dan Kanka'ya"
+                },
+                "title": "Hesap"
+            },
+            "api": {
+                "experimental": "Kanka API'larına hoşgeldiniz! Bu özellikler hala deneysel ancak sizin API'lar ile bağ kurmanıza yetecek kadar stabil olmalılar. Kendi API istekleriniz için Şahsi Erişim Tokeni oluşturun, ya da uygulanmanızın kullanıcı verisine erişimi olması için İstemci tokeni oluşturun.",
+                "help": "Kanka yakın zamanda üçüncü parti uygulamaların uygulamaya bağlanabilmesi için bir RESTful API sağlayacak. API anahtarlarınızı nasıl yöneteceğinizin detayları aşağıda gösterilecek.",
+                "link": "API dokümentasyonunu okuyun",
+                "request_permission": "Şu anda üçüncü parti uygulamalar uygulamaya bağlanabilsin diye güçlü bir RESTful API oluşturuyoruz. Ancak, biz API altyapısını düzenlerken, şu anda API ile etkileşebilecek kullanıcıların sayısını sınırlıyoruz. Eğer API erişimi kazanmak ve Kanka ile konuşan havalı uygulamalar yaratmak istiyorsanız, lütfen bizimle iletişime geçin ve biz de size ihtiyacınız olan tüm bilgiyi sağlayalım.",
+                "title": "API"
+            },
+            "apps": {
+                "actions": {
+                    "connect": "Bağla",
+                    "remove": "Kaldır"
+                },
+                "benefits": "Kanka üçüncü parti hizmetlere bazı entegrasyonlar sağlar. Daha fazla entegrasyon gelecek için planlanmıştır.",
+                "discord": {
+                    "errors": {
+                        "add": "Discord hesabınızı Kanka ile bağlarken bir hata meydana geldi. Lütfen tekrar deneyin."
+                    },
+                    "success": {
+                        "add": "Discord hesabınız bağlandı.",
+                        "remove": "Discord hesabınızın bağlantısı kesildi."
+                    },
+                    "text": "Abonelik rollerinize otomatik olarak erişin."
+                },
+                "title": "Uygulama Entegrasyonu"
+            },
+            "boost": {
+                "benefits": {
+                    "campaign_gallery": "Serüven süresince tekrar tekrar kullanabileceğiniz görsellerle dolu bir serüven galerisi.",
+                    "entity_files": "Varlık başına 10 dosyaya kadar karşıya yükleyin.",
+                    "entity_logs": "Bir varlığa yapılan her bir güncelleme ile varlıkta neyin değiştiğini gösteren tam değişiklik listeleri.",
+                    "first": "Kanka'da sürekli ilerlemenin güvence altına alınması için, bazı serüven özelliklerinin kilidi yalnızca bir serüveni destekleyerek açılır. Destekler abonelikler aracılığı ile açılır. Bir serüveni görüntüleyebilen herhangi biri serüveni destekleyebilir, böylece hesap yalnızca DM'e kilitlenmemiş olur. Bir serüven bir kullanıcı onu desteklediği ve kullanıcı Kanka'yı desteklediği sürece destekli kalır. Eğer bir serüven artık destekli değilse, veri kaybolmaz, yalnızca serüven tekrar desteklenene kadar saklı kalır.",
+                    "header": "Varlık kapak görselleri.",
+                    "images": "Özel varsayılan varlık görselleri.",
+                    "more": "Bütün özellikler hakkında daha fazla bilgi edinin.",
+                    "second": "Bir serüveni desteklemek aşağıdaki faydaları sağlar:",
+                    "superboost": "Bir serüveni süperdesteklemek 3 desteğinizin tamamını harcar ve destekli serüvenlerin üstüne ek özelliklerin de kilidini açar.",
+                    "theme": "Serüven seviyesinde tema ve özel tasarım.",
+                    "third": "Bir serüveni desteklemek için, serüvenin sayfasına gidin, ve \"{edit_button}\" butonunun üstündeki \"{boost_button}\" butonuna tıklayın.",
+                    "tooltip": "Varlıklar için özel bilgi çubukları",
+                    "upload": "Serüvendeki her bir üye için arttırılmış karşıya yükleme boyut limiti."
+                },
+                "buttons": {
+                    "boost": "Destek",
+                    "superboost": "Süperdestek",
+                    "tooltips": {
+                        "boost": "Bir serüveni desteklemek desteklerinizin {amount} kadarını kullanır.",
+                        "superboost": "Bir serüveni süperdesteklemek desteklerinizin {amount} kadarını kullanır."
+                    }
+                },
+                "campaigns": "Desteklenen Serüvenler {count} / {max}",
+                "exceptions": {
+                    "already_boosted": "{name} serüveni zaten desteklenmiş.",
+                    "exhausted_boosts": "Verecek desteğiniz kalmadı. Bir başka serüveni desteklemeden önce desteklerinizden birini kaldırın.",
+                    "exhausted_superboosts": "Desteğiniz tükenmiş. Bir serüveni süperdesteklemek için 3 desteğe ihtiyacınız var."
+                },
+                "success": {
+                    "boost": "{name} serüveni desteklendi.",
+                    "delete": "{name} serüveninden destek kaldırıldı.",
+                    "superboost": "{name} serüveni süperdesteklendi."
+                },
+                "title": "Destek"
+            },
+            "countries": {
+                "austria": "Avusturya",
+                "belgium": "Belçika",
+                "france": "Fransa",
+                "germany": "Almanya",
+                "italy": "İtalya",
+                "netherlands": "Hollanda",
+                "spain": "İspanya"
+            },
+            "invoices": {
+                "actions": {
+                    "download": "PDF Olarak İndir",
+                    "view_all": "Hepsini görüntüle"
+                },
+                "empty": "Fatura yok",
+                "fields": {
+                    "amount": "Tutar",
+                    "date": "Tarih",
+                    "invoice": "Fatura",
+                    "status": "Durum"
+                },
+                "header": "Aşağıda indirebileceğiniz son 24 faturanızın bir listesi mevcuttur.",
+                "status": {
+                    "paid": "Ödendi",
+                    "pending": "Beklemede"
+                },
+                "title": "Faturalar"
+            },
+            "layout": {
+                "success": "Düzen seçenekleri güncellendi.",
+                "title": "Düzen"
+            },
+            "marketplace": {
+                "fields": {
+                    "name": "Market Adı"
+                },
+                "helper": "Varsayılan olarak {marketplace} üzerinde sizin kullanıcı adınız gösterilir. Bu alanda bu değeri değiştirebilirsiniz.",
+                "title": "Market Seçenekleri",
+                "update": "Market seçenekleri kaydedildi."
+            },
+            "menu": {
+                "account": "Hesap",
+                "api": "API",
+                "apps": "Uygulamalar",
+                "billing": "Ödeme Yöntemi",
+                "boost": "Destek",
+                "invoices": "Faturalar",
+                "layout": "Düzen",
+                "marketplace": "Market",
+                "other": "Diğer",
+                "patreon": "Patreon",
+                "payment_options": "Ödeme Seçenekleri",
+                "personal_settings": "Kişisel Seçenekler",
+                "profile": "Profil",
+                "subscription": "Abonelik",
+                "subscription_status": "Abonelik Durumu"
+            },
+            "patreon": {
+                "actions": {
+                    "link": "Hesabı Bağla",
+                    "view": "Kanka'yı Patreon'da Görüntüle"
+                },
+                "benefits": "Bizi {patreon} üzerinde desteklemek sizin ve serüvenleriniz için her türlü {features} kilidini açar, ve Kanka'nın üstünde çalışmak ve onu geliştirmek için daha fazla zaman geçirmemize yardımcı olur.",
+                "benefits_features": "harika özellikler",
+                "deprecated": "Artık kullanılmayan özellik - eğer Kanka'yı desteklemek istiyorsanız, lütfen bunu {subscription} ile yapın. Patreon bağlama biz Patreon'dan ayrılmadan önce hesaplarını bağlamış Patron'lar için hala aktiftir.",
+                "description": "Patreon ile Senkronizasyon",
+                "linked": "Kanka'yı Patreon'da desteklediğiniz için teşekkür ederiz! Hesabınız bağlandı.",
+                "pledge": "{name} vaadi",
+                "remove": {
+                    "button": "Patreon hesabınızın bağlantısını kesin.",
+                    "success": "Patreon hesabınızın bağlantısı kesildi.",
+                    "text": "Patreon hesabınızın Kanka ile bağını koparmak bonuslarınızı, onur duvarından adınızı, serüven destekleriniz, ve Kanka'yı desteklemek ile alakalı diğer özelliklerinizi kaldırır. Destekli hiçbir içeriğiniz kaybolmaz (örn. varlık kapakları). Tekrar abone olarak önceki serüvenlerinizi desteklemek dahil olmak üzere önceki verilerinizin tamamına erişim kazanacaksınız.",
+                    "title": "Patreon hesabınızın Kanka ile olan bağını koparın."
+                },
+                "success": "Kanka'yı Patreon'da desteklediğiniz için teşekkür ederiz!",
+                "title": "Patreon",
+                "wrong_pledge": "Vaat seviyeniz bizim tarafımızdan elle ayarlanmıştır, bundan ötürü lütfen bize doğru şekilde ayarlamamız için birkaç güne kadar zaman tanıyın. Eğer bir süre boyunca yanlış kalırsa, lütfen bizimle iletişime geçin."
+            },
+            "profile": {
+                "actions": {
+                    "update_profile": "Profili güncelle"
+                },
+                "avatar": "Profil Resmi",
+                "success": "Profil güncellendi.",
+                "title": "Kişisel Profil"
+            },
+            "subscription": {
+                "actions": {
+                    "cancel_sub": "Aboneliği iptal et",
+                    "subscribe": "Abone Ol",
+                    "update_currency": "Tercih edilen kuru kaydet."
+                },
+                "benefits": "Bizi destekleyerek bazı yeni {features} açabilir ve Kanka'yı geliştirmek için daha fazla zaman ayırmamıza yardımcı olabilirsiniz. Sunucularımızda hiçbir kredi kartı bilgisi saklanmaz ya da üzerinden geçer. Bütün faturalandırma hizmetlerimiz için {stripe} kullanıyoruz.",
+                "billing": {
+                    "helper": "Faturalandırma bilgileriniz {stripe} tarafından işlenir güvenle korunur. Bu ödeme yöntemi bütün abonelikleriniz için kullanılır.",
+                    "saved": "Kaydedilen ödeme yöntemi",
+                    "title": "Ödeme Yöntemini Düzenle"
+                },
+                "cancel": {
+                    "text": "Gittiğinizi görmek üzücü! Aboneliğinizi iptal etmek aboneliğinizi bir sonraki faturalandırma dönemine kadar aktif tutacaktır, bundan itibaren serüven desteklerinizi ve Kanka'yı desteklemek ile beraber gelen diğer faydaları kaybedeceksiniz. Neyi daha iyi yapabileceğimiz ya da kararınızı neyin etkilediği hakkında bizi bilgilendirebileceğiniz, aşağıdaki formu doldurmaktan lütfen çekinmeyin."
+                },
+                "cancelled": "Aboneliğiniz iptal edildi. Mevcut aboneliğiniz bittikten sonra aboneliğinizi yenileyebilirsiniz.",
+                "change": {
+                    "text": {
+                        "monthly": "Her ay {amount} karşılığında {tier} seviyesinde abonesiniz.",
+                        "yearly": "Her yıl {amount} karşılığında {tier} seviyesinde abonesiniz."
+                    },
+                    "title": "Abonelik Seviyesini Değiştir"
+                },
+                "currencies": {
+                    "eur": "EUR",
+                    "usd": "USD"
+                },
+                "currency": {
+                    "title": "Tercih edilen faturalandırılma kurunuzu seçin."
+                },
+                "errors": {
+                    "callback": "Ödeme sağlayıcımız bir hata bildirdi. Lütfen tekrar deneyin ya da sorun tekrar ediyorsa bizimle iletişime geçin.",
+                    "subscribed": "Aboneliğiniz işlenemedi. Stripe aşağıdaki ipucunu bıraktı."
+                },
+                "fields": {
+                    "active_since": "Tarihinden beri aktif",
+                    "active_until": "Tarihine kadar aktif",
+                    "billing": "Faturalandırma",
+                    "currency": "Faturalandırma Kuru",
+                    "payment_method": "Ödeme yöntemi",
+                    "plan": "Mevcut plan",
+                    "reason": "Sebep"
+                }
+            }
+        },
         "conversations": {
             "create": {
                 "description": "Yeni bir muhabbet yarat",

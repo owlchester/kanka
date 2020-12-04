@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\CampaignLocalization;
 use App\Http\Requests\ApplyAttributeTemplate;
 use App\Models\AttributeTemplate;
 use App\Models\Character;
@@ -130,11 +131,9 @@ class AttributeController extends CrudAttributeController
         $route = 'entities.attributes';
         $parentRoute = $entity->pluralType();
         $ajax = request()->ajax();
-        $communityTemplates = [];
-        foreach (config('attribute-templates.templates') as $code => $class) {
-            $template = new $class;
-            $communityTemplates[$code] = $template->name();
-        }
+        $campaign = CampaignLocalization::getCampaign();
+        $communityTemplates = $this->attributeService->templates($campaign);
+
 
         return view('cruds.attributes.' . ($ajax ? '_' : null) . 'template', compact(
             'communityTemplates',

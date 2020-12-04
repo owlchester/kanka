@@ -93,7 +93,7 @@ TEXT
         'question'  => 'Mogu li postaviti ugniježđene popise kao zadane?',
     ],
     'organise_play'         => [
-        'answer'    => 'U partnerstvu smo s :lfgm koji omogućuje organiziranje sesija sa svojom grupom. Možeš sinkronizirati Kanka kampanju sa svojom LGFM kampanjom da bi svoju sljedeću dostupnost pokazali izravno na nadzornoj ploči kampanje.',
+        'answer'    => 'U partnerstvu smo s :lfgm koji omogućuje organiziranje sesija sa svojom grupom. Možeš sinkronizirati Kanka kampanju sa svojom LGFM kampanjom da bi svoju sljedeću dostupnost pokazali izravno na naslovnoj ploči kampanje.',
         'question'  => 'Kako mogu upravljati kada vodim seanse?',
     ],
     'permissions'           => [

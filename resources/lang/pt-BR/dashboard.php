@@ -13,6 +13,44 @@ return [
             'users'     => ':count Usuários',
         ],
     ],
+    'dashboards'        => [
+        'actions'       => [
+            'edit'      => 'Editar',
+            'new'       => 'Novo dashboard',
+            'switch'    => 'Trocar para dashboard',
+        ],
+        'boosted'       => ':bossted_campaigns podem criar dashboards customizados para cada cargo presente na campanha',
+        'create'        => [
+            'success'   => 'Novo dashboard :name criado',
+            'title'     => 'Novo dashboard de campanha',
+        ],
+        'custom'        => [
+            'text'  => 'Atualmente, você está editando o dashboard :name da campanha',
+        ],
+        'default'       => [
+            'text'  => 'Atualmente, você está editando o dashboard padrão da campanha',
+            'title' => 'Dashboard padrão',
+        ],
+        'delete'        => [
+            'success'   => 'Dashboard :name removido',
+        ],
+        'fields'        => [
+            'name'          => 'Nome do Dashboard',
+            'visibility'    => 'Visibilidade',
+        ],
+        'placeholders'  => [
+            'name'  => 'Nome do Dashboard',
+        ],
+        'update'        => [
+            'success'   => 'Dashboard :name da campanha atualizado',
+            'title'     => 'Atualizar dashboard :name da campanha',
+        ],
+        'visibility'    => [
+            'default'   => 'Padrão',
+            'none'      => 'Nenhum',
+            'visible'   => 'Visível',
+        ],
+    ],
     'description'       => 'O lar de sua criatividade',
     'helpers'           => [
         'follow'    => 'Seguir uma campanha fará com que ela apareça no seletor de campanha (canto superior esquerdo) abaixo de suas campanhas.',
@@ -51,6 +89,8 @@ return [
         'title'     => 'Configuração do dashboard da campanha',
         'widgets'   => [
             'calendar'      => 'Calendário',
+            'campaign'      => 'Cabeçalho da campanha',
+            'header'        => 'Cabeçalho',
             'preview'       => 'Preview da entidade',
             'random'        => 'Entidade aleatória',
             'recent'        => 'Modificado recentemente',
@@ -68,6 +108,9 @@ return [
             'previous_events'   => 'Anterior',
             'upcoming_events'   => 'Próximo',
         ],
+        'campaign'      => [
+            'helper'    => 'Este widget mostra o cabeçalho da campanha. Este widget é sempre mostrado no painel padrão.',
+        ],
         'create'        => [
             'success'   => 'Widget adicionado ao dashboard',
         ],
@@ -75,6 +118,8 @@ return [
             'success'   => 'Widget removido so dashboard',
         ],
         'fields'        => [
+            'name'  => 'Nome do widget personalizado',
+            'text'  => 'Texto',
             'width' => 'Largura',
         ],
         'recent'        => [

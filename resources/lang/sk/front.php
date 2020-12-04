@@ -72,6 +72,7 @@ return [
             'beta'                  => 'Beta prístup na nové funkcionality 30 dní pred oficiálnym spustením.',
             'boosted'               => 'Boostovaná kampaň',
             'css'                   => 'Vlastné CSS tvojej kampane',
+            'dashboards'            => 'Nastaviť vlastné nástenky pre role v kampani',
             'description'           => 'Niektoré formy predplatného dávajú užívateľom možnosť boostnuť kampane. Tieto následne získajú tieto výhody.',
             'entity_files'          => 'Navýšený max. počet nahraných súborov v objekte (5 namiesto 3)',
             'header_image'          => 'Obrázok záhlavia objektu',
@@ -160,6 +161,15 @@ return [
         'rpg'               => [
             'description'   => 'Pomáhame ti spravovať tvoju kampaň - od systému oprávnení pre úlohy, denníky, postavy, schopnosti, s vloženým audiom a videom až po TPK.',
             'title'         => 'Správa RPG kampane',
+        ],
+        'superboosts'       => [
+            'boosted'       => 'Superboostnutie',
+            'description'   => 'Za použitie troch boostrov na jednu kampaň sa táto stane Superboostovaná, čím sa odomknú tieto funkcionality.',
+            'files'         => 'Až 10 súborov môže byť pridaných jednému objektu',
+            'gallery'       => 'Galéria obrázkov kampane a jej integrácia v rámci textového editora Summernote',
+            'logs'          => 'Plnohodnotné logy zmien v objektoch (30 dní dozadu)',
+            'stats'         => 'Stránka s Úspechmi v kampani',
+            'title'         => 'Superboostnutá kampaň',
         ],
         'timelines'         => [
             'description'   => 'Vizuálne zobrazujú časové osy tvojho sveta, krajín, šľachtických rodov alebo hoci aj jednotlivých postáv.',

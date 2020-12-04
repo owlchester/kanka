@@ -4,6 +4,8 @@
 namespace App\Models;
 
 
+use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -11,11 +13,13 @@ use Illuminate\Database\Eloquent\Model;
  * @package App\Models
  *
  * @property int $id
+ * @property string $uuid
  * @property int $type_id
  * @property int $status_id
  * @property string $name
  *
  * @property PluginVersion[] $versions
+ * @property User $user
  */
 class Plugin extends Model
 {
@@ -48,4 +52,29 @@ class Plugin extends Model
     {
         return $this->hasMany(PluginVersion::class);
     }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    /**
+     * @return string
+     */
+    public function author(): string
+    {
+        if (!empty($this->user)) {
+            if (!empty($this->user->settings['marketplace_name'])) {
+                return e($this->user->settings['marketplace_name']);
+            }
+            return e($this->user->name);
+        }
+
+        return __('crud.users.unknown');
+    }
+
 }

@@ -12,6 +12,7 @@ return [
         'hall_of_fame'      => 'Onur Listesi',
         'map_size'          => ':size Harita boyutu yüklemeler',
         'nice_image'        => 'Varsayılan varlık görselleri',
+        'no_ads'            => 'Reklam yok',
         'pagination'        => ':amount Maksimum sayfalandırılmış sonuç (sayfa başına gösterilen varlık)',
         'vote_influence'    => 'Topluluk oyu etkisi',
     ],

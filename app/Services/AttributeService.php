@@ -4,7 +4,10 @@ namespace App\Services;
 
 use App\Models\Attribute;
 use App\Models\AttributeTemplate;
+use App\Models\Campaign;
+use App\Models\CampaignPlugin;
 use App\Models\Entity;
+use App\Models\Plugin;
 use ChrisKonnertz\StringCalc\StringCalc;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -142,7 +145,6 @@ class AttributeService
             $template->apply($entity);
             return $template->name;
         } elseif ($communityTemplate) {
-            // Oh uh
             $templates = config('attribute-templates.templates');
             if (Arr::exists($templates, $communityTemplate)) {
                 /** @var Template $template */
@@ -206,8 +208,10 @@ class AttributeService
                 return $template->name();
             }
 
-            return false;
+            // We might be getting a plugin
+            return $this->applyMarketplaceTemplate((int) $communityTemplate, $entity);
         }
+        return false;
     }
 
     /**
@@ -329,5 +333,115 @@ class AttributeService
             $order = $template->apply($entity, $order);
         }
         return $order;
+    }
+
+    public function templates(Campaign $campaign): array
+    {
+        $templates = [];
+
+        foreach (config('attribute-templates.templates') as $code => $class) {
+            $template = new $class;
+            $templates[$code] = $template->name();
+        }
+        // Get templates from the plugins
+        if ($campaign->boosted()) {
+            foreach(CampaignPlugin::templates($campaign)->get() as $plugin) {
+                $templates[$plugin->plugin->uuid] = __('campaigns/plugins.templates.name', [
+                    'name' => $plugin->name,
+                    'user' => $plugin->plugin->author()
+                ]);
+            }
+        }
+
+        return $templates;
+    }
+
+    /**
+     * @param int $id
+     * @param Entity $entity
+     * @return false|\Illuminate\Database\Eloquent\HigherOrderBuilderProxy|mixed
+     */
+    public function applyMarketplaceTemplate(int $id, Entity $entity)
+    {
+        $campaign = $entity->campaign;
+        if (!$campaign->boosted()) {
+            return false;
+        }
+
+        $plugin = CampaignPlugin::templates($campaign)
+            ->select('campaign_plugins.*')
+            //->leftJoin('plugins as p', 'p.id', 'plugin_id')
+            ->where('p.uuid', $id)
+            ->first();
+        if (empty($plugin)) {
+            return false;
+        }
+
+        $order = $entity->attributes()->count();
+        $existing = array_values($entity->attributes()->pluck('name')->toArray());
+        foreach ($plugin->version->attributes as $attribute) {
+            // If the config is simply a name, we default to a small varchar
+            if (!is_array($attribute)) {
+                continue;
+            }
+
+            // Don't re-create existing attributes.
+            $name = Arr::get($attribute, 'name', 'unknown');
+            if (in_array($name, $existing)) {
+                continue;
+            }
+
+            $type = Arr::get($attribute, 'type', null);
+            $value = Arr::get($attribute, 'value', '');
+
+            $order++;
+
+            Attribute::create([
+                'entity_id' => $entity->id,
+                'name' => $name,
+                'value' => $value,
+                'default_order' => $order,
+                'is_private' => false,
+                'type' => $type != 'attribute' ? $type : '',
+                'is_star' => false
+            ]);
+        }
+
+        // Layout attribute for rendering
+        $layout = '_layout';
+        if (!in_array($layout, $existing)) {
+            $order++;
+
+            Attribute::create([
+                'entity_id' => $entity->id,
+                'name' => '_layout',
+                'value' => $plugin->version->uuid,
+                'default_order' => $order,
+                'is_private' => false,
+                'is_star' => false,
+                'type' => null,
+            ]);
+        }
+
+        return $plugin->plugin->name;
+    }
+
+    public function marketplaceTemplate($uuid, Campaign $campaign)
+    {
+        if (!$campaign->boosted()) {
+            return null;
+        }
+
+        if (!Str::isUuid($uuid)) {
+            return null;
+        }
+
+        $plugin = CampaignPlugin::templates($campaign)
+            ->select('campaign_plugins.*')
+            ->leftJoin('plugin_versions as pv', 'pv.plugin_id', 'campaign_plugins.plugin_id')
+            ->where('pv.uuid', $uuid)
+            ->first();
+
+        return $plugin;
     }
 }

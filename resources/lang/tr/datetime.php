@@ -14,4 +14,7 @@ return [
     'second'        => 'saniye',
     'seconds'       => 'saniye',
     'week'          => 'hafta',
+    'weeks'         => 'hafta',
+    'year'          => 'yıl',
+    'years'         => 'yıl',
 ];

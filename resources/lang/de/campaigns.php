@@ -34,6 +34,7 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'Du hast keinen Zugang zu dieser Kampagne.',
+        'superboosted'  => 'Diese Funktion ist nur für Kampagnen mit Superboost verfügbar.',
         'unknown_id'    => 'Unbekannte Kampagne.',
     ],
     'export'                            => [
@@ -188,7 +189,7 @@ TEXT
         ],
         'roles'                 => [
             'member'    => 'Mitglied',
-            'owner'     => 'Besitzer',
+            'owner'     => 'Besitzer (privat Option sichtbar)',
             'player'    => 'Spieler',
             'public'    => 'Öffentlich',
             'viewer'    => 'Zuschauer',
@@ -328,6 +329,7 @@ TEXT
         ],
         'description'   => 'Eine detaillierte Ansicht der Kampagne',
         'tabs'          => [
+            'achievements'      => 'Erfolge',
             'default-images'    => 'Standardbilder',
             'export'            => 'Export',
             'information'       => 'Informationen',
@@ -339,6 +341,14 @@ TEXT
             'settings'          => 'Einstellungen',
         ],
         'title'         => 'Kampagne :name',
+    ],
+    'superboosted'                      => [
+        'gallery'   => [
+            'error' => [
+                'text'  => 'Das Hochladen von Bildern im Texteditor ist eine Funktion, die nur verfügbar ist für: Superboosted.',
+                'title' => 'Hochladen von Kampagnengalerie-Bildern',
+            ],
+        ],
     ],
     'ui'                                => [
         'helper'    => 'Verwenden Sie diese Einstellungen, um die Art und Weise zu ändern, in der einige Elemente in der Kampagne angezeigt werden.',

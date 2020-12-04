@@ -13,6 +13,44 @@ return [
             'users'     => ':count Users',
         ],
     ],
+    'dashboards'        => [
+        'actions'       => [
+            'edit'      => 'Editieren',
+            'new'       => 'neues Dashboard',
+            'switch'    => 'zum Dashboard wechseln',
+        ],
+        'boosted'       => ':boosted_campaigns kann benutzerdefinierte Dashboards für jede der Kampagnenrollen erstellen.',
+        'create'        => [
+            'success'   => 'Neues Kampagnen Dashboard :name erstellt',
+            'title'     => 'Neues Kampagnen Dashboard',
+        ],
+        'custom'        => [
+            'text'  => 'Sie bearbeiten derzeit das Dashboard :name der Kampagne.',
+        ],
+        'default'       => [
+            'text'  => 'Sie bearbeiten derzeit das Standard Dashboard der Kampagne.',
+            'title' => 'Standard Dashboard',
+        ],
+        'delete'        => [
+            'success'   => 'Dashboard :name entfernt',
+        ],
+        'fields'        => [
+            'name'          => 'Dashboard Name',
+            'visibility'    => 'Sichtbarkeit',
+        ],
+        'placeholders'  => [
+            'name'  => 'Name des Dashboards',
+        ],
+        'update'        => [
+            'success'   => 'Kampagnen Dashboard :name aktualisiert',
+            'title'     => 'Kampagnen Dashboard :name aktualisieren',
+        ],
+        'visibility'    => [
+            'default'   => 'Standard',
+            'none'      => 'keiner',
+            'visible'   => 'Sichtbar',
+        ],
+    ],
     'description'       => 'Das Zuhause deiner Kreativität',
     'helpers'           => [
         'follow'    => 'Wenn du einer Kampagne folgst, wird sie im Kampagnenwähler (oben rechts) unter deinen Kampagnen angezeigt.',
@@ -51,6 +89,8 @@ return [
         'title'     => 'Kampagnen Dashboard Einrichtung',
         'widgets'   => [
             'calendar'      => 'Kalender',
+            'campaign'      => 'Kampagnenüberschrift',
+            'header'        => 'Überschrift',
             'preview'       => 'Objekt Vorschau',
             'random'        => 'zufälliges Objekt',
             'recent'        => 'Kürzlich',
@@ -82,6 +122,9 @@ TEXT
             'previous_events'   => 'Vorige',
             'upcoming_events'   => 'Bevorstehende',
         ],
+        'campaign'      => [
+            'helper'    => 'Dieses Widget zeigte den Kampagnenkopf an. Dieses Widget wird immer im Standard-Dashboard angezeigt.',
+        ],
         'create'        => [
             'success'   => 'Widget zum Dashboard hinzugefügt.',
         ],
@@ -89,6 +132,8 @@ TEXT
             'success'   => 'Widget vom Dashboard entfernt.',
         ],
         'fields'        => [
+            'name'  => 'Benutzerdefinierter Widget-Name',
+            'text'  => 'Text',
             'width' => 'Breite',
         ],
         'recent'        => [

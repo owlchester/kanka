@@ -33,6 +33,7 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'Non tes acceso a esta campaña.',
+        'superboosted'  => 'Esta funcionalidade só está dispoñíbel para campañas superpotenciadas.',
         'unknown_id'    => 'Campaña descoñecida.',
     ],
     'export'                            => [
@@ -323,6 +324,7 @@ TEXT
         ],
         'description'   => 'Unha vista detallada da campaña',
         'tabs'          => [
+            'achievements'      => 'Logros',
             'default-images'    => 'Imaxes por defecto',
             'export'            => 'Exportar',
             'information'       => 'Información',
@@ -334,6 +336,14 @@ TEXT
             'settings'          => 'Módulos',
         ],
         'title'         => 'Campaña :name',
+    ],
+    'superboosted'                      => [
+        'gallery'   => [
+            'error' => [
+                'text'  => 'Subir imaxes no editor de texto só é posíbel para :superboosted.',
+                'title' => 'Subida de imaxes á galería de campaña',
+            ],
+        ],
     ],
     'ui'                                => [
         'helper'    => 'Usa estas opcións para cambiar a maneira na que algúns elementos son mostrados na campaña.',
