@@ -201,7 +201,9 @@ abstract class MiscModel extends Model
         if (empty($this->$field)) {
             return $this->getImageFallback($width);
         }
-        return Img::crop($width, (!empty($height) ? $height : $width))->url($this->$field);
+        return Img::resetCrop()
+            ->crop($width, (!empty($height) ? $height : $width))
+            ->url($this->$field);
     }
 
     /**
