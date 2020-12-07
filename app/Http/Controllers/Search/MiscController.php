@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Search;
 
 use App\Http\Controllers\Controller;
+use App\Models\Character;
 use App\Models\Entity;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -39,8 +40,46 @@ class MiscController extends Controller
      */
     public function characters(Request $request)
     {
+        if ($request->has('with_family')) {
+            return $this->familyCharacters($request);
+        }
         $term = trim($request->q);
         return $this->buildSearchResults($term, \App\Models\Character::class);
+    }
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    protected function familyCharacters(Request $request)
+    {
+        $term = trim($request->q);
+
+        /** @var Builder $modelClass */
+        $modelClass = new Character();
+        if (empty($term)) {
+            $models = $modelClass
+                ->with('family')
+                ->limit(10)
+                ->orderBy('updated_at', 'DESC')
+                ->get();
+        } else {
+            $models = $modelClass
+                ->with('family')
+                ->where('name', 'like', "%$term%")
+                ->limit(10)
+                ->get();
+        }
+        $formatted = [];
+
+        foreach ($models as $model) {
+            $format = [
+                'id' => $model->id,
+                'text' => $model->name . (!empty($model->family) ? ' (' . $model->family->name . ')' : null)
+            ];
+            $formatted[] = $format;
+        }
+
+        return Response::json($formatted);
     }
 
     /**
