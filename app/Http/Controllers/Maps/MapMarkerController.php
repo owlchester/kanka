@@ -70,6 +70,11 @@ class MapMarkerController extends Controller
         $data['map_id'] = $map->id;
         $new = $model->create($data);
 
+        if ($request->get('from') == 'explore') {
+            return redirect()
+                ->route('maps.explore', [$map]);
+        }
+
         return redirect()
             ->route('maps.edit', [$map, '#tab_form-markers'])
             ->withSuccess(__('maps/markers.create.success', ['name' => $new->name]));
