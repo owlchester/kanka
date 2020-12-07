@@ -153,6 +153,7 @@ class AbilityService
             'actions' => [
                 'edit' => route('entities.entity_abilities.update', [$this->entity, $entityAbility]),
                 'delete' => route('entities.entity_abilities.destroy', [$this->entity, $entityAbility]),
+                'view' => route('abilities.show', $entityAbility->ability_id),
             ],
         ];
 
