@@ -45,6 +45,8 @@ class StoreMapMarker extends FormRequest
 
             'icon' => 'required|integer',
             'custom_icon' => 'nullable|string',
+
+            'marker_size' => 'nullable|integer|min:10',
         ];
 
         // Updating through the API? Make it easier

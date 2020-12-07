@@ -30,6 +30,7 @@ class MapMarkerController extends Controller
         'type_id', 'size_id', 'icon', 'custom_icon', 'custom_shape', 'visibility',
         'is_draggable',
         'group_id',
+        'pin_size',
     ];
 
     /**

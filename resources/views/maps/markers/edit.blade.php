@@ -90,6 +90,22 @@
 @if ($model->entity && $model->icon == 4)
         .marker-{{ $model->id }} .marker-pin::after {
             background-image: url({{ $model->entity->child->getImageUrl(400) }});
+        @if(!empty($model->pin_size))
+            width: {{ $model->pinSize(false) - 4 }}px;
+            height: {{ $model->pinSize(false) - 4 }}px;
+            margin: 2px 0 0 -{{ ceil(($model->pinSize(false)-4)/2) }}px;
+        @endif
         }@endif
+
+@if(!empty($model->pin_size))
+    .marker-{{ $model->id }} .marker-pin {
+         width: {{ $model->pinSize() }};
+         height: {{ $model->pinSize() }};
+        margin: -{{ $model->pinSize(false) / 2 }}px 0 0 -{{ $model->pinSize(false) / 2 }}px;
+     }
+    .marker-{{ $model->id }} i {
+        font-size: {{ $model->pinSize(false) / 2 }}px;
+    }
+    @endif
     </style>
 @endsection

@@ -67,6 +67,12 @@ $sizeOptions = [
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <label>{{ __('maps/markers.fields.pin_size') }}</label><br />
+                    {!! Form::number('pin_size', null, ['class' => 'form-control', 'maxlength' => 3, 'step' => 2, 'max' => 100, 'min' => 10, 'placeholder' => 40] ) !!}
+                </div>
+            </div>
         </div>
         <div class="tab-pane @if(isset($model) && $model->shape_id == 2) active @endif" id="marker-label">
             <div class="form-group">

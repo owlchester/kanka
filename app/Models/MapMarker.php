@@ -34,6 +34,7 @@ use Illuminate\Support\Str;
  * @property float $opacity
  * @property string $visibility
  * @property int $group_id
+ * @property int $pin_size
  * @property MapGroup $group
  */
 class MapMarker extends Model
@@ -65,6 +66,7 @@ class MapMarker extends Model
         'latitude',
         'opacity',
         'group_id',
+        'pin_size',
     ];
 
     /** @var bool Editing the map */
@@ -322,14 +324,26 @@ class MapMarker extends Model
             $icon = '`' . $iconShape . '<i class="fa fa-exclamation"></i>`';
         }
 
+        //dd($this->pin_size ?: 40);
+        $size = $this->pinSize(false);
+
         return 'icon: L.divIcon({
                 html: ' . $icon . ',
-                iconSize: [40, 40],
-                iconAnchor: [20, 50],
-                popupAnchor: [0, -50],
+                iconSize: [' . $size . ', ' . $size . '],
+                iconAnchor: [' . ceil($size / 2) . ', ' . ($size + ceil($size / 4)) . '],
+                popupAnchor: [0, -' . ($size + ceil($size / 4)) . '],
                 className: \'marker marker-' . $this->id . '\'
         })';
+    }
 
+    /**
+     * @param bool $withPx
+     * @return string
+     */
+    public function pinSize(bool $withPx = true): string
+    {
+        $size = max(10, $this->pin_size ?: 40);
+        return (string) $size . ($withPx ? 'px' : null);
     }
 
     /**
