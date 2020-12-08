@@ -127,9 +127,7 @@ class SitemapService
             'features',
             'pricing',
             'roadmap',
-            'community',
             'public-campaigns',
-            'news',
         ];
 
         foreach ($base as $link) {
@@ -142,7 +140,6 @@ class SitemapService
     {
         $links = [];
         $links[] = route('front.sitemap', ['locale' => $this->locale, 'page' => 'index']);
-        $links[] = route('front.sitemap', ['locale' => $this->locale, 'page' => 'news']);
         $links[] = route('front.sitemap', ['locale' => $this->locale, 'page' => 'campaigns']);
         return $links;
     }
