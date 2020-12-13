@@ -96,8 +96,6 @@ class EntityNoteObserver
 
         $users = request()->post('perm_user', []);
         $perms = request()->post('perm_perm', []);
-        dump($users);
-        dump($perms);
 
         foreach ($users as $key => $user) {
             if ($user == '$USERID$') {
@@ -111,7 +109,7 @@ class EntityNoteObserver
                 $parsedUsers[] = $user;
             }
             elseif (!in_array($user, $parsedUsers)) {
-                $perm = EntityNotePermission::create([
+                EntityNotePermission::create([
                     'entity_note_id' => $entityNote->id,
                     'user_id' => $user,
                     'permission' => $perms[$key]
@@ -120,11 +118,9 @@ class EntityNoteObserver
             }
         }
 
-        dump($existing);
+        // Cleanup permissions that are no longer used
         foreach ($existing as $perm) {
             $perm->delete();
         }
-
-        //dd('?');
     }
 }
