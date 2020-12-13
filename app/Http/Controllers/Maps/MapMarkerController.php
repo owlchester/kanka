@@ -72,7 +72,7 @@ class MapMarkerController extends Controller
 
         if ($request->get('from') == 'explore') {
             return redirect()
-                ->route('maps.explore', [$map]);
+                ->route('maps.explore', [$map, 'focus' => $new->id]);
         }
 
         return redirect()
