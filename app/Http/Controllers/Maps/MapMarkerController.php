@@ -76,7 +76,7 @@ class MapMarkerController extends Controller
         }
 
         return redirect()
-            ->route('maps.edit', [$map, '#tab_form-markers'])
+            ->route('maps.edit', [$map, '#tab_form-markers', 'focus' => $new->id])
             ->withSuccess(__('maps/markers.create.success', ['name' => $new->name]));
 
     }
