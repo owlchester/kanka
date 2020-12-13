@@ -3,6 +3,7 @@
 return [
     'actions'       => [
         'add'   => 'New Entity Note',
+        'add_user' => 'Add user',
     ],
     'create'        => [
         'description'   => 'Create a new Entity Note',
@@ -31,5 +32,6 @@ return [
     ],
     'show'          => [
         'title' => 'Entity Note :name for :entity',
+        'advanced' => 'Advanced Permissions',
     ],
 ];

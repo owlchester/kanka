@@ -77481,6 +77481,7 @@ $(document).ready(function () {
   registerModalLoad();
   registerDatagridSorter();
   registerPermissionToggler();
+  registerEntityNotePerms();
 });
 /**
  * Re-register any events that need to be binded when a modal is loaded
@@ -78055,6 +78056,51 @@ function registerPermissionToggler() {
     } else {
       $(selector).prop("checked", false);
     }
+  });
+}
+/**
+ *
+ */
+
+
+function registerEntityNotePerms() {
+  var btn = $('#entity-note-perm-add');
+
+  if (btn.length === 0) {
+    return;
+  }
+
+  registerEntityNoteDeleteEvents();
+  var user = $('select[name="user"]');
+  var perm = $('select[name="permission"]');
+  btn.on('click', function (ev) {
+    ev.preventDefault();
+    console.log('user', user.val());
+
+    if (!user.val()) {
+      return false;
+    }
+
+    var username = $('select[name="user"]').find(':selected')[0];
+    console.log('username', username.text); // Add a block
+
+    var body = $('#entity-note-perm-template').clone().removeClass('hidden').removeAttr('id');
+    var html = body.html().replace(/\$USERID\$/g, user.val()).replace(/\$USERNAME\$/g, username.text);
+    body.html(html).insertBefore($('#entity-note-perm-target'));
+    $('#entity-note-new-user').modal('toggle');
+    registerEntityNoteDeleteEvents(); // Reset the value
+
+    user.val('').trigger('change');
+    return false;
+  });
+}
+
+function registerEntityNoteDeleteEvents() {
+  $.each($('.entity-note-delete-perm'), function () {
+    $(this).unbind('click');
+    $(this).on('click', function () {
+      $(this).parent().parent().parent().parent().remove();
+    });
   });
 }
 

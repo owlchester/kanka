@@ -155,7 +155,7 @@ class EntityNoteController extends Controller
      */
     public function edit(Entity $entity, EntityNote $entityNote)
     {
-        $this->authorize('entity-note', [$entity->child, 'edit']);
+        $this->authorize('entity-note', [$entity->child, 'edit', $entityNote]);
 
         $name = $entity->pluralType() . '.notes' . $this->view;
         $route = 'entities.' . $this->route;
@@ -182,7 +182,7 @@ class EntityNoteController extends Controller
      */
     public function update(StoreEntityNote $request, Entity $entity, EntityNote $entityNote)
     {
-        $this->authorize('entity-note', [$entity->child, 'edit']);
+        $this->authorize('entity-note', [$entity->child, 'edit', $entityNote]);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {

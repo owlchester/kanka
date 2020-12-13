@@ -1,4 +1,4 @@
-<?php $r = $model->entity->notes()->with(['creator', 'entity'])
+<?php $r = $model->entity->notes()->with(['creator', 'entity', 'permissions'])
         ->order(request()
         ->get('order'))
         ->paginate(); ?>
@@ -53,7 +53,7 @@
                 </td>
             @endif
             <td class="text-right">
-                @can('entity-note', [$model, 'edit'])
+                @can('entity-note', [$model, 'edit', $note])
                     <a href="{{ route('entities.entity_notes.edit', ['entity' => $model->entity, 'entity_note' => $note]) }}" class="btn btn-xs btn-primary" title="{{ __('crud.edit') }}">
                         <i class="fa fa-edit"></i>
                     </a>

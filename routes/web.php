@@ -213,6 +213,9 @@ Route::group([
         // Stats
         Route::get('/stats', 'Campaign\StatController@index')->name('stats');
 
+        // User search
+        Route::get('/users/search', 'CampaignUserController@search')->name('users.find');
+
 
         Route::get('/default-images', 'Campaign\DefaultImageController@index')->name('campaign.default-images');
         Route::get('/default-images/create', 'Campaign\DefaultImageController@create')->name('campaign.default-images.create');
