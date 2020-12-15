@@ -172,6 +172,7 @@ return [
             . "snazzymaps.com/embed|"
             . "lookingforgm\.com/campaign/|"
             . "w.soundcloud.com/player/|"
+            . "www\.dndbeyond\.com/|"
             . "p3d\.in/e/"
             . ")%",
     ],
