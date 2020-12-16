@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Facades\CampaignLocalization;
 use App\Models\CampaignUser;
 use App\Http\Requests\StoreCampaignUser;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -42,5 +43,33 @@ class CampaignUserController extends Controller
 
         $campaignUser->delete();
         return redirect()->route('campaign_users.index');
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function search(Request $request)
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('members', $campaign);
+
+        $term = $request->get('q', null);
+        if (empty($term)) {
+            $members = $campaign->users()->orderBy('name', 'asc')->limit(5)->get();
+        } else {
+            $members = $campaign->users()->where('name', 'like', '%' . $term . '%')->limit(5)->get();
+        }
+
+        $results = [];
+        foreach ($members as $member) {
+            $results[] = [
+                'id' => $member->id,
+                'text' => $member->name
+            ];
+        }
+
+        return response()->json($results);
     }
 }

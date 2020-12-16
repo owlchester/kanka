@@ -20,6 +20,7 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ mix('css/freyja.css') }}" rel="stylesheet">
     <link href="{{ mix('css/map-v3.css') }}" rel="stylesheet">
+    <link href="/vendor/spectrum/spectrum.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
           integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
           crossorigin=""/>
@@ -110,6 +111,7 @@
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
 <script src="/js/vendor/leaflet/leaflet-polyline-measure.js"></script>
+<script src="/vendor/spectrum/spectrum.js" defer></script>
 
 <script src="{{ mix('js/location/map-v3.js') }}" defer></script>
 @yield('scripts')

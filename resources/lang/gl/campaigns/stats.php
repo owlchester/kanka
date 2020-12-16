@@ -8,7 +8,7 @@ return [
         ],
         'murderer'  => [
             'goal'  => 'Personaxes mortas',
-            'title' => 'Asasin@',
+            'title' => 'Homicida',
         ],
     ],
     'helper'        => 'Segue o teu progreso cara desbloquear varios logros na túa campaña. Estes números son actualizados cada 24 horas.',
@@ -25,10 +25,10 @@ return [
     'titles'        => [
         'calendars' => 'Gardatempo nivel :level',
         'characters'=> 'Dante de nomes nivel :level',
-        'dead'      => 'Asasin@ nivel :level',
-        'families'  => 'Planificador/a familiar nivel :level',
-        'locations' => 'Construtor/a nivel :level',
+        'dead'      => 'Homicida nivel :level',
+        'families'  => 'Planificación familiar nivel :level',
+        'locations' => 'Construción nivel :level',
         'quests'    => 'Cerebro nivel :level',
-        'races'     => 'Criador/a nivel :level',
+        'races'     => 'Procreación nivel :level',
     ],
 ];

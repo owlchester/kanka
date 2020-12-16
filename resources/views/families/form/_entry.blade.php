@@ -13,6 +13,20 @@
             ) !!}
         </div>
         @include('cruds.fields.location')
+
+        @if ($campaign->enabled('characters'))
+            <input type="hidden" name="sync_family_members" value="1">
+            <div class="form-group">
+                {!! Form::familyMembers(
+                    'id',
+                    [
+                        'model' => isset($model) ? $model : FormCopy::model(),
+                        'source' => $source
+                    ]
+                ) !!}
+            </div>
+        @endif
+
         @include('cruds.fields.tags')
 
         @include('cruds.fields.private')
@@ -22,3 +36,8 @@
         @include('cruds.fields.image')
     </div>
 </div>
+
+@section('scripts')
+    @parent
+    <script src="{{ mix('js/organisation.js') }}" defer></script>
+@endsection

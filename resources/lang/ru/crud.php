@@ -243,14 +243,14 @@ return [
     ],
     'history'                   => [
         'created'       => 'Создано <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'created_date'  => 'Создано <span data-toggle="tooltip" title=":realdate">:date</span>.',
+        'created_date'  => 'Создано <span data-toggle="tooltip" title=":realdate">:date</span>',
         'unknown'       => 'Неизвестно',
         'updated'       => 'Изменено <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>.',
         'updated_date'  => 'Изменено <span data-toggle="tooltip" title=":realdate">:date</span>.',
         'view'          => 'Показать историю объекта',
     ],
     'image'                     => [
-        'error' => 'Нам не удалось получить запрошенное изображение. Возможно, сайт не позволяет нам скачать изображение (такое случается с Squarespace и DeviantArt) или эта ссылка уже не действительна. Пожалуйста, убедитесь также, что изображение не превышает :size.',
+        'error' => 'Нам не удалось получить данное изображение. Возможно, сайт не позволяет нам скачать изображение (такое случается с Squarespace и DeviantArt) или эта ссылка уже не действительна. Пожалуйста, убедитесь также, что изображение не превышает :size.',
     ],
     'is_not_private'            => 'В данный момент этот объект открыт',
     'is_private'                => 'Этот объект скрыт и виден только участникам роли "Админ"',

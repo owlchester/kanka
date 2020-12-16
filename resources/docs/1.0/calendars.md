@@ -79,7 +79,7 @@ You can get a list of all the calendars of a campaign by using the following end
                   "name": "Summer",
                   "month": 4,
                   "day": 1
-              },
+              }
             ],
             "moons": [
               {
@@ -93,7 +93,7 @@ You can get a list of all the calendars of a campaign by using the following end
                   "fullmoon": "17",
                   "offset": 0,
                   "colour": "brown"
-              },
+              }
             ],
             "suffix": "BC",
             "has_leap_year": true,
@@ -188,7 +188,7 @@ To get the details of a single calendar, use the following endpoint.
               "name": "Summer",
               "month": 4,
               "day": 1
-          },
+          }
         ],
         "moons": [
           {
@@ -202,7 +202,7 @@ To get the details of a single calendar, use the following endpoint.
               "fullmoon": "17",
               "offset": 0,
               "colour": "brown"
-          },
+          }
         ],
         "suffix": "BC",
         "has_leap_year": true,

@@ -55,4 +55,91 @@ TEXT
         'order'     => 'Orde',
         'question'  => 'Pregunta',
     ],
+    'free'                  => [
+        'answer'    => <<<'TEXT'
+Si! Cremos firmemente que a túa situación económica non debería afectar ao teu disfrute dos xogos de rol ou da creación de mundos, así que sempre manteremos a parte principal da aplicación gratuita. Non obstante, se queres tomar un rol máis activo nesta viaxe, apóianos e vota nas funcionalidades que son máis relevantes para ti, o cal podes facer mediante unha subscripción.
+
+Ademais de votar na dirección que toma Kanka, apoiarnos permitirache acceder a :boosters, aumentar o tamaño máximo dos arquivos subidos, engadir o teu nome ao salón da fama, ter mellores iconas, e moito máis!
+TEXT
+,
+        'question'  => 'Seguirá a aplicación sendo de balde?',
+    ],
+    'gods-and-religions'    => [
+        'answer'    => 'Recomendamos crear os deuses como Personaxes, e crear as relixións como Organizacións. Se queres atopar rapidamente as túas deidades, recomendamos etiquetalas cunha Etiqueta apropiada.',
+        'question'  => 'Onde crear deuses e relixións?',
+    ],
+    'help'                  => [
+        'answer'    => 'En primeiro lugar, grazas por querer axudar! Sempre estamos interesadas en xente que poida axudar coas traducións, probar novas funcionalidades, ou que poidan axudar a novas usuarias. Tamén nos encanta que a xente promocione Kanka para chegar a usuarias en lugares nos que nunca pensáramos. O mellor que podes facer é unirte a nós no :discord, onde hai unha canle dedicada a axudar.',
+        'question'  => 'Como podo axudar?',
+    ],
+    'map'                   => [
+        'answer'    => 'O módulo Mapas soporta imaxes PNG, JPG, e SVG. Estes mapas poden ter capas, grupos, e punteiros de varias formas e tamaños que ligan con outras entidades da campaña.',
+        'question'  => 'Podo subir mapas a Kanka?',
+    ],
+    'mobile'                => [
+        'answer'    => 'Actualmente non hai aplicación móbil de Kanka, pero a maioría da web funciona perfectamente nun dispositivo móbil. Esperamos que o apoio a través de subscricións nos permita crear unha aplicación móbil algún día, pero non é algo esperado no futuro próximo.',
+        'question'  => 'Hai unha aplicación móbil? Hai unha planexada?',
+    ],
+    'monsters'              => [
+        'answer'    => 'Recomendamos usar o módulo Razas para pobos, especies, monstros, e calquera ser vivo que non sexa unha personaxe.',
+        'question'  => 'Onde crear monstros?',
+    ],
+    'multiworld'            => [
+        'answer'    => 'Podes ser parte de tantas campañas como queiras, incluíndo as creadas por ti. Para crear ou cambiar a outra campaña, vai ao taboleiro e arriba á dereita podes facer clic na túa campaña actual para mostrar a interface de cambio de campaña.',
+        'question'  => 'Podo ter máis dunha campaña?',
+    ],
+    'nested'                => [
+        'answer'    => 'Se prefires ver as túas entidades na forma de árbore por defecto, podes facelo dende o teu Perfil, nas opcións de Deseño. Aí podes marcar a opción de Vista en árbore. Isto afecta á túa conta, non ás túas campañas.',
+        'question'  => 'Podo configurar as listas para que aparezan en forma de árbore por defecto?',
+    ],
+    'organise_play'         => [
+        'answer'    => 'Estamos asociadas con :lfgm, que che permite organizar as túas sesións co teu grupo. Podes sincronizar os datos da túa campaña de Kanka coa túa campaña de LFGM para mostrar as túas próximas dispoñibilidades directamente no taboleiro da campaña.',
+        'question'  => 'Como podo administrar cando fago as miñas sesións?',
+    ],
+    'permissions'           => [
+        'answer'    => 'Por suposto, é por iso que creamos Kanka! Podes invitar todas as túas xogadoras ás túas campañas e darlles roles e permisos. Construimos o sistema para ser extremadamente flexible (podes usar opcións de inclusión e de exclusión) para cubrir as máximas necesidades e situacións posíbeis.',
+        'question'  => 'Podo limitar a información que as miñas xogadoras ven na miña campaña?',
+    ],
+    'plans'                 => [
+        'answer'    => <<<'TEXT'
+O plan a longo prazo para Kanka é crearmos unha ferramenta de creación de mundos e administración de campañas versátil que non sexa dependente dun sistema de xogo de rol en concreto, con contido administrado pola comunidade na forma de "Padróns da comunidade". Outro obxetivo noso é crearmos ferramentas que sexa integrables con outras plataformas como aplicacións de taboleiros virtuais.
+
+Usamos Kanka nós mesmas, así que non temos plans de deixar de desenvolvela e de mellorala. Por se acaso, o proxecto tamén é de código aberto e pode ser retomado pola comunidade se algo nos pasara nalgún momento.
+TEXT
+,
+        'question'  => 'Cales son os plans a longo prazo?',
+    ],
+    'public-campaigns'      => [
+        'answer'    => 'Podes explorar a páxina :public-campaigns para ver como outras persoas usan Kanka para as súas campañas.',
+        'question'  => 'Como usan Kanka outras persoas?',
+    ],
+    'renaming-modules'      => [
+        'answer'    => 'Por defecto, Kanka non deixa que cambios o nome dos módulos. Isto é debido á corrección gramática e á experiencia das usuarias con linguas que teñen palabras con xénero. Aínda así, unha campaña potenciada pode cambiar o nome dos módulos na barra lateral usando CSS personalizado.',
+        'question'  => 'Podo renomear módulos? Por exemplo Familias a Clans, ou Organizacións a Faccións?',
+    ],
+    'sections'              => [
+        'community'     => 'Comunidade',
+        'general'       => 'Xeral',
+        'other'         => 'Miscelánea',
+        'permissions'   => 'Permisos',
+        'pricing'       => 'Prezos',
+        'worldbuilding' => 'Creación de mundos',
+    ],
+    'show'                  => [
+        'return'    => 'Voltar a Preguntas Frecuentes',
+        'timestamp' => 'Actualizado por última vez en :date',
+        'title'     => 'Preguntas Frecuentes :name',
+    ],
+    'unboost'               => [
+        'answer'    => 'Quitar a potenciación dunha campaña non elimina ningún dato, simplemente oculta a información e funcionalidades correspondentes á potenciación. Se voltares potenciala, a información e funcionalidades estarán dispoñíbeis de novo na mesma forma na que estaban antes de que quitases a potenciación da campaña.',
+        'question'  => 'Que pasa se unha campaña deixa de estar potenciada?',
+    ],
+    'user-switch'           => [
+        'answer'    => 'Os permisos poden ser complicados, especialmente en campañas grandes. Como administradora da campaña, podes ir á páxina de membras da campaña e facer clic no botón "Ver como" que aparecerá xunto a cada membra non administradora. Facer isto permitirache ver a campaña da mesma forma que a vería a usuaria seleccionada. Esta é a forma máis fácil de comprobar os permisos da túa campaña.',
+        'question'  => 'Os permisos da miña campaña están configurados, como podo comprobalos?',
+    ],
+    'visibility'            => [
+        'answer'    => 'Só a xente que ti invites á campaña pode ver e interactuar co que creases. Os teus datos son privados e sempre no teu control. Tamén podes configurar a túa campaña como pública para que usuarias non rexistradas poidan vela.',
+        'question'  => 'Pode ver o meu mundo calquera persoa?',
+    ],
 ];

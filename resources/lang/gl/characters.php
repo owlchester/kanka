@@ -20,7 +20,7 @@ return [
     ],
     'dice_rolls'    => [
         'description'   => 'Tiradas de dados asignadas á personaxe.',
-        'hint'          => 'Pódense asignar tiradas de dadod a unha personaxe para usalas no xogo.',
+        'hint'          => 'Pódense asignar tiradas de dados a unha personaxe para usalas no xogo.',
         'title'         => 'Tiradas de dados de :name',
     ],
     'edit'          => [
@@ -50,17 +50,17 @@ return [
     ],
     'hints'         => [
         'is_dead'                   => 'Esta personaxe está morta',
-        'is_personality_visible'    => 'Desmarca esta opción para ocultar toda a sección de personalidade aos usuarios non administradores.',
-        'personality_not_visible'   => 'Os trazos de personalidade desta personaxe actualmente só son visíbeis para usuarios administradores.',
-        'personality_visible'       => 'Os trazos de personalidade desta personaxe son visíbeis para tódolos usuarios.',
+        'is_personality_visible'    => 'Desmarca esta opción para que a sección de personalidade só sexa visíbel para a administración da campaña.',
+        'personality_not_visible'   => 'Os trazos de personalidade desta personaxe actualmente só son visíbeis para a administración da campaña.',
+        'personality_visible'       => 'Os trazos de personalidade desta personaxe son visíbeis para todo o mundo.',
     ],
     'index'         => [
         'actions'       => [
             'random'    => 'Nova personaxe aleatoria',
         ],
         'add'           => 'Nova personaxe',
-        'description'   => 'Administra as personaxes de :name',
-        'header'        => 'Personaxes de :name',
+        'description'   => 'Administra as personaxes de ":name"',
+        'header'        => 'Personaxes de ":name"',
         'title'         => 'Personaxes',
     ],
     'items'         => [
@@ -69,7 +69,7 @@ return [
         'title'         => 'Obxetos de :name',
     ],
     'journals'      => [
-        'description'   => 'Cadernos dos que a personaxe é autora.',
+        'description'   => 'Cadernos da autoría desta personaxe.',
         'title'         => 'Cadernos de :name',
     ],
     'maps'          => [
@@ -87,11 +87,11 @@ return [
         ],
         'description'   => 'Organizacións das que a personaxe é parte.',
         'destroy'       => [
-            'success'   => 'Organización do personaxe eliminada.',
+            'success'   => 'Organización da personaxe eliminada.',
         ],
         'edit'          => [
             'description'   => 'Actualiza a organización dunha personaxe',
-            'success'       => 'Organización da personaxes actualizada.',
+            'success'       => 'Organización da personaxe actualizada.',
             'title'         => 'Actualizar a organización de :name',
         ],
         'fields'        => [
@@ -106,9 +106,9 @@ return [
     ],
     'placeholders'  => [
         'age'               => 'Idade',
-        'appearance_entry'  => 'Descripción',
+        'appearance_entry'  => 'Descrición',
         'appearance_name'   => 'Cabelo, ollos, pel, altura...',
-        'family'            => 'Seleccione unha personaxe',
+        'family'            => 'Selecciona unha personaxe',
         'image'             => 'Imaxe',
         'location'          => 'Selecciona un lugar',
         'name'              => 'Nome',
@@ -119,13 +119,13 @@ return [
         'sex'               => 'Xénero',
         'title'             => 'Título',
         'traits'            => 'Trazos de personalidade',
-        'type'              => 'PNX, Personaxe xogadora, deidade...',
+        'type'              => 'PNX, Personaxe Xogadora, deidade...',
     ],
     'quests'        => [
         'description'   => 'Misións das que é parte a personaxe.',
         'helpers'       => [
             'quest_giver'   => 'Misións que promoveu a personaxe.',
-            'quest_member'  => 'Misións das que é membra a personaxe.',
+            'quest_member'  => 'Misións nas que participa a personaxe.',
         ],
         'title'         => 'Misións de :name',
     ],
@@ -146,7 +146,7 @@ return [
             'personality'   => 'Personalidade',
             'quests'        => 'Misións',
         ],
-        'title'         => 'Personaxe :name',
+        'title'         => 'Personaxe ":name"',
     ],
     'warnings'      => [
         'personality_hidden'    => 'Non tes permiso para editar os trazos de presonalidade desta personaxe.',

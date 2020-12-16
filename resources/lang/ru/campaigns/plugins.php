@@ -38,11 +38,14 @@ return [
         'disabled'  => 'Отключен',
         'enabled'   => 'Включен',
     ],
+    'templates'     => [
+        'name'  => ':name от :user',
+    ],
     'title'         => 'Плагины кампании :name',
     'types'         => [
-        'attributes'    => 'Шаблон атрибутов',
-        'pack'          => 'Пакет содержимого',
-        'theme'         => 'Тема',
+        'attribute' => 'Шаблон атрибутов',
+        'pack'      => 'Пакет содержимого',
+        'theme'     => 'Тема',
     ],
     'update'        => [
         'success'   => 'Плагин ":plugin" обновлен',

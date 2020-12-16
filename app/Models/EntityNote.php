@@ -5,8 +5,8 @@ namespace App\Models;
 use App\Facades\Mentions;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
+use App\Traits\EntityNoteVisibilityTrait;
 use App\Traits\OrderableTrait;
-use App\Traits\VisibilityTrait;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
 
@@ -22,6 +22,7 @@ use DateTime;
  * @property integer $created_by
  * @property boolean $is_private
  * @property EntityMention[] $mentions
+ * @property EntityNotePermission[] $permissions
  */
 class EntityNote extends Model
 {
@@ -52,7 +53,7 @@ class EntityNote extends Model
     /**
      * Traits
      */
-    use VisibilityTrait, OrderableTrait, Paginatable, Blameable;
+    use EntityNoteVisibilityTrait, OrderableTrait, Paginatable, Blameable;
 
     /**
      * Searchable fields
@@ -63,11 +64,19 @@ class EntityNote extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function entity()
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function permissions()
+    {
+        return $this->hasMany(EntityNotePermission::class);
     }
 
     /**

@@ -2,6 +2,8 @@
  * @var \App\Models\Map $map
  */
 ?>
+@inject('campaign', 'App\Services\CampaignService')
+
 @extends('layouts.map', [
     'title' => $map->name,
     'map' => $map,
@@ -42,6 +44,18 @@
         marker{{ $marker->id }}.addTo(map{{ $map->id }});
 @endif
 @endforeach
+
+        @can('update', $map)
+        map{{ $map->id }}.on('click', function(ev) {
+            let position = ev.latlng;
+            //console.log('Click', 'lat', position.lat, 'lng', position.lng);
+            // AJAX request
+            //console.log('do', "$('#marker-latitude').val(" + position.lat.toFixed(3) + ");");
+            $('#marker-latitude').val(position.lat.toFixed(3));
+            $('#marker-longitude').val(position.lng.toFixed(3));
+            $('#marker-modal').modal('show');
+        });
+        @endcan
     </script>
 
     <script type="text/javascript">
@@ -104,9 +118,25 @@
         .marker-{{ $marker->id }} .marker-pin::after {
 @if ($marker->entity && $marker->icon == 4)
             background-image: url({{ $marker->entity->child->getImageUrl(400) }});
+        @if(!empty($marker->pin_size))
+            width: {{ $marker->pinSize(false) - 4 }}px;
+            height: {{ $marker->pinSize(false) - 4 }}px;
+            margin: 2px 0 0 -{{ ceil(($marker->pinSize(false)-4)/2) }}px;
+        @endif
 @endif
         }
         @endif
+
+
+@if(!empty($marker->pin_size))
+        .marker-{{ $marker->id }} .marker-pin {
+            width: {{ $marker->pinSize() }};
+            height: {{ $marker->pinSize() }};
+            margin: -{{ $marker->pinSize(false) / 2 }}px 0 0 -{{ $marker->pinSize(false) / 2 }}px;
+        }
+        .marker-{{ $marker->id }} i {
+            font-size: {{ $marker->pinSize(false) / 2 }}px;
+        }@endif
 @endforeach
     </style>
 @endsection
@@ -125,4 +155,39 @@
             </div>
         </div>
     </div>
+
+    @can('update', $map)
+        <div class="modal fade" id="marker-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                            <h4>
+                                {{ __('maps/markers.create.title', ['name' => $map->name]) }}
+                            </h4>
+                        </div>
+                        <div class="panel-body">
+
+                            {!! Form::open(['route' => ['maps.map_markers.store', $map],
+                                'method' => 'POST',
+                                'data-shortcut' => 1,
+                                'enctype' => 'multipart/form-data',
+                                'id' => 'map-marker-new-form'
+                               ]) !!}
+                            @include('maps.markers._form', ['model' => null, 'map' => $map])
+
+                            <div class="form-group">
+                                <button class="btn btn-success"><i class="fa fa-spin fa-spinner" style="display:none;"></i><span>{{ __('crud.save') }}</span></button>
+                            </div>
+
+                            {!! Form::hidden('from', 'explore') !!}
+
+                            {!! Form::close() !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endcan
 @endsection

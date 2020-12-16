@@ -30,6 +30,7 @@ class MapMarkerController extends Controller
         'type_id', 'size_id', 'icon', 'custom_icon', 'custom_shape', 'visibility',
         'is_draggable',
         'group_id',
+        'pin_size',
     ];
 
     /**
@@ -69,8 +70,13 @@ class MapMarkerController extends Controller
         $data['map_id'] = $map->id;
         $new = $model->create($data);
 
+        if ($request->get('from') == 'explore') {
+            return redirect()
+                ->route('maps.explore', [$map, 'focus' => $new->id]);
+        }
+
         return redirect()
-            ->route('maps.edit', [$map, '#tab_form-markers'])
+            ->route('maps.edit', [$map, '#tab_form-markers', 'focus' => $new->id])
             ->withSuccess(__('maps/markers.create.success', ['name' => $new->name]));
 
     }

@@ -26,7 +26,9 @@
                             </li>
                         </template>
                     </dropdown>
-                    {{ ability.name }}
+                    <a role="button" v-on:click="showAbility(ability)">
+                      {{ ability.name }}
+                    </a>
                 </span>
 
                 <a role="button" v-on:click="deleteAbility(ability)" v-if="this.canDelete" class="pull-right">
@@ -111,6 +113,10 @@
             },
             deleteAbility: function(ability) {
                 Event.$emit('delete_ability', ability);
+            },
+            showAbility: function(ability) {
+              console.log('showing ability', ability);
+              window.open(ability.actions.view, "_blank");
             },
             setVisibility: function(visibility) {
                 var data = {

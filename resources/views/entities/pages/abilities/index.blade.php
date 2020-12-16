@@ -46,7 +46,7 @@
                 </div>
             </div>
 
-            <div  id="abilities">
+            <div id="abilities">
                 <abilities
                     id="{{ $entity->id }}"
                     api="{{ route('entities.entity_abilities.api', $entity) }}"

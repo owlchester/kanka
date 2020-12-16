@@ -210,5 +210,10 @@ return [
             'plan'              => 'Mevcut plan',
             'reason'            => 'Sebep',
         ],
+        'helpers'   => [
+            'alternatives'          => ':method kullanarak aboneliğiniz için ödeme yapın. Bu ödeme yöntemi aboneliğinizin sonunda otomatik olarak yenilenmeyecek. :method yalnızca Euro için geçerlidir.',
+            'alternatives_warning'  => 'Bu ödeme yöntemini kullanırken aboneliğinizi geliştirmek mümkün değildir. Lütfen mevcut aboneliğiniz bittiğinde yeni bir abonelik alın.',
+            'alternatives_yearly'   => 'Devamlı ödemeler üstündeki',
+        ],
     ],
 ];

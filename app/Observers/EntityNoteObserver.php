@@ -4,7 +4,9 @@ namespace App\Observers;
 
 use App\Facades\Mentions;
 use App\Models\EntityNote;
+use App\Models\EntityNotePermission;
 use App\Services\EntityMappingService;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
 class EntityNoteObserver
@@ -51,6 +53,8 @@ class EntityNoteObserver
             return;
         }
 
+        $this->savePermissions($entityNote);
+
         // When adding or changing an entity note to an entity, we want to update the
         // last updated date to reflect changes in the dashboard.
         $entityNote->entity->child->savingObserver = false;
@@ -72,6 +76,51 @@ class EntityNoteObserver
         // entering a non-ending loop.
         if ($entityNote->entity) {
             $entityNote->entity->child->touch();
+        }
+    }
+
+    /**
+     * @param EntityNote $entityNote
+     * @return false
+     */
+    public function savePermissions(EntityNote $entityNote)
+    {
+        if (!request()->has('permissions') || !auth()->user()->isAdmin()) {
+            return false;
+        }
+
+        $existing = $parsedUsers = [];
+        foreach ($entityNote->permissions as $perm) {
+            $existing[$perm->user_id] = $perm;
+        }
+
+        $users = request()->post('perm_user', []);
+        $perms = request()->post('perm_perm', []);
+
+        foreach ($users as $key => $user) {
+            if ($user == '$USERID$') {
+                continue;
+            }
+            if (isset($existing[$user])) {
+                $perm = $existing[$user];
+                $perm->permission = $perms[$key];
+                $perm->save();
+                unset($existing[$user]);
+                $parsedUsers[] = $user;
+            }
+            elseif (!in_array($user, $parsedUsers)) {
+                EntityNotePermission::create([
+                    'entity_note_id' => $entityNote->id,
+                    'user_id' => $user,
+                    'permission' => $perms[$key]
+                ]);
+                $parsedUsers[] = $user;
+            }
+        }
+
+        // Cleanup permissions that are no longer used
+        foreach ($existing as $perm) {
+            $perm->delete();
         }
     }
 }

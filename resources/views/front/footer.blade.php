@@ -75,14 +75,11 @@
                         </ul>
                     </div>
 
-                    <div class="col-md-4 col-4">
+                    {{--<div class="col-md-4 col-4">
                         <h5>{{ __('front.footer.headings.friends') }}</h5>
                         <ul>
-                            <li>
-                                <a href="//lookingforgm.com?utm_source=kanka_footer_front" target="_blank" title="LookingForGM.com">LFGM</a>
-                            </li>
                         </ul>
-                    </div>
+                    </div>--}}
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-12 footer-social">

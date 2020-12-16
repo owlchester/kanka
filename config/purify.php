@@ -169,8 +169,10 @@ return [
             . "docs.google.com/|"
             . "drive.google.com/|"
             . "www.google.com/maps/embed|"
+            . "snazzymaps.com/embed|"
             . "lookingforgm\.com/campaign/|"
             . "w.soundcloud.com/player/|"
+            . "www\.dndbeyond\.com/|"
             . "p3d\.in/e/"
             . ")%",
     ],

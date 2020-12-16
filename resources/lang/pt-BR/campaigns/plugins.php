@@ -38,11 +38,15 @@ return [
         'disabled'  => 'Desativado',
         'enabled'   => 'Ativado',
     ],
+    'templates'     => [
+        'name'  => ':name por :user',
+    ],
     'title'         => 'Plug-ins da campanha :name',
     'types'         => [
-        'attributes'    => 'Modelo de atributo',
-        'pack'          => 'Pacote de Conteúdo',
-        'theme'         => 'Tema',
+        'attribute' => 'Modelo de Atributo',
+        'attributes'=> 'Modelos de Atributo',
+        'pack'      => 'Pacote de Conteúdo',
+        'theme'     => 'Tema',
     ],
     'update'        => [
         'success'   => 'Plug-in :plugin atualizado',

@@ -324,7 +324,7 @@ TEXT
         'description'   => 'Детальный вид кампании',
         'tabs'          => [
             'achievements'      => 'Достижения',
-            'default-images'    => 'Изображения по умолчанию',
+            'default-images'    => 'Иконки по умолчанию',
             'export'            => 'Экспорт',
             'information'       => 'Информация',
             'members'           => 'Участники',

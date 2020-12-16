@@ -7,6 +7,12 @@ if (isset($single) && $single) {
     $focus = "$model->latitude, $model->longitude";
 } elseif (request()->has('lat') && request()->has('lng')) {
     $focus = ((float) request()->get('lat')) . ', ' . ((float) request()->get('lng'));
+} elseif (request()->has('focus')) {
+    /** @var \App\Models\MapMarker $pin */
+    $pin = $map->markers->where('id', request()->get('focus', 0))->first();
+    if ($pin) {
+        $focus = "$pin->latitude, $pin->longitude";
+    }
 }
 
 ?><script type="text/javascript">

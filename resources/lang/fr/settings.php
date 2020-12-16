@@ -20,11 +20,9 @@ return [
         'title'             => 'Compte',
     ],
     'api'           => [
-        'experimental'          => 'Bienvenue aux API de Kanka! Ces fonctionnalités sont encore experimentales mais assez stables pour que tu puisses intéragir avec les APIs. Crée un jeton personnel à utiliser dans tes requêtes API, ou un jeton client pour permettre à ton app d\'accéder à tes données.',
-        'help'                  => 'Kanka va prochainement mettre à disposition une API.',
-        'link'                  => 'Lire la documentation',
-        'request_permission'    => 'Nous construisons en ce moment des API RESTful pour que des applications tierces communiquent avec Kanka. Cependant nous limitons actuellement le nombre d\'utilisateurs qui peuvent intéragir avec nos API, du moins jusqu\'à ce que la qualité de nos APIs soit assez bonne. Si tu veux accéder aux API et construire des applications qui communiquent avec Kanka, prends contact avec nous et nous te donnerons les infos dont tu as besoin!',
-        'title'                 => 'API',
+        'helper'    => 'Bienvenue à l\'API de Kanka. Les personal access token permettent d\'accéder aux données d\'un utilisateur lors des requêtes à l\'API.',
+        'link'      => 'Lire la documentation',
+        'title'     => 'API',
     ],
     'apps'          => [
         'actions'   => [

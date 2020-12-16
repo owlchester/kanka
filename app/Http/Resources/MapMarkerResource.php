@@ -24,6 +24,7 @@ class MapMarkerResource extends ModelResource
             'font_colour' => $this->font_colour,
             'shape_id' => $this->shape_id,
             'size_id' => $this->size_id,
+            'pin_size' => $this->pin_size,
             'icon' => $this->icon,
             'custom_icon' => $this->custom_icon,
             'custom_shape' => $this->custom_shape,

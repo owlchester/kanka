@@ -15,6 +15,7 @@ return array(
      * @type array of strings
      */
     'locales' => [
+        'ca',
         'en',
         'en-US',
         'de',

@@ -6,6 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Facades\EntityPermission;
 use App\Models\Entity;
+use App\Models\EntityNote;
 use App\Traits\EnvTrait;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -142,11 +143,12 @@ class MiscPolicy
      * @param User $user
      * @return mixed
      */
-    public function entityNote(User $user, $entity)
+    public function entityNote(User $user, $entity, string $action = null, EntityNote $entityNote = null)
     {
         return Auth::check() && (
             $this->update($user, $entity) ||
-            $this->checkPermission('entity-note', $user, $entity)
+            $this->checkPermission('entity-note', $user, $entity) ||
+            ($action == 'edit' ? $this->checkEntityNotePermission($user, $entityNote) : false)
         ) ;
     }
 
@@ -204,5 +206,10 @@ class MiscPolicy
     protected function checkPermission($action, User $user, $entity = null, Campaign $campaign = null)
     {
         return EntityPermission::hasPermission($this->model, $action, $user, $entity, $campaign);
+    }
+
+    protected function checkEntityNotePermission(User $user, EntityNote $entityNote): bool
+    {
+        return $entityNote->permissions->where('user_id', $user->id)->where('permission', 1)->count() == 1;
     }
 }
