@@ -2,8 +2,8 @@
 
 return [
     'actions'       => [
-        'add'   => 'New Entity Note',
-        'add_user' => 'Add user',
+        'add'       => 'New Entity Note',
+        'add_user'  => 'Add user',
     ],
     'create'        => [
         'description'   => 'Create a new Entity Note',
@@ -31,7 +31,7 @@ return [
         'name'  => 'Name of the entity note, observation or remark',
     ],
     'show'          => [
-        'title' => 'Entity Note :name for :entity',
-        'advanced' => 'Advanced Permissions',
+        'advanced'  => 'Advanced Permissions',
+        'title'     => 'Entity Note :name for :entity',
     ],
 ];

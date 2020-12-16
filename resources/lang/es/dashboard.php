@@ -14,25 +14,41 @@ return [
         ],
     ],
     'dashboards'        => [
-        'actions'   => [
+        'actions'       => [
             'edit'      => 'Editar',
             'new'       => 'Nuevo tablero',
             'switch'    => 'Cambiar a otro tablero',
         ],
-        'boosted'   => 'Las :boosted_campaigns pueden crear tableros personalizados para cada uno de los roles de la campaña.',
-        'create'    => [
+        'boosted'       => 'Las :boosted_campaigns pueden crear tableros personalizados para cada uno de los roles de la campaña.',
+        'create'        => [
             'success'   => 'Tablero :name creado.',
             'title'     => 'Nuevo tablero de campaña',
         ],
-        'custom'    => [
+        'custom'        => [
             'text'  => 'Estás editando el tablero :name de la campaña.',
         ],
-        'default'   => [
+        'default'       => [
             'text'  => 'Estás editando el tablero por defecto de la campaña.',
             'title' => 'Tablero por defecto',
         ],
-        'delete'    => [
+        'delete'        => [
             'success'   => 'Tablero :name eliminado.',
+        ],
+        'fields'        => [
+            'name'          => 'Nombre del tablero',
+            'visibility'    => 'Visibilidad',
+        ],
+        'placeholders'  => [
+            'name'  => 'Nombre del tablero',
+        ],
+        'update'        => [
+            'success'   => 'Tablero :name actualizado.',
+            'title'     => 'Actualizar el tablero de campaña :name',
+        ],
+        'visibility'    => [
+            'default'   => 'Por defecto',
+            'none'      => 'Ninguna',
+            'visible'   => 'Visible',
         ],
     ],
     'description'       => 'Tu plaza creativa',
@@ -73,6 +89,8 @@ return [
         'title'     => 'Configurar el tablero de campaña',
         'widgets'   => [
             'calendar'      => 'Calendario',
+            'campaign'      => 'Encabezado de la campaña',
+            'header'        => 'Encabezado',
             'preview'       => 'Previsualización de la entidad',
             'random'        => 'Entidad aleatoria',
             'recent'        => 'Reciente',
@@ -104,6 +122,9 @@ TEXT
             'previous_events'   => 'Anterior',
             'upcoming_events'   => 'Próximo',
         ],
+        'campaign'      => [
+            'helper'    => 'Este widget muestra el encabezado de la campaña. Siempre se muestra en el tablero por defecto.',
+        ],
         'create'        => [
             'success'   => 'Widget añadido al tablero.',
         ],
@@ -111,6 +132,8 @@ TEXT
             'success'   => 'Widget eliminado del tablero.',
         ],
         'fields'        => [
+            'name'  => 'Nombre personalizado del widget',
+            'text'  => 'Texto',
             'width' => 'Anchura',
         ],
         'recent'        => [

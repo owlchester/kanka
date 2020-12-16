@@ -27,8 +27,9 @@ return [
         'type'          => 'Tür',
     ],
     'helpers'       => [
-        'reorder'       => 'Çağın elementlerini yeniden sıralamak için sürükleyip bırakın',
-        'reverse_order' => 'Çağlarını ters kronolojik sırada (eski çağ önce) sıralamak için etkinleştirin.',
+        'reorder'           => 'Çağın elementlerini yeniden sıralamak için sürükleyip bırakın',
+        'reorder_tooltip'   => 'Tutup sürükleyerek elementlerin elle yeniden sıralanmasına izin vermek için tıklayın.',
+        'reverse_order'     => 'Çağlarını ters kronolojik sırada (eski çağ önce) sıralamak için etkinleştirin.',
     ],
     'index'         => [
         'add'   => 'Yeni Zaman Çizgisi',

@@ -21,6 +21,7 @@ return [
     'entity-creator'        => 'Hızlı Yaratıcı',
     'events'                => 'Olaylar',
     'families'              => 'Aileler',
+    'gallery'               => 'Galeri',
     'items'                 => 'Eşyalar',
     'journals'              => 'Günlükler',
     'locations'             => 'Konumlar',

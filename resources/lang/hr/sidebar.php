@@ -21,6 +21,7 @@ return [
     'entity-creator'        => 'Kreiraj na brzinu',
     'events'                => 'Događaji',
     'families'              => 'Obitelji',
+    'gallery'               => 'Galerija',
     'items'                 => 'Predmeti',
     'journals'              => 'Dnevnici',
     'locations'             => 'Lokacije',

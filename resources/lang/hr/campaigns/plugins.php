@@ -38,11 +38,14 @@ return [
         'disabled'  => 'Onemogućeno',
         'enabled'   => 'Omogućeno',
     ],
+    'templates'     => [
+        'name'  => ':name, autor :user',
+    ],
     'title'         => 'Dodaci kampanje :name',
     'types'         => [
-        'attributes'    => 'Predložak atributa',
-        'pack'          => 'Sadržajni paket',
-        'theme'         => 'Tema',
+        'attribute' => 'Predložak atributa',
+        'pack'      => 'Sadržajni paket',
+        'theme'     => 'Tema',
     ],
     'update'        => [
         'success'   => 'Dodatak :plugin ažuriran.',

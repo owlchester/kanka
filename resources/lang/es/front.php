@@ -72,6 +72,7 @@ return [
             'beta'                  => 'Acceso anticipado a algunas funciones nuevas 30 días antes del lanzamiento general.',
             'boosted'               => 'Campaña mejorada',
             'css'                   => 'CSS personalizado de la campaña',
+            'dashboards'            => 'Configura tableros personalizados para los diferentes roles de la campaña',
             'description'           => 'Algunos niveles de mecenazgo otorgan mejoras a los usuarios, que pueden usar para mejorar campañas. Éstas obtienen los siguientes beneficios.',
             'entity_files'          => 'Más archivos subidos por entidad (hasta 5, en vez de 3)',
             'header_image'          => 'Imagen de cabecera para las entidades',
@@ -156,6 +157,15 @@ return [
         'rpg'               => [
             'description'   => 'Desde un sistema de permisos muy detallado, hasta Misiones, Diarios, Personajes, Pabilidades e inserciones de audio y vídeo, te ayudamos a gestionar tu campaña.',
             'title'         => 'Gestión de campañas de rol',
+        ],
+        'superboosts'       => [
+            'boosted'       => 'Supermejorada',
+            'description'   => 'Para supermejorar una campaña y desbloquear las siguientes funcionalidades puedes usar tres mejoras de campaña en una sola.',
+            'files'         => 'Hasta 10 archivos subidos por entidad',
+            'gallery'       => 'Galería de campaña e integración con el editor de texto Summernote',
+            'logs'          => 'Registros completos de los cambios de las entidades (de hasta 30 días)',
+            'stats'         => 'Página de logros de campaña',
+            'title'         => 'Campañas supermejoradas',
         ],
         'timelines'         => [
             'description'   => 'Representa visualmente las líneas de tiempo de tus mundos, imperios, familias nobles o hasta de un solo personaje.',
