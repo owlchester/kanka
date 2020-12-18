@@ -238,7 +238,7 @@ abstract class MiscObserver
             return $result->name;
         }
         catch (\Exception $e) {
-            dd($e);
+            //dd($e);
             return '';
         }
 
