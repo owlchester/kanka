@@ -57,6 +57,9 @@
                             <li>
                                 <a href="{{ route('front.contact') }}">{{ __('front.menu.contact') }}</a>
                             </li>
+                            <li>
+                                <a href="{{ route('front.media') }}">{{ __('front.menu.media') }}</a>
+                            </li>
                         </ul>
 
                         <ul>
