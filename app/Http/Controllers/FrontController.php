@@ -113,6 +113,14 @@ class FrontController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
+    public function media()
+    {
+        return $this->cachedResponse('front.media');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function gmFeatures()
     {
         return $this->cachedResponse('front.features.gm');
