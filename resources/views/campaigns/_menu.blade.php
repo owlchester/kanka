@@ -51,7 +51,7 @@
                 <br class="clear" />
             </li>
             @endif
-            @if ($campaign->boosted())
+            @if ($campaign->boosted() && $campaign->boosts->count() > 0)
                 <li class="list-group-item text-maroon">
                     <b><i class="fa fa-rocket"></i> {{ __('campaigns.fields.boosted') }}</b>
                     <span class="pull-right">
