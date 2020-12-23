@@ -6,16 +6,12 @@ Instead of calling the API several times with each execution, it is recommended 
 
 ### Saving the last sync time
 
-Each API result on `index` endpoints contains a `sync` attribute.
+Each API result on `index` endpoint of entities contain a `sync` attribute. This value is based on the Kanka server times (UTC+0).
 
 ```json
 {
-  "data": [],
-  "sync": {
-        "date": "2019-03-21 19:17:42.207577",
-        "timezone_type": 3,
-        "timezone": "UTC"
-    },
+    "data": [],
+    "sync": "2020-12-24T19:17:42.207577",
     "links": {
     },
     "meta": {
@@ -41,11 +37,7 @@ When calling an `index` enpoint, for example the `items` endpoint, you can provi
             "updated_at":  "2019-08-29T13:48:54.000000Z"
         }
     ],
-    "sync": {
-        "date": "2019-03-21 19:32:42.44021",
-        "timezone_type": 3,
-        "timezone": "UTC"
-    },
+    "sync": "2020-12-24T19:32:42.44021",
     "links": {
     },
     "meta": {

@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Facades\Mentions;
 use App\Models\MiscModel;
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class EntityResource extends JsonResource
@@ -110,5 +111,20 @@ class EntityResource extends JsonResource
         $final = array_merge($merged, $prepared);
         //ksort($final);
         return $final;
+    }
+
+
+    /**
+     * Create new anonymous resource collection.
+     *
+     * @param  mixed  $resource
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public static function collection($resource)
+    {
+        return parent::collection($resource)
+            ->additional([
+                'sync' => Carbon::now(),
+            ]);
     }
 }
