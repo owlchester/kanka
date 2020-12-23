@@ -112,8 +112,10 @@ header.reduced-masthead {
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, .card-title, .card-price {
   font-family: Catamaran,Helvetica,Arial,sans-serif !important;
+  font-weight: 200;
+  letter-spacing: 1px;
 }
 
 section.contact-us {
@@ -174,7 +176,7 @@ footer {
       }
     }
   }
-  h4 {
+  .kanka-logo {
     font-size: 14px;
     font-weight: 700;
     color: #ddd;
@@ -183,7 +185,7 @@ footer {
        display: inline-block;
      }
   }
-  h5 {
+  .section, .card-title {
     margin: 0;
     margin-bottom: 8px;
     text-transform: uppercase;
@@ -325,7 +327,7 @@ h2 {
 
 section {
   a {
-    color: #fac134;
+    color: #dbab36;
   }
   li a {
     color: $KankaBlue;

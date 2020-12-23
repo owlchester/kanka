@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row h-100 footer-links">
             <div class="col-lg-2 col-md-2 col-12 text-center">
-                <h4>
+                <div class="kanka-logo">
                     <a href="{{ route('home') }}">
                         @if(\App\Facades\Img::nowebp())
                             <img src="https://images.kanka.io/app/0HdWv4egPu6lBQ30iWTcS9MPgRo=/64x64/src/images%2Flogos%2Flogo-small-white.png?webpfallback" title="Kanka logo" alt="Kanka logo white">
@@ -10,13 +10,13 @@
                         <img src="https://images.kanka.io/app/0HdWv4egPu6lBQ30iWTcS9MPgRo=/64x64/src/images%2Flogos%2Flogo-small-white.png" title="Kanka logo" alt="Kanka logo white">
                         @endif
                     </a>
-                </h4>
+                </div>
             </div>
             <div class="col-lg-7 col-md-7 col-12">
                 <div class="row">
                     <div class="col-md-4 col-4">
 
-                        <h5>{{ __('front.footer.headings.app') }}</h5>
+                        <div class="section">{{ __('front.footer.headings.app') }}</div>
                         <ul>
                             <li>
                                 <a href="{{ route('front.features') }}">{{ __('front.menu.features') }}</a>
@@ -32,7 +32,7 @@
                             </li>
                         </ul>
 
-                        <h5>{{ __('front.footer.headings.community') }}</h5>
+                        <div class="section">{{ __('front.footer.headings.community') }}</div>
                         <ul>
                             <li>
                                 <a href="{{ route('community-votes.index') }}">{{ __('front/community-votes.title') }}</a>
@@ -46,7 +46,7 @@
                         </ul>
                     </div>
                     <div class="col-md-4 col-4">
-                        <h5>{{ __('front.footer.headings.useful_links') }}</h5>
+                        <div class="section">{{ __('front.footer.headings.useful_links') }}</div>
                         <ul>
                             <li>
                                 <a href="{{ route('faq.index') }}">{{ __('front.menu.faq') }}</a>
@@ -83,9 +83,9 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-3 col-12 footer-social">
-                <h4 class="email">
+                <div class="email">
                     <i class="fa fa-envelope hidden-xs"></i> hello@kanka.io
-                </h4>
+                </div>
 
                 <div class="socials">
                     <a href="{{ config('social.discord') }}" target="discord" title="Discord" rel="noreferrer">
