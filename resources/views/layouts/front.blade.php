@@ -2,7 +2,7 @@
 <html lang="{{ app()->getLocale() }}" @if(app()->getLocale() == 'he') dir="rtl" @endif>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no">
+    <meta name="viewport" content='width=device-width, initial-scale=1, maximum-scale=5, shrink-to-fit=no'>
     <meta name="author" content="{{ config('app.name') }}">
     <meta name="description" content="{{ $metaDescription ?? __('front.home.seo.description') }}">
     <meta name="keywords" content="{{  $metaKeywords ?? __('front.seo.keywords') }}">
@@ -14,7 +14,6 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
     <link rel="icon" type="image/png" href="/favicon.ico?v=3">
 
@@ -120,7 +119,7 @@
                     <a class="nav-link @if(!empty($active) && $active == 'pricing') nav-active @endif" href="{{ route("front.pricing") }}">{{ __('front.menu.pricing') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://blog.kanka.io" target="_blank">{{ __('front.menu.news') }}</a>
+                    <a class="nav-link" href="https://blog.kanka.io" target="_blank" rel="noreferrer">{{ __('front.menu.news') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link @if(!empty($active) && $active == 'contact') nav-active @endif" href="{{ route("front.contact") }}">{{ __('front.menu.contact') }}</a>
