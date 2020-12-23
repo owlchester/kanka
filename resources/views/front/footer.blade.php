@@ -5,9 +5,9 @@
                 <div class="kanka-logo">
                     <a href="{{ route('home') }}">
                         @if(\App\Facades\Img::nowebp())
-                            <img src="https://images.kanka.io/app/0HdWv4egPu6lBQ30iWTcS9MPgRo=/64x64/src/images%2Flogos%2Flogo-small-white.png?webpfallback" title="Kanka logo" alt="Kanka logo white">
+                            <img src="https://images.kanka.io/app/0HdWv4egPu6lBQ30iWTcS9MPgRo=/64x64/src/images%2Flogos%2Flogo-small-white.png?webpfallback" title="Kanka logo" alt="Kanka logo white" width="64" height="64">
                         @else
-                        <img src="https://images.kanka.io/app/0HdWv4egPu6lBQ30iWTcS9MPgRo=/64x64/src/images%2Flogos%2Flogo-small-white.png" title="Kanka logo" alt="Kanka logo white">
+                        <img src="https://images.kanka.io/app/0HdWv4egPu6lBQ30iWTcS9MPgRo=/64x64/src/images%2Flogos%2Flogo-small-white.png" title="Kanka logo" alt="Kanka logo white" width="64" height="64">
                         @endif
                     </a>
                 </div>
