@@ -105,8 +105,10 @@ class CampaignBoostService
         $campaignBoost->delete();
 
         // Delete other boosts on the same campaign if the user is superboosting
-        foreach (auth()->user()->boosts()->where('campaign_id', $campaignBoost->campaign_id)->get() as $boost) {
-            $boost->delete();
+        if (auth()->check()) {
+            foreach (auth()->user()->boosts()->where('campaign_id', $campaignBoost->campaign_id)->get() as $boost) {
+                $boost->delete();
+            }
         }
 
         $this->campaign->boost_count = $this->campaign->boosts()->count();
