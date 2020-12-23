@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 
 
 use App\Jobs\Emails\SubscriptionDeletedEmailJob;
-use App\Jobs\Emails\SubscriptionFailedEmailJob;
 use App\Jobs\SubscriptionEndJob;
 use App\Models\SubscriptionSource;
-use App\Notifications\Header;
 use App\Services\SubscriptionService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
@@ -34,6 +32,8 @@ class WebhookController  extends CashierController
 
             $data = $payload['data']['object'];
             $status = Arr::get($data, 'status', false);
+
+            Log::debug('Customer Sub Updated Status ' . $status);
             // If the status is past_due, we need to remind the user to update their credit card info
             if ($status != 'past_due') {
                 $service->user($user)->webhook()->finish($payload['data']['object']['plan']['id']);
@@ -74,7 +74,7 @@ class WebhookController  extends CashierController
     public function handleSucceededCharge(array $payload)
     {
         // User notification. Maybe even an email
-        Log::warning('succeeded charge', $payload);
+        Log::debug('succeeded charge', $payload);
         if ($user = $this->getUserByStripeId($payload['data']['object']['customer'])) {
             $charge = $payload['data']['object']['charge'];
 
@@ -114,6 +114,19 @@ class WebhookController  extends CashierController
                 ->chargeFailed($payload);
         }
         return $this->successMethod();
+    }
 
+    /**
+     * Check if a request is to cancel a user
+     * @param $data
+     * @return bool
+     */
+    protected function isCancelling($data): bool
+    {
+        Log::debug('data', $data);
+        $cancel = Arr::get($data, 'object.canceled_at', null);
+        $previousCancel = Arr::get($data, 'previous_attributes.canceled_at', null);
+
+        return !empty($cancel) && empty($previousCancel);
     }
 }

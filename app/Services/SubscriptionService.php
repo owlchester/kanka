@@ -10,6 +10,7 @@ use App\Jobs\Emails\SubscriptionCancelEmailJob;
 use App\Jobs\Emails\SubscriptionCreatedEmailJob;
 use App\Jobs\Emails\SubscriptionDowngradedEmailJob;
 use App\Jobs\Emails\SubscriptionFailedEmailJob;
+use App\Jobs\Emails\SubscriptionNewElementalEmailJob;
 use App\Jobs\SubscriptionEndJob;
 use App\Models\Patreon;
 use App\Models\SubscriptionSource;
@@ -51,6 +52,9 @@ class SubscriptionService
 
     /** @var bool set to true if the request comes from a webhook */
     protected $webhook = false;
+
+    /** @var bool if the user has cancelled */
+    protected $cancelled = false;
 
     /**
      * @param User $user
@@ -127,6 +131,7 @@ class SubscriptionService
 
         // Switching to kobold?
         if (empty($this->plan)) {
+            //Log::debug('Cancelling plan for user ' . $this->user->id);
             $this->cancel(Arr::get($request, 'reason'));
             return $this;
         }
@@ -177,6 +182,11 @@ class SubscriptionService
             $planID = $this->plan;
         }
 
+        // If the user is cancelling through the interface, don't do anything else
+        if ($this->cancelled) {
+            return $this;
+        }
+
         // If downgrading, send admins an email, and let stripe deal with the rest. A user update hook will be thrown
         // when the user really changes. Probably?
         if ($this->downgrading()) {
@@ -207,6 +217,9 @@ class SubscriptionService
         }
 
         SubscriptionCreatedEmailJob::dispatch($this->user, $period, $new);
+        if ($plan == Patreon::PLEDGE_ELEMENTAL) {
+            SubscriptionNewElementalEmailJob::dispatch($this->user, $period, $new);
+        }
 
         return $this;
     }
@@ -344,6 +357,8 @@ class SubscriptionService
             ->delay(
                 $this->user->subscription('kanka')->ends_at
             );
+
+        $this->cancelled = true;
 
         return true;
     }
@@ -583,7 +598,8 @@ class SubscriptionService
      */
     protected function downgrading(): bool
     {
-        return $this->user->isElementalPatreon() && $this->tier === Patreon::PLEDGE_OWLBEAR;
+        return $this->user->isElementalPatreon() && $this->tier === Patreon::PLEDGE_OWLBEAR ||
+            $this->tier === Patreon::PLEDGE_KOBOLD;
     }
 
     /**
