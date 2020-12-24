@@ -32,6 +32,7 @@ class AddCalendarWeather extends FormRequest
             'day' => 'required',
             'month' => 'required',
             'year' => 'required',
+            'name' => 'nullable|string|max:40',
         ];
     }
 }

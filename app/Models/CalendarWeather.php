@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $year
  * @property int $month
  * @property int $day
+ * @property string $name
  * @property Calendar $calendar
  */
 class CalendarWeather extends Model
@@ -51,6 +52,7 @@ class CalendarWeather extends Model
         'month',
         'year',
         'visibility',
+        'name',
     ];
 
     /**
@@ -72,5 +74,14 @@ class CalendarWeather extends Model
             (!empty($this->wind) ? __('calendars/weather.fields.wind') . ': ' . e($this->wind) . "<br />\n" : null) .
             (!empty($this->effect) ? __('calendars/weather.fields.effect') . ': ' . e($this->effect) . "<br />\n" : null)
             ;
+    }
+
+    public function weatherName(): string
+    {
+        if (!empty($this->name)) {
+            return $this->name;
+        }
+
+        return __('calendars/weather.options.weather.' . $this->weather);
     }
 }

@@ -24,5 +24,6 @@ class CalendarWeatherObserver
         $model->precipitation = $this->purify($model->precipitation);
         $model->wind = $this->purify($model->wind);
         $model->effect = $this->purify($model->effect);
+        $model->name = $this->purify($model->name);
     }
 }

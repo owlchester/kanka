@@ -38,7 +38,7 @@
                 @if (!empty($day['weather']))
                     <div class="weather weather-{{ $day['weather']->weather }}" data-html="true" data-toggle="tooltip" title="{!! $day['weather']->tooltip() !!}">
                         <i class="fas fa-{{ $day['weather']->weather }}"></i>
-                        {{ __('calendars/weather.options.weather.' . $day['weather']->weather) }}
+                        {{ $day['weather']->weatherName() }}
                     </div>
                 @endif
                 @if (!empty($day['events']))

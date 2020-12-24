@@ -4,6 +4,10 @@
     {!! Form::select('weather', __('calendars/weather.options.weather'), null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
+    <label>{{ trans('calendars/weather.fields.name') }}</label>
+    {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => __('calendars/weather.placeholders.name'), 'maxlength' => 40]) !!}
+</div>
+<div class="form-group">
     <label>{{ trans('calendars/weather.fields.temperature') }}</label>
     {!! Form::text('temperature', null, ['class' => 'form-control', 'placeholder' => __('calendars/weather.placeholders.temperature')]) !!}
 </div>
