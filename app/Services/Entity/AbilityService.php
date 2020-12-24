@@ -10,6 +10,7 @@ use App\Models\Attribute;
 use App\Models\Entity;
 use App\Models\EntityAbility;
 use ChrisKonnertz\StringCalc\StringCalc;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
 class AbilityService
@@ -143,7 +144,7 @@ class AbilityService
         $data = [
             'ability_id' => $entityAbility->ability_id,
             'name' => $entityAbility->ability->name,
-            'entry' => $entityAbility->ability->entry(),
+            'entry' => $this->parseEntry($entityAbility->ability),
             'type' => $entityAbility->ability->type,
             'charges' => $this->parseCharges($entityAbility->ability),
             'used_charges' => $entityAbility->charges,
@@ -193,20 +194,51 @@ class AbilityService
             return $ability->charges;
         }
         try {
-            // Replace {} with entity attributes
-            $charge = preg_replace_callback('`\{(.*?)\}`i', function ($matches) {
-                $text = $matches[1];
-                if ($this->entityAttributes()->has($text)) {
-                    return $this->entityAttributes()->get($text);
-                }
-                return 0;
-            }, $ability->charges);
-
-            $calculator = new StringCalc();
-            return $calculator->calculate($charge);
+            return $this->mapAttributes($ability->charges);
         } catch(\Exception $e) {
             return null;
         }
+    }
+
+    /**
+     * @param Ability $ability
+     * @return float|int|mixed
+     */
+    protected function parseEntry(Ability $ability)
+    {
+        $entry = $ability->entry();
+        try {
+            return $this->mapAttributes($entry, false);
+        } catch(\Exception $e) {
+            return $entry;
+        }
+    }
+
+    /**
+     * @param Ability $ability
+     * @param string $haystack
+     * @return float|int
+     * @throws \ChrisKonnertz\StringCalc\Exceptions\ContainerException
+     * @throws \ChrisKonnertz\StringCalc\Exceptions\NotFoundException
+     */
+    protected function mapAttributes(string $haystack, bool $calc = true)
+    {
+        // Replace {} with entity attributes
+        $mappedText = preg_replace_callback('`\{(.*?)\}`i', function ($matches) {
+            //dd($matches);
+            $text = $matches[1];
+            if ($this->entityAttributes()->has($text)) {
+                return $this->entityAttributes()->get($text);
+            }
+            return 0;
+        }, $haystack);
+
+        if (!$calc) {
+            return $mappedText;
+        }
+
+        $calculator = new StringCalc();
+        return $calculator->calculate($mappedText);
     }
 
     /**
@@ -218,6 +250,13 @@ class AbilityService
             return $this->attributes;
         }
 
-        return $this->attributes = $this->entity->attributes()->pluck('value', 'name');
+        $this->attributes = new Collection();
+
+        /** @var Attribute $attribute */
+        foreach ($this->entity->attributes as $attribute) {
+            $this->attributes->put($attribute->name, $attribute->mappedValue());
+        }
+
+        return $this->attributes;
     }
 }

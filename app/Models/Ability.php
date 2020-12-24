@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Facades\Mentions;
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
@@ -165,5 +166,14 @@ class Ability extends MiscModel
     public function entityTypeId(): int
     {
         return (int) config('entities.ids.ability');
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function entryWithAttributes()
+    {
+        return Mentions::map($this);
     }
 }
