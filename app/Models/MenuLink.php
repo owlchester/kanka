@@ -246,6 +246,10 @@ class MenuLink extends MiscModel
             ->inRandomOrder()
             ->first();
 
+        if (empty($entity) || empty($entity->child)) {
+            return null;
+        }
+
         return $entity->url('show');
     }
 }

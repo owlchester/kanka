@@ -100,9 +100,18 @@ class MenuLinkController extends CrudController
         return $this->crudDestroy($menuLink);
     }
 
+    /**
+     * Random entity
+     * @param MenuLink $menuLink
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function random(MenuLink $menuLink)
     {
         $route = $menuLink->randomEntity();
+
+        if (empty($route)) {
+            abort(404);
+        }
         return redirect()->to($route);
     }
 }
