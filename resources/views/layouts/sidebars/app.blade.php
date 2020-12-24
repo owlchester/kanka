@@ -61,6 +61,12 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                                     <i class="fa fa-th-list"></i> <span>{{ $menuLink->name }}</span>
                                 </a>
                             </li>
+                        @elseif ($menuLink->isRandom())
+                            <li class="subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }}">
+                                <a href="{{ route('menu_links.random', $menuLink) }}">
+                                    <i class="fa fa-question"></i> <span>{{ $menuLink->name }}</span>
+                                </a>
+                            </li>
                         @endif
                     @endforeach
                 @endif

@@ -18,6 +18,8 @@ return [
         'menu'      => 'Menu',
         'name'      => 'Name',
         'position'  => 'Position',
+        'random'    => 'Random',
+        'random_type' => 'Random Entity Type',
         'tab'       => 'Tab',
         'type'      => 'Entity Type',
     ],
@@ -25,6 +27,7 @@ return [
         'entity'    => 'Set up this quick link to go directly to an entity. The :tab field controls which of the tabs is focused. The :menu field controls which subpage of the entity is opened.',
         'position'  => 'Use this field to control in which ascending order the links appear in the menu.',
         'type'      => 'Set up this quick link to go directly to a list of entities. To filter the results, copy parts of the url on the filtered entity list after the :? sign into the :filter field.',
+        'random'    => 'Use this field to have a menu link pointing to a random entity. You can filter the link to only go to a specific entity type.',
     ],
     'index'         => [
         'add'   => 'New Quick Link',
@@ -42,5 +45,8 @@ return [
             'information'   => 'Information',
         ],
         'title' => 'Quick Link :name',
+    ],
+    'random_types' => [
+        'any' => 'Any entity',
     ],
 ];

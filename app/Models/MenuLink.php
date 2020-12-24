@@ -19,6 +19,7 @@ use Illuminate\Support\Str;
  * @property string $menu
  * @property string $type
  * @property string $filters
+ * @property string $random_entity_type
  * @property integer $position
  * @property Entity $target
  * @property boolean $is_private
@@ -43,7 +44,8 @@ class MenuLink extends MiscModel
         'is_private',
         'menu',
         'type',
-        'position'
+        'position',
+        'random_entity_type'
     ];
 
     /**
@@ -220,5 +222,30 @@ class MenuLink extends MiscModel
     public function scopeStandardWith($query)
     {
         return $query->with('entity');
+    }
+
+    /**
+     * @return bool
+     */
+    public function isRandom(): bool
+    {
+        return !empty($this->random_entity_type);
+    }
+
+    /**
+     * @return string
+     */
+    public function randomEntity()
+    {
+        $entityType = $this->random_entity_type != 'any' ? $this->random_entity_type : null;
+
+        /** @var Entity $entity */
+        $entity = \App\Models\Entity::
+            type($entityType)
+            ->acl()
+            ->inRandomOrder()
+            ->first();
+
+        return $entity->url('show');
     }
 }

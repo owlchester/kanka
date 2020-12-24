@@ -99,4 +99,10 @@ class MenuLinkController extends CrudController
     {
         return $this->crudDestroy($menuLink);
     }
+
+    public function random(MenuLink $menuLink)
+    {
+        $route = $menuLink->randomEntity();
+        return redirect()->to($route);
+    }
 }
