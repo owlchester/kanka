@@ -79,6 +79,8 @@ class EntityResource extends JsonResource
             if (class_exists($className)) {
                 $obj = new $className($entity->child);
                 $data['child'] = $obj;
+            } else {
+                $data['child'] = 'unknown child class ' . $className;
             }
         }
 
