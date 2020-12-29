@@ -12,6 +12,9 @@ class EntityResource extends JsonResource
     /** @var bool If the entity should come with related objects */
     public $withRelated = false;
 
+    /** @var bool If the entity comes with the misc model */
+    public $withMisc = false;
+
     /**
      * Get related objects for this entity
      * @return $this
@@ -22,6 +25,19 @@ class EntityResource extends JsonResource
         return $this;
     }
 
+    /**
+     * @return $this
+     */
+    public function withMisc(): self
+    {
+        $this->withMisc = true;
+        return $this;
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
     public function toArray($request)
     {
         /** @var \App\Models\Entity $entity */
@@ -55,6 +71,15 @@ class EntityResource extends JsonResource
             $data['relations'] = RelationResource::collection($this->relationships);
             $data['inventory'] = InventoryResource::collection($this->inventories);
             $data['entity_abilities'] = EntityAbilityResource::collection($this->abilities);
+        }
+
+        // Get the actual model
+        if ($this->withMisc) {
+            $className = 'App\Http\Resources\\' . ucfirst($entity->type) . 'Resource';
+            if (class_exists($className)) {
+                $obj = new $className($entity->child);
+                $data['child'] = $obj;
+            }
         }
 
         return $data;

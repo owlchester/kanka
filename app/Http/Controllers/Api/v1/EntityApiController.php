@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Http\Resources\EntityResource as Resource;
-use App\Models\EntityEvent;
 
 class EntityApiController extends ApiController
 {
@@ -24,6 +23,7 @@ class EntityApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity->child);
-        return new Resource($entity);
+        $resource = new Resource($entity);
+        return $resource->withMisc();
     }
 }
