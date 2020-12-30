@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Facades\Mentions;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class EntityNoteResource extends EntityChild
@@ -18,6 +19,7 @@ class EntityNoteResource extends EntityChild
             'name' => $this->name,
             'visibility' => $this->visibility,
             'entry' => $this->entry,
+            'entry_parsed' => Mentions::mapEntityNote($this->resource),
         ]);
     }
 }
