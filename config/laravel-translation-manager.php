@@ -34,7 +34,8 @@ return array(
         'tr',
         'cz',
         'gl',
-        'nb'
+        'nb',
+        'sv',
     ],
     /**
      * Specify locales that you want to show in the web interface, if empty or not provided then all locales in the database
