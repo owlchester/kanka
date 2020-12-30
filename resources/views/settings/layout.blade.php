@@ -65,12 +65,12 @@
                     <div class="form-group">
                         <label>{{ __('profiles.settings.fields.editor') }}</label>
                         {!! Form::select('editor', [
-                            '' => __('profiles.editors.default'),
-                            'summernote' => __('profiles.editors.summernote'),
+                            '' => __('profiles.editors.summernote'),
+                            'legacy' => __('profiles.editors.legacy'),
                         ], null, ['class' => 'form-control']) !!}
                     </div>
 
-                    <p class="help-block">{{ __('profiles.settings.helpers.editor') }}</p>
+                    <p class="help-block">{{ __('profiles.settings.helpers.editor_v2') }}</p>
                 </div>
             </div>
 
