@@ -203,6 +203,7 @@ function hintContent(item) {
             text: item.fullname,
             href: '#',
             class: 'mention',
+            'data-name': item.fullname,
             'data-mention': mention,
         })[0];
 
