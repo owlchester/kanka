@@ -304,7 +304,7 @@ class MentionsService
             } else {
                 $name = $entity->name;
             }
-            return '<a href="#" class="mention" data-mention="' . $matches[0] . '">' . $name . '</a>';
+            return '<a href="#" class="mention" data-name="' . $name . '" data-mention="' . $matches[0] . '">' . $name . '</a>';
         }, $this->text);
 
         // Extract links from the entry to attribute
