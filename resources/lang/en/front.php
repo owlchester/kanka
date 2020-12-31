@@ -219,12 +219,12 @@ return [
         'title'             => 'Kanka',
     ],
     'media'         => [
-        'title'         => 'Media',
         'description'   => 'Find high resolution images of Kanka on this page. Use these if you are promoting Kanka or building tools that interact with Kanka.',
         'images'        => [
             'primary'   => 'Primary Kanka logo',
             'social'    => 'Social Kanka logo',
         ],
+        'title'         => 'Media',
     ],
     'menu'          => [
         'about'         => 'About',

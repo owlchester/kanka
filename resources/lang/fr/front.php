@@ -218,6 +218,14 @@ return [
         'heading'           => 'Gestionnaire de jeux de rôle et création de monde rendu facile',
         'title'             => 'Kanka',
     ],
+    'media'         => [
+        'description'   => 'Logos hautes définitions de Kanka. Utilises ces images pour promouvoir Kanka ou pour des outils qui interagissent avec Kanka.',
+        'images'        => [
+            'primary'   => 'Logo principal de Kanka',
+            'social'    => 'Logo social de Kanka',
+        ],
+        'title'         => 'Media',
+    ],
     'menu'          => [
         'about'         => 'À propos',
         'api'           => 'API',
@@ -232,6 +240,7 @@ return [
         'home'          => 'Accueil',
         'login'         => 'Login',
         'marketplace'   => 'Marketplace',
+        'media'         => 'Media',
         'news'          => 'Nouvelles',
         'newsletter'    => 'Newsletter',
         'pricing'       => 'Prix',

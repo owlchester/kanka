@@ -25,6 +25,7 @@ return [
         'latitude'      => 'Breitengrad',
         'longitude'     => 'Längengrad',
         'opacity'       => 'Fügen Sie der Karte Markierungen hinzu, indem Sie auf eine beliebige Stelle klicken.',
+        'pin_size'      => 'Pingröße',
     ],
     'helpers'       => [
         'base'          => 'Fügen Sie der Karte Markierungen hinzu, indem Sie auf eine beliebige Stelle klicken.',

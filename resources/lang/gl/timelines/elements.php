@@ -21,7 +21,8 @@ return [
         'icon'  => 'Copia o HTML dunha icona de :fontawesome ou de :rpgawesome',
     ],
     'placeholders'  => [
-        'date'  => 'por exemplo 42 de marzo ou 1332-1337',
-        'name'  => 'Obrigatorio se non se seleccionou ningunha entidade',
+        'date'      => 'por exemplo 42 de marzo ou 1332-1337',
+        'name'      => 'Obrigatorio se non se seleccionou ningunha entidade',
+        'position'  => 'Posición na lista de elementos da era. Déixao en branco para engadilo ao final.',
     ],
 ];

@@ -38,6 +38,9 @@ return [
         'disabled'  => 'Desactivada',
         'enabled'   => 'Activada',
     ],
+    'templates'     => [
+        'name'  => ':name feita por :user',
+    ],
     'title'         => 'Extensións da campaña ":name"',
     'types'         => [
         'attributes'    => 'Padrón de atributos',

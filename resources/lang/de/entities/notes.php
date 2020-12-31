@@ -2,7 +2,8 @@
 
 return [
     'actions'       => [
-        'add'   => 'Notiz hinzufügen',
+        'add'       => 'Notiz hinzufügen',
+        'add_user'  => 'Benutzer hinzufügen',
     ],
     'create'        => [
         'description'   => 'Erstelle eine neue Notiz',
@@ -30,6 +31,7 @@ return [
         'name'  => 'Name der Notiz, Beobachtung oder Anmerkung',
     ],
     'show'          => [
-        'title' => 'Objektnotiz :name für :entity',
+        'advanced'  => 'Erweiterte Berechtigungen',
+        'title'     => 'Objektnotiz :name für :entity',
     ],
 ];

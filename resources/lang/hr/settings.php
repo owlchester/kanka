@@ -20,11 +20,9 @@ return [
         'title'             => 'Račun',
     ],
     'api'           => [
-        'experimental'          => 'Dobrodošli u Kanka API! Ove su funkcionalnosti još eksperimentalne, ali bi trebale biti dovoljno stabilne da započneš komunikaciju s API-ima. Napravi token osobnog pristupa koji će se upotrebljavati u tvojim API zahtjevima ili koristi token klijenta ako želiš da tvoja aplikacija ima pristup korisničkim podacima.',
-        'help'                  => 'Kanka će uskoro pružati RESTful API tako da se aplikacije treće strane mogu povezati s aplikacijom. Pojedinosti o upravljanju API ključevima bit će prikazane ovdje.',
-        'link'                  => 'Pročitaj dokumentaciju API-ja',
-        'request_permission'    => 'Trenutno gradimo moćan RESTful API tako da se aplikacije treće strane mogu povezati s aplikacijom. Međutim, trenutno ograničavamo broj korisnika koji mogu komunicirati s API-em dok ga poliramo. Ako želiš pristupiti API-ju i izgraditi programe koji razgovaraju s Kankom, kontaktiraj nas i poslat ćemo ti sve potrebne informacije.',
-        'title'                 => 'API',
+        'helper'    => 'Dobrodošli u Kanka API-je! Generiraj osobni pristupni žeton koji ćeš koristiti u svom API zahtjevu za prikupljanje podataka o kampanjama čijih si član.',
+        'link'      => 'Pročitaj dokumentaciju API-ja',
+        'title'     => 'API',
     ],
     'apps'          => [
         'actions'   => [

@@ -25,6 +25,7 @@ return [
         'latitude'      => 'Geografska širina',
         'longitude'     => 'Geografska dužina',
         'opacity'       => 'Neprozirnost',
+        'pin_size'      => 'Veličina markera',
     ],
     'helpers'       => [
         'base'          => 'Dodaj markere na kartu klikom na bilo koje mjesto.',

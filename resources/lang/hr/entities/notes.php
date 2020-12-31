@@ -2,7 +2,8 @@
 
 return [
     'actions'       => [
-        'add'   => 'Nova bilješka entiteta',
+        'add'       => 'Nova bilješka entiteta',
+        'add_user'  => 'Dodaj korisnika',
     ],
     'create'        => [
         'description'   => 'Kreiraj novu bilješku entiteta',
@@ -30,6 +31,7 @@ return [
         'name'  => 'Naziv bilješke entiteta, opažanja ili primjedbe.',
     ],
     'show'          => [
-        'title' => 'Bilješka entiteta :name za :entity',
+        'advanced'  => 'Napredne postavke',
+        'title'     => 'Bilješka entiteta :name za :entity',
     ],
 ];
