@@ -113,7 +113,7 @@
                 </a>
             </li>
             @endcan
-            @can('update', $campaign)
+            @can('roles', $campaign)
             <li class="@if(!empty($active) && $active == 'roles')active @endif">
                 <a href="{{ route('campaign_roles.index') }}">
                     {{ __('campaigns.show.tabs.roles') }}
@@ -122,6 +122,8 @@
                     </span>
                 </a>
             </li>
+            @endcan
+            @can('update', $campaign)
             <li class="@if(!empty($active) && $active == 'settings')active @endif">
                 <a href="{{ route('campaign_settings') }}">
                     {{ __('campaigns.show.tabs.settings') }}
@@ -162,6 +164,11 @@
                         {{ __('campaigns.show.tabs.recovery') }}
                     </a>
                 </li>
+            @endif
+            @endcan
+
+            @can('stats', $campaign)
+            @if($campaign->boosted(true))
                 <li class="@if(!empty($active) && $active == 'stats')active @endif">
                     <a href="{{ route('stats') }}">
                         {{ __('campaigns.show.tabs.achievements') }}

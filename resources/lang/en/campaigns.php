@@ -248,6 +248,9 @@ TEXT
                 'permission'    => 'Permissions',
                 'read'          => 'View',
                 'toggle'        => 'Change for all',
+                'manage'        => 'Manage',
+                'dashboard'     => 'Dashboard',
+                'members'       => 'Members',
             ],
             'helpers'   => [
                 'entity_note'   => 'This allows users who do not have Edit permissions for an Entity to add Entity Notes to it.',

@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use Exception;
+use Http\Client\Exception\HttpException;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -60,7 +62,7 @@ class Handler extends ExceptionHandler
                 ->withErrors(trans('redirects.session_timeout'));
         }
 
-        if ($exception->getStatusCode() == 403 && auth()->guest()) {
+        if ($exception instanceof HttpException && $exception->getStatusCode() == 403 && auth()->guest()) {
             session()->put('login_redirect', $request->getRequestUri());
         }
 

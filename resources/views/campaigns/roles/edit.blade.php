@@ -2,7 +2,7 @@
     'title' => trans('campaigns.roles.edit.title', ['name' => $role->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => $role->campaign->name],
+        ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
         ['url' => route('campaign_roles.index'), 'label' => trans('campaigns.show.tabs.roles')],
         $role->name,
     ],
