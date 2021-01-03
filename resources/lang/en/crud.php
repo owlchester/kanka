@@ -396,6 +396,7 @@ return [
     'visibilities'              => [
         'admin'         => 'Admin',
         'admin-self'    => 'Self & Admin',
+        'members'       => 'Members',
         'all'           => 'All',
         'self'          => 'Self',
     ],

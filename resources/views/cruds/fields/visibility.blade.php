@@ -7,6 +7,7 @@ $options = ['all' => __('crud.visibilities.all')];
 
 if (auth()->user()->isAdmin()) {
     $options['admin'] = __('crud.visibilities.admin');
+    $options['members'] = __('crud.visibilities.members');
 }
 if (!isset($model) || ($model->created_by == auth()->user()->id)) {
     $options['self'] = __('crud.visibilities.self');
@@ -20,8 +21,8 @@ if (isset($model) && $model->visibility === \App\Models\Scopes\VisibilityScope::
 
 // The visibility is set to admin but we're not an admin, don't allow changing
 // as it's a custom permission for the user to be able to edit this model.
-if (isset($model) && $model->visibility == \App\Models\Scopes\VisibilityScope::VISIBILITY_ADMIN && !auth()->user()->isAdmin()) {
-    ?><input type="hidden" name="visibility" value="admin" /><?php
+if (isset($model) && in_array($model->visibility, [\App\Models\Scopes\VisibilityScope::VISIBILITY_ADMIN, \App\Models\Scopes\VisibilityScope::VISIBILITY_MEMBERS]) && !auth()->user()->isAdmin()) {
+    ?><input type="hidden" name="visibility" value="{{ $model->visibility }}" /><?php
     return;
 }
 ?>
