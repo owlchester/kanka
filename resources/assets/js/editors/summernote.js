@@ -12,8 +12,6 @@ $(document).ready(function () {
  * Initialize summernote when available
  */
 window.initSummernote = function() {
-    let galleryText = summernoteConfig.data('gallery-texts');
-    console.log('texts', galleryText);
 
     var $summernote = $('.html-editor').summernote({
         height: '300px',
