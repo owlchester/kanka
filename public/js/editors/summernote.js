@@ -107,12 +107,10 @@ $(document).ready(function () {
  */
 
 window.initSummernote = function () {
-  var galleryText = summernoteConfig.data('gallery-texts');
-  console.log('texts', galleryText);
   var $summernote = $('.html-editor').summernote({
     height: '300px',
     lang: editorLang(summernoteConfig.data('locale')),
-    toolbar: [['style', ['style']], ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']], ['color', ['color']], ['para', ['ul', 'ol', 'kanka-indent', 'kanka-outdent', 'paragraph']], ['table', ['table', 'spoiler']], ['insert', ['link', 'picture', 'video', 'embed', 'hr']], //['dir', ['ltr', 'rtl']],
+    toolbar: [['style', ['style']], ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']], ['color', ['color']], ['para', ['ul', 'ol', 'kanka-indent', 'kanka-outdent', 'paragraph']], ['table', ['table', 'spoiler', 'tableofcontent']], ['insert', ['link', 'picture', 'video', 'embed', 'hr']], //['dir', ['ltr', 'rtl']],
     ['view', ['fullscreen', 'codeview', 'help']], summernoteConfig.data('gallery') !== '' ? ['extensions', ['gallery']] : null],
     popover: {
       table: [['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']], ['delete', ['deleteRow', 'deleteCol', 'deleteTable']], ['custom', ['tableHeaders']]]
