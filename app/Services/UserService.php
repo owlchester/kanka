@@ -14,6 +14,13 @@ class UserService
      */
     public function authenticated(User $user)
     {
+        // If the user is login in from a 403 page, go to there now first
+        $redirectTo = session()->get('login_redirect');
+        if (!empty($redirectTo)) {
+            session()->remove('login_redirect');
+            return redirect()->to($redirectTo);
+        }
+
         // If a user has a last campaign id, we need to make sure the
         if ($user->last_campaign_id) {
             // The user should be part of the last campaign

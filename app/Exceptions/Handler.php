@@ -60,6 +60,10 @@ class Handler extends ExceptionHandler
                 ->withErrors(trans('redirects.session_timeout'));
         }
 
+        if ($exception->getStatusCode() == 403 && auth()->guest()) {
+            session()->put('login_redirect', $request->getRequestUri());
+        }
+
         return parent::render($request, $exception);
     }
 }
