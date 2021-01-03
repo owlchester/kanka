@@ -23,7 +23,7 @@ window.initSummernote = function() {
             ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
             ['color', ['color']],
             ['para', ['ul', 'ol', 'kanka-indent', 'kanka-outdent', 'paragraph']],
-            ['table', ['table']],
+            ['table', ['table', 'spoiler']],
             ['insert', ['link', 'picture', 'video', 'embed', 'hr']],
             //['dir', ['ltr', 'rtl']],
             ['view', ['fullscreen', 'codeview', 'help']],
@@ -40,6 +40,12 @@ window.initSummernote = function() {
             onImageUpload: function (files) {
                 uploadImage($summernote, files[0]);
             },
+            onChange: function() {
+                window.entityFormHasUnsavedChanges = true;
+            },
+            /*onBlur: function() {
+                console.log('blury');
+            },*/
         },
         gallery: {
             source: {
