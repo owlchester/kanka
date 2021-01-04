@@ -1369,6 +1369,26 @@ summary {
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
+.entity-header .entity-links {
+  margin-top: 5px;
+  margin-left: 2px;
+}
+
+.entity-header .entity-links li {
+  margin: 0 3px 0 0;
+  padding: 0;
+}
+
+.entity-header .entity-links li a {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  padding: 3px;
+  background-color: white;
+  border-radius: 5px;
+}
+
 .visu-teaser {
   background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/features/relation-visu-teaser.png);
   background-position: center;

@@ -1,7 +1,8 @@
 <div class="box box-solid">
     <div class="box-body box-profile">
         @if (!View::hasSection('entity-header'))
-        @include ('cruds._image')
+            @include ('cruds._image')
+            @include('entities.components.links')
         @endif
 
         <ul class="list-group list-group-unbordered">

@@ -1,5 +1,6 @@
 <div class="box box-solid">
     <div class="box-body box-profile">
+        @include('entities.components.links')
         <ul class="list-group list-group-unbordered">
             @if (!empty($model->attributeTemplate))
                 <li class="list-group-item">

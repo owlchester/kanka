@@ -57,6 +57,24 @@
       }
     }
   }
+
+  .entity-links {
+    margin-top: 5px;
+    margin-left: 2px;
+    li {
+      margin: 0 3px 0 0;
+      padding: 0;
+      a {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        text-align: center;
+        padding: 3px;
+        background-color: white;
+        border-radius: 5px;
+      }
+    }
+  }
 }
 
 .visu-teaser {

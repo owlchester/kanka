@@ -65,7 +65,7 @@
                     <div class="form-group">
                         <label>{{ __('profiles.settings.fields.editor') }}</label>
                         {!! Form::select('editor', [
-                            '' => __('profiles.editors.summernote'),
+                            '' => 'Summernote',
                             'legacy' => __('profiles.editors.legacy'),
                         ], null, ['class' => 'form-control']) !!}
                     </div>
