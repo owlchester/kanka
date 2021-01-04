@@ -75,6 +75,7 @@ return [
             'dashboards'            => 'Set custom dashboards for roles of the campaign',
             'description'           => 'Certain pledge levels provide users with boosters that they can use to boost campaigns. These provide the following benefits.',
             'entity_files'          => 'Increased max uploaded files per entity (up to 5 instead of 3)',
+            'entity_links'          => 'Set links on entities to external resources and websites',
             'header_image'          => 'Entity header image',
             'images'                => 'Set custom default entity images',
             'no_ads'                => 'No ads on the campaign',

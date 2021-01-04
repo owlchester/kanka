@@ -1370,8 +1370,7 @@ summary {
 }
 
 .entity-header .entity-links {
-  margin-top: 5px;
-  margin-left: 2px;
+  margin: 5px 0 0 2px;
 }
 
 .entity-header .entity-links li {
