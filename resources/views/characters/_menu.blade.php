@@ -6,6 +6,7 @@
             @if ($model->title)
                 <p class="text-muted text-center">{{ $model->title }}</p>
             @endif
+            @include('entities.components.links')
         @endif
 
         <ul class="list-group list-group-unbordered">

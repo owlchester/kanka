@@ -98,6 +98,14 @@
                             </li>
                         @endif
 
+                        @if ((empty($disableEntityLinks) || !$disableEntityLinks) && Auth::user()->can('update', $model))
+                            <li>
+                                <a href="{{ route('entities.entity_links.index', $model->entity) }}">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i> {{ __('crud.actions.manage_links') }}
+                                </a>
+                            </li>
+                        @endif
+
                         @if ($model->entity)
                             @if (Auth::user()->isAdmin())
                                 <li>
