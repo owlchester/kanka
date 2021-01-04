@@ -71,10 +71,20 @@ To get the details of a single entity, use the following endpoint.
 }
 ```
 
-You can call this endpoint with the `?related` option described below to get the entity's related objects.
+## Filtering Entities
+
+You can filter the returned entities on the `entities/` endpoint with the following options.
+
+| Parameter | Values | Description |
+| :- | :- | :- |
+| `types` | `character,family` | Filter the returned entities by the `type` field. |
+
+For example, call `entities?types=item,quest` to get entities of the Item and Quest type.
 
 <a name="related-entities"></a>
 ## Related Entities
+
+You can call this endpoint with the `?related` option described below to get the entity's related objects. This parameter works for both the `entities/` endpoints and the individual "child" endpoints (ie `characters/`).
 
 There are several models in Kanka which represent objects attached to `entities`.
 
