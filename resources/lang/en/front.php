@@ -69,7 +69,7 @@ return [
             'title'         => 'Embed Audio & Video',
         ],
         'boosts'            => [
-            'beta'                  => 'Beta access to some new features for 30 days before general release.',
+            'beta'                  => 'Beta access to some new features for 30 days before general release',
             'boosted'               => 'Boosted campaign',
             'css'                   => 'Custom campaign css',
             'dashboards'            => 'Set custom dashboards for roles of the campaign',
