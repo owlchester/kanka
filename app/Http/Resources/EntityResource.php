@@ -42,12 +42,13 @@ class EntityResource extends JsonResource
     {
         /** @var \App\Models\Entity $entity */
         $entity = $this->resource;
+
         $data = [
             'id' => $entity->id,
             'name' => $entity->name,
             'type' => $entity->type,
             'child_id' => $entity->entity_id,
-            'tags' => $entity->tags()->pluck('tags.id')->toArray(),
+            'tags' => $entity->tags->pluck('id')->toArray(),
             'is_private' => (bool) $entity->is_private,
             'is_template' => (bool) $entity->is_template,
             'campaign_id' => $entity->campaign_id,
@@ -71,6 +72,13 @@ class EntityResource extends JsonResource
             $data['relations'] = RelationResource::collection($this->relationships);
             $data['inventory'] = InventoryResource::collection($this->inventories);
             $data['entity_abilities'] = EntityAbilityResource::collection($this->abilities);
+
+            $data['child'] = [
+                'image' => $entity->child->image,
+                'image_full' => $entity->child->getImageUrl(0),
+                'image_thumb' => $entity->child->getImageUrl(40),
+                'has_custom_image' => !empty($entity->child->image)
+            ];
         }
 
         // Get the actual model

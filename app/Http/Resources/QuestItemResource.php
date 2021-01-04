@@ -17,6 +17,7 @@ class QuestItemResource extends ModelResource
         return $this->entity([
             'item_id' => $this->item_id,
             'description' => $this->description,
+            'colour' => $this->colour,
             'role' => $this->role,
         ]);
     }

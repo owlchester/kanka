@@ -17,6 +17,7 @@ class QuestCharacterResource extends ModelResource
         return $this->entity([
             'character_id' => $this->character_id,
             'description' => $this->description,
+            'colour' => $this->colour,
             'role' => $this->role,
         ]);
     }
