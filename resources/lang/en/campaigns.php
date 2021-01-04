@@ -30,6 +30,9 @@ TEXT
     'entity_visibilities'               => [
         'private'   => 'New entities are private',
     ],
+    'entity_note_visibility' => [
+        'pinned' => 'Pin new entity notes',
+    ],
     'errors'                            => [
         'access'        => 'You don\'t have access to this campaign.',
         'superboosted'  => 'This feature is only available to superboosted campaigns.',
@@ -51,6 +54,7 @@ TEXT
         'entity_count'                  => 'Entity Count',
         'entity_personality_visibility' => 'Character Personality Visibility',
         'entity_visibility'             => 'Entity Visibility',
+        'entity_note_visibility'        => 'Entity Notes Pinned',
         'excerpt'                       => 'Excerpt',
         'followers'                     => 'Followers',
         'header_image'                  => 'Header Image',
@@ -74,6 +78,7 @@ TEXT
         'css'                           => 'Write your own CSS that will be loaded into the pages of your campaign. Please note that any abuse of this feature can lead to a removal of your custom CSS. Repeated or grave offenses can lead to a removal of your campaign.',
         'entity_personality_visibility' => 'When creating a new character, the "Personality Visible" option will automatically be unselected.',
         'entity_visibility'             => 'When creating a new entity, the "Private" option will automatically be selected.',
+        'entity_note_visibility'        => 'When creating a new entity note, the "Pinned" option will automatically be selected.',
         'excerpt'                       => 'The campaign excerpt will be displayed on the dashboard, so write a few sentences introducing your world. Keep it short for the best results.',
         'hide_history'                  => 'Enable this option to hide the history of entities to non-admin members of the campaign.',
         'hide_members'                  => 'Enable this option to hide the campaign member list of the campaign to non-admin members.',

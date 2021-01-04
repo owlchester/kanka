@@ -76630,6 +76630,7 @@ $(document).ready(function () {
   initTogglePasswordFields();
   initAjaxPagination();
   initTimelineToggle();
+  initEntityNoteToggle();
   /**
    * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
    */
@@ -76957,6 +76958,19 @@ function initTimelineToggle() {
     $('#era-items-' + eraId + '').sortable();
     $(this).parent().hide();
     $('#era-items-' + eraId + '-save-reorder').show();
+  });
+}
+/**
+ * Entity Note toggle support
+ */
+
+
+function initEntityNoteToggle() {
+  $('.entity-note-toggle').on('click', function () {
+    var id = $(this).data('short');
+    console.log('clicky', id);
+    $('#' + id + "-show").toggle();
+    $('#' + id + "-hide").toggle();
   });
 } // Helpers are injected directly in the window functions.
 

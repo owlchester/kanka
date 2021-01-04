@@ -8,6 +8,7 @@ use App\Models\Concerns\Paginatable;
 use App\Traits\EntityNoteVisibilityTrait;
 use App\Traits\OrderableTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use DateTime;
 
 /**
@@ -21,8 +22,13 @@ use DateTime;
  * @property string $visibility
  * @property integer $created_by
  * @property boolean $is_private
+ * @property boolean $is_pinned
+ * @property integer $position
+ * @property Entity $entity
  * @property EntityMention[] $mentions
  * @property EntityNotePermission[] $permissions
+ *
+ * @method static Builder|self pinned()
  */
 class EntityNote extends Model
 {
@@ -35,6 +41,8 @@ class EntityNote extends Model
         'entry',
         'created_by',
         'is_private',
+        'is_pinned',
+        'position',
         'visibility'
     ];
 
@@ -114,5 +122,11 @@ class EntityNote extends Model
     {
         $text = Mentions::editEntityNote($this);
         return $text;
+    }
+
+    public function scopePinned($query)
+    {
+        return $query->where('is_pinned', true)
+            ->orderBy('position');
     }
 }

@@ -36,6 +36,7 @@ use Illuminate\Support\Str;
  * @property integer $visible_entity_count
  * @property array $ui_settings
  * @property array|null $default_images
+ * @property array|null $settings
  * @property Carbon $created_at
  * @property Carbon $updated_at
  *
@@ -79,12 +80,14 @@ class Campaign extends MiscModel
         'system',
         'theme_id',
         'css',
-        'ui_settings'
+        'ui_settings',
+        'settings',
     ];
 
     protected $casts = [
         'ui_settings' => 'array',
         'default_images' => 'array',
+        'settings' => 'array',
     ];
 
     /**
@@ -412,5 +415,13 @@ class Campaign extends MiscModel
     public function hasPluginTheme(): bool
     {
         return !empty(CampaignCache::themes());
+    }
+
+    /**
+     * @return bool
+     */
+    public function getEntityNoteVisibilityAttribute(): bool
+    {
+        return (bool) Arr::get($this->settings, 'entity_note_visibility', false);
     }
 }

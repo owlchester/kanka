@@ -20,6 +20,8 @@ class EntityNoteResource extends EntityChild
             'visibility' => $this->visibility,
             'entry' => $this->entry,
             'entry_parsed' => Mentions::mapEntityNote($this->resource),
+            'is_pinned' => (bool) $this->is_pinned,
+            'position' => $this->position,
         ]);
     }
 }

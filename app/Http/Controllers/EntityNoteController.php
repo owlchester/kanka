@@ -162,6 +162,7 @@ class EntityNoteController extends Controller
         $parentRoute = $entity->pluralType();
         $model = $entityNote;
         $ajax = request()->ajax();
+        $from = request()->get('from');
 
         return view('cruds.notes.edit', compact(
             'entity',
@@ -169,7 +170,8 @@ class EntityNoteController extends Controller
             'name',
             'route',
             'parentRoute',
-            'ajax'
+            'ajax',
+            'from'
         ));
     }
 
@@ -197,6 +199,13 @@ class EntityNoteController extends Controller
         } elseif ($request->has('submit-update')) {
             $route = route('entities.entity_notes.edit', [$entity, $entityNote]);
             return response()->redirectTo($route);
+        }
+
+        if ($request->get('from') == 'main') {
+            return redirect()->route($entity->pluralType() . '.show', [$entity->child->id, '#entity-note-' . $entityNote->id])
+                ->with('success', trans('entities/notes.edit.success', [
+                    'name' => $entityNote->name, 'entity' => $entity->name
+                ]));
         }
 
         return redirect()->route($entity->pluralType() . '.show', [$entity->child->id, $this->tab])

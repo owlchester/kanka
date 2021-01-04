@@ -22,6 +22,11 @@ return [
         'creator'   => 'Creator',
         'entry'     => 'Entry',
         'name'      => 'Name',
+        'is_pinned' => 'Pinned',
+        'position' => 'Pinned position',
+    ],
+    'hints' => [
+        'is_pinned' => 'Pinned entity notes are displayed below the entity\'s text on the primary entity view. Combine with the position field to control in which order pinned entity notes appear.',
     ],
     'hint'          => 'Information that doesn\'t quite fit in the standard fields of an entity or that should be kept private can be added as Entity Notes.',
     'index'         => [
