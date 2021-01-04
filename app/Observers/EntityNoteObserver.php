@@ -48,7 +48,7 @@ class EntityNoteObserver
                 $last = $entityNote->entity->notes()->pinned()
                     ->orderBy('position', 'desc')
                     ->first();
-                $entityNote->position = $last->position + 1;
+                $entityNote->position = $last ? $last->position + 1 : 1;
             }
         }
     }
