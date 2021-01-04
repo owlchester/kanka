@@ -11,7 +11,9 @@ class EntityApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return Resource::collection($campaign->entities);
+        return Resource::collection($campaign->entities()
+            ->apiFilter(request()->all())
+            ->paginate());
     }
 
     /**

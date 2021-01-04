@@ -3,6 +3,7 @@
 namespace App\Models\Scopes;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\DB;
  * @method static self type(string $type)
  * @method static self|Builder inTags(array $tags)
  * @method static self|Builder templates(string $entityType)
+ * @method static self|Builder apiFilter(array $requests)
  */
 trait EntityScopes
 {
@@ -108,5 +110,25 @@ trait EntityScopes
         return $query
             ->where('type', $entityType)
             ->where('is_template', 1);
+    }
+
+    /**
+     * @param Builder $query
+     * @param array $request
+     * @return Builder
+     */
+    public function scopeApiFilter(Builder $query, array $request = [])
+    {
+        $related = Arr::get($request, 'related', false);
+        $types = Arr::get($request, 'types');
+        if (!empty($types)) {
+            $types = explode(',', $types);
+            $query->whereIn('type', $types);
+        }
+
+        return $query
+            ->with($related ? [
+                'attributes', 'notes', 'events', 'files', 'relationships', 'inventories', 'abilities', 'tags'] : ['tags'])
+        ;
     }
 }

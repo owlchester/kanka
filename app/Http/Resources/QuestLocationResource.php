@@ -16,6 +16,7 @@ class QuestLocationResource extends ModelResource
     {
         return $this->entity([
             'description' => $this->description,
+            'colour' => $this->colour,
             'role' => $this->role,
         ]);
     }
