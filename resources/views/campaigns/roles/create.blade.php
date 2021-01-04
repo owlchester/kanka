@@ -2,7 +2,7 @@
     'title' => trans('campaigns.roles.create.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => $model->name],
+        ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
         ['url' => route('campaign_roles.index'), 'label' => trans('campaigns.show.tabs.roles')],
         __('campaigns.roles.actions.add')
     ],

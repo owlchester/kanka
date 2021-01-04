@@ -67,7 +67,7 @@
                 </div>
             </div>
             <div class="col-lg-3 my-auto text-right">
-                @if (!Auth::check())
+                @if (!auth()->check())
                     <p>
                         <a href="/login" class="btn btn-outline btn-xl">{{ __('front.menu.login') }}</a>
                     </p>@if(config('auth.register_enabled'))

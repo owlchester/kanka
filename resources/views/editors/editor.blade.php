@@ -1,7 +1,7 @@
-@if(auth()->user()->editor == 'summernote')
-    @renderOnce('editors-summernote')
-        @include('editors.summernote')
-    @endrenderOnce
+@if(auth()->user()->editor == 'legacy')
+    @include('editors.tinymce')
 @else
-@include('editors.tinymce')
+    @renderOnce('editors-summernote')
+    @include('editors.summernote')
+    @endrenderOnce
 @endif

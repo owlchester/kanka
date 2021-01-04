@@ -6,6 +6,8 @@
     <script src="/vendor/summernote/plugin/embed/summernote-embed-plugin.js" defer></script>
     <script src="/vendor/summernote/plugin/summernote-table-headers/summernote-table-headers.js" defer></script>
     <script src="/vendor/summernote/plugin/summernote-gallery.min.js" defer></script>
+    <script src="/vendor/summernote/plugin/spoiler/summernote-spoiler.js" defer></script>
+    <script src="/vendor/summernote/plugin/summernote-toc.js" defer></script>
 {{--    <script src="/vendor/summernote/plugin/rtl/summernote-ext-rtl.js" defer></script>--}}
 
     @if (app()->getLocale() == 'he')

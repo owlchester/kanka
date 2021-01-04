@@ -100,30 +100,23 @@ class PermissionService
         $icons = [
             'read' => [
                 'fa fa-eye',
-                'fa fa-eye-slash',
             ],
             'edit' => [
-                'fa fa-pen',
                 'fa fa-pen',
             ],
             'add' => [
                 'fas fa-plus-square',
-                'far fa-plus-square',
             ],
             'delete' => [
                 'fas fa-trash-alt',
-                'far fa-trash-alt',
             ],
             'entity-note' => [
                 'fas fa-file',
-                'far fa-file',
             ],
             'permission' => [
                 'fa fa-cog',
-                'fa fa-cog',
             ],
         ];
-        //$actions = ['read', 'edit', 'add', 'delete'];
 
         // Public actions
         if ($role->is_public) {
@@ -149,11 +142,57 @@ class PermissionService
                     'action' => $action,
                     'table' => $table,
                     'key' => $key,
-                    'icons' => $icons[$action],
+                    'icon' => Arr::first($icons[$action]),
                     'enabled' => isset($campaignRolePermissions[$key]),
                 ];
             }
         }
+
+        return $permissions;
+    }
+
+    /**
+     * Campaign Permissions
+     * @param CampaignRole $role
+     * @return array
+     */
+    public function campaignPermissions(CampaignRole $role): array
+    {
+        $permissions = [];
+
+        $campaignRolePermissions = [];
+        foreach ($role->permissions as $perm) {
+            $campaignRolePermissions[$perm->key] = 1;
+        }
+
+        $entityActions = ['manage', 'dashboard', 'members'];
+        $icons = [
+            'manage' => [
+                'fa fa-cog',
+            ],
+            'dashboard' => [
+                'fas fa-columns',
+            ],
+            'members' => [
+                'fas fa-users'
+            ],
+        ];
+
+        foreach ($entityActions as $action) {
+            if (!isset($permissions['campaign'])) {
+                $permissions['campaign'] = [];
+            }
+            $key = "campaign_{$action}";
+            $table = $key;
+            $permissions['campaign'][] = [
+                'action' => $action,
+                'table' => $table,
+                'key' => $key,
+                'icon' => Arr::first($icons[$action]),
+                'enabled' => isset($campaignRolePermissions[$key]),
+            ];
+        }
+
 
         return $permissions;
     }

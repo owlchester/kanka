@@ -27,7 +27,7 @@ class DashboardController extends Controller
 
         $user = null;
         $settings = null;
-        if (Auth::check() && Auth::user()->can('update', $campaign)) {
+        if (Auth::check() && Auth::user()->can('dashboard', $campaign)) {
             $settings = true;
         }
 

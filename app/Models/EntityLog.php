@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 /**
- * Class EntityMention
+ * Class EntityLog
  * @package App\Models
  *
  * @property integer $entity_id

@@ -9,8 +9,8 @@ return [
         'success'   => 'Profile updated',
     ],
     'editors'       => [
-        'default'       => 'Default (TinyMCE 4)',
-        'summernote'    => 'Summernote (Experimental)',
+        'legacy'       => 'Legacy (TinyMCE 4)',
+        'summernote'    => 'Summernote',
     ],
     'fields'        => [
         'avatar'                    => 'Avatar',
@@ -66,7 +66,7 @@ return [
             'pagination'            => 'Pagination (elements per page)',
         ],
         'helpers'   => [
-            'editor'    => 'The default editor (TinyMCE 4) is old but works well on desktop, but doesn\'t work on mobile. Summernote is a newer editor that works on all devices but we are still trying it out.',
+            'editor_v2'    => 'Using the legacy text editor (TinyMCE) will not support mentions on mobile devices, and not have support for some features like the campaign gallery.',
         ],
         'hints'     => [
             'advanced_mentions'     => 'If activated, mentions will always render as [entity:123] when editing an entity.',

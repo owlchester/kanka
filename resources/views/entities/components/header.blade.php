@@ -20,6 +20,7 @@
 @if ($model instanceof \App\Models\Character && $model->title)
                     <h3 class="title">{{ $model->title }}</h3>
 @endif
+                    @include('entities.components.links', ['header' => true])
                 </div>
             </div>
         </div>

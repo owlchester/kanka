@@ -230,6 +230,8 @@ Route::group([
         Route::post('/entities/{entity}/entity_abilities/{entity_ability}/use', 'Entity\AbilityController@useCharge')->name('entities.entity_abilities.use');
         Route::get('/entities/{entity}/entity_abilities/reset', 'Entity\AbilityController@resetCharges')->name('entities.entity_abilities.reset');
 
+        Route::get('/entities/{entity}/entity_links/{entity_link}/go', 'Entity\LinkController@go')->name('entities.entity_links.go');
+
         //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
         Route::resources([
             'abilities' => 'AbilityController',
@@ -278,6 +280,7 @@ Route::group([
             'entities.entity_notes' => 'EntityNoteController',
             'entities.entity_events' => 'EntityEventController',
             'entities.entity_files' => 'EntityFileController',
+            'entities.entity_links' => 'Entity\LinkController',
             'entities.inventories' => 'Entity\InventoryController',
             'entities.relations' => 'Entity\RelationController',
 

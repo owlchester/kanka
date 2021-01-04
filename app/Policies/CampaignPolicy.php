@@ -3,8 +3,10 @@
 namespace App\Policies;
 
 use App\Facades\CampaignCache;
+use App\Facades\EntityPermission;
 use App\Facades\Identity;
 use App\Facades\UserCache;
+use App\Models\Entity;
 use App\Traits\AdminPolicyTrait;
 use App\Traits\EnvTrait;
 use App\User;
@@ -63,7 +65,24 @@ class CampaignPolicy
     public function update(User $user, Campaign $campaign): bool
     {
         return
-            $user->campaign->id == $campaign->id && UserCache::user($user)->admin();
+            $user->campaign->id == $campaign->id && (
+                UserCache::user($user)->admin() || $this->checkPermission('manage', $user)
+            );
+    }
+
+    /**
+     * Determine whether the user can manage the roles of the campaign.
+     *
+     * @param  User  $user
+     * @param  Campaign  $campaign
+     * @return mixed
+     */
+    public function roles(User $user, Campaign $campaign): bool
+    {
+        return
+            $user->campaign->id == $campaign->id && (
+                UserCache::user($user)->admin()
+            );
     }
 
     /**
@@ -88,7 +107,9 @@ class CampaignPolicy
      */
     public function invite(User $user, Campaign $campaign): bool
     {
-        return $user->campaign->id == $campaign->id && UserCache::user($user)->admin();
+        return $user->campaign->id == $campaign->id && (
+            UserCache::user($user)->admin() || $this->checkPermission('members', $user)
+        );
     }
 
     /**
@@ -118,7 +139,8 @@ class CampaignPolicy
      */
     public function dashboard(User $user, Campaign $campaign): bool
     {
-        return $user->campaign->id == $campaign->id && UserCache::user($user)->admin();
+        return $user->campaign->id == $campaign->id && (
+            UserCache::user($user)->admin() || $this->checkPermission('dashboard', $user));
     }
 
     /**
@@ -128,7 +150,7 @@ class CampaignPolicy
      */
     public function stats(User $user, Campaign $campaign): bool
     {
-        return $user->campaign->id == $campaign->id && UserCache::user($user)->admin();
+        return $user->campaign->id == $campaign->id && (UserCache::user($user)->admin() || $campaign->userIsMember());
     }
 
     /**
@@ -185,7 +207,8 @@ class CampaignPolicy
      */
     public function members(?User $user, Campaign $campaign)
     {
-        return UserCache::user($user)->admin() || !($campaign->boosted() && $campaign->hide_members);
+        return (UserCache::user($user)->admin() || $this->checkPermission('members', $user)) ||
+            !($campaign->boosted() && $campaign->hide_members);
     }
 
     /**
@@ -196,5 +219,17 @@ class CampaignPolicy
     public function gallery(?User $user, Campaign $campaign): bool
     {
         return $user && UserCache::user($user)->admin() && $campaign->boosted(true);
+    }
+
+    /**
+     * @param string $action
+     * @param User $user
+     * @param Entity|null $entity
+     * @param Campaign|null $campaign
+     * @return bool
+     */
+    protected function checkPermission($action, User $user, Campaign $campaign = null)
+    {
+        return EntityPermission::hasPermission('campaign', $action, $user, null, $campaign);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\OrderableTrait;
+use Illuminate\Support\Str;
 
 /**
  * Class EntityEvent
@@ -161,7 +162,19 @@ class EntityEvent extends MiscModel
         if (empty($this->colour) || in_array($this->colour, ['default', 'grey'])) {
             return 'colour-pallet bg-gray';
         }
-        return 'colour-pallet bg-' . $this->colour;
+        return 'colour-pallet ' . (Str::startsWith($this->colour, '#') ? '' : 'bg-' . $this->colour);
+    }
+
+    /**
+     * @return string
+     */
+    public function getLabelBackgroundColour(): string
+    {
+        if (Str::startsWith($this->colour, '#')) {
+            return $this->colour;
+        }
+
+        return '';
     }
 
     /**
