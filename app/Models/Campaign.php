@@ -424,4 +424,12 @@ class Campaign extends MiscModel
     {
         return (bool) Arr::get($this->settings, 'entity_note_visibility', false);
     }
+
+    /**
+     * @return array|\ArrayAccess|mixed
+     */
+    public function getDefaultVisibilityAttribute()
+    {
+        return Arr::get($this->settings, 'default_visibility', 'all');
+    }
 }

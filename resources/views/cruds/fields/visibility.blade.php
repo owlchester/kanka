@@ -31,7 +31,7 @@ if (isset($model) && in_array($model->visibility, [\App\Models\Scopes\Visibility
         {{ trans('crud.fields.visibility') }}
         <i class="fa fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ trans('crud.hints.visibility') }}"></i>
     </label>
-    {{ Form::select('visibility', $options, null, ['class' => 'form-control', 'id' => 'visibility']) }}
+    {{ Form::select('visibility', $options, empty($model) ? CampaignLocalization::getCampaign()->default_visibility : $model->visibility, ['class' => 'form-control', 'id' => 'visibility']) }}
 
     <p class="help-block visible-xs visible-sm">{{ trans('crud.hints.visibility') }}</p>
 </div>
