@@ -31,6 +31,8 @@ You can get a list of all the entity-notes of an entity by using the following e
             "entry": "Lorem Ipsum",
             "entry_parsed": "Lorem Ipsum",
             "id": 31,
+            "is_pinned": false,
+            "position": null,
             "visibility": "all",
             "name": "Secret Note",
             "updated_at":  "2019-08-29T13:48:54.000000Z",
@@ -60,6 +62,8 @@ To get the details of a single entity-note, use the following endpoint.
         "entry": "Lorem Ipsum",
         "entry_parsed": "Lorem Ipsum",
         "id": 31,
+        "is_pinned": false,
+        "position": null,
         "visibility": "all",
         "name": "Secret Note",
         "updated_at":  "2019-08-29T13:48:54.000000Z",
@@ -86,6 +90,8 @@ To create an entity-note, use the following endpoint.
 | `entry` | `string` | The entity-note's entry (html) |
 | `entity_id` | `integer` (Required) | The entity-note's parent entity |
 | `visibility` | `string` | The visibility: `all`, `self`, `admin` or `self-admin`. |
+| `is_pinned` | `boolean` | If the entity note is pinned to the entity's main view |
+| `position` | `int|null` (optional) | Position for ordering pinned entity notes |
 
 ### Results
 
