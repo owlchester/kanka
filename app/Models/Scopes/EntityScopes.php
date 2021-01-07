@@ -131,4 +131,18 @@ trait EntityScopes
                 'attributes', 'notes', 'events', 'files', 'relationships', 'inventories', 'abilities', 'tags'] : ['tags'])
         ;
     }
+
+    /**
+     * Used by the API to get models updated since a previous date
+     * @param $query
+     * @param $lastSync
+     * @return mixed
+     */
+    public function scopeLastSync(Builder $query, $lastSync)
+    {
+        if (empty($lastSync)) {
+            return $query;
+        }
+        return $query->where('updated_at', '>', $lastSync);
+    }
 }

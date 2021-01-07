@@ -30,10 +30,11 @@ You can get a list of all the relations of an entity by using the following endp
             "target_id": 72,
             "relation": "Just Friends",
             "attitude": 22,
-            "is_private": false,
+            "visibility": "all",
             "is_star": false,
             "colour": null,
             "created_at":  "2019-01-30T00:01:44.000000Z",
+            "created_by": 1,
             "updated_at":  "2019-08-29T13:48:54.000000Z"
         }
     ]
@@ -58,10 +59,11 @@ To get the details of a single relation, use the following endpoint.
         "target_id": 72,
         "relation": "Just Friends",
         "attitude": 22,
-        "is_private": false,
+        "visibility": "all",
         "is_star": true,
         "colour": "#22bbff",
         "created_at":  "2019-01-30T00:01:44.000000Z",
+        "created_by": 1,
         "updated_at":  "2019-08-29T13:48:54.000000Z"
     }
 }
@@ -88,7 +90,7 @@ To create a relation, use the following endpoint.
 | `colour` | `string` | Hex colour of the attitude (with or without the `#`) |
 | `two_way` | `boolean` | If set, will duplicate the relation but in the other direction |
 | `is_star` | `boolean` | If the relation is visible on the entity's submenu |
-| `is_private` | `boolean` | If the relation is only visible to `admin` members of the campaign |
+| `visibility` | `string` | The visibility of the relation. Either `all`, `admin`, `admin-self`, `members` or `self` |
 
 ### Results
 
