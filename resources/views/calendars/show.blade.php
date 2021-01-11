@@ -27,14 +27,14 @@
                 @include('cruds._panes', ['calendars' => false])
             </div>
         </div>
-        <!-- actions -->
+
+        @include('entities.components.notes')
         @include('cruds.boxes.history')
     </div>
 </div>
 
 @section('scripts')
     @parent
-
     <script src="/vendor/spectrum/spectrum.js" defer></script>
 @endsection
 
