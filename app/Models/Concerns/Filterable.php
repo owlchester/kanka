@@ -42,23 +42,7 @@ trait Filterable
         foreach ($params as $key => $value) {
             if (isset($value) && in_array($key, $fields)) {
                 $filterOption = !empty($params[$key . '_option']) ? $params[$key . '_option'] : null;
-                // It's possible to request "not" values
-                $operator = 'like';
-                $filterValue = $value;
-                if ($key !== 'tags') {
-                    if ($value == '!!') {
-                        $operator = 'IS NULL';
-                        $filterValue = null;
-                    } elseif (Str::startsWith($value, '!')) {
-                        $operator = 'not like';
-                        $filterValue = ltrim($value, '!');
-                    } elseif (Str::endsWith($value, '!')) {
-                        $operator = '=';
-                        $filterValue = rtrim($value, '!');
-                    } elseif(Str::endsWith($key, '_id')) {
-                        $operator = '=';
-                    }
-                }
+                list ($operator, $filterValue) = $this->extractSearchOperator($value, $key);
 
                 // Foreign key search
                 $segments = explode('-', $key);
@@ -166,11 +150,23 @@ trait Filterable
 
                             continue;
                         }
-                        $query->where(
-                            $this->getTable() . '.' . $key,
-                            $operator,
-                            ($operator == '=' ? $filterValue : "%$filterValue%")
-                        );
+                        $searchTerms = explode(';', $filterValue);
+                        $firstTerm = true;
+                        foreach ($searchTerms as $searchTerm) {
+                            if (empty($searchTerm)) {
+                                continue;
+                            }
+                            // If it isn't the first term, we need to re-extract the search operators
+                            if (!$firstTerm) {
+                                list ($operator, $searchTerm) = $this->extractSearchOperator($searchTerm, $key);
+                            }
+                            $query->where(
+                                $this->getTable() . '.' . $key,
+                                $operator,
+                                ($operator == '=' ? $filterValue : "%$searchTerm%")
+                            );
+                            $firstTerm = false;
+                        }
                     }
                 }
             } elseif ($key == 'tags_option' && $value == 'none') {
@@ -197,5 +193,32 @@ trait Filterable
             }
         }
         return $query;
+    }
+
+    /**
+     * @param string $value
+     * @param string $key
+     * @return array
+     */
+    protected function extractSearchOperator(string $value, string $key): array
+    {
+        $operator = 'like';
+        $filterValue = $value;
+        if ($key !== 'tags') {
+            if ($value == '!!') {
+                $operator = 'IS NULL';
+                $filterValue = null;
+            } elseif (Str::startsWith($value, '!')) {
+                $operator = 'not like';
+                $filterValue = ltrim($value, '!');
+            } elseif (Str::endsWith($value, '!')) {
+                $operator = '=';
+                $filterValue = rtrim($value, '!');
+            } elseif(Str::endsWith($key, '_id')) {
+                $operator = '=';
+            }
+        }
+
+        return [$operator, $filterValue];
     }
 }
