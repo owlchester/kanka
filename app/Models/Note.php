@@ -56,6 +56,8 @@ class Note extends MiscModel
         'tags',
         'has_image',
         'note_id',
+        'has_entity_notes',
+        'has_entity_files',
     ];
 
     /**

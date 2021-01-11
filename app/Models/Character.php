@@ -67,6 +67,8 @@ class Character extends MiscModel
         'tags',
         'organisation_member',
         'has_image',
+        'has_entity_notes',
+        'has_entity_files',
     ];
 
     /**

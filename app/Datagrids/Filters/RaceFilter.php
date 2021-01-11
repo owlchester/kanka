@@ -25,6 +25,8 @@ class RaceFilter extends DatagridFilter
             ])
             ->isPrivate()
             ->hasImage()
+            ->hasEntityNotes()
+            ->hasEntityFiles()
             ->tags()
         ;
     }

@@ -14,6 +14,8 @@ class NoteFilter extends DatagridFilter
             ->add('type')
             ->isPrivate()
             ->hasImage()
+            ->hasEntityNotes()
+            ->hasEntityFiles()
             ->tags()
         ;
     }

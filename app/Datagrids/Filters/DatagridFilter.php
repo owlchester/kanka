@@ -129,6 +129,26 @@ abstract class DatagridFilter
     }
 
     /**
+     * Add the has image
+     * @return $this
+     */
+    protected function hasEntityNotes(): self
+    {
+        $this->filters[] = 'has_entity_notes';
+        return $this;
+    }
+
+    /**
+     * Add the has image
+     * @return $this
+     */
+    protected function hasEntityFiles(): self
+    {
+        $this->filters[] = 'has_entity_files';
+        return $this;
+    }
+
+    /**
      * Add the (real) date filter
      * @return $this
      */

@@ -28,6 +28,11 @@ trait Filterable
     protected $explicitFilters = [];
 
     /**
+     * @var bool If the entity table was already joined or not
+     */
+    protected $joinedEntity = false;
+
+    /**
      * @param $query
      * @param $params
      * @return mixed
@@ -70,15 +75,7 @@ trait Filterable
                         if (!empty($filterOption) && $filterOption === 'none') {
                             continue;
                         }
-                        $query
-                            ->distinct()
-                            ->select($this->getTable() . '.*')
-                            ->leftJoin('entities as e', function ($join) {
-                                $join->on('e.entity_id', '=', $this->getTable() . '.id');
-                                $join->where('e.type', '=', $this->getEntityType())
-                                    ->whereRaw('e.campaign_id = ' . $this->getTable() . '.campaign_id');
-                            })
-                        ;
+                        $query = $this->joinEntity($query);
 
                         // Make sure we always have an array
                         if (!is_array($value)) {
@@ -104,12 +101,8 @@ trait Filterable
                             ;
                         }
                     } elseif ($key == 'tag_id') {
+                        $query = $this->joinEntity($query);
                         $query
-                            ->select($this->getTable() . '.*')
-                            ->leftJoin('entities as e', function ($join) {
-                                $join->on('e.entity_id', '=', $this->getTable() . '.id');
-                                $join->on('e.campaign_id', '=', $this->getTable() . '.campaign_id');
-                            })
                             ->leftJoin('entity_tags as et', 'et.entity_id', 'e.id')
                             ->where('et.tag_id', $value);
                     } elseif ($key == 'organisation_member') {
@@ -132,6 +125,26 @@ trait Filterable
                             $query->whereNotNull($this->getTable() . '.image');
                         } else {
                             $query->whereNull($this->getTable() . '.image');
+                        }
+                    } elseif ($key == 'has_entity_notes') {
+
+                        $query = $this->joinEntity($query);
+                        $query->leftJoin('entity_notes', 'entity_notes.entity_id', 'e.id');
+
+                        if ($value) {
+                            $query->whereNotNull('entity_notes.id');
+                        } else {
+                            $query->whereNull('entity_notes.id');
+                        }
+                    } elseif ($key == 'has_entity_files') {
+
+                        $query = $this->joinEntity($query);
+                        $query->leftJoin('entity_files', 'entity_files.entity_id', 'e.id');
+
+                        if ($value) {
+                            $query->whereNotNull('entity_files.id');
+                        } else {
+                            $query->whereNull('entity_files.id');
                         }
                     } elseif ($operator == 'IS NULL') {
                         $query->where(function ($sub) use ($key) {
@@ -170,14 +183,8 @@ trait Filterable
                     }
                 }
             } elseif ($key == 'tags_option' && $value == 'none') {
+                $query = $this->joinEntity($query);
                 $query
-                    ->distinct()
-                    ->select($this->getTable() . '.*')
-                    ->leftJoin('entities as e', function ($join) {
-                        $join->on('e.entity_id', '=', $this->getTable() . '.id');
-                        $join->where('e.type', '=', $this->getEntityType())
-                            ->whereRaw('e.campaign_id = ' . $this->getTable() . '.campaign_id');
-                    })
                     ->leftJoin('entity_tags as no_tags', 'no_tags.entity_id', 'e.id')
                     ->whereNull('no_tags.tag_id');
             } elseif (Str::endsWith($key, '_option') && $value == 'none') {
@@ -220,5 +227,28 @@ trait Filterable
         }
 
         return [$operator, $filterValue];
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    protected function joinEntity($query)
+    {
+        if ($this->joinedEntity) {
+            return $query;
+        }
+
+        $this->joinedEntity = true;
+
+        return $query
+            ->distinct()
+            ->select($this->getTable() . '.*')
+            ->leftJoin('entities as e', function ($join) {
+                $join->on('e.entity_id', '=', $this->getTable() . '.id');
+                $join->where('e.type', '=', $this->getEntityType())
+                    ->whereRaw('e.campaign_id = ' . $this->getTable() . '.campaign_id');
+            })
+        ;
     }
 }

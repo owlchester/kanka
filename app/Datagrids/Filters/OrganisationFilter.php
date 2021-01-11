@@ -25,6 +25,8 @@ class OrganisationFilter extends DatagridFilter
             ])
             ->isPrivate()
             ->hasImage()
+            ->hasEntityNotes()
+            ->hasEntityFiles()
             ->tags()
         ;
     }

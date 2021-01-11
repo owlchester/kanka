@@ -59,6 +59,8 @@ class Tag extends MiscModel
         'is_private',
         'colour',
         'has_image',
+        'has_entity_notes',
+        'has_entity_files',
     ];
 
     /**

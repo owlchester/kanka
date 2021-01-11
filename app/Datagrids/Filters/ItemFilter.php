@@ -18,6 +18,8 @@ class ItemFilter extends DatagridFilter
             ->character()
             ->isPrivate()
             ->hasImage()
+            ->hasEntityNotes()
+            ->hasEntityFiles()
             ->tags()
         ;
     }

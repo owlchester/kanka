@@ -16,6 +16,8 @@ class TimelineFilter extends DatagridFilter
             ->add('type')
             ->isPrivate()
             ->hasImage()
+            ->hasEntityNotes()
+            ->hasEntityFiles()
             ->tags()
         ;
     }

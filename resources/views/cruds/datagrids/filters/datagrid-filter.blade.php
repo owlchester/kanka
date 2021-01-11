@@ -110,7 +110,7 @@ $count = 0;
                                     </div>
                                 @endif
                             @else
-                                <label>{{ __((in_array($field, ['is_private', 'has_image']) ? 'crud.fields.' : $name . '.fields.') . $field) }}</label>
+                                <label>{{ __((in_array($field, ['is_private', 'has_image', 'has_entity_files', 'has_entity_notes']) ? 'crud.fields.' : $name . '.fields.') . $field) }}</label>
                                 @if ($filterService->isCheckbox($field))
                                     <select class="filter-select form-control" id="{{ $field }}" name="{{ $field }}">
                                         <option value=""></option>
