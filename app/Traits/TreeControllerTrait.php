@@ -70,7 +70,7 @@ trait TreeControllerTrait
                     'class' => 'default',
                     'label' => '<i class="fa fa-arrow-left"></i> ' . trans('crud.actions.back')
                 ];
-                $createOptions['parent_id'] = $parent->id;
+                $createOptions['parent_id'] = null;
             }
         } else {
             $base->whereNull($parentKey);
