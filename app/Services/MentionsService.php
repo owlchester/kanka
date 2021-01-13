@@ -12,6 +12,7 @@ use App\Traits\MentionTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class MentionsService
 {
@@ -259,10 +260,20 @@ class MentionsService
                         $url = route('entities.' . $data['page'], $entity->id);
                     }
                 }
+                $dataUrl = route('entities.tooltip', $entity);
+
+                // If this request is through the API, we need to inject the language in the url
+                if (request()->is('api/*')) {
+                    $campaign = \App\Facades\CampaignLocalization::getCampaign();
+                    $lang = request()->header('kanka-locale', $campaign->locale ?? 'en');
+                    $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
+                    $dataUrl = Str::replaceFirst('campaign/', $lang . '/campaign/', $dataUrl);
+                }
+
                 $replace = '<a href="' . $url . '"'
                     . ' data-toggle="tooltip-ajax"'
                     . ' data-id="' . $entity->id . '"'
-                    . ' data-url="' . route('entities.tooltip', $entity). '"'
+                    . ' data-url="' . $dataUrl . '"'
 //                    . ' data-mention-url="' . route('entities.tooltip', $entity). '"'
 //                    . ' title="<i class=\'fa fa-spinner fa-spin\'></i>"'
                     . '>'
