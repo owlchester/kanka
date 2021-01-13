@@ -264,8 +264,7 @@ class MentionsService
 
                 // If this request is through the API, we need to inject the language in the url
                 if (request()->is('api/*')) {
-                    $campaign = \App\Facades\CampaignLocalization::getCampaign();
-                    $lang = request()->header('kanka-locale', $campaign->locale ?? 'en');
+                    $lang = request()->header('kanka-locale', auth()->user()->locale ?? 'en');
                     $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
                     $dataUrl = Str::replaceFirst('campaign/', $lang . '/campaign/', $dataUrl);
                 }
