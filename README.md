@@ -71,7 +71,7 @@ The following rules apply when developing the application.
 
 ### Issues
 
-To discuss an issue, please use [discord](https://discord.gg/rhsyZJ4).
+To discuss an issue, please use [Discord](https://discord.gg/rhsyZJ4).
 All improvements, features and bugs must be related to a ticket on the trello. Each PR must contain a link to the trello ticket (see [contributing](./docs/CONTRIBUTING.md)).
 
 ### Standards
@@ -80,7 +80,7 @@ Code must follow PSR-4 recommendations.
 
 ### Migrations
 
-All migrations should have a working `down()` function. Exceptions are allowed for migrations that alter lots of content.
+All migrations should have a working `down()` function. Exceptions can be permitted for migrations that alter lots of content.
 
 ### GIT
 
