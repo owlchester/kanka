@@ -86,3 +86,15 @@ $r = $model
     </tbody></table>
 
 {{ $r->fragment('tab_calendars')->links() }}
+
+
+@section('scripts')
+    @parent
+    <script src="/vendor/spectrum/spectrum.js" defer></script>
+@endsection
+
+
+@section('styles')
+    @parent
+    <link href="/vendor/spectrum/spectrum.css" rel="stylesheet">
+@endsection
