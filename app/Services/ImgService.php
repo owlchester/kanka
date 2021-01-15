@@ -121,6 +121,7 @@ class ImgService
             return false;
         }
         $accept = strtolower($_SERVER['HTTP_ACCEPT']);
+
         return $this->nowebp = !Str::contains($accept, 'image/webp');
     }
 

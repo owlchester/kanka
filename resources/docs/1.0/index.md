@@ -52,3 +52,6 @@
     - [Pagination](/docs/{{version}}/pagination)
     - [Dashboard Widgets](/docs/{{version}}/dashboard-widgets)
     - [Mention Language](/docs/{{version}}/mention-language)
+
+- ## Help
+    - [Troubleshooting](/docs/{{version}}/troubleshooting)
