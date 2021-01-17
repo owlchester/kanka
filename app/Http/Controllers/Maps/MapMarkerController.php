@@ -159,6 +159,10 @@ class MapMarkerController extends Controller
         if (auth()->check()) {
             $this->authorize('view', $map);
             if ($mapMarker->entity_id) {
+                // No access to the child? 404
+                if (empty($mapMarker->entity->child)) {
+                    abort(404);
+                }
                 $this->authorize('view', $mapMarker->entity->child);
             }
         } else {
