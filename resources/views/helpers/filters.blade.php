@@ -24,6 +24,8 @@
                 <dd>{!! __('helpers.filters.empty', ['tag' => '<code>!!</code>']) !!}</dd>
             </dl>
 
+            <p>{!! __('helpers.filters.multiple', ['syntax' => '<code>;</code>', 'example' => '<code>Alex;!Smith</code>']) !!}</p>
+
             <p>{{ __('helpers.filters.session') }}</p>
         </div>
     </div>

@@ -1,4 +1,6 @@
-<?php $r = $model->entity->notes()->with(['creator', 'entity', 'permissions'])
+<?php
+/** @var \App\Models\EntityNote $note */
+$r = $model->entity->notes()->with(['creator', 'entity', 'permissions'])
         ->order(request()->get('order'))
         ->paginate(); ?>
 <p class="export-hidden">{{ __('entities/notes.hint') }}</p>
@@ -28,7 +30,7 @@
             </th>
         @endif
         <th class="text-right">@can('entity-note', [$model, 'add'])
-            <a href="{{ route('entities.entity_notes.create', ['entity' => $model->entity]) }}" class="btn btn-primary btn-sm"
+            <a href="{{ route('entities.entity_notes.create', ['entity' => $model->entity]) }}" class="btn btn-primary btn-xs"
                 ><i class="fa fa-plus"></i> <span class="visible-lg-inline">{{ __('entities/notes.actions.add') }}</span>
             </a>
         @endcan
@@ -37,6 +39,9 @@
     @foreach ($r as $note)
         <tr>
             <td>
+                @if ($note->is_pinned)
+                    <i class="fas fa-star" title="{{ __('entities/notes.fields.is_pinned') }}"></i>
+                @endif
                 <a href="{{ route('entities.entity_notes.show', [$note->entity, $note]) }}" data-toggle="ajax-modal"
                    data-target="#large-modal" data-url="{{ route('entities.entity_notes.show', [$note->entity, $note]) }}"
                    data-title="{{ $note->name }}" data-entry="{{ $note->entry() }}">{{ $note->name }}</a>
