@@ -370,4 +370,12 @@ trait EntityRelations
     {
         return $this->hasOne('App\Models\Image', 'image_id', 'id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function links()
+    {
+        return $this->hasMany('App\Models\EntityLink', 'entity_id', 'id');
+    }
 }

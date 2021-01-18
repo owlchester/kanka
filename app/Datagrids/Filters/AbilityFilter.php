@@ -24,6 +24,8 @@ class AbilityFilter extends DatagridFilter
             ])
             ->isPrivate()
             ->hasImage()
+            ->hasEntityNotes()
+            ->hasEntityFiles()
             ->tags()
         ;
     }

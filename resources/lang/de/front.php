@@ -222,6 +222,14 @@ return [
         'heading'           => 'RPG Campaign Management und Worldbuilding leicht gemacht',
         'title'             => 'Kanka',
     ],
+    'media'         => [
+        'description'   => 'Auf dieser Seite finden Sie hochauflösende Bilder von Kanka. Verwenden Sie diese, wenn Sie für Kanka werben oder Tools erstellen, die mit Kanka interagieren.',
+        'images'        => [
+            'primary'   => 'Primäres Kanka-Logo',
+            'social'    => 'Soziales Kanka-Logo',
+        ],
+        'title'         => 'Medien',
+    ],
     'menu'          => [
         'about'         => 'Über Kanka',
         'api'           => 'API',
@@ -236,6 +244,7 @@ return [
         'home'          => 'Home',
         'login'         => 'Login',
         'marketplace'   => 'Marktplatz',
+        'media'         => 'Medien',
         'news'          => 'Neuigkeiten',
         'newsletter'    => 'Newsletter',
         'pricing'       => 'Preisgestaltung',

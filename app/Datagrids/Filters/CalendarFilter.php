@@ -14,6 +14,8 @@ class CalendarFilter extends DatagridFilter
             ->add('type')
             ->isPrivate()
             ->hasImage()
+            ->hasEntityNotes()
+            ->hasEntityFiles()
             ->tags()
         ;
     }

@@ -22,6 +22,7 @@ return [
     'api'           => [
         'experimental'          => 'Bem-vindo às APIs Kanka! Esses recursos ainda são experimentais, mas devem ser estáveis o suficiente para que você comece a se comunicar com as APIs. Crie um token de acesso pessoal para usar em suas solicitações de API ou use o token de cliente se desejar que seu aplicativo tenha acesso aos dados do usuário.',
         'help'                  => 'Em breve, Kanka fornecerá uma API RESTful para que aplicativos de terceiros possam se conectar ao aplicativo. Detalhes sobre como gerenciar suas chaves de API serão mostrados aqui.',
+        'helper'                => 'Bem vindo(a) as APIs do Kanka. Gere um token de acesso pessoal para usar em sua solicitação de API, para coletar informações sobre as campanhas das quais você faz parte.',
         'link'                  => 'Leia a documentação da API',
         'request_permission'    => 'No momento, estamos construindo uma API RESTful poderosa para que aplicativos de terceiros possam se conectar ao aplicativo. No entanto, atualmente estamos limitando o número de usuários que podem interagir com a API enquanto a aperfeiçoamos. Se você deseja acessar a API e construir aplicativos maneiros que se comunicam com o Kanka, entre em contato conosco e enviaremos todas as informações de que você precisa.',
         'title'                 => 'API',

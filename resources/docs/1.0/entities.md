@@ -4,6 +4,7 @@
 
 - [Entities](#entities)
 - [Single Entity](#entity)
+- [Filtering Entities](#filtering-entities)
 - [Related Entities](#related-entities)
 
 <a name="entities"></a>
@@ -71,6 +72,9 @@ To get the details of a single entity, use the following endpoint.
 }
 ```
 
+The `child_id` property in this case is the location's id. So if you want to get the whole location based on this entity, call `locations/95`.
+
+<a name="filtering-entities"></a>
 ## Filtering Entities
 
 You can filter the returned entities on the `entities/` endpoint with the following options.

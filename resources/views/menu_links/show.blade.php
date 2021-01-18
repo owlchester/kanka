@@ -3,6 +3,7 @@
         <div class="box box-solid">
             <div class="box-body">
                 @include ('cruds._image')
+                @include('entities.components.links')
 
                 <ul class="list-group list-group-unbordered">
                     <li class="list-group-item">

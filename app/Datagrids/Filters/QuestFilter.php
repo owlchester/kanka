@@ -29,6 +29,8 @@ class QuestFilter extends DatagridFilter
             ->isPrivate()
             ->date()
             ->hasImage()
+            ->hasEntityNotes()
+            ->hasEntityFiles()
             ->tags()
         ;
     }

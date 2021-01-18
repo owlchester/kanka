@@ -1,0 +1,74 @@
+<?php
+
+namespace App\Models;
+
+use App\Traits\VisibilityTrait;
+use App\User;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+
+/**
+ * Class EntityLink
+ * @package App\Models
+ *
+ * @property integer $entity_id
+ * @property integer $created_by
+ * @property string $name
+ * @property integer $position
+ * @property string $icon
+ * @property string $url
+ * @property Entity $entity
+ * @property User $user
+ * @property Campaign $campaign
+ */
+class EntityLink extends Model
+{
+    use VisibilityTrait;
+
+    public $fillable = [
+        'entity_id',
+        'created_by',
+        'name',
+        'url',
+        'icon',
+        'position',
+        'visibility',
+    ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function entity()
+    {
+        return $this->belongsTo('App\Models\Entity', 'entity_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'created_by');
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('position', 'ASC');
+    }
+
+    /**
+     * @return string
+     */
+    public function iconName(): string
+    {
+        if (empty($this->icon)) {
+            return 'fa fa-external-link';
+        }
+
+        return (string) $this->icon;
+    }
+}

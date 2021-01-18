@@ -12,8 +12,6 @@ $(document).ready(function () {
  * Initialize summernote when available
  */
 window.initSummernote = function() {
-    let galleryText = summernoteConfig.data('gallery-texts');
-    console.log('texts', galleryText);
 
     var $summernote = $('.html-editor').summernote({
         height: '300px',
@@ -23,7 +21,7 @@ window.initSummernote = function() {
             ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
             ['color', ['color']],
             ['para', ['ul', 'ol', 'kanka-indent', 'kanka-outdent', 'paragraph']],
-            ['table', ['table']],
+            ['table', ['table', 'spoiler', 'tableofcontent']],
             ['insert', ['link', 'picture', 'video', 'embed', 'hr']],
             //['dir', ['ltr', 'rtl']],
             ['view', ['fullscreen', 'codeview', 'help']],
@@ -40,6 +38,12 @@ window.initSummernote = function() {
             onImageUpload: function (files) {
                 uploadImage($summernote, files[0]);
             },
+            onChange: function() {
+                window.entityFormHasUnsavedChanges = true;
+            },
+            /*onBlur: function() {
+                console.log('blury');
+            },*/
         },
         gallery: {
             source: {
@@ -203,6 +207,7 @@ function hintContent(item) {
             text: item.fullname,
             href: '#',
             class: 'mention',
+            'data-name': item.fullname,
             'data-mention': mention,
         })[0];
 

@@ -32,6 +32,7 @@ class CampaignRoleController extends Controller
     public function index()
     {
         $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('roles', $campaign);
         return view('campaigns.roles', ['campaign' => $campaign]);
     }
 

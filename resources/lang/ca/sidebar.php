@@ -21,6 +21,7 @@ return [
     'entity-creator'        => 'Creador ràpid',
     'events'                => 'Esdeveniments',
     'families'              => 'Famílies',
+    'gallery'               => 'Galeria',
     'items'                 => 'Objectes',
     'journals'              => 'Cròniques',
     'locations'             => 'Indrets',

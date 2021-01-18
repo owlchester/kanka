@@ -37,7 +37,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>{{ __('calendars.fields.colour') }}</label>
-            {!! Form::select('colour', FormCopy::colours(false), (!empty($entityEvent) ? null : 'grey'), ['class' => 'form-control']) !!}
+            {!! Form::text('colour', (!empty($entityEvent) ? null : '#cccccc'), ['class' => 'form-control spectrum', 'maxlength' => 7] ) !!}
         </div>
     </div>
 </div>

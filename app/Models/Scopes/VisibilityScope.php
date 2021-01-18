@@ -14,6 +14,7 @@ class VisibilityScope implements Scope
      */
     const VISIBILITY_ALL = 'all';
     const VISIBILITY_ADMIN = 'admin';
+    const VISIBILITY_MEMBERS = 'members';
     const VISIBILITY_SELF = 'self';
     const VISIBILITY_ADMIN_SELF = 'admin-self';
 
@@ -35,8 +36,9 @@ class VisibilityScope implements Scope
                 // Either mine (self && created_by = me) or (if admin: !self, else: all)
                 $builder->where(function ($sub) use ($model) {
                     $visibilities = auth()->user()->isAdmin()
-                        ? [self::VISIBILITY_ALL, self::VISIBILITY_ADMIN, self::VISIBILITY_ADMIN_SELF]
-                        : [self::VISIBILITY_ALL];
+                        ? [self::VISIBILITY_ALL, self::VISIBILITY_ADMIN,
+                            self::VISIBILITY_ADMIN_SELF, self::VISIBILITY_MEMBERS]
+                        : [self::VISIBILITY_ALL, self::VISIBILITY_MEMBERS];
                     $sub
                         ->where(function ($self) use ($model) {
                             $self

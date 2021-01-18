@@ -32,5 +32,8 @@
 @include('editors.editor')
 
 @section('fullpage-form-end')
+    @if(!empty($from))
+        <input type="hidden" name="from" value="main" />
+    @endif
     {!! Form::close() !!}
 @endsection

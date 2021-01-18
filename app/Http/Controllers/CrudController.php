@@ -154,7 +154,10 @@ class CrudController extends Controller
             $base = $base->filter($this->filterService->filters());
 
             $models = $base->paginate();
-            $filteredCount =  $models->total();
+
+            // Don't use total as it won't use the distinct() filters (typically when doing
+            // left join on the entities table)
+            $filteredCount =  count($models); //->total()
         } else {
             /** @var Paginator $models */
             $models = $base->paginate();

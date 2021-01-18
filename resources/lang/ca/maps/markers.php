@@ -25,6 +25,7 @@ return [
         'latitude'      => 'Latitud',
         'longitude'     => 'Longitud',
         'opacity'       => 'Opacitat',
+        'pin_size'      => 'Tamany del marcador',
     ],
     'helpers'       => [
         'base'          => 'Afegiu marcadors al mapa fent clic a qualsevol lloc.',

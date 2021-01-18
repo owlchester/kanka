@@ -2,7 +2,7 @@
     'title' => trans('campaigns.roles.show.title', ['role' => $role->name, 'campaign' => $model->name]),
     'description' => trans('campaigns.roles.show.description'),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => $role->campaign->name],
+        ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
         ['url' => route('campaign_roles.index'), 'label' => trans('campaigns.show.tabs.roles')],
         $role->name,
     ],
@@ -33,12 +33,9 @@
                         @foreach ($r = $role->users()->with('user')->paginate() as $relation)
                             <tr>
                                 <td>
-                                    @if (getenv('APP_ENV') === 'dev')
-                                        <span title="{{ $relation->user->email }}">
-                                            {{ $relation->user->name }}
-                                        </span>
-                                    @else
-                                        {{ $relation->user->name }}
+                                    {{ $relation->user->name }}
+                                    @if (getenv('APP_ENV') === 'local')
+                                        ({{ $relation->user->email }})
                                     @endif
                                 </td>
                                 <td class="text-right">

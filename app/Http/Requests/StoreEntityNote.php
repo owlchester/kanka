@@ -27,6 +27,8 @@ class StoreEntityNote extends FormRequest
             'entity_id' => 'required|exists:entities,id',
             'name' => 'required|max:191',
             'visibility' => 'required',
+            'is_pinned' => 'boolean',
+            'position' => 'nullable|integer|min:0|max:128',
             'entry' => '',
         ];
     }

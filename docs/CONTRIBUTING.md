@@ -6,9 +6,11 @@ The following is a set of guidelines for contributing to Kanka, which is hosted 
 
 ## Contributing
 
-Issues are tracked on two distinct trello boards.
+We track issues and feature requests on two distinct trello boards.
 
 * [Backlog](https://trello.com/b/hVjPfOMU/kanka-backlog)
 * [In progress](https://trello.com/b/62aOwCHU/kanka)
 
 Issues in this repository should reflect requests from the community which are visible on the trello boards.
+
+When submitting PRs, include a link to the Trello ticket so that we know it's been requested by the community.

@@ -222,6 +222,14 @@ return [
         'heading'           => 'Gerenciamento de campanha de RPG de mesa e construção de mundos, tornados fáceis',
         'title'             => 'Kanka',
     ],
+    'media'         => [
+        'description'   => 'Encontre imagens de alta resolução do Kanka nesta página. Use-as se você estiver promovendo o Kanka ou construindo ferramentas que interagem com o Kanka.',
+        'images'        => [
+            'primary'   => 'Logotipo primário do Kanka',
+            'social'    => 'Logotipo para redes sociais do Kanka',
+        ],
+        'title'         => 'Mídia',
+    ],
     'menu'          => [
         'about'         => 'Sobre',
         'api'           => 'API',
@@ -236,6 +244,7 @@ return [
         'home'          => 'Início',
         'login'         => 'Login',
         'marketplace'   => 'Mercado',
+        'media'         => 'Mídia',
         'news'          => 'Novidades',
         'newsletter'    => 'Newsletter',
         'pricing'       => 'Preços',

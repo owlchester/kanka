@@ -25,6 +25,7 @@ return [
         'latitude'      => 'Latitude',
         'longitude'     => 'Longitude',
         'opacity'       => 'Opacidade',
+        'pin_size'      => 'Tamanho do pino',
     ],
     'helpers'       => [
         'base'          => 'Adicione marcadores no mapa clicando em qulquer lugar',

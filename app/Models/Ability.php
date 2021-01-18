@@ -58,6 +58,8 @@ class Ability extends MiscModel
         'ability_id',
         'is_private',
         'has_image',
+        'has_entity_notes',
+        'has_entity_files',
         'tags',
     ];
 

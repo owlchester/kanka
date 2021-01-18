@@ -47,6 +47,8 @@
             </div>
         </div>
         @endif
+
+        @include('entities.components.notes')
     </div>
 
     <div class="col-lg-2 col-md-3 @if (!$model->showAppearance()) hidden @endif">

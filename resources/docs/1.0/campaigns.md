@@ -42,7 +42,10 @@ You can get a list of all the campaigns the user has access to using the followi
                         "avatar": "{url}"
                     }
                 }
-            ]
+            ],
+            "setting": [],
+            "ui_settings": [],
+            "default_images": []
         }
     ],
     "links": {
@@ -95,7 +98,10 @@ Getting a single campaign is straightforward. `{id}` is to be replaced with the 
                     "avatar": "{url}"
                 }
             }
-        ]
+        ],
+        "setting": [],
+        "ui_settings": [],
+        "default_images": []
     }
 }
 ```
@@ -117,7 +123,7 @@ To get a list of all the members of a campaign, use the following endpoint.
             "id": 1,
             "name": "Ilestis",
             "avatar": "{url}"
-        } 
+        }
     ]
 }
 ```

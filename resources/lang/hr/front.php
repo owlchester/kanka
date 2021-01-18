@@ -218,6 +218,14 @@ return [
         'heading'           => 'Olakšano upravljanje RPG kampanjama i izgradnja svjetova',
         'title'             => 'Kanka',
     ],
+    'media'         => [
+        'description'   => 'Na ovoj stranici pronađi slike Kanke u visokoj rezoluciji. Koristi ih ako promoviraš Kanku ili izrađuješ alate koji komuniciraju s Kankom.',
+        'images'        => [
+            'primary'   => 'Primarni Kanka logotip',
+            'social'    => 'Društveni Kanka logotip',
+        ],
+        'title'         => 'Mediji',
+    ],
     'menu'          => [
         'about'         => 'O nama',
         'api'           => 'API',
@@ -232,6 +240,7 @@ return [
         'home'          => 'Početna stranica',
         'login'         => 'Prijava',
         'marketplace'   => 'Tržnica',
+        'media'         => 'Mediji',
         'news'          => 'Vijesti',
         'newsletter'    => 'Bilten',
         'pricing'       => 'Cijena',

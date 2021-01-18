@@ -23,6 +23,10 @@
             </div>
         </div>
 
+
+
+        @include('entities.components.notes')
+
         <div class="box box-solid">
             <div class="box-header">
                 <h3 class="box-title">
@@ -31,7 +35,7 @@
             </div>
             <div class="box-body">
 
-            @include('cruds._attributes')
+                @include('cruds._attributes')
             </div>
         </div>
 

@@ -47,6 +47,8 @@ class CharacterFilter extends DatagridFilter
             ->add('is_dead')
             ->isPrivate()
             ->hasImage()
+            ->hasEntityNotes()
+            ->hasEntityFiles()
             ->tags()
         ;
     }

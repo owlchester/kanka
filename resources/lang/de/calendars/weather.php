@@ -14,6 +14,7 @@ return [
     ],
     'fields'        => [
         'effect'        => 'Effekt',
+        'name'          => 'Name',
         'precipitation' => 'Niederschlag',
         'temperature'   => 'Temperatur',
         'weather'       => 'Wetter',
@@ -36,6 +37,7 @@ return [
     ],
     'placeholders'  => [
         'effect'        => 'Magische oder natürliche Wirkung',
+        'name'          => 'Optionaler benutzerdefinierter Wettertext',
         'precipitation' => 'Wassermenge',
         'temperature'   => 'Täglich hoch und niedrig',
         'wind'          => 'Windgeschwindigkeit',

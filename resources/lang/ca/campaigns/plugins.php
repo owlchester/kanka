@@ -38,11 +38,15 @@ return [
         'disabled'  => 'Desactivat',
         'enabled'   => 'Activat',
     ],
+    'templates'     => [
+        'name'  => ':name per :user',
+    ],
     'title'         => 'Connectors de la campanya :name',
     'types'         => [
-        'attributes'    => 'Plantilla d\'atributs',
-        'pack'          => 'Paquet de contingut',
-        'theme'         => 'Tema',
+        'attribute' => 'Plantilla d\'atributs',
+        'attributes'=> 'Plantilla d\'atributs',
+        'pack'      => 'Paquet de contingut',
+        'theme'     => 'Tema',
     ],
     'update'        => [
         'success'   => 'S\'ha actualitzat el connector :plugin.',

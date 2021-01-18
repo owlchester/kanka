@@ -9,6 +9,8 @@ if (!$live && $model->visibility == VisibilityScope::VISIBILITY_ALL) {
 $icon = "fas fa-" . (in_array($model->visibility, [VisibilityScope::VISIBILITY_SELF, VisibilityScope::VISIBILITY_ADMIN_SELF]) ? 'user-' : '') . 'lock';
 if ($model->visibility == \App\Models\Scopes\VisibilityScope::VISIBILITY_ALL) {
     $icon =  "far fa-eye";
+} elseif ($model->visibility == VisibilityScope::VISIBILITY_MEMBERS) {
+    $icon = "fas fa-users";
 }
 ?>
 @if ($live && auth()->check())

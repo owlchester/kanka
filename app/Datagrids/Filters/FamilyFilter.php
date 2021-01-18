@@ -25,6 +25,8 @@ class FamilyFilter extends DatagridFilter
             ->location()
             ->isPrivate()
             ->hasImage()
+            ->hasEntityNotes()
+            ->hasEntityFiles()
             ->tags()
         ;
     }

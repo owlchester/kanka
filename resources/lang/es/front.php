@@ -218,6 +218,14 @@ return [
         'heading'           => 'Gestión de campañas de rol y creación de mundos a tu alcance',
         'title'             => 'Kanka',
     ],
+    'media'         => [
+        'description'   => 'Aquí encontrarás imágenes en alta resolución de Kanka. Úsalas si estás promocionando a Kanka o creando herramientas que interactúan con ella.',
+        'images'        => [
+            'primary'   => 'Logo principal de Kanka',
+            'social'    => 'Logo social de Kanka',
+        ],
+        'title'         => 'Medios',
+    ],
     'menu'          => [
         'about'         => 'Acerca de',
         'api'           => 'API',
@@ -232,6 +240,7 @@ return [
         'home'          => 'Inicio',
         'login'         => 'Iniciar sesión',
         'marketplace'   => 'Marketplace',
+        'media'         => 'Medios',
         'news'          => 'Novedades',
         'newsletter'    => 'Newsletter',
         'pricing'       => 'Tarifas',

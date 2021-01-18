@@ -73,6 +73,8 @@ class Item extends MiscModel
         'size',
         'tags',
         'has_image',
+        'has_entity_notes',
+        'has_entity_files',
     ];
 
     /**

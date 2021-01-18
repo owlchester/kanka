@@ -41,7 +41,7 @@ $typeOptions = [
 @if ($ajax)
     <script type="text/javascript">
         $(document).ready(function () {
-            @if(auth()->user()->editor == 'summernote')
+            @if(auth()->user()->editor != 'legacy')
                 window.initSummernote();
             @else
                 var editorId = 'layer-entry';

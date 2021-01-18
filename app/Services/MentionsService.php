@@ -12,6 +12,7 @@ use App\Traits\MentionTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class MentionsService
 {
@@ -177,10 +178,19 @@ class MentionsService
             $text
         );
 
-        // Summernote will inject the link differently
-        $text = preg_replace(
-            '`<a href="#" class="mention" data-mention="([^"]*)">(.*?)</a>`',
-            '$1',
+        // Summernote will inject the link differently.
+        $text = preg_replace_callback(
+            '`<a href="#" class="mention" data-name="(.*?)" data-mention="([^"]*)">(.*?)</a>`',
+            function ($data) {
+                if (count($data) !== 4) {
+                    return $data[0];
+                }
+                // If the name was changed, inject advanced mention
+                if ($data[1] != $data[3]) {
+                    return str_replace(']', '|' . $data[3] . ']', $data[2]);
+                }
+                return $data[2];
+            },
             $text
         );
 
@@ -250,10 +260,19 @@ class MentionsService
                         $url = route('entities.' . $data['page'], $entity->id);
                     }
                 }
+                $dataUrl = route('entities.tooltip', $entity);
+
+                // If this request is through the API, we need to inject the language in the url
+                if (request()->is('api/*')) {
+                    $lang = request()->header('kanka-locale', auth()->user()->locale ?? 'en');
+                    $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
+                    $dataUrl = Str::replaceFirst('campaign/', $lang . '/campaign/', $dataUrl);
+                }
+
                 $replace = '<a href="' . $url . '"'
                     . ' data-toggle="tooltip-ajax"'
                     . ' data-id="' . $entity->id . '"'
-                    . ' data-url="' . route('entities.tooltip', $entity). '"'
+                    . ' data-url="' . $dataUrl . '"'
 //                    . ' data-mention-url="' . route('entities.tooltip', $entity). '"'
 //                    . ' title="<i class=\'fa fa-spinner fa-spin\'></i>"'
                     . '>'
@@ -295,7 +314,7 @@ class MentionsService
             } else {
                 $name = $entity->name;
             }
-            return '<a href="#" class="mention" data-mention="' . $matches[0] . '">' . $name . '</a>';
+            return '<a href="#" class="mention" data-name="' . $name . '" data-mention="' . $matches[0] . '">' . $name . '</a>';
         }, $this->text);
 
         // Extract links from the entry to attribute

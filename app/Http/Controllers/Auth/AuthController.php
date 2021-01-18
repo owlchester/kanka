@@ -111,6 +111,9 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function logout()
     {
         auth()->logout();

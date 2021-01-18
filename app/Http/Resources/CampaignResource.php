@@ -25,7 +25,10 @@ class CampaignResource extends JsonResource
             'visibility' => $this->visibility,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'members' => CampaignUserResource::collection($this->members)
+            'members' => CampaignUserResource::collection($this->members),
+            'settings' => $this->settings,
+            'ui_settings' => $this->ui_settings,
+            'default_images' => $this->default_images,
         ];
     }
 }

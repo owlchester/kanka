@@ -1,6 +1,4 @@
 <div class="tab-pane" id="form-public">
-    <div class="row">
-        <div class="col-md-6">
     {!! Form::hidden('is_public', 0) !!}
     <label>{!! Form::checkbox('is_public') !!}
         {{ __('campaigns.visibilities.public') }}
@@ -9,11 +7,9 @@
         <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fas fa-external-link-alt"></i> {{ __('helpers.public') }}</a>
     </p>
 
-            <p class="help-block">
-                {!! __('campaigns.helpers.view_public', ['link' => '<a href="' . route('dashboard') . '" target="_blank">' . route('dashboard') . '</a>']) !!}
-            </p>
-        </div>
-    </div>
+    <p class="help-block">
+        {!! __('campaigns.helpers.view_public', ['link' => '<a href="' . route('dashboard') . '" target="_blank">' . route('dashboard') . '</a>']) !!}
+    </p>
 
     <hr />
 

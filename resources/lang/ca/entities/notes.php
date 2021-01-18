@@ -2,7 +2,8 @@
 
 return [
     'actions'       => [
-        'add'   => 'Nova anotació',
+        'add'       => 'Nova anotació',
+        'add_user'  => 'Afegeix un usuari',
     ],
     'create'        => [
         'description'   => 'Crea una nova anotació',
@@ -30,6 +31,7 @@ return [
         'name'  => 'Secrets del màster, observacions, imatges extra, peticions...',
     ],
     'show'          => [
-        'title' => 'Anotació :name de :entity',
+        'advanced'  => 'Permisos avançats',
+        'title'     => 'Anotació :name de :entity',
     ],
 ];

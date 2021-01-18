@@ -1,33 +1,46 @@
 <?php
 
 return [
+    'abilities'     => [
+        'title' => 'Zdolności wywodzące się od :name',
+    ],
     'create'        => [
-        'success'   => 'Umiejętność \':name\' stworzona.',
-        'title'     => 'Nowa Umiejętność',
+        'success'   => 'Stworzono zdolność \':name\'.',
+        'title'     => 'Nowa Zdolność',
     ],
     'destroy'       => [
-        'success'   => 'Umiejętność \':name\' usunięta.',
+        'success'   => 'Usunięto zdolność \':name\'.',
     ],
     'edit'          => [
-        'success'   => 'Umiejętność \':name\' zaktualizowana.',
+        'success'   => 'Zaktualizowano zdolność \':name\'.',
+        'title'     => 'Edycja zdolności :name',
     ],
     'fields'        => [
-        'abilities' => 'Umiejętności',
+        'abilities' => 'Zdolności',
+        'ability'   => 'Zdolność źródłowa',
         'charges'   => 'Ładunki',
         'name'      => 'Nazwa',
-        'type'      => 'Typ',
+        'type'      => 'Rodzaj',
+    ],
+    'helpers'       => [
+        'descendants'   => 'Na liście znajdują się wszystkie zdolności wywodzące się od tej zdolności, nie tylko bezpośrednio.',
+        'nested'        => 'W Widoku Zagnieżdżonym na poziomie podstawowym wyświetlane są zdolności, które nie mają źródła. Po kliknięciu na zdolność zobaczysz jej zdolności pochodne. Możesz klikać, póki nie skończą się poziomy zależności.',
     ],
     'index'         => [
-        'add'           => 'Nowa Umiejętność',
-        'description'   => 'Dodaj opis mocy, zaklęć, talentów etc. do swoich umiejętności.',
-        'title'         => 'Umiejętności',
+        'add'           => 'Nowa Zdolność',
+        'description'   => 'Dodawaj moce, czary, atuty i inne zdolności specjalne różnych elementów kampanii.',
+        'header'        => 'Zdolności elementu :nazwa',
+        'title'         => 'Zdolności',
     ],
     'placeholders'  => [
-        'name'  => 'Kula ognia, Alarm, Ostrożny atak',
+        'charges'   => 'Liczba ładunków zdolności. Możesz wpisać wartość cechy jako {Level}*{CHA}',
+        'name'      => 'Kula ognia, Alarm, Podstępny atak',
+        'type'      => 'Czar, umiejętność, technika bojowa',
     ],
     'show'          => [
         'tabs'  => [
-            'abilities' => 'Umiejętności',
+            'abilities' => 'Zdolności',
         ],
+        'title' => 'Zdolność :name',
     ],
 ];

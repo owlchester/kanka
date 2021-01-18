@@ -13,6 +13,44 @@ return [
             'users'     => ':count usuaris',
         ],
     ],
+    'dashboards'        => [
+        'actions'       => [
+            'edit'      => 'Edita',
+            'new'       => 'Nou taulell',
+            'switch'    => 'Canvia de taulell',
+        ],
+        'boosted'       => 'Les :boosted_campaigns poden crear taulells personalitzats per a cadascun dels rols de la campanya.',
+        'create'        => [
+            'success'   => 'S\'ha creat el nou taulell :name.',
+            'title'     => 'Nou taulell de campanya',
+        ],
+        'custom'        => [
+            'text'  => 'Esteu editant el taulell :name de la campanya.',
+        ],
+        'default'       => [
+            'text'  => 'Esteu editant el taulell per defecte de la campanya.',
+            'title' => 'Taulell per defecte',
+        ],
+        'delete'        => [
+            'success'   => 'S\'ha eliminat el taulell :name.',
+        ],
+        'fields'        => [
+            'name'          => 'Nom del taulell',
+            'visibility'    => 'Visibilitat',
+        ],
+        'placeholders'  => [
+            'name'  => 'Nom del taulell',
+        ],
+        'update'        => [
+            'success'   => 'S\'ha actualitzat el talell :name.',
+            'title'     => 'Actualitzar el taulell :name',
+        ],
+        'visibility'    => [
+            'default'   => 'Per defecte',
+            'none'      => 'Cap',
+            'visible'   => 'Visible',
+        ],
+    ],
     'description'       => 'La llar de la creativitat',
     'helpers'           => [
         'follow'    => 'Les campanyes que seguiu apareixen al menú de canvi de campanya (adalt a l\'esquerra) sota les vostres campanyes.',
@@ -51,6 +89,8 @@ return [
         'title'     => 'Configura el taulell de la campanya',
         'widgets'   => [
             'calendar'      => 'Calendari',
+            'campaign'      => 'Encapçalament de la campanya',
+            'header'        => 'Capçalera',
             'preview'       => 'Previsualització de l\'entitat',
             'random'        => 'Entitat aleatòria',
             'recent'        => 'Recent',
@@ -69,6 +109,9 @@ return [
             'previous_events'   => 'Previ',
             'upcoming_events'   => 'Proper',
         ],
+        'campaign'      => [
+            'helper'    => 'Aquest giny mostra la capçalera de la campanya i sempre es mostra al taulell per defecte.',
+        ],
         'create'        => [
             'success'   => 'Giny afegit al taulell.',
         ],
@@ -76,6 +119,8 @@ return [
             'success'   => 'Giny eliminat del taulell.',
         ],
         'fields'        => [
+            'name'  => 'Nom de giny personalitzat',
+            'text'  => 'Text',
             'width' => 'Amplada',
         ],
         'recent'        => [
