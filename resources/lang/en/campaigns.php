@@ -24,14 +24,14 @@ TEXT
         'success'       => 'Campaign updated.',
         'title'         => 'Edit Campaign :campaign',
     ],
+    'entity_note_visibility'            => [
+        'pinned'    => 'Pin new entity notes',
+    ],
     'entity_personality_visibilities'   => [
         'private'   => 'New characters have their personality private by default.',
     ],
     'entity_visibilities'               => [
         'private'   => 'New entities are private',
-    ],
-    'entity_note_visibility' => [
-        'pinned' => 'Pin new entity notes',
     ],
     'errors'                            => [
         'access'        => 'You don\'t have access to this campaign.',
@@ -52,9 +52,9 @@ TEXT
         'css'                           => 'CSS',
         'description'                   => 'Description',
         'entity_count'                  => 'Entity Count',
+        'entity_note_visibility'        => 'Entity Notes Pinned',
         'entity_personality_visibility' => 'Character Personality Visibility',
         'entity_visibility'             => 'Entity Visibility',
-        'entity_note_visibility'        => 'Entity Notes Pinned',
         'excerpt'                       => 'Excerpt',
         'followers'                     => 'Followers',
         'header_image'                  => 'Header Image',
@@ -77,9 +77,9 @@ TEXT
         'boost_required'                => 'This feature requires the campaign to be boosted. More info on the :settings page.',
         'boosted'                       => 'Some features are unlocked because this campaign is being boosted. Find out more on the :settings page.',
         'css'                           => 'Write your own CSS that will be loaded into the pages of your campaign. Please note that any abuse of this feature can lead to a removal of your custom CSS. Repeated or grave offenses can lead to a removal of your campaign.',
+        'entity_note_visibility'        => 'When creating a new entity note, the "Pinned" option will automatically be selected.',
         'entity_personality_visibility' => 'When creating a new character, the "Personality Visible" option will automatically be unselected.',
         'entity_visibility'             => 'When creating a new entity, the "Private" option will automatically be selected.',
-        'entity_note_visibility'        => 'When creating a new entity note, the "Pinned" option will automatically be selected.',
         'excerpt'                       => 'The campaign excerpt will be displayed on the dashboard, so write a few sentences introducing your world. Keep it short for the best results.',
         'hide_history'                  => 'Enable this option to hide the history of entities to non-admin members of the campaign.',
         'hide_members'                  => 'Enable this option to hide the campaign member list of the campaign to non-admin members.',
@@ -249,15 +249,15 @@ TEXT
         'permissions'   => [
             'actions'   => [
                 'add'           => 'Create',
+                'dashboard'     => 'Dashboard',
                 'delete'        => 'Delete',
                 'edit'          => 'Edit',
                 'entity-note'   => 'Entity Note',
+                'manage'        => 'Manage',
+                'members'       => 'Members',
                 'permission'    => 'Permissions',
                 'read'          => 'View',
                 'toggle'        => 'Change for all',
-                'manage'        => 'Manage',
-                'dashboard'     => 'Dashboard',
-                'members'       => 'Members',
             ],
             'helpers'   => [
                 'entity_note'   => 'This allows users who do not have Edit permissions for an Entity to add Entity Notes to it.',

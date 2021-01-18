@@ -2,7 +2,8 @@
 
 return [
     'actions'       => [
-        'add'   => 'Nueva nota',
+        'add'       => 'Nueva nota',
+        'add_user'  => 'Añadir usuario',
     ],
     'create'        => [
         'description'   => 'Crear nueva nota',
@@ -30,6 +31,7 @@ return [
         'name'  => 'Nombre de la nota, observación...',
     ],
     'show'          => [
-        'title' => 'Nota :name de :entity',
+        'advanced'  => 'Permisos avanzados',
+        'title'     => 'Nota :name de :entity',
     ],
 ];

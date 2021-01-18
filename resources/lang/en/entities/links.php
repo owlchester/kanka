@@ -1,36 +1,39 @@
 <?php
 
 return [
-    'actions'   => [
+    'actions'       => [
         'add'   => 'Add a link',
     ],
-    'create'    => [
-        'success'           => 'Link :name added to :entity.',
-        'title'             => 'Add a link to :name',
+    'create'        => [
+        'success'   => 'Link :name added to :entity.',
+        'title'     => 'Add a link to :name',
     ],
-    'update'    => [
-        'success'           => 'Link :name updated for :entity.',
-        'title'             => 'Update link for :name',
+    'destroy'       => [
+        'success'   => 'Link :name removed from :entity.'
     ],
-    'fields' => [
-        'name' => 'Name',
-        'icon' => 'Icon',
-        'position' => 'Position',
-        'url' => 'Url',
+    'fields'        => [
+        'icon'      => 'Icon',
+        'name'      => 'Name',
+        'position'  => 'Position',
+        'url'       => 'URL',
     ],
-    'placeholders' => [
-        'name' => 'DNDBeyond',
-        'url' => 'https://dndbeyond.com/character-url',
-        'icon' => 'fab fa-d-and-d-beyond'
+    'helpers'       => [
+        'goto'      => 'Go to :name',
+        'icon'      => 'You can customise the icon displayed for the link. Use any of the free icons from :fontawesome or leave this field blank for the default.',
+        'leaving'   => 'You are about to leave Kanka and go to another domain. The page you are leaving to was provided by a user and isn\'t vetted by our website.',
+        'url'       => 'The url you are about to go to is :url.',
     ],
-    'helpers' => [
-        'leaving' => 'You are about to leave Kanka and go to another domain. The page you are leaving to was provided by a user and isn\'t vetted by our website.',
-        'goto' => 'Go to :name',
-        'url' => 'The url you are about to go to is :url.',
-        'icon' => 'You can customise the icon displayed for the link. Use any of the free icons from :fontawesome or leave this field blank for the default.',
+    'placeholders'  => [
+        'icon'  => 'fab fa-d-and-d-beyond',
+        'name'  => 'DNDBeyond',
+        'url'   => 'https://dndbeyond.com/character-url',
     ],
-    'show'      => [
+    'show'          => [
         'helper'    => 'Boosted campaigns can add links to entities that point to external websites.',
         'title'     => 'Links for :name',
+    ],
+    'update'        => [
+        'success'   => 'Link :name updated for :entity.',
+        'title'     => 'Update link for :name',
     ],
 ];

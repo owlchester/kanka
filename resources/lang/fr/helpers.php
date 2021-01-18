@@ -23,6 +23,7 @@ return [
         'description'   => 'Utilise les filtres pour limiter le nombre de résultats. Les champs de texte supportent plusieurs fonctionnalités pour plus de granularité.',
         'empty'         => 'Le code :tag: dans un champ cherche pour toutes les entités ou ce champ est vide.',
         'ending_with'   => 'En plaçant un :tag à la fin du texte, seuls les résultats avec exactement ce terme seront affichés.',
+        'multiple'      => 'Il est possible de combiner des options sur les champs de text avec la syntaxe :syntax. Par example :example.',
         'session'       => 'Les filtres et colonnes ordonnées sont enregistrés dans ta session. Du moment que tu restes connecté, il n\'est pas nécessaire de les redéfinir sur chaque page.',
         'starting_with' => 'En plaçant un :tag au début du texte, seuls les résultats ne contenant pas ce texte seront affichés.',
         'title'         => 'Comment utiliser les filtres',

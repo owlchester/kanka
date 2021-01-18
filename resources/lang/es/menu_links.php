@@ -15,17 +15,20 @@ return [
         'title'         => 'Enlace rápido :name',
     ],
     'fields'        => [
-        'entity'    => 'Entidad',
-        'filters'   => 'Filtros',
-        'menu'      => 'Menú',
-        'name'      => 'Nombre',
-        'position'  => 'Posición',
-        'tab'       => 'Pestaña',
-        'type'      => 'Tipo de entidad',
+        'entity'        => 'Entidad',
+        'filters'       => 'Filtros',
+        'menu'          => 'Menú',
+        'name'          => 'Nombre',
+        'position'      => 'Posición',
+        'random'        => 'Aleatorio',
+        'random_type'   => 'Tipo de entidad aleatorio',
+        'tab'           => 'Pestaña',
+        'type'          => 'Tipo de entidad',
     ],
     'helpers'       => [
         'entity'    => 'Configura este enlace rápido para acceder directamente a una entidad. El campo de :tab controla qué pestaña estará seleccionada. El campo de :menu controla qué subpágina de la entidad se abrirá.',
         'position'  => 'Usa este campo para controlar en qué orden ascendente aparecen los enlaces en el acceso rápido.',
+        'random'    => 'Usa este campo para tener un enlace rápido a una entidad aleatoria. Puedes filtrar el enlace para que solo vaya a un tipo específico de entidad.',
         'type'      => 'Configura este enlace de menú para ir directamente a una lista de entidades. Para filtrar los resultados, copia las partes de la URL de la lista filtrada a partir del símbolo :? en el campo de :filter.',
     ],
     'index'         => [
@@ -40,6 +43,9 @@ return [
         'menu'      => 'Subpágina del menú (usa la última parte de la url)',
         'name'      => 'Nombre del enlace rápido',
         'tab'       => 'Historia, Relaciones, Notas',
+    ],
+    'random_types'  => [
+        'any'   => 'Cualquier entidad',
     ],
     'show'          => [
         'description'   => 'Vista detallada del enlace rápido',

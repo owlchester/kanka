@@ -32,6 +32,7 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'No teniu accés a aquesta campanya.',
+        'superboosted'  => 'Aquesta funcionalitat només està disponible per a les campanyes supermillorades.',
         'unknown_id'    => 'Campanya desconeguda.',
     ],
     'export'                            => [
@@ -322,6 +323,7 @@ TEXT
         ],
         'description'   => 'Vista detallada de la campanya',
         'tabs'          => [
+            'achievements'      => 'Assoliments',
             'default-images'    => 'Imatges per defecte',
             'export'            => 'Exportació',
             'information'       => 'Informació',
@@ -333,6 +335,14 @@ TEXT
             'settings'          => 'Mòduls',
         ],
         'title'         => 'Campanya :name',
+    ],
+    'superboosted'                      => [
+        'gallery'   => [
+            'error' => [
+                'text'  => 'Pujar imatges a l\'editor de text és una funcionalitat disponible només per a les :superboosted.',
+                'title' => 'Galeria d\'imatges de campanya',
+            ],
+        ],
     ],
     'ui'                                => [
         'helper'    => 'Aquestes opcions canvien la forma en què es mostren alguns elements a la campanya.',

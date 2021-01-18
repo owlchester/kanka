@@ -168,9 +168,9 @@ return [
         'excerpt'               => 'Excerpt',
         'family'                => 'Family',
         'files'                 => 'Files',
-        'has_image'             => 'Has an image',
-        'has_entity_notes'      => 'Has entity notes',
         'has_entity_files'      => 'Has entity files',
+        'has_entity_notes'      => 'Has entity notes',
+        'has_image'             => 'Has an image',
         'header_image'          => 'Header Image',
         'image'                 => 'Image',
         'is_private'            => 'Private',
@@ -400,8 +400,8 @@ return [
     'visibilities'              => [
         'admin'         => 'Admin',
         'admin-self'    => 'Self & Admin',
-        'members'       => 'Members',
         'all'           => 'All',
+        'members'       => 'Members',
         'self'          => 'Self',
     ],
 ];

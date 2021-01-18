@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'actions'           => [
+    'actions'                   => [
         'actions'           => 'Accions',
         'apply'             => 'Aplica',
         'back'              => 'Enrere',
@@ -21,11 +21,11 @@ return [
         'public'            => 'Públic',
         'reset'             => 'Restableix',
     ],
-    'add'               => 'Afegeix',
-    'alerts'            => [
+    'add'                       => 'Afegeix',
+    'alerts'                    => [
         'copy_mention'  => 'S\'ha copiat la menció avançada de l\'entitat al porta-retalls.',
     ],
-    'attributes'        => [
+    'attributes'                => [
         'actions'       => [
             'add'               => 'Afegeix un atribut',
             'add_block'         => 'Afegeix un bloc',
@@ -93,9 +93,9 @@ return [
             'tab'       => 'L\'atribut només es mostra a la pestanya d\'atributs.',
         ],
     ],
-    'boosted'           => 'millorada',
-    'boosted_campaigns' => 'Campanyes millorades',
-    'bulk'              => [
+    'boosted'                   => 'millorada',
+    'boosted_campaigns'         => 'Campanyes millorades',
+    'bulk'                      => [
         'actions'       => [
             'edit'  => 'Edita i etiqueta en grup',
         ],
@@ -135,41 +135,41 @@ return [
             'public'            => '{1} Ara :count entitat és visible.|[2,*] Ara :count entitats són visibles.',
         ],
     ],
-    'cancel'            => 'Cancela',
-    'click_modal'       => [
+    'cancel'                    => 'Cancela',
+    'click_modal'               => [
         'close'     => 'Tanca',
         'confirm'   => 'Confirma',
         'title'     => 'Confirma l\'acció',
     ],
-    'copy_to_campaign'  => [
+    'copy_to_campaign'          => [
         'bulk_title'    => 'Copia entitats a una altra campanya',
         'panel'         => 'Copia',
         'title'         => 'Copia «:name» a una altra campaña',
     ],
-    'create'            => 'Crea',
-    'datagrid'          => [
+    'create'                    => 'Crea',
+    'datagrid'                  => [
         'empty' => 'Encara no hi ha res a mostrar.',
     ],
-    'delete_modal'      => [
+    'delete_modal'              => [
         'close'         => 'Tanca',
         'delete'        => 'Elimina',
         'description'   => '¿Segur que voleu eliminar :tag?',
         'mirrored'      => 'Elimina la relació emmirallada',
         'title'         => 'Confirmació de l\'eliminació',
     ],
-    'destroy_many'      => [
+    'destroy_many'              => [
         'success'   => '{1} S\'ha eliminat :count entitat.|[2,*] S\'han eliminat :count entitats.',
     ],
-    'edit'              => 'Edita',
-    'errors'            => [
+    'edit'                      => 'Edita',
+    'errors'                    => [
         'boosted'                       => 'Aquesta funció només està disponible per a les campanyes millorades.',
         'node_must_not_be_a_descendant' => 'Node invàlid (etiqueta, localització superior): seria un descendent de si mateix.',
     ],
-    'events'            => [
+    'events'                    => [
         'hint'  => 'Aquí es mostren els esdeveniments del calendari associats a aquesta entitat.',
     ],
-    'export'            => 'Exporta',
-    'fields'            => [
+    'export'                    => 'Exporta',
+    'fields'                    => [
         'ability'               => 'Habilitat',
         'attribute_template'    => 'Plantilla d\'atributs',
         'calendar'              => 'Calendari',
@@ -206,7 +206,7 @@ return [
         'type'                  => 'Tipus',
         'visibility'            => 'Visibilitat',
     ],
-    'files'             => [
+    'files'                     => [
         'actions'   => [
             'drop'      => 'Feu clic per a afegir o arrossegueu un fitxer',
             'manage'    => 'Administra els fitxers de l\'entitat',
@@ -222,8 +222,8 @@ return [
         ],
         'title'     => 'Fitxers de :name',
     ],
-    'filter'            => 'Filtra',
-    'filters'           => [
+    'filter'                    => 'Filtra',
+    'filters'                   => [
         'all'       => 'Mostra tots els descendents',
         'clear'     => 'Treu els filtres',
         'direct'    => 'Filtra només els descendents directes',
@@ -242,14 +242,14 @@ return [
         ],
         'title'     => 'Filtres',
     ],
-    'forms'             => [
+    'forms'                     => [
         'actions'       => [
             'calendar'  => 'Afegeix una data del calendari',
         ],
         'copy_options'  => 'Opcions de còpia',
     ],
-    'hidden'            => 'Amagat',
-    'hints'             => [
+    'hidden'                    => 'Amagat',
+    'hints'                     => [
         'attribute_template'    => 'Aplica una plantilla d\'atributs directament al crear aquesta entitat.',
         'calendar_date'         => 'Les dates del calendari faciliten el filtrat de les llistes, i també fixen els esdeveniments al calendari seleccionat.',
         'header_image'          => 'Aquesta imatge es troba sobre la entitat. Per a obtenir resultats millors, feu servir una imatge apaisada.',
@@ -261,7 +261,7 @@ return [
         'tooltip'               => 'Reemplaça la descripció emergent automàtica amb el contingut següent.',
         'visibility'            => 'En seleccionar "Administrador", només els membres amb el rol d\'administrador podran veure això. "Només jo" vol dir que només vós podeu veure això.',
     ],
-    'history'           => [
+    'history'                   => [
         'created'       => 'Creada per <strong>:name</strong> el <span data-toggle="tooltip" title=":realdate">:date</span>',
         'created_date'  => 'Creada el <span data-toggle="tooltip" title=":realdate">:date</span>',
         'unknown'       => 'Desconegut',
@@ -269,14 +269,14 @@ return [
         'updated_date'  => 'Última modificació el <span data-toggle="tooltip" title=":realdate">:date</span>',
         'view'          => 'Historial de canvis de l\'entitat',
     ],
-    'image'             => [
+    'image'                     => [
         'error' => 'No s\'ha pogut obtenir la imatge. Pot ser que la pàgina web no permeti descarregar-la (habitual a Squarespace o DeviantArt), o que l\'enllaç ja no sigui vàlid. Assegureu-vos també que el pes de la imatge no supera els :size.',
     ],
-    'is_not_private'    => 'Aquesta entitat no és privada.',
-    'is_private'        => 'Aquesta entitat és privada i només es mostra als administradors.',
-    'linking_help'      => 'Com es poden enllaçar altres entitats?',
-    'manage'            => 'Administra',
-    'move'              => [
+    'is_not_private'            => 'Aquesta entitat no és privada.',
+    'is_private'                => 'Aquesta entitat és privada i només es mostra als administradors.',
+    'linking_help'              => 'Com es poden enllaçar altres entitats?',
+    'manage'                    => 'Administra',
+    'move'                      => [
         'description'   => 'Mou aquesta entitat a un altre lloc',
         'errors'        => [
             'permission'        => 'No teniu permís per a crear entitats d\'aquest tipus a la campanya seleccionada.',
@@ -301,15 +301,15 @@ return [
         'success_copy'  => 'S\'ha copiat l\'entitat «:name».',
         'title'         => 'Mou :name',
     ],
-    'new_entity'        => [
+    'new_entity'                => [
         'error' => 'Reviseu les dades introduïdes.',
         'fields'=> [
             'name'  => 'Nom',
         ],
         'title' => 'Nova entitat',
     ],
-    'or_cancel'         => 'o <a href=":url">Cancela</a>',
-    'panels'            => [
+    'or_cancel'                 => 'o <a href=":url">Cancela</a>',
+    'panels'                    => [
         'appearance'            => 'Aparença',
         'attribute_template'    => 'Plantilla d\'atributs',
         'calendar_date'         => 'Data del calendari',
@@ -318,7 +318,7 @@ return [
         'move'                  => 'Mou',
         'system'                => 'Sistema',
     ],
-    'permissions'       => [
+    'permissions'               => [
         'action'            => 'Acció',
         'actions'           => [
             'bulk'          => [
@@ -354,7 +354,7 @@ return [
         'title'             => 'Permisos',
         'too_many_members'  => 'Aquesta campanya té massa membres (>10) per a poder mostrar-los tots aquí. Utilitzeu el botó de permisos a la vista d\'entitat per a controlar els permisos detalladament.',
     ],
-    'placeholders'      => [
+    'placeholders'              => [
         'ability'       => 'Trieu una habilitat',
         'calendar'      => 'Trieu un calendari',
         'character'     => 'Trieu un personatge',
@@ -370,7 +370,7 @@ return [
         'race'          => 'Trieu una raça',
         'tag'           => 'Trieu una etiqueta',
     ],
-    'relations'         => [
+    'relations'                 => [
         'actions'   => [
             'add'   => 'Afegeix una relació',
         ],
@@ -381,17 +381,18 @@ return [
         ],
         'hint'      => 'Es poden relacionar entitats per a representar les seves connexions.',
     ],
-    'remove'            => 'Elimina',
-    'rename'            => 'Canvia el nom',
-    'save'              => 'Guarda',
-    'save_and_close'    => 'Guarda i tanca',
-    'save_and_copy'     => 'Guarda i copia',
-    'save_and_new'      => 'Guarda i crea de nou',
-    'save_and_update'   => 'Guarda i segueix editant',
-    'save_and_view'     => 'Guarda i veu',
-    'search'            => 'Cerca',
-    'select'            => 'Selecciona',
-    'tabs'              => [
+    'remove'                    => 'Elimina',
+    'rename'                    => 'Canvia el nom',
+    'save'                      => 'Guarda',
+    'save_and_close'            => 'Guarda i tanca',
+    'save_and_copy'             => 'Guarda i copia',
+    'save_and_new'              => 'Guarda i crea de nou',
+    'save_and_update'           => 'Guarda i segueix editant',
+    'save_and_view'             => 'Guarda i veu',
+    'search'                    => 'Cerca',
+    'select'                    => 'Selecciona',
+    'superboosted_campaigns'    => 'Campanyes supermillorades',
+    'tabs'                      => [
         'abilities'     => 'Habilitats',
         'attributes'    => 'Atributs',
         'boost'         => 'Millora',
@@ -409,12 +410,12 @@ return [
         'timelines'     => 'Línies de temps',
         'tooltip'       => 'Descripció emergent',
     ],
-    'update'            => 'Actualitza',
-    'users'             => [
+    'update'                    => 'Actualitza',
+    'users'                     => [
         'unknown'   => 'Desconegut',
     ],
-    'view'              => 'Veu',
-    'visibilities'      => [
+    'view'                      => 'Veu',
+    'visibilities'              => [
         'admin'         => 'Admin',
         'admin-self'    => 'Admin i jo',
         'all'           => 'Tothom',

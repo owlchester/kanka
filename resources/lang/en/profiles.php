@@ -9,7 +9,7 @@ return [
         'success'   => 'Profile updated',
     ],
     'editors'       => [
-        'legacy'       => 'Legacy (TinyMCE 4)',
+        'legacy'        => 'Legacy (TinyMCE 4)',
         'summernote'    => 'Summernote',
     ],
     'fields'        => [
@@ -66,7 +66,7 @@ return [
             'pagination'            => 'Pagination (elements per page)',
         ],
         'helpers'   => [
-            'editor_v2'    => 'Using the legacy text editor (TinyMCE) will not support mentions on mobile devices, and not have support for some features like the campaign gallery.',
+            'editor_v2' => 'Using the legacy text editor (TinyMCE) will not support mentions on mobile devices, and not have support for some features like the campaign gallery.',
         ],
         'hints'     => [
             'advanced_mentions'     => 'If activated, mentions will always render as [entity:123] when editing an entity.',

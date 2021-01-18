@@ -14,6 +14,7 @@ return [
     ],
     'fields'        => [
         'effect'        => 'Učinak',
+        'name'          => 'Naziv',
         'precipitation' => 'Oborine',
         'temperature'   => 'Temperatura',
         'weather'       => 'Vremenski uvjeti',
@@ -36,6 +37,7 @@ return [
     ],
     'placeholders'  => [
         'effect'        => 'Magični ili prirodni učinak',
+        'name'          => 'Neobavezan prilagođeni tekst o vremenu',
         'precipitation' => 'Količina vode',
         'temperature'   => 'Dnevno visoka i niska',
         'wind'          => 'Brzine vjetra',

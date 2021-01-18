@@ -75,6 +75,7 @@ return [
             'dashboards'            => 'Créer des tableaux de bords personnalisé pour les rôles d\'une campagne.',
             'description'           => 'Certains niveaux de soutien donnent aux utilisateurs des boosters qu\'ils peuvent utiliser pour booster des campagnes. Ceci donne les avantages suivants.',
             'entity_files'          => 'Augmenter le nombre de fichiers maximal sur chaque entité (5 au lieu de 3)',
+            'entity_links'          => 'Définir des liens sur les entités vers des resources et site web externes',
             'header_image'          => 'Image d\'entête pour entité',
             'images'                => 'Définir des images d\'entité par défaut',
             'no_ads'                => 'Pas de publicité',

@@ -72,6 +72,7 @@ return [
             'beta'                  => 'Accés anticipat a algunes funcions noves 30 dies abans del llançament general.',
             'boosted'               => 'Campanya millorada',
             'css'                   => 'CSS de campanya personalitzat',
+            'dashboards'            => 'Taulells personalitzats segons el rol de campanya',
             'description'           => 'Alguns nivells de mecenatge atorguen millores als usuaris, que poden usar per a millorar campanyes. Aquestes obtenen els següents beneficis.',
             'entity_files'          => 'Més arxius pujats per entitat (fins a 5, en comptes de 3)',
             'header_image'          => 'Imatge de capçalera per a les entitats',
@@ -157,6 +158,15 @@ return [
             'description'   => 'Des d\'un sistema avançat de permisos, fins a Missions, Cròniques, Personatges i Habilitats, amb àudio i vídeo inserit, us ajudem a gestionar les vostres campanyes.',
             'title'         => 'Gestió de campanyes de rol',
         ],
+        'superboosts'       => [
+            'boosted'       => 'Supermillorades',
+            'description'   => 'Per a Supermillorar una campanya i desbloquejar les següents funcionalitats cal utilitzar tres millores a una mateixa campanya.',
+            'files'         => 'Fins a 10 fitxers pujats a cada entitat',
+            'gallery'       => 'Galeria de campanya i integracions amb l\'editor de text Summernote',
+            'logs'          => 'Registre de canvis complet a les entitats (de fins a 30 dies)',
+            'stats'         => 'Pàgina d\'assoliments de la campanya',
+            'title'         => 'Campanyes supermillorades',
+        ],
         'timelines'         => [
             'description'   => 'Representa visualment les línies de temps del món, imperis, famílies nobles o fins i tot d\'un sol personatge.',
             'title'         => 'Línies de temps',
@@ -208,6 +218,14 @@ return [
         'heading'           => 'Gestió de campanyes de rol i creació de mons al vostre abast',
         'title'             => 'Kanka',
     ],
+    'media'         => [
+        'description'   => 'Aquí trobareu imatges de Kanka en alta resolució. Podeu utilitzar-les per a promocionar Kanka o per a construïr eines que hi interactuin.',
+        'images'        => [
+            'primary'   => 'Logo primari de Kanka',
+            'social'    => 'Logo social de Kanka',
+        ],
+        'title'         => 'Mitjans',
+    ],
     'menu'          => [
         'about'         => 'Sobre nosaltres',
         'api'           => 'API',
@@ -222,6 +240,7 @@ return [
         'home'          => 'Inici',
         'login'         => 'Entra',
         'marketplace'   => 'Mercat',
+        'media'         => 'Mitjans',
         'news'          => 'Novetats',
         'newsletter'    => 'Newsletter',
         'pricing'       => 'Tarifes',

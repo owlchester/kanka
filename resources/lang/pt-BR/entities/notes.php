@@ -2,7 +2,8 @@
 
 return [
     'actions'       => [
-        'add'   => 'Nova Nota de entidade',
+        'add'       => 'Nova Nota de entidade',
+        'add_user'  => 'Adicionar usuário',
     ],
     'create'        => [
         'description'   => 'Criar uma nova Nota de entidade',
@@ -30,6 +31,7 @@ return [
         'name'  => 'Nome da Nota, observação ou comentário',
     ],
     'show'          => [
-        'title' => 'Nota :name de :entity',
+        'advanced'  => 'Permissões Avançadas',
+        'title'     => 'Nota :name de :entity',
     ],
 ];

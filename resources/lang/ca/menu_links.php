@@ -13,17 +13,20 @@ return [
         'title'     => 'Enllaç directe :name',
     ],
     'fields'        => [
-        'entity'    => 'Entitat',
-        'filters'   => 'Filtres',
-        'menu'      => 'Menú',
-        'name'      => 'Nom',
-        'position'  => 'Posició',
-        'tab'       => 'Pestanya',
-        'type'      => 'Tipus d\'entitat',
+        'entity'        => 'Entitat',
+        'filters'       => 'Filtres',
+        'menu'          => 'Menú',
+        'name'          => 'Nom',
+        'position'      => 'Posició',
+        'random'        => 'Aleatori',
+        'random_type'   => 'Tipus aleatori d\'entitat',
+        'tab'           => 'Pestanya',
+        'type'          => 'Tipus d\'entitat',
     ],
     'helpers'       => [
         'entity'    => 'Configureu aquest enllaç directe per a accedir directament a una entitat. El camp de :tab controla quina pestanya estarà seleccionada. El camp de :menu controla què subpàgina de l\'entitat s\'obrirà.',
         'position'  => 'Aquest camp controla en quina ordre ascendent apareixen els enllaços de l\'accés directe.',
+        'random'    => 'Utilitzeu aquest camp per a fer un enllaç directe cap a una entitat aleatòria. Podeu filtrar l\'enllaç per anar només a un tipus específic d\'entitat.',
         'type'      => 'Configureu aquest enllaç directe per a anar directament a una llista d\'entitats. Per a filtrar els resultats, copieu les parts de la URL de la llista filtrada a partir del símbol :? al camp de :filter.',
     ],
     'index'         => [
@@ -36,6 +39,9 @@ return [
         'menu'      => 'Subpàgina del menú (usa l\'última part de la url)',
         'name'      => 'Nom de l\'enllaç directe',
         'tab'       => 'Presentació, relacions, notes...',
+    ],
+    'random_types'  => [
+        'any'   => 'Qualsevol entitat',
     ],
     'show'          => [
         'tabs'  => [
