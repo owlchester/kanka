@@ -22,5 +22,6 @@
             </div>
         </div>
         @include('cruds.boxes.history')
+        @include('entities.components.notes')
     </div>
 </div>

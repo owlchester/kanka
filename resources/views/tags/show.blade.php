@@ -26,6 +26,7 @@
 
         @include('tags.panels.children')
 
+        @include('entities.components.notes')
         @include('cruds.boxes.history')
     </div>
 </div>

@@ -25,6 +25,7 @@
 
         @include('families.panels._members')
 
+        @include('entities.components.notes')
         @include('cruds.boxes.history')
     </div>
 </div>

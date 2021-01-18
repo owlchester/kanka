@@ -27,6 +27,8 @@
 
 
         @include('partials.errors')
+        @include('entities.components.notes')
+
         @include('timelines._timeline', ['timeline' => $model])
 
         @include('cruds.boxes.history')

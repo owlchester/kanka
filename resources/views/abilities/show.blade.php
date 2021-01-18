@@ -23,8 +23,6 @@
             </div>
         </div>
 
-
-
         @include('entities.components.notes')
 
         <div class="box box-solid">

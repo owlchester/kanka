@@ -23,7 +23,7 @@
             </div>
         </div>
 
-        <!-- actions -->
+        @include('entities.components.notes')
         @include('cruds.boxes.history')
     </div>
 </div>

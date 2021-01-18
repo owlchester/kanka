@@ -207,7 +207,7 @@ trait Filterable
      * @param string $key
      * @return array
      */
-    protected function extractSearchOperator(string $value, string $key): array
+    protected function extractSearchOperator($value, $key): array
     {
         $operator = 'like';
         $filterValue = $value;

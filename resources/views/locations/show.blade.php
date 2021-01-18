@@ -22,7 +22,7 @@
                 @include('cruds._panes')
             </div>
         </div>
-        <!-- actions -->
+        @include('entities.components.notes')
         @include('cruds.boxes.history')
     </div>
 </div>

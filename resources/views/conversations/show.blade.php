@@ -35,6 +35,8 @@
                 @include('cruds._panes')
             </div>
         </div>
+
+        @include('entities.components.notes')
     </div>
 </div>
 
