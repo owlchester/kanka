@@ -51,6 +51,7 @@ class ReleaseController extends AdminCrudController
         $models = $model
             ->filter(request()->all())
             ->search($filterService->search())
+            ->orderByDesc('published_at')
             ->paginate();
         return view('admin.cruds.index', compact(
             'models',
