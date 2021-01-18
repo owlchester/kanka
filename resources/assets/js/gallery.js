@@ -47,8 +47,6 @@ function initSearch() {
     gallery.hide();
     loader.show();
 
-    console.log('searching');
-
     $.ajax({
         url: search.data('url') + '?q=' + search.val()
     }).done(function(data) {
@@ -63,7 +61,6 @@ function initSearch() {
  */
 function initUploader() {
 
-    console.log('init uploader');
     fileDrop.unbind('drop dragover').bind('drop dragover', function(e) {
         e.preventDefault();
         fileProgress.show();
@@ -73,7 +70,6 @@ function initUploader() {
         dropZone: fileDrop,
         dataType: 'json',
         add: function (e, data) {
-            console.log('added file');
             fileError.hide();
             data.submit();
         },
@@ -86,12 +82,7 @@ function initUploader() {
             );
         },
         done: function (e, data) {
-            console.log('file uploaded');
             fileProgress.hide();
-            //fileDrop.collapse('hide');
-
-            console.log('result', data.result);
-
 
             if (data.result.success) {
                 gallery.prepend(data.result.html);
@@ -103,7 +94,6 @@ function initUploader() {
             fileProgress.hide();
 
             if (data.jqXHR.responseJSON) {
-
                 fileError.text(buildErrors(data.jqXHR.responseJSON.errors)).fadeToggle();
             }
 
@@ -136,6 +126,12 @@ function registerEvents() {
     $('#gallery-images li')
         .unbind('click')
         .on('click', function (e) {
+            let folder = $(this).data('folder');
+            if (folder) {
+                window.location = folder;
+                return;
+            }
+
             $.ajax({
                 url: $(this).data('url')
             }).done(function(data) {

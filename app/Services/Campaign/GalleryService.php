@@ -6,11 +6,15 @@ namespace App\Services\Campaign;
 
 use App\Models\Campaign;
 use App\Models\Image;
+use App\Models\ImageFolder;
+use App\Observers\PurifiableTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class GalleryService
 {
+    use PurifiableTrait;
+
     /** @var Campaign */
     protected $campaign;
 
@@ -61,6 +65,7 @@ class GalleryService
         $image->ext = $source->extension();
         $image->size = ceil($source->getSize() / 1024); // kb
         $image->name = substr($name, 0, 45);
+        $image->folder_id = $request->post('folder_id');
         $image->save();
 
         $source
@@ -83,5 +88,23 @@ class GalleryService
         ]);
 
         return $this;
+    }
+
+    /**
+     * Create a folder (virtual image)
+     * @param Request $request
+     */
+    public function createFolder(Request $request)
+    {
+        $folder = new Image();
+        $folder->id = Str::uuid();
+        $folder->campaign_id = $this->campaign->id;
+        $folder->name = $this->purify($request->post('name'));
+        $folder->folder_id = $request->post('folder_id');
+        $folder->is_folder = true;
+        $folder->created_by = $request->user()->id;
+        $folder->save();
+
+        return $folder;
     }
 }

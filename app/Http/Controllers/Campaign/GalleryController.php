@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Facades\Img;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Campaigns\GalleryImageFolderStore;
 use App\Http\Requests\Campaigns\GalleryImageStore;
 use App\Http\Requests\Campaigns\GalleryImageUpdate;
 use App\Models\Image;
@@ -30,9 +31,18 @@ class GalleryController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
-        $images = $campaign->images()->with('user')->orderBy('updated_at', 'desc')->paginate(50);
+        $folder = null;
+        $folderId = request()->get('folder_id');
+        if (!empty($folderId)) {
+            $folder = Image::where('is_folder', '1')->where('id', $folderId)->firstOrFail();
+        }
 
-        return view('gallery.index', compact('campaign', 'images'));
+        $images = $campaign->images()->with('user')
+            ->imageFolder($folderId)
+            ->defaultOrder()
+            ->paginate(50);
+
+        return view('gallery.index', compact('campaign', 'images', 'folder'));
     }
 
     public function search()
@@ -41,7 +51,10 @@ class GalleryController extends Controller
         $this->authorize('update', $campaign);
 
         $name = trim(request()->get('q', null));
-        $images = Image::where('name', 'like', "%$name%")->orderBy('updated_at', 'desc')->take(50)->get();
+        $images = Image::where('name', 'like', "%$name%")
+            ->defaultOrder()
+            ->take(50)
+            ->get();
 
         return view('gallery.images', compact(
             'images'
@@ -106,7 +119,14 @@ class GalleryController extends Controller
             ->image($image)
             ->update($request->post('name'));
 
-        return redirect()->route('campaign.gallery.index')
+        $params = null;
+        if ($image->is_folder) {
+            $params = ['folder_id' => $image->id];
+        } elseif (!empty($image->folder_id)) {
+            $params = ['folder_id' => $image->folder_id];
+        }
+
+        return redirect()->route('campaign.gallery.index', $params)
             ->with('success', __('campaigns/gallery.update.success'));
     }
 
@@ -124,5 +144,29 @@ class GalleryController extends Controller
 
         return redirect()->route('campaign.gallery.index')
             ->with('success', __('campaigns/gallery.destroy.success', ['name' => $image->name]));
+    }
+
+    /**
+     * Create a new folder
+     * @param GalleryImageFolderStore $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function folder(GalleryImageFolderStore $request)
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('update', $campaign);
+
+        $folder = $this->service
+            ->campaign($campaign)
+            ->createFolder($request);
+
+        $params = null;
+        if (!empty($folder->folder_id)) {
+            $params = ['folder_id' => $folder->folder_id];
+        }
+
+        return redirect()
+            ->route('campaign.gallery.index', $params);
     }
 }

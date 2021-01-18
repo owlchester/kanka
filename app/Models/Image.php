@@ -21,9 +21,12 @@ use Illuminate\Support\Facades\Storage;
  * @property string $ext
  * @property int $size
  * @property int $created_by
+ * @property string $folder_id
  * @property bool $is_default
+ * @property bool $is_folder
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @property ImageFolder $imageFolder
  *
  * @property User $user
  * @property Campaign $campaign
@@ -38,6 +41,8 @@ class Image extends Model
 
     public $fillable = [
         'name',
+        'is_folder',
+        'folder_id'
     ];
 
     /**
@@ -54,6 +59,16 @@ class Image extends Model
     public function campaign()
     {
         return $this->belongsTo(Campaign::class);
+    }
+
+    public function imageFolder()
+    {
+        return $this->belongsTo(Image::class, 'folder_id', 'id');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class, 'folder_id', 'id');
     }
 
     /**
@@ -106,5 +121,35 @@ class Image extends Model
         }
 
         return $this->size . ' KB';
+    }
+
+    /**
+     * @param $query
+     * @param $folderUuid
+     * @return mixed
+     */
+    public function scopeImageFolder($query, $folderUuid)
+    {
+        if (empty($folderUuid)) {
+            return $query->whereNull('folder_id');
+        }
+
+        return $query->where('folder_id', $folderUuid);
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeDefaultOrder($query)
+    {
+        return $query
+            ->orderBy('is_folder', 'desc')
+            ->orderBy('updated_at', 'desc');
+    }
+
+    public function hasNoFolders()
+    {
+        return $this->images()->where('is_folder', '1')->count() == 0;
     }
 }

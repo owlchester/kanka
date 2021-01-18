@@ -17,16 +17,6 @@ class AjaxGalleryController extends Controller
     }
 
     public function index() {
-        /*
-        [{
-            "src": "https://picsum.photos/id/40/200/200",
-            "title": "a galerie test"
-        }, {
-            "src": "https://picsum.photos/id/50/200/200",
-            "title": "a galerie test"
-        }]
-        */
-
         $start = request()->get('page', 0);
         $perPage = 20;
         $offset = $start * $perPage;
@@ -35,8 +25,23 @@ class AjaxGalleryController extends Controller
             'data' => [],
             'links' => []
         ];
+
+        // Has folder? Go back option
+        $folderId = request()->get('folder_id');
+        if (!empty($folderId) && !request()->has('page')) {
+            $image = Image::where('is_folder', true)->where('id', $folderId)->firstOrFail();
+
+            $response['data'][] = [
+                'title' => __('crud.actions.back'),
+                'folder' => $image->is_folder,
+                'id' => $image->id,
+                'url' => route('campaign.gallery.summernote', $image->folder_id ? ['folder_id' => $image->folder_id] : null),
+            ];
+        }
         $images = Image::where('is_default', false)
+            ->orderBy('is_folder', 'desc')
             ->orderBy('updated_at', 'desc')
+            ->imageFolder($folderId)
             ->offset($offset)
             ->take(20)
             ->get();
@@ -44,13 +49,20 @@ class AjaxGalleryController extends Controller
             $response['data'][] = [
                 'src' => Storage::url($image->path),
                 'title' => $image->name,
+                'folder' => $image->is_folder,
+                'id' => $image->id,
+                'url' => $image->is_folder ? route('campaign.gallery.summernote', ['folder_id' => $image->id]) : null,
             ];
         }
 
         // Next page
         $total = Image::count();
         if ($offset + $perPage < $total) {
-            $response['links']['next'] = route('campaign.gallery.summernote', ['page' => $start + 1]);
+            $params = ['page' => $start + 1];
+            if (!empty($folderId)) {
+                $params['folder_id'] = $folderId;
+            }
+            $response['links']['next'] = route('campaign.gallery.summernote', $params);
         }
 
         return response()->json($response);

@@ -20,6 +20,17 @@ class ImageObserver
         $image->name = $this->purify($image->name);
     }
 
+    public function deleting(Image $image)
+    {
+        if (!$image->is_folder) {
+            return;
+        }
+
+        // Delete any images in the folder first
+        foreach ($image->images as $img) {
+            $img->delete();
+        }
+    }
     /**
      * @param Image $image
      */

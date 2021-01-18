@@ -222,6 +222,8 @@ Route::group([
         Route::post('/default-images/create', 'Campaign\DefaultImageController@store')->name('campaign.default-images.store');
         Route::delete('/default-images', 'Campaign\DefaultImageController@destroy')->name('campaign.default-images');
 
+        Route::post('/gallery/folder', 'Campaign\GalleryController@folder')->name('campaign.gallery.folder');
+
         Route::get('/menu_links/{menu_link}/random', 'MenuLinkController@random')->name('menu_links.random');
 
 

@@ -5,7 +5,7 @@
 @extends('layouts.app', [
     'title' => trans('campaigns/gallery.title', ['campaign' => $campaign->name]),
     'breadcrumbs' => [
-        trans('campaigns/gallery.title', ['campaign' => $campaign->name]),
+        __('campaigns/gallery.title', ['campaign' => $campaign->name]),
     ]
 ])
 
@@ -14,8 +14,17 @@
     <div class="box no-border">
         <div class="box-body">
             <button class="btn btn-primary" data-toggle="collapse" data-target="#uploader">
-                {{ __('campaigns/gallery.uploader.add') }}
+                <i class="fa fa-upload"></i> {{ __('campaigns/gallery.uploader.add') }}
             </button>
+            <button class="btn btn-default" data-toggle="modal" data-target="#modal-new-folder">
+                <i class="fa fa-folder"></i> {{ __('campaigns/gallery.uploader.new_folder') }}
+            </button>
+
+            @if(!empty($folder))
+                <button class="btn btn-default" data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ route('images.edit', $folder) }}">
+                    <i class="fa fa-pencil"></i> {{ __('crud.edit') }}
+                </button>
+            @endif
 
             <div class="search pull-right">
                 <input type="text" class="form-control" id="gallery-search" placeholder="{{ __('campaigns/gallery.placeholders.search') }}" data-url="{{ route('campaign.gallery.search') }}" />
@@ -51,7 +60,11 @@
                 </div>
             </div>
         </div>
+        @if(!empty($folder))
+            {!! Form::hidden('folder_id', $folder->id) !!}
+        @endif
     </form>
+
 
     <div class="gallery">
         <div id="gallery-loader" class="text-center" style="display: none">
@@ -65,6 +78,34 @@
     </div>
 
     {{ $images->links() }}
+
+    <div class="modal fade" id="modal-new-folder" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                {!! Form::open(['route' => 'campaign.gallery.folder', 'method' => 'POST']) !!}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ trans('campaigns/gallery.new_folder.title') }}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>{{ __('campaigns/gallery.fields.name') }}</label>
+                        {!! Form::text('name', null, ['class' => 'form-control', 'maxlength' => 100]) !!}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('crud.cancel') }}</button>
+                    <button type="submit" class="btn btn-primary">
+                    {{ __('crud.create') }}
+                </button>
+                </div>
+            </div>
+            @if(!empty($folder))
+                {!! Form::hidden('folder_id', $folder->id) !!}
+            @endif
+            {!! Form::close() !!}
+        </div>
+    </div>
 @endsection
 
 @section('scripts')
