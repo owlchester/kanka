@@ -9,8 +9,7 @@ return [
         'success'   => 'A profilodat frissítettük.',
     ],
     'editors'       => [
-        'default'       => 'Alapértelmezett (TinyMCE 4)',
-        'summernote'    => 'Summernote (Kísérleti)',
+        'summernote'    => 'Summernote',
     ],
     'fields'        => [
         'avatar'                    => 'Profilkép',

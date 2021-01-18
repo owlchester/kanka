@@ -9,8 +9,7 @@ return [
         'success'   => 'Profil upravený',
     ],
     'editors'       => [
-        'default'       => 'TinyMCE 4 (štandard)',
-        'summernote'    => 'Summernote (experimentálna verzia)',
+        'summernote'    => 'Summernote',
     ],
     'fields'        => [
         'avatar'                    => 'Avatar',

@@ -9,8 +9,7 @@ return [
         'success'   => 'Perfil actualizado',
     ],
     'editors'       => [
-        'default'       => 'TinyMCE 4 (Por defecto)',
-        'summernote'    => 'Summernote (Experimental)',
+        'summernote'    => 'Summernote',
     ],
     'fields'        => [
         'avatar'                    => 'Avatar',
