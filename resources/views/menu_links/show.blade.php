@@ -3,7 +3,6 @@
         <div class="box box-solid">
             <div class="box-body">
                 @include ('cruds._image')
-                @include('entities.components.links')
 
                 <ul class="list-group list-group-unbordered">
                     <li class="list-group-item">
@@ -65,4 +64,4 @@
     </div>
 </div>
 
-@include('entities.components.actions', ['disableMove' => true, 'disableCopyCampaign' => true])
+@include('entities.components.actions', ['disableMove' => true, 'disableCopyCampaign' => true, 'disableEntityLinks' => true])

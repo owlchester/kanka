@@ -203,11 +203,11 @@ trait Filterable
     }
 
     /**
-     * @param string $value
+     * @param string|array $value (array for tags)
      * @param string $key
      * @return array
      */
-    protected function extractSearchOperator($value, $key): array
+    protected function extractSearchOperator($value, string $key): array
     {
         $operator = 'like';
         $filterValue = $value;
