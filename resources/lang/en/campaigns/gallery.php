@@ -12,7 +12,11 @@ return [
     'fields'        => [
         'created_by'    => 'Uploaded by',
         'ext'           => 'Ext',
+        'name'          => 'Name',
         'size'          => 'Size',
+    ],
+    'new_folder'    => [
+        'title' => 'New folder',
     ],
     'placeholders'  => [
         'search'    => 'Search image name...',
@@ -24,6 +28,7 @@ return [
     ],
     'uploader'      => [
         'add'           => 'Add new',
+        'new_folder'    => 'New Folder',
         'or'            => 'or',
         'select_file'   => 'Select a file',
         'well'          => 'Drop file to upload',
