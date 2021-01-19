@@ -11,7 +11,7 @@ Each API result on `index` endpoint of entities contain a `sync` attribute. This
 ```json
 {
     "data": [],
-    "sync": "2020-12-24T19:17:42.207577",
+    "sync": "2020-12-24T19:17:42.207577Z",
     "links": {
     },
     "meta": {
@@ -25,7 +25,7 @@ When calling an `index` enpoint, for example the `items` endpoint, you can provi
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| GET | `items/?lastSync=2019-03-21T19:17:42.207577` | Default |
+| GET | `items/?lastSync=2019-03-21T19:17:42.207577Z` | Default |
 
 ### Results
 
@@ -37,7 +37,7 @@ When calling an `index` enpoint, for example the `items` endpoint, you can provi
             "updated_at":  "2019-08-29T13:48:54.000000Z"
         }
     ],
-    "sync": "2020-12-24T19:32:42.44021",
+    "sync": "2020-12-24T19:32:42.222036Z",
     "links": {
     },
     "meta": {

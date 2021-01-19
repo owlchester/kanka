@@ -186,10 +186,13 @@ return [
         Stevebauman\Purify\PurifyServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
-        //Ilestis\LaravelElasticEmail\LaravelElasticEmailServiceProvider::class,
+
+
         Vsch\TranslationManager\ManagerServiceProvider::class,
         Vsch\TranslationManager\TranslationServiceProvider::class,
+        //Illuminate\Translation\TranslationServiceProvider::class,
+
+
         Barryvdh\DomPDF\ServiceProvider::class,
         RichanFongdasen\EloquentBlameable\ServiceProvider::class,
 
