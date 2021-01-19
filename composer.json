@@ -41,7 +41,7 @@
         "spatie/laravel-feed": "^2.6",
         "spatie/laravel-newsletter": "^4.8",
         "stevebauman/purify": "^3.0",
-        "tcg/voyager": "1.4.*"
+        "tcg/voyager": "^1.4"
     },
     "require-dev": {
         "ext-mysqli": "*",
