@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "61c684414236e15a0e9fbaf6c434ae20",
+    "content-hash": "3007c6c06ba44ee3e62f1ef90765287b",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -3650,62 +3650,6 @@
                 "source": "https://github.com/laravel/framework"
             },
             "time": "2020-10-13T14:20:24+00:00"
-        },
-        {
-            "name": "laravel/helpers",
-            "version": "v1.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/helpers.git",
-                "reference": "cde8ea2427db4f37d67729846b70452499210a21"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/helpers/zipball/cde8ea2427db4f37d67729846b70452499210a21",
-                "reference": "cde8ea2427db4f37d67729846b70452499210a21",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "~5.8.0|^6.0|^7.0|^8.0",
-                "php": "^7.1.3|^8.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^7.0|^8.0|^9.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.x-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylor@laravel.com"
-                },
-                {
-                    "name": "Dries Vints",
-                    "email": "dries.vints@gmail.com"
-                }
-            ],
-            "description": "Provides backwards compatibility for helpers in the latest Laravel release.",
-            "keywords": [
-                "helpers",
-                "laravel"
-            ],
-            "support": {
-                "source": "https://github.com/laravel/helpers/tree/v1.4.0"
-            },
-            "time": "2020-11-03T16:38:41+00:00"
         },
         {
             "name": "laravel/passport",
@@ -10704,71 +10648,6 @@
                 }
             ],
             "time": "2020-07-14T19:04:52+00:00"
-        },
-        {
-            "name": "vsch/laravel-translation-manager",
-            "version": "6.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/vsch/laravel-translation-manager.git",
-                "reference": "ece47c670fbd494540a0f097611a52dcc2da40f1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/vsch/laravel-translation-manager/zipball/ece47c670fbd494540a0f097611a52dcc2da40f1",
-                "reference": "ece47c670fbd494540a0f097611a52dcc2da40f1",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/dbal": "~2.9",
-                "illuminate/support": "^6.0",
-                "illuminate/translation": "^6.0",
-                "laravel/helpers": "^1.1",
-                "laravelcollective/html": "^6.0",
-                "php": ">=7.2",
-                "symfony/finder": "~4.3"
-            },
-            "require-dev": {
-                "fzaninotto/faker": "~1.4",
-                "mockery/mockery": "0.9.*",
-                "phpspec/phpspec": "~5.1",
-                "phpunit/phpunit": "~8.0"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/Classes"
-                ],
-                "files": [
-                    "src/Support/helpers.php"
-                ],
-                "psr-4": {
-                    "Vsch\\TranslationManager\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Vladimir Schneider",
-                    "email": "vladimir.schneider@gmail.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Enhanced Laravel Translation Manager",
-            "homepage": "https://github.com/vsch/laravel-translation-manager",
-            "keywords": [
-                "laravel",
-                "translations",
-                "translator"
-            ],
-            "support": {
-                "issues": "https://github.com/vsch/laravel-translation-manager/issues",
-                "source": "https://github.com/vsch/laravel-translation-manager/tree/6.0.0"
-            },
-            "time": "2019-10-12T15:17:41+00:00"
         }
     ],
     "packages-dev": [
