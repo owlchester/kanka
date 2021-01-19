@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "51a1f6cdbfd8ad36125ff2931fdf8445",
+    "content-hash": "6d071f310ae4a5b6976ab8efe381d218",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -344,25 +344,25 @@
         },
         {
             "name": "backup-manager/laravel",
-            "version": "1.4.0",
+            "version": "2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/backup-manager/laravel.git",
-                "reference": "dc114f1191a7d8a84fc52bebb1163c264d0b3da5"
+                "reference": "58ccef9882f97240c86f6d747b240dc16b5c7060"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/backup-manager/laravel/zipball/dc114f1191a7d8a84fc52bebb1163c264d0b3da5",
-                "reference": "dc114f1191a7d8a84fc52bebb1163c264d0b3da5",
+                "url": "https://api.github.com/repos/backup-manager/laravel/zipball/58ccef9882f97240c86f6d747b240dc16b5c7060",
+                "reference": "58ccef9882f97240c86f6d747b240dc16b5c7060",
                 "shasum": ""
             },
             "require": {
                 "backup-manager/backup-manager": "^1.0",
-                "illuminate/console": "^4.0||^5.0||^6.0",
-                "illuminate/container": "^4.0||^5.0||^6.0",
-                "illuminate/support": "^4.0||^5.0||^6.0",
-                "php": ">=5.5.0",
-                "symfony/process": "^2.0||^3.0||^4.0"
+                "illuminate/console": "^5.5||^6||^7",
+                "illuminate/container": "^5.5||^6||^7",
+                "illuminate/support": "^5.5||^6||^7",
+                "php": "^7.3||^7.4",
+                "symfony/process": "^3||^4||^5"
             },
             "require-dev": {
                 "mockery/mockery": "dev-master",
@@ -392,20 +392,15 @@
                 {
                     "name": "Shawn McCool",
                     "email": "shawn@heybigname.com",
-                    "homepage": "http://heybigname.com/"
-                },
-                {
-                    "name": "Mitchell van Wijngaarden",
-                    "email": "mitchell@kooding.nl",
-                    "homepage": "http://heybigname.com/"
+                    "homepage": "https://shawnmc.cool"
                 }
             ],
             "description": "Database backup manager seamlessly integrated with Laravel 4 or 5 with user-definable procedures and support for S3, Dropbox, FTP, SFTP, and more.",
             "support": {
                 "issues": "https://github.com/backup-manager/laravel/issues",
-                "source": "https://github.com/backup-manager/laravel/tree/1.4.0"
+                "source": "https://github.com/backup-manager/laravel/tree/master"
             },
-            "time": "2019-10-08T11:51:01+00:00"
+            "time": "2020-04-30T10:49:41+00:00"
         },
         {
             "name": "barryvdh/laravel-cors",
@@ -3709,47 +3704,47 @@
         },
         {
             "name": "laravel/passport",
-            "version": "v8.5.0",
+            "version": "v9.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/passport.git",
-                "reference": "6affa6ed600c5f8909385fbae7cf6f8af3db2d39"
+                "reference": "011bd500e8ae3d459b692467880a49ff1ecd60c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/passport/zipball/6affa6ed600c5f8909385fbae7cf6f8af3db2d39",
-                "reference": "6affa6ed600c5f8909385fbae7cf6f8af3db2d39",
+                "url": "https://api.github.com/repos/laravel/passport/zipball/011bd500e8ae3d459b692467880a49ff1ecd60c0",
+                "reference": "011bd500e8ae3d459b692467880a49ff1ecd60c0",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "firebase/php-jwt": "^3.0|^4.0|^5.0",
-                "guzzlehttp/guzzle": "^6.0",
-                "illuminate/auth": "^6.0|^7.0",
-                "illuminate/console": "^6.0|^7.0",
-                "illuminate/container": "^6.0|^7.0",
-                "illuminate/contracts": "^6.0|^7.0",
-                "illuminate/cookie": "^6.0|^7.0",
-                "illuminate/database": "^6.0|^7.0",
-                "illuminate/encryption": "^6.0|^7.0",
-                "illuminate/http": "^6.0|^7.0",
-                "illuminate/support": "^6.0|^7.0",
+                "firebase/php-jwt": "^5.0",
+                "illuminate/auth": "^6.18.31|^7.22.4",
+                "illuminate/console": "^6.18.31|^7.22.4",
+                "illuminate/container": "^6.18.31|^7.22.4",
+                "illuminate/contracts": "^6.18.31|^7.22.4",
+                "illuminate/cookie": "^6.18.31|^7.22.4",
+                "illuminate/database": "^6.18.31|^7.22.4",
+                "illuminate/encryption": "^6.18.31|^7.22.4",
+                "illuminate/http": "^6.18.31|^7.22.4",
+                "illuminate/support": "^6.18.31|^7.22.4",
                 "laminas/laminas-diactoros": "^2.2",
-                "league/oauth2-server": "^8.0",
+                "lcobucci/jwt": "^3.4|^4.0",
+                "league/oauth2-server": "^8.2.3",
                 "nyholm/psr7": "^1.0",
-                "php": "^7.2",
+                "php": "^7.2|^8.0",
                 "phpseclib/phpseclib": "^2.0",
                 "symfony/psr-http-message-bridge": "^2.0"
             },
             "require-dev": {
                 "mockery/mockery": "^1.0",
                 "orchestra/testbench": "^4.4|^5.0",
-                "phpunit/phpunit": "^8.0"
+                "phpunit/phpunit": "^8.5|^9.3"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "8.x-dev"
+                    "dev-master": "9.x-dev"
                 },
                 "laravel": {
                     "providers": [
@@ -3782,7 +3777,7 @@
                 "issues": "https://github.com/laravel/passport/issues",
                 "source": "https://github.com/laravel/passport"
             },
-            "time": "2020-05-05T14:25:53+00:00"
+            "time": "2020-12-04T09:37:12+00:00"
         },
         {
             "name": "laravel/socialite",
@@ -10667,61 +10662,6 @@
             "time": "2020-07-09T08:09:16+00:00"
         },
         {
-            "name": "laravel/homestead",
-            "version": "v7.20.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/homestead.git",
-                "reference": "cae38adcfdde1de1c4581e7a33872adaf9fbf926"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/homestead/zipball/cae38adcfdde1de1c4581e7a33872adaf9fbf926",
-                "reference": "cae38adcfdde1de1c4581e7a33872adaf9fbf926",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.6 || ^7.0",
-                "symfony/console": "~3.3|~4.0",
-                "symfony/process": "~3.3|~4.0",
-                "symfony/yaml": "~3.3|~4.0"
-            },
-            "require-dev": {
-                "phly/changelog-generator": "^2.2",
-                "phpunit/phpunit": "^5.7 || ^6.0"
-            },
-            "bin": [
-                "bin/homestead"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Laravel\\Homestead\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com"
-                }
-            ],
-            "description": "A virtual machine for web artisans.",
-            "support": {
-                "issues": "https://github.com/laravel/homestead/issues",
-                "source": "https://github.com/laravel/homestead/tree/master"
-            },
-            "time": "2018-12-11T02:04:35+00:00"
-        },
-        {
             "name": "martinlindhe/laravel-vue-i18n-generator",
             "version": "0.1.46",
             "source": {
@@ -12406,77 +12346,6 @@
                 "wiki": "https://github.com/squizlabs/PHP_CodeSniffer/wiki"
             },
             "time": "2020-10-23T02:01:07+00:00"
-        },
-        {
-            "name": "symfony/yaml",
-            "version": "v4.4.18",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/yaml.git",
-                "reference": "bbce94f14d73732340740366fcbe63363663a403"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/bbce94f14d73732340740366fcbe63363663a403",
-                "reference": "bbce94f14d73732340740366fcbe63363663a403",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.3",
-                "symfony/polyfill-ctype": "~1.8"
-            },
-            "conflict": {
-                "symfony/console": "<3.4"
-            },
-            "require-dev": {
-                "symfony/console": "^3.4|^4.0|^5.0"
-            },
-            "suggest": {
-                "symfony/console": "For validating YAML files using the lint command"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Yaml\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Yaml Component",
-            "homepage": "https://symfony.com",
-            "support": {
-                "source": "https://github.com/symfony/yaml/tree/v4.4.18"
-            },
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2020-12-08T16:59:59+00:00"
         },
         {
             "name": "theseer/tokenizer",
