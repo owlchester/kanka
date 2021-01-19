@@ -182,7 +182,7 @@ return [
          * Package Service Providers...
          */
         Collective\Html\HtmlServiceProvider::class,
-        Sofa\Eloquence\BaseServiceProvider::class,
+        //Sofa\Eloquence\BaseServiceProvider::class,
         Stevebauman\Purify\PurifyServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,

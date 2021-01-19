@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3007c6c06ba44ee3e62f1ef90765287b",
+    "content-hash": "51a1f6cdbfd8ad36125ff2931fdf8445",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -2784,20 +2784,20 @@
         },
         {
             "name": "ilestis/kanka-dnd5e-monster",
-            "version": "2.0.0",
+            "version": "3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilestis/kanka-dnd5e-monster.git",
-                "reference": "f395ec91af9c864fc5d5a8fb5af0fb3dae6cbfc1"
+                "reference": "0c84490e15b0f6c20753cf4d4da2f1bf340b4c78"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilestis/kanka-dnd5e-monster/zipball/f395ec91af9c864fc5d5a8fb5af0fb3dae6cbfc1",
-                "reference": "f395ec91af9c864fc5d5a8fb5af0fb3dae6cbfc1",
+                "url": "https://api.github.com/repos/ilestis/kanka-dnd5e-monster/zipball/0c84490e15b0f6c20753cf4d4da2f1bf340b4c78",
+                "reference": "0c84490e15b0f6c20753cf4d4da2f1bf340b4c78",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "^6.0"
+                "illuminate/support": "^6.0|^7.0"
             },
             "type": "library",
             "extra": {
@@ -2833,9 +2833,9 @@
             ],
             "support": {
                 "issues": "https://github.com/ilestis/kanka-dnd5e-monster/issues",
-                "source": "https://github.com/ilestis/kanka-dnd5e-monster/tree/2.0.0"
+                "source": "https://github.com/ilestis/kanka-dnd5e-monster/tree/3.0"
             },
-            "time": "2020-02-19T12:50:18+00:00"
+            "time": "2020-08-20T10:34:02+00:00"
         },
         {
             "name": "intervention/image",
@@ -3650,6 +3650,62 @@
                 "source": "https://github.com/laravel/framework"
             },
             "time": "2020-10-13T14:20:24+00:00"
+        },
+        {
+            "name": "laravel/helpers",
+            "version": "v1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/helpers.git",
+                "reference": "cde8ea2427db4f37d67729846b70452499210a21"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/helpers/zipball/cde8ea2427db4f37d67729846b70452499210a21",
+                "reference": "cde8ea2427db4f37d67729846b70452499210a21",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.8.0|^6.0|^7.0|^8.0",
+                "php": "^7.1.3|^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0|^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                },
+                {
+                    "name": "Dries Vints",
+                    "email": "dries.vints@gmail.com"
+                }
+            ],
+            "description": "Provides backwards compatibility for helpers in the latest Laravel release.",
+            "keywords": [
+                "helpers",
+                "laravel"
+            ],
+            "support": {
+                "source": "https://github.com/laravel/helpers/tree/v1.4.0"
+            },
+            "time": "2020-11-03T16:38:41+00:00"
         },
         {
             "name": "laravel/passport",
@@ -6690,6 +6746,70 @@
             "time": "2020-07-07T18:42:57+00:00"
         },
         {
+            "name": "semantictouch/laravel-translation-manager",
+            "version": "6.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/semantictouch/laravel-translation-manager.git",
+                "reference": "ece47c670fbd494540a0f097611a52dcc2da40f1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/semantictouch/laravel-translation-manager/zipball/ece47c670fbd494540a0f097611a52dcc2da40f1",
+                "reference": "ece47c670fbd494540a0f097611a52dcc2da40f1",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": "~2.9",
+                "illuminate/support": "^6.0",
+                "illuminate/translation": "^6.0",
+                "laravel/helpers": "^1.1",
+                "laravelcollective/html": "^6.0",
+                "php": ">=7.2",
+                "symfony/finder": "~4.3"
+            },
+            "require-dev": {
+                "fzaninotto/faker": "~1.4",
+                "mockery/mockery": "0.9.*",
+                "phpspec/phpspec": "~5.1",
+                "phpunit/phpunit": "~8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/Classes"
+                ],
+                "files": [
+                    "src/Support/helpers.php"
+                ],
+                "psr-4": {
+                    "Vsch\\TranslationManager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vladimir Schneider",
+                    "email": "vladimir.schneider@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Enhanced Laravel Translation Manager",
+            "homepage": "https://github.com/vsch/laravel-translation-manager",
+            "keywords": [
+                "laravel",
+                "translations",
+                "translator"
+            ],
+            "support": {
+                "source": "https://github.com/semantictouch/laravel-translation-manager/tree/6.0.0"
+            },
+            "time": "2019-10-12T15:17:41+00:00"
+        },
+        {
             "name": "sentry/sdk",
             "version": "2.2.0",
             "source": {
@@ -6984,432 +7104,6 @@
                 "source": "https://github.com/sergej-kurakin/dicecalc/tree/master"
             },
             "time": "2016-05-29T07:44:14+00:00"
-        },
-        {
-            "name": "sofa/eloquence",
-            "version": "v6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jarektkaczyk/eloquence.git",
-                "reference": "7f0e75c6eb61dfb7eac1d737395ca912ec2174d1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jarektkaczyk/eloquence/zipball/7f0e75c6eb61dfb7eac1d737395ca912ec2174d1",
-                "reference": "7f0e75c6eb61dfb7eac1d737395ca912ec2174d1",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.0.0",
-                "sofa/eloquence-base": "^5.5|^6.0",
-                "sofa/eloquence-mappable": "^5.5|^6.0",
-                "sofa/eloquence-metable": "^5.5|^6.0",
-                "sofa/eloquence-mutable": "^5.5|^6.0",
-                "sofa/eloquence-validable": "^5.5|^6.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "0.9.4",
-                "phpunit/phpunit": "4.5.0",
-                "squizlabs/php_codesniffer": "2.3.3"
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jarek Tkaczyk",
-                    "email": "jarek@softonsofa.com",
-                    "homepage": "http://softonsofa.com/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Flexible Searchable, Mappable, Metable, Validation and more extensions for Laravel Eloquent ORM.",
-            "keywords": [
-                "eloquent",
-                "laravel",
-                "mappable",
-                "metable",
-                "mutable",
-                "searchable"
-            ],
-            "support": {
-                "issues": "https://github.com/jarektkaczyk/eloquence/issues",
-                "source": "https://github.com/jarektkaczyk/eloquence"
-            },
-            "time": "2019-09-24T21:41:50+00:00"
-        },
-        {
-            "name": "sofa/eloquence-base",
-            "version": "v6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jarektkaczyk/eloquence-base.git",
-                "reference": "049fc84e036ff15c9002cb860445a048330e0d2c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jarektkaczyk/eloquence-base/zipball/049fc84e036ff15c9002cb860445a048330e0d2c",
-                "reference": "049fc84e036ff15c9002cb860445a048330e0d2c",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/database": "^5.5|^6.0",
-                "php": ">=7.0.0",
-                "sofa/hookable": "^5.5|^6.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "0.9.4",
-                "phpunit/phpunit": "4.5.0",
-                "squizlabs/php_codesniffer": "2.3.3"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Sofa\\Eloquence\\BaseServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Sofa\\Eloquence\\": "src"
-                },
-                "files": [
-                    "src/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jarek Tkaczyk",
-                    "email": "jarek@softonsofa.com",
-                    "homepage": "https://softonsofa.com/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Flexible Searchable, Mappable, Metable, Validation and more extensions for Laravel Eloquent ORM.",
-            "keywords": [
-                "eloquent",
-                "laravel",
-                "mappable",
-                "metable",
-                "mutable",
-                "searchable"
-            ],
-            "support": {
-                "issues": "https://github.com/jarektkaczyk/eloquence-base/issues",
-                "source": "https://github.com/jarektkaczyk/eloquence-base"
-            },
-            "time": "2019-09-24T21:41:19+00:00"
-        },
-        {
-            "name": "sofa/eloquence-mappable",
-            "version": "v6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jarektkaczyk/eloquence-mappable.git",
-                "reference": "391d9f4e902a45c87c1b364e7af55129897dfe55"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jarektkaczyk/eloquence-mappable/zipball/391d9f4e902a45c87c1b364e7af55129897dfe55",
-                "reference": "391d9f4e902a45c87c1b364e7af55129897dfe55",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.0.0",
-                "sofa/eloquence-base": "^5.5|^6.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "0.9.4",
-                "phpunit/phpunit": "4.5.0",
-                "squizlabs/php_codesniffer": "2.3.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Sofa\\Eloquence\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jarek Tkaczyk",
-                    "email": "jarek@softonsofa.com",
-                    "homepage": "https://softonsofa.com/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Flexible Searchable, Mappable, Metable, Validation and more extensions for Laravel Eloquent ORM.",
-            "keywords": [
-                "eloquent",
-                "laravel",
-                "mappable",
-                "metable",
-                "mutable",
-                "searchable"
-            ],
-            "support": {
-                "issues": "https://github.com/jarektkaczyk/eloquence-mappable/issues",
-                "source": "https://github.com/jarektkaczyk/eloquence-mappable"
-            },
-            "time": "2020-01-15T08:57:19+00:00"
-        },
-        {
-            "name": "sofa/eloquence-metable",
-            "version": "v6.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jarektkaczyk/eloquence-metable.git",
-                "reference": "046d961d11b3364570ee3d2e921da84362eb15c0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jarektkaczyk/eloquence-metable/zipball/046d961d11b3364570ee3d2e921da84362eb15c0",
-                "reference": "046d961d11b3364570ee3d2e921da84362eb15c0",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.0",
-                "sofa/eloquence-base": ">=5.5",
-                "sofa/eloquence-mutable": ">=5.5"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.0",
-                "mockery/mockery": "^1.0",
-                "phpunit/phpunit": "^9.0",
-                "squizlabs/php_codesniffer": "2.3.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Sofa\\Eloquence\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jarek Tkaczyk",
-                    "email": "jarek@softonsofa.com",
-                    "homepage": "https://softonsofa.com/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Flexible Searchable, Mappable, Metable, Validation and more extensions for Laravel Eloquent ORM.",
-            "keywords": [
-                "eloquent",
-                "laravel",
-                "mappable",
-                "metable",
-                "mutable",
-                "searchable"
-            ],
-            "support": {
-                "issues": "https://github.com/jarektkaczyk/eloquence-metable/issues",
-                "source": "https://github.com/jarektkaczyk/eloquence-metable"
-            },
-            "funding": [
-                {
-                    "url": "https://softonsofa.com",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/jarektkaczyk",
-                    "type": "github"
-                }
-            ],
-            "time": "2020-12-05T09:24:34+00:00"
-        },
-        {
-            "name": "sofa/eloquence-mutable",
-            "version": "v6.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jarektkaczyk/eloquence-mutable.git",
-                "reference": "3c0dda2c313e8edc41e21cd2788be255cb8b8e42"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jarektkaczyk/eloquence-mutable/zipball/3c0dda2c313e8edc41e21cd2788be255cb8b8e42",
-                "reference": "3c0dda2c313e8edc41e21cd2788be255cb8b8e42",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.0",
-                "sofa/eloquence-base": ">=5.5"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.0",
-                "mockery/mockery": "^1.0",
-                "phpunit/phpunit": "^9.0",
-                "squizlabs/php_codesniffer": "2.3.3"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Sofa\\Eloquence\\MutableServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Sofa\\Eloquence\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jarek Tkaczyk",
-                    "email": "jarek@softonsofa.com",
-                    "homepage": "https://softonsofa.com/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Flexible Searchable, Mappable, Metable, Validation and more extensions for Laravel Eloquent ORM.",
-            "keywords": [
-                "eloquent",
-                "laravel",
-                "mappable",
-                "metable",
-                "mutable",
-                "searchable"
-            ],
-            "support": {
-                "issues": "https://github.com/jarektkaczyk/eloquence-mutable/issues",
-                "source": "https://github.com/jarektkaczyk/eloquence-mutable"
-            },
-            "funding": [
-                {
-                    "url": "https://softonsofa.com",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/jarektkaczyk",
-                    "type": "github"
-                }
-            ],
-            "time": "2020-12-05T09:38:58+00:00"
-        },
-        {
-            "name": "sofa/eloquence-validable",
-            "version": "v6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jarektkaczyk/eloquence-validable.git",
-                "reference": "fae3185083686b3d677bc34a2c0be5eed93b3e22"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jarektkaczyk/eloquence-validable/zipball/fae3185083686b3d677bc34a2c0be5eed93b3e22",
-                "reference": "fae3185083686b3d677bc34a2c0be5eed93b3e22",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.0.0",
-                "sofa/eloquence-base": "^5.5|^6.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "0.9.4",
-                "phpunit/phpunit": "4.5.0",
-                "squizlabs/php_codesniffer": "2.3.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Sofa\\Eloquence\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jarek Tkaczyk",
-                    "email": "jarek@softonsofa.com",
-                    "homepage": "https://softonsofa.com/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Flexible Searchable, Mappable, Metable, Validation and more extensions for Laravel Eloquent ORM.",
-            "keywords": [
-                "eloquent",
-                "laravel",
-                "mappable",
-                "metable",
-                "mutable",
-                "searchable"
-            ],
-            "support": {
-                "issues": "https://github.com/jarektkaczyk/eloquence-validable/issues",
-                "source": "https://github.com/jarektkaczyk/eloquence-validable"
-            },
-            "time": "2019-09-24T21:40:10+00:00"
-        },
-        {
-            "name": "sofa/hookable",
-            "version": "v6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jarektkaczyk/hookable.git",
-                "reference": "5931ac09c4df96214cbc54819709b1aa35c15e8f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jarektkaczyk/hookable/zipball/5931ac09c4df96214cbc54819709b1aa35c15e8f",
-                "reference": "5931ac09c4df96214cbc54819709b1aa35c15e8f",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/database": "^5.4|^6.0",
-                "php": ">=7.0"
-            },
-            "require-dev": {
-                "crysalead/kahlan": "~1.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Sofa\\Hookable\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jarek Tkaczyk",
-                    "email": "jarek@softonsofa.com",
-                    "homepage": "http://softonsofa.com/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Laravel Eloquent hooks system.",
-            "keywords": [
-                "eloquent",
-                "laravel"
-            ],
-            "support": {
-                "issues": "https://github.com/jarektkaczyk/hookable/issues",
-                "source": "https://github.com/jarektkaczyk/hookable"
-            },
-            "time": "2019-09-24T21:44:10+00:00"
         },
         {
             "name": "spatie/laravel-feed",
