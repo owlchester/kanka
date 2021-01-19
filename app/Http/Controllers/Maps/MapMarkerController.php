@@ -168,7 +168,7 @@ class MapMarkerController extends Controller
         } else {
             $this->authorizeForGuest('read', $map);
             if ($mapMarker->entity_id) {
-                $this->authorizeForGuest('read', $mapMarker->entity->child);
+                $this->authorizeForGuest('read', $mapMarker->entity->child, $mapMarker->entity->child->getEntityType());
             }
         }
 

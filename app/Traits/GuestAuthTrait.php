@@ -14,11 +14,14 @@ trait GuestAuthTrait
      * @param $action
      * @param $model
      */
-    protected function authorizeForGuest($action, $model)
+    protected function authorizeForGuest($action, $model, string $modelType = null)
     {
         $campaign = CampaignLocalization::getCampaign();
-        $mainModel = new $this->model;
-        $permission = EntityPermission::hasPermission($mainModel->getEntityType(), $action, null, $model, $campaign);
+        if (empty($modelType)) {
+            $mainModel = new $this->model;
+            $modelType = $mainModel->getEntityType();
+        }
+        $permission = EntityPermission::hasPermission($modelType, $action, null, $model, $campaign);
 
         if ($campaign->id != $model->campaign_id || !$permission) {
             // Raise an error
