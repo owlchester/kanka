@@ -18,6 +18,10 @@ class JournalResource extends EntityResource
             'journal_id' => $this->journal_id,
             'date' => $this->date,
             'type' => $this->type,
+            'calendar_id' => $this->calendar_id,
+            'calendar_year' => $this->calendar_year,
+            'calendar_month' => $this->calendar_month,
+            'calendar_day' => $this->calendar_day,
         ]);
     }
 }
