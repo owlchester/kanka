@@ -158,7 +158,7 @@ class MentionsService
         if (empty($text)) {
             $text = '';
         }
-
+        dump($text);
         // New entities
         $text = preg_replace_callback(
             '`\[new:([a-z_]+)\|(.*?)\]`i',
@@ -180,7 +180,7 @@ class MentionsService
         );
         $text = preg_replace(
             '`<a class="mention" href="#" data-mention="([^"]*)">(.*?)</a>`',
-            '$2',
+            '$1',
             $text
         );
 
@@ -211,6 +211,8 @@ class MentionsService
             '$1',
             $text
         );
+
+        dd($text);
 
         return $text;
     }
