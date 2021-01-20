@@ -158,6 +158,7 @@ class MentionsService
         if (empty($text)) {
             $text = '';
         }
+        dump($text);
         // New entities
         $text = preg_replace_callback(
             '`\[new:([a-z_]+)\|(.*?)\]`i',
@@ -173,8 +174,13 @@ class MentionsService
 
         // TinyMCE mentions
         $text = preg_replace(
+            '`<a class="mention" href="#" data-name="(.*?)" data-mention="([^"]*)">(.*?)</a>`',
+            '$2',
+            $text
+        );
+        $text = preg_replace(
             '`<a class="mention" href="#" data-mention="([^"]*)">(.*?)</a>`',
-            '$1',
+            '$2',
             $text
         );
 
@@ -205,6 +211,8 @@ class MentionsService
             '$1',
             $text
         );
+
+        dd($text);
 
         return $text;
     }
