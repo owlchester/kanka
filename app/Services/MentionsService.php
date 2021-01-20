@@ -158,7 +158,7 @@ class MentionsService
         if (empty($text)) {
             $text = '';
         }
-        dump($text);
+        //dump($text);
         // New entities
         $text = preg_replace_callback(
             '`\[new:([a-z_]+)\|(.*?)\]`i',
@@ -212,7 +212,7 @@ class MentionsService
             $text
         );
 
-        dd($text);
+        //dd($text);
 
         return $text;
     }
