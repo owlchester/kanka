@@ -55,7 +55,7 @@ $r = $r->acl()
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ trans('crud.fields.name') }}</th>
-                <th>{{ trans('crud.fields.entity') }}</th>
+                <th>{{ trans('crud.fields.entity_type') }}</th>
                 <th class="text-right">
                     @can('update', $model)
                         <a href="{{ $addEntityUrl }}" class="btn btn-primary btn-sm"

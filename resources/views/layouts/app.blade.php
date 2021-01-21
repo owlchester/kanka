@@ -133,7 +133,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
 
 @if(!empty(config('tracking.adsense')) && (auth()->guest() || auth()->user()->showAds()) && !isset($skipBannerAd) && (!isset($sidebar) || $sidebar != 'settings'))
                 <ins class="adsbygoogle"
-                     style="display:inline-block;height:90px;width:728px;"@if (config('app.env') != 'prod')
+                     style="display:block;"@if (config('app.env') != 'prod')
                      data-adtest="on"@endif
                      data-ad-client="ca-pub-1686281547359435"
                      data-ad-slot="2711573107"
