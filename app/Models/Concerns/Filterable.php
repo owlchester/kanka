@@ -166,7 +166,7 @@ trait Filterable
                         $searchTerms = explode(';', $filterValue);
                         $firstTerm = true;
                         foreach ($searchTerms as $searchTerm) {
-                            if (empty($searchTerm)) {
+                            if (empty($searchTerm) && $searchTerm != '0') {
                                 continue;
                             }
                             // If it isn't the first term, we need to re-extract the search operators
