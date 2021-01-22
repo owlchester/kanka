@@ -17,7 +17,14 @@
                     <tr>
                         <td>
                             @if (!empty($notification->data['icon']))
-                            <i class="fa fa-{{ $notification->data['icon'] }} text-{{ $notification->data['colour'] }}"></i> {!! trans('notifications.' . $notification->data['key'], $notification->data['params']) !!}
+                            <i class="fa fa-{{ $notification->data['icon'] }} text-{{ $notification->data['colour'] }}"></i>
+                                @if(\Illuminate\Support\Arr::has($notification->data['params'], 'link'))
+                                    <a href="{{ $notification->data['params']['link'] }}">
+                                        {!! __('notifications.' . $notification->data['key'], $notification->data['params']) !!}
+                                    </a>
+                                @else
+                                    {!! __('notifications.' . $notification->data['key'], $notification->data['params']) !!}
+                                @endif
                             @else
                                 <p>{!! trans('notifications.' . $notification->data['key'] . '.body')!!}</p>
                             @endif

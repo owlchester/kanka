@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Facades\CampaignCache;
 use App\Models\Campaign;
+use App\Models\MiscModel;
 use App\Notifications\Header;
 use App\Services\EntityService;
 use App\User;
@@ -18,7 +19,7 @@ use Illuminate\Support\Str;
 use ZipArchive;
 use Exception;
 
-class CampaignExport implements ShouldQueue
+class CampaignAssetExport implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -63,33 +64,33 @@ class CampaignExport implements ShouldQueue
     {
         $this->entity = app()->make(EntityService::class);
 
-        // If the campaign already has a backup, remove it.
-        if (!empty($this->campaign->export_path)) {
-            Storage::delete($this->campaign->export_path);
-            $this->campaign->export_path = null;
-            $this->campaign->withObservers = false;
-            $this->campaign->save();
-        }
-
         // We want the full path for jobs running in the queue.
-        $zipName = 'campaign_' . $this->campaign->id . '_' .  uniqid() . '_' . date('Ymd_His') . '.zip';
+        $zipName = 'campaign_' . $this->campaign->id . '_' .  uniqid() . '_' . date('Ymd_His') . '_assets.zip';
         CampaignCache::campaign($this->campaign);
         $pathName = storage_path() . '/exports/campaigns/' . $zipName;
         $zip = new ZipArchive();
         $zip->open($pathName, ZipArchive::CREATE);
 
-        // Campaign
-        $zip->addFromString('campaign.json', $this->campaign->toJson());
-        if (!empty($this->campaign->image) && Storage::exists($this->campaign->image)) {
-            $zip->addFromString($this->campaign->image, Storage::get($this->campaign->image));
-        }
-
         foreach ($this->entity->entities() as $entity => $class) {
             if ($this->campaign->enabled($entity) && method_exists($class, 'export')) {
                 try {
+                    /** @var MiscModel $model */
                     $property = Str::camel($entity);
                     foreach ($this->campaign->$property()->with('entity')->get() as $model) {
-                        $zip->addFromString($entity . '/' . Str::slug($model->name) . '.json', $model->export());
+                        if (!empty($model->image) && Storage::exists($model->image)) {
+                            $zip->addFromString($model->image, Storage::get($model->image));
+                        }
+
+                        // Boosted image?
+                        if (!empty($model->entity->header_image) && Storage::exists($model->entity->header_image)) {
+                            $zip->addFromString($model->entity->header_image, Storage::get($model->entity->header_image));
+                        }
+
+                        // Locations have maps
+                        if ($model->getEntityType() == 'location' && !empty($model->map)
+                            && Storage::exists($model->map)) {
+                            $zip->addFromString($model->map, Storage::get($model->map));
+                        }
                     }
                 } catch (Exception $e) {
                     $zip->close();
@@ -107,26 +108,20 @@ class CampaignExport implements ShouldQueue
 
         // Move to ?
         $downloadPath = Storage::putFileAs('exports/campaigns', new File($pathName), $zipName, 'public');
-        //$zip->delete();
         unlink($pathName);
 
         // Email ?
         $this->user->notify(new Header(
-            'campaign.export',
+            'campaign.asset_export',
             'download',
             'green',
             ['link' => Storage::url($downloadPath), 'time' => 60]
         ));
 
-        // Save the new path.
-        $this->campaign->export_path = $downloadPath;
-        $this->campaign->withObservers = false;
-        $this->campaign->save();
-
         // Don't delete in "sync" mode as there is no delay.
         $queue = config('queue.default');
         if ($queue != 'sync') {
-            CampaignExportCleanup::dispatch($this->campaign)->delay(now()->addMinutes(60));
+            CampaignAssetExportCleanup::dispatch($downloadPath)->delay(now()->addMinutes(60));
         }
     }
 
@@ -135,20 +130,11 @@ class CampaignExport implements ShouldQueue
      */
     public function failed(Exception $exception)
     {
-        // Set the campaign export date to null so that the user can try again.
-        // If it failed once, trying again won't help, but this might motivate
-        // them to report the error.
-        $this->campaign->update([
-            'export_date' => null
-        ]);
-
         // Notify the user that something went wrong
         $this->user->notify(new Header(
-            'campaign.export_error',
+            'campaign.asset_export_error',
             'times',
             'red'
         ));
-
-        // Sentry will handle the rest
     }
 }

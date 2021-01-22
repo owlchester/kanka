@@ -7,8 +7,10 @@ return [
             'remove'        => ':user is no longer boosting the :campaign campaign.',
             'superboost'    => 'Campaign :campaign is being superboosted by :user.',
         ],
-        'export'        => 'An export of a campaign is available. You can download it by clicking <a href=":link">here</a>. The link is available for :time minutes.',
+        'asset_export' => 'An export of a campaign assets is available. The link is available for :time minutes.',
+        'export'        => 'An export of a campaign is available. The link is available for :time minutes.',
         'export_error'  => 'An error occurred while exporting your campaign. Please contact us if this problem persists.',
+        'export_error'  => 'An error occurred while exporting your campaign assets. Please contact us if this problem persists. This happens on bigger campaigns with many big images.',
         'join'          => ':user joined the campaign :campaign.',
         'leave'         => ':user left the campaign :campaign.',
         'role'          => [

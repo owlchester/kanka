@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Facades\UserCache;
+use App\Jobs\CampaignAssetExport;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
 use App\Exceptions\TranslatableException;
@@ -235,6 +236,7 @@ class CampaignService
         $campaign->withObservers = false;
         $campaign->save();
 
-        CampaignExport::dispatch($campaign, $user, $service);
+        CampaignExport::dispatch($campaign, $user);
+        CampaignAssetExport::dispatch($campaign, $user);
     }
 }

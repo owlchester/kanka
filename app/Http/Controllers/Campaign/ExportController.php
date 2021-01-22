@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Campaign;
 
 use App\Facades\CampaignLocalization;
+use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Services\CampaignService;
 use App\Services\EntityService;
 use Illuminate\Http\Request;
 
-class CampaignExportController extends Controller
+class ExportController extends Controller
 {
     /**
      * @var CampaignService
@@ -53,7 +54,9 @@ class CampaignExportController extends Controller
         $this->authorize('setting', $campaign);
 
         try {
-            $this->campaignService->export($campaign, auth()->user(), $this->entityService);
+            $this->campaignService
+                ->export($campaign, auth()->user(), $this->entityService);
+
             return redirect()->route('campaign_export')
                 ->with('success', trans('campaigns.export.success'));
         } catch (\Exception $e) {
