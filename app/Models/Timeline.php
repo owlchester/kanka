@@ -86,6 +86,7 @@ class Timeline extends MiscModel
     {
         return $query->with([
             'entity',
+            'entity.image',
             'calendar',
             'calendar.entity',
         ]);

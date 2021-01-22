@@ -62,6 +62,11 @@ abstract class MiscModel extends Model
     public $savingObserver = true;
 
     /**
+     * @var bool|Entity Performance based entity
+     */
+    protected $cachedEntity = false;
+
+    /**
      * @var bool
      */
     public $forceSavedObserver = false;
@@ -230,9 +235,15 @@ abstract class MiscModel extends Model
             CampaignCache::campaign($this);
             $campaign = $this;
         }
-        if ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->getEntityType())) {
+
+        $entity = $this->cachedEntity !== false ? $this->cachedEntity : $this->entity;
+        if ($campaign->boosted(true) && !empty($entity->image))  {
+            return Img::crop(40, 40)->url($entity->image->path);
+        }
+        elseif ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->getEntityType())) {
             return Img::crop(40, 40)->url(CampaignCache::defaultImages()[$this->getEntityType()]['path']);
         }
+
         // Patreons have nicer icons
         if (auth()->check() && auth()->user()->isGoblinPatron()) {
             return asset('/images/defaults/patreon/' . $this->getTable() . ($width !== 400 ? '_thumb' : null) . '.png');
@@ -430,6 +441,18 @@ abstract class MiscModel extends Model
     }
 
     /**
+     * Get the model's entity image uuid
+     * @return string|null
+     */
+    public function getEntityImageUuidAttribute()
+    {
+        if ($this->entity) {
+            return $this->entity->image_uuid;
+        }
+        return null;
+    }
+
+    /**
      * Create the model's Entity
      * @return Entity
      */
@@ -457,6 +480,10 @@ abstract class MiscModel extends Model
         });
     }
 
+    /**
+     * Elements ignored in the change logs
+     * @return string[]
+     */
     public function ignoredLogAttributes(): array
     {
         return [
@@ -466,5 +493,16 @@ abstract class MiscModel extends Model
             '_lft',
             '_rgt',
         ];
+    }
+
+    /**
+     * Parse the entity object to the child to avoid multiple db calls
+     * @param Entity $entity
+     * @return $this
+     */
+    public function withEntity(Entity $entity): self
+    {
+        $this->cachedEntity = $entity;
+        return $this;
     }
 }

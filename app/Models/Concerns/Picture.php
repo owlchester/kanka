@@ -18,6 +18,7 @@ trait Picture
      */
     public function avatar(bool $thumb = false, string $field = 'image')
     {
+
         $avatar = Cache::get($this->avatarCacheKey($thumb, $field), false);
         if ($avatar === false) {
             $avatar = $this->cacheAvatar($thumb, $field);
@@ -32,15 +33,7 @@ trait Picture
      */
     protected function cacheAvatar(bool $thumb, string $field)
     {
-        if (empty($this->child->$field)) {
-            if (empty($this->child)) {
-                return '';
-            }
-            $avatar = asset('/images/defaults/' . $this->child->getTable() . ($thumb ? '_thumb' : null) . '.jpg');
-        } else {
-            $avatar = $this->child->getImageUrl($thumb ? 40 : 400, null, $field);
-        }
-
+        $avatar = $this->child->withEntity($this)->getImageUrl(40);
         Cache::forever($this->avatarCacheKey($thumb, $field), $avatar);
         return $avatar;
     }
@@ -52,7 +45,7 @@ trait Picture
     protected function avatarUrl(string $avatar)
     {
         // If it's a default image, patreons have the nicer pictures
-        if (Str::contains($avatar, '/images/defaults/')) {
+        /*if (Str::contains($avatar, '/images/defaults/')) {
             // Check if the campaign has a default image first
             $campaign = CampaignLocalization::getCampaign();
             if ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->type)) {
@@ -62,7 +55,7 @@ trait Picture
             if (auth()->check() && auth()->user()->isGoblinPatron()) {
                 return str_replace(['defaults/', '.jpg'], ['defaults/patreon/', '.png'], $avatar);
             }
-        }
+        }*/
 
         $nowebp = Img::nowebp();
         $endsWith = Str::endsWith($avatar, '?webpfallback');

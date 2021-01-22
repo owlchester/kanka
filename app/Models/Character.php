@@ -150,6 +150,7 @@ class Character extends MiscModel
     {
         return $query->with([
             'entity',
+            'entity.image',
             'location',
             'location.entity',
             'family',

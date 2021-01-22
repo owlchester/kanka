@@ -215,6 +215,15 @@ class EntityObserver
         // Handle map. Let's use a service for this.
         ImageService::entity($entity, 'campaign/' . $entity->campaign_id, false, 'header_image');
 
+        if ($campaign->boosted(true)) {
+            if (request()->has('entity_image_uuid')) {
+                $entity->image_uuid = request()->get('entity_image_uuid');
+
+            } else {
+                $entity->image_uuid = null;
+            }
+        }
+
         $entity->save();
     }
 

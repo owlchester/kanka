@@ -105,6 +105,7 @@ class Organisation extends MiscModel
         return $query
             ->with([
                 'entity',
+                'entity.image',
                 'location',
                 'location.entity',
                 'organisation',

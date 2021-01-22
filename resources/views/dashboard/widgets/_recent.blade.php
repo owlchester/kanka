@@ -13,7 +13,7 @@ $entities = \App\Models\Entity::recentlyModified()
         ->inTags($widget->tags->pluck('id')->toArray())
         ->type($entityType)
         ->acl()
-        ->with(['tags', 'updater'])
+        ->with(['tags', 'updater', 'image'])
         ->take(10)
         ->offset($offset)
         ->get();

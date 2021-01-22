@@ -85,6 +85,7 @@ class Note extends MiscModel
     {
         return $query->with([
             'entity',
+            'entity.image',
             'note',
             'note.entity',
         ]);

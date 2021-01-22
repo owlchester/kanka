@@ -37,7 +37,7 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property boolean $is_attributes_private
  * @property string $tooltip
  * @property string $header_image
- * @property int $image_id
+ * @property string $image_uuid
  * @property boolean $is_template
  *
  * @property Carbon $created_at
@@ -57,7 +57,7 @@ class Entity extends Model
         'is_private',
         'is_attributes_private',
         'header_image',
-        'image_id',
+        'image_uuid',
         'is_template',
     ];
 

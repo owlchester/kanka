@@ -112,6 +112,7 @@ class Ability extends MiscModel
     {
         return $query->with([
             'entity',
+            'entity.image',
             'ability',
             'ability.entity',
         ]);

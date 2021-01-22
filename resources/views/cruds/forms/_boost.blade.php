@@ -45,3 +45,5 @@
         </div>
     </div>
 </div>
+
+@include('cruds.fields.entity_image')

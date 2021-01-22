@@ -33,7 +33,6 @@ class MiscController extends Controller
         return $this->buildSearchResults($term, \App\Models\Location::class);
     }
 
-
     /**
      * @param Request $request
      * @return mixed
@@ -46,6 +45,7 @@ class MiscController extends Controller
         $term = trim($request->q);
         return $this->buildSearchResults($term, \App\Models\Character::class);
     }
+
     /**
      * @param Request $request
      * @return mixed

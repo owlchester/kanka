@@ -101,6 +101,7 @@ class Race extends MiscModel
     {
         return $query->with([
             'entity',
+            'entity.image',
             'races',
             'characters',
         ]);

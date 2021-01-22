@@ -368,7 +368,7 @@ trait EntityRelations
      */
     public function image()
     {
-        return $this->hasOne('App\Models\Image', 'image_id', 'id');
+        return $this->hasOne('App\Models\Image', 'id', 'image_uuid');
     }
 
     /**

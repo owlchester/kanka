@@ -41,7 +41,7 @@
 
                 <hr />
                 @if(!$image->is_folder)
-                <a href="{{ \Illuminate\Support\Facades\Storage::url($image->path) }}" target="_blank">
+                <a href="{{ $image->getUrl() }}" target="_blank">
                     <i class="fa fa-link"></i> {{ __('campaigns/gallery.actions.full') }}
                 </a>
                 @endif

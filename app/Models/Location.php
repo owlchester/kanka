@@ -116,6 +116,7 @@ class Location extends MiscModel
     {
         return $query->with([
             'entity',
+            'entity.image',
             'parentLocation',
             'parentLocation.entity',
             'locations',

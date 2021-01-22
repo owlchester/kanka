@@ -70,7 +70,12 @@ class Event extends MiscModel
      */
     public function scopePreparedWith($query)
     {
-        return $query->with(['entity', 'location', 'location.entity']);
+        return $query->with([
+            'entity',
+            'entity.image',
+            'location',
+            'location.entity'
+        ]);
     }
 
     /**

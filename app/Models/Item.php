@@ -139,7 +139,14 @@ class Item extends MiscModel
      */
     public function scopePreparedWith($query)
     {
-        return $query->with(['entity', 'location', 'location.entity', 'character', 'character.entity']);
+        return $query->with([
+            'entity',
+            'entity.image',
+            'location',
+            'location.entity',
+            'character',
+            'character.entity'
+        ]);
     }
 
     /**

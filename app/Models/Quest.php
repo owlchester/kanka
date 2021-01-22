@@ -129,6 +129,7 @@ class Quest extends MiscModel
     {
         return $query->with([
             'entity',
+            'entity.image',
             'quests',
             'locations',
             'characters',

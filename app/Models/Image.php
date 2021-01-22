@@ -148,8 +148,19 @@ class Image extends Model
             ->orderBy('updated_at', 'desc');
     }
 
-    public function hasNoFolders()
+    /**
+     * @return bool
+     */
+    public function hasNoFolders(): bool
     {
         return $this->images()->where('is_folder', '1')->count() == 0;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl(): string
+    {
+        return \Illuminate\Support\Facades\Storage::url($this->path);
     }
 }
