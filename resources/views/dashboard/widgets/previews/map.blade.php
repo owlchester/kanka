@@ -88,6 +88,22 @@ $map = $entity->child;
 @if ($marker->entity && $marker->icon == 4)
     .marker-{{ $marker->id }} .marker-pin::after {
         background-image: url({{ $marker->entity->child->getImageUrl(400) }});
+    @if(!empty($marker->pin_size))
+        width: {{ $marker->pinSize(false) - 4 }}px;
+        height: {{ $marker->pinSize(false) - 4 }}px;
+        margin: 2px 0 0 -{{ ceil(($marker->pinSize(false)-4)/2) }}px;
+    @endif
+}
+@endif
+
+@if(!empty($marker->pin_size))
+    .marker-{{ $marker->id }} .marker-pin {
+        width: {{ $marker->pinSize() }};
+        height: {{ $marker->pinSize() }};
+        margin: -{{ $marker->pinSize(false) / 2 }}px 0 0 -{{ $marker->pinSize(false) / 2 }}px;
+    }
+    .marker-{{ $marker->id }} i {
+        font-size: {{ $marker->pinSize(false) / 2 }}px;
     }
 @endif
 @endforeach
