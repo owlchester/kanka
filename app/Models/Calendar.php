@@ -467,7 +467,11 @@ class Calendar extends MiscModel
      */
     public function subDay()
     {
-        list($year, $month, $day) = explode('-', $this->date);
+        $isNegativeYear = Str::startsWith($this->date, '-');
+        $date = explode('-', ltrim($this->date, '-'));
+        $year = $isNegativeYear ? -$date[0] : $date[0];
+        $month = $date[1];
+        $day = $date[2];
 
         $day--;
         $months = $this->months();
