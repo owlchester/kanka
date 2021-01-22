@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Campaign;
 
 
+use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCampaignDashboard;
@@ -78,6 +79,7 @@ class CampaignDashboardController extends Controller
         $this->authorize('dashboard', $campaign);
 
         $campaignDashboard->delete();
+        CampaignCache::clearDashboards();
 
         return redirect()->route('dashboard.setup')
             ->with('success', __('dashboard.dashboards.delete.success', ['name' => $campaignDashboard->name]));
