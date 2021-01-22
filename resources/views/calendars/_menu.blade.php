@@ -23,7 +23,7 @@
             @endif
             @if ($model->date)
                 <li class="list-group-item">
-                    <b>{{ trans('calendars.fields.date') }}</b> <span class="pull-right">{{ $dateRenderer->render($model->date) }}</span>
+                    <b>{{ trans('calendars.fields.date') }}</b> <span class="pull-right">{{ $model->niceDate() }}</span>
                     <br class="clear" />
                 </li>
             @endif

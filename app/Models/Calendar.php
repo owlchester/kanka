@@ -382,18 +382,17 @@ class Calendar extends MiscModel
         if (empty($date)) {
             $date = $this->date;
         }
-        $isNegativeYear = Str::startsWith($date, '-');
-        $date = explode('-', ltrim($date, '-'));
+
+        list($year, $month, $day) = $this->dateArray($date);
 
         // Replace month with real month, and year maybe
         $months = $this->months();
         $years = $this->years();
 
         try {
-            $date[0] = $isNegativeYear ? '-' . $date[0] : $date[0];
-            return $date[2] . ' ' .
-                (isset($months[$date[1] - 1]) ? $months[$date[1] - 1]['name'] : $date[1]) . ', ' .
-                (isset($years[$date[0]]) ? $years[$date[0]] : $date[0]) . ' ' .
+            return $day . ' ' .
+                (isset($months[$month - 1]) ? $months[$month - 1]['name'] : $month) . ', ' .
+                (isset($years[$year]) ? $years[$year] : $year) . ' ' .
                 $this->suffix;
         } catch (\Exception $e) {
             return $this->date;
@@ -467,11 +466,7 @@ class Calendar extends MiscModel
      */
     public function subDay()
     {
-        $isNegativeYear = Str::startsWith($this->date, '-');
-        $date = explode('-', ltrim($this->date, '-'));
-        $year = $isNegativeYear ? -$date[0] : $date[0];
-        $month = $date[1];
-        $day = $date[2];
+        list($year, $month, $day) = $this->dateArray();
 
         $day--;
         $months = $this->months();
@@ -535,6 +530,31 @@ class Calendar extends MiscModel
 
         if (substr($this->date, 0, 1) == '-') {
             $this->cachedCurrentDate[0] = -$this->cachedCurrentDate[0];
+        }
+    }
+
+    /**
+     * Get the date as an array
+     * @return array
+     */
+    protected function dateArray(string $date = null): array
+    {
+        if (empty($date)) {
+            $date = $this->date;
+        }
+
+        $isNegativeYear = Str::startsWith($date, '-');
+        $date = explode('-', ltrim($date, '-'));
+
+        try {
+            $dates = [
+                $isNegativeYear ? -$date[0] : $date[0],
+                $date[1],
+                $date[2]
+            ];
+            return $dates;
+        } catch (\Exception $e) {
+            return [1, 1, 1];
         }
     }
 }
