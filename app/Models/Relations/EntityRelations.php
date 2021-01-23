@@ -9,6 +9,7 @@ use App\Models\CampaignDashboardWidget;
 use App\Models\Conversation;
 use App\Models\EntityAbility;
 use App\Models\EntityEvent;
+use App\Models\EntityLink;
 use App\Models\EntityMention;
 use App\Models\EntityNote;
 use App\Models\EntityTag;
@@ -34,6 +35,7 @@ use App\User;
  * @property Inventory[] $inventories
  * @property EntityMention[] $targetMentions
  * @property EntityAbility[] $abilities
+ * @property EntityLink[] $links
  * @property CampaignDashboardWidget[] $widgets
  * @property MiscModel $child
  * @property User $updater

@@ -34,7 +34,7 @@
                     </a>
                 </li>
             @endif
-            @if (!empty($source) || !empty(old('copy_source_id')))
+            @if ((!empty($source) || !empty(old('copy_source_id'))) && $tabCopy)
                 <li class="{{ (request()->get('tab') == 'copy' ? ' active' : '') }}">
                     <a href="#form-copy" title="{{ trans('crud.forms.copy_options') }}" data-toggle="tooltip">
                         {{ trans('crud.forms.copy_options') }}
@@ -71,7 +71,7 @@
                     @include('cruds.forms._boost', ['source' => $source])
                 </div>
             @endif
-            @if (!empty($source) || !empty(old('copy_source_id')))
+            @if ((!empty($source) || !empty(old('copy_source_id'))) && $tabCopy)
                 <div class="tab-pane {{ (request()->get('tab') == 'copy' ? ' active' : '') }}" id="form-copy">
                     @include('cruds.forms._copy', ['source' => $source])
                 </div>

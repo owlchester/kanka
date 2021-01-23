@@ -75,6 +75,12 @@ class CrudController extends Controller
     protected $tabAttributes = true;
 
     /**
+     * If the copy tab and pane is enabled or not.
+     * @var bool
+     */
+    protected $tabCopy = true;
+
+    /**
      * If the boosted tab and pane is enabled or not.
      * @var bool
      */
@@ -220,6 +226,7 @@ class CrudController extends Controller
         $params['ajax'] = request()->ajax();
         $params['tabPermissions'] = $this->tabPermissions && Auth::user()->can('permission', $model);
         $params['tabAttributes'] = $this->tabAttributes;
+        $params['tabCopy'] = $this->tabCopy;
         $params['tabBoosted'] = $this->tabBoosted && $campaign->boosted();
         $params['entityAttributeTemplates'] = $templates;
         $params['entityType'] = $model->getEntityType();
@@ -352,6 +359,7 @@ class CrudController extends Controller
             'tabPermissions' => $this->tabPermissions && Auth::user()->can('permission', $model),
             'tabAttributes' => $this->tabAttributes && Auth::user()->can('attributes', $model->entity),
             'tabBoosted' => $this->tabBoosted && $campaign->boosted(),
+            'tabCopy' => $this->tabCopy,
             'entityType' => $model->getEntityType()
         ];
 

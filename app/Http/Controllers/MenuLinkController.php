@@ -19,6 +19,7 @@ class MenuLinkController extends CrudController
     protected $tabPermissions = false;
     protected $tabAttributes = false;
     protected $tabBoosted = false;
+    protected $tabCopy = false;
 
     /**
      * @var string

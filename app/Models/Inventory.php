@@ -132,4 +132,15 @@ class Inventory extends Model
         }
         return (string) $this->name;
     }
+
+    /**
+     * Copy an entity inventory to another target
+     * @param Entity $target
+     */
+    public function copyTo(Entity $target)
+    {
+        $new = $this->replicate(['entity_id']);
+        $new->entity_id = $target->id;
+        return $new->save();
+    }
 }

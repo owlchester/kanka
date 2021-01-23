@@ -119,4 +119,15 @@ class EntityAbility extends Model
                     ->whereNotIn('entities.id', $service->deniedEntityIds());
             });
     }
+
+    /**
+     * Copy an entity ability to another target
+     * @param Entity $target
+     */
+    public function copyTo(Entity $target)
+    {
+        $new = $this->replicate(['entity_id']);
+        $new->entity_id = $target->id;
+        return $new->save();
+    }
 }

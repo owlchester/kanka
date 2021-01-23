@@ -71,4 +71,15 @@ class EntityLink extends Model
 
         return (string) $this->icon;
     }
+
+    /**
+     * Copy an entity link to another target
+     * @param Entity $target
+     */
+    public function copyTo(Entity $target)
+    {
+        $new = $this->replicate(['entity_id']);
+        $new->entity_id = $target->id;
+        return $new->save();
+    }
 }

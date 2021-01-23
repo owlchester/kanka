@@ -157,7 +157,10 @@ return [
         'calendar_date'         => 'Calendar Date',
         'character'             => 'Character',
         'colour'                => 'Colour',
+        'copy_abilities'        => 'Copy Abilities',
         'copy_attributes'       => 'Copy Attributes',
+        'copy_inventory'        => 'Copy Inventory',
+        'copy_links'            => 'Copy Entity Links',
         'copy_notes'            => 'Copy Entity Notes',
         'creator'               => 'Creator',
         'dice_roll'             => 'Dice Roll',
@@ -231,6 +234,9 @@ return [
             'calendar'  => 'Add a calendar date',
         ],
         'copy_options'  => 'Copy Options',
+    ],
+    'helpers'                   => [
+        'copy_options'          => 'Copy the following related elements from the source to the new entity.',
     ],
     'hidden'                    => 'Hidden',
     'hints'                     => [

@@ -110,6 +110,9 @@ abstract class MiscObserver
         }
     }
 
+    /**
+     * @param MiscModel $model
+     */
     public function created(MiscModel $model)
     {
         // If we're from the "move" service, we can skip this part.
@@ -120,13 +123,33 @@ abstract class MiscObserver
         // Created a new sub entity? Create the parent entity.
         $entity = $model->createEntity();
 
-        // Copy attributes from source?
+        // Copying options
+        $sourceId = request()->post('copy_source_id');
+        /** @var Entity $source */
+
+        // Copy entity notes from source?
         if (request()->has('copy_source_notes') && request()->filled('copy_source_notes')) {
-            $sourceId = request()->post('copy_source_id');
-            /** @var Entity $source */
             $source = $source ?? Entity::findOrFail($sourceId);
             foreach ($source->notes as $note) {
                 $note->copyTo($model->entity);
+            }
+        }
+        if (request()->has('copy_source_links') && request()->filled('copy_source_links')) {
+            $source = $source ?? Entity::findOrFail($sourceId);
+            foreach ($source->links as $link) {
+                $link->copyTo($model->entity);
+            }
+        }
+        if (request()->has('copy_source_abilities') && request()->filled('copy_source_abilities')) {
+            $source = $source ?? Entity::findOrFail($sourceId);
+            foreach ($source->abilities as $ability) {
+                $ability->copyTo($model->entity);
+            }
+        }
+        if (request()->has('copy_source_inventory') && request()->filled('copy_source_inventory')) {
+            $source = $source ?? Entity::findOrFail($sourceId);
+            foreach ($source->inventories as $inventory) {
+                $inventory->copyTo($model->entity);
             }
         }
     }

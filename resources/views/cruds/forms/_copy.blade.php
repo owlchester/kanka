@@ -1,7 +1,28 @@
+<p class="help-block">{{ __('crud.helpers.copy_options') }}</p>
 <div class="form-group">
     {!! Form::hidden('copy_source_notes', null) !!}
     <label>{!! Form::checkbox('copy_source_notes', 1, false) !!}
-        {{ trans('crud.fields.copy_notes') }}
+        {{ __('crud.fields.copy_notes') }}
+    </label>
+</div>
+@if ($campaign->campaign()->boosted())
+<div class="form-group">
+    {!! Form::hidden('copy_source_links', null) !!}
+    <label>{!! Form::checkbox('copy_source_links', 1, false) !!}
+        {{ __('crud.fields.copy_links') }}
+    </label>
+</div>
+@endif
+<div class="form-group">
+    {!! Form::hidden('copy_source_abilities', null) !!}
+    <label>{!! Form::checkbox('copy_source_abilities', 1, false) !!}
+        {{ __('crud.fields.copy_abilities') }}
+    </label>
+</div>
+<div class="form-group">
+    {!! Form::hidden('copy_source_inventory', null) !!}
+    <label>{!! Form::checkbox('copy_source_inventory', 1, false) !!}
+        {{ __('crud.fields.copy_inventory') }}
     </label>
 </div>
 
