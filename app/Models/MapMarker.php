@@ -390,8 +390,12 @@ class MapMarker extends Model
      */
     protected function opacity(): float
     {
-        if (empty($this->opacity) || $this->opacity > 100) {
+        if ($this->opacity > 100) {
             return 1.0;
+        }
+
+        if (empty($this->opacity) && $this->editing) {
+            return 0.5;
         }
 
         return round($this->opacity / 100, 1);
