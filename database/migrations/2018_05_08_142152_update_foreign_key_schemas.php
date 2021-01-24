@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Str;
 
 class UpdateForeignKeySchemas extends Migration
 {
@@ -34,7 +35,7 @@ class UpdateForeignKeySchemas extends Migration
                 foreach ($fields as $field) {
                     $table->dropForeign($tableName . '_' . $field . '_id_foreign');
                     $table->foreign($field . '_id')
-                        ->references('id')->on(str_plural($field))
+                        ->references('id')->on(Str::plural($field))
                         ->onDelete('set null');
                 }
             });
@@ -73,7 +74,7 @@ class UpdateForeignKeySchemas extends Migration
                 foreach ($fields as $field) {
                     $table->dropForeign($tableName . '_' . $field . '_id_foreign');
                     $table->foreign($field . '_id')
-                        ->references('id')->on(str_plural($field))
+                        ->references('id')->on(Str::plural($field))
                         ->onDelete('cascade');
                 }
             });
