@@ -43,6 +43,7 @@
     - [Relations](/docs/{{version}}/relations)
     - [Inventory](/docs/{{version}}/entity-inventory)
     - [Entity Abilities](/docs/{{version}}/entity-abilities)
+    - [Entity Links](/docs/{{version}}/entity-links)
 
 - ## Search
     - [Search](/docs/{{version}}/search)
