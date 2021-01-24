@@ -20,6 +20,18 @@
             {!! Form::open(['route' => ['campaign_dashboards.store'], 'method' => 'POST', 'data-shortcut' => 1]) !!}
             @include('dashboard.dashboards._form')
 
+            @if(!empty($source))
+
+                <div class="form-group">
+                    {!! Form::hidden('copy_widgets', null) !!}
+                    <label>{!! Form::checkbox('copy_widgets', 1, false) !!}
+                        {{ __('dashboard.dashboards.fields.copy_widgets') }}
+                    </label>
+                    <p class="help-block">{{ __('dashboard.dashboards.helpers.copy_widgets', ['name' => $source->name]) }}</p>
+                    {!! Form::hidden('source', $source->id) !!}
+                </div>
+            @endif
+
             <div class="form-group">
                 <button class="btn btn-success">{{ trans('crud.save') }}</button>
                 @if (!request()->ajax())

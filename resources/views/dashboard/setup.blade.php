@@ -65,29 +65,52 @@
             @endif
 
             @if($dashboard)
-                <span class="pull-right">
-                <a class="btn btn-primary"
-                   data-toggle="ajax-modal"
-                   data-target="#edit-widget"
-                   data-url="{{ route('campaign_dashboards.edit', $dashboard) }}"
-                >
-                    <i class="fas fa-pencil-alt"></i>
-                    <span class="hidden-xs">{{ __('dashboard.dashboards.actions.edit') }}</span>
-                </a>
-                <a href="#" class="delete-confirm btn btn-danger" data-toggle="modal" data-name="{{ $dashboard->name }}"
-                   data-target="#delete-confirm" data-delete-target="delete-dashboard-{{ $dashboard->id }}"
-                   title="{{ __('crud.remove') }}">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                    <span class="hidden-xs">{{ __('crud.remove') }}</span>
-                </a>
-                {!! Form::open(['method' => 'DELETE', 'route' => ['campaign_dashboards.destroy', $dashboard], 'style '=> 'display:inline', 'id' => 'delete-dashboard-' . $dashboard->id]) !!}
-                    {!! Form::close() !!}
-
-                <a href="{{ route('dashboard', ['dashboard' => $dashboard->id]) }}" target="_blank"
-                   class="btn btn-default">
-                    <i class="fas fa-external-link-alt"></i> {{ __('crud.view') }}
-                </a>
-                </span>
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        {{ __('crud.actions.actions') }} <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="{{ route('dashboard', ['dashboard' => $dashboard->id]) }}" target="_blank"
+                               >
+                                <i class="fas fa-external-link-alt"></i>
+                                {{ __('crud.view') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                    href="#"
+                               data-toggle="ajax-modal"
+                               data-target="#edit-widget"
+                               data-url="{{ route('campaign_dashboards.edit', $dashboard) }}"
+                            >
+                                <i class="fas fa-pencil-alt"></i>
+                                {{ __('dashboard.dashboards.actions.edit') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                    href="#"
+                                    data-toggle="ajax-modal"
+                                    data-target="#edit-widget"
+                                    data-url="{{ route('campaign_dashboards.create', ['source' => $dashboard]) }}"
+                            >
+                                <i class="fas fa-copy"></i>
+                                {{ __('crud.actions.copy') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="delete-confirm text-red" data-toggle="modal" data-name="{{ $dashboard->name }}"
+                               data-target="#delete-confirm" data-delete-target="delete-dashboard-{{ $dashboard->id }}"
+                               title="{{ __('crud.remove') }}">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                {{ __('crud.remove') }}
+                            </a>
+                            {!! Form::open(['method' => 'DELETE', 'route' => ['campaign_dashboards.destroy', $dashboard], 'style '=> 'display:inline', 'id' => 'delete-dashboard-' . $dashboard->id]) !!}
+                            {!! Form::close() !!}
+                        </li>
+                    </ul>
+                </div>
             @endif
         </div>
         @endif

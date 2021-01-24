@@ -32,8 +32,14 @@ class CampaignDashboardController extends Controller
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('dashboard', $campaign);
+        $source = null;
+        if (request()->has('source')) {
+            $source = CampaignDashboard::findOrFail(request()->get('source'));
+        }
 
-        return view('dashboard.dashboards.create')->with('campaign', $campaign);
+        return view('dashboard.dashboards.create')
+            ->with('campaign', $campaign)
+            ->with('source', $source);
     }
 
     public function store(StoreCampaignDashboard $request)

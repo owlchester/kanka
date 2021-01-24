@@ -171,4 +171,15 @@ class CampaignDashboardWidget extends Model
         }
         return $query->where('updated_at', '>', $lastSync);
     }
+
+    /**
+     * Copy an dashboard to another target
+     * @param CampaignDashboard $target
+     */
+    public function copyTo(CampaignDashboard $target)
+    {
+        $new = $this->replicate(['dashboard_id']);
+        $new->dashboard_id = $target->id;
+        return $new->save();
+    }
 }

@@ -34,8 +34,12 @@ return [
             'success'   => 'Dashboard :name removed.',
         ],
         'fields'        => [
+            'copy_widgets'  => 'Copy widgets',
             'name'          => 'Dashboard name',
             'visibility'    => 'Visibility',
+        ],
+        'helpers'       => [
+            'copy_widgets' => 'Duplicate the widgets from the :name dashboard into this new one.',
         ],
         'placeholders'  => [
             'name'  => 'Name of the dashboard',
