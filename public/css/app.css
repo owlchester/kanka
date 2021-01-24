@@ -1380,12 +1380,21 @@ summary {
 
 .entity-header .entity-links li a {
   display: inline-block;
-  width: 24px;
-  height: 24px;
+  /*width: 32px;
+  height: 32px;*/
   text-align: center;
   padding: 3px;
   background-color: white;
   border-radius: 5px;
+  font-size: 20px;
+}
+
+.entity-links {
+  margin: 5px 0;
+}
+
+.entity-links li > a {
+  font-size: 20px;
 }
 
 .visu-teaser {
