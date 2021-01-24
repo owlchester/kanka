@@ -257,6 +257,32 @@ class BulkService
     }
 
     /**
+     * Bulk apply attribute templates
+     * @param array $options
+     * @return int
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public function templates(array $options): int
+    {
+        $count = 0;
+        $model = $this->getEntity();
+
+        /** @var AttributeService $service */
+        $service = app()->make('App\Services\AttributeService');
+
+        $entities = $model->with(['entity', 'campaign'])->whereIn('id', $this->ids)->get();
+
+        foreach ($entities as $entity) {
+            if (Auth::user()->can('update', $entity)) {
+                $service->apply($entity->entity, $options);
+                $count++;
+            }
+        }
+
+        return $count;
+    }
+
+    /**
      * @return mixed
      * @throws Exception
      */

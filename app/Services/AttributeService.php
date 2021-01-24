@@ -18,6 +18,9 @@ class AttributeService
     /** @var array */
     protected $loadedAttributes = [];
 
+    protected $loadedTemplates = [];
+    protected $loadedPlugins = [];
+
     protected $loadedEntity = null;
 
     /**
@@ -141,7 +144,7 @@ class AttributeService
 
         if ($templateId) {
             /** @var AttributeTemplate $template */
-            $template = AttributeTemplate::findOrFail($request['template_id']);
+            $template = $this->getAttributeTemplate($templateId);
             $template->apply($entity);
             return $template->name;
         } elseif ($communityTemplate) {
@@ -368,11 +371,7 @@ class AttributeService
             return false;
         }
 
-        $plugin = CampaignPlugin::templates($campaign)
-            ->select('campaign_plugins.*')
-            //->leftJoin('plugins as p', 'p.id', 'plugin_id')
-            ->where('p.uuid', $id)
-            ->first();
+        $plugin = $this->getMarketplacePlugin($id, $campaign);
         if (empty($plugin)) {
             return false;
         }
@@ -443,5 +442,34 @@ class AttributeService
             ->first();
 
         return $plugin;
+    }
+
+    /**
+     * @param int $templateId
+     * @return AttributeTemplate
+     */
+    protected function getAttributeTemplate(int $templateId)
+    {
+        if (isset($this->loadedTemplates[$templateId])) {
+            return $this->loadedTemplates[$templateId];
+        }
+        return $this->loadedTemplates[$templateId] = AttributeTemplate::findOrFail($templateId);
+    }
+
+    /**
+     * @param int $pluginId
+     * @param int $campaign
+     * @return CampaignPlugin
+     */
+    protected function getMarketplacePlugin(int $pluginId, int $campaign)
+    {
+        if (isset($this->loadedPlugins[$pluginId])) {
+            return $this->loadedPlugins[$pluginId];
+        }
+        return $this->loadedPlugins[$pluginId] = CampaignPlugin::templates($campaign)
+            ->select('campaign_plugins.*')
+            //->leftJoin('plugins as p', 'p.id', 'plugin_id')
+            ->where('p.uuid', $pluginId)
+            ->first();
     }
 }

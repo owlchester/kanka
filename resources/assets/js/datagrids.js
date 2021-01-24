@@ -44,7 +44,9 @@ function registerBulkActions() {
         setBulkModels('#datagrid-bulk-delete-models');
     });
     $('#datagrids-bulk-actions-copy-campaign').on('click', function() {
-        console.log('aaa');
+        setBulkModels('#datagrid-bulk-permission-models');
+    });
+    $('#datagrids-bulk-actions-templates').on('click', function() {
         setBulkModels('#datagrid-bulk-permission-models');
     });
 }

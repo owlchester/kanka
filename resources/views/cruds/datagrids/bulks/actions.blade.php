@@ -15,6 +15,9 @@
                 <a href="#" class="btn btn-default bulk-edit disabled" data-toggle="modal" data-target="#bulk-edit.modal" id="datagrids-bulk-actions-batch" >
                     <i class="fa fa-edit"></i> {{ __('crud.bulk.actions.edit') }}
                 </a>
+{{--                <a href="#" class="btn btn-default bulk-templates disabled" id="datagrids-bulk-actions-templates" data-toggle="ajax-modal" data-target="#bulk-permissions.modal" data-url="{{ route('bulk.modal', ['view' => 'templates']) }}">--}}
+{{--                    <i class="fa fa-th-list"></i> {{ __('crud.actions.bulk_templates') }}--}}
+{{--                </a>--}}
                 @endif
                 @if (!isset($datagrid) || $datagrid->bulkCopyToCampaign)
                     <a href="#" class="btn btn-default bulk-copy-campaign disabled" id="datagrids-bulk-actions-copy-campaign" data-toggle="ajax-modal" data-target="#bulk-permissions.modal" data-url="{{ route('bulk.modal', ['view' => 'copy_campaign']) }}">

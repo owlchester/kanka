@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
 use App\Http\Requests\BulkRequest;
+use App\Services\AttributeService;
 use App\Services\BulkService;
 use App\Services\EntityService;
 use App\Traits\BulkControllerTrait;
@@ -87,6 +88,13 @@ class BulkController extends Controller
                 return redirect()
                     ->route($entity . '.' . $subroute, $routeParams)
                     ->with('success', trans_choice('crud.bulk.success.copy_to_campaign', $count, ['count' => $count, 'campaign' => $campaign->name]));
+            } elseif ($action === 'templates') {
+                $count = $this->bulkService
+                    ->entities(explode(',', $request->get('models')))
+                    ->templates($request->only(['template_id', 'template']));
+                return redirect()
+                    ->route($entity . '.' . $subroute, $routeParams)
+                    ->with('success', trans_choice('crud.bulk.success.templates', $count, ['count' => $count]));
             } elseif ($action === 'batch') {
                 $entityClass = $this->entityService->getClass($entity);
                 $entityObj = new $entityClass;
@@ -113,13 +121,21 @@ class BulkController extends Controller
      */
     public function modal(Request $request)
     {
-        if (!$request->has('view') || !in_array($request->get('view'), ['permissions', 'copy_campaign'])) {
+        if (!$request->has('view') || !in_array($request->get('view'), ['permissions', 'copy_campaign', 'templates'])) {
             return response()->json(['error' => 'invalid view']);
+        }
+
+        $communityTemplates = [];
+        if (request()->get('view') == 'templates') {
+            $campaign = CampaignLocalization::getCampaign();
+            /** @var AttributeService $service */
+            $service = app()->make('App\Services\AttributeService');
+            $communityTemplates = $service->templates($campaign);
         }
 
         $campaign = CampaignLocalization::getCampaign();
         return view('cruds.datagrids.bulks.modals._' . $request->get('view'), compact(
-            'campaign'
+            'campaign', 'communityTemplates'
         ));
     }
 }
