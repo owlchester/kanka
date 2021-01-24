@@ -14,6 +14,7 @@ use App\Models\Concerns\Sortable;
 use App\Models\Concerns\Tooltip;
 use App\Models\Scopes\SubEntityScopes;
 use App\Traits\AclTrait;
+use App\Traits\SourceCopiable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -52,7 +53,8 @@ abstract class MiscModel extends Model
         Filterable,
         Tooltip,
         Sortable,
-        SubEntityScopes
+        SubEntityScopes,
+        SourceCopiable
     ;
 
     /**

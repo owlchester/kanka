@@ -3,7 +3,9 @@
 namespace App\Services;
 
 use App\Models\Family;
+use App\Models\MapMarker;
 use App\Models\MiscModel;
+use App\Traits\SourceCopiable;
 
 /**
  * Class FormCopyService
@@ -32,7 +34,7 @@ class FormCopyService
      * @param MiscModel|null $source
      * @return $this
      */
-    public function source(MiscModel $source = null): self
+    public function source($source = null): self
     {
         $this->source = $source;
         return $this;
@@ -215,7 +217,7 @@ class FormCopyService
      */
     private function valid(): bool
     {
-        return $this->source instanceof MiscModel;
+        return method_exists($this->source, 'isCopiableObject') && $this->source->isCopiableObject();
     }
 
     /**

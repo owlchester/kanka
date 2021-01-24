@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Facades\Mentions;
 use App\Models\Concerns\Paginatable;
+use App\Traits\SourceCopiable;
 use App\Traits\VisibilityTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -39,7 +40,7 @@ use Illuminate\Support\Str;
  */
 class MapMarker extends Model
 {
-    use VisibilityTrait, Paginatable;
+    use VisibilityTrait, Paginatable, SourceCopiable;
 
     const SHAPE_MARKER = 1;
     const SHAPE_LABEL = 2;
@@ -227,6 +228,7 @@ class MapMarker extends Model
             ' . $body . '
             <div class="marker-popup-actions">
                 <a href="' . route('maps.map_markers.edit', [$this->map_id, $this->id]). '" class="btn btn-xs btn-primary">' . __('crud.edit') . '</a>
+                <a href="' . route('maps.map_markers.create', [$this->map_id, 'source' => $this->id]). '" class="btn btn-xs btn-primary">' . __('crud.actions.copy') . '</a>
 
                 <a href="#" class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="'. e($this->name) .'"
                         data-target="#delete-confirm" data-delete-target="delete-form-marker-' . $this->id . '"

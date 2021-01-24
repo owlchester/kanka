@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Maps;
 
 
 use App\Facades\CampaignLocalization;
+use App\Facades\FormCopy;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMapMarker;
 use App\Models\Map;
@@ -43,10 +44,20 @@ class MapMarkerController extends Controller
         $this->authorize('update', $map);
 
         $ajax = request()->ajax();
+        $source = null;
+        if (request()->has('source')) {
+            $source = MapMarker::findOrFail(request()->get('source'));
+            FormCopy::source($source);
+        }
+
+        $activeTab = 1;
+        if ($source) {
+            $activeTab = $source->shape_id;
+        }
 
         return view(
             'maps.markers.create',
-            compact('map', 'ajax')
+            compact('map', 'ajax', 'source', 'activeTab')
         );
     }
 
@@ -69,6 +80,7 @@ class MapMarkerController extends Controller
         $data = $request->only($this->fields);
         $data['map_id'] = $map->id;
         $new = $model->create($data);
+
 
         if ($request->get('from') == 'explore') {
             return redirect()
@@ -94,10 +106,11 @@ class MapMarkerController extends Controller
         $ajax = request()->ajax();
         $model = $mapMarker;
         $includeMap = true;
+        $activeTab = $mapMarker->shape_id;
 
         return view(
             'maps.markers.edit',
-            compact('map', 'ajax', 'model', 'includeMap')
+            compact('map', 'ajax', 'model', 'includeMap', 'activeTab')
         );
     }
 
