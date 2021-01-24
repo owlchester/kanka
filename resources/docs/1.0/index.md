@@ -51,6 +51,7 @@
 - ## Other Concepts
     - [Last Sync](/docs/{{version}}/last-sync)
     - [Pagination](/docs/{{version}}/pagination)
+    - [Menu Links](/docs/{{version}}/menu-links)
     - [Dashboard Widgets](/docs/{{version}}/dashboard-widgets)
     - [Mention Language](/docs/{{version}}/mention-language)
 

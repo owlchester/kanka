@@ -31,6 +31,7 @@ Route::apiResources([
     'campaigns.maps.map_layers' => 'MapLayerApiController',
     'campaigns.maps.map_groups' => 'MapGroupApiController',
     'campaigns.maps.map_markers' => 'MapMarkerApiController',
+    'campaigns.menu_links' => 'MenuLinkApiController',
     'campaigns.notes' => 'NoteApiController',
     'campaigns.organisations' => 'OrganisationApiController',
     'campaigns.organisations.organisation_members' => 'OrganisationMemberApiController',
