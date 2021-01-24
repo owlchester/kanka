@@ -25,6 +25,14 @@
                     'ceil' => '<code>ceil(({Con}*{' . __('helpers.attributes.level') . '})/2)</code>',
                 ]) !!}
             </p>
+
+            <hr />
+            <p>
+                {!! __('helpers.attributes.pinned', ['icon' => '<i class="fas fa-star"></i>']) !!}
+            </p>
+            <p>
+                {!! __('helpers.attributes.private', ['icon' => '<i class="fas fa-lock"></i>']) !!}
+            </p>
         </div>
     </div>
 @endsection

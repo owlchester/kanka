@@ -12,6 +12,8 @@ return [
         'link'          => 'Attribute options',
         'math'          => 'You can also get creative with some basic math options. For example, :example will multiple the :level and :con attributes of this entity. If you want to round up or down, you can use :floor or :ceil',
         'title'         => 'Attributes',
+        'pinned'        => 'Pinning an attribute using the :icon icon will make it appear in the entitiy\'s menu below its image.',
+        'private'       => 'Private attributes using the :icon will make them only visible by campaign admins.'
     ],
     'dice'          => [
         'description'               => 'Generic dice rolling is possible by writting "d20", "4d4+4", "d%" for percentile and "df" for fudge.',
