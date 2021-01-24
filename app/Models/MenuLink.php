@@ -18,6 +18,7 @@ use Illuminate\Support\Str;
  * @property string $tab
  * @property string $menu
  * @property string $type
+ * @property string $icon
  * @property string $filters
  * @property string $random_entity_type
  * @property integer $position
@@ -45,7 +46,8 @@ class MenuLink extends MiscModel
         'menu',
         'type',
         'position',
-        'random_entity_type'
+        'random_entity_type',
+        'icon',
     ];
 
     /**
@@ -251,5 +253,21 @@ class MenuLink extends MiscModel
         }
 
         return $entity->url('show');
+    }
+
+    /**
+     * Icon HTML class
+     * @return string
+     */
+    public function icon(): string
+    {
+        if (!empty($this->icon)) {
+            return e($this->icon);
+        } elseif ($this->target) {
+            return 'fa fa-arrow-circle-right';
+        } elseif ($this->isRandom()) {
+            return 'fa fa-question';
+        }
+        return 'fa fa-th-list';
     }
 }

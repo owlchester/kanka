@@ -52,19 +52,19 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                         @if ($menuLink->target)
                             <li class="subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }}">
                                 <a href="{{ $menuLink->getRoute() }}">
-                                    <i class="fa fa-arrow-circle-right"></i> <span>{{ $menuLink->name }}</span>
+                                    <i class="{{ $menuLink->icon() }}"></i> <span>{{ $menuLink->name }}</span>
                                 </a>
                             </li>
                         @elseif ($menuLink->type)
                             <li class="subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }}">
                                 <a href="{{ $menuLink->getRoute() }}">
-                                    <i class="fa fa-th-list"></i> <span>{{ $menuLink->name }}</span>
+                                    <i class="{{ $menuLink->icon() }}"></i> <span>{{ $menuLink->name }}</span>
                                 </a>
                             </li>
                         @elseif ($menuLink->isRandom())
                             <li class="subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }}">
                                 <a href="{{ route('menu_links.random', $menuLink) }}">
-                                    <i class="fa fa-question"></i> <span>{{ $menuLink->name }}</span>
+                                    <i class="{{ $menuLink->icon() }}"></i> <span>{{ $menuLink->name }}</span>
                                 </a>
                             </li>
                         @endif

@@ -8,13 +8,14 @@ use App\Models\MiscModel;
 
 class MenuLinkObserver
 {
+    use PurifiableTrait;
     /**
      * @param MiscModel $model
      */
     public function saving(MiscModel $model)
     {
         $model->campaign_id = CampaignLocalization::getCampaign()->id;
-        $model->icon = '';
+        //$model->icon = $this->purify($model->icon);
         $model->tab = strtolower(trim($model->tab, '#'));
 
         // Handle empty or wrong positions

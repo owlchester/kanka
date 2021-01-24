@@ -19,6 +19,15 @@
                         <br class="clear" />
                     </li>
                     @endif
+                    @if ($model->icon)
+                        <li class="list-group-item">
+                            <b>{{ trans('entities/links.fields.icon') }}</b>
+                            <span  class="pull-right">
+                                <i class="{{ $model->icon }}"></i>
+                            </span>
+                            <br class="clear" />
+                        </li>
+                    @endif
                     @if ($model->tab)
                         <li class="list-group-item">
                             <b>{{ trans('menu_links.fields.tab') }}</b>
