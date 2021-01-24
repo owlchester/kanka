@@ -93,7 +93,6 @@ class FrontController extends Controller
         return $this->cachedResponse('front.roadmap');
     }
 
-
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -132,6 +131,14 @@ class FrontController extends Controller
     public function wbFeatures()
     {
         return $this->cachedResponse('front.features.worldbuilding');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function partners()
+    {
+        return $this->cachedResponse('front.partners');
     }
 
     /**

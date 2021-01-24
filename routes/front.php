@@ -15,6 +15,7 @@ Route::get('/media', 'FrontController@media')->name('front.media');
 Route::get('/public-campaigns', 'FrontController@campaigns')->name('front.public_campaigns');
 Route::get('/contact', 'FrontController@contact')->name('front.contact');
 Route::get('/pricing', 'FrontController@pricing')->name('front.pricing');
+Route::get('/partners', 'FrontController@partners')->name('front.partners');
 Route::get('/news', 'Front\NewsController@index')->name('front.news');
 Route::get('/newsletter', 'Front\NewsletterController@index')->name('front.newsletter');
 Route::get('/news/show/{id}-{slug?}', 'Front\NewsController@show')->name('front.news.show');

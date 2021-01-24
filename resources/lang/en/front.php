@@ -259,6 +259,7 @@ return [
     'partners'      => [
         'description'   => 'We\'ve partnered up with a few amazing tools and communities that share our goals and values.',
         'title'         => 'Partners',
+
     ],
     'pricing'       => [
         'actions'       => [
