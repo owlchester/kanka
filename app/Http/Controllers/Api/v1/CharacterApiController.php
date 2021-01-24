@@ -20,7 +20,8 @@ class CharacterApiController extends ApiController
         return CharacterResource::collection($campaign->characters()
             ->with([
                 'entity', 'entity.tags', 'entity.notes', 'entity.files', 'entity.events',
-                'entity.relationships', 'entity.attributes', 'characterTraits'
+                'entity.relationships', 'entity.attributes', 'characterTraits',
+                'entity.links',
             ])
             ->lastSync(request()->get('lastSync'))
             ->paginate()

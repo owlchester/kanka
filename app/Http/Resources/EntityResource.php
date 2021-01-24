@@ -72,6 +72,7 @@ class EntityResource extends JsonResource
             $data['relations'] = RelationResource::collection($this->relationships);
             $data['inventory'] = InventoryResource::collection($this->inventories);
             $data['entity_abilities'] = EntityAbilityResource::collection($this->abilities);
+            $data['entity_links'] = EntityLinkResource::collection($entity->links);
 
             $data['child'] = [
                 'image' => $entity->child->image,
