@@ -142,6 +142,7 @@ class EntityResource extends JsonResource
             $merged['relations'] = RelationResource::collection($this->entity->relationships);
             $merged['inventory'] = InventoryResource::collection($this->entity->inventories);
             $merged['entity_abilities'] = EntityAbilityResource::collection($this->entity->abilities);
+            $merged['entity_links'] = EntityLinkResource::collection($this->entity->links);
         }
 
         $final = array_merge($merged, $prepared);
