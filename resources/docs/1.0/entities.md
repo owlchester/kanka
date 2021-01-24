@@ -101,6 +101,7 @@ There are several models in Kanka which represent objects attached to `entities`
 * [Entity Relations](/docs/{{version}}/entity-relations)
 * [Entity Inventory](/docs/{{version}}/entity-inventory)
 * [Entity Abilities](/docs/{{version}}/entity-abilities)
+* [Entity Links](/docs/{{version}}/entity-links)
 
 With each request to an object (ie. `character`, `location`, etc), you can include the following parameter to get those related objects directly.
 
@@ -156,6 +157,7 @@ With each request to an object (ie. `character`, `location`, etc), you can inclu
             ],
             "entity_files": [],
             "entity_abilities": [],
+            "entity_links": [],
             "relations": [],
             "title": null,
             "age": null,
