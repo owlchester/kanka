@@ -31,6 +31,7 @@ You can get a list of all the characters of a campaign by using the following en
             "image": "{path}",
             "image_full": "{url}",
             "image_thumb": "{url}",
+            "image_uuid": null,
             "has_custom_image": false,
             "is_private": true,
             "entity_id": 4,
@@ -83,6 +84,7 @@ To get the details of a single character, use the following endpoint.
         "image": "{path}",
         "image_full": "{url}",
         "image_thumb": "{url}",
+        "image_uuid": null,
         "has_custom_image": false,
         "is_private": true,
         "entity_id": 4,
@@ -110,7 +112,7 @@ To get the details of a single character, use the following endpoint.
             }
         ]
     }
-    
+
 }
 ```
 
@@ -130,7 +132,7 @@ To create a character, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the character |
-| `entry` | `string` | The html description of the character. | 
+| `entry` | `string` | The html description of the character. |
 | `title` | `string`  | Title of the character |
 | `age` | `string`  | Age of the character |
 | `sex` | `string`  | Gender of the character |
@@ -143,6 +145,7 @@ To create a character, use the following endpoint.
 | `is_private` | `boolean` | If the character is only visible to `admin` members of the campaign |
 | `image` | `stream` | Stream to file uploaded to the character |
 | `image_url` | `string` | URL to a picture to be used for the character |
+| `image_uuid` | `int` | Image ID of the campaign gallery. This is only available to superboosted campaigns. |
 | `personality_name` | `array` | An array representing the name of personality traits. For exemple ```["Goals", "Fears"]```  |
 | `personality_entry` | `array` | An array representing the values of personality traits. For exemple ```["To become a King", "Quiet places"]```  |
 | `appearance_name` | `array` | An array representing the name of appearance traits. For exemple ```["Hair", "Eyes"]```  |
