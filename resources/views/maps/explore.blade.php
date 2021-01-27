@@ -175,7 +175,7 @@
                                 'enctype' => 'multipart/form-data',
                                 'id' => 'map-marker-new-form'
                                ]) !!}
-                            @include('maps.markers._form', ['model' => null, 'map' => $map])
+                            @include('maps.markers._form', ['model' => null, 'map' => $map, 'activeTab' => 1])
 
                             <div class="form-group">
                                 <button class="btn btn-success"><i class="fa fa-spin fa-spinner" style="display:none;"></i><span>{{ __('crud.save') }}</span></button>

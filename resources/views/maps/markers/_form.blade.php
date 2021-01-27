@@ -171,7 +171,7 @@ $sizeOptions = [
     </div>
 </div>
 
-<div class="row @if (!$model && !$source) hidden @endif">
+<div class="row @if (!$model && empty($source)) hidden @endif">
     <div class="col-xs-6">
         <div class="form-group">
             <label>{{ __('maps/markers.fields.latitude') }}</label>
