@@ -79,6 +79,7 @@ class AbilityController extends Controller
         $data['entity_id'] = $entity->id;
 
         /** @var EntityAbility $entityAbility */
+        $success = '';
         if (is_array($data['abilities'])) {
             $abilities = [];
             foreach ($data['abilities'] as $abilityId) {

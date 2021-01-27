@@ -469,11 +469,7 @@ class DatagridRenderer
     {
         return '';
 
-        if (empty($this->filters)) {
-            return '';
-        }
-
-        $filtersHtml = view('cruds._filters2')->with([
+        /*$filtersHtml = view('cruds._filters2')->with([
             'filters' => $this->filters,
             'filterService' => $this->filterService,
             'route' => $this->getOption('route'),
@@ -499,7 +495,7 @@ class DatagridRenderer
         </div>';
 
 
-        return $html;
+        return $html;*/
     }
 
     /**

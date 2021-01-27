@@ -25,6 +25,7 @@ use Exception;
  * @var integer $parent_location_id
  * @var Location $parentLocation
  * @var Map[] $maps
+ * @property Location[] $descendants
  */
 class Location extends MiscModel
 {
@@ -358,10 +359,9 @@ class Location extends MiscModel
 
             return (int) $xml->attributes()->width;
         } catch (Exception $e) {
-            dd($e->getMessage());
+            return 100;
         }
 
-        return 100;
     }
 
 

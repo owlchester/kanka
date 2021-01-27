@@ -369,6 +369,7 @@ class CalendarRenderer
 
             $monthLength = $month['length'];
             $week = [];
+            $currentPosition = 0;
 
             // If the month is intercalary, we need to offset to the "beginning" of the week
             if (Arr::get($month, 'type') == 'intercalary') {

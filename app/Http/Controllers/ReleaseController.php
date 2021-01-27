@@ -15,11 +15,6 @@ class ReleaseController extends Controller
     public function index()
     {
         return redirect(route('front.news'), 301);
-        $models = Release::with(['category'])
-            ->published()
-            ->orderBy('created_at', 'DESC')
-            ->paginate();
-        return view('releases.index', compact('models'));
     }
 
     /**
@@ -53,7 +48,6 @@ class ReleaseController extends Controller
     {
         $post = Release::where('id', $id)->firstOrFail();
         return redirect(route('front.news.show', $post->getSlug()), 301);
-        return view('releases.show', ['model' => $post]);
     }
 
     /**

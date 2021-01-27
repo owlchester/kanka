@@ -33,7 +33,7 @@ class ImageService
         }
 
         try {
-            $file = $path = null;
+            $file = $path = $cleanSVG = null;
             $url = request()->filled($field . '_url');
 
             // Download the file locally to check it out
@@ -153,6 +153,7 @@ class ImageService
                 }
 
                 // Sanitize SVGs to avoid any XSS attacks
+                $cleanSVG = '';
                 if ($file->getMimeType() == 'image/svg+xml') {
                     $sanitizer = new Sanitizer();
                     $dirtySVG = file_get_contents($file);

@@ -112,8 +112,7 @@ class CrudController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return mixed
      */
     public function index(Request $request)
     {
@@ -454,7 +453,10 @@ class CrudController extends Controller
     public function deleteMany(Request $request)
     {
         $model = new $this->model;
-        $ids = $request->get('model');
+        $ids = $request->get('model', []);
+        if (!is_array($ids)) {
+            $ids = [$ids];
+        }
 
         $count = 0;
         foreach ($ids as $id) {

@@ -53,6 +53,8 @@ class SitemapService
         elseif (!empty($this->page) && method_exists($this, $this->page)) {
             return [];
         }
+
+        return [];
     }
 
     public function urls(): array
@@ -68,15 +70,13 @@ class SitemapService
         return $this->language(true);
     }
 
+    /**
+     * @param bool $urls
+     * @return array
+     */
     protected function language(bool $urls = false): array
     {
-        if ($urls) {
-            // Pages
-            $links = [];
-        } else {
-
-        }
-
+        $links = [];
         return $links;
     }
 

@@ -139,6 +139,11 @@ return [
 
     'api_latest'  => '1',
 
+    /**
+     *
+     */
+    'force_https' => env('APP_FORCE_HTTPS', false),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

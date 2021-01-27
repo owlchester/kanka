@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class EntityType extends Model
 {
@@ -31,7 +32,7 @@ class EntityType extends Model
      */
     public function getClass()
     {
-        $className = 'App\Models\\' . camel_case($this->code);
+        $className = 'App\Models\\' . Str::camel($this->code);
         return app()->make($className);
     }
 
@@ -41,7 +42,7 @@ class EntityType extends Model
      */
     public function name(): string
     {
-        return trans('entities.' . $this->code);
+        return __('entities.' . $this->code);
     }
 
     /**

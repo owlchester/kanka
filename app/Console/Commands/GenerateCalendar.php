@@ -32,8 +32,9 @@ class GenerateCalendar extends Command
     public function handle()
     {
         $count = 0;
-        /** @var Calendar $calendar */
-        foreach (Calendar::get() as $calendar) {
+        /** @var Calendar[] $calendars */
+        $calendars = Calendar::get();
+        foreach ($calendars as $calendar) {
             if (empty($calendar->moons())) {
                 continue;
             }

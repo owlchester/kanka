@@ -13,7 +13,7 @@ class HttpsProtocol
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->secure() && env('APP_FORCE_HTTPS') === true) {
+        if (!$request->secure() && config('app.force_https') === true) {
             return redirect()->secure($request->getRequestUri());
         }
 

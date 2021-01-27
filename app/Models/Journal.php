@@ -21,6 +21,7 @@ use Kalnoy\Nestedset\NodeTrait;
  * @property int $journal_id
  * @property Journal $journal
  * @property Journal[] $journals
+ * @property Journal[] $descendants
  */
 class Journal extends MiscModel
 {

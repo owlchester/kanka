@@ -72,7 +72,6 @@ class DiscordController extends Controller
                 __('settings.apps.discord.success.add')
             );
         } catch (Exception $e) {
-            dd($e->getMessage());
             return response()->redirectToRoute('settings.apps')->withError(
                 __('settings.apps.discord.errors.add')
             );

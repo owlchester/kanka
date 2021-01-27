@@ -14,6 +14,7 @@ use Kalnoy\Nestedset\NodeTrait;
  * Class Organisation
  * @package App\Models
  * @property Organisation $organisation
+ * @property Organisation[] $descendants
  */
 class Organisation extends MiscModel
 {

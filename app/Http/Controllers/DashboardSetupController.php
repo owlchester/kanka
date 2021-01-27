@@ -47,7 +47,7 @@ class DashboardSetupController extends Controller
     public function reorder()
     {
         $position = 0;
-        $widgets = request()->post('widgets');
+        $widgets = (array) request()->post('widgets', []);
         foreach ($widgets as $i => $widget) {
             $wi = CampaignDashboardWidget::findOrFail($widget);
             $wi->update([

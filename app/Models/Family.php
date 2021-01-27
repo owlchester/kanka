@@ -14,6 +14,7 @@ use Kalnoy\Nestedset\NodeTrait;
  * Class Family
  * @package App\Models
  * @property Character[] $members
+ * @property Family[] $descendants
  */
 class Family extends MiscModel
 {

@@ -42,8 +42,8 @@ class AbilityController extends CrudController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreAbility $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreAbility $request)
     {

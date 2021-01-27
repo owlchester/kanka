@@ -206,7 +206,7 @@ abstract class DatagridSorter
      */
     public function orderMultiple(string $column)
     {
-        return Arr::get($this->orderMultiple, $column, []);
+        return (array) Arr::get($this->orderMultiple, $column, []);
     }
 
     /**
@@ -226,7 +226,7 @@ abstract class DatagridSorter
         if ($this->sessionKey === false) {
             $this->sessionKey = 'dg-sorter-' . Str::kebab((new \ReflectionClass($this))->getShortName());
         }
-        return $this->sessionKey;
+        return (string) $this->sessionKey;
     }
 
     /**

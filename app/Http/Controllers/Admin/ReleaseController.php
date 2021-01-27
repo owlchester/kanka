@@ -111,7 +111,7 @@ class ReleaseController extends AdminCrudController
         $appRelease->delete();
 
         return redirect()->route($this->route . '.index')
-            ->with('success', trans($this->trans . '.destroy.success', ['name' => $release->name]));
+            ->with('success', trans($this->trans . '.destroy.success', ['name' => $appRelease->name]));
 
     }
 }

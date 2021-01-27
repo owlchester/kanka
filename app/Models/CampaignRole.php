@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string $name
  * @property boolean $is_admin
  * @property boolean $is_public
- * @property HasMany $permissions
+ * @property CampaignPermission[] $permissions
  * @property CampaignDashboardRole[] $dashboardRoles
  */
 class CampaignRole extends Model

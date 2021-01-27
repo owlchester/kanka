@@ -10,6 +10,12 @@ use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kalnoy\Nestedset\NodeTrait;
 
+/**
+ * Class Race
+ * @package App\Models
+ *
+ * @property Race[] $descendants
+ */
 class Race extends MiscModel
 {
     use CampaignTrait,

@@ -5,7 +5,6 @@ namespace App\Services\Entity;
 
 
 use App\Models\Entity;
-use Illuminate\Http\Resources\Json\Resource;
 use Illuminate\Support\Str;
 
 class ExportService
@@ -24,7 +23,7 @@ class ExportService
     }
 
     /**
-     * @return Resource|array
+     * @return array|mixed
      */
     public function json()
     {

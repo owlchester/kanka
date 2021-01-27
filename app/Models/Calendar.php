@@ -240,7 +240,7 @@ class Calendar extends MiscModel
 
     /**
      * Get the months
-     * @return null
+     * @return array
      */
     public function months()
     {
@@ -250,7 +250,7 @@ class Calendar extends MiscModel
                 $this->loadedMonths = json_decode(strip_tags($this->months), true);
             }
         }
-        return $this->loadedMonths;
+        return (array) $this->loadedMonths;
     }
 
     /**

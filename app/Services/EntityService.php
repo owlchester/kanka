@@ -490,7 +490,7 @@ class EntityService
      * From a link to an entity, get the entity ID
      * @param string $url
      */
-    public function extractEntityIdFromUrl(string $url): int
+    /*public function extractEntityIdFromUrl(string $url): int
     {
         // Strip stuff we don't want based on known urls
         $url = Str::after($url, config('app.url') . '/');
@@ -502,7 +502,7 @@ class EntityService
         if (Str::startsWith($url, 'entities')) {
             // Easy peasy-ish
         }
-    }
+    }*/
 
     /**
      * Toggle the entity's template status
