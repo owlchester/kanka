@@ -33,6 +33,7 @@ Most entities have the following attributes.
 | `image` | `string` | The local path to the picture of the object. |
 | `image_full` | `string` | The url to the picture of the object. |
 | `image_thumb` | `string` | The url to the thumbnail of the object. |
+| `image_uuid` | `uuid` | The image gallery uuid of the entity (only available for superboosted campaigns) |
 | `is_private` | `boolean` | Determines if the object is only visible by `admin` members of the campaign.<br /> If the user requesting the API isn't a member of the `admin` role, such objects won't be returned. |
 | `entity_id` | `integer` | The id identifying the objects against all other entities.
 | `tags` | `array` | An array of tags that the object is related to. |
@@ -64,6 +65,7 @@ To get the details of a single entity, use the following endpoint.
         "is_attributes_private": false,
         "tooltip": null,
         "header_image": null,
+        "image_uuid": null,
         "created_at": "2017-12-07T14:23:57.000000Z",
         "created_by": null,
         "updated_at": "2017-12-07T14:23:57.000000Z",
