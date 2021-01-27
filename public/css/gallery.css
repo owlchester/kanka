@@ -37,13 +37,19 @@
 }
 
 .gallery ul li .image-preview .gallery-folder {
-  padding-top: 15px;
   height: 100px;
   overflow: hidden;
   text-align: center;
+  line-height: 100px;
 }
 
-.gallery ul li .image-preview .gallery-folder i {
+.gallery ul li .image-preview .gallery-folder .text {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+.gallery ul li .image-preview .gallery-folder .text i {
   display: block;
 }
 

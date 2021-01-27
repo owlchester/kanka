@@ -35,12 +35,19 @@
           height: 100px;
         }
         .gallery-folder {
-          padding-top: 15px;
           height: 100px;
           overflow: hidden;
           text-align: center;
-          i {
-            display: block;
+          line-height: 100px;
+
+          .text {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: normal;
+
+            i {
+              display: block;
+            }
           }
         }
 

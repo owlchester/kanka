@@ -109,7 +109,7 @@
                                         @endif
                                 @endif
                                 @can('destroy', $boost)
-                                    <a href="#" class="delete-confirm btn btn-danger" data-name="{{ $boost->campaign->name }}" data-toggle="modal" data-target="#delete-confirm" data-delete-target="delete-confirm-form-{{ $boost->id }}">
+                                    <a href="#" class="delete-confirm btn btn-danger" data-name="{!! $boost->campaign->name !!}" data-toggle="modal" data-target="#unboost-confirm" data-delete-target="delete-confirm-form-{{ $boost->id }}" data-confirm-target="#unboost-confirm-name">
                                         <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
                                     </a>
                                     {!! Form::open(['method' => 'DELETE', 'route' => ['campaign_boosts.destroy', $boost->id], 'style' => 'display:inline', 'id' => 'delete-confirm-form-' . $boost->id]) !!}
@@ -125,6 +125,28 @@
                 'boost_button' => __('campaigns.show.actions.boost'),
                 'edit_button' => __('campaigns.show.actions.edit')
             ]) }}</p>
+        </div>
+    </div>
+@endsection
+
+@section('modals')
+    <div class="modal fade" id="unboost-confirm" tabindex="-1" role="dialog" aria-labelledby="unboostConfirmLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ __('settings.boost.unboost.title') }}</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="unboost-confirm-text">
+                        {!! __('settings.boost.unboost.description', ['tag' => '<b><span id="unboost-confirm-name"></span></b>']) !!}
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
+                    <button type="button" class="btn btn-danger" id="unboost-confirm-submit"><span class="fa fa-trash"></span> {{ __('crud.remove') }}</button>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

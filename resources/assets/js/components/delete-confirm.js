@@ -2,15 +2,19 @@ export default function deleteConfirm() {
     // Delete confirm dialog
     $.each($('.delete-confirm'), function () {
         $(this).click(function (e) {
-            console.log('clicked');
             var name = $(this).data('name');
             var text = $(this).data('text');
             var target = $(this).data('delete-target');
+            var confirm = $(this).data('confirm-target');
+
+            if (!confirm) {
+                confirm = '#delete-confirm-name';
+            }
 
             if (text) {
                 $('#delete-confirm-text').text(text);
             } else {
-                $('#delete-confirm-name').text(name);
+                $(confirm).text(name);
             }
 
             if ($(this).data('mirrored')) {
