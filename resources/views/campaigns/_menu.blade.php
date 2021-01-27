@@ -79,12 +79,19 @@
         @endcan
 
 
-        @can('delete', $campaign)
+        @can('roles', $campaign)
+            @can('delete', $campaign)
             <button class="btn btn-block btn-danger delete-confirm" data-name="{{ $campaign->name }}" data-toggle="modal" data-target="#delete-confirm" data-delete-target="delete-campaign-confirm-form">
-                <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
+                <i class="fa fa-trash" aria-hidden="true"></i> {{ __('campaigns.destroy.action') }}
             </button>
             {!! Form::open(['method' => 'DELETE', 'route' => ['campaigns.destroy', $campaign->id], 'style' => 'display:inline', 'id' => 'delete-campaign-confirm-form']) !!}
             {!! Form::close() !!}
+            @else
+                <span class="btn btn-block btn-danger disabled" title="{{ __('campaigns.destroy.helper') }}" data-toggle="tooltip">
+                    <i class="fa fa-trash" aria-hidden="true"></i> {{ __('campaigns.destroy.action') }}
+                </span>
+                <p class="visible-xs visible-sm help-block text-center">{{ __('campaigns.destroy.helper') }}</p>
+            @endif
         @endcan
     </div>
 </div>

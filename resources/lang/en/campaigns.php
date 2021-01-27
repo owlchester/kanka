@@ -17,7 +17,9 @@ TEXT
         'title'                 => 'New Campaign',
     ],
     'destroy'                           => [
+        'action'    => 'Delete campaign',
         'success'   => 'Campaign removed.',
+        'helper'    => 'You can only delete the campaign if you are the only member in it.',
     ],
     'edit'                              => [
         'description'   => 'Edit your campaign',
