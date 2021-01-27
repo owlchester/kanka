@@ -9,6 +9,7 @@ use App\Models\Image;
 use App\Models\ImageFolder;
 use App\Observers\PurifiableTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class GalleryService
@@ -81,10 +82,11 @@ class GalleryService
      * @param string $name
      * @return $this
      */
-    public function update(string $name): self
+    public function update(array $options): self
     {
         $this->image->update([
-            'name' => $name
+            'name' => Arr::get($options, 'name'),
+            'folder_id' => Arr::get($options, 'folder_id', null)
         ]);
 
         return $this;

@@ -29,9 +29,14 @@
 
                 <div class="form-group">
                     <label for="name" class="control-label required">{{ __('crud.fields.name') }}</label>
-                {!! Form::text('name', null, ['maxlength' => 45, 'class' => 'form-control']) !!}
-
+                    {!! Form::text('name', null, ['maxlength' => 45, 'class' => 'form-control']) !!}
                 </div>
+                @if(!$image->is_folder)
+                <div class="form-group">
+                    <label for="folder_id" class="control-label">{{ __('campaigns/gallery.fields.folder') }}</label>
+                    {!! Form::select('folder_id', $folders, null, ['class' => 'form-control']) !!}
+                </div>
+                @endif
 
                 <input type="submit" class="btn btn-sm btn-primary" value="{{ __('campaigns/gallery.actions.save') }}">
 

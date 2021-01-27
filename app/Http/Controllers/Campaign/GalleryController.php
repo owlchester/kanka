@@ -100,7 +100,10 @@ class GalleryController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
-        return view('gallery.edit', compact('image'));
+        $folders = $campaign->images()->folders()->pluck('name', 'id')->toArray();
+        $folders = array_merge(['' => ''], $folders);
+
+        return view('gallery.edit', compact('image', 'folders'));
     }
 
     /**
@@ -117,7 +120,7 @@ class GalleryController extends Controller
         $this->service
             ->campaign($campaign)
             ->image($image)
-            ->update($request->post('name'));
+            ->update($request->only('name', 'folder_id'));
 
         $params = null;
         if ($image->is_folder) {

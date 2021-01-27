@@ -149,6 +149,17 @@ class Image extends Model
     }
 
     /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeFolders($query)
+    {
+        return $query
+            ->where('is_folder', true)
+            ->orderBy('name', 'asc');
+    }
+
+    /**
      * @return bool
      */
     public function hasNoFolders(): bool
