@@ -1014,6 +1014,17 @@ hr {
 .images-list .img-item .thumbnail {
   height: 120px;
   overflow: hidden;
+  line-height: 120px;
+}
+
+.images-list .img-item .thumbnail .text {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+.images-list .img-item .thumbnail .text i {
+  display: block;
 }
 
 .attribute,

@@ -1010,6 +1010,18 @@ hr {
     .thumbnail {
       height: 120px;
       overflow: hidden;
+      line-height: 120px;
+
+      .text {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
+
+        i {
+          display: block;
+        }
+      }
+
     }
   }
 }
