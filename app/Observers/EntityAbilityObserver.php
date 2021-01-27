@@ -6,6 +6,14 @@ use App\Models\EntityAbility;
 
 class EntityAbilityObserver
 {
+    use PurifiableTrait;
+
+    public function saving(EntityAbility $entityAbility)
+    {
+        $entityAbility->note = $this->purify($entityAbility->note);
+        //$entityAbility->position = (int) $entityAbility->position;
+    }
+
     /**
      * @param EntityAbility $entityAbility
      */

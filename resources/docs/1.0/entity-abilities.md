@@ -33,7 +33,9 @@ You can get a list of all the entity-abilities of an entity by using the followi
             "visibility": "all",
             "updated_at": "2019-01-28 19:42:33.000000Z",
             "updated_by": 1,
-            "charges": 3
+            "charges": 3,
+            "position": 0,
+            "note": null
         }
     ]
 }
@@ -61,7 +63,9 @@ To get the details of a single entity-ability, use the following endpoint.
         "visibility": "all",
         "updated_at": "2019-01-28 19:42:33.000000Z",
         "updated_by": 1,
-        "charges": 3
+        "charges": 3,
+        "position": 0,
+        "note": null
     }
 }
 ```
@@ -83,6 +87,8 @@ To create an entity-ability, use the following endpoint.
 | `ability_id` | `integer` (Required) | The ability id |
 | `visibility` | `string` | The visibility: `all`, `self`, `admin` or `self-admin`. |
 | `charges` | `integer` | How many times the ability was used. |
+| `note` | `string` | Custom note attached to the ability. |
+| `position` | `int` | Position of the ability in the list |
 
 ### Results
 

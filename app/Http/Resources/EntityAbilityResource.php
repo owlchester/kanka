@@ -19,6 +19,8 @@ class EntityAbilityResource extends EntityChild
             'visibility' => $this->visibility,
             'charges' => $this->charges,
             'ability_id' => $this->ability_id,
+            'position' => $this->position,
+            'note' => $this->note,
             'created_at' => $this->created_at,
             'created_by' => $this->created_by,
             'updated_at' => $this->updated_at,

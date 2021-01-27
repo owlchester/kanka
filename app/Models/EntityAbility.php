@@ -17,6 +17,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $ability_id
  * @property string $visibility
  * @property integer $charges
+ * @property integer $position
+ * @property string $note
  * @property integer $created_by
  * @property Ability $ability
  * @property Entity $entity
@@ -32,6 +34,7 @@ class EntityAbility extends Model
         'visibility',
         'created_by',
         'charges',
+        'note',
     ];
 
     use VisibilityTrait, SimpleSortableTrait, Blameable;
