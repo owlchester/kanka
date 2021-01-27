@@ -15,7 +15,7 @@
                 @endif
             </div>
             <div class="col-md-6">
-                <strong>{{ __('crud.fields.name') }}:</strong> {{ $image->name }}<br />
+                <strong>{{ __('crud.fields.name') }}:</strong> {!! $image->name !!}<br />
                 @if(!$image->is_folder)
                 <strong>{{ __('campaigns/gallery.fields.ext') }}:</strong> {{ $image->ext }}<br />
                 <strong>{{ __('campaigns/gallery.fields.size') }}:</strong> {{ $image->niceSize() }}<br />

@@ -61,7 +61,9 @@ Route::apiResources([
     'campaigns.entities.entity_abilities' => 'EntityAbilityApiController',
     'campaigns.entities.entity_links' => 'EntityLinkApiController',
 
-    'campaigns.campaign_dashboard_widgets' => 'CampaignDashboardWidgetApiController'
+    'campaigns.campaign_dashboard_widgets' => 'CampaignDashboardWidgetApiController',
+
+    'campaigns.images' => 'CampaignImageApiController',
 ]);
 
 Route::get('campaigns/{campaign}/users', 'CampaignUserApiController@index');

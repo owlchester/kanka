@@ -14,6 +14,7 @@ return [
         'ext'           => 'Ext',
         'name'          => 'Name',
         'size'          => 'Size',
+        'folder'        => 'Folder',
     ],
     'new_folder'    => [
         'title' => 'New folder',

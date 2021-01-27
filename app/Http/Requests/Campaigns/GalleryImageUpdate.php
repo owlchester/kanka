@@ -5,6 +5,7 @@ namespace App\Http\Requests\Campaigns;
 
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class GalleryImageUpdate extends FormRequest
 {
@@ -27,6 +28,12 @@ class GalleryImageUpdate extends FormRequest
     {
         $rules = [
             'name' => 'required|max:45',
+            'folder_id' => [
+                'nullable',
+                Rule::exists('images', 'id')->where(function ($query) {
+                    return $query->where('is_folder', 1);
+                }),
+            ],
         ];
         return $rules;
     }

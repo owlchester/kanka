@@ -5,6 +5,7 @@ namespace App\Http\Requests\Campaigns;
 
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class GalleryImageStore extends FormRequest
 {
@@ -27,6 +28,12 @@ class GalleryImageStore extends FormRequest
     {
         $rules = [
             'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
+            'folder_id' => [
+                'nullable',
+                Rule::exists('images')->where(function ($query) {
+                    return $query->where('is_folder', 1);
+                }),
+            ],
         ];
         return $rules;
     }

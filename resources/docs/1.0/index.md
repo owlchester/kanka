@@ -54,6 +54,7 @@
     - [Menu Links](/docs/{{version}}/menu-links)
     - [Dashboard Widgets](/docs/{{version}}/dashboard-widgets)
     - [Mention Language](/docs/{{version}}/mention-language)
+    - [Gallery](/docs/{{version}}/images)
 
 - ## Help
     - [Troubleshooting](/docs/{{version}}/troubleshooting)
