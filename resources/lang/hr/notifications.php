@@ -7,7 +7,7 @@ return [
             'remove'        => 'Korisnik :user više ne pojačava kampanju :campaign.',
             'superboost'    => 'Kampanju :campaign podupire :user.',
         ],
-        'export'        => 'Dostupan je izvoz kampanje. Možeš ga preuzeti klikom <a href=":link"> ovdje</a>. Veza je dostupna :time minuta.',
+        'export'        => 'Dostupan je izvoz kampanje. Veza je dostupna :time minuta.',
         'export_error'  => 'Došlo je do pogreške prilikom izvoza kampanje. Molimo kontaktiraj nas ako se ovaj problem nastavi.',
         'join'          => ':user se priključio/la :campaign.',
         'leave'         => ':user je napustio/la :campaign.',

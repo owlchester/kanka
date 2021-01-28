@@ -12,8 +12,14 @@ return [
     'fields'        => [
         'created_by'    => 'Téléchargé par',
         'ext'           => 'Ext',
+        'folder'        => 'Dossier',
+        'name'          => 'Nom',
         'size'          => 'Taille',
     ],
+    'new_folder'    => [
+        'title' => 'Nouveau dossier',
+    ],
+    'no_folder'     => 'Sans dossier',
     'placeholders'  => [
         'search'    => 'Recherche d\'image...',
     ],
@@ -24,6 +30,7 @@ return [
     ],
     'uploader'      => [
         'add'           => 'Ajouter',
+        'new_folder'    => 'Nouveau dossier',
         'or'            => 'ou',
         'select_file'   => 'Sélectionner un fichier',
         'well'          => 'Déposer le fichier à télécharger',

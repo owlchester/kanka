@@ -17,6 +17,8 @@ TEXT
         'title'                 => 'Nouvelle Campagne',
     ],
     'destroy'                           => [
+        'action'    => 'Supprimer la campagne',
+        'helper'    => 'Seules les campagnes dont tu es le seul membre peuvent être supprimées.',
         'success'   => 'Campagne supprimée.',
     ],
     'edit'                              => [
@@ -39,13 +41,14 @@ TEXT
         'unknown_id'    => 'Campagne inconnue.',
     ],
     'export'                            => [
-        'description'   => 'Exporter la campagne.',
-        'errors'        => [
+        'description'       => 'Exporter la campagne.',
+        'errors'            => [
             'limit' => 'Nombre d\'exports maximal par jour excédé pour cette campagne.',
         ],
-        'helper'        => 'Export de la campagne. Une notification contenant un lien de téléchargement sera généré.',
-        'success'       => 'L\'export de la campagne est en préparation. Une notification dans Kanka avec un lien de téléchargement sera généré dès que c\'est prêt.',
-        'title'         => 'Export Campagne :name',
+        'helper'            => 'Export de la campagne. Une notification contenant un lien de téléchargement sera généré.',
+        'helper_secondary'  => 'Deux fichiers seront générés. Le premier contiendra toutes les entités de la campagne au format JSON, et le second contiendra les images uploadées sur les entités. Si l\'export des images ne fonctionne pas (typiquement sur les grandes campagnes), nous recommandons d\'utiliser l\':api.',
+        'success'           => 'L\'export de la campagne est en préparation. Une notification dans Kanka avec un lien de téléchargement sera généré dès que c\'est prêt.',
+        'title'             => 'Export Campagne :name',
     ],
     'fields'                            => [
         'boosted'                       => 'Boosté par',

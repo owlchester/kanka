@@ -6,7 +6,7 @@ return [
             'add'       => 'La campagna :campaign sta venendo potenziata dall\'utente :user.',
             'remove'    => ':user non sta più potenziando la campagna :campaign.',
         ],
-        'export'        => 'Un\'esportazione di una campagna è disponibile. Puoi scaricarlo premendo <a href=":link">qui</a>. Il link sarà disponibile per 30 minuti.',
+        'export'        => 'Un\'esportazione di una campagna è disponibile. Il link sarà disponibile per :time minuti.',
         'export_error'  => 'Abbiamo riscontrato un errore nell\'esportazione della tua campagna. Per favore contattaci se questo problema dovesse persistere.',
         'join'          => ':user si è unito alla campagna :campaign',
         'leave'         => ':user ha abbandonato la campagna :campaign',

@@ -7,7 +7,7 @@ return [
             'remove'        => ':user nem boost-olja már tovább a(z) :campaign kampányt.',
             'superboost'    => ':campaign kampány szuperboost-olva van :user által!',
         ],
-        'export'        => 'A kampány exportja elkészült, <a href=":link">ide kattintva</a> letöltheted. A hivatkozás 30 percig lesz elérhető.',
+        'export'        => 'A kampány exportja elkészült. A hivatkozás :time percig lesz elérhető.',
         'export_error'  => 'Hiba történt a kampány exportálása során. Kérlek vedd fel velünk a kapcsolatot, ha a probléma továbbra is fennállna!',
         'join'          => ':user csatlakozott a :campaign kampányhoz.',
         'leave'         => ':user elhagyta a :campaign kampányt.',

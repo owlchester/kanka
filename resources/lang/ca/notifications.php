@@ -7,7 +7,7 @@ return [
             'remove'        => ':user ja no està millorant la campanya :campaign.',
             'superboost'    => ':user està supermillorant la campanya :campaign.',
         ],
-        'export'        => 'Ja s\'ha exportat la campanya. Per a descarregar-la, cliqueu <a href=":link">aquí</a>. L\'enllaç estarà disponible durant :time minuts.',
+        'export'        => 'Ja s\'ha exportat la campanya. L\'enllaç estarà disponible durant :time minuts.',
         'export_error'  => 'Hi ha hagut un error mentre s\'exportava la campanya. Contacteu-nos si l\'error persisteix.',
         'join'          => ':user s\'ha unit a la campanya :campaign.',
         'leave'         => ':user ha abandonat la campanya :campaign.',

@@ -34,8 +34,12 @@ return [
             'success'   => 'Tableau de bord :name supprimé.',
         ],
         'fields'        => [
+            'copy_widgets'  => 'Copier les widgets',
             'name'          => 'Nom du tableau de bord',
             'visibility'    => 'Visibilité',
+        ],
+        'helpers'       => [
+            'copy_widgets'  => 'Dupliquer les widgets depuis :name vers ce nouveau tableau de bord.',
         ],
         'placeholders'  => [
             'name'  => 'Nom du tableau de bord',

@@ -7,7 +7,7 @@ return [
             'remove'        => ':user boostar inte längre kampanjen :campaign.',
             'superboost'    => 'Kampanjen :campaign blir superboostad av :user.',
         ],
-        'export'        => 'En export av en kampanj är tillgänglig. Du kan ladda ner den genom att klicka <a href=":link">here</a>. Länken är tillgänglig i :time minuter.',
+        'export'        => 'En export av en kampanj är tillgänglig. Länken är tillgänglig i :time minuter.',
         'export_error'  => 'Ett fel inträffade medans vi exporterade din kampanj. Vänligen kontakta oss om problemet kvarstår.',
         'join'          => ':user gick med i kampanjen :campaign.',
         'leave'         => ':user lämnade kampanjen :campaign.',

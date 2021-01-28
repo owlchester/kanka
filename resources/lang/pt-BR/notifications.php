@@ -7,7 +7,7 @@ return [
             'remove'        => ':user não está mais impulsionando a campanha :campaign',
             'superboost'    => 'A campanha :campaign está sendo super-impulsionada por :user',
         ],
-        'export'        => 'A exportação da campanha está disponível. Você pode fazer o download dela clicando <a href=":link">here</a>. O link estará disponível por :time minutos.',
+        'export'        => 'A exportação da campanha está disponível. O link estará disponível por :time minutos.',
         'export_error'  => 'Ocorreu um erro enquanto sua campanha era exportada. Por favor, contate-nos se o problema persistir,',
         'join'          => ':user se juntou à campanha :campaign',
         'leave'         => ':user saiu da campanha :campaign',

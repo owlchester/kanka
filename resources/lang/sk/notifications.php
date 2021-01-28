@@ -7,7 +7,7 @@ return [
             'remove'        => 'Kampaň :campaign už nie je boostovaná používateľom :user.',
             'superboost'    => ':user superboostol kampaň :campaign.',
         ],
-        'export'        => 'Export kampane je dostupný. Môžeš si ho stiahnuť kliknutím <a href=":link">sem</a>. Link je platný po dobu 30 minút.',
+        'export'        => 'Export kampane je dostupný. Link je platný po dobu :time minút.',
         'export_error'  => 'Počas exportu tvojej kampane došlo k chybe. Prosím, kontaktuj nás, ak problém pretrváva.',
         'join'          => ':user pristúpil do kampane :campaign.',
         'leave'         => ':user opustil kampaň :campaign.',

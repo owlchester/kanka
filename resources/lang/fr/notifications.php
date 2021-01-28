@@ -2,12 +2,13 @@
 
 return [
     'campaign'          => [
+        'asset_export'  => 'Un export des images de la campagne est disponible. Ce liens sera disponible durant :time minutes.',
         'boost'         => [
             'add'           => 'La campagne :campaign est à présent boostée par :user.',
             'remove'        => ':user ne boost plus la campagne :campaign.',
             'superboost'    => 'La campagne :campaign est superboostée par :user.',
         ],
-        'export'        => 'Un export de la campagne est disponible. <a href=":link">Télécharger</a>. Ce lien sera disponible durant 30 minutes.',
+        'export'        => 'Un export de la campagne est disponible. Ce lien est disponible pendant :time minutes.',
         'export_error'  => 'Une erreur est survenue lors de l\'export de la campagne. Prière de nous contacter si ce problème persiste.',
         'join'          => ':user a rejoint la campagne :campaign.',
         'leave'         => ':user a quitté la campagne :campaign.',
