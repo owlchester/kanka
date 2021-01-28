@@ -18,8 +18,8 @@ TEXT
     ],
     'destroy'                           => [
         'action'    => 'Delete campaign',
-        'success'   => 'Campaign removed.',
         'helper'    => 'You can only delete the campaign if you are the only member in it.',
+        'success'   => 'Campaign removed.',
     ],
     'edit'                              => [
         'description'   => 'Edit your campaign',
@@ -41,14 +41,14 @@ TEXT
         'unknown_id'    => 'Unknown Campaign.',
     ],
     'export'                            => [
-        'description'   => 'Export the campaign.',
-        'errors'        => [
+        'description'       => 'Export the campaign.',
+        'errors'            => [
             'limit' => 'You have exceeded your maximum of one exports per day. Please try again tomorrow.',
         ],
-        'helper'        => 'Export your campaign. A notification with a download link will be made available.',
-        'helper_secondary' => 'Two files will be made available, one with the entities exporter as JSON, and another with images uploaded to entities. Please note that on larger campaigns, the images export crashes and can only be recovered using the :api.',
-        'success'       => 'Your campaign export is being prepared. You\'ll receive a notification in Kanka to a downloadable zip as soon as it\'s ready.',
-        'title'         => 'Campaign :name Export',
+        'helper'            => 'Export your campaign. A notification with a download link will be made available.',
+        'helper_secondary'  => 'Two files will be made available, one with the entities exporter as JSON, and another with images uploaded to entities. Please note that on larger campaigns, the images export crashes and can only be recovered using the :api.',
+        'success'           => 'Your campaign export is being prepared. You\'ll receive a notification in Kanka to a downloadable zip as soon as it\'s ready.',
+        'title'             => 'Campaign :name Export',
     ],
     'fields'                            => [
         'boosted'                       => 'Boosted by',

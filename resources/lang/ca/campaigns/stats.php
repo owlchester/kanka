@@ -11,6 +11,7 @@ return [
             'title' => 'Assassí',
         ],
     ],
+    'helper'        => 'Feu un seguiment del vostre progrés a la campanya tot desbloquejant diversos assoliments. Aquests números s\'actualitzen un cop cada 24 hores.',
     'placeholder'   => ':amount de :target',
     'targets'       => [
         'calendars' => 'Crea :target calendaris',

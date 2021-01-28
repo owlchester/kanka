@@ -2,7 +2,8 @@
 
 return [
     'actions'       => [
-        'add'   => 'Nova nota de entidade',
+        'add'       => 'Nova nota de entidade',
+        'add_user'  => 'Engadir usuaria',
     ],
     'create'        => [
         'description'   => 'Crear unha nova nota de entidade',
@@ -20,9 +21,14 @@ return [
     'fields'        => [
         'creator'   => 'Creadora',
         'entry'     => 'Entrada',
+        'is_pinned' => 'Fixada',
         'name'      => 'Nome',
+        'position'  => 'Posición fixada',
     ],
     'hint'          => 'Aquí podes poñer información que non encaixe nos campos estándar dunha entidade, ou que queras manter privada.',
+    'hints'         => [
+        'is_pinned' => 'As notas de entidade fixadas son mostradas debaixo do texto da entidade na súa vista principal. Usa o campo Posición para controlar a orde na que aparecen as notas fixadas.',
+    ],
     'index'         => [
         'title' => 'Notas de entidade de :name',
     ],
@@ -30,6 +36,7 @@ return [
         'name'  => 'Nome da nota de entidade, observación ou comentario.',
     ],
     'show'          => [
-        'title' => 'Nota de entidade ":name" de :entity',
+        'advanced'  => 'Permisos avanzados',
+        'title'     => 'Nota de entidade ":name" de :entity',
     ],
 ];

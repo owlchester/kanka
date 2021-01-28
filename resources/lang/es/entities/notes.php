@@ -21,9 +21,14 @@ return [
     'fields'        => [
         'creator'   => 'Creador',
         'entry'     => 'Entrada',
+        'is_pinned' => 'Fijada',
         'name'      => 'Nombre',
+        'position'  => 'Posición fijada',
     ],
     'hint'          => 'Aquí puedes añadir toda aquella información que no acaba de encajar en los campos por defecto de la entidad, o que quieres mantener en privado.',
+    'hints'         => [
+        'is_pinned' => 'Las notas fijadas se muestran bajo el texto de la entidad en la vista principal según el orden de posición.',
+    ],
     'index'         => [
         'title' => 'Notas de :name',
     ],

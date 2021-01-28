@@ -2,14 +2,13 @@
 
 return [
     'campaign'          => [
+        'asset_export'  => 'An export of a campaign assets is available. The link is available for :time minutes.',
         'boost'         => [
             'add'           => 'Campaign :campaign is being boosted by :user.',
             'remove'        => ':user is no longer boosting the :campaign campaign.',
             'superboost'    => 'Campaign :campaign is being superboosted by :user.',
         ],
-        'asset_export' => 'An export of a campaign assets is available. The link is available for :time minutes.',
         'export'        => 'An export of a campaign is available. The link is available for :time minutes.',
-        'export_error'  => 'An error occurred while exporting your campaign. Please contact us if this problem persists.',
         'export_error'  => 'An error occurred while exporting your campaign assets. Please contact us if this problem persists. This happens on bigger campaigns with many big images.',
         'join'          => ':user joined the campaign :campaign.',
         'leave'         => ':user left the campaign :campaign.',

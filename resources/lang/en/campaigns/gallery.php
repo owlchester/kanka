@@ -12,9 +12,9 @@ return [
     'fields'        => [
         'created_by'    => 'Uploaded by',
         'ext'           => 'Ext',
+        'folder'        => 'Folder',
         'name'          => 'Name',
         'size'          => 'Size',
-        'folder'        => 'Folder',
     ],
     'new_folder'    => [
         'title' => 'New folder',

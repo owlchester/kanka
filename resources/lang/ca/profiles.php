@@ -9,6 +9,7 @@ return [
         'success'   => 'S\'ha actualitzat el perfil.',
     ],
     'editors'       => [
+        'legacy'        => 'Obsolet (TinyMCE 4)',
         'summernote'    => 'Summernote',
     ],
     'fields'        => [
@@ -66,6 +67,7 @@ return [
         ],
         'helpers'   => [
             'editor'    => 'L\'editor de text per defecte (TinyMCE 4) és antic però funciona bé en escriptori, encara que no en mòbil. Summernote és un editor més nou que funciona a tots els dispositius, però encara l\'estem provant.',
+            'editor_v2' => 'L\'editor de text obsolet (TinyMCE) no suporta mencions als dispositius mòbils, i no té suport per a funcionalitats com la galeria de campanya.',
         ],
         'hints'     => [
             'advanced_mentions'     => 'En activar-ho, les mencions sempre es renderitzaran com a [entity:123] en editar una entitat.',

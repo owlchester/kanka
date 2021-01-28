@@ -236,7 +236,7 @@ return [
         'copy_options'  => 'Copy Options',
     ],
     'helpers'                   => [
-        'copy_options'          => 'Copy the following related elements from the source to the new entity.',
+        'copy_options'  => 'Copy the following related elements from the source to the new entity.',
     ],
     'hidden'                    => 'Hidden',
     'hints'                     => [

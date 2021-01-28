@@ -24,6 +24,7 @@ return [
         'description'   => 'Puedes usar los filtros para limitar la cantidad de resultados que se muestra en las listas. Se puede filtrar por más de un campo para controlar detalladamente qué se excluye con los filtros.',
         'empty'         => 'Si escribes :tag en un campo, se buscarán todas las entidades donde este campo esté vacío.',
         'ending_with'   => 'Poniendo una :tag al final del texto, puedes buscar todas las demás entidades con este texto en ese campo.',
+        'multiple'      => 'Se pueden combinar opciones de búsqueda en los campos de texto escribiendo :syntax. Por ejemplo, :example.',
         'session'       => 'Los filtros y el orden de las columnas en la lista de entidades se guardan en tu sesión, así que mientras te mantengas conectada no necesitarás volverlas a configurar en cada página.',
         'starting_with' => 'Añadiendo :tag antes del texto, puedes buscar cualquier entidad que no contenga el texto en ese campo.',
         'title'         => 'Cómo usar los filtros',

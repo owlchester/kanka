@@ -9,6 +9,7 @@ return [
         'success'   => 'Profil ažuriran',
     ],
     'editors'       => [
+        'legacy'        => 'Zastarjeli uređivač teksta (TinyMCE 4)',
         'summernote'    => 'Summernote',
     ],
     'fields'        => [
@@ -65,7 +66,7 @@ return [
             'pagination'            => 'Paginacija (elemenata po stranici)',
         ],
         'helpers'   => [
-            'editor'    => 'Zadani uređivač (TinyMCE 4) je star i radi dobro na računalima, ali ne radi na mobilnim uređajima. Summernote je noviji uređivač koji radi na svim uređajima, ali to još uvijek testiramo.',
+            'editor_v2' => 'Korištenje zastarjelog uređivača teksta (TinyMCE 4) ne radi na mobilnim uređajima i ne podržava neke funkcionalnosti, poput galerije kampanje.',
         ],
         'hints'     => [
             'advanced_mentions'     => 'Ako je aktivirano, spominjanja će se uvijek prikazivati kao [entitet:123] prilikom uređivanja entiteta.',

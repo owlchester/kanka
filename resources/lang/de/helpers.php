@@ -24,6 +24,7 @@ return [
         'description'   => 'Sie können Filter verwenden, um die Anzahl der in Listen angezeigten Ergebnisse zu begrenzen. Textfelder unterstützen verschiedene Optionen, um detaillierter zu steuern, was herausgefiltert wird.',
         'empty'         => 'Schreibt man :tag in ein Feld wird in allen Objekten, bei denen dieses Feld leer ist gesucht.',
         'ending_with'   => 'Durch Platzieren eines :tag am Ende Ihres Textes können Sie nach jedem Objekt mit genau diesem Text im Feld suchen.',
+        'multiple'      => 'Sie können Suchoptionen für Textfelder kombinieren, indem Sie Folgendes schreiben: :syntax. Zum Beispiel :example.',
         'session'       => 'Filter und geordnete Spalten, die für eine Objektliste festgelegt wurden, werden in Ihrer Sitzung gespeichert. Solange Sie verbunden bleiben, müssen Sie sie nicht auf jeder Seite neu festlegen.',
         'starting_with' => 'Durch Platzieren eines :tag vor Ihrem Text können Sie nach Objekten suchen, die den Text in diesem Feld nicht enthalten.',
         'title'         => 'Verwendung von Filtern',

@@ -23,6 +23,7 @@ return [
         'description'   => 'Pomoću filtara možeš ograničiti količinu rezultata prikazanih na popisima. Tekstualna polja podržavaju različite opcije za daljnju kontrolu onoga što je filtrirano.',
         'empty'         => 'Pisanje :tag u polju pretražit će sve entitete u kojima je ovo polje prazno.',
         'ending_with'   => 'Postavljanjem :tag na kraju teksta možeš potražiti svaki entitet s točno ovim tekstom u polju.',
+        'multiple'      => 'Opcije pretraživanja u tekstualnim poljima možeš kombinirati tako da napišeš :syntax. Na primjer :example.',
         'session'       => 'Filtri i posloženi stupci postavljeni za popis entiteta spremaju se u sesiju, tako da sve dok ostaneš povezan ne moraš ih ponovno postavljati na svaku stranicu.',
         'starting_with' => 'Postavljanjem :tag ispred svog teksta možeš pretražiti sve što ne sadrži taj tekst u polju.',
         'title'         => 'Kako koristiti filtre',

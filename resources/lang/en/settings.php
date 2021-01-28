@@ -77,11 +77,11 @@ return [
             'delete'        => 'Removed your boost from :name.',
             'superboost'    => 'Campaign :name superboosted',
         ],
-        'unboost' =>    [
-            'title' => 'Unboosting a campaign',
-            'description' => 'Are you sure you want to stop boosting the campaign :tag?',
-        ],
         'title'         => 'Boost',
+        'unboost'       => [
+            'description'   => 'Are you sure you want to stop boosting the campaign :tag?',
+            'title'         => 'Unboosting a campaign',
+        ],
     ],
     'countries'     => [
         'austria'       => 'Austria',

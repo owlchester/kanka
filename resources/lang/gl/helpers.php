@@ -23,6 +23,7 @@ return [
         'description'   => 'Podes usar filtros para limitar o número de resultados que se mostran nas listas. Os campos de texto ofrecen opcións variadas para controlar en detalle o que é excluído polo filtro.',
         'empty'         => 'Escrebendo :tag nun campo buscará todas as entidades nas que ese campo está baleiro.',
         'ending_with'   => 'Colocando :tag ao final do texto, podes buscar todas as entidades que conteñen exactamente ese texto nese campo.',
+        'multiple'      => 'Podes combinar opcións de búsqueda nos campos de texto escrebendo :syntax. Por exemplo, :example.',
         'session'       => 'Os filtros e as columnas ordenadas que definas nunha lista de entidades son guardadas na túa sesión, polo que namentres non te desconectes, non necesitas volver configuralos en cada páxina.',
         'starting_with' => 'Colocando :tag antes do texto, podes buscar calquera entidade que non conteña ese texto nese campo.',
         'title'         => 'Como usar os filtros',

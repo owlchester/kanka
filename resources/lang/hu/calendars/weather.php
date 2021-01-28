@@ -14,6 +14,7 @@ return [
     ],
     'fields'        => [
         'effect'        => 'Hatás',
+        'name'          => 'Név',
         'precipitation' => 'Csapadék',
         'temperature'   => 'Hőmérséklet',
         'weather'       => 'Időjárás',
@@ -36,6 +37,7 @@ return [
     ],
     'placeholders'  => [
         'effect'        => 'Mágikus-, vagy természeti jelenség',
+        'name'          => 'Opcionális, egyedi időjárás szöveg',
         'precipitation' => 'Víz mennyiség',
         'temperature'   => 'Napi legmagasabb/legalacsonyabb',
         'wind'          => 'Szélsebesség',

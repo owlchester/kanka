@@ -75,6 +75,7 @@ return [
             'dashboards'            => 'Establecer taboleiros personalizados para os roles da campaña',
             'description'           => 'Certos niveis de mecenazgo otorgan potenciadores que poden ser usados para potenciar campañas. Estes potenciadores otorgan os seguintes beneficios.',
             'entity_files'          => 'Aumento do número máximo de arquivos subido por entidade (ata 5 en lugar de 3)',
+            'entity_links'          => 'Pon ligazóns a recursos e páxinas externas nas entidades',
             'header_image'          => 'Imaxe de cabeceira nas entidades',
             'images'                => 'Establecer imaxes por defecto personalizadas nas entidades',
             'no_ads'                => 'Ningún anuncio na campaña',

@@ -75,6 +75,7 @@ return [
             'dashboards'            => 'Postavi prilagođene naslove ploče za uloge kampanje',
             'description'           => 'Određene razine pretplate pružaju korisnicima pojačanja koja mogu koristiti za unaprijeđenje kampanja. Ona omogućuju sljedeće prednosti.',
             'entity_files'          => 'Povećan maksimalan broj prenesenih datoteka po entitetu (do 5 umjesto 3)',
+            'entity_links'          => 'Postavi poveznice entiteta na vanjske resurse i web stranice',
             'header_image'          => 'Slika zaglavlja entiteta',
             'images'                => 'Postavi proizvoljne zadane slike entiteta',
             'no_ads'                => 'U kampanji nema reklama',

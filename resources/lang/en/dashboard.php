@@ -39,7 +39,7 @@ return [
             'visibility'    => 'Visibility',
         ],
         'helpers'       => [
-            'copy_widgets' => 'Duplicate the widgets from the :name dashboard into this new one.',
+            'copy_widgets'  => 'Duplicate the widgets from the :name dashboard into this new one.',
         ],
         'placeholders'  => [
             'name'  => 'Name of the dashboard',

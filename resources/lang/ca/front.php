@@ -75,6 +75,7 @@ return [
             'dashboards'            => 'Taulells personalitzats segons el rol de campanya',
             'description'           => 'Alguns nivells de mecenatge atorguen millores als usuaris, que poden usar per a millorar campanyes. Aquestes obtenen els següents beneficis.',
             'entity_files'          => 'Més arxius pujats per entitat (fins a 5, en comptes de 3)',
+            'entity_links'          => 'Enllaços a recursos i webs externes a les entitats',
             'header_image'          => 'Imatge de capçalera per a les entitats',
             'images'                => 'Imatges per defecte per a les entitats',
             'no_ads'                => 'Sense anuncis a la campanya',

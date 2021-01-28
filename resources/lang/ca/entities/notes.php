@@ -21,9 +21,14 @@ return [
     'fields'        => [
         'creator'   => 'Creador',
         'entry'     => 'Entrada',
+        'is_pinned' => 'Fixada',
         'name'      => 'Nom',
+        'position'  => 'Posició fixa',
     ],
     'hint'          => 'Aquí podeu afegir tota aquella informació que no encaixa del tot als camps per defecte de l\'entitat, o que es vol mantenir en privat.',
+    'hints'         => [
+        'is_pinned' => 'Les anotacions fixades es mostren sota el text de l\'entitat a la vista principal segons l\'ordre de posició fixada.',
+    ],
     'index'         => [
         'title' => 'Anotacions de :name',
     ],

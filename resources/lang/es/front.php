@@ -75,6 +75,7 @@ return [
             'dashboards'            => 'Configura tableros personalizados para los diferentes roles de la campaña',
             'description'           => 'Algunos niveles de mecenazgo otorgan mejoras a los usuarios, que pueden usar para mejorar campañas. Éstas obtienen los siguientes beneficios.',
             'entity_files'          => 'Más archivos subidos por entidad (hasta 5, en vez de 3)',
+            'entity_links'          => 'Enlaces a recursos y webs externas en las entidades',
             'header_image'          => 'Imagen de cabecera para las entidades',
             'images'                => 'Imágenes por defecto en las entidades',
             'no_ads'                => 'Sin anuncios en la campaña',

@@ -23,6 +23,7 @@ return [
         'description'   => 'Es poden usar els filtres per a limitar la quantitat de resultats mostrats a les llistes. Es pot filtrar per més d\'un camp per a controlar detalladament què s\'exclou amb els filtres.',
         'empty'         => 'En escriure :tag a un camp, es buscaran totes les entitats on aquest camp estigui buit.',
         'ending_with'   => 'Posant una :tag al final del text, es busquen totes les altres entitats amb aquest text.',
+        'multiple'      => 'Es poden combinar les opcions de cerca als camps de text escrivint :syntax. Per exemple, :example.',
         'session'       => 'Els filtres i l\'ordre de les columnes a la llista d\'entitats es guarden a la vostra sessió, així que mentre estigueu connectat no cal tornar-les a configurar a cada pàgina.',
         'starting_with' => 'Afegint :tag abans del text es busca qualsevol entitat que no contingui el text en aquest camp.',
         'title'         => 'Com fer servir els filtres',

@@ -9,7 +9,7 @@ return [
         'title'     => 'Add a link to :name',
     ],
     'destroy'       => [
-        'success'   => 'Link :name removed from :entity.'
+        'success'   => 'Link :name removed from :entity.',
     ],
     'fields'        => [
         'icon'      => 'Icon',

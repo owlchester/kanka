@@ -60,8 +60,9 @@ return [
             'title'         => ':name naptár eseményének frissítése',
         ],
         'helpers'   => [
-            'add'   => 'Egy létező esemény hozzáadása ehhez a naptárhoz.',
-            'new'   => 'Vagy egy új esemény létrehozása egyszerűen egy név megadásával.',
+            'add'               => 'Egy létező esemény hozzáadása ehhez a naptárhoz.',
+            'new'               => 'Vagy egy új esemény létrehozása egyszerűen egy név megadásával.',
+            'other_calendar'    => 'Emlékeztetőt szerkesztesz a :calendar naptáron.',
         ],
         'modal'     => [
             'title' => 'Esemény hozzáadása a naptárhoz',
@@ -73,6 +74,8 @@ return [
         'title'         => ':name naptár eseményei',
     ],
     'fields'        => [
+        'calendar'              => 'Szülő Naptár',
+        'calendars'             => 'Naptárak',
         'colour'                => 'Szín',
         'comment'               => 'Megjegyzés',
         'current_day'           => 'Jelenlegi nap',
@@ -105,6 +108,7 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'A naptárközi hónapok nem számolják a hét napjait, de a holdfázisokat és az évszakokat igen.',
+        'nested'        => 'Elsőként azon naptárak megjelenítése, amelynek nincs szülő naptárja. Kattints egy naptárra, hogy az al-naptárjait böngészhesd!',
         'start_offset'  => 'Alapértelmezés szerint a naptár a 0-ik év első hétköznapjával kezdődik. Ezen mező értékének megváltoztatásával beállítható, hogy a naptár első napja hova essen.',
     ],
     'hints'         => [
@@ -113,6 +117,7 @@ return [
         'is_recurring'      => 'Ismétlődővé tehetsz egy eseményt, ami minden évben ugyanakkor jelenik meg.',
         'months'            => 'A naptáradnak legalább két hónapból kell állnia.',
         'moons'             => 'Ha hozzáadsz egy holdat, az minden teliholdkor megjelenik a naptárban.',
+        'parent_calendar'   => 'Szülő naptár hozzáadásával a jelenlegi naptár örökölni fogja az emlékeztetőket, és a beállított időjárást a szülő naptárból.',
         'reset'             => 'Az új hónap, vagy év első napja minden esetben a hét első napjával indul.',
         'seasons'           => 'Hozz létre évszakokat a naptáradhoz úgy, hogy megadod, mikor kezdődnek. A többiről a Kakna intézkedik.',
         'weekdays'          => 'Állítsd be a hétköznapok neveit. Legalább két hétköznap szükséges.',

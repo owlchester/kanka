@@ -26,6 +26,9 @@ TEXT
         'success'       => 'A kampányt frissítettük.',
         'title'         => ':campaign kampány szerkesztése',
     ],
+    'entity_note_visibility'            => [
+        'pinned'    => 'Új entitás jegyzet kitűzése',
+    ],
     'entity_personality_visibilities'   => [
         'private'   => 'Az új karakterek személyisége legyen alapértelmezetten privát.',
     ],
@@ -34,6 +37,7 @@ TEXT
     ],
     'errors'                            => [
         'access'        => 'Nincs hozzáférésed ehhez a kampányhoz.',
+        'superboosted'  => 'Ez a funkció csak szuperboostolt kapányoknál elérhető.',
         'unknown_id'    => 'Ismeretlen kampány.',
     ],
     'export'                            => [
@@ -50,6 +54,7 @@ TEXT
         'css'                           => 'CSS',
         'description'                   => 'Leírás',
         'entity_count'                  => 'Entitások száma',
+        'entity_note_visibility'        => 'Entitás jegyzetek kitűzése',
         'entity_personality_visibility' => 'Karakter személyiségének láthatósága',
         'entity_visibility'             => 'Entitás láthatósága',
         'excerpt'                       => 'Kivonat',
@@ -61,6 +66,7 @@ TEXT
         'locale'                        => 'Nyelv',
         'name'                          => 'Név',
         'public_campaign_filters'       => 'Publikus kampány szűrők',
+        'related_visibility'            => 'Kapcsolódó elemek láthatósága',
         'rpg_system'                    => 'Szerepjáték rendszerek',
         'system'                        => 'Rendszer',
         'theme'                         => 'Téma',
@@ -73,6 +79,7 @@ TEXT
         'boost_required'                => 'Ez a funkció a kampány boost-olását igényli. További információ a :settings oldalon.',
         'boosted'                       => 'Néhány funkció elérhetővé vált, mivel a kampány boost-olva van. További információk a :settings oldalon olvashatóak.',
         'css'                           => 'Írj saját CSS kódot, amely a kampányod oldalaira applikálódik majd. Kérlek vedd figyelembe, hogy az ezzel a funkcióval kapcsolatos bármiféle visszaélés az egyedi CSS törléséhez vezethet! Többszöri, vagy súlyos visszaélés esetén a teljes kampányod törlésre kerülhet.',
+        'entity_note_visibility'        => 'Egy új entitásjegyzet létrehozásakor a "Kitűzve" opció alapértelmezetten ki lesz választva.',
         'entity_personality_visibility' => 'Amikor új karaktert hozol létre, a "személyiség látható" opciót automatikusan kikapcsoljuk.',
         'entity_visibility'             => 'Amikor új entitást hozol létre, a "Privát" opciót automatikusan kiválasztjuk.',
         'excerpt'                       => 'A kampány kivonata a főoldalon jelenik meg, írj hát pár mondatot, világod bemutatására! Fogalmazz tömören a legjobb eredmény érdekében.',
@@ -81,6 +88,7 @@ TEXT
         'locale'                        => 'Amilyen nyelven írod a kampányodat. Ezt a tartalom-generáláshoz és a nyilvános kampányok csoportosításához használjuk.',
         'name'                          => 'A kampányod/világod neve bármi lehet, ami legalább 4 számot vagy betűt tartalmaz.',
         'public_campaign_filters'       => 'Segíts másoknak a kampány könnyebb megtalálásában az alábbi adatok kitöltésével.',
+        'related_visibility'            => 'Az alapértelmezett láthatóság érték, amikor új példány jön létre ezzel a mezővel (entitás jegyzet, kapcsolatok, képességek, stb.)',
         'system'                        => 'Ha a kampányod nyilvánosan látható, a rendszer a :link oldalon látható.',
         'systems'                       => 'Hogy elkerüljük a felhasználók elárasztását szükségtelen opciókkal, néhány funkció csak adott szerepjáték rendszerek esetén érhető el (ilyen például a D&D 5e szörny harcérték blokk, a tulajdonságblokkok között). Támogatott rendszerek hozzáadásával engedélyezheted ezeket a funkciókat.',
         'theme'                         => 'Adott téma rögzítése a kampányhoz, amely minden esetben felülbírálja a felhasználók saját preferenciáját.',
@@ -243,9 +251,12 @@ TEXT
         'permissions'   => [
             'actions'   => [
                 'add'           => 'Létrehozás',
+                'dashboard'     => 'Főoldal',
                 'delete'        => 'Törlés',
                 'edit'          => 'Szerkesztés',
                 'entity-note'   => 'Entitás jegyzet',
+                'manage'        => 'Kezelés',
+                'members'       => 'Tagok',
                 'permission'    => 'Engedélyek kezelése',
                 'read'          => 'Megtekintés',
                 'toggle'        => 'Váltás mindnél',
@@ -324,16 +335,26 @@ TEXT
         ],
         'description'   => 'Egy kampány részleteinek megjelenítése',
         'tabs'          => [
+            'achievements'      => 'Teljesítmények',
             'default-images'    => 'Alapértelmezett képek',
             'export'            => 'Export',
             'information'       => 'Információ',
             'members'           => 'Tagok',
             'menu'              => 'Menü',
+            'plugins'           => 'Pluginok',
             'recovery'          => 'Visszaállítás',
             'roles'             => 'Szerepek',
             'settings'          => 'Modulok',
         ],
         'title'         => ':name kampány',
+    ],
+    'superboosted'                      => [
+        'gallery'   => [
+            'error' => [
+                'text'  => 'Képek feltöltése a szövegszerkesztőbe csak :superboosted kampányoknál elérhető.',
+                'title' => 'Kampány galéria kép feltöltés',
+            ],
+        ],
     ],
     'ui'                                => [
         'helper'    => 'Használd ezeket a beállításokat, hogy meg meghatározd, hogy bizonyos elemek hogyan jelenjenek meg a kampányodban.',

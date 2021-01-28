@@ -9,6 +9,7 @@ return [
         'success'   => 'Perfil actualizado',
     ],
     'editors'       => [
+        'legacy'        => 'Obsoleto (TinyMCE 4)',
         'summernote'    => 'Summernote',
     ],
     'fields'        => [
@@ -66,6 +67,7 @@ return [
         ],
         'helpers'   => [
             'editor'    => 'O editor por defecto (TinyMCE 4) é antigo e funciona ben en computador, pero non en móbil. Summernote é máis novo e funciona en todos os diapositivos, pero aínda está en fase de proba.',
+            'editor_v2' => 'O editor de texto obsoleto (TinyMCE) non soporta mencións en dispositivos móbeis nin algunhas funcionalidades como a galería de campaña.',
         ],
         'hints'     => [
             'advanced_mentions'     => 'Ao activalo, as mencións sempre serán mostradas como [entity:123] ao editar unha entidade.',

@@ -75,6 +75,7 @@ return [
             'dashboards'            => 'Legen Sie benutzerdefinierte Dashboards für die Rollen der Kampagne fest',
             'description'           => 'Bestimmte Versprechen bieten Benutzern mit Booster, mit denen sie Kampagnen steigern können. Diese bieten die folgenden Vorteile.',
             'entity_files'          => 'Maximal hochgeladene Dateien pro Objekt erhöht (bis zu 5 statt 3)',
+            'entity_links'          => 'Setzen Sie Links auf Objekten zu externen Ressourcen und Webseiten',
             'header_image'          => 'Objekt-Header-Bild',
             'images'                => 'Legen Sie benutzerdefinierte Standardobjektbilder fest',
             'no_ads'                => 'Keine Anzeigen in der Kampagne',

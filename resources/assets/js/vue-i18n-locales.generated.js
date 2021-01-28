@@ -35,6 +35,7 @@ export default {
             "api": {
                 "experimental": "Benvingut a les APIs de Kanka! Aquestes prestacions encara són experimentals però haurien de ser prou estables perquè permetin comunicar-se amb les APIs. Creeu un Token d'Accés Personal per a usar a les vostres sol·licituds d'API, o useu el Token Client si voleu que la vostra app tingui accés a dades d'usuari.",
                 "help": "Kanka oferirà pròximament una RESTful API perquè aplicacions terceres puguin connectar-se a l'app. Aquí s'aniran mostrant els detalls sobre com gestionar les claus API.",
+                "helper": "Benvingut a les APIs de Kanka. Genereu un Token d'Accés Personal per a usar a les vostres crides a la API per a obtenir la informació de les campanyes a les que pertanyeu.",
                 "link": "Llegeix la documentació de l'API",
                 "request_permission": "Actualment estem construint una poderosa RESTful API perquè aplicacions terceres puguin connectar-se a l'app. No obstant això, de moment limitem el nombre d'usuaris que poden interactuar amb la API mentre la polim. Si voleu accedir a l'API i construir apps interessants que interactuin amb Kanka, contacteu-nos i us enviarem tota la informació que calgui.",
                 "title": "API"
@@ -59,27 +60,38 @@ export default {
             },
             "boost": {
                 "benefits": {
+                    "campaign_gallery": "Una galeria per a pujar imatges que podeu reutilitzar a tota la campanya.",
+                    "entity_files": "Fins a 10 fitxers pujats per entitat.",
+                    "entity_logs": "Registres d'entitat complets sobre allò que ha canviat amb cada actualització.",
                     "first": "Per a assegurar un progrés continu a Kanka, algunes característiques de la campanya es poden desbloquejar millorant-la. Les millores es desbloquegen a través de les subscripcions. Qualsevol que pugui veure una campanya pot millorar-la; així el màster no ha de pagar sempre el compte. Una campanya roman millorada mentre un usuari l'estigui millorant i continuï fent suport a Kanka. Si una campanya deixa d'estar millorada, les dades no es perden: només romanen ocultes fins que la campanya torni a ser millorada.",
                     "header": "Imatges de capçalera per a les entitats.",
                     "images": "Imatges per defecte personalitzades",
                     "more": "Saber més sobre totes les característiques.",
                     "second": "Millorar una campanya activa els següents beneficis:",
+                    "superboost": "Una campanya supermillorada fa servir 3 millores i desbloqueja funcionalitats addicionals, a més de les de les campanyes millorades.",
                     "theme": "Tema i estil personalitzat a nivell de campanya.",
                     "third": "Per a millorar una campanya, dirigiu-vos a la pàgina de la campanya i cliqueu el botó de \"{boost_button}\" que hi ha sobre el botó de \"{edit_button}\".",
                     "tooltip": "Descripcions emergents personalitzades per a les entitats.",
                     "upload": "Capacitat de pujada d'arxius ampliada per a tots els membres de la campanya."
                 },
                 "buttons": {
-                    "boost": "Millora"
+                    "boost": "Millora",
+                    "superboost": "Supermillora",
+                    "tooltips": {
+                        "boost": "Millorar una campanya gasta {amount} de les vostres millores",
+                        "superboost": "Supermillorar una campanya gasta {amount} de les vostres millores"
+                    }
                 },
                 "campaigns": "Campanyes millorades {count}/{max}",
                 "exceptions": {
                     "already_boosted": "La campanya {name} ja està millorada.",
-                    "exhausted_boosts": "Us heu quedat sense millores. Elimineu una millora d'una campanya abans de donar-la-hi a una altra."
+                    "exhausted_boosts": "Us heu quedat sense millores. Elimineu una millora d'una campanya abans de donar-la-hi a una altra.",
+                    "exhausted_superboosts": "Us heu quedat sense millores. Calen 3 millores per a supermillorar una campanya."
                 },
                 "success": {
                     "boost": "S'ha millorat la campanya {name}.",
-                    "delete": "La vostra millora s'ha tret de {name}."
+                    "delete": "La vostra millora s'ha tret de {name}.",
+                    "superboost": "S'ha supermillorat la campanya {name}"
                 },
                 "title": "Millorar"
             },
@@ -371,6 +383,7 @@ export default {
                 "find_out_more": "Saber-ne més",
                 "go_to": "Ves a {name}",
                 "json-export": "Exporta (JSON)",
+                "manage_links": "Configura els enllaços",
                 "more": "Més accions",
                 "move": "Mou",
                 "new": "Nou",
@@ -545,6 +558,8 @@ export default {
                 "excerpt": "Extracte",
                 "family": "Família",
                 "files": "Fitxers",
+                "has_entity_files": "Té fitxers",
+                "has_entity_notes": "Té anotacions",
                 "has_image": "Té imatge",
                 "header_image": "Imatge de capçalera",
                 "image": "Imatge",
@@ -749,6 +764,7 @@ export default {
             "save_and_view": "Guarda i veu",
             "search": "Cerca",
             "select": "Selecciona",
+            "superboosted_campaigns": "Campanyes supermillorades",
             "tabs": {
                 "abilities": "Habilitats",
                 "attributes": "Atributs",
@@ -757,6 +773,7 @@ export default {
                 "default": "Per defecte",
                 "events": "Esdeveniments",
                 "inventory": "Inventari",
+                "links": "Enllaços",
                 "map-points": "Punts del mapa",
                 "mentions": "Mencions",
                 "menu": "Menú",
@@ -776,6 +793,7 @@ export default {
                 "admin": "Admin",
                 "admin-self": "Admin i jo",
                 "all": "Tothom",
+                "members": "Membres",
                 "self": "Només jo"
             }
         },
@@ -824,6 +842,7 @@ export default {
                 "description": "Aktualisiere deine API Einstellungen",
                 "experimental": "Willkommen zur API von Kanka! Diese Features sind noch experimentell, aber sollten stabil genug sein, um mit API zu kommunizieren. Erstelle ein persönliches Access Token, welches in deinem API Request genutzt wird, oder nutze das Client Token wenn du möchtest, dass deine App Zugriff auf Nutzerdaten hat.",
                 "help": "Kanka wird bald eine RESTful API zur Verfügung stellen, so dass Drittanbieter-Apps mit Kanka kommunizieren können. Details, wie du deine API Keys verwaltest, wirst du bald hier finden.",
+                "helper": "Willkommen bei den Kanka APIs. Generieren Sie ein persönliches Zugriffstoken, das Sie in Ihrer API-Anfrage verwenden können, um Informationen zu den Kampagnen zu sammeln, an denen Sie beteiligt sind.",
                 "link": "Lies die API Dokumentation",
                 "request_permission": "Wir bauen zurzeit eine mächtige RESTful API, so das Drittanbieter-Apps sich zu Kanka verbinden können. Allerdings limitieren wir aktuell noch die Anzahl der Nutzer, die die API nutzen können, solange wir noch daran arbeiten. Wenn du Zugriff auf die API haben möchtest und coole Apps bauen möchtest, die mit Kanka kommunizieren, bitte kontaktiere uns und wir senden dir die Informationen, die du brauchst.",
                 "title": "API"
@@ -1174,6 +1193,7 @@ export default {
                 "find_out_more": "Mehr erfahren",
                 "go_to": "Gehe zu {name}",
                 "json-export": "Export (json)",
+                "manage_links": "Links verwalten",
                 "more": "Mehr Aktionen",
                 "move": "Verschieben",
                 "new": "Neu",
@@ -1348,6 +1368,8 @@ export default {
                 "excerpt": "Auszug",
                 "family": "Familie",
                 "files": "Dateien",
+                "has_entity_files": "Hat Objektdateien",
+                "has_entity_notes": "Hat Objektnotizen",
                 "has_image": "hat ein Bild",
                 "header_image": "Kopfzeilenbild",
                 "image": "Bild",
@@ -1561,6 +1583,7 @@ export default {
                 "default": "Standard",
                 "events": "Ereignisse",
                 "inventory": "Inventar",
+                "links": "Links",
                 "map-points": "Kartenmarker",
                 "mentions": "Erwähnungen",
                 "menu": "Menü",
@@ -1580,6 +1603,7 @@ export default {
                 "admin": "Admin",
                 "admin-self": "Selbst & Admin",
                 "all": "Jeder",
+                "members": "Mitglieder",
                 "self": "Selbst"
             }
         },
@@ -1621,10 +1645,8 @@ export default {
                 "title": "Account"
             },
             "api": {
-                "experimental": "Welcome to the Kanka APIs! These features are still experimental but should be stable enough for you to start communicating with the APIs. Create a Personal Access Token to use in your api requests, or use the Client token if you want your app to have access to user data.",
-                "help": "Kanka will soon provide an RESTful API so that third-party apps can connect to the app. Details on how to manage your API keys will be shown here.",
+                "helper": "Welcome to the Kanka APIs. Generate a Personal Access Token to use in your API request to gather information about the campaigns you are a part of.",
                 "link": "Read the API documentation",
-                "request_permission": "We are currently building a powerful RESTful API so that third-party apps can connect to the app. However, we are currently limiting the number of users who can interact with the API while we polish it. If you want to get access to the API and build cools apps that talk with Kanka, please contact us and we'll send you all the information you need.",
                 "title": "API"
             },
             "apps": {
@@ -1680,7 +1702,11 @@ export default {
                     "delete": "Removed your boost from {name}.",
                     "superboost": "Campaign {name} superboosted"
                 },
-                "title": "Boost"
+                "title": "Boost",
+                "unboost": {
+                    "description": "Are you sure you want to stop boosting the campaign {tag}?",
+                    "title": "Unboosting a campaign"
+                }
             },
             "countries": {
                 "austria": "Austria",
@@ -1964,6 +1990,7 @@ export default {
                 "find_out_more": "Find out more",
                 "go_to": "Go to {name}",
                 "json-export": "Export (JSON)",
+                "manage_links": "Manage Links",
                 "move": "Change or Move",
                 "new": "New",
                 "next": "Next",
@@ -2107,7 +2134,10 @@ export default {
                 "calendar_date": "Calendar Date",
                 "character": "Character",
                 "colour": "Colour",
+                "copy_abilities": "Copy Abilities",
                 "copy_attributes": "Copy Attributes",
+                "copy_inventory": "Copy Inventory",
+                "copy_links": "Copy Entity Links",
                 "copy_notes": "Copy Entity Notes",
                 "creator": "Creator",
                 "dice_roll": "Dice Roll",
@@ -2118,6 +2148,9 @@ export default {
                 "excerpt": "Excerpt",
                 "family": "Family",
                 "files": "Files",
+                "gallery_image": "Gallery Image",
+                "has_entity_files": "Has entity files",
+                "has_entity_notes": "Has entity notes",
                 "has_image": "Has an image",
                 "header_image": "Header Image",
                 "image": "Image",
@@ -2178,6 +2211,9 @@ export default {
                     "calendar": "Add a calendar date"
                 },
                 "copy_options": "Copy Options"
+            },
+            "helpers": {
+                "copy_options": "Copy the following related elements from the source to the new entity."
             },
             "hidden": "Hidden",
             "hints": {
@@ -2290,6 +2326,7 @@ export default {
                 "entity": "Entity",
                 "event": "Choose an event",
                 "family": "Choose a family",
+                "gallery_image": "Choose an image from the campaign gallery",
                 "image_url": "You can upload an image from a URL instead",
                 "item": "Choose an item",
                 "journal": "Choose a journal",
@@ -2329,6 +2366,7 @@ export default {
                 "default": "Default",
                 "events": "Events",
                 "inventory": "Inventory",
+                "links": "Links",
                 "map-points": "Map Points",
                 "mentions": "Mentions",
                 "menu": "Menu",
@@ -2348,6 +2386,7 @@ export default {
                 "admin": "Admin",
                 "admin-self": "Self & Admin",
                 "all": "All",
+                "members": "Members",
                 "self": "Self"
             }
         },
@@ -2396,6 +2435,7 @@ export default {
                 "description": "Actualizar configuración de API",
                 "experimental": "¡Bienvenido a las APIs de Kanka! Estas prestaciones aún son experimentales pero deberían ser lo suficientemente estables para que puedas comunicarte con las APIs. Crea un Token de Acceso Personal para usar en tus solicitudes de API, o usa el Token Cliente si quieres que tu app tenga acceso a datos de usuario.",
                 "help": "Kanka ofrecerá próximamente una RESTful API para que aplicaciones terceras puedan conectarse a la app. Aquí se irán mostrando los detalles sobre cómo gestionar tus claves API.",
+                "helper": "Bienvenido a las APIs de Kanka. Genera un Token de Acceso Personal para usar en tus llamadas a la API para obtener información sobre las campañas a las que perteneces.",
                 "link": "Leer la documentación de la API",
                 "request_permission": "Actualmente estamos construyendo una poderosa RESTful API para que aplicaciones terceras puedan conectarse a la app. Sin embargo, de momento limitamos el número de usuarios que pueden interactuar con la API mientras la pulimos. Si quieres acceder a la API y construir apps guays que interactúan con Kanka, contáctanos y te enviaremos toda la información que necesitas.",
                 "title": "API"
@@ -2420,27 +2460,38 @@ export default {
             },
             "boost": {
                 "benefits": {
+                    "campaign_gallery": "Una galería para subir imágenes que podrás reutilizar en la campaña.",
+                    "entity_files": "Sube hasta 10 archivos por entidad.",
+                    "entity_logs": "Registros completos de los cambios de una entidad.",
                     "first": "Para asegurar un progreso contínuo en Kanka, algunas características de campaña se pueden desbloquear mejorando la campaña. Las mejoras se desbloquean mediante {patreon}. Cualquiera que pueda ver una campaña puede mejorarla; así el máster no tiene que pagar la cuenta siempre. Una campaña permanece mejorada mientras un usuario la esté mejorando y continúe apoyando a Kanka en {patreon}. Si una campaña deja de estar mejorada, los datos no se pierden: solo permanecen ocultos hasta que la campaña vuelva a ser mejorada.",
                     "header": "Imágenes de cabecera para las entidades.",
                     "images": "Imágenes por defecto personalizadas",
                     "more": "Saber más sobre todas las características.",
                     "second": "Mejorar una campaña activa los siguientes beneficios:",
+                    "superboost": "Supermejorar una campaña usa 3 de tus mejoras y desbloquea funcionalidades adicionales además de las de las campañas mejoradas.",
                     "theme": "Tema y estilo personalizado a nivel de campaña.",
                     "third": "Para mejorar una campaña, dirígete a la página de la campaña y haz clic en el botón de \"{boost_button}\" que hay sobre el botón de \"{edit_button}\".",
                     "tooltip": "Descripciones emergentes personalizadas para las entidades.",
                     "upload": "Capacidad de subida de archivos ampliada para todos los miembros de la campaña."
                 },
                 "buttons": {
-                    "boost": "Mejorar"
+                    "boost": "Mejorar",
+                    "superboost": "Supermejorar",
+                    "tooltips": {
+                        "boost": "Mejorar una campaña usa hasta {amount} de tus mejoras",
+                        "superboost": "Supermejorar una campaña usa {amount} de tus mejoras"
+                    }
                 },
                 "campaigns": "Campañas mejoradas {count} / {max}",
                 "exceptions": {
                     "already_boosted": "La campaña {name} ya está mejorada.",
-                    "exhausted_boosts": "Te has quedado sin mejoras. Elimina tu mejora de una campaña antes de dársela a otra."
+                    "exhausted_boosts": "Te has quedado sin mejoras. Elimina tu mejora de una campaña antes de dársela a otra.",
+                    "exhausted_superboosts": "Te has quedado sin mejoras. Necesitas 3 mejoras para supermejorar una campaña."
                 },
                 "success": {
                     "boost": "Campaña {name} mejorada.",
-                    "delete": "Tu mejora de {name} se ha eliminado."
+                    "delete": "Tu mejora de {name} se ha eliminado.",
+                    "superboost": "Campaña {name} supermejorada"
                 },
                 "title": "Mejorar"
             },
@@ -2735,6 +2786,7 @@ export default {
                 "find_out_more": "Saber más",
                 "go_to": "Ir a {name}",
                 "json-export": "Exportar (JSON)",
+                "manage_links": "Configurar enlaces",
                 "move": "Mover",
                 "new": "Nuevo",
                 "next": "Siguiente",
@@ -2906,6 +2958,8 @@ export default {
                 "excerpt": "Extracto",
                 "family": "Familia",
                 "files": "Archivos",
+                "has_entity_files": "Tiene archivos",
+                "has_entity_notes": "Tiene notas de entidad",
                 "has_image": "Tiene imagen",
                 "header_image": "Imagen de cabecera",
                 "image": "Imagen",
@@ -3119,6 +3173,7 @@ export default {
                 "default": "Por defecto",
                 "events": "Eventos",
                 "inventory": "Inventario",
+                "links": "Enlaces",
                 "map-points": "Puntos del mapa",
                 "mentions": "Menciones",
                 "menu": "Menú",
@@ -3138,6 +3193,7 @@ export default {
                 "admin": "Admin",
                 "admin-self": "Yo + Admin",
                 "all": "Todos",
+                "members": "Miembros",
                 "self": "Solo yo"
             }
         },
@@ -3169,10 +3225,8 @@ export default {
                 "title": "Compte"
             },
             "api": {
-                "experimental": "Bienvenue aux API de Kanka! Ces fonctionnalités sont encore experimentales mais assez stables pour que tu puisses intéragir avec les APIs. Crée un jeton personnel à utiliser dans tes requêtes API, ou un jeton client pour permettre à ton app d'accéder à tes données.",
-                "help": "Kanka va prochainement mettre à disposition une API.",
+                "helper": "Bienvenue à l'API de Kanka. Les personal access token permettent d'accéder aux données d'un utilisateur lors des requêtes à l'API.",
                 "link": "Lire la documentation",
-                "request_permission": "Nous construisons en ce moment des API RESTful pour que des applications tierces communiquent avec Kanka. Cependant nous limitons actuellement le nombre d'utilisateurs qui peuvent intéragir avec nos API, du moins jusqu'à ce que la qualité de nos APIs soit assez bonne. Si tu veux accéder aux API et construire des applications qui communiquent avec Kanka, prends contact avec nous et nous te donnerons les infos dont tu as besoin!",
                 "title": "API"
             },
             "apps": {
@@ -3512,6 +3566,7 @@ export default {
                 "find_out_more": "En savoir plus",
                 "go_to": "Aller à {name}",
                 "json-export": "Export (JSON)",
+                "manage_links": "Gérer les liens",
                 "move": "Déplacer",
                 "new": "Nouveau",
                 "next": "Prochain",
@@ -3666,6 +3721,8 @@ export default {
                 "excerpt": "Extrait",
                 "family": "Famille",
                 "files": "Fichiers",
+                "has_entity_files": "Possède des fichiers",
+                "has_entity_notes": "Possède des notes",
                 "has_image": "Possède une image",
                 "header_image": "Image d'en-tête",
                 "image": "Image",
@@ -3877,6 +3934,7 @@ export default {
                 "default": "Défaut",
                 "events": "Événements",
                 "inventory": "Inventaire",
+                "links": "Liens",
                 "map-points": "Points de carte",
                 "mentions": "Mentions",
                 "menu": "Menu",
@@ -3896,6 +3954,7 @@ export default {
                 "admin": "Admin",
                 "admin-self": "Soi-même & Admin",
                 "all": "Tous",
+                "members": "Membres",
                 "self": "Soi-même"
             }
         },
@@ -3991,6 +4050,7 @@ export default {
                 "find_out_more": "Saber máis",
                 "go_to": "Ir a {name}",
                 "json-export": "Exportar (JSON)",
+                "manage_links": "Administrar ligazóns",
                 "more": "Máis",
                 "move": "Mover",
                 "new": "Crear nova",
@@ -4163,6 +4223,8 @@ export default {
                 "excerpt": "Limiar",
                 "family": "Familia",
                 "files": "Arquivos",
+                "has_entity_files": "Ten arquivos de entidade",
+                "has_entity_notes": "Ten notas de entidade",
                 "has_image": "Contén unha imaxe",
                 "header_image": "Imaxe de cabeceira",
                 "image": "Imaxe",
@@ -4375,6 +4437,7 @@ export default {
                 "default": "Por defecto",
                 "events": "Eventos",
                 "inventory": "Inventario",
+                "links": "Ligazóns",
                 "map-points": "Puntos do mapa",
                 "mentions": "Mencións",
                 "menu": "Menú",
@@ -4394,11 +4457,13 @@ export default {
                 "admin": "Administradoras",
                 "admin-self": "Eu e Administradoras",
                 "all": "Todas",
+                "members": "Integrantes",
                 "self": "Só eu"
             }
         },
         "campaigns": [],
         "front": [],
+        "randomisers": [],
         "entities": []
     },
     "he": {
@@ -4632,10 +4697,8 @@ export default {
                 "title": "Račun"
             },
             "api": {
-                "experimental": "Dobrodošli u Kanka API! Ove su funkcionalnosti još eksperimentalne, ali bi trebale biti dovoljno stabilne da započneš komunikaciju s API-ima. Napravi token osobnog pristupa koji će se upotrebljavati u tvojim API zahtjevima ili koristi token klijenta ako želiš da tvoja aplikacija ima pristup korisničkim podacima.",
-                "help": "Kanka će uskoro pružati RESTful API tako da se aplikacije treće strane mogu povezati s aplikacijom. Pojedinosti o upravljanju API ključevima bit će prikazane ovdje.",
+                "helper": "Dobrodošli u Kanka API-je! Generiraj osobni pristupni žeton koji ćeš koristiti u svom API zahtjevu za prikupljanje podataka o kampanjama čijih si član.",
                 "link": "Pročitaj dokumentaciju API-ja",
-                "request_permission": "Trenutno gradimo moćan RESTful API tako da se aplikacije treće strane mogu povezati s aplikacijom. Međutim, trenutno ograničavamo broj korisnika koji mogu komunicirati s API-em dok ga poliramo. Ako želiš pristupiti API-ju i izgraditi programe koji razgovaraju s Kankom, kontaktiraj nas i poslat ćemo ti sve potrebne informacije.",
                 "title": "API"
             },
             "apps": {
@@ -4975,6 +5038,7 @@ export default {
                 "find_out_more": "Saznaj više",
                 "go_to": "Idi na {name}",
                 "json-export": "Izvoz (json)",
+                "manage_links": "Upravljanje poveznicama",
                 "move": "Pomakni",
                 "new": "Novo",
                 "next": "Sljedeće",
@@ -5129,6 +5193,8 @@ export default {
                 "excerpt": "Isječak",
                 "family": "Obitelj",
                 "files": "Datoteke",
+                "has_entity_files": "Ima datoteke entiteta",
+                "has_entity_notes": "Ima bilješke entiteta",
                 "has_image": "Ima sliku",
                 "header_image": "Slika zaglavlja",
                 "image": "Slika",
@@ -5340,6 +5406,7 @@ export default {
                 "default": "Zadano",
                 "events": "Događaji",
                 "inventory": "Inventar",
+                "links": "Poveznice",
                 "map-points": "Točke na karti",
                 "mentions": "Spominjanja",
                 "menu": "Izbornik",
@@ -5359,6 +5426,7 @@ export default {
                 "admin": "Administratori",
                 "admin-self": "Ja i administratori",
                 "all": "Svi",
+                "members": "Članovi",
                 "self": "Samo ja"
             }
         },
@@ -6702,14 +6770,127 @@ export default {
         "entities": []
     },
     "nl": {
-        "admin": []
+        "maps": [],
+        "calendars": [],
+        "admin": [],
+        "timelines": [],
+        "campaigns": [],
+        "front": [],
+        "entities": []
     },
     "pl": {
         "maps": [],
         "calendars": [],
+        "conversations": {
+            "create": {
+                "description": "Stwórz nową konwersację",
+                "success": "Stworzono konwersację '{name}'",
+                "title": "Nowa konwersacja"
+            },
+            "destroy": {
+                "success": "Usunięto konwersację '{name}'."
+            },
+            "edit": {
+                "description": "Aktualizuj konwersację",
+                "success": "Zaktualizowano konwersację '{name}'.",
+                "title": "Konwersacja {name}"
+            },
+            "fields": {
+                "messages": "Wiadomości",
+                "name": "Nazwa",
+                "participants": "Uczestnicy",
+                "target": "Rozmówcy",
+                "type": "Rodzaj"
+            },
+            "hints": {
+                "participants": "Dodawaj uczestników konwersacji naciskając ikonę {icon} w prawym górnym rogu."
+            },
+            "index": {
+                "add": "Nowa konwersacja",
+                "description": "Zarządzaj kategorią {name}.",
+                "header": "Konwersacje w {name}",
+                "title": "Konwersacje"
+            },
+            "messages": {
+                "destroy": {
+                    "success": "Usunięto wiadomość."
+                },
+                "is_updated": "Zaktualizowano",
+                "load_previous": "Załaduj starsze wiadomości",
+                "placeholders": {
+                    "message": "Twoja wiadomość"
+                }
+            },
+            "participants": {
+                "create": {
+                    "success": "Uczestnik {entity} wypowiedział się w konwersacji."
+                },
+                "description": "Dodaj albo usuń uczestników konwersacji",
+                "destroy": {
+                    "success": "Usunięto uczestnika {entity} z konwersacji."
+                },
+                "modal": "Uczestnicy",
+                "title": "Uczestnicy {name}"
+            },
+            "placeholders": {
+                "name": "Nazwa konwersacji",
+                "type": "W grze, przygotowanie, omawianie intrygi"
+            },
+            "show": {
+                "description": "Szczegóły konwersacji",
+                "title": "Konwersacja {name}"
+            },
+            "tabs": {
+                "conversation": "Konwersacja",
+                "participants": "Uczestnicy"
+            },
+            "targets": {
+                "characters": "Postacie",
+                "members": "Gracze"
+            }
+        },
         "randomizers": [],
         "admin": [],
         "timelines": [],
+        "crud": {
+            "actions": {
+                "actions": "Akcje",
+                "apply": "Zastosuj",
+                "back": "Cofnij",
+                "copy": "Kopiuj",
+                "copy_to_campaign": "Kopiuj do kampanii",
+                "explore_view": "Widok Zagnieżdżony",
+                "export": "Eksport (PDF)",
+                "go_to": "Idź do {name}",
+                "json-export": "Eksport (JSON)",
+                "move": "Zmień lub przenieś",
+                "new": "Nowe",
+                "next": "Następne"
+            },
+            "add": "Dodaj",
+            "attributes": {
+                "actions": {
+                    "apply_template": "Zastosuj szablon cech",
+                    "manage": "Zarządzaj",
+                    "more": "Więcej opcji",
+                    "remove_all": "Usuń wszystko"
+                },
+                "fields": {
+                    "attribute": "Cecha",
+                    "community_templates": "Szablony społeczności",
+                    "is_private": "Szablony prywatne",
+                    "is_star": "Przypięte",
+                    "template": "Szablon",
+                    "value": "Wartość"
+                },
+                "helpers": {
+                    "delete_all": "Czy na pewno chcesz usunąć cechy tego elementu?"
+                },
+                "hints": {
+                    "is_private": "Oznaczając cechy jako prywatne ukrywasz je przed graczami nie posiadającymi roli administratora."
+                }
+            }
+        },
         "campaigns": [],
         "front": [],
         "entities": []
@@ -6740,6 +6921,7 @@ export default {
             "api": {
                 "experimental": "Bem-vindo às APIs Kanka! Esses recursos ainda são experimentais, mas devem ser estáveis o suficiente para que você comece a se comunicar com as APIs. Crie um token de acesso pessoal para usar em suas solicitações de API ou use o token de cliente se desejar que seu aplicativo tenha acesso aos dados do usuário.",
                 "help": "Em breve, Kanka fornecerá uma API RESTful para que aplicativos de terceiros possam se conectar ao aplicativo. Detalhes sobre como gerenciar suas chaves de API serão mostrados aqui.",
+                "helper": "Bem vindo(a) as APIs do Kanka. Gere um token de acesso pessoal para usar em sua solicitação de API, para coletar informações sobre as campanhas das quais você faz parte.",
                 "link": "Leia a documentação da API",
                 "request_permission": "No momento, estamos construindo uma API RESTful poderosa para que aplicativos de terceiros possam se conectar ao aplicativo. No entanto, atualmente estamos limitando o número de usuários que podem interagir com a API enquanto a aperfeiçoamos. Se você deseja acessar a API e construir aplicativos maneiros que se comunicam com o Kanka, entre em contato conosco e enviaremos todas as informações de que você precisa.",
                 "title": "API"
@@ -7514,10 +7696,7 @@ export default {
                 "title": "Аккаунт"
             },
             "api": {
-                "experimental": "Добро пожаловать в Kanka API! Эти функции пока экспериментальные, но достаточно стабильные, чтобы вы могли начать общаться с помощью API. Создайте личный токен доступа для использования ваших API запросов или используйте клиентский токен, если вы хотите, чтобы ваше приложение имело доступ к данным пользователей.",
-                "help": "Kanka скоро обеспечит RESTful API, чтобы приложения третьей стороны могли подключаться к этому приложению. Детали управления API ключами будут показаны ниже.",
                 "link": "Читать API документацию",
-                "request_permission": "Мы работаем над созданием RESTful API, чтобы приложения третьей стороны могли подключаться к этому приложению. Однако, мы ограничиваем число пользователей, которые могут взаимодействовать с API, пока мы работаем над ним. Если вы хотите получить доступ к API и создавать крутые приложения для доступа к Kanka, пожалуйста свяжитесь с нами, и мы отправим вам всю необходимую информацию.",
                 "title": "API"
             },
             "apps": {
@@ -7830,13 +8009,14 @@ export default {
                 "apply": "Применить",
                 "back": "Назад",
                 "copy": "Копировать",
-                "copy_mention": "Копировать [ссылку]",
+                "copy_mention": "Копировать [упоминание]",
                 "copy_to_campaign": "Копировать в кампанию",
                 "explore_view": "Свернутый вид",
                 "export": "Экспортировать (PDF)",
                 "find_out_more": "Узнать больше",
                 "go_to": "Перейти к {name}",
                 "json-export": "Экспортировать (JSON)",
+                "manage_links": "Настроить ссылки",
                 "move": "Изменить или переместить",
                 "new": "Новый",
                 "next": "Далее",
@@ -7844,7 +8024,7 @@ export default {
             },
             "add": "Добавить",
             "alerts": {
-                "copy_mention": "Ссылка на объект скопирована в ваш буфер обмена"
+                "copy_mention": "Продвинутое упоминание объекта скопировано в ваш буфер обмена"
             },
             "attributes": {
                 "actions": {
@@ -7991,6 +8171,8 @@ export default {
                 "excerpt": "Краткое описание",
                 "family": "Семья",
                 "files": "Файлы",
+                "has_entity_files": "Есть загруженные файлы",
+                "has_entity_notes": "Есть заметки объекта",
                 "has_image": "Есть изображение",
                 "header_image": "Изображение заголовка",
                 "image": "Изображение",
@@ -8012,7 +8194,7 @@ export default {
             },
             "files": {
                 "actions": {
-                    "drop": "Нажмите здесь или перетащите сюда файл",
+                    "drop": "Нажмите здесь или перетащите сюда файлы",
                     "manage": "Управление файлами объекта"
                 },
                 "errors": {
@@ -8067,14 +8249,14 @@ export default {
             },
             "history": {
                 "created": "Создано <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
-                "created_date": "Создано <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>.",
+                "created_date": "Создано <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
                 "unknown": "Неизвестно",
                 "updated": "Изменено <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>.",
                 "updated_date": "Изменено <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>.",
                 "view": "Показать историю объекта"
             },
             "image": {
-                "error": "Нам не удалось получить запрошенное изображение. Возможно, сайт не позволяет нам скачать изображение (такое случается с Squarespace и DeviantArt) или эта ссылка уже не действительна. Пожалуйста, убедитесь также, что изображение не превышает {size}."
+                "error": "Нам не удалось получить данное изображение. Возможно, сайт не позволяет нам скачать изображение (такое случается с Squarespace и DeviantArt) или эта ссылка уже не действительна. Пожалуйста, убедитесь также, что изображение не превышает {size}."
             },
             "is_not_private": "В данный момент этот объект открыт",
             "is_private": "Этот объект скрыт и виден только участникам роли \"Админ\"",
@@ -8202,6 +8384,7 @@ export default {
                 "default": "Умолчания",
                 "events": "События",
                 "inventory": "Инвентарь",
+                "links": "Ссылки",
                 "map-points": "Точки на карте",
                 "mentions": "Упоминания",
                 "menu": "Меню",
@@ -8221,11 +8404,13 @@ export default {
                 "admin": "Админ",
                 "admin-self": "Вы и Админ",
                 "all": "Все",
+                "members": "Участники",
                 "self": "Вы"
             }
         },
         "campaigns": [],
         "front": [],
+        "randomisers": [],
         "entities": []
     },
     "sk": {
@@ -8998,6 +9183,484 @@ export default {
         "randomisers": [],
         "entities": []
     },
+    "sv": {
+        "maps": [],
+        "calendars": [],
+        "conversations": {
+            "create": {
+                "description": "Skapa en ny konversation",
+                "success": "Konversation '{name}' skapad.",
+                "title": "Ny Konversation"
+            },
+            "destroy": {
+                "success": "Konversation '{name}' borttagen."
+            },
+            "edit": {
+                "description": "Uppdatera konversationen.",
+                "success": "Konversation '{name}' uppdaterad.",
+                "title": "Konversation {name}"
+            },
+            "fields": {
+                "messages": "Meddelanden",
+                "name": "Namn",
+                "participants": "Deltagare",
+                "target": "Mål",
+                "type": "Typ"
+            },
+            "hints": {
+                "participants": "Vänligen lägg till deltagare till din konversation genom att trycka på {icon} ikonen uppe till höger."
+            },
+            "index": {
+                "add": "Ny Konversation",
+                "description": "Hantera kategorin av {name}",
+                "header": "Konversationer i {name}",
+                "title": "Konversationer"
+            },
+            "messages": {
+                "destroy": {
+                    "success": "Meddelande borttaget."
+                },
+                "is_updated": "Uppdaterade",
+                "load_previous": "Ladda föregående meddelanden",
+                "placeholders": {
+                    "message": "Ditt meddelande"
+                }
+            },
+            "participants": {
+                "create": {
+                    "success": "Deltagare {entity} tillagd till konversationen."
+                },
+                "description": "Lägg till eller ta bort deltagare i en konversation",
+                "destroy": {
+                    "success": "Deltagare {entity} borttagen från konversationen."
+                },
+                "modal": "Deltagare",
+                "title": "Deltagare i {name}"
+            },
+            "placeholders": {
+                "name": "Name of the conversation",
+                "type": "I Spelet, Förberedande, Handling"
+            },
+            "show": {
+                "description": "En detaljerad vy för en konversation",
+                "title": "Konversation {name}"
+            },
+            "tabs": {
+                "conversation": "Konversation",
+                "participants": "Deltagare"
+            },
+            "targets": {
+                "characters": "Karaktärer",
+                "members": "Medlemmar"
+            }
+        },
+        "randomizers": [],
+        "admin": [],
+        "timelines": [],
+        "crud": {
+            "actions": {
+                "actions": "Åtgärder",
+                "apply": "Tillämpa",
+                "back": "Tillbaka",
+                "copy": "Kopiera",
+                "copy_mention": "Kopiera [ ] omnämning",
+                "copy_to_campaign": "Kopiera till kampanj",
+                "explore_view": "Hierarkisk Vy",
+                "export": "Exportera (PDF)",
+                "find_out_more": "Lär dig mer",
+                "go_to": "Gå till {name}",
+                "json-export": "Exportera (JSON)",
+                "move": "Ändra eller Flytta",
+                "new": "Ny",
+                "next": "Nästa",
+                "reset": "Återställ"
+            },
+            "add": "Lägg till",
+            "alerts": {
+                "copy_mention": "Denna entitets avancerade omnämning kopierades till ditt urklipp."
+            },
+            "attributes": {
+                "actions": {
+                    "apply_template": "Tillämpa en Egenskapsmall",
+                    "manage": "Hantera",
+                    "more": "Fler alternativ",
+                    "remove_all": "Ta bort allt"
+                },
+                "fields": {
+                    "attribute": "Egenskap",
+                    "community_templates": "Community Mallar",
+                    "is_private": "Privata Egenskaper",
+                    "is_star": "Fastnålad",
+                    "template": "Mall",
+                    "value": "Värde"
+                },
+                "helpers": {
+                    "delete_all": "Är du säker på att du vill ta bort alla egenskaper från den här entiteten?"
+                },
+                "hints": {
+                    "is_private": "Du kan dölja alla egenskaper för en entitet för alla medlemmar utom de i admin rollen genom att göra den privat."
+                },
+                "index": {
+                    "success": "Egenskaper för {entity} uppdaterade.",
+                    "title": "Egenskaper för {name}"
+                },
+                "placeholders": {
+                    "attribute": "Antal erövringar, Challenge Rating, Initiativ, Folkmängd",
+                    "block": "Blocknamn",
+                    "checkbox": "Kryssrutenamn",
+                    "section": "Sektionsnamn",
+                    "template": "Välj en mall",
+                    "value": "Värde för egenskapen"
+                },
+                "template": {
+                    "success": "Egenskapsmall {name} tillämpad på {entity}",
+                    "title": "Tillämpa en Egenskapsmall för {name}"
+                },
+                "types": {
+                    "attribute": "Egenskap",
+                    "block": "Block",
+                    "checkbox": "Kryssruta",
+                    "section": "Sektion",
+                    "text": "Flerrads Text"
+                },
+                "visibility": {
+                    "entry": "Egenskap visas på entitets menyn.",
+                    "private": "Egenskap bara synlig för medlemmar med \"Admin\" rollen.",
+                    "public": "Egenskap synlig för alla medlemmar.",
+                    "tab": "Egenskap visas bara under Egenskaps fliken."
+                }
+            },
+            "boosted": "Boostad",
+            "boosted_campaigns": "Boostade Kampanjer",
+            "bulk": {
+                "actions": {
+                    "edit": "Massredigering & -taggning."
+                },
+                "age": {
+                    "helper": "Du kan använda + och - före siffran för att uppdatera åldern med det antalet."
+                },
+                "delete": {
+                    "title": "Tar bort flera entiteter",
+                    "warning": "Är du säker på att du vill ta bort de valda entiteterna?"
+                },
+                "edit": {
+                    "tagging": "Åtgärder för taggar",
+                    "tags": {
+                        "add": "Lägg till",
+                        "remove": "Ta bort"
+                    },
+                    "title": "Redigerar flera entiteter"
+                },
+                "errors": {
+                    "admin": "Bara kampanj Admins kan ändra \"Privat\" statusen för entiteter",
+                    "general": "Ett fel inträffade när dina åtgärder skulle bearbetas. Vänligen försök igen och kontakta oss om problemet kvarstår. Felmeddelande: {hint}."
+                },
+                "permissions": {
+                    "fields": {
+                        "override": "Skriv över"
+                    },
+                    "helpers": {
+                        "override": "Om vald, behörigheter för den valda entiteten kommer att ersättas med dessa. Om inte, de valda behörigheterna kommer läggas till som redan finns."
+                    },
+                    "title": "Ändra behörigheter för flera entiteter"
+                },
+                "success": {
+                    "copy_to_campaign": "{1} {count} entitet kopierad till {campaign}.|[2,*] {count} entiteter kopierade till {campaign}.",
+                    "editing": "{1} {count} entitet uppdaterad.|[2,*] {count} entiteter uppdaterade.",
+                    "permissions": "{1} Behörighet ändrad för {count} entitet.|[2,*] Behörigheter ändrade för {count} entiteter.",
+                    "private": "{1} {count} entitet är nu privat.|[2,*] {count} entiteter är nu privata.",
+                    "public": "{1} {count} entitet är nu synlig.|[2,*] {count} entiteter är nu synliga."
+                }
+            },
+            "cancel": "Avbryt",
+            "click_modal": {
+                "close": "Stäng",
+                "confirm": "Bekräfta",
+                "title": "Bekräfta din åtgärd"
+            },
+            "copy_to_campaign": {
+                "bulk_title": "Kopiera entiteter till en annan kampanj",
+                "panel": "Kopiera",
+                "title": "Kopiera '{name}' till en annan kampanj"
+            },
+            "create": "Skapa",
+            "datagrid": {
+                "empty": "Inget att visa än."
+            },
+            "delete_modal": {
+                "close": "Stäng",
+                "delete": "Ta bort",
+                "description": "Är du säker att du vill ta bort {tag}?",
+                "mirrored": "Ta bort speglad förbindelse.",
+                "title": "Ta bort bekräftelse"
+            },
+            "destroy_many": {
+                "success": "Tog bort {count} entitet|Tog bort {count} entiteter"
+            },
+            "edit": "Redigera",
+            "errors": {
+                "boosted": "Denna funktion är endast tillgänglig för boostade kampanjer.",
+                "node_must_not_be_a_descendant": "Ogiltig nod (tag, huvudplats): den skulle härledas till sig själv."
+            },
+            "events": {
+                "hint": "Visad nedanför är en lista över alla Kalendrar som denna entitet har lagts till i genom \"Lägg till en händelse i kalendern\" gränssnittet."
+            },
+            "export": "Exportera",
+            "fields": {
+                "ability": "Förmåga",
+                "attribute_template": "Egenskapsmall",
+                "calendar": "Kalender",
+                "calendar_date": "Kalenderdatum",
+                "character": "Karaktär",
+                "colour": "Färg",
+                "copy_attributes": "Kopiera Egenskaper",
+                "copy_notes": "Kopiera Entitetsanteckningar",
+                "creator": "Skapare",
+                "dice_roll": "Tärningskast",
+                "entity": "Entitet",
+                "entity_type": "Entitetstyp",
+                "entry": "Notering",
+                "event": "Händelse",
+                "excerpt": "Utdrag",
+                "family": "Familj",
+                "files": "Filer",
+                "has_image": "Har en bild",
+                "header_image": "Titelbild",
+                "image": "Bild",
+                "is_private": "Privat",
+                "is_star": "Fastnålad",
+                "item": "Föremål",
+                "location": "Plats",
+                "map": "Karta",
+                "name": "Namn",
+                "organisation": "Organisation",
+                "position": "Position",
+                "race": "Ras",
+                "tag": "Tag",
+                "tags": "Taggar",
+                "timeline": "Tidslinje",
+                "tooltip": "Inforuta",
+                "type": "Typ",
+                "visibility": "Synlighet"
+            },
+            "files": {
+                "actions": {
+                    "drop": "Klicka för att lägga till eller Släpp en fil",
+                    "manage": "Hantera Entitets Filer"
+                },
+                "errors": {
+                    "max": "Du har nått max antal ({max}) filer för denna entitet.",
+                    "no_files": "Inga filer."
+                },
+                "files": "Uppladdade filer",
+                "hints": {
+                    "limit": "Varje entitet kan ha maximalt {max} filer uppladdade till sig.",
+                    "limitations": "Stödda format: {formats}. Max file size: {size}"
+                },
+                "title": "Entitets Filer för {name}"
+            },
+            "filter": "Filter",
+            "filters": {
+                "all": "Filtrera till alla härleda",
+                "clear": "Rensa Filter",
+                "direct": "Filtrera till direkt härleda",
+                "filtered": "Visar {count} av {total} entiteter.",
+                "hide": "Dölj Filter",
+                "options": {
+                    "exclude": "Exkludera",
+                    "include": "Inkludera",
+                    "none": "Inget"
+                },
+                "show": "Visa Filter",
+                "sorting": {
+                    "asc": "{field} Stigande",
+                    "desc": "{field} Fallande",
+                    "helper": "Kontrollera i vilken ordning resultat visas."
+                },
+                "title": "Filter"
+            },
+            "forms": {
+                "actions": {
+                    "calendar": "Lägg till ett kalenderdatum"
+                },
+                "copy_options": "Kopierings Alternativ"
+            },
+            "hidden": "Dold",
+            "hints": {
+                "attribute_template": "Tillämpa en egenskapsmall direkt när denna entitet skapas eller redigeras",
+                "calendar_date": "Ett kalenderdatum tillåter enkel filtrering i listor, och upprätthåller också ett kalender händelse i den valda kalendern.",
+                "header_image": "Denna bild är placerad över entiteten. För bästa resultat, använd en bred bild.",
+                "image_limitations": "Stöda format: jpg, png och gif. Max filstorlek: {size}.",
+                "image_patreon": "Utöka filstorleks gräns?",
+                "is_private": "Om satt som privat, denna entitet kommer bara vara synlig för medlemmar i kampanjens \"Admin\" roll.",
+                "is_star": "Fastnålade element kommer bara visas på entitetens meny",
+                "map_limitations": "Stöda format: jpg, png, gif och svg. Max filstorlek: {size}.",
+                "tooltip": "Ersätt de automatiskt genererade inforutorna med följande innehåll.",
+                "visibility": "Att sätta synligheten till 'admin' betyder att bara medlemmar i Admin rollen för kampanjen kan se detta. Att sätta den till 'Jag själv' betyder att bara du själv kan se detta."
+            },
+            "history": {
+                "created": "Skapad av <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "created_date": "Skapad <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "unknown": "Okänd",
+                "updated": "Senast ändrad av <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "updated_date": "Senast ändrad <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
+                "view": "Visa entitets logg"
+            },
+            "image": {
+                "error": "Vi kunde inte hämta bilden du begärde. Detta kan bero på att hemsidan inte tillåter oss att ladda ner bilden (vanligt för Squarespace och DeviantArt), eller att länken inte längre är giltig. Vänligen kontroller också att bilden inte är större än {size}."
+            },
+            "is_not_private": "Denna entitet är för tillfället inte satt som privat.",
+            "is_private": "Denna entitet är privat och endast synlig för medlemmar med Admin rollen.",
+            "linking_help": "Hur kan ja hänvisa till andra entiteter?",
+            "manage": "Hantera",
+            "move": {
+                "errors": {
+                    "permission": "Du har inte behörighet att skapa entiteter av den typen i den valda kampanjen.",
+                    "same_campaign": "Du måste välja en annan kampanj att flytta entiteten till.",
+                    "unknown_campaign": "Okänd kampanj."
+                },
+                "fields": {
+                    "campaign": "Ny kampanj",
+                    "copy": "Skapa en kopia",
+                    "target": "Ny typ"
+                },
+                "hints": {
+                    "campaign": "Du kan också försöka flytta denna entitet till en annan kampanj.",
+                    "copy": "Välj detta val om du vill skapa en kopia i den nya kampanjen.",
+                    "target": "Vänligen observera att viss data kan gå förlorad när ett element flyttas från en typ till en annan."
+                },
+                "panels": {
+                    "change": "Ändra entitets typ",
+                    "move": "Flytta till en annan kampanj"
+                },
+                "success": "Entitet '{name}' flyttad.",
+                "success_copy": "Entitet '{name}' kopierad.",
+                "title": "Ändra eller Flytta {name}"
+            },
+            "new_entity": {
+                "error": "Vänligen kontrollera dina värden.",
+                "fields": {
+                    "name": "Namn"
+                },
+                "title": "Ny entitet"
+            },
+            "or_cancel": "eller <a href=\"{url}\">avbryt</a>",
+            "panels": {
+                "appearance": "Utseende",
+                "attribute_template": "Egenskapsmall",
+                "calendar_date": "Kalenderdatum",
+                "entry": "Notering",
+                "general_information": "Allmän Information",
+                "move": "Flytta",
+                "system": "System"
+            },
+            "permissions": {
+                "action": "Åtgärd",
+                "actions": {
+                    "bulk": {
+                        "add": "Tillåt",
+                        "deny": "Neka",
+                        "ignore": "Hoppa över",
+                        "remove": "Ta bort"
+                    },
+                    "bulk_entity": {
+                        "allow": "Tillåt",
+                        "deny": "Neka",
+                        "inherit": "Härled"
+                    },
+                    "delete": "Ta bort",
+                    "edit": "Redigera",
+                    "entity_note": "Entitetsanteckningar",
+                    "read": "Läs",
+                    "toggle": "Växla"
+                },
+                "allowed": "Tillåten",
+                "fields": {
+                    "member": "Medlem",
+                    "role": "Roll"
+                },
+                "helper": "Använd detta gränssnitt för att finjustera vilka användare och roller som kan interagera med denna entitet. {allow}",
+                "helpers": {
+                    "setup": "Använd detta gränssnitt för att finjustera hur roller och användare kan interagera med denna entitet. {allow} kommer låta användaren eller rollen att utföra den åtgärden. {deny} kommer neka den åtgärden. {inherit} kommer använda användarens rolls eller bas-rolls behörigheter. En användare som är satt till {allow} kan utföra åtgärden, även om deras roll är satt till {deny}."
+                },
+                "inherited": "Denna roll har redan denna behörighet satt för denna entitets typ.",
+                "inherited_by": "Denna användare är medlem i '{role}' rollen som ger denna behörighet för denna entitets typ.",
+                "success": "Behörigheter sparade.",
+                "title": "Behörigheter",
+                "too_many_members": "Denna kampanj har för många medlemar (>10) för att visa i detta gränssnitt. Vänligen använd Behörighets knappen i entitets vyn för att kontrollera behörigheter i detalj."
+            },
+            "placeholders": {
+                "ability": "Välj en förmåga",
+                "calendar": "Välj en kalender",
+                "character": "Välj en karaktär",
+                "entity": "Entitet",
+                "event": "Välj en händelse",
+                "family": "Välj en familj",
+                "image_url": "Du kan ladda upp en bild från en URL istället",
+                "item": "Välj ett föremål",
+                "journal": "Välj en journal",
+                "location": "Välj en plats",
+                "map": "Välj en karta",
+                "organisation": "Välj en organisation",
+                "race": "Välj en ras",
+                "tag": "Välj en tagg"
+            },
+            "relations": {
+                "actions": {
+                    "add": "Lägg till en förbindelse"
+                },
+                "fields": {
+                    "location": "Plats",
+                    "name": "Namn",
+                    "relation": "Förbindelse"
+                },
+                "hint": "Förbindelser mellan entiteter kan sättas för att representera deras samband."
+            },
+            "remove": "Ta bort",
+            "rename": "Bytt namn",
+            "save": "Spara",
+            "save_and_close": "Spara och Stäng",
+            "save_and_copy": "Spara och Kopiera",
+            "save_and_new": "Spara och Ny",
+            "save_and_update": "Spara och Redigera",
+            "save_and_view": "Spara och Visa",
+            "search": "Sök",
+            "select": "Välj",
+            "superboosted_campaigns": "Superboostade Kampanjer",
+            "tabs": {
+                "abilities": "Förmågor",
+                "attributes": "Egenskaper",
+                "boost": "Boosta",
+                "calendars": "Kalendrar",
+                "default": "Standard",
+                "events": "Händelser",
+                "inventory": "Inventarier",
+                "map-points": "Kartpunkter",
+                "mentions": "Omnämnanden",
+                "menu": "Meny",
+                "notes": "Entitetsanteckningar",
+                "permissions": "Behörigheter",
+                "relations": "Förbindelser",
+                "reminders": "Påminnelser",
+                "timelines": "Tidslinjer",
+                "tooltip": "Inforuta"
+            },
+            "update": "Uppdatera",
+            "users": {
+                "unknown": "Okänd"
+            },
+            "view": "Vy",
+            "visibilities": {
+                "admin": "Admin",
+                "admin-self": "Jag själv & Admin",
+                "all": "Alla",
+                "self": "Jag själv"
+            }
+        },
+        "campaigns": [],
+        "front": [],
+        "entities": []
+    },
     "tr": {
         "maps": [],
         "calendars": [],
@@ -9210,6 +9873,11 @@ export default {
                     "payment_method": "Ödeme yöntemi",
                     "plan": "Mevcut plan",
                     "reason": "Sebep"
+                },
+                "helpers": {
+                    "alternatives": "{method} kullanarak aboneliğiniz için ödeme yapın. Bu ödeme yöntemi aboneliğinizin sonunda otomatik olarak yenilenmeyecek. {method} yalnızca Euro için geçerlidir.",
+                    "alternatives_warning": "Bu ödeme yöntemini kullanırken aboneliğinizi geliştirmek mümkün değildir. Lütfen mevcut aboneliğiniz bittiğinde yeni bir abonelik alın.",
+                    "alternatives_yearly": "Devamlı ödemeler üstündeki"
                 }
             }
         },
