@@ -27,7 +27,7 @@ class StoreDiceRoll extends FormRequest
             'name' => 'required|max:191',
             'parameters' => 'required|max:191',
             'character_id', 'integer|exists:character,id',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
+            'image' => 'mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
         ];
     }
 }

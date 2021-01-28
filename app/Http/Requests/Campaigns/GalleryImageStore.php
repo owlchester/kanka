@@ -27,7 +27,7 @@ class GalleryImageStore extends FormRequest
     public function rules()
     {
         $rules = [
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
+            'file' => 'required|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
             'folder_id' => [
                 'nullable',
                 Rule::exists('images')->where(function ($query) {

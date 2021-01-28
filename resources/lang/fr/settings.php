@@ -78,6 +78,10 @@ return [
             'superboost'    => 'La campagne :name est superboostée.',
         ],
         'title'         => 'Boost',
+        'unboost'       => [
+            'description'   => 'Es-tu sûr de vouloir arrêter de booster la campagne :tag?',
+            'title'         => 'Débooster une campagne',
+        ],
     ],
     'countries'     => [
         'austria'       => 'Autriche',

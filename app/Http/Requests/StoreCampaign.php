@@ -25,8 +25,8 @@ class StoreCampaign extends FormRequest
     {
         return [
             'name' => 'required|string|min:4',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
-            'header_image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
+            'image' => 'mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
+            'header_image' => 'mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
             'locale' => 'nullable|string',
             'system' => 'nullable|string',
             'entity_visibility' => 'nullable',

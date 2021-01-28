@@ -28,7 +28,7 @@ class StoreItem extends FormRequest
             'type' => '',
             'location_id', 'nullable|integer|exists:locations,id',
             'character_id', 'nullable|integer|exists:character,id',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
+            'image' => 'mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable|exists:attribute_templates,id',
             'price' => 'nullable|string|max:191',

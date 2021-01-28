@@ -26,8 +26,7 @@ class StoreJournal extends FormRequest
         $rules = [
             'name' => 'required',
             'date' => 'nullable|date',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
-            'journal_id' => 'nullable|exists:journals,id',
+            'image' => 'mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
             'character_id' => 'nullable|exists:characters,id',
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable|exists:attribute_templates,id',

@@ -29,7 +29,7 @@ class StoreSettingsProfile extends FormRequest
             'name' => 'required|string|min:2',
             'newsletter' => 'boolean',
             'has_last_login_sharing' => 'boolean',
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:8192',
+            'avatar' => 'mimes:jpeg,png,jpg,gif|max:8192',
         ];
 
         return $rules;

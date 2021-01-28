@@ -27,7 +27,7 @@ class DefaultImageStore extends FormRequest
     {
         $rules = [
             'entity_type' => 'required',
-            'default_entity_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
+            'default_entity_image' => 'required|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
         ];
         return $rules;
     }
