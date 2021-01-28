@@ -19,6 +19,7 @@ return [
     'new_folder'    => [
         'title' => 'New folder',
     ],
+    'no_folder'     => 'No folder',
     'placeholders'  => [
         'search'    => 'Search image name...',
     ],

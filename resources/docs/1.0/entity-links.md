@@ -86,7 +86,7 @@ To create an entity-link, use the following endpoint.
 | `name` | `string` | The name of the link |
 | `icon` | `string` | The icon of the link |
 | `url` | `string` | The url of the link |
-| `positoon` | `int` | Optional position of the entity link |
+| `position` | `int` | Optional position of the entity link |
 | `visibility` | `string` | The visibility: `all`, `self`, `admin`, `self-admin` or `members`. |
 
 ### Results

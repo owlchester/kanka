@@ -101,7 +101,7 @@ class GalleryController extends Controller
         $this->authorize('update', $campaign);
 
         $folders = $campaign->images()->folders()->pluck('name', 'id')->toArray();
-        $folders = array_merge(['' => ''], $folders);
+        $folders = array_merge(['' => __('campaigns/gallery.no_folder')], $folders);
 
         return view('gallery.edit', compact('image', 'folders'));
     }

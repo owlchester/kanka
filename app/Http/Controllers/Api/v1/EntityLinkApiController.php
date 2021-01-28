@@ -45,7 +45,8 @@ class EntityLinkApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);
-        $model = EntityLink::create($request->all());
+        $data = array_merge(['entity_id' => $entity->id], $request->all());
+        $model = EntityLink::create($data);
         return new Resource($model);
     }
 
