@@ -5,6 +5,7 @@ return [
         'actions'           => 'Actions',
         'apply'             => 'Apply',
         'back'              => 'Back',
+        'bulk_templates'    => 'Apply Attribute Template',
         'copy'              => 'Copy',
         'copy_mention'      => 'Copy [ ] mention',
         'copy_to_campaign'  => 'Copy to Campaign',

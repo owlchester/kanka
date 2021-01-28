@@ -13,7 +13,8 @@
             'calendar_id',
             $preset,
             App\Models\Calendar::class,
-            isset($enableNew) ? $enableNew : true
+            isset($enableNew) ? $enableNew : true,
+            isset($parent) ? 'calendars.fields.calendar' : null
         ) !!}
     </div>
 @endif

@@ -11,7 +11,7 @@
                 </div>
                 <div class="modal-body">
                     @foreach ($bulk->fields() as $field)
-                        @include('cruds.fields.' . rtrim($field, '_id'), ['trans' => $name, 'enableNew' => false, 'base' => $model, 'bulk' => true])
+                        @include('cruds.fields.' . rtrim($field, '_id'), ['trans' => $name, 'enableNew' => false, 'base' => $model, 'bulk' => true, 'parent' => rtrim($field, '_id') == $name])
                     @endforeach
                 </div>
                 <div class="modal-footer">
