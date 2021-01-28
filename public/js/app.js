@@ -77393,6 +77393,17 @@ function select2() {
             };
           },
           cache: true
+        },
+        templateResult: function templateResult(item) {
+          var $span = '';
+
+          if (item.image) {
+            $span = $("<span><img src='" + item.image + "' width='40' height='40'/> " + item.text + "</span>");
+          } else {
+            $span = $("<span>" + item.text + "</span>");
+          }
+
+          return $span;
         }
       });
     });

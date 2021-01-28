@@ -17,8 +17,12 @@ class ImageSearchController extends Controller
         $this->middleware('campaign.boosted');
     }
 
+    /**
+     *
+     */
     public function index()
     {
+        /** @var Image[] $images */
         $images = Image::where('is_default', false)
             ->where('is_folder', false)
             ->where('name', 'like', '%' . request()->get('q') . '%')
@@ -30,7 +34,8 @@ class ImageSearchController extends Controller
         foreach ($images as $image) {
             $format = [
                 'id' => $image->id,
-                'text' => $image->name
+                'text' => $image->name,
+                'image' => $image->getImagePath()
             ];
 
             $formatted[] = $format;

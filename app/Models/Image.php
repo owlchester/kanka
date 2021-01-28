@@ -189,4 +189,12 @@ class Image extends Model
     {
         return \Illuminate\Support\Facades\Storage::url($this->path);
     }
+
+    /**
+     * @return string
+     */
+    public function getImagePath($width = 40, $height = 40): string
+    {
+        return Img::resetCrop()->crop($width, $height)->url($this->path);
+    }
 }

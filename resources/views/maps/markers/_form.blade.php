@@ -142,7 +142,7 @@ $sizeOptions = [
     <div class="col-sm-6">
         <div class="form-group">
             <label>{{ __('maps/markers.fields.opacity') }}</label><br />
-            {!! Form::number('opacity', (!isset($model) ? 100 : \App\Facades\FormCopy::field('opacity')->string()), ['class' => 'form-control', 'maxlength' => 3, 'step' => 10, 'max' => 100, 'min' => 0] ) !!}
+            {!! Form::number('opacity', (!empty($source) ? $source->opacity : (isset($model) ? $model->opacity : 100)), ['class' => 'form-control', 'maxlength' => 3, 'step' => 10, 'max' => 100, 'min' => 0] ) !!}
         </div>
     </div>
     <div class="col-sm-6">

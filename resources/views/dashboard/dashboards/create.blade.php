@@ -21,10 +21,9 @@
             @include('dashboard.dashboards._form')
 
             @if(!empty($source))
-
                 <div class="form-group">
                     {!! Form::hidden('copy_widgets', null) !!}
-                    <label>{!! Form::checkbox('copy_widgets', 1, false) !!}
+                    <label>{!! Form::checkbox('copy_widgets', 1, true) !!}
                         {{ __('dashboard.dashboards.fields.copy_widgets') }}
                     </label>
                     <p class="help-block">{{ __('dashboard.dashboards.helpers.copy_widgets', ['name' => $source->name]) }}</p>

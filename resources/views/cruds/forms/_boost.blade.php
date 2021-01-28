@@ -35,7 +35,7 @@
         <div class="col-md-2">
             @if (!empty($model->entity) && !empty($model->entity->header_image))
                 <div class="preview-v2">
-                    <div class="image" style="background-image: url('{{ $model->entity->getImageUrl(80, null, 'header_image') }}')" title="{{ $model->name }}">
+                    <div class="image" style="background-image: url('{{ $model->entity->getImageUrl(80, null) }}')" title="{{ $model->name }}">
                         <a href="#" class="img-delete" data-target="remove-header_image" title="{{ trans('crud.remove') }}">
                             <i class="fa fa-trash"></i> {{ trans('crud.remove') }}
                         </a>
