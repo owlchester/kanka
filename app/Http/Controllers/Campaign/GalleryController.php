@@ -117,6 +117,7 @@ class GalleryController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
+        $originalFolderID = $image->folder_id;
         $this->service
             ->campaign($campaign)
             ->image($image)
@@ -125,6 +126,8 @@ class GalleryController extends Controller
         $params = null;
         if ($image->is_folder) {
             $params = ['folder_id' => $image->id];
+        } elseif ($originalFolderID != $image->folder_id) {
+            $params = ['folder_id' => $originalFolderID];
         } elseif (!empty($image->folder_id)) {
             $params = ['folder_id' => $image->folder_id];
         }

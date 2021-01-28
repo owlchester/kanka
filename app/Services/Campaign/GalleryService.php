@@ -82,14 +82,14 @@ class GalleryService
      * @param string $name
      * @return $this
      */
-    public function update(array $options): self
+    public function update(array $options): Image
     {
         $this->image->update([
             'name' => Arr::get($options, 'name'),
             'folder_id' => Arr::get($options, 'folder_id', null)
         ]);
 
-        return $this;
+        return $this->image;
     }
 
     /**
