@@ -1,7 +1,7 @@
 @inject('campaign', 'App\Services\CampaignService')
 
 {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
-<div class="modal fade" id="bulk-delete" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
+<div class="modal modal-danger fade" id="bulk-delete" tabindex="-1" role="dialog" aria-labelledby="clickConfirmLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -13,7 +13,9 @@
             </div>
 
             <div class="modal-footer">
-                <button class="btn btn-danger" type="submit" name="datagrid-action" value="delete">{{ __('crud.click_modal.confirm') }}</button>
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">{{ __('crud.delete_modal.close') }}</button>
+
+                <button class="btn btn-outline" type="submit" name="datagrid-action" value="delete">{{ __('crud.click_modal.confirm') }}</button>
             </div>
         </div>
     </div>

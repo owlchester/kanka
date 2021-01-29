@@ -7,6 +7,7 @@ use App\Facades\UserPermission;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\VisibilityTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -22,6 +23,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $created_by
  * @property Ability $ability
  * @property Entity $entity
+ *
+ * @method static Builder|self defaultOrder()
  */
 class EntityAbility extends Model
 {
@@ -34,6 +37,7 @@ class EntityAbility extends Model
         'visibility',
         'created_by',
         'charges',
+        'position',
         'note',
     ];
 
@@ -86,6 +90,18 @@ class EntityAbility extends Model
             ->limit(20)
             ->pluck('a.type')
             ->all();
+    }
+
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeDefaultOrder(Builder $query)
+    {
+        return $query
+            ->orderBy('position')
+            ->orderBy('a.type')
+            ->orderBy('a.name');
     }
 
     /**

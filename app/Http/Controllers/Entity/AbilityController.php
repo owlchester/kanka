@@ -114,6 +114,13 @@ class AbilityController extends Controller
             ->with('success', $success);
     }
 
+    public function show(Entity $entity, EntityAbility $entityAbility)
+    {
+        return redirect()
+            ->route('entities.entity_abilities.index', [$entity->id]);
+    }
+
+
     /**
      * @param Entity $entity
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -122,10 +129,13 @@ class AbilityController extends Controller
     public function edit(Entity $entity, EntityAbility $entityAbility)
     {
         $this->authorize('update', $entity->child);
+        $ability = $entityAbility;
+        $ajax = request()->ajax();
 
         return view('entities.pages.abilities.update', compact(
             'entity',
-            'entityAbility'
+            'ability',
+            'ajax'
         ));
     }
 
@@ -138,7 +148,7 @@ class AbilityController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $data = $request->only(['ability_id', 'visibility']);
+        $data = $request->only(['ability_id', 'visibility', 'note', 'position']);
 
         $entityAbility->update($data);
 
@@ -147,6 +157,9 @@ class AbilityController extends Controller
                 'success' => true
             ]);
         }
+
+        return redirect()
+            ->route('entities.entity_abilities.index', $entity->id);
     }
 
     /**

@@ -48,8 +48,7 @@ class AbilityService
             ->select('entity_abilities.*')
             ->with(['ability', 'ability.entity', 'ability.entity.attributes', 'ability.ability', 'ability.ability.entity'])
             ->join('abilities as a', 'a.id', 'entity_abilities.ability_id')
-            ->orderBy('a.type')
-            ->orderBy('a.name')
+            ->defaultOrder()
             ->get();
         foreach ($abilities as $ability) {
             // Can't read the ability? skip
@@ -148,11 +147,13 @@ class AbilityService
             'type' => $entityAbility->ability->type,
             'charges' => $this->parseCharges($entityAbility->ability),
             'used_charges' => $entityAbility->charges,
+            'note' => nl2br($entityAbility->note),
             'visibility' => $entityAbility->visibility,
             'created_by' => $entityAbility->created_by,
             'attributes' => $this->attributes($entityAbility->ability->entity),
             'actions' => [
-                'edit' => route('entities.entity_abilities.update', [$this->entity, $entityAbility]),
+                'edit' => route('entities.entity_abilities.edit', [$this->entity, $entityAbility]),
+                'update' => route('entities.entity_abilities.update', [$this->entity, $entityAbility]),
                 'delete' => route('entities.entity_abilities.destroy', [$this->entity, $entityAbility]),
                 'view' => route('abilities.show', $entityAbility->ability_id),
             ],

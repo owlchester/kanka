@@ -220,7 +220,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
         </div>
     </div>
 
-    <div class="modal fade" id="delete-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
+    <div class="modal modal-danger fade" id="delete-confirm" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -239,8 +239,8 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('crud.cancel') }}</button>
-                    <button type="button" class="btn btn-danger" id="delete-confirm-submit"><span class="fa fa-trash"></span> {{ trans('crud.delete_modal.delete') }}</button>
+                    <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">{{ trans('crud.cancel') }}</button>
+                    <button type="button" class="btn btn-outline" id="delete-confirm-submit"><span class="fa fa-trash"></span> {{ trans('crud.delete_modal.delete') }}</button>
                 </div>
             </div>
         </div>

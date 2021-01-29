@@ -11,7 +11,9 @@ class EntityAbilityObserver
     public function saving(EntityAbility $entityAbility)
     {
         $entityAbility->note = $this->purify($entityAbility->note);
-        //$entityAbility->position = (int) $entityAbility->position;
+        if ($entityAbility->position !== null) {
+            $entityAbility->position = (int) $entityAbility->position;
+        }
     }
 
     /**
@@ -21,6 +23,30 @@ class EntityAbilityObserver
     {
         if (!$entityAbility->savedObserver) {
             return;
+        }
+
+        // Position isn't empty, move the rest
+        if ($entityAbility->position !== null) {
+            /** @var EntityAbility[] $abilities */
+            $position = $entityAbility->position;
+            $abilities = EntityAbility::select('entity_abilities.*')
+                ->with(['ability'])
+                ->join('abilities as a', 'a.id', 'entity_abilities.ability_id')
+                ->where('entity_id', $entityAbility->entity_id)
+                ->where('entity_abilities.id', '<>', $entityAbility->id)
+                ->where('position', '>=', $position)
+                ->defaultOrder()
+                ->get();
+            foreach ($abilities as $next) {
+                // Check the ability's parent to only move stuff in the same "group"
+                if ($next->ability->ability_id != $entityAbility->ability->ability_id) {
+                    continue;
+                }
+                $position++;
+                $next->savedObserver = false;
+                $next->position = $position;
+                $next->save();
+            }
         }
 
         // When adding or changing an entity note to an entity, we want to update the

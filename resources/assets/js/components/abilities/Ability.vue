@@ -9,6 +9,7 @@
                         <a class="dropdown-toggle" role="button">
                             <i class="fas fa-lock" v-if="ability.visibility === 'admin'" v-bind:title="$t('crud.visibilities.admin')"></i>
                             <i class="fas fa-user-lock" v-if="ability.visibility === 'self'" v-bind:title="$t('crud.visibilities.self')"></i>
+                            <i class="fas fa-users" v-if="ability.visibility === 'members'" v-bind:title="$t('crud.visibilities.members')"></i>
                             <i class="fa fa-eye" v-if="ability.visibility === 'all'" v-bind:title="$t('crud.visibilities.all')"></i>
                         </a>
                         <template slot="dropdown">
@@ -22,6 +23,9 @@
                                 <a role="button" v-on:click="setVisibility('self')">{{ $t('crud.visibilities.self') }}</a>
                             </li>
                             <li v-if="this.isSelf">
+                                <a role="button" v-on:click="setVisibility('members')">{{ $t('crud.visibilities.members') }}</a>
+                            </li>
+                            <li v-if="this.isSelf">
                                 <a role="button" v-on:click="setVisibility('admin.self')">{{ $t('crud.visibilities.admin-self') }}</a>
                             </li>
                         </template>
@@ -31,14 +35,24 @@
                     </a>
                 </span>
 
-                <a role="button" v-on:click="deleteAbility(ability)" v-if="this.canDelete" class="pull-right">
+                <div class="pull-right">
+                  <a role="button"
+                    v-on:click="updateAbility(ability)"
+                    v-if="this.canDelete"
+                    class="margin-r-5">
+                    <i class="fa fa-pencil"></i> {{ $t('crud.update') }}
+                  </a>
+                  <a role="button" v-on:click="deleteAbility(ability)" v-if="this.canDelete">
                     <i class="fa fa-trash"></i> {{ $t('crud.remove') }}
-                </a>
+                  </a>
+                </div>
             </div>
             <div class="box-body">
                 <span class="help-block">{{ ability.type }}</span>
 
                 <div v-html="ability.entry"></div>
+
+                <div v-html="ability.note" class="help-block"></div>
 
                 <div v-if="ability.charges">
                     <div class="charges">
@@ -114,16 +128,21 @@
             deleteAbility: function(ability) {
                 Event.$emit('delete_ability', ability);
             },
+            updateAbility: function(ability) {
+                axios.get(ability.actions.edit).then(response => {
+                  $('#entity-modal').find('.modal-content').html(response.data);
+                  $('#entity-modal').modal();
+                });
+            },
             showAbility: function(ability) {
-              console.log('showing ability', ability);
-              window.open(ability.actions.view, "_blank");
+                window.open(ability.actions.view, "_blank");
             },
             setVisibility: function(visibility) {
                 var data = {
                     visibility: visibility,
                     ability_id: this.ability.ability_id,
                 };
-                axios.patch(this.ability.actions.edit, data).then(response => {
+                axios.patch(this.ability.actions.update, data).then(response => {
                     this.ability.visibility = visibility;
                     Event.$emit('edited_ability', ability);
                 })

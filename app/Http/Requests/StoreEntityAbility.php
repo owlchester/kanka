@@ -26,6 +26,8 @@ class StoreEntityAbility extends FormRequest
         return [
             'ability_id' => 'required_without:abilities|exists:abilities,id',
             'abilities' => 'required_without:ability_id|array|min:1',
+            'position' => 'nullable|integer|min:0|max:100',
+            'note' => 'nullable|string',
             'visibility' => 'string',
         ];
     }

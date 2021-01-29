@@ -4,9 +4,11 @@
     'breadcrumbs' => [
         ['url' => $entity->url('index'), 'label' => trans($entity->pluralType() . '.index.title')],
         ['url' => $entity->url('show'), 'label' => $entity->name],
-        ['url' => route('entities.abilities', $entity->id), 'label' => trans('crud.tabs.abilities')],
+        ['url' => route('entities.entity_abilities.index', $entity->id), 'label' => trans('crud.tabs.abilities')],
     ]
 ])
+
+@inject('campaign', 'App\Services\CampaignService')
 
 @section('content')
     <div class="panel panel-default">
@@ -22,7 +24,24 @@
             @include('partials.errors')
 
             {!! Form::model($ability, ['route' => ['entities.entity_abilities.update', $entity->id, $ability], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
-            @include('entities.pages.abilities._form')
+
+            <div class="form-group">
+                <label>{{ __('crud.fields.ability') }}</label>
+                {!! $ability->ability->tooltipedLink() !!}
+                {!! Form::hidden('ability_id', $ability->ability_id) !!}
+            </div>
+
+            <div class="form-group">
+                <label>{{ __('entities/abilities.fields.position') }}</label>
+                {!! Form::number('position', null, ['class' => 'form-control', 'min' => 0, 'max' => '100']) !!}
+            </div>
+
+            <div class="form-group">
+                <label>{{ __('entities/abilities.fields.note') }}</label>
+                {!! Form::textarea('note', null, ['class' => 'form-control', 'rows' => 4]) !!}
+            </div>
+
+            @include('cruds.fields.visibility')
 
             <div class="form-group">
                 <button class="btn btn-success">{{ trans('crud.save') }}</button>
