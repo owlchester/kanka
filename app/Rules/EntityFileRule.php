@@ -50,7 +50,7 @@ class EntityFileRule implements Rule
             return false;
         }
 
-        if (!in_array($value->getClientOriginalExtension(), ['mp3', 'ogg'])){
+        if (!in_array($value->getClientOriginalExtension(), ['mp3', 'ogg', 'json'])){
             return false;
         }
 
