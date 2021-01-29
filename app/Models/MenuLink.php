@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\Dashboard;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
@@ -22,6 +23,8 @@ use Illuminate\Support\Str;
  * @property string $filters
  * @property string $random_entity_type
  * @property integer $position
+ * @property integer $dashboard_id
+ * @property CampaignDashboard $dashboard
  * @property Entity $target
  * @property boolean $is_private
  */
@@ -48,6 +51,7 @@ class MenuLink extends MiscModel
         'position',
         'random_entity_type',
         'icon',
+        'dashboard_id',
     ];
 
     /**
@@ -67,7 +71,8 @@ class MenuLink extends MiscModel
      * @var array
      */
     public $nullableForeignKeys = [
-        'entity_id'
+        'entity_id',
+        'dashboard_id',
     ];
 
     public $tooltipField = 'name';
@@ -98,6 +103,7 @@ class MenuLink extends MiscModel
         return $query->with([
             'entity',
             'target',
+            'dashboard',
         ]);
     }
 
@@ -115,6 +121,14 @@ class MenuLink extends MiscModel
     public function target()
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function dashboard()
+    {
+        return $this->belongsTo('App\Models\CampaignDashboard', 'dashboard_id');
     }
 
     /**
@@ -141,6 +155,9 @@ class MenuLink extends MiscModel
      */
     public function getRoute()
     {
+        if ($this->dashboard) {
+            return route('dashboard', ['dashboard' => $this->dashboard_id]);
+        }
         return !empty($this->entity_id) ? $this->getEntityRoute() : $this->getIndexRoute();
     }
 
@@ -269,5 +286,14 @@ class MenuLink extends MiscModel
             return 'fa fa-question';
         }
         return 'fa fa-th-list';
+    }
+
+    /**
+     * Validate that the user has access to this dashboard
+     * @return bool
+     */
+    public function isValidDashboard(): bool
+    {
+        return Dashboard::getDashboard($this->dashboard_id) !== null;
     }
 }

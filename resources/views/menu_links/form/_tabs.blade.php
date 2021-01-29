@@ -7,3 +7,6 @@
 <li class="{{ request()->get('tab') == 'random' ? 'active' : null }}">
     <a href="#random">{{ __('menu_links.fields.random') }}</a>
 </li>
+<li class="{{ request()->get('tab') == 'dashboard' ? 'active' : null }}">
+    <a href="#dashboard">{{ __('menu_links.fields.dashboard') }}</a>
+</li>

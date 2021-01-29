@@ -36,6 +36,7 @@ You can get a list of all the menu links of a campaign by using the following en
            "type": null,
            "tab": "",
            "target": null,
+           "dashboard_id": null,
            "created_at": "2020-12-24T00:38:49.000000Z",
            "updated_at": "2020-12-24T00:41:20.000000Z"
         }
@@ -68,6 +69,7 @@ To get the details of a single menu link, use the following endpoint.
         "type": null,
         "tab": "",
         "target": null,
+        "dashboard_id": null,
         "created_at": "2020-12-24T00:38:49.000000Z",
         "updated_at": "2020-12-24T00:41:20.000000Z"
     }
@@ -90,9 +92,10 @@ To create a menu link, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the menu link |
-| `entity_id` | `int` (Required without type, random_entity_type) | Entity id of the menu link |
-| `type` | `int` (Required without entity_id, random_entity_type) | The menu link entity type id |
-| `random_entity_type` | `string` (Required without entity_id, type) | The entity type (singular) for a random entity of that type |
+| `entity_id` | `int` (Required without type, random_entity_type, dashboard_id) | Entity id of the menu link |
+| `type` | `int` (Required without entity_id, random_entity_type, dashboard_id) | The menu link entity type id |
+| `random_entity_type` | `string` (Required without entity_id, type, dashboard_id) | The entity type (singular) for a random entity of that type |
+| `dashboard_id` | `int` (Required without entity_id, type, random_entity_type) | The dashboard id |
 | `icon` | `string` | Custom icon for boosted campaigns |
 | `tab` | `string` | Tab options for the link |
 | `filters` | `string` | Filter options for the link |

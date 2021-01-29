@@ -19,7 +19,10 @@
         [
             'label' => __('menu_links.fields.entity'),
             'render' => function($model) {
-                if ($model->target) {
+                if ($model->dashboard) {
+                    return $model->dashboard->name;
+                }
+                elseif ($model->target) {
                     return $model->target->tooltipedLink();
                 } elseif (empty($model->type)) {
                     // Link to a no-longer existing entity

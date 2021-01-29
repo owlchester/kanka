@@ -8,3 +8,6 @@
 <div class="tab-pane {{ (request()->get('tab') == 'random' ? ' active' : '') }}" id="random">
     @include('menu_links.form._random', ['source' => null])
 </div>
+<div class="tab-pane {{ (request()->get('tab') == 'dashboard' ? ' active' : '') }}" id="dashboard">
+    @include('menu_links.form._dashboard', ['source' => null])
+</div>

@@ -29,6 +29,7 @@ class MenuLinkResource extends EntityResource
             'type' => $model->type,
             'tab' => $model->tab,
             'target' => $model->target,
+            'dashboard_id' => $model->dashboard_id,
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at,
         ];

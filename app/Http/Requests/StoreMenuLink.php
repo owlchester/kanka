@@ -25,9 +25,10 @@ class StoreMenuLink extends FormRequest
     {
         return [
             'name' => 'required',
-            'entity_id' => 'required_without_all:type,random_entity_type|exists:entities,id',
-            'type' => 'required_without_all:entity_id,random_entity_type',
-            'random_entity_type' => 'required_without_all:entity_id,type',
+            'entity_id' => 'required_without_all:type,random_entity_type,dashboard_id|exists:entities,id',
+            'type' => 'required_without_all:entity_id,random_entity_type,dashboard_id',
+            'random_entity_type' => 'required_without_all:entity_id,type,dashboard_id',
+            'dashboard_id' => 'required_without_all:entity_id,type,random_entity_type',
             'icon' => 'nullable',
             'tab' => 'nullable',
             'filters' => 'nullable|string|max:191',
