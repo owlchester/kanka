@@ -50,7 +50,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                     </li>
                     @foreach ($currentCampaign->menuLinks()->with(['target'])->ordered()->get() as $menuLink)
                         <?php /** @var \App\Models\MenuLink $menuLink */ ?>
-                        @if ($menuLink->dashboard && $menuLink->isValidDashboard())
+                        @if ($menuLink->dashboard && $currentCampaign->boosted() && $menuLink->isValidDashboard())
                             <li class="subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }}">
                                 <a href="{{ $menuLink->getRoute() }}">
                                     <i class="{{ $menuLink->icon() }}"></i> <span>{{ $menuLink->name }}</span>

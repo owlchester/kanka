@@ -13,6 +13,7 @@ return [
         'title'     => 'Quick Link :name',
     ],
     'fields'        => [
+        'dashboard'     => 'Dashboard',
         'entity'        => 'Entity',
         'filters'       => 'Filters',
         'menu'          => 'Menu',
@@ -24,6 +25,7 @@ return [
         'type'          => 'Entity Type',
     ],
     'helpers'       => [
+        'dashboard' => 'Have the quick link target one of the campaign\'s custom dashboards. This feature is only available to :boosted.',
         'entity'    => 'Set up this quick link to go directly to an entity. The :tab field controls which of the tabs is focused. The :menu field controls which subpage of the entity is opened.',
         'position'  => 'Use this field to control in which ascending order the links appear in the menu.',
         'random'    => 'Use this field to have a quick link pointing to a random entity. You can filter the link to only go to a specific entity type.',
