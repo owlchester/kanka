@@ -1,8 +1,7 @@
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => trans($name . '.create.title'),
-    'description' => trans($name . '.create.description'),
     'breadcrumbs' => [
-        ['url' => route($name . '.index'), 'label' => trans($name . '.index.title')],
+        ['url' => Breadcrumb::index($name), 'label' => trans($name . '.index.title')],
         trans('crud.create'),
     ],
     'canonical' => true,

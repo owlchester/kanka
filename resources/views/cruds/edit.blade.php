@@ -1,8 +1,7 @@
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => trans($name . '.edit.title', ['name' => $model->name]),
-    'description' => '',
     'breadcrumbs' => [
-        ['url' => route($name . '.index'), 'label' => trans($name . '.index.title')],
+        ['url' => Breadcrumb::index($name), 'label' => __($name . '.index.title')],
         ['url' => route($name . '.show', $model->id), 'label' => $model->name],
         trans('crud.update'),
     ],

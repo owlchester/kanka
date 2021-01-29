@@ -25,6 +25,8 @@ return [
         'name'          => 'Name',
         'reverse_order' => 'Reverse era order',
         'type'          => 'Type',
+        'timeline'      => 'Parent Timeline',
+        'timelines'     => 'Timelines',
     ],
     'helpers'       => [
         'reorder'           => 'Drag and drop elements of the era to reorder them.',

@@ -1,6 +1,8 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
-{!! $datagrid->filters($filters)
+{!! $datagrid
+    ->filters($filters)
+    ->nested()
     ->render(
     $filterService,
     // Columns
@@ -14,10 +16,6 @@
         'type',
         'date',
         [
-            'type' => 'location',
-            'visible' => $campaign->enabled('locations'),
-        ],
-        [
             'label' => trans('events.fields.event'),
             'field' => 'event.name',
             'render' => function($model) {
@@ -27,6 +25,18 @@
             }
         ],
         [
+            'type' => 'location',
+            'visible' => $campaign->enabled('locations'),
+        ],
+        [
+            'label' => trans('events.fields.events'),
+            'field' => 'event.name',
+            'render' => function($model) {
+                return $model->descendants->count();
+            },
+            'disableSort' => true,
+        ],
+        [
             'type' => 'is_private',
         ]
     ],
@@ -34,9 +44,16 @@
     $models,
     // Options
     [
-        'route' => 'events.index',
+        'route' => 'events.tree',
         'baseRoute' => 'events',
         'trans' => 'events.fields.',
-        'campaign' => $campaign
+        'campaign' => $campaign,
+        'row' => [
+            'data' => [
+                'data-children' => function($model) {
+                    return $model->events->count();
+                }
+            ]
+        ]
     ]
 ) !!}

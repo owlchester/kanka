@@ -15,6 +15,8 @@ return [
     ],
     'fields'        => [
         'date'      => 'Date',
+        'event'     => 'Parent Event',
+        'events'    => 'Events',
         'image'     => 'Image',
         'location'  => 'Location',
         'name'      => 'Name',

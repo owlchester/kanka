@@ -359,6 +359,7 @@ return [
         'organisation'  => 'Choose an organisation',
         'race'          => 'Choose a race',
         'tag'           => 'Choose a tag',
+        'timeline'      => 'Choose a timeline',
     ],
     'relations'                 => [
         'actions'   => [

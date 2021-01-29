@@ -9,10 +9,15 @@ use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Kalnoy\Nestedset\NodeTrait;
 
 /**
  * @property TimelineEra[] $eras
  * @property bool $revert_order
+ * @property int $timeline_id
+ * @property Timeline $timeline
+ * @property Timeline[] $timelines
+ * @property Timeline[] $descendants
  */
 class Timeline extends MiscModel
 {
@@ -20,7 +25,8 @@ class Timeline extends MiscModel
         VisibleTrait,
         ExportableTrait,
         SimpleSortableTrait,
-        SoftDeletes;
+        SoftDeletes,
+        NodeTrait;
 
     public $fillable = [
         'name',
@@ -31,6 +37,7 @@ class Timeline extends MiscModel
         'is_private',
         'image',
         'revert_order',
+        'timeline_id',
     ];
 
     /**
@@ -47,6 +54,7 @@ class Timeline extends MiscModel
         'name',
         'type',
         'calendar_id',
+        'timeline_id',
         'is_private',
         'tags',
         'has_image',
@@ -60,6 +68,7 @@ class Timeline extends MiscModel
      */
     protected $sortableColumns = [
         'calendar.name',
+        'timeline.name',
     ];
 
     /**
@@ -68,6 +77,7 @@ class Timeline extends MiscModel
      */
     public $nullableForeignKeys = [
         'calendar_id',
+        'timeline_id',
     ];
 
     /**
@@ -101,6 +111,22 @@ class Timeline extends MiscModel
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function timelines()
+    {
+        return $this->hasMany('App\Models\Timeline', 'timeline_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function timeline()
+    {
+        return $this->belongsTo('App\Models\Timeline', 'timeline_id', 'id');
+    }
+
+    /**
      *
      */
     public function eras()
@@ -109,10 +135,33 @@ class Timeline extends MiscModel
     }
 
     /**
+     * @return string
+     */
+    public function getParentIdName()
+    {
+        return 'timeline_id';
+    }
+
+    /**
+     * Specify parent id attribute mutator
+     * @param $value
+     */
+    public function setTimelineIdAttribute($value)
+    {
+        $this->setParentIdAttribute($value);
+    }
+
+    /**
      * @return array
      */
     public function menuItems($items = [])
     {
+        $items['timelines'] = [
+            'name' => 'timelines.fields.timelines',
+            'route' => 'timelines.timelines',
+            'count' => $this->descendants()->count()
+        ];
+
         return parent::menuItems($items);
     }
 

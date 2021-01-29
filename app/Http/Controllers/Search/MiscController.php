@@ -146,6 +146,16 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
+    public function timelines(Request $request)
+    {
+        $term = trim($request->q);
+        return $this->buildSearchResults($term, \App\Models\Timeline::class);
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function tags(Request $request)
     {
         $term = trim($request->q);

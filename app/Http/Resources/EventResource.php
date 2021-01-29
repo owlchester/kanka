@@ -16,6 +16,7 @@ class EventResource extends EntityResource
     {
         return $this->entity([
             'type' => $this->type,
+            'event_id' => $this->event_id,
             'date' => $this->date,
         ]);
     }

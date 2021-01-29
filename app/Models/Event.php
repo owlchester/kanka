@@ -2,17 +2,30 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Kalnoy\Nestedset\NodeTrait;
 
+/**
+ * Class Event
+ * @package App\Models
+ *
+ * @property int $event_id
+ * @property Event $event
+ * @property Event[] $events
+ * @property Event[] $descendants
+ */
 class Event extends MiscModel
 {
     use CampaignTrait,
         VisibleTrait,
         ExportableTrait,
-        SoftDeletes;
+        SoftDeletes,
+        NodeTrait,
+        SimpleSortableTrait;
 
     /**
      * @var array
@@ -27,6 +40,7 @@ class Event extends MiscModel
         'entry',
         'is_private',
         'location_id',
+        'event_id',
     ];
 
     /**
@@ -61,6 +75,7 @@ class Event extends MiscModel
      */
     public $nullableForeignKeys = [
         'location_id',
+        'event_id',
     ];
 
     /**
@@ -120,6 +135,22 @@ class Event extends MiscModel
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function event()
+    {
+        return $this->belongsTo('App\Models\Event', 'event_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function events()
+    {
+        return $this->hasMany('App\Models\Event', 'event_id', 'id');
+    }
+
+    /**
      * Detach children when moving this entity from one campaign to another
      */
     public function detach()
@@ -138,5 +169,35 @@ class Event extends MiscModel
     public function entityTypeId(): int
     {
         return (int) config('entities.ids.event');
+    }
+
+    /**
+     * @return string
+     */
+    public function getParentIdName()
+    {
+        return 'event_id';
+    }
+    /**
+     * Specify parent id attribute mutator
+     * @param $value
+     */
+    public function setEventIdAttribute($value)
+    {
+        $this->setParentIdAttribute($value);
+    }
+
+    /**
+     * @return array
+     */
+    public function menuItems($items = [])
+    {
+        $items['events'] = [
+            'name' => 'events.fields.events',
+            'route' => 'events.events',
+            'count' => $this->descendants()->count()
+        ];
+
+        return parent::menuItems($items);
     }
 }

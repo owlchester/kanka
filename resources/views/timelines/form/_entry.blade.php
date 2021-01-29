@@ -4,6 +4,7 @@
         @include('cruds.fields.name', ['trans' => 'timelines'])
         @include('cruds.fields.type', ['base' => \App\Models\Timeline::class, 'trans' => 'timelines'])
 
+        @include('cruds.fields.timeline', ['parent' => true])
         @include('cruds.fields.tags')
 
         @include('cruds.fields.private')

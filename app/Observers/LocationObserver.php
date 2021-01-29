@@ -52,9 +52,7 @@ class LocationObserver extends MiscObserver
                 $sub->{$sub->getLftName()} = null;
                 $sub->{$sub->getRgtName()} = null;
                 $sub->save();
-                //dump('sub ' . $sub->id . ' was still a child');
             }
-            //dump('this location still has descendants when it shouldn\'t.');
         }
     }
 

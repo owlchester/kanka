@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Timelines;
 
 use App\Datagrids\Filters\TimelineFilter;
+use App\Datagrids\Sorters\TimelineTimelineSorter;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreTimeline;
 use App\Models\Timeline;
+use App\Traits\TreeControllerTrait;
 
 class TimelineController extends CrudController
 {
+    use TreeControllerTrait;
+
     /**
      * @var string
      */
@@ -22,10 +26,8 @@ class TimelineController extends CrudController
     protected $filter = TimelineFilter::class;
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreTimeline $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreTimeline $request)
     {
@@ -75,5 +77,17 @@ class TimelineController extends CrudController
     public function destroy(Timeline $timeline)
     {
         return $this->crudDestroy($timeline);
+    }
+
+    /**
+     * @param Timeline $timeline
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function timelines(Timeline $timeline)
+    {
+        return $this
+            ->datagridSorter(TimelineTimelineSorter::class)
+            ->menuView($timeline, 'timelines');
     }
 }

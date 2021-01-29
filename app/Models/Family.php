@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Facades\CampaignLocalization;
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
@@ -199,30 +198,12 @@ class Family extends MiscModel
      */
     public function menuItems($items = [])
     {
-        $campaign = CampaignLocalization::getCampaign();
-
         $items['families'] = [
             'name' => 'families.show.tabs.families',
             'route' => 'families.families',
             'count' => $this->descendants()->count()
         ];
 
-//        $count = $this->members()->count();
-//        if ($campaign->enabled('characters') && $count > 0) {
-//            $items['members'] = [
-//                'name' => 'families.show.tabs.members',
-//                'route' => 'families.members',
-//                'count' => $count
-//            ];
-//        }
-//        $count = $this->allMembers()->count();
-//        if ($campaign->enabled('characters') && $count > 0) {
-//            $items['all_members'] = [
-//                'name' => 'families.show.tabs.all_members',
-//                'route' => 'families.all-members',
-//                'count' => $count
-//            ];
-//        }
         return parent::menuItems($items);
     }
 

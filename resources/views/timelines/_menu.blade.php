@@ -6,17 +6,16 @@
         @endif
 
         <ul class="list-group list-group-unbordered">
-            @if (!empty($model->map))
+            @include('cruds.lists.type')
+            @if ($model->timeline)
                 <li class="list-group-item">
-                    <b>{{ trans('maps.fields.maps') }}</b>
+                    <b>{{ __('timelines.fields.timeline') }}</b>
                     <span class="pull-right">
-                        {!! $model->map->tooltipedLink() !!}
+                        {!! $model->timeline->tooltipedLink() !!}
                     </span>
                     <br class="clear" />
                 </li>
             @endif
-            @include('cruds.lists.location')
-            @include('cruds.lists.type')
             @include('entities.components.relations')
             @include('entities.components.attributes')
             @include('entities.components.tags')

@@ -3,9 +3,8 @@
 ?>
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => __($name . '.edit.title', ['name' => $model->name]),
-    'description' => '',
     'breadcrumbs' => [
-        ['url' => route($name . '.index'), 'label' => __($name . '.index.title')],
+        ['url' => Breadcrumb::index($name), 'label' => __($name . '.index.title')],
         ['url' => route($name . '.show', $model->id), 'label' => $model->name],
         __('crud.edit'),
     ]

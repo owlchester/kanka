@@ -3,14 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\EventFilter;
+use App\Datagrids\Sorters\EventEventSorter;
 use App\Http\Requests\StoreEvent;
 use App\Models\Event;
 use App\Models\Tag;
+use App\Traits\TreeControllerTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class EventController extends CrudController
 {
+    use TreeControllerTrait;
+
     /**
      * @var string
      */
@@ -79,15 +83,25 @@ class EventController extends CrudController
         return $this->crudDestroy($event);
     }
 
-
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Location  $location
-     * @return \Illuminate\Http\Response
+     * @param Event $event
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function mapPoints(Event $event)
     {
         return $this->menuView($event, 'map-points', true);
+    }
+
+    /**
+     * @param Event $event
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function events(Event $event)
+    {
+        return $this
+            ->datagridSorter(EventEventSorter::class)
+            ->menuView($event, 'events');
     }
 }

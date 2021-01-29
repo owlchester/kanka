@@ -110,7 +110,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                 @endif
                 @if ($campaign->enabled('timelines'))
                     <li class="{{ $sidebar->active('timelines') }} subsection">
-                        <a href="{{ route('timelines.index') }}"><i class="fas fa-hourglass-half"></i> <span>{{ trans('sidebar.timelines') }}</span></a>
+                        <a href="{{ route('timelines.' . $defaultIndex) }}"><i class="fas fa-hourglass-half"></i> <span>{{ trans('sidebar.timelines') }}</span></a>
                     </li>
                 @endif
                 @if ($campaign->enabled('races'))
@@ -143,7 +143,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                 @endif
                 @if ($campaign->enabled('events'))
                     <li class="{{ $sidebar->active('events') }} subsection">
-                        <a href="{{ route('events.index') }}"><i class="fa fa-bolt"></i> <span>{{ trans('sidebar.events') }}</span></a>
+                        <a href="{{ route('events.' . $defaultIndex) }}"><i class="fa fa-bolt"></i> <span>{{ trans('sidebar.events') }}</span></a>
                     </li>
                 @endif
                 @if ($campaign->enabled('abilities'))

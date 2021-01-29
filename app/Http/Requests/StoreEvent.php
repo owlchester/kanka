@@ -26,6 +26,7 @@ class StoreEvent extends FormRequest
         return [
             'name' => 'required',
             'location_id', 'nullable|integer|exists:locations,id',
+            'event_id', 'nullable|integer|exists:events,id',
             'type' => 'max:191',
             'date' => 'max:191',
             'image' => 'mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),

@@ -1,13 +1,11 @@
 <div class="row">
     <div class="col-md-6">
         @include('cruds.fields.name', ['trans' => 'events'])
-
     </div>
     <div class="col-md-6">
         @include('cruds.fields.type', ['base' => \App\Models\Event::class, 'trans' => 'events'])
     </div>
 </div>
-
 
 @include('cruds.fields.entry2')
 
@@ -20,6 +18,8 @@
         </div>
 
         @include('cruds.fields.location')
+
+        @include('cruds.fields.event', ['parent' => true])
 
         @include('cruds.fields.tags')
 

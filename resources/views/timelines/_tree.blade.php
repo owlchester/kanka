@@ -1,6 +1,8 @@
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
-<?php /** @var \App\Models\Timeline $model */?>
-{!! $datagrid->filters($filters)
+
+{!! $datagrid
+    ->filters($filters)
+    ->nested()
     ->render(
     $filterService,
     // Columns
@@ -22,6 +24,13 @@
             }
         ],
         [
+            'label' => trans('timelines.fields.timelines'),
+            'render' => function($model) {
+                return $model->timelines->count();
+            },
+            'disableSort' => true,
+        ],
+        [
             'label' => __('timelines.fields.eras'),
             'render' => function($model) {
                 return $model->eras()->count();
@@ -36,9 +45,16 @@
     $models,
     // Options
     [
-        'route' => 'timelines.index',
+        'route' => 'timelines.tree',
         'baseRoute' => 'timelines',
         'trans' => 'timelines.fields.',
-        'campaign' => $campaign
+        'campaign' => $campaign,
+        'row' => [
+            'data' => [
+                'data-children' => function($model) {
+                    return $model->timelines->count();
+                }
+            ]
+        ]
     ]
 ) !!}

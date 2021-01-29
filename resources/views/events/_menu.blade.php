@@ -19,6 +19,16 @@
                 </li>
             @endif
             @include('cruds.lists.location')
+
+            @if ($model->event)
+                <li class="list-group-item">
+                    <b>{{ __('events.fields.event') }}</b>
+                    <span class="pull-right">
+                    {!! $model->event->tooltipedLink() !!}
+                </span>
+                    <br class="clear" />
+                </li>
+            @endif
             @if ($campaign->enabled('characters') && !empty($model->character))
                 <li class="list-group-item">
                     <b>{{ trans('events.fields.character') }}</b>
