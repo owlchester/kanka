@@ -461,7 +461,7 @@ class AttributeService
      * @param int $campaign
      * @return CampaignPlugin
      */
-    protected function getMarketplacePlugin(int $pluginId, int $campaign)
+    protected function getMarketplacePlugin(int $pluginId, $campaign)
     {
         if (isset($this->loadedPlugins[$pluginId])) {
             return $this->loadedPlugins[$pluginId];
