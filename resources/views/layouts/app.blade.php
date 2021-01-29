@@ -132,9 +132,6 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                 @include('partials.success')
 
 @if(!empty(config('tracking.adsense')) && (auth()->guest() || auth()->user()->showAds()) && !isset($skipBannerAd) && (!isset($sidebar) || $sidebar != 'settings'))
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
                 <p class="text-center text-muted">
                     {!! __('misc.ads.remove_v2', [
     'supporting' => link_to_route('settings.subscription', __('misc.ads.supporting'), [], ['target' => '_blank']),
