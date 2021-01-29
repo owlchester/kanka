@@ -132,15 +132,6 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                 @include('partials.success')
 
 @if(!empty(config('tracking.adsense')) && (auth()->guest() || auth()->user()->showAds()) && !isset($skipBannerAd) && (!isset($sidebar) || $sidebar != 'settings'))
-                <ins class="adsbygoogle"
-                     style="display:block;"@if (config('app.env') != 'prod')
-                     data-adtest="on"@endif
-                     data-ad-client="ca-pub-1686281547359435"
-                     data-ad-slot="2711573107"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
                 <p class="text-center text-muted">
                     {!! __('misc.ads.remove_v2', [
     'supporting' => link_to_route('settings.subscription', __('misc.ads.supporting'), [], ['target' => '_blank']),
