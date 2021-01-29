@@ -13,6 +13,9 @@ return [
         'success'   => 'Event \':name\' updated.',
         'title'     => 'Edit Event :name',
     ],
+    'events' => [
+        'title' => 'Event :name Events',
+    ],
     'fields'        => [
         'date'      => 'Date',
         'event'     => 'Parent Event',
@@ -24,6 +27,7 @@ return [
     ],
     'helpers'       => [
         'date'  => 'This field can contain anything and is not linked to the campaign\'s calendars. To link this event to a calendar, go add it on the calendar or on the reminders tab of this event.',
+        'nested'    => 'Showing events with no parent event by default. Click on a event\'s row to see the descendants of it.',
     ],
     'index'         => [
         'add'           => 'New Event',

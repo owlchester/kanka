@@ -29,6 +29,7 @@ return [
         'timelines'     => 'Timelines',
     ],
     'helpers'       => [
+        'nested'    => 'Showing timelines with no parent timeline by default. Click on a timeline\'s row to see the descendants of it.',
         'reorder'           => 'Drag and drop elements of the era to reorder them.',
         'reorder_tooltip'   => 'Click to enable manual reordering of elements using drag and drop.',
         'reverse_order'     => 'Enable to display eras in reverse chronological order (older era first)',
@@ -43,5 +44,8 @@ return [
     ],
     'show'          => [
         'title' => 'Timeline :name',
+    ],
+    'timelines' => [
+        'title' => 'Timeline :name Timelines',
     ],
 ];
