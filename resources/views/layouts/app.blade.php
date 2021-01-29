@@ -143,12 +143,11 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                 @yield('entity-actions')
                 @yield('entity-header')
                 @yield('content')
-            </section><!-- /.content -->
-        </div><!-- /.content-wrapper -->
+            </section>
+        </div>
 
         @yield('fullpage-form-end')
 
-        <!-- Footer -->
         @include('layouts.footer')
 
     </div>
@@ -197,14 +196,12 @@ $campaign = CampaignLocalization::getCampaign(); ?>
         </div>
     </div>
 
-    <!-- Standard Sized Modal -->
     <div class="modal fade" id="entity-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content"></div>
         </div>
     </div>
 
-    <!-- Large Sized Modal -->
     <div class="modal fade" id="large-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content" id="large-modal-content"></div>
@@ -239,7 +236,6 @@ $campaign = CampaignLocalization::getCampaign(); ?>
 
     @yield('modals')
 
-    <!-- Scripts -->
     <script src="https://kit.fontawesome.com/d7f0be4a8d.js" crossorigin="anonymous"></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="/js/select2/i18n/{{ LaravelLocalization::getCurrentLocale() == 'en-US' ? 'en' : LaravelLocalization::getCurrentLocale() }}.js" defer></script>
