@@ -85,7 +85,7 @@ TEXT
         'question'  => 'Where to create monsters?',
     ],
     'multiworld'            => [
-        'answer'    => 'You can be a part of as many campaigns as you want, including those you\'ve created. To switch or create a new campaign, go to your campaign dashboard and in the top right you can click on your current campaign to display the campaign switcher interface.',
+        'answer'    => 'You can be a part of as many campaigns as you want, including those you\'ve created. To switch or create a new campaign, click on your campaign\'s name in the sidebar to open the campaign switcher. Below your campaigns, there is a New Campaign button.',
         'question'  => 'Can I have more than one campaign?',
     ],
     'nested'                => [
