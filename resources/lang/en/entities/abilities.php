@@ -10,8 +10,15 @@ return [
         'success_multiple'  => 'Abilities :abilities added to :entity.',
         'title'             => 'Add abilities to :name',
     ],
+    'fields'    => [
+        'position' => 'Position',
+        'note' => 'Note',
+    ],
     'show'      => [
         'helper'    => 'Attach abilities to this entity. You can always edit the visibility or remove an ability. Abilities belonging to the same parent ability will display as filter boxes.',
         'title'     => 'Entity Abilities for :name',
+    ],
+    'update'    => [
+        'title'     => 'Entity Ability for :name',
     ],
 ];
