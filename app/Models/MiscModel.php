@@ -246,10 +246,7 @@ abstract class MiscModel extends Model
             return Img::crop(40, 40)->url(CampaignCache::defaultImages()[$this->getEntityType()]['path']);
         }
 
-        // Patreons have nicer icons
-        if (auth()->check() && auth()->user()->isGoblinPatron()) {
-            return asset('/images/defaults/patreon/' . $this->getTable() . ($width !== 400 ? '_thumb' : null) . '.png');
-        }
+        // Default fallback
         return asset('/images/defaults/' . $this->getTable() . ($width !== 400 ? '_thumb' : null) . '.jpg');
     }
 

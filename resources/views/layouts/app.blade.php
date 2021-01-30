@@ -132,15 +132,6 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                 @include('partials.success')
 
 @if(!empty(config('tracking.adsense')) && (auth()->guest() || auth()->user()->showAds()) && !isset($skipBannerAd) && (!isset($sidebar) || $sidebar != 'settings'))
-                <ins class="adsbygoogle"
-                     style="display:block;"@if (config('app.env') != 'prod')
-                     data-adtest="on"@endif
-                     data-ad-client="ca-pub-1686281547359435"
-                     data-ad-slot="2711573107"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
                 <p class="text-center text-muted">
                     {!! __('misc.ads.remove_v2', [
     'supporting' => link_to_route('settings.subscription', __('misc.ads.supporting'), [], ['target' => '_blank']),
@@ -152,12 +143,11 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                 @yield('entity-actions')
                 @yield('entity-header')
                 @yield('content')
-            </section><!-- /.content -->
-        </div><!-- /.content-wrapper -->
+            </section>
+        </div>
 
         @yield('fullpage-form-end')
 
-        <!-- Footer -->
         @include('layouts.footer')
 
     </div>
@@ -206,14 +196,12 @@ $campaign = CampaignLocalization::getCampaign(); ?>
         </div>
     </div>
 
-    <!-- Standard Sized Modal -->
     <div class="modal fade" id="entity-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content"></div>
         </div>
     </div>
 
-    <!-- Large Sized Modal -->
     <div class="modal fade" id="large-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content" id="large-modal-content"></div>
@@ -248,7 +236,6 @@ $campaign = CampaignLocalization::getCampaign(); ?>
 
     @yield('modals')
 
-    <!-- Scripts -->
     <script src="https://kit.fontawesome.com/d7f0be4a8d.js" crossorigin="anonymous"></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="/js/select2/i18n/{{ LaravelLocalization::getCurrentLocale() == 'en-US' ? 'en' : LaravelLocalization::getCurrentLocale() }}.js" defer></script>

@@ -44,8 +44,9 @@ trait Picture
      */
     protected function avatarUrl(string $avatar)
     {
-        // If it's a default image, patreons have the nicer pictures
-        /*if (Str::contains($avatar, '/images/defaults/')) {
+        // If it's a default image, patreons have the nicer pictures.
+        // Why do we do this here? Because it's based on the user, so it can't go in cache
+        if (Str::contains($avatar, '/images/defaults/')) {
             // Check if the campaign has a default image first
             $campaign = CampaignLocalization::getCampaign();
             if ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->type)) {
@@ -55,7 +56,7 @@ trait Picture
             if (auth()->check() && auth()->user()->isGoblinPatron()) {
                 return str_replace(['defaults/', '.jpg'], ['defaults/patreon/', '.png'], $avatar);
             }
-        }*/
+        }
 
         $nowebp = Img::nowebp();
         $endsWith = Str::endsWith($avatar, '?webpfallback');
