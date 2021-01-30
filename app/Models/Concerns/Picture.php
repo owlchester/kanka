@@ -18,7 +18,6 @@ trait Picture
      */
     public function avatar(bool $thumb = false, string $field = 'image')
     {
-
         $avatar = Cache::get($this->avatarCacheKey($thumb, $field), false);
         if ($avatar === false) {
             $avatar = $this->cacheAvatar($thumb, $field);
@@ -46,7 +45,7 @@ trait Picture
     {
         // If it's a default image, patreons have the nicer pictures.
         // Why do we do this here? Because it's based on the user, so it can't go in cache
-        if (Str::contains($avatar, '/images/defaults/')) {
+        if (Str::contains($avatar, '/images/defaults/') && !Str::contains($avatar, '/patreon/')) {
             // Check if the campaign has a default image first
             $campaign = CampaignLocalization::getCampaign();
             if ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->type)) {
