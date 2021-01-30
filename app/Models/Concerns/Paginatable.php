@@ -34,6 +34,10 @@ trait Paginatable
             return 100;
         }
 
+        if (request()->is('api/*')) {
+            $this->pageSizeMinimum = 45;
+        }
+
         return min(max($pageSize, $this->pageSizeMinimum), $this->pageSizeLimit);
     }
 }
