@@ -80,8 +80,51 @@
         </div>
     </div>
 
-
     <div class="col-lg-4 mb-5">
+        <div class="card mb-5 mb-lg-0">
+            <div class="card-body">
+                <div class="card-image subscription-wyvern @nowebp webpfallback @endnowebp"></div>
+                <div class="card-title text-muted text-uppercase text-center">Wyvern</div>
+                <div class="card-price text-center">$10<span class="period">/{{ __('front.pricing.tier.month') }}</span></div>
+                <hr>
+                <ul class="fa-ul">
+                    <li>
+                        <span class="fa-li"><i class="fas fa-check"></i></span>
+                        <a href="{{ route('front.features', ['#boost']) }}" target="_blank">
+                            <strong>6 {{ __('front.pricing.benefits.boosters') }}</strong>
+                        </a>
+                    </li>
+                    <li>
+                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.pricing.benefits.higher_uploads') }} (15mb)
+                    </li>
+                    <li>
+                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.monthly_vote') }}
+                    </li>
+                    <li>
+                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.discord') }}
+                    </li>
+                    <li>
+                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.default_image') }}
+                    </li>
+
+{{--                    <li class="text-muted">--}}
+{{--                        <span class="fa-li"><i class="fas fa-times"></i></span> {{ __('front.features.patreon.curation') }}--}}
+{{--                    </li>--}}
+{{--                    <li class="text-muted">--}}
+{{--                        <span class="fa-li"><i class="fas fa-times"></i></span> {{ __('front.features.patreon.impact') }}--}}
+{{--                    </li>--}}
+                </ul>
+
+                <a href="{{ route('settings.subscription') }}" target="_blank" class="btn btn-block btn-primary text-uppercase">
+                    {{ __('front.pricing.actions.subscribe') }}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row pricing mt-3">
+    <div class="offset-lg-4 col-lg-4 mb-5">
         <div class="card mb-5 mb-lg-0">
             <div class="card-body">
                 <div class="card-image subscription-elemental @nowebp webpfallback @endnowebp"></div>
