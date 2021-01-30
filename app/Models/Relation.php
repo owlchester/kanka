@@ -100,11 +100,12 @@ class Relation extends Model
      */
     public function createMirror(): void
     {
+        $target = request()->get('target_relation');
         $mirror = Relation::create([
             'owner_id' => $this->target_id,
             'target_id' => $this->owner_id,
             'campaign_id' => $this->campaign_id,
-            'relation' => $this->relation,
+            'relation' => !empty($target) ? $target : $this->relation,
             'attitude' => $this->attitude,
             'colour' => $this->colour,
             'visibility' => $this->visibility,

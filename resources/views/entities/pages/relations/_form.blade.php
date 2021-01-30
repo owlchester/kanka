@@ -34,12 +34,23 @@
 @include('cruds.fields.visibility', ['model' => isset($relation) ? $relation : null])
 
 @if(empty($relation) && (!isset($mirror) || $mirror == true))
-    <div class="form-group">
-        <label>
-            {!! Form::checkbox('two_way') !!}
-            {{ __('entities/relations.fields.two_way') }}
-        </label>
-        <p class="help-block">{{ __('entities/relations.hints.two_way') }}</p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>
+                    {!! Form::checkbox('two_way') !!}
+                    {{ __('entities/relations.fields.two_way') }}
+                </label>
+                <p class="help-block">{{ __('entities/relations.hints.two_way') }}</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group" style="display:none" id="two-way-relation">
+                <label>{!! __('entities/relations.fields.target_relation') !!}</label>
+                {!! Form::text('target_relation', null, ['class' => 'form-control', 'maxlength' => 191]) !!}
+                <p class="help-block">{{ __('entities/relations.hints.target_relation') }}</p>
+            </div>
+        </div>
     </div>
 @endif
 

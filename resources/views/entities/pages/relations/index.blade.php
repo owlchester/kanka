@@ -149,7 +149,6 @@
 @endsection
 
 
-@if($campaign->campaign()->boosted())
 
 @section('scripts')
     <script src="/vendor/spectrum/spectrum.js" defer></script>
@@ -161,4 +160,3 @@
     <link href="{{ mix('css/relations.css') }}" rel="stylesheet">
 @endsection
 
-@endif

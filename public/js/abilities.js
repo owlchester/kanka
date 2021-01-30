@@ -357,9 +357,7 @@ __webpack_require__.r(__webpack_exports__);
       _event_js__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('delete_ability', ability);
     },
     updateAbility: function updateAbility(ability) {
-      console.log('editing, call modal');
       axios.get(ability.actions.edit).then(function (response) {
-        console.log('response', response);
         $('#entity-modal').find('.modal-content').html(response.data);
         $('#entity-modal').modal();
       });

@@ -13,6 +13,7 @@ return [
         'is_star'   => 'Pinned',
         'relation'  => 'Relation',
         'target'    => 'Target',
+        'target_relation' => 'Target Relation',
         'two_way'   => 'Create mirror relation',
     ],
     'helper'        => 'Set up relations between entities with attitudes and visibility. Relations can also be pinned to the entity\'s menu.',
@@ -22,6 +23,7 @@ return [
             'text'  => 'This relation is mirrored with :link.',
             'title' => 'Mirrored',
         ],
+        'target_relation' => 'The relation description on the target. Leave blank to use this relation\'s text.',
         'two_way'   => 'If you select to create a mirror relation, the same relation will be created on the target. However, if you edit one, the mirror won\'t be updated.',
     ],
     'placeholders'  => [

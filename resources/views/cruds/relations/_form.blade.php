@@ -33,6 +33,10 @@
                 </label>
                 <p class="help-block">{{ trans('relations.hints.two_way') }}</p>
             </div>
+            <div class="form-group">
+                <label>{!! __('relations.fields.target_relation') !!}</label>
+                {!! Form::text('target_relation', null, ['class' => 'form-control', 'maxlength' => 191]) !!}
+            </div>
         @endif
 
         <div class="form-group">

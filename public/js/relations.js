@@ -51596,7 +51596,19 @@ var DEFAULT_COLOUR = '#777777';
 var addingRelation = false;
 
 function initCytoscape() {
-  // Libraries
+  $(document).on('shown.bs.modal', function () {
+    initRelationFormModal();
+  });
+
+  if ($('input[name="two_way"]').length === 1) {
+    initRelationFormModal();
+  }
+
+  if ($('#cy').length === 0) {
+    return;
+  } // Libraries
+
+
   cytoscape__WEBPACK_IMPORTED_MODULE_1___default.a.use(cytoscape_dblclick__WEBPACK_IMPORTED_MODULE_4__["default"]);
   cytoscape__WEBPACK_IMPORTED_MODULE_1___default.a.use(cytoscape_cose_bilkent__WEBPACK_IMPORTED_MODULE_2___default.a);
   cytoscape__WEBPACK_IMPORTED_MODULE_1___default.a.use(cytoscape_panzoom__WEBPACK_IMPORTED_MODULE_3___default.a); // Selector
@@ -51837,6 +51849,12 @@ function _displayOnLoad() {
     }, _callee);
   }));
   return _displayOnLoad.apply(this, arguments);
+}
+
+function initRelationFormModal() {
+  $('input[name="two_way"]').on('click', function (e) {
+    $('#two-way-relation').toggle();
+  });
 }
 
 /***/ }),

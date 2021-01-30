@@ -15,6 +15,17 @@ var addingRelation = false;
 
 function initCytoscape() {
 
+    $(document).on('shown.bs.modal', function() {
+        initRelationFormModal();
+    });
+    if ($('input[name="two_way"]').length === 1) {
+        initRelationFormModal();
+    }
+
+    if($('#cy').length === 0) {
+        return;
+    }
+
     // Libraries
     cytoscape.use( dblclick );
     cytoscape.use( coseBilkent );
@@ -233,5 +244,11 @@ async function displayOnLoad() {
     }
     $("#spinner").hide();
     cySelector.show();
+}
+
+function initRelationFormModal() {
+    $('input[name="two_way"]').on('click', function(e) {
+        $('#two-way-relation').toggle();
+    });
 }
 
