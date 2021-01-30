@@ -7,6 +7,7 @@ class Patreon
     const PLEDGE_KOBOLD = 'Kobold';
     const PLEDGE_GOBLIN = 'Goblin';
     const PLEDGE_OWLBEAR = 'Owlbear';
+    const PLEDGE_WYVERN = 'Wyvern';
     const PLEDGE_ELEMENTAL = 'Elemental';
 
     /**
@@ -18,6 +19,7 @@ class Patreon
             self::PLEDGE_KOBOLD => self::PLEDGE_KOBOLD,
             self::PLEDGE_GOBLIN => self::PLEDGE_GOBLIN,
             self::PLEDGE_OWLBEAR => self::PLEDGE_OWLBEAR,
+            self::PLEDGE_WYVERN => self::PLEDGE_WYVERN,
             self::PLEDGE_ELEMENTAL => self::PLEDGE_ELEMENTAL,
         ];
     }

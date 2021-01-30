@@ -45,6 +45,10 @@
                                 {{ __('settings.subscription.plans.cost_yearly', ['amount' => 55.00, 'currency' => $currency]) }}
                             @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Patreon::PLEDGE_OWLBEAR), 'kanka'))
                                 {{ __('settings.subscription.plans.cost_monthly', ['amount' => 5.00, 'currency' => $currency]) }}
+                            @elseif ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Patreon::PLEDGE_WYVERN), 'kanka'))
+                                {{ __('settings.subscription.plans.cost_yearly', ['amount' => 110.00, 'currency' => $currency]) }}
+                            @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Patreon::PLEDGE_WYVERN), 'kanka'))
+                                {{ __('settings.subscription.plans.cost_monthly', ['amount' => 10.00, 'currency' => $currency]) }}
                             @elseif ($user->subscribedToPlan($service->yearlyPlans(\App\Models\Patreon::PLEDGE_ELEMENTAL), 'kanka'))
                                 {{ __('settings.subscription.plans.cost_yearly', ['amount' => 275.00, 'currency' => $currency]) }}
                             @elseif ($user->subscribedToPlan($service->monthlyPlans(\App\Models\Patreon::PLEDGE_ELEMENTAL), 'kanka'))
@@ -149,6 +153,19 @@
                     <th class="align-middle">
                         <div class="tier">
                             <div class="img">
+                                <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/wyvern-325.png" alt="Wyvern"/>
+                            </div>
+                            <div class="text">
+                                WYVERN
+                                <span class="price">
+                                    {{ __('tiers.pricing', ['amount' => 10, 'currency' => $user->currencySymbol()]) }}
+                                </span>
+                            </div>
+                        </div>
+                    </th>
+                    <th class="align-middle">
+                        <div class="tier">
+                            <div class="img">
                                 <img class="img-circle" src="https://kanka-app-assets.s3.amazonaws.com/images/tiers/elemental-325.png" alt="Elemental"/>
                             </div>
                             <div class="text">
@@ -215,6 +232,32 @@
                                     {{ __('settings.subscription.subscription.actions.subscribe_annual', ['tier' => 'Owlbear']) }}
                                 </a>
                             @endif
+                        @endif
+                    </th>
+                    <th class="align-middle">
+                        @if($user->subscribedToPlan([config('subscription.wyvern.eur.monthly'), config('subscription.wyvern.usd.monthly')], 'kanka'))
+                            <a class="btn btn-block btn-sm btn-default disabled">
+                                {{ __('tiers.current') }}
+                            </a>
+                        @elseif ($user->subscribedToPlan($service->wyvernPlans(), 'kanka'))
+                            <a class="btn btn-block btn-sm btn-default disabled">
+                                {{ __('settings.subscription.subscription.actions.downgrading') }}
+                            </a>
+                        @else
+                            <a class="btn btn-block btn-sm btn-success" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Patreon::PLEDGE_WYVERN, 'period' => 'monthly']) }}">
+                                {{ __('settings.subscription.subscription.actions.subscribe', ['tier' => 'Wyvern']) }}
+                            </a>
+                        @endif
+
+
+                        @if($user->subscribedToPlan([config('subscription.wyvern.eur.yearly'), config('subscription.wyvern.usd.yearly')], 'kanka'))
+                            <a class="btn btn-block btn-sm btn-default disabled">
+                                {{ __('tiers.current') }}
+                            </a>
+                        @else
+                            <a class="btn btn-block btn-sm btn-success" data-toggle="ajax-modal" data-target="#subscribe-confirm" data-url="{{ route('settings.subscription.change', ['tier' => \App\Models\Patreon::PLEDGE_WYVERN, 'period' => 'yearly']) }}">
+                                {{ __('settings.subscription.subscription.actions.subscribe_annual', ['tier' => 'Wyvern']) }}
+                            </a>
                         @endif
                     </th>
                     <th class="align-middle">
@@ -285,6 +328,14 @@
                     @foreach(__('settings.subscription.upgrade_downgrade.downgrade.bullets') as $key => $text)
                         <li>{{ $text }}</li>
                     @endforeach
+                </ul>
+
+                <hr />
+                <h4>{{ __('settings.subscription.upgrade_downgrade.cancel.title') }}</h4>
+                <ul>
+                    <li>{{ __('settings.subscription.upgrade_downgrade.cancel.bullets.kobold') }}</li>
+                    <li>{{ __('settings.subscription.upgrade_downgrade.cancel.bullets.bonuses') }}</li>
+                    <li>{{ __('settings.subscription.upgrade_downgrade.cancel.bullets.boosts') }}</li>
                 </ul>
             </div>
         </div>

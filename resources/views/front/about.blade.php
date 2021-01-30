@@ -172,6 +172,18 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
+                        <div class="card-image" style="background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/tiers/wyvern-325.png);"></div>
+                        <h5 class="card-title text-muted text-uppercase text-center">Wyvern</h5>
+
+                        <div class="row text-center">
+                        @foreach (\Illuminate\Support\Arr::get($patrons, 'Wyvern', []) as $user)
+                            <div class="col-md-4 col-6">{{ $user->name }}</div>
+                        @endforeach
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
                         <div class="card-image" style="background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/tiers/owlbear-325.png);"></div>
                         <h5 class="card-title text-muted text-uppercase text-center">Owlbear</h5>
 

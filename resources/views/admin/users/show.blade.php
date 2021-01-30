@@ -60,6 +60,10 @@
                         {{ __('settings.subscription.plans.cost_yearly', ['amount' => 55.00, 'currency' => $currency]) }}
                     @elseif ($model->subscribedToPlan($service->monthlyPlans(\App\Models\Patreon::PLEDGE_OWLBEAR), 'kanka'))
                         {{ __('settings.subscription.plans.cost_monthly', ['amount' => 5.00, 'currency' => $currency]) }}
+                    @elseif ($model->subscribedToPlan($service->yearlyPlans(\App\Models\Patreon::PLEDGE_WYVERN), 'kanka'))
+                        {{ __('settings.subscription.plans.cost_yearly', ['amount' => 110.00, 'currency' => $currency]) }}
+                    @elseif ($model->subscribedToPlan($service->monthlyPlans(\App\Models\Patreon::PLEDGE_WYVERN), 'kanka'))
+                        {{ __('settings.subscription.plans.cost_monthly', ['amount' => 10.00, 'currency' => $currency]) }}
                     @elseif ($model->subscribedToPlan($service->yearlyPlans(\App\Models\Patreon::PLEDGE_ELEMENTAL), 'kanka'))
                         {{ __('settings.subscription.plans.cost_yearly', ['amount' => 275.00, 'currency' => $currency]) }}
                     @elseif ($model->subscribedToPlan($service->monthlyPlans(\App\Models\Patreon::PLEDGE_ELEMENTAL), 'kanka'))

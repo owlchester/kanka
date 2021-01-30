@@ -12,8 +12,9 @@
             <tr>
                 <th></th>
                 <th>{{ __('front.features.patreon.free') }}</th>
-                <th>{{ __('patreon.pledges.owlbear') }}</th>
-                <th>{{ __('patreon.pledges.elemental') }}</th>
+                <th>Owlbear</th>
+                <th>Wyvern</th>
+                <th>Elemental</th>
             </tr>
             </thead>
             <tbody>
@@ -21,16 +22,19 @@
                 <td class="text">{{ __('front.features.patreon.upload_limit') }}</td>
                 <td>1 MB</td>
                 <td>8 MB</td>
+                <td>15 MB</td>
                 <td>25 MB</td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.patreon.upload_limit_map') }}</td>
                 <td>3 MB</td>
                 <td>10 MB</td>
+                <td>15 MB</td>
                 <td>25 MB</td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.patreon.users_roles') }}</td>
+                <td><i class="fa fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
                 <td><i class="fa fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
                 <td><i class="fa fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
                 <td><i class="fa fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
@@ -40,10 +44,12 @@
                 <td><i class="fa fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
                 <td><i class="fa fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
                 <td><i class="fa fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
+                <td><i class="fa fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.patreon.discord') }}</td>
                 <td></td>
+                <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
@@ -52,10 +58,12 @@
                 <td></td>
                 <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{!! __('front.features.patreon.hall_of_fame', ['link' => link_to_route('front.about', __('teams.hall_of_fame'), ['#patreon'])]) !!}</td>
                 <td></td>
+                <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
@@ -64,10 +72,12 @@
                 <td></td>
                 <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.patreon.api_calls') }}</td>
                 <td></td>
+                <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
@@ -76,10 +86,12 @@
                 <td></td>
                 <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.patreon.monthly_vote') }}</td>
                 <td></td>
+                <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
@@ -87,16 +99,19 @@
                 <td class="text">{{ __('front.features.patreon.boosts') }}</td>
                 <td></td>
                 <td>3</td>
+                <td>6</td>
                 <td>10</td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.patreon.curation') }}</td>
                 <td></td>
                 <td></td>
+                <td></td>
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.patreon.impact') }}</td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td><i class="fa fa-check-circle"></i></td>

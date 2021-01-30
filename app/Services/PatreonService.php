@@ -123,6 +123,7 @@ class PatreonService
     {
         $patrons = [
             'Elemental' => [],
+            'Wyvern' => [],
             'Owlbear' =>  [],
             'Goblin' => [],
             'Kobold' => []

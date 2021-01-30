@@ -125,6 +125,8 @@ class SubscriptionService
         $this->plan = null;
         if ($this->tier === Patreon::PLEDGE_OWLBEAR) {
             $this->plan = $this->owlbearPlanID();
+        } elseif ($this->tier === Patreon::PLEDGE_WYVERN) {
+            $this->plan = $this->wyvernPlanID();
         } elseif ($this->tier === Patreon::PLEDGE_ELEMENTAL) {
             $this->plan = $this->elementalPlanID();
         }
@@ -194,8 +196,11 @@ class SubscriptionService
             return $this;
         }
 
-        $plan = in_array($planID, $this->elementalPlans()) ? Patreon::PLEDGE_ELEMENTAL : Patreon::PLEDGE_OWLBEAR;
-        $new = !($this->user->patreon_pledge == Patreon::PLEDGE_OWLBEAR && $plan == Patreon::PLEDGE_ELEMENTAL);
+        $plan = in_array($planID, $this->elementalPlans()) ? Patreon::PLEDGE_ELEMENTAL :
+            (in_array($planID, $this->wyvernPlans()) ? Patreon::PLEDGE_WYVERN : Patreon::PLEDGE_OWLBEAR);
+
+        // Determine if the pledge was changed or not
+        $new = !$this->upgrading($plan);
 
         // Add the necessary roles and patreon data
         $this->user->patreon_pledge = $plan;
@@ -312,6 +317,8 @@ class SubscriptionService
         $amount = 0;
         if ($this->tier === Patreon::PLEDGE_OWLBEAR) {
             $amount = 5;
+        } elseif ($this->tier === Patreon::PLEDGE_WYVERN) {
+            $amount = 10;
         } elseif ($this->tier === Patreon::PLEDGE_ELEMENTAL) {
             $amount = 25;
         }
@@ -332,7 +339,10 @@ class SubscriptionService
         if ($this->user->subscribedToPlan($this->owlbearPlans(), 'kanka')) {
             return Patreon::PLEDGE_OWLBEAR;
         }
-        if ($this->user->subscribedToPlan($this->elementalPlans(), 'kanka')) {
+        elseif ($this->user->subscribedToPlan($this->wyvernPlans(), 'kanka')) {
+            return Patreon::PLEDGE_WYVERN;
+        }
+        elseif ($this->user->subscribedToPlan($this->elementalPlans(), 'kanka')) {
             return Patreon::PLEDGE_ELEMENTAL;
         }
 
@@ -517,6 +527,16 @@ class SubscriptionService
     /**
      * @return string
      */
+    public function wyvernPlanID(): string
+    {
+        return $this->user->currency === 'eur' ?
+            config('subscription.wyvern.eur.' . $this->period) :
+            config('subscription.wyvern.usd.' . $this->period);
+    }
+
+    /**
+     * @return string
+     */
     public function elementalPlanID(): string
     {
         return $this->user->currency === 'eur' ?
@@ -539,6 +559,20 @@ class SubscriptionService
     }
 
     /**
+     * @return array
+     */
+    public function wyvernPlans(): array
+    {
+        // eur: plan_GpVbGxVYKmmnp8 usd: plan_GpVZhf8C9bMAt4
+        return [
+            config('subscription.wyvern.eur.monthly'),
+            config('subscription.wyvern.usd.monthly'),
+            config('subscription.wyvern.eur.yearly'),
+            config('subscription.wyvern.usd.yearly'),
+        ];
+    }
+
+    /**
      * @param string $tier = null
      * @return array
      */
@@ -553,6 +587,8 @@ class SubscriptionService
         return [
             config('subscription.owlbear.eur.monthly'),
             config('subscription.owlbear.usd.monthly'),
+            config('subscription.wyvern.eur.monthly'),
+            config('subscription.wyvern.usd.monthly'),
             config('subscription.elemental.eur.monthly'),
             config('subscription.elemental.usd.monthly'),
         ];
@@ -573,6 +609,8 @@ class SubscriptionService
         return [
             config('subscription.owlbear.eur.yearly'),
             config('subscription.owlbear.usd.yearly'),
+            config('subscription.wyvern.eur.yearly'),
+            config('subscription.wyvern.usd.yearly'),
             config('subscription.elemental.eur.yearly'),
             config('subscription.elemental.usd.yearly'),
         ];
@@ -598,8 +636,28 @@ class SubscriptionService
      */
     protected function downgrading(): bool
     {
-        return $this->user->isElementalPatreon() && $this->tier === Patreon::PLEDGE_OWLBEAR ||
+        return
+            // Elemental downgrading -> owl or wyv
+            $this->user->isElementalPatreon() && in_array($this->tier, [Patreon::PLEDGE_OWLBEAR, Patreon::PLEDGE_WYVERN]) ||
+            // Wyvern downgrading to owl
+            $this->user->isWyvern() && $this->tier == Patreon::PLEDGE_OWLBEAR ||
+            // Cancelling
             $this->tier === Patreon::PLEDGE_KOBOLD;
+    }
+
+    /**
+     * Determine if a user is upgrading their plan to a higher tier
+     * @param $plan
+     * @return bool
+     */
+    protected function upgrading($plan): bool
+    {
+        if ($this->user->patreon_pledge == Patreon::PLEDGE_OWLBEAR && in_array($plan, [Patreon::PLEDGE_WYVERN, Patreon::PLEDGE_ELEMENTAL])) {
+            return true;
+        } elseif ($this->user->patreon_pledge == Patreon::PLEDGE_WYVERN && $plan == Patreon::PLEDGE_ELEMENTAL) {
+            return true;
+        }
+        return false;
     }
 
     /**
