@@ -147,7 +147,11 @@ class FrontController extends Controller
     public function campaigns(Request $request)
     {
         $features = Campaign::public()->front()->featured()->get();
-        $campaigns = Campaign::public()->front()->featured(false)->filterPublic($request->only(['language', 'system', 'is_boosted']))->paginate();
+        $campaigns = Campaign::public()
+            ->front()
+            ->featured(false)
+            ->filterPublic($request->only(['language', 'system', 'is_boosted', 'is_open']))
+            ->paginate();
 
         if (getenv('APP_ENV') === 'shadow') {
             $features = $campaigns = new Collection();

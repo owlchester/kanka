@@ -3,7 +3,7 @@
     'description' => trans('notifications.index.description'),
     'breadcrumbs' => [
         ['url' => route('notifications'), 'label' => trans('notifications.index.title')]
-    ]
+    ],
 ])
 
 @section('content')
@@ -16,6 +16,9 @@
                 @foreach ($r = Auth::user()->notifications()->paginate() as $notification)
                     <tr>
                         <td>
+                            <span class="text-muted pull-right" title="{{ $notification->created_at }}">
+                                {{ $notification->created_at->diffForHumans() }}
+                            </span>
                             @if (!empty($notification->data['icon']))
                             <i class="fa fa-{{ $notification->data['icon'] }} text-{{ $notification->data['colour'] }}"></i>
                                 @if(\Illuminate\Support\Arr::has($notification->data['params'], 'link'))
@@ -28,7 +31,6 @@
                             @else
                                 <p>{!! trans('notifications.' . $notification->data['key'] . '.body')!!}</p>
                             @endif
-                            <span class="text-muted pull-right">{{ $notification->created_at->diffForHumans() }}</span>
                         </td>
                     </tr>
                 @endforeach

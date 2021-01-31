@@ -198,6 +198,25 @@ class CampaignPolicy
 
         return !$campaign->userIsMember();
     }
+    /**
+     *
+     * Determine if a user can apply to a campaign
+     * @param User|null $user
+     * @param Campaign $campaign
+     * @return bool
+     */
+    public function apply(?User $user, Campaign $campaign)
+    {
+        if (empty($user)) {
+            return false;
+        }
+
+        if ($campaign->visibility != Campaign::VISIBILITY_PUBLIC || !$campaign->is_open) {
+            return false;
+        }
+
+        return !$campaign->userIsMember();
+    }
 
     /**
      * Permission to view the members of a campaign
@@ -209,6 +228,17 @@ class CampaignPolicy
     {
         return (UserCache::user($user)->admin() || $this->checkPermission('members', $user)) ||
             !($campaign->boosted() && $campaign->hide_members);
+    }
+
+    /**
+     * Permission to view the campaign submissions
+     * @param User $user
+     * @param Campaign $campaign
+     * @return bool
+     */
+    public function submissions(?User $user, Campaign $campaign)
+    {
+        return UserCache::user($user)->admin();
     }
 
     /**

@@ -61,6 +61,10 @@ Route::group([
 
         Route::post('/follow', 'CampaignFollowController@update')->name('campaign.follow');
 
+        Route::get('/apply', 'Campaign\ApplyController@index')->name('campaign.apply');
+        Route::post('/apply', 'Campaign\ApplyController@save')->name('campaign.apply.save');
+        Route::delete('/remove', 'Campaign\ApplyController@remove')->name('campaign.apply.remove');
+
         Route::get('/gallery', 'Campaign\GalleryController@index')->name('campaign.gallery.index');
         Route::get('/gallery/load', 'Campaign\GalleryController@load')->name('campaign.gallery.load');
         Route::get('/gallery/search', 'Campaign\GalleryController@search')->name('campaign.gallery.search');
@@ -216,6 +220,8 @@ Route::group([
         Route::get('/recovery', 'Campaign\RecoveryController@index')->name('recovery');
         Route::post('/recovery', 'Campaign\RecoveryController@recover')->name('recovery');
 
+
+
         // Stats
         Route::get('/stats', 'Campaign\StatController@index')->name('stats');
 
@@ -248,6 +254,7 @@ Route::group([
             'calendars.calendar_weather' => 'Calendar\CalendarWeatherController',
             'campaigns' => 'CampaignController',
             'campaign_users' => 'CampaignUserController',
+            'campaign_submissions' => 'Campaign\SubmissionController',
             'characters' => 'CharacterController',
             'characters.character_organisations' => 'CharacterOrganisationController',
             'conversations' => 'ConversationController',

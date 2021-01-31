@@ -148,13 +148,22 @@
                         </span>
                     </a>
                 </li>
-
             @endif
+            @can('roles', $campaign)
+                <li class="@if(!empty($active) && $active == 'submissions')active @endif">
+                    <a href="{{ route('campaign_submissions.index') }}">
+                        {{ __('campaigns.show.tabs.applications') }}
+                        <span class="label label-default pull-right">
+                    {{ $campaign->submissions()->count() }}
+                </span>
+                    </a>
+                </li>
             <li class="@if(!empty($active) && $active == 'export')active @endif">
                 <a href="{{ route('campaign_export') }}">
                     {{ __('campaigns.show.tabs.export') }}
                 </a>
             </li>
+            @endif
             @if ($campaign->boosted())
                 <li class="@if(!empty($active) && $active == 'default-images')active @endif">
                     <a href="{{ route('campaign.default-images') }}">

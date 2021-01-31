@@ -71,6 +71,16 @@
                 <i class="fa fa-star"></i> <span id="campaign-follow-text"></span>
             </button>
         @endcan
+        @can('apply', $campaign)
+            <button id="campaign-apply" class="btn btn-default btn-xl margin-r-5" data-id="{{ $campaign->id }}"
+                    data-url="{{ route('campaign.apply') }}"
+                    data-toggle="ajax-modal" title="{{ __('dashboard.helpers.join') }}"
+                    data-target="#large-modal"
+                    data-placement="bottom"
+            >
+                <i class="fas fa-door-open"></i> {{ __('dashboard.actions.join') }}
+            </button>
+        @endcan
     </div>
 @endsection
 
@@ -80,7 +90,7 @@
     @include('partials.errors')
 
     @if (!empty($release) && auth()->check() && auth()->user()->release != $release->id)
-        <div class="box box-widget">
+        <div class="box box-widget margin-top">
             <div class="box-header with-border">
                 <div class="user-block">
                     @if ($release->author && $release->author->avatar)

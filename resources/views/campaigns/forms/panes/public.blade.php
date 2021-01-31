@@ -48,4 +48,16 @@
             </div>
         </div>
     </div>
+
+    <hr />
+
+    <h4>{{ __('campaigns.open_campaign.title') }}</h4>
+    {!! Form::hidden('is_open', 0) !!}
+    <label>{!! Form::checkbox('is_open') !!}
+        {{ __('campaigns.fields.open') }}
+    </label>
+    <p class="help-block">{!! __('campaigns.open_campaign.helper', [
+    'link' => link_to_route('campaign_submissions.index', __('campaigns.open_campaign.link'))
+    ]) !!}</p>
+
 </div>

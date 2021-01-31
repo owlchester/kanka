@@ -16,6 +16,11 @@
                 @if (!empty($campaign->system))
                     <span class="label label-default" title="{{ __('campaigns.fields.system') }}">{{ $campaign->system }}</span>
                 @endif
+                @if ($campaign->is_open)
+                    <span class="label label-default mr-1" title="{{ __('campaigns.open_campaign.title') }}">
+                        <i class="fas fa-door-open"></i>
+                    </span>
+                @endif
                 @if ($campaign->boosted())
                     <span class="label label-default" title="{{ __('campaigns.panels.boosted') }}">
                         <i class="fa fa-rocket"></i>
