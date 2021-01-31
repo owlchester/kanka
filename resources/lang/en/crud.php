@@ -113,9 +113,13 @@ return [
             'copy_to_campaign'  => '{1} :count entity copied to :campaign.|[2,*] :count entities copied to :campaign.',
             'editing'           => '{1} :count entity was updated.|[2,*] :count entities were updated.',
             'permissions'       => '{1} Permissions changed for :count entity.|[2,*] Permissions changed for :count entities.',
-            'private'           => '{1} :count entity is now private|[2,*] :count entities are now private.',
-            'public'            => '{1} :count entity is now visible|[2,*] :count entities are now visible.',
+            'private'           => '{1} :count entity is now private.|[2,*] :count entities are now private.',
+            'public'            => '{1} :count entity is now visible.|[2,*] :count entities are now visible.',
+            'templates'         => '{1} :count entity had a template applied.|[2,*] :count entities has a template applied.',
         ],
+    ],
+    'bulk_templates' => [
+        'bulk_title' => 'Apply a template to multiple entities',
     ],
     'cancel'                    => 'Cancel',
     'click_modal'               => [
