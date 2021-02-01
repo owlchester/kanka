@@ -3,6 +3,7 @@
 return [
     'actions'   => [
         'add'   => 'Add abilities',
+        'import_from_race' => 'Add race abilities',
         'reset' => 'Reset ability usages',
     ],
     'create'    => [
@@ -21,4 +22,11 @@ return [
     'update'    => [
         'title'     => 'Entity Ability for :name',
     ],
+    'import' => [
+        'success' => '{1} :count ability imported.|[2,*] :count abilities imported.',
+        'errors' => [
+            'not_character' => 'The entity isn\'t a character.',
+            'no_race' => 'The character has no race.',
+        ]
+    ]
 ];

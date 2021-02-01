@@ -35,6 +35,11 @@
                                 <i class="fa fa-redo"></i> <span class="hidden-xs hidden-sm">{{ __('entities/abilities.actions.reset') }}</span>
                                 <span class="visible-xs visible-sm">{{ __('crud.actions.reset') }}</span>
                             </a>
+                            @if ($entity->typeId() == config('entities.ids.character'))
+                            <a href="{{ route('entities.entity_abilities.import', [$entity, 'from' => 'race']) }}" class="btn btn-sm btn-default margin-r-5">
+                                <i class="fa fa-sync"></i> {{ __('entities/abilities.actions.import_from_race') }}
+                            </a>
+                            @endif
                             <a href="{{ route('entities.entity_abilities.create', $entity) }}" class="btn btn-sm btn-primary"
                                data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_abilities.create', $entity) }}">
                                 <i class="fa fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('entities/abilities.actions.add') }}</span>

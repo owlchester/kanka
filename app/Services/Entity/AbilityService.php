@@ -12,6 +12,7 @@ use App\Models\EntityAbility;
 use ChrisKonnertz\StringCalc\StringCalc;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Exception;
 
 class AbilityService
 {
@@ -259,5 +260,38 @@ class AbilityService
         }
 
         return $this->attributes;
+    }
+
+    public function import(): int
+    {
+        if ($this->entity->typeId() !== config('entities.ids.character')) {
+            throw new Exception('not_character');
+        }
+
+        if (empty($this->entity->child->race)) {
+            throw new Exception('no_race');
+        }
+
+        // Existing abilities
+        $abilities = $this->entity->abilities;
+        $existingIds = [];
+        foreach ($abilities as $ability) {
+            $existingIds[] = $ability->ability_id;
+        }
+
+        /** @var EntityAbility[] $abilities */
+        $abilities = $this->entity->child->race->entity->abilities;
+        $count = 0;
+        foreach ($abilities as $ability) {
+            if (in_array($existingIds, $ability->ability_id)) {
+                continue;
+            }
+            $ability->replicate(['entity_id']);
+            $ability->entity_id = $this->entity->id;
+            $ability->save();
+            $count++;
+        }
+
+        return $count;
     }
 }

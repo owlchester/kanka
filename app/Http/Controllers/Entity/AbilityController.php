@@ -214,4 +214,21 @@ class AbilityController extends Controller
 
         return redirect()->route('entities.entity_abilities.index', $entity);
     }
+
+    public function import(Entity $entity)
+    {
+        $this->authorize('update', $entity->child);
+
+        try {
+            $count = $this->service
+                ->entity($entity)
+                ->import();
+
+            return redirect()->route('entities.entity_abilities.index', $entity)
+                ->with('success', trans_choice('entities/abilities.import.success', $count, ['count' => $count]));
+        } catch (\Exception $e) {
+            return redirect()->route('entities.entity_abilities.index', $entity)
+                ->with('error', __('entities/abilities.import.errors.' . $e->getMessage()));
+        }
+    }
 }
