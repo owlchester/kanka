@@ -114,12 +114,16 @@ class AbilityController extends Controller
             ->with('success', $success);
     }
 
+    /**
+     * @param Entity $entity
+     * @param EntityAbility $entityAbility
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function show(Entity $entity, EntityAbility $entityAbility)
     {
         return redirect()
             ->route('entities.entity_abilities.index', [$entity->id]);
     }
-
 
     /**
      * @param Entity $entity
@@ -140,9 +144,11 @@ class AbilityController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param Model $model
-     * @return \Illuminate\Http\RedirectResponse
+     * @param StoreEntityAbility $request
+     * @param Entity $entity
+     * @param EntityAbility $entityAbility
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(StoreEntityAbility $request, Entity $entity, EntityAbility $entityAbility)
     {
@@ -163,9 +169,10 @@ class AbilityController extends Controller
     }
 
     /**
-     * @param Model $model
-     * @param Model $relation
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Entity $entity
+     * @param EntityAbility $entityAbility
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Entity $entity, EntityAbility $entityAbility)
     {
@@ -193,6 +200,12 @@ class AbilityController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param Entity $entity
+     * @param EntityAbility $entityAbility
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function useCharge(Request $request, Entity $entity, EntityAbility $entityAbility)
     {
         return response()->json([
@@ -204,7 +217,7 @@ class AbilityController extends Controller
 
     /**
      * @param Entity $entity
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function resetCharges(Entity $entity)
     {
@@ -215,6 +228,11 @@ class AbilityController extends Controller
         return redirect()->route('entities.entity_abilities.index', $entity);
     }
 
+    /**
+     * @param Entity $entity
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function import(Entity $entity)
     {
         $this->authorize('update', $entity->child);

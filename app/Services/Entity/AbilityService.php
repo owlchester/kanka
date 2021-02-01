@@ -262,6 +262,10 @@ class AbilityService
         return $this->attributes;
     }
 
+    /**
+     * @return int
+     * @throws Exception
+     */
     public function import(): int
     {
         if ($this->entity->typeId() !== config('entities.ids.character')) {
