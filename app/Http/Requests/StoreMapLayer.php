@@ -29,7 +29,7 @@ class StoreMapLayer extends FormRequest
             'name' => 'required',
             'entry' => 'nullable',
             'visibility' => 'string',
-            'image' => 'required_without:image_url|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(false, 'map'),
+            'image' => 'required_without:image_url|mimes:jpeg,png,jpg,gif,svg|max:' . auth()->user()->maxUploadSize(false, 'map'),
             'image_url' => 'required_without:image|nullable|url|active_url',
             'position' => 'nullable|string|max:3',
             'type_id' => 'nullable|integer',
