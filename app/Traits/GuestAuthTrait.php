@@ -31,11 +31,16 @@ trait GuestAuthTrait
 
     /**
      * Secondary Authentication for Guest users
-     * @param $action
-     * @param $model
+     * @param string $action
+     * @param MiscModel $model = null
      */
-    protected function authorizeEntityForGuest($action, MiscModel $model)
+    protected function authorizeEntityForGuest($action, MiscModel $model = null)
     {
+        // If the misc model is null ($entity->child), the user has no valid access
+        if ($model === null) {
+            abort(403);
+        }
+
         $campaign = CampaignLocalization::getCampaign();
         $permission = EntityPermission::hasPermission($model->getEntityType(), $action, null, $model, $campaign);
 

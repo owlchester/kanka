@@ -1,5 +1,7 @@
 <?php /** @var \App\Models\Entity $entity
- * @var \App\Models\Inventory $item */?>
+ * @var \App\Models\Inventory $item
+ * @var \App\Models\Relation $relation
+ */?>
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => __('entities/relations.show.title', ['name' => $entity->name]),
     'breadcrumbs' => [

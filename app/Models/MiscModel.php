@@ -201,13 +201,12 @@ abstract class MiscModel extends Model
      * @param int $width = 200
      * @param int $width = null
      * @param string $field = 'image'
-     * @param bool $subFallback = false
      * @return string
      */
-    public function getImageUrl(int $width = 400, int $height = null, string $field = 'image', bool $subFallback = false)
+    public function getImageUrl(int $width = 400, int $height = null, string $field = 'image')
     {
         if (empty($this->$field)) {
-            return $this->getImageFallback($width, $subFallback);
+            return $this->getImageFallback($width);
         }
         return Img::resetCrop()
             ->crop($width, (!empty($height) ? $height : $width))
@@ -226,10 +225,10 @@ abstract class MiscModel extends Model
 
     /**
      * Get the image fallback image
-     * @param int $width
+     * @param int $width = 400
      * @return string
      */
-    protected function getImageFallback(int $width = 400, bool $subFallback = false): string
+    protected function getImageFallback(int $width = 400): string
     {
         // Campaign could have something set up
         $campaign = CampaignLocalization::getCampaign();
@@ -247,7 +246,7 @@ abstract class MiscModel extends Model
             return Img::crop(40, 40)->url(CampaignCache::defaultImages()[$this->getEntityType()]['path']);
         }
         // Goblins and above have nicer icons
-        elseif ($subFallback && auth()->check() && auth()->user()->isGoblinPatron()) {
+        elseif (auth()->check() && auth()->user()->isGoblinPatron()) {
             return asset('/images/defaults/patreon/' . $this->getTable() . ($width !== 400 ? '_thumb' : null) . '.png');
         }
 

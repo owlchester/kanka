@@ -32,6 +32,11 @@ trait Picture
      */
     protected function cacheAvatar(bool $thumb, string $field)
     {
+        // Can't get the child? Something is weird, let's cache something empty rather than crash the user
+        if (empty($this->child)) {
+            return '';
+        }
+        // Todo: we are caching with the user's nicer image here
         $avatar = $this->child->withEntity($this)->getImageUrl(40);
         Cache::forever($this->avatarCacheKey($thumb, $field), $avatar);
         return $avatar;

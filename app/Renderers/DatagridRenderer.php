@@ -339,7 +339,7 @@ class DatagridRenderer
                             : $column['parent_route']($model))
                         : $this->getOption('baseRoute');
                     $route = route($whoRoute . '.show', [$who]);
-                    $content = '<a class="entity-image" style="background-image: url(\'' . $who->getImageUrl(40, null, 'image', true) .
+                    $content = '<a class="entity-image" style="background-image: url(\'' . $who->getImageUrl(40) .
                         '\');" title="' . e($who->name) . '" href="' . $route . '"></a>';
                 }
             } elseif ($type == 'location') {
