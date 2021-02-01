@@ -24,17 +24,17 @@ export default function deleteConfirm() {
             }
 
             if (target) {
-                $('#delete-confirm-submit').data('target', target);
+                $('.delete-confirm-submit').data('target', target);
             }
         });
     });
 
 
     // Submit modal form
-    $.each($('#delete-confirm-submit'), function (index) {
+    $.each($('.delete-confirm-submit'), function (index) {
         $(this).unbind('click');
         $(this).click(function (e) {
-            console.log('clicky submit');
+            //console.log('clicky submit');
             var target = $(this).data('target');
             if (target) {
                 $('#' + target + ' input[name=remove_mirrored]').val(

@@ -4,7 +4,7 @@
  */
 ?>
 @extends('layouts.app', [
-    'title' => trans('settings.boost.title'),
+    'title' => __('settings.boost.title'),
     'breadcrumbs' => false,
     'sidebar' => 'settings',
 ])
@@ -14,7 +14,7 @@
     <div class="box box-solid">
         <div class="box-body">
             <h2 class="page-header with-border">
-                {{ trans('settings.boost.title') }}
+                {{ __('settings.boost.title') }}
             </h2>
 
             <p>
@@ -110,7 +110,7 @@
                                 @endif
                                 @can('destroy', $boost)
                                     <a href="#" class="delete-confirm btn btn-danger" data-name="{!! $boost->campaign->name !!}" data-toggle="modal" data-target="#unboost-confirm" data-delete-target="delete-confirm-form-{{ $boost->id }}" data-confirm-target="#unboost-confirm-name">
-                                        <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('crud.remove') }}
+                                        <i class="fa fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
                                     </a>
                                     {!! Form::open(['method' => 'DELETE', 'route' => ['campaign_boosts.destroy', $boost->id], 'style' => 'display:inline', 'id' => 'delete-confirm-form-' . $boost->id]) !!}
                                     {!! Form::close() !!}
@@ -144,7 +144,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
-                    <button type="button" class="btn btn-danger" id="unboost-confirm-submit"><span class="fa fa-trash"></span> {{ __('crud.remove') }}</button>
+                    <button type="button" class="btn btn-danger delete-confirm-submit">
+                        <span class="fa fa-trash"></span> {{ __('crud.remove') }}
+                    </button>
                 </div>
             </div>
         </div>

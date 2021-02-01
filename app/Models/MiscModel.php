@@ -247,7 +247,7 @@ abstract class MiscModel extends Model
             return Img::crop(40, 40)->url(CampaignCache::defaultImages()[$this->getEntityType()]['path']);
         }
         // Goblins and above have nicer icons
-        elseif (auth()->check() && auth()->user()->isGoblinPatron()) {
+        elseif ($subFallback && auth()->check() && auth()->user()->isGoblinPatron()) {
             return asset('/images/defaults/patreon/' . $this->getTable() . ($width !== 400 ? '_thumb' : null) . '.png');
         }
 
