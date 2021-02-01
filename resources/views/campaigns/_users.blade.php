@@ -6,7 +6,9 @@
 
         <p class="help-block">
             {{ __('campaigns.members.help') }}
-            {!! __('campaigns.members.helpers.admin', ['link' => link_to_route('faq.show', __('front.menu.faq'), ['key' => 'user-switch'], ['target' => '_blank'])]) !!}
+            {!! __('campaigns.members.helpers.admin', [
+    'link' => link_to_route('faq.show', __('front.menu.faq'), ['key' => 'user-switch'], ['target' => '_blank']),
+    'button' => '<code>' . __('campaigns.members.actions.switch') . '</code>']) !!}
         </p>
 
         <table id="campaign-members" class="table table-hover table-striped">

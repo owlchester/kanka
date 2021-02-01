@@ -135,7 +135,7 @@ TEXT
         'question'  => 'What happens if a campaign is no longer boosted?',
     ],
     'user-switch'           => [
-        'answer'    => 'Permissions can get tricky, especially with large campaigns. As a campaign admin, you can navigate to the campaign\'s members page and click the "Switch" button which will appear next to non-admin members of the campaign. Doing so will log you in as that user and allow you to see the campaign as they would. This is the easiest way to check your campaign\'s permissions.',
+        'answer'    => 'Permissions can get tricky, especially with large campaigns. As a campaign admin, you can navigate to the campaign\'s members page and click the "View as" button which will appear next to non-admin members of the campaign. Doing so will log you in as that user and allow you to see the campaign as they would. This is the easiest way to check your campaign\'s permissions.',
         'question'  => 'My campaign permissions are set up, how can I test them?',
     ],
     'visibility'            => [
