@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\CampaignLocalization;
 use App\Http\Requests\StoreEntityNote;
 use App\Models\EntityNote;
 use App\Traits\GuestAuthTrait;

@@ -7,6 +7,7 @@
         trans('crud.update'),
     ]
 ])
+@inject('campaign', 'App\Services\CampaignService')
 
 @section('fullpage-form')
     {!! Form::model($model, ['method' => 'PATCH', 'route' => ['entities.entity_notes.update', $entity->id, $model->id], 'data-shortcut' => '1', 'class' => 'entity-note-form', 'id' => 'entity-form']) !!}
