@@ -30,7 +30,7 @@ class GalleryImageStore extends FormRequest
             'file' => 'required|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
             'folder_id' => [
                 'nullable',
-                Rule::exists('images')->where(function ($query) {
+                Rule::exists('images', 'id')->where(function ($query) {
                     return $query->where('is_folder', 1);
                 }),
             ],
