@@ -6,7 +6,7 @@
     <h4 class="panel-title">{{ trans($type . '.create.title') }}</h4>
 </div>
 <div class="panel-body">
-    <form method="post" id="entity-creator-form entity-creator-form-{{ $type }}" action="{{ route('entity-creator.store', ['type' => $type]) }}" autocomplete="off">
+    <form method="post" id="entity-creator-form" action="{{ route('entity-creator.store', ['type' => $type]) }}" autocomplete="off" class="entity-creator-form-{{ $type }}">
         <div class="form-group required">
             <label>{{ __($type . '.fields.name') }}</label>
             {!! Form::text('name', old('name'), [
