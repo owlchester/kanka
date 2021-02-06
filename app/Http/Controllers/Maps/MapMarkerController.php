@@ -34,6 +34,11 @@ class MapMarkerController extends Controller
         'pin_size',
     ];
 
+    public function index(Map $map)
+    {
+        return redirect()->route('maps.show', $map);
+    }
+
     /**
      * @param Map $map
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View

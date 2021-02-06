@@ -516,10 +516,17 @@ class EntityService
         return $entity;
     }
 
+    /**
+     * @return array
+     */
     public function newEntityTypes(): array
     {
         if ($this->cachedNewEntityTypes !== false) {
             return $this->cachedNewEntityTypes;
+        }
+
+        if (!auth()->check()) {
+          return $this->cachedNewEntityTypes = [];
         }
 
         // Save and keep the current campaign before updating the entity

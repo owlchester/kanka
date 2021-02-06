@@ -45,10 +45,12 @@ class EntityNoteObserver
 
         if ($entityNote->is_pinned) {
             if (empty($entityNote->position)) {
-                $last = $entityNote->entity->notes()->pinned()
+                $last = $entityNote->entity->notes()
+                    ->where('is_pinned', true)
+                    ->where('id', '!=', $entityNote->id)
                     ->orderBy('position', 'desc')
                     ->first();
-                $entityNote->position = $last ? $last->position + 1 : 1;
+                $entityNote->position = $last ? ($last->position + 1) : 1;
             }
         }
     }

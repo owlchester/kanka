@@ -263,9 +263,13 @@ class MentionsService
                     $url .= '/' . strip_tags(trim($data['page'], '/'));
 
                     // Let's validate this new url first. Maybe we need to map to entities/id (ex inventory)
-                    $entityPages = ['inventory'];
+                    $entityPages = ['inventory', 'abilities', 'relations'];
                     if (in_array($data['page'], $entityPages)) {
-                        $url = route('entities.' . $data['page'], $entity->id);
+                        $page = $data['page'];
+                        if ($page == 'relations') {
+                            $page = 'relations.index';
+                        }
+                        $url = route('entities.' . $page, $entity->id);
                     }
                 }
                 $dataUrl = route('entities.tooltip', $entity);

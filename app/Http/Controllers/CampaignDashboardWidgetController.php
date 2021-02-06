@@ -79,6 +79,11 @@ class CampaignDashboardWidgetController extends Controller
             ->with('success', trans('dashboard.widgets.create.success'));
     }
 
+    public function show(CampaignDashboardWidget $campaignDashboardWidget)
+    {
+        return redirect()->route('dashboard');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
