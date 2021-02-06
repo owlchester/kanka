@@ -85,8 +85,8 @@ To create an entity-file, use the following endpoint.
 
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
-| `file` | `stream` | The uploaded file (max 2mb or 8mb for Patreons) |
-| `visibility` | `string` | The visibility: `all`, `self`, `admin` or `self-admin`. |
+| `file` | `stream` | The uploaded file (max 2mb or 8mb for subscribers) |
+| `visibility` | `string` | The visibility: `all`, `self`, `members`, `admin` or `self-admin`. |
 
 ### Results
 
