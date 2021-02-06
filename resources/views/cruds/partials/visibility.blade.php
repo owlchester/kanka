@@ -29,11 +29,21 @@ if ($model->visibility == \App\Models\Scopes\VisibilityScope::VISIBILITY_ALL) {
             <i class="fas fa-lock"></i> {{ __('crud.visibilities.admin') }}
         </a>
     </li>
+    <li>
+        <a href="#" class="entity-file-visibility" data-url="{{ route('entities.entity_files.update', [$entity, $file]) }}" data-visibility="members" data-icon="fas fa-users" title="{{ __('crud.visibilities.members') }}">
+            <i class="fas fa-users"></i> {{ __('crud.visibilities.members') }}
+        </a>
+    </li>
     @if ($model->created_by == auth()->user()->id)
     <li>
         <a href="#" class="entity-file-visibility" data-url="{{ route('entities.entity_files.update', [$entity, $file]) }}" data-visibility="self" data-icon="fas fa-user-lock" title="{{ __('crud.visibilities.self') }}">
             <i class="fas fa-user-lock"></i>
             {{ __('crud.visibilities.self') }}
+        </a>
+    </li>
+    <li>
+        <a href="#" class="entity-file-visibility" data-url="{{ route('entities.entity_files.update', [$entity, $file]) }}" data-visibility="admin-self" data-icon="fas fa-user-lock" title="{{ __('crud.visibilities.admin-self') }}">
+            <i class="fas fa-user-lock"></i> {{ __('crud.visibilities.admin-self') }}
         </a>
     </li>
     @endif

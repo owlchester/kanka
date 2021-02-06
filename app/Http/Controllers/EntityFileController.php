@@ -52,6 +52,16 @@ class EntityFileController extends Controller
     }
 
     /**
+     * @param Entity $entity
+     * @param EntityFile $entityFile
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function show(Entity $entity, EntityFile $entityFile)
+    {
+        return redirect()->to($entity->url());
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
