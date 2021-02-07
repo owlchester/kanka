@@ -10,7 +10,6 @@ class TimelineBulk extends Bulk
         'name',
         'type',
         'timeline_id',
-        'calendar_id',
         'tags',
         'private_choice',
     ];

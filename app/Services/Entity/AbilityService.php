@@ -287,7 +287,7 @@ class AbilityService
         $abilities = $this->entity->child->race->entity->abilities;
         $count = 0;
         foreach ($abilities as $ability) {
-            if (in_array($existingIds, $ability->ability_id)) {
+            if (in_array($ability->ability_id, $existingIds)) {
                 continue;
             }
             $ability->replicate(['entity_id']);

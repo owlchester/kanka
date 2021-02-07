@@ -5,9 +5,9 @@
  */
 $currentCampaign = CampaignLocalization::getCampaign();
 $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'index';
-\App\Facades\Dashboard::campaign($currentCampaign);
 ?>
 @if (!empty($currentCampaign))
+    @php \App\Facades\Dashboard::campaign($currentCampaign); @endphp
     @inject('sidebar', 'App\Services\SidebarService')
     @inject('campaign', 'App\Services\CampaignService')
     <aside class="main-sidebar main-sidebar-placeholder @if(auth()->check() && $currentCampaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($currentCampaign->image) style="background-image: url({{ Img::crop(280, 210)->url($currentCampaign->image) }})" @endif>
