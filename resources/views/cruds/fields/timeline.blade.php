@@ -7,12 +7,15 @@
         $preset = FormCopy::field('timeline')->select();
     }?>
     <div class="form-group">
-        {!! Form::select2(
+        {!! Form::foreignSelect(
             'timeline_id',
-            $preset,
-            App\Models\Timeline::class,
-            isset($enableNew) ? $enableNew : true,
-            isset($parent) ? 'timelines.fields.timeline' : null
+            [
+                'preset' => $preset,
+                'class' => App\Models\Timeline::class,
+                'enableNew' => isset($enableNew) ? $enableNew : true,
+                'labelKey' => isset($parent) ? 'timelines.fields.timeline' : null,
+                'from' => isset($from) ? $from : null,
+            ]
         ) !!}
     </div>
 @endif

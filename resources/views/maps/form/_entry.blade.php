@@ -3,7 +3,7 @@
     <div class="col-md-6">
         @include('cruds.fields.name', ['trans' => 'maps'])
         @include('cruds.fields.type', ['base' => \App\Models\Map::class, 'trans' => 'maps'])
-        @include('cruds.fields.map', ['parent' => true])
+        @include('cruds.fields.map', ['parent' => true, 'from' => (isset($model) ? $model : null)])
         @include('cruds.fields.location')
 
         @include('cruds.fields.tags')

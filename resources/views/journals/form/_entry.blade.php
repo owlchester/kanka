@@ -32,14 +32,16 @@
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            {!! Form::select2(
+            {!! Form::foreignSelect(
                 'journal_id',
-                (isset($model) && $model->journal ? $model->journal : FormCopy::field('journal')->select()),
-                App\Models\Journal::class,
-                true,
-                __('journals.fields.journal'),
-                null,
-                __('journals.placeholders.journal')
+                [
+                'preset' => (isset($model) && $model->journal ? $model->journal : FormCopy::field('journal')->select()),
+                'class' => App\Models\Journal::class,
+                'enableNew' => true,
+                'labelKey' => __('journals.fields.journal'),
+                'placeholderKey' => 'journals.placeholders.journal',
+                'from' => (isset($model) ? $model : null),
+            ]
             ) !!}
         </div>
 

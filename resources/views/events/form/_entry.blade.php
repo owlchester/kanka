@@ -19,7 +19,7 @@
 
         @include('cruds.fields.location')
 
-        @include('cruds.fields.event', ['parent' => true])
+        @include('cruds.fields.event', ['parent' => true, 'from' => isset($model) ? $model : null])
 
         @include('cruds.fields.tags')
 

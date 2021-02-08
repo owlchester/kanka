@@ -4,14 +4,16 @@
         @include('cruds.fields.name', ['trans' => 'quests'])
         @include('cruds.fields.type', ['base' => \App\Models\Quest::class, 'trans' => 'quests'])
         <div class="form-group">
-            {!! Form::select2(
+            {!! Form::foreignSelect(
                 'quest_id',
-                (isset($model) && $model->quest ? $model->quest : FormCopy::field('quest')->select(true, \App\Models\Quest::class)),
-                App\Models\Quest::class,
-                true,
-                'quests.fields.quest',
-                null,
-                'quests.placeholders.quest'
+                [
+                    'preset' => (isset($model) && $model->quest ? $model->quest : FormCopy::field('quest')->select(true, \App\Models\Quest::class)),
+                    'class' => App\Models\Quest::class,
+                    'enableNew' => true,
+                    'labelKey' => 'quests.fields.quest',
+                    'placeholderKey' => 'quests.placeholders.quest',
+                    'from' => isset($model) ? $model : null
+                ]
             ) !!}
         </div>
         @include('cruds.fields.character', ['label' => 'quests.fields.character'])

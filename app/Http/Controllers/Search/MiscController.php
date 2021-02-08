@@ -30,7 +30,8 @@ class MiscController extends Controller
     public function locations(Request $request)
     {
         $term = trim($request->q);
-        return $this->buildSearchResults($term, \App\Models\Location::class);
+        $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
+        return $this->buildSearchResults($term, \App\Models\Location::class, $exclude);
     }
 
     /**
@@ -89,7 +90,8 @@ class MiscController extends Controller
     public function families(Request $request)
     {
         $term = trim($request->q);
-        return $this->buildSearchResults($term, \App\Models\Family::class);
+        $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
+        return $this->buildSearchResults($term, \App\Models\Family::class, $exclude);
     }
 
     /**
@@ -109,7 +111,8 @@ class MiscController extends Controller
     public function organisations(Request $request)
     {
         $term = trim($request->q);
-        return $this->buildSearchResults($term, \App\Models\Organisation::class);
+        $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
+        return $this->buildSearchResults($term, \App\Models\Organisation::class, $exclude);
     }
 
     /**
@@ -119,7 +122,8 @@ class MiscController extends Controller
     public function events(Request $request)
     {
         $term = trim($request->q);
-        return $this->buildSearchResults($term, \App\Models\Event::class);
+        $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
+        return $this->buildSearchResults($term, \App\Models\Event::class, $exclude);
     }
 
     /**
@@ -129,7 +133,8 @@ class MiscController extends Controller
     public function quests(Request $request)
     {
         $term = trim($request->q);
-        return $this->buildSearchResults($term, \App\Models\Quest::class);
+        $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
+        return $this->buildSearchResults($term, \App\Models\Quest::class, $exclude);
     }
 
     /**
@@ -139,7 +144,8 @@ class MiscController extends Controller
     public function calendars(Request $request)
     {
         $term = trim($request->q);
-        return $this->buildSearchResults($term, \App\Models\Calendar::class);
+        $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
+        return $this->buildSearchResults($term, \App\Models\Calendar::class, $exclude);
     }
 
     /**
@@ -149,7 +155,8 @@ class MiscController extends Controller
     public function timelines(Request $request)
     {
         $term = trim($request->q);
-        return $this->buildSearchResults($term, \App\Models\Timeline::class);
+        $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
+        return $this->buildSearchResults($term, \App\Models\Timeline::class, $exclude);
     }
 
     /**
@@ -159,7 +166,8 @@ class MiscController extends Controller
     public function tags(Request $request)
     {
         $term = trim($request->q);
-        return $this->buildSearchResults($term, \App\Models\Tag::class);
+        $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
+        return $this->buildSearchResults($term, \App\Models\Tag::class, $exclude);
     }
 
     /**
@@ -189,7 +197,8 @@ class MiscController extends Controller
     public function races(Request $request)
     {
         $term = trim($request->q);
-        return $this->buildSearchResults($term, \App\Models\Race::class);
+        $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
+        return $this->buildSearchResults($term, \App\Models\Race::class, $exclude);
     }
 
     /**
@@ -199,7 +208,8 @@ class MiscController extends Controller
     public function maps(Request $request)
     {
         $term = trim($request->q);
-        return $this->buildSearchResults($term, \App\Models\Map::class);
+        $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
+        return $this->buildSearchResults($term, \App\Models\Map::class, $exclude);
     }
 
     /**
@@ -209,7 +219,8 @@ class MiscController extends Controller
     public function notes(Request $request)
     {
         $term = trim($request->q);
-        return $this->buildSearchResults($term, \App\Models\Note::class);
+        $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
+        return $this->buildSearchResults($term, \App\Models\Note::class, $exclude);
     }
 
     /**
@@ -219,7 +230,8 @@ class MiscController extends Controller
     public function journals(Request $request)
     {
         $term = trim($request->q);
-        return $this->buildSearchResults($term, \App\Models\Journal::class);
+        $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
+        return $this->buildSearchResults($term, \App\Models\Journal::class, $exclude);
     }
 
     /**
@@ -230,10 +242,12 @@ class MiscController extends Controller
     {
         $term = trim($request->get('q', null));
         $exclude = [];
-        if ($request->has('exclude')) {
+        if ($request->has('exclude-entity')) {
             /** @var Entity $entity */
-            $entity = Entity::findOrFail($request->get('exclude'));
+            $entity = Entity::findOrFail($request->get('exclude-entity'));
             $exclude = $entity->abilities->pluck('ability_id')->toArray();
+        } elseif ($request->has('exclude')) {
+            $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
         }
         return $this->buildSearchResults($term, \App\Models\Ability::class, $exclude);
     }
@@ -245,7 +259,8 @@ class MiscController extends Controller
     public function attributeTemplates(Request $request)
     {
         $term = trim($request->q);
-        return $this->buildSearchResults($term, \App\Models\AttributeTemplate::class);
+        $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
+        return $this->buildSearchResults($term, \App\Models\AttributeTemplate::class, $exclude);
     }
 
     /**

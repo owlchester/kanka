@@ -7,12 +7,15 @@
         $preset = FormCopy::field('event')->select();
     }?>
     <div class="form-group">
-        {!! Form::select2(
+        {!! Form::foreignSelect(
             'event_id',
-            $preset,
-            App\Models\Event::class,
-            isset($enableNew) ? $enableNew : true,
-            isset($parent) ? 'events.fields.event' : null
+            [
+                'preset' => $preset,
+                'class' => App\Models\Event::class,
+                'enableNew' => isset($enableNew) ? $enableNew : true,
+                'labelKey' => isset($parent) ? 'events.fields.event' : null,
+                'from' => isset($from) ? $from : null,
+            ]
         ) !!}
     </div>
 @endif

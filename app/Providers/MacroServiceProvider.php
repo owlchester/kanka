@@ -34,6 +34,11 @@ class MacroServiceProvider extends HtmlServiceProvider
             'from' => null,
         ]);
 
+        Form::component('foreignSelect', 'components.form.select3', [
+            'fieldId',
+            'options' => []
+        ]);
+
         Form::component('tags', 'components.form.tags', [
             'fieldId',
             'options' => []

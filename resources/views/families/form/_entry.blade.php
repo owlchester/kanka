@@ -4,12 +4,15 @@
         @include('cruds.fields.name', ['trans' => 'families'])
         @include('cruds.fields.type', ['base' => \App\Models\Family::class, 'trans' => 'families'])
         <div class="form-group">
-            {!! Form::select2(
+            {!! Form::foreignSelect(
                 'family_id',
-                (isset($model) && $model->family ? $model->family : FormCopy::field('family')->select(true, \App\Models\Family::class)),
-                App\Models\Family::class,
-                true,
-                'families.fields.family'
+                [
+                    'preset' => (isset($model) && $model->family ? $model->family : FormCopy::field('family')->select(true, \App\Models\Family::class)),
+                    'class' => App\Models\Family::class,
+                    'enableNew' => true,
+                    'labelKey' => 'families.fields.family',
+                    'from' => isset($model) ? $model : null,
+                ]
             ) !!}
         </div>
         @include('cruds.fields.location')

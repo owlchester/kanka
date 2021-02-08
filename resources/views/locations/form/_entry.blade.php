@@ -10,7 +10,8 @@
                 true,
                 'locations.fields.location',
                 'locations.find',
-                'locations.placeholders.location'
+                'locations.placeholders.location',
+                (isset($model) ? $model : null)
             ) !!}
         </div>
         @include('cruds.fields.tags')

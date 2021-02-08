@@ -9,11 +9,14 @@
         $preset = FormCopy::field('location')->select();
     }?>
     <div class="form-group">
-        {!! Form::select2(
+        {!! Form::foreignSelect(
             'location_id',
-            $preset,
-            App\Models\Location::class,
-            isset($enableNew) ? $enableNew : true
+            [
+                'preset' => $preset,
+                'class' => App\Models\Location::class,
+                'enableNew' => isset($enableNew) ? $enableNew : true,
+                'from' => isset($from) ? $from : null,
+            ]
         ) !!}
     </div>
 @endif

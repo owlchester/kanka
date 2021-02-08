@@ -4,12 +4,15 @@
         @include('cruds.fields.name', ['trans' => 'abilities'])
         @include('cruds.fields.type', ['base' => \App\Models\Ability::class, 'trans' => 'abilities'])
         <div class="form-group">
-            {!! Form::select2(
+            {!! Form::foreignSelect(
                 'ability_id',
-                (isset($model) && $model->ability ? $model->ability : FormCopy::field('ability')->select(true, \App\Models\Ability::class)),
-                App\Models\Ability::class,
-                true,
-                'abilities.fields.ability'
+                [
+                    'preset' => (isset($model) && $model->ability ? $model->ability : FormCopy::field('ability')->select(true, \App\Models\Ability::class)),
+                    'class' => App\Models\Ability::class,
+                    'enableNew' => true,
+                    'labelKey' => 'abilities.fields.ability',
+                    'from' => isset($model) ? $model : null
+                ]
             ) !!}
         </div>
         <div class="form-group">

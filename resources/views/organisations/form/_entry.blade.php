@@ -3,12 +3,15 @@
         @include('cruds.fields.name', ['trans' => 'organisations'])
         @include('cruds.fields.type', ['base' => \App\Models\Organisation::class, 'trans' => 'organisations'])
         <div class="form-group">
-            {!! Form::select2(
+            {!! Form::foreignSelect(
                 'organisation_id',
-                (isset($model) && $model->organisation ? $model->organisation : FormCopy::field('organisation')->select(true, \App\Models\Organisation::class)),
-                App\Models\Organisation::class,
-                true,
-                'organisations.fields.organisation'
+                [
+                    'preset' => (isset($model) && $model->organisation ? $model->organisation : FormCopy::field('organisation')->select(true, \App\Models\Organisation::class)),
+                    'class' => App\Models\Organisation::class,
+                    'enableNew' => true,
+                    'labelKey' => 'organisations.fields.organisation',
+                    'from' => isset($model) ? $model : null,
+                ]
             ) !!}
         </div>
 

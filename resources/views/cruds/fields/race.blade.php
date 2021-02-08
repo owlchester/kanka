@@ -11,12 +11,15 @@
         $preset = FormCopy::field('race')->select();
     }?>
     <div class="form-group">
-        {!! Form::select2(
+        {!! Form::foreignSelect(
             'race_id',
-            $preset,
-            App\Models\Race::class,
-            isset($enableNew) ? $enableNew : true,
-            isset($parent) ? 'races.fields.race' : null
+            [
+                'preset' => $preset,
+                'class' => App\Models\Race::class,
+                'enableNew' => isset($enableNew) ? $enableNew : true,
+                'labelKey' => isset($parent) ? 'races.fields.race' : null,
+                'from' => isset($from) ? $from : null,
+            ]
         ) !!}
     </div>
 @endif

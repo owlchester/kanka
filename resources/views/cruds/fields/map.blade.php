@@ -3,18 +3,19 @@
     $preset = null;
     if (isset($model) && $model->map) {
         $preset = $model->map;
-    } elseif (isset($isRandom) && $isRandom) {
-        $preset = $random->generateForeign(\App\Models\Map::class);
     } else {
         $preset = FormCopy::field('map')->select();
     }?>
     <div class="form-group">
-        {!! Form::select2(
+        {!! Form::foreignSelect(
             'map_id',
-            $preset,
-            App\Models\Map::class,
-            isset($enableNew) ? $enableNew : true,
-            isset($parent) ? 'maps.fields.map' : null
+            [
+                'preset' => $preset,
+                'class' => App\Models\Map::class,
+                'enableNew' => isset($enableNew) ? $enableNew : true,
+                'labelKey' => isset($parent) ? 'maps.fields.map' : null,
+                'from' => isset($from) ? $from : null,
+            ]
         ) !!}
     </div>
 @endif

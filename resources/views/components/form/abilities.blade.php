@@ -17,6 +17,8 @@ if (!is_array($filterOptions)) {
 $searchParams = [];
 if (Arr::has($options, 'exclude', false)) {
     $searchParams['exclude'] = Arr::get($options, 'exclude');
+} elseif (Arr::has($options, 'exclude-entity', false)) {
+    $searchParams['exclude-entity'] = Arr::get($options, 'exclude-entity');
 }
 
 // Try to load what was sent with the form first, in case there was a form validation error

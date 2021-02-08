@@ -31,12 +31,14 @@
                 $preset = FormCopy::field('calendar')->select();
             }?>
             <div class="form-group">
-                {!! Form::select2(
+                {!! Form::foreignSelect(
                     'calendar_id',
-                    $preset,
-                    App\Models\Calendar::class,
-                    false,
-                    'calendars.fields.calendar'
+                    [
+                        'preset' => $preset,
+                        'class' => App\Models\Calendar::class,
+                        'labelKey' => 'calendars.fields.calendar',
+                        'from' => isset($model) ? $model : null,
+                    ]
                 ) !!}
                 <p class="help-block">{{ __('calendars.hints.parent_calendar') }}</p>
             </div>

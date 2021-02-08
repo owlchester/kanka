@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="form-group required">
-            {!! Form::abilities('abilities', ['exclude' => $entity->id]) !!}
+            {!! Form::abilities('abilities', ['exclude-entity' => $entity->id]) !!}
         </div>
 
         <div class="row">
