@@ -9,12 +9,15 @@
         $preset = FormCopy::field('tag')->select();
     }?>
     <div class="form-group">
-        {!! Form::select2(
+        {!! Form::foreignSelect(
             'tag_id',
-            $preset,
-            App\Models\Tag::class,
-            isset($enableNew) ? $enableNew : true,
-            isset($parent) ? 'tags.fields.tag' : null
+            [
+                'preset' => $preset,
+                'class' => App\Models\Tag::class,
+                'enableNew' => isset($enableNew) ? $enableNew : true,
+                'labelKey' => isset($parent) ? 'tags.fields.tag' : null,
+                'from' => isset($from) ? $from : null,
+            ]
         ) !!}
     </div>
 @endif

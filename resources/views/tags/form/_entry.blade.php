@@ -4,7 +4,7 @@
         @include('cruds.fields.type', ['base' => \App\Models\Tag::class, 'trans' => 'tags'])
 
         @include('cruds.fields.colour')
-        @include('cruds.fields.tag', ['parent' => true])
+        @include('cruds.fields.tag', ['parent' => true, 'from' => isset($model) ? $model : null])
 @include('cruds.fields.private')
     </div>
     <div class="col-md-6">
