@@ -35,6 +35,7 @@ You can get a list of all the entity-notes of an entity by using the following e
             "position": null,
             "visibility": "all",
             "name": "Secret Note",
+            "settings": [],
             "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": null
         }
@@ -66,6 +67,7 @@ To get the details of a single entity-note, use the following endpoint.
         "position": null,
         "visibility": "all",
         "name": "Secret Note",
+        "settings": [],
         "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": null
     }
@@ -92,6 +94,7 @@ To create an entity-note, use the following endpoint.
 | `visibility` | `string` | The visibility: `all`, `self`, `admin` or `self-admin`. |
 | `is_pinned` | `boolean` | If the entity note is pinned to the entity's main view |
 | `position` | `int|null` (optional) | Position for ordering pinned entity notes |
+| `settings` | `array` (optional) | `collapsed:1` if the pinned entity note should be collapsed on page load |
 
 ### Results
 
