@@ -1,6 +1,7 @@
 <?php /**
  * @var \App\Models\Map $map
  */
+$campaign = CampaignLocalization::getCampaign();
 ?><!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -26,9 +27,25 @@
           crossorigin=""/>
     <link rel="stylesheet" href="https://ppete2.github.io/Leaflet.PolylineMeasure/Leaflet.PolylineMeasure.css" />
 
-@if (auth()->check() && !empty(auth()->user()->theme))
+@if (request()->has('_theme') && in_array(request()->get('_theme'), ['dark', 'midnight', 'future', 'base']))
+    @if(request()->get('_theme') != 'base')
+        <link href="{{ mix('css/' . request()->get('_theme') . '.css') }}" rel="stylesheet">
+    @endif
+@else
+    @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme))
+        @if ($campaign->theme_id !== 1)
+            <link href="{{ mix('css/' . $campaign->theme->name . '.css') }}" rel="stylesheet">
+        @endif
+    @elseif (auth()->check() && !empty(auth()->user()->theme))
         <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">
     @endif
+@endif
+@if(!empty($campaign) && $campaign->boosted() && $campaign->hasPluginTheme())
+    <link href="{{ route('campaign_plugins.css', ['ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">
+@endif
+@if (!empty($campaign) && $campaign->boosted() && !empty($campaign->css))
+    <link href="{{ route('campaign.css', ['ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">
+@endif
     @yield('styles')
 </head>
 <body id="map-body" class="map-page skin-black skin-map sidebar-mini sidebar-collapse">

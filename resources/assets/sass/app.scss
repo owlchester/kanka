@@ -9,6 +9,11 @@
 // Variables
 @import "variables";
 
+#app {
+  // AdminLTE wants this but it becomes weird with the min-height computed on firefox
+  overflow: unset !important;
+}
+
 img.profile-user-img {
   border: none;
   width: auto;

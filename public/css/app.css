@@ -5,6 +5,10 @@
   font-display: fallback;
 }
 
+#app {
+  overflow: unset !important;
+}
+
 img.profile-user-img {
   border: none;
   width: auto;
