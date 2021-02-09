@@ -22,6 +22,7 @@ class EntityNoteResource extends EntityChild
             'entry_parsed' => Mentions::mapEntityNote($this->resource),
             'is_pinned' => (bool) $this->is_pinned,
             'position' => $this->position,
+            'settings' => $this->settings,
         ]);
     }
 }

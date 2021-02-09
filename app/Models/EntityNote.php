@@ -10,6 +10,7 @@ use App\Traits\OrderableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use DateTime;
+use Illuminate\Support\Arr;
 
 /**
  * Class Attribute
@@ -27,14 +28,16 @@ use DateTime;
  * @property Entity $entity
  * @property EntityMention[] $mentions
  * @property EntityNotePermission[] $permissions
+ * @property [] $settings
  *
  * @method static Builder|self pinned()
  */
 class EntityNote extends Model
 {
-    /**
-     * @var array
-     */
+    /** Traits */
+    use EntityNoteVisibilityTrait, OrderableTrait, Paginatable, Blameable;
+
+    /** @var array */
     protected $fillable = [
         'entity_id',
         'name',
@@ -43,7 +46,13 @@ class EntityNote extends Model
         'is_private',
         'is_pinned',
         'position',
-        'visibility'
+        'visibility',
+        'settings',
+    ];
+
+    /** @var string[]  */
+    public $casts = [
+        'settings' => 'array'
     ];
 
     /**
@@ -57,11 +66,6 @@ class EntityNote extends Model
      * @var bool
      */
     public $savedObserver = true;
-
-    /**
-     * Traits
-     */
-    use EntityNoteVisibilityTrait, OrderableTrait, Paginatable, Blameable;
 
     /**
      * Searchable fields
@@ -128,5 +132,13 @@ class EntityNote extends Model
     {
         return $query->where('is_pinned', true)
             ->orderBy('position');
+    }
+
+    /**
+     * @return bool
+     */
+    public function collapsed(): bool
+    {
+        return Arr::get($this->settings, 'collapsed', false);
     }
 }

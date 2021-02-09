@@ -53,6 +53,16 @@ class EntityNoteObserver
                 $entityNote->position = $last ? ($last->position + 1) : 1;
             }
         }
+
+        $settings = $entityNote->settings;
+        if (request()->has('settings[collapse]')) {
+            if ((bool) request()->get('settings[collapse]')) {
+                $settings['collapse'] = true;
+            } else {
+                unset($settings['collapse']);
+            }
+        }
+        $entityNote->settings = $settings;
     }
 
     /**
