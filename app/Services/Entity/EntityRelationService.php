@@ -87,7 +87,8 @@ class EntityRelationService
             $this->addEntity($this->entity)
                 ->withEntity()
                 ->addRelations($this->entity)
-                ->withEntity(false);
+                ->withEntity(false)
+                ->relatedRelations();
             $this->addFamily()->addOrganisation();
         }
         // Family: children and parent families
@@ -132,6 +133,7 @@ class EntityRelationService
      */
     protected function addEntity(Entity $entity, string $image = null): self
     {
+        //dump('add entity ' . $entity->name);
         if (Arr::has($this->entities, $entity->id)) {
             return $this;
         }
@@ -157,6 +159,7 @@ class EntityRelationService
      */
     protected function addRelations(Entity $entity): self
     {
+        //dump('add relations for ' . $entity->name);
         if (Arr::has($this->entityIds, $entity->id)) {
             return $this;
         }
@@ -439,6 +442,26 @@ class EntityRelationService
                 'type' => 'sub-org',
                 'shape' => 'triangle',
             ];
+        }
+        return $this;
+    }
+
+    /**
+     * Load relations between linked entities
+     * @return $this
+     */
+    protected function relatedRelations(): self
+    {
+        // Go through the entities loaded and re-check their relations
+        /** @var Relation $relation */
+        $relatedEntityIds = [];
+        foreach ($this->relations as $relation) {
+            $relatedEntityIds[] = $relation['target'];
+        }
+
+        $entities = Entity::whereIn('id', $relatedEntityIds)->get();
+        foreach ($entities as $entity) {
+            $this->addRelations($entity);
         }
         return $this;
     }
