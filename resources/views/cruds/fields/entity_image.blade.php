@@ -23,6 +23,10 @@
                     'crud.placeholders.gallery_image'
                 ) !!}
             </div>
+
+            <p class="help-block">
+                {{ __('crud.hints.gallery_image') }}
+            </p>
         </div>
         <div class="col-sm-2">
             @if (!empty($model->entity) && !empty($model->entity->image_uuid))
