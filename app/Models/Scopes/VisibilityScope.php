@@ -25,12 +25,6 @@ class VisibilityScope implements Scope
     const VISIBILITY_SELF = 'self';
     const VISIBILITY_ADMIN_SELF = 'admin-self';
 
-    public function scopeWithInvisible(Builder $builder): self
-    {
-        dd('wo');
-        return $this;
-    }
-
     /**
      * Extend the query builder with the needed functions.
      *
