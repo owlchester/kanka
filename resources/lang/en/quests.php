@@ -85,7 +85,7 @@ return [
     ],
     'locations'     => [
         'create'    => [
-            'description'   => 'Set an location to a Quest',
+            'description'   => 'Set a location to a Quest',
             'success'       => 'Location added to :name.',
             'title'         => 'New Location for :name',
         ],

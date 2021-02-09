@@ -6,6 +6,8 @@
         ['url' => route($parentRoute . '.show', $entity->child->id), 'label' => $entity->name]
     ]
 ])
+@inject('campaign', 'App\Services\CampaignService')
+
 
 @section('fullpage-form')
     {!! Form::open(['route' => ['entities.entity_notes.store', $entity->id], 'method'=>'POST', 'data-shortcut' => '1', 'id' => 'entity-form', 'class' => 'entity-note-form']) !!}

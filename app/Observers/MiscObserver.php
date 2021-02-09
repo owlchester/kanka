@@ -254,14 +254,14 @@ abstract class MiscObserver
             $relationName = Str::before($attribute, '_id');
             $relationName = Str::camel($relationName);
 
-            $relationClass = 'App\Models\\' . $relationName;
+            $relationClass = 'App\Models\\' . ucfirst($relationName);
+
             /** @var MiscModel $relationModel */
             $relationModel = new $relationClass();
             $result = $relationModel->where('id', $original)->firstOrFail();
             return $result->name;
         }
         catch (\Exception $e) {
-            //dd($e);
             return '';
         }
 

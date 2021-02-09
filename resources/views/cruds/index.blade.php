@@ -5,6 +5,7 @@
         ['url' => Breadcrumb::index($name), 'label' => trans($name . '.index.title')],
     ],
     'canonical' => true,
+    'bodyClass' => 'kanka-' . $name,
 ])
 @inject('campaign', 'App\Services\CampaignService')
 

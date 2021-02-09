@@ -28,6 +28,7 @@
     {!! Form::close() !!}
 @endsection
 
+@inject('campaign', 'App\Services\CampaignService')
 @include('editors.editor')
 
 @section('scripts')

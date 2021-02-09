@@ -225,7 +225,7 @@ abstract class MiscModel extends Model
 
     /**
      * Get the image fallback image
-     * @param int $width
+     * @param int $width = 400
      * @return string
      */
     protected function getImageFallback(int $width = 400): string
@@ -244,6 +244,10 @@ abstract class MiscModel extends Model
         }
         elseif ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->getEntityType())) {
             return Img::crop(40, 40)->url(CampaignCache::defaultImages()[$this->getEntityType()]['path']);
+        }
+        // Goblins and above have nicer icons
+        elseif (auth()->check() && auth()->user()->isGoblinPatron()) {
+            return asset('/images/defaults/patreon/' . $this->getTable() . ($width !== 400 ? '_thumb' : null) . '.png');
         }
 
         // Default fallback

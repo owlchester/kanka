@@ -214,6 +214,9 @@ class User extends \TCG\Voyager\Models\User
         if ($this->isPatron() || ($campaign && $campaign->boosted())) {
             // Elementals get massive upload sizes
             if ($this->isElementalPatreon()) {
+                if ($this->id === 34122) {
+                    return $readable ? '100MB' : 102400;
+                }
                 return $readable ? '25MB' : 25600;
             } elseif ($what == 'map') {
                 return $readable ? '10MB' : 10240;

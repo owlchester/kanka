@@ -297,7 +297,7 @@ function uploadImage($summernote, file) {
         processData: false,
         type: 'POST',
         success: function(result) {
-            console.log('result', result);
+            //console.log('result', result);
             $summernote.summernote('insertImage', result, function ($image) {
                 $image.attr('src', result);
             });
