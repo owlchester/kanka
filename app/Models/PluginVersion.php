@@ -154,8 +154,8 @@ class PluginVersion extends Model
             $segments = explode('&lt;=', $condition);
             return trim($segments[0]) <= trim($segments[1]);
         }
-        elseif (Str::contains($condition, '&lt;')) {
-            $segments = explode('&lt;', $condition);
+        elseif (Str::contains($condition, '&gt;')) {
+            $segments = explode('&gt;', $condition);
             return trim($segments[0]) > trim($segments[1]);
         }
         elseif (Str::contains($condition, '&lt;')) {
