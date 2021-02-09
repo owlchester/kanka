@@ -43,7 +43,7 @@ class EntityFileController extends Controller
         $this->authorize('update', $entity->child);
 
         $campaign = CampaignLocalization::getCampaign();
-        $enabled = $entity->files->count() < $campaign->maxEntityFiles();
+        $enabled = $entity->files()->withInvisible()->count() < $campaign->maxEntityFiles();
         return view('cruds.files.index', compact(
             'entity',
             'campaign',
