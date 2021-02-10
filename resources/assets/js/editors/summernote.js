@@ -83,6 +83,9 @@ window.initSummernote = function() {
             {
                 match: /\B\[(\w*)$/,
                 search: function (keyword, callback) {
+                    if (keyword.length < 3) {
+                        return [];
+                    }
                     return hintEntities(keyword, callback);
                 },
                 template: function (item) {
