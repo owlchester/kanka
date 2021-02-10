@@ -13,7 +13,7 @@ trim_trailing_whitespace = true
 end_of_line = crlf
 
 [*.php]
-end_of_line = crlf
+end_of_line = lf
 
 [*.yml]
 indent_size = 2
