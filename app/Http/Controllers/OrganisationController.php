@@ -127,15 +127,4 @@ class OrganisationController extends CrudController
             ->datagridSorter(OrganisationCharacterSorter::class)
             ->menuView($organisation, 'all_members');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Location  $location
-     * @return \Illuminate\Http\Response
-     */
-    public function mapPoints(Organisation $organisation)
-    {
-        return $this->menuView($organisation, 'map-points', true);
-    }
 }

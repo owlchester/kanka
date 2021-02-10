@@ -68,7 +68,7 @@ Route::group([
         Route::get('/gallery/ajax-gallery', 'Campaign\AjaxGalleryController@index')->name('campaign.gallery.summernote');
 
         // Abilities
-        Route::get('/abilities/{ability}/map-points', 'AbilityController@mapPoints')->name('abilities.map-points');
+        //Route::get('/abilities/{ability}/map-points', 'AbilityController@mapPoints')->name('abilities.map-points');
         Route::get('/abilities/{ability}/abilities', 'AbilityController@abilities')->name('abilities.abilities');
         Route::get('/abilities/tree', 'AbilityController@tree')->name('abilities.tree');
 
@@ -79,7 +79,7 @@ Route::group([
         Route::get('/maps/{map}/{map_marker}/details', 'Maps\MapMarkerController@details')->name('maps.markers.details');
         Route::post('/maps/{map}/{map_marker}/move', 'Maps\MapMarkerController@move')->name('maps.markers.move');
         Route::get('/maps/tree', 'Maps\MapController@tree')->name('maps.tree');
-        Route::get('/maps/{map}/map-points', 'Maps\MapController@mapPoints')->name('maps.map-points');
+        //Route::get('/maps/{map}/map-points', 'Maps\MapController@mapPoints')->name('maps.map-points');
 
         // Character
         Route::get('/characters/random', 'CharacterController@random')->name('characters.random');
@@ -91,11 +91,11 @@ Route::group([
         Route::get('/characters/{character}/dice_rolls', 'CharacterSubController@diceRolls')->name('characters.dice_rolls');
         Route::get('/characters/{character}/conversations', 'CharacterSubController@conversations')->name('characters.conversations');
         Route::get('/characters/{character}/journals', 'CharacterSubController@journals')->name('characters.journals');
-        Route::get('/characters/{character}/map-points', 'CharacterSubController@mapPoints')->name('characters.map-points');
+        //Route::get('/characters/{character}/map-points', 'CharacterSubController@mapPoints')->name('characters.map-points');
 
         Route::get('/dice_rolls/{dice_roll}/roll', 'DiceRollController@roll')->name('dice_rolls.roll');
         Route::delete('/dice_rolls/{dice_roll}/roll/{dice_roll_result}/destroy', 'DiceRollController@destroyRoll')->name('dice_rolls.destroy_roll');
-        Route::get('/dice_rolls/{dice_roll}/map-points', 'DiceRollController@mapPoints')->name('dice_rolls.map-points');
+        //Route::get('/dice_rolls/{dice_roll}/map-points', 'DiceRollController@mapPoints')->name('dice_rolls.map-points');
 
         // Locations
         Route::get('/locations/tree', 'LocationController@tree')->name('locations.tree');
@@ -119,7 +119,7 @@ Route::group([
         Route::get('/organisations/{organisation}/quests', 'OrganisationController@quests')->name('organisations.quests');
         Route::get('/organisations/{organisation}/organisations', 'OrganisationController@organisations')->name('organisations.organisations');
         Route::get('/organisations/tree', 'OrganisationController@tree')->name('organisations.tree');
-        Route::get('/organisations/{organisation}/map-points', 'OrganisationController@mapPoints')->name('organisations.map-points');
+        //Route::get('/organisations/{organisation}/map-points', 'OrganisationController@mapPoints')->name('organisations.map-points');
 
         // Families menu
         Route::get('/families/{family}/members', 'FamilyController@members')->name('families.members');
@@ -127,11 +127,11 @@ Route::group([
 
         Route::get('/families/{family}/families', 'FamilyController@families')->name('families.families');
         Route::get('/families/tree', 'FamilyController@tree')->name('families.tree');
-        Route::get('/families/{family}/map-points', 'FamilyController@mapPoints')->name('families.map-points');
+        //Route::get('/families/{family}/map-points', 'FamilyController@mapPoints')->name('families.map-points');
 
         // Items menu
         Route::get('/items/{item}/quests', 'ItemController@quests')->name('items.quests');
-        Route::get('/items/{item}/map-points', 'ItemController@mapPoints')->name('items.map-points');
+        //Route::get('/items/{item}/map-points', 'ItemController@mapPoints')->name('items.map-points');
         Route::get('/items/{item}/inventories', 'ItemController@inventories')->name('items.inventories');
 
         // Quest menus
@@ -140,16 +140,16 @@ Route::group([
         Route::get('/quests/{quest}/items', 'QuestController@items')->name('quests.items');
         Route::get('/quests/{quest}/organisations', 'QuestController@organisations')->name('quests.organisations');
         Route::get('/quests/tree', 'QuestController@tree')->name('quests.tree');
-        Route::get('/quests/{quest}/map-points', 'QuestController@mapPoints')->name('quests.map-points');
+        //Route::get('/quests/{quest}/map-points', 'QuestController@mapPoints')->name('quests.map-points');
 
         // Races
         Route::get('/races/{race}/characters', 'RaceController@characters')->name('races.characters');
         Route::get('/races/{race}/races', 'RaceController@races')->name('races.races');
         Route::get('/races/tree', 'RaceController@tree')->name('races.tree');
-        Route::get('/races/{race}/map-points', 'RaceController@mapPoints')->name('races.map-points');
+        //Route::get('/races/{race}/map-points', 'RaceController@mapPoints')->name('races.map-points');
 
         // Journal
-        Route::get('/journals/{journal}/map-points', 'JournalController@mapPoints')->name('journals.map-points');
+        //Route::get('/journals/{journal}/map-points', 'JournalController@mapPoints')->name('journals.map-points');
         Route::get('/journals/{journal}/journals', 'JournalController@journals')->name('journals.journals');
 
         Route::get('/events/tree', 'EventController@tree')->name('events.tree');
@@ -162,7 +162,7 @@ Route::group([
         Route::get('/tags/tree', 'TagController@tree')->name('tags.tree');
         Route::get('/tags/{tag}/tags', 'TagController@tags')->name('tags.tags');
         Route::get('/tags/{tag}/children', 'TagController@children')->name('tags.children');
-        Route::get('/tags/{tag}/map-points', 'TagController@mapPoints')->name('tags.map-points');
+        //Route::get('/tags/{tag}/map-points', 'TagController@mapPoints')->name('tags.map-points');
 
         // Tags Quick Add
         Route::get('/tags/{tag}/entity-add', 'TagController@entityAdd')->name('tags.entity-add');
@@ -176,13 +176,13 @@ Route::group([
         Route::get('/attribute_templates/{attribute_template}/attribute_templates', 'AttributeTemplateController@attributeTemplates')->name('attribute_templates.attribute_templates');
 
         // Notes
-        Route::get('/notes/{note}/map-points', 'NoteController@mapPoints')->name('notes.map-points');
+        //Route::get('/notes/{note}/map-points', 'NoteController@mapPoints')->name('notes.map-points');
         Route::get('/notes/tree', 'NoteController@tree')->name('notes.tree');
 
         Route::get('/journals/tree', 'JournalController@tree')->name('journals.tree');
 
         // Events
-        Route::get('/events/{event}/map-points', 'EventController@mapPoints')->name('events.map-points');
+        //Route::get('/events/{event}/map-points', 'EventController@mapPoints')->name('events.map-points');
 
         // Calendar
         Route::get('/calendars/tree', 'CalendarController@tree')->name('calendars.tree');
@@ -191,13 +191,13 @@ Route::group([
         Route::get('/calendars/{calendar}/month-list', 'CalendarController@monthList')->name('calendars.month-list');
         Route::get('/calendars/{calendar}/events', 'CalendarController@events')->name('calendars.events');
         Route::get('/calendars/{calendar}/today', 'CalendarController@today')->name('calendars.today');
-        Route::get('/calendars/{calendar}/map-points', 'CalendarController@mapPoints')->name('calendars.map-points');
+        //Route::get('/calendars/{calendar}/map-points', 'CalendarController@mapPoints')->name('calendars.map-points');
 
 //        Route::get('/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@form')->name('calendars.weather.create');
 //        Route::post('/calendars/{calendar}/weather', 'Calendar\CalendarWeatherController@store')->name('calendars.weather.store');
 
         // Conversations
-        Route::get('/conversations/{conversation}/map-points', 'ConversationController@mapPoints')->name('conversations.map-points');
+        //Route::get('/conversations/{conversation}/map-points', 'ConversationController@mapPoints')->name('conversations.map-points');
 
         // Attribute multi-save
         Route::post('/entities/{entity}/attributes/saveMany', [\App\Http\Controllers\AttributeController::class, 'saveMany'])->name('entities.attributes.saveMany');
@@ -395,6 +395,7 @@ Route::group([
         Route::get('/entities/{entity}/logs', 'Entity\LogController@index')->name('entities.logs');
         Route::get('/entities/{entity}/mentions', 'Entity\MentionController@index')->name('entities.mentions');
         Route::get('/entities/{entity}/timelines', 'Entity\TimelineController@index')->name('entities.timelines');
+        Route::get('/entities/{entity}/map-markers', 'Entity\MapPointController@index')->name('entities.map-markers');
         //Route::patch('/settings/profile', 'Settings\ProfileController@update')->name('settings.profile');
 
         // Inventory

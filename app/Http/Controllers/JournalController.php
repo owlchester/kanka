@@ -89,17 +89,6 @@ class JournalController extends CrudController
      * @param  \App\Models\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function mapPoints(Journal $journal)
-    {
-        return $this->menuView($journal, 'map-points', true);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Location  $location
-     * @return \Illuminate\Http\Response
-     */
     public function journals(Journal $journal)
     {
         return $this->menuView($journal, 'journals');

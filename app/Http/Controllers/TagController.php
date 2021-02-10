@@ -114,17 +114,6 @@ class TagController extends CrudController
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Location  $location
-     * @return \Illuminate\Http\Response
-     */
-    public function mapPoints(Tag $tag)
-    {
-        return $this->menuView($tag, 'map-points', true);
-    }
-
-    /**
      * @param Tag $tag
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException

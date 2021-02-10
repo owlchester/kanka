@@ -134,15 +134,4 @@ class QuestController extends CrudController
             ->datagridSorter(QuestOrganisationSorter::class)
             ->menuView($quest, 'organisations');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Location  $location
-     * @return \Illuminate\Http\Response
-     */
-    public function mapPoints(Quest $quest)
-    {
-        return $this->menuView($quest, 'map-points', true);
-    }
 }

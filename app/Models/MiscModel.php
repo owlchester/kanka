@@ -328,9 +328,10 @@ abstract class MiscModel extends Model
         if (($mapPoints + $newMapPoints) > 0) {
             $items['map-points'] = [
                 'name' => 'crud.tabs.map-points',
-                'route' => $this->entity->pluralType() . '.map-points',
+                'route' => 'entities.map-markers',
                 'count' => $mapPoints + $newMapPoints,
                 'icon' => 'fa fa-map-marked',
+                'entity' => true,
             ];
         }
 

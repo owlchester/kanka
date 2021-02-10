@@ -118,15 +118,4 @@ class CharacterController extends CrudController
     {
         return $this->crudDestroy($character);
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Location  $location
-     * @return \Illuminate\Http\Response
-     */
-    public function mapPoints(Character $character)
-    {
-        return $this->menuView($character, 'map-points', true);
-    }
 }

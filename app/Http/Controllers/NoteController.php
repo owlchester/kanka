@@ -84,15 +84,4 @@ class NoteController extends CrudController
     {
         return $this->crudDestroy($note);
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Location  $location
-     * @return \Illuminate\Http\Response
-     */
-    public function mapPoints(Note $note)
-    {
-        return $this->menuView($note, 'map-points', true);
-    }
 }

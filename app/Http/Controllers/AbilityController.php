@@ -105,15 +105,4 @@ class AbilityController extends CrudController
         return $this->datagridSorter(AbilityAbilitySorter::class)
             ->menuView($ability, 'abilities');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Location  $location
-     * @return \Illuminate\Http\Response
-     */
-    public function mapPoints(Ability $ability)
-    {
-        return $this->menuView($ability, 'map-points', true);
-    }
 }

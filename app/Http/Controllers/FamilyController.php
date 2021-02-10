@@ -123,15 +123,4 @@ class FamilyController extends CrudController
         return $this->datagridSorter(FamilyCharacterSorter::class)
             ->menuView($family, 'all_members');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Location  $location
-     * @return \Illuminate\Http\Response
-     */
-    public function mapPoints(Family $family)
-    {
-        return $this->menuView($family, 'map-points', true);
-    }
 }

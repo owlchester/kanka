@@ -110,17 +110,6 @@ class MapController extends CrudController
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Location  $location
-     * @return \Illuminate\Http\Response
-     */
-    public function mapPoints(Map $map)
-    {
-        return $this->menuView($map, 'map-points', true);
-    }
-
-    /**
      * Exploration view for a map
      * @param Map $map
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View

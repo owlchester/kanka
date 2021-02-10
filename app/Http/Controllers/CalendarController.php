@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Session;
 class CalendarController extends CrudController
 {
     use TreeControllerTrait;
-    
+
     /**
      * @var string
      */
@@ -194,16 +194,5 @@ class CalendarController extends CrudController
 
         return redirect()->back()
             ->with('success', trans('calendars.edit.today'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Calendar $calendar
-     * @return \Illuminate\Http\Response
-     */
-    public function mapPoints(Calendar $calendar)
-    {
-        return $this->menuView($calendar, 'map-points', true);
     }
 }

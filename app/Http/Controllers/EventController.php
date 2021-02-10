@@ -88,16 +88,6 @@ class EventController extends CrudController
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function mapPoints(Event $event)
-    {
-        return $this->menuView($event, 'map-points', true);
-    }
-
-    /**
-     * @param Event $event
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function events(Event $event)
     {
         return $this

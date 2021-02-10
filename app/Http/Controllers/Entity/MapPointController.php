@@ -8,7 +8,7 @@ use App\Models\Entity;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Facades\Auth;
 
-class TimelineController extends Controller
+class MapPointController extends Controller
 {
     /**
      * Guest Auth Trait
@@ -38,18 +38,25 @@ class TimelineController extends Controller
         $datagridSorter->request(request()->all());
 
         $ajax = request()->ajax();
-        $timelines = $entity
-            ->timelines()
-            ->with(['timeline', 'timeline.entity', 'era'])
-            ->has('timeline')
-            ->acl()
-            ->simpleSort($datagridSorter)
+        $markers = $entity
+            ->mapMarkers()
+            ->with(['map', 'map.entity'])
+            ->has('map')
+            //->simpleSort($datagridSorter)
             ->paginate();
 
-        return view('entities.pages.timelines.index', compact(
+        $data = $entity
+            ->targetMapPoints()
+            ->orderBy('name', 'ASC')
+            ->with(['location'])
+            ->has('location')
+            ->get();
+
+        return view('entities.pages.map_markers.index', compact(
             'ajax',
             'entity',
-            'timelines',
+            'markers',
+            'data',
             'datagridSorter'
         ));
     }
