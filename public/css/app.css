@@ -1466,6 +1466,29 @@ summary {
   margin-left: 8px;
 }
 
+.entity-note .box-header.with-border {
+  display: flex;
+}
+
+.entity-note > .box-header > h3.box-title {
+  flex-grow: 5;
+}
+
+.box-header > .box-tools {
+  flex-basis: 73px;
+  text-align: right;
+  margin: 0 0 0 5px;
+}
+
+.box-header > .box-tools a:hover {
+  background: unset !important;
+}
+
+.box-header > .box-tools i {
+  font-size: 14px;
+  margin-left: 5px;
+}
+
 /*!
  * RPG Awesome 0.0.2 by Daniela Howe, Ivan Montiel
  * License - https://github.com/nagoshiashumari/Rpg-Awesome/blob/master/LICENSE.md
