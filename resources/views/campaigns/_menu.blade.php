@@ -89,6 +89,8 @@
                         {{ __('campaigns.show.tabs.members') }}
                     </a>
                 </li>
+                @endcan
+                @can('submissions', $campaign)
                 <li class="@if(!empty($active) && $active == 'submissions')active @endif">
                     <a href="{{ route('campaign_submissions.index') }}">
                         {{ __('campaigns.show.tabs.applications') }}
