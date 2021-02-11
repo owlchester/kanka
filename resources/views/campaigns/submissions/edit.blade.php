@@ -21,7 +21,7 @@
                 <p>{{ __('campaigns/submissions.update.approve') }}</p>
                 <div class="form-group">
                     <label>{{ __('campaigns.members.fields.role') }}</label>
-                    {!! Form::select('role_id', $campaign->roles()->where('is_public', false)->pluck('name', 'id'), null, ['class' => 'form-control']) !!}
+                    {!! Form::select('role_id', $campaign->roles()->where('is_public', false)->orderBy('is_admin')->pluck('name', 'id'), null, ['class' => 'form-control']) !!}
                 </div>
 
                 <input type="submit" class="btn btn-primary" value="{{ __('campaigns/submissions.actions.accept') }}" />

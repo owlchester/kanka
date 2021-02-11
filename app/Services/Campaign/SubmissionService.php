@@ -51,7 +51,7 @@ class SubmissionService
      */
     public function process(array $data): string
     {
-        $return = 'accepted';
+        $return = 'approved';
         if (Arr::get($data, 'action') === 'reject') {
             $return = 'rejected';
 
