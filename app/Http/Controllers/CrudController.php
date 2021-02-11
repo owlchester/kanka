@@ -262,7 +262,7 @@ class CrudController extends Controller
                 $new->entity->crudSaved();
             }
 
-            $success = trans($this->view . '.create.success', [
+            $success = __($this->view . '.create.success', [
                 'name' => link_to_route(
                     $this->view . '.show',
                     e($new->name),
@@ -306,7 +306,7 @@ class CrudController extends Controller
             return response()->redirectTo($route);
         } catch (LogicException $exception) {
             $error =  str_replace(' ', '_', strtolower($exception->getMessage()));
-            return redirect()->back()->withInput()->with('error', trans('crud.errors.' . $error));
+            return redirect()->back()->withInput()->with('error', __('crud.errors.' . $error));
         }
     }
 
@@ -393,7 +393,7 @@ class CrudController extends Controller
                 $model->entity->crudSaved();
             }
 
-            $success = trans($this->view . '.edit.success', [
+            $success = __($this->view . '.edit.success', [
                 'name' => link_to_route(
                     $this->route . '.show',
                     e($model->name),
@@ -419,8 +419,8 @@ class CrudController extends Controller
             }
             return response()->redirectTo($route);
         } catch (LogicException $exception) {
-            $error =  str_replace(' ', '_', strtolower($exception->getMessage()));
-            return redirect()->back()->withInput()->with('error', trans('crud.errors.' . $error));
+            $error =  str_replace(' ', '_', strtolower(rtrim($exception->getMessage(), '.')));
+            return redirect()->back()->withInput()->with('error', __('crud.errors.' . $error));
         }
     }
 
@@ -442,7 +442,7 @@ class CrudController extends Controller
         }
 
         return redirect()->route($this->route . '.' . $subroute)
-            ->with('success', trans($this->view . '.destroy.success', ['name' => $model->name]));
+            ->with('success', __($this->view . '.destroy.success', ['name' => $model->name]));
     }
 
     /**
