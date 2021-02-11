@@ -61,10 +61,8 @@ $campaign = CampaignLocalization::getCampaign(); ?>
 <body class="skin-black sidebar-mini @if (!empty($campaign) || (auth()->check() && auth()->user()->hasCampaigns()) || (!empty($sidebar) && $sidebar == 'settings'))@else layout-top-nav @endif @if(isset($miscModel) && !empty($miscModel->entity)) kanka-entity-{{ $miscModel->entity->id }} kanka-entity-{{ $miscModel->getEntityType() }}@if(!empty($miscModel->type)) kanka-type-{{ \Illuminate\Support\Str::slug($miscModel->type) }}@endif @endif @if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif">
 @include('layouts._tracking-fallback')
     <div id="app" class="wrapper">
-        <!-- Header -->
         @include('layouts.header')
 
-        <!-- Sidebar -->
         @include('layouts.sidebars.' . ($sidebar ?? 'app'))
 
         @yield('fullpage-form')

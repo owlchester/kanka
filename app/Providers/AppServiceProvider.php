@@ -15,6 +15,7 @@ use App\Models\CampaignPlugin;
 use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignSetting;
+use App\Models\CampaignSubmission;
 use App\Models\CampaignUser;
 use App\Models\AttributeTemplate;
 use App\Models\Calendar;
@@ -119,6 +120,7 @@ class AppServiceProvider extends ServiceProvider
             CampaignPlugin::observe('App\Observers\CampaignPluginObserver');
             CampaignSetting::observe('App\Observers\CampaignSettingObserver');
             CampaignDashboard::observe('App\Observers\CampaignDashboardObserver');
+            CampaignSubmission::observe('App\Observers\CampaignSubmissionObserver');
             //MapPoint::observe('App\Observers\MapPointObserver');
             Character::observe(CharacterObserver::class);
             CommunityVote::observe('App\Observers\CommunityVoteObserver');

@@ -2,6 +2,11 @@
 
 return [
     'campaign'          => [
+        'application'   => [
+            'approved' => 'Your application to the :campaign campaign has been approved.',
+            'rejected' => 'Your application to the :campaign campaign has been rejected. Reason provided: :reason',
+            'new'      => 'New application for :campaign.',
+        ],
         'asset_export'  => 'An export of a campaign assets is available. The link is available for :time minutes.',
         'boost'         => [
             'add'           => 'Campaign :campaign is being boosted by :user.',

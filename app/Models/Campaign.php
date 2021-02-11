@@ -35,6 +35,7 @@ use Illuminate\Support\Str;
  * @property int $boost_count
  * @property integer $visible_entity_count
  * @property array $ui_settings
+ * @property boolean $is_open
  * @property array|null $default_images
  * @property array|null $settings
  * @property Carbon $created_at
@@ -49,8 +50,10 @@ use Illuminate\Support\Str;
  */
 class Campaign extends MiscModel
 {
+    use CampaignScopes,
+        CampaignRelations,
+        Boosted;
 
-    use CampaignScopes, CampaignRelations, Boosted;
     /**
      * Visibility of a campaign
      */
@@ -82,6 +85,7 @@ class Campaign extends MiscModel
         'css',
         'ui_settings',
         'settings',
+        'is_open',
     ];
 
     protected $casts = [

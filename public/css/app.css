@@ -1044,6 +1044,11 @@ hr {
   white-space: normal;
 }
 
+.btn-rounded {
+  border-radius: 50%;
+  text-align: center;
+}
+
 summary {
   display: list-item;
 }

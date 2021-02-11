@@ -9,6 +9,7 @@ use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignPlugin;
 use App\Models\CampaignRole;
 use App\Models\CampaignSetting;
+use App\Models\CampaignSubmission;
 use App\Models\CampaignUser;
 use App\Models\Character;
 use App\Models\Entity;
@@ -44,6 +45,7 @@ use App\User;
  *
  * @property CampaignDashboardWidget[] $widgets
  * @property CampaignDashboard[] $dashboards
+ * @property CampaignSubmission[] $submissions
  */
 trait CampaignRelations
 {
@@ -286,6 +288,14 @@ trait CampaignRelations
     public function theme()
     {
         return $this->belongsTo('App\Models\Theme');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function submissions()
+    {
+        return $this->hasMany('App\Models\CampaignSubmission');
     }
 
     /**

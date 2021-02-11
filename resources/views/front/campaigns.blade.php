@@ -64,6 +64,10 @@
  0 => __('front.campaigns.public.filters.unboosted'), 1 => __('front.campaigns.public.filters.boosted')], request()->get('is_boosted'), ['class' => 'form-control']) !!}
                     </div>
                     <div class="col">
+                        {!! Form::select('is_open', ['' => __('front.campaigns.open.filters.all'),
+ 0 => __('front.campaigns.open.filters.open'), 1 => __('front.campaigns.open.filters.closed')], request()->get('is_open'), ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="col">
                         <input type="submit" class="btn btn-primary" value="{{ __('crud.actions.apply') }}" />
                     </div>
                 </div>
