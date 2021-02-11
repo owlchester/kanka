@@ -48,12 +48,11 @@
       font-size: 22px;
       line-height: 28px;
       white-space: nowrap;
-      overflow: hidden;
       text-overflow: ellipsis;
 
-
       .pull-right {
-        margin: 0px;
+        margin: 0;
+        line-height: 32px;
       }
     }
 

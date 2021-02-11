@@ -9,6 +9,7 @@
     'breadcrumbs' => false,
     'canonical' => true,
     'contentId' => 'campaign-dashboard',
+    'skipContentHeader' => empty($dashboard)
 ])
 
 @section('og')
@@ -22,7 +23,7 @@
         @if(!empty($dashboards))
             <div class="btn-group pull-right">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-cog"></i>
+                    <i class="fa fa-th-large"></i>
                 </button>
                 <ul class="dropdown-menu" role="menu">
                     @if (!empty($dashboard))
@@ -55,7 +56,7 @@
             </div>
         @elseif($settings)
             <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-xl" title="{{ __('dashboard.settings.title') }}">
-                <i class="fa fa-cog"></i>
+                <i class="fa fa-th-large"></i>
             </a>
         @endif
         @can ('follow', $campaign)
@@ -149,7 +150,7 @@
     @if ($settings)
         <div class="row margin-top">
             <div class="col-md-12 text-center">
-                <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}" class="btn btn-default btn-lg" title="{{ __('dashboard.settings.title') }}">
+                <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}" class="btn btn-default" title="{{ __('dashboard.settings.title') }}">
                     <i class="fa fa-cog"></i> {{ __('dashboard.settings.title') }}
                 </a>
             </div>

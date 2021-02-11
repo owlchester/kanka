@@ -9,131 +9,20 @@
 .dashboard-actions {
   display: inline-block;
   float: right;
-  margin-top: -7px;
-}
 
-.campaign {
-  margin-top: 10px;
-  padding: 40px;
-  margin-bottom: 15px;
-
-  .content {
-    margin-top: 80px;
-    padding: 20px 20px 10px 20px;
-    border-radius: 5px;
-    min-height: 0;
-    text-align: justify;
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.5);
-
-    h1, .more, .preview {
-      text-shadow: $text-shadow;
-    }
-
-    h1 {
-      font-size: 18pt;
-      margin: 0;
-      padding: 0;
-      line-height: 1.3em;
-
-      .img-circle {
-        width: 50px;
-        height: 50px;
-        margin-right: 0;
-
-        &:hover {
-          box-shadow: $box-shadow-hover;
-        }
-      }
-
-
-      a {
-        color: #fff;
-
-        &:hover, &:focus, &:active {
-        color: #72afd2;
-        }
-      }
-    }
-    h2 {
-      font-size: 16pt;
-    }
-    h3, h4, h5, h6 {
-      font-size: 15pt;
-    }
-    .preview {
-      position: relative;
-      font-size: 11pt;
-
-      .preview-action {
-        text-align: center;
-      }
-    }
-
-    .more {
-      font-size: 1.2em;
-      a {
-        padding: 5px 0;
-        display: inline-block;
-      }
-    }
-
-    .campaign-link {
-      display: block;
-      padding: 8px 12px;
-      background: rgba(0, 0, 0, 0.1);
-      text-align: center;
-      font-size: 1.1em;
-
-      &:hover {
-        color: white;
-        background: $link-color;
-        box-shadow: $box-shadow-hover;
-      }
-    }
+  .btn {
+    padding: 4px 10px;
   }
 }
+
+
 .cover-background {
-    .campaign-link {
-      background: rgba(0, 0, 0, 0.6) !important;
+  .campaign-link {
+    background: rgba(0, 0, 0, 0.6) !important;
 
-      &:hover {
-        //background: rgba(0, 0, 0, 0.9) !important;
-        background: $link-color !important;
-      }
-    }
-}
-.no-header {
-  padding: 0;
-
-  .content {
-    margin-top: 0;
-    background-color: #fff;
-    border-radius: 2px;
-    color: #333;
-    border: 1px solid #d3e0e9;
-
-    h1, .more, .preview {
-      text-shadow: none;
-    }
-
-    h1 {
-      a {
-        color: #3c8dbc;
-      }
-    }
-
-    ul.campaign-links {
-      li {
-        a {
-          border: 1px solid #d3e0e9;
-          background: rgba(255, 255, 255, 0.2);
-
-          &:hover {
-            background: rgba(255, 255, 255, 0.5);
-          }
-        }
-      }
+    &:hover {
+      //background: rgba(0, 0, 0, 0.9) !important;
+      background: $link-color !important;
     }
   }
 }
@@ -309,12 +198,12 @@
   }
 
   .entity-image {
-     display: inline-block;
-     margin-right: 8px;
-     width: 35px;
-     height: 35px;
-     vertical-align: middle;
-   }
+    display: inline-block;
+    margin-right: 8px;
+    width: 35px;
+    height: 35px;
+    vertical-align: middle;
+  }
 
   .elapsed {
     font-size: 11px;
@@ -404,50 +293,97 @@
   }
 }
 
-@media (max-width: 787px) {
-  .content-header {
-  }
-  .campaign {
-    padding: 10px;
-    .content {
-      padding: 10px;
-      margin-top: 20px;
-
-
-      .title {
-
-        .img-circle {
-          margin-left: 0;
-          height: 30px;
-          width: 30px;
-        }
-      }
-
-      ul.campaign-links {
-        margin-bottom: 0;
-        li {
-          display: inline-block !important;
-          width: 49%;
-          margin-right: 0;
-          text-align: center;
-          a {
-            text-align: center;
-            width: 100%;
-          }
-
-          &:nth-last-child(1) {
-            display: none !important;
-          }
-        }
-      }
-    }
-  }
-}
-
 .box {
   .box-tools {
     position: absolute;
     right: 10px;
     top: 5px;
+  }
+}
+
+.campaign-header {
+  padding: 20px;
+  margin-bottom: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .social-bar {
+    text-align: right;
+  }
+  .action-bar {
+    line-height: 1.8em;
+    margin-left: auto;
+
+    .btn {
+      font-style: normal;
+      font-size: 14px;
+      line-height: 16px;
+    }
+    .dropdown-menu {
+
+      i {
+        text-align: center;
+        width: 20px;
+      }
+    }
+  }
+
+  .campaign-content .campaign-head {
+    display: flex;
+
+    .campaign-link {
+      margin: 0;
+      flex: 1;
+      margin-right: 30px;
+    }
+    .campaign-title {
+      font-size: 24px;
+      line-height: 32px;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+.campaign-header.campaign-imaged-header {
+  padding: 60px 40px;
+  .campaign-header-content {
+    margin-top: 5px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border-radius: 5px;
+  }
+}
+
+/** mobile **/
+
+@media (max-width: 767px) {
+  .campaign-header {
+    padding: 10px;
+    margin-bottom: 0;
+  }
+  .campaign-header .campaign-content > .campaign-head {
+  }
+
+  .campaign-header .campaign-content > .campaign-head a.campaign-link {
+    margin-right: 0;
+  }
+
+  .campaign-header.campaign-imaged-header {
+    padding: 20px 10px;
+  }
+
+  .campaign-header.campaign-imaged-header .campaign-header-content {
+    padding: 10px;
+  }
+
+  .dashboard-actions {
+    float: unset;
+    display: block;
+  }
+  .campaign-header .social-bar {
+    text-align: unset;
   }
 }
