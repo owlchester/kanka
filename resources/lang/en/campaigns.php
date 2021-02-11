@@ -219,6 +219,7 @@ TEXT
         'sharing'   => 'Sharing',
         'systems'   => 'Systems',
         'ui'        => 'Interface',
+        'setup'     => 'Setup',
     ],
     'placeholders'                      => [
         'description'   => 'A short summary of your campaign',
@@ -346,7 +347,13 @@ TEXT
             'leave' => 'Leave campaign',
         ],
         'description'   => 'A detailed view of a campaign',
+        'menus' => [
+            'overview' => 'Overview',
+            'user_management' => 'User management',
+            'configuration' => 'Configuration',
+        ],
         'tabs'          => [
+            'campaign'          => 'Campaign',
             'applications'      => 'Applications',
             'achievements'      => 'Achievements',
             'default-images'    => 'Default Images',

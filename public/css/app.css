@@ -1067,6 +1067,15 @@ hr {
   display: unset !important;
 }
 
+.nav-pills.nav-stacked li.nav-section {
+  font-size: 18px;
+  margin: 0;
+  line-height: 1;
+  position: relative;
+  display: block;
+  padding: 10px 8px;
+}
+
 summary {
   display: list-item;
 }
@@ -1340,6 +1349,20 @@ summary {
   .nav-tabs-custom .nav-tabs::-webkit-scrollbar {
     display: none;
     /*Safari and Chrome*/
+  }
+
+  .dl-force-mobile dt {
+    float: left;
+    width: 120px;
+    clear: left;
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .dl-force-mobile dd {
+    margin-left: 140px;
   }
 }
 

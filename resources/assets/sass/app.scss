@@ -1063,6 +1063,17 @@ hr {
   }
 }
 
+.nav-pills.nav-stacked {
+  li.nav-section {
+    font-size: 18px;
+    margin: 0;
+    line-height: 1;
+    position: relative;
+    display: block;
+    padding: 10px 8px;
+  }
+}
+
 // Bootstrap3 sets summary to display:block which isn't correct
 summary { display: list-item; }
 

@@ -23,6 +23,55 @@
         <div class="col-md-9">
             <div class="box box-solid">
                 <div class="box-header with-border">
+                    <h3 class="box-title">{{ __('campaigns.show.menus.overview') }}</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <dl class="dl-horizontal dl-force-mobile">
+                                <dt>{{ __('campaigns.fields.visibility') }}</dt>
+                                <dd>{{ __('campaigns.visibilities.' . $campaign->visibility) }}</dd>
+
+                                <dt>{{ __('campaigns.fields.entity_count') }}</dt>
+                                <dd>
+                                    {{ number_format(\App\Facades\CampaignCache::entityCount()) }}
+                                </dd>
+
+                                @if ($campaign->isPublic())
+                                <dt>{{ __('campaigns.fields.followers') }}</dt>
+                                <dd>{{ \App\Facades\CampaignCache::followerCount() }}</dd>
+                                @endif
+
+                            </dl>
+                        </div>
+                        <div class="col-sm-6">
+                            <dl class="dl-horizontal dl-force-mobile">
+                                @if ($campaign->boosted() && $campaign->boosts->count() > 0)
+                                    <dt class="text-maroon">
+                                        <i class="fa fa-rocket"></i> {{ __('campaigns.fields.boosted') }}
+                                    </dt>
+                                    <dd>
+                                        {{ $campaign->boosts->first()->user->name }}
+                                    </dd>
+                                @endif
+
+                                @if ($campaign->locale)
+                                    <dt>{{ __('campaigns.fields.locale') }}</dt>
+                                    <dd>{{ __('languages.codes.' . $campaign->locale) }}</dd>
+                                @endif
+
+                                @if (!empty($campaign->system))
+                                    <dt>{{ __('campaigns.fields.system') }}</dt>
+                                    <dd>{{ $campaign->system }}</dd>
+                                @endif
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box box-solid">
+                <div class="box-header with-border">
                     <h3 class="box-title">
                         {{ __('campaigns.fields.entry') }}
                     </h3>
