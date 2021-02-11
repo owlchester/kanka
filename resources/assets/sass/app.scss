@@ -1048,6 +1048,20 @@ hr {
   border-radius: 50%;
   text-align: center;
 }
+.btn-app > .ra, .btn-app > .fas, .btn-app > .far, .btn-app > .fab, .btn-app > .fa {
+  font-size: 20px;
+  display: block;
+  line-height: 20px !important;
+}
+
+.menu-link-selector {
+  .btn-app > .badge {
+    display: none;
+  }
+  .btn-app.btn-active > .badge {
+    display: unset !important;
+  }
+}
 
 // Bootstrap3 sets summary to display:block which isn't correct
 summary { display: list-item; }

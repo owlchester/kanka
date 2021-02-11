@@ -1049,6 +1049,24 @@ hr {
   text-align: center;
 }
 
+.btn-app > .ra,
+.btn-app > .fas,
+.btn-app > .far,
+.btn-app > .fab,
+.btn-app > .fa {
+  font-size: 20px;
+  display: block;
+  line-height: 20px !important;
+}
+
+.menu-link-selector .btn-app > .badge {
+  display: none;
+}
+
+.menu-link-selector .btn-app.btn-active > .badge {
+  display: unset !important;
+}
+
 summary {
   display: list-item;
 }

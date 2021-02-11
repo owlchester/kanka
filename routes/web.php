@@ -316,6 +316,10 @@ Route::group([
         Route::get('/campaigns/{campaign}/leave', 'CampaignController@leave')->name('campaigns.leave');
         Route::post('/campaigns/{campaign}/campaign_settings', 'CampaignSettingController@save')->name('campaigns.settings.save');
 
+        // Helper links
+        Route::get('/campaign/{campaign}/campaign_roles/admin', 'CampaignRoleController@admin')->name('campaigns.campaign_roles.admin');
+        Route::get('/campaign/{campaign}/campaign_roles/public', 'CampaignRoleController@public')->name('campaigns.campaign_roles.public');
+
         // Marketplace plugin route
         if(config('marketplace.enabled')) {
             Route::get('/plugins', 'Campaign\CampaignPluginController@index')->name('campaign_plugins.index');

@@ -226,6 +226,7 @@ TEXT
         'actions'       => [
             'add'   => 'Add a role',
         ],
+        'admin_role'    => 'admin role',
         'create'        => [
             'success'   => 'Role created.',
             'title'     => 'Create a new role for :name',

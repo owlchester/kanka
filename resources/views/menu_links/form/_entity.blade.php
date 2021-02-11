@@ -41,12 +41,17 @@ $menus = array_merge(['' => ''], $menus);
     ) !!}
 </div>
 
-<div class="form-group">
-    <label>{{ trans('menu_links.fields.tab') }}</label>
-    {!! Form::select('tab', $tabs, null, ['class' => 'form-control']) !!}
-</div>
-
-<div class="form-group">
-    <label>{{ trans('menu_links.fields.menu') }}</label>
-    {!! Form::select('menu', $menus, null, ['class' => 'form-control']) !!}
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>{{ trans('menu_links.fields.tab') }}</label>
+            {!! Form::select('tab', $tabs, null, ['class' => 'form-control']) !!}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>{{ trans('menu_links.fields.menu') }}</label>
+            {!! Form::select('menu', $menus, null, ['class' => 'form-control']) !!}
+        </div>
+    </div>
 </div>

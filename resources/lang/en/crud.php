@@ -149,6 +149,7 @@ return [
     'edit'                      => 'Edit',
     'errors'                    => [
         'boosted'                       => 'This feature is only available to boosted campaigns.',
+        'boosted_campaigns'             => 'This feature is only available for :boosted.',
         'node_must_not_be_a_descendant' => 'Invalid node (tag, parent location): it would be a descendant of itself.',
     ],
     'events'                    => [
@@ -183,6 +184,7 @@ return [
         'header_image'          => 'Header Image',
         'image'                 => 'Image',
         'is_private'            => 'Private',
+        'is_private_v2'         => 'Only show this to members of the campaign\'s :admin-role.',
         'is_star'               => 'Pinned',
         'item'                  => 'Item',
         'location'              => 'Location',
@@ -190,6 +192,7 @@ return [
         'name'                  => 'Name',
         'organisation'          => 'Organisation',
         'position'              => 'Position',
+        'privacy'               => 'Privacy',
         'race'                  => 'Race',
         'tag'                   => 'Tag',
         'tags'                  => 'Tags',

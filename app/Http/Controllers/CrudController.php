@@ -87,6 +87,11 @@ class CrudController extends Controller
     protected $tabBoosted = true;
 
     /**
+     * @var bool Control if the form is "horizontal" (css class)
+     */
+    protected $horizontalForm = false;
+
+    /**
      * A sorter object for subviews
      * @var null|DatagridSorter
      */
@@ -229,6 +234,7 @@ class CrudController extends Controller
         $params['tabBoosted'] = $this->tabBoosted && $campaign->boosted();
         $params['entityAttributeTemplates'] = $templates;
         $params['entityType'] = $model->getEntityType();
+        $params['horizontalForm'] = $this->horizontalForm;
 
         return view('cruds.forms.create', array_merge(['name' => $this->view], $params));
     }
@@ -359,7 +365,8 @@ class CrudController extends Controller
             'tabAttributes' => $this->tabAttributes && Auth::user()->can('attributes', $model->entity),
             'tabBoosted' => $this->tabBoosted && $campaign->boosted(),
             'tabCopy' => $this->tabCopy,
-            'entityType' => $model->getEntityType()
+            'entityType' => $model->getEntityType(),
+            'horizontalForm' => $this->horizontalForm,
         ];
 
         return view('cruds.forms.edit', $params);

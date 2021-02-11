@@ -8,7 +8,7 @@
 @inject('campaign', 'App\Services\CampaignService')
 
 @section('fullpage-form')
-    {!! Form::open(['method' => 'POST', 'enctype' => 'multipart/form-data', 'route' => [$name . '.store'], 'data-shortcut' => '1', 'class' => 'entity-form', 'id' => 'entity-form']) !!}
+    {!! Form::open(['method' => 'POST', 'enctype' => 'multipart/form-data', 'route' => [$name . '.store'], 'data-shortcut' => '1', 'class' => 'entity-form' . (isset($horizontalForm) && $horizontalForm ? ' form-horizontal' : null), 'id' => 'entity-form']) !!}
 @endsection
 
 @section('content')
