@@ -52,7 +52,7 @@ class ApplyController extends Controller
         /** @var CampaignSubmission $submission */
         $submission = auth()->user()->submissions()->first();
         if ($submission) {
-            $submission->update(['text' => $request->get('note')]);
+            $submission->update(['text' => $request->get('application')]);
             $success = __('campaigns/submissions.apply.success.update');
         } else {
             $submission = new CampaignSubmission();
