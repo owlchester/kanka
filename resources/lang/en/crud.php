@@ -365,6 +365,7 @@ return [
         'journal'       => 'Choose a journal',
         'location'      => 'Choose a location',
         'map'           => 'Choose a map',
+        'note'          => 'Choose a note',
         'organisation'  => 'Choose an organisation',
         'race'          => 'Choose a race',
         'tag'           => 'Choose a tag',
