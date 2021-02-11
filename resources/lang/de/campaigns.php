@@ -19,6 +19,8 @@ TEXT
         'title'                 => 'Neue Kampagne erstellen',
     ],
     'destroy'                           => [
+        'action'    => 'Kampagne löschen',
+        'helper'    => 'Sie können die Kampagne nur löschen, wenn Sie das einzige Mitglied in der Kampagne sind.',
         'success'   => 'Kampagne gelöscht',
     ],
     'edit'                              => [
@@ -41,13 +43,14 @@ TEXT
         'unknown_id'    => 'Unbekannte Kampagne.',
     ],
     'export'                            => [
-        'description'   => 'Exportiere die Kampagne.',
-        'errors'        => [
+        'description'       => 'Exportiere die Kampagne.',
+        'errors'            => [
             'limit' => 'Du hast dein Limit von einem Export pro Tag erreicht. Bitte versuche es morgen wieder.',
         ],
-        'helper'        => 'Exportiere deine Kampagne. Eine Benachrichtigung mit dem Downloadlink wir dir bereit gestellt.',
-        'success'       => 'Der Export deiner Kampagne wird vorbereitet. Du erhältst eine Nachricht in Kanka sobald dein Download bereit steht.',
-        'title'         => 'Kampagne :name Export',
+        'helper'            => 'Exportiere deine Kampagne. Eine Benachrichtigung mit dem Downloadlink wir dir bereit gestellt.',
+        'helper_secondary'  => 'Es werden zwei Dateien zur Verfügung gestellt, eine mit dem Objektexporter als JSON und eine mit Bildern, die auf Objekte hochgeladen wurden. Bitte beachten Sie, dass bei größeren Kampagnen der Bilderexport abstürzt und nur mit der :api wiederhergestellt werden kann.',
+        'success'           => 'Der Export deiner Kampagne wird vorbereitet. Du erhältst eine Nachricht in Kanka sobald dein Download bereit steht.',
+        'title'             => 'Kampagne :name Export',
     ],
     'fields'                            => [
         'boosted'                       => 'geboosted durch',

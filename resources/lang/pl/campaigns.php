@@ -17,6 +17,8 @@ TEXT
         'title'                 => 'Nowa Kampania',
     ],
     'destroy'                           => [
+        'action'    => 'Usuń kampanię',
+        'helper'    => 'Możesz usunąć wyłącznie kampanię, której jesteś jedynym uczestnikiem.',
         'success'   => 'Kampania usunięta.',
     ],
     'edit'                              => [
@@ -24,11 +26,14 @@ TEXT
         'success'       => 'Kampania zaktualizowana.',
         'title'         => 'Edycja kampanii :name',
     ],
+    'entity_note_visibility'            => [
+        'pinned'    => 'Przypinaj nowe notki o elementach',
+    ],
     'entity_personality_visibilities'   => [
-        'private'   => 'Osobowość nowych postaci jest domyślnie ustawiona jako prywatna.',
+        'private'   => 'Osobowość nowych postaci jest domyślnie ustawiona jako tajna.',
     ],
     'entity_visibilities'               => [
-        'private'   => 'Nowe elementy są prywatne',
+        'private'   => 'Nowe elementy są tajne',
     ],
     'errors'                            => [
         'access'        => 'Nie masz dostępu do tej kampanii.',
@@ -36,19 +41,21 @@ TEXT
         'unknown_id'    => 'Nieznana kampania.',
     ],
     'export'                            => [
-        'description'   => 'Eksportuj kampanię.',
-        'errors'        => [
+        'description'       => 'Eksportuj kampanię.',
+        'errors'            => [
             'limit' => 'Przekraczasz limit jednego eksportu dziennie. Spróbuj ponownie jutro.',
         ],
-        'helper'        => 'Eksportuj kampanię. Pojawi się zawiadomienie z linkiem do pobrania materiałów.',
-        'success'       => 'Przygotowujemy eksport kampanii. Gdy plik zip będzie gotowy do pobrania, otrzymasz powiadomienie.',
-        'title'         => 'Eksportowanie kampanii :nazwa',
+        'helper'            => 'Eksportuj kampanię. Pojawi się zawiadomienie z linkiem do pobrania materiałów.',
+        'helper_secondary'  => 'Zostaną utworzone dwa pliki, jeden zawierający elementy w formacie JSON, i drugi z powiązanymi z nimi obrazami. Uwaga: w wypadku dużych kampanii eksport obrazów może ulec awarii i można go odzyskać wyłącznie przy pomocy :api.',
+        'success'           => 'Przygotowujemy eksport kampanii. Gdy plik zip będzie gotowy do pobrania, otrzymasz powiadomienie.',
+        'title'             => 'Eksportowanie kampanii :nazwa',
     ],
     'fields'                            => [
         'boosted'                       => 'Doładowanie przez',
         'css'                           => 'CSS',
         'description'                   => 'Opis',
         'entity_count'                  => 'Liczba elementów',
+        'entity_note_visibility'        => 'Przypięte notki elementów',
         'entity_personality_visibility' => 'Widoczność osobowości postaci',
         'entity_visibility'             => 'Widoczność elementów',
         'excerpt'                       => 'Podsumowanie',
@@ -60,6 +67,7 @@ TEXT
         'locale'                        => 'Język kampanii',
         'name'                          => 'Nazwa',
         'public_campaign_filters'       => 'Filtry kampanii publicznych',
+        'related_visibility'            => 'Widoczność związanych elementów',
         'rpg_system'                    => 'Systemy RPG',
         'system'                        => 'System',
         'theme'                         => 'Motyw',
@@ -72,14 +80,16 @@ TEXT
         'boost_required'                => 'Ta opcja jest dostępna tylko w doładowanych kampaniach. Więcej informacji znajdziesz na stronie :settings.',
         'boosted'                       => 'Odblokowano nowe opcje ponieważ kampania jest doładowania. Więcej informacji znajdziesz na stronie :settings.',
         'css'                           => 'Twórz własne style CSS, których możesz używać w kampanii. Uwaga - nadużywanie tej opcji może poskutkować usunięciem stworzonych stylów. Powtarzające się albo poważne wykroczenia mogą spowodować usunięcie kampanii.',
-        'entity_personality_visibility' => 'Gdy tworzysz nową postać, opcja "Postać Widoczna" będzie domyślnie wyłączona.',
-        'entity_visibility'             => 'Gdy tworzysz nowy element, domyślnie włączona będzie opcja "Prywatny".',
+        'entity_note_visibility'        => 'Kiedy tworzysz nową notkę o elemencie, domyślnie wybrana będzie opcja "Przypięta".',
+        'entity_personality_visibility' => 'Gdy tworzysz nową postać, opcja "Postać jawna" będzie domyślnie wyłączona.',
+        'entity_visibility'             => 'Gdy tworzysz nowy element, domyślnie włączona będzie opcja "Tajne".',
         'excerpt'                       => 'Podsumowanie kampanii będzie wyświetlane na pulpicie, więc poświęć mu kilka zdań. Najlepiej, gdy jest krótkie i dobitne.',
-        'hide_history'                  => 'Zaznacz, by ukryć historię elementów kampanii przed nieposiadającymi statusu administratora.',
-        'hide_members'                  => 'Zaznacz, by ukryć listą uczestników kampanii przed nieposiadającymi statusu administratora.',
+        'hide_history'                  => 'Zaznacz, by ukryć historię elementów kampanii przed nieposiadającymi statusu Admina.',
+        'hide_members'                  => 'Zaznacz, by ukryć listą uczestników kampanii przed nieposiadającymi statusu Admina.',
         'locale'                        => 'Język, w którym piszesz kampanię. Służy do tworzenia zawartości oraz filtrowania kampanii publicznych.',
         'name'                          => 'Twoja kampania lub świat mogą się nazywać jakkolwiek, o ile nazwa ma przynamniej 4 litery lub cyfry.',
         'public_campaign_filters'       => 'Pomóż innym graczom znaleźć twoją kampanię wśród innych dostępnych publicznie, podając następujące informacje.',
+        'related_visibility'            => 'Domyślna widoczność elementów tworzonych w tym polu (notek, relacji, zdolności itd.)',
         'system'                        => 'Jeżeli kampania jest dostępna publicznie, system podany jest na stronie :link.',
         'systems'                       => 'By nie zarzucać wszystkich użytkowników mnóstwem opcji, Kanka udostępnia niektóre możliwości tylko dla konkretnych systemów RPG (np. blok statystyk potworów do D&D 5 ed.). Jeżeli dodasz tu wspierany w ten sposób system, uzyskasz dostęp do takich treści.',
         'theme'                         => 'Ustaw inny motyw tej kampanii, niż zaznaczony w ogólnych preferencjach użytkownika.',
@@ -142,7 +152,7 @@ TEXT
         'unlimited_validity'    => 'Nieograniczona',
     ],
     'leave'                             => [
-        'confirm'   => 'Czy na pewno chcesz opuścić kampanię :name? Utracisz do niej dostęp do czasu, gdy Administrator kampanii zaprosi cię ponownie.',
+        'confirm'   => 'Czy na pewno chcesz opuścić kampanię :name? Utracisz do niej dostęp do czasu, gdy Admin kampanii zaprosi cię ponownie.',
         'error'     => 'Nie możesz opuścić kampanii.',
         'success'   => 'Opuszczasz kampanię.',
     ],
@@ -168,7 +178,7 @@ TEXT
         ],
         'help'                  => 'W kampaniach może brać udział dowolnie dużo uczestników.',
         'helpers'               => [
-            'admin' => 'Jako administrator kampanii, możesz zapraszać nowych graczy, usuwać nieaktywnych i zmieniać ich uprawnienia. By przetestować uprawnienia gracza, użyj funkcji Przełącz. Jej dokładny opis znajdziesz tutaj: :link.',
+            'admin' => 'Jako Admin kampanii, możesz zapraszać nowych graczy, usuwać nieaktywnych i zmieniać ich uprawnienia. By przetestować uprawnienia gracza, użyj funkcji Przełącz. Jej dokładny opis znajdziesz tutaj: :link.',
             'switch'=> 'Przełącz uczestnika',
         ],
         'impersonating'         => [
@@ -183,7 +193,7 @@ TEXT
         ],
         'roles'                 => [
             'member'    => 'Uczestnik',
-            'owner'     => 'Administrator',
+            'owner'     => 'Admin',
             'player'    => 'Gracz',
             'public'    => 'Publiczność',
             'viewer'    => 'Obserwator',
@@ -229,9 +239,9 @@ TEXT
             'users'         => 'Posiadacze',
         ],
         'helper'        => [
-            '1' => 'Kampania może posiadać dowodnie dużo ról. "Administrator" posiada automatycznie dostęp do wszystkich elementów kampanii, ale inne role mogą być ograniczone tylko do części elementów (postaci, miejsc, itd.).',
+            '1' => 'Kampania może posiadać dowodnie dużo ról. "Admin" posiada automatycznie dostęp do wszystkich elementów kampanii, ale inne role mogą być ograniczone tylko do części elementów (postaci, miejsc, itd.).',
             '2' => 'Uprawnienia rozmaitych elementów można dodatkowo modyfikować w zakładce "Uprawnienia" tego elementu. Zakładka pojawi się, kiedy w kampanii przybędzie ról lub członków.',
-            '3' => 'Można albo zapewnić rolom uprawienia dostępu do wszystkich elementów kampanii i ukrywać część z nich zaznaczając okienko "Prywatne", albo nie dawać rolom wielu uprawnień i ręcznie ustawiać widoczność elementów.',
+            '3' => 'Można albo zapewnić rolom uprawienia dostępu do wszystkich elementów kampanii i ukrywać część z nich zaznaczając okienko "Tajne", albo nie dawać rolom wielu uprawnień i ręcznie ustawiać widoczność elementów.',
         ],
         'hints'         => [
             'campaign_not_public'   => 'Ustawiono uprawnienia roli Publiczność, ale kampania jest prywatna. Możesz to zmienić z pomocą zakładki Udostępnij w menu edycji kampanii.',
@@ -242,15 +252,18 @@ TEXT
         'permissions'   => [
             'actions'   => [
                 'add'           => 'Tworzenie',
+                'dashboard'     => 'Pulpit',
                 'delete'        => 'Usuwanie',
                 'edit'          => 'Edytowanie',
-                'entity-note'   => 'Notowanie',
+                'entity-note'   => 'Notka elementu',
+                'manage'        => 'Zarządzaj',
+                'members'       => 'Uczestnicy',
                 'permission'    => 'Uprawnienia',
                 'read'          => 'Oglądanie',
                 'toggle'        => 'Zmień dla wszystkich',
             ],
             'helpers'   => [
-                'entity_note'   => 'Pozwala uczestnikom nie posiadającym praw do edycji dodawać notatki do elementów kampanii.',
+                'entity_note'   => 'Pozwala uczestnikom nie posiadającym praw do edycji dodawać notki do elementów kampanii.',
             ],
             'hint'      => 'Ta rola ma automatyczny dostęp do wszystkiego.',
         ],
@@ -263,7 +276,7 @@ TEXT
         ],
         'title'         => 'Role w kampanii :name',
         'types'         => [
-            'owner'     => 'Administrator',
+            'owner'     => 'Admin',
             'public'    => 'Publiczność',
             'standard'  => 'Stadardowy',
         ],
@@ -292,7 +305,7 @@ TEXT
         'edit'          => [
             'success'   => 'Zaktualizowano ustawienia kampanii.',
         ],
-        'helper'        => 'Wszystkie moduły kampanii można w każdej chwili aktywować lub wyłączyć. Wyłączenie modułu powoduje ukrycie związanych z nim składników interfejsu oraz istniejących już elementów kampanii - ale nie zostaną usunięte na wypadek, jeśli zmienić zdanie. Zmiana działa u wszystkich uczestników kampanii, nawet Administratorów.',
+        'helper'        => 'Wszystkie moduły kampanii można w każdej chwili aktywować lub wyłączyć. Wyłączenie modułu powoduje ukrycie związanych z nim składników interfejsu oraz istniejących już elementów kampanii - ale nie zostaną usunięte na wypadek, jeśli zmienić zdanie. Zmiana działa u wszystkich uczestników kampanii, nawet Adminów.',
         'helpers'       => [
             'abilities'     => 'Twórz zdolności specjalne, na przykład czary, moce czy techniki, i przypisuj je innym elementom.',
             'calendars'     => 'Wyposaż swój świat w systemy liczenia czasu.',
@@ -340,7 +353,7 @@ TEXT
         'gallery'   => [
             'error' => [
                 'text'  => 'Umieszczanie obrazów w edytorze tekstu możliwe jest tylko w :superboosted.',
-                'title' => 'Dodawanie obrazów do galerii kampanii',
+                'title' => 'Zamieszczanie obrazów w galerii kampanii',
             ],
         ],
     ],

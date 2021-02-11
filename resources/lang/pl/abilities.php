@@ -23,7 +23,7 @@ return [
         'type'      => 'Rodzaj',
     ],
     'helpers'       => [
-        'descendants'   => 'Na liście znajdują się wszystkie zdolności wywodzące się od tej zdolności, nie tylko bezpośrednio.',
+        'descendants'   => 'Na liście znajdują się wszystkie zdolności pochodzące od tej zdolności, nie tylko bezpośrednio.',
         'nested'        => 'W Widoku Zagnieżdżonym na poziomie podstawowym wyświetlane są zdolności, które nie mają źródła. Po kliknięciu na zdolność zobaczysz jej zdolności pochodne. Możesz klikać, póki nie skończą się poziomy zależności.',
     ],
     'index'         => [
