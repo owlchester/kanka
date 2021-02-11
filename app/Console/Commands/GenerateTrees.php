@@ -2,16 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Ability;
-use App\Models\Event;
-use App\Models\Family;
-use App\Models\Journal;
-use App\Models\Location;
-use App\Models\Organisation;
-use App\Models\Quest;
-use App\Models\Race;
-use App\Models\Tag;
-use App\Models\Timeline;
 use App\Services\EntityService;
 use Illuminate\Console\Command;
 
