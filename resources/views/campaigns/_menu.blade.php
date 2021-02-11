@@ -1,14 +1,6 @@
 <?php /** @var App\Models\Campaign $campaign */ ?>
 <div class="box box-solid">
     <div class="box-body box-profile">
-        @if ($campaign->image)
-            <div class="full-sized-image" style="background-image: url('{{ Img::crop(400, 240)->url($campaign->image) }}');">
-                <h1>{!! $campaign->name !!}</h1>
-            </div>
-        @else
-            <h1 class="profile-username text-center">{!! $campaign->name !!}</h1>
-        @endif
-
         <ul class="list-group list-group-unbordered">
             <li class="list-group-item">
                 <b>{{ trans('campaigns.fields.visibility') }}</b>
@@ -98,7 +90,7 @@
 
 @if (!auth()->guest() and $campaign->userIsMember())
 <div class="box box-solid">
-    <div class="box-header with-border">
+    <div class="box-header">
         <h3 class="box-title">
             {{ __('campaigns.show.tabs.menu') }}
         </h3>
@@ -164,23 +156,21 @@
                 </a>
             </li>
             @endif
-            @if ($campaign->boosted())
-                <li class="@if(!empty($active) && $active == 'default-images')active @endif">
-                    <a href="{{ route('campaign.default-images') }}">
-                        {{ __('campaigns.show.tabs.default-images') }}
-                        @if($campaign->default_images)
-                        <span class="label label-default pull-right">
-                            {{ count($campaign->default_images)}}
-                        </span>
-                        @endif
-                    </a>
-                </li>
-                <li class="@if(!empty($active) && $active == 'recovery')active @endif">
-                    <a href="{{ route('recovery') }}">
-                        {{ __('campaigns.show.tabs.recovery') }}
-                    </a>
-                </li>
-            @endif
+            <li class="@if(!empty($active) && $active == 'default-images')active @endif">
+                <a href="{{ route('campaign.default-images') }}">
+                    {{ __('campaigns.show.tabs.default-images') }}
+                    @if($campaign->default_images)
+                    <span class="label label-default pull-right">
+                        {{ count($campaign->default_images)}}
+                    </span>
+                    @endif
+                </a>
+            </li>
+            <li class="@if(!empty($active) && $active == 'recovery')active @endif">
+                <a href="{{ route('recovery') }}">
+                    {{ __('campaigns.show.tabs.recovery') }}
+                </a>
+            </li>
             @endcan
 
             @can('stats', $campaign)

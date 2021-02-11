@@ -22,7 +22,7 @@ class DefaultImageController extends Controller
     public function __construct(EntityService $entityService, DefaultImageService $service)
     {
         $this->middleware('auth');
-        $this->middleware('campaign.boosted');
+        $this->middleware('campaign.boosted', ['except' => 'index']);
 
         $this->service = $service;
         $this->entityService = $entityService;

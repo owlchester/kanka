@@ -17,7 +17,13 @@
 </div>
 
 <div class="form-group">
-    <button class="btn btn-success">{{ trans('campaigns.invites.create.button') }}</button>
+    <button class="btn btn-success">
+        @if ($type == 'email')
+            {{ __('campaigns.invites.create.buttons.send') }}
+        @else
+            {{ __('campaigns.invites.create.buttons.create') }}
+        @endif
+    </button>
     @if (!request()->ajax())
     {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
     @endif

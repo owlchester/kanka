@@ -150,6 +150,7 @@ return [
     'errors'                    => [
         'boosted'                       => 'This feature is only available to boosted campaigns.',
         'boosted_campaigns'             => 'This feature is only available for :boosted.',
+        'unavailable_feature'           => 'Unavailable feature',
         'node_must_not_be_a_descendant' => 'Invalid node (tag, parent location): it would be a descendant of itself.',
     ],
     'events'                    => [

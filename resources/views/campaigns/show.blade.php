@@ -22,13 +22,20 @@
         </div>
         <div class="col-md-9">
             <div class="box box-solid">
-                <div class="box-body">
-                    <h2 class="page-header with-border">
-                        {{ trans('crud.fields.entry') }}
-                    </h2>
-                    <div class="post">
-                        <p>{!! $campaign->entry() !!}</p>
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        {{ __('campaigns.fields.entry') }}
+                    </h3>
+                    <div class="box-tools pull-right">
+                        @can('update', $campaign)
+                            <a href="{{ route('campaigns.edit', $campaign->id) }}" class="btn btn-box-tool" title="{{ __('campaigns.show.actions.edit') }}">
+                                <i class="fa fa-edit" aria-hidden="true"></i>
+                            </a>
+                        @endcan
                     </div>
+                </div>
+                <div class="box-body">
+                    <p>{!! $campaign->entry() !!}</p>
                 </div>
             </div>
 

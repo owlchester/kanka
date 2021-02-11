@@ -1,9 +1,11 @@
 
 <div class="box box-solid">
+    <div class="box-header with-border">
+        <h3 class="box-title">
+            <i class="fa fa-th-large"></i> {{ __('campaigns.show.tabs.settings') }}
+        </h3>
+    </div>
     <div class="box-body">
-        <h2 class="page-header with-border">
-            {{ __('campaigns.show.tabs.settings') }}
-        </h2>
 
         <p class="help-block">{{ __('campaigns.settings.helper') }}</p>
     </div>

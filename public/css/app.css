@@ -1497,17 +1497,17 @@ summary {
   flex-grow: 5;
 }
 
-.box-header > .box-tools {
+.kanka-entity-timeline > .box-header > .box-tools {
   flex-basis: 73px;
   text-align: right;
   margin: 0 0 0 5px;
 }
 
-.box-header > .box-tools a:hover {
+.kanka-entity-timeline > .box-header > .box-tools a:hover {
   background: unset !important;
 }
 
-.box-header > .box-tools i {
+.kanka-entity-timeline > .box-header > .box-tools i {
   font-size: 14px;
   margin-left: 5px;
 }

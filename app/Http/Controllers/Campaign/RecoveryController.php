@@ -18,7 +18,7 @@ class RecoveryController extends Controller
     public function __construct(RecoveryService $service)
     {
         $this->middleware('auth');
-        $this->middleware('campaign.boosted');
+        $this->middleware('campaign.boosted', ['except' => 'index']);
 
         $this->service = $service;
     }

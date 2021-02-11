@@ -2,10 +2,12 @@
  * @var \App\Models\Plugin $plugin
  */?>
 <div class="box box-solid">
+    <div class="box-header with-border">
+        <h4 class="box-title">
+            <i class="fa fa-gift"></i> {{ __('campaigns.show.tabs.plugins') }}
+        </h4>
+    </div>
     <div class="box-body">
-        <h2 class="page-header with-border">
-            {{ __('campaigns.show.tabs.plugins') }}
-        </h2>
 
         <p class="help-block">{{ trans('campaigns/plugins.helper')}}</p>
 

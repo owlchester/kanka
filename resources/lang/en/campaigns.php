@@ -58,6 +58,7 @@ TEXT
         'entity_note_visibility'        => 'Entity Notes Pinned',
         'entity_personality_visibility' => 'Character Personality Visibility',
         'entity_visibility'             => 'Entity Visibility',
+        'entry'                         => 'Campaign description',
         'excerpt'                       => 'Excerpt',
         'followers'                     => 'Followers',
         'header_image'                  => 'Header Image',
@@ -107,12 +108,15 @@ TEXT
     ],
     'invites'                           => [
         'actions'               => [
-            'add'   => 'Invite',
+            'add'   => 'Email invite',
             'copy'  => 'Copy the link to your clipboard',
             'link'  => 'New Link',
         ],
         'create'                => [
-            'button'        => 'Invite',
+            'buttons'        => [
+                'create' => 'Create invite',
+                'send' => 'Send invite',
+            ],
             'description'   => 'Invite a friend to your campaign',
             'link'          => 'Link created: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Invitation sent.',
@@ -140,7 +144,7 @@ TEXT
             'validity'  => 'Validity',
         ],
         'helpers'               => [
-            'email'     => 'Our emails are often flagged as spam and can take up to a few hours before appearing in your inbox.',
+            'email'     => 'Our emails are often flagged as spam and can take up to a few hours before appearing in the inbox.',
             'validity'  => 'How many users can use this link before it is deactivated. Leave blank for unlimited',
         ],
         'placeholders'          => [

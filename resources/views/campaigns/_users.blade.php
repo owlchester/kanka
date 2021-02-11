@@ -1,9 +1,11 @@
 <div class="box box-solid">
-    <div class="box-body">
-        <h2 class="page-header with-border">
-            {{ __('campaigns.show.tabs.members') }}
-        </h2>
+    <div class="box-header with-border">
+        <h3 class="box-title">
+            <i class="fa fa-users"></i> {{ __('campaigns.show.tabs.members') }}
+        </h3>
+    </div>
 
+    <div class="box-body">
         <p class="help-block">
             {{ __('campaigns.members.help') }}
             {!! __('campaigns.members.helpers.admin', [
@@ -71,8 +73,10 @@
 
 @if (Auth::user()->can('invite', $campaign))
     <div class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title ">{{ __('campaigns.members.invite.title') }}</h3>
+        </div>
         <div class="box-body">
-            <h2 class="page-header with-border">{{ __('campaigns.members.invite.title') }}</h2>
             <p class="help-block">
                 {{ __('campaigns.members.invite.description') }}
                 {!! __('campaigns.members.invite.more', [
@@ -98,7 +102,7 @@
 
                         <a href="{{ route('campaign_invites.create') }}" class="btn btn-primary btn-sm"
                         data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_invites.create') }}">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
                             <span class="hidden-xs hidden-md">{{ __('campaigns.invites.actions.add') }}</span>
                         </a>
                     </th>

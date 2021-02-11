@@ -7,6 +7,7 @@ use \Illuminate\Support\Arr;
         ['url' => route('campaign'), 'label' => trans('campaigns.index.title')],
         __('campaigns.show.tabs.achievements')
     ],
+    'mainTitle' => false,
 ])
 
 @section('content')

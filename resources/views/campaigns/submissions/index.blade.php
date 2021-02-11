@@ -7,6 +7,7 @@
         ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
         __('campaigns.show.tabs.applications')
     ],
+    'mainTitle' => false,
 ])
 
 @section('content')
