@@ -3,15 +3,18 @@
 return [
     'create'        => [
         'description'   => 'Stwórz nową rodzinę',
-        'success'       => 'Rodzina \':name\' stworzona.',
+        'success'       => 'Stworzono rodzinę \':name\'.',
         'title'         => 'Nowa Rodzina',
     ],
     'destroy'       => [
-        'success'   => 'Rodzina \':name\' usunięta.',
+        'success'   => 'Usunięto rodzinę \':name\'.',
     ],
     'edit'          => [
-        'success'   => 'Rodzina \':name\' zaktualizowana.',
+        'success'   => 'Zaktualizowano rodzinę \':name\'.',
         'title'     => 'Edycja rodziny :name',
+    ],
+    'families'      => [
+        'title' => 'Rodziny rodziny :name',
     ],
     'fields'        => [
         'families'  => 'Rodziny pochodne',
@@ -31,14 +34,31 @@ return [
         'members'   => 'Lista członków rodziny. Aby dodać postać do rodziny, wybierz ją z listy w pozycji "Rodzina" podczas edycji tej postaci.',
     ],
     'index'         => [
-        'add'   => 'Nowa Rodzina',
+        'add'           => 'Nowa Rodzina',
+        'description'   => 'Zarządzaj rodzinami elementu :name',
+        'header'        => 'Rodziny elementu :name',
+        'title'         => 'Rodziny',
     ],
     'members'       => [
-        'title' => 'Członkowie rodziny :name',
+        'helpers'   => [
+            'all_members'       => 'Na liście znajdują się postacie należące do tej rodziny i wszystkich jej rodzin pochodnych.',
+            'direct_members'    => 'Większość rodzin posiada członków, którymi słynie. Na poniższej liście znajdują się postacie należące do tej rodziny bezpośrednio.',
+        ],
+        'title'     => 'Członkowie rodziny :name',
     ],
     'placeholders'  => [
         'location'  => 'Wybierz miejsce',
         'name'      => 'Nazwisko rodowe',
         'type'      => 'Królewska, szlachecka, wymarła',
+    ],
+    'show'          => [
+        'description'   => 'Szczegółowy opis rodziny',
+        'tabs'          => [
+            'all_members'   => 'Wszyscy członkowie',
+            'families'      => 'Rodziny',
+            'members'       => 'Członkowie',
+            'relation'      => 'Relacje',
+        ],
+        'title'         => 'Rodzina :name',
     ],
 ];

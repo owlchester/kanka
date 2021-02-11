@@ -13,15 +13,21 @@ return [
         'success'   => 'Événement \':name\' modifié.',
         'title'     => 'Modifier l\'événement :name',
     ],
+    'events'        => [
+        'title' => 'Événements de l\'événement :name',
+    ],
     'fields'        => [
         'date'      => 'Date',
+        'event'     => 'Événement parent',
+        'events'    => 'Événements',
         'image'     => 'Image',
         'location'  => 'Lieu',
         'name'      => 'Nom',
         'type'      => 'Type',
     ],
     'helpers'       => [
-        'date'  => 'Ce champ peut contenir n\'importe quelle valeur et n\'est pas lié aux calendriers de la campagne. Pour lier cet événement à un calendrier, il faut se rendre sur l\'onglet rappels de cet événement.',
+        'date'      => 'Ce champ peut contenir n\'importe quelle valeur et n\'est pas lié aux calendriers de la campagne. Pour lier cet événement à un calendrier, il faut se rendre sur l\'onglet rappels de cet événement.',
+        'nested'    => 'Affichage des événements sans parent par défaut. Cliquer sur la rangée d\'un événement pour voir ses descendants.',
     ],
     'index'         => [
         'add'           => 'Nouvel Événement',

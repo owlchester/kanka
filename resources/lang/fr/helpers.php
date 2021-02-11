@@ -11,8 +11,8 @@ return [
         'level'         => 'Niveau',
         'link'          => 'Options pour les attributs',
         'math'          => 'Il est aussi possible d\'être créatif avec des opérations mathématiques. Par exemple, :example multipliera le :level avec le :con de l\'entité. Pour arrondir les valeurs, utiliser :floor ou :ceil.',
-        'pinned'        => 'Épingler un attribut en utilisant :icon le fera apparaître dans le menu de l\'entité sous l\'image.',
-        'private'       => 'Priver les attributs avec :icon les rendront seulement visible pour les admins de la campagne.',
+        'pinned'        => 'Epingler un attribut en utilisant l\'icône :icon l\'affichera sur le menu de l\'entité sous l\'image.',
+        'private'       => 'Les attributs privés en utilisant :icon ne sont que visibles pour les membres du rôle admin de la campagne.',
         'title'         => 'Attributs',
     ],
     'dice'          => [

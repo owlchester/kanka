@@ -35,8 +35,12 @@ return [
             'success'   => 'Taboleiro ":name" eliminado.',
         ],
         'fields'        => [
+            'copy_widgets'  => 'Copiar complementos',
             'name'          => 'Nome do taboleiro',
             'visibility'    => 'Visibilidade',
+        ],
+        'helpers'       => [
+            'copy_widgets'  => 'Copia os complementos do taboleiro ":name" neste novo taboleiro.',
         ],
         'placeholders'  => [
             'name'  => 'Nome do taboleiro',

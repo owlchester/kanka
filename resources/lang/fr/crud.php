@@ -5,6 +5,7 @@ return [
         'actions'           => 'Actions',
         'apply'             => 'Appliquer',
         'back'              => 'Retour',
+        'bulk_templates'    => 'Appliquer modèle d\'attribut',
         'copy'              => 'Copier',
         'copy_mention'      => 'Copier mention [ ]',
         'copy_to_campaign'  => 'Copier vers une campagne',
@@ -112,9 +113,13 @@ return [
             'copy_to_campaign'  => '{1} :count entité copiée à :campaign.|[2,*] :count entités copiées à :campaign.',
             'editing'           => ':count entité modifiée.|:count entités modifiées.',
             'permissions'       => 'Permissions changées pour :count entité. |Permissions changées pour :count entités.',
-            'private'           => ':count entité est maintenant privée.|:count entitées sont maintenant privées.',
-            'public'            => ':count entité est maintenant visible.|:count entitées sont maintenant visibles.',
+            'private'           => ':count entité est maintenant privée.|:count entités sont maintenant privées.',
+            'public'            => ':count entité est maintenant visible.|:count entités sont maintenant visibles.',
+            'templates'         => 'Le modèle d\'attribute a été appliqué sur :count entité.|Le modèle d\'attribut a été appliqué sur :count entités.',
         ],
+    ],
+    'bulk_templates'            => [
+        'bulk_title'    => 'Appliquer un modèle d\'attribute aux entités',
     ],
     'cancel'                    => 'Annuler',
     'click_modal'               => [
@@ -242,6 +247,7 @@ return [
     'hints'                     => [
         'attribute_template'    => 'Appliquer un modèle d\'attribut lors de la création ou l\'édition de cette entité.',
         'calendar_date'         => 'Une date de calendrier permet un triage plus facile dans les listes, et garde à jour un événement de calendrier dans le calendrier sélectionné.',
+        'gallery_image'         => 'Si l\'entité n\'a pas d\'image, afficher une image depuis la galerie de la campagne.',
         'header_image'          => 'Cette image s\'affiche au-delà de l\'entité. Les images larges mènent a un meilleur résultat.',
         'image_limitations'     => 'Formats supportés: jpg, png et gif. Taille max: :size.',
         'image_patreon'         => 'Augmenter la taille limite?',
@@ -358,6 +364,7 @@ return [
         'organisation'  => 'Choix d\'une organisation',
         'race'          => 'Choix d\'une race',
         'tag'           => 'Choix d\'une étiquette',
+        'timeline'      => 'Choix d\'une chronologie',
     ],
     'relations'                 => [
         'actions'   => [

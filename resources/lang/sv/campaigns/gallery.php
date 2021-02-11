@@ -12,8 +12,14 @@ return [
     'fields'        => [
         'created_by'    => 'Uppladdad av',
         'ext'           => 'Ext',
+        'folder'        => 'Mapp',
+        'name'          => 'Namn',
         'size'          => 'Storlek',
     ],
+    'new_folder'    => [
+        'title' => 'Ny mapp',
+    ],
+    'no_folder'     => 'Ingen mapp',
     'placeholders'  => [
         'search'    => 'Sök bild namn...',
     ],
@@ -24,6 +30,7 @@ return [
     ],
     'uploader'      => [
         'add'           => 'Lägg till ny',
+        'new_folder'    => 'Ny Mapp',
         'or'            => 'eller',
         'select_file'   => 'Välj en fil',
         'well'          => 'Släpp fil för att ladda upp',

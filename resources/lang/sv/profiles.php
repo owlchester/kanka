@@ -9,6 +9,7 @@ return [
         'success'   => 'Profil uppdaterad',
     ],
     'editors'       => [
+        'legacy'        => 'Legacy (TinyMCE 4)',
         'summernote'    => 'Summernote',
     ],
     'fields'        => [
@@ -65,7 +66,7 @@ return [
             'pagination'            => 'Element per sida',
         ],
         'helpers'   => [
-            'editor'    => 'Standard redigeraren (TinyMCE 4) är gammal men fungerar bra på dartor, men fungerar inte alls på mobil. Summernote är en nyare redigerare som funkar på alla enheter men vi testar den fortfarande.',
+            'editor_v2' => 'Användande av den legacy text redigeraren (TinyMCE) kommer inte stödja omnämnanden på mobila enheter och har inte stöd för visa funktioner som kampanj galleriet.',
         ],
         'hints'     => [
             'advanced_mentions'     => 'Om aktiverad, omnämnanden kommer alltid renderas som [entitet:123] när en entitet redigeras.',

@@ -17,12 +17,17 @@ TEXT
         'title'                 => 'Ny Kampanj',
     ],
     'destroy'                           => [
+        'action'    => 'Ta bort Kampanj',
+        'helper'    => 'Du kan bara ta bort kampanjen om du är den enda medlemmen i den.',
         'success'   => 'Kampanj borttagen.',
     ],
     'edit'                              => [
         'description'   => 'Redigera din kampanj',
         'success'       => 'Kampanj uppdaterad',
         'title'         => 'Redigera Kampanj :campaign',
+    ],
+    'entity_note_visibility'            => [
+        'pinned'    => 'Nåla fast entitetsanteckningar',
     ],
     'entity_personality_visibilities'   => [
         'private'   => 'Nya karaktärers personligheter är privata som standard.',
@@ -36,19 +41,21 @@ TEXT
         'unknown_id'    => 'Okänd Kampanj.',
     ],
     'export'                            => [
-        'description'   => 'Exportera kampanjen.',
-        'errors'        => [
+        'description'       => 'Exportera kampanjen.',
+        'errors'            => [
             'limit' => 'Du har nått gränsen på max en export per dag. Vänligen försök igen imorgon.',
         ],
-        'helper'        => 'Exportera din kampanj. En notifikation med en nedladdningslänk kommer bli tillgänglig.',
-        'success'       => 'Exporten av din kampanj förbereds. Du kommer få en notifikation i Kanka med en nedladdningsbar zip-fil så fort den är klar.',
-        'title'         => 'Kampanj :name Exporterad',
+        'helper'            => 'Exportera din kampanj. En notifikation med en nedladdningslänk kommer bli tillgänglig.',
+        'helper_secondary'  => 'Två filer kommer göras tillgängliga, en med entiteterna exporterade som JSON, och en annan med bilder uppladdade till entiteter. Vänligen notera att på större kampanjer kraschar bild exporten och kan bara återhämtas genom att använda :api.',
+        'success'           => 'Exporten av din kampanj förbereds. Du kommer få en notifikation i Kanka med en nedladdningsbar zip-fil så fort den är klar.',
+        'title'             => 'Kampanj :name Exporterad',
     ],
     'fields'                            => [
         'boosted'                       => 'Boostad av',
         'css'                           => 'CSS',
         'description'                   => 'Beskrivning',
         'entity_count'                  => 'Entitet Antal',
+        'entity_note_visibility'        => 'Entitetsanteckningar Fastnålade',
         'entity_personality_visibility' => 'Karaktärers Personlighets Synlighet',
         'entity_visibility'             => 'Entiteters Synlighet',
         'excerpt'                       => 'Utdrag',
@@ -60,6 +67,7 @@ TEXT
         'locale'                        => 'Språk',
         'name'                          => 'Namn',
         'public_campaign_filters'       => 'Offentlig Kampanj Filter',
+        'related_visibility'            => 'Relaterade Elements Synlighet',
         'rpg_system'                    => 'RPG System',
         'system'                        => 'System',
         'theme'                         => 'Tema',
@@ -72,6 +80,7 @@ TEXT
         'boost_required'                => 'Denna funktion kräver att kampanjen är boostad. Mer info på :settings sidan.',
         'boosted'                       => 'Några funktioner är upplåsta för att denna kampanj är boostad. Läs mer på :settings sidan.',
         'css'                           => 'Skriv din egen CSS som kommer laddas in på sidorna för din kampanj. Vänligen notera att allt missbruk av denna funktion kan leda till borttagandet av din anpassade CSS. Upprepade eller grova överträdelser kan leda till borttagandet av din kampanj.',
+        'entity_note_visibility'        => 'Vid skapandet av en ny entitetsanteckning kommer "Fastnålad" alternativet automatiskt att väljas.',
         'entity_personality_visibility' => 'När du skapar en ny karaktär så kommer "Personlighet Synlig" valet inte automatiskt väljas.',
         'entity_visibility'             => 'När du skapar en ny entitet så kommer "Privat" valet automatiskt väljas.',
         'excerpt'                       => 'Kampanjutdraget kommer att visas på dashboarden, så skriv några meningar som introducerar din värld. Håll det kortfattat för bästa resultat.',
@@ -80,6 +89,7 @@ TEXT
         'locale'                        => 'Språket din kampanj är skriven på. Detta används för att generera innehåll och gruppera publika kampanjer.',
         'name'                          => 'Din kampanj/värld kan ha vilket namn som helst så länge det innehåller minst 4 bokstäver eller siffror.',
         'public_campaign_filters'       => 'Hjälp andra hitta kampanjen bland andra offentliga kampanjer genom att ge följande information.',
+        'related_visibility'            => 'Standard Synlighetsvärde när ett nytt element skapas genom detta fält (entitetsanteckningar, förbindelser, förmågor, osv.)',
         'system'                        => 'Om din kampanj är offentligt synlig så visas systemet på :link sidan.',
         'systems'                       => 'För att undvika att överväldiga användare med val så är några funktioner i Kanka bara tillgängliga med visa RPG system (dvs. D&D 5e monster stat blocken). Genom att lägga till stödda system aktiveras dessa funktioner',
         'theme'                         => 'Tvinga temat för kampanjen och ignorera en användares preferens.',
@@ -242,9 +252,12 @@ TEXT
         'permissions'   => [
             'actions'   => [
                 'add'           => 'Skapa',
+                'dashboard'     => 'Dashboard',
                 'delete'        => 'Ta bort',
                 'edit'          => 'Redigera',
                 'entity-note'   => 'Entitetsanteckning',
+                'manage'        => 'Hantera',
+                'members'       => 'Medlemmar',
                 'permission'    => 'Behörigheter',
                 'read'          => 'Visa',
                 'toggle'        => 'Ändra för alla',

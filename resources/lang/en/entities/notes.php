@@ -19,12 +19,12 @@ return [
         'title'         => 'Update entity note for :name',
     ],
     'fields'        => [
+        'collapsed' => 'Close pinned entity note by default',
         'creator'   => 'Creator',
         'entry'     => 'Entry',
         'is_pinned' => 'Pinned',
         'name'      => 'Name',
         'position'  => 'Pinned position',
-        'collapsed' => 'Close pinned entity note by default',
     ],
     'hint'          => 'Information that doesn\'t quite fit in the standard fields of an entity or that should be kept private can be added as Entity Notes.',
     'hints'         => [

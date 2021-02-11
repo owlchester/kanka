@@ -2,6 +2,7 @@
 
 return [
     'campaign'          => [
+        'asset_export'  => 'Hai unha exportación de campaña dispoñíbel, A ligazón estará activa durante :time minutos.',
         'boost'         => [
             'add'           => 'A campaña ":campaign" está potenciada por :user.',
             'remove'        => ':user xa non está potenciando a campaña ":campaign".',

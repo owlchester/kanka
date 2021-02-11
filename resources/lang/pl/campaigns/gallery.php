@@ -12,8 +12,14 @@ return [
     'fields'        => [
         'created_by'    => 'Dodane przez',
         'ext'           => 'Typ',
+        'folder'        => 'Katalog',
+        'name'          => 'Nazwa',
         'size'          => 'Rozmiar',
     ],
+    'new_folder'    => [
+        'title' => 'Nowy katalog',
+    ],
+    'no_folder'     => 'Brak katalogu',
     'placeholders'  => [
         'search'    => 'Wyszukaj obraz po nazwie',
     ],
@@ -24,6 +30,7 @@ return [
     ],
     'uploader'      => [
         'add'           => 'Dodaj',
+        'new_folder'    => 'Nowy Katalog',
         'or'            => 'lub',
         'select_file'   => 'Wybierz plik',
         'well'          => 'Przeciągnij, by dodać',

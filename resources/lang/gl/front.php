@@ -219,6 +219,14 @@ return [
         'heading'           => 'Creacións de mundos, Administración de campañas de rol, narración de historias. Todo en un.',
         'title'             => 'Kanka',
     ],
+    'media'         => [
+        'description'   => 'Atopa imaxes de alta resolución de Kanka nesta páxina. Úsaas se estás promocionando Kanka ou creando ferramentas que interacionan con Kanka.',
+        'images'        => [
+            'primary'   => 'Logo principal de Kanka',
+            'social'    => 'Logo social de Kanka',
+        ],
+        'title'         => 'Media',
+    ],
     'menu'          => [
         'about'         => 'Sobre',
         'api'           => 'API',
@@ -233,6 +241,7 @@ return [
         'home'          => 'Inicio',
         'login'         => 'Iniciar sesión',
         'marketplace'   => 'Mercado',
+        'media'         => 'Media',
         'news'          => 'Novas',
         'newsletter'    => 'Boletín informativo',
         'pricing'       => 'Prezos',

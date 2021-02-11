@@ -78,6 +78,10 @@ return [
             'superboost'    => 'Super pojačana kampanja :name',
         ],
         'title'         => 'Pojačanje',
+        'unboost'       => [
+            'description'   => 'Sigurno želiš prestati pojačavati kampanju :tag?',
+            'title'         => 'Poništavanje pojačavanja kampanje',
+        ],
     ],
     'countries'     => [
         'austria'       => 'Austrija',

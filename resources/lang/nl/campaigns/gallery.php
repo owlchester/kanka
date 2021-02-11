@@ -12,8 +12,14 @@ return [
     'fields'        => [
         'created_by'    => 'Geupload door',
         'ext'           => 'Ext',
+        'folder'        => 'Map',
+        'name'          => 'Naam',
         'size'          => 'Grootte',
     ],
+    'new_folder'    => [
+        'title' => 'Nieuwe map',
+    ],
+    'no_folder'     => 'Geen map',
     'placeholders'  => [
         'search'    => 'Naam afbeelding zoeken...',
     ],
@@ -24,6 +30,7 @@ return [
     ],
     'uploader'      => [
         'add'           => 'Voeg nieuwe toe',
+        'new_folder'    => 'Nieuwe Map',
         'or'            => 'of',
         'select_file'   => 'Selecteer een bestand',
         'well'          => 'Drop bestand om te uploaden',

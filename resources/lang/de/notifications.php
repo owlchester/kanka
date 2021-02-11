@@ -2,6 +2,7 @@
 
 return [
     'campaign'          => [
+        'asset_export'  => 'Ein Export eines Kampagnen-Assets ist verfügbar. Der Link ist verfügbar für :time Minuten.',
         'boost'         => [
             'add'           => 'Kampagne :campaign wird geboosted durch :user.',
             'remove'        => ':user boosted die :campaign  nicht mehr.',

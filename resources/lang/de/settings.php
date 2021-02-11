@@ -83,6 +83,10 @@ return [
             'superboost'    => 'Kampagne :name supergeboostet',
         ],
         'title'         => 'Boost',
+        'unboost'       => [
+            'description'   => 'Möchten Sie die Kampagnen :tag nicht mehr boosten?',
+            'title'         => 'Kampagnen boosting beenden',
+        ],
     ],
     'countries'     => [
         'austria'       => 'Österreich',
