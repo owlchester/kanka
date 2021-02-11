@@ -6,14 +6,12 @@ use App\Datagrids\Filters\TimelineFilter;
 use App\Datagrids\Sorters\TimelineTimelineSorter;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreTimeline;
-use App\Models\Family;
 use App\Models\Timeline;
-use App\Traits\Controllers\MapPointTrait;
 use App\Traits\TreeControllerTrait;
 
 class TimelineController extends CrudController
 {
-    use TreeControllerTrait, MapPointTrait;
+    use TreeControllerTrait;
 
     /**
      * @var string
