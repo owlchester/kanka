@@ -108,11 +108,11 @@
                 </li>
                 @endcan
 
+
+                @can('update', $campaign)
                 <li class="nav-section">
                     {{ __('campaigns.show.menus.configuration') }}
                 </li>
-
-                @can('update', $campaign)
                 <li class="@if(!empty($active) && $active == 'settings')active @endif">
                     <a href="{{ route('campaign_settings') }}">
                         {{ __('campaigns.show.tabs.settings') }}
