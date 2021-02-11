@@ -118,8 +118,8 @@ return [
             'templates'         => '{1} :count entity had a template applied.|[2,*] :count entities has a template applied.',
         ],
     ],
-    'bulk_templates' => [
-        'bulk_title' => 'Apply a template to multiple entities',
+    'bulk_templates'            => [
+        'bulk_title'    => 'Apply a template to multiple entities',
     ],
     'cancel'                    => 'Cancel',
     'click_modal'               => [
@@ -251,8 +251,8 @@ return [
     'hints'                     => [
         'attribute_template'    => 'Apply an attribute template directly when creating or editing this entity.',
         'calendar_date'         => 'A calendar date allows easy filtering in lists, and also maintains a calendar event in the selected calendar.',
-        'header_image'          => 'This image is placed above the entity. For best results, use a wide image.',
         'gallery_image'         => 'If the entity has no image, display an image from the campaign gallery instead.',
+        'header_image'          => 'This image is placed above the entity. For best results, use a wide image.',
         'image_limitations'     => 'Supported formats: jpg, png and gif. Max file size: :size.',
         'image_patreon'         => 'Increase file size limit?',
         'is_private'            => 'If set to private, this entity will only be visible to members who are in the campaign\'s "Admin" role.',

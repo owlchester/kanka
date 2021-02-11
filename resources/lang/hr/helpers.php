@@ -11,6 +11,8 @@ return [
         'level'         => 'Razina',
         'link'          => 'Opcije atributa',
         'math'          => 'Možeš kreativno koristiti i neke osnovne matematičke operacije. Na primjer, :example će pomnožiti atribute entiteta :level and :con. Ako želite zaokružiti prema gore ili dolje, možete koristiti :floor ili :ceil',
+        'pinned'        => 'Prikvačivanje atributa pomoću ikone :icon prikazat će ga u izborniku entiteta ispod njegove slike.',
+        'private'       => 'Privatni atributi koji koriste :icon učinit će ih vidljivima samo administratorima kampanje.',
         'title'         => 'Atributi',
     ],
     'dice'          => [

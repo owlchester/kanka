@@ -13,6 +13,7 @@ return [
         'title'     => 'Lien de menu :name',
     ],
     'fields'        => [
+        'dashboard'     => 'Tableau de bord',
         'entity'        => 'Entité',
         'filters'       => 'Filtres',
         'menu'          => 'Menu',
@@ -24,6 +25,7 @@ return [
         'type'          => 'Entité Type',
     ],
     'helpers'       => [
+        'dashboard' => 'Mettre en place le lien de menu pour aller à un tableau de bord de la campagne. Cette fonctionnalité n\'est que disponible pour les :boosted.',
         'entity'    => 'Mettre en place ce lien de menu pour aller directement sur une entité. Le champ :tab contrôle quel onglet est ouvert. Le champ :menu contrôle quel sous-menu est affiché.',
         'position'  => 'Ce champ contrôle dans quel ordre les liens de menus apparaissent.',
         'random'    => 'Utilises ce champ pour avoir le lien de menu qui pointe vers une entité aléatoire. Le type d\'entité peut être filtré.',

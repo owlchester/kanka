@@ -11,6 +11,8 @@ return [
         'level'         => 'Nivel',
         'link'          => 'Opcións de atributos',
         'math'          => 'Tamén podes usar matemáticas básicas. Por exemplo, :example multiplicaría os atributos :level e :con desta entidade. Se queres arredondar cara arriba ou cara abaixo, podes usar :ceil ou :floor respectivamente.',
+        'pinned'        => 'Fixar un atributo usando a icona :icon fará que apareza no menú da entidade baixo a súa imaxe.',
+        'private'       => 'Os atributos privados usando o :icon serán visíbeis só para a administración da campaña.',
         'title'         => 'Atributos',
     ],
     'dice'          => [

@@ -21,9 +21,14 @@ return [
     'fields'        => [
         'creator'   => 'Skapare',
         'entry'     => 'Notering',
+        'is_pinned' => 'Fastnålad',
         'name'      => 'Namn',
+        'position'  => 'Fastnålad position',
     ],
     'hint'          => 'Information som inte riktigt passar i dom vanliga fälten på en entitet eller som borde hållas privat kan läggas till som en Entitetsanteckning.',
+    'hints'         => [
+        'is_pinned' => 'Fastnålad entitetsanteckningar visas nedanför entitetens text på den primära entitets vyn. Kombinera med positionsfältet för att kontrollera i vilken ordning fastnålade entitetsanteckningar visas.',
+    ],
     'index'         => [
         'title' => 'Entitetsanteckning för :name',
     ],

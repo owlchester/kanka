@@ -24,9 +24,12 @@ return [
         'eras'          => 'Ères',
         'name'          => 'Nom',
         'reverse_order' => 'Inverser l\'ordre des ères',
+        'timeline'      => 'Chronologie parent',
+        'timelines'     => 'Chronologies',
         'type'          => 'Type',
     ],
     'helpers'       => [
+        'nested'            => 'Affichage des chronologies sans parent par défaut. Cliquer sur une chronologie pour afficher ses descendants.',
         'reorder'           => 'Glisser déposer les éléments de l\'ère pour les réorganiser.',
         'reorder_tooltip'   => 'Cliquer pour activer la réorganisation des éléments, puis les glisser-déposer pour les réordonner.',
         'reverse_order'     => 'Activer pour afficher les ères dans le sens chronologique inversé (plus ancien en premier)',
@@ -41,5 +44,8 @@ return [
     ],
     'show'          => [
         'title' => 'Chronologie :name',
+    ],
+    'timelines'     => [
+        'title' => 'Chronologies de la chronologie :name',
     ],
 ];

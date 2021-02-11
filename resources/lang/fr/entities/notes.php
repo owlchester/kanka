@@ -19,6 +19,7 @@ return [
         'title'         => 'Modifier la note pour :name',
     ],
     'fields'        => [
+        'collapsed' => 'Fermer la note d\'entité par défault',
         'creator'   => 'Créé par',
         'entry'     => 'Entrée',
         'is_pinned' => 'Épinglé',

@@ -34,8 +34,12 @@ return [
             'success'   => 'Dashboard :name borttagen.',
         ],
         'fields'        => [
+            'copy_widgets'  => 'Kopiera widgetar',
             'name'          => 'Dashboard name',
             'visibility'    => 'Synlighet',
+        ],
+        'helpers'       => [
+            'copy_widgets'  => 'Duplicera widgetarna från :name dashboarden till den här nya.',
         ],
         'placeholders'  => [
             'name'  => 'Namn på Dashboarden',

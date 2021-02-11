@@ -9,20 +9,22 @@ return [
         'success'   => 'Relation supprimée pour :name.',
     ],
     'fields'        => [
-        'attitude'  => 'Attitude',
-        'is_star'   => 'Epinglé',
-        'relation'  => 'Relation',
-        'target'    => 'Cible',
-        'two_way'   => 'Créer une relation miroir',
+        'attitude'          => 'Attitude',
+        'is_star'           => 'Epinglé',
+        'relation'          => 'Relation',
+        'target'            => 'Cible',
+        'target_relation'   => 'Relation de la cible',
+        'two_way'           => 'Créer une relation miroir',
     ],
     'helper'        => 'Définir des relations entre entités avec leurs description, attitude et visibilité. Les relations peuvent aussi être épinglées sur le menu de l\'entité.',
     'hints'         => [
-        'attitude'  => 'Ce champ optionnel peut être utilisé pour définir l\'ordre ascendant dans lequel s\'affichent les relations.',
-        'mirrored'  => [
+        'attitude'          => 'Ce champ optionnel peut être utilisé pour définir l\'ordre ascendant dans lequel s\'affichent les relations.',
+        'mirrored'          => [
             'text'  => 'Cette relation est liée avec :link.',
             'title' => 'Lié',
         ],
-        'two_way'   => 'Sélectionne pour créer une copie de la relation sur la cible.',
+        'target_relation'   => 'La description de la relation sur la cible. Laisser vide pour utiliser la même relation pour la cible.',
+        'two_way'           => 'Sélectionne pour créer une copie de la relation sur la cible.',
     ],
     'placeholders'  => [
         'attitude'  => 'de -100 à 100, 100 étant très positif.',

@@ -2,6 +2,7 @@
 
 return [
     'campaign'          => [
+        'asset_export'  => 'Dostupan je izvoz sredstava kampanje. Poveznica je dostupna kroz :time minuta.',
         'boost'         => [
             'add'           => 'Kampanju :campaign je pojačao korisnik :user.',
             'remove'        => 'Korisnik :user više ne pojačava kampanju :campaign.',

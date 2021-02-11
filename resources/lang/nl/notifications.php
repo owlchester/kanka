@@ -2,6 +2,7 @@
 
 return [
     'campaign'          => [
+        'asset_export'  => 'Er is een export van campaign assets beschikbaar. De link is beschikbaar voor :time minuten.',
         'boost'         => [
             'add'           => 'Campaign :campaign wordt ge-boost door :user.',
             'remove'        => ':user boost niet langer de campaign :campaign.',

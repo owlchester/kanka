@@ -17,6 +17,8 @@ TEXT
         'title'                 => 'Nova kampanja',
     ],
     'destroy'                           => [
+        'action'    => 'Obriši kampanju',
+        'helper'    => 'Kampanju možeš obrisati samo ako si njen jedini član.',
         'success'   => 'Kampanja uklonjena.',
     ],
     'edit'                              => [
@@ -39,13 +41,14 @@ TEXT
         'unknown_id'    => 'Nepoznata kampanja.',
     ],
     'export'                            => [
-        'description'   => 'Izvezi kampanju.',
-        'errors'        => [
+        'description'       => 'Izvezi kampanju.',
+        'errors'            => [
             'limit' => 'Prekoračen vlastiti dozvoljeni broj izvoza po danu. Pokušaj ponovno sutra.',
         ],
-        'helper'        => 'Izvezi svoju kampanju. Notifikacija s poveznicom za preuzimanje će biti stavljena na raspolaganje.',
-        'success'       => 'Izvoz tvoje kampanje je pripremljen. Dobit ćeš notifikaciju u Kanki do ZIP datoteke koju možeš preuzeti, čim bude spremna.',
-        'title'         => 'Izvoz kampanje :name',
+        'helper'            => 'Izvezi svoju kampanju. Notifikacija s poveznicom za preuzimanje će biti stavljena na raspolaganje.',
+        'helper_secondary'  => 'Bit će dostupne dvije datoteke, jedna tipa JSON s entitetima, a druga sa slikama iz entiteta. Napominjemo da se u većim kampanjama izvoz slika ruši i može se oporaviti samo koristeći :api.',
+        'success'           => 'Izvoz tvoje kampanje je pripremljen. Dobit ćeš notifikaciju u Kanki do ZIP datoteke koju možeš preuzeti, čim bude spremna.',
+        'title'             => 'Izvoz kampanje :name',
     ],
     'fields'                            => [
         'boosted'                       => 'Pojačali',

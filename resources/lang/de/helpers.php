@@ -11,6 +11,8 @@ return [
         'level'         => 'Level',
         'link'          => 'Attributoptionen',
         'math'          => 'Sie können auch mit einigen grundlegenden mathematischen Optionen kreativ werden. Beispiel :example multipliziert die Attribute :level und :con dieses Objektes. Wenn Sie auf- oder abrunden möchten, können Sie Folgendes verwenden :floor oder :ceil',
+        'pinned'        => 'Wenn Sie ein Attribut mit dem :icon Symbol fixieren, wird es im Menü des Objekts unter dem Bild angezeigt.',
+        'private'       => 'Private Attribute, die das :icon verwenden, sind nur für Kampagnenadministratoren sichtbar.',
         'title'         => 'Attribute',
     ],
     'description'   => 'Einige hilfreiche Tipps und Tricks, um dir mit Kanka zu helfen',

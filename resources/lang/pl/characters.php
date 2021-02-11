@@ -33,7 +33,7 @@ return [
         'family'                    => 'Rodzina',
         'image'                     => 'Portret',
         'is_dead'                   => 'Nie żyje',
-        'is_personality_visible'    => 'Osobowość widoczna',
+        'is_personality_visible'    => 'Osobowość jawna',
         'life'                      => 'Życie',
         'location'                  => 'Miejsce',
         'name'                      => 'Nazwa',
@@ -50,8 +50,8 @@ return [
     ],
     'hints'         => [
         'is_dead'                   => 'Ta postać jest martwa',
-        'is_personality_visible'    => 'Odznacz by ukryć cały opis osobowości przed użytkownikami niebędących Administratorami.',
-        'personality_not_visible'   => 'Opis osobowości widoczny wyłącznie dla Administratorów.',
+        'is_personality_visible'    => 'Odznacz by ukryć cały opis osobowości przed użytkownikami niebędących Adminami.',
+        'personality_not_visible'   => 'Opis osobowości widoczny wyłącznie dla Adminów.',
         'personality_visible'       => 'Opis osobowości widoczny dla wszystkich.',
     ],
     'index'         => [

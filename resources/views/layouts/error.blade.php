@@ -54,7 +54,7 @@
                         @endforeach
 
                         @if($error == 503)
-                                <p class="text-warning">This downtime will last until roughly 09:00 AM UTC as we fix some issues with the servers.</p>
+{{--                                <p class="text-warning">This downtime will last until roughly 09:00 AM UTC as we fix some issues with the servers.</p>--}}
                         @endif
                     @else
                     <p class="mb-5">{{ trans('errors.' . $error . '.body') }}</p>

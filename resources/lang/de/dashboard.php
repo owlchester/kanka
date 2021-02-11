@@ -35,8 +35,12 @@ return [
             'success'   => 'Dashboard :name entfernt',
         ],
         'fields'        => [
+            'copy_widgets'  => 'Widgets kopieren',
             'name'          => 'Dashboard Name',
             'visibility'    => 'Sichtbarkeit',
+        ],
+        'helpers'       => [
+            'copy_widgets'  => 'Duplizieren Sie die Widgets aus dem :name -Dashboard in dieses neue.',
         ],
         'placeholders'  => [
             'name'  => 'Name des Dashboards',

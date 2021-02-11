@@ -34,8 +34,12 @@ return [
             'success'   => 'Uklonjena naslovna ploča :name.',
         ],
         'fields'        => [
+            'copy_widgets'  => 'Kopiraj programčiće',
             'name'          => 'Naziv naslovne ploče',
             'visibility'    => 'Vidljivost',
+        ],
+        'helpers'       => [
+            'copy_widgets'  => 'Dupliciraj programčiće s nadzorne ploče :name u ovu novu.',
         ],
         'placeholders'  => [
             'name'  => 'Naziv naslovne ploče',

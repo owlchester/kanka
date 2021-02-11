@@ -19,6 +19,8 @@ TEXT
         'title'                 => 'Új kampány',
     ],
     'destroy'                           => [
+        'action'    => 'Kampány törlése',
+        'helper'    => 'Csak akkor törölheted a kampányt, ha te vagy az egyetlen tagja.',
         'success'   => 'A kampányt eltávolítottuk.',
     ],
     'edit'                              => [
