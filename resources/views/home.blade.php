@@ -8,8 +8,7 @@
     'title' => __('dashboard.title') . ' ' . $campaign->name,
     'breadcrumbs' => false,
     'canonical' => true,
-    'contentId' => 'campaign-dashboard',
-    'skipContentHeader' => empty($dashboard)
+    'contentId' => 'campaign-dashboard'
 ])
 
 @section('og')
