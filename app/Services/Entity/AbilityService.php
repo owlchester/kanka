@@ -290,9 +290,9 @@ class AbilityService
             if (in_array($ability->ability_id, $existingIds)) {
                 continue;
             }
-            $ability->replicate(['entity_id']);
-            $ability->entity_id = $this->entity->id;
-            $ability->save();
+            $new = $ability->replicate(['entity_id']);
+            $new->entity_id = $this->entity->id;
+            $new->save();
             $count++;
         }
 
