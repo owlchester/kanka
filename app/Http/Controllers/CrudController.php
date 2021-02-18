@@ -97,6 +97,9 @@ class CrudController extends Controller
      */
     protected $datagridSorter = null;
 
+    /** @var bool If the bulk templates button is available */
+    protected $bulkTemplates = true;
+
     /**
      * @var null
      */
@@ -143,6 +146,7 @@ class CrudController extends Controller
         $nestedView = method_exists($this, 'tree');
         $route = $this->route;
         $bulk = $this->bulkModel();
+        $bulkTemplates = $this->bulkTemplates;
 
         // Entity templates
         $templates = null;
@@ -195,6 +199,7 @@ class CrudController extends Controller
             'filteredCount',
             'unfilteredCount',
             'bulk',
+            'bulkTemplates',
             'datagrid',
             'templates'
         ));

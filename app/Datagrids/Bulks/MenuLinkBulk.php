@@ -8,7 +8,7 @@ class MenuLinkBulk extends Bulk
 {
     protected $fields = [
         'name',
-        'position',
+        //'position',
         'private_choice',
     ];
 }
