@@ -16,6 +16,9 @@ return [
             'remove' => 'Your application has been removed.',
         ]
     ],
+    'errors' => [
+        'not_open' => 'The campaign isn\'t open to new members. Edit the campaign\'s settings if you want people to apply to joining it. '
+    ],
     'fields' => [
         'application' => 'Application',
         'rejection' => 'Rejection reason',

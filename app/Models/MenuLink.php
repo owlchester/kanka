@@ -143,6 +143,12 @@ class MenuLink extends MiscModel
             $this->target->entity_id,
         ];
 
+        if (!empty($this->menu)) {
+            if ($this->menu == 'all-members') {
+                $parameters['all_members'] = 1;
+            }
+        }
+
         if (!empty($this->tab)) {
             $prefix = 'tab_';
             // remove tab_ from the beginning of the string, if it's present
@@ -189,6 +195,8 @@ class MenuLink extends MiscModel
             }
             elseif (Str::contains($this->menu, 'map_points')) {
                 return route('entities.map-markers', $this->target->id);
+            } elseif ($this->menu == 'all-members') {
+                $menuRoute = $route;
             }
             if (Route::has($menuRoute)) {
                 $route = $menuRoute;

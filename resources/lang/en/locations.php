@@ -94,7 +94,7 @@ return [
             'submit'    => 'Add',
             'title'     => 'Target of new point',
         ],
-        'no_map'    => 'You can upload a map to this location when editing it. Once a map has been provided, it will appear here.',
+        'no_map'    => 'This feature no longer exists, please use the Maps module to upload maps to your campaign.',
         'points'    => [
             'empty_label'   => 'Unnamed Point',
             'fields'        => [

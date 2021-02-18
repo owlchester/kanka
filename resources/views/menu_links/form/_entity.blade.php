@@ -8,17 +8,40 @@ $tabs = [
 ];
 $menus = [
         'abilities' => __('crud.tabs.abilities'),
-        'all-members' => __('families.show.tabs.all_members') . ' (' . __('entities.organisations') . ')',
-        'locations' => __('locations.show.tabs.locations') . ' (' . __('entities.locations') . ')',
+        'all-members' => __('families.show.tabs.all_members') . ' (' . __('entities.organisations') . ', ' . __('entities.families') . ', ' . __('entities.tags') . ')',
+        //'locations' => __('locations.show.tabs.locations') . ' (' . __('entities.locations') . ')',
         'organisations' => __('characters.show.tabs.organisations')  . ' (' . __('entities.characters') . ', ' . __('entities.organisations') . ')',
-        'explore' => __('maps.actions.explore') . ' (' . __('entities.maps') . ')',
+        __('entities.maps') => [
+            'explore' => __('maps.actions.explore'),
+        ],
+        __('entities.tags') => [
+            //'children' => __('tags.show.tabs.children'),
+            'tags' => __('tags.show.tabs.tags'),
+        ],
+        __('entities.locations') => [
+            'map' => __('locations.show.tabs.map'),
+            'maps' => __('locations.show.tabs.maps'),
+            'items' => __('locations.show.tabs.items'),
+            'characters' => __('locations.show.tabs.characters'),
+            'locations' => __('locations.show.tabs.locations'),
+        ],
+        __('entities.families') => [
+            'families' => __('families.show.tabs.families')
+        ],
+        __('entities.items') => [
+            'inventories' => __('items.show.tabs.inventories')
+        ],
+
+        //'tags' => __('tags.show.tabs.tags') . ' (' . __('entities.tags') . ')',
+        //'explore' => __('maps.actions.explore') . ' (' . __('entities.maps') . ')',
+        //'children' => __('tags.show.tabs.children') . ' (' . __('entities.tags') . ')',
         'quests' => __('characters.show.tabs.quests'),
-        'tags' => __('tags.show.tabs.tags') . ' (' . __('entities.tags') . ')',
-        'members' => __('families.show.tabs.members') . ' (' . __('entities.families') . ', ' . __('entities.organisations'). ')',
+        //'members' => __('families.show.tabs.members') . ' (' . __('entities.families') . ')',
         'map_points' => __('crud.tabs.map-points'),
-        'map' => __('locations.show.tabs.map') . ' (' . __('entities.locations') . ')',
-        'inventories' => __('items.show.tabs.inventories'),
-        'children' => __('tags.show.tabs.children') . ' (' . __('entities.tags') . ')',
+        //'map' => __('locations.show.tabs.map') . ' (' . __('entities.locations') . ')',
+        //'inventories' => __('items.show.tabs.inventories'),
+        //'characters' => __('locations.show.tabs.characters') . ' (' . __('entities.locations') . ')',
+        //'items' => __('locations.show.tabs.items') . ' (' . __('entities.locations') . ')',
         'inventory' => __('crud.tabs.inventory'),
         'relations' => __('crud.tabs.relations'),
 ];

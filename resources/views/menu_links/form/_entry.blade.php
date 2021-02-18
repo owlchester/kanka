@@ -6,10 +6,18 @@
 
 $tab = empty($model) || old('entity_id') || $model->entity_id ? 'entity' : 'type';
 
-$isEntity = isset($model) && $model->isEntity();
-$isDashboard = isset($model) && $model->isDashboard();
-$isRandom = isset($model) && $model->isRandom();
-$isList = isset($model) && $model->isList();
+$isEntity = $isDashboard = $isRandom = $isList = false;
+if (isset($model)) {
+    if ($model->isDashboard()) {
+        $isDashboard = true;
+    } elseif ($model->isEntity()) {
+        $isEntity = true;
+    } elseif ($model->isList()) {
+        $isList = true;
+    } elseif ($model->isRandom()) {
+        $isRandom = true;
+    }
+}
 ?>
 
 <div class="row">
@@ -81,16 +89,16 @@ $isList = isset($model) && $model->isList();
                 </span>
             </a>
         </div>
-        <div class="quick-link-subform" id="quick-link-entity" @if(isset($model) && $model->isEntity()) @else style="display: none" @endif>
+        <div class="quick-link-subform" id="quick-link-entity" @if($isEntity) @else style="display: none" @endif>
             @include('menu_links.form._entity')
         </div>
-        <div class="quick-link-subform" id="quick-link-list" @if(isset($model) && $model->isList()) @else style="display: none" @endif>
+        <div class="quick-link-subform" id="quick-link-list" @if($isList) @else style="display: none" @endif>
             @include('menu_links.form._type')
         </div>
-        <div class="quick-link-subform" id="quick-link-random" @if(isset($model) && $model->isRandom()) @else style="display: none" @endif>
+        <div class="quick-link-subform" id="quick-link-random" @if($isRandom) @else style="display: none" @endif>
             @include('menu_links.form._random')
         </div>
-        <div class="quick-link-subform" id="quick-link-dashboard" @if(isset($model) && $model->isDashboard()) @else style="display: none" @endif>
+        <div class="quick-link-subform" id="quick-link-dashboard" @if($isDashboard) @else style="display: none" @endif>
             @include('menu_links.form._dashboard')
         </div>
     </div>
