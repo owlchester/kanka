@@ -19,7 +19,7 @@ $menus = [
             'tags' => __('tags.show.tabs.tags'),
         ],
         __('entities.locations') => [
-            'map' => __('locations.show.tabs.map'),
+            'map' => __('locations.show.tabs.map') . ' (' . __('crud.legacy') . ')',
             'maps' => __('locations.show.tabs.maps'),
             'items' => __('locations.show.tabs.items'),
             'characters' => __('locations.show.tabs.characters'),
