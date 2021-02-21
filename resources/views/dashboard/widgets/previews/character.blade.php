@@ -18,7 +18,11 @@ $model = $entity->child;
                     <i class="ra ra-skull pull-right margin-r-5" title="{{ trans('characters.fields.is_dead') }}"></i>
                 @endif
 
-                {{ $entity->name }}
+                @if (!empty($widget->conf('text')))
+                    {{ $widget->conf('text') }}
+                @else
+                    {{ $entity->name }}
+                @endif
 
             </a>
         </h3>
