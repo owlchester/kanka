@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\Entity $entity */?>
 @foreach ($entities as $entity)
     <div class="flex">
-            <a class="entity-image" style="background-image: url('{{ $entity->avatar(true) }}');"
+            <a class="entity-image" style="background-image: url('{{ ($campaign->boosted(true) && !empty($entity->image) ? Img::crop(40, 40)->url($entity->image->path) : $entity->avatar(true)) }}');"
                title="{{ $entity->name }}"
                href="{{ $entity->url() }}"></a>
 
