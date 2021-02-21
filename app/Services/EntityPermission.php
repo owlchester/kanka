@@ -128,6 +128,10 @@ class EntityPermission
      */
     public function deniedEntityIds(string $modelName, string $action = 'read'): array
     {
+        // This function is called in the VisibleTrait of the model, but for example in the search, no permissions are
+        // already loaded, so we need to call this again to get the user's permissions
+        $this->loadAllPermissions(auth()->user());
+
         // Check if we have this model type at all
         $modelIds = Arr::get($this->cachedEntityIds, $modelName, []);
         if (empty($modelIds)) {
@@ -342,6 +346,7 @@ class EntityPermission
             }
         }
 
-//        dump($this->cachedEntityIds);
+        //dump('finished loading entities:');
+        //dump($this->cachedEntityIds);
     }
 }
