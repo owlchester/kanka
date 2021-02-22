@@ -61,7 +61,7 @@
                     </a>
                 </div>
             </div>
-            @endif
+            @else
             <div class="box no-border">
                 <div class="box-body">
                     <p class="help-block">{{ __('campaigns/default-images.helper') }}</p>
@@ -69,6 +69,7 @@
                     @include('partials.boosted', ['callout' => true])
                 </div>
             </div>
+            @endif
         </div>
     </div>
 @endsection

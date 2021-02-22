@@ -153,10 +153,6 @@ class FrontController extends Controller
             ->filterPublic($request->only(['language', 'system', 'is_boosted', 'is_open']))
             ->paginate();
 
-        if (getenv('APP_ENV') === 'shadow') {
-            $features = $campaigns = new Collection();
-        }
-
         return view('front.campaigns')
             ->with('featured', $features)
             ->with('campaigns', $campaigns);
