@@ -218,6 +218,8 @@ class User extends \TCG\Voyager\Models\User
                     return $readable ? '100MB' : 102400;
                 }
                 return $readable ? '25MB' : 25600;
+            } elseif ($this->isWyvern()) {
+                return $readable ? '15MB' : 15360;
             } elseif ($what == 'map') {
                 return $readable ? '10MB' : 10240;
             }
@@ -276,6 +278,14 @@ class User extends \TCG\Voyager\Models\User
         return !empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_OWLBEAR;
     }
 
+    /**
+     * @return bool
+     */
+    public function isWyvern(): bool
+    {
+        return !empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_WYVERN;
+    }
+
 
     /**
      * Get available boosts for the user
@@ -318,6 +328,7 @@ class User extends \TCG\Voyager\Models\User
             Patreon::PLEDGE_KOBOLD => 0,
             Patreon::PLEDGE_GOBLIN => 1,
             Patreon::PLEDGE_OWLBEAR => 3,
+            Patreon::PLEDGE_WYVERN => 6,
             Patreon::PLEDGE_ELEMENTAL => 10,
         ];
 
