@@ -49,18 +49,18 @@ return [
             'entity_logs'       => 'Full entity logs of what was changed on an entity with each update.',
             'first'             => 'To secure continued progress on Kanka, some campaign features are unlocked by boosting a campaign. Boosters are unlocked through subscriptions. Anyone who can view a campaign can boost it, so that the DM doesn\'t always have to foot the bill. A campaign remains boosted as long as a user is boosting the campaign and they continue supporting Kanka. If a campaign is no longer boosted, data isn\'t lost, it is only hidden until the campaign is boosted again.',
             'header'            => 'Entity header images.',
+            'headers'           => [
+                'boosted'       => 'Boosted campaign benefits',
+                'superboosted'  => 'Superboosted campaign benefits',
+            ],
+            'helpers'           => [
+                'boosted'       => 'Boosting a campaign assigns a single booster to the campaign.',
+                'superboosted'  => 'Superboosting a campaign assigns a total of three boosters to the campaign.',
+            ],
             'images'            => 'Custom default entity images.',
             'more'              => [
-                'boosted' => 'All boosted campaign features',
-                'superboosted' => 'All superboosted campaign features',
-            ],
-            'headers'           => [
-                'boosted' => 'Boosted campaign benefits',
-                'superboosted' => 'Superboosted campaign benefits',
-            ],
-            'helpers' => [
-                'boosted' => 'Boosting a campaign assigns a single booster to the campaign.',
-                'superboosted' => 'Superboosting a campaign assigns a total of three boosters to the campaign.',
+                'boosted'       => 'All boosted campaign features',
+                'superboosted'  => 'All superboosted campaign features',
             ],
             'recovery'          => 'Recover deleted entities for up to :amount days.',
             'superboost'        => 'Superboosting a campaign uses 3 of your boosts and unlockes additional features on top of those for boosted campaigns.',

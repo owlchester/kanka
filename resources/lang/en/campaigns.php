@@ -52,7 +52,6 @@ TEXT
     ],
     'fields'                            => [
         'boosted'                       => 'Boosted by',
-        'superboosted'                  => 'Superboosted by',
         'css'                           => 'CSS',
         'description'                   => 'Description',
         'entity_count'                  => 'Entity Count',
@@ -72,6 +71,7 @@ TEXT
         'public_campaign_filters'       => 'Public Campaign Filters',
         'related_visibility'            => 'Related Elements Visibility',
         'rpg_system'                    => 'RPG Systems',
+        'superboosted'                  => 'Superboosted by',
         'system'                        => 'System',
         'theme'                         => 'Theme',
         'tooltip_family'                => 'Disable family names from tooltips',
@@ -114,9 +114,9 @@ TEXT
             'link'  => 'New Link',
         ],
         'create'                => [
-            'buttons'        => [
-                'create' => 'Create invite',
-                'send' => 'Send invite',
+            'buttons'       => [
+                'create'    => 'Create invite',
+                'send'      => 'Send invite',
             ],
             'description'   => 'Invite a friend to your campaign',
             'link'          => 'Link created: <a href=":url" target="_blank">:url</a>',
@@ -208,19 +208,19 @@ TEXT
         'title'                 => 'Campaign :name Members',
         'your_role'             => 'Your role: <i>:role</i>',
     ],
-    'open_campaign' => [
-        'title' => 'Open Campaign',
-        'helper' => 'A public campaign set as open will allow users to send submissions to joining it. Find the list of submissions on our :link page.',
-        'link' => 'campaign submissions',
+    'open_campaign'                     => [
+        'helper'    => 'A public campaign set as open will allow users to send submissions to joining it. Find the list of submissions on our :link page.',
+        'link'      => 'campaign submissions',
+        'title'     => 'Open Campaign',
     ],
     'panels'                            => [
         'boosted'   => 'Boosted',
         'dashboard' => 'Dashboard',
         'permission'=> 'Permission',
+        'setup'     => 'Setup',
         'sharing'   => 'Sharing',
         'systems'   => 'Systems',
         'ui'        => 'Interface',
-        'setup'     => 'Setup',
     ],
     'placeholders'                      => [
         'description'   => 'A short summary of your campaign',
@@ -348,15 +348,15 @@ TEXT
             'leave' => 'Leave campaign',
         ],
         'description'   => 'A detailed view of a campaign',
-        'menus' => [
-            'overview' => 'Overview',
-            'user_management' => 'User management',
-            'configuration' => 'Configuration',
+        'menus'         => [
+            'configuration'     => 'Configuration',
+            'overview'          => 'Overview',
+            'user_management'   => 'User management',
         ],
         'tabs'          => [
-            'campaign'          => 'Campaign',
-            'applications'      => 'Applications',
             'achievements'      => 'Achievements',
+            'applications'      => 'Applications',
+            'campaign'          => 'Campaign',
             'default-images'    => 'Default Images',
             'export'            => 'Export',
             'information'       => 'Information',

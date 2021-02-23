@@ -3,8 +3,8 @@
 return [
     'actions'           => [
         'follow'    => 'Follow',
-        'unfollow'  => 'Stop following',
         'join'      => 'Join',
+        'unfollow'  => 'Stop following',
     ],
     'campaigns'         => [
         'tabs'  => [

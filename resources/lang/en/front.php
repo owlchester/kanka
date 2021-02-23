@@ -11,6 +11,13 @@ return [
             'description'   => 'Our community builds amazing things that we love to showcase as Featured Campaigns. Be sure to come back every now and then for more featured campaigns to check out.',
             'title'         => 'Featured Campaigns',
         ],
+        'open'              => [
+            'filters'   => [
+                'all'       => 'Open status',
+                'closed'    => 'Closed campaigns',
+                'open'      => 'Open campaigns',
+            ],
+        ],
         'public'            => [
             'description'   => 'Take a look at the Public Campaigns for inspiration.',
             'filters'       => [
@@ -20,13 +27,6 @@ return [
             ],
             'no-results'    => 'No public campaign with these filters could be found. Please try again.',
             'title'         => 'Public Campaigns',
-        ],
-        'open'              => [
-            'filters'       => [
-                'all'       => 'Open status',
-                'open'      => 'Open campaigns',
-                'closed'    => 'Closed campaigns',
-            ],
         ],
         'title'             => 'Public Campaigns',
     ],
