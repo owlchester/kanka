@@ -72,11 +72,13 @@ $campaign = CampaignLocalization::getCampaign(); ?>
             <section class="content-header">
                 @if (!isset($breadcrumbs) || $breadcrumbs !== false)
                 <ol class="breadcrumb">
+                @if (!isset($breadcrumbsDashboard) || $breadcrumbsDashboard === true)
                     @if ($campaign)
                         <li><a href="{{ route('dashboard') }}"><i class="fa fa-globe"></i> {!! $campaign->name !!}</a></li>
                     @else
                         <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
                     @endif
+                @endif
                     @if (isset($breadcrumbs))
                         @foreach ($breadcrumbs as $breadcrumb)
                             <li>

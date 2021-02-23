@@ -48,7 +48,7 @@
                             <dl class="dl-horizontal dl-force-mobile">
                                 @if ($campaign->boosted() && $campaign->boosts->count() > 0)
                                     <dt class="text-maroon">
-                                        <i class="fa fa-rocket"></i> {{ __('campaigns.fields.boosted') }}
+                                        <i class="fa fa-rocket"></i> {{ __('campaigns.fields.' . ($campaign->boosts->count() >= 3 ? 'superboosted' : 'boosted')) }}
                                     </dt>
                                     <dd>
                                         {{ $campaign->boosts->first()->user->name }}

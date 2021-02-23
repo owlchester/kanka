@@ -52,6 +52,7 @@ TEXT
     ],
     'fields'                            => [
         'boosted'                       => 'Boosted by',
+        'superboosted'                  => 'Superboosted by',
         'css'                           => 'CSS',
         'description'                   => 'Description',
         'entity_count'                  => 'Entity Count',

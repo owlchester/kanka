@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Settings;
 
 use App\Exceptions\TranslatableException;
 use App\Facades\CampaignCache;
+use App\Facades\UserCache;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\CampaignBoost;
@@ -38,6 +39,11 @@ class BoostController extends Controller
         // If a campaign was provided, make sure we have access to it
         $campaignId = request()->get('campaign');
         $campaign = null;
+
+
+        $boosts = Auth::user()->boosts()->with('campaign')->groupBy('campaign_id')->get();
+        $userCampaigns = UserCache::campaigns()->whereNotIn('id', $boosts->pluck('campaign_id'));
+
         if (!empty($campaignId)) {
             /** @var Campaign $campaign */
             $campaign = Campaign::where(['id' => (int) $campaignId])->firstOrFail();
@@ -49,12 +55,13 @@ class BoostController extends Controller
                     ->route('settings.boost')
                     ->with('error', __('campaigns.boost.exceptions.already_boosted', ['campaign' => $campaign->name]));
             }
-        }
 
-        $boosts = Auth::user()->boosts()->with('campaign')->groupBy('campaign_id')->get();
+            $userCampaigns = $userCampaigns->where('id', '!=', $campaignId);
+        }
 
         return view('settings.boost', compact(
             'campaign',
+            'userCampaigns',
             'boosts'
         ));
     }
