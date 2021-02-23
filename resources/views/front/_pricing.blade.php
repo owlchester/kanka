@@ -1,5 +1,5 @@
 <div class="row pricing mt-3">
-    <div class="col-lg-4 mb-5">
+    <div class="col-lg-3 col-md-4 mb-5">
         <div class="card mb-5 mb-lg-0">
             <div class="card-body">
                 <div class="card-image subscription-kobold @nowebp webpfallback @endnowebp"></div>
@@ -38,7 +38,7 @@
         </div>
     </div>
 
-    <div class="col-lg-4 mb-5">
+    <div class="col-lg-3 col-md-4 mb-5">
         <div class="card mb-5 mb-lg-0">
             <div class="card-body">
                 <div class="card-image subscription-owlbear @nowebp webpfallback @endnowebp"></div>
@@ -80,7 +80,7 @@
         </div>
     </div>
 
-    <div class="col-lg-4 mb-5">
+    <div class="col-lg-3 col-md-4 mb-5">
         <div class="card mb-5 mb-lg-0">
             <div class="card-body">
                 <div class="card-image subscription-wyvern @nowebp webpfallback @endnowebp"></div>
@@ -121,10 +121,7 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="row pricing mt-3">
-    <div class="offset-lg-4 col-lg-4 mb-5">
+    <div class="offset-md-4 offset-lg-0 col-lg-3 col-md-4 mb-5">
         <div class="card mb-5 mb-lg-0">
             <div class="card-body">
                 <div class="card-image subscription-elemental @nowebp webpfallback @endnowebp"></div>

@@ -456,6 +456,10 @@ ul.pagination li span {
   background-image: url(https://images.kanka.io/app/pNUdiAGfWMlNpLnX7ZMJhnA4hFs=/200x200/src/images%2Ftiers%2Fowlbear-325.png);
 }
 
+.card .subscription-wyvern {
+  background-image: url(https://images.kanka.io/app/JVelJ-uk9KRXYsOL4XgIxmB96V4=/200x200/src/images%2Ftiers%2Fwyvern-325.png);
+}
+
 .card .subscription-elemental {
   background-image: url(https://images.kanka.io/app/E6iultkgKe86CZBAiybu8nT9mwM=/200x200/src/images%2Ftiers%2Felemental-325.png);
 }
@@ -466,6 +470,10 @@ ul.pagination li span {
 
 .card .subscription-owlbear.webpfallback {
   background-image: url(https://images.kanka.io/app/pNUdiAGfWMlNpLnX7ZMJhnA4hFs=/200x200/src/images%2Ftiers%2Fowlbear-325.png?webpfallback);
+}
+
+.card .subscription-wyvern.webpfallback {
+  background-image: url(https://images.kanka.io/app/JVelJ-uk9KRXYsOL4XgIxmB96V4=/200x200/src/images%2Ftiers%2Fwyvern-325.png?webpfallback);
 }
 
 .card .subscription-elemental.webpfallback {
