@@ -3,6 +3,7 @@
 return [
     'actions'           => [
         'follow'    => 'Suivre',
+        'join'      => 'Joindre',
         'unfollow'  => 'Ne plus suivre',
     ],
     'campaigns'         => [
@@ -57,6 +58,7 @@ return [
     'description'       => 'Place à la créativité',
     'helpers'           => [
         'follow'    => 'Suivre une campagne la rend visibile dans le changeur de campagne (en haut à droite) après tes campagnes.',
+        'join'      => 'Cette campagne est ouverte à de nouveaux membres. Cliquer pour postuler pour rejoindre.',
         'setup'     => 'Configurer le tableau de bord de la campagne',
     ],
     'latest_release'    => 'Dernière modification',

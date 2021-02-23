@@ -67,7 +67,7 @@ TEXT
         'image'                         => 'Image',
         'locale'                        => 'Locale',
         'name'                          => 'Name',
-        'open'                          => 'Open to submissions',
+        'open'                          => 'Open to applications',
         'public_campaign_filters'       => 'Public Campaign Filters',
         'related_visibility'            => 'Related Elements Visibility',
         'rpg_system'                    => 'RPG Systems',
@@ -209,8 +209,8 @@ TEXT
         'your_role'             => 'Your role: <i>:role</i>',
     ],
     'open_campaign'                     => [
-        'helper'    => 'A public campaign set as open will allow users to send submissions to joining it. Find the list of submissions on our :link page.',
-        'link'      => 'campaign submissions',
+        'helper'    => 'A public campaign set as open will allow users to send applications to joining it. Find the list of applications on our :link page.',
+        'link'      => 'campaign applications',
         'title'     => 'Open Campaign',
     ],
     'panels'                            => [

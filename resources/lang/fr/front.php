@@ -11,6 +11,13 @@ return [
             'description'   => 'Notre communauté construit des choses incroyables que nous aimons présenter grâce aux campagnes promues. Cette liste change assez souvent, alors reviens de temps en temps pour consulter de nouvelles campagnes.',
             'title'         => 'Campagnes Promues',
         ],
+        'open'              => [
+            'filters'   => [
+                'all'       => 'Status de la campagne',
+                'closed'    => 'Campagnes fermées',
+                'open'      => 'Campagnes ouvertes',
+            ],
+        ],
         'public'            => [
             'description'   => 'Laisse-toi inspirer par les campagnes publiques.',
             'filters'       => [

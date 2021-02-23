@@ -149,7 +149,9 @@ return [
     'edit'                      => 'Modifier',
     'errors'                    => [
         'boosted'                       => 'Cette fonctionnalité n\'est accessible qu\'aux campagnes boostées..',
+        'boosted_campaigns'             => 'Cette fonctionnalité n\'est que disponible que pour les :boosted.',
         'node_must_not_be_a_descendant' => 'Node invalide (étiquette, lieu parent): l\'entité serait un descendant de lui-même.',
+        'unavailable_feature'           => 'Fonctionnalité indisponible',
     ],
     'events'                    => [
         'hint'  => 'Les événements de calendrier peuvent être associés à cette entité et être affichés ici.',
@@ -183,6 +185,7 @@ return [
         'header_image'          => 'Image d\'en-tête',
         'image'                 => 'Image',
         'is_private'            => 'Privé',
+        'is_private_v2'         => 'Seulement afficher ceci aux membres du :admin-role de la campagne.',
         'is_star'               => 'Epinglé',
         'item'                  => 'Objet',
         'location'              => 'Lieu',
@@ -190,6 +193,7 @@ return [
         'name'                  => 'Nom',
         'organisation'          => 'Organisation',
         'position'              => 'Position',
+        'privacy'               => 'Visibilité',
         'race'                  => 'Race',
         'tag'                   => 'Etiquette',
         'tags'                  => 'Etiquettes',
@@ -270,6 +274,7 @@ return [
     ],
     'is_not_private'            => 'Cette entité n\'est pas privée.',
     'is_private'                => 'Cet élément est privé et pas visible.',
+    'legacy'                    => 'Ancien',
     'linking_help'              => 'Comment lier vers d\'autres éléments?',
     'manage'                    => 'Gérer',
     'move'                      => [
@@ -361,6 +366,7 @@ return [
         'journal'       => 'Choix d\'un journal',
         'location'      => 'Choix du lieu',
         'map'           => 'Choix d\'une carte',
+        'note'          => 'Choix d\'une note',
         'organisation'  => 'Choix d\'une organisation',
         'race'          => 'Choix d\'une race',
         'tag'           => 'Choix d\'une étiquette',

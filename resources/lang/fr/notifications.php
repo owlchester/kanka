@@ -2,6 +2,11 @@
 
 return [
     'campaign'          => [
+        'application'   => [
+            'approved'  => 'Ton application pour rejoindre la campagne :campaign a été approvée.',
+            'new'       => 'Nouvelle application pour :campaign.',
+            'rejected'  => 'Ton application pour rejoindre la campagne :campaign a été rejetée. Raison: :reason',
+        ],
         'asset_export'  => 'Un export des images de la campagne est disponible. Ce liens sera disponible durant :time minutes.',
         'boost'         => [
             'add'           => 'La campagne :campaign est à présent boostée par :user.',

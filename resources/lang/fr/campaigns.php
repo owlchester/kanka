@@ -58,6 +58,7 @@ TEXT
         'entity_note_visibility'        => 'Note d\'entité épinglée',
         'entity_personality_visibility' => 'Visibilité des traits de personnages',
         'entity_visibility'             => 'Visibilité d\'entité',
+        'entry'                         => 'Description de la campagne',
         'excerpt'                       => 'Extrait',
         'followers'                     => 'Followers',
         'header_image'                  => 'Image de fond pour le tableau de bord',
@@ -66,9 +67,11 @@ TEXT
         'image'                         => 'Image',
         'locale'                        => 'Langue',
         'name'                          => 'Nom',
+        'open'                          => 'Ouvert aux applications',
         'public_campaign_filters'       => 'Filtres pour les campagnes publiques',
         'related_visibility'            => 'Visibilité des éléments liés',
         'rpg_system'                    => 'Système RPG',
+        'superboosted'                  => 'Superboosté par',
         'system'                        => 'Système',
         'theme'                         => 'Thème',
         'tooltip_family'                => 'Désactiver le nom de famille des info-bulles',
@@ -111,7 +114,10 @@ TEXT
             'link'  => 'Nouveau Lien',
         ],
         'create'                => [
-            'button'        => 'Inviter',
+            'buttons'       => [
+                'create'    => 'Créer une invitation',
+                'send'      => 'Envoyer une invitation',
+            ],
             'description'   => 'Invite tes amis à ta campagne',
             'link'          => 'Lien créé: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Invitation envoyée.',
@@ -202,10 +208,16 @@ TEXT
         'title'                 => 'Membres de la campagne :name',
         'your_role'             => 'Rôle: \'<i>:rôle</i>\'',
     ],
+    'open_campaign'                     => [
+        'helper'    => 'Une campagne public définie comme ouverte permet aux utilisateurs d\'envoyer une application pour la rejoindre. Retrouves toutes les applications sous la page :link.',
+        'link'      => 'applications de la campagne',
+        'title'     => 'Campagne Ouverte',
+    ],
     'panels'                            => [
         'boosted'   => 'Boosté',
         'dashboard' => 'Tableau de bord',
         'permission'=> 'Permission',
+        'setup'     => 'Configuration',
         'sharing'   => 'Partage',
         'systems'   => 'Systèmes',
         'ui'        => 'Interface',
@@ -220,6 +232,7 @@ TEXT
         'actions'       => [
             'add'   => 'Ajouter un rôle',
         ],
+        'admin_role'    => 'rôle admin',
         'create'        => [
             'success'   => 'Rôle créé.',
             'title'     => 'Créer un nouveau rôle pour :name',
@@ -335,8 +348,15 @@ TEXT
             'leave' => 'Quitter la campagne',
         ],
         'description'   => 'Détail d\'une campagne',
+        'menus'         => [
+            'configuration'     => 'Configuration',
+            'overview'          => 'Vue d\'ensemble',
+            'user_management'   => 'Gestion d\'utilisateur',
+        ],
         'tabs'          => [
             'achievements'      => 'Accomplissements',
+            'applications'      => 'Applications',
+            'campaign'          => 'Campagne',
             'default-images'    => 'Image par défaut',
             'export'            => 'Export',
             'information'       => 'Information',

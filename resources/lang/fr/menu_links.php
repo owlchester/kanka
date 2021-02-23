@@ -21,6 +21,7 @@ return [
         'position'      => 'Position',
         'random'        => 'Aléatoire',
         'random_type'   => 'Type d\'entité aléatoire',
+        'selector'      => 'Configuration du lien',
         'tab'           => 'Onglet',
         'type'          => 'Entité Type',
     ],
@@ -29,6 +30,7 @@ return [
         'entity'    => 'Mettre en place ce lien de menu pour aller directement sur une entité. Le champ :tab contrôle quel onglet est ouvert. Le champ :menu contrôle quel sous-menu est affiché.',
         'position'  => 'Ce champ contrôle dans quel ordre les liens de menus apparaissent.',
         'random'    => 'Utilises ce champ pour avoir le lien de menu qui pointe vers une entité aléatoire. Le type d\'entité peut être filtré.',
+        'selector'  => 'Configurer vers quel type d\'entité l\'utilisateur ira en cliquant sur le lien dans le menu de navigation.',
         'type'      => 'Définir ce lien de menu pour aller directement sur une liste d\'entité. Pour filtrer les résultats, il faut copier l\'url de la page filtrée après le :? de l\'url dans le champs :filter.',
     ],
     'index'         => [
