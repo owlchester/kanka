@@ -136,7 +136,7 @@ class CampaignPluginController extends Controller
         $this->authorize('recover', $campaign);
 
         $ajax = request()->ajax();
-        $versions = $plugin->versions()->orderBy('id', 'desc')->paginate();
+        $versions = $plugin->versions()->where('status_id', 3)->orderBy('id', 'desc')->paginate();
 
         $plugin = $campaign->plugins->where('id', $plugin->id)->first();
 
