@@ -148,4 +148,34 @@ class CampaignRoleController extends Controller
         return redirect()->route('campaign_roles.show', ['campaign_role' => $campaignRole])
             ->with('success', trans('crud.permissions.success'));
     }
+
+    /**
+     * campaign/<id>/campaign_roles/admin fast url
+     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function admin()
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('roles', $campaign);
+
+        $adminRole = $campaign->roles()->where('is_admin', true)->firstOrFail();
+
+        return $this->show($adminRole);
+    }
+
+    /**
+     * campaign/<id>/campaign_roles/admin fast url
+     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function public()
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('roles', $campaign);
+
+        $adminRole = $campaign->roles()->public()->firstOrFail();
+
+        return $this->show($adminRole);
+    }
 }

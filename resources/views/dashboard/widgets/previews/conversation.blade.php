@@ -18,7 +18,11 @@ $conversation = $entity->child;
 
                     <span class="label label-default"><i class="fa fa-users"></i> {{ $conversation->participants()->count() }}</span>
                 </span>
-                {{ $entity->name }}
+                @if (!empty($widget->conf('text')))
+                    {{ $widget->conf('text') }}
+                @else
+                    {{ $entity->name }}
+                @endif
 
             </a>
         </h3>

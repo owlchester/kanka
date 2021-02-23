@@ -206,14 +206,14 @@ class Tag extends MiscModel
                 'count' => $count
             ];
         }
-        $count = $this->allChildren()->count();
+        /*$count = $this->allChildren()->count();
         if ($campaign->enabled('characters')) {
             $items['children'] = [
                 'name' => 'tags.show.tabs.children',
                 'route' => 'tags.children',
                 'count' => $count
             ];
-        }
+        }*/
         return parent::menuItems($items);
     }
 

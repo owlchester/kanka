@@ -1,8 +1,8 @@
 <?php /** @var \App\Models\CampaignRole $relation */?>
 <div class="box-header with-border">
-    <h2 class="box-title">
-        {{ __('campaigns.show.tabs.roles') }}
-    </h2>
+    <h3 class="box-title">
+        <i class="fa fa-users-cog"></i> {{ __('campaigns.show.tabs.roles') }}
+    </h3>
 </div>
 <div class="box-body">
 

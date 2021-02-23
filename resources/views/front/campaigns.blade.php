@@ -53,17 +53,21 @@
 
                 {!! Form::open(['route' => 'front.public_campaigns', 'method' => 'GET']) !!}
                 <div class="row mb-3">
-                    <div class="col">
+                    <div class="col-sm-2 mb-1">
                         {!! Form::select('language', array_merge(['' => __('campaigns.fields.locale')], $languages->getSupportedLanguagesList()), request()->get('language'), ['class' => 'form-control']) !!}
                     </div>
-                    <div class="col">
+                    <div class="col-sm-2 mb-1">
                         {!! Form::select('system', array_merge(['' => __('campaigns.fields.system')], \App\Facades\CampaignCache::systems(), ['other' => __('sidebar.other')]), request()->get('system'), ['class' => 'form-control']) !!}
                     </div>
-                    <div class="col">
+                    <div class="col-sm-2 mb-1">
                         {!! Form::select('is_boosted', ['' => __('front.campaigns.public.filters.all'),
  0 => __('front.campaigns.public.filters.unboosted'), 1 => __('front.campaigns.public.filters.boosted')], request()->get('is_boosted'), ['class' => 'form-control']) !!}
                     </div>
-                    <div class="col">
+                    <div class="col-sm-2 mb-1">
+                        {!! Form::select('is_open', ['' => __('front.campaigns.open.filters.all'),
+ 1 => __('front.campaigns.open.filters.open'), 0 => __('front.campaigns.open.filters.closed')], request()->get('is_open'), ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="col-sm-2 mb-1">
                         <input type="submit" class="btn btn-primary" value="{{ __('crud.actions.apply') }}" />
                     </div>
                 </div>

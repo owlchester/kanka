@@ -21,6 +21,13 @@ return [
             'no-results'    => 'No public campaign with these filters could be found. Please try again.',
             'title'         => 'Public Campaigns',
         ],
+        'open'              => [
+            'filters'       => [
+                'all'       => 'Open status',
+                'open'      => 'Open campaigns',
+                'closed'    => 'Closed campaigns',
+            ],
+        ],
         'title'             => 'Public Campaigns',
     ],
     'community'     => [

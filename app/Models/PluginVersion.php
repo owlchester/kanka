@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 
 /**
@@ -64,6 +65,9 @@ class PluginVersion extends Model
             $name = (string)$matches[1];
             return $this->attribute($name);
         }, $this->content);
+
+        return Blade::compileString($html);
+        dd($html);
 
         // If-Else condition
         $html = preg_replace_callback('`@if\((.*?)\)(.*?)@else(.*?)@endif`si', function ($matches) {

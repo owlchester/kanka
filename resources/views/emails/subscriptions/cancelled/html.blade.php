@@ -14,5 +14,10 @@
             {!! nl2br(e($reason)) !!}
         </p>
     @endif
+
+    <p>
+        <strong>Subscribed since:</strong><br />
+        {{ $user->subscription('kanka')->created_at->isoFormat('MMMM D, Y') }}
+    </p>
 </body>
 </html>

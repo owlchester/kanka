@@ -5,51 +5,81 @@
 ?>
 @extends('layouts.app', [
     'title' => __('settings.boost.title'),
-    'breadcrumbs' => false,
+    'breadcrumbs' => [
+        __('settings.menu.settings'),
+        __('settings.menu.boost'),
+],
+    'breadcrumbsDashboard' => false,
     'sidebar' => 'settings',
 ])
 
 @section('content')
     @include('partials.errors')
-    <div class="box box-solid">
-        <div class="box-body">
-            <h2 class="page-header with-border">
-                {{ __('settings.boost.title') }}
-            </h2>
-
+        <div class="callout callout-info">
             <p>
                 {!! __('settings.boost.benefits.first', ['subscription' => link_to_route('settings.subscription', __('settings.menu.subscription'))]) !!}
             </p>
-            <div class="row">
-                <div class="col-md-6">
-                    <p>{{ __('settings.boost.benefits.second') }}</p>
+        </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        {{ __('settings.boost.benefits.headers.boosted') }}
+                    </h3>
+                </div>
+                <div class="box-body">
+                    <p>{{ __('settings.boost.benefits.helpers.boosted') }}</p>
                     <ul>
                         <li>{{ __('settings.boost.benefits.theme') }}</li>
-                        <li>{{ __('settings.boost.benefits.tooltip') }}</li>
-                        <li>{{ __('settings.boost.benefits.images') }}</li>
-                        <li>{{ __('settings.boost.benefits.header') }}</li>
                         <li>{{ __('settings.boost.benefits.upload') }}</li>
-                        <li><a href="{{ route('front.features', '#boost') }}">
-                            {{ __('settings.boost.benefits.more') }}
-                            </a></li>
+                        <li>{{ __('settings.boost.benefits.images') }}</li>
+                        <li>{{ __('settings.boost.benefits.tooltip') }}</li>
+                        <li>{{ __('settings.boost.benefits.header') }}</li>
+                        <li>{{ __('settings.boost.benefits.recovery', ['amount' => config('entities.hard_delete')]) }}</li>
                     </ul>
+                    <div class="text-center">
+                    <a href="{{ route('front.features', '#boost') }}" target="_blank">
+                        {{ __('settings.boost.benefits.more.boosted') }}
+                    </a>
+                    </div>
                 </div>
-                <div class="col-md-6">
-
-                    <p>{{ __('settings.boost.benefits.superboost') }}</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        {{ __('settings.boost.benefits.headers.superboosted') }}
+                    </h3>
+                </div>
+                <div class="box-body">
+                    <p>{{ __('settings.boost.benefits.helpers.superboosted') }}</p>
                     <ul>
                         <li>{{ __('settings.boost.benefits.entity_files') }}</li>
                         <li>{{ __('settings.boost.benefits.campaign_gallery') }}</li>
                         <li>{{ __('settings.boost.benefits.entity_logs') }}</li>
                     </ul>
+                    <div class="text-center">
+                        <a href="{{ route('front.features', '#superboost') }}" target="_blank">
+                            {{ __('settings.boost.benefits.more.superboosted') }}
+                        </a>
+                    </div>
                 </div>
             </div>
+        </div>
+    </div>
 
 
-            @if (Auth::user()->maxBoosts() > 0)
-            <h3 class="page-header with-border">
-                {{ __('settings.boost.campaigns', ['max' => Auth::user()->maxBoosts(), 'count' => Auth::user()->boosting()]) }}
-            </h3>
+    @if (Auth::user()->maxBoosts() > 0)
+        <div class="box box-solid">
+            <div class="box-header with-border">
+                <h3 class="box-title">
+                    {{ __('settings.boost.campaigns', ['max' => Auth::user()->maxBoosts(), 'count' => Auth::user()->boosting()]) }}
+                </h3>
+            </div>
+            <div class="box-body">
             @if ($campaign)
                 <div class="row margin-bottom">
                     <div class="col-md-6">
@@ -119,14 +149,49 @@
                         </div>
                     </div>
                     @endforeach
+
+                    @foreach ($userCampaigns as $userCampaign)
+                        <div class="col-md-6 margin-bottom">
+                            <div class="campaign" @if ($userCampaign->image) style="background-image: url('{{ Img::crop(500, 200)->url($userCampaign->image) }}');" @endif>
+                                <div class="actions">
+                                    <a href="{{ url(App::getLocale() . '/' . $userCampaign->getMiddlewareLink()) }}" class="campaign-name">
+                                        {!! $userCampaign->name !!}
+                                    </a>
+
+                                    @if(Auth::user()->availableBoosts() > 0)
+                                        {!! Form::open(['route' => 'campaign_boosts.store']) !!}
+                                        <button type="submit" class="btn btn-primary boost" name="action" value="boost" title="{{ __('settings.boost.buttons.tooltips.boost', ['amount' => 1]) }}" data-toggle="tooltip">
+                                            <i class="fa fa-rocket"></i> {{ __('settings.boost.buttons.boost') }}
+                                        </button>
+
+                                        @if(Auth::user()->availableBoosts() >= 3)
+                                            <button type="submit" class="btn bg-maroon" name="action" value="superboost" title="{{ __('settings.boost.buttons.tooltips.boost', ['amount' => 3]) }}" data-toggle="tooltip">
+                                                <i class="fa fa-rocket"></i> {{ __('settings.boost.buttons.superboost') }}
+                                            </button>
+                                        @else
+                                            <button type="submit" disabled="disabled" class="btn bg-maroon" value="superboost" title="{{ __('settings.boost.buttons.tooltips.boost', ['amount' => 3]) }}" data-toggle="tooltip">
+                                                <i class="fa fa-rocket"></i> {{ __('settings.boost.buttons.superboost') }}
+                                            </button>
+                                        @endif
+                                        {!! Form::hidden('campaign_id', $userCampaign->id) !!}
+                                        {!! Form::close(); !!}
+                                    @else
+                                        <button class="btn btn-default boost" disabled="disabled">
+                                            {{ __('settings.boost.buttons.boost')  }}
+                                        </button>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-            @endif
-            <p class="help-block">{{ __('settings.boost.benefits.third', [
-                'boost_button' => __('campaigns.show.actions.boost'),
-                'edit_button' => __('campaigns.show.actions.edit')
-            ]) }}</p>
+            </div>
         </div>
-    </div>
+            @endif
+            <p class="help-block">{!! __('settings.boost.benefits.third', [
+                'boost_button' => '<code>' . __('campaigns.show.actions.boost') . '</code>',
+                'edit_button' => '<code>' . __('campaigns.show.actions.edit') . '</code>'
+            ]) !!}</p>
 @endsection
 
 @section('modals')

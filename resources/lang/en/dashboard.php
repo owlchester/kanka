@@ -4,6 +4,7 @@ return [
     'actions'           => [
         'follow'    => 'Follow',
         'unfollow'  => 'Stop following',
+        'join'      => 'Join',
     ],
     'campaigns'         => [
         'tabs'  => [
@@ -57,6 +58,7 @@ return [
     'description'       => 'The home for your creativity',
     'helpers'           => [
         'follow'    => 'Following a campaign will make it appear in the campaign switcher (top-left) below your campaigns.',
+        'join'      => 'This campaign is open to new members. Click to apply to join it.',
         'setup'     => 'Setup your campaign\'s dashboard.',
     ],
     'latest_release'    => 'Latest Release',

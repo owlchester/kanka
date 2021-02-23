@@ -7,6 +7,7 @@ namespace App\Models\Relations;
 use App\Models\Campaign;
 use App\Models\CampaignBoost;
 use App\Models\CampaignRole;
+use App\Models\CampaignSubmission;
 use App\Models\Referral;
 use App\Models\UserApp;
 
@@ -20,6 +21,7 @@ use App\Models\UserApp;
  * @property Campaign[] $following
  * @property Campaign $lastCampaign
  * @property Referral $referrer
+ * @property CampaignSubmission[] $submissions
  */
 trait UserRelations
 {
@@ -127,5 +129,13 @@ trait UserRelations
     public function referrer()
     {
         return $this->belongsTo(Referral::class, 'referral_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function submissions()
+    {
+        return $this->hasMany('App\Models\CampaignSubmission');
     }
 }

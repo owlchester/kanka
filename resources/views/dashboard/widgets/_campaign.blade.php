@@ -1,43 +1,148 @@
 <?php
 /** @var \App\Models\Campaign $campaign */
 ?>
-<div class="campaign @if(!empty($campaign->header_image))cover-background" style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }}) @else no-header @endif ">
-    <div class="content">
-        <div class="title">
-            <h1>
-                @if (!empty($campaign->image))
-                    <img class="img-circle cover-background" src="{{ Img::crop(50, 50)->url($campaign->image) }}" alt="{{ $campaign->name }} picture">
-                @endif
-                <a href="{{ route('campaigns.show', $campaign) }}" title="{!! $campaign->name !!}">{!! $campaign->name !!}</a>
-            </h1>
-        </div>
-        @if ($campaign->hasPreview())
-            <div class="preview">
-                {!! $campaign->preview() !!}
-            </div>
-            <div class="more">
-                <a href="{{ route('campaigns.show', $campaign) }}">{{ __('crud.actions.find_out_more') }}</a>
-            </div>
-        @endif
+@section('content-header')
+<div class="campaign-header @if(!empty($campaign->header_image))campaign-imaged-header" style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }}) @else no-header @endif ">
+    <div class="social-bar">
 
-        @can('update', $campaign)
-            <div class="row">
-                <div class="col-xs-6 col-sm-6 col-md-2">
-                    <a href="{{ route('campaign_users.index') }}" class="campaign-link" title="{{ trans_choice('dashboard.campaigns.tabs.users', \App\Facades\CampaignCache::members()->count(), ['count' => \App\Facades\CampaignCache::members()->count()]) }}">
-                        <i class="fa fa-user"></i> {{ \App\Facades\CampaignCache::members()->count() }}
-                    </a>
-                </div>
-                <div class="col-xs-6 col-sm-6 col-md-2">
-                    <a href="{{ route('campaign_roles.index') }}" class="campaign-link" title="{{ trans_choice('dashboard.campaigns.tabs.roles', \App\Facades\CampaignCache::roles()->count(), ['count' => \App\Facades\CampaignCache::roles()->count()]) }}">
-                        <i class="fa fa-lock"></i> {{ \App\Facades\CampaignCache::roles()->count() }}
-                    </a>
-                </div>
-                <div class="col-md-2 hidden-xs hidden-sm">
-                    <a href="{{ route('campaign_settings') }}" class="campaign-link" title="{{ trans_choice('dashboard.campaigns.tabs.modules', $campaign->setting->countEnabledModules(), ['count' => $campaign->setting->countEnabledModules()]) }}">
-                        <i class="fa fa-cogs"></i> {{ $campaign->setting->countEnabledModules() }}
-                    </a>
-                </div>
-            </div>
+        @can ('follow', $campaign)
+            <button id="campaign-follow" class="btn btn-default btn-xl" data-id="{{ $campaign->id }}"
+                    style="display: none"
+                    data-following="{{ $campaign->isFollowing() ? true : false }}"
+                    data-follow="{{ __('dashboard.actions.follow') }}"
+                    data-unfollow="{{ __('dashboard.actions.unfollow') }}"
+                    data-url="{{ route('campaign.follow') }}"
+                    data-toggle="tooltip" title="{{ __('dashboard.helpers.follow') }}"
+                    data-placement="bottom"
+            >
+                <i class="fa fa-star"></i> <span id="campaign-follow-text"></span>
+            </button>
         @endcan
+        @can('apply', $campaign)
+            <button id="campaign-apply" class="btn btn-default btn-xl margin-r-5" data-id="{{ $campaign->id }}"
+                    data-url="{{ route('campaign.apply') }}"
+                    data-toggle="ajax-modal" title="{{ __('dashboard.helpers.join') }}"
+                    data-target="#large-modal"
+                    data-placement="bottom"
+            >
+                <i class="fas fa-door-open"></i> {{ __('dashboard.actions.join') }}
+            </button>
+        @endcan
+
+
+        @cannot('update', $campaign)
+        @if(!empty($dashboards))
+            <div class="btn-group pull-right">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-th-large"></i>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    @if (!empty($dashboard))
+                        <li>
+                            <a href="{{ route('dashboard', ['dashboard' => 'default']) }}">
+                                {{ __('dashboard.dashboards.default.title')}}
+                            </a>
+                        </li>
+                    @endif
+                    @foreach ($dashboards as $dash)
+                        @if (!empty($dashboard) && $dash->id == $dashboard->id)
+                            @continue
+                        @endif
+                        <li>
+                            <a href="{{ route('dashboard', ['dashboard' => $dash->id]) }}">
+                                {!! $dash->name !!}
+                            </a>
+                        </li>
+                    @endforeach
+
+                    @if($settings)
+                        <li class="divider"></li>
+                        <li>
+                            <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}">
+                                {{ __('dashboard.settings.title') }}
+                            </a>
+                        </li>
+                    @endif
+                </ul>
+            </div>
+        @elseif($settings)
+            <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-xl" title="{{ __('dashboard.settings.title') }}">
+                <i class="fa fa-th-large"></i>
+            </a>
+        @endif
+        @endcannot
+    </div>
+
+
+    <div class="campaign-header-content">
+
+        <div class="campaign-content">
+            <div class="campaign-head">
+                <a href="{{ route('campaigns.show', $campaign) }}" title="{!! $campaign->name !!}" class="campaign-title">
+                    {!! $campaign->name !!}
+                </a>
+                @can('update', $campaign)
+                    <div class="action-bar">
+                        <div class="btn-group">
+                            <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" aria-expanded="false">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                @if (!empty($dashboard))
+                                    <li>
+                                        <a href="{{ route('dashboard', ['dashboard' => 'default']) }}">
+                                            <i class="fa fa-th-large"></i> {{ __('dashboard.dashboards.default.title')}}
+                                        </a>
+                                    </li>
+                                @endif
+                                @foreach ($dashboards as $dash)
+                                    @if (!empty($dashboard) && $dash->id == $dashboard->id)
+                                        @continue
+                                    @endif
+                                    <li>
+                                        <a href="{{ route('dashboard', ['dashboard' => $dash->id]) }}">
+                                            <i class="fa fa-th-large"></i> {!! $dash->name !!}
+                                        </a>
+                                    </li>
+                                @endforeach
+                                <li>
+                                    <a href="{{ route('dashboard.setup') }}" title="{{ __('dashboard.settings.title') }}">
+                                        <i class="fa fa-cog"></i> {{ __('dashboard.settings.title') }}
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="{{ route('campaigns.edit', $campaign) }}">
+                                        <i class="fa fa-pencil"></i> {{ __('campaigns.show.actions.edit') }}
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="{{ route('campaign_users.index') }}"  title="{{ __('campaigns.show.tabs.members') }}">
+                                        <i class="fa fa-user"></i> {{ __('campaigns.show.tabs.members') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('campaign_roles.index') }}" title="{{  __('campaigns.show.tabs.roles') }}">
+                                        <i class="fa fa-user-tag"></i> {{ __('campaigns.show.tabs.roles') }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('campaign_settings') }}" title="{{ __('campaigns.show.tabs.settings') }}">
+                                        <i class="fa fa-th-large"></i> {{ __('campaigns.show.tabs.settings') }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                @endcan
+            </div>
+            @if ($campaign->hasPreview())
+                <div class="preview">
+                    {!! $campaign->preview() !!}
+                </div>
+            @endif
+        </div>
     </div>
 </div>
+@endsection

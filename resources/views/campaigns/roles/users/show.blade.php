@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'title' => trans('campaigns.roles.show.title'),
-    'description' => trans('campaigns.roles.show.description'),
+    'description' => '',
     'breadcrumbs' => [
         ['url' => route('campaigns.index', ['tab' => 'roles']), 'label' => trans('campaigns.index.title')]
     ]

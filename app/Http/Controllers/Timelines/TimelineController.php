@@ -6,7 +6,6 @@ use App\Datagrids\Filters\TimelineFilter;
 use App\Datagrids\Sorters\TimelineTimelineSorter;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreTimeline;
-use App\Models\Family;
 use App\Models\Timeline;
 use App\Traits\TreeControllerTrait;
 

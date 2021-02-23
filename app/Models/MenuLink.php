@@ -93,6 +93,9 @@ class MenuLink extends MiscModel
         'tab',
     ];
 
+    /** @var string Default order for lists */
+    public $defaultOrderField = 'position';
+
     /**
      * Performance with for datagrids
      * @param $query
@@ -140,6 +143,12 @@ class MenuLink extends MiscModel
             $this->target->entity_id,
         ];
 
+        if (!empty($this->menu)) {
+            if ($this->menu == 'all-members') {
+                $parameters['all_members'] = 1;
+            }
+        }
+
         if (!empty($this->tab)) {
             $prefix = 'tab_';
             // remove tab_ from the beginning of the string, if it's present
@@ -183,6 +192,11 @@ class MenuLink extends MiscModel
             }
             elseif (Str::contains($this->menu, 'abilit')) {
                 return route('entities.entity_abilities.index', $this->target->id);
+            }
+            elseif (Str::contains($this->menu, 'map_points')) {
+                return route('entities.map-markers', $this->target->id);
+            } elseif ($this->menu == 'all-members') {
+                $menuRoute = $route;
             }
             if (Route::has($menuRoute)) {
                 $route = $menuRoute;
@@ -249,6 +263,30 @@ class MenuLink extends MiscModel
     public function isRandom(): bool
     {
         return !empty($this->random_entity_type);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEntity(): bool
+    {
+        return !empty($this->entity_id);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDashboard(): bool
+    {
+        return !empty($this->dashboard_id);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isList(): bool
+    {
+        return !empty($this->type);
     }
 
     /**

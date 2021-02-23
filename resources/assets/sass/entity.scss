@@ -31,13 +31,18 @@
   }
 }
 
+.entity-notes {
+  img {
+    max-width: 100%;
+  }
+}
 .entity-note .box-header.with-border {
   display: flex;
 }
 .entity-note > .box-header > h3.box-title {
   flex-grow: 5;
 }
-.box-header > .box-tools {
+.kanka-entity-timeline > .box-header > .box-tools {
   flex-basis: 73px;
   text-align: right;
   margin: 0 0 0 5px;

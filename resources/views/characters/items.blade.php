@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'title' => trans('characters.items.title', ['name' => $model->name]),
-    'description' => trans('characters.items.description'),
+    'description' => '',
     'breadcrumbs' => [
         ['url' => route('characters.index'), 'label' => __('characters.index.title')],
         ['url' => route('characters.show', $model), 'label' => $model->name],

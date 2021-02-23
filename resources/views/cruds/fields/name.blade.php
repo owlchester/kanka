@@ -1,6 +1,10 @@
-<?php $required = !isset($bulk); ?>
+<?php
+$required = !isset($bulk);
+$horizontalForm = isset($horizontalForm) ? $horizontalForm : false;
+?>
 <div class="form-group @if ($required) required @endif">
-    <label>{{ __($trans . '.fields.name') }}</label>
+    <label @if($horizontalForm) class="control-label col-sm-3 col-lg-2" @endif>{{ __($trans . '.fields.name') }}</label>
+    @if($horizontalForm) <div class="col-sm-9 col-lg-10"> @endif
     {!! Form::text(
         'name',
         null,
@@ -14,6 +18,7 @@
             'required' => $required ? 'required' : null
         ]
     ) !!}
+    @if ($horizontalForm) </div> @endif
 
     <p class="text-yellow duplicate-entity-warning collapse out">
         {{ __('entities.creator.duplicate') }}<br /><span id="duplicate-entities"></span>

@@ -52,12 +52,14 @@ TEXT
     ],
     'fields'                            => [
         'boosted'                       => 'Boosted by',
+        'superboosted'                  => 'Superboosted by',
         'css'                           => 'CSS',
         'description'                   => 'Description',
         'entity_count'                  => 'Entity Count',
         'entity_note_visibility'        => 'Entity Notes Pinned',
         'entity_personality_visibility' => 'Character Personality Visibility',
         'entity_visibility'             => 'Entity Visibility',
+        'entry'                         => 'Campaign description',
         'excerpt'                       => 'Excerpt',
         'followers'                     => 'Followers',
         'header_image'                  => 'Header Image',
@@ -66,6 +68,7 @@ TEXT
         'image'                         => 'Image',
         'locale'                        => 'Locale',
         'name'                          => 'Name',
+        'open'                          => 'Open to submissions',
         'public_campaign_filters'       => 'Public Campaign Filters',
         'related_visibility'            => 'Related Elements Visibility',
         'rpg_system'                    => 'RPG Systems',
@@ -106,12 +109,15 @@ TEXT
     ],
     'invites'                           => [
         'actions'               => [
-            'add'   => 'Invite',
+            'add'   => 'Email invite',
             'copy'  => 'Copy the link to your clipboard',
             'link'  => 'New Link',
         ],
         'create'                => [
-            'button'        => 'Invite',
+            'buttons'        => [
+                'create' => 'Create invite',
+                'send' => 'Send invite',
+            ],
             'description'   => 'Invite a friend to your campaign',
             'link'          => 'Link created: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Invitation sent.',
@@ -139,7 +145,7 @@ TEXT
             'validity'  => 'Validity',
         ],
         'helpers'               => [
-            'email'     => 'Our emails are often flagged as spam and can take up to a few hours before appearing in your inbox.',
+            'email'     => 'Our emails are often flagged as spam and can take up to a few hours before appearing in the inbox.',
             'validity'  => 'How many users can use this link before it is deactivated. Leave blank for unlimited',
         ],
         'placeholders'          => [
@@ -202,6 +208,11 @@ TEXT
         'title'                 => 'Campaign :name Members',
         'your_role'             => 'Your role: <i>:role</i>',
     ],
+    'open_campaign' => [
+        'title' => 'Open Campaign',
+        'helper' => 'A public campaign set as open will allow users to send submissions to joining it. Find the list of submissions on our :link page.',
+        'link' => 'campaign submissions',
+    ],
     'panels'                            => [
         'boosted'   => 'Boosted',
         'dashboard' => 'Dashboard',
@@ -209,6 +220,7 @@ TEXT
         'sharing'   => 'Sharing',
         'systems'   => 'Systems',
         'ui'        => 'Interface',
+        'setup'     => 'Setup',
     ],
     'placeholders'                      => [
         'description'   => 'A short summary of your campaign',
@@ -220,6 +232,7 @@ TEXT
         'actions'       => [
             'add'   => 'Add a role',
         ],
+        'admin_role'    => 'admin role',
         'create'        => [
             'success'   => 'Role created.',
             'title'     => 'Create a new role for :name',
@@ -335,7 +348,14 @@ TEXT
             'leave' => 'Leave campaign',
         ],
         'description'   => 'A detailed view of a campaign',
+        'menus' => [
+            'overview' => 'Overview',
+            'user_management' => 'User management',
+            'configuration' => 'Configuration',
+        ],
         'tabs'          => [
+            'campaign'          => 'Campaign',
+            'applications'      => 'Applications',
             'achievements'      => 'Achievements',
             'default-images'    => 'Default Images',
             'export'            => 'Export',

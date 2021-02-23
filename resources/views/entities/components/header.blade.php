@@ -6,6 +6,10 @@
                     <a class="entity-avatar" href="{{ $model->getImageUrl(0) }}" title="{{ $model->name }}" target="_blank">
                         <img src="{{ $model->getImageUrl(0) }}" alt="{{ $model->name }} picture">
                     </a>
+                @elseif ($campaign->campaign()->boosted(true) && $model->entity && $model->entity->image)
+                    <a class="entity-avatar" href="{{ $model->entity->image->getUrl() }}" title="{{ $model->name }}" target="_blank">
+                        <img src="{{ Img::crop(400, 400)->url($model->entity->image->path) }}" alt="{{ $model->name }} picture">
+                    </a>
                 @endif
                 <div class="texts">
                     <h1>

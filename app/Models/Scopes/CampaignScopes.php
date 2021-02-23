@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\DB;
  * @method static self|Builder front()
  * @method static self|Builder featured(bool $features = true)
  * @method static self|Builder filterPublic(array $filters)
+ * @method static self|Builder open()
  */
 trait CampaignScopes
 {
@@ -30,6 +31,16 @@ trait CampaignScopes
     public function scopeVisibility(Builder $query, $visibility)
     {
         return $query->where('visibility', $visibility);
+    }
+
+    /**
+     * @param $query
+     * @param $visibility
+     * @return mixed
+     */
+    public function scopeOpen(Builder $query)
+    {
+        return $query->where('is_open', true);
     }
 
     /**
@@ -152,6 +163,13 @@ trait CampaignScopes
             $query->where('boost_count', '>=', 1);
         } elseif ($boosted === "0") {
             $query->where(function($sub) { return $sub->where('boost_count', 0)->orWhereNull('boost_count'); });
+        }
+
+        $open = Arr::get($options, 'is_open');
+        if ($open === '1') {
+            $query->where('is_open', true);
+        } elseif ($open === '0') {
+            $query->where('is_open', false);
         }
 
         return $query;

@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\MenuLink $model */?>
 @inject ('datagrid', 'App\Renderers\DatagridRenderer')
 
 {!! $datagrid->filters($filters)
@@ -8,32 +9,39 @@
         // Name
         'name',
         'position',
-        // Entity
         [
-            'type' => 'avatar',
-            'parent' => 'target',
-            'parent_route' => function($model) {
-                return $model->target->pluralType();
+            'label' => __('crud.fields.type'),
+            'render' => function ($model) {
+                if ($model->isDashboard()) {
+                    return '<i class="fa fa-th-large"></i> ' . __('menu_links.fields.dashboard');
+                } elseif ($model->isEntity()) {
+                    return '<i class="ra ra-tower"></i> ' . __('menu_links.fields.entity');
+                } elseif ($model->isList()) {
+                    return '<i class="fa fa-th-list"></i> ' . __('menu_links.fields.type');
+                } elseif ($model->isRandom()) {
+                    return '<i class="fa fa-question"></i> ' . __('menu_links.fields.random');
+                }
+                return '';
             },
+            'disableSort' => true,
+
         ],
         [
-            'label' => __('menu_links.fields.entity'),
-            'render' => function($model) {
-                if ($model->dashboard) {
-                    return $model->dashboard->name;
+            'label' => '',
+            'render' => function ($model) {
+                if ($model->isDashboard()) {
+                    return '<a href="' . $model->getRoute() . '">' . $model->name . '</a>';
+                } elseif ($model->isEntity()) {
+                    return '<a href="' . $model->target->url() . '">' . $model->target->name . '</a>';
+                } elseif ($model->isList()) {
+                    return __('entities.' . $model->type);
+                } elseif ($model->isRandom()) {
+                    return $model->random_entity_type == 'any' ? __('menu_links.random_types.any') : __('entities.' . $model->random_entity_type);
                 }
-                elseif ($model->target) {
-                    return $model->target->tooltipedLink();
-                } elseif (empty($model->type)) {
-                    // Link to a no-longer existing entity
-                    return '';
-                }
-                return __('entities.' . \Illuminate\Support\Str::plural($model->type));
+                return '';
             },
             'disableSort' => true,
         ],
-        'menu',
-        'tab',
         [
             'type' => 'is_private',
         ]

@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'title' => trans('campaigns.export.title', ['name' => $campaign->name]),
-    'description' => trans('campaigns.export.description'),
+    'description' => '',
     'breadcrumbs' => [
         ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
         trans('campaigns.show.tabs.export')
@@ -17,6 +17,11 @@
         </div>
         <div class="col-md-9">
             <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        <i class="fa fa-download"></i> {{ __('campaigns.show.tabs.export') }}
+                    </h3>
+                </div>
                 <div class="box-body">
                     @include('campaigns._export')
                 </div>

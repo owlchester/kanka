@@ -61,25 +61,24 @@ $campaign = CampaignLocalization::getCampaign(); ?>
 <body class="skin-black sidebar-mini @if (!empty($campaign) || (auth()->check() && auth()->user()->hasCampaigns()) || (!empty($sidebar) && $sidebar == 'settings'))@else layout-top-nav @endif @if(isset($miscModel) && !empty($miscModel->entity)) kanka-entity-{{ $miscModel->entity->id }} kanka-entity-{{ $miscModel->getEntityType() }}@if(!empty($miscModel->type)) kanka-type-{{ \Illuminate\Support\Str::slug($miscModel->type) }}@endif @endif @if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif">
 @include('layouts._tracking-fallback')
     <div id="app" class="wrapper">
-        <!-- Header -->
         @include('layouts.header')
 
-        <!-- Sidebar -->
         @include('layouts.sidebars.' . ($sidebar ?? 'app'))
 
         @yield('fullpage-form')
 
-        <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper" @if(isset($contentId)) id="{{ $contentId }}" @endif>
-            <!-- Content Header (Page header) -->
+            @if(!view()->hasSection('content-header'))
             <section class="content-header">
                 @if (!isset($breadcrumbs) || $breadcrumbs !== false)
                 <ol class="breadcrumb">
+                @if (!isset($breadcrumbsDashboard) || $breadcrumbsDashboard === true)
                     @if ($campaign)
                         <li><a href="{{ route('dashboard') }}"><i class="fa fa-globe"></i> {!! $campaign->name !!}</a></li>
                     @else
                         <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
                     @endif
+                @endif
                     @if (isset($breadcrumbs))
                         @foreach ($breadcrumbs as $breadcrumb)
                             <li>
@@ -116,6 +115,9 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                     @endif
                 @endif
             </section>
+            @endif
+
+            @yield('content-header')
 
             <!-- Main content -->
             <section class="content">

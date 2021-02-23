@@ -1,66 +1,6 @@
 <?php /** @var App\Models\Campaign $campaign */ ?>
 <div class="box box-solid">
     <div class="box-body box-profile">
-        @if ($campaign->image)
-            <div class="full-sized-image" style="background-image: url('{{ Img::crop(400, 240)->url($campaign->image) }}');">
-                <h1>{!! $campaign->name !!}</h1>
-            </div>
-        @else
-            <h1 class="profile-username text-center">{!! $campaign->name !!}</h1>
-        @endif
-
-        <ul class="list-group list-group-unbordered">
-            <li class="list-group-item">
-                <b>{{ trans('campaigns.fields.visibility') }}</b>
-                <span  class="pull-right">
-                    {{ trans('campaigns.visibilities.' . $campaign->visibility) }}
-                </span>
-                <br class="clear" />
-            </li>
-            @if ($campaign->isPublic())
-                <li class="list-group-item">
-                    <b>{{ trans('campaigns.fields.followers') }}</b>
-                    <span  class="pull-right">
-                    {{ \App\Facades\CampaignCache::followerCount() }}
-                </span>
-                    <br class="clear" />
-                </li>
-            @endif
-            @if ($campaign->locale)
-            <li class="list-group-item">
-                <b>{{ trans('campaigns.fields.locale') }}</b>
-                <span  class="pull-right">
-                    {{ trans('languages.codes.' . $campaign->locale) }}
-                </span>
-                <br class="clear" />
-            </li>
-            @endif
-            <li class="list-group-item">
-                <b>{{ trans('campaigns.fields.entity_count') }}</b>
-                <span  class="pull-right">
-                    {{ number_format(\App\Facades\CampaignCache::entityCount()) }}
-                </span>
-                <br class="clear" />
-            </li>
-            @if (!empty($campaign->system))
-            <li class="list-group-item">
-                <b>{{ trans('campaigns.fields.system') }}</b>
-                <span  class="pull-right">
-                    {{ $campaign->system }}
-                </span>
-                <br class="clear" />
-            </li>
-            @endif
-            @if ($campaign->boosted() && $campaign->boosts->count() > 0)
-                <li class="list-group-item text-maroon">
-                    <b><i class="fa fa-rocket"></i> {{ __('campaigns.fields.boosted') }}</b>
-                    <span class="pull-right">
-                        {{ $campaign->boosts->first()->user->name }}
-                    </span>
-                </li>
-            @endif
-        </ul>
-
         @if (!$campaign->boosted())
             <a href="{{ route('settings.boost', ['campaign' => $campaign->id]) }}" class="btn btn-block bg-maroon btn-boost">
                 <i class="fa fa-rocket"></i> {{ __('campaigns.show.actions.boost') }}
@@ -97,93 +37,101 @@
 </div>
 
 @if (!auth()->guest() and $campaign->userIsMember())
-<div class="box box-solid">
-    <div class="box-header with-border">
-        <h3 class="box-title">
-            {{ __('campaigns.show.tabs.menu') }}
-        </h3>
-    </div>
-    <div class="box-body no-padding">
-        <ul class="nav nav-pills nav-stacked">
-            <li class="@if(empty($active))active @endif">
-                <a href="{{ route('campaign') }}">
-                    {{ __('crud.panels.entry') }}
-                </a>
-            </li>
-            @can('members', $campaign)
-            <li class="@if(!empty($active) && $active == 'users')active @endif">
-                <a href="{{ route('campaign_users.index') }}">
-                    {{ __('campaigns.show.tabs.members') }}
-                    <span class="label label-default pull-right">
-                        {{ \App\Facades\CampaignCache::members()->count() }}
-                    </span>
-                </a>
-            </li>
-            @endcan
-            @can('roles', $campaign)
-            <li class="@if(!empty($active) && $active == 'roles')active @endif">
-                <a href="{{ route('campaign_roles.index') }}">
-                    {{ __('campaigns.show.tabs.roles') }}
-                    <span class="label label-default pull-right">
-                        {{ \App\Facades\CampaignCache::roles()->count() }}
-                    </span>
-                </a>
-            </li>
-            @endcan
-            @can('update', $campaign)
-            <li class="@if(!empty($active) && $active == 'settings')active @endif">
-                <a href="{{ route('campaign_settings') }}">
-                    {{ __('campaigns.show.tabs.settings') }}
-                    <span class="label label-default pull-right">
-                        {{ $campaign->setting->countEnabledModules() }}
-                    </span>
-                </a>
-            </li>
-            @if(config('marketplace.enabled'))
-                <li class="@if (!empty($active) && $active == 'plugins')active @endif">
-                    <a href="{{ route('campaign_plugins.index') }}">
-                        {{ __('campaigns.show.tabs.plugins') }}
-                        <span class="label label-default pull-right">
-                            {{ $campaign->plugins()->count() }}
-                        </span>
+    <div class="box box-solid entity-submenu">
+        <div class="box-header with-border">
+            <h4 class="box-title">
+                <span class="hidden-xs">{{ __('campaigns.show.menus.overview') }}</span>
+                <span class="visible-xs">{{ __('crud.tabs.menu') }}</span>
+            </h4>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse" ><i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body no-padding">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="@if(empty($active))active @endif">
+                    <a href="{{ route('campaign') }}">
+                        {{ __('campaigns.show.tabs.campaign') }}
                     </a>
                 </li>
-
-            @endif
-            <li class="@if(!empty($active) && $active == 'export')active @endif">
-                <a href="{{ route('campaign_export') }}">
-                    {{ __('campaigns.show.tabs.export') }}
-                </a>
-            </li>
-            @if ($campaign->boosted())
-                <li class="@if(!empty($active) && $active == 'default-images')active @endif">
-                    <a href="{{ route('campaign.default-images') }}">
-                        {{ __('campaigns.show.tabs.default-images') }}
-                        @if($campaign->default_images)
-                        <span class="label label-default pull-right">
-                            {{ count($campaign->default_images)}}
-                        </span>
-                        @endif
-                    </a>
-                </li>
+                @can('update', $campaign)
                 <li class="@if(!empty($active) && $active == 'recovery')active @endif">
                     <a href="{{ route('recovery') }}">
                         {{ __('campaigns.show.tabs.recovery') }}
                     </a>
                 </li>
-            @endif
-            @endcan
+                @endcan
+                @can('roles', $campaign)
+                    <li class="@if(!empty($active) && $active == 'export')active @endif">
+                        <a href="{{ route('campaign_export') }}">
+                            {{ __('campaigns.show.tabs.export') }}
+                        </a>
+                    </li>
+                @endif
+                @can('stats', $campaign)
+                    @if($campaign->boosted(true))
+                        <li class="@if(!empty($active) && $active == 'stats')active @endif">
+                            <a href="{{ route('stats') }}">
+                                {{ __('campaigns.show.tabs.achievements') }}
+                            </a>
+                        </li>
+                    @endif
+                @endcan
 
-            @can('stats', $campaign)
-            @if($campaign->boosted(true))
-                <li class="@if(!empty($active) && $active == 'stats')active @endif">
-                    <a href="{{ route('stats') }}">
-                        {{ __('campaigns.show.tabs.achievements') }}
+                <li class="nav-section">
+                    {{ __('campaigns.show.menus.user_management') }}
+                </li>
+
+                @can('members', $campaign)
+                <li class="@if(!empty($active) && $active == 'users')active @endif">
+                    <a href="{{ route('campaign_users.index') }}">
+                        {{ __('campaigns.show.tabs.members') }}
                     </a>
                 </li>
-            @endif
-            @endcan
-        </ul>
+                @endcan
+                @can('submissions', $campaign)
+                <li class="@if(!empty($active) && $active == 'submissions')active @endif">
+                    <a href="{{ route('campaign_submissions.index') }}">
+                        {{ __('campaigns.show.tabs.applications') }}
+                        @if ($campaign->submissions()->count() > 0) <span class="label label-default pull-right">
+                            {{ $campaign->submissions()->count() }}
+                        </span>@endif
+                    </a>
+                </li>
+                @endcan
+                @can('roles', $campaign)
+                <li class="@if(!empty($active) && $active == 'roles')active @endif">
+                    <a href="{{ route('campaign_roles.index') }}">
+                        {{ __('campaigns.show.tabs.roles') }}
+                    </a>
+                </li>
+                @endcan
+
+
+                @can('update', $campaign)
+                <li class="nav-section">
+                    {{ __('campaigns.show.menus.configuration') }}
+                </li>
+                <li class="@if(!empty($active) && $active == 'settings')active @endif">
+                    <a href="{{ route('campaign_settings') }}">
+                        {{ __('campaigns.show.tabs.settings') }}
+                    </a>
+                </li>
+                @if(config('marketplace.enabled'))
+                    <li class="@if (!empty($active) && $active == 'plugins')active @endif">
+                        <a href="{{ route('campaign_plugins.index') }}">
+                            {{ __('campaigns.show.tabs.plugins') }}
+                        </a>
+                    </li>
+                @endif
+                <li class="@if(!empty($active) && $active == 'default-images')active @endif">
+                    <a href="{{ route('campaign.default-images') }}">
+                        {{ __('campaigns.show.tabs.default-images') }}
+                    </a>
+                </li>
+                @endcan
+            </ul>
+        </div>
     </div>
-</div>
 @endif

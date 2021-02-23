@@ -1,6 +1,6 @@
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => trans('organisations.members.create.title', ['name' => $model->name]),
-    'description' => trans('organisations.members.create.description'),
+    'description' => '',
     'breadcrumbs' => [
         ['url' => Breadcrumb::index('organisations'), 'label' => trans('organisations.index.title')],
         ['url' => route('organisations.show', $model->id), 'label' => $model->name]

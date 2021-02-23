@@ -1,21 +1,21 @@
 @extends('layouts.app', [
-    'title' => trans('dashboard.setup.title'),
+    'title' => __('dashboard.setup.title'),
     'description' => '',
     'breadcrumbs' => [
-        trans('dashboard.setup.title')
+        __('dashboard.setup.title')
     ],
 
 ])
 
-@section('header-extra')
-    <a href="{{ route('home') }}" class="pull-right text-sm" title="{{ __('dashboard.setup.actions.back_to_dashboard') }}"><i class="fa fa-arrow-left"></i> {{ __('dashboard.setup.actions.back_to_dashboard') }}</a>
-@endsection
 
 @section('content')
 
     <div class="box box-solid">
         <div class="box-header with-border">
             <h4 class="box-title">@if ($dashboard) {!! $dashboard->name !!} @else {{ __('dashboard.dashboards.default.title') }} @endif</h4>
+            <div class="box-tools" style="margin-top: 1px;">
+                <a href="{{ route('dashboard', isset($dashboard) ? ['dashboard' => $dashboard->id] : null) }}" class="btn btn-box-tool" title="{{ __('dashboard.setup.actions.back_to_dashboard') }}"><i class="fa fa-arrow-left"></i> {{ __('dashboard.setup.actions.back_to_dashboard') }}</a>
+            </div>
         </div>
         <div class="box-body">
             @if ($dashboard)

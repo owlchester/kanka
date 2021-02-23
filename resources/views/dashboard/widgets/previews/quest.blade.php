@@ -16,7 +16,12 @@ $model = $entity->child;
                 @if ($model->is_completed)
                     <i class="fa fa-check-circle pull-right margin-r-5" title="{{ trans('quests.fields.is_completed') }}"></i>
                 @endif
-                {{ $entity->name }}
+
+                @if (!empty($widget->conf('text')))
+                    {{ $widget->conf('text') }}
+                @else
+                    {{ $entity->name }}
+                @endif
             </a>
 
         </h3>

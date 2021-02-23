@@ -149,6 +149,8 @@ return [
     'edit'                      => 'Edit',
     'errors'                    => [
         'boosted'                       => 'This feature is only available to boosted campaigns.',
+        'boosted_campaigns'             => 'This feature is only available for :boosted.',
+        'unavailable_feature'           => 'Unavailable feature',
         'node_must_not_be_a_descendant' => 'Invalid node (tag, parent location): it would be a descendant of itself.',
     ],
     'events'                    => [
@@ -183,6 +185,7 @@ return [
         'header_image'          => 'Header Image',
         'image'                 => 'Image',
         'is_private'            => 'Private',
+        'is_private_v2'         => 'Only show this to members of the campaign\'s :admin-role.',
         'is_star'               => 'Pinned',
         'item'                  => 'Item',
         'location'              => 'Location',
@@ -190,6 +193,7 @@ return [
         'name'                  => 'Name',
         'organisation'          => 'Organisation',
         'position'              => 'Position',
+        'privacy'               => 'Privacy',
         'race'                  => 'Race',
         'tag'                   => 'Tag',
         'tags'                  => 'Tags',
@@ -270,6 +274,7 @@ return [
     ],
     'is_not_private'            => 'This entity isn\'t currently set to private.',
     'is_private'                => 'This entity is private and only visible to members of the Admin role.',
+    'legacy'                    => 'Legacy',
     'linking_help'              => 'How can I link to other entries?',
     'manage'                    => 'Manage',
     'move'                      => [
@@ -361,6 +366,7 @@ return [
         'journal'       => 'Choose a journal',
         'location'      => 'Choose a location',
         'map'           => 'Choose a map',
+        'note'          => 'Choose a note',
         'organisation'  => 'Choose an organisation',
         'race'          => 'Choose a race',
         'tag'           => 'Choose a tag',

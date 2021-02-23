@@ -151,14 +151,18 @@ if (request()->route()->getName() == 'characters.random') {
                 </div>
             </div>
 
-            <hr>
-            <div class="form-group">
-                {!! Form::hidden('is_personality_visible', 0) !!}
-                <label>{!! Form::checkbox('is_personality_visible', 1, (!empty($model) ? $model->is_personality_visible : (!empty($source) ? FormCopy::field('is_personality_visible')->boolean() : !CampaignLocalization::getCampaign()->entity_personality_visibility))) !!}
-                    {{ trans('characters.fields.is_personality_visible') }}
-                </label>
-                <p class="help-block">{{ trans('characters.hints.is_personality_visible') }}</p>
-            </div>
+        @if (auth()->user()->isAdmin())
+                <hr>
+                <div class="form-group">
+                    {!! Form::hidden('is_personality_visible', 0) !!}
+                    <label>{!! Form::checkbox('is_personality_visible', 1, (!empty($model) ? $model->is_personality_visible : (!empty($source) ? FormCopy::field('is_personality_visible')->boolean() : !CampaignLocalization::getCampaign()->entity_personality_visibility))) !!}
+                        {{ trans('characters.fields.is_personality_visible') }}
+                    </label>
+                    <p class="help-block">{{ trans('characters.hints.is_personality_visible') }}</p>
+                </div>
+            @else
+                {!! Form::hidden('is_personality_visible', 1) !!}
+            @endif
         @else
             <p class="alert alert-warning">{{ __('characters.warnings.personality_hidden') }}</p>
         @endif

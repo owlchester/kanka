@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Exceptions\Campaign\AlreadyBoostedException;
 use App\Exceptions\Campaign\ExhaustedBoostsException;
 use App\Exceptions\Campaign\ExhaustedSuperboostsException;
+use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignBoost;
 use App\User;
