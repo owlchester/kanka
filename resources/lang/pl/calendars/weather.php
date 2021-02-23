@@ -9,8 +9,8 @@ return [
         'success'   => 'Usunięto pogodę.',
     ],
     'edit'          => [
-        'success'   => 'Zaktualizowano pogodę.',
-        'title'     => 'Aktualizuj pogodę',
+        'success'   => 'Zmieniono pogodę.',
+        'title'     => 'Zmiana pogody',
     ],
     'fields'        => [
         'effect'        => 'Efekt',

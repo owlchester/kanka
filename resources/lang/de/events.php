@@ -13,15 +13,21 @@ return [
         'success'   => 'Ereignis \':name\' aktualisiert.',
         'title'     => 'Bearbeite Ereignis :name',
     ],
+    'events'        => [
+        'title' => 'Ereignis :name Ereignisse',
+    ],
     'fields'        => [
         'date'      => 'Datum',
+        'event'     => 'übergeordnetes Ereignis',
+        'events'    => 'Ereignisse',
         'image'     => 'Bild',
         'location'  => 'Ort',
         'name'      => 'Name',
         'type'      => 'Typ',
     ],
     'helpers'       => [
-        'date'  => 'Dieses Feld kann alles enthalten und ist nicht mit den Kalendern der Kampagne verknüpft. Um dieses Ereignis mit einem Kalender zu verknüpfen, fügen Sie es im Kalender oder auf der Registerkarte Erinnerungen dieses Ereignisses hinzu.',
+        'date'      => 'Dieses Feld kann alles enthalten und ist nicht mit den Kalendern der Kampagne verknüpft. Um dieses Ereignis mit einem Kalender zu verknüpfen, fügen Sie es im Kalender oder auf der Registerkarte Erinnerungen dieses Ereignisses hinzu.',
+        'nested'    => 'Standardmäßig werden Ereignisse ohne übergeordnetes Ereignis angezeigt. Klicken Sie auf die Zeile eines Ereignisses, um dessen untergeordnete Ereignisse anzuzeigen.',
     ],
     'index'         => [
         'add'           => 'Neues Ereignis',

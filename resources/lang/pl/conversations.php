@@ -11,7 +11,7 @@ return [
     ],
     'edit'          => [
         'description'   => 'Aktualizuj konwersację',
-        'success'       => 'Zaktualizowano konwersację \':name\'.',
+        'success'       => 'Zmieniono konwersację \':name\'.',
         'title'         => 'Konwersacja :name',
     ],
     'fields'        => [
@@ -64,7 +64,7 @@ return [
         'participants'  => 'Uczestnicy',
     ],
     'targets'       => [
-        'characters'    => 'Postacie',
+        'characters'    => 'Postaci',
         'members'       => 'Gracze',
     ],
 ];

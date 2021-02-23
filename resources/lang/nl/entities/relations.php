@@ -9,11 +9,12 @@ return [
         'success'   => 'Relatie :target verwijderd voor :entity',
     ],
     'fields'        => [
-        'attitude'  => 'Attitude',
-        'is_star'   => 'Vastgemaakt',
-        'relation'  => 'Relatie',
-        'target'    => 'Doel',
-        'two_way'   => 'Maak spiegelrelatie',
+        'attitude'          => 'Attitude',
+        'is_star'           => 'Vastgemaakt',
+        'relation'          => 'Relatie',
+        'target'            => 'Doel',
+        'target_relation'   => 'Doel Relatie',
+        'two_way'           => 'Maak spiegelrelatie',
     ],
     'helper'        => 'Zet relaties op tussen entiteiten met attitudes en zichtbaarheid. Relaties kunnen ook worden vastgemaakt aan het menu van de entiteit.',
     'hints'         => [

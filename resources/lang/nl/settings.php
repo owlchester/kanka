@@ -20,7 +20,9 @@ return [
         'title'             => 'Account',
     ],
     'api'           => [
-        'title' => 'API',
+        'helper'    => 'Welkom bij de Kanka API\'s. Genereer een Persoonlijke Toegangstoken om in je API verzoek te gebruiken om informatie te verzamelen over de campaigns waarvan jij deel uitmaakt.',
+        'link'      => 'Lees de API documentatie',
+        'title'     => 'API',
     ],
     'apps'          => [
         'actions'   => [
@@ -45,9 +47,11 @@ return [
             'campaign_gallery'  => 'Een campaign galerij om afbeeldingen te uploaden die je via de campaign kunt hergebruiken.',
             'entity_files'      => 'Upload tot wel 10 bestanden per entiteit.',
             'entity_logs'       => 'Volledige entiteit logboeken van wat er bij elke update op een entiteit is gewijzigd.',
+            'first'             => 'Om voortdurende vooruitgang op Kanka te garanderen, worden sommige campaignfuncties ontgrendeld door een campaign te boosten. Boosts worden ontgrendeld via abonnementen. Iedereen die een campaign kan bekijken, kan deze een boost geven, zodat de DM niet altijd de rekening hoeft te betalen. Een campaign blijft een boost krijgen zolang een gebruiker de campaign een boost geeft en ze Kanka blijven steunen. Als een campaign niet langer een boost krijgt, gaan er geen gegevens verloren, deze worden alleen verborgen totdat de campaign weer een boost krijgt.',
             'header'            => 'Entiteit header afbeeldingen.',
             'images'            => 'Aangepaste standaard entiteit afbeeldingen.',
             'more'              => 'Lees meer over alle functies.',
+            'second'            => 'Het boosten van een campaign levert de volgende voordelen op:',
         ],
         'buttons'   => [
             'boost'         => 'Boost',

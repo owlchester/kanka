@@ -9,20 +9,22 @@ return [
         'success'   => 'Usunięto relację :target elementu :entity.',
     ],
     'fields'        => [
-        'attitude'  => 'Nastawienie',
-        'is_star'   => 'Przypięta',
-        'relation'  => 'Relacja',
-        'target'    => 'Obiekt',
-        'two_way'   => 'Stwórz relację obustronną',
+        'attitude'          => 'Nastawienie',
+        'is_star'           => 'Przypięta',
+        'relation'          => 'Relacja',
+        'target'            => 'Obiekt',
+        'target_relation'   => 'Relacje obiektu',
+        'two_way'           => 'Stwórz relację obustronną',
     ],
     'helper'        => 'Ustalaj relacje między elementami, określając ich rodzaj i widoczność. Relacje można przypinać do opisu elementów.',
     'hints'         => [
-        'attitude'  => 'Pole opcjonalne, pozwalająca określić kolejność wyświetlania relacji, w porządku malejącym.',
-        'mirrored'  => [
+        'attitude'          => 'Pole opcjonalne, pozwalająca określić kolejność wyświetlania relacji, w porządku malejącym.',
+        'mirrored'          => [
             'text'  => 'To obustronna relacja z :link.',
             'title' => 'Obustronna',
         ],
-        'two_way'   => 'Jeżeli wybierzesz relację obustronną, taka sama relacja zostanie stworzona dla obiektu. Jeżeli potem zmodyfikujesz relację dla jednej strony, druga nie zostanie zaktualizowana.',
+        'target_relation'   => 'Opis relacji dla jej obiektu. Jeżeli ma być taki sam, zostaw to pole puste.',
+        'two_way'           => 'Jeżeli wybierzesz relację obustronną, taka sama relacja zostanie stworzona dla obiektu. Jeżeli potem zmodyfikujesz relację dla jednej strony, druga nie zostanie zaktualizowana.',
     ],
     'placeholders'  => [
         'attitude'  => '-100 do 100, gdzie 100 to bardzo pozytywny stosunek',

@@ -5,6 +5,7 @@ return [
         'actions'           => 'Acties',
         'apply'             => 'Toepassen',
         'back'              => 'Terug',
+        'bulk_templates'    => 'Pas Attribuutsjabloon toe',
         'copy'              => 'Kopieer',
         'copy_mention'      => 'Kopieer [ ] opmerking',
         'copy_to_campaign'  => 'Kopieer naar Campaign',
@@ -114,7 +115,11 @@ return [
             'permissions'       => '{1} Permissies gewijzigd voor :count entiteit.|[2,*] Permissies gewijzigd voor :count entiteiten.',
             'private'           => '{1} :count entiteit is nu privé|[2,*] :count entiteiten zijn nu privé.',
             'public'            => '{1} :count entiteit is nu zichtbaar|[2, *] :count entiteiten zijn nu zichtbaar.',
+            'templates'         => '{1} :count entiteit heeft een sjabloon toegepast.|[2,*] :count entiteiten hebben een sjabloon toegepast.',
         ],
+    ],
+    'bulk_templates'            => [
+        'bulk_title'    => 'Pas een sjabloon toe op meerdere entiteiten',
     ],
     'cancel'                    => 'Annuleer',
     'click_modal'               => [
@@ -242,6 +247,7 @@ return [
     'hints'                     => [
         'attribute_template'    => 'Pas een attribuutsjabloon rechtstreeks toe wanneer je deze entiteit maakt of bewerkt.',
         'calendar_date'         => 'Een kalender datum maakt eenvoudig filteren in lijsten mogelijk en houdt ook een kalender gebeurtenis bij in de geselecteerde kalender.',
+        'gallery_image'         => 'Als de entiteit geen afbeelding heeft, geef je in plaats daarvan een afbeelding uit de campaign galerij weer.',
         'header_image'          => 'Deze afbeelding wordt boven de entiteit geplaatst. Gebruik een brede afbeelding voor de beste resultaten.',
         'image_limitations'     => 'Ondersteunde formaten: jpg, png en gif. Max Bestandsgrootte: :size.',
         'image_patreon'         => 'Limiet voor bestandsgrootte verhogen?',
@@ -358,6 +364,7 @@ return [
         'organisation'  => 'Kies een organisatie',
         'race'          => 'Kies een ras',
         'tag'           => 'Kies een tag',
+        'timeline'      => 'Kies een tijdlijn',
     ],
     'relations'                 => [
         'actions'   => [

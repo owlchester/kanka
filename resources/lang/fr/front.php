@@ -91,11 +91,11 @@ return [
             'title'         => 'Calendriers',
         ],
         'collaborative'     => [
-            'description'   => 'Vous êtes une équipe? Pas de problème! Vous pouvez inviter vos amis ou co-contributeurs pour vous aidez dans vos campagnes.',
+            'description'   => 'Tu préfères le travel en équipe? Pas de problème! Tu peux inviter tes amis ou co-contributeurs pour t\'aidez dans tes campagnes.',
             'title'         => 'Collaboratif',
         ],
-        'description'       => 'Voici quelques éléments de notre application que vous allez adorer!',
-        'description_full'  => 'Un aperçu de certaines de nos fonctionnalités les plus aimées.',
+        'description'       => 'Avec nos @mentions, nos étiquettes et notre système de permissions, Kanka facilite le suivi de ton monde ou de ta campagne. Cela inclut les personnages et leurs relations, les lieux et leur histoire, les quêtes et leurs objectifs, les chronologies et leurs époques, et les calendriers. Mieux encore, les utilisateurs de Kanka ont leur mot à dire sur le développement de nouvelles fonctionnalités grâce à nos votes réguliers.',
+        'description_full'  => 'Kanka est constamment mis à jour avec de nouvelles fonctionnalités, mais voici quelques-unes des plus importantes qu\'on pense que tu vas aimer!',
         'flora'             => [
             'description'   => 'A l\'aide de notre module Races, tu peux organiser les créatures de ton monde. Tu peux aussi utiliser des Notes pour enrichir un écosystème.',
             'title'         => 'Faune & Flore',
@@ -185,7 +185,7 @@ return [
     ],
     'first_block'   => [
         'description'   => 'Notre application est disponible depuis n\'importe quel appareil mobile et navigateur, tu n’as rien besoin d’installer. Et en plus, c\'est complètement gratuit!',
-        'title'         => 'Une nouvelle manière d\'organiser vos campagnes.',
+        'title'         => 'Une nouvelle manière d\'organiser tes campagnes de JDR.',
     ],
     'footer'        => [
         'app'       => 'App',
@@ -215,7 +215,7 @@ return [
     ],
     'master'        => [
         'call_to_action'    => 'Créer un compte',
-        'description'       => 'Kanka est un outil flexible, facile d\'utilisation et gratuit pour créer et gérer vos campagnes de jeu de rôle. Crée et organise des personnages, localités, organisations, événements et bien plus.',
+        'description'       => 'Kanka est un outil de création et de gestion pour des campagnes de jeux de rôle. Centré sur sa communauté et parfait pour ceux qui veulent créer des mondes élaborés. On t\'aide à créer et à organiser tes campagnes et mondes avec notre système de @mentions ainsi que toute une gamme de fonctionnalités telles que des calendriers, des cartes interactives, des chronologies, des organisations, des familles et autant de personnages que tu peux inventer!',
         'heading'           => 'Gestionnaire de jeux de rôle et création de monde rendu facile',
         'title'             => 'Kanka',
     ],
@@ -275,7 +275,7 @@ return [
             'unlimited'         => 'Nombre de campagne et upload illimité',
             'updates'           => 'Mises à jour et améliorations fréquentes',
         ],
-        'description'   => 'Toutes les fonctionnalités essentielles sont gratuites, mais nous soutenir nous permet de travailler et d’améliorer le produit de façon continue.',
+        'description'   => 'Toutes les fonctionnalités essentielles sont gratuites, mais ton soutien nous permet de travailler et d’améliorer Kanka de façon continue.',
         'tier'          => [
             'free'  => 'Gratuit',
             'month' => 'Mois',

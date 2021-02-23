@@ -3,7 +3,7 @@
 return [
     'actions'       => [
         'close' => 'Zamknij',
-        'full'  => 'Link do obrazu',
+        'full'  => 'Odnośnik do obrazu',
         'save'  => 'Zapisz',
     ],
     'destroy'       => [
@@ -30,7 +30,7 @@ return [
     ],
     'uploader'      => [
         'add'           => 'Dodaj',
-        'new_folder'    => 'Nowy Katalog',
+        'new_folder'    => 'Nowy katalog',
         'or'            => 'lub',
         'select_file'   => 'Wybierz plik',
         'well'          => 'Przeciągnij, by dodać',

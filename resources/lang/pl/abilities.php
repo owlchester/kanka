@@ -6,13 +6,13 @@ return [
     ],
     'create'        => [
         'success'   => 'Stworzono zdolność \':name\'.',
-        'title'     => 'Nowa Zdolność',
+        'title'     => 'Nowa zdolność',
     ],
     'destroy'       => [
         'success'   => 'Usunięto zdolność \':name\'.',
     ],
     'edit'          => [
-        'success'   => 'Zaktualizowano zdolność \':name\'.',
+        'success'   => 'Zmieniono zdolność \':name\'.',
         'title'     => 'Edycja zdolności :name',
     ],
     'fields'        => [
@@ -24,17 +24,17 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Na liście znajdują się wszystkie zdolności pochodzące od tej zdolności, nie tylko bezpośrednio.',
-        'nested'        => 'W Widoku Zagnieżdżonym na poziomie podstawowym wyświetlane są zdolności, które nie mają źródła. Po kliknięciu na zdolność zobaczysz jej zdolności pochodne. Możesz klikać, póki nie skończą się poziomy zależności.',
+        'nested'        => 'W Widoku Hierarchii domyślnie wyświetlane są zdolności, które nie mają źródła. Po kliknięciu na zdolność zobaczysz jej pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
     ],
     'index'         => [
-        'add'           => 'Nowa Zdolność',
+        'add'           => 'Nowa zdolność',
         'description'   => 'Dodawaj moce, czary, atuty i inne zdolności specjalne różnych elementów kampanii.',
         'header'        => 'Zdolności elementu :nazwa',
         'title'         => 'Zdolności',
     ],
     'placeholders'  => [
         'charges'   => 'Liczba ładunków zdolności. Możesz wpisać wartość cechy jako {Level}*{CHA}',
-        'name'      => 'Kula ognia, Alarm, Podstępny atak',
+        'name'      => 'Kula ognia, alarm, podstępny atak',
         'type'      => 'Czar, umiejętność, technika bojowa',
     ],
     'show'          => [

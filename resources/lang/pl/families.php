@@ -4,13 +4,13 @@ return [
     'create'        => [
         'description'   => 'Stwórz nową rodzinę',
         'success'       => 'Stworzono rodzinę \':name\'.',
-        'title'         => 'Nowa Rodzina',
+        'title'         => 'Nowa rodzina',
     ],
     'destroy'       => [
         'success'   => 'Usunięto rodzinę \':name\'.',
     ],
     'edit'          => [
-        'success'   => 'Zaktualizowano rodzinę \':name\'.',
+        'success'   => 'Zmieniono rodzinę \':name\'.',
         'title'     => 'Edycja rodziny :name',
     ],
     'families'      => [
@@ -28,21 +28,21 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Na liście znajdują się wszystkie rodziny wywodzące się od tej rodziny, nie tylko bezpośrednio.',
-        'nested'        => 'W Widoku Zagnieżdżonym na poziomie podstawowym wyświetlane są rodziny, które nie mają źródła. Po kliknięciu na rodzinę zobaczysz jej rodziny pochodne. Możesz klikać, póki nie skończą się poziomy zależności.',
+        'nested'        => 'W Widoku Hierarchii domyślnie wyświetlane są rodziny, które nie mają źródła. Po kliknięciu na rodzinę zobaczysz jej pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
     ],
     'hints'         => [
         'members'   => 'Lista członków rodziny. Aby dodać postać do rodziny, wybierz ją z listy w pozycji "Rodzina" podczas edycji tej postaci.',
     ],
     'index'         => [
-        'add'           => 'Nowa Rodzina',
+        'add'           => 'Nowa rodzina',
         'description'   => 'Zarządzaj rodzinami elementu :name',
         'header'        => 'Rodziny elementu :name',
         'title'         => 'Rodziny',
     ],
     'members'       => [
         'helpers'   => [
-            'all_members'       => 'Na liście znajdują się postacie należące do tej rodziny i wszystkich jej rodzin pochodnych.',
-            'direct_members'    => 'Większość rodzin posiada członków, którymi słynie. Na poniższej liście znajdują się postacie należące do tej rodziny bezpośrednio.',
+            'all_members'       => 'Na liście znajdują się postaci należące do tej rodziny i wszystkich jej rodzin pochodnych.',
+            'direct_members'    => 'Większość rodzin posiada członków, którymi słynie. Na poniższej liście znajdują się postaci należące do tej rodziny bezpośrednio.',
         ],
         'title'     => 'Członkowie rodziny :name',
     ],

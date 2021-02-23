@@ -15,6 +15,7 @@ return [
         'title'         => 'Menü Link :name',
     ],
     'fields'        => [
+        'dashboard'     => 'Dashboard',
         'entity'        => 'Objekt',
         'filters'       => 'Filter',
         'menu'          => 'Menü',
@@ -26,6 +27,7 @@ return [
         'type'          => 'Objekttyp',
     ],
     'helpers'       => [
+        'dashboard' => 'Lassen Sie den Quick Link auf eines der benutzerdefinierten Dashboards der Kampagne abzielen. Diese Funktion ist nur verfügbar für :boosted.',
         'entity'    => 'Richten Sie diesen Menülink ein, um direkt zu einem Objekt zu gelangen. Das Feld :tab steuert, welche der Registerkarten fokussiert ist. Das :menu Feld steuert, welche Unterseite des Objekts geöffnet wird.',
         'position'  => 'Dieses Feld kann genutzt werden um die Linkreihenfolge im Menü festzulegen.',
         'random'    => 'Verwenden Sie dieses Feld, um einen Schnelllink zu einem zufälligen Objekt zu erhalten. Sie können den Link filtern, um nur zu einem bestimmten Objekttyp zu gelangen.',

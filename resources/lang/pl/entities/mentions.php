@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'entity_note'   => ':name (notka)',
+    'entity_note'   => ':name (uwaga)',
     'fields'        => [
         'entity'    => 'Element',
     ],

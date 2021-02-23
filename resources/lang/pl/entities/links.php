@@ -2,24 +2,24 @@
 
 return [
     'actions'       => [
-        'add'   => 'Dodaj link',
+        'add'   => 'Dodaj odnośnik',
     ],
     'create'        => [
-        'success'   => 'Dodano link :name do elementu :entity.',
-        'title'     => 'Dodaj link do :name',
+        'success'   => 'Dodano odnośnik :name do elementu :entity.',
+        'title'     => 'Dodaj odnośnik do :name',
     ],
     'destroy'       => [
-        'success'   => 'Usunięto link :name z elementu :entity.',
+        'success'   => 'Usunięto odnośnik :name z elementu :entity.',
     ],
     'fields'        => [
         'icon'      => 'Ikona',
         'name'      => 'Nazwa',
-        'position'  => 'Pozycja',
+        'position'  => 'Kolejność',
         'url'       => 'URL',
     ],
     'helpers'       => [
         'goto'      => 'Idź do :name',
-        'icon'      => 'Możesz dostosować ikonę wyświetlaną przy linku. Użyj dowolnej ikony z :fontawesome albo zostaw to pole puste, by wyświetlać ikonę domyślną.',
+        'icon'      => 'Możesz dostosować ikonę wyświetlaną przy odnośniku. Użyj dowolnej ikony z :fontawesome albo zostaw to pole puste, by wyświetlać ikonę domyślną.',
         'leaving'   => 'Zaraz opuścisz Kankę i przejdziesz do strony zewnętrznej. Strona ta została załączona przez użytkownika i nie jest przez nas kontrolowana.',
         'url'       => 'Adres do którego zamierzasz przejść to :url.',
     ],
@@ -29,11 +29,11 @@ return [
         'url'   => 'https://dndbeyond.com/character-url',
     ],
     'show'          => [
-        'helper'    => 'W doładowanych kampaniach można dodawać elementom linki prowadzące do stron zewnętrznych.',
-        'title'     => 'Linki dla :name',
+        'helper'    => 'W doładowanych kampaniach można dodawać elementom odnośniki do stron zewnętrznych.',
+        'title'     => 'Odnośniki elementu :name',
     ],
     'update'        => [
-        'success'   => 'Zaktualizowano link :name dla elementu :entity.',
-        'title'     => 'Aktualizacja linka :name',
+        'success'   => 'Zaktualizowano odnośnik :name dla elementu :entity.',
+        'title'     => 'Aktualizacja odnośnika elementu :name',
     ],
 ];

@@ -9,20 +9,22 @@ return [
         'success'   => 'Beziehung für :name entfernt',
     ],
     'fields'        => [
-        'attitude'  => 'Einstellung',
-        'is_star'   => 'Fixiert',
-        'relation'  => 'Beziehung',
-        'target'    => 'Ziel',
-        'two_way'   => 'Gespiegelte Beziehung erstellen',
+        'attitude'          => 'Einstellung',
+        'is_star'           => 'Fixiert',
+        'relation'          => 'Beziehung',
+        'target'            => 'Ziel',
+        'target_relation'   => 'Zielbeziehung',
+        'two_way'           => 'Gespiegelte Beziehung erstellen',
     ],
     'helper'        => 'Richten Sie Beziehungen zwischen Objekten mit Einstellungen und Sichtbarkeit ein. Beziehungen können auch an das Menü der Berechtigung angeheftet werden.',
     'hints'         => [
-        'attitude'  => 'In diesem optionalen Feld können Sie die Standardordnungsbeziehungen definieren, sie wird in absteigender Reihenfolge angezeigt.',
-        'mirrored'  => [
+        'attitude'          => 'In diesem optionalen Feld können Sie die Standardordnungsbeziehungen definieren, sie wird in absteigender Reihenfolge angezeigt.',
+        'mirrored'          => [
             'text'  => 'Diese Beziehung ist gespiegelt mit :link.',
             'title' => 'Gespiegelt',
         ],
-        'two_way'   => 'Wenn du eine gespiegelte Beziehung erstellst, wird die gleiche Beziehung auch auf dem Ziel erstellt. Wenn du diese später editierst, wird die gespiegelte Beziehung nicht aktualisiert.',
+        'target_relation'   => 'Die Beziehungsbeschreibung des Ziels. Lassen Sie das Feld leer, um den Text dieser Beziehung zu verwenden.',
+        'two_way'           => 'Wenn du eine gespiegelte Beziehung erstellst, wird die gleiche Beziehung auch auf dem Ziel erstellt. Wenn du diese später editierst, wird die gespiegelte Beziehung nicht aktualisiert.',
     ],
     'placeholders'  => [
         'attitude'  => '-100 bis 100, 100 ist maximal positiv.',

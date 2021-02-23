@@ -7,14 +7,14 @@ return [
     'create'                => [
         'description'   => 'Dodaj szablon cech',
         'success'       => 'Dodano szablon cech \':name\'.',
-        'title'         => 'Nowy Szablon Cech',
+        'title'         => 'Nowy szablon cech',
     ],
     'destroy'               => [
         'success'   => 'Usunięto szablon cech \':name\'.',
     ],
     'edit'                  => [
         'description'   => 'Edytuj szablon cech',
-        'success'       => 'Zaktualizowano szablon cech \':name\'.',
+        'success'       => 'Zmieniono szablon cech \':name\'.',
         'title'         => 'Edycja szablonu cech :name',
     ],
     'fields'                => [
@@ -28,10 +28,10 @@ return [
         'parent_attribute_template' => 'Ten szablon może pochodzić od innego szablonu cech. Kiedy przypisujesz szablon do jakieś elementu, wszystkie jego szablony źródłowe zostają również przypisane.',
     ],
     'index'                 => [
-        'add'           => 'Nowy Szablon Cech',
+        'add'           => 'Nowy szablon cech',
         'description'   => 'Zarządzaj szablonami cech elementu :name',
         'header'        => 'Szablony cech elementu :name',
-        'title'         => 'Szablony Cech',
+        'title'         => 'Szablony cech',
     ],
     'placeholders'          => [
         'attribute_template'    => 'Wybierz szablon cech',
@@ -40,7 +40,7 @@ return [
     'show'                  => [
         'description'   => 'Widok szczegółowy szablonu cech',
         'tabs'          => [
-            'attribute_templates'   => 'Szablony Cech',
+            'attribute_templates'   => 'Szablony cech',
             'attributes'            => 'Cechy',
         ],
         'title'         => 'Szablon cech :name',

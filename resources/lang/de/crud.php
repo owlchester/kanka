@@ -5,6 +5,7 @@ return [
         'actions'           => 'Aktionen',
         'apply'             => 'Übernehmen',
         'back'              => 'Zurück',
+        'bulk_templates'    => 'Attributvorlage anwenden',
         'copy'              => 'Kopieren',
         'copy_mention'      => 'Kopie [] erwähnen',
         'copy_to_campaign'  => 'Kopiere zu Kampagne',
@@ -131,10 +132,14 @@ return [
         'success'       => [
             'copy_to_campaign'  => '{1} :count der in :campaign kopierten Objekte. | [2, *] :count  der in :campaign kopierten Objekte.',
             'editing'           => '{1} :count objekt wurde aktualisiert. | [2, *] :count objekte wurden aktualisiert.',
-            'permissions'       => 'Berechtigungen für :count Objekt geändert.|Berechtigungen für :count Objekte geändert.',
-            'private'           => ':count Objekt ist jetzt privat.|:count Objekte sind jetzt privat.',
-            'public'            => ':count Objekt ist jetzt sichtbar.|:count Objekte sind jetzt sichtbar.',
+            'permissions'       => '{1} Berechtigungen für :count Objekt geändert.|Berechtigungen für :count Objekte geändert.',
+            'private'           => '{1} :count Objekt ist jetzt privat.|:count Objekte sind jetzt privat.',
+            'public'            => '{1} :count Objekt ist jetzt sichtbar.|:count Objekte sind jetzt sichtbar.',
+            'templates'         => '{1} Auf :count Objekt wurde eine Vorlage angewendet. | [2, *] auf :count Objekt wurde eine Vorlage angewendet.',
         ],
+    ],
+    'bulk_templates'            => [
+        'bulk_title'    => 'Wenden Sie eine Vorlage auf mehrere Objekte an',
     ],
     'cancel'                    => 'Abbrechen',
     'click_modal'               => [
@@ -262,6 +267,7 @@ return [
     'hints'                     => [
         'attribute_template'    => 'Wende eine Attributsvorlage direkt beim erstellen des Objektes an.',
         'calendar_date'         => 'Ein Datum erlaubt es, Listen einfach zu filtern und pflegt ein Ereignis im ausgewählten Kalender.',
+        'gallery_image'         => 'Wenn das Objekt kein Bild hat, wird  ein Bild aus der Kampagnengalerie angezeigt.',
         'header_image'          => 'Dieses Bild wird über dem Objekt platziert. Verwenden Sie ein breites Bild, um optimale Ergebnisse zu erzielen.',
         'image_limitations'     => 'Unterstützte Formate: jpg, png und gif. Maximale Dateigröße: :size.',
         'image_patreon'         => 'Erhöhe das Limit indem du uns bei Patreon unterstützt.',
@@ -380,6 +386,7 @@ return [
         'organisation'  => 'Wähle eine Organisation',
         'race'          => 'Wähle eine Rasse',
         'tag'           => 'Wähle ein Tag',
+        'timeline'      => 'Wähle einen Zeitstrahl',
     ],
     'relations'                 => [
         'actions'   => [

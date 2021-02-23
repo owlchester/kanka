@@ -13,7 +13,7 @@ return [
     'create'        => [
         'description'   => 'Dodaj nową postać',
         'success'       => 'Stworzono postać \':name\'.',
-        'title'         => 'Nowa Postać',
+        'title'         => 'Nowa postać',
     ],
     'destroy'       => [
         'success'   => 'Usunięto postać \':name\'.',
@@ -25,7 +25,7 @@ return [
     ],
     'edit'          => [
         'description'   => 'Edytuj postać',
-        'success'       => 'Zaktualizowano postać \':name\'.',
+        'success'       => 'Zmieniono postać \':name\'.',
         'title'         => 'Edycja postaci :name',
     ],
     'fields'        => [
@@ -50,18 +50,18 @@ return [
     ],
     'hints'         => [
         'is_dead'                   => 'Ta postać jest martwa',
-        'is_personality_visible'    => 'Odznacz by ukryć cały opis osobowości przed użytkownikami niebędących Adminami.',
-        'personality_not_visible'   => 'Opis osobowości widoczny wyłącznie dla Adminów.',
+        'is_personality_visible'    => 'Odznacz by ukryć cały opis osobowości przed użytkownikami niebędących administratorami.',
+        'personality_not_visible'   => 'Opis osobowości widoczny wyłącznie dla administratorów.',
         'personality_visible'       => 'Opis osobowości widoczny dla wszystkich.',
     ],
     'index'         => [
         'actions'       => [
-            'random'    => 'Nowa Losowa Postać',
+            'random'    => 'Nowa losowa postać',
         ],
-        'add'           => 'Nowa Postać',
+        'add'           => 'Nowa postać',
         'description'   => 'Zarządzaj postaciami :name',
         'header'        => 'Postaci w :name',
-        'title'         => 'Postacie',
+        'title'         => 'Postaci',
     ],
     'items'         => [
         'description'   => 'Przedmioty w posiadaniu postaci.',

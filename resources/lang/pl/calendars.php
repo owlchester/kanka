@@ -19,16 +19,16 @@ return [
     'create'        => [
         'description'   => 'Stwórz nowy kalendarz',
         'success'       => 'Stworzono kalendarz :name.',
-        'title'         => 'Nowy Kalendarz',
+        'title'         => 'Nowy kalendarz',
     ],
     'destroy'       => [
         'success'   => 'Usunięto kalendarz :name',
     ],
     'edit'          => [
         'description'   => 'Aktualizuj kalendarz',
-        'success'       => 'Zaktualizowano kalendarz \':nazwa\'',
+        'success'       => 'Zmieniono kalendarz \':nazwa\'',
         'title'         => 'Edycja kalendarza :nazwa',
-        'today'         => 'Zaktualizowano datę kalendarza.',
+        'today'         => 'Zmieniono datę kalendarza.',
     ],
     'event'         => [
         'actions'   => [
@@ -44,7 +44,7 @@ return [
         'destroy'   => 'Wydarzenie usunięto z kalendarza \':name\'.',
         'edit'      => [
             'description'   => 'Aktualizuj wydarzenie',
-            'success'       => 'Zaktualizowano wydarzenie w kalendarzu.',
+            'success'       => 'Zmieniono wydarzenie w kalendarzu.',
             'title'         => 'Aktualizuj wydarzenie dla :name',
         ],
         'helpers'   => [
@@ -96,7 +96,7 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Miesiące dodatkowe nie mają dni tygodnia, ale ich dni wpływają na pory roku czy fazy księżyca.',
-        'nested'        => 'Wyświetla najpierw kalendarze, które nie pochodzą od innych. Kliknij na kalendarz by zobaczyć jego kalendarze pochodne.',
+        'nested'        => 'W Widoku Hierarchii domyślnie wyświetlane są kalendarze, które nie mają źródła. Po kliknięciu na kalendarz zobaczysz jego pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
         'start_offset'  => 'Domyślnie kalendarz zaczyna się pierwszego dnia roku 0. Liczba w tym polu zmienia położenie pierwszego dnia kalendarza.',
     ],
     'hints'         => [
@@ -113,9 +113,9 @@ return [
         'years'             => 'Niektóre lata są tak ważne, że posiadają własne nazwy.',
     ],
     'index'         => [
-        'add'           => 'Nowy Kalendarz',
-        'description'   => 'Zarządzaj kalendarzami :name',
-        'header'        => 'Kalendarze :name',
+        'add'           => 'Nowy kalendarz',
+        'description'   => 'Zarządzaj kalendarzami elementu :name',
+        'header'        => 'Kalendarze elementu :name',
         'title'         => 'Kalendarze',
     ],
     'layouts'       => [

@@ -1,17 +1,18 @@
 <?php
 
 return [
-    'actions'   => [
+    'actions'       => [
         'create'    => 'Stworzono',
         'delete'    => 'Usunięto',
         'restore'   => 'Przywrócono',
         'update'    => 'Zmieniono',
     ],
-    'fields'    => [
+    'fields'        => [
         'action'    => 'Działanie',
         'date'      => 'Data',
     ],
-    'show'      => [
+    'impersonated'  => 'Na konto zalogowano :name',
+    'show'          => [
         'title' => 'Rejestr Elementu :name',
     ],
 ];

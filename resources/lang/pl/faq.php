@@ -45,7 +45,7 @@ TEXT
         'question'  => 'Czym jest Wczesny Dostęp?',
     ],
     'entity-notes'          => [
-        'answer'    => 'Każdy element ma zakładkę "Notki", gdzie można zapisywać niewielkie fragmenty tekstu, widoczne wyłącznie dla ciebie (przydaje się przy kilku prowadzących), tylko dla adminów, albo dla wszystkich. Możesz też pozwolić graczom dodawać i edytować takie notki, nie zapewniając im przy tym możliwości edycji całych elementów.',
+        'answer'    => 'Każdy element ma zakładkę "Uwagi", gdzie można zapisywać niewielkie fragmenty tekstu, widoczne wyłącznie dla ciebie (przydaje się przy kilku prowadzących), tylko dla administratorów, albo dla wszystkich. Możesz też pozwolić graczom dodawać i edytować takie notki, nie zapewniając im przy tym możliwości edycji całych elementów.',
         'question'  => 'Jak ukrywać w Kance tylko część informacji?',
     ],
     'fields'                => [
@@ -65,7 +65,7 @@ TEXT
         'question'  => 'Czy aplikacja zawsze będzie darmowa?',
     ],
     'gods-and-religions'    => [
-        'answer'    => 'Polecamy tworzyć bogów jako Postacie, a religie jako Organizacje. Aby szybciej odszukać bóstwa na liście, możesz dać im odpowiednie etykiety.',
+        'answer'    => 'Polecamy tworzyć bogów jako Postaci, a religie jako Organizacje. Aby szybciej odszukać bóstwa na liście, możesz dać im odpowiednie etykiety.',
         'question'  => 'Jak tworzyć bogów i religie?',
     ],
     'help'                  => [
@@ -89,8 +89,8 @@ TEXT
         'question'  => 'Czy mogę mieć więcej niż jedną kampanię?',
     ],
     'nested'                => [
-        'answer'    => 'Jeżeli wolisz używać domyślnie widoku zagnieżdżonego list elementów, przejdź do swojego Profilu i wybierz opcję Układ. Tam możesz zaznaczyć Widok Zagnieżdżony. Opcja działa dla twojego konta, a nie twoich kampanii.',
-        'question'  => 'Czy mogę ustawić zagnieżdżony widok list jako domyślny?',
+        'answer'    => 'Jeżeli wolisz używać domyślnie widoku hierarchii elementów, zamiast ich list, przejdź do Profilu i wybierz opcję Układ. Tam możesz zaznaczyć Widok Hierarchii. Opcja działa wyłącznie dla twojego konta, a nie wszystkich uczestników kampanii.',
+        'question'  => 'Czy mogę ustawić wyświetlanie hierarchii jako domyślne?',
     ],
     'organise_play'         => [
         'answer'    => 'Możesz łatwo organizować sesje dla swojej grupy dzięki naszemu partnerowi, :lfgm. Jeżeli zsynchronizujesz kampanię w Kance z kampanią w LFGM, dostępne terminy będą się wyświetlały na pulpicie.',
@@ -135,7 +135,7 @@ TEXT
         'question'  => 'Co dzieje się z kampanią, która przestaje być doładowana?',
     ],
     'user-switch'           => [
-        'answer'    => 'Uprawnienia, zwłaszcza w większych kampaniach, mogą być dość skomplikowane. Jako admin możesz zawsze wejść na stronę użytkownika kampanii i nacisnąć opcję "Zamień", która znajduje się obok nazwisk uczestników nie posiadających statusu admina. Logujesz się wówczas jako ten użytkownik i widzisz kampanię tak, jak on. W ten sposób najłatwiej sprawdzić, czy uprawnienia działają poprawnie.',
+        'answer'    => 'Uprawnienia, zwłaszcza w większych kampaniach, mogą być dość skomplikowane. Jako administrator możesz zawsze wejść na stronę użytkownika kampanii i nacisnąć opcję "Zamień", która znajduje się obok nazwisk uczestników nie posiadających statusu admina. Logujesz się wówczas jako ten użytkownik i widzisz kampanię tak, jak on. W ten sposób najłatwiej sprawdzić, czy uprawnienia działają poprawnie.',
         'question'  => 'No to mam już uprawnienia kampanii, jak je teraz przetestować?',
     ],
     'visibility'            => [

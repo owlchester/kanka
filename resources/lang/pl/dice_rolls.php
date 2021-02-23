@@ -12,8 +12,8 @@ return [
     ],
     'edit'          => [
         'description'   => 'Edytuj rzut kośćmi',
-        'success'       => 'Zaktualizowano rzut kośćmi \':name\'.',
-        'title'         => 'Edycja Rzutu Kośćmi :name',
+        'success'       => 'Zmieniono rzut kośćmi \':name\'.',
+        'title'         => 'Edycja rzutu kośćmi :name',
     ],
     'fields'        => [
         'created_at'    => 'Rzucono w',

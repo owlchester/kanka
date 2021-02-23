@@ -26,7 +26,7 @@ return [
         'calendars' => 'Strażnik Czasu poziom :level',
         'characters'=> 'Dawca Imion poziom :level',
         'dead'      => 'Morderca poziom :level',
-        'families'  => 'Planowanie Rodziny poziom :level',
+        'families'  => 'Planowanie rodziny poziom :level',
         'locations' => 'Budowniczy poziom :level',
         'quests'    => 'Intrygant poziom :level',
         'races'     => 'Hodowca poziom :level',

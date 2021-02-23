@@ -3,14 +3,14 @@
 return [
     '403'       => [
         'body'  => 'Najwyraźniej nie masz uprawnień do przeglądania tej strony!',
-        'title' => 'Brak Dostępu',
+        'title' => 'Brak dostępu',
     ],
     '403-form'  => [
         'help'  => 'Powodem może być zakończenie twojej sesji. Przed zapisaniem spróbuj zalogować się ponownie w nowym oknie.',
     ],
     '404'       => [
         'body'  => 'Niestety nie możemy znaleźć strony której szukasz.',
-        'title' => 'Strony Nie Znaleziono',
+        'title' => 'Strony nie znaleziono',
     ],
     '500'       => [
         'body'  => [

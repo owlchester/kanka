@@ -24,9 +24,12 @@ return [
         'eras'          => 'Epochen',
         'name'          => 'Name',
         'reverse_order' => 'Reihenfolge der Epochen umkehren',
+        'timeline'      => 'übergeordneter Zeitstrahl',
+        'timelines'     => 'Zeitstrahlen',
         'type'          => 'Typ',
     ],
     'helpers'       => [
+        'nested'            => 'Standardmäßig werden Zeitstrahlen ohne übergeordneten Zeitstrahl angezeigt. Klicken Sie auf die Zeile eines Zeitstrahls, um deren Nachkommen anzuzeigen.',
         'reorder'           => 'Ziehen Sie Elemente der Epoche per Drag & Drop, um sie neu zu ordnen.',
         'reorder_tooltip'   => 'Klicken Sie hier, um die manuelle Neuordnung von Elementen per Drag & Drop zu aktivieren.',
         'reverse_order'     => 'Aktivieren Sie diese Option, um Epochen in umgekehrter chronologischer Reihenfolge anzuzeigen (ältere Epoche zuerst).',
@@ -41,5 +44,8 @@ return [
     ],
     'show'          => [
         'title' => 'Zeitstrahl :name',
+    ],
+    'timelines'     => [
+        'title' => 'Zeitstrahl :name Zeitstrahlen',
     ],
 ];

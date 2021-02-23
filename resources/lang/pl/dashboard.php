@@ -21,7 +21,7 @@ return [
         'boosted'       => ':boosted_campaigns pozwalają tworzyć różne pulpity dla różnych ról w kampanii.',
         'create'        => [
             'success'   => 'Stworzono w kampanii nowy pulpit :name.',
-            'title'     => 'Nowy Pulpit Kampanii',
+            'title'     => 'Nowy pulpit kampanii',
         ],
         'custom'        => [
             'text'  => 'Edytujesz obecnie pulpit :name kampanii.',
