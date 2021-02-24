@@ -42,7 +42,7 @@ class BoostController extends Controller
 
 
         $boosts = Auth::user()->boosts()->with('campaign')->groupBy('campaign_id')->get();
-        $userCampaigns = UserCache::campaigns()->whereNotIn('id', $boosts->pluck('campaign_id'));
+        $userCampaigns = UserCache::campaigns()->where('boost_count', 0)->whereNotIn('id', $boosts->pluck('campaign_id'));
 
         if (!empty($campaignId)) {
             /** @var Campaign $campaign */

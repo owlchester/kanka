@@ -102,6 +102,7 @@
         <table class="table table-hover">
             <thead>
             <tr>
+                <th>#</th>
                 <th>Campaign</th>
                 <th>User Roles</th>
                 <th>
@@ -118,6 +119,9 @@
 
 @foreach ($model->campaigns as $campaign)
             <tr>
+                <td>
+                    {{ $campaign->id }}
+                </td>
                 <td>
                     {!! $campaign->dashboard() !!}
                     @if ($campaign->is_public)
@@ -143,6 +147,8 @@
                         <span class="label label-info visible-xs">
                             SB
                         </span>
+
+
                     @elseif ($campaign->boost_count == 1)
                         <span class="label label-info hidden-xs">Boosted</span>
                         <i class="fa fa-rocker visible-xs"></i>
@@ -158,7 +164,6 @@
 
 <div class="row">
     <div class="col-md-6">
-
         <div class="box box-solid">
             <div class="box-header with-border">
                 <h4 class="box-title">Kanka Roles</h4>
@@ -194,10 +199,40 @@
                     {!! Form::close() !!}
                 @endforeach
                 </dl>
-
             </div>
         </div>
     </div>
+
+    @if (!$model->subscribed('kanka') && !empty($model->patreon_pledge) && auth()->user()->id == 1)
+
+        <div class="col-md-6">
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h4 class="box-title">Patreon Sync</h4>
+                </div>
+                <div class="box-body">
+                    This user is synced with Patreon.
+                    <button class="btn btn-danger btn-block delete-confirm" data-toggle="modal" data-name="{{ $model->name }}"
+                      data-target="#delete-confirm" data-delete-target="remove-patreon-{{ $model->id }}"
+                      title="{{ __('crud.remove') }}">
+                        <i class="fa fa-trash" aria-hidden="true"></i> Unsync
+                    </button>
+
+
+                    {!! Form::open([
+                        'method' => 'DELETE',
+                        'route' => [
+                            'admin.users.patreon_unsync',
+                            'user' => $model->id,
+                        ],
+                        'style' => 'display:inline',
+                            'id' => 'remove-patreon-' . $model->id
+                    ]) !!}
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    @endif
 </div>
 
 
