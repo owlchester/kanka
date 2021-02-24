@@ -27,8 +27,6 @@
                 {!! Form::text('date', FormCopy::field('date')->string(), ['placeholder' => trans('journals.placeholders.date'), 'id' => 'date', 'class' => 'form-control date-picker']) !!}
             </div>
         </div>
-
-        @include('cruds.fields.private')
     </div>
     <div class="col-md-6">
         <div class="form-group">
@@ -48,3 +46,5 @@
         @include('cruds.fields.image')
     </div>
 </div>
+
+@include('cruds.fields.private2')

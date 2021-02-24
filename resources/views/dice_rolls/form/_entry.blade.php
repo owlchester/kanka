@@ -18,10 +18,9 @@
             {!! Form::text('parameters', FormCopy::field('parameters')->string(), ['placeholder' => trans('dice_rolls.placeholders.parameters'), 'class' => 'form-control', 'maxlength' => 191]) !!}
             <a href="{{ route('helpers.dice') }}" target="_blank">{{ trans('dice_rolls.hints.parameters') }}</a>
         </div>
-
-        @include('cruds.fields.private')
     </div>
     <div class="col-md-6">
         @include('cruds.fields.image')
     </div>
 </div>
+@include('cruds.fields.private2')

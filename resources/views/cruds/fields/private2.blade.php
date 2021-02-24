@@ -1,4 +1,5 @@
 @if (auth()->user()->isAdmin())
+    <hr />
     <h4 class="">{{ __('crud.fields.privacy') }}</h4>
     <div class="checkbox">
         {!! Form::hidden('is_private', 0) !!}

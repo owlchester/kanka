@@ -51,8 +51,6 @@ if (request()->route()->getName() == 'characters.random') {
             </label>
             <p class="help-block">{{ trans('characters.hints.is_dead') }}</p>
         </div>
-
-        @include('cruds.fields.private')
     </div>
 
     <div class="col-md-6">
@@ -61,4 +59,6 @@ if (request()->route()->getName() == 'characters.random') {
         @include('cruds.fields.image')
     </div>
 </div>
+
+@include('cruds.fields.private2')
 
