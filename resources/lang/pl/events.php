@@ -4,7 +4,7 @@ return [
     'create'        => [
         'description'   => 'Stwórz nowe wydarzenie',
         'success'       => 'Stworzono wydarzenie \':name\'.',
-        'title'         => 'Nowe Wydarzenie',
+        'title'         => 'Nowe wydarzenie',
     ],
     'destroy'       => [
         'success'   => 'Usunięto wydarzenie \':name\'.',
@@ -19,14 +19,14 @@ return [
     'fields'        => [
         'date'      => 'Data',
         'event'     => 'Wydarzenie źródłowe',
-        'events'    => 'Wydarzenia',
+        'events'    => 'Wydarzenia pochodne',
         'image'     => 'Obraz',
         'location'  => 'Miejsce',
         'name'      => 'Nazwa',
         'type'      => 'Rodzaj',
     ],
     'helpers'       => [
-        'date'      => 'W tym polu można umieścić wszystko - nie jest związane z kalendarzami kampanii. By umieścić je w kalendarzu, dodaj je ręcznie w menu kalendarza albo zakładce przypomnień wydarzenia.',
+        'date'      => 'W tym polu można umieścić wszystko - nie jest związane z kalendarzami kampanii. By umieścić je w kalendarzu, dodaj je ręcznie w menu kalendarza albo zakładce "Ważne daty" wydarzenia.',
         'nested'    => 'W Widoku Hierarchii domyślnie wyświetlane są wydarzenia, które nie mają źródła. Po kliknięciu na wydarzenie zobaczysz jego pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
     ],
     'index'         => [

@@ -25,7 +25,7 @@ TEXT
         'question'  => 'Jak zgłaszać błędy?',
     ],
     'campaign-sync'         => [
-        'answer'    => 'Kanka na to nie pozwala. Jeżeli prowadzisz wiele drużyn w tym samym świecie możesz jednak dodać wszystkich graczy do tej samej kampanii, a potem dzielić im dostęp za pomocą systemu zadań, etykiet i uprawnień.',
+        'answer'    => 'Kanka na to nie pozwala. Jeżeli prowadzisz wiele drużyn w tym samym świecie możesz jednak dodać wszystkich graczy do tej samej kampanii, a potem dzielić im dostęp za pomocą systemu misji, etykiet i uprawnień.',
         'question'  => 'Czy mogę synchronizować elementy pomiędzy kilkoma kampaniami?',
     ],
     'conversations'         => [
@@ -41,11 +41,11 @@ TEXT
         'question'  => 'Jak usunąć kampanię?',
     ],
     'early-access'          => [
-        'answer'    => 'Wczesny Dostęp to sposób, w jaki nagradzamy naszych wspaniałych subskrybentów. Otrzymują oni dostęp do najnowszych modułów na 30 dni przed pozostałymi użytkownikami.',
-        'question'  => 'Czym jest Wczesny Dostęp?',
+        'answer'    => 'Wczesny dostęp to sposób, w jaki nagradzamy naszych wspaniałych subskrybentów. Otrzymują oni możliwość korzystania z najnowszych modułów na 30 dni przed pozostałymi użytkownikami.',
+        'question'  => 'Czym jest "wczesny dostęp"?',
     ],
     'entity-notes'          => [
-        'answer'    => 'Każdy element ma zakładkę "Uwagi", gdzie można zapisywać niewielkie fragmenty tekstu, widoczne wyłącznie dla ciebie (przydaje się przy kilku prowadzących), tylko dla administratorów, albo dla wszystkich. Możesz też pozwolić graczom dodawać i edytować takie notki, nie zapewniając im przy tym możliwości edycji całych elementów.',
+        'answer'    => 'Każdy element ma zakładkę "Komentarze", gdzie można zapisywać niewielkie fragmenty tekstu, widoczne wyłącznie dla ciebie (przydaje się przy kilku prowadzących), tylko dla administratorów, albo dla wszystkich. Możesz też pozwolić graczom dodawać i edytować takie notki, nie zapewniając im przy tym możliwości edycji całych elementów.',
         'question'  => 'Jak ukrywać w Kance tylko część informacji?',
     ],
     'fields'                => [
@@ -59,7 +59,7 @@ TEXT
         'answer'    => <<<'TEXT'
 Tak! Uważamy szczerze, że nasza sytuacja finansowa nie powinna wpływać na radość z gry w RPG i wymyślania światów, więc Kanka zawsze będzie za darmo. Ale jeżeli chcesz przyczynić się rozwoju aplikacji, wesprzeć nas i głosować na funkcjonalności, które najbardziej ci się przydadzą, możesz wybrać płatną subskrypcję. 
 
-Oprócz głosowania nad kierunkiem, w którym rozwijać się będzie Kanka, takie wsparcie zapewnia też dostęp do :boosters, co pozwala zamieszczać więcej plików, dodaje twoje imię do galerii sławy, zapewnia ładniejsze domyślne ikony i nie tylko!
+Oprócz głosowania nad kierunkiem, w którym rozwijać się będzie Kanka, wspierając nas otrzymujesz też :boosters, możesz zamieszczać zamieszczać więcej plików, twoje imię trafia do galerii sław, dostajesz ładniejsze domyślne ikony i nie tylko!
 TEXT
 ,
         'question'  => 'Czy aplikacja zawsze będzie darmowa?',
@@ -135,7 +135,7 @@ TEXT
         'question'  => 'Co dzieje się z kampanią, która przestaje być doładowana?',
     ],
     'user-switch'           => [
-        'answer'    => 'Uprawnienia, zwłaszcza w większych kampaniach, mogą być dość skomplikowane. Jako administrator możesz zawsze wejść na stronę użytkownika kampanii i nacisnąć opcję "Zamień", która znajduje się obok nazwisk uczestników nie posiadających statusu admina. Logujesz się wówczas jako ten użytkownik i widzisz kampanię tak, jak on. W ten sposób najłatwiej sprawdzić, czy uprawnienia działają poprawnie.',
+        'answer'    => 'Uprawnienia, zwłaszcza w większych kampaniach, mogą być dość skomplikowane. Jako administrator możesz zawsze wejść na stronę użytkownika kampanii i nacisnąć opcję "Przełącz", która znajduje się obok nazwisk uczestników nie posiadających statusu admina. Logujesz się wówczas jako ten użytkownik i widzisz kampanię tak, jak on. W ten sposób najłatwiej sprawdzić, czy uprawnienia działają poprawnie.',
         'question'  => 'No to mam już uprawnienia kampanii, jak je teraz przetestować?',
     ],
     'visibility'            => [

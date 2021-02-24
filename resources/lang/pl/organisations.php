@@ -73,14 +73,14 @@ return [
         'type'      => 'Kult, gang, podziemie niepodległościowe, fandom',
     ],
     'quests'        => [
-        'description'   => 'Zadania, których częścią jest ta organizacja.',
-        'title'         => 'Zadania organizacji :name',
+        'description'   => 'Misje, których częścią jest ta organizacja.',
+        'title'         => 'Misje organizacji :name',
     ],
     'show'          => [
         'description'   => 'Szczegółowy widok organizacji',
         'tabs'          => [
             'organisations' => 'Organizacje',
-            'quests'        => 'Zadania',
+            'quests'        => 'Misje',
             'relations'     => 'Relacje',
         ],
         'title'         => 'Organizacja :name',

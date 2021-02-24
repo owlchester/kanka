@@ -22,7 +22,7 @@ return [
         ],
         'jay'       => [
             'text'  => <<<'TEXT'
-Stworzyłem Kankę w październiku 2017, ponieważ nie istniały narzędzia, dzięki którym mógłbym tworzyć światy z przyjaciółmi zachowując kontrolę nad tym, kto widzi które treści.
+Stworzyłem Kankę w październiku 2017, ponieważ nie znalazłem narzędzia, które pozwoliłoby mi tworzyć światy wspólnie z przyjaciółmi, zachowując przy tym kontrolę nad tym, kto widzi które treści.
 
 Na początku 2020 zaryzykowałem i zająłem się rozwojem Kanki na pełny etat, dzięki wsparciu przyjaciół i społeczności.
 TEXT

@@ -54,7 +54,7 @@ return [
         'type'  => 'Wiedza tajemna, wojna, historia, religia, weksylologia',
     ],
     'show'          => [
-        'description'   => 'Szczgółowy widok etykiety',
+        'description'   => 'Szczegółowy widok etykiety',
         'tabs'          => [
             'children'      => 'Pochodne',
             'information'   => 'Informacje',

@@ -21,6 +21,7 @@ return [
         'position'      => 'Kolejność',
         'random'        => 'Losowy',
         'random_type'   => 'Losowy typ elementu',
+        'selector'      => 'Konfiguracja skrótu',
         'tab'           => 'Zakładka',
         'type'          => 'Typ elementu',
     ],
@@ -29,6 +30,7 @@ return [
         'entity'    => 'Stwórz skrót prowadzący wprost do jakiegoś elementu. Pole :tab pozwala decydować, która zakładka się wyświetli. Pole :menu pozwala określić, która podstrona zostanie otwarta.',
         'position'  => 'To pole pozwala ustalać kolejność (rosnącą) wyświetlania skrótów.',
         'random'    => 'Użyj tego pola by stworzyć skrót do losowego elementu. Możesz ustawić filtry, by skrót prowadził do losowego elementu danego typu.',
+        'selector'  => 'Ustal dokąd skrót przeniesie użytkownika, który na niego kliknie',
         'type'      => 'Stwórz skrót prowadzący do listy elementów. By filtrować rezultaty, skopuj część adresu filtrowanej listy elementów po znaku :? w pole :filter.',
     ],
     'index'         => [

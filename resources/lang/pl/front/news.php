@@ -7,10 +7,10 @@ return [
     ],
     'description'   => 'Nie strać orientacji w ciągłej ewolucji Kanki.',
     'index'         => [
-        'title' => 'Ostatnie Nowości',
+        'title' => 'Ostatnie nowości',
     ],
     'latest'        => [
-        'title' => 'Ostatnie Nowości',
+        'title' => 'Ostatnie nowości',
     ],
     'show'          => [
         'title' => 'Aktualizacja :name',

@@ -42,15 +42,15 @@ return [
         'type'      => 'Broń, eliksir, artefakt',
     ],
     'quests'        => [
-        'description'   => 'Zadania, których częścią jest ten przedmiot.',
-        'title'         => 'Zadania przedmiotu :name.',
+        'description'   => 'Misje, których częścią jest ten przedmiot.',
+        'title'         => 'Misje przedmiotu :name.',
     ],
     'show'          => [
         'description'   => 'Szczegółowy widok przedmiotu',
         'tabs'          => [
             'information'   => 'Informacje',
             'inventories'   => 'Ekwipunki',
-            'quests'        => 'Zadania',
+            'quests'        => 'Misje',
         ],
         'title'         => 'Przedmiot :name',
     ],
