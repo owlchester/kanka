@@ -8,7 +8,7 @@
             'tag_id',
             [
                 'model' => isset($model) ? $model : FormCopy::model(),
-                'enableNew' => isset($enableNew) ? $enableNew : true
+                'enableNew' => isset($enableNew) ? $enableNew : auth()->user()->can('create', \App\Models\Tag::class)
             ]
         ) !!}
     </div>

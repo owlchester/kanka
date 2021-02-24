@@ -73,19 +73,23 @@ class EntityObserver
             }
         }
         $new = [];
+        $canCreateTags = auth()->user()->can('create', Tag::class);
 
         foreach ($ids as $id) {
             if (!empty($existing[$id])) {
                 unset($existing[$id]);
             } else {
                 $section = Tag::find($id);
-                if (empty($section)) {
-                    // Create it, the id contains the name
+                // Create the tag if the user has permission to do so
+                if (empty($section) && $canCreateTags) {
                     $section = Tag::create([
                         'name' => $id
                     ]);
                 }
-                $new[] = $section->id;
+
+                if (!empty($section)) {
+                    $new[] = $section->id;
+                }
             }
         }
         $entity->tags()->attach($new);
