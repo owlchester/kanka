@@ -39,6 +39,11 @@ class MapMarkerController extends Controller
         return redirect()->route('maps.show', $map);
     }
 
+    public function show(Map $map)
+    {
+        return redirect()->route('maps.show', $map);
+    }
+
     /**
      * @param Map $map
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
