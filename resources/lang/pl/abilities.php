@@ -16,7 +16,7 @@ return [
         'title'     => 'Edycja zdolności :name',
     ],
     'fields'        => [
-        'abilities' => 'Zdolności',
+        'abilities' => 'Zdolności pochodne',
         'ability'   => 'Zdolność źródłowa',
         'charges'   => 'Ładunki',
         'name'      => 'Nazwa',
