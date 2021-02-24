@@ -8,6 +8,7 @@
 @section('og')
     <meta property="og:description" content="{{ $model->excerpt }}" />
     <meta property="og:url" content="{{ route('community-votes.show', $model->getSlug()) }}" />
+    <meta property="og:image" content="https://kanka-app-assets.s3.amazonaws.com/community-votes/kanka_community_vote.png" />
     <link rel="alternate" type="application/rss+xml" title="{{ __('front/community-votes.title') }}" href="{{ url('/feeds/community-votes.rss') }}" />
 @endsection
 
