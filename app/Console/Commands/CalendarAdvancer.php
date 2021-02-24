@@ -27,6 +27,8 @@ class CalendarAdvancer extends Command
      */
     protected $count = 0;
 
+    protected $errors = [];
+
     /**
      * Create a new command instance.
      *
@@ -47,12 +49,22 @@ class CalendarAdvancer extends Command
         Calendar::where('is_incrementing', true)->chunk(500, function ($calendars) {
             /** @var Calendar $calendar*/
             foreach ($calendars as $calendar) {
-                $calendar->addDay();
-                $this->count++;
+                try {
+
+                    $calendar->addDay();
+                    $this->count++;
+                } catch (\Exception $e) {
+                    $this->errors[$calendar->id] = $e->getMessage();
+                }
             }
         });
 
         $this->info("Advanced {$this->count} calendars.");
+
+        if (!empty($this->errors)) {
+            $this->error('Errors for ' . count($this->errors) . ' calendars.');
+            $this->error(implode(', ', array_keys($this->errors)));
+        }
 
         return true;
     }
