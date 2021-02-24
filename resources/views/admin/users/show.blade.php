@@ -2,6 +2,13 @@
 /** @var \App\User $model */
 ?>
 
+
+<div class="row margin-bottom">
+    <div class="col-md-12">
+        @include('layouts.datagrid.search', ['route' => route('admin.users.index')])
+    </div>
+</div>
+
 <div class="row">
     <div class="col-md-6">
         <div class="box box-solid">
