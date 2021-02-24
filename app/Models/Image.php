@@ -72,6 +72,11 @@ class Image extends Model
         return $this->hasMany(Image::class, 'folder_id', 'id');
     }
 
+    public function entities()
+    {
+        return $this->hasMany(Entity::class, 'image_uuid', 'id');
+    }
+
     /**
      * @return bool
      */
