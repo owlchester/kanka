@@ -21,11 +21,14 @@ if (isset($single) && $single) {
 
     /** Layers Init **/
 @foreach ($map->layers as $layer)
+    @if (empty($layer->image))
+        @continue
+    @endif
     var layer{{ $layer->id }} = L.imageOverlay('{{ Storage::url($layer->image) }}', bounds{{ $map->id }});
 @endforeach
 
     var baseMaps{{ $map->id }} = {
-@foreach ($map->layers->where('type_id', '<', 1) as $layer)
+@foreach ($map->layers->where('type_id', '<', 1)->whereNotNull('image') as $layer)
         "{{ $layer->name }}": layer{{ $layer->id }},
 @endforeach
         "{{ __('maps/layers.base') }}": baseLayer{{ $map->id }}
@@ -38,7 +41,7 @@ if (isset($single) && $single) {
 @endforeach
 
     var overlayMaps{{ $map->id }} = {
-@foreach($map->layers->where('type_id', '>', 0) as $layer)
+@foreach($map->layers->where('type_id', '>', 0)->whereNotNull('image') as $layer)
         "{{ $layer->name }}": layer{{ $layer->id }},
 @endforeach
 @foreach($map->groups as $group)

@@ -277,7 +277,7 @@ class Map extends MiscModel
             foreach ($this->groups->where('is_shown', true) as $group) {
                 $layers[] = 'group' . $group->id;
             }
-            foreach ($this->layers->where('type_id', 2) as $layer) {
+            foreach ($this->layers->where('type_id', 2)->whereNotNull('image') as $layer) {
                 $layers[] = 'layer' . $layer->id;
             }
         }
