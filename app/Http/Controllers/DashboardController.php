@@ -48,7 +48,6 @@ class DashboardController extends Controller
             $releases = [];
         } else {
             $unreadReleases = [];
-
             foreach ($releases as $release) {
                 if (!$release->alreadyRead()) {
                     $unreadReleases[] = $release;
