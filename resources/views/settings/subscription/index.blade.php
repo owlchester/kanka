@@ -179,7 +179,7 @@
                 </tr>
                 @if ($user->hasPatreonSync())
                     <tr>
-                        <td class="text-center" colspan="3">
+                        <td class="text-center" colspan="4">
                             <div class="alert alert-warning">
                                 {!! __('settings.subscription.warnings.patreon', ['patreon' => link_to_route('settings.patreon', __('settings.menu.patreon'))]) !!}
                             </div>
@@ -187,7 +187,7 @@
                     </tr>
                 @elseif($user->hasIncompletePayment('kanka'))
                     <tr>
-                        <td class="text-center" colspan="3">
+                        <td class="text-center" colspan="4">
                             <div class="alert alert-warning">
                                 {!! __('settings.subscription.warnings.incomplete') !!}
                             </div>
@@ -287,7 +287,7 @@
                         @endif
                     </th>
                     @else
-                        <td colspan="3" class="text-center">
+                        <td colspan="4" class="text-center">
                             <p class="help-block">
                                 {{ __('settings.subscription.cancelled') }}
                             </p>
