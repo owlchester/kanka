@@ -153,59 +153,11 @@
     <section class="patreons" id="patreon">
         <div class="container">
             <div class="section-body">
-                <h1>{{ __('teams.hall_of_fame') }}</h1>
-                <p class="text-muted">{{ __('teams.patreon.description') }}
-                    <a href="{{ route('front.features', ['#paid-features']) }}">{{ __('teams.patreon.learn_more') }}</a>.
+                <h1>{{ __('front/hall-of-fame.title') }}</h1>
+                <p class="text-muted">{!! __('front/hall-of-fame.moved', [
+    'here' => link_to_route('front.hall-of-fame', __('front.hall-of-fame.here'))
+]) !!}
                 </p>
-
-                <div class="card">
-                    <div class="card-body">
-                        <div class="card-image" style="background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/tiers/elemental-325.png);"></div>
-                        <h5 class="card-title text-muted text-uppercase text-center">Elemental</h5>
-
-                        <div class="row text-center">
-                        @foreach (\Illuminate\Support\Arr::get($patrons, 'Elemental', []) as $user)
-                            <div class="col-lg-3 col-md-4 col-6">{{ $user }}</div>
-                        @endforeach
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="card-image" style="background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/tiers/wyvern-325.png);"></div>
-                        <h5 class="card-title text-muted text-uppercase text-center">Wyvern</h5>
-
-                        <div class="row text-center">
-                        @foreach (\Illuminate\Support\Arr::get($patrons, 'Wyvern', []) as $user)
-                            <div class="col-lg-3 col-md-4 col-6">{{ $user }}</div>
-                        @endforeach
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="card-image" style="background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/tiers/owlbear-325.png);"></div>
-                        <h5 class="card-title text-muted text-uppercase text-center">Owlbear</h5>
-
-                        <div class="row text-center">
-                            @foreach (\Illuminate\Support\Arr::get($patrons, 'Owlbear', []) as $user)
-                                <div class="col-lg-3 col-md-4 col-6 ">{{ $user }}</div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="card-image" style="background-image: url(https://kanka-app-assets.s3.amazonaws.com/images/tiers/goblin-325.png);"></div>
-                        <h5 class="card-title text-muted text-uppercase text-center">Goblin</h5>
-
-                        <div class="row text-center">
-                            @foreach (\Illuminate\Support\Arr::get($patrons, 'Goblin', []) as $user)
-                                <div class="col-lg-3 col-md-4 col-6">{{ $user }}</div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>

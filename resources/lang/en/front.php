@@ -59,7 +59,7 @@ return [
     ],
     'features'      => [
         'abilities'         => [
-            'description'   => 'Manage entity inventories. Attach spells and powers to characters through abilities.',
+            'description'   => 'Organise your characters or shops\' inventories by attaching items. Attach spells and powers to characters through abilities.',
             'title'         => 'Abilities and Items',
         ],
         'actions'           => [
@@ -72,7 +72,7 @@ return [
             'title'         => 'API',
         ],
         'audio'             => [
-            'description'   => 'No need to cycle through 10 playlists, just embed your audio and video in your entities',
+            'description'   => 'No need to cycle through 10 playlists, just embed your spotify and youtube links directly in your entities.',
             'title'         => 'Embed Audio & Video',
         ],
         'boosts'            => [
@@ -94,7 +94,7 @@ return [
             'upload'                => 'Increased upload sizes for all members',
         ],
         'calendars'         => [
-            'description'   => 'Create custom calendars and organise your campaign around them.',
+            'description'   => 'Create fully custom calendars with the weeks and months you want. Add seasons, weather, moons for flavour and knowing how the world is. Attach entities to the calendar as a reminder with control on how long they last, and how often they occure.',
             'title'         => 'Calendars',
         ],
         'collaborative'     => [
@@ -114,10 +114,11 @@ return [
         ],
         'landscape'         => 'Please switch your device to landscape mode to display the list of features.',
         'layers'            => [
-            'description'   => 'Keep track of characters, their families, their whereabouts and lots more at all times.',
+            'description'   => 'Populate the people of your world with characters. Define their allegiance using families and organisations. Build your planets, continents, kingdoms, taverns and fountains with our nested locations.',
             'title'         => 'Characters, Families, Location',
         ],
         'learn_more'        => 'Full list of Kanka\'s features',
+        'learn_more_about'  => 'Learn more about this feature',
         'maps'              => [
             'description'   => 'Upload maps of your worlds, cities and caves, and add handy markers and links on them.',
             'title'         => 'Maps',
@@ -155,7 +156,7 @@ return [
             'title'         => 'Permissions',
         ],
         'quests'            => [
-            'description'   => 'Prepare your next session or log events with our advanced journaling feature!',
+            'description'   => 'Prepare your next session or log events with our advanced journaling feature. Prepare and keep track of your players\' progress using our quests module.',
             'title'         => 'Quests & Journals',
         ],
         'relations'         => [
@@ -165,6 +166,10 @@ return [
         'rpg'               => [
             'description'   => 'From and in-depth permission system, to Quests, Journals, Characters, Abilities and embedded audio and video, we help you manage your campaign and upcoming tpk.',
             'title'         => 'RPG Campaign Management',
+        ],
+        'secrets'             => [
+            'description'   => 'Every entity can have several secrets attached to them in the form of entity notes. These can have permissions to control who sees them, and can be pinned to the entity\'s main view to quickly access them at a glance.',
+            'title'         => 'Manage Secrets',
         ],
         'superboosts'       => [
             'boosted'       => 'Superboosted',

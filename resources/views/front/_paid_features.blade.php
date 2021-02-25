@@ -61,7 +61,7 @@
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
-                <td class="text">{!! __('front.features.patreon.hall_of_fame', ['link' => link_to_route('front.about', __('teams.hall_of_fame'), ['#patreon'])]) !!}</td>
+                <td class="text">{!! __('front.features.patreon.hall_of_fame', ['link' => link_to_route('front.hall-of-fame', __('front/hall-of-fame.title'))]) !!}</td>
                 <td></td>
                 <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>

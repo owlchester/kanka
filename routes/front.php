@@ -20,6 +20,16 @@ Route::get('/news', 'Front\NewsController@index')->name('front.news');
 Route::get('/newsletter', 'Front\NewsletterController@index')->name('front.newsletter');
 Route::get('/news/show/{id}-{slug?}', 'Front\NewsController@show')->name('front.news.show');
 
+Route::get('/features/calendars', 'Front\FeatureController@calendars')->name('front.features.calendars');
+Route::get('/features/timelines', 'Front\FeatureController@timelines')->name('front.features.timelines');
+Route::get('/features/secrets', 'Front\FeatureController@secrets')->name('front.features.secrets');
+Route::get('/features/maps', 'Front\FeatureController@maps')->name('front.features.maps');
+Route::get('/features/permissions', 'Front\FeatureController@permissions')->name('front.features.permissions');
+Route::get('/features/boosters', 'Front\FeatureController@boosters')->name('front.features.boosters');
+Route::get('/features/inventories-abilities', 'Front\FeatureController@inventoriesAbilities')->name('front.features.inventories-abilities');
+
+Route::get('/hall-of-fame', 'FrontController@hallOfFame')->name('front.hall-of-fame');
+
 // Slug
 Route::get('/releases/{id}-{slug?}', 'ReleaseController@show');
 

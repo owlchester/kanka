@@ -39,6 +39,15 @@ class FrontController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
+    public function hallOfFame()
+    {
+        $patrons = $this->patreon->patrons();
+        return view('front.hall_of_fame', compact('patrons'));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function tos()
     {
         return $this->cachedResponse('front.tos');

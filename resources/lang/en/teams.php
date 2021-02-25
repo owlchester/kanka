@@ -13,7 +13,7 @@ return [
         'translations'  => 'Translations',
     ],
     'patreon'       => [
-        'description'   => 'These amazing people help and support Kanka by subscribing.',
+        'description'   => 'Kanka received frequent updates and improvements thanks to these amazing people who support us. ',
         'learn_more'    => 'Full list of features unlocked by subscribing',
     ],
     'people'        => [

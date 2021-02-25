@@ -31,9 +31,9 @@
 </tr>
 <tr>
     <td></td>
-    <td><i class="fa fa-check"></i> {!! link_to_route('front.about', __('tiers.features.hall_of_fame'), '#patreon', ['target' => '_blank']) !!}</td>
-    <td><i class="fa fa-check"></i> {!! link_to_route('front.about', __('tiers.features.hall_of_fame'), '#patreon', ['target' => '_blank']) !!}</td>
-    <td><i class="fa fa-check"></i> {!! link_to_route('front.about', __('tiers.features.hall_of_fame'), '#patreon', ['target' => '_blank']) !!}</td>
+    <td><i class="fa fa-check"></i> {!! link_to_route('front.hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</td>
+    <td><i class="fa fa-check"></i> {!! link_to_route('front.hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</td>
+    <td><i class="fa fa-check"></i> {!! link_to_route('front.hall-of-fame', __('tiers.features.hall_of_fame'), null, ['target' => '_blank']) !!}</td>
 </tr>
 <tr>
     <td></td>
