@@ -2,14 +2,21 @@
 
 return [
     'about'         => [
-        'description'   => 'Kanka zrodziła się pragnienia oddanego fana gier fabularnych, który chciał budować światy wraz ze swoimi graczami. Po wypróbowaniu istniejących opcji i odkryciu, że żadna nie spełnia oczekiwań, zaczęliśmy pracować nad Kanką jesienią 2017 roku.',
+        'description'   => 'Kanka zrodziła się pragnienia oddanego fana gier fabularnych, który chciał budować światy i dzielić się nimi z graczami. Po wypróbowaniu istniejących opcji i odkryciu, że żadna nie spełnia jego oczekiwań, zaczął pracować nad Kanką jesienią 2017 roku.',
         'title'         => 'O nas',
     ],
     'campaigns'     => [
         'description_full'  => 'Kanka posiada wiele kampanii, które każdy może obejrzeć. Na tej stronie znajduje się lista wszystkich kampanii publicznych oraz kampanie wyróżnione przez społeczność.',
         'featured'          => [
-            'description'   => 'Członkowie naszej społeczności tworzą wspaniałe rzeczy, którym chętnie nadajemy status Wyróżnionych Kampanii. Sprawdzaj tę stronę co jakiś czas, by obejrzeć kolejne wyróżnione kampanie.',
+            'description'   => 'Członkowie naszej społeczności tworzą wspaniałe rzeczy, którym chętnie nadajemy status Wyróżnionych Kampanii. Wracaj na tę stronę co jakiś czas, by obejrzeć kolejne wyróżnione kampanie.',
             'title'         => 'Wyróżnione kampanie',
+        ],
+        'open'              => [
+            'filters'   => [
+                'all'       => 'Status otwarty',
+                'closed'    => 'Kampanie zamknięte',
+                'open'      => 'Kampanie otwarte',
+            ],
         ],
         'public'            => [
             'description'   => 'Poszukaj inspiracji przeglądając dostępne publicznie kampanie.',
@@ -52,7 +59,7 @@ return [
     ],
     'features'      => [
         'abilities'         => [
-            'description'   => 'Zarządzać ekwipunkiem postaci. Dodawaj im zdolności, na przykład supermoce czy czary.',
+            'description'   => 'Zarządzaj ekwipunkiem postaci. Dodawaj im zdolności, na przykład supermoce czy czary.',
             'title'         => 'Zdolności i przedmioty',
         ],
         'actions'           => [
@@ -65,7 +72,7 @@ return [
             'title'         => 'API',
         ],
         'audio'             => [
-            'description'   => 'Nie musisz tworzyć 10 list odtwarzania - dodaj muzykę i filmy wprost do elementów kampanii',
+            'description'   => 'Nie musisz tworzyć 10 list odtwarzania - dodaj muzykę i filmy wprost do elementów kampanii.',
             'title'         => 'Dodawaj audio i wideo',
         ],
         'boosts'            => [
@@ -82,7 +89,7 @@ return [
             'recovery'              => 'Odzyskiwanie usuniętych elementów do 30 dni',
             'relation-visualiser'   => 'Wizualizacja relacji między elementami',
             'theme'                 => 'Dobór motywu dla kampanii',
-            'title'                 => 'Doładowanie kampanie',
+            'title'                 => 'Doładowane kampanie',
             'tooltip'               => 'Własne dymki elementów: zmieniaj tekst, dodawaj obrazy',
             'upload'                => 'Możliwość zamieszczania większych plików dla wszystkich uczestników',
         ],
@@ -94,7 +101,7 @@ return [
             'description'   => 'Pracujesz w zespole? Żaden problem, możesz zaprosić przyjaciół i innych mistrzów gry, by wspólnie budować kampanię!',
             'title'         => 'Praca zespołowa',
         ],
-        'description'       => 'Dzięki @wzmiankom, etykietom i złożonemu systemowi uprawnień, Kanka pozwala z łatwością zarządzać światem albo kampanią. Możesz tworzyć postacie i relacje między nimi, miejsca wraz z ich historią, zadania i cele misji, chronologie podzielone na ery czy kalendarze, w których znajdują się bieżące wydarzenia i aktualna pogoda. A najlepsze jest to, że użytkownicy Kanki sami decydują, które funkcje będą rozwijane, podczas Głosowań Społeczności.',
+        'description'       => 'Dzięki @wzmiankom, etykietom i złożonemu systemowi uprawnień, Kanka pozwala z łatwością zarządzać światem albo kampanią. Możesz tworzyć postacie i relacje między nimi, miejsca wraz z ich historią, zadania i cele misji, historie podzielone na ery oraz kalendarze, w których znajdują się bieżące wydarzenia i aktualna pogoda. A najlepsze jest to, że użytkownicy Kanki sami decydują, które funkcje będą rozwijane, podczas głosowań społeczności.',
         'description_full'  => 'Kanka jest przez cały czas rozbudowywana i otrzymuje nowe funkcje. Tu wymieniamy najważniejsze, które na pewno ci się spodobają.',
         'flora'             => [
             'description'   => 'Twórz skomplikowany świat istot żywych dzięki modułowi ras i złożone ekosystemy przy pomocy ułożonych hierarchicznie notatek.',
@@ -102,7 +109,7 @@ return [
         ],
         'free'              => [
             'bonuses'       => 'subskrybenci otrzymują bonusy',
-            'description'   => 'Wszystkie główne funkcje Kanki są dostępne całkowicie za darmo, a :bonus.',
+            'description'   => 'Wszystkie główne funkcje Kanki są dostępne całkowicie za darmo, a :bonuses.',
             'title'         => 'Za darmo!',
         ],
         'landscape'         => 'By uzyskać dostęp do wszystkich funkcji, ustaw ekran poziomo.',
@@ -130,9 +137,9 @@ return [
             'default_image'     => 'Własne domyślne ikony elementów kampanii',
             'description'       => 'Wsparcie Kanki za pomocą subskrypcji daje dostęp do następujących funkcji i udogodnień.',
             'discord'           => 'Prywatny kanał na Discordzie',
-            'entities'          => 'Liczba elementów, które można włączyć do kampanii',
+            'entities'          => 'Liczba elementów kampanii',
             'free'              => 'Darmowa',
-            'hall_of_fame'      => 'Miejsce w',
+            'hall_of_fame'      => 'Miejsce w :link',
             'impact'            => 'Wpływ na przyszłe funkcje',
             'monthly_vote'      => 'Udział w głosowaniu społeczności nad nowymi funkcjami',
             'no_ads'            => 'Brak reklam',
@@ -140,11 +147,11 @@ return [
             'pagination_help'   => 'To maksymalna liczba elementów wyświetlanych jednocześnie na pojedynczej stronie, a nie ogólny limit elementów kampanii.',
             'title'             => 'Funkcje płatne',
             'upload_limit'      => 'Wielkość plików',
-            'upload_limit_map'  => 'Wielkość pliku mapy',
+            'upload_limit_map'  => 'Wielkość mapy',
             'users_roles'       => 'Liczba uczestników, ich role i kontrola nad uprawnieniami',
         ],
         'public'            => [
-            'description'   => 'Uprawnienia regulować można dla całych modułów i pojedynczych elementów. Całą kampanię można też <a href=":url">upublicznić</a>, by by zachwycił się nią szeroki świat.',
+            'description'   => 'Uprawnienia regulować można dla całych modułów i pojedynczych elementów. Całą kampanię można też <a href=":url">upublicznić</a>, by zachwycił się nią szeroki świat.',
             'title'         => 'Uprawnienia',
         ],
         'quests'            => [
@@ -163,14 +170,14 @@ return [
             'boosted'       => 'Turbodoładowanie',
             'description'   => 'Użycie trzech doładowań na jednej kampanii pozwala ją Turbodoładować, odblokowując następujące możliwości.',
             'files'         => 'Możliwość dodania do każdego elementu do 10 plików.',
-            'gallery'       => 'Galerię Kampanii i integrację z edytorem tekstu Summernote',
-            'logs'          => 'Pełną listę wszystkich zmian elementów (do 30 dni wstecz)',
-            'stats'         => 'Stronę osiągnięć kampanii',
-            'title'         => 'Kampanie turbodoładowane',
+            'gallery'       => 'Galeria kampanii zintegrowana z edytorem tekstu Summernote',
+            'logs'          => 'Pełna lista wszystkich zmian elementów (do 30 dni wstecz)',
+            'stats'         => 'Osiągnięcia w kampanii',
+            'title'         => 'Turbodoładowane kampanie',
         ],
         'timelines'         => [
-            'description'   => 'Przedstaw graficznie chronologie swoich światów, imperiów, rodów królewskich, a nawet pojedynczych postaci.',
-            'title'         => 'Chronologie',
+            'description'   => 'Przedstaw graficznie historie światów, imperiów, rodów królewskich, a nawet pojedynczych postaci.',
+            'title'         => 'Historia',
         ],
         'title'             => 'Potężne możliwości i niespotykana elastyczność',
         'unlimited'         => 'Bez limitu',
@@ -179,7 +186,7 @@ return [
             'title'         => 'Częste aktualizacje z udziałem społeczności',
         ],
         'worldbuilding'     => [
-            'description'   => 'Dzięki modułom obejmującym mapy, chronologie, kalendarze i wydarzenia, Kanka pozwala z łatwością zarządzać skomplikowanym światem.',
+            'description'   => 'Dzięki modułom obejmującym mapy, historie, kalendarze i wydarzenia, Kanka pozwala z łatwością zarządzać skomplikowanym światem.',
             'title'         => 'Światotwórstwo',
         ],
     ],
@@ -215,7 +222,7 @@ return [
     ],
     'master'        => [
         'call_to_action'    => 'Załóż konto',
-        'description'       => 'Kanka to rozwijane przez społeczność narzędzie do budowy światów i zarządzania kampaniami RPG, idealne dla autorów i mistrzów gry. Już nigdy nie pogubisz się w notatkach dzięki systemowi @wzmianek oraz takim funkcjom, jak kalendarze, interaktywne mapy, chronologie, organizacje, rodziny oraz tyle postaci, ile zdołasz wymyślić!',
+        'description'       => 'Kanka to rozwijane przez społeczność narzędzie do budowy światów i zarządzania kampaniami RPG, idealne dla autorów i mistrzów gry. Już nigdy nie pogubisz się w notatkach dzięki systemowi @wzmianek oraz takim funkcjom, jak kalendarze, interaktywne mapy, historie, organizacje, rodziny oraz tyle postaci, ile zdołasz wymyślić!',
         'heading'           => 'Tworzenie światów, zarządzanie kampaniami RPG, narracja. Wszystko to wspiera',
         'title'             => 'Kanka',
     ],
@@ -267,7 +274,7 @@ return [
             'support'   => 'Wsparcie',
         ],
         'benefits'      => [
-            'boosters'          => 'Doładowanie kampanii',
+            'boosters'          => 'Doładowania kampanii',
             'core'              => 'Dostęp do wszystkich głównych funkcji',
             'higher_uploads'    => 'Większy rozmiar dodawanych plików',
             'huge_uploads'      => 'Możliwość dodawania ogromnych plików',
@@ -275,7 +282,7 @@ return [
             'unlimited'         => 'Brak limitu liczby kampanii i plików',
             'updates'           => 'Częste aktualizacje i poprawki',
         ],
-        'description'   => 'Wszystkie główne funkcje są darmowe - ale to dzięki wsparciu możemy często uaktualniać i rozbudowywać program dla każdego użytkownika.',
+        'description'   => 'Wszystkie główne funkcje są darmowe. Ale to dzięki wsparciu subskrybentów możemy aktualizować i rozbudowywać program dla każdego użytkownika.',
         'tier'          => [
             'free'  => 'Za darmo',
             'month' => 'miesięcznie',

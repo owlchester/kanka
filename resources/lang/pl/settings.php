@@ -4,12 +4,12 @@ return [
     'account'       => [
         'actions'           => [
             'social'            => 'Przejdź na Logowanie Kanki',
-            'update_email'      => 'Aktualizuj email',
-            'update_password'   => 'Aktualizuj hasło',
+            'update_email'      => 'Zmień email',
+            'update_password'   => 'Zmień hasło',
         ],
-        'email'             => 'Zmień email',
+        'email'             => 'Zmiana emaila',
         'email_success'     => 'Zmieniono email.',
-        'password'          => 'Zmień hasło',
+        'password'          => 'Zmiana hasła',
         'password_success'  => 'Zmieniono hasło.',
         'social'            => [
             'error'     => 'To konto używa już Logowania Kanki',
@@ -49,18 +49,30 @@ return [
             'entity_logs'       => 'Pełen dziennik wszystkich zmian i aktualizacji elementów.',
             'first'             => 'By zapewnić Kance możliwość rozwoju, niektóre funkcje dostępne są wyłącznie w doładowanych kampaniach. Doładowania z kolei związane są z subskrypcją. Każda osoba posiadająca dostęp do kampanii może ją doładować, więc płacenie rachunków nie spada zawsze na MG. Doładowanie jest aktywne, póki użytkownik go nie wyłączy i opłaca subskrypcję. Jeżeli kampania traci doładowanie, dane nie są usuwane, lecz ukrywane i stają się dostępne po ponownym doładowaniu.',
             'header'            => 'Obrazy w nagłówkach elementów.',
+            'headers'           => [
+                'boosted'       => 'Korzyści doładowanej kampanii',
+                'superboosted'  => 'Korzyści turbodoładowanej kampanii',
+            ],
+            'helpers'           => [
+                'boosted'       => 'Gdy doładowujesz kampanię, zużywasz jedno doładowanie.',
+                'superboosted'  => 'Gdy turbodoładowujesz kampanię, zużywasz trzy doładowania.',
+            ],
             'images'            => 'Własne obrazy domyślne elementów.',
-            'more'              => 'Poznaj wszystkie funkcje.',
+            'more'              => [
+                'boosted'       => 'Wszystkie funkcje doładowanej kampanii',
+                'superboosted'  => 'Wszystkie funkcje turbodoładowanej kampanii',
+            ],
+            'recovery'          => 'Odzyskaj elementy usunięte do :amount dni temu',
             'second'            => 'Doładowanie kampanii zapewnia następujące korzyści:',
             'superboost'        => 'Turbodoładowanie kampanii zużywa 3 doładowania i odblokowuje kolejne funkcje, w dodatku do wynikających z doładowania.',
             'theme'             => 'Inny motyw i styl dla każdej kampanii.',
-            'third'             => 'By doładować kampanię, idź na jej stronę i kliknij ":boost-button" tuż nad ":edit_button".',
+            'third'             => 'By doładować kampanię, idź na jej stronę i kliknij ":boost_button" tuż nad ":edit_button".',
             'tooltip'           => 'Własne dymki z poradami.',
             'upload'            => 'Zwiększona wielkość plików dodawanych przez wszystkich uczestników kampanii.',
         ],
         'buttons'       => [
-            'boost'         => 'Doładowanie',
-            'superboost'    => 'Turbodoładowanie',
+            'boost'         => 'Doładuj',
+            'superboost'    => 'Turbodoładuj',
             'tooltips'      => [
                 'boost'         => 'Doładowanie kampanii zużyje do :amount twoich doładowań',
                 'superboost'    => 'Turbodoładowanie kampanii zużyje :amount twoich doładowań',
@@ -104,7 +116,7 @@ return [
             'invoice'   => 'Rachunek',
             'status'    => 'Status',
         ],
-        'header'    => 'Na poniższej liście znajdują się ostatnie 24 rachunki, które można też pobrać.',
+        'header'    => 'Na liście znajdują się ostatnie 24 rachunki. Możesz je pobrać.',
         'status'    => [
             'paid'      => 'Opłacony',
             'pending'   => 'Oczekuje',
@@ -137,6 +149,7 @@ return [
         'payment_options'       => 'Opcje płatności',
         'personal_settings'     => 'Ustawienia osobiste',
         'profile'               => 'Profil',
+        'settings'              => 'Ustawienia',
         'subscription'          => 'Subskrypcja',
         'subscription_status'   => 'Status subskrypcji',
     ],
@@ -242,7 +255,7 @@ return [
             'cost_monthly'  => ':currency :amount rozliczane miesięcznie',
             'cost_yearly'   => ':currency :amount rozliczane rocznie',
         ],
-        'sub_status'            => 'Informacje o subsrypcji',
+        'sub_status'            => 'Informacje o subskrypcji',
         'subscription'          => [
             'actions'   => [
                 'downgrading'       => 'Skontaktuj się z nami by zmniejszyć poziom subskrypcji',
@@ -256,7 +269,7 @@ return [
             'callback'      => 'Subskrypcja udana. Zaktualizujemy twoje konto gdy tylko obsługujący płatności powiadomi nas o zmianie (to może potrwać kilka minut).',
             'cancel'        => 'Anulowano subskrypcję. Pozostanie aktywna do końca okresu rozliczeniowego.',
             'currency'      => 'Zmieniono walutę rozliczenia.',
-            'subscribed'    => 'Subskrypcja udana. Nie zapomnij o newsletterze Głosowań Społeczności, by zawsze wiedzieć kiedy rozpoczyna się głosowanie. Możesz zmienić ustawienia newslettera na stronie Profilu.',
+            'subscribed'    => 'Subskrypcja udana. Nie zapomnij o newsletterze głosowań społeczności, by zawsze wiedzieć kiedy rozpoczyna się głosowanie. Możesz zmienić ustawienia newslettera na stronie profilu.',
         ],
         'tiers'                 => 'Poziomy subskrypcji',
         'trial_period'          => 'Subskrypcje roczne mają 14-dniowy okres wypowiedzenia. Jeżeli chcesz anulować subskrypcję roczną i uzyskać zwrot pieniędzy, skontaktuj się z nami przez :email.',
@@ -271,7 +284,7 @@ return [
             'upgrade'   => [
                 'bullets'   => [
                     'immediate' => 'Pobierzemy pieniądze od razu i natychmiast uzyskasz dostęp do nowego poziomu.',
-                    'prorate'   => 'Zwiększając subskrypcję z Żywiołaka na Sowodźwiedzia płacisz tylko różnicę w cenie.',
+                    'prorate'   => 'Zwiększając subskrypcję z poziomu Owlbear na poziom Elemental płacisz tylko różnicę w cenie.',
                 ],
                 'title'     => 'Gdy podnosisz subskrypcję',
             ],

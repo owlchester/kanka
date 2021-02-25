@@ -9,7 +9,7 @@ return [
         'update'        => 'Aktualizuj zgłoszenie',
         'view'          => 'Zobacz zgłoszenie',
     ],
-    'description'   => 'Regularnie organizujemy dla naszej społeczności wydarzenia światotwórcze, eksponując zgłoszenia które najbardziej nam się spodobały.',
+    'description'   => 'Regularnie organizujemy dla naszej społeczności wydarzenia światotwórcze, nagradzając zgłoszenia które najbardziej nam się spodobały.',
     'fields'        => [
         'comment'       => 'Komentarz',
         'entity_link'   => 'Odnośnik do elementu',
@@ -41,7 +41,7 @@ return [
         'waiting_results'   => 'Wydarzenie zakończone! Jury oceni teraz zgłoszenia i wyłoni zwycięzców, którzy zostaną ogłoszeniu tutaj.',
     ],
     'show'          => [
-        'participants'  => 'Wysłano {1} :number zgłoszenie.|Wysłano [2,3,4] :number zgłoszenia.|Wysłano [5,*] :number zgłoszeń.',
+        'participants'  => '{1} :number zgłoszenie.|[2,3,4] :number zgłoszenia.|[5,*] :number zgłoszeń.',
         'title'         => 'Wydarzenie :name',
     ],
     'title'         => 'Wydarzenia',

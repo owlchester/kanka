@@ -66,8 +66,8 @@ class PluginVersion extends Model
             return $this->attribute($name);
         }, $this->content);
 
-        return Blade::compileString($html);
-        dd($html);
+        //return Blade::compileString($html);
+        //dd($html);
 
         // If-Else condition
         $html = preg_replace_callback('`@if\((.*?)\)(.*?)@else(.*?)@endif`si', function ($matches) {

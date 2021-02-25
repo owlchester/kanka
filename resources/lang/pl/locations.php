@@ -8,7 +8,7 @@ return [
     'create'        => [
         'description'   => 'Stwórz nowe miejsce',
         'success'       => 'Stworzono miejsce \':name\'.',
-        'title'         => 'Nowe Miejce',
+        'title'         => 'Nowe miejsce',
     ],
     'destroy'       => [
         'success'   => 'Usunięto miejsce \':name\'.',
@@ -29,7 +29,7 @@ return [
         'image'             => 'Obraz',
         'is_map_private'    => 'Mapa tajna',
         'location'          => 'Miejsce źródłowe',
-        'locations'         => 'Miejsca',
+        'locations'         => 'Miejsca pochodne',
         'map'               => 'Mapa',
         'name'              => 'Nazwa',
         'relation'          => 'Relacja',
@@ -164,7 +164,7 @@ return [
                 'tower'         => 'Wieża',
                 'vase'          => 'Waza',
                 'water-drop'    => 'Woda',
-                'wooden-sign'   => 'Zadanie',
+                'wooden-sign'   => 'Misja',
                 'wrench'        => 'Klucz francuski',
             ],
             'modal'         => 'Stwórz lub edytuj punkt na mapie',
@@ -210,8 +210,8 @@ return [
         'type'      => 'Miasto, królestwo, ruiny',
     ],
     'quests'        => [
-        'description'   => 'Zadania w których pojawia się to miejsce.',
-        'title'         => 'Zadania miejsca :name',
+        'description'   => 'Misje, w których pojawia się to miejsce.',
+        'title'         => 'Misje miejsca :name',
     ],
     'show'          => [
         'description'   => 'Szczegółowy widok miejsca',
@@ -227,7 +227,7 @@ return [
             'maps'          => 'Mapy',
             'menu'          => 'Menu',
             'organisations' => 'Organizacje',
-            'quests'        => 'Zadania',
+            'quests'        => 'Misje',
         ],
         'title'         => 'Miejsce :name',
     ],

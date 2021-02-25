@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'helper'    => 'Poniżej wyświetlono chronologie powiązane z tym elementem.',
+    'helper'    => 'Poniżej wyświetlono historie tego elementu.',
     'show'      => [
-        'title' => 'Chronologie elementu :name',
+        'title' => 'Historie elementu :name',
     ],
 ];

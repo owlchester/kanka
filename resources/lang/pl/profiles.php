@@ -44,16 +44,16 @@ return [
         'name'                      => 'Nazwa, która będzie wyświetlana',
         'new_password'              => 'Twoje nowe hasło',
         'new_password_confirmation' => 'Potwierdź nowe hasło',
-        'password'                  => 'Potwierdzaj zmiany za pomocą hasła',
+        'password'                  => 'Potwierdź zmianę wpisując hasło',
     ],
     'sections'      => [
         'delete'    => [
             'delete'    => 'Usuń konto',
-            'title'     => 'Usuawnie konta',
+            'title'     => 'Usuwanie konta',
             'warning'   => 'Po usunięciu konta wszystkie dane zostaną wykasowane. Czy na pewno chcesz to zrobić?',
         ],
         'password'  => [
-            'title' => 'Zmień hasło',
+            'title' => 'Zmiana hasła',
         ],
     ],
     'settings'      => [
@@ -62,7 +62,7 @@ return [
             'date_format'           => 'Format daty',
             'default_nested'        => 'Domyślny Widok Hierarchii',
             'editor'                => 'Edytor tekstu',
-            'new_entity_workflow'   => 'Praca nad nowymi elementami',
+            'new_entity_workflow'   => 'Tworzenie elementów',
             'pagination'            => 'Elementy na stronie',
         ],
         'helpers'   => [

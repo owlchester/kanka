@@ -2,6 +2,11 @@
 
 return [
     'campaign'          => [
+        'application'   => [
+            'approved'  => 'Zatwierdzono twoje zgłoszenie do kampanii :campaign.',
+            'new'       => 'Nowe zgłoszenie do udziału w kampanii :campaign.',
+            'rejected'  => 'Odrzucono twoje zgłoszenie do kampanii :campaign. Oto powód: :reason',
+        ],
         'asset_export'  => 'Można pobrać wyeksportowane pliki kampanii. Odnośnik będzie dostępny przez :time minut.',
         'boost'         => [
             'add'           => 'Kampania :campaign została doładowana przez :user.',

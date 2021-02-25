@@ -4,7 +4,7 @@ return [
     'create'        => [
         'description'   => 'Stwórz nowy rzut kośćmi',
         'success'       => 'Stworzono rzut kośćmi ":name\'.',
-        'title'         => 'Nowy Rzut Kośćmi',
+        'title'         => 'Nowy rzut kośćmi',
     ],
     'destroy'       => [
         'dice_roll' => 'Usunięto rzut kośćmi.',

@@ -87,4 +87,30 @@ class UserController extends AdminCrudController
         $userRole->delete();
         return redirect()->back()->with('success', 'User role removed.');
     }
+
+    public function removePatreon(Request $request, User $user)
+    {
+        // Clean up the user
+        $user->update([
+            'patreon_pledge' => '',
+        ]);
+
+        // Remove boosters
+        foreach ($user->boosts as $boost) {
+            $boost->delete();
+
+            $boost->campaign->boost_count--;
+            $boost->campaign->save();
+        }
+
+        // Remove the patreon role
+        $userRole = UserRole::where('user_id', $user->id)->where('role_id', 5)->first();
+        if (!empty($userRole)) {
+            $userRole->delete();
+        }
+
+        return redirect()->back()->with('success', 'User patreon sync removed.');
+
+
+    }
 }

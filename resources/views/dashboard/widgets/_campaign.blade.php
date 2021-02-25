@@ -106,7 +106,7 @@
                                     </li>
                                 @endforeach
                                 <li>
-                                    <a href="{{ route('dashboard.setup') }}" title="{{ __('dashboard.settings.title') }}">
+                                    <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}" title="{{ __('dashboard.settings.title') }}">
                                         <i class="fa fa-cog"></i> {{ __('dashboard.settings.title') }}
                                     </a>
                                 </li>

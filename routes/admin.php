@@ -38,5 +38,6 @@ Route::namespace('Admin')->name('admin.')->middleware(['moderator'])->prefix('ad
     Route::post('users/{user}/roles', 'UserController@addRole')->name('users.roles');
     Route::post('users/{user}/booster-count', 'UserController@boosterCount')->name('users.booster_count');
 
+    Route::delete('users/{user}/patreon-unsync', 'UserController@removePatreon')->name('users.patreon_unsync');
     Route::delete('users/{user}/roles', 'UserController@removeRole')->name('users.roles.destroy');
 });

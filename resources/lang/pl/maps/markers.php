@@ -24,7 +24,7 @@ return [
         'is_draggable'  => 'Można przesuwać',
         'latitude'      => 'Szerokość',
         'longitude'     => 'Długość',
-        'opacity'       => 'Nieprzejżystość',
+        'opacity'       => 'Nieprzejrzystość',
         'pin_size'      => 'Wielkość znacznika',
     ],
     'helpers'       => [

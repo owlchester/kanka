@@ -2,42 +2,42 @@
 
 return [
     'actions'       => [
-        'add'       => 'Nowa uwaga',
+        'add'       => 'Nowy komentarz',
         'add_user'  => 'Dodaj użytkownika',
     ],
     'create'        => [
-        'description'   => 'Stwórz nową uwagę',
-        'success'       => 'Dodano uwagę :name do elementu :entity.',
-        'title'         => 'Nowa uwaga dla elementu :name.',
+        'description'   => 'Stwórz nowy komentarz',
+        'success'       => 'Dodano komentarz :name do elementu :entity.',
+        'title'         => 'Nowy komentarz do elementu :name.',
     ],
     'destroy'       => [
-        'success'   => 'Usunięto uwagę :name z elementu :entity.',
+        'success'   => 'Usunięto komentarz :name do elementu :entity.',
     ],
     'edit'          => [
-        'description'   => 'Aktualizuj istniejąca uwagę o elemencie.',
-        'success'       => 'Zmieniono uwagę :name elementu :entity.',
-        'title'         => 'Edycja uwagi elementu :name',
+        'description'   => 'Aktualizuj komentarz do elementu.',
+        'success'       => 'Zmieniono komentarz :name do elementu :entity.',
+        'title'         => 'Edycja komentarza do elementu :name',
     ],
     'fields'        => [
-        'collapsed' => 'Domyślnie zamykaj przypięte uwagi',
+        'collapsed' => 'Domyślnie zamykaj przypięte komentarze',
         'creator'   => 'Twórca',
-        'entry'     => 'Wpis',
+        'entry'     => 'Szczegóły',
         'is_pinned' => 'Przypięta',
         'name'      => 'Nazwa',
         'position'  => 'Kolejność przypięcia',
     ],
-    'hint'          => 'Uwagi to informacje, które nie mieszczą się w zwykłych polach opisu elementu albo które powinny pozostać tajne.',
+    'hint'          => 'Komentarze to informacje, które nie mieszczą się w zwykłych polach opisu elementu albo które powinny pozostać tajne.',
     'hints'         => [
-        'is_pinned' => 'Przypięte uwagi zostają wyświetlone pod polem opisu w głównym widoku elementu. Używaj pozycji "Kolejność przypięcia" by ustalić porządek ich wyświetlania.',
+        'is_pinned' => 'Przypięte komentarze zostają wyświetlone pod polem opisu w głównym widoku elementu. Używaj pozycji "Kolejność przypięcia" by ustalić porządek ich wyświetlania.',
     ],
     'index'         => [
-        'title' => 'Uwagi elementu :name',
+        'title' => 'Komentarze do elementu :name',
     ],
     'placeholders'  => [
         'name'  => 'Nazwa uwagi, spostrzeżenia lub komentarza',
     ],
     'show'          => [
         'advanced'  => 'Uprawnienia zaawansowane',
-        'title'     => 'Uwaga elementu :entity',
+        'title'     => 'Komentarz do elementu :entity',
     ],
 ];

@@ -3,6 +3,7 @@
 return [
     'actions'           => [
         'follow'    => 'Śledź',
+        'join'      => 'Dołącz',
         'unfollow'  => 'Przestań śledzić',
     ],
     'campaigns'         => [
@@ -28,7 +29,7 @@ return [
         ],
         'default'       => [
             'text'  => 'Edytujesz podstawowy pulpit kampanii.',
-            'title' => 'Podstawowy Pulpit',
+            'title' => 'Pulpit podstawowy',
         ],
         'delete'        => [
             'success'   => 'Usunięto pulpit :name',
@@ -57,6 +58,7 @@ return [
     'description'       => 'Dowód twojej kreatywności',
     'helpers'           => [
         'follow'    => 'Śledzenie kampanii sprawi, że pojawi się w menu przełączania kampanii (lewy górny róg), pod twoimi własnymi kampaniami.',
+        'join'      => 'Kampania jest otwarta na nowych członków. Kliknij, by do niej dołączyć.',
         'setup'     => 'Skonfiguruj pulpit kampanii.',
     ],
     'latest_release'    => 'Ostatnia wersja',
@@ -78,7 +80,7 @@ return [
             'back_to_dashboard' => 'Powrót do pulpitu',
             'edit'              => 'Edytuj widżet',
         ],
-        'title'     => 'Konfiguracja Pulpitu Kampanii',
+        'title'     => 'Konfiguracja pulpitu kampanii',
         'widgets'   => [
             'calendar'      => 'Kalendarz',
             'campaign'      => 'Nagłowek kampanii',
@@ -86,7 +88,7 @@ return [
             'preview'       => 'Skrót elementu',
             'random'        => 'Losowy element',
             'recent'        => 'Ostatnio zmieniany',
-            'unmentioned'   => 'Niewspomniane elementy',
+            'unmentioned'   => 'Elementy bez wzmianki',
         ],
     ],
     'title'             => 'Pulpit',
@@ -98,7 +100,7 @@ return [
             ],
             'events_today'      => 'Dzisiaj',
             'previous_events'   => 'Poprzedni',
-            'upcoming_events'   => 'Nadchodzący',
+            'upcoming_events'   => 'Nadchodzące',
         ],
         'campaign'      => [
             'helper'    => 'Ten widżet wyświetla nagłówek kampanii. Jest zawsze widoczny na podstawowym pulpicie.',
@@ -119,7 +121,7 @@ return [
             'full'          => 'Pełny',
             'help'          => 'Pokazuj tylko ostatni zmodyfikowany element, ale publikuj cały skrót',
             'helpers'       => [
-                'entity-header' => 'Jeżeli ten element na obraz nagłówka (w doładowanej kampanii), ten widżet będzie wyświetlał nagłówek zamiast obrazu samego elementu.',
+                'entity-header' => 'Jeżeli element ma obraz w nagłówku (w doładowanej kampanii), widżet będzie wyświetlał nagłówek zamiast obrazu samego elementu.',
                 'full'          => 'Zamiast skrótu elementu domyślnie wyświetla jego cały opis.',
             ],
             'singular'      => 'Pojedynczy',
@@ -127,13 +129,13 @@ return [
             'title'         => 'Ostatnio zmieniane',
         ],
         'unmentioned'   => [
-            'title' => 'Niewspomniane elementy',
+            'title' => 'Elementy bez wzmianki',
         ],
         'update'        => [
             'success'   => 'Zmodyfikowano widżet.',
         ],
         'widths'        => [
-            '0' => 'Automatycznie',
+            '0' => 'Automatyczna',
             '12'=> 'Pełny (100%)',
             '3' => 'Malutki (25%)',
             '4' => 'Mały (33%)',

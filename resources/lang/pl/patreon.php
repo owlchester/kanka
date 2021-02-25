@@ -2,9 +2,9 @@
 
 return [
     'pledges'   => [
-        'elemental' => 'Żywiołak',
+        'elemental' => 'Elemental',
         'goblin'    => 'Goblin',
         'kobold'    => 'Kobold',
-        'owlbear'   => 'Sowodźwiedź',
+        'owlbear'   => 'Owlbear',
     ],
 ];

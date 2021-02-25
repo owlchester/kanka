@@ -34,7 +34,7 @@ return [
     'races'                 => 'Rasy',
     'search'                => 'Szukaj...',
     'tags'                  => 'Etykiety',
-    'timelines'             => 'Chronologie',
+    'timelines'             => 'Historie',
     'translations'          => 'Tłumaczenie',
     'world'                 => 'Świat',
 ];

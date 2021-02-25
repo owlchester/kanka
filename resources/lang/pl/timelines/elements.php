@@ -2,15 +2,15 @@
 
 return [
     'create'        => [
-        'success'   => 'Dodano element chronologii.',
-        'title'     => 'Nowy element chronologii',
+        'success'   => 'Dodano element historii.',
+        'title'     => 'Nowy element historii',
     ],
     'delete'        => [
         'success'   => 'Usunięto element :name.',
     ],
     'edit'          => [
         'success'   => 'Zaktualizowano element',
-        'title'     => 'Edycja elementu chronologii',
+        'title'     => 'Edycja elementu historii',
     ],
     'fields'        => [
         'date'  => 'Data',

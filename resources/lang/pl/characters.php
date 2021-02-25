@@ -2,9 +2,9 @@
 
 return [
     'actions'       => [
-        'add_appearance'    => 'Dodaj wygląd',
+        'add_appearance'    => 'Dodaj cechę wyglądu',
         'add_organisation'  => 'Dodaj organizację',
-        'add_personality'   => 'Dodaj osobowość',
+        'add_personality'   => 'Dodaj cechę osobowości',
     ],
     'conversations' => [
         'description'   => 'Konwersacje, w których uczestniczy ta postać.',
@@ -59,7 +59,7 @@ return [
             'random'    => 'Nowa losowa postać',
         ],
         'add'           => 'Nowa postać',
-        'description'   => 'Zarządzaj postaciami :name',
+        'description'   => 'Zarządzaj postaciami elementu :name',
         'header'        => 'Postaci w :name',
         'title'         => 'Postaci',
     ],
@@ -111,7 +111,7 @@ return [
         'family'            => 'Wybierz postać',
         'image'             => 'Portret',
         'location'          => 'Wybierz miejsce',
-        'name'              => 'Imię',
+        'name'              => 'Imię (i nazwisko) postaci',
         'personality_entry' => 'Szczegóły',
         'personality_name'  => 'Pragnienia, manieryzmy, obawy, więzi',
         'physical'          => 'Fizyczne',
@@ -122,12 +122,12 @@ return [
         'type'              => 'Bohater Niezależny, Postać Gracza, bóstwo',
     ],
     'quests'        => [
-        'description'   => 'Zadania, które postać wykonuje.',
+        'description'   => 'Misje, które postać wykonuje.',
         'helpers'       => [
-            'quest_giver'   => 'Zadania, które postać zleciła.',
-            'quest_member'  => 'Zadania, w których postać się pojawia.',
+            'quest_giver'   => 'Misje, które postać zleciła.',
+            'quest_member'  => 'Misje, w których postać się pojawia.',
         ],
-        'title'         => 'Zadania postaci :name',
+        'title'         => 'Misje postaci :name',
     ],
     'sections'      => [
         'appearance'    => 'Wygląd',
@@ -144,7 +144,7 @@ return [
             'map'           => 'Mapa relacji',
             'organisations' => 'Organizacje',
             'personality'   => 'Osobowość',
-            'quests'        => 'Zadania',
+            'quests'        => 'Misje',
         ],
         'title'         => 'Postać :name',
     ],

@@ -2,7 +2,7 @@
 
 return [
     'actions'   => [
-        'add'   => 'Dodaj ilustrację domyślną',
+        'add'   => 'Dodaj domyślną ikonę',
     ],
     'create'    => [
         'error'     => 'Błąd zapisu ilustracji domyślnej. Czy :type posiada już ilustrację?',
@@ -12,7 +12,7 @@ return [
     'destroy'   => [
         'success'   => 'Usunięto domyślną ilustrację dla elementu :type.',
     ],
-    'helper'    => 'Ustaw domyślne ilustracje dla typów elementów swoje kampanii. Pojawią się one na różnych listach, ale nie w poszczególnych wpisach.',
+    'helper'    => 'Ustaw domyślne ikony dla typów elementów kampanii. Pojawią się one na różnych listach, ale nie w poszczególnych wpisach.',
     'index'     => [
         'title' => 'Domyślne ilustracje elementów',
     ],
