@@ -165,7 +165,7 @@
 
                         <div class="row text-center">
                         @foreach (\Illuminate\Support\Arr::get($patrons, 'Elemental', []) as $user)
-                            <div class="col-md-4 col-6">{{ $user->name }}</div>
+                            <div class="col-lg-3 col-md-4 col-6">{{ $user }}</div>
                         @endforeach
                         </div>
                     </div>
@@ -177,7 +177,7 @@
 
                         <div class="row text-center">
                         @foreach (\Illuminate\Support\Arr::get($patrons, 'Wyvern', []) as $user)
-                            <div class="col-md-4 col-6">{{ $user->name }}</div>
+                            <div class="col-lg-3 col-md-4 col-6">{{ $user }}</div>
                         @endforeach
                         </div>
                     </div>
@@ -189,7 +189,7 @@
 
                         <div class="row text-center">
                             @foreach (\Illuminate\Support\Arr::get($patrons, 'Owlbear', []) as $user)
-                                <div class="col-md-4 col-6 ">{{ $user->name }}</div>
+                                <div class="col-lg-3 col-md-4 col-6 ">{{ $user }}</div>
                             @endforeach
                         </div>
                     </div>
@@ -201,7 +201,7 @@
 
                         <div class="row text-center">
                             @foreach (\Illuminate\Support\Arr::get($patrons, 'Goblin', []) as $user)
-                                <div class="col-md-4 col-6">{{ $user->name }}</div>
+                                <div class="col-lg-3 col-md-4 col-6">{{ $user }}</div>
                             @endforeach
                         </div>
                     </div>
