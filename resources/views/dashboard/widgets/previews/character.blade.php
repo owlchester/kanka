@@ -8,7 +8,20 @@
 $model = $entity->child;
 ?>
 <div class="panel panel-default widget-preview" id="dashboard-widget-{{ $widget->id }}">
-    <div class="panel-heading @if ($widget->conf('entity-header') && $campaign->boosted() && $entity->header_image) panel-heading-entity" style="background-image: url({{ $entity->getImageUrl(0, 0, 'header_image') }}) @elseif($entity->child->image) panel-heading-entity" style="background-image: url({{ $entity->child->getImageUrl() }}) @endif">
+    <div
+    @if ($widget->conf('entity-header') && $campaign->boosted() && $entity->header_image)
+        class="panel-heading panel-heading-entity"
+        style="background-image: url({{ $entity->getImageUrl(1200, 400, 'header_image') }})"
+    @elseif ($entity->child->image)
+        class="panel-heading panel-heading-entity"
+        style="background-image: url({{ $entity->child->getImageUrl() }})"
+    @elseif($campaign->boosted(true) && !empty($entity->image))
+        class="panel-heading panel-heading-entity"
+        style="background-image: url({{ Img::crop(1200, 400)->url($entity->image->path) }})"
+    @else
+        class="panel-heading"
+    @endif
+    >
         <h3 class="panel-title">
             <a href="{{ $entity->child->getLink() }}">
                 @if ($entity->child->is_private)
