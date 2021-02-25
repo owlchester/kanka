@@ -28,6 +28,11 @@ return [
      */
     'fb' => env('TRACKING_FB', null),
 
+    /*
+     * Reddit tracking pixel on homepage for reddit ads
+     * If empty, tracking will be disabled
+     */
+    'reddit' => env('TRACKING_REDDIT', null),
 
     /*
      * AdSense ID
