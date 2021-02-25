@@ -41,7 +41,21 @@ class DashboardController extends Controller
         $dashboards = Dashboard::getDashboards();
 
         $widgets = CampaignDashboardWidget::onDashboard($dashboard)->positioned()->get();
+
+        // Prepare unread releases
         $releases = PostCache::latest();
+        if (!auth()->check() || \App\Facades\Identity::isImpersonating()) {
+            $releases = [];
+        } else {
+            $unreadReleases = [];
+
+            foreach ($releases as $release) {
+                if (!$release->alreadyRead()) {
+                    $unreadReleases[] = $release;
+                }
+            }
+            $releases = $unreadReleases;
+        }
 
         return view('home', compact(
             'campaign',
