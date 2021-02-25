@@ -51,12 +51,10 @@ img.profile-user-img {
   font-size: 1.2em;
   color: white;
   text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
-  -webkit-filter: grayscale(60%);
   filter: grayscale(60%);
 }
 
 .navbar-nav .campaign-menu a.campaign-selector:hover {
-  -webkit-filter: grayscale(0%);
   filter: grayscale(0%);
 }
 
@@ -1280,7 +1278,6 @@ summary {
   }
 
   .navbar-nav .campaign-menu a.campaign-selector {
-    -webkit-filter: unset;
     filter: unset;
   }
 
@@ -1696,8 +1693,7 @@ summary {
 :root .ra-rotate-270,
 :root .ra-flip-horizontal,
 :root .ra-flip-vertical {
-  -webkit-filter: none;
-          filter: none;
+  filter: none;
 }
 
 .ra-stack {

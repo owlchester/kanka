@@ -48,6 +48,11 @@ class MapLayerController extends Controller
     {
         $this->authorize('update', $map);
 
+        // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
         $model = new MapLayer();
         $data = $request->only('name', 'position', 'entry', 'visibility', 'type_id');
         $data['map_id'] = $map->id;
@@ -88,6 +93,11 @@ class MapLayerController extends Controller
     public function update(StoreMapLayer $request, Map $map, MapLayer $mapLayer)
     {
         $this->authorize('update', $map);
+
+        // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $mapLayer->update($request->only('name', 'position', 'entry', 'visibility', 'type_id'));
 

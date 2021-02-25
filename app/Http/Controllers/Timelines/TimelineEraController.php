@@ -56,6 +56,11 @@ class TimelineEraController extends Controller
     {
         $this->authorize('update', $timeline);
 
+        // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
         $model = new TimelineEra();
         $data = $request->only($this->fields);
         $data['timeline_id'] = $timeline->id;
@@ -98,6 +103,11 @@ class TimelineEraController extends Controller
     {
         $this->authorize('update', $timeline);
 
+        // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
         $timelineEra->update($request->only($this->fields));
 
         if (request()->post('from') == 'view') {
@@ -109,7 +119,6 @@ class TimelineEraController extends Controller
         return redirect()
             ->route('timelines.edit', [$timeline, '#tab_form-eras'])
             ->withSuccess(__('timelines/eras.edit.success', ['name' => $timelineEra->name]));
-
     }
 
     /**
@@ -136,7 +145,12 @@ class TimelineEraController extends Controller
             ->withSuccess(__('timelines/eras.delete.success', ['name' => $timelineEra->name]));
     }
 
-
+    /**
+     * @param Timeline $timeline
+     * @param TimelineEra $timelineEra
+     * @return mixed
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function reorder(Timeline $timeline, TimelineEra $timelineEra)
     {
         $this->authorize('update', $timelineEra->timeline);
@@ -145,6 +159,5 @@ class TimelineEraController extends Controller
         return redirect()
             ->route('timelines.show', [$timeline, '#era-' . $timelineEra->id])
             ->withSuccess(__('timelines/eras.reorder.success', ['era' => $timelineEra->name]));
-
     }
 }
