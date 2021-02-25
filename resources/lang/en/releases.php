@@ -12,4 +12,10 @@ return [
         'return'    => 'Back to releases',
         'title'     => 'Release :name',
     ],
+    'categories' => [
+        'release' => 'Release',
+        'event' => 'Event',
+        'vote' => 'Community vote',
+        'other' => 'Other',
+    ]
 ];

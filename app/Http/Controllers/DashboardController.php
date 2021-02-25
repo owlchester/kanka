@@ -41,12 +41,12 @@ class DashboardController extends Controller
         $dashboards = Dashboard::getDashboards();
 
         $widgets = CampaignDashboardWidget::onDashboard($dashboard)->positioned()->get();
-        $release = PostCache::latest();
+        $releases = PostCache::latest();
 
         return view('home', compact(
             'campaign',
             'settings',
-            'release',
+            'releases',
             'widgets',
             'dashboard',
             'dashboards'

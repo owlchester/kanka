@@ -15,6 +15,7 @@ use App\Models\Scopes\UserScope;
 use App\Models\UserSetting;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Laravel\Cashier\Billable;
 use Laravel\Passport\HasApiTokens;
 
@@ -36,6 +37,7 @@ use Laravel\Passport\HasApiTokens;
  * @property string $patreon_pledge
  * @property int $booster_count
  * @property int $referral_id
+ * @property Collection $settings
  *
  * Virtual
  * @property bool $advancedMentions
@@ -107,6 +109,14 @@ class User extends \TCG\Voyager\Models\User
      */
     protected $dates = [
         'last_login_at',
+    ];
+
+    /**
+     * Casted variables
+     * @var string[]
+     */
+    protected $casts = [
+        'settings' => 'array'
     ];
 
     /**

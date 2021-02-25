@@ -9,17 +9,18 @@ use App\Models\AppRelease;
 class PostCacheService extends BaseCache
 {
     /**
-     * @return mixed
+     * @return Collection
      */
     public function latest()
     {
-        $key = 'post_latest';
+        $key = 'latest_releases';
         if ($this->has($key)) {
             return $this->get($key);
         }
 
         $data = AppRelease::orderBy('published_at', 'DESC')
-            ->first();
+            ->groupBy('category_id')
+            ->get();
 
         $this->forever($key, $data);
         return $data;

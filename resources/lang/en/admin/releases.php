@@ -17,9 +17,13 @@ return [
         'success' => 'Release updated.',
     ],
     'fields' => [
+        'category' => 'Category',
         'name' => 'Name',
         'excerpt' => 'Excerpt',
         'link' => 'Link',
         'published_at' => 'Published at',
-    ]
+    ],
+    'placeholders' => [
+        ''
+    ],
 ];
