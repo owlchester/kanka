@@ -21,6 +21,12 @@ class ImageService
      */
     public static function handle(Model $model, string $folder = '', $thumbSize = 60, $field = 'image')
     {
+        // A user can create entities and tags dynamically when creating or updating another entity, so make sure
+        // the loop is only called when sending the data for this specific entity type
+        if ($model->saveImageObserver === false) {
+            return;
+        }
+
         // Remove the old image
         if (request()->post('remove-' . $field) == '1') {
             self::cleanup($model, $field);

@@ -79,16 +79,18 @@ class EntityObserver
             if (!empty($existing[$id])) {
                 unset($existing[$id]);
             } else {
-                $section = Tag::find($id);
+                $tag = Tag::find($id);
                 // Create the tag if the user has permission to do so
-                if (empty($section) && $canCreateTags) {
-                    $section = Tag::create([
+                if (empty($tag) && $canCreateTags) {
+                    $tag = new Tag([
                         'name' => $id
                     ]);
+                    $tag->saveImageObserver = false;
+                    $tag->save();
                 }
 
-                if (!empty($section)) {
-                    $new[] = $section->id;
+                if (!empty($tag)) {
+                    $new[] = $tag->id;
                 }
             }
         }

@@ -80,25 +80,22 @@ abstract class MiscModel extends Model
     public $saveObserver = true;
 
     /**
-     * Eloquence trait for easy search
+     * @var bool Define to false to skip the Image upload handling
      */
-    //use Eloquence;
+    public $saveImageObserver = true;
 
     /**
-     * Entity type
-     * @var
+     * @var string Entity type
      */
     protected $entityType;
 
     /**
-     * Entity image path
-     * @var
+     * @var string Entity image path
      */
     public $entityImagePath;
 
     /**
-     * Filterable fields
-     * @var array
+     * @var array Filterable fields
      */
     protected $filterableColumns = [];
 
