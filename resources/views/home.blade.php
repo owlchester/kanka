@@ -122,9 +122,7 @@
     <div class="row">
     @foreach ($widgets as $widget)
         @if($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_CAMPAIGN)
-            <div class="col-md-{{ $widget->colSize() }}">
-                @include('dashboard.widgets._campaign')
-            </div>
+            @include('dashboard.widgets._campaign')
             @continue;
         @endif
         <?php if (!in_array($widget->widget, \App\Models\CampaignDashboardWidget::WIDGET_VISIBLE) && (empty($widget->entity) || !EntityPermission::canView($widget->entity))):

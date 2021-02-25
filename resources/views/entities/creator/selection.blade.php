@@ -116,12 +116,14 @@
                     </div>
                 @endif
 
+                @can('create', \App\Models\Tag::class)
                 <div class="col-md-4 col-sm-6 col-xs-4">
                     <a href="#" data-toggle="entity-creator" data-url="{{ route('entity-creator.form', ['type' => 'tags']) }}">
                         <i class="fa fa-tags fa-2x"></i>
                         {{ __('entities.tag') }}
                     </a>
                 </div>
+                @endcan
             </div>
         </div>
     </div>
