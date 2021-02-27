@@ -7,4 +7,5 @@ return [
     'worldbuilding' => [
         'title' => 'Worldbuilders',
     ],
+    'other_features' => 'Other features',
 ];
