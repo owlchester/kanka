@@ -8,8 +8,8 @@
 <tr>
     <td>{{ __('tiers.features.map_size', ['size' => '3 MB']) }}</td>
     <td>{{ __('tiers.features.map_size', ['size' => '10 MB']) }}</td>
-    <td>{{ __('tiers.features.map_size', ['size' => '25 MB']) }}</td>
-    <td>{{ __('tiers.features.map_size', ['size' => '15 MB']) }}</td>
+    <td>{{ __('tiers.features.map_size', ['size' => '20 MB']) }}</td>
+    <td>{{ __('tiers.features.map_size', ['size' => '50 MB']) }}</td>
 </tr>
 <tr>
     <td>{{ __('tiers.features.pagination', ['amount' => 45]) }}</td>

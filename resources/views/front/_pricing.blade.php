@@ -53,7 +53,7 @@
                         </a>
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.pricing.benefits.higher_uploads') }} (8mb)
+                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.pricing.benefits.big_maps', ['size' => '10 MB']) }}
                     </li>
                     <li>
                         <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.monthly_vote') }}
@@ -95,7 +95,7 @@
                         </a>
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.pricing.benefits.higher_uploads') }} (15mb)
+                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.pricing.benefits.bigger_maps', ['size' => '20 MB']) }}
                     </li>
                     <li>
                         <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.monthly_vote') }}
@@ -136,7 +136,7 @@
                         </a>
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.pricing.benefits.huge_uploads') }} (25mb)
+                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.pricing.benefits.huge_maps', ['size' => '50 MB']) }}
                     </li>
                     <li>
                         <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.monthly_vote') }}

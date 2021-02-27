@@ -29,8 +29,8 @@
                 <td class="text">{{ __('front.features.patreon.upload_limit_map') }}</td>
                 <td>3 MB</td>
                 <td>10 MB</td>
-                <td>15 MB</td>
-                <td>25 MB</td>
+                <td>20 MB</td>
+                <td>50 MB</td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.patreon.users_roles') }}</td>

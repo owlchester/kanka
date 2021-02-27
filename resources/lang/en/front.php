@@ -274,9 +274,11 @@ return [
             'support'   => 'Support',
         ],
         'benefits'      => [
+            'big_maps'          => 'Big map size (:size)',
+            'bigger_maps'       => 'Bigger map size (:size)',
             'boosters'          => 'Campaign Boosters',
             'core'              => 'Access to all core features',
-            'higher_uploads'    => 'Higher file upload sizes',
+            'huge_maps'         => 'Huge map size (:size)',
             'huge_uploads'      => 'Huge file upload sizes',
             'no_boosters'       => 'No Campaign Boosters',
             'unlimited'         => 'Unlimited campaigns & uploads',

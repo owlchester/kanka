@@ -13,7 +13,7 @@
         </div>
         <div class="row">
             <div class="col-xs-9 col-sm-8">{{ __('front.features.patreon.upload_limit_map') }}</div>
-            <div class="col-xs-3 col-sm-4">25 mb</div>
+            <div class="col-xs-3 col-sm-4">50 mb</div>
         </div>
         <div class="row">
             <div class="col-xs-9 col-sm-8">{{ __('front.features.patreon.discord') }}</div>

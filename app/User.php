@@ -229,6 +229,9 @@ class User extends \TCG\Voyager\Models\User
                 }
                 return $readable ? '25MB' : 25600;
             } elseif ($this->isWyvern()) {
+                if ($what == 'map') {
+                    return $readable ? '20mb' : 20480;
+                }
                 return $readable ? '15MB' : 15360;
             } elseif ($what == 'map') {
                 return $readable ? '10MB' : 10240;
