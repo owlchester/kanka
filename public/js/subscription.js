@@ -100,6 +100,7 @@ var formSubmit = false;
 $(document).ready(function () {
   initStripe();
   $('#subscribe-confirm').on('shown.bs.modal', function () {
+    console.log('loaded sub confirm modal');
     initConfirmListener();
   });
 }); // Initialize the stripe API
@@ -187,6 +188,7 @@ function initConfirmListener() {
     }.bind(this));
   });
   $('.subscription-form').submit(function (e) {
+    console.log('submit form');
     var button = $('.subscription-confirm-button');
     button.addClass('disabled').html('<i class="fa fa-spin fa-spinner"></i>');
     return true;

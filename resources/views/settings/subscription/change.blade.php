@@ -142,7 +142,7 @@
                 </div>
             </div>
     @else
-        {!! Form::open(['route' => ['settings.subscription.subscribe'], 'method' => 'POST', 'id' => 'subscription-confirm']) !!}
+        {!! Form::open(['route' => ['settings.subscription.subscribe'], 'method' => 'POST', 'id' => 'cancellation-confirm', 'class' => 'subscription-form']) !!}
 
         <p class="help-block">
             {!! __('settings.subscription.cancel.text')!!}
@@ -167,11 +167,11 @@
             </button>
         </div>
 
-
         <input type="hidden" name="tier" value="{{ $tier }}" />
         <input type="hidden" name="period" value="{{ $period }}" />
         <input type="hidden" name="payment_id" value="{{ $card ? $card->id : null }}" />
         <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />
+        <input type="hidden" name="is_downgrade" value="true" />
         {!! Form::close() !!}
     @endif
     </div>
