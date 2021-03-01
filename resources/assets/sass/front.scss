@@ -52,9 +52,10 @@ header.reduced-masthead {
   min-height: 325px;
   height: unset;
   padding-bottom: 20px;
-  padding-top: 60px;
+  padding-top: 20px;
   .header-content {
     margin-top: 40px;
+    max-width: unset;
   }
 }
 .bg-primary {
@@ -223,94 +224,101 @@ footer {
   padding-bottom: 30px;
   text-align: left;
   background-color: $KankaDarkBlue;
+  color: #ccc;
 
   ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    margin-bottom: 20px;
+
     li {
       padding: 0;
       display: block;
       margin: 2px 0;
+
       a {
-        padding: 5px 2px;
         font-size: 14px !important;
         width: 100%;
         color: rgba(255, 255, 255, 0.6);
+
+        &:hover {
+          transition: all 0.2s ease;
+          text-decoration: none;
+          color: #c09853;
+        }
       }
     }
   }
+
   .kanka-logo {
     font-size: 14px;
     font-weight: 700;
     color: #ddd;
-     a {
-       padding: 5px;
-       display: inline-block;
-     }
-  }
-  .section, .card-title {
-    margin: 0;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-    font-size: 18px;
-    color: #ccc;
-  }
 
-  a, span {
-    border-radius: 4px;
-    letter-spacing: 1.1px;
-
-    &:hover {
-      transition: all 0.2s ease;
-      background: rgba(255, 255, 255, 0.4);
-      text-decoration: none;
-      letter-spacing: 1.5px;
+    a {
+      padding: 5px;
+      display: inline-block;
     }
   }
 
-  .footer-social {
+  a {
+    display: inline-block;
+    border-radius: 4px;
+    letter-spacing: 1.1px;
+    color: #ccc;
+    font-size: 1rem;
+  }
+
+  .footer-socials {
+    line-height: 1.8em;
+    color: rgba(255,255,255,0.8);
+    padding: 1.5rem 0px 1.5rem;
     text-align: center;
-    a {
-      font-size: 28px !important;
-      margin: 0 3px;
-      color: #ccc;
-      &:hover {
-        background: none;
-        color: #c09853;
+
+    .email, .socials {
+      display: inline;
+      font-size: 18px;
+
+      a {
+        font-size: 1.4rem;
+        margin-right: 8px;
       }
     }
 
     .email {
-      margin-bottom: 20px;
-      border-radius: 4px;
-      padding: 15px 25px;
-      font-size: 18px;
-      &:hover {
-        transition: all 0.2s ease;
-        background: rgba(255, 255, 255, 0.4);
-        text-decoration: none;
-        display: block;
-      }
+      margin-right: 20px;
     }
   }
 
-  .copyright {
+  .footer-copyright {
     font-size: 12px;
     color: rgba(255, 255, 255, 0.5);
   }
 
-  .secondary-footer {
-    margin-top: 25px;
+  .footer-links {
 
-    ul {
-      li {
-        display: inline-block;
-        a {
-          font-size: 12px !important;
-        }
+    .section {
+      height: 60px;
+      position: relative;
+      margin: 0;
+      text-transform: uppercase;
+      font-size: 18px;
+
+      .section-title {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
       }
+    }
+    ul > li {
+      margin: 0;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      font-weight: 400;
+      font-size: 0.875rem;
+      line-height: 1.3;
     }
   }
 }

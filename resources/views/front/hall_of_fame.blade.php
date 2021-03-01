@@ -13,7 +13,7 @@
     <header class="masthead reduced-masthead" id="hall-of-fame">
         <div class="container h-100">
             <div class="row h-100">
-                <div class="col-lg-7 my-auto">
+                <div class="col-lg-9 my-auto">
                     <div class="header-content mx-auto">
                         <h1 class="mb-5">{{ __('front/hall-of-fame.title') }}</h1>
                         <p class="mb-5">{!! __('front/hall-of-fame.description', [

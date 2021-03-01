@@ -13,7 +13,7 @@
     <header class="masthead reduced-masthead" id="about">
         <div class="container h-100">
             <div class="row h-100">
-                <div class="col-lg-7 my-auto">
+                <div class="col-lg-9 my-auto">
                     <div class="header-content mx-auto">
                         <h1 class="mb-5">{{ __('front.about.title') }}</h1>
                         <p class="mb-5">{{ __('front.about.description') }}</p>
@@ -137,10 +137,10 @@
                         </p>
                         <p>
                             <strong>{{ __('languages.codes.tr') }}</strong>: Lxran
-                        </p>
-                        <p>
-                            <strong>{{ __('languages.codes.pl') }}</strong>: Xazaks
                         </p>--}}
+                        <p>
+                            <strong>{{ __('languages.codes.pl') }}</strong>: <a href="{{ route('front.partners') }}">Gramel Books</a>
+                        </p>
                         <p>
                             <strong>{{ __('languages.codes.fr') }}</strong>: Ilestis
                         </p>

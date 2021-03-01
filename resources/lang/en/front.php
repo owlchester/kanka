@@ -201,11 +201,10 @@ return [
     ],
     'footer'        => [
         'app'       => 'App',
-        'copyright' => '&copy; 2017 - :current kanka.io. All Rights Reserved.',
+        'copyright' => 'Copyright :copy :year Owlchester SNC',
         'headings'  => [
-            'app'           => 'App',
             'community'     => 'Community',
-            'friends'       => 'Our Friends',
+            'other'         => 'Other',
             'useful_links'  => 'Useful Links',
         ],
         'navigation'=> 'Navigation',
@@ -256,6 +255,7 @@ return [
         'media'         => 'Media',
         'news'          => 'News',
         'newsletter'    => 'Newsletter',
+        'other'         => 'Other',
         'pricing'       => 'Pricing',
         'privacy'       => 'Privacy Policy',
         'register'      => 'Register',

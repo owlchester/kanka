@@ -157,7 +157,7 @@
         <ul class="navbar-buttons ml-auto d-none d-lg-flex">
             @auth
                 <li>
-                    <a href="{{ route('home') }}" class="btn btn-outline-light">
+                    <a href="{{ route('home') }}" class="btn btn-default text-white">
                         {{ __('front.menu.dashboard') }}
                     </a>
                 </li>

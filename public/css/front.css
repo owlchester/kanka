@@ -48,11 +48,12 @@ header.reduced-masthead {
   min-height: 325px;
   height: unset;
   padding-bottom: 20px;
-  padding-top: 60px;
+  padding-top: 20px;
 }
 
 header.reduced-masthead .header-content {
   margin-top: 40px;
+  max-width: unset;
 }
 
 .bg-primary {
@@ -232,13 +233,13 @@ footer {
   padding-bottom: 30px;
   text-align: left;
   background-color: #08083c;
+  color: #ccc;
 }
 
 footer ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  margin-bottom: 20px;
 }
 
 footer ul li {
@@ -248,10 +249,15 @@ footer ul li {
 }
 
 footer ul li a {
-  padding: 5px 2px;
   font-size: 14px !important;
   width: 100%;
   color: rgba(255, 255, 255, 0.6);
+}
+
+footer ul li a:hover {
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: #c09853;
 }
 
 footer .kanka-logo {
@@ -265,73 +271,64 @@ footer .kanka-logo a {
   display: inline-block;
 }
 
-footer .section,
-footer .card-title {
-  margin: 0;
-  margin-bottom: 8px;
-  text-transform: uppercase;
-  font-size: 18px;
-  color: #ccc;
-}
-
-footer a,
-footer span {
+footer a {
+  display: inline-block;
   border-radius: 4px;
   letter-spacing: 1.1px;
+  color: #ccc;
+  font-size: 1rem;
 }
 
-footer a:hover,
-footer span:hover {
-  transition: all 0.2s ease;
-  background: rgba(255, 255, 255, 0.4);
-  text-decoration: none;
-  letter-spacing: 1.5px;
-}
-
-footer .footer-social {
+footer .footer-socials {
+  line-height: 1.8em;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 1.5rem 0px 1.5rem;
   text-align: center;
 }
 
-footer .footer-social a {
-  font-size: 28px !important;
-  margin: 0 3px;
-  color: #ccc;
-}
-
-footer .footer-social a:hover {
-  background: none;
-  color: #c09853;
-}
-
-footer .footer-social .email {
-  margin-bottom: 20px;
-  border-radius: 4px;
-  padding: 15px 25px;
+footer .footer-socials .email,
+footer .footer-socials .socials {
+  display: inline;
   font-size: 18px;
 }
 
-footer .footer-social .email:hover {
-  transition: all 0.2s ease;
-  background: rgba(255, 255, 255, 0.4);
-  text-decoration: none;
-  display: block;
+footer .footer-socials .email a,
+footer .footer-socials .socials a {
+  font-size: 1.4rem;
+  margin-right: 8px;
 }
 
-footer .copyright {
+footer .footer-socials .email {
+  margin-right: 20px;
+}
+
+footer .footer-copyright {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.5);
 }
 
-footer .secondary-footer {
-  margin-top: 25px;
+footer .footer-links .section {
+  height: 60px;
+  position: relative;
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 18px;
 }
 
-footer .secondary-footer ul li {
-  display: inline-block;
+footer .footer-links .section .section-title {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-footer .secondary-footer ul li a {
-  font-size: 12px !important;
+footer .footer-links ul > li {
+  margin: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.3;
 }
 
 .campaign-container {

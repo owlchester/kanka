@@ -217,10 +217,10 @@
 
         <div class="table-responsive">
             <table class="table">
-                <thead class="d-none d-sm-block">
+                <thead class="">
                 <tr>
                     <th></th>
-                    <th>{{ __('front.features.superboosts.boosted') }}</span></th>
+                    <th>{{ __('front.features.superboosts.boosted') }}</th>
                 </tr>
                 </thead>
                 <tbody>
