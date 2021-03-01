@@ -110,7 +110,7 @@
             <div class="col-12 text-center">
 
                 <p class="copyright">
-                    Kanka v{{ config('app.version') }} - {!! __('footer.copyright', ['year' => date('Y')]) !!} - {{ __('footer.server_time', ['time' => \Carbon\Carbon::now()->isoFormat('MMMM Do YYYY, h:mm a')]) }}
+                    Kanka v{{ config('app.version') }} - &copy; Owlchester SNC {{ date('Y') }} - {{ __('footer.server_time', ['time' => \Carbon\Carbon::now()->isoFormat('MMMM Do YYYY, h:mm a')]) }}
                 </p>
             </div>
 

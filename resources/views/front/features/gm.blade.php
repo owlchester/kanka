@@ -24,30 +24,30 @@
                     <div class="container-fluid">
                         <div class="row">
 
-                            <div class="col-lg-4">
+                            <div class="col-lg-4 col-6">
                                 @include('front.features._permissions')
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-4 col-6">
                                 @include('front.features._calendars')
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-4 col-6">
                                 @include('front.features._secrets')
                             </div>
 
-                            <div class="col-lg-4">
+                            <div class="col-lg-4 col-6">
                                 @include('front.features._entities')
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-4 col-6">
                                 @include('front.features._quests')
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-4 col-6">
                                 @include('front.features._abilities')
                             </div>
 
-                            <div class="col-lg-4 offset-lg-2">
+                            <div class="col-lg-4 col-6 offset-lg-2">
                                 @include('front.features._audio')
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-4 col-6">
                                 @include('front.features._api')
                             </div>
                         </div>

@@ -59,9 +59,13 @@ header.reduced-masthead .header-content {
   background: linear-gradient(#FFFFFF, #EDEDED) !important;
 }
 
-#mainNav {
-  top: 34px;
-  box-shadow: 0 7px 6px rgba(50, 50, 93, 0.21);
+#mainNav .container {
+  max-width: unset;
+}
+
+#mainNav .navbar-nav > li > a {
+  font-size: 1rem;
+  text-transform: unset;
 }
 
 #mainNav .navbar-brand {
@@ -77,6 +81,29 @@ header.reduced-masthead .header-content {
 #mainNav .nav-link:hover {
   transition: all 0.2s ease-in-out;
   text-decoration: underline;
+}
+
+#mainNav .navbar-buttons {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  margin-left: auto;
+  display: flex;
+}
+
+#mainNav .navbar-buttons li {
+  flex: 0 0 auto;
+  position: relative;
+}
+
+#mainNav .navbar-buttons li a {
+  flex-grow: 0;
+  min-width: 7.7em;
+}
+
+#mainNav .btn {
+  text-transform: unset;
 }
 
 .topbar {
@@ -126,6 +153,7 @@ h6,
   font-family: Catamaran, Helvetica, Arial, sans-serif !important;
   font-weight: 200;
   letter-spacing: 1px;
+  word-break: break-word;
 }
 
 section.contact-us p {
@@ -162,6 +190,40 @@ hr {
   #mainNav {
     border-color: transparent;
     background-color: #08083c;
+  }
+
+  #mainNav .navbar-nav > li > a {
+    padding: 1.5em 1em;
+  }
+
+  #mainNav .navbar-buttons li:first-of-type {
+    margin-right: 0.5em;
+  }
+
+  #mainNav .navbar-buttons li a {
+    flex-grow: 0;
+    min-width: 7.7em;
+  }
+
+  #mainNav .dropdown-menu {
+    margin-top: -0.5rem;
+    background-color: #08083c;
+    box-shadow: 0 7px 6px rgba(50, 50, 93, 0.21);
+    border: 1px solid #2828A1;
+    border-radius: 5px;
+  }
+
+  #mainNav .dropdown-menu .dropdown-divider {
+    border-top: 1px solid #2828A1;
+    color: black;
+  }
+
+  #mainNav .dropdown-menu .dropdown-item {
+    color: white;
+  }
+
+  #mainNav .dropdown-menu .dropdown-item:hover {
+    background-color: #2828A1;
   }
 }
 
@@ -507,10 +569,6 @@ ul.pagination li span {
   font-weight: bold;
 }
 
-.pricing .card-body ul {
-  min-height: 350px;
-}
-
 .pricing .card-price {
   font-size: 3rem;
   margin: 0;
@@ -605,6 +663,12 @@ section.features .feature-item i {
 
   .pricing .card:hover .btn {
     opacity: 1;
+  }
+}
+
+@media (min-width: 768px) {
+  .pricing .card-body ul {
+    min-height: 350px;
   }
 }
 

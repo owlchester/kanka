@@ -19,7 +19,7 @@ $(document).ready(function(e) {
     }
 
 
-    $('[data-toggle="dropdown"]').on('click', function(e) {
+    /*$('[data-toggle="dropdown"]').on('click', function(e) {
         e.preventDefault();
         let sub = $(this).next('.dropdown-menu');
         if (sub.hasClass('show')) {
@@ -27,7 +27,7 @@ $(document).ready(function(e) {
         } else {
             sub.addClass('show');
         }
-    })
+    })*/
 });
 
 

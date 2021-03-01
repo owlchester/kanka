@@ -61,8 +61,13 @@ header.reduced-masthead {
   background: linear-gradient(#FFFFFF, $KankaGrey) !important;
 }
 #mainNav {
-  top: 34px;
-  box-shadow: 0 7px 6px rgba(50, 50, 93, 0.21);
+  .container {
+    max-width: unset;
+  }
+  .navbar-nav>li>a {
+    font-size: 1rem;
+    text-transform: unset;
+  }
   .navbar-brand {
     color: #73a6c0 !important;
     font-family: Catamaran,Helvetica,Arial,sans-serif !important;
@@ -74,6 +79,27 @@ header.reduced-masthead {
   .nav-active, .nav-link:hover {
     transition: all 0.2s ease-in-out;
     text-decoration: underline;
+  }
+
+  .navbar-buttons {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    margin-left: auto;
+    display: flex;
+    li {
+      flex: 0 0 auto;
+      position: relative;
+
+      a {
+        flex-grow: 0;
+        min-width: 7.7em;
+      }
+    }
+  }
+  .btn {
+    text-transform: unset;
   }
 }
 
@@ -116,6 +142,7 @@ h1, h2, h3, h4, h5, h6, .card-title, .card-price {
   font-family: Catamaran,Helvetica,Arial,sans-serif !important;
   font-weight: 200;
   letter-spacing: 1px;
+  word-break: break-word;
 }
 
 section.contact-us {
@@ -150,6 +177,44 @@ hr {
   #mainNav {
     border-color: transparent;
     background-color: $KankaDarkBlue;
+
+
+    .navbar-nav>li>a {
+      padding: 1.5em 1em;
+    }
+
+    .navbar-buttons {
+      li {
+        &:first-of-type {
+          margin-right: 0.5em;
+        }
+        a {
+          flex-grow: 0;
+          min-width: 7.7em;
+        }
+      }
+    }
+
+    .dropdown-menu {
+      margin-top: -0.5rem;
+      background-color: $KankaDarkBlue;
+      box-shadow: 0 7px 6px rgba(50, 50, 93, 0.21);
+      border: 1px solid $KankaBlue;
+      border-radius: 5px;
+
+      .dropdown-divider {
+        border-top: 1px solid $KankaBlue;
+        color: black;
+      }
+
+      .dropdown-item {
+        color: white;
+
+        &:hover {
+          background-color: $KankaBlue;
+        }
+      }
+    }
   }
 }
 
@@ -486,12 +551,6 @@ ul.pagination {
     letter-spacing: .1rem;
     font-weight: bold;
   }
-
-  .card-body {
-    ul {
-      min-height: 350px;
-    }
-  }
   .card-price {
     font-size: 3rem;
     margin: 0;
@@ -587,6 +646,16 @@ section.features .feature-item i {
   }
   .pricing .card:hover .btn {
     opacity: 1;
+  }
+}
+
+@media(min-width: 768px) {
+  .pricing {
+    .card-body {
+      ul {
+        min-height: 350px;
+      }
+    }
   }
 }
 

@@ -55,6 +55,8 @@
 
             <h1 class="mb-5">{{ __('front/features.other_features') }}</h1>
 
+            @include('front.features._buttons')
+
             <div class="row">
                 <div class="col-lg-4">
                     @include('front.features._secrets')
