@@ -155,7 +155,7 @@
             <div class="section-body">
                 <h1>{{ __('front/hall-of-fame.title') }}</h1>
                 <p class="text-muted">{!! __('front/hall-of-fame.moved', [
-    'here' => link_to_route('front.hall-of-fame', __('front.hall-of-fame.here'))
+    'own_page' => link_to_route('front.hall-of-fame', __('front/hall-of-fame.own_page'))
 ]) !!}
                 </p>
             </div>
