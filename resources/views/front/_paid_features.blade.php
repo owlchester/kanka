@@ -7,6 +7,7 @@
             </div>
         </div>
 
+        <div class="table-responsive">
         <table class="table">
             <thead>
             <tr>
@@ -61,7 +62,7 @@
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
-                <td class="text">{!! __('front.features.patreon.hall_of_fame', ['link' => link_to_route('front.about', __('teams.hall_of_fame'), ['#patreon'])]) !!}</td>
+                <td class="text">{!! __('front.features.patreon.hall_of_fame', ['link' => link_to_route('front.hall-of-fame', __('front/hall-of-fame.title'))]) !!}</td>
                 <td></td>
                 <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
@@ -118,11 +119,11 @@
             </tr>
             </tbody>
         </table>
-
+        </div>
     </div>
 </section>
 
-<section class="minimal-padding" id="boost">
+<section class="minimal-padding" id="boost" style="display: none">
     <div class="container">
         <div class="col-lg-12 my-auto">
             <div class="header-content mx-auto">
@@ -131,6 +132,7 @@
             </div>
         </div>
 
+        <div class="table-responsive">
         <table class="table">
             <thead>
             <tr>
@@ -194,11 +196,11 @@
             </tbody>
         </table>
 
-
         <div class="col-lg-6 my-auto">
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" src="" data-src="https://www.youtube.com/embed/eSyHGSq4SbE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
+        </div>
         </div>
     </div>
 </section>
@@ -213,31 +215,33 @@
             </div>
         </div>
 
-        <table class="table">
-            <thead>
-            <tr>
-                <th></th>
-                <th>{{ __('front.features.superboosts.boosted') }}</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td class="text">{{ __('front.features.superboosts.gallery') }}</td>
-                <td><i class="fa fa-check-circle"></i></td>
-            </tr>
-            <tr>
-                <td class="text">{{ __('front.features.superboosts.logs') }}</td>
-                <td><i class="fa fa-check-circle"></i></td>
-            </tr>
-            <tr>
-                <td class="text">{{ __('front.features.superboosts.stats') }}</td>
-                <td><i class="fa fa-check-circle"></i></td>
-            </tr>
-            <tr>
-                <td class="text">{{ __('front.features.superboosts.files') }}</td>
-                <td><i class="fa fa-check-circle"></i></td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="">
+                <tr>
+                    <th></th>
+                    <th>{{ __('front.features.superboosts.boosted') }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="text">{{ __('front.features.superboosts.gallery') }}</td>
+                    <td><i class="fa fa-check-circle"></i></td>
+                </tr>
+                <tr>
+                    <td class="text">{{ __('front.features.superboosts.logs') }}</td>
+                    <td><i class="fa fa-check-circle"></i></td>
+                </tr>
+                <tr>
+                    <td class="text">{{ __('front.features.superboosts.stats') }}</td>
+                    <td><i class="fa fa-check-circle"></i></td>
+                </tr>
+                <tr>
+                    <td class="text">{{ __('front.features.superboosts.files') }}</td>
+                    <td><i class="fa fa-check-circle"></i></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </section>

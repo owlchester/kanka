@@ -128,6 +128,7 @@ class SitemapService
             'pricing',
             'roadmap',
             'public-campaigns',
+            'hall-of-fame',
         ];
 
         foreach ($base as $link) {

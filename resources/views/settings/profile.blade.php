@@ -37,7 +37,7 @@
                                 {!! Form::hidden('settings[hide_subscription]', 0) !!}
                                 {!! Form::checkbox('settings[hide_subscription]') !!}
                                 {!! __('profiles.fields.hide_subscription', [
-    'hall_of_fame' => link_to_route('front.about', __('tiers.features.hall_of_fame'), '#patreon', ['target' => '_blank'])
+    'hall_of_fame' => link_to_route('front.hall-of-fame', __('front/hall-of-fame.title'), null, ['target' => '_blank'])
 ]) !!}</label>
                         </div>
                     @endif

@@ -106,17 +106,16 @@ $(document).ready(function (e) {
       $(this).hide().after(html);
     });
   }
+  /*$('[data-toggle="dropdown"]').on('click', function(e) {
+      e.preventDefault();
+      let sub = $(this).next('.dropdown-menu');
+      if (sub.hasClass('show')) {
+          sub.removeClass('show');
+      } else {
+          sub.addClass('show');
+      }
+  })*/
 
-  $('[data-toggle="dropdown"]').on('click', function (e) {
-    e.preventDefault();
-    var sub = $(this).next('.dropdown-menu');
-
-    if (sub.hasClass('show')) {
-      sub.removeClass('show');
-    } else {
-      sub.addClass('show');
-    }
-  });
 });
 
 /***/ }),

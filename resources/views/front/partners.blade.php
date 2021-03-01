@@ -6,7 +6,7 @@
     <header class="masthead reduced-masthead" id="partner">
         <div class="container h-100">
             <div class="row h-100">
-                <div class="col-lg-7 my-auto">
+                <div class="col-lg-9 my-auto">
                     <div class="header-content mx-auto">
                         <h1 class="mb-5">{{ __('front.partners.title') }}</h1>
                         <p class="mb-5">{{ __('front.partners.description') }}</p>

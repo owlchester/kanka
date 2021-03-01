@@ -29,18 +29,20 @@
 @endforeach
 @endif
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="//maxcdn.bootstrapcdn.com">
     <link rel="dns-prefetch" href="//code.jquery.com">
     <link rel="dns-prefetch" href="//kit.fontawesome.com">
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
 
+    <!--<link href="{{ mix('css/front/critical.css') }}" rel="stylesheet">-->
     <link href="{{ mix('css/front.css') }}" rel="stylesheet">
-    @if(isset($skipPerf))
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    @endif
 
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"></noscript>
 @if(app()->getLocale() == 'he')
         <link href="{{ mix('css/front-rtl.css') }}" rel="stylesheet">
     @endif
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.css" media="print" onload="this.media='all'" />
+
     @yield('styles')
 </head>
 
@@ -49,48 +51,7 @@
 <noscript id="deferred-styles">
 </noscript>
 
-<!-- Navigation -->
-<div class="topbar d-none d-sm-block">
-    <div class="container">
-        <ul class="topbar-list">
-            @auth
-                <li>
-                    <a class="nav-link" href="{{ route('home') }}">{{ __('front.menu.dashboard') }}</a>
-                </li>
-            @else
-                <li class="login d-none d-sm-inline-block">
-                    <a href="{{ route('login') }}">
-                        {{ __('front.menu.login') }}
-                    </a>
-                </li>
-                @if(config('auth.register_enabled'))
-                <li class="d-none d-sm-inline-block">
-                    <a class="nav-link" href="{{ route('register') }}">{{ __('front.menu.register') }}</a>
-                </li>
-                @endif
-            @endauth
-            <li>
-                <a href="{{ config('social.discord') }}" target="discord" title="Discord" rel="noreferrer">
-                    <i class="fab fa-discord"></i>
-                </a>
-            </li>
-            <li>
-                <a href="{{ config('social.facebook') }}" target="facebook" title="Facebook" rel="noreferrer">
-                    <i class="fab fa-facebook"></i>
-                </a>
-            </li>
-            <li>
-                <a href="{{ config('social.instagram') }}" target="instagram" title="Instagram" rel="noreferrer">
-                    <i class="fab fa-instagram"></i>
-                </a>
-            </li>
-            <li>
-                <a href="{{ config('social.reddit') }}" target="reddit" title="Reddit" rel="noreferrer"><i class="fab fa-reddit"></i></a>
-            </li>
-        </ul>
-    </div>
-</div>
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
             <img class="d-none d-lg-block" @if(\App\Facades\Img::nowebp()) src="https://images.kanka.io/app/lYYwvb1TENQSosFKdgDCLd2oLdU=/228x77/src/images%2Flogos%2Ftext-white.png?webpfallback?webpfallback" @else src="https://images.kanka.io/app/lYYwvb1TENQSosFKdgDCLd2oLdU=/228x77/src/images%2Flogos%2Ftext-white.png?webpfallback" @endif title="Kanka logo text white" alt="kanka logo text white" width="95" height="32" />
@@ -98,20 +59,36 @@
 2Flogos%2Ftext-blue.png?webpfallback" @else src="https://images.kanka.io/app/G2bnfyER8xMuMzPX4LM0Phdrjew=/228x77/src/images%
 2Flogos%2Ftext-blue.png" @endif title="Kanka logo text blue" width="95" height="32" alt="Kanka logo text blue" />
         </a>
-        @auth
-        @else
-            <a href="{{ route('login') }}" class="d-lg-none">
-                {{ __('front.menu.login') }}
-            </a>@if(config('auth.register_enabled'))
-            <a href="{{ route('register') }}" class="d-lg-none">
-                {{ __('front.menu.register') }}
-            </a>@endif
-        @endauth
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fa fa-bars"></i>
+
+        <ul class="navbar-buttons ml-auto d-none d-sm-flex d-lg-none">
+            @auth
+                <li>
+                    <a href="{{ route('home') }}" class="btn btn-outline-light">
+                        {{ __('front.menu.dashboard') }}
+                    </a>
+                </li>
+            @else
+                <li>
+                    <a href="{{ route('login') }}" class="btn btn-default">
+                        {{ __('front.menu.login') }}
+                    </a>
+                </li>
+                @if(config('auth.register_enabled'))
+                    <li>
+                        <a href="{{ route('register') }}" class="btn btn-primary text-white">
+                            {{ __('front.menu.register') }}
+                        </a>
+                    </li>
+                @endif
+            @endauth
+        </ul>
+
+        <button class="navbar-toggler navbar-toggler-right ml-3" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link @if(!empty($active) && $active == 'features') nav-active @endif" href="{{ route("front.features") }}">{{ __('front.menu.features') }}</a>
                 </li>
@@ -119,32 +96,86 @@
                     <a class="nav-link @if(!empty($active) && $active == 'pricing') nav-active @endif" href="{{ route("front.pricing") }}">{{ __('front.menu.pricing') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="https://blog.kanka.io" target="_blank" rel="noreferrer">{{ __('front.menu.news') }}</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link @if(!empty($active) && $active == 'contact') nav-active @endif" href="{{ route("front.contact") }}">{{ __('front.menu.contact') }}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link @if(!empty($active) && $active == 'about') nav-active @endif" href="{{ route("front.about") }}">{{ __('front.menu.about') }}</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle @if(!empty($active) && $active == 'about') nav-active @endif" href="#"  id="navbarDropAbout" role="button" aria-expanded="false" data-toggle="dropdown" aria-haspopup="true">
+                        {{ __('front.menu.about') }} <span class="caret"></span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropAbout">
+                        <a href="{{ route('front.about') }}" class="dropdown-item">
+                            {{ __('teams.index.title') }}
+                        </a>
+
+                        <a href="{{ route('front.hall-of-fame') }}" class="dropdown-item">
+                            {{ __('front/hall-of-fame.title') }}
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+
+                        <a href="https://blog.kanka.io" class="dropdown-item" target="_blank" rel="noopener noreferrer">
+                            {{ __('front.menu.news') }} <i class="fa fa-external-link"></i>
+                        </a>
+                    </div>
+                </li>
 
                 <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" id="drop3" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <a href="#" class="nav-link dropdown-toggle" id="navbarDropLocale" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         {{ LaravelLocalization::getCurrentLocaleNative() }} <span class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu navbar-nar" aria-labelledby="drop3">
-                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                            @if ($localeCode != App::getLocale())
-                                <li class="nav-item">
-                                    <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="nav-link">
-                                        {{ ucfirst($properties['native']) }}
-                                    </a>
-                                </li>
-                            @endif
-                        @endforeach
-                    </ul>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropLocale">
+                    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                        @if ($localeCode != App::getLocale())
+                            <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true).(auth()->guest() ? '' : '?updateLocale=true') }}" class="dropdown-item">
+                                {{ ucfirst($properties['native']) }}
+                            </a>
+                        @endif
+                    @endforeach
+                    </div>
                 </li>
             </ul>
+
+
+            <div class="d-md-none">
+                @auth
+                    <a href="{{ route('home') }}" class="btn btn-outline-primary">
+                        {{ __('front.menu.dashboard') }}
+                    </a>
+                @else
+                    <a href="{{ route('login') }}" class="btn btn-outline-primary">
+                        {{ __('front.menu.login') }}
+                    </a>
+                    @if(config('auth.register_enabled'))
+                    <a href="{{ route('register') }}" class="btn btn-primary text-white">
+                        {{ __('front.menu.register') }}
+                    </a>
+                    @endif
+                @endauth
+            </div>
         </div>
+
+        <ul class="navbar-buttons ml-auto d-none d-lg-flex">
+            @auth
+                <li>
+                    <a href="{{ route('home') }}" class="btn btn-default text-white">
+                        {{ __('front.menu.dashboard') }}
+                    </a>
+                </li>
+            @else
+                <li>
+                    <a href="{{ route('login') }}" class="btn btn-default text-white">
+                        {{ __('front.menu.login') }}
+                    </a>
+                </li>
+                @if(config('auth.register_enabled'))
+                    <li>
+                        <a href="{{ route('register') }}" class="btn btn-primary text-white">
+                            {{ __('front.menu.register') }}
+                        </a>
+                    </li>
+                @endif
+            @endauth
+        </ul>
     </div>
 </nav>
 @yield('content')
@@ -156,13 +187,15 @@
         src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
         crossorigin="anonymous"></script>
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
 
-<!--<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>-->
 <script src="{{ mix('js/front.js') }}" async></script>
 
 <script src="https://kit.fontawesome.com/d7f0be4a8d.js" crossorigin="anonymous"></script>
 
-<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.css" media="print" onload="this.media='all'" />
 <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.js" async></script>
 <script>
     window.addEventListener("load", function(){
@@ -192,27 +225,6 @@
             } } }
     window.onload = init;
 </script>
-<!-- Async Bootstrap Loading - add this to your footer -->
-@if(!isset($skipPerf))
-<script async>
-    var cb = function () {
-        var l = document.createElement('link');
-        l.rel = 'stylesheet';
-        l.href = 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
-        var h = document.getElementsByTagName('head')[0];
-        h.parentNode.insertBefore(l, h);
-    };
-    var raf = requestAnimationFrame || mozRequestAnimationFrame || webkitRequestAnimationFrame || msRequestAnimationFrame;
-    if (raf) raf(cb);
-    else window.addEventListener('load', cb);
-</script>
-<noscript>
-    <link rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
-</noscript>
-@endif
 @include('layouts._tracking', ['frontLayout' => true, 'noads' => true])
 @yield('scripts')
 </body>
