@@ -649,6 +649,10 @@ section.features .feature-item i {
   max-height: 280px;
 }
 
+.device img {
+  aspect-ratio: attr(width)/attr(height);
+}
+
 /* Hover Effects on Card */
 
 @media (min-width: 992px) {
