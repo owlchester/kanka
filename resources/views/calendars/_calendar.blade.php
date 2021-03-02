@@ -62,7 +62,7 @@ $weekNumber = 1;
                 @if (!empty($day) && !empty($day['week']))
 
                     @if ($renderer->isNamedWeek($day['week']))
-                    <tr class="named_week">
+                    <tr class="named_week week-nr-{{ $day['week'] }}">
                         <td colspan="{{ count($model->weekdays()) }}">
                             {{ $renderer->namedWeek($day['week']) }}
                         </td>
@@ -77,7 +77,7 @@ $weekNumber = 1;
     @else
         @foreach ($renderer->month() as $week => $days)
             @if (!empty($days) && $renderer->isNamedWeek($week))
-                <tr class="named_week">
+                <tr class="named_week week-nr-{{ $week }}">
                     <td colspan="{{ count($model->weekdays()) }}">
                         {{ $renderer->namedWeek($week) }}
                     </td>
