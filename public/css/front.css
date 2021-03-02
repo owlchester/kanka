@@ -630,6 +630,7 @@ section.features .feature-item i {
 .play-youtube-video {
   width: 100%;
   cursor: pointer;
+  aspect-ratio: attr(width)/attr(height);
 }
 
 .btn-light {
