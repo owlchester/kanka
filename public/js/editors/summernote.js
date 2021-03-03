@@ -146,7 +146,7 @@ window.initSummernote = function () {
       }
     },
     hint: [{
-      match: /\B@((\w|[\u00C0-\u00FF])*)$/,
+      match: /\B@(\S*)$/,
       search: function search(keyword, callback) {
         if (keyword.length < 3) {
           return [];
@@ -162,7 +162,7 @@ window.initSummernote = function () {
         return hintContent(item);
       }
     }, {
-      match: /\B\[(\w*)$/,
+      match: /\B\[(\S*)$/,
       search: function search(keyword, callback) {
         if (keyword.length < 3) {
           return [];
@@ -178,7 +178,7 @@ window.initSummernote = function () {
         return hintContent(item);
       }
     }, {
-      match: /\B\#(\w*)$/,
+      match: /\B\#(\S*)$/,
       search: function search(keyword, callback) {
         return hintMonths(keyword, callback);
       },
@@ -190,7 +190,7 @@ window.initSummernote = function () {
         return hintContent(item);
       }
     }, {
-      match: /\B{(\w*)$/,
+      match: /\B{(\S*)$/,
       search: function search(keyword, callback) {
         return attributeSearch(keyword, callback);
       },
