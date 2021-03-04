@@ -11,6 +11,13 @@ return [
             'description'   => 'Unsere Community erstellt erstaunliche Dinge, die wir als hervorgehobene Kampagnen zur Schau stellen. Wir ändern die Liste regelmäßig, also schau immer mal wieder vorbei, um mehr Kampagnen zu entdecken.',
             'title'         => 'Hervorgehobene Kampagnen',
         ],
+        'open'              => [
+            'filters'   => [
+                'all'       => 'offener Status',
+                'closed'    => 'geschlossene Kampagnen',
+                'open'      => 'offene Kamagnen',
+            ],
+        ],
         'public'            => [
             'description'   => 'Schau dir zur Inspiration die öffentliche Kampagne an.',
             'filters'       => [

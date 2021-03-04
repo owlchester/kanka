@@ -2,6 +2,11 @@
 
 return [
     'campaign'          => [
+        'application'   => [
+            'approved'  => 'Ihre Bewerbung für die Kampagne :campaign wurde genehmigt.',
+            'new'       => 'Neue Bewerbung für :campaign',
+            'rejected'  => 'Ihr Bewerbung für die :campaign Kampagne wurde abgelehnt. Grund dafür ist :reason',
+        ],
         'asset_export'  => 'Ein Export eines Kampagnen-Assets ist verfügbar. Der Link ist verfügbar für :time Minuten.',
         'boost'         => [
             'add'           => 'Kampagne :campaign wird geboosted durch :user.',

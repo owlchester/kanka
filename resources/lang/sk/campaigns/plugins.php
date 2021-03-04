@@ -38,11 +38,15 @@ return [
         'disabled'  => 'Deaktivovaný',
         'enabled'   => 'Aktivovaný',
     ],
+    'templates'     => [
+        'name'  => ':name od :user',
+    ],
     'title'         => 'Pluginy kampane :name',
     'types'         => [
-        'attributes'    => 'Šablóna atribútov',
-        'pack'          => 'Balík s obsahom',
-        'theme'         => 'Téma',
+        'attribute' => 'Šablóna atribútov',
+        'attributes'=> 'Šablóny atribútov',
+        'pack'      => 'Balík s obsahom',
+        'theme'     => 'Téma',
     ],
     'update'        => [
         'success'   => 'Plugin :plugin aktualizovaný.',

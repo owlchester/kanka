@@ -52,8 +52,20 @@ return [
             'entity_logs'       => 'Registres d\'entitat complets sobre allò que ha canviat amb cada actualització.',
             'first'             => 'Per a assegurar un progrés continu a Kanka, algunes característiques de la campanya es poden desbloquejar millorant-la. Les millores es desbloquegen a través de les subscripcions. Qualsevol que pugui veure una campanya pot millorar-la; així el màster no ha de pagar sempre el compte. Una campanya roman millorada mentre un usuari l\'estigui millorant i continuï fent suport a Kanka. Si una campanya deixa d\'estar millorada, les dades no es perden: només romanen ocultes fins que la campanya torni a ser millorada.',
             'header'            => 'Imatges de capçalera per a les entitats.',
+            'headers'           => [
+                'boosted'       => 'Beneficis de les campanyes millorades',
+                'superboosted'  => 'Beneficis de les campanyes supermillorades',
+            ],
+            'helpers'           => [
+                'boosted'       => 'Millorar una campanya fa servir només una millora.',
+                'superboosted'  => 'Supermillorar una campanya fa servir un total de tres millores.',
+            ],
             'images'            => 'Imatges per defecte personalitzades',
-            'more'              => 'Saber més sobre totes les característiques.',
+            'more'              => [
+                'boosted'       => 'Totes les funcionalitats de les campanyes millorades',
+                'superboosted'  => 'Totes les funcionalitats de les campanyes supermillorades',
+            ],
+            'recovery'          => 'Recuperació d\'entitats eliminades des de fins a :amount dies.',
             'second'            => 'Millorar una campanya activa els següents beneficis:',
             'superboost'        => 'Una campanya supermillorada fa servir 3 millores i desbloqueja funcionalitats addicionals, a més de les de les campanyes millorades.',
             'theme'             => 'Tema i estil personalitzat a nivell de campanya.',
@@ -81,6 +93,10 @@ return [
             'superboost'    => 'S\'ha supermillorat la campanya :name',
         ],
         'title'         => 'Millorar',
+        'unboost'       => [
+            'description'   => 'Segur que voleu deixar de millorar la campanya :tag?',
+            'title'         => 'Deixar de millorar una campanya',
+        ],
     ],
     'countries'     => [
         'austria'       => 'Àustria',
@@ -136,6 +152,7 @@ return [
         'payment_options'       => 'Opcions de pagament',
         'personal_settings'     => 'Configuració personal',
         'profile'               => 'Perfil',
+        'settings'              => 'Configuració',
         'subscription'          => 'Subscripció',
         'subscription_status'   => 'Estat de la subscripció',
     ],

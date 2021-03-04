@@ -2,6 +2,12 @@
 
 return [
     'campaign'          => [
+        'application'   => [
+            'approved'  => 'S\'ha aprovat la vostra sol·licitud per unir-vos a la campanya :campaign.',
+            'new'       => 'Nova sol·licitud per a :campaign',
+            'rejected'  => 'S\'ha rebutjat la vostra sol·licitud per unir-vos a la campanya :campaign. Motiu:',
+        ],
+        'asset_export'  => 'Ja està disponible una exportació de la campanya. L\'enllaç estarà disponible durant :time minuts.',
         'boost'         => [
             'add'           => ':user està millorant la campanya :campaign.',
             'remove'        => ':user ja no està millorant la campanya :campaign.',

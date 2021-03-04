@@ -45,7 +45,7 @@ Pewnie chcesz już zacząć dodając kilka własnych elementów - wybierz je spo
 
 A oto kilka rad na początek:
 - Możesz wpisać @NazwaElementu by stworzyć do niego odnośnik. Będzie automatycznie aktualizowany jeżeli zmienisz nazwę albo sam element.
-- Możesz konfigurować styl graficzny czy liczbę wyświetlanych na listach elementów na stronie na stronie swojego profilu (prawy górny róg).
+- Możesz konfigurować styl graficzny czy liczbę wyświetlanych elementów na stronie swojego profilu (prawy górny róg).
 - Możesz ustawiać uprawnienia dla całych kategorii elementów albo pojedynczych wpisów.
 - Na :youtube znajdziesz stale rosnącą listę tutoriali. Dowiesz się z nich, jak dodawać cechy postaci, albo jak udostępniać kampanię innym. Możesz też zawsze zajrzeć do :faq.
 
@@ -53,7 +53,7 @@ No i na koniec:
 - Przejrzyj :public by zobaczyć, jak inni używają Kanki.
 - Jeżeli masz pytania, albo chcesz pogadać, dołącz do nas na :discord.
 - Możecie ustalić z drużyną termin sesji używając :lfgm i synchronizować terminarz LFGM z kampania Kanki.
-- Podoba ci się aplikacja i chcesz by się rozwijała? Rozważ :subscription.
+- Podoba ci się aplikacja i chcesz by się rozwijała? Rozważ :subscriptions.
 TEXT
 ,
         'name'          => 'Nota powitalna',

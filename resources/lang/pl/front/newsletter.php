@@ -12,7 +12,7 @@ return [
     ],
     'groups'    => [
         'community-votes'   => 'Głosowania społeczności',
-        'news'              => 'Nowości',
+        'news'              => 'Aktualności',
         'newsletter'        => 'Newsletter',
     ],
     'headline'  => 'Zasubskrybuj jeden albo wszystkie newslettery, by pozostać na bieżąco.',

@@ -11,6 +11,13 @@ return [
             'description'   => 'La nostra comunitat construeix campanyes increïbles que hem inclòs a les campanyes destacades. Anirem canviant aquesta llista amb freqüència; mireu de tornar de tant en tant per a veure quines novetats hi ha.',
             'title'         => 'Campanyes destacades',
         ],
+        'open'              => [
+            'filters'   => [
+                'all'       => 'Estatus d\'apertura',
+                'closed'    => 'Campanyes tancades',
+                'open'      => 'Campanyes obertes',
+            ],
+        ],
         'public'            => [
             'description'   => 'Doneu un cop d\'ull a les campanyes públiques per a inspirar-vos.',
             'filters'       => [

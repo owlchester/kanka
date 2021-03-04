@@ -11,6 +11,8 @@ return [
         'level'         => 'Nivell',
         'link'          => 'Opcions d\'atributs',
         'math'          => 'També es poden fer servir algunes matemàtiques bàsiques. Per exemple, :example fa la multiplicació dels atributs :level i :amb d\'aquesta entitat. Per a arrodonir el resultat cap amunt o abaix, utilitzeu :floor o :ceil respectivament.',
+        'pinned'        => 'Per a mostrar un atribut al menú sota la imatge de l\'entitat, fixeu-lo amb la icona de :icon.',
+        'private'       => 'Els atributs privats amb la icona de :icon només són visibles per als administradors de la campanya.',
         'title'         => 'Atributs',
     ],
     'dice'          => [

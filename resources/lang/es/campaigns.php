@@ -17,6 +17,8 @@ TEXT
         'title'                 => 'Nueva campaña',
     ],
     'destroy'                           => [
+        'action'    => 'Eliminar campaña',
+        'helper'    => 'Solo puedes eliminar la campaña si eres el único miembro en ella.',
         'success'   => 'Campaña eliminada.',
     ],
     'edit'                              => [
@@ -39,13 +41,14 @@ TEXT
         'unknown_id'    => 'Campaña desconocida.',
     ],
     'export'                            => [
-        'description'   => 'Exportar la campaña',
-        'errors'        => [
+        'description'       => 'Exportar la campaña',
+        'errors'            => [
             'limit' => 'Has alcanzado el máximo de una exportación por día. Por favor, inténtalo de nuevo mañana.',
         ],
-        'helper'        => 'Exporta la campaña. Recibirás una notificación con el enlace de descarga.',
-        'success'       => 'Tu campaña se está preparando para exportar. Recibirás una notificación en Kanka a un zip descargable en cuanto esté lista.',
-        'title'         => 'Exportar campaña :name',
+        'helper'            => 'Exporta la campaña. Recibirás una notificación con el enlace de descarga.',
+        'helper_secondary'  => 'Habrá dos archivos disponibles, uno con las entidades exportadas como JSON, y otro con las imágenes subidas a las entidades. Ten en cuenta que, en campañas grandes, la exportación de imágenes puede colgarse y solo puede recuperarse mediante la :api.',
+        'success'           => 'Tu campaña se está preparando para exportar. Recibirás una notificación en Kanka a un zip descargable en cuanto esté lista.',
+        'title'             => 'Exportar campaña :name',
     ],
     'fields'                            => [
         'boosted'                       => 'Mejorada por',
@@ -55,6 +58,7 @@ TEXT
         'entity_note_visibility'        => 'Notas de entidad fijadas',
         'entity_personality_visibility' => 'Visibilidad de la personalidad',
         'entity_visibility'             => 'Visibilidad de la entidad',
+        'entry'                         => 'Descripción de la campaña',
         'excerpt'                       => 'Extracto',
         'followers'                     => 'Seguidores',
         'header_image'                  => 'Imagen de cabecera',
@@ -63,9 +67,11 @@ TEXT
         'image'                         => 'Imagen',
         'locale'                        => 'Idioma',
         'name'                          => 'Nombre',
+        'open'                          => 'Inscripciones abiertas',
         'public_campaign_filters'       => 'Filtros de las campañas públicas',
         'related_visibility'            => 'Visibilidad de elementos relacionados',
         'rpg_system'                    => 'Sistemas RPG',
+        'superboosted'                  => 'Supermejorada por',
         'system'                        => 'Sistema',
         'theme'                         => 'Tema',
         'tooltip_family'                => 'Deshabilitar nombres familiares en la previsualización emergente',
@@ -109,6 +115,10 @@ TEXT
         ],
         'create'                => [
             'button'        => 'Invitar',
+            'buttons'       => [
+                'create'    => 'Crear invitación',
+                'send'      => 'Enviar invitación',
+            ],
             'description'   => 'Invita a un amigo a tu campaña',
             'link'          => 'Enlace creado: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Invitación enviada.',
@@ -199,10 +209,16 @@ TEXT
         'title'                 => 'Miembros de la campaña :name',
         'your_role'             => 'Tu rol: <i>:role</i>',
     ],
+    'open_campaign'                     => [
+        'helper'    => 'Una campaña pública marcada como abierta permitirá que los usuarios puedan enviar solicitudes de inscripción para unirse a ella. La lista de solicitudes está en la página de :link.',
+        'link'      => 'solicitudes de campaña',
+        'title'     => 'Campaña abierta',
+    ],
     'panels'                            => [
         'boosted'   => 'Mejoras',
         'dashboard' => 'Tablero',
         'permission'=> 'Permisos',
+        'setup'     => 'Configuración',
         'sharing'   => 'Compartir',
         'systems'   => 'Sistemas',
         'ui'        => 'Interfaz',
@@ -217,6 +233,7 @@ TEXT
         'actions'       => [
             'add'   => 'Añadir un rol',
         ],
+        'admin_role'    => 'rol de administrador',
         'create'        => [
             'success'   => 'Rol creado.',
             'title'     => 'Crear un nuevo rol en :name',
@@ -332,8 +349,15 @@ TEXT
             'leave' => 'Abandonar campaña',
         ],
         'description'   => 'Vista detallada de la campaña',
+        'menus'         => [
+            'configuration'     => 'Configuración',
+            'overview'          => 'General',
+            'user_management'   => 'Usuarios',
+        ],
         'tabs'          => [
             'achievements'      => 'Logros',
+            'applications'      => 'Solicitudes',
+            'campaign'          => 'Campaña',
             'default-images'    => 'Imágenes por defecto',
             'export'            => 'Exportar',
             'information'       => 'Información',

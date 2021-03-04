@@ -3,6 +3,7 @@
 return [
     'actions'           => [
         'follow'    => 'Segueix',
+        'join'      => 'Uneix-me',
         'unfollow'  => 'Deixa de seguir',
     ],
     'campaigns'         => [
@@ -35,8 +36,12 @@ return [
             'success'   => 'S\'ha eliminat el taulell :name.',
         ],
         'fields'        => [
+            'copy_widgets'  => 'Copia els widgets',
             'name'          => 'Nom del taulell',
             'visibility'    => 'Visibilitat',
+        ],
+        'helpers'       => [
+            'copy_widgets'  => 'Duplica els widgets del taulell :name cap a aquest.',
         ],
         'placeholders'  => [
             'name'  => 'Nom del taulell',
@@ -54,6 +59,7 @@ return [
     'description'       => 'La llar de la creativitat',
     'helpers'           => [
         'follow'    => 'Les campanyes que seguiu apareixen al menú de canvi de campanya (adalt a l\'esquerra) sota les vostres campanyes.',
+        'join'      => 'Aquesta campanya es troba oberta a nous membres. Cliqueu a "Uneix-me" per a sol·licitar unir-vos.',
         'setup'     => 'Configura el taulell de la campanya',
     ],
     'latest_release'    => 'Últim llançament',

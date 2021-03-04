@@ -41,7 +41,7 @@ return [
         'families'          => 'Miejsce może być siedzibą potężnego rodu.',
         'map'               => 'Po dodaniu mapy do miejsca, będziesz mógł umieszczać na niej "Punkty", łącząc je z innymi elementami kampanii.',
         'map_deprecated_2'  => 'Mapy mają teraz własny moduł! Wciąż możesz aktualizować stare mapy, ale nowe umieszczaj w dedykowanym module.',
-        'nested'            => 'W Widoku Hierarchii domyślnie wyświetlane są miejsca, które nie mają źródła. Po kliknięciu na miejsce zobaczysz jego pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
+        'nested'            => 'W widoku hierarchii najpierw  wyświetlane są miejsca, które nie mają źródła. Po kliknięciu na wiersz miejsca zobaczysz jego pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
         'organisations'     => 'Wyświetla organizacje rezydujące w tym miejscu i wszystkich miejscach pochodnych, albo wyłącznie tutaj.',
     ],
     'hints'         => [
@@ -49,7 +49,7 @@ return [
     ],
     'index'         => [
         'actions'       => [
-            'explore_view'  => 'Widok Hierarchii',
+            'explore_view'  => 'Widok hierarchii',
         ],
         'add'           => 'Nowe miejsce',
         'description'   => 'Zarządzaj lokacjami elementu :name',

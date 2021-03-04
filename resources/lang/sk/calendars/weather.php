@@ -14,6 +14,7 @@ return [
     ],
     'fields'        => [
         'effect'        => 'Efekt',
+        'name'          => 'Názov',
         'precipitation' => 'Zrážky',
         'temperature'   => 'Teplota',
         'weather'       => 'Počasie',
@@ -36,6 +37,7 @@ return [
     ],
     'placeholders'  => [
         'effect'        => 'Magický alebo prírodný efekt',
+        'name'          => 'Nepovinný vlastný názov počasia',
         'precipitation' => 'Množstvo zrážok',
         'temperature'   => 'Denná najvyššia a najnižšia teplota',
         'wind'          => 'Rýchlosť vetra',

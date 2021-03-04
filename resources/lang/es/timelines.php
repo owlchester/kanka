@@ -24,9 +24,12 @@ return [
         'eras'          => 'Eras',
         'name'          => 'Nombre',
         'reverse_order' => 'Era en orden inverso',
+        'timeline'      => 'Línea de tiempo superior',
+        'timelines'     => 'Líneas de tiempo',
         'type'          => 'Tipo',
     ],
     'helpers'       => [
+        'nested'            => 'Por defecto se muestran las líneas de tiempo sin ningún superior. Haz clic en la fila de una línea de tiempo para ver sus descendientes.',
         'reorder'           => 'Arrastra los elementos de la era para reordenarlos.',
         'reorder_tooltip'   => 'Haz clic para habilitar la reordenación manual de los elementos mediante arrastrar y soltar.',
         'reverse_order'     => 'Habilitar para mostrar las eras en orden cronológico inverso (la era más antigua primero)',
@@ -41,5 +44,8 @@ return [
     ],
     'show'          => [
         'title' => 'Línea de tiempo :name',
+    ],
+    'timelines'     => [
+        'title' => 'Líneas de tiempo de :name',
     ],
 ];

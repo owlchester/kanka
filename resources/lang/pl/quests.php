@@ -52,7 +52,7 @@ return [
         'type'          => 'Rodzaj',
     ],
     'helpers'       => [
-        'nested'    => 'W Widoku Hierarchii domyślnie wyświetlane są misje, które nie mają źródła. Po kliknięciu na misję zobaczysz jej pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
+        'nested'    => 'W widoku hierarchii najpierw wyświetlane są misje, które nie mają źródła. Po kliknięciu na wiersz misji zobaczysz jej pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
     ],
     'hints'         => [
         'quests'    => 'Przy użyciu pola Misji źródłowej można stworzyć sieć zazębiających się misji.',

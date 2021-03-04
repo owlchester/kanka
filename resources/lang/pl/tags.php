@@ -32,7 +32,7 @@ return [
         'type'          => 'Rodzaj',
     ],
     'helpers'       => [
-        'nested'    => 'W Widoku Hierarchii domyślnie wyświetlane są etykiety, które nie mają źródła. Po kliknięciu na etykietę zobaczysz jej pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
+        'nested'    => 'W widoku hierarchii najpierw wyświetlane są etykiety, które nie mają źródła. Po kliknięciu na wiersz etykiety zobaczysz jej pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
     ],
     'hints'         => [
         'children'  => 'Na liście znajdują się wszystkie elementy posiadające tę etykietę i etykiety pochodne.',
@@ -40,7 +40,7 @@ return [
     ],
     'index'         => [
         'actions'       => [
-            'explore_view'  => 'Widok Hierarchii',
+            'explore_view'  => 'Widok hierarchii',
         ],
         'add'           => 'Nowa etykieta',
         'description'   => 'Zarządzaj etykietami elementu :name.',

@@ -11,6 +11,8 @@ return [
         'level'         => 'Nivel',
         'link'          => 'Opciones de atributos',
         'math'          => 'También puedes ponerte creativo con algunas matemáticas básicas. Por ejemplo, :example hará la multiplicación de los atributos :level y :con de esta entidad. Si quieres redondear el resultado hacia arriba o abajo, puedes usar :floor o :ceil respectivamente.',
+        'pinned'        => 'Al fijar un atributo mediante el icono de :icono, aparecerá en el menú de la entidad bajo la imagen.',
+        'private'       => 'Los atributos privados con el icono de :icon solo son visibles para los administradores de la campaña.',
         'title'         => 'Atributos',
     ],
     'description'   => 'Algunos trucos y consejos para que sea más sencilla tu estancia en Kanka',

@@ -24,7 +24,7 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Na liście znajdują się wszystkie zdolności pochodzące od tej zdolności, nie tylko bezpośrednio.',
-        'nested'        => 'W Widoku Hierarchii domyślnie wyświetlane są zdolności, które nie mają źródła. Po kliknięciu na zdolność zobaczysz jej pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
+        'nested'        => 'W widoku hierarchii najpierw wyświetlane są zdolności, które nie mają źródła. Po kliknięciu na wiersz zdolności zobaczysz jej pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
     ],
     'index'         => [
         'add'           => 'Nowa zdolność',

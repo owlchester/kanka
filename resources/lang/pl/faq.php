@@ -89,7 +89,7 @@ TEXT
         'question'  => 'Czy mogę mieć więcej niż jedną kampanię?',
     ],
     'nested'                => [
-        'answer'    => 'Jeżeli wolisz używać domyślnie widoku hierarchii elementów, zamiast ich list, przejdź do Profilu i wybierz opcję Układ. Tam możesz zaznaczyć Widok Hierarchii. Opcja działa wyłącznie dla twojego konta, a nie wszystkich uczestników kampanii.',
+        'answer'    => 'Jeżeli wolisz używać domyślnie widoku hierarchii elementów, zamiast ich list, przejdź do Profilu i wybierz opcję Układ. Tam możesz zaznaczyć Widok hierarchii. Opcja działa wyłącznie dla twojego konta, a nie wszystkich uczestników kampanii.',
         'question'  => 'Czy mogę ustawić wyświetlanie hierarchii jako domyślne?',
     ],
     'organise_play'         => [

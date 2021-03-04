@@ -12,8 +12,14 @@ return [
     'fields'        => [
         'created_by'    => 'Pujada per',
         'ext'           => 'Extensió',
+        'folder'        => 'Carpeta',
+        'name'          => 'Nom',
         'size'          => 'Pes',
     ],
+    'new_folder'    => [
+        'title' => 'Nova carpeta',
+    ],
+    'no_folder'     => 'Cap carpeta',
     'placeholders'  => [
         'search'    => 'Cerca per nom d\'imatge...',
     ],
@@ -24,6 +30,7 @@ return [
     ],
     'uploader'      => [
         'add'           => 'Afegeix una nova imatge',
+        'new_folder'    => 'Nova carpeta',
         'or'            => 'o',
         'select_file'   => 'Selecciona un fitxer',
         'well'          => 'Deixa anar un fitxer per pujar-lo',

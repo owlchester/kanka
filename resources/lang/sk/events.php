@@ -13,15 +13,21 @@ return [
         'success'   => 'Udalosť :name upravená.',
         'title'     => 'Upraviť udalosť :name',
     ],
+    'events'        => [
+        'title' => 'Udalosti podradené :name',
+    ],
     'fields'        => [
         'date'      => 'Dátum',
+        'event'     => 'Nadradená udalosť',
+        'events'    => 'Udalosti',
         'image'     => 'Obrázok',
         'location'  => 'Miesto',
         'name'      => 'Názov',
         'type'      => 'Typ',
     ],
     'helpers'       => [
-        'date'  => 'Toto pole môže obsahovať čokoľvek a nie je prepojené s kalendármi kampane. Na zobrazenie tejto udalosti v kalendári je nutné ju pridať do kalendára alebo do karty Pripomenutia tejto udalosti.',
+        'date'      => 'Toto pole môže obsahovať čokoľvek a nie je prepojené s kalendármi kampane. Na zobrazenie tejto udalosti v kalendári je nutné ju pridať do kalendára alebo do karty Pripomenutia tejto udalosti.',
+        'nested'    => 'Štandardne sa zobrazia udalosti bez nadradenej. Kliknutím na riadok udalosti zobrazíš jej podradené.',
     ],
     'index'         => [
         'add'           => 'Nová udalosť',

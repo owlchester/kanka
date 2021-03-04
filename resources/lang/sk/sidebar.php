@@ -22,6 +22,7 @@ return [
     'entity-creator'        => 'Rýchle vytvorenie',
     'events'                => 'Udalosti',
     'families'              => 'Rody',
+    'gallery'               => 'Galéria',
     'items'                 => 'Predmety',
     'journals'              => 'Denník',
     'locations'             => 'Miesta',

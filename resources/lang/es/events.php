@@ -13,15 +13,21 @@ return [
         'success'   => 'Se ha actualizado el evento ":name".',
         'title'     => 'Editar ":name"',
     ],
+    'events'        => [
+        'title' => 'Eventos del evento :name',
+    ],
     'fields'        => [
         'date'      => 'Fecha',
+        'event'     => 'Evento superior',
+        'events'    => 'Eventos',
         'image'     => 'Imagen',
         'location'  => 'Localización',
         'name'      => 'Nombre',
         'type'      => 'Tipo',
     ],
     'helpers'       => [
-        'date'  => 'Este campo puede contener cualquier cosa y no está vinculado a los calendarios de la campaña. Para vincular este evento con un calendario, añádelo desde la pestaña de recordatorios o desde el mismo calendario.',
+        'date'      => 'Este campo puede contener cualquier cosa y no está vinculado a los calendarios de la campaña. Para vincular este evento con un calendario, añádelo desde la pestaña de recordatorios o desde el mismo calendario.',
+        'nested'    => 'Por defecto se muestran los eventos sin ningún superior. Haz clic en la fila de un evento para ver sus descendientes.',
     ],
     'index'         => [
         'add'           => 'Nuevo evento',
