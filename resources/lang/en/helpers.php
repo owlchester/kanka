@@ -39,6 +39,7 @@ return [
             'title' => 'Formatting',
         ],
         'friendly_mentions' => 'Link to other entities by typing :code and the first few characters of an entity to search for it. This will inject :example in the text editor, and render as a link to the entity when viewing said entity.',
+        'mention_helpers'          => 'If your entity name has a space, use :example instead of space. If you want to search for an entity with exactly that name, type in :exact.',
         'limitations'       => 'Please note that due to technical limitations, these shorthands don\'t work on android mobile devices, unless using the new Summernote editor. You can change your editor in your Settings > Layout preferences.',
         'mentions'          => 'Link to other entities by typing :code and the first few characters of an entity to search for it. This will inject :example in the text editor. To customise the name of the entity displayed, you can type :example_name. To set the entity\'s subpage, use :example_page. To set the entity\'s tab, use :example_tab.',
         'months'            => 'Type :code to get a list of months from your calendars.',

@@ -22,6 +22,12 @@
                 ]) !!}
             </p>
             <p>
+                {!! trans('helpers.link.mention_helpers', [
+                    'example' => '<code>_</code>',
+                    'exact' => '<code>=Entity Name</code>'
+                ]) !!}
+            </p>
+            <p>
                 {!! trans('helpers.link.mentions', [
                     'code' => '<code>[</code>',
                     'example' => '<code>[entity:123]</code>',
