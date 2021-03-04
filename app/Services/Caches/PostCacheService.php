@@ -21,8 +21,8 @@ class PostCacheService extends BaseCache
 
         $data = AppRelease::
             whereRaw('id IN (select MAX(id) FROM releases GROUP BY category_id)')
-            ->groupBy('category_id')
-            //->orderBy('publishedAt', 'DESC')
+            //->groupBy('category_id2')
+            ->latest('published_at')
             ->get();
 
         $this->forever($key, $data);
