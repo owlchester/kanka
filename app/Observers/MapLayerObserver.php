@@ -46,7 +46,7 @@ class MapLayerObserver
         }
 
         // Handle image. Let's use a service for this.
-        ImageService::handle($mapLayer, 'map_markers');
+        ImageService::handle($mapLayer, 'map_layers');
     }
 
     /**

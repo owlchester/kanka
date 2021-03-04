@@ -198,7 +198,7 @@ class MapMarker extends Model
                 if ($this->entity->typeId() == config('entities.ids.map')) {
                     $url = $this->entity->url('explore');
                 }
-                $body .= "<p><a href=\"$url\">" . $this->entity->name . "</a></p>";
+                $body .= "<p><a href=\"$url\">" . str_replace('`', '\'', $this->entity->name) . "</a></p>";
             }
             // No entry field, include the entity tooltip
             if ($this->shape_id != MapMarker::SHAPE_LABEL) {

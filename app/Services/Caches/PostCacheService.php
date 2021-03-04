@@ -5,6 +5,7 @@ namespace App\Services\Caches;
 
 
 use App\Models\AppRelease;
+use Illuminate\Support\Facades\DB;
 
 class PostCacheService extends BaseCache
 {
@@ -15,11 +16,13 @@ class PostCacheService extends BaseCache
     {
         $key = 'latest_releases';
         if ($this->has($key)) {
-            return $this->get($key);
+           return $this->get($key);
         }
 
-        $data = AppRelease::orderBy('published_at', 'DESC')
-            ->groupBy('category_id')
+        $data = AppRelease::
+            whereRaw('id IN (select MAX(id) FROM releases GROUP BY category_id)')
+            //->groupBy('category_id2')
+            ->latest('published_at')
             ->get();
 
         $this->forever($key, $data);
@@ -31,6 +34,6 @@ class PostCacheService extends BaseCache
      */
     public function clearLatest(): bool
     {
-        return $this->forget('post_latest');
+        return $this->forget('latest_releases');
     }
 }

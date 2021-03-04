@@ -999,7 +999,10 @@ hr {
     min-width: 200px;
   }
 }
-
+// Chrome bug: merging lines when the body or p elements have a font-size in "em" break stuff
+.note-editable p {
+  font-size: 14px;
+}
 .note-editing-area {
   .mention, .attribute {
     background-color: #eee;
