@@ -34,6 +34,6 @@ class PostCacheService extends BaseCache
      */
     public function clearLatest(): bool
     {
-        return $this->forget('post_latest');
+        return $this->forget('latest_releases');
     }
 }
