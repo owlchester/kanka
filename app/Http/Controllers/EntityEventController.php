@@ -37,6 +37,10 @@ class EntityEventController extends Controller
         $this->calendarService = $calendarService;
     }
 
+    /**
+     * @param Entity $entity
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function index(Entity $entity)
     {
         return redirect()->to($entity->url());
