@@ -32,6 +32,7 @@
     <link rel="dns-prefetch" href="//code.jquery.com">
     <link rel="dns-prefetch" href="//kit.fontawesome.com">
     <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
 
     <!--<link href="{{ mix('css/front/critical.css') }}" rel="stylesheet">-->
     <link href="{{ mix('css/front.css') }}" rel="stylesheet">
