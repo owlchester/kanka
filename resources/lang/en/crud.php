@@ -275,7 +275,7 @@ return [
     'is_not_private'            => 'This entity isn\'t currently set to private.',
     'is_private'                => 'This entity is private and only visible to members of the Admin role.',
     'legacy'                    => 'Legacy',
-    'linking_help'              => 'How can I link to other entries?',
+    'linking_help'              => 'How can I link to other entities?',
     'manage'                    => 'Manage',
     'move'                      => [
         'errors'        => [

@@ -280,8 +280,14 @@ class MiscController extends Controller
                 ->orderBy('updated_at', 'DESC')
                 ->get();
         } else {
-            $models = $modelClass->whereNotIn('id', $excludes)
-                ->where('name', 'like', "%$term%")
+            $models = $modelClass->whereNotIn('id', $excludes);
+            // Exact match
+            if (Str::startsWith($term, '=')) {
+                $models->where('name', ltrim($term, '='));
+            } else {
+                $models->where('name', 'like', "%$term%");
+            }
+            $models = $models
                 ->limit(10)
                 ->get();
         }

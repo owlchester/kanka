@@ -4,17 +4,7 @@ namespace App\Services;
 
 use App\Models\Calendar;
 use App\Models\Campaign;
-use App\Models\Character;
 use App\Models\Entity;
-use App\Models\Event;
-use App\Models\Family;
-use App\Models\Item;
-use App\Models\Location;
-use App\Models\Note;
-use App\Models\Organisation;
-use App\Models\Race;
-use App\Models\Tag;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class SearchService
