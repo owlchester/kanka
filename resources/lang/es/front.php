@@ -11,6 +11,13 @@ return [
             'description'   => 'Nuestra comunidad construye campañas increíbles que hemos incluido en las Campañas Destacadas. Iremos cambiando esta lista con frecuencia, así que asegúrate de volver de vez en cuando para ver qué novedades hay.',
             'title'         => 'Campañas destacadas',
         ],
+        'open'              => [
+            'filters'   => [
+                'all'       => 'Estatus de apertura',
+                'closed'    => 'Campañas cerradas',
+                'open'      => 'Campañas abiertas',
+            ],
+        ],
         'public'            => [
             'description'   => 'Échale un vistazo a las campañas públicas para inspirarte.',
             'filters'       => [

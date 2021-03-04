@@ -54,8 +54,20 @@ return [
             'entity_logs'       => 'Registros completos de los cambios de una entidad.',
             'first'             => 'Para asegurar un progreso contínuo en Kanka, algunas características de campaña se pueden desbloquear mejorando la campaña. Las mejoras se desbloquean mediante :patreon. Cualquiera que pueda ver una campaña puede mejorarla; así el máster no tiene que pagar la cuenta siempre. Una campaña permanece mejorada mientras un usuario la esté mejorando y continúe apoyando a Kanka en :patreon. Si una campaña deja de estar mejorada, los datos no se pierden: solo permanecen ocultos hasta que la campaña vuelva a ser mejorada.',
             'header'            => 'Imágenes de cabecera para las entidades.',
+            'headers'           => [
+                'boosted'       => 'Beneficios de la campaña mejorada',
+                'superboosted'  => 'Beneficios de la campaña supermejorada',
+            ],
+            'helpers'           => [
+                'boosted'       => 'Mejorar una campaña usa solo una mejora.',
+                'superboosted'  => 'Supermejorar una campaña usa un total de tres mejoras.',
+            ],
             'images'            => 'Imágenes por defecto personalizadas',
-            'more'              => 'Saber más sobre todas las características.',
+            'more'              => [
+                'boosted'       => 'Todas las funcionalidades de las campañas mejoradas',
+                'superboosted'  => 'Todas las funcionalidades de las campañas supermejoradas',
+            ],
+            'recovery'          => 'Recupera entidades eliminadas de hasta hace :amount días.',
             'second'            => 'Mejorar una campaña activa los siguientes beneficios:',
             'superboost'        => 'Supermejorar una campaña usa 3 de tus mejoras y desbloquea funcionalidades adicionales además de las de las campañas mejoradas.',
             'theme'             => 'Tema y estilo personalizado a nivel de campaña.',
@@ -83,6 +95,10 @@ return [
             'superboost'    => 'Campaña :name supermejorada',
         ],
         'title'         => 'Mejorar',
+        'unboost'       => [
+            'description'   => '¿Seguro que quieres dejar de mejorar la campaña :tag?',
+            'title'         => 'Dejar de mejorar una campaña',
+        ],
     ],
     'countries'     => [
         'austria'       => 'Austria',
@@ -139,6 +155,7 @@ return [
         'payment_options'       => 'Opciones de pago',
         'personal_settings'     => 'Ajustes personales',
         'profile'               => 'Perfil',
+        'settings'              => 'Configuración',
         'subscription'          => 'Suscripción',
         'subscription_status'   => 'Estado de la suscripción',
     ],

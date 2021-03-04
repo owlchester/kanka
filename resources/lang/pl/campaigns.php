@@ -4,7 +4,7 @@ return [
     'create'                            => [
         'description'           => 'Utwórz nową kampanię',
         'helper'                => [
-            'title'     => 'Witaj w :nazwa',
+            'title'     => 'Witaj w :name',
             'welcome'   => <<<'TEXT'
 Zanim przejdziesz dalej, musisz nadać swojej kampanii tytuł albo nazwać jakoś powstający świat. Jeżeli nie masz jeszcze dobrego pomysłu, nie martw się! Zawsze możesz zmienić go później, albo utworzyć nową kampanię.
 

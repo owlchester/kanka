@@ -121,8 +121,13 @@ class PatreonService
      */
     public function patrons()
     {
+        $cacheKey = 'about_subscribers';
+        if (cache()->has($cacheKey)) {
+            return cache()->get($cacheKey);
+        }
         $patrons = [
             'Elemental' => [],
+            'Wyvern' => [],
             'Owlbear' =>  [],
             'Goblin' => [],
             'Kobold' => []
@@ -138,10 +143,16 @@ class PatreonService
         }
 
         $ids = $role->users()->pluck('id');
-        $users = User::whereIn('id', $ids)->orderBy('name', 'ASC')->get();
+        $users = User::select(['patreon_pledge', 'name', 'settings'])->whereIn('id', $ids)->orderBy('name', 'ASC')->get();
         foreach ($users as $user) {
-            $patrons[$user->patreon_pledge ?: 'Kobold'][] = $user;
+            if ($user->settings->get('hide_subscription', false)) {
+                continue;
+            }
+            $patrons[$user->patreon_pledge ?: 'Kobold'][] = $user->name;
         }
+
+        // Cache for a day
+        cache()->set($cacheKey, $patrons, 3600 * 6);
 
         return $patrons;
     }

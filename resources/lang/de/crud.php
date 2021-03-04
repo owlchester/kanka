@@ -169,7 +169,9 @@ return [
     'edit'                      => 'Bearbeiten',
     'errors'                    => [
         'boosted'                       => 'Diese Funktion ist nur für geboostete Kampagnen verfügbar.',
+        'boosted_campaigns'             => 'Diese Funktion ist nur für :boosted verfügbar',
         'node_must_not_be_a_descendant' => 'Ungültiges Objekt (Kategorie, Ort): es würde ein Nachkomme von sich selbst sein.',
+        'unavailable_feature'           => 'nicht verfügbare Eigenschaft',
     ],
     'events'                    => [
         'hint'  => 'Kalenderereignisse, die mit diesem Objekt verknüpft sind, werden hier dargestellt.',
@@ -203,6 +205,7 @@ return [
         'header_image'          => 'Kopfzeilenbild',
         'image'                 => 'Bild',
         'is_private'            => 'Privat',
+        'is_private_v2'         => 'Zeigen Sie dies nur Mitgliedern der Kampagne :admin-role',
         'is_star'               => 'Angepinnt',
         'item'                  => 'Gegenstand',
         'location'              => 'Ort',
@@ -210,6 +213,7 @@ return [
         'name'                  => 'Name',
         'organisation'          => 'Organisation',
         'position'              => 'Position',
+        'privacy'               => 'Privat',
         'race'                  => 'Rasse',
         'tag'                   => 'Tag',
         'tags'                  => 'Tags',
@@ -290,6 +294,7 @@ return [
     ],
     'is_not_private'            => 'Dieses Objekt ist derzeit nicht auf privat eingestellt.',
     'is_private'                => 'Dieses Objekt ist privat und nicht von Zuschauern einsehbar.',
+    'legacy'                    => 'Erbe',
     'linking_help'              => 'Wie kann ich zu anderen Objekten verlinken?',
     'manage'                    => 'Verwalten',
     'move'                      => [
@@ -383,6 +388,7 @@ return [
         'journal'       => 'Wähle ein Logbuch',
         'location'      => 'Wähle einen Ort',
         'map'           => 'Wähle eine Karte',
+        'note'          => 'wähle eine Notiz',
         'organisation'  => 'Wähle eine Organisation',
         'race'          => 'Wähle eine Rasse',
         'tag'           => 'Wähle ein Tag',

@@ -25,7 +25,7 @@ return [
     ],
     'helpers'       => [
         'journals'  => 'Wyświetla wszystkie dzienniki pochodne, albo tylko pochodzące bezpośrednio od tego.',
-        'nested'    => 'W Widoku Hierarchii domyślnie wyświetlane są dzienniki, które nie mają źródła. Po kliknięciu na dziennik zobaczysz jego pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
+        'nested'    => 'W widoku hierarchii najpierw wyświetlane są dzienniki, które nie mają źródła. Po kliknięciu na wiersz dziennika zobaczysz jego pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
     ],
     'index'         => [
         'add'           => 'Nowy dziennik',

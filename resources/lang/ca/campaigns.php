@@ -17,6 +17,8 @@ TEXT
         'title'                 => 'Nova campanya',
     ],
     'destroy'                           => [
+        'action'    => 'Elimina la campanya',
+        'helper'    => 'Només podeu eliminar la campanya si sou l\'únic membre que en resta.',
         'success'   => 'S\'ha eliminat la campanya.',
     ],
     'edit'                              => [
@@ -39,13 +41,14 @@ TEXT
         'unknown_id'    => 'Campanya desconeguda.',
     ],
     'export'                            => [
-        'description'   => 'Exporta la campanya',
-        'errors'        => [
+        'description'       => 'Exporta la campanya',
+        'errors'            => [
             'limit' => 'Heu arribat al màxim d\'una exportació al dia. Torneu a intentar-ho demà.',
         ],
-        'helper'        => 'Exporta la campanya. Rebreu una notificació amb l\'enllaç de descàrrega.',
-        'success'       => 'S\'està preparant la campanya per l\'exportació. Rebreu una notificació a Kanka amb un zip descarregable en quant estigui llesta.',
-        'title'         => 'Exporta la campanya :name',
+        'helper'            => 'Exporta la campanya. Rebreu una notificació amb l\'enllaç de descàrrega.',
+        'helper_secondary'  => 'Tindreu disponibles dos fitxers: un amb les entitats exportades en format JSON, i un altre amb les imatges de les entitats. Tingueu en compte que a les campanyes grans l\'exportació d\'imatges pot penjar-se i només es podria recuperar mitjançant l\':api.',
+        'success'           => 'S\'està preparant la campanya per l\'exportació. Rebreu una notificació a Kanka amb un zip descarregable en quant estigui llesta.',
+        'title'             => 'Exporta la campanya :name',
     ],
     'fields'                            => [
         'boosted'                       => 'Millorada per',
@@ -55,6 +58,7 @@ TEXT
         'entity_note_visibility'        => 'Anotacions d\'entitat fixades',
         'entity_personality_visibility' => 'Visibilitat de la personalitat',
         'entity_visibility'             => 'Visibilitat de l\'entitat',
+        'entry'                         => 'Descripció de la campanya',
         'excerpt'                       => 'Extracte',
         'followers'                     => 'Seguidors',
         'header_image'                  => 'Imatge de capçalera',
@@ -63,9 +67,11 @@ TEXT
         'image'                         => 'Imatge',
         'locale'                        => 'Idioma',
         'name'                          => 'Nom',
+        'open'                          => 'Oberta a sol·licituds',
         'public_campaign_filters'       => 'Filtres de les campanyes públiques',
         'related_visibility'            => 'Visibilitat dels elements relacionats',
         'rpg_system'                    => 'Sistemes RPG',
+        'superboosted'                  => 'Supermillorada per',
         'system'                        => 'Sistema',
         'theme'                         => 'Tema',
         'tooltip_family'                => 'Deshabilita els noms familiars a la previsualització emergent',
@@ -109,6 +115,10 @@ TEXT
         ],
         'create'                => [
             'button'        => 'Convida',
+            'buttons'       => [
+                'create'    => 'Crea una invitació',
+                'send'      => 'Envia l\'invitació',
+            ],
             'description'   => 'Convideu amics a la campanya',
             'link'          => 'S\'ha creat l\'enllaç: <a href=":url" target="_blank">:url</a>',
             'success'       => 'S\'ha enviat la invitació.',
@@ -199,10 +209,16 @@ TEXT
         'title'                 => 'Membres de la campanya :name',
         'your_role'             => 'El vostre rol: <i>:role</i>',
     ],
+    'open_campaign'                     => [
+        'helper'    => 'Obrir una campanya pública vol dir que els usuaris podran sol·licitar unir-se\'n. Podeu trobar la llista de sol·licituds a la pàgina de :link.',
+        'link'      => 'sol·licituds de campanya',
+        'title'     => 'Campanya oberta',
+    ],
     'panels'                            => [
         'boosted'   => 'Millores',
         'dashboard' => 'Taulell',
         'permission'=> 'Permisos',
+        'setup'     => 'Configuració',
         'sharing'   => 'Compartir',
         'systems'   => 'Sistemes',
         'ui'        => 'Interfície',
@@ -217,6 +233,7 @@ TEXT
         'actions'       => [
             'add'   => 'Afegeix un rol',
         ],
+        'admin_role'    => 'rol d\'administrador',
         'create'        => [
             'success'   => 'S\'ha creat el rol.',
             'title'     => 'Crea un rol nou a :name',
@@ -332,8 +349,15 @@ TEXT
             'leave' => 'Abandona la campanya',
         ],
         'description'   => 'Vista detallada de la campanya',
+        'menus'         => [
+            'configuration'     => 'Configuració',
+            'overview'          => 'General',
+            'user_management'   => 'Usuaris',
+        ],
         'tabs'          => [
             'achievements'      => 'Assoliments',
+            'applications'      => 'Sol·licituds',
+            'campaign'          => 'Campanya',
             'default-images'    => 'Imatges per defecte',
             'export'            => 'Exportació',
             'information'       => 'Informació',

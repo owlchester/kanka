@@ -89,59 +89,37 @@
 
     @include('partials.errors')
 
-    @if (!empty($release) && auth()->check() && auth()->user()->release != $release->id)
-        <div class="box box-widget margin-top">
-            <div class="box-header with-border">
-                <div class="user-block">
-                    @if ($release->author && $release->author->avatar)
-                        <img class="img-circle" src="{{ $release->author->getAvatarUrl() }}" alt="{{ $release->author->name }}" title="{{ $release->author->name }}">
-                    @endif
-                    <span class="username">
-                        <a href="{{ $release->link }}" target="_blank">{{ $release->name }}</a>
-                    </span>
-                    <span class="description">{{ $release->published_at->isoFormat('MMMM D, Y') }}</span>
-                </div>
-                <div class="box-tools">
-                    <button type="button" class="btn btn-box-tool" data-widget="remove" data-url="{{ route('settings.release', $release) }}">
-                        <i class="fa fa-times"></i>
-                    </button>
-                </div>
-                @auth
-                @endauth
-            </div>
-            <div class="box-body">
-                {{ $release->excerpt }}
-            </div>
-        </div>
-    @endif
+    @includeWhen(!empty($releases), 'partials.releases')
 
     @if (empty($dashboard))
         @include('dashboard.widgets._campaign')
     @endif
 
-    <div class="row">
-    @foreach ($widgets as $widget)
-        @if($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_CAMPAIGN)
-            @include('dashboard.widgets._campaign')
-            @continue;
-        @endif
-        <?php if (!in_array($widget->widget, \App\Models\CampaignDashboardWidget::WIDGET_VISIBLE) && (empty($widget->entity) || !EntityPermission::canView($widget->entity))):
-            continue;
-        elseif ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_PREVIEW && !EntityPermission::canView($widget->entity)):
-            continue;
-        endif; ?>
-        @if ($position + $widget->colSize() > 12)
-            </div><div class="row">
-        <?php $position = 0; ?>
-        @endif
-            <div class="col-md-{{ $widget->colSize() }}">
-                <div class="widget widget-{{ $widget->widget }}">
-                    @include('dashboard.widgets._' . $widget->widget)
+    <div class="dashboard-widgets">
+        <div class="row">
+        @foreach ($widgets as $widget)
+            @if($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_CAMPAIGN)
+                @include('dashboard.widgets._campaign')
+                @continue;
+            @endif
+            <?php if (!in_array($widget->widget, \App\Models\CampaignDashboardWidget::WIDGET_VISIBLE) && (empty($widget->entity) || !EntityPermission::canView($widget->entity))):
+                continue;
+            elseif ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_PREVIEW && !EntityPermission::canView($widget->entity)):
+                continue;
+            endif; ?>
+            @if ($position + $widget->colSize() > 12)
+                </div><div class="row">
+            <?php $position = 0; ?>
+            @endif
+                <div class="col-md-{{ $widget->colSize() }}">
+                    <div class="widget widget-{{ $widget->widget }}">
+                        @include('dashboard.widgets._' . $widget->widget)
+                    </div>
                 </div>
-            </div>
 
-        <?php $position += $widget->colSize(); ?>
-    @endforeach
+            <?php $position += $widget->colSize(); ?>
+        @endforeach
+        </div>
     </div>
 
     @if ($settings)

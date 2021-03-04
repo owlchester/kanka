@@ -274,6 +274,14 @@ return [
         'trial_period'          => 'Yearly subscriptions have a 14 day cancellation policy. Contact us at :email if you wish to cancel your yearly subscription and get a refund.',
         'upgrade_downgrade'     => [
             'button'    => 'Upgrade & Downgrade Information',
+            'cancel'    => [
+                'bullets'   => [
+                    'bonuses'   => 'Your bonuses stay enabled until the end of your payment period.',
+                    'boosts'    => 'The same happens for your boosted campaigns. Boosted features become invisible but aren\'t deleted when a campaign is no longer boosted.',
+                    'kobold'    => 'To cancel your subscription, change to the Kobold tier.',
+                ],
+                'title'     => 'When cancelling your subscription',
+            ],
             'downgrade' => [
                 'bullets'   => [
                     'end'   => 'Your current tier will stay active until the end of your current billing cycle, after which you will be downgraded to your new tier.',

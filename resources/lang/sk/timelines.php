@@ -24,9 +24,12 @@ return [
         'eras'          => 'Veky',
         'name'          => 'Názov',
         'reverse_order' => 'Obrátiť poradie veku',
+        'timeline'      => 'Nadradená časová os',
+        'timelines'     => 'Časové osy',
         'type'          => 'Typ',
     ],
     'helpers'       => [
+        'nested'            => 'Štandardne sa zobrazia časové osy bez nadradenej. Kliknutím na riadok časovej osy zobrazíš jej podradené.',
         'reorder'           => 'Pretiahni prvky vo veku pomocou Drag & Drop a usporiadaj ich podľa seba.',
         'reorder_tooltip'   => 'Kliknutím aktivuješ ručné usporiadanie prvkov pomocou Drag & Drop.',
         'reverse_order'     => 'Aktivovaním zobrazíš veky v spätnom chronologickom poradí (najstarší vek ako prvý).',
@@ -41,5 +44,8 @@ return [
     ],
     'show'          => [
         'title' => 'Časová os :name',
+    ],
+    'timelines'     => [
+        'title' => 'Časové osy podradené :name',
     ],
 ];

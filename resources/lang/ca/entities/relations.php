@@ -9,20 +9,22 @@ return [
         'success'   => 'S\'ha eliminat la relació :target de :entity.',
     ],
     'fields'        => [
-        'attitude'  => 'Actitud',
-        'is_star'   => 'Fixada',
-        'relation'  => 'Relació',
-        'target'    => 'Objectiu',
-        'two_way'   => 'Emmiralla la relació',
+        'attitude'          => 'Actitud',
+        'is_star'           => 'Fixada',
+        'relation'          => 'Relació',
+        'target'            => 'Objectiu',
+        'target_relation'   => 'Relació objectiu',
+        'two_way'           => 'Emmiralla la relació',
     ],
     'helper'        => 'Crea relacions entre entitats i configura\'n l\'actitud i visibilitat. Les relacions també poden fixar-se al menú de l\'entitat.',
     'hints'         => [
-        'attitude'  => 'Aquí es pot definir opcionalment l\'ordre en què les relacions apareixen per defecte de forma descendent.',
-        'mirrored'  => [
+        'attitude'          => 'Aquí es pot definir opcionalment l\'ordre en què les relacions apareixen per defecte de forma descendent.',
+        'mirrored'          => [
             'text'  => 'Aquesta relació està emmirallada amb :link.',
             'title' => 'Emmirallada',
         ],
-        'two_way'   => 'Al emmirallar una relació, aquesta es copia a l\'objectiu seleccionat. Tanmateix, si editeu una, l\'atra no es veu afectada.',
+        'target_relation'   => 'La descripció de la relació a l\'objectiu. Deixeu-ho en blanc per a utilitzar el text d\'aquesta relació.',
+        'two_way'           => 'Al emmirallar una relació, aquesta es copia a l\'objectiu seleccionat. Tanmateix, si editeu una, l\'atra no es veu afectada.',
     ],
     'placeholders'  => [
         'attitude'  => 'Des de -100 fins a 100, sent 100 molt positiva.',

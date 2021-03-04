@@ -15,6 +15,7 @@
     - [Locations](/docs/{{version}}/locations)
     - [Families](/docs/{{version}}/families)
     - [Organisations](/docs/{{version}}/organisations)
+        - [Members](/docs/{{version}}/organisation-members)
     - [Items](/docs/{{version}}/items)
     - [Notes](/docs/{{version}}/notes)
     - [Events](/docs/{{version}}/events)

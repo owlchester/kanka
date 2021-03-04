@@ -31,11 +31,11 @@
                 </div>
             </div>
         </div>
-
-        @include('cruds.fields.private')
     </div>
     <div class="col-md-6">
         @include('cruds.fields.entry2')
         @include('cruds.fields.image')
     </div>
 </div>
+
+@include('cruds.fields.private2')

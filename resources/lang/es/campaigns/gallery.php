@@ -12,8 +12,14 @@ return [
     'fields'        => [
         'created_by'    => 'Subida por',
         'ext'           => 'Ext',
+        'folder'        => 'Carpeta',
+        'name'          => 'Nombre',
         'size'          => 'Tamaño',
     ],
+    'new_folder'    => [
+        'title' => 'Nueva carpeta',
+    ],
+    'no_folder'     => 'Sin carpeta',
     'placeholders'  => [
         'search'    => 'Buscar nombre de imagen...',
     ],
@@ -24,6 +30,7 @@ return [
     ],
     'uploader'      => [
         'add'           => 'Añadir nueva',
+        'new_folder'    => 'Nueva carpeta',
         'or'            => 'o',
         'select_file'   => 'Selecciona un archivo',
         'well'          => 'Suelta aquí el archivo a subir',

@@ -10,9 +10,26 @@
                     <label>{{ __('admin/releases.fields.excerpt') }}</label>
                     {!! Form::text('excerpt', old('excerpt'), ['placeholder' => __('admin/releases.fields.excerpt'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 </div>
-                <div class="form-group required">
-                    <label>{{ __('admin/releases.fields.link') }}</label>
-                    {!! Form::text('link', old('link'), ['placeholder' => __('admin/releases.fields.link'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group required">
+                            <label>{{ __('admin/releases.fields.link') }}</label>
+                            {!! Form::text('link', old('link'), ['placeholder' => __('admin/releases.fields.link'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="form-group required">
+                            <label>{{ __('admin/releases.fields.category') }}</label>
+                            {!! Form::select('category_id', [
+            \App\Models\AppRelease::CATEGORY_RELEASE => __('releases.categories.release'),
+            \App\Models\AppRelease::CATEGORY_EVENT => __('releases.categories.event'),
+            \App\Models\AppRelease::CATEGORY_VOTE => __('releases.categories.vote'),
+            \App\Models\AppRelease::CATEGORY_OTHER => __('releases.categories.other')
+            ], old('category_id'), ['class' => 'form-control']) !!}
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row">
@@ -20,7 +37,7 @@
                         <div class="form-group">
                             <label>{{ __('admin/releases.fields.published_at') }}</label>
                             <div class="input-group">
-                                {!! Form::text('published_at', old('published_at'), ['placeholder' => __('admin/releases.fields.visible_at'), 'class' => 'form-control datetime-picker', 'maxlength' => 25]) !!}
+                                {!! Form::text('published_at', old('published_at'), ['placeholder' => __('admin/releases.fields.published_at'), 'class' => 'form-control datetime-picker', 'maxlength' => 25]) !!}
                                 <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>

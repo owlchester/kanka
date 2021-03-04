@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Settings;
 use App\Http\Controllers\Controller;
 use App\Models\AppRelease;
 use App\Models\Release;
+use Illuminate\Support\Collection;
 
 class ReleaseController extends Controller
 {
@@ -24,12 +25,16 @@ class ReleaseController extends Controller
      */
     public function read(AppRelease $appRelease)
     {
-        if (auth()->check()) {
-            auth()->user()->release = $appRelease->id;
-            auth()->user()->save();
+        if (auth()->check() && !\App\Facades\Identity::isImpersonating()) {
+            $user = auth()->user();
+            /** @var Collection $settings */
+            $settings = $user->settings;
+            $settings->put('releases_' . $appRelease->category_id, $appRelease->id);
+            $user->settings = $settings;
+            $user->save();
         }
         return response()->json([
-            'success' => false
+            'success' => true
         ]);
     }
 }

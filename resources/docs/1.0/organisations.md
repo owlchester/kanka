@@ -5,9 +5,9 @@
 - [All Organisations](#all-organisations)
 - [Single Organisation](#organisation)
 - [Organisation Members](#organisation-members)
-- [Create a Organisation](#create-organisation)
-- [Update a Organisation](#update-organisation)
-- [Delete a Organisation](#delete-organisation)
+- [Create an organisation](#create-organisation)
+- [Update an organisation](#update-organisation)
+- [Delete an organisation](#delete-organisation)
 
 <a name="all-organisations"></a>
 ## All Organisations
@@ -82,7 +82,7 @@ To get the details of a single organisation, use the following endpoint.
         "type": "Kingdom",
         "members": 3
     }
-    
+
 }
 ```
 
@@ -117,9 +117,9 @@ To get the members of an organisation, use the following endpoint.
 
 
 <a name="create-organisation"></a>
-## Create a Organisation
+## Create an organisation
 
-To create a organisation, use the following endpoint.
+To create an organisation, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
@@ -144,9 +144,9 @@ To create a organisation, use the following endpoint.
 
 
 <a name="update-organisation"></a>
-## Update a Organisation
+## Update an organisation
 
-To update a organisation, use the following endpoint.
+To update an organisation, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
@@ -154,7 +154,7 @@ To update a organisation, use the following endpoint.
 
 ### Body
 
-The same body parameters are available as for when creating a organisation.
+The same body parameters are available as for when creating an organisation.
 
 ### Results
 
@@ -162,9 +162,9 @@ The same body parameters are available as for when creating a organisation.
 
 
 <a name="delete-organisation"></a>
-## Delete a Organisation
+## Delete an organisation
 
-To delete a organisation, use the following endpoint.
+To delete an organisation, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |

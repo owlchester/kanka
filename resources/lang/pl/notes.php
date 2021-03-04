@@ -23,7 +23,7 @@ return [
         'type'          => 'Rodzaj',
     ],
     'helpers'       => [
-        'nested'    => 'W Widoku Hierarchii domyślnie wyświetlane są notatki, które nie mają źródła. Po kliknięciu na notatkę zobaczysz jej pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
+        'nested'    => 'W widoku hierarchii najpierw wyświetlane są notatki, które nie mają źródła. Po kliknięciu na wiersz notatki zobaczysz jej pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
     ],
     'hints'         => [
         'is_pinned' => 'Na pulpicie można przypiąć do 3 notatek.',

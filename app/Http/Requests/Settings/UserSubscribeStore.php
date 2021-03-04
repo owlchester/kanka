@@ -12,7 +12,7 @@ class UserSubscribeStore extends FormRequest
     {
         return [
             'tier' => 'required',
-            'payment_id' => 'required',
+            'payment_id' => 'required_without:is_downgrade',
             'reason' => 'nullable',
         ];
     }

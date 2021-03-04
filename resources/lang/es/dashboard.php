@@ -3,6 +3,7 @@
 return [
     'actions'           => [
         'follow'    => 'Seguir',
+        'join'      => 'Unirse',
         'unfollow'  => 'Dejar de seguir',
     ],
     'campaigns'         => [
@@ -35,8 +36,12 @@ return [
             'success'   => 'Tablero :name eliminado.',
         ],
         'fields'        => [
+            'copy_widgets'  => 'Copiar widgets',
             'name'          => 'Nombre del tablero',
             'visibility'    => 'Visibilidad',
+        ],
+        'helpers'       => [
+            'copy_widgets'  => 'Duplica los widgets del tablero :name a este.',
         ],
         'placeholders'  => [
             'name'  => 'Nombre del tablero',
@@ -54,6 +59,7 @@ return [
     'description'       => 'Tu plaza creativa',
     'helpers'           => [
         'follow'    => 'Si sigues una campaña, esta aparecerá en el menú de cambio de campaña (arriba a la derecha) bajo tus campañas.',
+        'join'      => 'Esta campaña está abierta a nuevos miembros. Haz clic en unirse para enviar una solicitud.',
         'setup'     => 'Configura el tablero de la campaña',
     ],
     'latest_release'    => 'Publicación reciente',

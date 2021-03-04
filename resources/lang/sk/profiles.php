@@ -9,6 +9,7 @@ return [
         'success'   => 'Profil upravený',
     ],
     'editors'       => [
+        'legacy'        => 'Pôvodný (TinyMCE 4)',
         'summernote'    => 'Summernote',
     ],
     'fields'        => [
@@ -66,6 +67,7 @@ return [
         ],
         'helpers'   => [
             'editor'    => 'Štandardný editor (TinyMCE 4) je starší ale funguje dobre na desktope, nie však na mobile. Summernote je novší editor, ktorý správne funguje na všetkých zariadeniach, ale ešte stále ho testujeme.',
+            'editor_v2' => 'Používanie pôvodného textového editoru (TinyMCE) nebude podporovať vytváranie referencií na mobilných zariadeniach alebo funkcionality ako galéria kampane.',
         ],
         'hints'     => [
             'advanced_mentions'     => 'Ak je toto nastavenie aktívne, budú sa referencie pri úprave objektov zobrazovať vo forme [entity:123].',

@@ -185,7 +185,7 @@ return [
         'header_image'          => 'Header Image',
         'image'                 => 'Image',
         'is_private'            => 'Private',
-        'is_private_v2'         => 'Only show this to members of the campaign\'s :admin-role.',
+        'is_private_v2'         => 'Only show this to members of the campaign\'s :admin-role. This overrides any other permission.',
         'is_star'               => 'Pinned',
         'item'                  => 'Item',
         'location'              => 'Location',

@@ -4,13 +4,14 @@ namespace App\Facades;
 
 use App\Models\AppRelease;
 use App\Services\Caches\PostCacheService;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * Class PostCache
  * @package App\Facades
  *
- * @method static null|AppRelease latest()
+ * @method static null|Collection|AppRelease[] latest()
  * @method static bool clearLatest()
  *
  * @see PostCacheService

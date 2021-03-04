@@ -65,7 +65,7 @@ window.initSummernote = function() {
         },
         hint: [
             {
-                match: /\B@((\w|[\u00C0-\u00FF])*)$/,
+                match: /\B@(\S*)$/,
                 search: function (keyword, callback) {
                     if (keyword.length < 3) {
                         return [];
@@ -81,7 +81,7 @@ window.initSummernote = function() {
                 }
             },
             {
-                match: /\B\[(\w*)$/,
+                match: /\B\[(\S*)$/,
                 search: function (keyword, callback) {
                     if (keyword.length < 3) {
                         return [];
@@ -97,7 +97,7 @@ window.initSummernote = function() {
                 }
             },
             {
-                match: /\B\#(\w*)$/,
+                match: /\B\#(\S*)$/,
                 search: function (keyword, callback) {
                     return hintMonths(keyword, callback);
                 },
@@ -110,7 +110,7 @@ window.initSummernote = function() {
                 }
             },
             {
-                match: /\B{(\w*)$/,
+                match: /\B{(\S*)$/,
                 search: function (keyword, callback) {
                     return attributeSearch(keyword, callback);
                 },
@@ -162,7 +162,7 @@ function hintMonths(keyword, callback) {
  */
 function attributeSearch(keyword, callback) {
     if (!summernoteConfig.data('attributes')) {
-        console.log('entity not yet created');
+        //console.log('entity not yet created');
         return false;
     }
 
@@ -307,7 +307,7 @@ function uploadImage($summernote, file) {
 
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            console.log(textStatus + " " + errorThrown);
+            //console.log(textStatus + " " + errorThrown);
             $('#superboosted-error').text(buildErrors(jqXHR.responseJSON.errors));
             $('#campaign-imageupload-error').modal();
         }

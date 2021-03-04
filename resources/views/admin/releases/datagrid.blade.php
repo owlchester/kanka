@@ -3,6 +3,7 @@
     <thead>
     <tr>
         <th>{{ __('admin/releases.fields.name') }}</th>
+        <th>{{ __('admin/releases.fields.category') }}</th>
         <th></th>
     </tr>
     </thead>
@@ -10,7 +11,11 @@
     @foreach ($models as $model)
         <tr>
             <td>
-                <a href="{{ $model->link }}">{{ $model->name }}</a>
+                <a href="{{ $model->link }}">{{ $model->name }}</a><br />
+                <p class="help-block">{{ $model->excerpt }}</p>
+            </td>
+            <td>
+                {{ $model->category() }}
             </td>
             <td>
                 <a href="{{ route('admin.app-releases.edit', $model) }}">

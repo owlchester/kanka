@@ -34,8 +34,13 @@ class ProfileController extends Controller
      */
     public function update(StoreSettingsProfile $request)
     {
-        Auth::user()
-            ->update($request->only('name', 'has_last_login_sharing', 'avatar'));
+        $user = $request->user();
+        if ($user->isPatron()) {
+            $user->settings = $user->settings->put('hide_subscription', (bool) $request->input('settings.hide_subscription', false));
+        } else {
+            unset($user->settings['hide_subscription']);
+        }
+        $user->update($request->only('name', 'has_last_login_sharing', 'avatar'));
 
         return redirect()
             ->route('settings.profile')

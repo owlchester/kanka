@@ -2,6 +2,12 @@
 
 return [
     'campaign'          => [
+        'application'   => [
+            'approved'  => 'Tu solicitud para la campaña :campaign ha sido aprobada.',
+            'new'       => 'Nueva solicitud para :campaign.',
+            'rejected'  => 'Tu solicitud para la campaña :campaign ha sido rechazada. Motivo:',
+        ],
+        'asset_export'  => 'Está disponible una exportación de la campaña. El enlace estará disponible durante :time minutos.',
         'boost'         => [
             'add'           => ':user está mejorando la campaña :campaign.',
             'remove'        => ':user ya no está mejorando la campaña :campaign.',

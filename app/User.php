@@ -15,6 +15,7 @@ use App\Models\Scopes\UserScope;
 use App\Models\UserSetting;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Laravel\Cashier\Billable;
 use Laravel\Passport\HasApiTokens;
 
@@ -36,6 +37,7 @@ use Laravel\Passport\HasApiTokens;
  * @property string $patreon_pledge
  * @property int $booster_count
  * @property int $referral_id
+ * @property Collection $settings
  *
  * Virtual
  * @property bool $advancedMentions
@@ -107,6 +109,14 @@ class User extends \TCG\Voyager\Models\User
      */
     protected $dates = [
         'last_login_at',
+    ];
+
+    /**
+     * Casted variables
+     * @var string[]
+     */
+    protected $casts = [
+        'settings' => 'array'
     ];
 
     /**
@@ -218,6 +228,11 @@ class User extends \TCG\Voyager\Models\User
                     return $readable ? '100MB' : 102400;
                 }
                 return $readable ? '25MB' : 25600;
+            } elseif ($this->isWyvern()) {
+                if ($what == 'map') {
+                    return $readable ? '20mb' : 20480;
+                }
+                return $readable ? '15MB' : 15360;
             } elseif ($what == 'map') {
                 return $readable ? '10MB' : 10240;
             }
@@ -276,6 +291,14 @@ class User extends \TCG\Voyager\Models\User
         return !empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_OWLBEAR;
     }
 
+    /**
+     * @return bool
+     */
+    public function isWyvern(): bool
+    {
+        return !empty($this->patreon_pledge) && $this->patreon_pledge == Patreon::PLEDGE_WYVERN;
+    }
+
 
     /**
      * Get available boosts for the user
@@ -318,6 +341,7 @@ class User extends \TCG\Voyager\Models\User
             Patreon::PLEDGE_KOBOLD => 0,
             Patreon::PLEDGE_GOBLIN => 1,
             Patreon::PLEDGE_OWLBEAR => 3,
+            Patreon::PLEDGE_WYVERN => 6,
             Patreon::PLEDGE_ELEMENTAL => 10,
         ];
 

@@ -19,6 +19,7 @@ return [
         'title'         => 'Actualizar nota de :name',
     ],
     'fields'        => [
+        'collapsed' => 'Nota cerrada por defecto',
         'creator'   => 'Creador',
         'entry'     => 'Entrada',
         'is_pinned' => 'Fijada',

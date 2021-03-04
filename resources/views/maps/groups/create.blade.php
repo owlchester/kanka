@@ -29,7 +29,8 @@
                 'method' => 'POST',
                 'data-shortcut' => 1,
                 'id' => 'map-group-form',
-                'enctype' => 'multipart/form-data'
+                'enctype' => 'multipart/form-data',
+                'class' => 'ajax-subform'
                ]) !!}
             @include('maps.groups._form', ['model' => null])
 

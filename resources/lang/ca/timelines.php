@@ -24,9 +24,12 @@ return [
         'eras'          => 'Eres',
         'name'          => 'Nom',
         'reverse_order' => 'Era en ordre invers',
+        'timeline'      => 'Línia de temps pare',
+        'timelines'     => 'Línies de temps',
         'type'          => 'Tipus',
     ],
     'helpers'       => [
+        'nested'            => 'Aquí es mostren les línies de temps sense pare per defecte. Feu clic a la fila d\'una línia de temps per a mostrar-ne els descendents.',
         'reorder'           => 'Agafeu i arrossegueu els elements de l\'era per a reordenar-los.',
         'reorder_tooltip'   => 'Cliqueu per a habilitar la reordenació dels elements mitjançant arrossegar i deixar anar.',
         'reverse_order'     => 'Habiliteu-ho per a mostrar les eres en ordre cronològic invers (l\'era més antiga primer)',
@@ -41,5 +44,8 @@ return [
     ],
     'show'          => [
         'title' => 'Línia de temps :name',
+    ],
+    'timelines'     => [
+        'title' => 'Línies de temps de :name',
     ],
 ];

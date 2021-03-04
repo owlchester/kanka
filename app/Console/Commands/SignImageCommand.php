@@ -12,6 +12,8 @@ class SignImageCommand extends Command
      * The name and signature of the console command.
      *
      * @var string
+     *
+     * @example php artisan img:sign images/tiers/xxx-325.png app 200
      */
     protected $signature = 'img:sign {img} {base=users} {size=200}';
 
@@ -48,8 +50,7 @@ class SignImageCommand extends Command
             $height = Str::after($full, 'x');
         }
 
-        if (!empty($height) && $height != "200") {
-
+        if (!empty($height)) {
             $url = Img::console()->base($base)->crop($width, $height)->url($img);
         } else {
             $url = Img::console()->base($base)->url($img);

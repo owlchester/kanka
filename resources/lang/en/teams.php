@@ -12,14 +12,7 @@ return [
         'title'         => 'Team',
         'translations'  => 'Translations',
     ],
-    'patreon'       => [
-        'description'   => 'These amazing people help and support Kanka by subscribing.',
-        'learn_more'    => 'Full list of features unlocked by subscribing',
-    ],
     'people'        => [
-        'iz'        => [
-            'title' => 'Product Development',
-        ],
         'jay'       => [
             'text'  => <<<'TEXT'
 I created Kanka in October 2017 because there was no tool that easily allowed me to create a world with my friends and still allow me to control who could see or do what.

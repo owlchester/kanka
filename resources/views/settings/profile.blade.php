@@ -22,12 +22,25 @@
                     </div>
 
                     <hr />
+
                     <div class="form-group checkbox">
                         <label>
                             {!! Form::hidden('has_last_login_sharing', 0) !!}
                             {!! Form::checkbox('has_last_login_sharing') !!}
                             {{ __('profiles.fields.last_login_share') }}</label>
                     </div>
+
+                    @if (auth()->user()->isPatron())
+                        <hr />
+                        <div class="form-group checkbox">
+                            <label>
+                                {!! Form::hidden('settings[hide_subscription]', 0) !!}
+                                {!! Form::checkbox('settings[hide_subscription]') !!}
+                                {!! __('profiles.fields.hide_subscription', [
+    'hall_of_fame' => link_to_route('front.hall-of-fame', __('front/hall-of-fame.title'), null, ['target' => '_blank'])
+]) !!}</label>
+                        </div>
+                    @endif
                 </div>
                 <div class="col-md-4 col-md-offset-2">
                     <h2 class="page-header with-border">

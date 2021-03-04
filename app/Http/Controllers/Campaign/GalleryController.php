@@ -102,8 +102,9 @@ class GalleryController extends Controller
 
         $folders = $campaign->images()->folders()->pluck('name', 'id')->toArray();
         $folders = array_merge(['' => __('campaigns/gallery.no_folder')], $folders);
+        $usageCount = $image->entities()->count();
 
-        return view('gallery.edit', compact('image', 'folders'));
+        return view('gallery.edit', compact('image', 'folders', 'usageCount'));
     }
 
     /**

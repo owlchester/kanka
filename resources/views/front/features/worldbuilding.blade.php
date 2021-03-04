@@ -24,27 +24,27 @@
                     <div class="container-fluid">
                         <div class="row">
 
-                            <div class="col-lg-4">
+                            <div class="col-lg-4 col-6">
                                 @include('front.features._timelines')
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-4 col-6">
                                 @include('front.features._entities')
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-4 col-6">
                                 @include('front.features._collaborative')
                             </div>
 
-                            <div class="col-lg-4">
+                            <div class="col-lg-4 col-6">
                                 @include('front.features._relations')
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-4 col-6">
                                 @include('front.features._flora')
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-4 col-6">
                                 @include('front.features._calendars')
                             </div>
 
-                            <div class="col-lg-4 offset-lg-4">
+                            <div class="col-lg-4 col-6 offset-3 offset-lg-4">
                                 @include('front.features._api')
 
                             </div>

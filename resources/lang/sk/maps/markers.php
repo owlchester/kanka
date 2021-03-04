@@ -25,6 +25,7 @@ return [
         'latitude'      => 'Zemepisná šírka',
         'longitude'     => 'Zemepisná dĺžka',
         'opacity'       => 'Nepriehľadnosť',
+        'pin_size'      => 'Veľkosť značky',
     ],
     'helpers'       => [
         'base'          => 'Pridaj značky na mapu kliknutím na hociktorý bod na nej.',

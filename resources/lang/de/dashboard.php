@@ -3,6 +3,7 @@
 return [
     'actions'           => [
         'follow'    => 'Folgen',
+        'join'      => 'beitreten',
         'unfollow'  => 'Nicht mehr folgen',
     ],
     'campaigns'         => [
@@ -58,6 +59,7 @@ return [
     'description'       => 'Das Zuhause deiner Kreativität',
     'helpers'           => [
         'follow'    => 'Wenn du einer Kampagne folgst, wird sie im Kampagnenwähler (oben rechts) unter deinen Kampagnen angezeigt.',
+        'join'      => 'Diese Kampagne steht neuen Mitgliedern offen. Klicken Sie, um sich zu bewerben, um daran teilzunehmen.',
         'setup'     => 'Richte dein Kampagnen Dashboard ein.',
     ],
     'latest_release'    => 'Letztes Release',

@@ -29,7 +29,7 @@ return [
         'type'          => 'Rodzaj',
     ],
     'helpers'       => [
-        'nested'    => 'W Widoku Hierarchii domyślnie wyświetlane są rasy, które nie mają źródła. Po kliknięciu na rasę zobaczysz jej pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
+        'nested'    => 'W widoku hierarchii najpierw wyświetlane są rasy, które nie mają źródła. Po kliknięciu na wiersz rasy zobaczysz jej pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
     ],
     'index'         => [
         'add'           => 'Nowa rasa',

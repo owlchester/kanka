@@ -31,6 +31,10 @@ class TimelineObserver extends MiscObserver
             }
         }
     }
+
+    /**
+     * @param Timeline $timeline
+     */
     public function deleting(MiscModel $timeline)
     {
         /**

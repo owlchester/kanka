@@ -23,6 +23,7 @@ return [
     'api'           => [
         'experimental'          => 'Vitaj v API Kanky! Tieto funkcionality sú stále experimentálne, ale mali by byť dostatočne stabilné na komunikáciu s API rozhraním. Vytvor si osobný prístupový žetón a použi ho v dotazovaní na API alebo použi klientský žetón, ak chceš, aby mala tvoja aplikácia prístup k užívateľským údajom.',
         'help'                  => 'Kanka bude čoskoro poskytovať prístup cez RESTful API, aby sa na ňu vedeli pripojiť aplikácie tretích strán. Detaily ohľadom správy tvojich API kľúčov nájdeš na tomto mieste.',
+        'helper'                => 'Vitaj v API Kanky. Vytvor si Osobný prístupový žetón, ktorý budeš používať v tvojich požiadavkách na API s cieľom získať informácie o kampaniach, ku ktorým patríš.',
         'link'                  => 'Čítať API dokumentáciu',
         'request_permission'    => 'Aktuálne pracujeme na silnej RESTful API, aby sa ku Kanke vedeli pripojiť aplikácie tretích strán. Zároveň ale obmedzujeme počet užívateľov, ktorí sa na rozhranie vedia pripojiť, dokiaľ na ňom pracujeme. Ak chceš prístup k API a vytvárať fajnové aplikácie, ktoré komunikujú s Kankou, kontaktuj nás a my ti zašleme všetky informácie, ktoré potrebuješ.',
         'title'                 => 'API',
@@ -58,7 +59,8 @@ return [
             'upload'    => 'Navýšená veľkosť pre nahrávanie súborov pre každého člena kampane.',
         ],
         'buttons'       => [
-            'boost' => 'Boost',
+            'boost'         => 'Boost',
+            'superboost'    => 'Superboost',
         ],
         'campaigns'     => 'Boostnuté kampane :count / :max',
         'exceptions'    => [
@@ -66,10 +68,15 @@ return [
             'exhausted_boosts'  => 'Nemáš už žiadne boosty na rozdávanie. Odstráň najprv boost od existujúcej kampane pred priradením inej.',
         ],
         'success'       => [
-            'boost' => 'Kampaň :name boostnutá',
-            'delete'=> 'Boost z kampane :name odstránený.',
+            'boost'         => 'Kampaň :name boostnutá',
+            'delete'        => 'Boost z kampane :name odstránený.',
+            'superboost'    => 'Kampaň :name superboostnutá',
         ],
         'title'         => 'Boost',
+        'unboost'       => [
+            'description'   => 'Naozaj chceš ukončiť boost kampane :tag?',
+            'title'         => 'Ukončiť boost kampane',
+        ],
     ],
     'countries'     => [
         'austria'       => 'Rakúsko',
@@ -125,6 +132,7 @@ return [
         'payment_options'       => 'Možnosti platby',
         'personal_settings'     => 'Osobné nastavenia',
         'profile'               => 'Profil',
+        'settings'              => 'Nastavenia',
         'subscription'          => 'Predplatné',
         'subscription_status'   => 'Stav predplatného',
     ],

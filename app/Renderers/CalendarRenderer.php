@@ -251,6 +251,7 @@ class CalendarRenderer
 
         // Define the week number from the start of the year
         $weekNumber = $this->startingWeekNumber();
+        //dump("starting week number: " . $weekNumber);
 
         $monthLength = $month['length'];
         $weekLength = 0;
@@ -348,8 +349,11 @@ class CalendarRenderer
         $weekLength = count($weekdays);
         $monthNumber = 1;
         $weekNumber = $offset > 0 && empty($this->calendar->reset) ? 2 : 1;
+        //dump('Starting week number: ' . $weekNumber);
         $totalDay = 1;
         foreach ($months as $month) {
+            //dump('Month: ' . $month['name']);
+            //if ($weekNumber)
             $month = $months[$monthNumber-1];
             $this->month = $monthNumber;
 
@@ -388,8 +392,12 @@ class CalendarRenderer
             }
 
             // Add each day of the month to the day thing
+            $endedWeek = false;
+            $weekday = 0;
             for ($day = 1; $day <= $monthLength; $day++) {
+                $endedWeek = false;
                 $exact = $this->getYear() . '-' . $monthNumber . '-' . $day;
+                //if ($weekNumber < 13) dump('new day ' . $weekday . ', ' . $totalDay . ', ' . $exact);
                 $dayData = [
                     'day' => $day,
                     'events' => [],
@@ -421,16 +429,23 @@ class CalendarRenderer
                 $data[] = $dayData;
 
                 $totalDay++;
+                $weekday++;
 
-                if ($totalDay % $weekLength == 0 && Arr::get($month, 'type') != 'intercalary') {
+                if ($weekday % $weekLength == 0 && Arr::get($month, 'type') != 'intercalary') {
+                    //if ($weekNumber < 13) dump('end of the week: week ' . $weekNumber . ' is over, going to ' . ($weekNumber+1));
                     $weekNumber++;
+                    $endedWeek = true;
+                    $weekday = 0;
                 }
             }
+
+            //if ($weekNumber < 13) dump('finished the month. Did we end the week on the last day? ' . ($endedWeek ? 'yes' : 'no'));
 
 
             // If the month is intercalary, we need to fill out the rest of the "week" until where it starts again
             // Or iff we have resets on the end of the month, we need to fill in some empty days
             if (Arr::get($month, 'type') == 'intercalary' || $this->calendar->reset === 'month') {
+                //if ($weekNumber < 13) dump('there is a reset going on here');
                 $totalDays = count($data);
                 $emptyDaysToFill = $weekLength - ($totalDays % $weekLength);
 
@@ -449,7 +464,10 @@ class CalendarRenderer
                     for ($d = 0; $d < $currentPosition; $d++) {
                         $data[] = [];
                     }
-                } else {
+                } elseif(!$endedWeek) {
+                    // Only increase the week number if the reset didn't happen on the last day of the previous month,
+                    // otherwise we are skipping a week number.
+                    //if ($weekNumber < 13) dump('reset: week ' . $weekNumber . ' is over, going to ' . ($weekNumber+1));
                     $weekNumber++;
                 }
             }
@@ -1028,7 +1046,7 @@ class CalendarRenderer
         $months = $this->calendar->months();
         $weekdays = $this->calendar->weekdays();
         $daysInAYear = 0;
-        $weekNumber = 0;
+        $weekNumber = 1;
         $weekdaysCount = count($weekdays);
 
         foreach ($months as $monthNumber => $monthData) {
@@ -1042,7 +1060,9 @@ class CalendarRenderer
 
             // If we reset months on the week, we need
             if ($this->calendar->reset === 'month') {
-                $weekNumber += floor($monthData['length'] / $weekdaysCount) + 1;
+                //dump('month ' . $monthNumber . ' resets. length: ' . $monthData['length'] . ' / ' . $weekdaysCount . ' + 1');
+                //dump('reset, adding ' . (ceil($monthData['length'] / $weekdaysCount)) . ' week');
+                $weekNumber += ceil($monthData['length'] / $weekdaysCount) ;
             }
             $daysInAYear += $monthData['length'];
         }

@@ -27,12 +27,12 @@ return [
     'newsletter'    => [
         'links'     => [
             'community-vote'    => 'Głosowanie społeczności',
-            'news'              => 'Nowości',
+            'news'              => 'Aktualności',
         ],
         'settings'  => [
-            'news'          => 'Nowości - otrzymuj powiadomienia, gdy mamy :news.',
+            'news'          => 'Aktualności - otrzymuj powiadomienia, gdy mamy :news.',
             'newsletter'    => 'Newsletter - otrzymuj newsletter Kanki.',
-            'votes'         => 'Glosowania społeczności - otrzymuj powiadomienia, gdy możliwe jest :vote.',
+            'votes'         => 'Głosowania społeczności - otrzymuj powiadomienia, gdy możliwe jest :vote.',
         ],
         'title'     => 'Newslettery',
     ],
@@ -60,7 +60,7 @@ return [
         'fields'    => [
             'advanced_mentions'     => 'Zaawansowane wzmianki',
             'date_format'           => 'Format daty',
-            'default_nested'        => 'Domyślny Widok Hierarchii',
+            'default_nested'        => 'Domyślny widok hierarchii',
             'editor'                => 'Edytor tekstu',
             'new_entity_workflow'   => 'Tworzenie elementów',
             'pagination'            => 'Elementy na stronie',
@@ -70,7 +70,7 @@ return [
         ],
         'hints'     => [
             'advanced_mentions'     => 'Po zaznaczeniu, podczas edycji elementów będą generowane wzmianki w formacie [element:123].',
-            'default_nested'        => 'Zaznacz, jeżeli chcesz by listy elementów wyświetlały się domyślnie w Widoku Hierarchii (gdy to możliwe).',
+            'default_nested'        => 'Zaznacz, jeżeli chcesz by listy elementów wyświetlały się domyślnie w widoku hierarchii (gdy to możliwe).',
             'new_entity_workflow'   => 'Gdy stworzysz nowy element, domyślnie wyświetli się lista elementów tego typu. Możesz to zmienić i automatycznie przechodzić do widoku właśnie stworzonego elementu.',
         ],
         'success'   => 'Zmieniono ustawienia.',

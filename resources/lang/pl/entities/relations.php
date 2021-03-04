@@ -40,7 +40,7 @@ return [
         'organisation_member'   => 'Członek organizacji',
     ],
     'update'        => [
-        'success'   => 'Zaktualizowano relację :target elementu :entity.',
+        'success'   => 'Zaktualizowano relację :target z elementem :entity.',
         'title'     => 'Zaktualizuj relacje dla :name',
     ],
 ];
