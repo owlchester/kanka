@@ -1,21 +1,21 @@
 <?php
 
 return [
-    'index' => [
+    'categories'    => [
+        'event'     => 'Event',
+        'other'     => 'Other',
+        'release'   => 'Release',
+        'vote'      => 'Community vote',
+    ],
+    'index'         => [
         'description'   => 'The latest updates to kanka.io',
         'title'         => 'Releases',
     ],
-    'post'  => [
+    'post'          => [
         'footer'    => 'By :name :date',
     ],
-    'show'  => [
+    'show'          => [
         'return'    => 'Back to releases',
         'title'     => 'Release :name',
     ],
-    'categories' => [
-        'release' => 'Release',
-        'event' => 'Event',
-        'vote' => 'Community vote',
-        'other' => 'Other',
-    ]
 ];

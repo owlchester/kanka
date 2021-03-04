@@ -65,8 +65,20 @@ export default {
                     "entity_logs": "Registres d'entitat complets sobre allò que ha canviat amb cada actualització.",
                     "first": "Per a assegurar un progrés continu a Kanka, algunes característiques de la campanya es poden desbloquejar millorant-la. Les millores es desbloquegen a través de les subscripcions. Qualsevol que pugui veure una campanya pot millorar-la; així el màster no ha de pagar sempre el compte. Una campanya roman millorada mentre un usuari l'estigui millorant i continuï fent suport a Kanka. Si una campanya deixa d'estar millorada, les dades no es perden: només romanen ocultes fins que la campanya torni a ser millorada.",
                     "header": "Imatges de capçalera per a les entitats.",
+                    "headers": {
+                        "boosted": "Beneficis de les campanyes millorades",
+                        "superboosted": "Beneficis de les campanyes supermillorades"
+                    },
+                    "helpers": {
+                        "boosted": "Millorar una campanya fa servir només una millora.",
+                        "superboosted": "Supermillorar una campanya fa servir un total de tres millores."
+                    },
                     "images": "Imatges per defecte personalitzades",
-                    "more": "Saber més sobre totes les característiques.",
+                    "more": {
+                        "boosted": "Totes les funcionalitats de les campanyes millorades",
+                        "superboosted": "Totes les funcionalitats de les campanyes supermillorades"
+                    },
+                    "recovery": "Recuperació d'entitats eliminades des de fins a {amount} dies.",
                     "second": "Millorar una campanya activa els següents beneficis:",
                     "superboost": "Una campanya supermillorada fa servir 3 millores i desbloqueja funcionalitats addicionals, a més de les de les campanyes millorades.",
                     "theme": "Tema i estil personalitzat a nivell de campanya.",
@@ -93,7 +105,11 @@ export default {
                     "delete": "La vostra millora s'ha tret de {name}.",
                     "superboost": "S'ha supermillorat la campanya {name}"
                 },
-                "title": "Millorar"
+                "title": "Millorar",
+                "unboost": {
+                    "description": "Segur que voleu deixar de millorar la campanya {tag}?",
+                    "title": "Deixar de millorar una campanya"
+                }
             },
             "countries": {
                 "austria": "Àustria",
@@ -149,6 +165,7 @@ export default {
                 "payment_options": "Opcions de pagament",
                 "personal_settings": "Configuració personal",
                 "profile": "Perfil",
+                "settings": "Configuració",
                 "subscription": "Subscripció",
                 "subscription_status": "Estat de la subscripció"
             },
@@ -375,6 +392,7 @@ export default {
                 "actions": "Accions",
                 "apply": "Aplica",
                 "back": "Enrere",
+                "bulk_templates": "Aplica una plantilla d'atributs",
                 "copy": "Copia",
                 "copy_mention": "Copia la menció [ ]",
                 "copy_to_campaign": "Copia a la campanya",
@@ -503,8 +521,12 @@ export default {
                     "editing": "{1} S'ha actualitzat {count} entitat.|[2,*] S'han actualitzat {count} entitats.",
                     "permissions": "{1} S'han canviat els permisos a {count} entitat.|[2,*] S'han canviat els permisos a {count} entitats.",
                     "private": "{1} Ara {count} entitat és privada.|[2,*] Ara {count} entitats són privades.",
-                    "public": "{1} Ara {count} entitat és visible.|[2,*] Ara {count} entitats són visibles."
+                    "public": "{1} Ara {count} entitat és visible.|[2,*] Ara {count} entitats són visibles.",
+                    "templates": "{1} S'ha aplicat la plantilla a {count} entitats.|[2,*] S'ha aplicat la plantilla a {count} entitats."
                 }
+            },
+            "bulk_templates": {
+                "bulk_title": "Aplica una plantilla a múltiples entitats"
             },
             "cancel": "Cancela",
             "click_modal": {
@@ -534,7 +556,9 @@ export default {
             "edit": "Edita",
             "errors": {
                 "boosted": "Aquesta funció només està disponible per a les campanyes millorades.",
-                "node_must_not_be_a_descendant": "Node invàlid (etiqueta, localització superior): seria un descendent de si mateix."
+                "boosted_campaigns": "Aquesta funcionalitat només està disponible per a les {boosted}.",
+                "node_must_not_be_a_descendant": "Node invàlid (etiqueta, localització superior): seria un descendent de si mateix.",
+                "unavailable_feature": "Funcionalitat no disponible"
             },
             "events": {
                 "hint": "Aquí es mostren els esdeveniments del calendari associats a aquesta entitat."
@@ -547,7 +571,10 @@ export default {
                 "calendar_date": "Data del calendari",
                 "character": "Personatge",
                 "colour": "Color",
+                "copy_abilities": "Copia les habilitats",
                 "copy_attributes": "Copia els atributs",
+                "copy_inventory": "Copia l'inventori",
+                "copy_links": "Copia els enllaços",
                 "copy_notes": "Copia les anotacions de l'entitat",
                 "creator": "Creador",
                 "dice_roll": "Tirada de daus",
@@ -558,12 +585,14 @@ export default {
                 "excerpt": "Extracte",
                 "family": "Família",
                 "files": "Fitxers",
+                "gallery_image": "Galeria d'imatges",
                 "has_entity_files": "Té fitxers",
                 "has_entity_notes": "Té anotacions",
                 "has_image": "Té imatge",
                 "header_image": "Imatge de capçalera",
                 "image": "Imatge",
                 "is_private": "Privada",
+                "is_private_v2": "Mostra-ho només als membres del {admin}-role de la campanya.",
                 "is_star": "Fixada",
                 "item": "Objecte",
                 "location": "Localització",
@@ -571,6 +600,7 @@ export default {
                 "name": "Nom",
                 "organisation": "Organització",
                 "position": "Posició",
+                "privacy": "Privacitat",
                 "race": "Raça",
                 "tag": "Etiqueta",
                 "tags": "Etiquetes",
@@ -621,10 +651,14 @@ export default {
                 },
                 "copy_options": "Opcions de còpia"
             },
+            "helpers": {
+                "copy_options": "Copia els següents elements relacionats des de l'origen cap a la nova entitat."
+            },
             "hidden": "Amagat",
             "hints": {
                 "attribute_template": "Aplica una plantilla d'atributs directament al crear aquesta entitat.",
                 "calendar_date": "Les dates del calendari faciliten el filtrat de les llistes, i també fixen els esdeveniments al calendari seleccionat.",
+                "gallery_image": "Si l'entitat no té imatge, mostra una imatge de la galeria de la campanya.",
                 "header_image": "Aquesta imatge es troba sobre la entitat. Per a obtenir resultats millors, feu servir una imatge apaisada.",
                 "image_limitations": "Formats acceptats: JPG, PNG, GIF i SVG. Tamany màxim del fitxer: {size}.",
                 "image_patreon": "¿Com s'augmenta el tamany màxim dels fitxers?",
@@ -647,6 +681,7 @@ export default {
             },
             "is_not_private": "Aquesta entitat no és privada.",
             "is_private": "Aquesta entitat és privada i només es mostra als administradors.",
+            "legacy": "Obsolet",
             "linking_help": "Com es poden enllaçar altres entitats?",
             "manage": "Administra",
             "move": {
@@ -734,14 +769,17 @@ export default {
                 "entity": "Entitat",
                 "event": "Trieu un esdeveniment",
                 "family": "Trieu una família",
+                "gallery_image": "Trieu una imatge de la galeria de la campanya",
                 "image_url": "Podeu pujar una imatge des d'una URL",
                 "item": "Trieu un objecte",
                 "journal": "Trieu una crònica",
                 "location": "Trieu una localització",
                 "map": "Trieu un mapa",
+                "note": "Trieu una nota",
                 "organisation": "Trieu una organització",
                 "race": "Trieu una raça",
-                "tag": "Trieu una etiqueta"
+                "tag": "Trieu una etiqueta",
+                "timeline": "Trieu una línia de temps"
             },
             "relations": {
                 "actions": {
@@ -872,8 +910,20 @@ export default {
                     "entity_logs": "Vollständige Objektprotokolle der Änderungen an einem Objekt bei jeder Aktualisierung.",
                     "first": "Um weitere Fortschritte bei Kanka zu erzielen, werden einige Kampagnenfunktionen durch Boosten einer Kampagne freigeschaltet. Boosts werden durch Abonnements freigeschaltet. Jeder, der eine Kampagne anzeigen kann, kann sie verbessern, sodass der DM nicht immer die Rechnung bezahlen muss. Eine Kampagne bleibt verstärkt, solange ein Benutzer die Kampagne verstärkt und Kanka weiterhin unterstützt. Wenn eine Kampagne nicht mehr verstärkt wird, gehen keine Daten verloren, sondern werden nur ausgeblendet, bis die Kampagne erneut erhöht wird.",
                     "header": "Objekt Header Bilder.",
+                    "headers": {
+                        "boosted": "geboostete Kamagnenvorteile",
+                        "superboosted": "supergeboostete Kamagnenvorteile"
+                    },
+                    "helpers": {
+                        "boosted": "Durch das Boosten einer Kampagne wird der Kampagne ein einzelner Booster zugewiesen.",
+                        "superboosted": "Durch das Superboosten einer Kampagne wird der Kampagne drei Booster zugewiesen."
+                    },
                     "images": "Benutzerdefinitierte Standardobjektbilder.",
-                    "more": "Erfahren Sie mehr über alle Funktionen.",
+                    "more": {
+                        "boosted": "Alle geboosteten Kampagnenfunktionen",
+                        "superboosted": "Alle superboosted Kampagnenfunktionen"
+                    },
+                    "recovery": "Gelöschte Objekte für bis zu {amount} Tage wiederherstellen.",
                     "second": "Das Boosten einer Kampagne bietet die folgenden Vorteile:",
                     "superboost": "Beim Superboosting einer Kampagne werden 3 Ihrer Boosts verwendet und zusätzliche Funktionen für Boosted-Kampagnen freigeschaltet.",
                     "theme": "Leitmotiv auf Kampagnenebene und benutzerdefiniertes Design.",
@@ -961,6 +1011,7 @@ export default {
                 "payment_options": "Zahlungsmöglichkeiten",
                 "personal_settings": "Persönliche Einstellungen",
                 "profile": "Profil",
+                "settings": "Einstellungen",
                 "subscription": "Abonnement",
                 "subscription_status": "Abonnement Status"
             },
@@ -1189,6 +1240,7 @@ export default {
                 "actions": "Aktionen",
                 "apply": "Übernehmen",
                 "back": "Zurück",
+                "bulk_templates": "Attributvorlage anwenden",
                 "copy": "Kopieren",
                 "copy_mention": "Kopie [] erwähnen",
                 "copy_to_campaign": "Kopiere zu Kampagne",
@@ -1315,10 +1367,14 @@ export default {
                 "success": {
                     "copy_to_campaign": "{1} {count} der in {campaign} kopierten Objekte. | [2, *] {count}  der in {campaign} kopierten Objekte.",
                     "editing": "{1} {count} objekt wurde aktualisiert. | [2, *] {count} objekte wurden aktualisiert.",
-                    "permissions": "Berechtigungen für {count} Objekt geändert.|Berechtigungen für {count} Objekte geändert.",
-                    "private": "{count} Objekt ist jetzt privat.|{count} Objekte sind jetzt privat.",
-                    "public": "{count} Objekt ist jetzt sichtbar.|{count} Objekte sind jetzt sichtbar."
+                    "permissions": "{1} Berechtigungen für {count} Objekt geändert.|Berechtigungen für {count} Objekte geändert.",
+                    "private": "{1} {count} Objekt ist jetzt privat.|{count} Objekte sind jetzt privat.",
+                    "public": "{1} {count} Objekt ist jetzt sichtbar.|{count} Objekte sind jetzt sichtbar.",
+                    "templates": "{1} Auf {count} Objekt wurde eine Vorlage angewendet. | [2, *] auf {count} Objekt wurde eine Vorlage angewendet."
                 }
+            },
+            "bulk_templates": {
+                "bulk_title": "Wenden Sie eine Vorlage auf mehrere Objekte an"
             },
             "cancel": "Abbrechen",
             "click_modal": {
@@ -1348,7 +1404,9 @@ export default {
             "edit": "Bearbeiten",
             "errors": {
                 "boosted": "Diese Funktion ist nur für geboostete Kampagnen verfügbar.",
-                "node_must_not_be_a_descendant": "Ungültiges Objekt (Kategorie, Ort): es würde ein Nachkomme von sich selbst sein."
+                "boosted_campaigns": "Diese Funktion ist nur für {boosted} verfügbar",
+                "node_must_not_be_a_descendant": "Ungültiges Objekt (Kategorie, Ort): es würde ein Nachkomme von sich selbst sein.",
+                "unavailable_feature": "nicht verfügbare Eigenschaft"
             },
             "events": {
                 "hint": "Kalenderereignisse, die mit diesem Objekt verknüpft sind, werden hier dargestellt."
@@ -1382,6 +1440,7 @@ export default {
                 "header_image": "Kopfzeilenbild",
                 "image": "Bild",
                 "is_private": "Privat",
+                "is_private_v2": "Zeigen Sie dies nur Mitgliedern der Kampagne {admin}-role",
                 "is_star": "Angepinnt",
                 "item": "Gegenstand",
                 "location": "Ort",
@@ -1389,6 +1448,7 @@ export default {
                 "name": "Name",
                 "organisation": "Organisation",
                 "position": "Position",
+                "privacy": "Privat",
                 "race": "Rasse",
                 "tag": "Tag",
                 "tags": "Tags",
@@ -1446,6 +1506,7 @@ export default {
             "hints": {
                 "attribute_template": "Wende eine Attributsvorlage direkt beim erstellen des Objektes an.",
                 "calendar_date": "Ein Datum erlaubt es, Listen einfach zu filtern und pflegt ein Ereignis im ausgewählten Kalender.",
+                "gallery_image": "Wenn das Objekt kein Bild hat, wird  ein Bild aus der Kampagnengalerie angezeigt.",
                 "header_image": "Dieses Bild wird über dem Objekt platziert. Verwenden Sie ein breites Bild, um optimale Ergebnisse zu erzielen.",
                 "image_limitations": "Unterstützte Formate: jpg, png und gif. Maximale Dateigröße: {size}.",
                 "image_patreon": "Erhöhe das Limit indem du uns bei Patreon unterstützt.",
@@ -1468,6 +1529,7 @@ export default {
             },
             "is_not_private": "Dieses Objekt ist derzeit nicht auf privat eingestellt.",
             "is_private": "Dieses Objekt ist privat und nicht von Zuschauern einsehbar.",
+            "legacy": "Erbe",
             "linking_help": "Wie kann ich zu anderen Objekten verlinken?",
             "manage": "Verwalten",
             "move": {
@@ -1561,9 +1623,11 @@ export default {
                 "journal": "Wähle ein Logbuch",
                 "location": "Wähle einen Ort",
                 "map": "Wähle eine Karte",
+                "note": "wähle eine Notiz",
                 "organisation": "Wähle eine Organisation",
                 "race": "Wähle eine Rasse",
-                "tag": "Wähle ein Tag"
+                "tag": "Wähle ein Tag",
+                "timeline": "Wähle einen Zeitstrahl"
             },
             "relations": {
                 "actions": {
@@ -1684,14 +1748,25 @@ export default {
                     "campaign_gallery": "A campaign gallery to upload images that you can re-use through the campaign.",
                     "entity_files": "Upload up to 10 files per entity.",
                     "entity_logs": "Full entity logs of what was changed on an entity with each update.",
-                    "first": "To secure continued progress on Kanka, some campaign features are unlocked by boosting a campaign. Boosts are unlocked through subscriptions. Anyone who can view a campaign can boost it, so that the DM doesn't always have to foot the bill. A campaign remains boosted as long as a user is boosting the campaign and they continue supporting Kanka. If a campaign is no longer boosted, data isn't lost, it is only hidden until the campaign is boosted again.",
+                    "first": "To secure continued progress on Kanka, some campaign features are unlocked by boosting a campaign. Boosters are unlocked through subscriptions. Anyone who can view a campaign can boost it, so that the DM doesn't always have to foot the bill. A campaign remains boosted as long as a user is boosting the campaign and they continue supporting Kanka. If a campaign is no longer boosted, data isn't lost, it is only hidden until the campaign is boosted again.",
                     "header": "Entity header images.",
+                    "headers": {
+                        "boosted": "Boosted campaign benefits",
+                        "superboosted": "Superboosted campaign benefits"
+                    },
+                    "helpers": {
+                        "boosted": "Boosting a campaign assigns a single booster to the campaign.",
+                        "superboosted": "Superboosting a campaign assigns a total of three boosters to the campaign."
+                    },
                     "images": "Custom default entity images.",
-                    "more": "Find out more about all features.",
-                    "second": "Boosting a campaign enables the following benefits:",
+                    "more": {
+                        "boosted": "All boosted campaign features",
+                        "superboosted": "All superboosted campaign features"
+                    },
+                    "recovery": "Recover deleted entities for up to {amount} days.",
                     "superboost": "Superboosting a campaign uses 3 of your boosts and unlockes additional features on top of those for boosted campaigns.",
                     "theme": "Campaign level theme and custom styling.",
-                    "third": "To boost a campaign, go to the campaign's page, and click on the \"{boost_button}\" button above the \"{edit_button}\" button.",
+                    "third": "To boost a campaign, go to the campaign's page, and click on the {boost_button} button above the {edit_button} button.",
                     "tooltip": "Custom tooltips for entities.",
                     "upload": "Increased upload size for every member in the campaign."
                 },
@@ -1774,6 +1849,7 @@ export default {
                 "payment_options": "Payment Options",
                 "personal_settings": "Personal Settings",
                 "profile": "Profile",
+                "settings": "Settings",
                 "subscription": "Subscription",
                 "subscription_status": "Subscription Status"
             },
@@ -1899,6 +1975,14 @@ export default {
                 "trial_period": "Yearly subscriptions have a 14 day cancellation policy. Contact us at {email} if you wish to cancel your yearly subscription and get a refund.",
                 "upgrade_downgrade": {
                     "button": "Upgrade & Downgrade Information",
+                    "cancel": {
+                        "bullets": {
+                            "bonuses": "Your bonuses stay enabled until the end of your payment period.",
+                            "boosts": "The same happens for your boosted campaigns. Boosted features become invisible but aren't deleted when a campaign is no longer boosted.",
+                            "kobold": "To cancel your subscription, change to the Kobold tier."
+                        },
+                        "title": "When cancelling your subscription"
+                    },
                     "downgrade": {
                         "bullets": {
                             "end": "Your current tier will stay active until the end of your current billing cycle, after which you will be downgraded to your new tier."
@@ -2138,7 +2222,9 @@ export default {
             "edit": "Edit",
             "errors": {
                 "boosted": "This feature is only available to boosted campaigns.",
-                "node_must_not_be_a_descendant": "Invalid node (tag, parent location): it would be a descendant of itself."
+                "boosted_campaigns": "This feature is only available for {boosted}.",
+                "node_must_not_be_a_descendant": "Invalid node (tag, parent location): it would be a descendant of itself.",
+                "unavailable_feature": "Unavailable feature"
             },
             "events": {
                 "hint": "Shown below is a list of all the Calendars in which this entity was added using the \"Add an event to a calendar\" interface."
@@ -2172,6 +2258,7 @@ export default {
                 "header_image": "Header Image",
                 "image": "Image",
                 "is_private": "Private",
+                "is_private_v2": "Only show this to members of the campaign's {admin}-role. This overrides any other permission.",
                 "is_star": "Pinned",
                 "item": "Item",
                 "location": "Location",
@@ -2179,6 +2266,7 @@ export default {
                 "name": "Name",
                 "organisation": "Organisation",
                 "position": "Position",
+                "privacy": "Privacy",
                 "race": "Race",
                 "tag": "Tag",
                 "tags": "Tags",
@@ -2259,6 +2347,7 @@ export default {
             },
             "is_not_private": "This entity isn't currently set to private.",
             "is_private": "This entity is private and only visible to members of the Admin role.",
+            "legacy": "Legacy",
             "linking_help": "How can I link to other entries?",
             "manage": "Manage",
             "move": {
@@ -2350,6 +2439,7 @@ export default {
                 "journal": "Choose a journal",
                 "location": "Choose a location",
                 "map": "Choose a map",
+                "note": "Choose a note",
                 "organisation": "Choose an organisation",
                 "race": "Choose a race",
                 "tag": "Choose a tag",
@@ -2410,7 +2500,9 @@ export default {
             }
         },
         "campaigns": [],
-        "front": [],
+        "front": {
+            "features": []
+        },
         "randomisers": [],
         "entities": []
     },
@@ -2484,8 +2576,20 @@ export default {
                     "entity_logs": "Registros completos de los cambios de una entidad.",
                     "first": "Para asegurar un progreso contínuo en Kanka, algunas características de campaña se pueden desbloquear mejorando la campaña. Las mejoras se desbloquean mediante {patreon}. Cualquiera que pueda ver una campaña puede mejorarla; así el máster no tiene que pagar la cuenta siempre. Una campaña permanece mejorada mientras un usuario la esté mejorando y continúe apoyando a Kanka en {patreon}. Si una campaña deja de estar mejorada, los datos no se pierden: solo permanecen ocultos hasta que la campaña vuelva a ser mejorada.",
                     "header": "Imágenes de cabecera para las entidades.",
+                    "headers": {
+                        "boosted": "Beneficios de la campaña mejorada",
+                        "superboosted": "Beneficios de la campaña supermejorada"
+                    },
+                    "helpers": {
+                        "boosted": "Mejorar una campaña usa solo una mejora.",
+                        "superboosted": "Supermejorar una campaña usa un total de tres mejoras."
+                    },
                     "images": "Imágenes por defecto personalizadas",
-                    "more": "Saber más sobre todas las características.",
+                    "more": {
+                        "boosted": "Todas las funcionalidades de las campañas mejoradas",
+                        "superboosted": "Todas las funcionalidades de las campañas supermejoradas"
+                    },
+                    "recovery": "Recupera entidades eliminadas de hasta hace {amount} días.",
                     "second": "Mejorar una campaña activa los siguientes beneficios:",
                     "superboost": "Supermejorar una campaña usa 3 de tus mejoras y desbloquea funcionalidades adicionales además de las de las campañas mejoradas.",
                     "theme": "Tema y estilo personalizado a nivel de campaña.",
@@ -2512,7 +2616,11 @@ export default {
                     "delete": "Tu mejora de {name} se ha eliminado.",
                     "superboost": "Campaña {name} supermejorada"
                 },
-                "title": "Mejorar"
+                "title": "Mejorar",
+                "unboost": {
+                    "description": "¿Seguro que quieres dejar de mejorar la campaña {tag}?",
+                    "title": "Dejar de mejorar una campaña"
+                }
             },
             "countries": {
                 "austria": "Austria",
@@ -2569,6 +2677,7 @@ export default {
                 "payment_options": "Opciones de pago",
                 "personal_settings": "Ajustes personales",
                 "profile": "Perfil",
+                "settings": "Configuración",
                 "subscription": "Suscripción",
                 "subscription_status": "Estado de la suscripción"
             },
@@ -2797,6 +2906,7 @@ export default {
                 "actions": "Acciones",
                 "apply": "Aplicar",
                 "back": "Atrás",
+                "bulk_templates": "Aplicar plantilla de atributos",
                 "copy": "Copiar",
                 "copy_mention": "Copiar mención [ ]",
                 "copy_to_campaign": "Copiar a campaña",
@@ -2922,8 +3032,12 @@ export default {
                     "editing": "{1} Se ha actualizado {count} entidad .|[2,*] Se han actualizado {count} entidades.",
                     "permissions": "{1} Permisos cambiados en {count} entidad.|[2,*] Permisos cambiados en {count} entidades.",
                     "private": "{1} Ahora {count} entidad es privada.|[2,*] Ahora {count} entidades son privadas.",
-                    "public": "{1} Ahora {count} entidad es visible|[2,*] Ahora {count} son visibles."
+                    "public": "{1} Ahora {count} entidad es visible|[2,*] Ahora {count} son visibles.",
+                    "templates": "{1} Se ha aplicado la plantilla a {count} entidad.|[2,*] Se ha aplicado la plantilla a {count} entidades."
                 }
+            },
+            "bulk_templates": {
+                "bulk_title": "Aplicar una plantilla a varias entidades"
             },
             "cancel": "Cancelar",
             "click_modal": {
@@ -2953,7 +3067,9 @@ export default {
             "edit": "Editar",
             "errors": {
                 "boosted": "Esta función solo está disponible para las campañas mejoradas.",
-                "node_must_not_be_a_descendant": "Nodo inválido (etiqueta, localización superior): sería un descendiente de sí mismo."
+                "boosted_campaigns": "Esta funcionalidad solo está disponible para las {boosted}.",
+                "node_must_not_be_a_descendant": "Nodo inválido (etiqueta, localización superior): sería un descendiente de sí mismo.",
+                "unavailable_feature": "Funcionalidad no disponible"
             },
             "events": {
                 "hint": "Los eventos del calendario asociados a esta entidad se muestran aquí."
@@ -2966,7 +3082,10 @@ export default {
                 "calendar_date": "Fecha del calendario",
                 "character": "Personaje",
                 "colour": "Color",
+                "copy_abilities": "Copiar habilidades",
                 "copy_attributes": "Copiar atributos",
+                "copy_inventory": "Copiar inventario",
+                "copy_links": "Copiar notas de entidad",
                 "copy_notes": "Copiar notas de la entidad",
                 "creator": "Creador",
                 "dice_roll": "Tirada de dados",
@@ -2977,12 +3096,14 @@ export default {
                 "excerpt": "Extracto",
                 "family": "Familia",
                 "files": "Archivos",
+                "gallery_image": "Galería de imágenes",
                 "has_entity_files": "Tiene archivos",
                 "has_entity_notes": "Tiene notas de entidad",
                 "has_image": "Tiene imagen",
                 "header_image": "Imagen de cabecera",
                 "image": "Imagen",
                 "is_private": "Privado",
+                "is_private_v2": "Muestra esto solo a miembros del {admin}-role.",
                 "is_star": "Fijada",
                 "item": "Objeto",
                 "location": "Localización",
@@ -2990,6 +3111,7 @@ export default {
                 "name": "Nombre",
                 "organisation": "Organización",
                 "position": "Posición",
+                "privacy": "Privacidad",
                 "race": "Raza",
                 "tag": "Etiqueta",
                 "tags": "Etiquetas",
@@ -3040,10 +3162,14 @@ export default {
                 },
                 "copy_options": "Opciones de copia"
             },
+            "helpers": {
+                "copy_options": "Copia los siguientes elementos relacionados del origen a la nueva entidad."
+            },
             "hidden": "Oculto",
             "hints": {
                 "attribute_template": "Aplica una plantilla de atributos directamente al crear esta entidad.",
                 "calendar_date": "Las fechas de calendario hacen que sea más fácil filtrar las listas, y también fijan los eventos al calendario seleccionado.",
+                "gallery_image": "Si la entidad no tiene imagen, muestra una imagen de la galería en su lugar.",
                 "header_image": "Esta imagen está situada sobre la entidad. Para obtener mejores resultados, usa una imagen apaisada.",
                 "image_limitations": "Formatos soportados: jpg, png y gif. Tamaño máximo del archivo: {size}.",
                 "image_patreon": "¿Cómo se puede aumentar el tamaño máximo de los archivos?",
@@ -3066,6 +3192,7 @@ export default {
             },
             "is_not_private": "Esta entidad no es privada.",
             "is_private": "Esta entidad es privada y solo pueden verla los administradores.",
+            "legacy": "Obsoleto",
             "linking_help": "¿Como se enlazan otras entradas?",
             "manage": "Administrar",
             "move": {
@@ -3153,14 +3280,17 @@ export default {
                 "entity": "Entidad",
                 "event": "Elige un evento",
                 "family": "Elige una familia",
+                "gallery_image": "Elige una imagen de la galería de la campaña",
                 "image_url": "Puedes subir una imagen desde una URL",
                 "item": "Elige un objeto",
                 "journal": "Elige un diario",
                 "location": "Elige una localización",
                 "map": "Elige un mapa",
+                "note": "Elige una nota",
                 "organisation": "Elige una organización",
                 "race": "Elige una raza",
-                "tag": "Elige una etiqueta"
+                "tag": "Elige una etiqueta",
+                "timeline": "Elige una línea de tiempo"
             },
             "relations": {
                 "actions": {
@@ -3273,9 +3403,20 @@ export default {
                     "entity_logs": "Historique complet des changements sur une entité.",
                     "first": "Pour assurer une évolution continue de Kanka, certaines fonctionnalités de l'application sont débloquées lorsqu'une campagne est boostée. Les boosts sont débloqués grâce a un abonnement. Une campagne peut être boostée par n'importe qui, du moment que le compte a accès à la campagne en question. Une campagne reste boostée tant que le compte a un {subscription} actif. Si une campagne n'est plus boostée, les informations ne sont pas perdues mais deviennent simplement invisibles jusqu'à ce que la campagne soit à nouveau boostée.",
                     "header": "Image d'en-tête pour entité.",
+                    "headers": {
+                        "boosted": "Avantages d'une campagne boostée",
+                        "superboosted": "Avantages d'une campagne superboostée"
+                    },
+                    "helpers": {
+                        "boosted": "Booster une campagne assign un booster à la campagne.",
+                        "superboosted": "Superbooster une campagne assign un total de trois boosters à la campagne."
+                    },
                     "images": "Images d'entité par défaut personnalisées.",
-                    "more": "En savoir plus sur toutes les fonctionnalités.",
-                    "second": "Booster une campagne débloque les bénéfices suivants:",
+                    "more": {
+                        "boosted": "Toutes les fonctionnalités pour les campagnes boostées",
+                        "superboosted": "Toutes les fonctionnalités pour les campagnes superboostées"
+                    },
+                    "recovery": "Récupérer des entités supprimées pendant {amount} jours.",
                     "superboost": "Superbooster une campagne utilise 3 boosts et permet d'autres fonctionnalités en plus de celles débloquées par les campagnes boostées.",
                     "theme": "Thème de campagne et style personnalisé.",
                     "third": "Pour booster une campagne, aller sur la page de la campagne et cliquer sur le bouton \"{boost_button}\" situé au dessus du bouton \"{edit_button}\".",
@@ -3361,6 +3502,7 @@ export default {
                 "payment_options": "Options de paiement",
                 "personal_settings": "Paramètres Personnels",
                 "profile": "Profil",
+                "settings": "Paramètres",
                 "subscription": "Abonnement",
                 "subscription_status": "Status d'abonnement"
             },
@@ -3725,7 +3867,9 @@ export default {
             "edit": "Modifier",
             "errors": {
                 "boosted": "Cette fonctionnalité n'est accessible qu'aux campagnes boostées..",
-                "node_must_not_be_a_descendant": "Node invalide (étiquette, lieu parent): l'entité serait un descendant de lui-même."
+                "boosted_campaigns": "Cette fonctionnalité n'est que disponible que pour les {boosted}.",
+                "node_must_not_be_a_descendant": "Node invalide (étiquette, lieu parent): l'entité serait un descendant de lui-même.",
+                "unavailable_feature": "Fonctionnalité indisponible"
             },
             "events": {
                 "hint": "Les événements de calendrier peuvent être associés à cette entité et être affichés ici."
@@ -3759,6 +3903,7 @@ export default {
                 "header_image": "Image d'en-tête",
                 "image": "Image",
                 "is_private": "Privé",
+                "is_private_v2": "Seulement afficher ceci aux membres du {admin}-role de la campagne.",
                 "is_star": "Epinglé",
                 "item": "Objet",
                 "location": "Lieu",
@@ -3766,6 +3911,7 @@ export default {
                 "name": "Nom",
                 "organisation": "Organisation",
                 "position": "Position",
+                "privacy": "Visibilité",
                 "race": "Race",
                 "tag": "Etiquette",
                 "tags": "Etiquettes",
@@ -3846,6 +3992,7 @@ export default {
             },
             "is_not_private": "Cette entité n'est pas privée.",
             "is_private": "Cet élément est privé et pas visible.",
+            "legacy": "Ancien",
             "linking_help": "Comment lier vers d'autres éléments?",
             "manage": "Gérer",
             "move": {
@@ -3937,6 +4084,7 @@ export default {
                 "journal": "Choix d'un journal",
                 "location": "Choix du lieu",
                 "map": "Choix d'une carte",
+                "note": "Choix d'une note",
                 "organisation": "Choix d'une organisation",
                 "race": "Choix d'une race",
                 "tag": "Choix d'une étiquette",
@@ -6842,6 +6990,8 @@ export default {
                 "title": "Account"
             },
             "api": {
+                "helper": "Welkom bij de Kanka API's. Genereer een Persoonlijke Toegangstoken om in je API verzoek te gebruiken om informatie te verzamelen over de campaigns waarvan jij deel uitmaakt.",
+                "link": "Lees de API documentatie",
                 "title": "API"
             },
             "apps": {
@@ -6867,9 +7017,11 @@ export default {
                     "campaign_gallery": "Een campaign galerij om afbeeldingen te uploaden die je via de campaign kunt hergebruiken.",
                     "entity_files": "Upload tot wel 10 bestanden per entiteit.",
                     "entity_logs": "Volledige entiteit logboeken van wat er bij elke update op een entiteit is gewijzigd.",
+                    "first": "Om voortdurende vooruitgang op Kanka te garanderen, worden sommige campaignfuncties ontgrendeld door een campaign te boosten. Boosts worden ontgrendeld via abonnementen. Iedereen die een campaign kan bekijken, kan deze een boost geven, zodat de DM niet altijd de rekening hoeft te betalen. Een campaign blijft een boost krijgen zolang een gebruiker de campaign een boost geeft en ze Kanka blijven steunen. Als een campaign niet langer een boost krijgt, gaan er geen gegevens verloren, deze worden alleen verborgen totdat de campaign weer een boost krijgt.",
                     "header": "Entiteit header afbeeldingen.",
                     "images": "Aangepaste standaard entiteit afbeeldingen.",
-                    "more": "Lees meer over alle functies."
+                    "more": "Lees meer over alle functies.",
+                    "second": "Het boosten van een campaign levert de volgende voordelen op:"
                 },
                 "buttons": {
                     "boost": "Boost",
@@ -7016,6 +7168,7 @@ export default {
                 "actions": "Acties",
                 "apply": "Toepassen",
                 "back": "Terug",
+                "bulk_templates": "Pas Attribuutsjabloon toe",
                 "copy": "Kopieer",
                 "copy_mention": "Kopieer [ ] opmerking",
                 "copy_to_campaign": "Kopieer naar Campaign",
@@ -7124,8 +7277,12 @@ export default {
                     "editing": "{1} {count} entiteit was bijgewerkt.|[2,*] {count} entiteiten waren bijgewerkt.",
                     "permissions": "{1} Permissies gewijzigd voor {count} entiteit.|[2,*] Permissies gewijzigd voor {count} entiteiten.",
                     "private": "{1} {count} entiteit is nu privé|[2,*] {count} entiteiten zijn nu privé.",
-                    "public": "{1} {count} entiteit is nu zichtbaar|[2, *] {count} entiteiten zijn nu zichtbaar."
+                    "public": "{1} {count} entiteit is nu zichtbaar|[2, *] {count} entiteiten zijn nu zichtbaar.",
+                    "templates": "{1} {count} entiteit heeft een sjabloon toegepast.|[2,*] {count} entiteiten hebben een sjabloon toegepast."
                 }
+            },
+            "bulk_templates": {
+                "bulk_title": "Pas een sjabloon toe op meerdere entiteiten"
             },
             "cancel": "Annuleer",
             "click_modal": {
@@ -7253,6 +7410,7 @@ export default {
             "hints": {
                 "attribute_template": "Pas een attribuutsjabloon rechtstreeks toe wanneer je deze entiteit maakt of bewerkt.",
                 "calendar_date": "Een kalender datum maakt eenvoudig filteren in lijsten mogelijk en houdt ook een kalender gebeurtenis bij in de geselecteerde kalender.",
+                "gallery_image": "Als de entiteit geen afbeelding heeft, geef je in plaats daarvan een afbeelding uit de campaign galerij weer.",
                 "header_image": "Deze afbeelding wordt boven de entiteit geplaatst. Gebruik een brede afbeelding voor de beste resultaten.",
                 "image_limitations": "Ondersteunde formaten: jpg, png en gif. Max Bestandsgrootte: {size}.",
                 "image_patreon": "Limiet voor bestandsgrootte verhogen?",
@@ -7368,7 +7526,8 @@ export default {
                 "map": "Kies een kaart",
                 "organisation": "Kies een organisatie",
                 "race": "Kies een ras",
-                "tag": "Kies een tag"
+                "tag": "Kies een tag",
+                "timeline": "Kies een tijdlijn"
             },
             "relations": {
                 "actions": {
@@ -7432,6 +7591,301 @@ export default {
     "pl": {
         "maps": [],
         "calendars": [],
+        "settings": {
+            "account": {
+                "actions": {
+                    "social": "Przejdź na Logowanie Kanki",
+                    "update_email": "Zmień email",
+                    "update_password": "Zmień hasło"
+                },
+                "email": "Zmiana emaila",
+                "email_success": "Zmieniono email.",
+                "password": "Zmiana hasła",
+                "password_success": "Zmieniono hasło.",
+                "social": {
+                    "error": "To konto używa już Logowania Kanki",
+                    "helper": "Twoim kontem zarządza obecnie {provider}. Możesz przejść na system logowania, którym zarządza Kanka, ustawiając hasło.",
+                    "success": "Konto używa od teraz logowania Kanki.",
+                    "title": "Kanka przez serwis społecznościowy"
+                },
+                "title": "Konto"
+            },
+            "api": {
+                "helper": "Witaj w Kanka API. Generuj Osobiste Żetony Dostępu, by używać wywołań API do gromadzenia informacji o kampaniach, w których uczestniczysz.",
+                "link": "Przeczytaj dokumentację API",
+                "title": "API"
+            },
+            "apps": {
+                "actions": {
+                    "connect": "Połącz",
+                    "remove": "Usuń"
+                },
+                "benefits": "Kanka posiada możliwość integracji z kilkoma narzędziami zewnętrznymi. Kolejne dostępne będą w przyszłości.",
+                "discord": {
+                    "errors": {
+                        "add": "Podczas łączenia konta Kanki z Discordem nastąpił błąd. Spróbuj jeszcze raz."
+                    },
+                    "success": {
+                        "add": "Połączono z kontem Discord.",
+                        "remove": "Odłączono konto Discord."
+                    },
+                    "text": "Automatyczny dostęp do poziomu subskrypcji."
+                },
+                "title": "Integracja z aplikacjami"
+            },
+            "boost": {
+                "benefits": {
+                    "campaign_gallery": "Galeria kampanii, do której możesz dodawać obrazy dostępne w całej kampanii.",
+                    "entity_files": "Dodaj do 10 plików do elementu.",
+                    "entity_logs": "Pełen dziennik wszystkich zmian i aktualizacji elementów.",
+                    "first": "By zapewnić Kance możliwość rozwoju, niektóre funkcje dostępne są wyłącznie w doładowanych kampaniach. Doładowania z kolei związane są z subskrypcją. Każda osoba posiadająca dostęp do kampanii może ją doładować, więc płacenie rachunków nie spada zawsze na MG. Doładowanie jest aktywne, póki użytkownik go nie wyłączy i opłaca subskrypcję. Jeżeli kampania traci doładowanie, dane nie są usuwane, lecz ukrywane i stają się dostępne po ponownym doładowaniu.",
+                    "header": "Obrazy w nagłówkach elementów.",
+                    "headers": {
+                        "boosted": "Korzyści doładowanej kampanii",
+                        "superboosted": "Korzyści turbodoładowanej kampanii"
+                    },
+                    "helpers": {
+                        "boosted": "Gdy doładowujesz kampanię, zużywasz jedno doładowanie.",
+                        "superboosted": "Gdy turbodoładowujesz kampanię, zużywasz trzy doładowania."
+                    },
+                    "images": "Własne obrazy domyślne elementów.",
+                    "more": {
+                        "boosted": "Wszystkie funkcje doładowanej kampanii",
+                        "superboosted": "Wszystkie funkcje turbodoładowanej kampanii"
+                    },
+                    "recovery": "Odzyskaj elementy usunięte do {amount} dni temu",
+                    "second": "Doładowanie kampanii zapewnia następujące korzyści:",
+                    "superboost": "Turbodoładowanie kampanii zużywa 3 doładowania i odblokowuje kolejne funkcje, w dodatku do wynikających z doładowania.",
+                    "theme": "Inny motyw i styl dla każdej kampanii.",
+                    "third": "By doładować kampanię, idź na jej stronę i kliknij \"{boost_button}\" tuż nad \"{edit_button}\".",
+                    "tooltip": "Własne dymki z poradami.",
+                    "upload": "Zwiększona wielkość plików dodawanych przez wszystkich uczestników kampanii."
+                },
+                "buttons": {
+                    "boost": "Doładuj",
+                    "superboost": "Turbodoładuj",
+                    "tooltips": {
+                        "boost": "Doładowanie kampanii zużyje do {amount} twoich doładowań",
+                        "superboost": "Turbodoładowanie kampanii zużyje {amount} twoich doładowań"
+                    }
+                },
+                "campaigns": "Doładowane kampanie {count}/{max}",
+                "exceptions": {
+                    "already_boosted": "Kampania {name} jest już doładowana.",
+                    "exhausted_boosts": "Nie masz już doładowań. Musisz usunąć doładowanie z którejś kampanii, by je ponownie wykorzystać.",
+                    "exhausted_superboosts": "Nie masz doładowań. Potrzebujesz 3, by turbodoładować kampanię."
+                },
+                "success": {
+                    "boost": "Doładowano kampanię {name}.",
+                    "delete": "Usunięto doładowanie kampanii {name}.",
+                    "superboost": "Turbodoładowano kampanię {name}"
+                },
+                "title": "Doładowanie",
+                "unboost": {
+                    "description": "Czy na pewno usunąć doładowanie kampanii {tag}?",
+                    "title": "Usunięcie doładowania"
+                }
+            },
+            "countries": {
+                "austria": "Austria",
+                "belgium": "Belgia",
+                "france": "Francja",
+                "germany": "Niemcy",
+                "italy": "Włochy",
+                "netherlands": "Holandia",
+                "spain": "Hiszpania"
+            },
+            "invoices": {
+                "actions": {
+                    "download": "Pobierz PDF",
+                    "view_all": "Wszystkie"
+                },
+                "empty": "Brak rachunków",
+                "fields": {
+                    "amount": "Kwota",
+                    "date": "Data",
+                    "invoice": "Rachunek",
+                    "status": "Status"
+                },
+                "header": "Na liście znajdują się ostatnie 24 rachunki. Możesz je pobrać.",
+                "status": {
+                    "paid": "Opłacony",
+                    "pending": "Oczekuje"
+                },
+                "title": "Rachunki"
+            },
+            "layout": {
+                "success": "Zmieniono opcje układu",
+                "title": "Układ"
+            },
+            "marketplace": {
+                "fields": {
+                    "name": "Nazwa na Targowisku"
+                },
+                "helper": "Domyślnie {marketplace} używa twojej nazwy użytkownika. Tu możesz ją zastąpić.",
+                "title": "Ustawienia Targowiska",
+                "update": "Zapisano ustawienia Targowiska."
+            },
+            "menu": {
+                "account": "Konto",
+                "api": "API",
+                "apps": "Aplikacje",
+                "billing": "Metoda płatności",
+                "boost": "Doładowanie",
+                "invoices": "Rachunki",
+                "layout": "Układ",
+                "marketplace": "Targowisko",
+                "other": "Inne",
+                "patreon": "Patreon",
+                "payment_options": "Opcje płatności",
+                "personal_settings": "Ustawienia osobiste",
+                "profile": "Profil",
+                "settings": "Ustawienia",
+                "subscription": "Subskrypcja",
+                "subscription_status": "Status subskrypcji"
+            },
+            "patreon": {
+                "actions": {
+                    "link": "Połącz konto",
+                    "view": "Przejdź do Kanki na Patreonie"
+                },
+                "benefits": "Wspierając nas na {parteon} pomagasz w tworzeniu {features} dla swojej kampanii i pozwalasz nam spędzać więcej czasu na ulepszaniu Kanki.",
+                "benefits_features": "świetnych funkcji",
+                "deprecated": "Przestarzała funkcja. Jeżeli chcesz wspierać Kankę, rozważ subskrypcję. Integracja z Patreonem jest dostępna tylko dla osób, które połączyły swoje konta Patren z Kanką zanim wycofaliśmy się z tego serwisu.",
+                "description": "Sybchronizacja z Patreonem",
+                "linked": "Dziękujmy za wspieranie Kanki na Patreonie! Twoje konto zostało dodane.",
+                "pledge": "Deklaracja {name}",
+                "remove": {
+                    "button": "Odłącz konto Patreon",
+                    "success": "Odłązcono twoje konto Patreon",
+                    "text": "Dołączenie kontra Patreon spowoduje usunięcie z listy wspierających, utratę doładować kampanii i innych korzyści dostępnych dla wspierających. Treści związane z doładowaniem (na przykład nagłówki) nie zostają usunięte. Odnawiając subskrypcje odzyskasz dostęp do danych oraz możliwość ponownego doładowywania kampanii.",
+                    "title": "Odłącz swoje konto Patreon od Kanki"
+                },
+                "success": "Dziękujemy za wspierane Kanki na Patreonie!",
+                "title": "Patreon",
+                "wrong_pledge": "Twój poziom wsparcia jest przez nas ustawiany ręcznie, więc daj mu kilka dni na reakcję. Jeżeli nie zmieni się przez dłuższy czas, daj nam znać."
+            },
+            "profile": {
+                "actions": {
+                    "update_profile": "Aktualizuj profil"
+                },
+                "avatar": "Zdjęcie profilowe",
+                "success": "Zmieniono profil.",
+                "title": "Profil osobisty"
+            },
+            "subscription": {
+                "actions": {
+                    "cancel_sub": "Usuń subskrypcję",
+                    "subscribe": "Subskrybuj",
+                    "update_currency": "Zapisz preferowaną walutę"
+                },
+                "benefits": "Wspierając nas pomagasz w tworzeniu {features} i pozwalasz nam spędzać więcej czasu na ulepszaniu Kanki. Żadne informacje dotyczące kart kredytowych nie są przechowywane ani przetwarzane na naszych serwerach. Płatności obsługuje serwis {stripe}.",
+                "billing": {
+                    "helper": "Informacje o płatnościach bezpiecznie przetwarza i przechowuje {stripe}. To metoda płatności stosowana we wszystkich subskrypcjach.",
+                    "saved": "Zapisz metodę płatności",
+                    "title": "Edycja metody płatności"
+                },
+                "cancel": {
+                    "text": "Szkoda, że rezygnujesz! Po zaniechaniu subskrypcji konto pozostanie aktywne do końca okresu rozliczeniowego. Potem stracisz doładowania i inne korzyści wynikające ze wspierania Kanki. Wypełniając poniższy formularz nasz nam znać, co możemy poprawić i dlaczego rezygnujesz."
+                },
+                "cancelled": "Anulowano subskrypcję. Możesz ją odnowić, gdy tylko ta wygaśnie.",
+                "change": {
+                    "text": {
+                        "monthly": "Subskrybujesz na poziomie {tier}, płacąc miesięcznie {amount}.",
+                        "yearly": "Subskrybujesz na poziomie {tier}, płacąc rocznie {amount}."
+                    },
+                    "title": "Zmiana poziomu subskrypcji"
+                },
+                "currencies": {
+                    "eur": "EUR",
+                    "usd": "USD"
+                },
+                "currency": {
+                    "title": "Zmień preferowaną walutę rozliczenia"
+                },
+                "errors": {
+                    "callback": "Nasz dostawca płatności zgłosił błąd. Spróbuj ponownie i skontaktuj się z nami, jeżeli się powtórzy.",
+                    "subscribed": "Nie można przetworzyć subskrypcji. Stripe sugeruje następującą radę."
+                },
+                "fields": {
+                    "active_since": "Aktywna od",
+                    "active_until": "Aktywna do",
+                    "billing": "Płatność",
+                    "currency": "Waluta płatności",
+                    "payment_method": "Metoda płatności",
+                    "plan": "Obecny plan",
+                    "reason": "Powód"
+                },
+                "helpers": {
+                    "alternatives": "Opłać subskrypcję używając {method}. Ten sposób płatności nie odnawia się automatycznie na koniec cyklu. {method} jest dostępna tylko w Euro.",
+                    "alternatives_warning": "Jeżeli używasz tej metody, nie możesz zmienić poziomu subskrypcji. Zasubskrybuj ponownie, gdy ta subskrypcja wygaśnie.",
+                    "alternatives_yearly": "Z powodu ograniczeń cyklu płatniczego, {method} jest dostępna tylko dla subskrypcji rocznych."
+                },
+                "manage_subscription": "Zarządzaj subskrypcją",
+                "payment_method": {
+                    "actions": {
+                        "add_new": "Dodaj metodę płatności",
+                        "change": "Zmień metodę płatności",
+                        "save": "Zapisz metodę płatności",
+                        "show_alternatives": "Alternatywne sposoby płatności"
+                    },
+                    "add_one": "Nie masz zapisanych metod płatności.",
+                    "alternatives": "Możesz subskrybować Kankę przy pomocy tych alternatyw. Twoje konto zostanie obciążone raz i subskrypcja nie odnowi się automatycznie.",
+                    "card": "Karta",
+                    "card_name": "Nazwisko na karcie",
+                    "country": "Kraj pobytu",
+                    "ending": "Ważność do",
+                    "helper": "Karta zostanie użyta do wszystkich twoich subskrypcji",
+                    "new_card": "Dodaj metodę płatności",
+                    "saved": "{brand} o numerze kończącym się na {last4}"
+                },
+                "placeholders": {
+                    "reason": "Jeżeli chcesz, powiedz nam dlaczego rezygnujesz ze wspierania Kanki. Czy brakuje ci jakichś funkcji, czy też zmieniła się twoja sytuacja finansowa?"
+                },
+                "plans": {
+                    "cost_monthly": "{currency} {amount} rozliczane miesięcznie",
+                    "cost_yearly": "{currency} {amount} rozliczane rocznie"
+                },
+                "sub_status": "Informacje o subskrypcji",
+                "subscription": {
+                    "actions": {
+                        "downgrading": "Skontaktuj się z nami by zmniejszyć poziom subskrypcji",
+                        "rollback": "Zmień na Kobolda",
+                        "subscribe": "Zmień na poziom {tier} miesięcznie",
+                        "subscribe_annual": "Zmień na poziom {tier} rocznie"
+                    }
+                },
+                "success": {
+                    "alternative": "Zarejestrowaliśmy płatność. Otrzymasz powiadomienie kiedy tylko zostanie przetworzona i aktywujemy subskrypcję.",
+                    "callback": "Subskrypcja udana. Zaktualizujemy twoje konto gdy tylko obsługujący płatności powiadomi nas o zmianie (to może potrwać kilka minut).",
+                    "cancel": "Anulowano subskrypcję. Pozostanie aktywna do końca okresu rozliczeniowego.",
+                    "currency": "Zmieniono walutę rozliczenia.",
+                    "subscribed": "Subskrypcja udana. Nie zapomnij o newsletterze głosowań społeczności, by zawsze wiedzieć kiedy rozpoczyna się głosowanie. Możesz zmienić ustawienia newslettera na stronie profilu."
+                },
+                "tiers": "Poziomy subskrypcji",
+                "trial_period": "Subskrypcje roczne mają 14-dniowy okres wypowiedzenia. Jeżeli chcesz anulować subskrypcję roczną i uzyskać zwrot pieniędzy, skontaktuj się z nami przez {email}.",
+                "upgrade_downgrade": {
+                    "button": "Informacje o zmianie subskrypcji",
+                    "downgrade": {
+                        "bullets": {
+                            "end": "Twój poziom zostanie aktywny do końca okresu rozliczeniowego, po czym zostanie odpowiednio zmniejszony."
+                        },
+                        "title": "Gdy obniżasz subskrypcję"
+                    },
+                    "upgrade": {
+                        "bullets": {
+                            "immediate": "Pobierzemy pieniądze od razu i natychmiast uzyskasz dostęp do nowego poziomu.",
+                            "prorate": "Zwiększając subskrypcję z poziomu Owlbear na poziom Elemental płacisz tylko różnicę w cenie."
+                        },
+                        "title": "Gdy podnosisz subskrypcję"
+                    }
+                },
+                "warnings": {
+                    "incomplete": "Nie mogliśmy obciążyć karty. Zaktualizuj dane karty kredytowej - podejmiemy kolejną próbę w ciągu kilku dni. Jeżeli znów się nie uda, twoja subskrypcja zostanie anulowana.",
+                    "patreon": "Twoje konto jest powiązane z Patreonem. Usuń swoje konto Patreon z Kanki zanim przejdziesz na bezpośrednią subskrypcję."
+                }
+            }
+        },
         "conversations": {
             "create": {
                 "description": "Stwórz nową konwersację",
@@ -7443,7 +7897,7 @@ export default {
             },
             "edit": {
                 "description": "Aktualizuj konwersację",
-                "success": "Zaktualizowano konwersację '{name}'.",
+                "success": "Zmieniono konwersację '{name}'.",
                 "title": "Konwersacja {name}"
             },
             "fields": {
@@ -7496,7 +7950,7 @@ export default {
                 "participants": "Uczestnicy"
             },
             "targets": {
-                "characters": "Postacie",
+                "characters": "Postaci",
                 "members": "Gracze"
             }
         },
@@ -7508,15 +7962,16 @@ export default {
                 "actions": "Akcje",
                 "apply": "Zastosuj",
                 "back": "Cofnij",
+                "bulk_templates": "Zastosuj szablon cech",
                 "copy": "Kopiuj",
-                "copy_mention": "Kopiuj wzmiankę []",
+                "copy_mention": "Kopiuj wzmiankę [ ]",
                 "copy_to_campaign": "Kopiuj do kampanii",
-                "explore_view": "Widok Zagnieżdżony",
+                "explore_view": "Widok hierarchii",
                 "export": "Eksport (PDF)",
                 "find_out_more": "Więcej",
                 "go_to": "Idź do {name}",
                 "json-export": "Eksport (JSON)",
-                "manage_links": "Zarządzaj linkami",
+                "manage_links": "Zarządzaj odnośnikami",
                 "move": "Zmień lub przenieś",
                 "new": "Nowe",
                 "next": "Następne",
@@ -7545,7 +8000,7 @@ export default {
                     "delete_all": "Czy na pewno chcesz usunąć cechy tego elementu?"
                 },
                 "hints": {
-                    "is_private": "Oznaczając cechy jako tajne ukrywasz je przed graczami nie posiadającymi roli Admina."
+                    "is_private": "Oznaczając cechy jako tajne ukrywasz je przed graczami nie posiadającymi roli administratora."
                 },
                 "index": {
                     "success": "Zaktualizowano cechy {entity}",
@@ -7572,7 +8027,7 @@ export default {
                 },
                 "visibility": {
                     "entry": "Cecha wyświetlana na stronie głównej elementu.",
-                    "private": "Cecha widoczna wyłącznie dla posiadaczy roli \"Admin\".",
+                    "private": "Cecha widoczna wyłącznie dla posiadaczy roli \"administrator\".",
                     "public": "Cecha widoczna dla wszystkich.",
                     "tab": "Cecha wyświetlana wyłącznie w zakładce Cechy."
                 }
@@ -7581,7 +8036,7 @@ export default {
             "boosted_campaigns": "Doładowanie kampanie",
             "bulk": {
                 "actions": {
-                    "edit": "Wspólna edycja i oznaczanie"
+                    "edit": "Edytuj zaznaczone"
                 },
                 "age": {
                     "helper": "Możesz dodać liczbę poprzedzoną znakiem + lub -, by zmienić wiek o tyle lat."
@@ -7599,7 +8054,7 @@ export default {
                     "title": "Edycja wielu elementów"
                 },
                 "errors": {
-                    "admin": "Tylko admini mogą zmieniać tajny status elementu.",
+                    "admin": "Tylko administratorzy mogą zmieniać tajny status elementu.",
                     "general": "Podczas wykonywania akcji nastąpił błąd. Jeżeli będzie się powtarzał, skontaktuj się z nami. Komunikat błędu: {hint}."
                 },
                 "permissions": {
@@ -7616,8 +8071,12 @@ export default {
                     "editing": "{1} Zaktualizowano {count} element .|[2,3,4] Zaktualizowano {count} elementy .|[5,*] Zaktualizowano {count} elementów.",
                     "permissions": "{1} Zmieniono uprawnienia dla {count} elementu.|[2,*] Zmieniono uprawnienia dla {count} elementów.",
                     "private": "{1} {count} element jest teraz tajny|[2,3,4] {count} elementy są teraz tajne|[5,*] elementów jest teraz tajnych.",
-                    "public": "{1} {count} element jest teraz jawny|[2,3,4] {count} elementy są teraz jawne|[5,*] elementów jest teraz jawnych."
+                    "public": "{1} {count} element jest teraz jawny|[2,3,4] {count} elementy są teraz jawne|[5,*] elementów jest teraz jawnych.",
+                    "templates": "Zastosowano szablon do {1} {count} elementu.|Zastosowano szablony do [2,*] {count} elementów ."
                 }
+            },
+            "bulk_templates": {
+                "bulk_title": "Zastosuj szablon do wielu elementów"
             },
             "cancel": "Anuluj",
             "click_modal": {
@@ -7647,12 +8106,14 @@ export default {
             "edit": "Edytuj",
             "errors": {
                 "boosted": "Ta funkcja jest dostępna wyłącznie w doładowanych kampaniach.",
-                "node_must_not_be_a_descendant": "Niewłaściwy węzeł (etykieta, miejsce źródłowe): pochodziłby sam od siebie."
+                "boosted_campaigns": "By korzystać z tej funkcji, kampania musi być {boosted}.",
+                "node_must_not_be_a_descendant": "Niewłaściwy węzeł (etykieta, miejsce źródłowe): pochodziłby sam od siebie.",
+                "unavailable_feature": "Funkcja niedostępna"
             },
             "events": {
-                "hint": "Poniżej znajduje się lista wszystkich Kalendarzy, do których dodano ten element przy pomocy funkcji \"Dodaj wydarzenie do kalendarza\"."
+                "hint": "Poniżej znajduje się lista kalendarzy, do których dodano wydarzenia zawierające ten element."
             },
-            "export": "Eksport",
+            "export": "Eksportuj",
             "fields": {
                 "ability": "Zdolność",
                 "attribute_template": "Szablon cech",
@@ -7663,36 +8124,38 @@ export default {
                 "copy_abilities": "Kopiuj zdolności",
                 "copy_attributes": "Kopiuj cechy",
                 "copy_inventory": "Kopiuj wyposażenie",
-                "copy_links": "Kopiuj linki elementu",
-                "copy_notes": "Kopiuj notki elementu",
+                "copy_links": "Kopiuj odnośniki elementu",
+                "copy_notes": "Kopiuj komentarze do elementu",
                 "creator": "Tworzenie",
                 "dice_roll": "Rzut kośćmi",
                 "entity": "Element",
                 "entity_type": "Rodzaj elementu",
-                "entry": "Wpis",
+                "entry": "Szczegóły",
                 "event": "Wydarzenie",
                 "excerpt": "Fragment",
                 "family": "Rodzina",
                 "files": "Pliki",
                 "gallery_image": "Obraz w galerii",
                 "has_entity_files": "Ma dołączone pliki",
-                "has_entity_notes": "Ma dołączone notki",
+                "has_entity_notes": "Posiada komentarze",
                 "has_image": "Ma obraz",
                 "header_image": "Winieta",
                 "image": "Obraz",
                 "is_private": "Tajne",
+                "is_private_v2": "Pokazuj wyłącznie uczestnikom posiadającym rolę {admin}-role.",
                 "is_star": "Przypięte",
                 "item": "Przedmiot",
                 "location": "Miejsce",
                 "map": "Mapa",
                 "name": "Nazwa",
                 "organisation": "Organizacja",
-                "position": "Stanowisko",
+                "position": "Kolejność",
+                "privacy": "Prywatność",
                 "race": "Rasa",
                 "tag": "Etykieta",
                 "tags": "Etykiety",
-                "timeline": "Chronologia",
-                "tooltip": "Porada",
+                "timeline": "Historia",
+                "tooltip": "Dymek",
                 "type": "Rodzaj",
                 "visibility": "Widoczność"
             },
@@ -7714,9 +8177,9 @@ export default {
             },
             "filter": "Filtruj",
             "filters": {
-                "all": "Pokaż wszystkie pochodne elementy",
+                "all": "Pokaż wszystkie elementy pochodne",
                 "clear": "Usuń filtry",
-                "direct": "Pokaż bezpośrednio pochodne elementy",
+                "direct": "Pokaż elementy bezpośrednio pochodne",
                 "filtered": "Wyświetlono {count} z {total} elementów.",
                 "hide": "Ukryj filtry",
                 "options": {
@@ -7745,14 +8208,15 @@ export default {
             "hints": {
                 "attribute_template": "Zastosuj szablon cech bezpośrednio podczas tworzenia lub edycji tego elementu.",
                 "calendar_date": "Data kalendarzowa umożliwia łatwiejsze filtrowanie i sprawia, że dane wydarzenie zostaje przypisane do kalendarza.",
+                "gallery_image": "Jeżeli element nie posiada własnego obrazu, zamiast niego wyświetlany będzie wybrany obraz z galerii kampanii.",
                 "header_image": "Obraz umieszczony w nagłówku elementu. Użyj szerokiego obrazu by osiągnąć najlepszy efekt.",
                 "image_limitations": "Dozwolone formaty: jpg, png i gif. Maksymalny rozmiar pliku {size}.",
                 "image_patreon": "Zwiększyć limit rozmiaru pliku?",
-                "is_private": "Element oznaczony jako tajny jest widoczny tylko dla posiadaczy roli \"Admin\" w tej kampanii.",
+                "is_private": "Element oznaczony jako tajny jest widoczny tylko dla posiadaczy roli \"administrator\".",
                 "is_star": "Elementy przypięte pojawiają się w menu elementu.",
                 "map_limitations": "Dozwolone formaty: jpg, png, gif i svg. Maksymalny rozmiar pliku {size}.",
-                "tooltip": "Zastąp poradę generowaną automatycznie następującą zawartością.",
-                "visibility": "Opcja widoczności \"Admin\" sprawia, że widzą to wszyscy Admini kampanii. Ustawienie widoczności \"Ja\" oznacza, że widzisz to wyłącznie ty."
+                "tooltip": "Zastąp dymek z poradą generowaną automatycznie następującą zawartością.",
+                "visibility": "Opcja widoczności \"Administrator\" sprawia, że widzą to wszyscy administratorzy kampanii. Ustawienie widoczności \"Ja\" oznacza, że widzisz to wyłącznie ty."
             },
             "history": {
                 "created": "Stworzone przez <strong>{name}</strong> <span data-toggle=\"tooltip\" title=\"{realdate}\">{date}</span>",
@@ -7763,10 +8227,11 @@ export default {
                 "view": "Zobacz dziennik elementu"
             },
             "image": {
-                "error": "Nie udało nam się pozyskać wskazanego obrazu. Być może strona uniemożliwia pobieranie (na przykład Squarespace albo DeviantArt), albo link nie jest już aktywny. Upewnij się też, że obrazek nie jest większy niż {size}."
+                "error": "Nie udało nam się pozyskać wskazanego obrazu. Być może strona uniemożliwia pobieranie (na przykład Squarespace albo DeviantArt), albo odnośnik nie jest już aktywny. Upewnij się też, że obrazek nie jest większy niż {size}."
             },
             "is_not_private": "Ten element nie jest obecnie tajny.",
-            "is_private": "Ten element jest tajny, a zatem widoczny tylko dla uczestników posiadających rolę Admina.",
+            "is_private": "Ten element jest tajny, a zatem widoczny tylko dla uczestników posiadających rolę administratora.",
+            "legacy": "Poprzednia wersja",
             "linking_help": "Jak tworzyć linki do innych elementów?",
             "manage": "Zarządzaj",
             "move": {
@@ -7805,7 +8270,7 @@ export default {
                 "appearance": "Wygląd",
                 "attribute_template": "Szablon cech",
                 "calendar_date": "Data kalendarzowa",
-                "entry": "Wpis",
+                "entry": "Szczegóły",
                 "general_information": "Informacje ogólne",
                 "move": "Przenieś",
                 "system": "System"
@@ -7822,11 +8287,11 @@ export default {
                     "bulk_entity": {
                         "allow": "Zezwól",
                         "deny": "Zabroń",
-                        "inherit": "Przekaż"
+                        "inherit": "Kopiuj"
                     },
-                    "delete": "Usuń",
+                    "delete": "Usuwaj",
                     "edit": "Edytuj",
-                    "entity_note": "Notki elementu",
+                    "entity_note": "Komentuj elementy",
                     "read": "Czytaj",
                     "toggle": "Przełącz"
                 },
@@ -7853,14 +8318,16 @@ export default {
                 "event": "Wybierz wydarzenie",
                 "family": "Wybierz rodzinę",
                 "gallery_image": "Wybierz obraz z galerii kampanii",
-                "image_url": "Możesz również załadować obraz z URL",
+                "image_url": "Możesz również podać URL obrazu",
                 "item": "Wybierz przedmiot",
                 "journal": "Wybierz dziennik",
                 "location": "Wybierz miejsce",
                 "map": "Wybierz mapę",
+                "note": "Wybierz notatkę",
                 "organisation": "Wybierz organizację",
                 "race": "Wybierz rasę",
-                "tag": "Wybierz etykietę"
+                "tag": "Wybierz etykietę",
+                "timeline": "Wybierz historię"
             },
             "relations": {
                 "actions": {
@@ -7892,25 +8359,25 @@ export default {
                 "default": "Domyślne",
                 "events": "Wydarzenia",
                 "inventory": "Wyposażenie",
-                "links": "Linki",
-                "map-points": "Punkty mapy",
+                "links": "Odnośniki",
+                "map-points": "Na mapach",
                 "mentions": "Wzmianki",
                 "menu": "Menu",
-                "notes": "Notki elementu",
+                "notes": "Komentarze",
                 "permissions": "Uprawnienia",
                 "relations": "Relacje",
-                "reminders": "Przypomnienia",
-                "timelines": "Chronologie",
-                "tooltip": "Porada"
+                "reminders": "Ważne daty",
+                "timelines": "Historie",
+                "tooltip": "Dymek"
             },
             "update": "Aktualizacja",
             "users": {
                 "unknown": "Nieznany"
             },
-            "view": "Widok",
+            "view": "Zobacz",
             "visibilities": {
-                "admin": "Admin",
-                "admin-self": "Ja i Admin",
+                "admin": "Administrator",
+                "admin-self": "Ja i administrator",
                 "all": "Wszyscy",
                 "members": "Uczestnicy",
                 "self": "Ja"
@@ -7918,6 +8385,7 @@ export default {
         },
         "campaigns": [],
         "front": [],
+        "randomisers": [],
         "entities": []
     },
     "pt": [],
@@ -8747,8 +9215,6 @@ export default {
                     "first": "Для гарантии продолжения развития Kanka, некоторые черты Кампаний доступны только с помощью усилителей Кампаний. Усилители доступны по подписке. Любой, кто видит Кампанию, может усилить ее, так что Админ не всегда должен за это платить. Кампания остается усиленной пока пользователь ее усиливает и продолжает поддерживать Kanka. Если Кампания теряет усиление, то данные не теряются, они просто скрываются, пока Кампанию снова не усилят.",
                     "header": "Изображения заголовков объектов",
                     "images": "Заказные изображения объектов по умолчанию",
-                    "more": "Узнать больше обо всех функциях",
-                    "second": "Усиление Кампании дает следующие преимущества:",
                     "theme": "Тема уровней Кампании и заказной стиль",
                     "third": "Чтобы усилить Кампанию, перейдите на ее страницу и нажмите на кнопку \"{boost_button}\" над кнопкой \"{edit_button}\".",
                     "tooltip": "Заказные подсказки для объектов",
@@ -9033,6 +9499,7 @@ export default {
                 "actions": "Действия",
                 "apply": "Применить",
                 "back": "Назад",
+                "bulk_templates": "Шаблон атрибутов",
                 "copy": "Копировать",
                 "copy_mention": "Копировать [упоминание]",
                 "copy_to_campaign": "Копировать в кампанию",
@@ -9106,7 +9573,7 @@ export default {
             "boosted_campaigns": "Усиленные кампании",
             "bulk": {
                 "actions": {
-                    "edit": "Массовый редактор и тэги"
+                    "edit": "Редактор и тэги"
                 },
                 "age": {
                     "helper": "Перед числом можно поставить + или - , чтобы увеличить или уменьшить возраст на это число."
@@ -9137,12 +9604,16 @@ export default {
                     "title": "Изменение разрешений нескольких объектов"
                 },
                 "success": {
-                    "copy_to_campaign": "{1} В кампанию {campaign} скопирован {count} объект|[2, 4] В кампанию {campaign} скопировано {count} объекта|[5, *] В кампанию {campaign} скопировано {count} объектов",
-                    "editing": "{1} Обновлен {count} объект|[2, 4] Обновлено {count} объекта|[5, *] Обновлено {count} объектов",
-                    "permissions": "{1} Изменены разрешения {count} объекта|[2, *] Изменены разрешения {count} объектов",
-                    "private": "{1} Скрыт {count} объект|[2, 4] Скрыто {count} объекта|[5, *] Скрыто {count} объектов",
-                    "public": "{1} Открыт {count} объект|[2, 4] Открыто {count} объекта|[5, *] Открыто {count} объектов"
+                    "copy_to_campaign": "{1} В кампанию {campaign} скопирован {count} объект|[2,4] В кампанию {campaign} скопировано {count} объекта|[5,*] В кампанию {campaign} скопировано {count} объектов",
+                    "editing": "{1} Обновлен {count} объект|[2,4] Обновлено {count} объекта|[5,*] Обновлено {count} объектов",
+                    "permissions": "{1} Изменены разрешения {count} объекта|[2,*] Изменены разрешения {count} объектов",
+                    "private": "{1} Скрыт {count} объект|[2,4] Скрыто {count} объекта|[5,*] Скрыто {count} объектов",
+                    "public": "{1} Открыт {count} объект|[2,4] Открыто {count} объекта|[5,*] Открыто {count} объектов",
+                    "templates": "{1} К {count} объекту применен шаблон|[2,*] К {count} объектам применен шаблон"
                 }
+            },
+            "bulk_templates": {
+                "bulk_title": "Применение шаблона к нескольким объектам"
             },
             "cancel": "Отмена",
             "click_modal": {
@@ -9172,7 +9643,9 @@ export default {
             "edit": "Редактировать",
             "errors": {
                 "boosted": "Эта функция доступна только для усиленный кампаний.",
-                "node_must_not_be_a_descendant": "Недопустимая привязка (тэг, родительская локация): объект является потомком самого себя"
+                "boosted_campaigns": "Эта функция доступна только для {boosted}.",
+                "node_must_not_be_a_descendant": "Недопустимая привязка (тэг, родительская локация): объект является потомком самого себя",
+                "unavailable_feature": "Функция недоступна"
             },
             "events": {
                 "hint": "Список ниже содержит все календари, в которые было добавлено это событие."
@@ -9185,7 +9658,10 @@ export default {
                 "calendar_date": "Дата календаря",
                 "character": "Персонаж",
                 "colour": "Цвет",
+                "copy_abilities": "Копировать способности",
                 "copy_attributes": "Копировать атрибуты",
+                "copy_inventory": "Копировать инвентарь",
+                "copy_links": "Копировать ссылки объекта",
                 "copy_notes": "Копировать заметки объекта",
                 "creator": "Создатель",
                 "dice_roll": "Бросок костей",
@@ -9196,12 +9672,14 @@ export default {
                 "excerpt": "Краткое описание",
                 "family": "Семья",
                 "files": "Файлы",
+                "gallery_image": "Изображение из галереи",
                 "has_entity_files": "Есть загруженные файлы",
                 "has_entity_notes": "Есть заметки объекта",
                 "has_image": "Есть изображение",
                 "header_image": "Изображение заголовка",
                 "image": "Изображение",
                 "is_private": "Скрытый",
+                "is_private_v2": "Показывать это только участникам кампании с {admin}-role.",
                 "is_star": "Закрепить",
                 "item": "Предмет",
                 "location": "Локация",
@@ -9209,6 +9687,7 @@ export default {
                 "name": "Название",
                 "organisation": "Организация",
                 "position": "Позиция",
+                "privacy": "Доступ",
                 "race": "Раса",
                 "tag": "Тэг",
                 "tags": "Тэги",
@@ -9257,12 +9736,16 @@ export default {
                 "actions": {
                     "calendar": "Добавить дату календаря"
                 },
-                "copy_options": "Копировать опции"
+                "copy_options": "Параметры копирования"
+            },
+            "helpers": {
+                "copy_options": "Следующие элементы объекта будут скопированы в новый объект."
             },
             "hidden": "Скрытый",
             "hints": {
                 "attribute_template": "Применять шаблон атрибутов непосредственно при создании или изменении объекта.",
                 "calendar_date": "Дата календаря позволяет легко фильтровать списки, а также хранит событие выбранного календаря.",
+                "gallery_image": "Если у объекта нет изображения, то будет использоваться изображение из галереи.",
                 "header_image": "Это изображение будет находиться над объектом. Лучше использовать широкое изображение.",
                 "image_limitations": "Форматы: jpg, png и gif. Размер файла: до {size}.",
                 "image_patreon": "Увеличить максимальный размер файла?",
@@ -9285,6 +9768,7 @@ export default {
             },
             "is_not_private": "В данный момент этот объект открыт",
             "is_private": "Этот объект скрыт и виден только участникам роли \"Админ\"",
+            "legacy": "Старое",
             "linking_help": "Как создавать ссылки на другие объекты?",
             "manage": "Управление",
             "move": {
@@ -9370,14 +9854,17 @@ export default {
                 "entity": "Выберите объект",
                 "event": "Выберите событие",
                 "family": "Выберите семью",
+                "gallery_image": "Выберите изображение из галереи",
                 "image_url": "Вы также можете ввести URL изображения",
                 "item": "Выберите предмет",
                 "journal": "Выберите журнал",
                 "location": "Выберите локацию",
                 "map": "Выберите карту",
+                "note": "Выберите заметку",
                 "organisation": "Выберите организацию",
                 "race": "Выберите расу",
-                "tag": "Выберите тэг"
+                "tag": "Выберите тэг",
+                "timeline": "Выберите хронологию"
             },
             "relations": {
                 "actions": {
@@ -9464,6 +9951,7 @@ export default {
             "api": {
                 "experimental": "Vitaj v API Kanky! Tieto funkcionality sú stále experimentálne, ale mali by byť dostatočne stabilné na komunikáciu s API rozhraním. Vytvor si osobný prístupový žetón a použi ho v dotazovaní na API alebo použi klientský žetón, ak chceš, aby mala tvoja aplikácia prístup k užívateľským údajom.",
                 "help": "Kanka bude čoskoro poskytovať prístup cez RESTful API, aby sa na ňu vedeli pripojiť aplikácie tretích strán. Detaily ohľadom správy tvojich API kľúčov nájdeš na tomto mieste.",
+                "helper": "Vitaj v API Kanky. Vytvor si Osobný prístupový žetón, ktorý budeš používať v tvojich požiadavkách na API s cieľom získať informácie o kampaniach, ku ktorým patríš.",
                 "link": "Čítať API dokumentáciu",
                 "request_permission": "Aktuálne pracujeme na silnej RESTful API, aby sa ku Kanke vedeli pripojiť aplikácie tretích strán. Zároveň ale obmedzujeme počet užívateľov, ktorí sa na rozhranie vedia pripojiť, dokiaľ na ňom pracujeme. Ak chceš prístup k API a vytvárať fajnové aplikácie, ktoré komunikujú s Kankou, kontaktuj nás a my ti zašleme všetky informácie, ktoré potrebuješ.",
                 "title": "API"
@@ -9499,7 +9987,8 @@ export default {
                     "upload": "Navýšená veľkosť pre nahrávanie súborov pre každého člena kampane."
                 },
                 "buttons": {
-                    "boost": "Boost"
+                    "boost": "Boost",
+                    "superboost": "Superboost"
                 },
                 "campaigns": "Boostnuté kampane {count} / {max}",
                 "exceptions": {
@@ -9508,9 +9997,14 @@ export default {
                 },
                 "success": {
                     "boost": "Kampaň {name} boostnutá",
-                    "delete": "Boost z kampane {name} odstránený."
+                    "delete": "Boost z kampane {name} odstránený.",
+                    "superboost": "Kampaň {name} superboostnutá"
                 },
-                "title": "Boost"
+                "title": "Boost",
+                "unboost": {
+                    "description": "Naozaj chceš ukončiť boost kampane {tag}?",
+                    "title": "Ukončiť boost kampane"
+                }
             },
             "countries": {
                 "austria": "Rakúsko",
@@ -9566,6 +10060,7 @@ export default {
                 "payment_options": "Možnosti platby",
                 "personal_settings": "Osobné nastavenia",
                 "profile": "Profil",
+                "settings": "Nastavenia",
                 "subscription": "Predplatné",
                 "subscription_status": "Stav predplatného"
             },

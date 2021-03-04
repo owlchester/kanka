@@ -167,7 +167,7 @@ return [
             'description'   => 'From and in-depth permission system, to Quests, Journals, Characters, Abilities and embedded audio and video, we help you manage your campaign and upcoming tpk.',
             'title'         => 'RPG Campaign Management',
         ],
-        'secrets'             => [
+        'secrets'           => [
             'description'   => 'Every entity can have several secrets attached to them in the form of entity notes. These can have permissions to control who sees them, and can be pinned to the entity\'s main view to quickly access them at a glance.',
             'title'         => 'Manage Secrets',
         ],
@@ -279,15 +279,15 @@ return [
             'support'   => 'Support',
         ],
         'benefits'      => [
-            'big_maps'          => 'Big map size (:size)',
-            'bigger_maps'       => 'Bigger map size (:size)',
-            'boosters'          => 'Campaign Boosters',
-            'core'              => 'Access to all core features',
-            'huge_maps'         => 'Huge map size (:size)',
-            'huge_uploads'      => 'Huge file upload sizes',
-            'no_boosters'       => 'No Campaign Boosters',
-            'unlimited'         => 'Unlimited campaigns & uploads',
-            'updates'           => 'Frequent updates and improvements',
+            'big_maps'      => 'Big map size (:size)',
+            'bigger_maps'   => 'Bigger map size (:size)',
+            'boosters'      => 'Campaign Boosters',
+            'core'          => 'Access to all core features',
+            'huge_maps'     => 'Huge map size (:size)',
+            'huge_uploads'  => 'Huge file upload sizes',
+            'no_boosters'   => 'No Campaign Boosters',
+            'unlimited'     => 'Unlimited campaigns & uploads',
+            'updates'       => 'Frequent updates and improvements',
         ],
         'description'   => 'All core features are free, but supporting Kanka helps us deliver frequent updates and improvements for all users.',
         'tier'          => [

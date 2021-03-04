@@ -275,12 +275,12 @@ return [
         'upgrade_downgrade'     => [
             'button'    => 'Upgrade & Downgrade Information',
             'cancel'    => [
-                'bullets' => [
-                    'boosts' => 'The same happens for your boosted campaigns. Boosted features become invisible but aren\'t deleted when a campaign is no longer boosted.',
-                    'bonuses' => 'Your bonuses stay enabled until the end of your payment period.',
-                    'kobold' => 'To cancel your subscription, change to the Kobold tier.',
+                'bullets'   => [
+                    'bonuses'   => 'Your bonuses stay enabled until the end of your payment period.',
+                    'boosts'    => 'The same happens for your boosted campaigns. Boosted features become invisible but aren\'t deleted when a campaign is no longer boosted.',
+                    'kobold'    => 'To cancel your subscription, change to the Kobold tier.',
                 ],
-                'title' => 'When cancelling your subscription',
+                'title'     => 'When cancelling your subscription',
             ],
             'downgrade' => [
                 'bullets'   => [
