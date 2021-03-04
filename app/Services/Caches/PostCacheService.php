@@ -5,6 +5,7 @@ namespace App\Services\Caches;
 
 
 use App\Models\AppRelease;
+use Illuminate\Support\Facades\DB;
 
 class PostCacheService extends BaseCache
 {
@@ -15,11 +16,13 @@ class PostCacheService extends BaseCache
     {
         $key = 'latest_releases';
         if ($this->has($key)) {
-            return $this->get($key);
+           return $this->get($key);
         }
 
-        $data = AppRelease::orderBy('published_at', 'DESC')
+        $data = AppRelease::
+            whereRaw('id IN (select MAX(id) FROM releases GROUP BY category_id)')
             ->groupBy('category_id')
+            //->orderBy('publishedAt', 'DESC')
             ->get();
 
         $this->forever($key, $data);
