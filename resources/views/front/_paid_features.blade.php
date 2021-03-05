@@ -123,7 +123,7 @@
     </div>
 </section>
 
-<section class="minimal-padding" id="boost" style="display: none">
+<section class="minimal-padding" id="boost" style="">
     <div class="container">
         <div class="col-lg-12 my-auto">
             <div class="header-content mx-auto">
