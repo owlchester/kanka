@@ -57,13 +57,13 @@ class StatService
                 'icon' => 'ra ra-tower',
                 'amount' => $locations,
                 'target' => $this->target($locations),
-                'level' => $this->level($characters),
+                'level' => $this->level($locations),
             ],
             'races' => [
                 'icon' => 'ra ra-dragon',
                 'amount' => $races,
                 'target' => $this->target($races),
-                'level' => $this->level($characters),
+                'level' => $this->level($races),
             ],
             'families' => [
                 'icon' => 'fa fa-users',
