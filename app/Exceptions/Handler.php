@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Throwable;
 use Http\Client\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -67,5 +68,22 @@ class Handler extends ExceptionHandler
         }
 
         return parent::render($request, $exception);
+    }
+
+    /**
+     * Unauthenticated exception handler
+     * @param \Illuminate\Http\Request $request
+     * @param AuthenticationException $exception
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        return $request->is('api/*')
+            ? response()->json([
+                'message' => 'Unauthenticated (missing the authorization token in the request headers).',
+                'documentation' => 'https://kanka.io/en/docs/1.0/setup#authentication'
+            ], 401)
+            : redirect()->guest(route('login'));
+
     }
 }

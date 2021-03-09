@@ -13,13 +13,13 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group([
+/*Route::group([
     'middleware' => ['auth:api', 'throttle:rate_limit,1'],
     'namespace'  => 'Api\v1',
     'prefix'     => 'v1',
 ], function() {
     require base_path('routes/api.v1.php');
-});
+});*/
 
 Route::group([
     'middleware' => ['auth:api', 'throttle:rate_limit,1'],

@@ -58,4 +58,14 @@ class LoginController extends Controller
     {
         return $this->loginService->authenticated($user);
     }
+
+    /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
 }

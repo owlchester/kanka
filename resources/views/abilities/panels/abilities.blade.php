@@ -36,9 +36,7 @@ $filters['ability_id'] = request()->get('ability_id');
                 <th class="avatar"><br /></th>
                 <th>{{ trans('abilities.fields.name') }}</th>
                 <th>{{ trans('crud.fields.ability') }}</th>
-                @if ($campaign->enabled('locations'))
-                <th>{{ trans('crud.fields.location') }}</th>
-                @endif
+                <th>{{ trans('crud.fields.type') }}</th>
             </tr>
             @foreach ($r as $ability)
                 <tr>
@@ -53,13 +51,11 @@ $filters['ability_id'] = request()->get('ability_id');
                             {!! $ability->parent->tooltipedLink() !!}
                         @endif
                     </td>
-                    @if ($campaign->enabled('locations'))
                     <td>
-                        @if ($ability->location)
-                            {!! $ability->location->tooltipedLink() !!}
+                        @if ($ability->type)
+                            {!! $ability->type !!}
                         @endif
                     </td>
-                    @endif
                 </tr>
             @endforeach
             </tbody>
