@@ -46,7 +46,13 @@
                         <h5 class="box-title">{{ $version->version }}
                             @if($version->id == $plugin->pivot->plugin_version_id)
                                 <span class="label label-info pull-right">{{ __('campaigns/plugins.info.your_version') }}</span>
-                            @endif</h5>
+                            @endif
+                            @if ($version->status_id == 1)
+                                <span class="label label-warning pull-right">
+                                   DRAFT
+                                </span>
+                            @endif
+                        </h5>
                         <div class="pull-right">
                             <small>{{ $version->updated_at->diffForHumans() }}</small>
                         </div>

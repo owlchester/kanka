@@ -2,6 +2,7 @@
 /**
  * @var \App\Models\Plugin $plugin
  */
+$one = 'yoooo';
 ?>
 
 

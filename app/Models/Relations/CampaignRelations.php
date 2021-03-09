@@ -311,7 +311,6 @@ trait CampaignRelations
      */
     public function plugins()
     {
-        // return $this->belongsToMany('Email', 'users_email', 'reciever_uid','email_id')->withPivot('sender_uid');
         return $this->belongsToMany('App\Models\Plugin', 'campaign_plugins', 'campaign_id', 'plugin_id')
             //->using('App\Models\CampaignPlugin')
             ->withPivot('is_active')

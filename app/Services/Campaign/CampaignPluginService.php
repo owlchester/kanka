@@ -90,7 +90,10 @@ class CampaignPluginService
     public function update()
     {
         // Get latest
-        $latest = $this->plugin->versions()->where('status_id', 3)->orderBy('id', 'desc')->first();
+        $latest = $this->plugin->versions()
+            ->publishedVersions($this->plugin->created_by)
+            ->orderBy('id', 'desc')
+            ->first();
 
         /** @var CampaignPlugin $campaignPlugin */
         $campaignPlugin = CampaignPlugin::where('campaign_id', $this->campaign->id)

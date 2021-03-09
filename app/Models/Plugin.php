@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  *
  * @property PluginVersion[] $versions
+ * @property PluginVersion $version
  * @property User $user
  */
 class Plugin extends Model
@@ -39,7 +40,14 @@ class Plugin extends Model
     public function hasUpdate(): bool
     {
         // Check latest version
-        return $this->versions()->where('status_id', 3)->where('id', '>', $this->pivot->plugin_version_id)->count() > 0;
+        return $this->versions()->where(function ($sub) {
+            if ($this->created_by == auth()->user()->id) {
+                return $sub->whereIn('status_id', [1, 3]);
+            } else {
+                return $sub->where('status_id', 3);
+            }
+
+            })->where('id', '>', $this->pivot->plugin_version_id)->count() > 0;
 
         // Our current version
         //return $latest->id > $this->pivot->plugin_version_id;

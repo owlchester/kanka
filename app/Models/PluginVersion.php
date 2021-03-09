@@ -4,6 +4,7 @@
 namespace App\Models;
 
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Blade;
@@ -62,20 +63,35 @@ class PluginVersion extends Model
     {
         $this->entityAttributes = $entity->attributes()->get();
         $html = preg_replace_callback('`\{(.*?)\}`i', function ($matches) {
-            $name = (string)$matches[1];
+            $name = (string) $matches[1];
             return $this->attribute($name);
         }, $this->content);
 
-        //return Blade::compileString($html);
-        //dd($html);
+
+        // Replace < and > in logical blocks
+        //$html = str_replace(['&lt;', '&gt;'], ['<', '>'], $html);
+
+        //dump($html);
+        //$html = Blade::compileString($html);
+
+        //dump($html);
+        //return $html;
 
         // If-Else condition
+
+        $html = preg_replace_callback('`@if\((.*?)\)(.*?)@endif`si', function ($matches) {
+            return $this->ifBlock($matches);
+        }, $html);
+
         $html = preg_replace_callback('`@if\((.*?)\)(.*?)@else(.*?)@endif`si', function ($matches) {
             return $this->ifElseBlock($matches);
         }, $html);
 
-        $html = preg_replace_callback('`@if\((.*?)\)(.*?)@endif`si', function ($matches) {
-            return $this->ifBlock($matches);
+        $html = preg_replace_callback('`@empty\((.*?)\)(.*?)@endempty`si', function ($matches) {
+            return $this->emptyBlock($matches);
+        }, $html);
+        $html = preg_replace_callback('`@notempty\((.*?)\)(.*?)@endnotempty`si', function ($matches) {
+            return !$this->emptyBlock($matches);
         }, $html);
 
         return $html;
@@ -96,7 +112,7 @@ class PluginVersion extends Model
             return $attr->mappedValue();
         }
 
-        return $name;
+        return '<i class="missing-attribute">' . $name . '</i>';
     }
 
     /**
@@ -106,6 +122,12 @@ class PluginVersion extends Model
      */
     protected function ifElseBlock(array $matches)
     {
+        // Test on a missing attribute always returns false
+        $trimmed = trim($matches[1]);
+        if (Str::contains($trimmed, '<i class="missing-attribute">')) {
+            return $matches[3];
+        }
+
         // Strip tags to remove html brs on multilines
         $condition = strip_tags(trim($matches[1]));
         if (Str::contains($condition, ['=', '>', '<'])) {
@@ -128,9 +150,19 @@ class PluginVersion extends Model
      */
     protected function ifBlock(array $matches)
     {
+        // If there is an else in the block, let the if-else block handle it later
+        if (Str::contains($matches[2], '@else')) {
+            return $matches[0];
+        }
+        // Test on a missing attribute always returns false
+        $trimmed = trim($matches[1]);
+        if (Str::contains($trimmed, '<i class="missing-attribute">')) {
+            return null;
+        }
+
         // Strip tags to remove html brs on multilines
         $condition = strip_tags(trim($matches[1]));
-        if (Str::contains($condition, ['=', '>', '<'])) {
+        if (Str::contains($condition, ['=', '>', '<', '&lt;', '&gt;'])) {
             if ($this->evaluateCondition($condition)) {
                 return $matches[2];
             }
@@ -152,24 +184,50 @@ class PluginVersion extends Model
         // >=
         if (Str::contains($condition, '&gt;=')) {
             $segments = explode('&gt;=', $condition);
-            return trim($segments[0]) >= trim($segments[1]);
+            return (int) trim($segments[0]) >= (int) trim($segments[1]);
         }
         elseif (Str::contains($condition, '&lt;=')) {
             $segments = explode('&lt;=', $condition);
-            return trim($segments[0]) <= trim($segments[1]);
+            return (int) trim($segments[0]) <= (int) trim($segments[1]);
         }
         elseif (Str::contains($condition, '&gt;')) {
             $segments = explode('&gt;', $condition);
-            return trim($segments[0]) > trim($segments[1]);
+            return (int) trim($segments[0]) > (int) trim($segments[1]);
         }
         elseif (Str::contains($condition, '&lt;')) {
             $segments = explode('&lt;', $condition);
-            return trim($segments[0]) < trim($segments[1]);
+            return (int) trim($segments[0]) < (int) trim($segments[1]);
         }
         elseif (Str::contains($condition, '=')) {
             $segments = explode('=', $condition);
             return trim($segments[0]) == trim($segments[1]);
         }
         return false;
+    }
+
+    protected function emptyBlock(array $matches)
+    {
+        $condition = trim($matches[1]);
+        if (Str::contains($condition, '<i class="missing">')) {
+            return false;
+        }
+        elseif (empty($condition)) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * @param Builder $query
+     * @param int $pluginCreator
+     * @return Builder
+     */
+    public function scopePublishedVersions(Builder $query, int $pluginCreator)
+    {
+        if ($pluginCreator == auth()->user()->id) {
+            return $query->whereIn('status_id', [1, 3]);
+        } else {
+            return $query->where('status_id', 3);
+        }
     }
 }
