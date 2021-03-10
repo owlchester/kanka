@@ -17,6 +17,7 @@ return [
         'title'     => 'Edit Marker :name',
     ],
     'fields'        => [
+        'circle_radius' => 'Circle radius',
         'custom_icon'   => 'Custom Icon',
         'custom_shape'  => 'Custom Shape',
         'font_colour'   => 'Icon Colour',
@@ -26,6 +27,11 @@ return [
         'longitude'     => 'Longitude',
         'opacity'       => 'Opacity',
         'pin_size'      => 'Pin Size',
+        'polygon_style' => [
+            'stroke'    => 'Stroke colour',
+            'stroke-width' => 'Stroke width',
+            'stroke-opacity' => 'Stroke opacity',
+        ],
     ],
     'helpers'       => [
         'base'          => 'Add markers to the map by clicking on any spot.',

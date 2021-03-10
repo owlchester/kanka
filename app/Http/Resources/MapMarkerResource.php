@@ -30,6 +30,8 @@ class MapMarkerResource extends ModelResource
             'custom_shape' => $this->custom_shape,
             'is_draggable' => (bool) $this->is_draggable,
             'opacity' => $this->opacity,
+            'circle_radius' => $this->circle_radius,
+            'polygon_style' => $this->polygon_style,
             'visibility' => $this->visibility
         ]);
     }

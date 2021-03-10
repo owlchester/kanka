@@ -24,6 +24,7 @@ You can get a list of all the map-markers of a map by using the following endpoi
 {
     "data": [
         {
+            "circle_radius": null,
             "colour": "#008000",
             "created_at": "2020-07-25T10:10:30.000000Z",
             "created_by": null,
@@ -40,6 +41,7 @@ You can get a list of all the map-markers of a map by using the following endpoi
             "map_id": 2,
             "name": "Shape",
             "opacity": 100,
+            "polygon_style": array,
             "shape_id": 5,
             "size_id": 1,
             "updated_at": "2020-07-25T10:10:30.000000Z",
@@ -75,11 +77,13 @@ To create a map marker, use the following endpoint.
 | `is_draggable` | `boolean` | If the marker is draggable on the map |
 | `custom_shape` | `string` | Polygon coordinates |
 | `custom_icon` | `string` | HTML of the custom icon |
-| `size_id` | `int` | 1 to 6 for size (used by circles) |
+| `size_id` | `int` | 1 to 6 for size (used by circles, 6 being custom) |
 | `opacity` | `int` | 0 to 100 opacity |
 | `visibility` | `string` | `all`, `admin`, `admin-self` or `self` |
 | `colour` | `string` | Hex colour code with leading `#` |
 | `font_colour` | `string` | Hex colour code with leading `#` |
+| `circle_radius` | `null` or `int` | If the shape_id is 3 (circle) and size_id is 6 (cursom), can provide a custom circle radius size |
+| `polygon_style` | `null` or `array` | Polygon rendering options include `stroke`, `stroke-width` and `stroke-opacity` |
 
 
 ### Results

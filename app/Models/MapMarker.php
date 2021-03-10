@@ -9,6 +9,7 @@ use App\Models\Concerns\Paginatable;
 use App\Traits\SourceCopiable;
 use App\Traits\VisibilityTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 /**
@@ -31,7 +32,9 @@ use Illuminate\Support\Str;
  * @property int $icon
  * @property string $custom_icon
  * @property string $custom_shape
+ * @property int $circle_radius
  * @property bool $is_draggable
+ * @property array $polygon_style
  * @property float $opacity
  * @property string $visibility
  * @property int $group_id
@@ -68,6 +71,12 @@ class MapMarker extends Model
         'opacity',
         'group_id',
         'pin_size',
+        'circle_radius',
+        'polygon_style',
+    ];
+
+    public $casts = [
+        'polygon_style' => 'array',
     ];
 
     /** @var bool Editing the map */
@@ -134,7 +143,7 @@ class MapMarker extends Model
     {
         if ($this->shape_id == MapMarker::SHAPE_CIRCLE) {
             return 'L.circle([' . $this->latitude . ', ' . $this->longitude . '], {
-                radius: ' . $this->size_id * 20 . ',
+                radius: ' . $this->circleRadius() . ',
                 fillColor: \'' . e($this->colour) . '\',
                 title: \'' . $this->markerTitle() . '\',
                 stroke: false,
@@ -164,9 +173,11 @@ class MapMarker extends Model
                 }
             }
             // ' . implode(', ', $coords) . '
+            //dd(max(1, Arr::get($this->polygon_style, 'stroke-width', 1)));
             return 'L.polygon([' . implode(', ', $coords) . '], {
-                color: \'' . e($this->colour) . '\',
-                weight: 1,
+                color: \'' . Arr::get($this->polygon_style, 'stroke', $this->colour) . '\',
+                fillColor: \'' . e($this->colour) . '\',
+                weight: ' . max(1, Arr::get($this->polygon_style, 'stroke-width', 1)) . ',
                 opacity: ' . $this->opacity() . ',
                 smoothFactor: 1,
                 linecap: \'round\',
@@ -442,5 +453,16 @@ class MapMarker extends Model
     public function visible(): bool
     {
         return empty($this->entity_id) || (!empty($this->entity) && !empty($this->entity->child));
+    }
+
+    /**
+     * @return int
+     */
+    protected function circleRadius(): int
+    {
+        if (!empty($this->circle_radius)) {
+            return (int) $this->circle_radius;
+        }
+        return (int) $this->size_id * 20;
     }
 }

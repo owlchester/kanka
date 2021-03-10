@@ -13,6 +13,7 @@ $sizeOptions = [
     3 => __('locations.map.points.sizes.standard'),
     4 => __('locations.map.points.sizes.large'),
     5 => __('locations.map.points.sizes.huge'),
+    6 => __('locations.map.points.sizes.custom'),
 ];
 ?>
 
@@ -86,6 +87,12 @@ $sizeOptions = [
                         {!! Form::select('size_id', $sizeOptions, \App\Facades\FormCopy::field('size_id')->string(), ['class' => 'form-control']) !!}
                     </div>
                 </div>
+                <div class="col-xs-6 map-marker-circle-radius" style="@if(!isset($model) || $model->shape_id != 6) display:none; @endif">
+                    <div class="form-group">
+                        <label>{{ __('maps/markers.fields.circle_radius') }}</label>
+                        {!! Form::text('circle_radius', \App\Facades\FormCopy::field('circle_radius')->string(), ['class' => 'form-control']) !!}
+                    </div>
+                </div>
             </div>
         </div>
         <div class="tab-pane @if($activeTab == 5) active @endif" id="marker-poly">
@@ -96,6 +103,28 @@ $sizeOptions = [
                 @else
                     <p class="help-block">{{ __('crud.errors.boosted') }}</p>
                 @endif
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label>{{ __('maps/markers.fields.polygon_style.stroke') }}</label><br />
+                        {!! Form::text('polygon_style[stroke]', \App\Facades\FormCopy::field('polygon_style[stroke]')->string(), ['class' => 'form-control spectrum']) !!}
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label>{{ __('maps/markers.fields.polygon_style.stroke-width') }}</label>
+                        {!! Form::number('polygon_style[stroke-width]', \App\Facades\FormCopy::field('polygon_style[stroke-width]')->string(), ['class' => 'form-control', 'maxlength' => 2, 'step' => 1, 'max' => 99, 'min' => 0]) !!}
+                    </div>
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label>{{ __('maps/markers.fields.polygon_style.stroke-opacity') }}</label>
+                    {!! Form::number('polygon_style[stroke-opacity]', \App\Facades\FormCopy::field('polygon_style[stroke-opacity]')->string(), ['class' => 'form-control', 'maxlength' => 3, 'step' => 10, 'max' => 100, 'min' => 0]) !!}
+                </div>
             </div>
         </div>
     </div>

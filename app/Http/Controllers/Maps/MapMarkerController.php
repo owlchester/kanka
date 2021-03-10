@@ -32,6 +32,7 @@ class MapMarkerController extends Controller
         'is_draggable',
         'group_id',
         'pin_size',
+        'circle_radius', 'polygon_style',
     ];
 
     public function index(Map $map)

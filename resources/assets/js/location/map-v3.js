@@ -113,6 +113,7 @@ function initMapForms()
     if (layerForm.length === 0 && markerForm.length === 0 && groupForm.length === 0 && newMarkerForm.length === 0) {
         return;
     }
+    console.log('initMapForms');
 
     layerForm.unbind('submit').on('submit', function() {
         window.entityFormHasUnsavedChanges = false;
@@ -122,6 +123,14 @@ function initMapForms()
     });
     groupForm.unbind('submit').on('submit', function() {
         window.entityFormHasUnsavedChanges = false;
+    });
+
+    $('select[name="size_id"]').change(function (e) {
+        if (this.value == 6) {
+            $('.map-marker-circle-radius').show();
+        } else {
+            $('.map-marker-circle-radius').hide();
+        }
     });
 
     newMarkerForm.unbind('submit').on('submit', function(e) {

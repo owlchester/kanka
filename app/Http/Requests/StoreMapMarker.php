@@ -45,6 +45,7 @@ class StoreMapMarker extends FormRequest
 
             'icon' => 'required|integer',
             'custom_icon' => 'nullable|string',
+            'circle_radius' => 'nullable|integer',
 
             'marker_size' => 'nullable|integer|min:10',
         ];

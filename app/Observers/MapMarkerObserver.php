@@ -24,6 +24,10 @@ class MapMarkerObserver
         $mapMarker->entry = $this->purify(Mentions::codify($mapMarker->entry));
         $mapMarker->opacity = round($mapMarker->opacity, 1);
         $mapMarker->custom_icon = $this->sanitizeCustomIcon($mapMarker);
+
+        if ($mapMarker->size_id != 6) {
+            $mapMarker->circle_radius = null;
+        }
     }
 
     /**
