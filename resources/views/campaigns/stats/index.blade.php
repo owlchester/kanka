@@ -17,7 +17,7 @@ use \Illuminate\Support\Arr;
         <div class="col-md-3">
             @include('campaigns._menu', ['active' => 'stats'])
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 achievements">
 
             @foreach ($stats as $key => $stat)
                 <div class="info-box level-{{ $stat['level'] }} @if($stat['level'] == 0) bg-gray @elseif ($stat['level'] == 5) bg-yellow @else bg-aqua @endif">

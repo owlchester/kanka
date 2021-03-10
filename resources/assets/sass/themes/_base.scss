@@ -150,9 +150,9 @@ input, textarea, .select2, select  {
 
 // Fancy checkboxes
 input[type=checkbox] {
-  -webkit-appearance: none !important;
+  /*-webkit-appearance: none !important;
   -moz-appearance: none;
-  appearance: none;
+  appearance: none;*/
   outline: 0;
   width: 16px;
   height: 16px;
@@ -277,7 +277,7 @@ pre, blockquote {
   border-radius: 2px;
 }
 .info-box-icon {
-  background-color: $Unfocused !important;
+  background-color: $Unfocused;
 }
 
 /**
@@ -512,4 +512,24 @@ footer {
 #cy {
   background-color: $Detail;
   color: $Hard;
+}
+
+
+.achievements {
+  .info-box {
+    .info-box-icon {
+      background: rgba(0, 0, 0, 0.2);
+    }
+  }
+  .info-box.bg-gray {
+    color: #fff;
+  }
+  .info-box.bg-aqua {
+    background-color: #00c0ef !important;
+    border: none !important;
+  }
+  .info-box.bg-yellow {
+    background-color: #f39c12 !important;
+    border: none !important;
+  }
 }
