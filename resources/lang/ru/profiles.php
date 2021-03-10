@@ -15,6 +15,7 @@ return [
     'fields'        => [
         'avatar'                    => 'Аватар',
         'email'                     => 'Электронная почта',
+        'hide_subscription'         => 'Скрыть мое имя в :hall_of_fame',
         'last_login_share'          => 'Показывать участникам кампании дату моего последнего входа в Kanka',
         'name'                      => 'Имя',
         'new_password'              => 'Новый пароль',

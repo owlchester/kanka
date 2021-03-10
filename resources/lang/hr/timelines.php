@@ -24,9 +24,12 @@ return [
         'eras'          => 'Razdoblja',
         'name'          => 'Naziv',
         'reverse_order' => 'Obrni redoslijed razdoblja',
+        'timeline'      => 'Roditeljska kronologija',
+        'timelines'     => 'Kronologije',
         'type'          => 'Tip',
     ],
     'helpers'       => [
+        'nested'            => 'Prema zadanim postavkama su prikazane kronologije bez nadređene kronologije. Kliknite redak kronologije da biste vidjeli potomke.',
         'reorder'           => 'Povucite i ispustite elemente razdoblja da biste ih presložili.',
         'reorder_tooltip'   => 'Klikni da omogućiš ručno preuređivanje elemenata pomoću povlačenja i ispuštanja.',
         'reverse_order'     => 'Omogući za prikaz razdoblja obrnutim kronološkim redoslijedom (prvo starije ere)',
@@ -41,5 +44,8 @@ return [
     ],
     'show'          => [
         'title' => 'Kronologija :name',
+    ],
+    'timelines'     => [
+        'title' => 'Kronologije kronologije :name',
     ],
 ];

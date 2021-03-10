@@ -5,6 +5,7 @@ return [
         'actions'           => 'Akcije',
         'apply'             => 'Primijeni',
         'back'              => 'Natrag',
+        'bulk_templates'    => 'Primijeni Predložak atributa',
         'copy'              => 'Kopiraj',
         'copy_mention'      => 'Kopiraj [ ] spominjanje',
         'copy_to_campaign'  => 'Kopiraj u kampanju',
@@ -106,7 +107,7 @@ return [
             'helpers'   => [
                 'override'  => 'Ako je uključeno, dopuštenja odabranih entiteta će biti pregažena s ovima. Ako nije uključeno, odabrana dopuštenja će biti dodana postojećim.',
             ],
-            'title'     => 'Promijeni dozvole za nekoliko entiteta',
+            'title'     => 'Promijeni dopuštenja za nekoliko entiteta',
         ],
         'success'       => [
             'copy_to_campaign'  => '{1} :count entitet kopiran u :campaign.|{2,4} :count entiteta kopirana u :campaign.|{5,*} :count entiteta kopirano u :campaign.',
@@ -114,7 +115,11 @@ return [
             'permissions'       => '{1} Ovlasti promijenjene za :count entitet.|[2,*] Ovlasti promijenjene za :count entiteta.',
             'private'           => '{1} :count entitet je sad privatan.|[2,4] :count entiteta su sad privatna.|[5, *] :count entiteta su sad privatno.',
             'public'            => '{1} :count entitet je sad vidljiv.|[2,4] :count entiteta su sad vidljiva.|[5, *] :count entiteta je sad vidljivo.',
+            'templates'         => '{1} :count entitet ima primjenjen predložak.|[2,*] :count entiteta ima primjenjen predložak.',
         ],
+    ],
+    'bulk_templates'            => [
+        'bulk_title'    => 'Primijeni predložak na više entiteta',
     ],
     'cancel'                    => 'Otkaži',
     'click_modal'               => [
@@ -144,7 +149,9 @@ return [
     'edit'                      => 'Uredi',
     'errors'                    => [
         'boosted'                       => 'Ova je funkcionalnost dostupna samo za pojačane kampanje.',
+        'boosted_campaigns'             => 'Ova funkcionalnost je dostupna samo za :boosted.',
         'node_must_not_be_a_descendant' => 'Nevažeći čvor (oznaka, roditeljska lokacija): bio bi potomak sam sebi.',
+        'unavailable_feature'           => 'Nedostupna funkcionalnost',
     ],
     'events'                    => [
         'hint'  => 'Dolje je prikazan popis svih kalendara kojima je ovaj entitet dodan pomoću sučelja "Dodavanje događaja u kalendar".',
@@ -178,6 +185,7 @@ return [
         'header_image'          => 'Slika zaglavlja',
         'image'                 => 'Slika',
         'is_private'            => 'Privatno',
+        'is_private_v2'         => 'Pokaži samo članovima kampanje u :admin-role. Ovo zamjenjuje svako drugo dopuštenje.',
         'is_star'               => 'Prikvačeno',
         'item'                  => 'Predmet',
         'location'              => 'Lokacija',
@@ -185,6 +193,7 @@ return [
         'name'                  => 'Naziv',
         'organisation'          => 'Organizacija',
         'position'              => 'Položaj',
+        'privacy'               => 'Privatnost',
         'race'                  => 'Rasa',
         'tag'                   => 'Oznaka',
         'tags'                  => 'Oznake',
@@ -242,6 +251,7 @@ return [
     'hints'                     => [
         'attribute_template'    => 'Primijeni predložak atributa izravno prilikom stvaranja ovog entiteta.',
         'calendar_date'         => 'Datum kalendara omogućava jednostavno filtriranje u popisima, također održavajući događaj kalendara u odabranom kalendaru.',
+        'gallery_image'         => 'Ako entitet nema sliku, umjesto toga prikaži sliku iz galerije kampanje.',
         'header_image'          => 'Ova se slika postavlja iznad entiteta. Za najbolje rezultate koristite široku sliku.',
         'image_limitations'     => 'Podržani formati: jpg, png i gif. Maksimalna veličina datoteke: :size.',
         'image_patreon'         => 'Povećaj ograničenje veličine datoteke?',
@@ -264,6 +274,7 @@ return [
     ],
     'is_not_private'            => 'Ovaj entitet trenutno nije postavljen kao privatni.',
     'is_private'                => 'Ovaj je entitet privatan i vidljiv samo članovima administratorske uloge.',
+    'legacy'                    => 'Nasljedstvo',
     'linking_help'              => 'Kako mogu povezati s ostalim unosima?',
     'manage'                    => 'Upravljanje',
     'move'                      => [
@@ -317,7 +328,7 @@ return [
                 'remove'    => 'Ukloni',
             ],
             'bulk_entity'   => [
-                'allow'     => 'Dozvoli',
+                'allow'     => 'Dopusti',
                 'deny'      => 'Zabrani',
                 'inherit'   => 'Naslijedi',
             ],
@@ -327,14 +338,14 @@ return [
             'read'          => 'Čitanje',
             'toggle'        => 'Uključi ili isključi',
         ],
-        'allowed'           => 'Dozvoljeno',
+        'allowed'           => 'Dopušteno',
         'fields'            => [
             'member'    => 'Član',
             'role'      => 'Uloga',
         ],
         'helper'            => 'Koristi ovo sučelje za preciziranje korisnika i uloga koji mogu vidjeti ili koristiti ovaj entitet.',
         'helpers'           => [
-            'setup' => 'Koristi ovo sučelje za detaljno namještanje ovlasti uloga i korisnika za ovaj entitet. :allow će dozvoliti korisniku ili ulozi da odradi tu akciju. :deny će zabraniti akciju. :inherit će koristiti ovlasti korisnikove ili glavne uloge. Korisnik kojemu je postavljano :allow, može odrađivati akciju čak i ako uloga čiji je član ima :deny.',
+            'setup' => 'Koristi ovo sučelje za detaljno namještanje ovlasti uloga i korisnika za ovaj entitet. :allow će dopustiti korisniku ili ulozi da odradi tu akciju. :deny će zabraniti akciju. :inherit će koristiti ovlasti korisnikove ili glavne uloge. Korisnik kojemu je postavljano :allow, može odrađivati akciju čak i ako uloga čiji je član ima :deny.',
         ],
         'inherited'         => 'Ova uloga već ima postavljeno dopuštenje za ovu vrstu entiteta.',
         'inherited_by'      => 'Ovaj je korisnik dio uloge ":role" koja daje ova dopuštenja ovom entitetu.',
@@ -355,9 +366,11 @@ return [
         'journal'       => 'Odaberi dnevnik',
         'location'      => 'Izaberi lokaciju',
         'map'           => 'Izaberi kartu',
+        'note'          => 'Odaberi bilješku',
         'organisation'  => 'Izaberi organizaciju',
         'race'          => 'Izaberi rasu',
         'tag'           => 'Izaberi oznaku',
+        'timeline'      => 'Odaberite kronologiju',
     ],
     'relations'                 => [
         'actions'   => [

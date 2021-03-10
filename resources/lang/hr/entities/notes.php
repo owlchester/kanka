@@ -19,6 +19,7 @@ return [
         'title'         => 'Ažuriraj bilješku entiteta za :name',
     ],
     'fields'        => [
+        'collapsed' => 'Prema zadanim postavkama zatvori prikvačenu bilješku entiteta',
         'creator'   => 'Tvorac',
         'entry'     => 'Unos',
         'is_pinned' => 'Pričvršćeno',

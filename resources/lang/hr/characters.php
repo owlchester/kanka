@@ -149,6 +149,6 @@ return [
         'title'         => 'Lik :name',
     ],
     'warnings'      => [
-        'personality_hidden'    => 'Nemaš dozvolu mijenjati osobine ovog lika.',
+        'personality_hidden'    => 'Nemaš dopuštenje mijenjati osobine ovog lika.',
     ],
 ];

@@ -265,7 +265,7 @@ return [
         ],
         'success'               => [
             'alternative'   => 'Your payment was registered. You will get a notification as soon as it is processed and your subscription is active.',
-            'callback'      => 'Your subscription was successful. Your account will be updated as soon as our payment provided informs us of the change (this might take a few minutes).',
+            'callback'      => 'Your subscription was successful. Your account will be updated as soon as our payment provider informs us of the change (this might take a few minutes).',
             'cancel'        => 'Your subscription was cancelled. It will continue to be active until the end of your current billing period.',
             'currency'      => 'Your prefered currency setting was updated.',
             'subscribed'    => 'Your subscription was successful. Don\'t forget to subscribe to the Community Vote newsletter to be notified when a vote goes live. You can change your newsletter settings in your Profile page.',

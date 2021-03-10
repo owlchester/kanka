@@ -3,6 +3,7 @@
 return [
     'actions'           => [
         'follow'    => 'Prati',
+        'join'      => 'Pridruži se',
         'unfollow'  => 'Prekini pratiti',
     ],
     'campaigns'         => [
@@ -57,6 +58,7 @@ return [
     'description'       => 'Dom za tvoju kreativnost',
     'helpers'           => [
         'follow'    => 'Praćenje kampanje prikazat će ju u izborniku kampanje (gore desno) ispod tvojih kampanja.',
+        'join'      => 'Ova kampanja otvorena je za nove članove. Prijavi se da bi joj se pridružio/la.',
         'setup'     => 'Postavljanje naslovne ploče kampanje.',
     ],
     'latest_release'    => 'Najnovije izdanje',

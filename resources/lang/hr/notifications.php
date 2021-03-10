@@ -2,6 +2,11 @@
 
 return [
     'campaign'          => [
+        'application'   => [
+            'approved'  => 'Odobrena je tvoja prijava na kampanju :campaign.',
+            'new'       => 'Nova prijava za :campaign.',
+            'rejected'  => 'Vaša prijava za kampanju :campaign je odbijena. Razlog naveden: :reason',
+        ],
         'asset_export'  => 'Dostupan je izvoz sredstava kampanje. Poveznica je dostupna kroz :time minuta.',
         'boost'         => [
             'add'           => 'Kampanju :campaign je pojačao korisnik :user.',
@@ -24,7 +29,7 @@ return [
     ],
     'no_notifications'  => 'Trenutno nema obavijesti.',
     'permissions'       => [
-        'body'  => 'Hej, želimo te obavijestiti da smo u potpunosti promijenili sustav dozvola za svaku kampanju!</p><p>Kampanje sada mogu imati uloge i svaka uloga može imati ovlasti za pristup, uređivanje ili brisanje entiteta. Svaki entitet se također može prilagoditi specifičnim dozvolama za korisnika, što znači da Bojana i Ante mogu uređivati vlastite likove!</p><p>Jedina mana je da će kampanje s nekoliko korisnika morati postaviti svoja nova dopuštenja. Ako si administrator kampanje, to možeš učiniti na stranici za upravljanje kampanjom. Ako si dio kampanje, ništa nećeš vidjeti dok se administrator kampanje ne pobrine za to.',
+        'body'  => 'Hej, želimo te obavijestiti da smo u potpunosti promijenili sustav dopuštenja za svaku kampanju!</p><p>Kampanje sada mogu imati uloge i svaka uloga može imati ovlasti za pristup, uređivanje ili brisanje entiteta. Svaki entitet se također može prilagoditi specifičnim dopuštenjima za korisnika, što znači da Bojana i Ante mogu uređivati vlastite likove!</p><p>Jedina mana je da će kampanje s nekoliko korisnika morati postaviti svoja nova dopuštenja. Ako si administrator kampanje, to možeš učiniti na stranici za upravljanje kampanjom. Ako si dio kampanje, ništa nećeš vidjeti dok se administrator kampanje ne pobrine za to.',
         'title' => 'Promjene ovlasti',
     ],
     'subscriptions'     => [

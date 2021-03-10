@@ -13,6 +13,7 @@ return [
         'created_by'    => 'Téléchargé par',
         'ext'           => 'Ext',
         'folder'        => 'Dossier',
+        'image_used_in' => '{1}Utilisé comme image sur une entité.|[2,*]Utilisé comme image sur :count entités.',
         'name'          => 'Nom',
         'size'          => 'Taille',
     ],

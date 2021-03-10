@@ -1,15 +1,21 @@
 <?php
 
 return [
-    'index' => [
+    'categories'    => [
+        'event'     => 'Wydarzenie',
+        'other'     => 'Inne',
+        'release'   => 'Aktualizacja',
+        'vote'      => 'Głosowanie społeczności',
+    ],
+    'index'         => [
         'description'   => 'Najnowsze aktualizacje kanka.io',
         'title'         => 'Aktualizacja',
     ],
-    'post'  => [
+    'post'          => [
         'footer'    => 'Przez :name :date',
     ],
-    'show'  => [
+    'show'          => [
         'return'    => 'Powrót do aktualizacji',
-        'title'     => 'Aktualziacja :name',
+        'title'     => 'Aktualizacja :name',
     ],
 ];

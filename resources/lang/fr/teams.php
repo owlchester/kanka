@@ -12,14 +12,8 @@ return [
         'title'         => 'L\'équipe',
         'translations'  => 'Traductions',
     ],
-    'patreon'       => [
-        'description'   => 'Les gens incroyables qui aident et supportent Kanka sur Patreon.',
-        'learn_more'    => 'En savoir plus sur les bonus Patreon',
-    ],
+    'patreon'       => [],
     'people'        => [
-        'iz'        => [
-            'title' => 'Développement Produit',
-        ],
         'jay'       => [
             'text'  => <<<'TEXT'
 J'ai créé Kanka en octobre 2017 car il n'y avait aucun outil qui me permettait de facilement créer mon monde et de le partager avec mes joueurs tout en ayant le contrôle des permissions.

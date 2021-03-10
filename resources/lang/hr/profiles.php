@@ -15,6 +15,7 @@ return [
     'fields'        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'Email',
+        'hide_subscription'         => 'Sakrij moje ime s :hall_of_fame.',
         'last_login_share'          => 'Dijeli s drugim članovima kampanje vrijeme moje zadnje prijave.',
         'name'                      => 'Ime',
         'new_password'              => 'Nova lozinka',

@@ -274,6 +274,14 @@ return [
         'trial_period'          => 'Les abonnements annuels ont une période d\'annulation de 14 jours. Nous contacter à :email pour annuler un abonnement et recevoir un remboursement.',
         'upgrade_downgrade'     => [
             'button'    => 'Information sur l\'upgrade/downgrade',
+            'cancel'    => [
+                'bullets'   => [
+                    'bonuses'   => 'Tes bonus restent activés jusqu\'à la fin de la période de paiement.',
+                    'boosts'    => 'La même chose se passe pour les campagnes boostées. Les fonctionnalités boostées deviennent invisibles mais les données ne sont pas supprimé lorsqu\'une campagne n\'est plus boostée.',
+                    'kobold'    => 'Pour annuler ton abonnement, change au tier Kobold.',
+                ],
+                'title'     => 'Lors de l\'annulation d\'un abonnement',
+            ],
             'downgrade' => [
                 'bullets'   => [
                     'end'   => 'L\'abonnement actuel reste actif jusqu\'à la fin du cycle de paiement, après quoi le nouvel abonnement sera mis en place.',

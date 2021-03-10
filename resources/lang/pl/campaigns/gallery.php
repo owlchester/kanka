@@ -13,6 +13,7 @@ return [
         'created_by'    => 'Dodane przez',
         'ext'           => 'Typ',
         'folder'        => 'Katalog',
+        'image_used_in' => '{1}Użyto jako obrazu jednego elementu.|[2,*]Użyto jako obrazu :count elementów.',
         'name'          => 'Nazwa',
         'size'          => 'Rozmiar',
     ],
