@@ -222,7 +222,9 @@ class MapMarker extends Model
                 <h4 class="marker-header">' . str_replace('`', '\'', $this->markerTitle(true)) . '</h4>
                 ' . (!empty($this->entry) ? '<p class="marker-text">' . Mentions::mapAny($this) . '</p>' : null) . '
             </div>
-            ' . $body . '`)
+            <div class="marker-popup-entry">
+                ' . $body . '
+            </div>`)
             .on(`mouseover`, function (ev) {
                 this.openPopup();
             })
