@@ -8,19 +8,21 @@
     @endif
 
     @if ($marker->entity)
-        <div class="marker-entity  entity-title">
+        <div class="marker-entity entity-title">
             <a href="{{ $marker->entity->url() }}" target="_blank">
                 <span class="entity-image" style="background-image: url('{{ $marker->entity->child->getImageUrl(40) }}');" title="{{ $marker->entity->name }}"></span>
 
                 <span class="entity-name">{{ $marker->entity->name }}</span>
             </a>
         </div>
-        {!! $marker->entity->child->entry() !!}
+        <div class="marker-entity entity-content">
+            {!! $marker->entity->child->entry() !!}
+        </div>
 
 
 
         @if($marker->entity->typeId() == config('entities.ids.map'))
-            <div class="text-center">
+            <div class="marker-map-link text-center">
                 <a href="{{ $marker->entity->url('explore') }}" target="_blank" class="btn btn-primary">
                     <i class="fa fa-map"></i> {{ __('maps.actions.explore') }}
                 </a>
