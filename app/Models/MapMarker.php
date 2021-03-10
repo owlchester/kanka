@@ -363,9 +363,9 @@ class MapMarker extends Model
                 }
                 return '<a href="' . $url . '">' . e($this->entity->name) . '</a>';
             }
-            return e($this->entity->name);
+            return $link ? e($this->entity->name) : str_replace("'", "\'", $this->entity->name);
         }
-        return e($this->name);
+        return $link ? e($this->name) : str_replace("'", "\'", $this->name);
     }
 
     /**
