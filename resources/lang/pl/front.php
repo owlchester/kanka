@@ -118,6 +118,7 @@ return [
             'title'         => 'Postaci, rodziny, miejsca',
         ],
         'learn_more'        => 'Pełna lista funkcjonalności Kanki',
+        'learn_more_about'  => 'Poznaj tę funkcję bliżej',
         'maps'              => [
             'description'   => 'Umieszczaj w systemie mapy światów, plany miast czy podziemi i opisuj je przy pomocy poręcznych znaczników i odnośników.',
             'title'         => 'Mapy',
@@ -166,6 +167,10 @@ return [
             'description'   => 'Dzięki złożonemu systemowi uprawnień, misjom, dziennikom, postaciom i ich zdolnościom wyposażonym we własne audio i wideo z łatwością wymordujesz postaci graczy podczas najbliższej kampanii.',
             'title'         => 'Zarządzanie kampanią RPG',
         ],
+        'secrets'           => [
+            'description'   => 'Każdy element może posiadać sekrety opisane za pomocą systemu uwag. Możesz łatwo zadecydować, która z nich będzie widoczna dla wszystkich, a która dla wybranych i przypiąć część do głównego widoku elementu, by zawsze mieć ją pod ręką.',
+            'title'         => 'Sekrety i tajemnice',
+        ],
         'superboosts'       => [
             'boosted'       => 'Turbodoładowanie',
             'description'   => 'Użycie trzech doładowań na jednej kampanii pozwala ją Turbodoładować, odblokowując następujące możliwości.',
@@ -192,7 +197,7 @@ return [
     ],
     'first_block'   => [
         'description'   => 'Kanka jest dostępna na wszystkich urządzeniach i regularnie aktualizowana o nowe funkcje. Już nigdy nie pogubisz się w notatkach - dzięki Kance wszystko będziesz mieć pod ręką i w jednym miejscu.',
-        'title'         => 'Nowy sposób zażądania kampaniami RPG i własnymi światami.',
+        'title'         => 'Nowy sposób zarządzania kampaniami RPG i własnymi światami.',
     ],
     'footer'        => [
         'app'       => 'Aplikacja',
@@ -201,6 +206,7 @@ return [
             'app'           => 'Aplikacja',
             'community'     => 'Społeczność',
             'friends'       => 'Nasi przyjaciele',
+            'other'         => 'Pozostałe',
             'useful_links'  => 'Pożyteczne strony',
         ],
         'navigation'=> 'Nawigacja',
@@ -251,6 +257,7 @@ return [
         'media'         => 'Media',
         'news'          => 'Co nowego',
         'newsletter'    => 'Newsletter',
+        'other'         => 'Pozostałe',
         'pricing'       => 'Cena',
         'privacy'       => 'Prywatność',
         'register'      => 'Rejestracja',
@@ -274,9 +281,12 @@ return [
             'support'   => 'Wsparcie',
         ],
         'benefits'      => [
+            'big_maps'          => 'Zwiększona mapa (:size)',
+            'bigger_maps'       => 'Jeszcze większa mapa (:size)',
             'boosters'          => 'Doładowania kampanii',
             'core'              => 'Dostęp do wszystkich głównych funkcji',
             'higher_uploads'    => 'Większy rozmiar dodawanych plików',
+            'huge_maps'         => 'Ogromna mapa (:size)',
             'huge_uploads'      => 'Możliwość dodawania ogromnych plików',
             'no_boosters'       => 'Brak doładowań kampanii',
             'unlimited'         => 'Brak limitu liczby kampanii i plików',

@@ -13,6 +13,7 @@ return [
         'created_by'    => 'Učitao/la',
         'ext'           => 'Ekstenzija',
         'folder'        => 'Direktorij',
+        'image_used_in' => '{1}Koristi se kao slika jednog entiteta.|[2,*]Koristi se kao slika :count entiteta.',
         'name'          => 'Naziv',
         'size'          => 'Veličina',
     ],

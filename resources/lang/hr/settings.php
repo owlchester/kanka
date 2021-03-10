@@ -49,9 +49,20 @@ return [
             'entity_logs'       => 'Cjeloviti zapisnici entiteta onoga što je promijenjeno na entitetu sa svakim ažuriranjem.',
             'first'             => 'Kako bi osigurali kontinuirani napredak na Kanki, pojedine značajke kampanje otključavaju se pojačavanjem kampanje. Pojačanja se otključavaju putem pretplate. Svatko tko može pogledati kampanju može ju pojačati tako da ne mora uvijek ista osoba plaćati račun. Kampanja ostaje pojačana sve dok korisnik pojačava kampanju i oni nastave podržavati Kanku. Ako se kampanja više ne pojačava, podaci se ne gube već su samo skriveni dok se kampanja ponovno ne pojača.',
             'header'            => 'Slike zaglavlja entiteta.',
+            'headers'           => [
+                'boosted'       => 'Prednosti pojačane kampanje',
+                'superboosted'  => 'Prednosti super pojačane kampanje',
+            ],
+            'helpers'           => [
+                'boosted'       => 'Pojačanje kampanje dodjeljuje jedno pojačanje kampanji.',
+                'superboosted'  => 'Super pojačanje kampanje dodjeljuje tri pojačanja kampanji.',
+            ],
             'images'            => 'Proizvoljne zadane slike entiteta.',
-            'more'              => 'Saznaj više o svim značajkama.',
-            'second'            => 'Pojačavanje kampanje omogućuje sljedeće prednosti:',
+            'more'              => [
+                'boosted'       => 'Sve funkcionalnosti pojačane kampanje',
+                'superboosted'  => 'Sve funkcionalnosti super pojačane kampanje',
+            ],
+            'recovery'          => 'Povrati obrisane entitete do :amount dana.',
             'superboost'        => 'Super pojačanje kampanja koristi tvoja 3 pojačanja i otključava dodatne značajke povrh onih za pojačane kampanje.',
             'theme'             => 'Tema na razini kampanje i proizvoljno stiliziranje.',
             'third'             => 'Da biste pojačali kampanju, idite na stranicu kampanje i kliknite gumb ":boost_button" iznad gumba ":edit_button".',
@@ -137,6 +148,7 @@ return [
         'payment_options'       => 'Mogućnosti plaćanja',
         'personal_settings'     => 'Osobne postavke',
         'profile'               => 'Profil',
+        'settings'              => 'Postavke',
         'subscription'          => 'Pretplata',
         'subscription_status'   => 'Status pretplate',
     ],
@@ -262,6 +274,14 @@ return [
         'trial_period'          => 'Godišnje pretplate imaju pravo otkaza 14 dana. Kontaktiraj nas na :email ako želiš otkazati godišnju pretplatu i dobiti povrat novca.',
         'upgrade_downgrade'     => [
             'button'    => 'Informacije o promjeni razine',
+            'cancel'    => [
+                'bullets'   => [
+                    'bonuses'   => 'Tvoji bonusi ostaju omogućeni do kraja razdoblja plaćanja.',
+                    'boosts'    => 'Isto se događa i s tvojim pojačanim kampanjama. Pojačane funkcionalnosti postaju nevidljive, ali se ne brišu kad se kampanja više ne pojačava.',
+                    'kobold'    => 'Za otkazivanje svoje pretplate, prijeđi na razinu Kobold.',
+                ],
+                'title'     => 'Prilikom otkazivanja pretplate',
+            ],
             'downgrade' => [
                 'bullets'   => [
                     'end'   => 'Tvoja trenutna razina ostat će aktivna do kraja tvog trenutnog ciklusa naplate, nakon čega ćeš biti nadograđen na svoju novu razinu.',

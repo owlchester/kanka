@@ -1,14 +1,20 @@
 <?php
 
 return [
-    'index' => [
+    'categories'    => [
+        'event'     => 'Событие',
+        'other'     => 'Другое',
+        'release'   => 'Обновление',
+        'vote'      => 'Голосование',
+    ],
+    'index'         => [
         'description'   => 'Последние обновления kanka.io',
         'title'         => 'Обновления',
     ],
-    'post'  => [
+    'post'          => [
         'footer'    => 'От :name :date',
     ],
-    'show'  => [
+    'show'          => [
         'return'    => 'Назад к обновлениям',
         'title'     => 'Обновление :name',
     ],

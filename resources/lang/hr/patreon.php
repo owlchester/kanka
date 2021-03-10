@@ -6,5 +6,6 @@ return [
         'goblin'    => 'Goblin',
         'kobold'    => 'Kobold',
         'owlbear'   => 'Sovomedvjed',
+        'wyvern'    => 'Wyvern',
     ],
 ];

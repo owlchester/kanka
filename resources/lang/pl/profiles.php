@@ -15,6 +15,7 @@ return [
     'fields'        => [
         'avatar'                    => 'Awatar',
         'email'                     => 'Email',
+        'hide_subscription'         => 'Ukryj moje imię na stronie :hall_of_fame.',
         'last_login_share'          => 'Informuj innych członków kampanii o moim ostatnim logowaniu',
         'name'                      => 'Nazwa',
         'new_password'              => 'Nowe hasło',

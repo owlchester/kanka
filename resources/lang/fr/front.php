@@ -118,6 +118,7 @@ return [
             'title'         => 'Personnages, Familles, Lieux',
         ],
         'learn_more'        => 'En savoir plus sur les fonctionnalités de Kanka',
+        'learn_more_about'  => 'En savoir plus sur cette fonctionnalité',
         'maps'              => [
             'description'   => 'Télécharger les cartes des mondes, villes et donjons et ajouter des marqueurs et des liens.',
             'title'         => 'Cartes',
@@ -200,7 +201,7 @@ return [
         'headings'  => [
             'app'           => 'App',
             'community'     => 'Communauté',
-            'friends'       => 'Nos Amis',
+            'other'         => 'Autre',
             'useful_links'  => 'Liens utiles',
         ],
         'navigation'=> 'Navigation',
@@ -274,9 +275,12 @@ return [
             'support'   => 'Soutenir',
         ],
         'benefits'      => [
+            'big_maps'          => 'Taille de carte (:size)',
+            'bigger_maps'       => 'Grosse taille de carte (:size)',
             'boosters'          => 'Booster de Campagne',
             'core'              => 'Accès à toutes les fonctionnalités coeur',
             'higher_uploads'    => 'Taille de fichier plus élevée',
+            'huge_maps'         => 'Énorme taille de carte (:size)',
             'huge_uploads'      => 'Taille de fichier géante',
             'no_boosters'       => 'Aucun booster de campagne',
             'unlimited'         => 'Nombre de campagne et upload illimité',

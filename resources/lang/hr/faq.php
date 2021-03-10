@@ -25,7 +25,7 @@ TEXT
         'question'  => 'Kako mogu prijaviti pogrešku?',
     ],
     'campaign-sync'         => [
-        'answer'    => 'Kanka nema tu značajku. Međutim, ako pokušavaš imati više grupa za igru u istom svijetu, razmisli o upotrebi iste kampanje i razdvajanju grupa kombinacijom zadataka, oznaka i dozvola.',
+        'answer'    => 'Kanka nema tu značajku. Međutim, ako pokušavaš imati više grupa za igru u istom svijetu, razmisli o upotrebi iste kampanje i razdvajanju grupa kombinacijom zadataka, oznaka i dopuštenja.',
         'question'  => 'Mogu li sinkronizirati entitete u više kampanja?',
     ],
     'conversations'         => [
@@ -45,7 +45,7 @@ TEXT
         'question'  => 'Što je Rani pristup?',
     ],
     'entity-notes'          => [
-        'answer'    => 'Svi entiteti imaju karticu "Bilješke entiteta" koje sadrže male isječke teksta koje možeš postaviti da su vidljivi samo tebi (odlično prilikom zajedničkog vođenja kampanje), samo članovima administratorske uloge ili vidljive svima. Također, možeš dati igračima dozvolu za kreiranje i uređivanje bilješki o entitetima bez ovlaštenja za uređivanjem čitavog entiteta.',
+        'answer'    => 'Svi entiteti imaju karticu "Bilješke entiteta" koja sadrži male isječke teksta koje možeš postaviti da su vidljivi samo tebi (odlično prilikom zajedničkog vođenja kampanje), samo članovima administratorske uloge ili vidljive svima. Također, možeš dati igračima dopuštenje za kreiranje i uređivanje bilješki o entitetima bez ovlaštenja za uređivanjem čitavog entiteta.',
         'question'  => 'Kako Kanka postupa s djelomično skrivenim informacijama?',
     ],
     'fields'                => [
@@ -97,7 +97,7 @@ TEXT
         'question'  => 'Kako mogu upravljati kada vodim seanse?',
     ],
     'permissions'           => [
-        'answer'    => 'Apsolutno, zato smo izgradili Kanku! Možete pozvati sve svoje igrače u svoje kampanje i dodijeliti im uloge i dozvole. Izgradili smo sustav da bude izuzetno fleksibilan (možete koristiti i konfiguraciju za prijavu i isključivanje) kako bismo pokrili što više potreba i situacija.',
+        'answer'    => 'Apsolutno, zato smo izgradili Kanku! Možete pozvati sve svoje igrače u svoje kampanje i dodijeliti im uloge i dopuštenja. Izgradili smo sustav da bude izuzetno fleksibilan (možete koristiti i konfiguraciju za prijavu i isključivanje) kako bismo pokrili što više potreba i situacija.',
         'question'  => 'Mogu li ograničiti podatke koje moji igrači vide u kampanji?',
     ],
     'plans'                 => [
@@ -135,7 +135,7 @@ TEXT
         'question'  => 'Što se događa ako se prestane pojačavati kampanju?',
     ],
     'user-switch'           => [
-        'answer'    => 'Dozvole mogu postati škakljive, osobito kod velikih kampanja. Kao administrator kampanje, možeš doći do stranice članova kampanje i kliknuti gumb "Imitiraj" koji će se pojaviti pored članova koji nisu administratori. Tako ćeš se prijaviti kao korisnik, što će ti omogućiti pregled kampanje kakvu taj korisnik vidi. To je najlakši način za provjeru dozvola tvoje kampanje.',
+        'answer'    => 'Dopuštenja mogu postati škakljiva, osobito kod velikih kampanja. Kao administrator kampanje, možeš doći do stranice članova kampanje i kliknuti gumb "Imitiraj" koji će se pojaviti pored članova koji nisu administratori. Tako ćeš se prijaviti kao korisnik, što će ti omogućiti pregled kampanje kakvu taj korisnik vidi. To je najlakši način za provjeru dopuštenja tvoje kampanje.',
         'question'  => 'Ovlasti u mojoj kampanji su postavljene, kako ih mogu testirati?',
     ],
     'visibility'            => [

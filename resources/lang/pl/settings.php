@@ -275,6 +275,14 @@ return [
         'trial_period'          => 'Subskrypcje roczne mają 14-dniowy okres wypowiedzenia. Jeżeli chcesz anulować subskrypcję roczną i uzyskać zwrot pieniędzy, skontaktuj się z nami przez :email.',
         'upgrade_downgrade'     => [
             'button'    => 'Informacje o zmianie subskrypcji',
+            'cancel'    => [
+                'bullets'   => [
+                    'bonuses'   => 'Wszystkie korzyści subskrypcji pozostaną aktywne do końca okresu rozliczeniowego.',
+                    'boosts'    => 'To samo dotyczy doładowań kampanii. Po utracie doładowania, dodatkowe elementy kampanii nie zostają usunięte, jedynie ukryte.',
+                    'kobold'    => 'By anulować subskrypcję, zmień jej poziom na Kobold.',
+                ],
+                'title'     => 'Gdy anulujesz subskrypcję',
+            ],
             'downgrade' => [
                 'bullets'   => [
                     'end'   => 'Twój poziom zostanie aktywny do końca okresu rozliczeniowego, po czym zostanie odpowiednio zmniejszony.',

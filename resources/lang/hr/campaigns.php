@@ -58,6 +58,7 @@ TEXT
         'entity_note_visibility'        => 'Pričvršćene bilješke entiteta',
         'entity_personality_visibility' => 'Vidljivost osobnosti lika',
         'entity_visibility'             => 'Vidljivost entiteta',
+        'entry'                         => 'Opis kampanje',
         'excerpt'                       => 'Isječak',
         'followers'                     => 'Pratitelji',
         'header_image'                  => 'Slika zaglavlja',
@@ -66,9 +67,11 @@ TEXT
         'image'                         => 'Slika',
         'locale'                        => 'Jezik',
         'name'                          => 'Naziv',
+        'open'                          => 'Otvoreno za prijave',
         'public_campaign_filters'       => 'Filteri javnih kampanja',
         'related_visibility'            => 'Vidljivost povezanih elemenata',
         'rpg_system'                    => 'Sustav igranja',
+        'superboosted'                  => 'Super pojačali',
         'system'                        => 'Sustav',
         'theme'                         => 'Tema',
         'tooltip_family'                => 'Onemogući nazive obitelji u kratkom opisu',
@@ -111,7 +114,10 @@ TEXT
             'link'  => 'Nova poveznica',
         ],
         'create'                => [
-            'button'        => 'Pozovi',
+            'buttons'       => [
+                'create'    => 'Kreiraj pozivnicu',
+                'send'      => 'Pošalji pozivnicu',
+            ],
             'description'   => 'Pozovi prijatelja/icu u svoju kampanju',
             'link'          => 'Poveznica kreirana: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Pozivnica poslana.',
@@ -202,10 +208,16 @@ TEXT
         'title'                 => 'Članovi kampanje :name',
         'your_role'             => 'Tvoja uloga <i>:role</i>',
     ],
+    'open_campaign'                     => [
+        'helper'    => 'Javna kampanja postavljena kao otvorena omogućit će korisnicima slanje prijava da joj se pridruže. Popis prijava pronađi na stranici :link.',
+        'link'      => 'prijave na kampanju',
+        'title'     => 'Otvorena kampanja',
+    ],
     'panels'                            => [
         'boosted'   => 'Pojačano',
         'dashboard' => 'Naslovna ploča',
         'permission'=> 'Ovlasti',
+        'setup'     => 'Postavljanje',
         'sharing'   => 'Dijeljenje',
         'systems'   => 'Sustavi',
         'ui'        => 'Sučelje',
@@ -220,6 +232,7 @@ TEXT
         'actions'       => [
             'add'   => 'Dodaj ulogu',
         ],
+        'admin_role'    => 'uloga administratora',
         'create'        => [
             'success'   => 'Uloga kreirana.',
             'title'     => 'Kreiraj novu ulogu za: name',
@@ -263,7 +276,7 @@ TEXT
                 'toggle'        => 'Promijeni za sve',
             ],
             'helpers'   => [
-                'entity_note'   => 'Ovo omogućava korisnicima koji nemaju dozvole uređivanja entiteta da dodaju Bilješke entiteta.',
+                'entity_note'   => 'Ovo omogućava korisnicima koji nemaju dopuštenja uređivanja entiteta da dodaju Bilješke entiteta.',
             ],
             'hint'      => 'Ova uloga automatski ima pristup svemu.',
         ],
@@ -335,8 +348,15 @@ TEXT
             'leave' => 'Napusti kampanju',
         ],
         'description'   => 'Detaljan pregled kampanje',
+        'menus'         => [
+            'configuration'     => 'Konfiguracija',
+            'overview'          => 'Pregled',
+            'user_management'   => 'Upravljanje korisnicima',
+        ],
         'tabs'          => [
             'achievements'      => 'Postignuća',
+            'applications'      => 'Prijave',
+            'campaign'          => 'Kampanja',
             'default-images'    => 'Zadane slike',
             'export'            => 'Izvoz',
             'information'       => 'Informacije',

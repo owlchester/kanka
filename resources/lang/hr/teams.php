@@ -12,14 +12,8 @@ return [
         'title'         => 'Tim',
         'translations'  => 'Prijevodi',
     ],
-    'patreon'       => [
-        'description'   => 'Ovi nevjerojatni ljudi pomažu i podržavaju Kanku putem Patreona ili izravno kroz aplikaciju.',
-        'learn_more'    => 'Saznaj više o prednostima pretplate',
-    ],
+    'patreon'       => [],
     'people'        => [
-        'iz'        => [
-            'title' => 'Razvoj proizvoda',
-        ],
         'jay'       => [
             'text'  => <<<'TEXT'
 Kreirao sam Kanku u listopadu 2017. jer nije bilo alata koji bi mi lako omogućio da stvorim svijet sa svojim prijateljima i svejedno mi dopuštao da kontroliram tko može što vidjeti ili raditi.

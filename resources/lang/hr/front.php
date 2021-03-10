@@ -11,6 +11,13 @@ return [
             'description'   => 'Naša zajednica gradi zadivljujuće stvari koje volimo prikazati kao istaknute kampanje. Svakako povremeno navrati kako bi provjerio/la druge istaknute kampanje.',
             'title'         => 'Istaknute kampanje',
         ],
+        'open'              => [
+            'filters'   => [
+                'all'       => 'Otvoreni status',
+                'closed'    => 'Zatvorene kampanje',
+                'open'      => 'Otvorene kampanje',
+            ],
+        ],
         'public'            => [
             'description'   => 'Potraži inspiraciju u javnim kampanjama.',
             'filters'       => [
@@ -111,6 +118,7 @@ return [
             'title'         => 'Likovi, obitelji, lokacije',
         ],
         'learn_more'        => 'Saznaj više o funkcionalnostima Kanke',
+        'learn_more_about'  => 'Nauči više o ovoj funkcionalnosti',
         'maps'              => [
             'description'   => 'Prenesite karte svojih svjetova, gradova i špilja, te im dodajte korisne oznake i veze.',
             'title'         => 'Karte',
@@ -141,7 +149,7 @@ return [
             'title'             => 'Plaćene funkcionalnosti',
             'upload_limit'      => 'Veličine za prijenos',
             'upload_limit_map'  => 'Veličine za prijenos karte',
-            'users_roles'       => 'Broj korisnika, uloge i kontrole dozvola',
+            'users_roles'       => 'Broj korisnika, uloge i kontrole dopuštenja',
         ],
         'public'            => [
             'description'   => 'Ovlasti se mogu postaviti za module ili za svaki pojedinačni entitet. Kampanje mogu biti javne i za <a href=":url">cijeli svijet</a>.',
@@ -156,8 +164,12 @@ return [
             'title'         => 'Odnosi',
         ],
         'rpg'               => [
-            'description'   => 'Od dubinskog sustava dozvola, do zadataka, dnevnika, likova, sposobnosti i ugrađenih audio i video zapisa, pomažemo vam u upravljanju kampanjom i nadolazećem porazu cijele družine.',
+            'description'   => 'Od dubinskog sustava dopuštenja, do zadataka, dnevnika, likova, sposobnosti i ugrađenih audio i video zapisa, pomažemo u upravljanju kampanjom i nadolazećem porazu cijele družine.',
             'title'         => 'Upravljanje RPG kampanjom',
+        ],
+        'secrets'           => [
+            'description'   => 'Svaki entitet može imati nekoliko tajni priloženih u obliku bilješki entiteta. One mogu imati dopuštenja za kontrolu tko ih vidi i mogu se prikvačiti na glavni prikaz entiteta da bi im se brzo pristupilo.',
+            'title'         => 'Upravljaj tajnama',
         ],
         'superboosts'       => [
             'boosted'       => 'Super pojačano',
@@ -169,7 +181,7 @@ return [
             'title'         => 'Super pojačane kampanje',
         ],
         'timelines'         => [
-            'description'   => 'Vizualno predstavi vremenske crte svojih svjetova, carstava, plemićkih obitelji ili čak jednog lika.',
+            'description'   => 'Vizualno predstavi kronologije svojih svjetova, carstava, plemićkih obitelji ili čak jednog lika.',
             'title'         => 'Kronologije',
         ],
         'title'             => 'Snažne funkcionalnosti s nevjerojatnom fleksibilnošću',
@@ -191,9 +203,8 @@ return [
         'app'       => 'Aplikacija',
         'copyright' => '© 2017 - :current kanka.io. Sva prava pridržana.',
         'headings'  => [
-            'app'           => 'Aplikacija',
             'community'     => 'Zajednica',
-            'friends'       => 'Naši prijatelji',
+            'other'         => 'Ostalo',
             'useful_links'  => 'Korisne poveznice',
         ],
         'navigation'=> 'Navigacija',
@@ -244,6 +255,7 @@ return [
         'media'         => 'Mediji',
         'news'          => 'Vijesti',
         'newsletter'    => 'Bilten',
+        'other'         => 'Ostalo',
         'pricing'       => 'Cijena',
         'privacy'       => 'Pravila privatnosti',
         'register'      => 'Registracija',
@@ -267,13 +279,15 @@ return [
             'support'   => 'Podrška',
         ],
         'benefits'      => [
-            'boosters'          => 'Pojačivača kampanje',
-            'core'              => 'Pristup svim osnovnim funkcionalnostima',
-            'higher_uploads'    => 'Veće veličine za prijenos',
-            'huge_uploads'      => 'Ogromne veličine za prijenos',
-            'no_boosters'       => 'Nema pojačivača kampanje',
-            'unlimited'         => 'Neograničene kampanje i prijenosi',
-            'updates'           => 'Česte nadogradnje i poboljšanja',
+            'big_maps'      => 'Velika veličina mape (:size)',
+            'bigger_maps'   => 'Veća veličina mape (:size)',
+            'boosters'      => 'Pojačivača kampanje',
+            'core'          => 'Pristup svim osnovnim funkcionalnostima',
+            'huge_maps'     => 'Ogromna veličina mape (:size)',
+            'huge_uploads'  => 'Ogromne veličine za prijenos',
+            'no_boosters'   => 'Nema pojačivača kampanje',
+            'unlimited'     => 'Neograničene kampanje i prijenosi',
+            'updates'       => 'Česte nadogradnje i poboljšanja',
         ],
         'description'   => 'Iako su sve osnovne značajke besplatne, podrška Kanke pomaže nam dostaviti česte nadogradnje i poboljšanja za sve korisnike.',
         'tier'          => [
