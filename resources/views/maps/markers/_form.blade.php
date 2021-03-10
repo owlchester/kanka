@@ -71,6 +71,13 @@ $sizeOptions = [
                     <label>{{ __('maps/markers.fields.pin_size') }}</label><br />
                     {!! Form::number('pin_size', \App\Facades\FormCopy::field('pin_size')->string(), ['class' => 'form-control', 'maxlength' => 3, 'step' => 2, 'max' => 100, 'min' => 10, 'placeholder' => 40] ) !!}
                 </div>
+
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label>{{ __('maps/markers.fields.font_colour') }}</label><br />
+                        {!! Form::text('font_colour', \App\Facades\FormCopy::field('colour')->string(), ['class' => 'form-control spectrum', 'maxlength' => 6] ) !!}
+                    </div>
+                </div>
             </div>
         </div>
         <div class="tab-pane @if($activeTab == 2) active @endif" id="marker-label">
@@ -106,24 +113,23 @@ $sizeOptions = [
             </div>
 
             <div class="row">
-                <div class="col-xs-6">
+                <div class="col-xs-6 col-md-4">
                     <div class="form-group">
                         <label>{{ __('maps/markers.fields.polygon_style.stroke') }}</label><br />
                         {!! Form::text('polygon_style[stroke]', \App\Facades\FormCopy::field('polygon_style[stroke]')->string(), ['class' => 'form-control spectrum']) !!}
                     </div>
                 </div>
-                <div class="col-xs-6">
+                <div class="col-xs-6 col-md-4">
                     <div class="form-group">
                         <label>{{ __('maps/markers.fields.polygon_style.stroke-width') }}</label>
                         {!! Form::number('polygon_style[stroke-width]', \App\Facades\FormCopy::field('polygon_style[stroke-width]')->string(), ['class' => 'form-control', 'maxlength' => 2, 'step' => 1, 'max' => 99, 'min' => 0]) !!}
                     </div>
                 </div>
-            </div>
-        <div class="row">
-            <div class="col-xs-6">
-                <div class="form-group">
-                    <label>{{ __('maps/markers.fields.polygon_style.stroke-opacity') }}</label>
-                    {!! Form::number('polygon_style[stroke-opacity]', \App\Facades\FormCopy::field('polygon_style[stroke-opacity]')->string(), ['class' => 'form-control', 'maxlength' => 3, 'step' => 10, 'max' => 100, 'min' => 0]) !!}
+                <div class="col-xs-6 col-md-4">
+                    <div class="form-group">
+                        <label>{{ __('maps/markers.fields.polygon_style.stroke-opacity') }}</label>
+                        {!! Form::number('polygon_style[stroke-opacity]', \App\Facades\FormCopy::field('polygon_style[stroke-opacity]')->string(), ['class' => 'form-control', 'maxlength' => 3, 'step' => 10, 'max' => 100, 'min' => 0]) !!}
+                    </div>
                 </div>
             </div>
         </div>
@@ -161,19 +167,13 @@ $sizeOptions = [
     </div>
     <div class="col-sm-6">
         <div class="form-group">
-            <label>{{ __('maps/markers.fields.font_colour') }}</label><br />
-            {!! Form::text('font_colour', \App\Facades\FormCopy::field('colour')->string(), ['class' => 'form-control spectrum', 'maxlength' => 6] ) !!}
+            <label>{{ __('maps/markers.fields.opacity') }}</label><br />
+            {!! Form::number('opacity', (!empty($source) ? $source->opacity : (isset($model) ? $model->opacity : 100)), ['class' => 'form-control', 'maxlength' => 3, 'step' => 10, 'max' => 100, 'min' => 0] ) !!}
         </div>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-sm-6">
-        <div class="form-group">
-            <label>{{ __('maps/markers.fields.opacity') }}</label><br />
-            {!! Form::number('opacity', (!empty($source) ? $source->opacity : (isset($model) ? $model->opacity : 100)), ['class' => 'form-control', 'maxlength' => 3, 'step' => 10, 'max' => 100, 'min' => 0] ) !!}
-        </div>
-    </div>
     <div class="col-sm-6">
         <div class="form-group">
             {!! Form::hidden('is_draggable', 0) !!}

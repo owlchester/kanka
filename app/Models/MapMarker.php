@@ -220,7 +220,7 @@ class MapMarker extends Model
             return '.bindPopup(`
             <div class="marker-popup-content">
                 <h4 class="marker-header">' . str_replace('`', '\'', $this->markerTitle(true)) . '</h4>
-                ' . ($this->shape_id == MapMarker::SHAPE_LABEL ? '<p class="marker-text">' . Mentions::mapAny($this) . '</p>' : null) . '
+                ' . (!empty($this->entry) ? '<p class="marker-text">' . Mentions::mapAny($this) . '</p>' : null) . '
             </div>
             ' . $body . '`)
             .on(`mouseover`, function (ev) {
