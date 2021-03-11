@@ -34,6 +34,12 @@ class MapLayer extends Model
 {
     use VisibilityTrait, Blameable, Paginatable;
 
+    /**
+     * If set to false, skip the saving observer
+     * @var bool
+     */
+    public $savingObserver = true;
+
     /** Fillable fields */
     protected $fillable = [
         'map_id',

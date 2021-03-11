@@ -20,6 +20,11 @@ class MapLayerObserver
      */
     public function saving(MapLayer $mapLayer)
     {
+        // Skip
+        if ($mapLayer->savingObserver === false) {
+            return;
+        }
+
         $mapLayer->entry = $this->purify(Mentions::codify($mapLayer->entry));
         if (!empty($mapLayer->position)) {
             $mapLayer->position = (int) $mapLayer->position;

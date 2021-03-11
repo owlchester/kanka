@@ -21,6 +21,10 @@ class MapMarkerObserver
      */
     public function saving(MapMarker $mapMarker)
     {
+        if ($mapMarker->savingObserver === false) {
+            return;
+        }
+
         $mapMarker->entry = $this->purify(Mentions::codify($mapMarker->entry));
         $mapMarker->opacity = round($mapMarker->opacity, 1);
         $mapMarker->custom_icon = $this->sanitizeCustomIcon($mapMarker);

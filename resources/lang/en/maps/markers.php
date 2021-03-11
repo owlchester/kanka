@@ -18,6 +18,7 @@ return [
     ],
     'fields'        => [
         'circle_radius' => 'Circle radius',
+        'copy_elements' => 'Copy elements',
         'custom_icon'   => 'Custom Icon',
         'custom_shape'  => 'Custom Shape',
         'font_colour'   => 'Icon Colour',
@@ -35,6 +36,7 @@ return [
     ],
     'helpers'       => [
         'base'          => 'Add markers to the map by clicking on any spot.',
+        'copy_elements' => 'Copy groups, layers, and markers.',
         'custom_icon'   => 'Copy the HTML of an icon from :fontawesome or :rpgawesome, or a custom SVG icon.',
         'draggable'     => 'Enable to allow moving a marker in the exploration mode.',
     ],

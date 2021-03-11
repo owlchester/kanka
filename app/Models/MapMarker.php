@@ -79,6 +79,9 @@ class MapMarker extends Model
         'polygon_style' => 'array',
     ];
 
+    /** @var bool If set to false, skip the saving observer */
+    public $savingObserver = true;
+
     /** @var bool Editing the map */
     protected $editing = false;
 
