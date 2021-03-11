@@ -20,70 +20,15 @@ function initAttributeUI()
 
     initAttributeHandlers();
 
-    $('#attribute_add').on('click', function(e) {
+    $('.add_attribute').on('click', function (e) {
         e.preventDefault();
         attribute_id_count -= 1;
 
-        let body = $('#attribute_template').clone().removeClass('hidden').removeAttr('id');
+        let body = $($(this).data('template')).clone().removeClass('hidden').removeAttr('id');
         let html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
         body.html(html).insertBefore(target);
         initAttributeHandlers();
 
-        return false;
-    });
-
-    $('#block_add').click(function(e) {
-        e.preventDefault();
-        attribute_id_count -= 1;
-
-        let body = $('#block_template').clone().removeClass('hidden').removeAttr('id');
-        let html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
-        body.html(html).insertBefore(target);
-        initAttributeHandlers();
-        return false;
-    });
-
-    $('#text_add').click(function(e) {
-        e.preventDefault();
-        attribute_id_count -= 1;
-
-        let body = $('#text_template').clone().removeClass('hidden').removeAttr('id');
-        let html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
-        body.html(html).insertBefore(target);
-        initAttributeHandlers();
-        return false;
-    });
-
-    $('#checkbox_add').click(function(e) {
-        e.preventDefault();
-        attribute_id_count -= 1;
-
-        let body = $('#checkbox_template').clone().removeClass('hidden').removeAttr('id');
-        let html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
-        body.html(html).insertBefore(target);
-        initAttributeHandlers();
-        return false;
-    });
-
-    $('#section_add').click(function(e) {
-        e.preventDefault();
-        attribute_id_count -= 1;
-
-        let body = $('#section_template').clone().removeClass('hidden').removeAttr('id');
-        let html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
-        body.html(html).insertBefore(target);
-        initAttributeHandlers();
-        return false;
-    });
-
-    $('#entity_add').click(function(e) {
-        e.preventDefault();
-        attribute_id_count -= 1;
-
-        let body = $('#entity_template').clone().removeClass('hidden').removeAttr('id');
-        let html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
-        body.html(html).insertBefore(target);
-        initAttributeHandlers();
         return false;
     });
 

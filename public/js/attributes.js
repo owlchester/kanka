@@ -111,55 +111,10 @@ function initAttributeUI() {
   var target = $('#add_attribute_target');
   var targetNew = $('#add_unsortable_attribute_target');
   initAttributeHandlers();
-  $('#attribute_add').on('click', function (e) {
+  $('.add_attribute').on('click', function (e) {
     e.preventDefault();
     attribute_id_count -= 1;
-    var body = $('#attribute_template').clone().removeClass('hidden').removeAttr('id');
-    var html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
-    body.html(html).insertBefore(target);
-    initAttributeHandlers();
-    return false;
-  });
-  $('#block_add').click(function (e) {
-    e.preventDefault();
-    attribute_id_count -= 1;
-    var body = $('#block_template').clone().removeClass('hidden').removeAttr('id');
-    var html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
-    body.html(html).insertBefore(target);
-    initAttributeHandlers();
-    return false;
-  });
-  $('#text_add').click(function (e) {
-    e.preventDefault();
-    attribute_id_count -= 1;
-    var body = $('#text_template').clone().removeClass('hidden').removeAttr('id');
-    var html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
-    body.html(html).insertBefore(target);
-    initAttributeHandlers();
-    return false;
-  });
-  $('#checkbox_add').click(function (e) {
-    e.preventDefault();
-    attribute_id_count -= 1;
-    var body = $('#checkbox_template').clone().removeClass('hidden').removeAttr('id');
-    var html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
-    body.html(html).insertBefore(target);
-    initAttributeHandlers();
-    return false;
-  });
-  $('#section_add').click(function (e) {
-    e.preventDefault();
-    attribute_id_count -= 1;
-    var body = $('#section_template').clone().removeClass('hidden').removeAttr('id');
-    var html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
-    body.html(html).insertBefore(target);
-    initAttributeHandlers();
-    return false;
-  });
-  $('#entity_add').click(function (e) {
-    e.preventDefault();
-    attribute_id_count -= 1;
-    var body = $('#entity_template').clone().removeClass('hidden').removeAttr('id');
+    var body = $($(this).data('template')).clone().removeClass('hidden').removeAttr('id');
     var html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
     body.html(html).insertBefore(target);
     initAttributeHandlers();

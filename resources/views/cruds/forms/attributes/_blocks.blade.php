@@ -145,3 +145,4 @@ $actionBlock = 'col-xs-5 col-sm-4 col-md-3 col-lg-2';
         {!! Form::hidden('attr_type[$TMP_ID$]', 'section') !!}
     </div>
 </div>
+

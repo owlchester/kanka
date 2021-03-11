@@ -1,6 +1,6 @@
 
 <div class="btn-group margin-r-5">
-    <button type="button" class="btn btn-default" id="attribute_add" data-sortable="{{ $existing ? 'true' : 'false'}}">
+    <button type="button" class="btn btn-default add_attribute" data-template="#attribute_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
         <i class="fa fa-plus"></i> {{ trans('crud.attributes.types.attribute') }}
     </button>
     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
@@ -9,20 +9,21 @@
     </button>
     <ul class="dropdown-menu" role="menu">
         <li>
-            <a href="#" id="checkbox_add" data-sortable="{{ $existing ? 'true' : 'false'}}">
+            <a href="#" class="add_attribute" data-template="#checkbox_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
                 <i class="fa fa-check"></i> {{ trans('crud.attributes.types.checkbox') }}
             </a>
         </li>
         <li>
-            <a href="#" id="text_add" data-sortable="{{ $existing ? 'true' : 'false'}}">
+            <a href="#" class="add_attribute" data-template="#text_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
                 <i class="fa fas fa-align-justify"></i> {{ trans('crud.attributes.types.text') }}
             </a>
         </li>
         <li>
-            <a  href="#" id="section_add" data-sortable="{{ $existing ? 'true' : 'false'}}">
+            <a  href="#" class="add_attribute" data-template="#section_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
                 <i class="fa fas fa-layer-group"></i> {{ trans('crud.attributes.types.section') }}
             </a>
         </li>
+        <li>
     </ul>
 
 

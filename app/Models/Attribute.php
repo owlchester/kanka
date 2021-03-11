@@ -145,4 +145,12 @@ class Attribute extends Model
     {
         return $query->orderBy('default_order', $order);
     }
+
+    /**
+     * @return string
+     */
+    public function name(): string
+    {
+        return (string) preg_replace('`\[icon:(.*?)\]`si', '<i class="$1"></i>', $this->name);
+    }
 }

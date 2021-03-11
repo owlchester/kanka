@@ -19,7 +19,7 @@ $inSection = false;
                         <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                     @endif
 
-                    {{ $attribute->name }}
+                    {!! $attribute->name() !!}
                 </h4>
             </div>
             <div class="panel-body collapse in" id="attribute-section-body-{{ $attribute->id }}">
@@ -27,7 +27,7 @@ $inSection = false;
         @continue
     @endif
         <dt>
-            {{ $attribute->name }}
+            {!! $attribute->name() !!}
             @if (Auth::check() && Auth::user()->isAdmin() && $attribute->is_private == true)
                 <i class="fas fa-lock" title="{{ trans('crud.is_private') }}"></i>
             @endif

@@ -55,6 +55,10 @@ return [
             'checkbox'  => 'Checkbox name',
             'section'   => 'Section name',
             'template'  => 'Select a template',
+            'icon'      => [
+                'name' => 'Icon name',
+                'class' => 'FontAwesome or RPG Awesome class: fas fa-users',
+            ],
             'value'     => 'Value of the attribute',
         ],
         'template'      => [
@@ -65,6 +69,7 @@ return [
             'attribute' => 'Attribute',
             'block'     => 'Block',
             'checkbox'  => 'Checkbox',
+            'icon'      => 'Icon',
             'section'   => 'Section',
             'text'      => 'Multiline Text',
         ],

@@ -248,6 +248,11 @@ class MentionsService
 
         // Extract links from the entry to foreign
         $this->text = preg_replace_callback('`\[([a-z_]+):(.*?)\]`i' , function($matches) {
+            // Icons
+            if ($matches[1] == 'icon' && Str::startsWith($matches[2], ['fa ', 'fas ', 'far ', 'fab ', 'ra '])) {
+                return '<i class="' . e($matches[2]) . '"></i>';
+            }
+
             $data = $this->extractData($matches);
 
             /** @var Entity $entity */
