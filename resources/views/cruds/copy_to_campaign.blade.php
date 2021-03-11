@@ -26,7 +26,12 @@
                                 <label>{{ trans('crud.move.fields.campaign') }}</label>
                                 {!! Form::select('campaign', $campaigns, null, ['class' => 'form-control']) !!}
                             </div>
+
+                            @if(view()->exists($entity->pluralType() . '.bulk.modals._copy_to_campaign'))
+                                @include($entity->pluralType() . '.bulk.modals._copy_to_campaign')
+                            @endif
                         </div>
+
                     </div>
                 </div>
             </div>

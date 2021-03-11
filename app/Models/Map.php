@@ -9,6 +9,8 @@ use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Kalnoy\Nestedset\NodeTrait;
 
 /**
@@ -393,6 +395,9 @@ class Map extends MiscModel
         return (int) $this->initial_zoom;
     }
 
+    /**
+     * @return string
+     */
     public function centerFocus(): string
     {
         $latitude = floor($this->height / 2);
@@ -405,5 +410,60 @@ class Map extends MiscModel
         }
 
         return "$latitude, $longitude";
+    }
+
+    /**
+     * Copy related elements to the target
+     * @param MiscModel $target
+     */
+    public function copyRelatedToTarget(MiscModel $target)
+    {
+        $groups = [];
+        foreach ($this->layers as $sub) {
+            $newSub = $sub->replicate();
+            $newSub->savingObserver = false;
+            $newSub->map_id = $target->id;
+
+            if (!empty($sub->image) && Storage::exists($sub->image)) {
+                $uniqid = uniqid();
+                $newPath = str_replace('.', $uniqid . '.', $sub->image);
+                $newSub->image = $newPath;
+                if (!Storage::exists($newPath)) {
+                    Storage::copy($sub->image, $newPath);
+                }
+            }
+            $newSub->save();
+        }
+        foreach ($this->groups as $sub) {
+            $newSub = $sub->replicate();
+            $newSub->savingObserver = false;
+            $newSub->map_id = $target->id;
+            $newSub->save();
+            $groups[$sub->id] = $newSub->id;
+        }
+        foreach ($this->markers as $sub) {
+            $newSub = $sub->replicate();
+            $newSub->savingObserver = false;
+            $newSub->map_id = $target->id;
+            $newSub->group_id = !empty($newSub->group_id) && isset($groups[$newSub->group_id]) ? $groups[$newSub->group_id] : null;
+
+            // If moving to another campaign, switch the markers pointing to an entity
+            if (!empty($newSub->entity_id) && $target->campaign_id != $this->campaign_id) {
+                $newSub->entity_id = null;
+                if ($newSub->icon == 4) {
+                    $newSub->icon = 1;
+                }
+                if (empty($newSub->name)) {
+                    // Because the permission engine is already set on the new campaign, searching the marker's entity
+                    // will always fail. So we need to go get it directly
+                    $raw = DB::table('entities')
+                        ->select('name')
+                        ->where('id', $sub->entity_id)
+                        ->first();
+                    $newSub->name = $raw ? $raw->name : 'Copy of #' . $sub->id;
+                }
+            }
+            $newSub->save();
+        }
     }
 }

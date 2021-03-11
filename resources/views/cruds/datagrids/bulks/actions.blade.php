@@ -20,7 +20,7 @@
             @endif
             @endif
             @if (!isset($datagrid) || $datagrid->bulkCopyToCampaign)
-                <a href="#" class="btn btn-default bulk-copy-campaign disabled" id="datagrids-bulk-actions-copy-campaign" data-toggle="ajax-modal" data-target="#bulk-permissions.modal" data-url="{{ route('bulk.modal', ['view' => 'copy_campaign']) }}">
+                <a href="#" class="btn btn-default bulk-copy-campaign disabled" id="datagrids-bulk-actions-copy-campaign" data-toggle="ajax-modal" data-target="#bulk-permissions.modal" data-url="{{ route('bulk.modal', ['view' => 'copy_campaign', 'type' => $name]) }}">
                     <i class="fa fa-clone"></i> {{ __('crud.actions.copy_to_campaign') }}
                 </a>
             @endif

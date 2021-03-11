@@ -312,6 +312,10 @@ class EntityService
                 }
             }
 
+            if (request()->has('copy_related_elements') && request()->filled('copy_related_elements')) {
+                $entity->child->copyRelatedToTarget($newModel);
+            }
+
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();

@@ -132,10 +132,11 @@ class BulkController extends Controller
             $service = app()->make('App\Services\AttributeService');
             $communityTemplates = $service->templates($campaign);
         }
+        $type = request()->get('type');
 
         $campaign = CampaignLocalization::getCampaign();
         return view('cruds.datagrids.bulks.modals._' . $request->get('view'), compact(
-            'campaign', 'communityTemplates'
+            'campaign', 'communityTemplates', 'type'
         ));
     }
 }

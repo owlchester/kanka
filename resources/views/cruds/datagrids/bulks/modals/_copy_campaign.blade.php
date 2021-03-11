@@ -8,6 +8,10 @@
         <label>{{ __('crud.move.fields.campaign') }}</label>
         {!! Form::select('campaign', Auth::user()->moveCampaignList(false), null, ['class' => 'form-control']) !!}
     </div>
+
+    @if(view()->exists($type . '.bulk.modals._copy_to_campaign'))
+        @include($type . '.bulk.modals._copy_to_campaign')
+    @endif
 </div>
 
 <div class="modal-footer">

@@ -506,4 +506,8 @@ abstract class MiscModel extends Model
         $this->cachedEntity = $entity;
         return $this;
     }
+
+    public function copyRelatedToTarget(MiscModel $target)
+    {
+    }
 }

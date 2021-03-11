@@ -61,37 +61,7 @@ class MapObserver extends MiscObserver
             /** @var Entity $source */
             $source = Entity::findOrFail($sourceId);
             if ($source->typeId() == config('entities.ids.map')) {
-
-                $groups = [];
-                foreach ($source->map->layers as $sub) {
-                    $newSub = $sub->replicate();
-                    $newSub->savingObserver = false;
-                    $newSub->map_id = $model->id;
-
-                    if (!empty($sub->image) && Storage::exists($sub->image)) {
-                        $uniqid = uniqid();
-                        $newPath = str_replace('.', $uniqid . '.', $sub->image);
-                        $newSub->image = $newPath;
-                        if (!Storage::exists($newPath)) {
-                            Storage::copy($sub->image, $newPath);
-                        }
-                    }
-                    $newSub->save();
-                }
-                foreach ($source->map->groups as $sub) {
-                    $newSub = $sub->replicate();
-                    $newSub->savingObserver = false;
-                    $newSub->map_id = $model->id;
-                    $newSub->save();
-                    $groups[$sub->id] = $newSub->id;
-                }
-                foreach ($source->map->markers as $sub) {
-                    $newSub = $sub->replicate();
-                    $newSub->savingObserver = false;
-                    $newSub->map_id = $model->id;
-                    $newSub->group_id = !empty($newSub->group_id) && isset($groups[$newSub->group_id]) ? $groups[$newSub->group_id] : null;
-                    $newSub->save();
-                }
+                $source->child->copyRelatedToTarget($model);
             }
         }
     }
