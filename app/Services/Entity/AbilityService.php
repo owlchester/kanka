@@ -148,7 +148,9 @@ class AbilityService
             'type' => $entityAbility->ability->type,
             'charges' => $this->parseCharges($entityAbility->ability),
             'used_charges' => $entityAbility->charges,
-            'note' => nl2br($entityAbility->note),
+            'note' => nl2br($this->mapAttributes(
+                Mentions::mapAny($entityAbility, 'note'), false)
+            ),
             'visibility' => $entityAbility->visibility,
             'created_by' => $entityAbility->created_by,
             'attributes' => $this->attributes($entityAbility->ability->entity),
@@ -167,6 +169,10 @@ class AbilityService
         return $data;
     }
 
+    /**
+     * @param Entity $entity
+     * @return array
+     */
     protected function attributes(Entity $entity): array
     {
         $attributes = [];

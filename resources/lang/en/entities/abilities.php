@@ -15,6 +15,9 @@ return [
         'note'      => 'Note',
         'position'  => 'Position',
     ],
+    'helpers' => [
+        'note' => 'You can reference entities using advanced mentions (ex :code) and attributes of the entity (ex :attr) in this field.'
+    ],
     'import'    => [
         'errors'    => [
             'no_race'       => 'The character has no race.',

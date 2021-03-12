@@ -39,6 +39,10 @@
             <div class="form-group">
                 <label>{{ __('entities/abilities.fields.note') }}</label>
                 {!! Form::textarea('note', null, ['class' => 'form-control', 'rows' => 4]) !!}
+                <p class="help-block">{!! __('entities/abilities.helpers.note', [
+    'code' => '<code>[character:4096]</code>',
+    'attr' => '<code>{Strengh}</code>'
+]) !!}</p>
             </div>
 
             @include('cruds.fields.visibility')
