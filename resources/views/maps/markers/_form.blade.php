@@ -79,6 +79,17 @@ $sizeOptions = [
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group checkbox">
+                        {!! Form::hidden('is_draggable', 0) !!}
+                        <label>{!! Form::checkbox('is_draggable', 1, (!empty($source) ? $source->is_draggable : null)) !!}
+                            {{ __('maps/markers.fields.is_draggable') }}
+                        </label>
+                        <p class="help-block">{{ __('maps/markers.helpers.draggable') }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="tab-pane @if($activeTab == 2) active @endif" id="marker-label">
             <div class="form-group">
@@ -173,17 +184,6 @@ $sizeOptions = [
     </div>
 </div>
 
-<div class="row">
-    <div class="col-sm-6">
-        <div class="form-group">
-            {!! Form::hidden('is_draggable', 0) !!}
-            <label>{!! Form::checkbox('is_draggable', 1, (!empty($source) ? $source->is_draggable : null)) !!}
-                {{ __('maps/markers.fields.is_draggable') }}
-            </label>
-            <p class="help-block">{{ __('maps/markers.helpers.draggable') }}</p>
-        </div>
-    </div>
-</div>
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">

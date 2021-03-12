@@ -39,7 +39,7 @@ return [
         'copy_elements' => 'Copy groups, layers, and markers.',
         'copy_elements_to_campaign' => 'Copy groups, layers, and markers of the maps. Markers linked to an entity will be converted to a standard marker.',
         'custom_icon'   => 'Copy the HTML of an icon from :fontawesome or :rpgawesome, or a custom SVG icon.',
-        'draggable'     => 'Enable to allow moving a marker in the exploration mode.',
+        'draggable'     => 'Enable to allow moving this marker in the exploration mode of the map.',
     ],
     'icons'         => [
         'custom'        => 'Custom',
