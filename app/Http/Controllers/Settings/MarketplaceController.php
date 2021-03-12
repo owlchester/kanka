@@ -34,7 +34,7 @@ class MarketplaceController extends Controller
     {
         Auth::user()
             ->saveSettings($request->only('marketplace_name'))
-        ->update();
+            ->update();
 
         return redirect()
             ->route('settings.marketplace')

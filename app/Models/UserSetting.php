@@ -226,27 +226,16 @@ trait UserSetting
      */
     public function saveSettings($data): self
     {
-        // Todo: refactor into an array
-        $this->editor = Arr::get($data, 'editor', null);
-        if (empty($this->editor)) {
-            unset($this->attributes['settings']['editor']);
+        $settings = $this->settings;
+        foreach ($data as $key => $value) {
+            if (empty($value) && isset($settings[$key])) {
+                unset($settings[$key]);
+            } elseif (!empty($value)) {
+                $settings[$key] = $value;
+            }
         }
-        $this->default_nested = Arr::get($data, 'default_nested', null);
-        if (empty($this->default_nested)) {
-            unset($this->attributes['settings']['default_nested']);
-        }
-        $this->advanced_mentions = Arr::get($data, 'advanced_mentions', null);
-        if (empty($this->advanced_mentions)) {
-            unset($this->attributes['settings']['advanced_mentions']);
-        }
-        $this->new_entity_workflow = Arr::get($data, 'new_entity_workflow', null);
-        if (empty($this->new_entity_workflow)) {
-            unset($this->attributes['settings']['new_entity_workflow']);
-        }
-        $this->marketplace_name = Arr::get($data, 'marketplace_name', null);
-        if (empty($this->marketplace_name)) {
-            unset($this->attributes['settings']['marketplace_name']);
-        }
+
+        $this->settings = $settings;
 
         return $this;
     }
