@@ -161,9 +161,9 @@ return [
     'seo'                 => [
         'author'          => 'Kanka',
         'description'     => 'Free online worldbuilding and campaign management tool',
-        'keywords'        => '',
+        'keywords'        => 'Kanka api documentation integration discord app',
         'og'              => [
-            'title'       => 'Kanka Docs',
+            'title'       => 'Kanka API Docs',
             'type'        => 'article',
             'url'         => 'kanka.io',
             'image'       => '',
