@@ -246,7 +246,8 @@ class MapMarker extends Model
                 <a href="' . route('maps.map_markers.edit', [$this->map_id, $this->id]). '" class="btn btn-xs btn-primary">' . __('crud.edit') . '</a>
                 <a href="' . route('maps.map_markers.create', [$this->map_id, 'source' => $this->id]). '" class="btn btn-xs btn-primary">' . __('crud.actions.copy') . '</a>
 
-                <a href="#" class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="'. e($this->name) .'"
+                <a href="#" class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="' .
+                    str_replace('`', '\'', e($this->name)) .'"
                         data-target="#delete-confirm" data-delete-target="delete-form-marker-' . $this->id . '"
                         title="' . __('crud.remove') . '">
                     ' . __('crud.remove') . '

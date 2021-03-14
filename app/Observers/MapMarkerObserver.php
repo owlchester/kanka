@@ -25,6 +25,7 @@ class MapMarkerObserver
             return;
         }
 
+        $mapMarker->name = $this->purify(Mentions::codify($mapMarker->name));
         $mapMarker->entry = $this->purify(Mentions::codify($mapMarker->entry));
         $mapMarker->opacity = round($mapMarker->opacity, 1);
         $mapMarker->custom_icon = $this->sanitizeCustomIcon($mapMarker);
