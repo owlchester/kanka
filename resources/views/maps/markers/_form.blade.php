@@ -115,7 +115,9 @@ $sizeOptions = [
             <div class="form-group">
                 <label>{{ __('maps/markers.fields.custom_shape') }}</label>
                 @if ($campaign->campaign()->boosted())
-                    <p class="help-block">{{ __('maps/markers.helpers.polygon.' . ($activeTab == 5 ? 'edit' : 'new')) }}</p>
+                    @if(isset($model))
+                        <p class="help-block">{{ __('maps/markers.helpers.polygon.' . ($activeTab == 5 ? 'edit' : 'new')) }}</p>
+                    @endif
                     {!! Form::textarea('custom_shape', \App\Facades\FormCopy::field('custom_shape')->string(), ['class' => 'form-control', 'rows' => 2, 'placeholder' => __('maps/markers.placeholders.custom_shape')]) !!}
                 @else
                     <p class="help-block">{{ __('crud.errors.boosted') }}</p>
