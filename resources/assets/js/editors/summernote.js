@@ -14,6 +14,7 @@ $(document).ready(function () {
 window.initSummernote = function() {
 
     var $summernote = $('.html-editor').summernote({
+        bob: debug($(this)),
         height: '300px',
         lang: editorLang(summernoteConfig.data('locale')),
         toolbar: [
@@ -328,4 +329,9 @@ function buildErrors(data) {
         errors += data[key] + "\n";
     }
     return errors;
+}
+
+function debug(e) {
+    console.log('e', e);
+    console.log(e.data('height'));
 }

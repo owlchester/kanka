@@ -92,10 +92,7 @@ $sizeOptions = [
             </div>
         </div>
         <div class="tab-pane @if($activeTab == 2) active @endif" id="marker-label">
-            <div class="form-group">
-                <label>{{ __('crud.fields.entry') }}</label>
-                {!! Form::textarea('entry', \App\Facades\FormCopy::field('entry')->string(), ['class' => 'form-control html-editor', 'id' => 'marker-entry', 'name' => 'entry']) !!}
-            </div>
+            <p class="help-block">{{ __('maps/markers.helpers.label') }}</p>
         </div>
         <div class="tab-pane @if($activeTab == 3) active @endif" id="marker-circle">
             <div class="row">
@@ -105,10 +102,11 @@ $sizeOptions = [
                         {!! Form::select('size_id', $sizeOptions, \App\Facades\FormCopy::field('size_id')->string(), ['class' => 'form-control']) !!}
                     </div>
                 </div>
-                <div class="col-xs-6 map-marker-circle-radius" style="@if(!isset($model) || $model->shape_id != 6) display:none; @endif">
+                <div class="col-xs-6" style="">
                     <div class="form-group">
                         <label>{{ __('maps/markers.fields.circle_radius') }}</label>
-                        {!! Form::text('circle_radius', \App\Facades\FormCopy::field('circle_radius')->string(), ['class' => 'form-control']) !!}
+                        {!! Form::text('circle_radius', \App\Facades\FormCopy::field('circle_radius')->string(), ['class' => 'form-control map-marker-circle-radius', 'style' => (!isset($model) || $model->shape_id != 6) ? 'display:none;' : '']) !!}
+                        <p class="help-block map-marker-circle-helper">{{ __('maps/markers.helpers.custom_radius') }}</p>
                     </div>
                 </div>
             </div>
@@ -117,6 +115,7 @@ $sizeOptions = [
             <div class="form-group">
                 <label>{{ __('maps/markers.fields.custom_shape') }}</label>
                 @if ($campaign->campaign()->boosted())
+                    <p class="help-block">{{ __('maps/markers.helpers.polygon.' . ($activeTab == 5 ? 'edit' : 'new')) }}</p>
                     {!! Form::textarea('custom_shape', \App\Facades\FormCopy::field('custom_shape')->string(), ['class' => 'form-control', 'rows' => 2, 'placeholder' => __('maps/markers.placeholders.custom_shape')]) !!}
                 @else
                     <p class="help-block">{{ __('crud.errors.boosted') }}</p>
@@ -165,6 +164,18 @@ $sizeOptions = [
                 'search.entities-with-relations',
                 'crud.placeholders.entity'
             ) !!}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 margin-bottom" style="{{ (isset($model) && !empty($model->entry) ? 'display: none' : '') }}">
+        <a href="#" class="map-marker-entry-click">{{ __('maps/markers.actions.entry') }}</a>
+    </div>
+    <div class="col-sm-12 map-marker-entry-entry" style="{{ (!isset($model) || empty($model->entry) ? 'display: none' : '') }}">
+        <div class="form-group">
+            <label>{{ __('crud.fields.entry') }}</label>
+            {!! Form::textarea('entry', \App\Facades\FormCopy::field('entry')->string(), ['class' => 'form-control html-editor', 'id' => 'marker-entry', 'name' => 'entry']) !!}
         </div>
     </div>
 </div>

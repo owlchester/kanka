@@ -4,6 +4,7 @@ return [
     'actions'       => [
         'remove'    => 'Remove marker',
         'update'    => 'Edit marker',
+        'entry'     => 'Write a custom entry field for this marker.',
     ],
     'create'        => [
         'success'   => 'Marker :name created.',
@@ -40,6 +41,11 @@ return [
         'copy_elements_to_campaign' => 'Copy groups, layers, and markers of the maps. Markers linked to an entity will be converted to a standard marker.',
         'custom_icon'   => 'Copy the HTML of an icon from :fontawesome or :rpgawesome, or a custom SVG icon.',
         'draggable'     => 'Enable to allow moving this marker in the exploration mode of the map.',
+        'label' => 'A label is displayed as a block of text on the map. The content will be the marker\'s name of the entity\'s name.',
+        'polygon' => [
+            'new' => 'Move the marker around on the map to save the position.',
+            'edit' => 'Click on the map to add that position to the polygon\'s coordinates.',
+        ]
     ],
     'icons'         => [
         'custom'        => 'Custom',

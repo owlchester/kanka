@@ -239,7 +239,7 @@ class MapMarker extends Model
         return '.bindPopup(`
             <div class="marker-popup-content">
                 <h4 class="marker-header">' . str_replace('`', '\'', $this->markerTitle(true)) . '</h4>
-                ' . ($this->shape_id == MapMarker::SHAPE_LABEL ? '<p class="marker-text">' . Mentions::mapAny($this) . '</p>' : null) . '
+                ' . (!empty($this->entry) ? '<p class="marker-text">' . Mentions::mapAny($this) . '</p>' : null) . '
             </div>
             ' . $body . '
             <div class="marker-popup-actions">
@@ -282,7 +282,7 @@ class MapMarker extends Model
 
             .on(\'dragend\', function() {
                 var coordinates = marker' . $this->id . '.getLatLng();
-                console.log(`dragend`, coordinates);
+                //console.log(`dragend`, coordinates);
                 $.ajax({
                     url: `' . route('maps.markers.move', [$this->map_id, $this->id]) . '`,
                     type: `post`,
@@ -295,14 +295,14 @@ class MapMarker extends Model
 
         return '.on(\'dragend\', function() {
             var coordinates = marker' . $this->id . '.getLatLng();
-            console.log(\'coords\', coordinates);
-            console.log(\'new coords\', coordinates.lat, coordinates.lng);
+            //console.log(\'coords\', coordinates);
+            //console.log(\'new coords\', coordinates.lat, coordinates.lng);
 
             var shapeId = $(\'input[name="shape_id"]\').val();
             var polyCoords = $(\'textarea[name="custom_shape"]\');
-            console.log(\'shape id\', shapeId);
+            //console.log(\'shape id\', shapeId);
             if (shapeId == "5") {
-                console.log(\'poly\', polyCoords.val());
+                //console.log(\'poly\', polyCoords.val());
                 polyCoords.val(polyCoords.val() + \' \' + coordinates.lat.toFixed(3) + \',\' + coordinates.lng.toFixed(3));
             } else {
                 $(\'#marker-latitude\').val(coordinates.lat.toFixed(3));

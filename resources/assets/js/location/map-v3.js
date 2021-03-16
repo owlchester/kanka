@@ -127,10 +127,18 @@ function initMapForms()
 
     $('select[name="size_id"]').change(function (e) {
         if (this.value == 6) {
+            $('.map-marker-circle-helper').hide();
             $('.map-marker-circle-radius').show();
         } else {
             $('.map-marker-circle-radius').hide();
+            $('.map-marker-circle-helper').show();
         }
+    });
+
+    $('.map-marker-entry-click').click(function (e) {
+        e.preventDefault();
+        $(this).parent().hide();
+        $('.map-marker-entry-entry').show();
     });
 
     newMarkerForm.unbind('submit').on('submit', function(e) {

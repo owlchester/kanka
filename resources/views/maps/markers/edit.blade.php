@@ -68,6 +68,16 @@
 
         var marker{{ $model->id }} = {!! $model->editing()->marker() !!}.addTo(map{{ $map->id }});
 
+        @if($model->shape_id == 5)
+            map{{ $map->id }}.on('click', function(ev) {
+            let position = ev.latlng;
+            console.log('Click', 'lat', position.lat, 'lng', position.lng);
+            let polyCoords = $('textarea[name="custom_shape"]');
+            polyCoords.val(polyCoords.val() + ' ' + position.lat.toFixed(3) + ',' + position.lng.toFixed(3));
+
+        });
+        @endif
+
         window.map = map{{ $map->id }};
     </script>
 @endsection

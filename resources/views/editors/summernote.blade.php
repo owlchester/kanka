@@ -26,6 +26,7 @@
 
 @section('modals')
     @parent
+
     <div
         id="summernote-config"
         data-mention="{{ route('search.live') }}"

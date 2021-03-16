@@ -108,6 +108,7 @@ $(document).ready(function () {
 
 window.initSummernote = function () {
   var $summernote = $('.html-editor').summernote({
+    bob: debug($(this)),
     height: '300px',
     lang: editorLang(summernoteConfig.data('locale')),
     toolbar: [['style', ['style']], ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']], ['color', ['color']], ['para', ['ul', 'ol', 'kanka-indent', 'kanka-outdent', 'paragraph']], ['table', ['table', 'spoiler', 'tableofcontent']], ['insert', ['link', 'picture', 'video', 'embed', 'hr']], //['dir', ['ltr', 'rtl']],
@@ -417,6 +418,11 @@ function buildErrors(data) {
   }
 
   return errors;
+}
+
+function debug(e) {
+  console.log('e', e);
+  console.log(e.data('height'));
 }
 
 /***/ }),
