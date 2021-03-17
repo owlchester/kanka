@@ -29,8 +29,8 @@
 
 {{ __('auth.register.welcome_email.section_8') }}
 
-{!! __('auth.register.welcome_email.section_9', [
-    'patrons' => __('auth.register.welcome_email.section_10') . '(https://' . config('patreon.url') . ')',
+{!! __('auth.register.welcome_email.section_9_v2', [
+    'pricing' => __('auth.register.welcome_email.pricing') . '(https://kanka.io/en-US/pricing',
 ]) !!}
 
 {!!  __('auth.register.welcome_email.section_11') !!}

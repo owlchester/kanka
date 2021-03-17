@@ -88,7 +88,7 @@ class MentionsService
      */
     public function mapAttribute(Attribute $attribute)
     {
-        $this->text = e($attribute->value);
+        $this->text = $attribute->value;
         $attribute->value = $this->extractAndReplace();
 
         return Attributes::parse($attribute);

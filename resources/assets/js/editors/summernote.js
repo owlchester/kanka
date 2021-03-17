@@ -111,7 +111,7 @@ window.initSummernote = function() {
                 }
             },
             {
-                match: /\B{(\S]*)$/,
+                match: /\B{(\S[^:]*)$/,
                 search: function (keyword, callback) {
                     return attributeSearch(keyword, callback);
                 },
