@@ -65,8 +65,9 @@
             ]) !!}</p>
 
             <p><b>{{ __('auth.register.welcome_email.section_8') }}</b></p>
-            <p>{!! __('auth.register.welcome_email.section_9', [
-                'patrons' => link_to(config('patreon.url'), __('auth.register.welcome_email.section_10')),
+
+            <p>{!! __('auth.register.welcome_email.section_9_v2', [
+                'pricing' => link_to('https://kanka.io/en-US/pricing', __('auth.register.welcome_email.pricing')),
             ]) !!}</p>
 
             <p><b>{!! link_to_route('home', __('auth.register.welcome_email.section_11'), ['utm_source' => 'newsletter', 'utm_medium' => 'email', 'utm_campaign' => 'onboarding']) !!}</b></p>
