@@ -9,28 +9,28 @@
 {{ __('auth.register.welcome_email.section_1') }}
 
 {!! __('auth.register.welcome_email.section_2', [
-    'discord' => 'Discord (https://' . config('social.discord') . ')',
+    'discord' => 'Discord (https:' . config('social.discord') . ')',
 ]) !!}
 
 {!! __('auth.register.welcome_email.section_3', [
-    'faq' => __('front.faq.title') . '(' . route('faq.index') . ')',
+    'faq' => __('front.faq.title') . ' (' . route('faq.index') . ')',
 ]) !!}
 
 {!! __('auth.register.welcome_email.section_4', [
-    'youtube' => __('auth.register.welcome_email.section_5') . '(https://' . config('social.youtube') . ')',
+    'youtube' => __('auth.register.welcome_email.section_5') . ' (https:' . config('social.youtube') . ')',
 ]) !!}
 
 {{ __('auth.register.welcome_email.section_6') }}
 
 {!! __('auth.register.welcome_email.section_7', [
-    'facebook' => 'Facebook (https://' . config('social.facebook') . ')',
+    'facebook' => 'Facebook (https:' . config('social.facebook') . ')',
     'email' => 'hello@kanka.io'
 ]) !!}
 
 {{ __('auth.register.welcome_email.section_8') }}
 
 {!! __('auth.register.welcome_email.section_9_v2', [
-    'pricing' => __('auth.register.welcome_email.pricing') . ' (https://kanka.io/en-US/pricing)',
+    'pricing' => __('auth.register.welcome_email.pricing') . ' (' . route('front.pricing') . ')',
 ]) !!}
 
 {!!  __('auth.register.welcome_email.section_11') !!}
