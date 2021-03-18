@@ -151,7 +151,6 @@ return array(
      * @type array
      */
     'exclude_groups' => array(
-        'auth',
         'reminders',
         'validation',
         'validation-inline',
@@ -173,7 +172,6 @@ return array(
      * @type array
      */
     'exclude_page_edit_groups' => array(
-        'auth',
         //'page-titles',
         'reminders',
         'validation',

@@ -40,37 +40,37 @@
         </div>
 
         <div class="content" style="background-color: #fff; padding: 20px;">
-            <p><b>{{ __('auth.register.welcome_email.header', [
+            <p><b>{{ __('emails/welcome.header', [
                 'name' => $user->name
             ]) }}</b></p>
-            <p>{!! __('auth.register.welcome_email.header_sub', [
+            <p>{!! __('emails/welcome.header_sub', [
                 'kanka' => link_to_route('home', 'Kanka', ['utm_source' => 'newsletter', 'utm_medium' => 'email', 'utm_campaign' => 'onboarding'])
             ]) !!}</p>
 
-            <p><b>{{ __('auth.register.welcome_email.section_1') }}</b></p>
-            <p>{!! __('auth.register.welcome_email.section_2', [
+            <p><b>{{ __('emails/welcome.section_1') }}</b></p>
+            <p>{!! __('emails/welcome.section_2', [
                 'discord' => link_to(config('social.discord'), 'Discord'),
             ]) !!}</p>
-            <p>{!! __('auth.register.welcome_email.section_3', [
+            <p>{!! __('emails/welcome.section_3', [
                 'faq' => link_to_route('faq.index', __('front.faq.title'))
             ]) !!}</p>
-            <p>{!! __('auth.register.welcome_email.section_4', [
-                'youtube' => link_to(config('social.youtube'), __('auth.register.welcome_email.section_5'))
+            <p>{!! __('emails/welcome.section_4', [
+                'youtube' => link_to(config('social.youtube'), __('emails/welcome.section_5'))
             ]) !!}</p>
 
-            <p><b>{{ __('auth.register.welcome_email.section_6') }}</b></p>
-            <p>{!! __('auth.register.welcome_email.section_7', [
+            <p><b>{{ __('emails/welcome.section_6') }}</b></p>
+            <p>{!! __('emails/welcome.section_7', [
                 'facebook' => link_to(config('social.facebook'), 'Facebook'),
                 'email' => '<a href="mailto:hello@kanka.io">hello@kanka.io</a>'
             ]) !!}</p>
 
-            <p><b>{{ __('auth.register.welcome_email.section_8') }}</b></p>
+            <p><b>{{ __('emails/welcome.section_8') }}</b></p>
 
-            <p>{!! __('auth.register.welcome_email.section_9_v2', [
-                'pricing' => link_to_route('front.pricing', __('auth.register.welcome_email.pricing')),
+            <p>{!! __('emails/welcome.section_9_v2', [
+                'pricing' => link_to_route('front.pricing', __('emails/welcome.pricing')),
             ]) !!}</p>
 
-            <p><b>{!! link_to_route('home', __('auth.register.welcome_email.section_11'), ['utm_source' => 'newsletter', 'utm_medium' => 'email', 'utm_campaign' => 'onboarding']) !!}</b></p>
+            <p><b>{!! link_to_route('home', __('emails/welcome.section_11'), ['utm_source' => 'newsletter', 'utm_medium' => 'email', 'utm_campaign' => 'onboarding']) !!}</b></p>
 
             <i>Jay & Jon</i>
         </div>
