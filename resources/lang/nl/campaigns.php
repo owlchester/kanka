@@ -58,6 +58,7 @@ TEXT
         'entity_note_visibility'        => 'Entiteit Notities Vastgemaakt',
         'entity_personality_visibility' => 'Personage Persoonlijkheid Zichtbaarheid',
         'entity_visibility'             => 'Entiteit Zichtbaarheid',
+        'entry'                         => 'Campaign beschrijving',
         'excerpt'                       => 'Excerpt',
         'followers'                     => 'Volgers',
         'header_image'                  => 'Header Afbeelding',
@@ -66,9 +67,11 @@ TEXT
         'image'                         => 'Afbeelding',
         'locale'                        => 'Lokale',
         'name'                          => 'Naam',
+        'open'                          => 'Open voor sollicitaties',
         'public_campaign_filters'       => 'Openbare Campaign Filters',
         'related_visibility'            => 'Gerelateerde Elementen Zichtbaarheid',
         'rpg_system'                    => 'RPG Systemen',
+        'superboosted'                  => 'Superboosted door',
         'system'                        => 'Systeem',
         'theme'                         => 'Thema',
         'tooltip_family'                => 'Schakel familie namen uit via tooltips',
@@ -112,6 +115,10 @@ TEXT
         ],
         'create'                => [
             'button'        => 'Uitnodigen',
+            'buttons'       => [
+                'create'    => 'Maak uitnodiging',
+                'send'      => 'Verstuur uitnodiging',
+            ],
             'description'   => 'Nodig een vriend uit voor je campaign',
             'link'          => 'Link gemaakt: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Uitnodiging verstuurd.',
@@ -202,10 +209,16 @@ TEXT
         'title'                 => 'Campaign :name Leden',
         'your_role'             => 'Jouw rol: <i>:role</i>',
     ],
+    'open_campaign'                     => [
+        'helper'    => 'Met een openbare campaign die is ingesteld als open, kunnen gebruikers sollicitaties sturen om eraan deel te nemen. Vind de lijst met sollicitaties op onze :link pagina.',
+        'link'      => 'campaign sollicitaties',
+        'title'     => 'Open Campaign',
+    ],
     'panels'                            => [
         'boosted'   => 'Boosted',
         'dashboard' => 'Dashboard',
         'permission'=> 'Permissie',
+        'setup'     => 'Opstelling',
         'sharing'   => 'Delen',
         'systems'   => 'Systemen',
         'ui'        => 'Interface',
@@ -220,6 +233,7 @@ TEXT
         'actions'       => [
             'add'   => 'Voeg een rol toe',
         ],
+        'admin_role'    => 'Beheerder rol',
         'create'        => [
             'success'   => 'Rol gemaakt.',
             'title'     => 'Maak een nieuwe rol aan voor :name',
@@ -335,8 +349,15 @@ TEXT
             'leave' => 'Verlaat campaign',
         ],
         'description'   => 'Een gedetailleerd overzicht van een campaign',
+        'menus'         => [
+            'configuration'     => 'Configuratie',
+            'overview'          => 'Overzicht',
+            'user_management'   => 'Gebruikersbeheer',
+        ],
         'tabs'          => [
             'achievements'      => 'Prestaties',
+            'applications'      => 'Sollicitaties',
+            'campaign'          => 'Campaign',
             'default-images'    => 'Standaard Afbeeldingen',
             'export'            => 'Exporteer',
             'information'       => 'Informatie',

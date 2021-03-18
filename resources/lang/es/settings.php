@@ -289,6 +289,14 @@ return [
         'trial_period'          => 'Las suscripciones anuales tienen un período de cancelación de 14 días. Contáctanos en :email si quieres cancelar tu suscripción anual y recuperar el dinero.',
         'upgrade_downgrade'     => [
             'button'    => 'Información acerca de subir o bajar de nivel',
+            'cancel'    => [
+                'bullets'   => [
+                    'bonuses'   => 'Tus bonus permanecen activos hasta el final del período de facturación.',
+                    'boosts'    => 'Lo mismo ocurre con tus campañas mejoradas. Las funcionalidades mejoradas se vuelven invisibles pero no se eliminan cuando dejas de mejorar la campaña.',
+                    'kobold'    => 'Para cancelar la suscripción, cambia al nivel de Kobold.',
+                ],
+                'title'     => 'Cancelar tu suscripción',
+            ],
             'downgrade' => [
                 'bullets'   => [
                     'end'   => 'Tu nivel actual estará activo hasta el final de tu ciclo de pago actual, tras el cual se bajará tu suscripción al nuevo nivel.',

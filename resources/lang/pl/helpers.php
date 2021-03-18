@@ -40,6 +40,7 @@ return [
         ],
         'friendly_mentions' => 'By stworzyć odnośnik do innego elementu wpisz :code i kilka pierwszych znaków nazwy, by go wyszukać. Dzięki temu umieścisz :example w edytorze tekstu i utworzysz odnośnik do tego elementu podczas jego przeglądania.',
         'limitations'       => 'Pamiętaj że ze względu na ograniczenia techniczne takie skróty nie działają na urządzeniach mobilnych jeżeli nie używasz edytora Summernote. Możesz zmienić edytor wchodząc w Ustawienia > Układ.',
+        'mention_helpers'   => 'Jeżeli w nazwie elementu jest spacja, zamiast niej użyj :example. Jeśli szukasz elementu o dokładnie takiej nazwie, wpisz :exact.',
         'mentions'          => 'Możesz tworzyć odnośniki do innych elementów wpisując :code i pierwsze kilka znaków nazwy, by je wyszukać. To umieści :example w edytorze. By zmienić wyświetlaną nazwę, wpisz :example_name. Jeżeli odnośnik ma prowadzić na podstronę elementu, użyj :example_page, jeżeli chcesz zalinkować zakładkę, użyj example :tab.',
         'months'            => 'Wpisz :code by dodać numer miesiąca z kalnedarza.',
         'title'             => 'Tworzenie odnośników i skrótów',

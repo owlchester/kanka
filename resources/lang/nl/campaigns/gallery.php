@@ -13,6 +13,7 @@ return [
         'created_by'    => 'Geupload door',
         'ext'           => 'Ext',
         'folder'        => 'Map',
+        'image_used_in' => '{1}Gebruikt als afbeelding van één entiteit.|[2,*]Gebruikt als afbeelding van :count entiteiten.',
         'name'          => 'Naam',
         'size'          => 'Grootte',
     ],

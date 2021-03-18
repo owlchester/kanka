@@ -55,8 +55,8 @@ return [
             'first'             => 'Um weitere Fortschritte bei Kanka zu erzielen, werden einige Kampagnenfunktionen durch Boosten einer Kampagne freigeschaltet. Boosts werden durch Abonnements freigeschaltet. Jeder, der eine Kampagne anzeigen kann, kann sie verbessern, sodass der DM nicht immer die Rechnung bezahlen muss. Eine Kampagne bleibt verstärkt, solange ein Benutzer die Kampagne verstärkt und Kanka weiterhin unterstützt. Wenn eine Kampagne nicht mehr verstärkt wird, gehen keine Daten verloren, sondern werden nur ausgeblendet, bis die Kampagne erneut erhöht wird.',
             'header'            => 'Objekt Header Bilder.',
             'headers'           => [
-                'boosted'       => 'geboostete Kamagnenvorteile',
-                'superboosted'  => 'supergeboostete Kamagnenvorteile',
+                'boosted'       => 'geboostete Kampagnenvorteile',
+                'superboosted'  => 'supergeboostete Kampagnenvorteile',
             ],
             'helpers'           => [
                 'boosted'       => 'Durch das Boosten einer Kampagne wird der Kampagne ein einzelner Booster zugewiesen.',
@@ -289,6 +289,14 @@ return [
         'trial_period'          => 'Für Jahresabonnements gilt eine Stornierungsfrist von 14 Tagen. Kontaktieren Sie uns unter :email, wenn Sie Ihr Jahresabonnement kündigen und eine Rückerstattung erhalten möchten.',
         'upgrade_downgrade'     => [
             'button'    => 'Upgrade- und Downgrade-Informationen',
+            'cancel'    => [
+                'bullets'   => [
+                    'bonuses'   => 'Ihre Boni bleiben bis zum Ende Ihres Zahlungszeitraums aktiviert.',
+                    'boosts'    => 'Gleiches gilt für Ihre geboosteten Kampagnen. Geboostete Funktionen werden unsichtbar, aber nicht gelöscht, wenn eine Kampagne nicht mehr geboostet wird.',
+                    'kobold'    => 'Wechseln Sie zur Kobold-Stufe, um Ihr Abonnement zu kündigen.',
+                ],
+                'title'     => 'Wenn Sie Ihr Abonnement kündigen',
+            ],
             'downgrade' => [
                 'bullets'   => [
                     'end'   => 'Ihre aktuelle Stufe bleibt bis zum Ende Ihres aktuellen Abrechnungszyklus aktiv. Danach werden Sie auf Ihre neue Stufe herabgestuft.',

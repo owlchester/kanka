@@ -48,7 +48,7 @@ TEXT
             'limit' => 'Du hast dein Limit von einem Export pro Tag erreicht. Bitte versuche es morgen wieder.',
         ],
         'helper'            => 'Exportiere deine Kampagne. Eine Benachrichtigung mit dem Downloadlink wir dir bereit gestellt.',
-        'helper_secondary'  => 'Es werden zwei Dateien zur Verfügung gestellt, eine mit dem Objektexporter als JSON und eine mit Bildern, die auf Objekte hochgeladen wurden. Bitte beachten Sie, dass bei größeren Kampagnen der Bilderexport abstürzt und nur mit der :api wiederhergestellt werden kann.',
+        'helper_secondary'  => 'Es werden zwei Dateien zur Verfügung gestellt, eine mit dem Objektexporter als JSON und eine mit Bildern, die auf Objekte hochgeladen wurden. Bitte beachte, dass bei größeren Kampagnen der Bilderexport abstürzt und nur mit der :api wiederhergestellt werden kann.',
         'success'           => 'Der Export deiner Kampagne wird vorbereitet. Du erhältst eine Nachricht in Kanka sobald dein Download bereit steht.',
         'title'             => 'Kampagne :name Export',
     ],
@@ -84,7 +84,7 @@ TEXT
     'helpers'                           => [
         'boost_required'                => 'Für diese Funktion muss die Kampagne geboosted werden. Weitere Informationen finden Sie hier :settings page.',
         'boosted'                       => 'Einige Funktionen sind freigeschaltet, da diese Kampagne geboosted wird. Weitere Informationen finden Sie auf der :settings page.',
-        'css'                           => 'Schreiben Sie Ihr eigenes CSS, das auf die Seiten Ihrer Kampagne laden können. Bitte beachten Sie, dass jeder Missbrauch dieser Funktion dazu führen kann, dass Ihr benutzerdefiniertes CSS entfernt wird. Wiederholungen oder schwerwiegende Verstöße können dazu führen, dass Ihre Kampagne entfernt wird.',
+        'css'                           => 'Schreibe dein eigenes CSS, das du auf die Seiten deiner Kampagne laden kannst. Bitte beachte, dass jeder Missbrauch dieser Funktion dazu führen kann, dass dein benutzerdefiniertes CSS entfernt wird. Wiederholungen oder schwerwiegende Verstöße können dazu führen, dass deine Kampagne entfernt wird.',
         'entity_note_visibility'        => 'Beim Erstellen einer neuen Objektnotiz wird automatisch die Option "Fixiert" ausgewählt.',
         'entity_personality_visibility' => 'Wenn ein neuer Charakter erstellt wird, wird die "Persönlichkeit sichtbar" Option automatisch deaktiviert.',
         'entity_visibility'             => 'Wenn du ein neues Objekt erstellst, wird es automatisch auf "Privat" gesetzt.',
@@ -363,7 +363,7 @@ TEXT
         'tabs'          => [
             'achievements'      => 'Erfolge',
             'applications'      => 'Bewerbungen',
-            'campaign'          => 'Kamagne',
+            'campaign'          => 'Kampagne',
             'default-images'    => 'Standardbilder',
             'export'            => 'Export',
             'information'       => 'Informationen',

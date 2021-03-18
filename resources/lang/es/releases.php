@@ -1,14 +1,20 @@
 <?php
 
 return [
-    'index' => [
+    'categories'    => [
+        'event'     => 'Evento',
+        'other'     => 'Otros',
+        'release'   => 'Lanzamiento',
+        'vote'      => 'Votación comunitaria',
+    ],
+    'index'         => [
         'description'   => 'Ultimas novedades de kanka.io',
         'title'         => 'Novedades',
     ],
-    'post'  => [
+    'post'          => [
         'footer'    => 'Por :name el :date',
     ],
-    'show'  => [
+    'show'          => [
         'return'    => 'Volver a novedades',
         'title'     => 'Novedad :name',
     ],

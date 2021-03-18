@@ -41,6 +41,7 @@ return [
         ],
         'friendly_mentions' => 'Enlaza a otras entidades escribiendo :code y los primeros caracteres de una entidad para buscarla. Esto insertará :example en el editor de texto, y se mostrará como un enlace a la entidad al ver dicha entidad.',
         'limitations'       => 'Ten en cuenta que debido a limitaciones técnicas estos atajos no funcionan en dispositivos móviles android.',
+        'mention_helpers'   => 'Si el nombre de la entidad contiene un espacio, usa :example en vez del espacio. Si quieres buscar una entidad con exactamente ese nombre, escribe :exact.',
         'mentions'          => 'Enlaza a otras entidades escribiendo :code y los primeros caracteres de una entidad para buscarla. Esto introducirá :example en el editor de texto. Para personalizar el nombre a mostrar, puedes escribir :example_name. Para indicar una subpágina concreta de la entidad, usa :example_page. Para indicar una pestaña concreta, usa :example_tab.',
         'months'            => 'Escribe :code para obtener una lista con los meses de tus calendarios.',
         'title'             => 'Enlazar a otras entidades y atajos',

@@ -40,6 +40,7 @@ return [
         ],
         'friendly_mentions' => 'Poveži s drugim entitetima tako da upišeš :code i prvih nekoliko znakova entiteta da ga potražiš. Ovo će umetnuti :example u uređivač teksta i prikazat će se kao poveznica do entiteta prilikom pregleda navedenog entiteta.',
         'limitations'       => 'Imaj na umu da zbog tehničkih ograničenja ove skraćenice ne rade na Android mobilnim uređajima.',
+        'mention_helpers'   => 'Ako ime entiteta ima razmak, umjesto razmaka upotrijebi :example. Ako želiš potražiti entitet s točno tim imenom, upiši :exact.',
         'mentions'          => 'Poveži s drugim entitetima tako da upišeš :code i prvih nekoliko znakova entiteta da ga potražiš. Ovo će umetnuti :example u uređivač teksta. Za prilagodbu imena prikazanog entiteta, možeš uptikati :example_name. Kako bi postavio podstranicu entiteta, koristi :example_page. Kako bi postavio karticu entiteta, koristi :example_tab.',
         'months'            => 'Upiši :code da dobiješ popis mjeseci iz svojih kalendara.',
         'title'             => 'Povezivanje s ostalim unosima i prečacima',

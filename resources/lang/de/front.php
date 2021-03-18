@@ -15,7 +15,7 @@ return [
             'filters'   => [
                 'all'       => 'offener Status',
                 'closed'    => 'geschlossene Kampagnen',
-                'open'      => 'offene Kamagnen',
+                'open'      => 'offene Kampagnen',
             ],
         ],
         'public'            => [

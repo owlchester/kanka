@@ -15,6 +15,7 @@ return [
     'fields'        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'Correo Electronico',
+        'hide_subscription'         => 'Ocultar mi nombre del :hall_of_fame.',
         'last_login_share'          => 'Compartir la última vez que estuve en línea con otros miembros de la campaña.',
         'name'                      => 'Nombre',
         'new_password'              => 'Contraseña nueva',

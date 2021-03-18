@@ -203,6 +203,7 @@ return [
         'app'       => 'Приложение',
         'copyright' => 'Copyright :copy :year Owlchester SNC',
         'headings'  => [
+            'app'           => 'Приложение',
             'community'     => 'Сообщество',
             'other'         => 'Другое',
             'useful_links'  => 'Полезные Ссылки',
