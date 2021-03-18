@@ -180,6 +180,7 @@ return [
                 'square'    => 'Carré',
             ],
             'sizes'         => [
+                'custom'    => 'Personnalisé',
                 'huge'      => 'Géant',
                 'large'     => 'Grand',
                 'small'     => 'Petit',

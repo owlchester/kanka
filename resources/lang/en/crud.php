@@ -53,12 +53,12 @@ return [
             'attribute' => 'Number of conquests, Challenge Rating, Initiative, Population',
             'block'     => 'Block name',
             'checkbox'  => 'Checkbox name',
+            'icon'      => [
+                'class' => 'FontAwesome or RPG Awesome class: fas fa-users',
+                'name'  => 'Icon name',
+            ],
             'section'   => 'Section name',
             'template'  => 'Select a template',
-            'icon'      => [
-                'name' => 'Icon name',
-                'class' => 'FontAwesome or RPG Awesome class: fas fa-users',
-            ],
             'value'     => 'Value of the attribute',
         ],
         'template'      => [

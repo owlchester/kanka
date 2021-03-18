@@ -2,8 +2,9 @@
 
 return [
     'actions'       => [
-        'remove'    => 'Supprimer le marqueur',
-        'update'    => 'Modifier le marqueur',
+        'entry' => 'Écrire une entrée personnalisés pour ce marqueur.',
+        'remove'=> 'Supprimer le marqueur',
+        'update'=> 'Modifier le marqueur',
     ],
     'create'        => [
         'success'   => 'Marqueur :name créé.',
@@ -17,6 +18,8 @@ return [
         'title'     => 'Modifier le marqueur :name',
     ],
     'fields'        => [
+        'circle_radius' => 'Radius du cercle',
+        'copy_elements' => 'Copier les éléments',
         'custom_icon'   => 'Icône personnalisée',
         'custom_shape'  => 'Forme personnalisée',
         'font_colour'   => 'Couleur d\'icône',
@@ -26,11 +29,24 @@ return [
         'longitude'     => 'Longitude',
         'opacity'       => 'Opacité',
         'pin_size'      => 'Taille du marqueur',
+        'polygon_style' => [
+            'stroke'            => 'Couleur de la bordure',
+            'stroke-opacity'    => 'Opacité de la bordure',
+            'stroke-width'      => 'Taille de la bordure',
+        ],
     ],
     'helpers'       => [
-        'base'          => 'Ajouter des marqueurs en cliquant sur la carte.',
-        'custom_icon'   => 'Copier le HTML d\'une icône depuis :fontawesome ou :rpgawesome, ou ajouter une icône SVG personnalisée.',
-        'draggable'     => 'Cocher pour permettre au marqueur d\'être déplacé en mode exploration.',
+        'base'                      => 'Ajouter des marqueurs en cliquant sur la carte.',
+        'copy_elements'             => 'Copier les groupes, couches, et marqueurs.',
+        'copy_elements_to_campaign' => 'Copier les groupes, couches, et marqueurs de la carte. Les marqueurs liés à des entités seront transformés en marqueurs standards.',
+        'custom_icon'               => 'Copier le HTML d\'une icône depuis :fontawesome ou :rpgawesome, ou ajouter une icône SVG personnalisée.',
+        'custom_radius'             => 'Sélectionner l\'option personnalisée pour définir une taille.',
+        'draggable'                 => 'Cocher pour permettre au marqueur d\'être déplacé en mode exploration.',
+        'label'                     => 'Un label est affiché comme bloque de texte sur la carte. Le text affiché sera le nom du marqueur ou le nom de l\'entité liée.',
+        'polygon'                   => [
+            'edit'  => 'Cliquer sur le carte pour ajouter des coordonnées au polygone.',
+            'new'   => 'Déplacer le marqueur sur la carte pour ajouter les coordonnées au polygone.',
+        ],
     ],
     'icons'         => [
         'custom'        => 'Personnalisé',

@@ -53,6 +53,10 @@ return [
             'attribute' => 'Nombre de quêtes, niveau de difficulté, initiative, population',
             'block'     => 'Nom du bloc',
             'checkbox'  => 'Nom de la case à cocher',
+            'icon'      => [
+                'class' => 'Classes FontAwesome ou RPG Awesome: fas fa-users',
+                'name'  => 'Nom de l\'icône',
+            ],
             'section'   => 'Nom de la section',
             'template'  => 'Sélectionner un modèle',
             'value'     => 'Valeur de l\'attribut',
@@ -65,6 +69,7 @@ return [
             'attribute' => 'Attribut',
             'block'     => 'Bloc',
             'checkbox'  => 'Case à cocher',
+            'icon'      => 'Icône',
             'section'   => 'Section',
             'text'      => 'Texte multiligne',
         ],

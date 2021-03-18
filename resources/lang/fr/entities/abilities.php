@@ -15,6 +15,9 @@ return [
         'note'      => 'Note',
         'position'  => 'Position',
     ],
+    'helpers'   => [
+        'note'  => 'Ce champ peut référencer des entités en utilisant les mentions avancées (ex :code) et les attributs d\'une entité (ex :attr).',
+    ],
     'import'    => [
         'errors'    => [
             'no_race'       => 'Ce personnage n\'as pas de race.',

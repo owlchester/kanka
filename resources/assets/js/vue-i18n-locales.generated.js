@@ -911,8 +911,8 @@ export default {
                     "first": "Um weitere Fortschritte bei Kanka zu erzielen, werden einige Kampagnenfunktionen durch Boosten einer Kampagne freigeschaltet. Boosts werden durch Abonnements freigeschaltet. Jeder, der eine Kampagne anzeigen kann, kann sie verbessern, sodass der DM nicht immer die Rechnung bezahlen muss. Eine Kampagne bleibt verstärkt, solange ein Benutzer die Kampagne verstärkt und Kanka weiterhin unterstützt. Wenn eine Kampagne nicht mehr verstärkt wird, gehen keine Daten verloren, sondern werden nur ausgeblendet, bis die Kampagne erneut erhöht wird.",
                     "header": "Objekt Header Bilder.",
                     "headers": {
-                        "boosted": "geboostete Kamagnenvorteile",
-                        "superboosted": "supergeboostete Kamagnenvorteile"
+                        "boosted": "geboostete Kampagnenvorteile",
+                        "superboosted": "supergeboostete Kampagnenvorteile"
                     },
                     "helpers": {
                         "boosted": "Durch das Boosten einer Kampagne wird der Kampagne ein einzelner Booster zugewiesen.",
@@ -1145,6 +1145,14 @@ export default {
                 "trial_period": "Für Jahresabonnements gilt eine Stornierungsfrist von 14 Tagen. Kontaktieren Sie uns unter {email}, wenn Sie Ihr Jahresabonnement kündigen und eine Rückerstattung erhalten möchten.",
                 "upgrade_downgrade": {
                     "button": "Upgrade- und Downgrade-Informationen",
+                    "cancel": {
+                        "bullets": {
+                            "bonuses": "Ihre Boni bleiben bis zum Ende Ihres Zahlungszeitraums aktiviert.",
+                            "boosts": "Gleiches gilt für Ihre geboosteten Kampagnen. Geboostete Funktionen werden unsichtbar, aber nicht gelöscht, wenn eine Kampagne nicht mehr geboostet wird.",
+                            "kobold": "Wechseln Sie zur Kobold-Stufe, um Ihr Abonnement zu kündigen."
+                        },
+                        "title": "Wenn Sie Ihr Abonnement kündigen"
+                    },
                     "downgrade": {
                         "bullets": {
                             "end": "Ihre aktuelle Stufe bleibt bis zum Ende Ihres aktuellen Abrechnungszyklus aktiv. Danach werden Sie auf Ihre neue Stufe herabgestuft."
@@ -1966,7 +1974,7 @@ export default {
                 },
                 "success": {
                     "alternative": "Your payment was registered. You will get a notification as soon as it is processed and your subscription is active.",
-                    "callback": "Your subscription was successful. Your account will be updated as soon as our payment provided informs us of the change (this might take a few minutes).",
+                    "callback": "Your subscription was successful. Your account will be updated as soon as our payment provider informs us of the change (this might take a few minutes).",
                     "cancel": "Your subscription was cancelled. It will continue to be active until the end of your current billing period.",
                     "currency": "Your prefered currency setting was updated.",
                     "subscribed": "Your subscription was successful. Don't forget to subscribe to the Community Vote newsletter to be notified when a vote goes live. You can change your newsletter settings in your Profile page."
@@ -2126,6 +2134,10 @@ export default {
                     "attribute": "Number of conquests, Challenge Rating, Initiative, Population",
                     "block": "Block name",
                     "checkbox": "Checkbox name",
+                    "icon": {
+                        "class": "FontAwesome or RPG Awesome class: fas fa-users",
+                        "name": "Icon name"
+                    },
                     "section": "Section name",
                     "template": "Select a template",
                     "value": "Value of the attribute"
@@ -2138,6 +2150,7 @@ export default {
                     "attribute": "Attribute",
                     "block": "Block",
                     "checkbox": "Checkbox",
+                    "icon": "Icon",
                     "section": "Section",
                     "text": "Multiline Text"
                 },
@@ -2348,7 +2361,7 @@ export default {
             "is_not_private": "This entity isn't currently set to private.",
             "is_private": "This entity is private and only visible to members of the Admin role.",
             "legacy": "Legacy",
-            "linking_help": "How can I link to other entries?",
+            "linking_help": "How can I link to other entities?",
             "manage": "Manage",
             "move": {
                 "errors": {
@@ -2811,6 +2824,14 @@ export default {
                 "trial_period": "Las suscripciones anuales tienen un período de cancelación de 14 días. Contáctanos en {email} si quieres cancelar tu suscripción anual y recuperar el dinero.",
                 "upgrade_downgrade": {
                     "button": "Información acerca de subir o bajar de nivel",
+                    "cancel": {
+                        "bullets": {
+                            "bonuses": "Tus bonus permanecen activos hasta el final del período de facturación.",
+                            "boosts": "Lo mismo ocurre con tus campañas mejoradas. Las funcionalidades mejoradas se vuelven invisibles pero no se eliminan cuando dejas de mejorar la campaña.",
+                            "kobold": "Para cancelar la suscripción, cambia al nivel de Kobold."
+                        },
+                        "title": "Cancelar tu suscripción"
+                    },
                     "downgrade": {
                         "bullets": {
                             "end": "Tu nivel actual estará activo hasta el final de tu ciclo de pago actual, tras el cual se bajará tu suscripción al nuevo nivel."
@@ -3628,6 +3649,14 @@ export default {
                 "trial_period": "Les abonnements annuels ont une période d'annulation de 14 jours. Nous contacter à {email} pour annuler un abonnement et recevoir un remboursement.",
                 "upgrade_downgrade": {
                     "button": "Information sur l'upgrade/downgrade",
+                    "cancel": {
+                        "bullets": {
+                            "bonuses": "Tes bonus restent activés jusqu'à la fin de la période de paiement.",
+                            "boosts": "La même chose se passe pour les campagnes boostées. Les fonctionnalités boostées deviennent invisibles mais les données ne sont pas supprimé lorsqu'une campagne n'est plus boostée.",
+                            "kobold": "Pour annuler ton abonnement, change au tier Kobold."
+                        },
+                        "title": "Lors de l'annulation d'un abonnement"
+                    },
                     "downgrade": {
                         "bullets": {
                             "end": "L'abonnement actuel reste actif jusqu'à la fin du cycle de paiement, après quoi le nouvel abonnement sera mis en place."
@@ -3771,6 +3800,10 @@ export default {
                     "attribute": "Nombre de quêtes, niveau de difficulté, initiative, population",
                     "block": "Nom du bloc",
                     "checkbox": "Nom de la case à cocher",
+                    "icon": {
+                        "class": "Classes FontAwesome ou RPG Awesome: fas fa-users",
+                        "name": "Nom de l'icône"
+                    },
                     "section": "Nom de la section",
                     "template": "Sélectionner un modèle",
                     "value": "Valeur de l'attribut"
@@ -3783,6 +3816,7 @@ export default {
                     "attribute": "Attribut",
                     "block": "Bloc",
                     "checkbox": "Case à cocher",
+                    "icon": "Icône",
                     "section": "Section",
                     "text": "Texte multiligne"
                 },
@@ -4145,7 +4179,9 @@ export default {
             }
         },
         "campaigns": [],
-        "front": [],
+        "front": {
+            "features": []
+        },
         "randomisers": [],
         "entities": []
     },
@@ -4912,9 +4948,20 @@ export default {
                     "entity_logs": "Cjeloviti zapisnici entiteta onoga što je promijenjeno na entitetu sa svakim ažuriranjem.",
                     "first": "Kako bi osigurali kontinuirani napredak na Kanki, pojedine značajke kampanje otključavaju se pojačavanjem kampanje. Pojačanja se otključavaju putem pretplate. Svatko tko može pogledati kampanju može ju pojačati tako da ne mora uvijek ista osoba plaćati račun. Kampanja ostaje pojačana sve dok korisnik pojačava kampanju i oni nastave podržavati Kanku. Ako se kampanja više ne pojačava, podaci se ne gube već su samo skriveni dok se kampanja ponovno ne pojača.",
                     "header": "Slike zaglavlja entiteta.",
+                    "headers": {
+                        "boosted": "Prednosti pojačane kampanje",
+                        "superboosted": "Prednosti super pojačane kampanje"
+                    },
+                    "helpers": {
+                        "boosted": "Pojačanje kampanje dodjeljuje jedno pojačanje kampanji.",
+                        "superboosted": "Super pojačanje kampanje dodjeljuje tri pojačanja kampanji."
+                    },
                     "images": "Proizvoljne zadane slike entiteta.",
-                    "more": "Saznaj više o svim značajkama.",
-                    "second": "Pojačavanje kampanje omogućuje sljedeće prednosti:",
+                    "more": {
+                        "boosted": "Sve funkcionalnosti pojačane kampanje",
+                        "superboosted": "Sve funkcionalnosti super pojačane kampanje"
+                    },
+                    "recovery": "Povrati obrisane entitete do {amount} dana.",
                     "superboost": "Super pojačanje kampanja koristi tvoja 3 pojačanja i otključava dodatne značajke povrh onih za pojačane kampanje.",
                     "theme": "Tema na razini kampanje i proizvoljno stiliziranje.",
                     "third": "Da biste pojačali kampanju, idite na stranicu kampanje i kliknite gumb \"{boost_button}\" iznad gumba \"{edit_button}\".",
@@ -5000,6 +5047,7 @@ export default {
                 "payment_options": "Mogućnosti plaćanja",
                 "personal_settings": "Osobne postavke",
                 "profile": "Profil",
+                "settings": "Postavke",
                 "subscription": "Pretplata",
                 "subscription_status": "Status pretplate"
             },
@@ -5125,6 +5173,14 @@ export default {
                 "trial_period": "Godišnje pretplate imaju pravo otkaza 14 dana. Kontaktiraj nas na {email} ako želiš otkazati godišnju pretplatu i dobiti povrat novca.",
                 "upgrade_downgrade": {
                     "button": "Informacije o promjeni razine",
+                    "cancel": {
+                        "bullets": {
+                            "bonuses": "Tvoji bonusi ostaju omogućeni do kraja razdoblja plaćanja.",
+                            "boosts": "Isto se događa i s tvojim pojačanim kampanjama. Pojačane funkcionalnosti postaju nevidljive, ali se ne brišu kad se kampanja više ne pojačava.",
+                            "kobold": "Za otkazivanje svoje pretplate, prijeđi na razinu Kobold."
+                        },
+                        "title": "Prilikom otkazivanja pretplate"
+                    },
                     "downgrade": {
                         "bullets": {
                             "end": "Tvoja trenutna razina ostat će aktivna do kraja tvog trenutnog ciklusa naplate, nakon čega ćeš biti nadograđen na svoju novu razinu."
@@ -5220,6 +5276,7 @@ export default {
                 "actions": "Akcije",
                 "apply": "Primijeni",
                 "back": "Natrag",
+                "bulk_templates": "Primijeni Predložak atributa",
                 "copy": "Kopiraj",
                 "copy_mention": "Kopiraj [ ] spominjanje",
                 "copy_to_campaign": "Kopiraj u kampanju",
@@ -5321,15 +5378,19 @@ export default {
                     "helpers": {
                         "override": "Ako je uključeno, dopuštenja odabranih entiteta će biti pregažena s ovima. Ako nije uključeno, odabrana dopuštenja će biti dodana postojećim."
                     },
-                    "title": "Promijeni dozvole za nekoliko entiteta"
+                    "title": "Promijeni dopuštenja za nekoliko entiteta"
                 },
                 "success": {
                     "copy_to_campaign": "{1} {count} entitet kopiran u {campaign}.|{2,4} {count} entiteta kopirana u {campaign}.|{5,*} {count} entiteta kopirano u {campaign}.",
                     "editing": "{1} {count} entitet je ažuriran.|[2,4] {count} entiteta su ažurirana.|[5, *] {count} entiteta je ažurirano.",
                     "permissions": "{1} Ovlasti promijenjene za {count} entitet.|[2,*] Ovlasti promijenjene za {count} entiteta.",
                     "private": "{1} {count} entitet je sad privatan.|[2,4] {count} entiteta su sad privatna.|[5, *] {count} entiteta su sad privatno.",
-                    "public": "{1} {count} entitet je sad vidljiv.|[2,4] {count} entiteta su sad vidljiva.|[5, *] {count} entiteta je sad vidljivo."
+                    "public": "{1} {count} entitet je sad vidljiv.|[2,4] {count} entiteta su sad vidljiva.|[5, *] {count} entiteta je sad vidljivo.",
+                    "templates": "{1} {count} entitet ima primjenjen predložak.|[2,*] {count} entiteta ima primjenjen predložak."
                 }
+            },
+            "bulk_templates": {
+                "bulk_title": "Primijeni predložak na više entiteta"
             },
             "cancel": "Otkaži",
             "click_modal": {
@@ -5359,7 +5420,9 @@ export default {
             "edit": "Uredi",
             "errors": {
                 "boosted": "Ova je funkcionalnost dostupna samo za pojačane kampanje.",
-                "node_must_not_be_a_descendant": "Nevažeći čvor (oznaka, roditeljska lokacija): bio bi potomak sam sebi."
+                "boosted_campaigns": "Ova funkcionalnost je dostupna samo za {boosted}.",
+                "node_must_not_be_a_descendant": "Nevažeći čvor (oznaka, roditeljska lokacija): bio bi potomak sam sebi.",
+                "unavailable_feature": "Nedostupna funkcionalnost"
             },
             "events": {
                 "hint": "Dolje je prikazan popis svih kalendara kojima je ovaj entitet dodan pomoću sučelja \"Dodavanje događaja u kalendar\"."
@@ -5393,6 +5456,7 @@ export default {
                 "header_image": "Slika zaglavlja",
                 "image": "Slika",
                 "is_private": "Privatno",
+                "is_private_v2": "Pokaži samo članovima kampanje u {admin}-role. Ovo zamjenjuje svako drugo dopuštenje.",
                 "is_star": "Prikvačeno",
                 "item": "Predmet",
                 "location": "Lokacija",
@@ -5400,6 +5464,7 @@ export default {
                 "name": "Naziv",
                 "organisation": "Organizacija",
                 "position": "Položaj",
+                "privacy": "Privatnost",
                 "race": "Rasa",
                 "tag": "Oznaka",
                 "tags": "Oznake",
@@ -5457,6 +5522,7 @@ export default {
             "hints": {
                 "attribute_template": "Primijeni predložak atributa izravno prilikom stvaranja ovog entiteta.",
                 "calendar_date": "Datum kalendara omogućava jednostavno filtriranje u popisima, također održavajući događaj kalendara u odabranom kalendaru.",
+                "gallery_image": "Ako entitet nema sliku, umjesto toga prikaži sliku iz galerije kampanje.",
                 "header_image": "Ova se slika postavlja iznad entiteta. Za najbolje rezultate koristite široku sliku.",
                 "image_limitations": "Podržani formati: jpg, png i gif. Maksimalna veličina datoteke: {size}.",
                 "image_patreon": "Povećaj ograničenje veličine datoteke?",
@@ -5479,6 +5545,7 @@ export default {
             },
             "is_not_private": "Ovaj entitet trenutno nije postavljen kao privatni.",
             "is_private": "Ovaj je entitet privatan i vidljiv samo članovima administratorske uloge.",
+            "legacy": "Nasljedstvo",
             "linking_help": "Kako mogu povezati s ostalim unosima?",
             "manage": "Upravljanje",
             "move": {
@@ -5532,7 +5599,7 @@ export default {
                         "remove": "Ukloni"
                     },
                     "bulk_entity": {
-                        "allow": "Dozvoli",
+                        "allow": "Dopusti",
                         "deny": "Zabrani",
                         "inherit": "Naslijedi"
                     },
@@ -5542,14 +5609,14 @@ export default {
                     "read": "Čitanje",
                     "toggle": "Uključi ili isključi"
                 },
-                "allowed": "Dozvoljeno",
+                "allowed": "Dopušteno",
                 "fields": {
                     "member": "Član",
                     "role": "Uloga"
                 },
                 "helper": "Koristi ovo sučelje za preciziranje korisnika i uloga koji mogu vidjeti ili koristiti ovaj entitet.",
                 "helpers": {
-                    "setup": "Koristi ovo sučelje za detaljno namještanje ovlasti uloga i korisnika za ovaj entitet. {allow} će dozvoliti korisniku ili ulozi da odradi tu akciju. {deny} će zabraniti akciju. {inherit} će koristiti ovlasti korisnikove ili glavne uloge. Korisnik kojemu je postavljano {allow}, može odrađivati akciju čak i ako uloga čiji je član ima {deny}."
+                    "setup": "Koristi ovo sučelje za detaljno namještanje ovlasti uloga i korisnika za ovaj entitet. {allow} će dopustiti korisniku ili ulozi da odradi tu akciju. {deny} će zabraniti akciju. {inherit} će koristiti ovlasti korisnikove ili glavne uloge. Korisnik kojemu je postavljano {allow}, može odrađivati akciju čak i ako uloga čiji je član ima {deny}."
                 },
                 "inherited": "Ova uloga već ima postavljeno dopuštenje za ovu vrstu entiteta.",
                 "inherited_by": "Ovaj je korisnik dio uloge \"{role}\" koja daje ova dopuštenja ovom entitetu.",
@@ -5570,9 +5637,11 @@ export default {
                 "journal": "Odaberi dnevnik",
                 "location": "Izaberi lokaciju",
                 "map": "Izaberi kartu",
+                "note": "Odaberi bilješku",
                 "organisation": "Izaberi organizaciju",
                 "race": "Izaberi rasu",
-                "tag": "Izaberi oznaku"
+                "tag": "Izaberi oznaku",
+                "timeline": "Odaberite kronologiju"
             },
             "relations": {
                 "actions": {
@@ -5629,7 +5698,9 @@ export default {
             }
         },
         "campaigns": [],
-        "front": [],
+        "front": {
+            "features": []
+        },
         "entities": []
     },
     "hu": {
@@ -7866,6 +7937,14 @@ export default {
                 "trial_period": "Subskrypcje roczne mają 14-dniowy okres wypowiedzenia. Jeżeli chcesz anulować subskrypcję roczną i uzyskać zwrot pieniędzy, skontaktuj się z nami przez {email}.",
                 "upgrade_downgrade": {
                     "button": "Informacje o zmianie subskrypcji",
+                    "cancel": {
+                        "bullets": {
+                            "bonuses": "Wszystkie korzyści subskrypcji pozostaną aktywne do końca okresu rozliczeniowego.",
+                            "boosts": "To samo dotyczy doładowań kampanii. Po utracie doładowania, dodatkowe elementy kampanii nie zostają usunięte, jedynie ukryte.",
+                            "kobold": "By anulować subskrypcję, zmień jej poziom na Kobold."
+                        },
+                        "title": "Gdy anulujesz subskrypcję"
+                    },
                     "downgrade": {
                         "bullets": {
                             "end": "Twój poziom zostanie aktywny do końca okresu rozliczeniowego, po czym zostanie odpowiednio zmniejszony."
@@ -8384,7 +8463,9 @@ export default {
             }
         },
         "campaigns": [],
-        "front": [],
+        "front": {
+            "features": []
+        },
         "randomisers": [],
         "entities": []
     },
@@ -9177,62 +9258,91 @@ export default {
                     "update_password": "Обновить пароль"
                 },
                 "email": "Смена электронной почты",
-                "email_success": "Электронная почта обновлена.",
+                "email_success": "Электронная почта обновлена",
                 "password": "Смена пароля",
-                "password_success": "Пароль обновлен.",
+                "password_success": "Пароль обновлен",
                 "social": {
-                    "error": "Вы уже используете вход Kanka на этом аккаунте.",
-                    "helper": "Ваш аккаунт сейчас управляется с помощью {provider}. Вы можете остановить это и включить стандартный вход Kanka через ввод пароля.",
-                    "success": "Теперь ваш аккаунт использует вход Kanka.",
+                    "error": "Вы уже используете вход через Kanka на этом аккаунте.",
+                    "helper": "Сейчас вход в ваш аккаунт управляется {provider}. Вы можете переключиться на стандартный вход Kanka создав пароль.",
+                    "success": "Теперь ваш аккаунт использует вход Kanka",
                     "title": "Вход Kanka"
                 },
                 "title": "Аккаунт"
             },
             "api": {
-                "link": "Читать API документацию",
+                "helper": "Добро пожаловать в Kanka API. Сгенерируйте личный маркер доступа, чтобы использовать его в API запросах для сбора информации о кампаниях, в которых вы состоите.",
+                "link": "Читать документацию API",
                 "title": "API"
             },
             "apps": {
                 "actions": {
-                    "connect": "Подключиться",
+                    "connect": "Подключить",
                     "remove": "Удалить"
                 },
-                "benefits": "Kanka поддерживает несколько соединений с сервисами третьей стороны. Больше соединений планируется в будущем.",
+                "benefits": "Kanka предоставляет интеграцию со сторонними сервисами. В будущем планируется больше интеграций.",
                 "discord": {
                     "errors": {
-                        "add": "При соединении с вашим Discord аккаунтом через Kanka произошла ошибка. Пожалуйста, попробуйте снова."
+                        "add": "При подключении вашего Discord аккаунта к Kanka произошла ошибка. Пожалуйста, попробуйте снова."
                     },
                     "success": {
-                        "add": "Ваш Discord аккаунт подключен.",
-                        "remove": "Ваш Discord аккаунт отключен."
+                        "add": "Ваш Discord аккаунт подключен",
+                        "remove": "Ваш Discord аккаунт отключен"
                     },
-                    "text": "Получите доступ к вашим ролям подписки автоматически."
+                    "text": "Получите доступ к ролям вашей подписки автоматически."
                 },
-                "title": "Подключение к приложению"
+                "title": "Интеграция"
             },
             "boost": {
                 "benefits": {
-                    "first": "Для гарантии продолжения развития Kanka, некоторые черты Кампаний доступны только с помощью усилителей Кампаний. Усилители доступны по подписке. Любой, кто видит Кампанию, может усилить ее, так что Админ не всегда должен за это платить. Кампания остается усиленной пока пользователь ее усиливает и продолжает поддерживать Kanka. Если Кампания теряет усиление, то данные не теряются, они просто скрываются, пока Кампанию снова не усилят.",
+                    "campaign_gallery": "Галерея для хранения изображений и использования их в кампании.",
+                    "entity_files": "До 10 загруженных файлов на объект",
+                    "entity_logs": "Полная история того, как менялся объект с каждым редактированием",
+                    "first": "Для гарантии продолжения развития Kanka, некоторые функции кампаний доступны через усилители кампаний. Усилители приобретаются путем подписки. Любой, кто просматривает кампанию, может усилить ее, так что админу не всегда нужно за это платить. Кампания остается усиленной пока пользователь продолжает усиливать ее и поддерживать Kanka. Если кампания теряет усиление, то данные не теряются, а просто скрываются, пока кампанию снова не усилят.",
                     "header": "Изображения заголовков объектов",
-                    "images": "Заказные изображения объектов по умолчанию",
-                    "theme": "Тема уровней Кампании и заказной стиль",
-                    "third": "Чтобы усилить Кампанию, перейдите на ее страницу и нажмите на кнопку \"{boost_button}\" над кнопкой \"{edit_button}\".",
-                    "tooltip": "Заказные подсказки для объектов",
-                    "upload": "Увеличенный вес загружаемых файлов для всех членов Кампании"
+                    "headers": {
+                        "boosted": "Преимущества усиленных кампаний",
+                        "superboosted": "Преимущества супер-усиленных кампаний"
+                    },
+                    "helpers": {
+                        "boosted": "Для усиления кампании требуется один усилитель.",
+                        "superboosted": "Для супер-усиления кампании требуется три усилителя."
+                    },
+                    "images": "Настройка иконок объектов по умолчанию",
+                    "more": {
+                        "boosted": "Все функции усиленных кампаний",
+                        "superboosted": "Все функции супер-усиленных кампаний"
+                    },
+                    "recovery": "Возможность восстановления объектов в течение {amount} дней",
+                    "superboost": "Супер-усиление кампании использует 3 усилителя и открывает дополнительные функции помимо функций усиленных кампаний.",
+                    "theme": "Тема кампании и настройка стиля",
+                    "third": "Чтобы усилить кампанию, перейдите на ее страницу и нажмите на кнопку {boost_button} над кнопкой {edit_button}.",
+                    "tooltip": "Настройка подсказок объектов",
+                    "upload": "Увеличенный размер загружаемых файлов для всех участников кампании"
                 },
                 "buttons": {
-                    "boost": "Усилить"
+                    "boost": "Усилить",
+                    "superboost": "Супер-усилить",
+                    "tooltips": {
+                        "boost": "Усиление кампании использует {amount} усилитель.",
+                        "superboost": "Супер-усиление кампании использует {amount} усилителей."
+                    }
                 },
-                "campaigns": "Усиленные Кампании {count}/{max}",
+                "campaigns": "Усиленные кампании - {count} из {max}",
                 "exceptions": {
-                    "already_boosted": "Кампания {name} уже усилена.",
-                    "exhausted_boosts": "У вас закончились усилители. Уберите усилитель с одной из Кампаний, чтобы применить его на другую."
+                    "already_boosted": "Кампания {name} уже усилена",
+                    "exhausted_boosts": "У вас закончились усилители. Уберите усилитель с одной из кампаний, чтобы применить его на другую.",
+                    "exhausted_superboosts": "У вас закончились усилители. Вам нужно 3 усилителя, чтобы супер-усилить кампанию."
                 },
                 "success": {
-                    "boost": "Кампания {name} усилена.",
-                    "delete": "Ваше усиление удалено с {name}."
+                    "boost": "Кампания {name} усилена",
+                    "delete": "Усилители сняты с кампании {name}",
+                    "superboost": "Кампания {name} супер-усилена"
                 },
-                "title": "Усилить"
+                "title": "Усиление",
+                "unboost": {
+                    "description": "Вы уверены, что хотите перестать усиливать кампанию {tag}?",
+                    "title": "Снятие усилителей с кампании"
+                }
             },
             "countries": {
                 "austria": "Австрия",
@@ -9250,12 +9360,12 @@ export default {
                 },
                 "empty": "Нет счетов",
                 "fields": {
-                    "amount": "Количество",
+                    "amount": "Сумма",
                     "date": "Дата",
                     "invoice": "Счет",
                     "status": "Статус"
                 },
-                "header": "Ниже список ваших последних 24 счетов, которые можно скачать.",
+                "header": "Ниже список ваших последних 24 счетов, доступных для скачивания.",
                 "status": {
                     "paid": "Оплачен",
                     "pending": "Неоплачен"
@@ -9263,8 +9373,16 @@ export default {
                 "title": "Счета"
             },
             "layout": {
-                "success": "Оформление обновлено.",
+                "success": "Оформление обновлено",
                 "title": "Оформление"
+            },
+            "marketplace": {
+                "fields": {
+                    "name": "Имя в Каталоге"
+                },
+                "helper": "По умолчанию {marketplace} использует ваше имя пользователя. Значение этого поля заменит ваше имя пользователя.",
+                "title": "Настройки Каталога",
+                "update": "Настройки Каталога сохранены"
             },
             "menu": {
                 "account": "Аккаунт",
@@ -9274,11 +9392,13 @@ export default {
                 "boost": "Усилители",
                 "invoices": "Счета",
                 "layout": "Оформление",
+                "marketplace": "Каталог",
                 "other": "Другое",
                 "patreon": "Patreon",
                 "payment_options": "Способы оплаты",
                 "personal_settings": "Персональные настройки",
                 "profile": "Профиль",
+                "settings": "Настройки",
                 "subscription": "Подписка",
                 "subscription_status": "Статус подписки"
             },
@@ -9287,21 +9407,21 @@ export default {
                     "link": "Подключить аккаунт",
                     "view": "Посетить Kanka на Patreon"
                 },
-                "benefits": "Поддержка нашего {patreon} разблокирует все {features} для вас и ваших Кампаний, а также позволит нам проводить больше времени, работая над улучшением Kanka.",
+                "benefits": "Поддержка нашего {patreon} разблокирует все наши {features} для вас и ваших Кампаний, а также позволит нам проводить больше времени, работая над улучшением Kanka.",
                 "benefits_features": "потрясающие функции",
-                "deprecated": "Устаревшая функция - если вы хотите поддержать Kanka, пожалуйста сделайте это с помощью {subscription}. Ссылка на Patreon до сих пор активна для наших патреонцев, которые подключили их аккаунты до выхода с Patreon.",
+                "deprecated": "Устаревшая функция - если вы хотите поддержать Kanka, пожалуйста сделайте это с помощью {subscription}. Ссылка на Patreon до сих пор активна для наших Patron'ов, подключивших их аккаунты до ухода с Patreon.",
                 "description": "Синхронизация с Patreon.",
-                "linked": "Спасибо за поддержку на Patreon! Ваш аккаунт подключен.",
-                "pledge": "Залог: {name}",
+                "linked": "Спасибо за поддержку Kanka на Patreon! Ваш аккаунт подключен.",
+                "pledge": "Уровень: {name}",
                 "remove": {
-                    "button": "Отключить ваш Patreon аккаунт",
-                    "success": "Ваш Patreon аккаунт отключен.",
-                    "text": "Отключение вашего Patreon аккаунта Kanka удалит ваши бонусы, имя в Зале Славы, усилители Кампаний и другие функции, включенные в поддержку Kanka. Все созданное при усилении не пропадет (например заголовки объектов). Подписавшись назад вы получите доступ ко всем этим данным, включая возможность усиливать ваши кампании.",
+                    "button": "Отключить Patreon аккаунт",
+                    "success": "Ваш Patreon аккаунт отключен",
+                    "text": "При отключении вашего Patreon аккаунта Kanka будут удалены ваши бонусы, имя в Зале Славы, усилители кампаний и другие функции, получаемые через поддержку Kanka. Ничего из того, чтобы было создано в усиленной кампании не пропадет (например изображения заголовков объектов). Оформив подписку заново, вы получите доступ ко всем этим данным, включая возможность усиливать ваши кампании.",
                     "title": "Отключение вашего Patreon аккаунта Kanka"
                 },
                 "success": "Спасибо за поддержку Kanka на Patreon!",
                 "title": "Patreon",
-                "wrong_pledge": "Уровень вашего залога устанавливается нами вручную, так что, пожалуйста, дайте нам пару дней на то, чтобы правильно его настроить."
+                "wrong_pledge": "Уровень вашей подписки устанавливается нами вручную, так что, пожалуйста, дайте нам пару дней на то, чтобы правильно его настроить. Если он будет оставаться неправильным долгое время, свяжитесь с нами."
             },
             "profile": {
                 "actions": {
@@ -9317,20 +9437,20 @@ export default {
                     "subscribe": "Подписаться",
                     "update_currency": "Сохранить предпочитаемую валюту"
                 },
-                "benefits": "Поддерживая нас, вы можете разблокировать новые {features} и помочь нам проводить больше времени над улучшением Kanka. Информация кредитной карты не сохраняется и не передается через наши сервера. Мы используем {stripe} для управления оплатой.",
+                "benefits": "Поддерживая нас, вы можете открыть новые {features} и помочь нам проводить больше времени, работая над улучшением Kanka. Информация кредитной карты не сохраняется и не передается через наши сервера. Мы используем {stripe} для осуществления оплаты.",
                 "billing": {
-                    "helper": "Информация о вашей оплате обработана и сохранена с помощью {stripe}. Этот способ оплаты используется для всех ваших подписок.",
+                    "helper": "Информация о вашей оплате обработана и надежно сохранена с помощью {stripe}. Этот способ оплаты используется для всех ваших подписок.",
                     "saved": "Сохраненный способ оплаты",
-                    "title": "Редактировать Способ Оплаты"
+                    "title": "Редактирование способа оплаты"
                 },
                 "cancel": {
-                    "text": "Жаль, что вы уходите! Отмена вашей подписки сохранит ее активной до следующего цикла оплаты, после которого вы потеряете ваши усилители Кампаний и другие привилегии относящиеся к поддержке Kanka. Можете заполнить следующую форму, чтобы сообщить нам, что мы можем сделать лучше или почему вы приняли это решение."
+                    "text": "Жаль, что вы уходите! После отмены вашей подписка останется активной до следующего цикла оплаты, после чего вы потеряете ваши усилители кампаний и другие преимущества, которые дает поддержка Kanka. Можете заполнить следующую форму, чтобы сообщить нам, что мы можем сделать лучше или что привело вас к этому решению."
                 },
-                "cancelled": "Ваша подписка отменена. Вы можете обновить подписку, как только у вас закончится нынешняя подписка.",
+                "cancelled": "Ваша подписка отменена. Вы можете обновить подписку, как только закончится ваша нынешняя подписка.",
                 "change": {
                     "text": {
-                        "monthly": "Вы подписываетесь на уровень {tier}, оплачиваемый в {amount} в месяц.",
-                        "yearly": "Вы подписываетесь на уровень {tier}, оплачиваемый в {amount} в год."
+                        "monthly": "Вы подписываетесь на уровень {tier}, стоимостью в {amount} в месяц.",
+                        "yearly": "Вы подписываетесь на уровень {tier}, стоимостью в {amount} в год."
                     },
                     "title": "Изменение уровня подписки"
                 },
@@ -9339,11 +9459,11 @@ export default {
                     "usd": "USD"
                 },
                 "currency": {
-                    "title": "Изменение вашей предпочитаемой валюты оплаты"
+                    "title": "Изменение предпочитаемой валюты оплаты"
                 },
                 "errors": {
-                    "callback": "Наш провайдер счетов сообщил об ошибке. Пожалуйста, попробуйте еще раз или свяжитесь с нами, если проблема повторится.",
-                    "subscribed": "Невозможно обработать вашу подписку. Stripe предоставил следующий совет."
+                    "callback": "Наш платежный провайдер сообщил нам об ошибке. Пожалуйста, попробуйте еще раз и свяжитесь с нами, если проблема повторится.",
+                    "subscribed": "Не удалось обработать вашу подписку. Stripe предоставил следующее пояснение."
                 },
                 "fields": {
                     "active_since": "Активна с",
@@ -9355,20 +9475,20 @@ export default {
                     "reason": "Причина"
                 },
                 "helpers": {
-                    "alternatives": "Оплатите свою подписку с помощью {method}. Этот способ оплаты не будет обновляться по окончанию вашей подписки. {method} доступен только для Евро.",
-                    "alternatives_warning": "Повышение вашего уровня подписки при данном способе невозможно. Пожалуйста, создайте новую подписку, когда закончится текущая.",
-                    "alternatives_yearly": "Из-за ограничений, связанных с повторяющимися оплатами, {method} доступен только для годовых подписок."
+                    "alternatives": "Оплатите свою подписку с помощью {method}. Этот способ оплаты не будет автоматически обновляться по окончанию вашей подписки. {method} доступен только для евро.",
+                    "alternatives_warning": "Повышение вашего уровня подписки при данном способе оплаты невозможно. Пожалуйста, оформите новую подписку, когда закончится текущая.",
+                    "alternatives_yearly": "Из-за ограничений, связанных с повторяющимися оплатами, метод {method} доступен только для годовых подписок."
                 },
                 "manage_subscription": "Управление подпиской",
                 "payment_method": {
                     "actions": {
-                        "add_new": "Добавить новый способ оплаты",
+                        "add_new": "Добавить способ оплаты.",
                         "change": "Изменить способ оплаты",
                         "save": "Сохранить способ оплаты",
                         "show_alternatives": "Альтернативные способы оплаты"
                     },
                     "add_one": "У вас нет сохраненного способа оплаты.",
-                    "alternatives": "Вы можете подписаться с помощью альтернативных способов оплаты. Это действие изменит ваш аккаунт один раз и не будет обновлять его каждый месяц.",
+                    "alternatives": "Вы можете оплатить подписку с помощью альтернативных способов оплаты. Это действие оплатит подписку один раз и не будет автоматически обновлять ее каждый месяц.",
                     "card": "Карта",
                     "card_name": "Имя на карте",
                     "country": "Страна проживания",
@@ -9378,7 +9498,7 @@ export default {
                     "saved": "{brand} заканчивается на {last4}"
                 },
                 "placeholders": {
-                    "reason": "Если хотите, можете сказать нам, почему вы больше не поддерживаете Kanka. Отсутствует необходимая функция? Изменилась ваша финансовая ситуация?"
+                    "reason": "Если хотите, можете рассказать нам, почему вы перестаете поддерживать Kanka. Отсутствует ли необходимая функция? Изменилась ли ваша финансовая ситуация?"
                 },
                 "plans": {
                     "cost_monthly": "{currency} {amount} выплачивается в месяц",
@@ -9387,40 +9507,48 @@ export default {
                 "sub_status": "Информация о подписке",
                 "subscription": {
                     "actions": {
-                        "downgrading": "Пожалуйста, свяжитесь с нами для понижения",
-                        "rollback": "Изменить на Kobold",
-                        "subscribe": "Изменить на месячный {tier}",
-                        "subscribe_annual": "Изменять на годовой {tier}"
+                        "downgrading": "Свяжитесь с нами для понижения уровня",
+                        "rollback": "Перейти на Kobold",
+                        "subscribe": "Перейти на месячный {tier}",
+                        "subscribe_annual": "Перейти на годовой {tier}"
                     }
                 },
                 "success": {
                     "alternative": "Ваша оплата зарегистрирована. Вы получите уведомление, как только она будет обработана и ваша подписка будет активирована.",
-                    "callback": "Ваша подписка успешно оформлена. Ваш аккаунт будет обновлен, как только наш провайдер счетов сообщит нам об изменении (это может занять несколько минут)",
-                    "cancel": "Ваша подписка была отменена. Она будет активной до окончания вашего текущего периода оплаты.",
-                    "currency": "Настройки вашей предпочитаемой валюты обновлены.",
-                    "subscribed": "Ваша подписка успешно оформлена. Не забудьте подписаться на рассылку голосований, чтобы знать, когда начнется голосование. Вы можете изменить свои настройки рассылки на странице вашего профиля."
+                    "callback": "Ваша подписка успешно оформлена. Ваш аккаунт будет обновлен, как только наш платежный провайдер сообщит нам об оплате (это может занять несколько минут).",
+                    "cancel": "Ваша подписка отменена. Она будет активной до окончания вашего текущего периода оплаты.",
+                    "currency": "Настройки вашей предпочитаемой валюты обновлены",
+                    "subscribed": "Ваша подписка успешно оформлена. Не забудьте подписаться на рассылку голосований, чтобы узнать, когда начнется голосование. Вы можете изменить настройки рассылки на странице вашего профиля."
                 },
                 "tiers": "Уровни подписки",
-                "trial_period": "У годовых подписок есть возможность отмены в течение 14 дней. Свяжитесь с нами через {email}, если вы хотите отменить вашу годовую подписку и получить деньги назад.",
+                "trial_period": "Годовые подписки можно отменять в течение 14 дней. Свяжитесь с нами через {email}, если вы хотите отменить вашу годовую подписку и получить деньги назад.",
                 "upgrade_downgrade": {
-                    "button": "Информация о повышении и понижении",
+                    "button": "Информация о повышении и понижении уровня",
+                    "cancel": {
+                        "bullets": {
+                            "bonuses": "Ваши бонусы останутся доступными до окончания периода подписки.",
+                            "boosts": "То же самое происходит с усиленными кампаниями. При окончании усиления функции усиления становятся невидимы, но не удаляются из кампании.",
+                            "kobold": "Чтобы отменить подписку, перейдите на уровень Kobold."
+                        },
+                        "title": "При отмене подписки"
+                    },
                     "downgrade": {
                         "bullets": {
                             "end": "Ваш текущий уровень будет активен до окончания текущего цикла оплаты, после чего вы будете понижены до вашего нового уровня."
                         },
-                        "title": "При понижении на уровень"
+                        "title": "При понижении уровня"
                     },
                     "upgrade": {
                         "bullets": {
-                            "immediate": "Ваш способ оплаты будет немедленно оплачен и вы получите доступ к вашему новому уровню.",
-                            "prorate": "При повышении с Owlbear на Elemental вы заплатите только разницу с вашим новым уровнем."
+                            "immediate": "Ваша подписка будет немедленно оплачена и вы получите доступ к вашему новому уровню.",
+                            "prorate": "При повышении уровня вы заплатите только разницу между вашими старым и новым уровнями."
                         },
-                        "title": "При повышении на уровень"
+                        "title": "При повышении уровня"
                     }
                 },
                 "warnings": {
-                    "incomplete": "Не удалось снять деньги с вашей карты. Пожалуйста обновите информацию вашей кредитной карты, и мы попробуем снова в течение следующих нескольких дней. Если ошибка произойдет снова, ваша подписка будет отменена.",
-                    "patreon": "Ваш аккаунт подключен к Patreon. Пожалуйста, отключите ваш аккаунт в ваших настройках {patreon} перед включением Kanka подписки."
+                    "incomplete": "Не удалось совершить оплату с помощью вашей карты. Пожалуйста обновите информацию вашей кредитной карты, и мы попробуем совершить оплату снова в течение нескольких дней. Если ошибка произойдет снова, ваша подписка будет отменена.",
+                    "patreon": "Ваш аккаунт подключен к Patreon. Пожалуйста, отключите ваш аккаунт в настройках {patreon} перед переходом на подписку Kanka."
                 }
             }
         },
@@ -9921,7 +10049,9 @@ export default {
             }
         },
         "campaigns": [],
-        "front": [],
+        "front": {
+            "features": []
+        },
         "randomisers": [],
         "entities": []
     },
