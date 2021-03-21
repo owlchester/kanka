@@ -22,6 +22,7 @@ return [
     ],
     'add'                       => 'Add',
     'alerts'                    => [
+        'copy_attribute'  => 'The attribute\'s mention was copied to your clipboard.',
         'copy_mention'  => 'The entity\'s advanced mention was copied to your clipboard.',
     ],
     'attributes'                => [

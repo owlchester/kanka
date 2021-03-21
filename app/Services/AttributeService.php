@@ -503,35 +503,40 @@ class AttributeService
         // Remap the type to a standard attribute
         $type = '';
 
-        // List of strings separated by commas
-        if (Str::contains($value, ',')) {
-            $values = explode(',', $value);
-            $validValues = [];
-            foreach ($values as $val) {
-                $val = trim($val);
-                if (!empty($val)) {
-                    $validValues[] = $val;
+        try {
+            // List of strings separated by commas
+            if (Str::contains($value, ',')) {
+                $values = explode(',', $value);
+                $validValues = [];
+                foreach ($values as $val) {
+                    $val = trim($val);
+                    if (!empty($val)) {
+                        $validValues[] = $val;
+                    }
                 }
+
+                if (empty($validValues)) {
+                    return [$type, $value];
+                } elseif (count($validValues) == 1) {
+                    return [$type, Arr::first($validValues)];
+                }
+
+                return [$type, Arr::random($validValues)];
+            } elseif (Str::contains($value, '-')) {
+                // Numerical value
+                $values = explode('-', $value);
+                if (count($values) !== 2) {
+                    return [$type, $value];
+                }
+
+                $min = trim($values[0]);
+                $max = trim($values[1]);
+
+                return [$type, mt_rand($min, $max)];
             }
-
-            if (empty($validValues)) {
-                return [$type, $value];
-            } elseif (count($validValues) == 1) {
-                return [$type, Arr::first($validValues)];
-            }
-
-            return [$type, Arr::random($validValues)];
-        } elseif (Str::contains($value, '-')) {
-            // Numerical value
-            $values = explode('-', $value);
-            if (count($values) !== 2) {
-                return [$type, $value];
-            }
-
-            $min = trim($values[0]);
-            $max = trim($values[1]);
-
-            return [$type, mt_rand($min, $max)];
+        } catch(\Exception $e) {
+            // Something went wrong, let's assume the random value is badly formatted
+            return [$type, $value];
         }
 
         return [$type, $value];
