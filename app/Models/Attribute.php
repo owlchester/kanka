@@ -31,6 +31,7 @@ class Attribute extends Model
     const TYPE_CHECKBOX = 'checkbox';
     const TYPE_TEXT = 'text';
     const TYPE_SECTION = 'section';
+    const TYPE_RANDOM = 'random';
 
     /**
      * @var array

@@ -112,6 +112,9 @@ class AttributeService
                 // Remove it from the list of existing ids so it doesn't get deleted
                 unset($existing[$id]);
             } else {
+                // Special case if the attribute is a random
+                list ($type, $value) = $this->randomAttribute($type, $value);
+
                 $attribute = Attribute::create([
                     'entity_id' => $entity->id,
                     'type' => $type,
@@ -178,6 +181,7 @@ class AttributeService
                         $value = '';
                     }
 
+                    list($type, $value) = $this->randomAttribute($type, $value);
                     $order++;
 
                     Attribute::create([
@@ -286,6 +290,9 @@ class AttributeService
                 // Remove it from the list of existing ids so it doesn't get deleted
                 unset($existing[$id]);
             } else {
+                // Special case if the attribute is a random
+                list ($type, $value) = $this->randomAttribute($type, $value);
+
                 Attribute::create([
                     'entity_id' => $entity->id,
                     'type' => $type,
@@ -393,6 +400,9 @@ class AttributeService
             $type = Arr::get($attribute, 'type', null);
             $value = Arr::get($attribute, 'value', '');
 
+
+            list ($type, $value) = $this->randomAttribute($type, $value);
+
             $order++;
 
             Attribute::create([
@@ -425,6 +435,11 @@ class AttributeService
         return $plugin->plugin->name;
     }
 
+    /**
+     * @param $uuid
+     * @param Campaign $campaign
+     * @return CampaignPlugin|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|null
+     */
     public function marketplaceTemplate($uuid, Campaign $campaign)
     {
         if (!$campaign->boosted()) {
@@ -471,5 +486,54 @@ class AttributeService
             //->leftJoin('plugins as p', 'p.id', 'plugin_id')
             ->where('p.uuid', $pluginId)
             ->first();
+    }
+
+    /**
+     * Rewrite an attribute if it's a random value
+     * @param string $type
+     * @param string $value
+     * @return array[string, string]
+     */
+    public function randomAttribute(string $type, string $value)
+    {
+        // Special case if the attribute is a random
+        if ($type != Attribute::TYPE_RANDOM) {
+            return [$type, $value];
+        }
+        // Remap the type to a standard attribute
+        $type = '';
+
+        // List of strings separated by commas
+        if (Str::contains($value, ',')) {
+            $values = explode(',', $value);
+            $validValues = [];
+            foreach ($values as $val) {
+                $val = trim($val);
+                if (!empty($val)) {
+                    $validValues[] = $val;
+                }
+            }
+
+            if (empty($validValues)) {
+                return [$type, $value];
+            } elseif (count($validValues) == 1) {
+                return [$type, Arr::first($validValues)];
+            }
+
+            return [$type, Arr::random($validValues)];
+        } elseif (Str::contains($value, '-')) {
+            // Numerical value
+            $values = explode('-', $value);
+            if (count($values) !== 2) {
+                return [$type, $value];
+            }
+
+            $min = trim($values[0]);
+            $max = trim($values[1]);
+
+            return [$type, mt_rand($min, $max)];
+        }
+
+        return [$type, $value];
     }
 }

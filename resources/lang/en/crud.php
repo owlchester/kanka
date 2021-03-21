@@ -57,6 +57,10 @@ return [
                 'class' => 'FontAwesome or RPG Awesome class: fas fa-users',
                 'name'  => 'Icon name',
             ],
+            'random'    => [
+                'name'  => 'Attribute name',
+                'value' => '1-100 or list of values separated by a comma',
+            ],
             'section'   => 'Section name',
             'template'  => 'Select a template',
             'value'     => 'Value of the attribute',
@@ -70,6 +74,7 @@ return [
             'block'     => 'Block',
             'checkbox'  => 'Checkbox',
             'icon'      => 'Icon',
+            'random'    => 'Random',
             'section'   => 'Section',
             'text'      => 'Multiline Text',
         ],

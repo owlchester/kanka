@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Facade;
  * @package App\Facades
  *
  * @method static string parse(Attribute $attribute)
+ * @method static array randomAttribute(string $type, string $value)
  *
  * @see AttributeService
  */
