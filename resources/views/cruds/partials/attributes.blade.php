@@ -27,7 +27,10 @@ $inSection = false;
         @continue
     @endif
         <dt>
+            <span title="{attribute:{{ $attribute->id }}}" data-toggle="tooltip"
+                  data-clipboard="{attribute:{{ $attribute->id }}}" data-success="#copy-attribute-success">
             {!! $attribute->name() !!}
+            </span>
             @if (Auth::check() && Auth::user()->isAdmin() && $attribute->is_private == true)
                 <i class="fas fa-lock" title="{{ trans('crud.is_private') }}"></i>
             @endif
