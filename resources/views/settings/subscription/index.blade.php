@@ -380,6 +380,15 @@
     @parent
     <script src="{{ mix('js/subscription.js') }}" defer></script>
     <script src="https://js.stripe.com/v3/"></script>
+
+@if($tracking == 'subscribed')
+    <script>
+        gtag('event', 'conversion', {
+            'send_to': 'AW-659212134/z5nbCLmq0fsBEOaOq7oC',
+            'transaction_id': '{{ auth()->user()->id }}'
+        });
+    </script>
+@endif
 @endsection
 
 @section('styles')

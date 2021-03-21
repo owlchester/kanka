@@ -44,6 +44,7 @@ class SubscriptionController extends Controller
         $user = Auth::user();
         $currency = $user->currencySymbol();
         $invoices = !empty($user->stripe_id) ? $user->invoices(true, ['limit' => 3]) : [];
+        $tracking = session()->get('sub_tracking');
 
         return view('settings.subscription.index', compact(
             'stripeApiToken',
@@ -52,7 +53,8 @@ class SubscriptionController extends Controller
             'user',
             'currency',
             'service',
-            'invoices'
+            'invoices',
+            'tracking'
         ));
     }
 
@@ -107,7 +109,8 @@ class SubscriptionController extends Controller
 
             return redirect()
                 ->route('settings.subscription')
-                ->withSuccess(__('settings.subscription.success.' . $flash));
+                ->withSuccess(__('settings.subscription.success.' . $flash))
+                ->with('sub_tracking', $flash);
         } catch(IncompletePayment $exception) {
             session()->put('subscription_callback', $request->get('payment_id'));
             return redirect()->route(
