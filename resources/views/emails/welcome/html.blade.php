@@ -64,6 +64,10 @@
                 'email' => '<a href="mailto:hello@kanka.io">hello@kanka.io</a>'
             ]) !!}</p>
 
+            @if (!empty($user->provider))
+                <p>{{ __('emails/welcome.social_account', ['provider' => strtoupper($user->provider)]) }}</p>
+            @endif
+
             <p><b>{{ __('emails/welcome.section_8') }}</b></p>
 
             <p>{!! __('emails/welcome.section_9_v2', [

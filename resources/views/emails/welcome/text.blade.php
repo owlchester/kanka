@@ -27,6 +27,12 @@
     'email' => 'hello@kanka.io'
 ]) !!}
 
+@if (!empty($user->provider))
+    {{ __('emails/welcome.social_account', [
+    'provider' => strtoupper($user->provider)
+]) }}
+@endif
+
 {{ __('emails/welcome.section_8') }}
 
 {!! __('emails/welcome.section_9_v2', [
