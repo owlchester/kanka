@@ -28,6 +28,19 @@
 
             <hr />
             <p>
+                {!! __('helpers.attributes.random', [
+    'dash' => '<code>-</code>',
+    'comma' => '<code>,</code>',
+]) !!}
+            </p>
+
+            <p>{!! __('helpers.attributes.random_examples', [
+    'number' => '<code>1-100</code>',
+    'list' => '<code>London, Berlin, Rome, Zürich</code>',
+]) !!}</p>
+
+            <hr />
+            <p>
                 {!! __('helpers.attributes.pinned', ['icon' => '<i class="fas fa-star"></i>']) !!}
             </p>
             <p>

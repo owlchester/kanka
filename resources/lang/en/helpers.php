@@ -13,6 +13,8 @@ return [
         'math'          => 'You can also get creative with some basic math options. For example, :example will multiple the :level and :con attributes of this entity. If you want to round up or down, you can use :floor or :ceil',
         'pinned'        => 'Pinning an attribute using the :icon icon will make it appear in the entitiy\'s menu below its image.',
         'private'       => 'Private attributes using the :icon will make them only visible by campaign admins.',
+        'random'        => 'When creating or editing an attribute template, you can set random attributes. This can either be a random value between two numbers separated by :dash, or a random value from a list of values separated by :comma. The value for the attribute is determined when the template is applied to an entity, or when an entity is saved.',
+        'random_examples' => 'For example, if you want a number between 1 and 100, use :number. If you want a value from a list of options, use :list.',
         'title'         => 'Attributes',
     ],
     'dice'          => [
