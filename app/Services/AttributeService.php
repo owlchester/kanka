@@ -38,23 +38,15 @@ class AttributeService
         }
 
         try {
-            // Replace {} with entity attributes
-            $value = preg_replace_callback('`\{(.*?)\}`i', function ($matches) {
-                $text = $matches[1];
-                if ($this->entityAttributes()->has($text)) {
-                    return $this->entityAttributes()->get($text);
-                }
-                return 0;
-            }, $attribute->value);
+            return $this->entityAttributes()->get($attribute->name, $attribute->value);
 
-            $calculator = new StringCalc();
-            return $calculator->calculate($value);
         } catch(\Exception $e) {
-            return '';
+            return $attribute->value;
         }
     }
 
     /**
+     * Load all the entity attributes and pre-calculate the values
      * @return array|\Illuminate\Support\Collection
      */
     protected function entityAttributes()
@@ -63,7 +55,32 @@ class AttributeService
             return $this->loadedAttributes[$this->loadedEntity->id];
         }
 
-        return $this->loadedAttributes[$this->loadedEntity->id] = $this->loadedEntity->attributes()->pluck('value', 'name');
+        $attributes = $this->loadedEntity->attributes()->pluck('value', 'name');
+
+        // Parse all attributes to calculate the values
+        foreach ($attributes as $id => $attribute) {
+
+            try {
+                // Replace {} with entity attributes
+                $value = preg_replace_callback('`\{(.*?)\}`i', function ($matches) use ($attributes) {
+                    $text = $matches[1];
+                    if ($attributes->has($text)) {
+                        return $attributes->get($text);
+                    }
+                    if ($text == 'name') {
+                        return (string) $this->loadedEntity->name;
+                    }
+                    return 0;
+                }, $attribute);
+
+                $calculator = new StringCalc();
+                $attributes[$id] = $calculator->calculate($value);
+            } catch(\Exception $e) {
+                $attributes[$id] = $value;
+            }
+        }
+
+        return $this->loadedAttributes[$this->loadedEntity->id] = $attributes;
     }
 
     /**
@@ -494,7 +511,7 @@ class AttributeService
      * @param string $value
      * @return array[string, string]
      */
-    public function randomAttribute(string $type, string $value)
+    public function randomAttribute($type, $value)
     {
         // Special case if the attribute is a random
         if ($type != Attribute::TYPE_RANDOM) {
