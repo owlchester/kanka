@@ -149,14 +149,18 @@ class AttributeTemplate extends MiscModel
             if (in_array($attribute->name, $existing)) {
                 continue;
             }
+
+
+            list ($type, $value) = \App\Facades\Attributes::randomAttribute($attribute->type, $attribute->value);
+
             Attribute::create([
                 'entity_id' => $entity->id,
                 'name' => $attribute->name,
-                'value' => $attribute->value,
+                'value' => $value,
                 'default_order' => $lastOrder + $order,
                 'is_private' => $attribute->is_private,
                 'is_star' => $attribute->is_star,
-                'type' => $attribute->type,
+                'type' => $type,
             ]);
             $order++;
         }
@@ -168,14 +172,16 @@ class AttributeTemplate extends MiscModel
                 if (in_array($attribute->name, $existing)) {
                     continue;
                 }
+                list ($type, $value) = \App\Facades\Attributes::randomAttribute($attribute->type, $attribute->value);
+
                 Attribute::create([
                     'entity_id' => $entity->id,
                     'name' => $attribute->name,
-                    'value' => $attribute->value,
+                    'value' => $value,
                     'default_order' => $order,
                     'is_private' => $attribute->is_private,
                     'is_star' => $attribute->is_star,
-                    'type' => $attribute->type,
+                    'type' => $type,
                 ]);
                 $order++;
             }

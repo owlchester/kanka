@@ -23,10 +23,14 @@
                 <i class="fa fas fa-layer-group"></i> {{ trans('crud.attributes.types.section') }}
             </a>
         </li>
+        @if(request()->is('*/attribute_templates/*') || (isset($entity) && $entity->typeId() == config('entities.ids.attribute_template')))
         <li>
+            <a  href="#" class="add_attribute" data-template="#random_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
+                <i class="fa fas fa-question"></i> {{ trans('crud.attributes.types.random') }}
+            </a>
+        </li>
+        @endif
     </ul>
-
-
 </div>
 
 <a href="{{ route('helpers.attributes') }}" data-url="{{ route('helpers.attributes') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.attributes.description', [
