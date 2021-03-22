@@ -55,7 +55,7 @@ class AttributeService
             return $this->loadedAttributes[$this->loadedEntity->id];
         }
 
-        $attributes = $this->loadedEntity->attributes()->pluck('value', 'name');
+        $attributes = $this->loadedEntity->attributes()->orderBy('default_order')->pluck('value', 'name');
 
         // Parse all attributes to calculate the values
         foreach ($attributes as $id => $attribute) {
