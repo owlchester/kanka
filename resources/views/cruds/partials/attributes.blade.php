@@ -45,6 +45,10 @@ $inSection = false;
             @else
                 {!! $attribute->mappedValue() !!}
             @endif
+
+            @if($attributeService->isLoop($attribute->name))
+                <i class="fa fa-warning" title="{{ __('crud.attributes.errors.loop') }}" data-toggle="tooltip"></i>
+            @endif
         </dd>
 @endforeach
 

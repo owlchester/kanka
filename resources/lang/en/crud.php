@@ -32,6 +32,9 @@ return [
             'more'              => 'More options',
             'remove_all'        => 'Delete All',
         ],
+        'errors'        => [
+            'loop' => 'There is an endless loop in this attribute calculation!',
+        ],
         'fields'        => [
             'attribute'             => 'Attribute',
             'community_templates'   => 'Community Templates',

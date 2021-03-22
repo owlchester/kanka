@@ -658,4 +658,17 @@ class AttributeService
             return $final;
         }
     }
+
+    /**
+     * Check if an attribute is part of a loop
+     * @param $name
+     * @return bool
+     */
+    public function isLoop($name): bool
+    {
+        if ($ref = $this->calculatedAttributes->get($name)) {
+            return $ref['loop'];
+        }
+        return false;
+    }
 }
