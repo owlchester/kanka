@@ -130,7 +130,9 @@ class AttributeService
                 unset($existing[$id]);
             } else {
                 // Special case if the attribute is a random
-                list ($type, $value) = $this->randomAttribute($type, $value);
+                if ($entity->typeId() != config('entities.ids.attribute_template')) {
+                    list ($type, $value) = $this->randomAttribute($type, $value);
+                }
 
                 $attribute = Attribute::create([
                     'entity_id' => $entity->id,
@@ -308,7 +310,9 @@ class AttributeService
                 unset($existing[$id]);
             } else {
                 // Special case if the attribute is a random
-                list ($type, $value) = $this->randomAttribute($type, $value);
+                if ($entity->typeId() != config('entities.ids.attribute_template')) {
+                    list ($type, $value) = $this->randomAttribute($type, $value);
+                }
 
                 Attribute::create([
                     'entity_id' => $entity->id,
@@ -514,7 +518,7 @@ class AttributeService
     public function randomAttribute($type, $value)
     {
         // Special case if the attribute is a random
-        if ($type != Attribute::TYPE_RANDOM || request()->is('*/attribute_templates/*')) {
+        if ($type != Attribute::TYPE_RANDOM) {
             return [$type, $value];
         }
         // Remap the type to a standard attribute
