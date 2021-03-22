@@ -83,14 +83,15 @@ class AttributeService
         // Loop through the attributes and calculate the values
         foreach ($this->calculatedAttributes as $name => $attribute) {
             try {
-                $attributes[$name] = $this->calculateAttribute($attribute);
+                $this->calculatedAttributes[$name] = $this->calculateAttribute($attribute);
             } catch (\Exception $e) {
-                throw $e;
-
-                $this->calculatedAttributes[$name]['loop'] = true;
-                $this->calculatedAttributes[$name]['final'] = $attribute['value'];
+                $attribute['loop'] = true;
+                $attribute['final'] = $attribute['value'];
+                $this->calculatedAttributes[$name] = $attribute;
             }
         }
+
+        //dd($this->calculatedAttributes);
 
         return $this->loadedAttributes[$this->loadedEntity->id] = $this->calculatedAttributes;
     }
@@ -577,10 +578,9 @@ class AttributeService
 
     /**
      * @param array $data
-     * @param array $from
      * @return array
      */
-    protected function calculateAttribute(array $data, array $from = [])
+    protected function calculateAttribute(array $data)
     {
         if (empty($data['references'])) {
             $data['final'] = $data['value'];
@@ -588,9 +588,11 @@ class AttributeService
         }
 
         try {
-            $data['final'] = $this->calculateAttributeValue($data);
+            $data['final'] = $this->calculateAttributeValue($data, []);
         } catch (Exception $e) {
-            $data['final'] = $data['value'];
+            //dump($e->getMessage());
+            //dd('oh these is a loop in here');
+            $data['final'] = 0;
             $data['loop'] = true;
         }
         return $data;
@@ -611,14 +613,9 @@ class AttributeService
 
         //dump('parsing ' . $data['name'] . ' value ' . $data['value']);
 
-        //dump($from);
-
         // First detect any loops going on here
-        $loops = array_count_values($from);
-        foreach ($loops as $ref => $count) {
-            if ($count > 1) {
-                throw new Exception('loop detected on ' . $data['name']);
-            }
+        if (in_array($data['name'], $from)) {
+            throw new Exception('loop detected on ' . $data['name']);
         }
 
         // Replace any attribute references
@@ -630,19 +627,22 @@ class AttributeService
                 if (!empty($ref['final'])) {
                     //dump('has a final version too');
                     return $ref['final'];
+                } elseif ($ref['loop']) {
+                    return 0;
                 }
                 //dump('calculating final version for ' . $text . ' with value ' . $ref['value']);
                 $newFrom = $from;
                 $newFrom[] = $data['name'];
-                try {
+
                     $ref['final'] = $this->calculateAttributeValue($ref, $newFrom);
                     $this->calculatedAttributes[$text] = $ref;
                     return $ref['final'];
-                } catch (Exception $e) {
+                /*} catch (Exception $e) {
                     $ref['loop'] = true;
                     $ref['final'] = $ref['value'];
                     $this->calculatedAttributes[$text] = $ref;
-                }
+                    return 0;
+                }*/
             }
             if ($text == 'name') {
                 return (string) $this->loadedEntity->name;
@@ -652,7 +652,8 @@ class AttributeService
 
         try {
             $calculator = new StringCalc();
-            return (string)$calculator->calculate($final);
+            $return = (string)$calculator->calculate($final);
+            return $return;
         } catch(Exception $e) {
             return $final;
         }
