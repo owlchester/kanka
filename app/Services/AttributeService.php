@@ -10,8 +10,10 @@ use App\Models\Entity;
 use App\Models\Plugin;
 use ChrisKonnertz\StringCalc\StringCalc;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Kanka\Dnd5eMonster\Template;
+use Exception;
 
 class AttributeService
 {
@@ -22,6 +24,9 @@ class AttributeService
     protected $loadedPlugins = [];
 
     protected $loadedEntity = null;
+
+    /** @var null|Collection */
+    protected $calculatedAttributes = null;
 
     /**
      * @param Entity $entity
@@ -38,9 +43,11 @@ class AttributeService
         }
 
         try {
-            return $this->entityAttributes()->get($attribute->name, $attribute->value);
+            $calculated = $this->entityAttributes()->get($attribute->name);
+            return (string) $calculated['final'];
 
         } catch(\Exception $e) {
+            throw $e;
             return $attribute->value;
         }
     }
@@ -55,32 +62,37 @@ class AttributeService
             return $this->loadedAttributes[$this->loadedEntity->id];
         }
 
-        $attributes = $this->loadedEntity->attributes()->orderBy('default_order')->pluck('value', 'name');
+        $baseAttributes = $this->loadedEntity->attributes()->orderBy('default_order')->pluck('value', 'name');
 
-        // Parse all attributes to calculate the values
-        foreach ($attributes as $id => $attribute) {
+        $this->calculatedAttributes = new Collection();
 
+        // Prepare our attributes with first level references
+        foreach ($baseAttributes as $name => $value) {
+            $references = [];
+            preg_match_all('`\{(.*?)\}`i', $value, $references);
+
+            $this->calculatedAttributes->put($name, [
+                'value' => $value,
+                'loop' => false,
+                'name' => $name,
+                'final' => null,
+                'references' => !empty($references[1]) ? $references[1] : [],
+            ]);
+        }
+
+        // Loop through the attributes and calculate the values
+        foreach ($this->calculatedAttributes as $name => $attribute) {
             try {
-                // Replace {} with entity attributes
-                $value = preg_replace_callback('`\{(.*?)\}`i', function ($matches) use ($attributes) {
-                    $text = $matches[1];
-                    if ($attributes->has($text)) {
-                        return $attributes->get($text);
-                    }
-                    if ($text == 'name') {
-                        return (string) $this->loadedEntity->name;
-                    }
-                    return 0;
-                }, $attribute);
+                $attributes[$name] = $this->calculateAttribute($attribute);
+            } catch (\Exception $e) {
+                throw $e;
 
-                $calculator = new StringCalc();
-                $attributes[$id] = $calculator->calculate($value);
-            } catch(\Exception $e) {
-                $attributes[$id] = $value;
+                $this->calculatedAttributes[$name]['loop'] = true;
+                $this->calculatedAttributes[$name]['final'] = $attribute['value'];
             }
         }
 
-        return $this->loadedAttributes[$this->loadedEntity->id] = $attributes;
+        return $this->loadedAttributes[$this->loadedEntity->id] = $this->calculatedAttributes;
     }
 
     /**
@@ -561,5 +573,88 @@ class AttributeService
         }
 
         return [$type, $value];
+    }
+
+    /**
+     * @param array $data
+     * @param array $from
+     * @return array
+     */
+    protected function calculateAttribute(array $data, array $from = [])
+    {
+        if (empty($data['references'])) {
+            $data['final'] = $data['value'];
+            return $data;
+        }
+
+        try {
+            $data['final'] = $this->calculateAttributeValue($data);
+        } catch (Exception $e) {
+            $data['final'] = $data['value'];
+            $data['loop'] = true;
+        }
+        return $data;
+
+
+    }
+
+    /**
+     * @param string $value
+     * @param array $from
+     * @return string
+     * @throws \ChrisKonnertz\StringCalc\Exceptions\ContainerException
+     * @throws \ChrisKonnertz\StringCalc\Exceptions\NotFoundException
+     */
+    protected function calculateAttributeValue(array $data, array $from = []): string
+    {
+        // If the final version is already calculated, use that
+
+        //dump('parsing ' . $data['name'] . ' value ' . $data['value']);
+
+        //dump($from);
+
+        // First detect any loops going on here
+        $loops = array_count_values($from);
+        foreach ($loops as $ref => $count) {
+            if ($count > 1) {
+                throw new Exception('loop detected on ' . $data['name']);
+            }
+        }
+
+        // Replace any attribute references
+        $final = preg_replace_callback('`\{(.*?)\}`i', function ($matches) use ($data, $from) {
+            $text = $matches[1];
+            //dump('checking for a reference called ' . $text);
+            if ($ref = $this->calculatedAttributes->get($text)) {
+                //dump('has an attribute called it!');
+                if (!empty($ref['final'])) {
+                    //dump('has a final version too');
+                    return $ref['final'];
+                }
+                //dump('calculating final version for ' . $text . ' with value ' . $ref['value']);
+                $newFrom = $from;
+                $newFrom[] = $data['name'];
+                try {
+                    $ref['final'] = $this->calculateAttributeValue($ref, $newFrom);
+                    $this->calculatedAttributes[$text] = $ref;
+                    return $ref['final'];
+                } catch (Exception $e) {
+                    $ref['loop'] = true;
+                    $ref['final'] = $ref['value'];
+                    $this->calculatedAttributes[$text] = $ref;
+                }
+            }
+            if ($text == 'name') {
+                return (string) $this->loadedEntity->name;
+            }
+            return 0;
+        }, $data['value']);
+
+        try {
+            $calculator = new StringCalc();
+            return (string)$calculator->calculate($final);
+        } catch(Exception $e) {
+            return $final;
+        }
     }
 }
