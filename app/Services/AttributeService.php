@@ -514,7 +514,7 @@ class AttributeService
     public function randomAttribute($type, $value)
     {
         // Special case if the attribute is a random
-        if ($type != Attribute::TYPE_RANDOM) {
+        if ($type != Attribute::TYPE_RANDOM || request()->is('*/attribute_templates/*')) {
             return [$type, $value];
         }
         // Remap the type to a standard attribute
