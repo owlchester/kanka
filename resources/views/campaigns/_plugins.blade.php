@@ -52,21 +52,21 @@
                         {{ __('campaigns/plugins.status.disabled') }}
                     @endif
                 </td>
-                <td class="text-right">
+                <td class="text-center">
                     @if($plugin->type_id == 1)
                         @if($plugin->pivot->is_active)
-                            <a href="{{ route('campaign_plugins.disable', $plugin) }}" class="btn btn-default">
-                                {{ __('campaigns/plugins.actions.disable') }}
+                            <a href="{{ route('campaign_plugins.disable', $plugin) }}" class="btn btn-block btn-default">
+                                <i class="fa fa-times-circle"></i> {{ __('campaigns/plugins.actions.disable') }}
                             </a>
                         @else
-                            <a href="{{ route('campaign_plugins.enable', $plugin) }}" class="btn btn-default">
-                                {{ __('campaigns/plugins.actions.enable') }}
+                            <a href="{{ route('campaign_plugins.enable', $plugin) }}" class="btn btn-block btn-default">
+                                <i class="fa fa-check-circle"></i> {{ __('campaigns/plugins.actions.enable') }}
                             </a>
 
                         @endif
                     @endif
 
-                    <button class="btn btn-danger delete-confirm" title="{{ __('crud.remove') }}"
+                    <button class="btn btn-danger btn-block delete-confirm" title="{{ __('crud.remove') }}"
                             data-toggle="modal" data-name="{{ $plugin->name }}"
                             data-target="#delete-confirm" data-delete-target="campaign-plugin-{{ $plugin->id }}"
                     >

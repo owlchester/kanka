@@ -1077,6 +1077,16 @@ hr {
   }
 }
 
+.mb-xs {
+  margin-bottom: 5px;
+}
+.mb-sm {
+  margin-bottom: 10px;
+}
+.mb-md {
+  margin-bottom: 15px;
+}
+
 // Bootstrap3 sets summary to display:block which isn't correct
 summary { display: list-item; }
 

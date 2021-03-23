@@ -7,6 +7,7 @@ namespace App\Models;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Plugin
@@ -24,6 +25,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Plugin extends Model
 {
+    use SoftDeletes;
+
     /**
      * @return string
      */
@@ -37,20 +40,23 @@ class Plugin extends Model
         return 'pack';
     }
 
+    /**
+     * @return bool
+     */
     public function hasUpdate(): bool
     {
         // Check latest version
-        return $this->versions()->where(function ($sub) {
-            if ($this->created_by == auth()->user()->id) {
-                return $sub->whereIn('status_id', [1, 3]);
-            } else {
-                return $sub->where('status_id', 3);
-            }
+        return $this
+                ->versions()
+                ->where(function ($sub) {
+                    if ($this->created_by == auth()->user()->id) {
+                        return $sub->whereIn('status_id', [1, 3]);
+                    } else {
+                        return $sub->where('status_id', 3);
+                    }
 
-            })->where('id', '>', $this->pivot->plugin_version_id)->count() > 0;
-
-        // Our current version
-        //return $latest->id > $this->pivot->plugin_version_id;
+                    }
+                )->where('id', '>', $this->pivot->plugin_version_id)->count() > 0;
     }
 
     /**
