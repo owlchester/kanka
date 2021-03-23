@@ -666,6 +666,9 @@ class AttributeService
      */
     public function isLoop($name): bool
     {
+        if (empty($this->calculatedAttributes)) {
+            return false;
+        }
         if ($ref = $this->calculatedAttributes->get($name)) {
             return $ref['loop'];
         }

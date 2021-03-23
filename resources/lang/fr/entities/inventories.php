@@ -14,7 +14,7 @@ return [
     'fields'        => [
         'amount'        => 'Nombre',
         'description'   => 'Description',
-        'is_equipped'   => 'Equippé',
+        'is_equipped'   => 'Equipé',
         'name'          => 'Nom',
         'position'      => 'Position',
     ],
