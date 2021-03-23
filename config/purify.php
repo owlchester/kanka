@@ -173,6 +173,9 @@ return [
             . "lookingforgm\.com/campaign/|"
             . "w.soundcloud.com/player/|"
             . "www\.dndbeyond\.com/|"
+            . "www\.aonprd\.com/|"
+            . "2e\.aonprd\.com/|"
+            . "www\.aonsrd\.com/|"
             . "p3d\.in/e/"
             . ")%",
     ],
