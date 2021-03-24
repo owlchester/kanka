@@ -77,6 +77,7 @@ class EntityController extends Controller
     }
 
     /**
+     * PDF export
      * @param Entity $entity
      * @return mixed
      */
@@ -98,6 +99,8 @@ class EntityController extends Controller
                 'exporting'
             ));
         }
+
+        //return view('cruds.export', compact('entity', 'name', 'entities', 'exporting', 'datagridSorter'));
 
         return $pdf
             ->loadView('cruds.export', compact('entity', 'name', 'entities', 'exporting', 'datagridSorter'))

@@ -1,6 +1,9 @@
 <?php /** @var App\Models\character $model */ ?>
 <div class="box box-solid">
     <div class="box-body box-profile">
+        <div class="export-visible entity-name">
+            {{ $model->name }}
+        </div>
         @if (!View::hasSection('entity-header'))
             @include ('cruds._image')
             @if ($model->title)
