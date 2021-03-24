@@ -113,7 +113,7 @@ function initMapForms()
     if (layerForm.length === 0 && markerForm.length === 0 && groupForm.length === 0 && newMarkerForm.length === 0) {
         return;
     }
-    console.log('initMapForms');
+    //console.info('mapsv3', 'initMapForms');
 
     layerForm.unbind('submit').on('submit', function() {
         window.entityFormHasUnsavedChanges = false;
@@ -144,10 +144,12 @@ function initMapForms()
     newMarkerForm.unbind('submit').on('submit', function(e) {
         window.entityFormHasUnsavedChanges = false;
         if (validEntityForm) {
+            //console.log('mapsv3', 'new marker form real submit');
             return true;
         }
 
         e.preventDefault();
+        //console.info('newMarkerForm', 'submit');
 
         // Allow ajax requests to use the X_CSRF_TOKEN for deletes
         $.ajaxSetup({
@@ -156,8 +158,8 @@ function initMapForms()
             }
         });
 
-        $('#map-marker-new-form .btn-success span').hide();
-        $('#map-marker-new-form .btn-success i.fa').show();
+        $('#map-marker-new-form .form-submit-main span').hide();
+        $('#map-marker-new-form .form-submit-main i.fa').show();
 
         $.ajax({
             url: $(this).attr('action'),
@@ -166,10 +168,11 @@ function initMapForms()
         }).done(function (res) {
             // If the validation succeeded, we can really submit the form
             validEntityForm = true;
+            //console.log('mapsv3', 'new marker ajax success');
             newMarkerForm.submit();
             return true;
         }).fail(function (err) {
-            console.log('error', err);
+            //console.log('mapsv3', 'new marker error', err);
             // Reset any error fields
             //$('.input-error').removeClass('input-error');
             //$('.text-danger').remove();
@@ -190,11 +193,10 @@ function initMapForms()
                 }
             });
 
-            $('#map-marker-new-form .btn-success span').show();
-            $('#map-marker-new-form .btn-success i.fa').hide();
+            $('#map-marker-new-form .form-submit-main span').show();
+            $('#map-marker-new-form .form-submit-main i.fa').hide();
         });
     })
-
 
     $(document).on('shown.bs.modal shown.bs.popover', function() {
         initSubforms();
@@ -217,7 +219,9 @@ function initSubforms()
         e.preventDefault();
 
         let submitBtn = $(this)
-            .find('.btn-success');
+            .find('.form-submit-main');
+
+        console.info('submitBtn', submitBtn);
         submitBtn.data('reset', submitBtn.html())
             .html('<i class="fa fa-spinner fa-spin"></i>')
             .prop('disabled', true);

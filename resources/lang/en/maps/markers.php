@@ -5,6 +5,7 @@ return [
         'entry' => 'Write a custom entry field for this marker.',
         'remove'=> 'Remove marker',
         'update'=> 'Edit marker',
+        'save_and_explore' => 'Save and Explore',
     ],
     'create'        => [
         'success'   => 'Marker :name created.',

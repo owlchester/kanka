@@ -40,7 +40,31 @@
             @include('maps.markers._form', ['model' => null])
 
             <div class="form-group">
-                <button class="btn btn-success">{{ trans('crud.save') }}</button>
+                <div class="btn-group">
+                    <button class="btn btn-success" id="form-submit-main" data-unsaved="{{ __('crud.hints.unsaved_changes') }}" data-target="{{ isset($target) ? $target : null }}">{{ __('crud.save') }}</button>
+                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="#" class="dropdown-item form-submit-actions">
+                                {{ __('crud.save') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item form-submit-actions" data-action="submit-update">
+                                {{ __('crud.save_and_update') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item form-submit-actions" data-action="submit-explore">
+                                {{ __('maps/markers.actions.save_and_explore') }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                {!! Form::hidden('submit', null) !!}
+
                 @if (!$ajax)
                     {!! __('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
                 @endif

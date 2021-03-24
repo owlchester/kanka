@@ -77668,6 +77668,7 @@ function registerEntityFormActions() {
 
   $.each(entityFormActions, function () {
     $(this).on('click', function () {
+      //console.log('setting the submit name to ' + $(this).data('action'));
       entityFormDefaultAction.attr('name', $(this).data('action')).click(); // .prop('disabled', true);
 
       return false;

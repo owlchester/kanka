@@ -178,7 +178,32 @@
                             @include('maps.markers._form', ['model' => null, 'map' => $map, 'activeTab' => 1])
 
                             <div class="form-group">
-                                <button class="btn btn-success"><i class="fa fa-spin fa-spinner" style="display:none;"></i><span>{{ __('crud.save') }}</span></button>
+                                <div class="btn-group">
+                                    <button class="btn btn-success form-submit-main" id="form-submit-main" data-unsaved="{{ __('crud.hints.unsaved_changes') }}" data-target="{{ isset($target) ? $target : null }}">
+                                        <i class="fa fa-spin fa-spinner" style="display:none;"></i><span>{{ __('crud.save') }}</span>
+                                    </button>
+                                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <a href="#" class="dropdown-item form-submit-actions">
+                                                {{ __('crud.save') }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="dropdown-item form-submit-actions" data-action="submit-update">
+                                                {{ __('crud.save_and_update') }}
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="dropdown-item form-submit-actions" data-action="submit-explore">
+                                                {{ __('maps/markers.actions.save_and_explore') }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                {!! Form::hidden('submit', null) !!}
                             </div>
 
                             {!! Form::hidden('from', 'explore') !!}

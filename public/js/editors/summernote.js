@@ -420,9 +420,7 @@ function buildErrors(data) {
   return errors;
 }
 
-function debug(e) {
-  console.log('e', e);
-  console.log(e.data('height'));
+function debug(e) {//console.log('e', e);
 }
 
 /***/ }),

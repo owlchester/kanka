@@ -268,9 +268,9 @@ function initMapForms() {
 
   if (layerForm.length === 0 && markerForm.length === 0 && groupForm.length === 0 && newMarkerForm.length === 0) {
     return;
-  }
+  } //console.info('mapsv3', 'initMapForms');
 
-  console.log('initMapForms');
+
   layerForm.unbind('submit').on('submit', function () {
     window.entityFormHasUnsavedChanges = false;
   });
@@ -298,33 +298,36 @@ function initMapForms() {
     window.entityFormHasUnsavedChanges = false;
 
     if (validEntityForm) {
+      //console.log('mapsv3', 'new marker form real submit');
       return true;
     }
 
-    e.preventDefault(); // Allow ajax requests to use the X_CSRF_TOKEN for deletes
+    e.preventDefault(); //console.info('newMarkerForm', 'submit');
+    // Allow ajax requests to use the X_CSRF_TOKEN for deletes
 
     $.ajaxSetup({
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }
     });
-    $('#map-marker-new-form .btn-success span').hide();
-    $('#map-marker-new-form .btn-success i.fa').show();
+    $('#map-marker-new-form .form-submit-main span').hide();
+    $('#map-marker-new-form .form-submit-main i.fa').show();
     $.ajax({
       url: $(this).attr('action'),
       method: $(this).attr('method'),
       data: $(this).serialize()
     }).done(function (res) {
       // If the validation succeeded, we can really submit the form
-      validEntityForm = true;
+      validEntityForm = true; //console.log('mapsv3', 'new marker ajax success');
+
       newMarkerForm.submit();
       return true;
     }).fail(function (err) {
-      console.log('error', err); // Reset any error fields
+      //console.log('mapsv3', 'new marker error', err);
+      // Reset any error fields
       //$('.input-error').removeClass('input-error');
       //$('.text-danger').remove();
       // Loop through the errors to add the class and error message
-
       var errors = err.responseJSON.errors;
       var errorKeys = Object.keys(errors);
       var foundAllErrors = true;
@@ -339,8 +342,8 @@ function initMapForms() {
           foundAllErrors = false;
         }
       });
-      $('#map-marker-new-form .btn-success span').show();
-      $('#map-marker-new-form .btn-success i.fa').hide();
+      $('#map-marker-new-form .form-submit-main span').show();
+      $('#map-marker-new-form .form-submit-main i.fa').hide();
     });
   });
   $(document).on('shown.bs.modal shown.bs.popover', function () {
@@ -362,7 +365,8 @@ function initSubforms() {
 
     window.entityFormHasUnsavedChanges = false;
     e.preventDefault();
-    var submitBtn = $(this).find('.btn-success');
+    var submitBtn = $(this).find('.form-submit-main');
+    console.info('submitBtn', submitBtn);
     submitBtn.data('reset', submitBtn.html()).html('<i class="fa fa-spinner fa-spin"></i>').prop('disabled', true); // Allow ajax requests to use the X_CSRF_TOKEN for deletes
 
     $.ajaxSetup({

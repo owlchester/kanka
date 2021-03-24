@@ -92,8 +92,15 @@ class MapMarkerController extends Controller
         $data['map_id'] = $map->id;
         $new = $model->create($data);
 
-
-        if ($request->get('from') == 'explore') {
+        if ($request->has('submit-explore')) {
+            return redirect()
+                ->route('maps.explore', [$map])
+                ->withSuccess(__('maps/markers.create.success', ['name' => $new->name]));
+        } elseif ($request->has('submit-update')) {
+            return redirect()
+                ->route('maps.map_markers.edit', [$map, $new])
+                ->withSuccess(__('maps/markers.create.success', ['name' => $new->name]));
+        } elseif ($request->get('from') == 'explore') {
             return redirect()
                 ->route('maps.explore', [$map, 'focus' => $new->id]);
         }
@@ -142,6 +149,16 @@ class MapMarkerController extends Controller
         }
 
         $mapMarker->update($request->only($this->fields));
+
+        if ($request->has('submit-explore')) {
+            return redirect()
+                ->route('maps.explore', [$map])
+                ->withSuccess(__('maps/markers.edit.success', ['name' => $mapMarker->name]));
+        } elseif ($request->has('submit-update')) {
+            return redirect()
+                ->route('maps.map_markers.edit', [$map, $mapMarker])
+                ->withSuccess(__('maps/markers.edit.success', ['name' => $mapMarker->name]));
+        }
 
         return redirect()
             ->route('maps.edit', [$map, '#tab_form-markers'])

@@ -332,6 +332,5 @@ function buildErrors(data) {
 }
 
 function debug(e) {
-    console.log('e', e);
-    console.log(e.data('height'));
+    //console.log('e', e);
 }
