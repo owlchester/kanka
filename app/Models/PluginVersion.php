@@ -30,6 +30,8 @@ class PluginVersion extends Model
     /** @var Attribute[] */
     protected $entityAttributes;
 
+    protected $templateAttributes = [];
+
     /**
      * @var string[]
      */
@@ -61,6 +63,8 @@ class PluginVersion extends Model
      */
     public function content(Entity $entity)
     {
+        return $this->renderBlade($entity);
+
         $this->entityAttributes = $entity->attributes()->get();
         $html = preg_replace_callback('`\{(.*?)\}`i', function ($matches) {
             $name = (string) $matches[1];
@@ -70,9 +74,6 @@ class PluginVersion extends Model
 
         // Replace < and > in logical blocks
         //$html = str_replace(['&lt;', '&gt;'], ['<', '>'], $html);
-
-        //dump($html);
-        //$html = Blade::compileString($html);
 
         //dump($html);
         //return $html;
@@ -95,6 +96,87 @@ class PluginVersion extends Model
         }, $html);
 
         return $html;
+    }
+
+    protected function renderBlade(Entity $entity)
+    {
+        $html = $this->content;
+        $html = str_replace(['&lt;', '&gt;', '&amp;&amp;'], ['<', '>', '&&'], $html);
+
+        $html = preg_replace_callback('`\{(.*?[^\!])\}`i', function ($matches) {
+            $name = trim((string) $matches[1]);
+            $this->templateAttributes[$name] = null;
+            return '{{ $' . $name . ' }}';
+        }, $html);
+
+        $html = str_replace([
+            '@php', '@dd', '@inject', '@yield', '@section', '@auth', '@guest', '@env', '@once', '@push', '@csrf',
+            '@include', '\Illuminate\\',
+        ], [
+            '', '', '', '', '', '', '', '', '', '', ''
+        ], $html);
+        $html = preg_replace('`dd\((.*?)\)`i', '', $html);
+        $html = preg_replace('`config\((.*?)\)`i', '', $html);
+
+
+        //$html = preg_replace('`\\\\`i', '', $html);
+
+        /*$html = preg_replace_callback('`$(\w+)`i', function ($matches) {
+            $name = trim((string) $matches[1]);
+            $this->templateAttributes[] = $name;
+            return '{{ $' . $name . ' }}';
+        }, $html);*/
+        //dump($html);
+
+        $html = Blade::compileString($html);
+
+        // Prepare attributes
+        $data = [];
+        $this->entityAttributes = $entity->attributes()->get();
+        foreach ($this->entityAttributes as $attr) {
+            $name = str_replace(' ', null, $attr->name);
+            $data[$name] = $attr->mappedValue();
+            if ($attr->isText()) {
+                $data[$name] = nl2br($data[$name]);
+            }
+            //dump('mapping ' . $name . ' to ' . $attr->mappedValue());
+            unset($this->templateAttributes[$name]);
+        }
+
+        //dump($data);
+        ///dump($this->templateAttributes);
+
+        // Add any variables missing
+        //dd($this->templateAttributes);
+        foreach ($this->templateAttributes as $name) {
+            $data[$name] = null;
+        }
+
+        $obLevel = ob_get_level();
+        ob_start();
+        extract($data, EXTR_SKIP);
+
+        $errors = null;
+
+        try {
+            eval('?' . '>' . $html);
+            return '';
+            //return $html;
+        } catch (\Exception $e) {
+            while (ob_get_level() > $obLevel) ob_end_clean();
+            $errors = $e->getMessage();
+            //throw $e;
+        } catch (\Throwable $e) {
+            while (ob_get_level() > $obLevel) ob_end_clean();
+            $errors = $e->getMessage();
+
+            //throw new FatalThrowableError($e);
+        }
+
+        return '<div class="alert alert-danger">
+            ' . __('attributes/templates.errors.marketplace.rendering') . (!empty($errors) ?
+                '<br /><br />' . __('attributes/templates.errors.marketplace.hint') . ': ' . $errors : null) . '
+        </div>';
     }
 
     /**

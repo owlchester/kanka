@@ -59,6 +59,20 @@
     </script>
 @endif
 
+@if(!empty(config('tracking.hotjar')))
+    <!-- Hotjar Tracking Code for http://kanka.io/ -->
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:{{ config('tracking.hotjar') }},hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+@endif
+
 @if(!empty(config('tracking.adsense')) && (auth()->guest() || auth()->user()->showAds()) && !isset($noads))
     <script data-ad-client="{{ config('tracking.adsense') }}" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 @endif

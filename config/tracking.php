@@ -38,4 +38,9 @@ return [
      * AdSense ID
      */
     'adsense' => env('TRACKING_ADSENSE', null),
+
+    /*
+     * Hotjar tracking
+     */
+    'hotjar' => env('TRACKING_HOTJAR', null),
 ];
