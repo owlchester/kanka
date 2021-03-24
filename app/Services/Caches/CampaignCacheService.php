@@ -9,6 +9,7 @@ use App\Models\CampaignSetting;
 use App\Models\Plugin;
 use App\Models\PluginVersion;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 /**
@@ -238,9 +239,11 @@ class CampaignCacheService extends BaseCache
             ->where('p.type_id', 1)
             ->where('is_active', true)
             ->with('version')
+            ->has('plugin')
             ->get();
         foreach ($plugins as $plugin) {
-            $theme .= $plugin->version->content."\n";
+            $theme .= "/** plugin: " . e($plugin->name) . " #" . e($plugin->version->version) . " **/\n";
+            $theme .= $plugin->version->content."\n\n";
         }
 
         $this->forever($key, $theme);
