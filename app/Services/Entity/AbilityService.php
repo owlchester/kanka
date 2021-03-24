@@ -286,6 +286,10 @@ class AbilityService
         $abilities = $this->entity->abilities;
         $existingIds = [];
         foreach ($abilities as $ability) {
+            // The ability is soft deleted so we can skip it
+            if (empty($ability) || empty($ability->ability)) {
+                continue;
+            }
             $existingIds[] = $ability->ability_id;
         }
 
@@ -293,7 +297,8 @@ class AbilityService
         $abilities = $this->entity->child->race->entity->abilities;
         $count = 0;
         foreach ($abilities as $ability) {
-            if (in_array($ability->ability_id, $existingIds)) {
+            // If it's deleted or already on this entity, skip
+            if (empty($ability) || empty($ability->ability) || in_array($ability->ability_id, $existingIds)) {
                 continue;
             }
             $new = $ability->replicate(['entity_id']);
