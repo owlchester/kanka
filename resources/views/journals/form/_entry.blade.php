@@ -13,8 +13,14 @@
 
 <div class="row">
     <div class="col-md-6">
+        <div class="row">
+            <div class="col-sm-6">
         @include('cruds.fields.character', ['label' => 'journals.fields.author'])
+            </div>
+            <div class="col-sm-6">
         @include('cruds.fields.location')
+            </div>
+        </div>
 
         @include('cruds.fields.tags')
 
@@ -46,5 +52,9 @@
         @include('cruds.fields.image')
     </div>
 </div>
+
+<hr />
+@include('cruds.forms._calendar', ['source' => $source])
+
 
 @include('cruds.fields.private2')

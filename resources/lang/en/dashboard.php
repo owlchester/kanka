@@ -15,7 +15,7 @@ return [
     ],
     'dashboards'        => [
         'actions'       => [
-            'edit'      => 'Edit',
+            'edit'      => 'Edit name & permissions',
             'new'       => 'New Dashboard',
             'switch'    => 'Switch to dashboard',
         ],

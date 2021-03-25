@@ -28,7 +28,7 @@
                     @if (!empty($dashboard))
                         <li>
                             <a href="{{ route('dashboard', ['dashboard' => 'default']) }}">
-                                {{ __('dashboard.dashboards.default.title')}}
+                                <i class="fa fa-th-large"></i> {{ __('dashboard.dashboards.default.title')}}
                             </a>
                         </li>
                     @endif
@@ -38,19 +38,26 @@
                         @endif
                         <li>
                             <a href="{{ route('dashboard', ['dashboard' => $dash->id]) }}">
-                                {!! $dash->name !!}
+                                <i class="fa fa-th-large"></i> {!! $dash->name !!}
                             </a>
                         </li>
                     @endforeach
 
                     @if($settings)
-                        <li class="divider"></li>
                         <li>
                             <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}">
-                                {{ __('dashboard.settings.title') }}
+                                <i class="fa fa-cog"></i> {{ __('dashboard.settings.title') }}
                             </a>
                         </li>
                     @endif
+                    @can('update', $campaign)
+                        <li class="divider"></li>
+                        <li>
+                            <a href="{{ route('campaigns.edit', $campaign) }}">
+                                <i class="fa fa-pencil"></i> {{ __('campaigns.show.actions.edit') }}
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </div>
         @elseif($settings)

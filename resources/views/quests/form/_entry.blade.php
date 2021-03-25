@@ -42,4 +42,8 @@
         @include('cruds.fields.image')
     </div>
 </div>
+
+<hr />
+@include('cruds.forms._calendar', ['source' => $source])
+
 @include('cruds.fields.private2')

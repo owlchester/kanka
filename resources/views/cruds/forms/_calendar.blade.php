@@ -38,32 +38,34 @@ if (!empty($oldCalendarID)) {
 
         <div class="entity-calendar-subform" style="<?=((!isset($model) || !$model->hasCalendar()) && empty($oldCalendarID) ? "display: none" : null)?>">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 col-sm-6">
                     <div class="form-group">
                         <label>{{ trans('calendars.fields.current_year') }}</label>
                         {!! Form::number('calendar_year', FormCopy::field('calendar_year')->string(), ['class' => 'form-control']) !!}
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 col-sm-6">
 
                     <div class="form-group">
                         <label>{{ trans('calendars.fields.current_month') }}</label>
                         {!! Form::select('calendar_month', (!empty($model) && $model->hasCalendar() ? $model->calendar->monthList(): (!empty($calendar) ? $calendar->monthList() : [])), FormCopy::field('calendar_month')->string(), ['class' => 'form-control']) !!}
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 col-sm-6">
                     <div class="form-group">
                         <label>{{ trans('calendars.fields.current_day') }}</label>
                         {!! Form::number('calendar_day', FormCopy::field('calendar_day')->string(), ['class' => 'form-control']) !!}
                     </div>
                 </div>
-                <div class="col-md-6">
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
                     <div class="form-group">
                         <label>{{ trans('calendars.fields.length') }}</label>
                         {!! Form::number('length', FormCopy::field('length')->string(), ['class' => 'form-control']) !!}
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4 col-sm-6">
                     <div class="form-group">
                         <label>{{ __('calendars.fields.colour') }}</label>
                         {!! Form::select('calendar_colour', FormCopy::colours(false), !empty($model) && $model->hasCalendar() ? $model->calendarColour : 'grey', ['class' => 'form-control']) !!}
@@ -71,8 +73,7 @@ if (!empty($oldCalendarID)) {
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
-                    <hr />
+                <div class="col-md-4 col-sm-6">
                     <div class="form-group">
                         {!! Form::hidden('is_recurring', 0) !!}
                         <label>
@@ -81,7 +82,7 @@ if (!empty($oldCalendarID)) {
                         </label>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 col-sm-6">
                     <div class="form-group">
                         <label>{{ __('calendars.fields.recurring_periodicity') }}</label>
                          {!! Form::select('recurring_periodicity', __('calendars.options.events.recurring_periodicity'), null, ['class' => 'form-control']) !!}
