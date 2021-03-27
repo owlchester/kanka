@@ -390,6 +390,9 @@ class AttributeService
         // Get templates from the plugins
         if ($campaign->boosted()) {
             foreach(CampaignPlugin::templates($campaign)->get() as $plugin) {
+                if (empty($plugin->plugin)) {
+                    continue;
+                }
                 $templates[$plugin->plugin->uuid] = __('campaigns/plugins.templates.name', [
                     'name' => $plugin->name,
                     'user' => $plugin->plugin->author()
