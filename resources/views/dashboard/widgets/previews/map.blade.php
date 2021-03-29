@@ -86,7 +86,9 @@ $map = $entity->child;
 @continue
 @endif
     .marker-{{ $marker->id }}  {
-        color: {{ $model->font_colour }};
+@if(!empty($marker->font_colour))
+        color: {{ $marker->font_colour }};
+@endif
     }
 
 @if ($marker->entity && $marker->icon == 4)
