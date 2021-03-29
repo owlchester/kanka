@@ -154,13 +154,13 @@
     border: 2px dashed #ccc;
   }
 
-  .widget-header {
+  .widget-header, .widget-campaign {
     height: auto;
     .widget-overlay {
       height: auto;
       padding: 10px 20px;
 
-      h3 {
+      h3, .widget-type {
         margin: 10px 0;
       }
     }

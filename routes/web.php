@@ -317,6 +317,9 @@ Route::group([
         Route::get('/campaigns/{campaign}/leave', 'CampaignController@leave')->name('campaigns.leave');
         Route::post('/campaigns/{campaign}/campaign_settings', 'CampaignSettingController@save')->name('campaigns.settings.save');
 
+        Route::get('/campaigns/{campaign}/dashboard-header/{campaignDashboardWidget?}', 'Campaign\DashboardHeaderController@edit')->name('campaigns.dashboard-header.edit');
+        Route::patch('/campaigns/{campaign}/dashboard-header', 'Campaign\DashboardHeaderController@update')->name('campaigns.dashboard-header.update');
+
         // Helper links
         Route::get('/campaign/{campaign}/campaign_roles/admin', 'CampaignRoleController@admin')->name('campaigns.campaign_roles.admin');
         Route::get('/campaign/{campaign}/campaign_roles/public', 'CampaignRoleController@public')->name('campaigns.campaign_roles.public');

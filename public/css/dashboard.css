@@ -142,16 +142,21 @@
   border: 2px dashed #ccc;
 }
 
-.campaign-dashboard-widgets .widget-header {
+.campaign-dashboard-widgets .widget-header,
+.campaign-dashboard-widgets .widget-campaign {
   height: auto;
 }
 
-.campaign-dashboard-widgets .widget-header .widget-overlay {
+.campaign-dashboard-widgets .widget-header .widget-overlay,
+.campaign-dashboard-widgets .widget-campaign .widget-overlay {
   height: auto;
   padding: 10px 20px;
 }
 
-.campaign-dashboard-widgets .widget-header .widget-overlay h3 {
+.campaign-dashboard-widgets .widget-header .widget-overlay h3,
+.campaign-dashboard-widgets .widget-header .widget-overlay .widget-type,
+.campaign-dashboard-widgets .widget-campaign .widget-overlay h3,
+.campaign-dashboard-widgets .widget-campaign .widget-overlay .widget-type {
   margin: 10px 0;
 }
 

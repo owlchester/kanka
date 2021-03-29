@@ -7,7 +7,7 @@
 
 ])
 
-
+@inject('campaign', 'App\Services\CampaignService')
 @section('content')
 
     <div class="box box-solid">
@@ -24,11 +24,11 @@
                 {{ __('dashboard.dashboards.default.text') }}
             @endif
 
-            @if (!$campaign->boosted())
+            @if (!$campaign->campaign()->boosted())
                 {!! __('dashboard.dashboards.boosted', ['boosted_campaigns' => link_to_route('front.features', __('crud.boosted_campaigns'), '#boost')])!!}
            @endif
         </div>
-        @if ($campaign->boosted())
+        @if ($campaign->campaign()->boosted())
         <div class="box-footer">
             <a class="btn btn-primary margin-r-5"
                  data-toggle="ajax-modal"
@@ -120,6 +120,19 @@
 
     <div class="campaign-dashboard-widgets">
         <div class="row" id="widgets" data-url="{{ route('dashboard.reorder') }}">
+            @if (empty($dashboard))
+            <div class="col-md-12">
+                <div class="widget widget-campaign cover-background" @if($campaign->campaign()->header_image) style="background-image: url({{ Img::crop(1200, 400)->url($campaign->campaign()->header_image) }})" @endif
+                    data-toggle="ajax-modal"
+                     data-target="#large-modal"
+                     data-url="{{ route('campaigns.dashboard-header.edit', $campaign->campaign()) }}"
+                >
+                    <div class="widget-overlay">
+                        <span class="widget-type">{{ __('dashboard.setup.widgets.campaign') }}</span>
+                    </div>
+                </div>
+            </div>
+            @endif
             @foreach ($widgets as $widget)
                 @if ($widget->entity && empty($widget->entity->child))
                     @continue;
@@ -128,10 +141,17 @@
                 <div class="col-md-{{ $widget->colSize() }} widget-draggable">
                     <div class="widget widget-{{ $widget->widget }} cover-background"
                          data-toggle="ajax-modal"
+                         @if($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_CAMPAIGN)
+                         data-target="#large-modal"
+                         data-url="{{ route('campaigns.dashboard-header.edit', ['campaign' => $campaign->campaign(), 'campaignDashboardWidget' => $widget]) }}"
+                         @else
                          data-target="#edit-widget"
                          data-url="{{ route('campaign_dashboard_widgets.edit', $widget) }}"
+                         @endif
                         @if ($widget->entity && !empty($widget->entity->child->image))
                         style="background-image: url({{ $widget->entity->child->getImageUrl() }})"
+                         @elseif ($widget->widget == \App\Models\CampaignDashboardWidget::WIDGET_CAMPAIGN && $campaign->campaign()->header_image)
+                         style="background-image: url({{ Img::crop(1200, 400)->url($campaign->campaign()->header_image) }})"
                         @endif
                     >
                         <div class="widget-overlay">
@@ -251,6 +271,8 @@
     </div>
 
     {{ csrf_field() }}
+
+    @include('editors.editor')
 @endsection
 
 @section('scripts')

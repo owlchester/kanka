@@ -180,6 +180,13 @@ function initDashboardAdminUI() {
         data: $('input[name="widgets[]"]').serialize()
       }).done(function (data) {});
     }
+  });
+  $(document).on('shown.bs.modal shown.bs.popover', function () {
+    var summernoteConfig = $('#summernote-config');
+
+    if (summernoteConfig.length > 0) {
+      window.initSummernote();
+    }
   }); //$('#widgets').disableSelection();
 }
 /**

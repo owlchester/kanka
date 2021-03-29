@@ -101,6 +101,13 @@ function initDashboardAdminUI() {
             });
         }
     });
+
+    $(document).on('shown.bs.modal shown.bs.popover', function() {
+        let summernoteConfig = $('#summernote-config');
+        if (summernoteConfig.length > 0) {
+            window.initSummernote();
+        }
+    });
     //$('#widgets').disableSelection();
 }
 
