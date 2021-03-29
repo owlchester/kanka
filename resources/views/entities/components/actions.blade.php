@@ -82,21 +82,7 @@
                                 </a>
                             </li>
                         @endcan
-                        @if ((empty($disableCopyCampaign) || !$disableCopyCampaign) && Auth::check() && Auth::user()->hasOtherCampaigns($model->campaign_id))
-                            <li>
-                                <a href="{{ route('entities.copy_to_campaign', $model->entity->id) }}">
-                                    <i class="fa fa-clone" aria-hidden="true"></i> {{ __('crud.actions.copy_to_campaign') }}
-                                </a>
-                            </li>
-                        @endif
 
-                        @if ((empty($disableMove) || !$disableMove) && Auth::user()->can('move', $model))
-                            <li>
-                                <a href="{{ route('entities.move', $model->entity->id) }}">
-                                    <i class="fa fa-exchange-alt" aria-hidden="true"></i> {{ __('crud.actions.move') }}
-                                </a>
-                            </li>
-                        @endif
 
                         @if ((empty($disableEntityLinks) || !$disableEntityLinks) && Auth::user()->can('update', $model))
                             <li>
@@ -113,11 +99,12 @@
                                         @if($model->entity->is_template)
                                             <i class="fa fa-star-o" aria-hidden="true"></i> {{ __('entities/actions.templates.unset') }}
                                         @else
-                                            <i class="fa fa-star-o" aria-hidden="true"></i> {{ __('entities/actions.templates.set') }}
+                                            <i class="fa fa-star" aria-hidden="true"></i> {{ __('entities/actions.templates.set') }}
                                         @endif
                                     </a>
                                 </li>
                             @endif
+                            <li class="divider"></li>
                             <li>
                                 <a href="{{ route('entities.export', $model->entity) }}">
                                     <i class="fa fa-download" aria-hidden="true"></i> {{ __('crud.actions.export') }}
@@ -129,6 +116,23 @@
                                 </a>
                             </li>
                         @endif
+                        @if ((empty($disableCopyCampaign) || !$disableCopyCampaign) && Auth::check() && Auth::user()->hasOtherCampaigns($model->campaign_id))
+                            <li class="divider"></li>
+                            <li>
+                                <a href="{{ route('entities.copy_to_campaign', $model->entity->id) }}">
+                                    <i class="fa fa-clone" aria-hidden="true"></i> {{ __('crud.actions.copy_to_campaign') }}
+                                </a>
+                            </li>
+                        @endif
+
+                        @if ((empty($disableMove) || !$disableMove) && Auth::user()->can('move', $model))
+                            <li>
+                                <a href="{{ route('entities.move', $model->entity->id) }}">
+                                    <i class="fa fa-exchange-alt" aria-hidden="true"></i> {{ __('crud.actions.move') }}
+                                </a>
+                            </li>
+                        @endif
+
                         @can('delete', $model)
                             <li class="divider"></li>
                             <li>

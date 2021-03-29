@@ -2,10 +2,11 @@ export default function deleteConfirm() {
     // Delete confirm dialog
     $.each($('.delete-confirm'), function () {
         $(this).click(function (e) {
-            var name = $(this).data('name');
-            var text = $(this).data('text');
-            var target = $(this).data('delete-target');
-            var confirm = $(this).data('confirm-target');
+            let name = $(this).data('name');
+            let text = $(this).data('text');
+            let target = $(this).data('delete-target');
+            let confirm = $(this).data('confirm-target');
+            let reset = $(this).data('reset');
 
             if (!confirm) {
                 confirm = '#delete-confirm-name';
@@ -25,6 +26,14 @@ export default function deleteConfirm() {
 
             if (target) {
                 $('.delete-confirm-submit').data('target', target);
+            }
+
+            if (reset) {
+                $('.delete-button-label').hide();
+                $('.remove-button-label').show();
+            } else {
+                $('.delete-button-label').show();
+                $('.remove-button-label').hide();
             }
         });
     });

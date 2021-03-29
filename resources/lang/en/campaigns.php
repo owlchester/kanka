@@ -298,6 +298,7 @@ TEXT
         'users'         => [
             'actions'   => [
                 'add'   => 'Add a member',
+                'remove' => ':user from the :role role',
             ],
             'create'    => [
                 'success'   => 'User added to the role.',

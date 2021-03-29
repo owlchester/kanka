@@ -43,8 +43,8 @@
 
                     <td class="text-right">
                     @can('switch', $relation)
-                        <a href="{{ route('identity.switch', $relation) }}" class="btn btn-default btn-xs" title="{{ __('campaigns.members.helpers.switch') }}">
-                            <i class="fa fa-user"></i> <span class="hidden-xs hidden-md">{{ __('campaigns.members.actions.switch') }}</span>
+                        <a href="{{ route('identity.switch', $relation) }}" class="btn btn-default btn-xs" title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip">
+                            <i class="fa fa-sign-in-alt"></i> <span class="hidden-xs hidden-md">{{ __('campaigns.members.actions.switch') }}</span>
                         </a>
                     @endcan
                     @can('delete', $relation)

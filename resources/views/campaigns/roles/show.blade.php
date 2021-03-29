@@ -40,10 +40,10 @@
                                 </td>
                                 <td class="text-right">
                                     @can('removeUser', $role)
-                                        <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $relation->user->name }}"
+                                        <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ __('campaigns.roles.users.actions.remove', ['user' => $relation->user->name, 'role' => $role->name]) }}" data-reset="1"
                                         data-target="#delete-confirm" data-delete-target="campaign-role-member-{{ $relation->id }}"
                                         title="{{ trans('crud.remove') }}">
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                            <i class="fa fa-user-slash" aria-hidden="true"></i>
                                         </button>
                                         {!! Form::open([
                                             'method' => 'DELETE', 'route' => ['campaign_roles.campaign_role_users.destroy', 'campaign_role' => $role, 'campaign_role_user' => $relation->id],

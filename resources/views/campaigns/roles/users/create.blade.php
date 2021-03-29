@@ -3,7 +3,8 @@
     'description' => '',
     'breadcrumbs' => [
         ['url' => route('campaigns.index'), 'label' => trans('campaigns.index.title')],
-        ['url' => route('campaigns.show', $campaign->id), 'label' => $campaign->name]
+        ['url' => route('campaign_roles.index'), 'label' => trans('campaigns.show.tabs.roles')],
+        ['url' => route('campaign_roles.show', $role), 'label' => $role->name],
     ]
 ])
 

@@ -3,7 +3,7 @@
     <div class="col-md-12">
         <div class="form-group required">
             <label>{{ trans('campaigns.roles.fields.name') }}</label>
-            {!! Form::select('user_id', $campaign->membersList(), null, ['class' => 'form-control']) !!}
+            {!! Form::select('user_id', $campaign->membersList($role->users->pluck('user_id')->toArray()), null, ['class' => 'form-control']) !!}
         </div>
     </div>
 </div>
