@@ -32,6 +32,8 @@ services:
      MYSQL_DATABASE: ${DB_DATABASE}
     ports:
      - ${DOCKER_DB_PORT}:3306
+    volumes:
+     - mariadb_data:/var/lib/mysql
 
   redis:
     image: redis
@@ -40,4 +42,5 @@ services:
       - "6379:6379"
     # volumes:
     #   - /data/redis:/data
- 
+volumes:
+  mariadb_data:
