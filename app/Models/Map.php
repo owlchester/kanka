@@ -314,8 +314,8 @@ class Map extends MiscModel
                     'id' => $marker->id,
                     'longitude' => $marker->longitude,
                     'latitude' => $marker->latitude,
-                    'name' => $marker->markerTitle(),
-                    'lower_name' => strtolower($marker->markerTitle()),
+                    'name' => $marker->markerTitle(true),
+                    'lower_name' => strtolower($marker->markerTitle(true)),
                 ]);
                 continue;
             }
@@ -323,8 +323,8 @@ class Map extends MiscModel
                 'id' => $marker->id,
                 'longitude' => $marker->longitude,
                 'latitude' => $marker->latitude,
-                'name' => $marker->markerTitle(),
-                'lower_name' => strtolower($marker->markerTitle()),
+                'name' => $marker->markerTitle(true),
+                'lower_name' => strtolower($marker->markerTitle(true)),
             ]);
         }
 
