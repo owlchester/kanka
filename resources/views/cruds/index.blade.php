@@ -20,11 +20,12 @@
                     <a href="{{ route($name . '.create') }}" class="btn btn-primary">
                         <i class="fa fa-plus"></i> <span class="hidden-xs hidden-sm">{{ trans($name . '.index.add') }}</span>
                     </a>
-                    @if(!empty($templates) && !$templates->isEmpty())
+                    @if($name != 'menu_links')
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
+                            @if (!empty($templates) && !$templates->isEmpty())
                             @foreach ($templates as $entityTemplate)
                             <li>
                                 <a href="{{ route($name . '.create', ['copy' => $entityTemplate->entity_id]) }}">
@@ -32,6 +33,13 @@
                                 </a>
                             </li>
                             @endforeach
+                            @endif
+                            <li class="separator"></li>
+                            <li>
+                                <a href="{{ route('helpers.entity-templates') }}" target="_blank">
+                                    <i class="fa fa-external-link"></i> {{ __('helpers.entity_templates.link') }}
+                                </a>
+                            </li>
                         </ul>
                     @endif
                 </div>

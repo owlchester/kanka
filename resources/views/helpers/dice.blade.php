@@ -1,8 +1,6 @@
 @extends('layouts.app', [
-    'title' => trans('helpers.title'),
-    'breadcrumbs' => [
-        trans('helpers.link.title')
-    ]
+    'title' => trans('helpers.dice.title'),
+    'breadcrumbs' => false,
 ])
 
 @section('content')

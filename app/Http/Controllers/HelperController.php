@@ -52,6 +52,14 @@ class HelperController
         return $this->render('attributes');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function entityTemplates()
+    {
+        return $this->render('entity_templates');
+    }
+
     protected function render(string $view)
     {
         $ajax = request()->ajax();
