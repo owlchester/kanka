@@ -13,9 +13,10 @@ class UpdateOauthClients extends Migration
      */
     public function up()
     {
-        Schema::table('oauth_clients', function (Blueprint $table) {
+        // Uncomment if your kanka version is from before 1.0
+        /*Schema::table('oauth_clients', function (Blueprint $table) {
             $table->string('provider')->after('secret')->nullable();
-        });
+        });*/
     }
 
     /**
@@ -25,8 +26,8 @@ class UpdateOauthClients extends Migration
      */
     public function down()
     {
-        Schema::table('oauth_clients', function (Blueprint $table) {
+        /*Schema::table('oauth_clients', function (Blueprint $table) {
             $table->dropColumn('provider');
-        });
+        });*/
     }
 }
