@@ -33,8 +33,8 @@
                                 </a>
                             </li>
                             @endforeach
+                            <li class="divider"></li>
                             @endif
-                            <li class="separator"></li>
                             <li>
                                 <a href="{{ route('helpers.entity-templates') }}" target="_blank">
                                     <i class="fa fa-external-link"></i> {{ __('helpers.entity_templates.link') }}
