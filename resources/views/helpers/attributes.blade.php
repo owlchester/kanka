@@ -1,8 +1,6 @@
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => __('helpers.title'),
-    'breadcrumbs' => [
-        __('helpers.attributes.title')
-    ]
+    'breadcrumbs' => false
 ])
 
 @section('content')
@@ -14,16 +12,16 @@
         <div class="box-body">
             <p>
                 {!! __('helpers.attributes.description', [
-                    'mention' => '<code>[entity:id]</code>',
-                    'attribute' => '<code>{' . __('helpers.attributes.level') . '}</code>',
-                ]) !!}
+    'mention' => '<code>[entity:id]</code>',
+    'attribute' => '<code>{' . __('helpers.attributes.level') . '}</code>',
+]) !!}
             </p>
             <p>
                 {!! __('helpers.attributes.math', [
-                    'example' => '<code>{' . __('helpers.attributes.level') . '}*{Con}</code>',
-                    'floor' => '<code>floor({' . __('helpers.attributes.level') . '}/3)</code>',
-                    'ceil' => '<code>ceil(({Con}*{' . __('helpers.attributes.level') . '})/2)</code>',
-                ]) !!}
+    'example' => '<code>{' . __('helpers.attributes.level') . '}*{Con}</code>',
+    'floor' => '<code>floor({' . __('helpers.attributes.level') . '}/3)</code>',
+    'ceil' => '<code>ceil(({Con}*{' . __('helpers.attributes.level') . '})/2)</code>',
+]) !!}
             </p>
 
             <hr />
@@ -37,6 +35,12 @@
             <p>{!! __('helpers.attributes.random_examples', [
     'number' => '<code>1-100</code>',
     'list' => '<code>London, Berlin, Rome, Zürich</code>',
+]) !!}</p>
+
+            <hr />
+
+            <p>{!! __('helpers.attributes.name', [
+    'name' => '<code>{name}</code>'
 ]) !!}</p>
 
             <hr />
