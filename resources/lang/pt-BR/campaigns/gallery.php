@@ -12,8 +12,15 @@ return [
     'fields'        => [
         'created_by'    => 'Imagem subida por',
         'ext'           => 'Sair',
+        'folder'        => 'Pasta',
+        'image_used_in' => '{1} usada como imagem de uma entidade.|[2,*] usada como imagem de :count entidades.',
+        'name'          => 'Nome',
         'size'          => 'Tamanho',
     ],
+    'new_folder'    => [
+        'title' => 'Nova pasta',
+    ],
+    'no_folder'     => 'Sem pasta',
     'placeholders'  => [
         'search'    => 'Procurar nome da imagem...',
     ],
@@ -24,6 +31,7 @@ return [
     ],
     'uploader'      => [
         'add'           => 'Adicionar nova',
+        'new_folder'    => 'Nova pasta',
         'or'            => 'ou',
         'select_file'   => 'Selecione um arquivo',
         'well'          => 'Solte o arquivo para fazer upload',

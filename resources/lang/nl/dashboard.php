@@ -3,6 +3,7 @@
 return [
     'actions'           => [
         'follow'    => 'Volg',
+        'join'      => 'Join',
         'unfollow'  => 'Ontvolg',
     ],
     'campaigns'         => [
@@ -57,6 +58,7 @@ return [
     'description'       => 'Het huis voor jouw creativiteit',
     'helpers'           => [
         'follow'    => 'Als je een campaign volgt, wordt deze weergegeven in de campaign wisselaar (linksboven) onder je campaigns.',
+        'join'      => 'Deze campaign staat open voor nieuwe leden. Klik om aan te vragen om er lid van te worden.',
         'setup'     => 'Stel het dashboard van je campaign in.',
     ],
     'latest_release'    => 'Laatste Release',

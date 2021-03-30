@@ -73,6 +73,10 @@ return [
             'attribute' => 'Anzahl der Eroberungen, Challenge Rating, Initiative, Bevölkerung',
             'block'     => 'Blockname',
             'checkbox'  => 'Checkbox Name',
+            'icon'      => [
+                'class' => 'FontAwesome oder RPG Awesome class: fas fa-users',
+                'name'  => 'Symbolname',
+            ],
             'section'   => 'Abteilungsname',
             'template'  => 'Wähle eine Vorlage',
             'value'     => 'Wert des Attributs',
@@ -85,6 +89,7 @@ return [
             'attribute' => 'Attribute',
             'block'     => 'Block',
             'checkbox'  => 'Checkbox',
+            'icon'      => 'Symbol',
             'section'   => 'Abteilung',
             'text'      => 'Mehrzeiliger Text',
         ],

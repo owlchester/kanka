@@ -53,6 +53,10 @@ return [
             'attribute' => 'Broj osvajanja, Razina izazova, Inicijativa, Stanovništvo',
             'block'     => 'Naziv bloka',
             'checkbox'  => 'Naziv potvrdnog okvira',
+            'icon'      => [
+                'class' => 'Klase FontAwesome ili RPG Awesome: fas fa-users',
+                'name'  => 'Naziv ikone',
+            ],
             'section'   => 'Naziv odjeljka',
             'template'  => 'Odaberi predložak',
             'value'     => 'Vrijednost atributa',
@@ -65,6 +69,7 @@ return [
             'attribute' => 'Atribut',
             'block'     => 'Blok',
             'checkbox'  => 'Potvrdni okvir',
+            'icon'      => 'Ikona',
             'section'   => 'Odjeljak',
             'text'      => 'Tekst u više redova',
         ],

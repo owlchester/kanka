@@ -180,6 +180,7 @@ return [
                 'square'    => 'Kvadrat',
             ],
             'sizes'         => [
+                'custom'    => 'Proizvoljno',
                 'huge'      => 'Golema',
                 'large'     => 'Velika',
                 'small'     => 'Mala',

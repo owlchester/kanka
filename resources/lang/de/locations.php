@@ -181,6 +181,7 @@ return [
                 'square'    => 'Quadrat',
             ],
             'sizes'         => [
+                'custom'    => 'Benutzerdefiniert',
                 'huge'      => 'Enorm',
                 'large'     => 'Groß',
                 'small'     => 'Klein',

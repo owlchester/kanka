@@ -40,6 +40,7 @@ return [
         ],
         'friendly_mentions' => 'Koppel naar andere entiteiten door :code en de eerste paar tekens van een entiteit te typen om ernaar te zoeken. Dit zal :example injecteren in de teksteditor, en renderen als een link naar de entiteit bij het bekijken van de entiteit.',
         'limitations'       => 'Houd er rekening mee dat vanwege technische beperkingen deze afkortingen niet werken op mobiele Android-apparaten, tenzij je de nieuwe Summernote-editor gebruikt. Je kunt je editor wijzigen in Instellingen> Lay-out voorkeuren.',
+        'mention_helpers'   => 'Als je entiteit naam een spatie heeft, gebruikt je :example in plaats van spatie. Als je wilt zoeken naar een entiteit met precies die naam, typ dan :exact.',
         'mentions'          => 'Maak een koppeling naar andere entiteiten door :code en de eerste paar tekens van een entiteit te typen om ernaar te zoeken. Dit zal :example injecteren in de teksteditor. Om de naam van de weergegeven entiteit aan te passen, typ je :example_naam. Gebruik :example_page om de subpagina van de entiteit in te stellen. Gebruik :example_tab om het tabblad van de entiteit in te stellen.',
         'months'            => 'Typ :code om een lijst met maanden uit je kalenders te krijgen.',
         'title'             => 'Koppelen naar andere invoeren en snelkoppelingen',

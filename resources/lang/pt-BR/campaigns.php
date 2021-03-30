@@ -19,12 +19,17 @@ TEXT
         'title'                 => 'Criar uma nova campanha',
     ],
     'destroy'                           => [
+        'action'    => 'Deletar Campanha',
+        'helper'    => 'Você apenas pode deletar a campanha se for o único membro nela',
         'success'   => 'Campanha removida',
     ],
     'edit'                              => [
         'description'   => 'Edite sua campanha',
         'success'       => 'Campanha atualizada',
         'title'         => 'Editar Campanha :campaign',
+    ],
+    'entity_note_visibility'            => [
+        'pinned'    => 'Fixar novas notas de entidade',
     ],
     'entity_personality_visibilities'   => [
         'private'   => 'Como padrão, novos personagens tem sua personalidade privada.',
@@ -51,8 +56,10 @@ TEXT
         'css'                           => 'CSS',
         'description'                   => 'Descrição',
         'entity_count'                  => 'Número de entidades',
+        'entity_note_visibility'        => 'Notas de entidade fixadas',
         'entity_personality_visibility' => 'Visibilidade da personalidade do personagem',
         'entity_visibility'             => 'Visibilidade da entidade',
+        'entry'                         => 'Descrição da campanha',
         'excerpt'                       => 'Resumo',
         'followers'                     => 'Seguidores',
         'header_image'                  => 'Cabeçalho',
@@ -61,8 +68,11 @@ TEXT
         'image'                         => 'Imagem',
         'locale'                        => 'Local',
         'name'                          => 'Nome',
+        'open'                          => 'Aberta a inscrições',
         'public_campaign_filters'       => 'Filtros de Campanhas públicas',
+        'related_visibility'            => 'Visibilidade dos elementos relacionados',
         'rpg_system'                    => 'SIstemas de RPG',
+        'superboosted'                  => 'Super Impulsionada por:',
         'system'                        => 'Sistema',
         'theme'                         => 'Tema',
         'tooltip_family'                => 'Desativar nomes de família das dicas',
@@ -74,6 +84,7 @@ TEXT
         'boost_required'                => 'Este recurso requer que a campanha seja impulsionada. Mais informações na página :settings.',
         'boosted'                       => 'Alguns recursos requerem que a campanha esteja sendo impulsionada. Mais informações na página :settings.',
         'css'                           => 'Escreva seu próprio CSS que será carregado nas páginas de sua campanha. Observe que qualquer abuso desse recurso pode levar à remoção do seu CSS personalizado. Ofensas repetidas ou graves podem levar à remoção de sua campanha.',
+        'entity_note_visibility'        => 'Quando você criar uma nova nota de entidade, a opção "Fixada" será selecionada automaticamente',
         'entity_personality_visibility' => 'Ao criar um novo personagem, a opção "Personalidade Visível" será automaticamente desmarcada.',
         'entity_visibility'             => 'Ao criar uma nova entidade, a opção "Privada" será automaticamente selecionada.',
         'excerpt'                       => 'O resumo da campanha será exibido no painel, então escreva algumas frases apresentando o seu mundo. Mantenha-o curto para obter os melhores resultados.',
@@ -82,6 +93,7 @@ TEXT
         'locale'                        => 'O idioma em que sua campanha está escrita. É usado para gerar conteúdo e agrupar campanhas públicas.',
         'name'                          => 'Sua campanha/mundo pode ter qualquer nome, desde que contenha pelo menos 4 letras ou números.',
         'public_campaign_filters'       => 'Ajude outras pessoas a encontrar a campanha entre outras campanhas públicas, fornecendo as seguintes informações.',
+        'related_visibility'            => 'Visibilidade padrão ao criar um novo elemento com este campo (notas de entidade, relações, habilidades, etc)',
         'system'                        => 'Se a sua campanha estiver publicamente visível, o sistema será mostrado na página :link.',
         'systems'                       => 'Para evitar sobrecarregar os usuários com opções, alguns recursos do Kanka estão disponíveis apenas com sistemas de RPG específicos (ou seja, o bloco de estatísticas do monstro D&D 5e). Adicionar sistemas suportados aqui habilitará esses recursos.',
         'theme'                         => 'Force o tema da campanha, substituindo a preferência do usuário.',
@@ -104,6 +116,10 @@ TEXT
         ],
         'create'                => [
             'button'        => 'Convidar',
+            'buttons'       => [
+                'create'    => 'Criar convite',
+                'send'      => 'Enviar convite',
+            ],
             'description'   => 'Convide um amigo para a sua campanha',
             'link'          => 'Link criado: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Convite enviado.',
@@ -194,10 +210,15 @@ TEXT
         'title'                 => 'Menbros da campanha :name',
         'your_role'             => 'Você é  <i>:role</i>',
     ],
+    'open_campaign'                     => [
+        'helper'    => 'Uma campanha pública definida como aberta permitirá que os usuários enviem solicitações para ingressar nela. Encontre a lista de solicitações em nossa página :link.',
+        'title'     => 'Abrir a campanha',
+    ],
     'panels'                            => [
         'boosted'   => 'Impulsionada',
         'dashboard' => 'Dashboard',
         'permission'=> 'Permissão',
+        'setup'     => 'Configuração',
         'sharing'   => 'Compartilhamento',
         'systems'   => 'Sistemas',
         'ui'        => 'Interface',
@@ -212,6 +233,7 @@ TEXT
         'actions'       => [
             'add'   => 'Adicione um cargo',
         ],
+        'admin_role'    => 'Cargo de Administrador',
         'create'        => [
             'success'   => 'Cargo criado',
             'title'     => 'Criar um novo cargo para :name',
@@ -244,9 +266,12 @@ TEXT
         'permissions'   => [
             'actions'   => [
                 'add'           => 'Criar',
+                'dashboard'     => 'Dashboard',
                 'delete'        => 'Deletar',
                 'edit'          => 'Editar',
                 'entity-note'   => 'Nota da entidade',
+                'manage'        => 'Gerenciar',
+                'members'       => 'Membros',
                 'permission'    => 'Gerenciar Permissões',
                 'read'          => 'Ver',
                 'toggle'        => 'Mudar para todos',
@@ -325,8 +350,15 @@ TEXT
             'leave' => 'Deixar campanha',
         ],
         'description'   => 'Uma visão detalhada da campanha',
+        'menus'         => [
+            'configuration'     => 'Configurações',
+            'overview'          => 'Visão Geral',
+            'user_management'   => 'Gerenciar usuários',
+        ],
         'tabs'          => [
             'achievements'      => 'Conquistas',
+            'applications'      => 'Solicitações',
+            'campaign'          => 'Campanha',
             'default-images'    => 'Imagens Padrão',
             'export'            => 'Exportar',
             'information'       => 'Informações',

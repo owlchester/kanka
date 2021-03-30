@@ -1,10 +1,11 @@
 <?php
 
 return [
-    'gm'            => [
+    'gm'                => [
         'title' => 'Game Masters',
     ],
-    'worldbuilding' => [
+    'other_features'    => 'Andere functies',
+    'worldbuilding'     => [
         'title' => 'Worldbuilders',
     ],
 ];

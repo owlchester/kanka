@@ -13,15 +13,21 @@ return [
         'success'   => 'Gebeurtenis \':name\' bijgewerkt.',
         'title'     => 'Wijzig Gebeurtenis :name',
     ],
+    'events'        => [
+        'title' => 'Gebeurtenis :name Gebeurtenissen',
+    ],
     'fields'        => [
         'date'      => 'Datum',
+        'event'     => 'Bovenliggende gebeurtenis',
+        'events'    => 'Gebeurtenissen',
         'image'     => 'Afbeelding',
         'location'  => 'Locatie',
         'name'      => 'Naam',
         'type'      => 'Type',
     ],
     'helpers'       => [
-        'date'  => 'Dit veld kan alles bevatten en is niet gekoppeld aan de kalenders van de campaign. Om deze gebeurtenis aan een kalender te koppelen, voeg je deze toe aan de kalender of op het tabblad herinneringen van deze gebeurtenissen.',
+        'date'      => 'Dit veld kan alles bevatten en is niet gekoppeld aan de kalenders van de campaign. Om deze gebeurtenis aan een kalender te koppelen, voeg je deze toe aan de kalender of op het tabblad herinneringen van deze gebeurtenissen.',
+        'nested'    => 'Gebeurtenissen zonder bovenliggende gebeurtenis standaard weergeven. Klik op de rij van een gebeurtenis om de gerelateerden ervan te zien.',
     ],
     'index'         => [
         'add'           => 'Nieuwe gebeurtenis',

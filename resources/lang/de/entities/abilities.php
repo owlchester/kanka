@@ -15,6 +15,9 @@ return [
         'note'      => 'Notiz',
         'position'  => 'Position',
     ],
+    'helpers'   => [
+        'note'  => 'Sie können Objekte mit erweiterten Erwähnungen (z. B. :code) und Attributen der Objekte (z. B. :attr) in diesem Feld referenzieren.',
+    ],
     'import'    => [
         'errors'    => [
             'no_race'       => 'Der Charakter hat keine Rasse',

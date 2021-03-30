@@ -118,6 +118,7 @@ return [
             'title'         => 'Charaktere, Familien, Orte',
         ],
         'learn_more'        => 'Erfahre mehr über Kankas Features',
+        'learn_more_about'  => 'Erfahren Sie mehr über diese Funktion',
         'maps'              => [
             'description'   => 'Lade Karten deiner Welten, Städte und Höhlen hoch und füge praktische Marker und Links ein.',
             'title'         => 'Karten',
@@ -170,6 +171,10 @@ return [
             'description'   => 'Vom detaillierten Berechtigungssystem bis hin zu Quests, Journalen, Charakteren, Fähigkeiten und eingebettetem Audio und Video unterstützen wir Sie bei der Verwaltung Ihrer Kampagne und des bevorstehenden TPK.',
             'title'         => 'RPG-Kampagnenverwaltung',
         ],
+        'secrets'           => [
+            'description'   => 'Jedem Objekt können mehrere Geheimnisse in Form von Objektnotizen zugeordnet werden. Diese können Berechtigungen haben, um zu steuern, wer sie sieht, und können an die Hauptansicht des Objekt angeheftet werden, um auf einen Blick schnell auf sie zuzugreifen.',
+            'title'         => 'Geheimnisse verwalten',
+        ],
         'superboosts'       => [
             'boosted'       => 'Superboosted',
             'description'   => 'Durch die Verwendung von drei Kampagnen-Boostern für eine Kampagne wird sie superboosted, wodurch die folgenden Funktionen freigeschaltet werden.',
@@ -205,6 +210,7 @@ return [
             'app'           => 'App',
             'community'     => 'Community',
             'friends'       => 'Unsere Freunde',
+            'other'         => 'Andere',
             'useful_links'  => 'Nützliche Links',
         ],
         'navigation'=> 'Navigation',
@@ -255,6 +261,7 @@ return [
         'media'         => 'Medien',
         'news'          => 'Neuigkeiten',
         'newsletter'    => 'Newsletter',
+        'other'         => 'Andere',
         'pricing'       => 'Preisgestaltung',
         'privacy'       => 'Datenschutz-Bestimmung',
         'register'      => 'Registrieren',
@@ -278,9 +285,12 @@ return [
             'support'   => 'Unterstützung',
         ],
         'benefits'      => [
+            'big_maps'          => 'große Kartengröße (:size)',
+            'bigger_maps'       => 'größere Kartengröße (:size)',
             'boosters'          => 'Kampagnen-Booster',
             'core'              => 'Zugriff auf alle Kernfunktionen',
             'higher_uploads'    => 'Höhere Größen beim Hochladen von Dateien',
+            'huge_maps'         => 'größte Kartengröße (:size)',
             'huge_uploads'      => 'Riesige Upload-Größen für Dateien',
             'no_boosters'       => 'Keine Kampagnen-Booster',
             'unlimited'         => 'Unbegrenzte Kampagnen und Uploads',

@@ -2,8 +2,9 @@
 
 return [
     'actions'       => [
-        'remove'    => 'Marker entfernen',
-        'update'    => 'Marker editieren',
+        'entry' => 'Schreibe ein benutzerdefiniertes Eingabefeld für diesen Marker.',
+        'remove'=> 'Marker entfernen',
+        'update'=> 'Marker editieren',
     ],
     'create'        => [
         'success'   => 'Marker :name erstellt',
@@ -17,6 +18,8 @@ return [
         'title'     => 'Marker :name editieren',
     ],
     'fields'        => [
+        'circle_radius' => 'Kreisradius',
+        'copy_elements' => 'kopiere Elemente',
         'custom_icon'   => 'Benutzerdefiniertes Symbol',
         'custom_shape'  => 'Benutzerdefinierte Form',
         'font_colour'   => 'Icon Farbe',
@@ -26,11 +29,24 @@ return [
         'longitude'     => 'Längengrad',
         'opacity'       => 'Fügen Sie der Karte Markierungen hinzu, indem Sie auf eine beliebige Stelle klicken.',
         'pin_size'      => 'Pingröße',
+        'polygon_style' => [
+            'stroke'            => 'Strichfarbe',
+            'stroke-opacity'    => 'Strichdeckkraft',
+            'stroke-width'      => 'Strichbreite',
+        ],
     ],
     'helpers'       => [
-        'base'          => 'Fügen Sie der Karte Markierungen hinzu, indem Sie auf eine beliebige Stelle klicken.',
-        'custom_icon'   => 'Kopieren Sie den HTML-Code eines Symbols von :fontawesome oder :rpgawesome oder einem benutzerdefinierten SVG-Symbol.',
-        'draggable'     => 'Aktivieren Sie diese Option, um das Verschieben eines Markers im Erkundungsmodus zu ermöglichen.',
+        'base'                      => 'Fügen Sie der Karte Markierungen hinzu, indem Sie auf eine beliebige Stelle klicken.',
+        'copy_elements'             => 'kopiere Gruppen, Layers, und Marker',
+        'copy_elements_to_campaign' => 'Kopiere Gruppen, Ebenen und Markierungen der Karten. Mit einem Objekt verknüpfte Marker werden in einen Standardmarker konvertiert.',
+        'custom_icon'               => 'Kopieren Sie den HTML-Code eines Symbols von :fontawesome oder :rpgawesome oder einem benutzerdefinierten SVG-Symbol.',
+        'custom_radius'             => 'Wählen Sie die benutzerdefinierte Größenoption aus der Dropdown-Liste aus, um eine Größe zu definieren.',
+        'draggable'                 => 'Aktivieren Sie diese Option, um das Verschieben eines Markers im Erkundungsmodus zu ermöglichen.',
+        'label'                     => 'Eine Beschriftung wird als Textblock auf der Karte angezeigt. Der Inhalt ist der Markername des Objektnamens.',
+        'polygon'                   => [
+            'edit'  => 'Klicken Sie auf die Karte, um diese Position zu den Koordinaten des Polygons hinzuzufügen.',
+            'new'   => 'Bewegen Sie die Markierung auf der Karte, um die Position im Polygon zu speichern.',
+        ],
     ],
     'icons'         => [
         'custom'        => 'Benutzerdefiniert',

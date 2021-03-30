@@ -2,8 +2,9 @@
 
 return [
     'actions'       => [
-        'remove'    => 'Usuń znacznik',
-        'update'    => 'Edytuj znacznik',
+        'entry' => 'Dodaj opis do tego znacznika.',
+        'remove'=> 'Usuń znacznik',
+        'update'=> 'Edytuj znacznik',
     ],
     'create'        => [
         'success'   => 'Stworzono znacznik :name.',
@@ -17,6 +18,8 @@ return [
         'title'     => 'Edycja znacznika :name',
     ],
     'fields'        => [
+        'circle_radius' => 'Promień okręgu',
+        'copy_elements' => 'Kopiuj elementy',
         'custom_icon'   => 'Własna ikona',
         'custom_shape'  => 'Własny kształt',
         'font_colour'   => 'Kolor ikony',
@@ -26,11 +29,24 @@ return [
         'longitude'     => 'Długość',
         'opacity'       => 'Nieprzejrzystość',
         'pin_size'      => 'Wielkość znacznika',
+        'polygon_style' => [
+            'stroke'            => 'Kolor konturu',
+            'stroke-opacity'    => 'Przejrzystość konturu',
+            'stroke-width'      => 'Szerokość konturu',
+        ],
     ],
     'helpers'       => [
-        'base'          => 'Dodaj znacznik, klikając w dowolnym miejscu mapy.',
-        'custom_icon'   => 'Skopiuj HTML ikony z :fontawesome lub :rpgawesome, albo własnej ikony SVG.',
-        'draggable'     => 'Pozwala przeciągać znacznik po mapie w trybie eksploracji.',
+        'base'                      => 'Dodaj znacznik, klikając w dowolnym miejscu mapy.',
+        'copy_elements'             => 'Kopiuj kategorie, warstwy i znaczniki.',
+        'copy_elements_to_campaign' => 'Kopiuje kategorie, warstwy i znaczniki na mapach. Znaczniki prowadzące do elementów zostaną zamienione na standardowe.',
+        'custom_icon'               => 'Skopiuj HTML ikony z :fontawesome lub :rpgawesome, albo własnej ikony SVG.',
+        'custom_radius'             => 'Wybierz opcję z rozwijanej listy by określić wielkość.',
+        'draggable'                 => 'Pozwala przeciągać znacznik po mapie w trybie eksploracji.',
+        'label'                     => '"Podpis" wyświetla na mapie nazwę tego znacznika albo elementu z którym jest związany.',
+        'polygon'                   => [
+            'edit'  => 'Kliknij na mapę, by dodać to miejsce do współrzędnych wielokąta.',
+            'new'   => 'Przesuwaj znacznik po mapie, by ustalić współrzędne wielokąta.',
+        ],
     ],
     'icons'         => [
         'custom'        => 'Własna',

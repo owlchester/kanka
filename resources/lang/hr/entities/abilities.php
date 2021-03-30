@@ -15,6 +15,9 @@ return [
         'note'      => 'Bilješka',
         'position'  => 'Pozicija',
     ],
+    'helpers'   => [
+        'note'  => 'U ovom polju se možeš referencirati na entitete koristeći napredno spominjanje (npr. :code) i atribute entiteta (npr :attr).',
+    ],
     'import'    => [
         'errors'    => [
             'no_race'       => 'Lik nema rasu.',

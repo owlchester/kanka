@@ -180,6 +180,7 @@ return [
                 'square'    => 'Kwadrat',
             ],
             'sizes'         => [
+                'custom'    => 'Własne',
                 'huge'      => 'Wielki',
                 'large'     => 'Duży',
                 'small'     => 'Mały',

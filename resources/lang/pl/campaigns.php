@@ -269,7 +269,7 @@ TEXT
                 'dashboard'     => 'Pulpit',
                 'delete'        => 'Usuwanie',
                 'edit'          => 'Edytowanie',
-                'entity-note'   => 'Komentuj elementy',
+                'entity-note'   => 'Komentuj',
                 'manage'        => 'Zarządzaj',
                 'members'       => 'Uczestnicy',
                 'permission'    => 'Uprawnienia',

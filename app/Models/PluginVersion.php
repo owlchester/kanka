@@ -64,7 +64,7 @@ class PluginVersion extends Model
     public function content(Entity $entity)
     {
         // Let people update their plugins before using the new syntax
-        if ($this->updated_at->gt('2021-03-28 00:00:00')) {
+        if ($this->updated_at->gt('2021-03-30 17:00:00')) {
             return $this->renderBlade($entity);
         }
 

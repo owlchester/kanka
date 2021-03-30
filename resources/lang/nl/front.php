@@ -11,6 +11,13 @@ return [
             'description'   => 'Onze community bouwt geweldige dingen die we graag presenteren als aanbevolen campaigns. Kom zeker zo nu en dan terug voor meer Featured Campaigns om te bekijken.',
             'title'         => 'Featured Campaigns',
         ],
+        'open'              => [
+            'filters'   => [
+                'all'       => 'Open status',
+                'closed'    => 'Gesloten campaigns',
+                'open'      => 'Open campaigns',
+            ],
+        ],
         'public'            => [
             'description'   => 'Bekijk de Openbare Campaigns voor inspiratie.',
             'filters'       => [
@@ -18,64 +25,206 @@ return [
                 'boosted'   => 'Boosted campaigns',
                 'unboosted' => 'Unboosted campaigns',
             ],
+            'no-results'    => 'Er is geen openbare campaign met deze filters gevonden. Probeer het a.u.b. opnieuw.',
             'title'         => 'Openbare Campaigns',
         ],
         'title'             => 'Openbare Campaigns',
     ],
+    'community'     => [
+        'description'   => 'Kanka is niet alleen een app, het is ook een bloeiende gemeenschap van worldbuilders, dungeon masters, role players en creatieve enthousiastelingen.',
+        'discord'       => 'De Kanka Discord is de meest actieve plek om te praten over de app, bugs, functies, om hulp te vragen en te helpen.',
+        'facebook'      => 'Blijf op de hoogte van al onze updates op onze facebookpagina.',
+        'instagram'     => 'Wil je meer foto\'s achter de schermen zien van ons die aan Kanka werken of spelen? Instagram is de plek om ons te volgen!',
+        'join'          => 'Doe met ons mee!',
+        'reddit'        => 'De Kanka-subreddit is een rustigere plek waar dingen gedurende een langere periode kunnen worden besproken.',
+        'title'         => 'Community',
+    ],
+    'contact'       => [
+        'description'   => 'Hulp nodig, een suggestie of wil je gewoon je liefde voor Kanka delen? Ons team zal bij elke gelegenheid antwoorden!',
+        'email'         => 'Stuur alle vragen naar',
+        'other'         => 'Of op een van de volgende social media platforms:',
+        'title'         => 'We zijn er voor je',
+    ],
     'cookie'        => [
-        'link'  => 'Leer meer',
+        'dismiss'   => 'Begrepen!',
+        'link'      => 'Leer meer',
+        'message'   => 'Deze website gebruikt cookies om ervoor te zorgen dat je de beste ervaring op onze website krijgt.',
     ],
     'faq'           => [
-        'title' => 'FAQ',
+        'description'   => 'We hebben de meest gestelde vragen behandeld en ze zo duidelijk mogelijk beantwoord.',
+        'helpers'       => [
+            'more'  => 'Heb je niet gevonden wat je zocht?',
+        ],
+        'title'         => 'FAQ',
     ],
     'features'      => [
-        'api'           => [
-            'title' => 'API',
+        'abilities'         => [
+            'description'   => 'Organiseer de inventaris van je personages of winkels door items toe te voegen. Voeg spreuken en krachten toe aan personages door middel van vaardigheden.',
+            'title'         => 'Vaardigheden en voorwerpen',
         ],
-        'boosts'        => [
-            'boosted'   => 'Boosted campaign',
+        'actions'           => [
+            'rpg'           => 'Voor RPG Campaigns',
+            'worldbuilder'  => 'Voor Worldbuilders',
         ],
-        'calendars'     => [
-            'title' => 'Kalenders',
+        'api'               => [
+            'description'   => 'Wil je coole tools bouwen die integreren met Kanka? Ga naar de :link.',
+            'link'          => 'API docs',
+            'title'         => 'API',
         ],
-        'patreon'       => [
-            'free'  => 'Gratis',
+        'audio'             => [
+            'description'   => 'Je hoeft niet door 10 afspeellijsten te bladeren, sluit gewoon je Spotify- en YouTube-links rechtstreeks in je entiteiten in.',
+            'title'         => 'Sluit Audio en Video in',
         ],
-        'superboosts'   => [
-            'logs'  => 'Volledige wijzigingslogboeken op entiteiten (tot 30 dagen)',
-            'stats' => 'Pagina met campaign prestaties',
-            'title' => 'Superboosted Campaigns',
+        'boosts'            => [
+            'beta'                  => 'Bètatoegang tot enkele nieuwe functies gedurende 30 dagen vóór de algemene release',
+            'boosted'               => 'Boosted campaign',
+            'css'                   => 'Custom campaign css',
+            'dashboards'            => 'Stel custom dashboards in voor rollen van de campaign',
+            'description'           => 'Bepaalde toezeggingsniveaus bieden gebruikers boosters die ze kunnen gebruiken om campaigns te boosten. Deze bieden de volgende voordelen.',
+            'entity_files'          => 'Maximaal aantal geüploade bestanden per entiteit verhoogd (tot 5 in plaats van 3)',
+            'entity_links'          => 'Zet links op entiteiten naar externe bronnen en websites',
+            'header_image'          => 'Entiteit header afbeelding',
+            'images'                => 'Stel custom standaard entiteit afbeeldingen in',
+            'no_ads'                => 'Geen advertenties op de campaign',
+            'recovery'              => 'Entiteit herstel tot 30 dagen',
+            'relation-visualiser'   => 'Verken de relaties van entiteiten visueel',
+            'theme'                 => 'Vaste campaign thema',
+            'title'                 => 'Boosted Campaigns',
+            'tooltip'               => 'Tooltips voor custom entiteiten: afbeelding weergeven, tekst wijzigen',
+            'upload'                => 'Verhoogde upload formaten voor alle leden',
         ],
-        'timelines'     => [
+        'calendars'         => [
+            'description'   => 'Maak volledig custom kalenders met de weken en maanden die jij wilt. Voeg seizoenen, weer en manen toe voor smaak en om te weten hoe de wereld is. Voeg entiteiten toe aan de kalender als herinnering met controle over hoe lang ze duren en hoe vaak ze voorkomen.',
+            'title'         => 'Kalenders',
+        ],
+        'collaborative'     => [
+            'description'   => 'Niet alleen? We hebben je gedekt! Je kunt je vrienden en co-dungeon master uitnodigen om je te helpen bij het bouwen van je campaign!',
+            'title'         => 'Samenwerkend',
+        ],
+        'description'       => 'Met onze @mentions, onze tags en ons diepgaande permisies systeem maakt Kanka het gemakkelijk om jouw wereld of campaign bij te houden. Dit omvat personages en hun relaties, locaties en hun geschiedenis, missies en hun doelstellingen, tijdlijnen en hun tijdperken, en kalenders met zowel gebeurtenissen als weerseffecten. Het beste van alles is dat Kanka\'s gebruikers inspraak hebben in de nieuwe functies die worden ontwikkeld door middel van regelmatige stemmen voor de community.',
+        'description_full'  => 'Kanka wordt voortdurend bijgewerkt met nieuwe functies en verbeteringen, maar hier zijn enkele van de belangrijkste waarvan we denken dat je ze leuk zult vinden.',
+        'flora'             => [
+            'description'   => 'Volg de levende wezenswereld met onze Rassen module en bouw een complex ecosysteem met onze geneste Notities.',
+            'title'         => 'Flora & Fauna',
+        ],
+        'free'              => [
+            'bonuses'       => 'bonussen voor onze abonnees',
+            'description'   => 'Alle kernfuncties van Kanka zijn helemaal gratis, met :bonuses.',
+            'title'         => 'Gratis te Gebruiken',
+        ],
+        'landscape'         => 'Schakel je apparaat naar de liggende modus om de lijst met functies weer te geven.',
+        'layers'            => [
+            'description'   => 'Vul de mensen van je wereld met personages. Bepaal hun loyaliteit met behulp van families en organisaties. Bouw je planeten, continenten, koninkrijken, herbergen en fonteinen met onze geneste locaties.',
+            'title'         => 'Personages, Families, Locaties',
+        ],
+        'learn_more'        => 'Volledige lijst met Kanka\'s functies',
+        'learn_more_about'  => 'Lees meer over deze functie',
+        'maps'              => [
+            'description'   => 'Upload kaarten van je werelden, steden en grotten en voeg er handige markeringen en links aan toe.',
+            'title'         => 'Kaarten',
+        ],
+        'modular'           => [
+            'description'   => 'Elke module, zoals personages of locaties, kan op elk moment worden in- of uitgeschakeld, zodat je jouw campaign gemakkelijk kunt aanpassen.',
+            'title'         => 'Modulair',
+        ],
+        'notebook'          => [
+            'description'   => 'Bereid je volgende sessie voor of log gebeurtenissen met onze geavanceerde logboek functie!',
+            'title'         => 'Logboeken',
+        ],
+        'patreon'           => [
+            'api_calls'         => 'Verhoogde API calls (90 per minuut)',
+            'boosts'            => 'Campaign Boosters',
+            'curation'          => 'Help bij het samenstellen van de stem items van de community',
+            'default_image'     => 'Custom standaard afbeeldingen voor entiteiten',
+            'description'       => 'Door Kanka te ondersteunen met een abonnement, krijg je toegang tot de volgende functies en verbeteringen.',
+            'discord'           => 'Privé Discord kanaal',
+            'entities'          => 'Aantal entiteiten dat in elke campaign kan worden gemaakt',
+            'free'              => 'Gratis',
+            'hall_of_fame'      => 'Naam in de :link',
+            'impact'            => 'Impact toekomstige functies',
+            'monthly_vote'      => 'Deelname aan de stemming over de community functie',
+            'no_ads'            => 'Er worden geen advertenties weergegeven',
+            'pagination'        => 'Verhoogde paginering resultaten',
+            'pagination_help'   => 'Dit is het maximale aantal resultaten dat per pagina wordt weergegeven, niet de limiet voor het aantal entiteiten per campaign.',
+            'title'             => 'Betaalde Functies',
+            'upload_limit'      => 'Upload formaten',
+            'upload_limit_map'  => 'Uploadformaten voor kaarten',
+            'users_roles'       => 'Aantal gebruikers, rollen en permissie controles',
+        ],
+        'public'            => [
+            'description'   => 'Permissies kunnen worden ingesteld voor modules of voor elke afzonderlijke entiteit. Campaigns kunnen ook worden <a href=":url"> ingesteld op openbaar</a> zodat de hele wereld deze kan zien.',
+            'title'         => 'Permissies',
+        ],
+        'quests'            => [
+            'description'   => 'Bereid je volgende sessie voor of log gebeurtenissen met onze geavanceerde logboekfunctie. Bereid je voor en houd de voortgang van je spelers bij met behulp van onze quests module.',
+            'title'         => 'Quests en Logboeken',
+        ],
+        'relations'         => [
+            'description'   => 'Elke entiteit kan een complex web van relaties hebben met andere entiteiten, inclusief geheime relaties die onzichtbaar zijn voor je spelers.',
+            'title'         => 'Relaties',
+        ],
+        'rpg'               => [
+            'description'   => 'Van een diepgaand permissie systeem tot Quests, Logboeken, Personages, Vaardigheden en embedded audio en video, wij helpen je bij het beheren van je campaign en aankomende tpk.',
+            'title'         => 'RPG Campaign Management',
+        ],
+        'secrets'           => [
+            'description'   => 'Aan elke entiteit kunnen verschillende geheimen zijn gekoppeld in de vorm van entiteit notities. Deze kunnen permissies hebben om te bepalen wie ze ziet, en kunnen worden vastgemaakt aan de hoofdweergave van de entiteit om ze snel in één oogopslag te openen.',
+            'title'         => 'Beheer Geheimen',
+        ],
+        'superboosts'       => [
+            'boosted'       => 'Superboosted',
+            'description'   => 'Als je drie campaignboosters gebruikt voor een campaign, wordt deze Superboosted en worden de volgende functies ontgrendeld.',
+            'files'         => 'Maximaal 10 bestanden geüpload naar elke entiteit',
+            'gallery'       => 'Campaign galerij en integraties met de Summernote teksteditor',
+            'logs'          => 'Volledige wijzigingslogboeken op entiteiten (tot 30 dagen)',
+            'stats'         => 'Pagina met campaign prestaties',
+            'title'         => 'Superboosted Campaigns',
+        ],
+        'timelines'         => [
             'description'   => 'Geef visueel de tijdlijnen weer van je werelden, rijken, adellijke families of zelfs een enkel personage.',
             'title'         => 'Tijdlijnen',
         ],
-        'title'         => 'Krachtige functies met ongelooflijke flexibiliteit',
-        'unlimited'     => 'Onbeperkt',
-        'updates'       => [
+        'title'             => 'Krachtige functies met ongelooflijke flexibiliteit',
+        'unlimited'         => 'Onbeperkt',
+        'updates'           => [
             'description'   => 'Kanka ondergaat regelmatig community gestuurde updates, met elke maand nieuwe functies. We gaan in op details over deze updates op onze :discord.',
             'title'         => 'Regelmatige door de community aangestuurde updates',
         ],
+        'worldbuilding'     => [
+            'description'   => 'Met modules die alles beslaan, van kaarten tot tijdlijnen en kalenders tot gebeurtenissen, maakt Kanka het gemakkelijk om complexe werelden te organiseren.',
+            'title'         => 'Worldbuilding',
+        ],
+    ],
+    'first_block'   => [
+        'description'   => 'Kanka is beschikbaar op elk apparaat en wordt regelmatig bijgewerkt met nieuwe functies en verbeteringen. Vergeet je verspreide notities niet uit het oog te verliezen, in Kanka is alles op één plek, gemakkelijk te vinden en toegankelijk voor onderweg.',
+        'title'         => 'Een nieuwe manier om je worldbuilding- en RPG-campaigns bij te houden.',
     ],
     'footer'        => [
-        'app'           => 'App',
-        'headings'      => [
+        'app'       => 'App',
+        'copyright' => 'Copyright :copy :year Owlchester SNC',
+        'headings'  => [
             'app'           => 'App',
             'community'     => 'Community',
             'friends'       => 'Onze Vrienden',
             'other'         => 'Andere',
             'useful_links'  => 'Handige links',
         ],
-        'navigation'    => 'Navigatie',
-        'resources'     => 'Middelen',
-        'social'        => 'Social',
+        'navigation'=> 'Navigatie',
+        'resources' => 'Middelen',
+        'social'    => 'Social',
     ],
     'help'          => [
-        'discord'   => 'Sluit je aan bij onze Discord',
-        'email'     => 'Stuur ons een e-mail',
-        'facebook'  => 'Neem contact met ons op via Facebook',
-        'title'     => 'Help',
-        'twitter'   => 'Tweet ons op Twitter',
+        'description'   => 'We staan voor je klaar als je wat hulp nodig hebt. Neem contact met ons op via een van de volgende methoden en we nemen zo snel mogelijk contact met u op.',
+        'discord'       => 'Sluit je aan bij onze Discord',
+        'email'         => 'Stuur ons een e-mail',
+        'facebook'      => 'Neem contact met ons op via Facebook',
+        'title'         => 'Help',
+        'twitter'       => 'Tweet ons op Twitter',
+    ],
+    'home'          => [
+        'seo'   => [
+            'meta-description'  => 'Ben je een game master, worldbuilder of een verhalenverteller? We bieden een tabletop campaign manager en een tool voor worldbuilding waarmee je eenvoudig jouw TTRPG-campaigns kunt organiseren, plannen en ervan kunt genieten. We zijn community-driven en het beste van alles is dat onze kernfuncties gratis zijn!',
+        ],
     ],
     'master'        => [
         'call_to_action'    => 'Account aanmaken',

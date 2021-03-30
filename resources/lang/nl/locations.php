@@ -180,6 +180,7 @@ return [
                 'square'    => 'Vierkant',
             ],
             'sizes'         => [
+                'custom'    => 'Custom',
                 'huge'      => 'Heel Groot',
                 'large'     => 'Groot',
                 'small'     => 'Klein',

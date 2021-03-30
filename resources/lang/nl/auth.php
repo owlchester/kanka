@@ -12,5 +12,51 @@ return [
     |
     */
     'failed'    => 'Deze combinatie van e-mailadres en wachtwoord is niet geldig.',
+    'helpers'   => [
+        'password'  => 'Wachtwoord weergeven / verbergen',
+    ],
+    'login'     => [
+        'fields'                => [
+            'email'     => 'E-mail',
+            'password'  => 'Wachtwoord',
+        ],
+        'login_with_facebook'   => 'Inloggen met Facebook',
+        'login_with_google'     => 'Inloggen met Google',
+        'login_with_twitter'    => 'Inloggen met Twitter',
+        'new_account'           => 'Maak een nieuw account aan',
+        'or'                    => 'OF',
+        'password_forgotten'    => 'Wachtwoord vergeten?',
+        'remember_me'           => 'Onthoud mij',
+        'submit'                => 'Log in',
+        'title'                 => 'Log in',
+    ],
+    'register'  => [
+        'already_account'           => 'Heb je al een account?',
+        'errors'                    => [
+            'email_already_taken'   => 'Er is al een account met dit e-mailadres geregistreerd.',
+            'general_error'         => 'Er is een fout opgetreden bij het registreren van uw account. Probeer het a.u.b. opnieuw.',
+        ],
+        'fields'                    => [
+            'email'     => 'E-mail',
+            'name'      => 'Gebruikersnaam',
+            'password'  => 'Wachtwoord',
+            'tos'       => 'Ik ga akkoord met het <a href=":privacyUrl" target="_blank">privacybeleid</a>.',
+        ],
+        'register_with_facebook'    => 'Registreer met Facebook',
+        'register_with_google'      => 'Registreer met Google',
+        'register_with_twitter'     => 'Registreer met Twitter',
+        'submit'                    => 'Registreren',
+        'title'                     => 'Registreren',
+    ],
+    'reset'     => [
+        'fields'    => [
+            'email'                 => 'E-mailadres',
+            'password'              => 'Wachtwoord',
+            'password_confirmation' => 'Bevestig uw wachtwoord',
+        ],
+        'send'      => 'Stuur Wachtwoord Reset Link',
+        'submit'    => 'Wachtwoord opnieuw instellen',
+        'title'     => 'Wachtwoord opnieuw instellen',
+    ],
     'throttle'  => 'Te veel mislukte loginpogingen. Probeer het over :seconds seconden nogmaals.',
 ];

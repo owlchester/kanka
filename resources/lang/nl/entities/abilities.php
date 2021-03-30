@@ -15,6 +15,9 @@ return [
         'note'      => 'Notitie',
         'position'  => 'Positie',
     ],
+    'helpers'   => [
+        'note'  => 'Je kunt verwijzen naar entiteiten met behulp van geavanceerde vermeldingen (bijv. :code) en attributen van de entiteit (bijv. :attr) in dit veld.',
+    ],
     'import'    => [
         'errors'    => [
             'no_race'       => 'Het personage heeft geen ras.',

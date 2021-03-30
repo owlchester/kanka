@@ -15,6 +15,9 @@ return [
         'note'      => 'Opis',
         'position'  => 'Kolejność',
     ],
+    'helpers'   => [
+        'note'  => 'W tym polu możesz oznaczać za pomocą zaawansowanych wzmianek elementy (np. :code) oraz cechy elementów (np. :attr).',
+    ],
     'import'    => [
         'errors'    => [
             'no_race'       => 'Ta postać nie ma rasy.',
