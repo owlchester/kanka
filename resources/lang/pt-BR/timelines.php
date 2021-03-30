@@ -24,9 +24,12 @@ return [
         'eras'          => 'Eras',
         'name'          => 'Nome',
         'reverse_order' => 'Era em ordem reversa',
+        'timeline'      => 'Linha do Tempo primária',
+        'timelines'     => 'Linhas do Tempo',
         'type'          => 'Tipo',
     ],
     'helpers'       => [
+        'nested'            => 'Por padrão, apenas Linhas do Tempo sem Linhas do Tempo primárias estão sendo mostradas. Clique na fila de uma Linha do Tempo para ver as Linhas do Tempo relacionadas a elas.',
         'reorder'           => 'Arraste e solte elementos da linha do tempo para reorganizá-los',
         'reorder_tooltip'   => 'Clique aqui para permitir a ordenação manual dos elementos ao arrastar e soltar',
         'reverse_order'     => 'Habilite para mostrar linhas do tempo em ordem cronológica reversa (eras antigas primeiro)',
@@ -41,5 +44,8 @@ return [
     ],
     'show'          => [
         'title' => 'Linha do tempo :name',
+    ],
+    'timelines'     => [
+        'title' => 'Linhas do tempo de :name',
     ],
 ];

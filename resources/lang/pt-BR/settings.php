@@ -52,8 +52,16 @@ return [
             'entity_logs'       => 'Relatórios completos do que foi mudado nas entidades em cada uma das atualizações.',
             'first'             => 'Para garantir o progresso contínuo no Kanka, alguns recursos da campanha são desbloqueados ao impulsionar uma campanha. Os impulsos são desbloqueados por meio de assinaturas. Qualquer um que pode ver uma campanha pode impulsioná-la, para que o Mestre nem sempre tenha que pagar a conta. Uma campanha permanece impulsionada enquanto um usuário estiver impulsionando a campanha e eles continuarem apoiando Kanka. Se uma campanha não é mais impulsionada, os dados não são perdidos, só ficam ocultos até que a campanha seja impulsionada novamente.',
             'header'            => 'Imagens de cabeçalho da entidade.',
+            'headers'           => [
+                'boosted'       => 'Benefícios da campanha Impulsionada',
+                'superboosted'  => 'Benefícios da campanha Super Impulsionada',
+            ],
             'images'            => 'Imagens de entidade padrão personalizadas.',
-            'more'              => 'Descubra mais sobre todos os recursos.',
+            'more'              => [
+                'boosted'       => 'Todos recursos de uma campanha Impulsionada',
+                'superboosted'  => 'Todos recursos de uma campanha Super Impulsionada',
+            ],
+            'recovery'          => 'Recuperar entidades deletadas por até :amount dias',
             'second'            => 'Impulsionar uma campanha oferece os seguintes benefícios:',
             'superboost'        => 'Super impulsionar uma campanha usa 3 de seus impulsos e desbloqueia recursos adicionais além dos presentes em campanhas impulsionadas.',
             'theme'             => 'Tema nível da campanha e estilo personalizado.',
@@ -81,6 +89,10 @@ return [
             'superboost'    => 'Campanha :name foi Super Impulsionada',
         ],
         'title'         => 'Impulso',
+        'unboost'       => [
+            'description'   => 'Você tem certeza de que quer parar de impulsionar a campanha :tag?',
+            'title'         => 'Deixar de impulsionar uma campanha',
+        ],
     ],
     'countries'     => [
         'austria'       => 'Áustria',
@@ -136,6 +148,7 @@ return [
         'payment_options'       => 'Formas de pagamento',
         'personal_settings'     => 'Configurações pessoais',
         'profile'               => 'Perfil',
+        'settings'              => 'Configurações',
         'subscription'          => 'Assitatura',
         'subscription_status'   => 'Status da assinatura',
     ],
@@ -261,6 +274,12 @@ return [
         'trial_period'          => 'As assinaturas anuais têm uma política de cancelamento de 14 dias. Entre em contato conosco por :email se desejar cancelar sua assinatura anual e obter um reembolso.',
         'upgrade_downgrade'     => [
             'button'    => 'Informação de Upgrade e Downgrade',
+            'cancel'    => [
+                'bullets'   => [
+                    'kobold'    => 'Para cancelar sua assinatura, mude para o nível Kobold',
+                ],
+                'title'     => 'Quando for cancelar sua assinatura',
+            ],
             'downgrade' => [
                 'bullets'   => [
                     'end'   => 'Seu nível atual permanecerá ativo até o final do seu ciclo de faturamento atual, após o qual você será rebaixado para o novo nível.',

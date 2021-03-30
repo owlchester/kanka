@@ -2,6 +2,11 @@
 
 return [
     'campaign'          => [
+        'application'   => [
+            'approved'  => 'Je aanvraag voor de campaign :campaign is goedgekeurd.',
+            'new'       => 'Nieuwe aanvraag voor :campaign.',
+            'rejected'  => 'Je aanvraag voor de :campaign campaign is afgewezen. Reden opgegeven: :reason',
+        ],
         'asset_export'  => 'Er is een export van campaign assets beschikbaar. De link is beschikbaar voor :time minuten.',
         'boost'         => [
             'add'           => 'Campaign :campaign wordt ge-boost door :user.',

@@ -385,6 +385,7 @@ export default {
                 "members": "Membres"
             }
         },
+        "emails": [],
         "admin": [],
         "timelines": [],
         "crud": {
@@ -843,6 +844,7 @@ export default {
     "cs": {
         "maps": [],
         "calendars": [],
+        "emails": [],
         "randomizers": [],
         "admin": [],
         "timelines": [],
@@ -851,6 +853,7 @@ export default {
         "entities": []
     },
     "cz": {
+        "emails": [],
         "randomisers": []
     },
     "de": {
@@ -1241,6 +1244,7 @@ export default {
                 "members": "Mitglieder"
             }
         },
+        "emails": [],
         "admin": [],
         "timelines": [],
         "crud": {
@@ -1316,6 +1320,10 @@ export default {
                     "attribute": "Anzahl der Eroberungen, Challenge Rating, Initiative, Bevölkerung",
                     "block": "Blockname",
                     "checkbox": "Checkbox Name",
+                    "icon": {
+                        "class": "FontAwesome oder RPG Awesome class: fas fa-users",
+                        "name": "Symbolname"
+                    },
                     "section": "Abteilungsname",
                     "template": "Wähle eine Vorlage",
                     "value": "Wert des Attributs"
@@ -1328,6 +1336,7 @@ export default {
                     "attribute": "Attribute",
                     "block": "Block",
                     "checkbox": "Checkbox",
+                    "icon": "Symbol",
                     "section": "Abteilung",
                     "text": "Mehrzeiliger Text"
                 },
@@ -1692,13 +1701,16 @@ export default {
             }
         },
         "campaigns": [],
-        "front": [],
+        "front": {
+            "features": []
+        },
         "randomisers": [],
         "entities": []
     },
     "el": {
         "maps": [],
         "calendars": [],
+        "emails": [],
         "randomizers": [],
         "admin": [],
         "timelines": [],
@@ -2079,8 +2091,10 @@ export default {
                 "members": "Members"
             }
         },
+        "emails": [],
         "admin": [],
         "timelines": [],
+        "attributes": [],
         "crud": {
             "actions": {
                 "actions": "Actions",
@@ -2103,6 +2117,7 @@ export default {
             },
             "add": "Add",
             "alerts": {
+                "copy_attribute": "The attribute's mention was copied to your clipboard.",
                 "copy_mention": "The entity's advanced mention was copied to your clipboard."
             },
             "attributes": {
@@ -2111,6 +2126,9 @@ export default {
                     "manage": "Manage",
                     "more": "More options",
                     "remove_all": "Delete All"
+                },
+                "errors": {
+                    "loop": "There is an endless loop in this attribute calculation!"
                 },
                 "fields": {
                     "attribute": "Attribute",
@@ -2138,6 +2156,10 @@ export default {
                         "class": "FontAwesome or RPG Awesome class: fas fa-users",
                         "name": "Icon name"
                     },
+                    "random": {
+                        "name": "Attribute name",
+                        "value": "1-100 or list of values separated by a comma"
+                    },
                     "section": "Section name",
                     "template": "Select a template",
                     "value": "Value of the attribute"
@@ -2151,6 +2173,7 @@ export default {
                     "block": "Block",
                     "checkbox": "Checkbox",
                     "icon": "Icon",
+                    "random": "Random",
                     "section": "Section",
                     "text": "Multiline Text"
                 },
@@ -2521,6 +2544,7 @@ export default {
     },
     "en-US": {
         "calendars": [],
+        "emails": [],
         "crud": {
             "fields": {
                 "colour": "Color",
@@ -2920,6 +2944,7 @@ export default {
                 "members": "Miembros"
             }
         },
+        "emails": [],
         "admin": [],
         "timelines": [],
         "crud": {
@@ -3745,8 +3770,10 @@ export default {
                 "members": "Membres"
             }
         },
+        "emails": [],
         "admin": [],
         "timelines": [],
+        "attributes": [],
         "crud": {
             "actions": {
                 "actions": "Actions",
@@ -3769,6 +3796,7 @@ export default {
             },
             "add": "Ajouter",
             "alerts": {
+                "copy_attribute": "La mention de l'attribut à été copiée au presse-papier.",
                 "copy_mention": "La mention avancée de cette entité a été copiée au presse-papier."
             },
             "attributes": {
@@ -3777,6 +3805,9 @@ export default {
                     "manage": "Gérer",
                     "more": "Plus d'options",
                     "remove_all": "Tout supprimer"
+                },
+                "errors": {
+                    "loop": "Il y a une boucle sur la calculation de cet attribut!"
                 },
                 "fields": {
                     "attribute": "Attribut",
@@ -3804,6 +3835,10 @@ export default {
                         "class": "Classes FontAwesome ou RPG Awesome: fas fa-users",
                         "name": "Nom de l'icône"
                     },
+                    "random": {
+                        "name": "Nom de l'attribut",
+                        "value": "1-100 ou une liste de valeurs séparées par une virgule"
+                    },
                     "section": "Nom de la section",
                     "template": "Sélectionner un modèle",
                     "value": "Valeur de l'attribut"
@@ -3817,6 +3852,7 @@ export default {
                     "block": "Bloc",
                     "checkbox": "Case à cocher",
                     "icon": "Icône",
+                    "random": "Aléatoire",
                     "section": "Section",
                     "text": "Texte multiligne"
                 },
@@ -4256,6 +4292,7 @@ export default {
                 "members": "Membras"
             }
         },
+        "emails": [],
         "randomizers": [],
         "admin": [],
         "timelines": [],
@@ -4759,6 +4796,7 @@ export default {
                 "members": "שחקנים"
             }
         },
+        "emails": [],
         "admin": [],
         "crud": {
             "actions": {
@@ -5269,6 +5307,7 @@ export default {
                 "members": "Članovi"
             }
         },
+        "emails": [],
         "admin": [],
         "timelines": [],
         "crud": {
@@ -5324,6 +5363,10 @@ export default {
                     "attribute": "Broj osvajanja, Razina izazova, Inicijativa, Stanovništvo",
                     "block": "Naziv bloka",
                     "checkbox": "Naziv potvrdnog okvira",
+                    "icon": {
+                        "class": "Klase FontAwesome ili RPG Awesome: fas fa-users",
+                        "name": "Naziv ikone"
+                    },
                     "section": "Naziv odjeljka",
                     "template": "Odaberi predložak",
                     "value": "Vrijednost atributa"
@@ -5336,6 +5379,7 @@ export default {
                     "attribute": "Atribut",
                     "block": "Blok",
                     "checkbox": "Potvrdni okvir",
+                    "icon": "Ikona",
                     "section": "Odjeljak",
                     "text": "Tekst u više redova"
                 },
@@ -6046,6 +6090,7 @@ export default {
                 "members": "Tagok"
             }
         },
+        "emails": [],
         "admin": [],
         "timelines": [],
         "crud": {
@@ -6608,6 +6653,7 @@ export default {
                 "members": "Membri"
             }
         },
+        "emails": [],
         "admin": [],
         "crud": {
             "actions": {
@@ -7022,6 +7068,7 @@ export default {
     "nb": {
         "maps": [],
         "calendars": [],
+        "emails": [],
         "randomizers": [],
         "admin": [],
         "timelines": [],
@@ -7090,13 +7137,50 @@ export default {
                     "entity_logs": "Volledige entiteit logboeken van wat er bij elke update op een entiteit is gewijzigd.",
                     "first": "Om voortdurende vooruitgang op Kanka te garanderen, worden sommige campaignfuncties ontgrendeld door een campaign te boosten. Boosts worden ontgrendeld via abonnementen. Iedereen die een campaign kan bekijken, kan deze een boost geven, zodat de DM niet altijd de rekening hoeft te betalen. Een campaign blijft een boost krijgen zolang een gebruiker de campaign een boost geeft en ze Kanka blijven steunen. Als een campaign niet langer een boost krijgt, gaan er geen gegevens verloren, deze worden alleen verborgen totdat de campaign weer een boost krijgt.",
                     "header": "Entiteit header afbeeldingen.",
+                    "headers": {
+                        "boosted": "Boosted campaign voordelen",
+                        "superboosted": "Superboosted campaign voordelen"
+                    },
+                    "helpers": {
+                        "boosted": "Het boosten van een campaign wijst een enkele booster toe aan de campaign.",
+                        "superboosted": "Als je een campagne superboost, worden in totaal drie boosters aan de campaign toegewezen."
+                    },
                     "images": "Aangepaste standaard entiteit afbeeldingen.",
-                    "more": "Lees meer over alle functies.",
-                    "second": "Het boosten van een campaign levert de volgende voordelen op:"
+                    "more": {
+                        "boosted": "Alle boosted campaign functies",
+                        "superboosted": "Alle superboosted campaign functies"
+                    },
+                    "recovery": "Herstel verwijderde entiteiten voor maximaal {amount} dagen.",
+                    "second": "Het boosten van een campaign levert de volgende voordelen op:",
+                    "superboost": "Het superboosten van een campaign gebruikt 3 van je boosts en ontgrendelt extra functies bovenop die voor boosted campaigns.",
+                    "theme": "Campaign level thema en custom stijl.",
+                    "third": "Om een campaign een boost te geven, ga je naar de campaign pagina en klik je op de knop {boost_button} boven de knop {edit_button}.",
+                    "tooltip": "Custom tooltips voor entiteiten.",
+                    "upload": "Verhoogde uploadgrootte voor elk lid van de campaign."
                 },
                 "buttons": {
                     "boost": "Boost",
-                    "superboost": "Superboost"
+                    "superboost": "Superboost",
+                    "tooltips": {
+                        "boost": "Het boosten van een campaign verbruikt {amount} van je boosts",
+                        "superboost": "Het superboosten van een campaign verbruikt {amount} van je boosts"
+                    }
+                },
+                "campaigns": "Boosted Campaigns {count} / {max}",
+                "exceptions": {
+                    "already_boosted": "Campaign {name} is al boosted",
+                    "exhausted_boosts": "Je hebt geen boosts meer om te geven. Haal je boost uit een campaign voordat je deze aan een andere geeft.",
+                    "exhausted_superboosts": "Je hebt geen boosts meer. Je hebt 3 boosters nodig om een campaign een superboost te geven."
+                },
+                "success": {
+                    "boost": "Campaign {name} boosted.",
+                    "delete": "Je boost verwijderd van {name}.",
+                    "superboost": "Campaign {name} superboosted"
+                },
+                "title": "Boost",
+                "unboost": {
+                    "description": "Weet je zeker dat je de campaign {tag} niet langer een boost wilt geven?",
+                    "title": "Een campaign unboosten"
                 }
             },
             "countries": {
@@ -7113,41 +7197,184 @@ export default {
                     "download": "Download PDF",
                     "view_all": "Bekijk alle"
                 },
+                "empty": "Geen facturen",
                 "fields": {
+                    "amount": "Aantal",
                     "date": "Datum",
+                    "invoice": "Factuur",
                     "status": "Status"
-                }
+                },
+                "header": "Hieronder vind je een lijst met je laatste 24 facturen die je kunt downloaden.",
+                "status": {
+                    "paid": "Betaald",
+                    "pending": "In afwachting"
+                },
+                "title": "Facturen"
+            },
+            "layout": {
+                "success": "Lay-out opties bijgewerkt.",
+                "title": "Lay-out"
+            },
+            "marketplace": {
+                "fields": {
+                    "name": "Marktplaats naam"
+                },
+                "helper": "Standaard wordt je gebruikersnaam weergegeven op de {marketplace}. Met dit veld kun je deze waarde overschrijven.",
+                "title": "Marktplaats Instellingen",
+                "update": "Marktplaats instellingen opgeslagen."
             },
             "menu": {
                 "account": "Account",
                 "api": "API",
                 "apps": "Apps",
+                "billing": "Betalingsmiddel",
                 "boost": "Boost",
+                "invoices": "Facturen",
                 "layout": "Lay-out",
                 "marketplace": "Marktplaats",
                 "other": "Andere",
                 "patreon": "Patreon",
+                "payment_options": "Betalingsmogelijkheden",
                 "personal_settings": "Persoonlijke Instellingen",
                 "profile": "Profiel",
+                "settings": "Instellingen",
                 "subscription": "Abbonement",
                 "subscription_status": "Abbonement Status"
             },
+            "patreon": {
+                "actions": {
+                    "link": "Account koppelen",
+                    "view": "Bezoek Kanka op Patreon"
+                },
+                "benefits": "Door ons te steunen op {patreon} ontgrendel je allerlei {features} voor jou en jouw campaigns, en helpt het ons ook meer tijd te besteden aan het verbeteren van Kanka.",
+                "benefits_features": "geweldige functies",
+                "deprecated": "Verouderde functie - als je Kanka wilt steunen, doe dit dan met een {subscription}. Patreon-koppeling is nog steeds actief voor onze klanten die hun account hebben gekoppeld voordat ze weggingen van Patreon.",
+                "description": "Synchroniseren met Patreon",
+                "linked": "Bedankt voor het steunen van Kanka op Patreon! Je account is gekoppeld.",
+                "pledge": "Toezegging: {name}",
+                "remove": {
+                    "button": "Ontkoppel je Patreon-account",
+                    "success": "Je Patreon-account is ontkoppeld.",
+                    "text": "Als je je Patreon-account met Kanka ontkoppelt, worden je bonussen, naam in de hall of fame, campaign boosts en andere functies verwijderd die zijn gekoppeld aan het ondersteunen van Kanka. Geen van je boosted inhoud gaat verloren (bijv. entiteit headers). Door je opnieuw te abonneren, heb je toegang tot al je eerdere gegevens, inclusief de mogelijkheid om je eerder boosted campaigns een boost te geven.",
+                    "title": "Ontkoppel je Patreon-account met Kanka"
+                },
+                "success": "Bedankt voor het steunen van Kanka op Patreon!",
+                "title": "Patreon",
+                "wrong_pledge": "Je toezegging niveau wordt handmatig door ons ingesteld, dus het kan een paar dagen duren voordat we het correct hebben ingesteld. Mocht het een tijdje fout blijven, neem dan contact met ons op."
+            },
             "profile": {
-                "avatar": "Profiel Foto"
+                "actions": {
+                    "update_profile": "Profiel bijwerken"
+                },
+                "avatar": "Profiel Foto",
+                "success": "Profiel bijgewerkt.",
+                "title": "Persoonlijk profiel"
             },
             "subscription": {
                 "actions": {
-                    "subscribe": "Abboneer"
+                    "cancel_sub": "Annuleer abonnement",
+                    "subscribe": "Abboneer",
+                    "update_currency": "Bewaar de gewenste valuta"
+                },
+                "benefits": "Door ons te steunen, kun je enkele nieuwe {features} ontgrendelen en ons helpen meer tijd te investeren in het verbeteren van Kanka. Er wordt geen creditcardinformatie opgeslagen of doorgegeven via onze servers. We gebruiken {stripe} om alle facturering af te handelen.",
+                "billing": {
+                    "helper": "Je factuurgegevens worden veilig verwerkt en opgeslagen via {stripe}. Deze betaalmethode wordt gebruikt voor al je abonnementen.",
+                    "saved": "Opgeslagen betaalmethode",
+                    "title": "Betalingsmethode bewerken"
+                },
+                "cancel": {
+                    "text": "Spijtig om je te zien gaan! Als je jouw abonnement opzegt, blijft het actief tot je volgende betalingscyclus, waarna je jouw campaign boosts en andere voordelen met betrekking tot het ondersteunen van Kanka kwijtraakt. Vul gerust het volgende formulier in om ons te laten weten wat we beter kunnen doen, of wat tot je beslissing heeft geleid."
+                },
+                "cancelled": "Je abonnement is opgezegd. Je kunt een abonnement verlengen zodra je huidige abonnement afloopt.",
+                "change": {
+                    "text": {
+                        "monthly": "Je abonneert je op de {tier} tier, maandelijks gefactureerd voor {amount}.",
+                        "yearly": "Je abonneert je op de {tier} tier, jaarlijks gefactureerd voor {amount}."
+                    },
+                    "title": "Wijzig Abonnement Tier"
                 },
                 "currencies": {
                     "eur": "EUR",
                     "usd": "USD"
                 },
+                "currency": {
+                    "title": "Wijzig de valuta van je voorkeur voor facturering"
+                },
+                "errors": {
+                    "callback": "Onze betalingsprovider heeft een fout gemeld. Probeer het opnieuw of neem contact met ons op als het probleem zich blijft voordoen.",
+                    "subscribed": "Kan je abonnement niet verwerken. Stripe gaf de volgende hint."
+                },
                 "fields": {
+                    "active_since": "Actief sinds",
+                    "active_until": "Actief tot",
+                    "billing": "Facturering",
+                    "currency": "Facturering Valuta",
+                    "payment_method": "Betalingsmiddel",
+                    "plan": "Huidige plan",
                     "reason": "Reden"
                 },
+                "helpers": {
+                    "alternatives": "Betaal je abonnement met {method}. Deze betaalmethode wordt aan het einde van je abonnement niet automatisch verlengd. {method} is alleen beschikbaar in euro's.",
+                    "alternatives_warning": "Het is niet mogelijk om je abonnement op te waarderen wanneer je deze methode gebruikt. Maak een nieuw abonnement aan wanneer je huidige afloopt.",
+                    "alternatives_yearly": "Vanwege de beperkingen rond terugkerende betalingen, is de {method} alleen beschikbaar voor jaarlijkse abonnementen"
+                },
+                "manage_subscription": "Beheer abonnement",
+                "payment_method": {
+                    "actions": {
+                        "add_new": "Voeg een nieuwe betaalmethode toe",
+                        "change": "Verander de betaalmethode",
+                        "save": "Bewaar betaalmethode",
+                        "show_alternatives": "Alternatieve betalingsmogelijkheden"
+                    },
+                    "add_one": "Je hebt momenteel geen betalingsmethode opgeslagen.",
+                    "alternatives": "Je kunt je abonneren met behulp van deze alternatieve betalingsopties. Met deze actie wordt je account eenmaal in rekening gebracht en wordt je abonnement niet elke maand automatisch verlengd.",
+                    "card": "Kaart",
+                    "card_name": "Naam op kaart",
+                    "country": "Land van verblijf",
+                    "ending": "Eindigend in",
+                    "helper": "Deze kaart wordt gebruikt voor al je abonnementen.",
+                    "new_card": "Voeg een nieuwe betaalmethode toe",
+                    "saved": "{brand} eindigend met {last4}"
+                },
+                "placeholders": {
+                    "reason": "Vertel ons desgewenst waarom je Kanka niet langer steunt. Ontbreekt er een functie? Is je financiële situatie veranderd?"
+                },
+                "plans": {
+                    "cost_monthly": "{currency} {amount} maandelijks gefactureerd",
+                    "cost_yearly": "{currency} {amount} jaarlijks gefactureerd"
+                },
+                "sub_status": "Abonnementsgegevens",
+                "subscription": {
+                    "actions": {
+                        "downgrading": "Neem contact met ons op voor het downgraden",
+                        "rollback": "Schakel over naar Kobold",
+                        "subscribe": "Verander naar {tier} maandelijks",
+                        "subscribe_annual": "Verander naar {tier} jaarlijks"
+                    }
+                },
+                "success": {
+                    "alternative": "Je betaling is geregistreerd. Je krijgt een melding zodra deze is verwerkt en je abonnement actief is.",
+                    "callback": "Je inschrijving is gelukt. Je account wordt bijgewerkt zodra onze betalingsprovider ons op de hoogte stelt van de wijziging (dit kan enkele minuten duren).",
+                    "cancel": "Je abonnement is opgezegd. Het blijft actief tot het einde van je huidige factureringsperiode.",
+                    "currency": "De valuta-instelling van je voorkeur is bijgewerkt.",
+                    "subscribed": "Je inschrijving is gelukt. Vergeet niet om je te abonneren op de Community Vote-nieuwsbrief om op de hoogte te worden gehouden wanneer een stemming live gaat. Je kunt je nieuwsbriefinstellingen wijzigen op je profielpagina."
+                },
+                "tiers": "Abonnement Tiers",
+                "trial_period": "Jaarabonnementen hebben een annuleringsbeleid van 14 dagen. Neem contact met ons op via {email} als je jouw jaarabonnement wilt annuleren en een terugbetaling wilt ontvangen.",
                 "upgrade_downgrade": {
+                    "button": "Upgrade- en downgrade-informatie",
+                    "cancel": {
+                        "bullets": {
+                            "bonuses": "Je bonussen blijven geactiveerd tot het einde van je betalingsperiode.",
+                            "boosts": "Hetzelfde gebeurt voor je boosted campaigns. Boosted functies worden onzichtbaar, maar worden niet verwijderd wanneer een campaign niet langer wordt ge-boost.",
+                            "kobold": "Om je abonnement te annuleren, ga je naar het Kobold tier."
+                        },
+                        "title": "Bij het opzeggen van je abonnement"
+                    },
                     "downgrade": {
+                        "bullets": {
+                            "end": "Je huidige niveau blijft actief tot het einde van je huidige factureringscyclus, waarna je wordt gedowngraded naar je nieuwe tier."
+                        },
                         "title": "Bij het downgraden naar een lager niveau"
                     },
                     "upgrade": {
@@ -7232,6 +7459,7 @@ export default {
                 "members": "Leden"
             }
         },
+        "emails": [],
         "admin": [],
         "timelines": [],
         "crud": {
@@ -7287,6 +7515,10 @@ export default {
                     "attribute": "Aantal Conquests, Challenge Ratings, Initiatives, Populaties",
                     "block": "Blokkeer naam",
                     "checkbox": "Selectievak naam",
+                    "icon": {
+                        "class": "FontAwesome of RPG Awesome klasse: fas fa-gebruikers",
+                        "name": "Pictogram naam"
+                    },
                     "section": "Sectie naam",
                     "template": "Selecteer een sjabloon",
                     "value": "Waarde van het attribuut"
@@ -7299,6 +7531,7 @@ export default {
                     "attribute": "Attribuut",
                     "block": "Blokkeer",
                     "checkbox": "Selectievak",
+                    "icon": "Pictogram",
                     "section": "Sectie",
                     "text": "Multiline Tekst"
                 },
@@ -7383,7 +7616,9 @@ export default {
             "edit": "Wijzig",
             "errors": {
                 "boosted": "Deze functie is alleen beschikbaar voor boosted campaigns.",
-                "node_must_not_be_a_descendant": "Ongeldig knooppunt (tag, bovenliggende locatie): het zou een afstammeling van zichzelf zijn."
+                "boosted_campaigns": "Deze functie is alleen beschikbaar voor {boosted}.",
+                "node_must_not_be_a_descendant": "Ongeldig knooppunt (tag, bovenliggende locatie): het zou een afstammeling van zichzelf zijn.",
+                "unavailable_feature": "Functie niet beschikbaar"
             },
             "events": {
                 "hint": "Hieronder wordt een lijst weergegeven met alle Kalenders waarin deze entiteit is toegevoegd met de interface \"Een gebeurtenis aan een kalender toevoegen\"."
@@ -7417,6 +7652,7 @@ export default {
                 "header_image": "Header Afbeeldingen",
                 "image": "Afbeelding",
                 "is_private": "Privé",
+                "is_private_v2": "Laat dit alleen zien aan leden van de campaign's {admin}-role. Dit heft elke andere permissie op.",
                 "is_star": "Vastgemaakt",
                 "item": "Voorwerp",
                 "location": "Locatie",
@@ -7424,6 +7660,7 @@ export default {
                 "name": "Naam",
                 "organisation": "Organisatie",
                 "position": "Positie",
+                "privacy": "Privacy",
                 "race": "Ras",
                 "tag": "Tag",
                 "tags": "Tags",
@@ -7504,6 +7741,7 @@ export default {
             },
             "is_not_private": "Deze entiteit is momenteel niet ingesteld op privé.",
             "is_private": "Deze entiteit is privé en alleen zichtbaar voor leden van de Beheerder rol.",
+            "legacy": "Legacy",
             "linking_help": "Hoe kan ik linken naar andere invoeren?",
             "manage": "Beheer",
             "move": {
@@ -7595,6 +7833,7 @@ export default {
                 "journal": "Kies een logboek",
                 "location": "Kies een locatie",
                 "map": "Kies een kaart",
+                "note": "Kies een notitie",
                 "organisation": "Kies een organisatie",
                 "race": "Kies een ras",
                 "tag": "Kies een tag",
@@ -7655,7 +7894,9 @@ export default {
             }
         },
         "campaigns": [],
-        "front": [],
+        "front": {
+            "features": []
+        },
         "randomisers": [],
         "entities": []
     },
@@ -8033,6 +8274,7 @@ export default {
                 "members": "Gracze"
             }
         },
+        "emails": [],
         "randomizers": [],
         "admin": [],
         "timelines": [],
@@ -8089,6 +8331,10 @@ export default {
                     "attribute": "Liczba zwycięstw, Skala Wyzwania, Inicjatywa, Populacja",
                     "block": "Nazwa bloku",
                     "checkbox": "Nazwa pola wyboru",
+                    "icon": {
+                        "class": "Klasa FontAwesome lub RPG Awesome: fas fa-users",
+                        "name": "Nazwa ikony"
+                    },
                     "section": "Nazwa sekcji",
                     "template": "Wybierz szablon",
                     "value": "Wartość cechy"
@@ -8101,6 +8347,7 @@ export default {
                     "attribute": "Cecha",
                     "block": "Blok",
                     "checkbox": "Pole wyboru",
+                    "icon": "Ikona",
                     "section": "Sekcja",
                     "text": "Kilka wierszy"
                 },
@@ -8370,7 +8617,7 @@ export default {
                     },
                     "delete": "Usuwaj",
                     "edit": "Edytuj",
-                    "entity_note": "Komentuj elementy",
+                    "entity_note": "Komentuj",
                     "read": "Czytaj",
                     "toggle": "Przełącz"
                 },
@@ -8469,7 +8716,9 @@ export default {
         "randomisers": [],
         "entities": []
     },
-    "pt": [],
+    "pt": {
+        "emails": []
+    },
     "pt-BR": {
         "maps": [],
         "calendars": [],
@@ -8525,8 +8774,16 @@ export default {
                     "entity_logs": "Relatórios completos do que foi mudado nas entidades em cada uma das atualizações.",
                     "first": "Para garantir o progresso contínuo no Kanka, alguns recursos da campanha são desbloqueados ao impulsionar uma campanha. Os impulsos são desbloqueados por meio de assinaturas. Qualquer um que pode ver uma campanha pode impulsioná-la, para que o Mestre nem sempre tenha que pagar a conta. Uma campanha permanece impulsionada enquanto um usuário estiver impulsionando a campanha e eles continuarem apoiando Kanka. Se uma campanha não é mais impulsionada, os dados não são perdidos, só ficam ocultos até que a campanha seja impulsionada novamente.",
                     "header": "Imagens de cabeçalho da entidade.",
+                    "headers": {
+                        "boosted": "Benefícios da campanha Impulsionada",
+                        "superboosted": "Benefícios da campanha Super Impulsionada"
+                    },
                     "images": "Imagens de entidade padrão personalizadas.",
-                    "more": "Descubra mais sobre todos os recursos.",
+                    "more": {
+                        "boosted": "Todos recursos de uma campanha Impulsionada",
+                        "superboosted": "Todos recursos de uma campanha Super Impulsionada"
+                    },
+                    "recovery": "Recuperar entidades deletadas por até {amount} dias",
                     "second": "Impulsionar uma campanha oferece os seguintes benefícios:",
                     "superboost": "Super impulsionar uma campanha usa 3 de seus impulsos e desbloqueia recursos adicionais além dos presentes em campanhas impulsionadas.",
                     "theme": "Tema nível da campanha e estilo personalizado.",
@@ -8553,7 +8810,11 @@ export default {
                     "delete": "Seu impulsionamento foi removido de {name}",
                     "superboost": "Campanha {name} foi Super Impulsionada"
                 },
-                "title": "Impulso"
+                "title": "Impulso",
+                "unboost": {
+                    "description": "Você tem certeza de que quer parar de impulsionar a campanha {tag}?",
+                    "title": "Deixar de impulsionar uma campanha"
+                }
             },
             "countries": {
                 "austria": "Áustria",
@@ -8609,6 +8870,7 @@ export default {
                 "payment_options": "Formas de pagamento",
                 "personal_settings": "Configurações pessoais",
                 "profile": "Perfil",
+                "settings": "Configurações",
                 "subscription": "Assitatura",
                 "subscription_status": "Status da assinatura"
             },
@@ -8734,6 +8996,12 @@ export default {
                 "trial_period": "As assinaturas anuais têm uma política de cancelamento de 14 dias. Entre em contato conosco por {email} se desejar cancelar sua assinatura anual e obter um reembolso.",
                 "upgrade_downgrade": {
                     "button": "Informação de Upgrade e Downgrade",
+                    "cancel": {
+                        "bullets": {
+                            "kobold": "Para cancelar sua assinatura, mude para o nível Kobold"
+                        },
+                        "title": "Quando for cancelar sua assinatura"
+                    },
                     "downgrade": {
                         "bullets": {
                             "end": "Seu nível atual permanecerá ativo até o final do seu ciclo de faturamento atual, após o qual você será rebaixado para o novo nível."
@@ -8822,6 +9090,7 @@ export default {
                 "members": "Membros"
             }
         },
+        "emails": [],
         "admin": [],
         "timelines": [],
         "crud": {
@@ -9620,6 +9889,7 @@ export default {
                 "members": "Члены кампании"
             }
         },
+        "emails": [],
         "admin": [],
         "timelines": [],
         "crud": {
@@ -9675,6 +9945,10 @@ export default {
                     "attribute": "Число побед, рейтинг опасности, инициатива, население",
                     "block": "Название блока",
                     "checkbox": "Название флажка",
+                    "icon": {
+                        "class": "Класс FontAwesome или RPG Awesome: fas fa-users",
+                        "name": "Название иконки"
+                    },
                     "section": "Название раздела",
                     "template": "Выберите шаблон",
                     "value": "Значение атрибута"
@@ -9687,6 +9961,7 @@ export default {
                     "attribute": "Атрибут",
                     "block": "Блок",
                     "checkbox": "Флажок",
+                    "icon": "Иконка",
                     "section": "Раздел",
                     "text": "Большой текст"
                 },
@@ -10404,6 +10679,7 @@ export default {
                 "members": "Členovia"
             }
         },
+        "emails": [],
         "admin": [],
         "timelines": [],
         "crud": {
@@ -10904,6 +11180,7 @@ export default {
                 "members": "Medlemmar"
             }
         },
+        "emails": [],
         "randomizers": [],
         "admin": [],
         "timelines": [],
@@ -11612,6 +11889,7 @@ export default {
                 "members": "Üyeler"
             }
         },
+        "emails": [],
         "randomizers": [],
         "admin": [],
         "timelines": [],

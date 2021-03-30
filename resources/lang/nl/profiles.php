@@ -15,6 +15,7 @@ return [
     'fields'        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'E-mail',
+        'hide_subscription'         => 'Verberg mijn naam voor de :hall_of_fame.',
         'last_login_share'          => 'Deel met andere campaign leden wanneer ik voor het laatst heb ingelogd.',
         'name'                      => 'Naam',
         'new_password'              => 'Nieuw Wachtwoord',
