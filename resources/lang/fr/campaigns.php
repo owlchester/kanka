@@ -59,7 +59,7 @@ TEXT
         'entity_personality_visibility' => 'Visibilité des traits de personnages',
         'entity_visibility'             => 'Visibilité d\'entité',
         'entry'                         => 'Description de la campagne',
-        'excerpt'                       => 'Extrait',
+        'excerpt'                       => 'Description de la campagne sur le tableau de bord',
         'followers'                     => 'Followers',
         'header_image'                  => 'Image de fond pour le tableau de bord',
         'hide_history'                  => 'Cacher l\'historique des entités',
@@ -83,10 +83,12 @@ TEXT
         'boost_required'                => 'Cette fonctionnalité requiert une campagne boostée. Plus d\'info sur la page :settings.',
         'boosted'                       => 'Cette campagne est boostée ce qui active certaines fonctionnalités. Plus de détails sur la page :settings.',
         'css'                           => 'Définir du code CSS pour la campagne qui sera chargé sur chaque page. Abuser de cette fonctionnalité peut mener à une suppression du CSS. Les abus répétés peuvent mener à une suppression de la campagne.',
+        'dashboard'                     => 'Contrôler la manière dont l\'en-tête de campagne s\'affiche sur le tableau de bord.',
         'entity_note_visibility'        => 'Lors de la création d\'une nouvelle note d\'entité, l\'option "épinglé" sera sélectionnée par défaut.',
         'entity_personality_visibility' => 'Lorsqu\'une nouvelle entité est créée, l\'option "Privé" sera automatiquement sélectionnée.',
         'entity_visibility'             => 'Lorsqu\'une nouvelle entité est créée, l\'option "Privé" sera automatiquement sélectionnée.',
-        'excerpt'                       => 'L\'extrait de la campagne apparait sur le tableau de bord.',
+        'excerpt'                       => 'Le contenu de ce champ sera affiché sur le tableau de bord dans le widget d\'en-tête de campagne. Si ce champ est vide, les 1000 premiers caractères de la description de la campagne seront utilisés à la place.',
+        'header_image'                  => 'Image affichée en arrière-plan de l\'en-tête de campagne sur le tableau de bord.',
         'hide_history'                  => 'Activer cette option pour cacher l\'historique d\'une entité aux membres qui ne sont pas dans le groupe admin de la campagne.',
         'hide_members'                  => 'Activer cette option pour cacher la liste des membres de la campagne aux membres qui ne sont pas dans le groupe admin de celle-ci.',
         'locale'                        => 'La langue dans laquelle la campagne est écrite. Ceci est utilisé pour générer du contenu ainsi que pour grouper les campagnes publiques.',
@@ -295,7 +297,8 @@ TEXT
         ],
         'users'         => [
             'actions'   => [
-                'add'   => 'Ajouter',
+                'add'       => 'Ajouter',
+                'remove'    => ':user du rôle :role.',
             ],
             'create'    => [
                 'success'   => 'Utilisateur ajouté au rôle.',

@@ -22,8 +22,8 @@ return [
     ],
     'add'                       => 'Add',
     'alerts'                    => [
-        'copy_attribute'  => 'The attribute\'s mention was copied to your clipboard.',
-        'copy_mention'  => 'The entity\'s advanced mention was copied to your clipboard.',
+        'copy_attribute'    => 'The attribute\'s mention was copied to your clipboard.',
+        'copy_mention'      => 'The entity\'s advanced mention was copied to your clipboard.',
     ],
     'attributes'                => [
         'actions'       => [
@@ -33,7 +33,7 @@ return [
             'remove_all'        => 'Delete All',
         ],
         'errors'        => [
-            'loop' => 'There is an endless loop in this attribute calculation!',
+            'loop'  => 'There is an endless loop in this attribute calculation!',
         ],
         'fields'        => [
             'attribute'             => 'Attribute',

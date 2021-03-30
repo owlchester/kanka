@@ -2,9 +2,10 @@
 
 return [
     'actions'       => [
-        'entry' => 'Écrire une entrée personnalisés pour ce marqueur.',
-        'remove'=> 'Supprimer le marqueur',
-        'update'=> 'Modifier le marqueur',
+        'entry'             => 'Écrire une entrée personnalisés pour ce marqueur.',
+        'remove'            => 'Supprimer le marqueur',
+        'save_and_explore'  => 'Sauvegarder et explorer',
+        'update'            => 'Modifier le marqueur',
     ],
     'create'        => [
         'success'   => 'Marqueur :name créé.',

@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     'header'        => 'Dobro došao/la u Kanku :name!',
     'header_sub'    => 'Čestitamo, poduzeo/la si prve korake u kreiranju svog svijeta u :kanka!',
     'section_1'     => 'Kamo sada?',

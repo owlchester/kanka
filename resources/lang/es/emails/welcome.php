@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     'header'        => '¡Te damos la bienvenida a Kanka, :name!',
     'header_sub'    => '¡Enhorabuena! Has completado el primer paso en la creación de tu mundo en :kanka.',
     'section_1'     => '¿Qué hago ahora?',

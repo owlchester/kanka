@@ -2,10 +2,10 @@
 
 return [
     'actions'       => [
-        'entry' => 'Write a custom entry field for this marker.',
-        'remove'=> 'Remove marker',
-        'update'=> 'Edit marker',
-        'save_and_explore' => 'Save and Explore',
+        'entry'             => 'Write a custom entry field for this marker.',
+        'remove'            => 'Remove marker',
+        'save_and_explore'  => 'Save and Explore',
+        'update'            => 'Edit marker',
     ],
     'create'        => [
         'success'   => 'Marker :name created.',

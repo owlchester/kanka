@@ -22,7 +22,8 @@ return [
     ],
     'add'                       => 'Ajouter',
     'alerts'                    => [
-        'copy_mention'  => 'La mention avancée de cette entité a été copiée au presse-papier.',
+        'copy_attribute'    => 'La mention de l\'attribut à été copiée au presse-papier.',
+        'copy_mention'      => 'La mention avancée de cette entité a été copiée au presse-papier.',
     ],
     'attributes'                => [
         'actions'       => [
@@ -30,6 +31,9 @@ return [
             'manage'            => 'Gérer',
             'more'              => 'Plus d\'options',
             'remove_all'        => 'Tout supprimer',
+        ],
+        'errors'        => [
+            'loop'  => 'Il y a une boucle sur la calculation de cet attribut!',
         ],
         'fields'        => [
             'attribute'             => 'Attribut',
@@ -57,6 +61,10 @@ return [
                 'class' => 'Classes FontAwesome ou RPG Awesome: fas fa-users',
                 'name'  => 'Nom de l\'icône',
             ],
+            'random'    => [
+                'name'  => 'Nom de l\'attribut',
+                'value' => '1-100 ou une liste de valeurs séparées par une virgule',
+            ],
             'section'   => 'Nom de la section',
             'template'  => 'Sélectionner un modèle',
             'value'     => 'Valeur de l\'attribut',
@@ -70,6 +78,7 @@ return [
             'block'     => 'Bloc',
             'checkbox'  => 'Case à cocher',
             'icon'      => 'Icône',
+            'random'    => 'Aléatoire',
             'section'   => 'Section',
             'text'      => 'Texte multiligne',
         ],
