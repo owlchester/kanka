@@ -60,6 +60,14 @@ class HelperController
         return $this->render('entity_templates');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function widgetFilters()
+    {
+        return $this->render('widget_filters');
+    }
+
     protected function render(string $view)
     {
         $ajax = request()->ajax();

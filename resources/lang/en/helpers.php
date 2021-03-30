@@ -61,4 +61,10 @@ return [
     ],
     'public'        => 'Watch a tutorial video on Youtube explaining public campaigns.',
     'title'         => 'Helpers',
+    'widget-filters' => [
+        'title' => 'Dashboard Widget Filters',
+        'link' => 'dashboard widget filters',
+        'description' => 'You can filter entities displayed on the recently modified widget by providing a list of fields of the entity and values. For example, you can use :example to filter on dead characters of the NPC type.',
+        'more' => 'You can copy values from the url on entity lists. For example, when viewing the characters of the campaign, filter on the kind of characters you want to display, and copy values after the :question in the url.',
+    ]
 ];

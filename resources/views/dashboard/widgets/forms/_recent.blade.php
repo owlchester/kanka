@@ -18,17 +18,31 @@
 </div>
 
 <div class="form-group">
-    <label for="config-singular">
-        {!! Form::hidden('config[singular]', 0) !!}
-        {{ __('dashboard.widgets.recent.singular') }}
-        {!! Form::checkbox('config[singular]', 1, (!empty($model) ? $model->conf('singular') : null), ['id' => 'config-singular']) !!}
-    </label>
+    <label>{{ __('dashboard.widgets.recent.filters') }}</label>
+    {!! Form::text('config[filters]', null, ['class' => 'form-control']) !!}
+    <p class="help-block">{!! __('dashboard.widgets.recent.helpers.filters', ['link' => '<a href="' . route('helpers.widget-filters') . '" target="_blank"><i class="fas fa-external-link-alt"></i> ' . __('helpers.widget-filters.link') . '</a>']) !!}</p>
+</div>
+
+<div class="form-group">
+    {!! Form::hidden('config[singular]', 0) !!}
+    <div class="checkbox">
+        <label>
+            {!! Form::checkbox('config[singular]', 1, (!empty($model) ? $model->conf('singular') : null)) !!}
+
+            {{ __('dashboard.widgets.recent.singular') }}
+        </label>
+    </div>
     <p class="help-block">
         {{ __('dashboard.widgets.recent.help') }}
     </p>
 </div>
 
-<div class="form-group">
-    <label>{{ __('dashboard.widgets.fields.name') }}</label>
-    {!! Form::text('config[text]', null, ['class' => 'form-control', 'placeholder' => __('dashboard.widgets.recent.title')]) !!}
+
+<div class="row">
+    <div class="col-sm-6">
+        @include('dashboard.widgets.forms._name')
+    </div>
+    <div class="col-sm-6">
+        @include('dashboard.widgets.forms._width')
+    </div>
 </div>

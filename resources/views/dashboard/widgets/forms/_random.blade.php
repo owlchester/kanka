@@ -5,10 +5,16 @@
     {!! Form::select('config[entity]', $entities, (!empty($model) ? $model->conf('entity') : null), ['class' => 'form-control']) !!}
 </div>
 
-<div class="form-group">
-    <label>{{ __('dashboard.widgets.fields.name') }}</label>
-    {!! Form::text('config[text]', null, ['class' => 'form-control']) !!}
+
+<div class="row">
+    <div class="col-sm-6">
+        @include('dashboard.widgets.forms._name')
+    </div>
+    <div class="col-sm-6">
+        @include('dashboard.widgets.forms._width')
+    </div>
 </div>
+
 
 <div class="form-group">
     {!! Form::tags(

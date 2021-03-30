@@ -11,9 +11,10 @@
     ]
 ) !!}
     <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}" title="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span></button>
         <h4 class="modal-title" id="myModalLabel">
-            {{ trans('dashboard.setup.actions.edit') }}
+            {{ __('dashboard.setup.actions.edit') }}
         </h4>
     </div>
     <div class="modal-body">
@@ -26,34 +27,27 @@
 @endif
 
     @include('dashboard.widgets.forms._' . $widget)
-
-    @if ($widget != 'campaign')
-    <div class="form-group required">
-        <label>{{ __('dashboard.widgets.fields.width') }}</label>
-        {!! Form::select('width', [0 => __('dashboard.widgets.widths.0'), 12 => __('dashboard.widgets.widths.12'), 3 => __('dashboard.widgets.widths.3'), 4 => __('dashboard.widgets.widths.4'), 6 => __('dashboard.widgets.widths.6'), 8 => __('dashboard.widgets.widths.8')], null, ['class' => 'form-control']) !!}
-    </div>
-    @endif
-
+</div>
+<div class="modal-footer">
     <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <button class="btn btn-success">{{ trans('crud.save') }}</button>
-            </div>
+        <div class="col-xs-6 text-left">
+            <button class="btn btn-success">{{ __('crud.save') }}</button>
+
             <input type="hidden" name="widget" value="{{ $widget }}">
             @if(!empty($dashboard))
                 <input type="hidden" name="dashboard_id" value="{{ $dashboard->id }}">
             @endif
             {!! Form::close() !!}
         </div>
-        <div class="col-md-6 text-right">
+        <div class="col-xs-6 text-right">
             @if (!empty($model))
-            {!! Form::open(['method' => 'DELETE','route' => ['campaign_dashboard_widgets.destroy', $model], 'class' => 'form-inline']) !!}
-            <button class="btn btn-danger">
-                <i class="fa fa-trash" aria-hidden="true"></i> <span class="hidden-xs hidden-md">{{ trans('crud.remove') }}</span>
-            </button>
-            {!! Form::close() !!}
+                {!! Form::open(['method' => 'DELETE','route' => ['campaign_dashboard_widgets.destroy', $model], 'class' => 'form-inline']) !!}
+                <button class="btn btn-danger">
+                    <i class="fa fa-trash" aria-hidden="true"></i> <span class="hidden-xs hidden-sm">{{ __('crud.remove') }}</span>
+                </button>
+                {!! Form::close() !!}
         </div>
         @endif
     </div>
-
 </div>
+

@@ -93,6 +93,9 @@ return [
     ],
     'title'             => 'Dashboard',
     'widgets'           => [
+        'actions'       => [
+            'advanced-options' => 'Advanced options',
+        ],
         'calendar'      => [
             'actions'           => [
                 'next'      => 'Change date to next day',
@@ -117,12 +120,18 @@ return [
             'width' => 'Width',
         ],
         'recent'        => [
+            'show_attributes' => 'Show attributes',
+            'show_members' => 'Show members',
             'entity-header' => 'Use entity header as image',
-            'full'          => 'Full',
+            'full'          => 'Display full entry',
+            'filters'       => 'Filter entities on select fields',
             'help'          => 'Only show the last updated entity, but show a whole preview of the entity',
             'helpers'       => [
                 'entity-header' => 'If your entity has an entity header (boosted campaign feature), set this widget to use that image instead of the entity\'s image.',
                 'full'          => 'Display the whole entity\'s entry by default instead of a preview.',
+                'show_members' => 'If the entity is a family or organisation, show its members below the entry.',
+                'show_attributes' => 'Show the entity\'s attributes below the entry.',
+                'filters' => 'You can filter the kind of entities that show up. Learn how to use this field by visiting the :link helper page.'
             ],
             'singular'      => 'Singular',
             'tags'          => 'Filter the list of recently modified entities on specified tags.',

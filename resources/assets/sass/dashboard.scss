@@ -354,6 +354,8 @@
     background-color: rgba(0, 0, 0, 0.6);
     color: #fff;
     border-radius: 5px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
 }
 
