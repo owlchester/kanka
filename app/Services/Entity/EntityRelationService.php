@@ -137,6 +137,9 @@ class EntityRelationService
         if (Arr::has($this->entities, $entity->id)) {
             return $this;
         }
+        if (empty($entity->child)) {
+            return $this;
+        }
 
         $img = $image ?? $entity->child->getImageUrl(80, 80);
         if (empty($img)) {
