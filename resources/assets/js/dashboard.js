@@ -101,6 +101,21 @@ function initDashboardAdminUI() {
             });
         }
     });
+
+    $(document).on('shown.bs.modal shown.bs.popover', function() {
+        let summernoteConfig = $('#summernote-config');
+        if (summernoteConfig.length > 0) {
+            window.initSummernote();
+        }
+
+        $.each($('.img-delete'), function () {
+            $(this).click(function (e) {
+                e.preventDefault();
+                $('input[name=' + $(this).data('target') + ']')[0].value = 1;
+                $(this).parent().parent().hide();
+            });
+        });
+    });
     //$('#widgets').disableSelection();
 }
 

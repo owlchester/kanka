@@ -182,4 +182,39 @@ class CampaignDashboardWidget extends Model
         $new->dashboard_id = $target->id;
         return $new->save();
     }
+
+    /**
+     * @return bool
+     */
+    public function hasAdvancedOptions(): bool
+    {
+        return $this->conf('attributes') == 1 || $this->conf('members') == '1' || $this->conf('entity-header') == '1';
+    }
+
+    /**
+     * @return bool
+     */
+    public function showAttributes(): bool
+    {
+        if ($this->widget != self::WIDGET_PREVIEW) {
+            return false;
+        }
+
+        return $this->conf('attributes') == '1' && !empty($this->entity);
+    }
+    /**
+     * @return bool
+     */
+    public function showMembers(): bool
+    {
+        if ($this->widget != self::WIDGET_PREVIEW || $this->conf('members') !== '1') {
+            return false;
+        }
+        $types = [
+            config('entities.ids.family'),
+            config('entities.ids.organisation'),
+        ];
+
+        return !empty($this->entity) && in_array($this->entity->typeId(), $types);
+    }
 }

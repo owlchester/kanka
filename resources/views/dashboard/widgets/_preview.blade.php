@@ -53,6 +53,9 @@ $specificPreview = 'dashboard.widgets.previews.' . $widget->entity->type;
             <i class="fa fa-chevron-down"></i>
         </a>
         @endif
+
+        @include('dashboard.widgets.previews._members')
+        @include('dashboard.widgets.previews._attributes')
     </div>
 
     @if ($widget->entity->typeId() == config('entities.ids.location'))
