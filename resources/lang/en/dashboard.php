@@ -96,6 +96,7 @@ return [
         'actions'       => [
             'advanced-options' => 'Advanced options',
         ],
+        'advanced_options_boosted' => ':boosted_campaigns have advanced options like showing members of a family or the entity\'s attributes on the dashboard.',
         'calendar'      => [
             'actions'           => [
                 'next'      => 'Change date to next day',
