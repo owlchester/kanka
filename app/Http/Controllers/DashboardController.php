@@ -72,6 +72,7 @@ class DashboardController extends Controller
      */
     public function recent($id)
     {
+        /** @var CampaignDashboardWidget $widget */
         $widget = CampaignDashboardWidget::findOrFail($id);
         $campaign = CampaignLocalization::getCampaign();
         if ($widget->widget != CampaignDashboardWidget::WIDGET_RECENT) {
@@ -82,14 +83,7 @@ class DashboardController extends Controller
 
         $offset = request()->get('offset', 0);
 
-        $entities = \App\Models\Entity::recentlyModified()
-            ->inTags($widget->tags->pluck('id')->toArray())
-            ->type($widget->conf('entity'))
-            ->acl()
-            ->with(['tags', 'updater'])
-            ->take(10)
-            ->offset($offset)
-            ->get();
+        $entities = $widget->entities($offset);
 
         return view('dashboard.widgets._recent_list')
             ->with('entities', $entities)

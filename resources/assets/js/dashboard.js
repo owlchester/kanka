@@ -115,6 +115,8 @@ function initDashboardAdminUI() {
                 $(this).parent().parent().hide();
             });
         });
+        initWidgetSubform();
+
     });
     //$('#widgets').disableSelection();
 }
@@ -134,14 +136,25 @@ function loadModalForm(url) {
 
         window.initSelect2();
         window.initCategories();
+        initWidgetSubform();
+    });
+}
+
+function initWidgetSubform() {
+    // Recent entities: filter field dynamic display
+    $('.recent-entity-type').change(function (e) {
+        if (this.value) {
+            $('.recent-filters').show();
+        } else {
+            $('.recent-filters').hide();
+        }
     });
 }
 
 /**
  *
  */
-function initDashboardRecent()
-{
+function initDashboardRecent() {
     $('.widget-recent-more').click(function(e) {
         e.preventDefault();
         $(this).html('<i class="fa fa-spin fa-spinner"></i>');

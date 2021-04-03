@@ -217,6 +217,9 @@ class FormCopyService
      */
     private function valid(): bool
     {
+        if (empty($this->source)) {
+            return false;
+        }
         return method_exists($this->source, 'isCopiableObject') && $this->source->isCopiableObject();
     }
 

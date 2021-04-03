@@ -9,14 +9,7 @@ if (!isset($offset)) {
     $offset = 0;
 }
 $entityType = $widget->conf('entity');
-$entities = \App\Models\Entity::unmentioned()
-        ->inTags($widget->tags->pluck('id')->toArray())
-        ->type($entityType)
-        ->acl()
-        ->with(['updater'])
-        ->take(10)
-        ->offset($offset)
-        ->get();
+$entities = $widget->entities();
 
 $entityString = !empty($entityType) ? Str::plural($entityType) : null;
 ?>

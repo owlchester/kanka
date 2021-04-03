@@ -195,6 +195,7 @@ function initDashboardAdminUI() {
         $(this).parent().parent().hide();
       });
     });
+    initWidgetSubform();
   }); //$('#widgets').disableSelection();
 }
 /**
@@ -212,6 +213,18 @@ function loadModalForm(url) {
     modalContentTarget.html(data);
     window.initSelect2();
     window.initCategories();
+    initWidgetSubform();
+  });
+}
+
+function initWidgetSubform() {
+  // Recent entities: filter field dynamic display
+  $('.recent-entity-type').change(function (e) {
+    if (this.value) {
+      $('.recent-filters').show();
+    } else {
+      $('.recent-filters').hide();
+    }
   });
 }
 /**

@@ -108,7 +108,6 @@ class FilterService
                     continue;
                 }
             }
-
         }
 
         // Foreign keys that are not set might have been cleared. If so, remove them from the filters.

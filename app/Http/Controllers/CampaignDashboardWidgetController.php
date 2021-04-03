@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCampaignDashboardWidget;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
 use App\Services\EntityService;
+use Illuminate\Support\Str;
 
 class CampaignDashboardWidgetController extends Controller
 {

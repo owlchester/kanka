@@ -124,7 +124,7 @@ return [
             'show_members' => 'Show members',
             'entity-header' => 'Use entity header as image',
             'full'          => 'Display full entry',
-            'filters'       => 'Filter entities on select fields',
+            'filters'       => 'Filters',
             'help'          => 'Only show the last updated entity, but show a whole preview of the entity',
             'helpers'       => [
                 'entity-header' => 'If your entity has an entity header (boosted campaign feature), set this widget to use that image instead of the entity\'s image.',
