@@ -98,7 +98,9 @@ class DatagridRenderer
     {
         $html = '';
         // Checkbox for delete
-        $html .= '<th>' . Form::checkbox('all', 1, false, ['id' => 'datagrid-select-all']) . '</th>';
+        if (auth()->check()) {
+            $html .= '<th>' . Form::checkbox('all', 1, false, ['id' => 'datagrid-select-all']) . '</th>';
+        }
 
         foreach ($this->columns as $column) {
             $html .= $this->renderHeadColumn($column);
@@ -285,7 +287,9 @@ class DatagridRenderer
         $html .= '>';
 
         // Delete
-        $html .= '<td>' . Form::checkbox('model[]', $model->id, false) . '</td>';
+        if (auth()->check()) {
+            $html .= '<td>' . Form::checkbox('model[]', $model->id, false) . '</td>';
+        }
 
         foreach ($this->columns as $column) {
             $html .= $this->renderColumn($column, $model);
