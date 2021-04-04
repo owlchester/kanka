@@ -3,7 +3,7 @@
 return [
     'children'      => [
         'actions'       => [
-            'add'   => 'Add a new tag',
+            'add'   => 'Add to tag',
         ],
         'create'        => [
             'title' => 'Add a tag to :name',

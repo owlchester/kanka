@@ -35,6 +35,7 @@
                 </li>
             @endif
             @include('entities.components.attributes')
+            @include('entities.components.relations')
         </ul>
     </div>
 </div>
