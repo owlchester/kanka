@@ -42,6 +42,12 @@ class FilterService
     protected $search = '';
 
     /**
+     * If the filters are stored in the session
+     * @var bool
+     */
+    protected $session = true;
+
+    /**
      * @param string $crud
      * @param array $requestData
      * @param Model $model
@@ -72,12 +78,13 @@ class FilterService
             return $this;
         }
 
+        // Load the filters from the session if we're revisiting a page
         $sessionKey = 'filterService-filter-' . $this->crud;
-
         if (request()->get('_from', false) == 'quicklink') {
             $sessionKey .= '-quicklink';
         }
-        $this->filters = session()->get($sessionKey);
+        $this->filters = $this->sessionLoad($sessionKey);
+
 
         // If the request has _clean, we only want filters that are set in the url
         if (request()->get('_clean', false)) {
@@ -126,7 +133,7 @@ class FilterService
         }
 
         // Save the new data into the session
-        session()->put($sessionKey, $this->filters);
+        $this->sessionSave($sessionKey, $this->filters);
         return $this;
     }
 
@@ -298,5 +305,49 @@ class FilterService
 
 
         return $options;
+    }
+
+    /**
+     * @param bool $session
+     * @return $this
+     */
+    public function session(bool $session = true): self
+    {
+        $this->session = $session;
+        return $this;
+    }
+
+    /**
+     * Load the stored filter data from session
+     * @param string $key
+     * @return array
+     */
+    protected function sessionLoad(string $key): array
+    {
+        if (!$this->session) {
+            return [];
+        }
+
+        if (!session()->has($key)) {
+            return [];
+        }
+
+        return session()->get($key);
+    }
+
+    /**
+     * Save the filter data to the session
+     * @param string $key
+     * @param array $data
+     * @return $this
+     */
+    protected function sessionSave(string $key, $data): self
+    {
+        if (!$this->session) {
+            return $this;
+        }
+
+        session()->put($key, $data);
+        return $this;
     }
 }
