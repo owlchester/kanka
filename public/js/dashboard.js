@@ -205,6 +205,8 @@ function initDashboardAdminUI() {
 
 
 function loadModalForm(url) {
+  // Remove content from any edit widget already loaded (to avoid having multiple fields with the tag id
+  $('#edit-widget .modal-content').html('');
   modalContentButtons.fadeOut(400, function () {
     modalContentSpinner.fadeIn();
   });
@@ -213,6 +215,7 @@ function loadModalForm(url) {
     modalContentTarget.html(data);
     window.initSelect2();
     window.initCategories();
+    console.log('sub');
     initWidgetSubform();
   });
 }

@@ -116,6 +116,7 @@ return [
             'success'   => 'Widget removed from the dashboard.',
         ],
         'fields'        => [
+            'dashboard' => 'Dashboard',
             'name'  => 'Custom widget name',
             'text'  => 'Text',
             'width' => 'Width',

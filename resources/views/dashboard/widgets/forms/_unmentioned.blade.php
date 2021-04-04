@@ -5,6 +5,7 @@
     {!! Form::select('config[entity]', $entities, (!empty($model) ? $model->conf('entity') : null), ['class' => 'form-control']) !!}
 </div>
 
+@include('dashboard.widgets.forms._tags')
 
 <div class="row">
     <div class="col-sm-6">
@@ -15,14 +16,6 @@
     </div>
 </div>
 
+@includeWhen(!empty($dashboards), 'dashboard.widgets.forms._dashboard')
 
-<div class="form-group">
-    {!! Form::tags(
-            'tag_id',
-            [
-                'model' => isset($model) ? $model : null,
-                'enableNew' => false
-            ]
-        ) !!}
-    <input type="hidden" name="save_tags" value="1" />
-</div>
+

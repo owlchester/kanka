@@ -16,6 +16,8 @@
 </div>
 
 
+@includeWhen(!empty($dashboards), 'dashboard.widgets.forms._dashboard')
+
 <div class="form-group">
     {!! Form::tags(
             'tag_id',

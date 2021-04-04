@@ -34,7 +34,7 @@
             <button class="btn btn-success">{{ __('crud.save') }}</button>
 
             <input type="hidden" name="widget" value="{{ $widget }}">
-            @if(!empty($dashboard))
+            @if(empty($dashboards) && !empty($dashboard))
                 <input type="hidden" name="dashboard_id" value="{{ $dashboard->id }}">
             @endif
             {!! Form::close() !!}

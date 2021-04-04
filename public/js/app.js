@@ -78487,7 +78487,6 @@ function submitSuggestion(ev, suggestion) {
 $(document).ready(function () {
   window.initCategories = function () {
     $.each($('.form-tags'), function (index) {
-      //console.log('form tags', $(this));
       $(this).select2({
         tags: $(this).data('allow-new'),
         allowClear: $(this).data('allow-clear'),

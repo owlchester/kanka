@@ -34,6 +34,9 @@
     </div>
 </div>
 
+
+@includeWhen(!empty($dashboards), 'dashboard.widgets.forms._dashboard')
+
 <p class="mb-sm">
     <a href="#widget-advanced" class="mb-sm" data-toggle="collapse" data-target="#widget-advanced">{{ __('dashboard.widgets.actions.advanced-options') }}</a>
 </p>

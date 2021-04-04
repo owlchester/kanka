@@ -17,3 +17,5 @@
         @include('dashboard.widgets.forms._width')
     </div>
 </div>
+
+@includeWhen(!empty($dashboards), 'dashboard.widgets.forms._dashboard')
