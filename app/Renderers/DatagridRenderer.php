@@ -455,7 +455,7 @@ class DatagridRenderer
         <div class="dropdown">
             <a class="dropdown-toggle cursor" data-toggle="dropdown" aria-expanded="false" data-placement="right">
                 <i class="fa fa-ellipsis-v"></i>
-                <span class="sr-only">' . __('crud.actions.what') . '</span>
+                <span class="sr-only">' . __('crud.actions.actions') . '</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-right" role="menu">
                 ' . implode("\n", $actions) . '
@@ -465,7 +465,7 @@ class DatagridRenderer
         }
 
 
-        return '<td class="text-right table-actions">' . $content . '</td>';
+        return '<td class="text-center table-actions">' . $content . '</td>';
     }
 
     /**
