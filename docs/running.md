@@ -9,11 +9,24 @@ Support for Docker and Vagrant isn't provided by the Kanka core team, but you mi
 
 ## Docker
 You can start kanka with docker. The only prerequisite is [docker](https://www.docker.com/).
-Copy the docker env file and update it according to your specific needs:
+Edit the docker env file to your needs, then copy it to the root of the project dir:
 
 ```bash
-cp .docker/env .env
+nano .docker/web/variables.env
+cp .docker/web/variables.env .env
 chmod -R a+w public
+```
+
+Next remove the following file (Fixes "Column already exists: 1060 Duplicate column name 'provider'"):
+
+```bash
+rm database/migrations/2021_02_09_214435_update_oauth_clients.php
+```
+
+Then Edit the docker-compose.yml file. Uncomment DB_CONNECTION,DB_DATABASE,DB_USERNAME, & DB_PASSWORD. Make sure they match the variables in `.docker/web/variables.env`
+
+```bash
+nano docker-compose.yml
 ```
 
 Start the containers with the following command:
