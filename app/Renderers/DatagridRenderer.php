@@ -309,7 +309,6 @@ class DatagridRenderer
         if (is_string($column)) {
             // Just for name, a link to the view
             if ($column == 'name') {
-                $route = route($this->getOption('baseRoute') . '.show', [$model]);
                 $content = $model->tooltipedLink();
             } else {
                 // Handle boolean values (has, is)
@@ -449,20 +448,24 @@ class DatagridRenderer
             </a>';
         }
 
-
-        $content = '
+        $content = '';
+        $actions = $model->datagridActions($this->getCampaign());
+        if (!empty($actions)) {
+            $content = '
         <div class="dropdown">
-            <a class="dropdown-toggle pointer" data-toggle="dropdown" aria-expanded="false" data-placement="right">
+            <a class="dropdown-toggle cursor" data-toggle="dropdown" aria-expanded="false" data-placement="right">
                 <i class="fa fa-ellipsis-v"></i>
                 <span class="sr-only">' . __('crud.actions.what') . '</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                ' . implode("\n", $model->datagridActions($this->getCampaign())) . '
+                ' . implode("\n", $actions) . '
             </ul>
         </div>
         ';
+        }
 
-        return '<td class="text-center table-actions">' . $content . '</td>';
+
+        return '<td class="text-right table-actions">' . $content . '</td>';
     }
 
     /**
@@ -491,34 +494,6 @@ class DatagridRenderer
     protected function renderFilters()
     {
         return '';
-
-        /*$filtersHtml = view('cruds._filters2')->with([
-            'filters' => $this->filters,
-            'filterService' => $this->filterService,
-            'route' => $this->getOption('route'),
-            'name' => $this->getOption('trans')
-        ]);
-
-
-        $filtersHtml = str_replace("&#039;", '&lsquo;', $filtersHtml);
-        $filtersHtml = str_replace('"', '\'', $filtersHtml);
-        $activeFilters = $this->filterService->activeFilters();
-
-        $route = route('helpers.filters');
-        $html = '
-        <div class="table-filters" title="' . __('crud.filters.title') . '
-            <a href=\'' . $route . '\' class=\'pull-right\' target=\'_blank\' title=\'' . __('helpers.filters.title') .'\'>
-                <i class=\'fa fa-question-circle\'></i>
-            </a>
-        " data-toggle="popover" '
-            . 'data-html="true" data-placement="left" data-content="' . $filtersHtml . '">
-            <i class="fa fa-filter"></i>
-            ' . (!empty($activeFilters) ? '<span class="label label-danger">' . count($activeFilters) . '</span>' : null) . '
-            <i class="fa fa-caret-down"></i>
-        </div>';
-
-
-        return $html;*/
     }
 
     /**

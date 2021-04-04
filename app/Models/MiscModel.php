@@ -526,14 +526,6 @@ abstract class MiscModel extends Model
     {
         $actions = [];
 
-        $actions = [
-            '<li>
-                <a href="' . $this->getLink('show') . '" class="dropdown-item">
-                    <i class="fa fa-eye" aria-hidden="true"></i> ' . __('crud.view') . '
-                </a>
-            </li>',
-        ];
-
         // Relations & Inventory
         if (!isset($this->hasRelations)) {
             $actions[] = '<li>
@@ -558,7 +550,9 @@ abstract class MiscModel extends Model
 
 
         if (auth()->check() && auth()->user()->can('update', $this)) {
-            $actions[] = '<li class="divider"></li>';
+            if (!empty($actions)) {
+                $actions[] = '<li class="divider"></li>';
+            }
             $actions[] = '<li>
                 <a href="' . $this->getLink('edit') . '" class="dropdown-item">
                     <i class="fa fa-edit" aria-hidden="true"></i> ' . __('crud.edit') . '

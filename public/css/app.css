@@ -1093,8 +1093,8 @@ summary {
   margin-right: 10px;
 }
 
-.table .table-actions .dropdown {
-  padding: 0px 7px;
+.table .table-actions .dropdown-toggle {
+  padding: 3px 10px;
 }
 
 .calendar {
