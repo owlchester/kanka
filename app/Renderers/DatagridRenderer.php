@@ -2,7 +2,10 @@
 
 namespace App\Renderers;
 
+use App\Facades\CampaignLocalization;
+use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\MiscModel;
 use App\Services\FilterService;
 use Collective\Html\FormFacade;
 use Illuminate\Database\Eloquent\Model;
@@ -43,6 +46,9 @@ class DatagridRenderer
     protected $filters = null;
 
     protected $dateRenderer;
+
+    /** @var Campaign|bool */
+    protected $campaign = false;
 
     /**
      * @var null
@@ -423,7 +429,11 @@ class DatagridRenderer
         return $field;
     }
 
-    private function renderActionRow(Model $model)
+    /**
+     * @param MiscModel $model
+     * @return string
+     */
+    private function renderActionRow(MiscModel $model)
     {
         $content = '
         <a href="' . route($this->getOption('baseRoute') . '.show', [$model]) .
@@ -439,7 +449,20 @@ class DatagridRenderer
             </a>';
         }
 
-        return '<td class="text-right table-actions">' . $content . '</td>';
+
+        $content = '
+        <div class="dropdown">
+            <a class="dropdown-toggle pointer" data-toggle="dropdown" aria-expanded="false" data-placement="right">
+                <i class="fa fa-ellipsis-v"></i>
+                <span class="sr-only">' . __('crud.actions.what') . '</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                ' . implode("\n", $model->datagridActions($this->getCampaign())) . '
+            </ul>
+        </div>
+        ';
+
+        return '<td class="text-center table-actions">' . $content . '</td>';
     }
 
     /**
@@ -507,5 +530,26 @@ class DatagridRenderer
     {
         $this->nestedFilter = $key;
         return $this;
+    }
+
+    /**
+     * @param Campaign $campaign
+     * @return $this
+     */
+    public function campaign(Campaign $campaign): self
+    {
+        $this->campaign = $campaign;
+        return $this;
+    }
+
+    /**
+     * @return Campaign
+     */
+    protected function getCampaign()
+    {
+        if ($this->campaign === false) {
+            $this->campaign = CampaignLocalization::getCampaign();
+        }
+        return $this->campaign;
     }
 }

@@ -77,6 +77,9 @@ class AttributeTemplate extends MiscModel
         'is_private',
     ];
 
+    /** @var bool Attribute templates don't have inventory, relations or abilities */
+    public $hasRelations = false;
+
     /**
      * Parent
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

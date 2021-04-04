@@ -167,12 +167,6 @@ table {
     td {
       vertical-align: middle !important;
     }
-    .table-actions {
-      a {
-        font-size: 16px;
-        padding: 10px 5px;
-      }
-    }
   }
 
   label {
@@ -1089,6 +1083,15 @@ hr {
 
 // Bootstrap3 sets summary to display:block which isn't correct
 summary { display: list-item; }
+
+// RPG awesome dropdown icon margin
+.dropdown-menu > li > a > .ra {
+  margin-right: 10px;
+}
+
+.table .table-actions .dropdown {
+  padding: 0px 7px;
+}
 
 
 // Other stylings

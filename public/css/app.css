@@ -154,11 +154,6 @@ table tbody td {
   vertical-align: middle !important;
 }
 
-table tbody .table-actions a {
-  font-size: 16px;
-  padding: 10px 5px;
-}
-
 table label {
   font-weight: normal;
 }
@@ -1092,6 +1087,14 @@ hr {
 
 summary {
   display: list-item;
+}
+
+.dropdown-menu > li > a > .ra {
+  margin-right: 10px;
+}
+
+.table .table-actions .dropdown {
+  padding: 0px 7px;
 }
 
 .calendar {
