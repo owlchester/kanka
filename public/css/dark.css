@@ -808,6 +808,10 @@ hr {
   color: #ccc;
 }
 
+.navbar .user-image {
+  background-color: #aaa;
+}
+
 #cy {
   background-color: #222;
   color: #fff;

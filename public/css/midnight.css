@@ -751,6 +751,10 @@ a:hover {
   border: 0 !important;
 }
 
+.navbar .user-image {
+  background-color: #eee;
+}
+
 /**
  * Calendar
  */

@@ -760,3 +760,11 @@ input[type=checkbox]:checked ~ label:before {
   content: "\2605";
 }
 
+.navbar .user-image {
+  background-color: #157778;
+}
+
+.navbar .user-image:hover {
+  background-color: #42FFFF;
+}
+
