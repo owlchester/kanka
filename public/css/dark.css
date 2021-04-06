@@ -465,15 +465,15 @@ blockquote {
  * Footer
  */
 
-footer .footer {
+footer .footer-links {
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-footer .footer img.logo-blue {
+footer img.logo-blue {
   display: none;
 }
 
-footer .footer img.logo-white {
+footer img.logo-white {
   display: unset;
 }
 
