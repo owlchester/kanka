@@ -113,7 +113,7 @@
                     <a href="{{ config('social.facebook') }}" target="facebook" title="Facebook" rel="noreferrer">
                         <i class="fab fa-facebook"></i>
                     </a>
-                    <a href=x"{{ config('social.instagram') }}" target="instagram" title="Instagram" rel="noreferrer">
+                    <a href="{{ config('social.instagram') }}" target="instagram" title="Instagram" rel="noreferrer">
                         <i class="fab fa-instagram"></i>
                     </a>
                     <a href="{{ config('social.youtube') }}" target="youtube" title="Youtube" rel="noreferrer">
