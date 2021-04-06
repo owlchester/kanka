@@ -587,6 +587,29 @@ footer img.logo-white {
   border: none !important;
 }
 
+/**
+ * Spectrum
+ */
+
+.sp-replacer {
+  border: 1px solid #fff;
+  background-color: #0a121b;
+}
+
+.sp-replacer:active,
+.sp-replacer:hover {
+  border: 1px solid #fff;
+}
+
+.sp-light {
+  background-color: #0a121b;
+  border: 1px solid #fff;
+}
+
+.sp-light .sp-input {
+  color: white;
+}
+
 body {
   background-color: #061F2F;
   color: #d3d4d4;

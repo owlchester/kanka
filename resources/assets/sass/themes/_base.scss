@@ -533,3 +533,22 @@ footer {
     border: none !important;
   }
 }
+
+/**
+ * Spectrum
+ */
+.sp-replacer {
+  border: 1px solid $Hard;
+  background-color: $Detail;
+
+  &:active, &:hover {
+    border: 1px solid $Hard;
+  }
+}
+.sp-light {
+  background-color: $Detail;
+  border: 1px solid $Hard;
+  .sp-input {
+    color: white;
+  }
+}
