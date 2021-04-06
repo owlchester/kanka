@@ -52,6 +52,7 @@ return [
             'delete'    => 'Delete my account',
             'title'     => 'Delete your account',
             'warning'   => 'By deleting your account, all your data will be lost. Are you sure?',
+            'helper'    => 'Deleting your account will also delete any campaign you are the only member of. This action is permanent and can\'t be undone.',
         ],
         'password'  => [
             'title' => 'Change your password',

@@ -72,16 +72,23 @@
 
 
             <p><br /></p>
-            <h2 class="page-header with-border text-red">
+        </div>
+    </div>
+
+    <div class="box box-solid">
+        <div class="box-body">
+            <h2 class="page-header with-border text-red" id="account-deletion">
                 {{ trans('profiles.sections.delete.title') }}
             </h2>
+
+            <p class="alert alert-danger">{{ __('profiles.sections.delete.helper') }}</p>
             {!! Form::model(auth()->user(), ['method' => 'PATCH', 'id' => 'delete-confirm-form', 'route' => ['settings.account.destroy']]) !!}
 
             @if (empty(auth()->user()->provider))
-            <div class="form-group">
-                <label>{{ trans('profiles.fields.password') }}</label>
-                {!! Form::password('password', ['placeholder' => trans('profiles.placeholders.password'), 'class' => 'form-control']) !!}
-            </div>
+                <div class="form-group">
+                    <label>{{ __('profiles.fields.password') }}</label>
+                    {!! Form::password('password', ['placeholder' => trans('profiles.placeholders.password'), 'class' => 'form-control']) !!}
+                </div>
             @endif
             {!! Form::close() !!}
             <div class="form-group">

@@ -73,6 +73,11 @@
                                     {{ __('faq.nested.question') }}
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'account-deletion', 'slug' => Str::slug(__('faq.account-deletion.question'))]) }}">
+                                    {{ __('faq.account-deletion.question') }}
+                                </a>
+                            </li>
                         </ul>
 
                     </div>
