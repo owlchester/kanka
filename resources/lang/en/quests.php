@@ -52,7 +52,8 @@ return [
         'type'          => 'Type',
     ],
     'helpers'       => [
-        'nested'    => 'When in Nested View, you can view your Quests in a nested manner. Quests with no parent quest will be shown by default. Quests with sub quests can be clicked to view those children. You can keep clicking until there are no more children to view.',
+        'nested_parent' => 'Displaying the quests of :parent.',
+        'nested_without' => 'Displaying all quests that don\'t have a parent quest. Click on a row to see the children quests.',
     ],
     'hints'         => [
         'quests'    => 'A web of interlocking quests can be built using the Parent Quest field.',

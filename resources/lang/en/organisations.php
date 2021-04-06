@@ -25,7 +25,8 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'This list contains all organisations which are descendants of this organisation, and not only those directly under it.',
-        'nested'        => 'When in Nested View, you can view your Organisations in a nested manner. Organisations with no parent organisation will be shown by default. Organisations with children organisations can be clicked to view those children. You can keep clicking until there are no more children to view.',
+        'nested_parent' => 'Displaying the organisations of :parent.',
+        'nested_without' => 'Displaying all organisations that don\'t have a parent organisation. Click on a row to see the children organisations.',
     ],
     'index'         => [
         'add'           => 'New Organisation',

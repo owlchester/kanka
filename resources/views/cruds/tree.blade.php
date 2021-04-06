@@ -54,7 +54,11 @@
     <div class="box no-border">
         {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
         <div class="box-body">
-            <p class="help-block">{{ __($view . '.helpers.nested') }}</p>
+            @if (!empty($parent))
+                <p class="help-block">{!! __($view . '.helpers.nested_parent', ['parent' => $parent->tooltipedLink()]) !!}</p>
+            @else
+                <p class="help-block">{{ __($view . '.helpers.nested_without') }}</p>
+            @endif
         </div>
 
         <div class="box-body no-padding">
@@ -63,7 +67,7 @@
         </div>
         <div class="box-footer">
 
-            @include('cruds.datagrids.bulks.actions')
+            @includeWhen(auth()->check(), 'cruds.datagrids.bulks.actions')
 
             @if ($unfilteredCount != $filteredCount)
                 <p class="help-block">

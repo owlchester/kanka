@@ -29,7 +29,8 @@ return [
         'type'          => 'Type',
     ],
     'helpers'       => [
-        'nested'            => 'Showing timelines with no parent timeline by default. Click on a timeline\'s row to see the descendants of it.',
+        'nested_parent' => 'Displaying the timelines of :parent.',
+        'nested_without' => 'Displaying all timelines that don\'t have a parent timeline. Click on a row to see the children timelines.',
         'reorder'           => 'Drag and drop elements of the era to reorder them.',
         'reorder_tooltip'   => 'Click to enable manual reordering of elements using drag and drop.',
         'reverse_order'     => 'Enable to display eras in reverse chronological order (older era first)',

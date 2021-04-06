@@ -32,7 +32,8 @@ return [
         'type'          => 'Type',
     ],
     'helpers'       => [
-        'nested'    => 'When in Nested View, you can view your tags in a nested manner. Tags with no parent tag will be shown by default. Tags with children tags can be clicked to view those children. You can keep clicking until there are no more children to view.',
+        'nested_parent' => 'Displaying the tags of :parent.',
+        'nested_without' => 'Displaying all tags that don\'t have a parent tag. Click on a row to see the children tags.',
     ],
     'hints'         => [
         'children'  => 'This list contains all the entities directly in this tag and in all nested tags.',

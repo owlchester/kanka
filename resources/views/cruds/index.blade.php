@@ -74,7 +74,7 @@
         </div>
         <div class="box-footer">
 
-            @include('cruds.datagrids.bulks.actions')
+            @includeWhen(auth()->check(), 'cruds.datagrids.bulks.actions')
 
             @if ($unfilteredCount != $filteredCount)
                 <p class="help-block">

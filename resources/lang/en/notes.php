@@ -23,7 +23,8 @@ return [
         'type'          => 'Type',
     ],
     'helpers'       => [
-        'nested'    => 'Displaying notes that have no parent note first. Click on a note to explore it\'s sub notes.',
+        'nested_parent' => 'Displaying the notes of :parent.',
+        'nested_without' => 'Displaying all notes that don\'t have a parent note. Click on a row to see the children notes.',
     ],
     'hints'         => [
         'is_pinned' => 'Up to 3 notes can be pinned to be displayed on the dashboard.',
