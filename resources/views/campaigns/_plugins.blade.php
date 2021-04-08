@@ -53,7 +53,7 @@
                     @endif
                 </td>
                 <td class="text-center">
-                    @if($plugin->type_id == 1)
+                    @if($plugin->isTheme())
                         @if($plugin->pivot->is_active)
                             <a href="{{ route('campaign_plugins.disable', $plugin) }}" class="btn btn-block btn-default">
                                 <i class="fa fa-times-circle"></i> {{ __('campaigns/plugins.actions.disable') }}
@@ -64,6 +64,10 @@
                             </a>
 
                         @endif
+                    @elseif($plugin->isContentPack())
+                        <a href="{{ route('campaign_plugins.import', $plugin, ) }}" class="btn btn-block btn-default">
+                            <i class="fa fa-refresh"></i> {{ __('campaigns/plugins.actions.import') }}
+                        </a>
                     @endif
 
                     <button class="btn btn-danger btn-block delete-confirm" title="{{ __('crud.remove') }}"

@@ -162,4 +162,24 @@ class CampaignPluginController extends Controller
 
     }
 
+    public function import(Plugin $plugin)
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('recover', $campaign);
+
+        try {
+            $count = $this->service->plugin($plugin)->campaign($campaign)->import();
+
+            return redirect()->route('campaign_plugins.index')
+                ->with(
+                    'success',
+                    trans_choice('campaigns/plugins.import.success', $count, ['plugin' => $plugin->name, 'count' => $count])
+                );
+        }
+        catch (\Exception $e) {
+            return redirect()->route('campaign_plugins.index')
+                ->withError('campaigns/plugins.import.errors.' . $e->getMessage(), ['plugin' => $plugin->name]);
+        }
+    }
+
 }

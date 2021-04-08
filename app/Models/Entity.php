@@ -39,6 +39,7 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property string $header_image
  * @property string $image_uuid
  * @property boolean $is_template
+ * @property string $marketplace_uuid
  *
  * @property Carbon $created_at
  * @property Carbon $updated_at

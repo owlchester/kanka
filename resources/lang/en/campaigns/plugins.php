@@ -6,6 +6,7 @@ return [
         'enable'            => 'Enable plugin',
         'go_to_marketplace' => 'Go to the Marketplace',
         'remove'            => 'Remove plugin',
+        'import'            => 'Import',
         'update'            => 'Update plugin',
         'update_available'  => 'Update available!',
     ],
