@@ -230,7 +230,6 @@ class CampaignDashboardWidget extends Model
     {
         $entityIds = [];
 
-
         $base = null;
 
         if ($this->widget == self::WIDGET_UNMENTIONED) {
