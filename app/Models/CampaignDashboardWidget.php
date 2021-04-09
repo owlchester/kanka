@@ -237,7 +237,7 @@ class CampaignDashboardWidget extends Model
             $excludedTypes = [];
             if (empty($entityType)) {
                 $excludedTypes = [
-                    'tags',
+                    'tag',
                     'conversation',
                     'attribute_template'
                 ];

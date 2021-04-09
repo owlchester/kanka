@@ -26,5 +26,8 @@ $model = $widget->entity->child;
     </div>
     <div class="box-body">
         {!! $model->entry() !!}
+
+        @include('dashboard.widgets.previews._members')
+        @include('dashboard.widgets.previews._attributes')
     </div>
 </div>

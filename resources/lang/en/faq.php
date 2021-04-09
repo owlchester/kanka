@@ -3,7 +3,7 @@
 return [
     'account-deletion'       => [
         'account_settings' => 'Account settings',
-        'answer'    => 'To delete your account, go to your :account settings and scroll to the account deletion section. This will delete your account and all your campaigns where you are the only member of.',
+        'answer'    => 'To delete your account, go to your :account settings and scroll to the account deletion section. This will delete your account and any campaigns where you are the sole member.',
         'question'  => 'How can I delete my account?',
     ],
     'app_backup'            => [
