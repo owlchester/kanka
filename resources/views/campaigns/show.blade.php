@@ -1,7 +1,7 @@
 @extends('layouts.app', [
-    'title' => trans('campaigns.show.title', ['name' => $campaign->name]),
+    'title' => __('campaigns.show.title', ['name' => $campaign->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => trans('campaigns.index.title')]
+        ['url' => route('campaign'), 'label' => __('campaigns.index.title')]
     ],
     'canonical' => true,
     'mainTitle' => false,
@@ -17,10 +17,10 @@
 @section('content')
     @include('partials.errors')
     <div class="row">
-        <div class="col-md-3">
+        <div class="{{ auth()->check() ? "col-md-3" : "" }}>
             @include('campaigns._menu')
         </div>
-        <div class="col-md-9">
+        <div class="{{auth()->check() ? "col-md-9" : "col-md-12"}}">
             <div class="box box-solid">
                 <div class="box-header with-border">
                     <h3 class="box-title">{{ __('campaigns.show.menus.overview') }}</h3>

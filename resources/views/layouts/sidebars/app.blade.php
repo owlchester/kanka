@@ -78,8 +78,8 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                     @endforeach
                 @endif
 
-                <li class="{{ $sidebar->active('campaigns') }} sidebar-section section-world">
-                    <a href="{{ (auth()->check() ? route('campaign') : '#') }}">
+                <li class="{{ $sidebar->active('campaigns') }} section section-world">
+                    <a href="{{ route('campaign') }}">
                         <i class="fa fa-globe"></i>
                         <span>{{ __('sidebar.world') }}</span>
                     </a>
@@ -126,8 +126,8 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                     </li>
                 @endif
 
-                <li class="sidebar-section section-campaign">
-                    <a href="{{ (auth()->check() ? route('campaign') : '#') }}">
+                <li class="section section-campaign">
+                    <a href="{{ route('campaign') }}">
                         <i class="fa fa-globe"></i>
                         <span>{{ __('sidebar.campaign') }}</span>
                     </a>
