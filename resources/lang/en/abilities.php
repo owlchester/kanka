@@ -15,6 +15,9 @@ return [
         'success'   => 'Ability \':name\' updated.',
         'title'     => 'Edit Ability :name',
     ],
+    'entities'     => [
+        'title' => 'Entities with the :name ability',
+    ],
     'fields'        => [
         'abilities' => 'Abilities',
         'ability'   => 'Parent Ability',
@@ -41,6 +44,7 @@ return [
     'show'          => [
         'tabs'  => [
             'abilities' => 'Abilities',
+            'entities'  => 'Entities',
         ],
         'title' => 'Ability :name',
     ],

@@ -17,10 +17,10 @@
 @section('content')
     @include('partials.errors')
     <div class="row">
-        <div class="{{ auth()->check() ? "col-md-3" : "" }}>
+        <div class="{{ auth()->check() ? "col-md-3" : "" }}">
             @include('campaigns._menu')
         </div>
-        <div class="{{auth()->check() ? "col-md-9" : "col-md-12"}}">
+        <div class="{{ auth()->check() ? "col-md-9" : "col-md-12" }}">
             <div class="box box-solid">
                 <div class="box-header with-border">
                     <h3 class="box-title">{{ __('campaigns.show.menus.overview') }}</h3>

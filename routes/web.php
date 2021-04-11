@@ -74,8 +74,8 @@ Route::group([
         Route::get('/gallery/ajax-gallery', 'Campaign\AjaxGalleryController@index')->name('campaign.gallery.summernote');
 
         // Abilities
-        //Route::get('/abilities/{ability}/map-points', 'AbilityController@mapPoints')->name('abilities.map-points');
         Route::get('/abilities/{ability}/abilities', 'AbilityController@abilities')->name('abilities.abilities');
+        Route::get('/abilities/{ability}/entities', 'AbilityController@entities')->name('abilities.entities');
         Route::get('/abilities/tree', 'AbilityController@tree')->name('abilities.tree');
 
         // Maps
