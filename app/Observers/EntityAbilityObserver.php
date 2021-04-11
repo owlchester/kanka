@@ -31,6 +31,7 @@ class EntityAbilityObserver
             $position = $entityAbility->position;
             $abilities = EntityAbility::select('entity_abilities.*')
                 ->with(['ability'])
+                ->has('ability')
                 ->join('abilities as a', 'a.id', 'entity_abilities.ability_id')
                 ->where('entity_id', $entityAbility->entity_id)
                 ->where('entity_abilities.id', '<>', $entityAbility->id)
