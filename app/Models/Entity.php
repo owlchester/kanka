@@ -270,6 +270,11 @@ class Entity extends Model
         return config('entities.ids.' . $this->type);
     }
 
+    public function entityType(): string
+    {
+        return __('entities.' . $this->type);
+    }
+
     /**
      * @return mixed
      */

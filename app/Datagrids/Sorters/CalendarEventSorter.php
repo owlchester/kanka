@@ -16,6 +16,7 @@ class CalendarEventSorter extends DatagridSorter
      */
     public $options = [
         'entity.name' => 'crud.fields.entity',
+        'entity.type' => 'crud.fields.entity_type',
         'date' => 'events.fields.date',
         'length' => 'calendars.fields.length',
     ];
