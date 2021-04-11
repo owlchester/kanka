@@ -60,14 +60,14 @@
                                 @continue
                             @endif
                             @if ($previousPosition != $item->position)
-                                <tr class="active">
+                                <tr class="active cursor" data-toggle="collapse" data-target=".inventory-group-{{ \Illuminate\Support\Str::kebab($item->position) }}">
                                     <td colspan="@if(Auth::check())5 @else 4 @endif" class="text-muted">
                                         {!! $item->position ?: '<i>' . __('entities/inventories.show.unsorted') . '</i>' !!}
                                     </td>
                                 </tr>
                                 <?php $previousPosition = $item->position; ?>
                             @endif
-                            <tr>
+                            <tr class="collapse inventory-group-{{ \Illuminate\Support\Str::kebab($item->position) }} in">
                                 <td style="width: 50px">
                                     @if($item->is_equipped)
                                         <i class="fas fa-check" title="{{ __('entities/inventories.fields.is_equipped') }}"></i>
