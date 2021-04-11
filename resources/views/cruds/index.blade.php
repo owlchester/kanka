@@ -28,7 +28,7 @@
                             @if (!empty($templates) && !$templates->isEmpty())
                             @foreach ($templates as $entityTemplate)
                             <li>
-                                <a href="{{ route($name . '.create', ['copy' => $entityTemplate->entity_id]) }}">
+                                <a href="{{ route($name . '.create', ['copy' => $entityTemplate->entity_id, 'template' => true]) }}">
                                     <i class="fa fa-star-o"></i> {{ $entityTemplate->name  }}</span>
                                 </a>
                             </li>
