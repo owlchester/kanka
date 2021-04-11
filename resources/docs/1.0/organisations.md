@@ -43,7 +43,7 @@ You can get a list of all the organisations of a campaign by using the following
             "location_id": 4,
             "organisation_id": 4,
             "type": "Kingdom",
-            "members": 3
+            "members": []
         }
     ]
 }
@@ -80,7 +80,7 @@ To get the details of a single organisation, use the following endpoint.
         "location_id": 4,
         "organisation_id": 4,
         "type": "Kingdom",
-        "members": 3
+        "members": []
     }
 
 }

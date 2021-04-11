@@ -15,7 +15,7 @@ To create an organisation Member, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| POST | `organisations/{organisation.id}/organisation-members` | Default |
+| POST | `organisations/{organisation.id}/organisation_members` | Default |
 
 ### Body
 
@@ -38,7 +38,7 @@ To update a organisation, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| PUT/PATCH | `organisations/{organisation.id}/organisation-members/{organisation-member.id}` | Default |
+| PUT/PATCH | `organisations/{organisation.id}/organisation_members/{organisation-member.id}` | Default |
 
 ### Body
 
@@ -56,7 +56,7 @@ To delete an organisation member, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| DELETE | `/{organisation.id}/organisation-members/{organisation-member.id}` | Default |
+| DELETE | `/{organisation.id}/organisation_members/{organisation-member.id}` | Default |
 
 ### Results
 
