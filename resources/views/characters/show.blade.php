@@ -42,7 +42,7 @@
             <!-- /.box-header -->
             <div class="box-body">
                 @foreach ($model->characterTraits()->personality()->orderBy('default_order')->get() as $trait)
-                    <p><b>{{ $trait->name }}</b><br />{!! nl2br(e($trait->entry)) !!}</p>
+                    <p><b>{{ $trait->name }}</b><br />{!! nl2br(\App\Facades\Mentions::mapAny($trait, 'entry')) !!}</p>
                 @endforeach
             </div>
         </div>

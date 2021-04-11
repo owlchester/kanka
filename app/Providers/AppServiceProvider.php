@@ -20,6 +20,7 @@ use App\Models\CampaignUser;
 use App\Models\AttributeTemplate;
 use App\Models\Calendar;
 use App\Models\Character;
+use App\Models\CharacterTrait;
 use App\Models\CommunityEvent;
 use App\Models\CommunityEventEntry;
 use App\Models\CommunityVote;
@@ -123,6 +124,7 @@ class AppServiceProvider extends ServiceProvider
             CampaignSubmission::observe('App\Observers\CampaignSubmissionObserver');
             //MapPoint::observe('App\Observers\MapPointObserver');
             Character::observe(CharacterObserver::class);
+            CharacterTrait::observe('App\Observers\CharacterTraitObserver');
             CommunityVote::observe('App\Observers\CommunityVoteObserver');
             CommunityEvent::observe('App\Observers\CommunityEventObserver');
             CommunityEventEntry::observe('App\Observers\CommunityEventEntryObserver');
