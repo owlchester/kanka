@@ -30,7 +30,9 @@ $model = $entity->child;
                     <i class="fa fa-check-circle pull-right margin-r-5" title="{{ trans('quests.fields.is_completed') }}"></i>
                 @endif
 
-                @if (!empty($widget->conf('text')))
+                @if(!empty($customName))
+                    {{ $customName }}
+                @elseif (!empty($widget->conf('text')))
                     {{ $widget->conf('text') }}
                 @else
                     {{ $entity->name }}

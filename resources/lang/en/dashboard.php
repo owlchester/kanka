@@ -139,6 +139,12 @@ return [
             'tags'          => 'Filter the list of recently modified entities on specified tags.',
             'title'         => 'Recently modified',
         ],
+
+        'random' => [
+            'helpers' => [
+                'name' => 'You can reference the random entity\'s name with {name}',
+            ]
+        ],
         'unmentioned'   => [
             'title' => 'Unmentioned entities',
         ],

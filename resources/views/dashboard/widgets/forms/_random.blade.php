@@ -8,7 +8,7 @@
 
 <div class="row">
     <div class="col-sm-6">
-        @include('dashboard.widgets.forms._name')
+        @include('dashboard.widgets.forms._name', ['random' => true])
     </div>
     <div class="col-sm-6">
         @include('dashboard.widgets.forms._width')

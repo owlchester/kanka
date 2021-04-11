@@ -25,9 +25,10 @@ if (empty($entity) || empty($entity->child)) {
 $model = $entity->child;
 
 $specificPreview = 'dashboard.widgets.previews.' . $entity->type;
+$customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name, $widget->conf('text')) : null;
 ?>
 @if(view()->exists($specificPreview))
-    @include($specificPreview, ['entity' => $entity])
+    @include($specificPreview, ['entity' => $entity, 'customName' => $customName])
 @else
 <div class="panel panel-default widget-preview" id="dashboard-widget-{{ $widget->id }}">
     <div class="panel-heading @if ($widget->conf('entity-header') && $campaign->boosted() && $entity->header_image) panel-heading-entity" style="background-image: url({{ $entity->getImageUrl(0, 0, 'header_image') }}) @elseif ($model->image) panel-heading-entity" style="background-image: url({{ $model->getImageUrl() }}) @endif">
@@ -37,7 +38,7 @@ $specificPreview = 'dashboard.widgets.previews.' . $entity->type;
                     <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                 @endif
                 @if (!empty($widget->conf('text')))
-                    {{ $widget->conf('text') }}
+                    {{ $customName }}
                 @else
                     {{ $entity->name }}
                 @endif

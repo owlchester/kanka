@@ -17,7 +17,9 @@ $map = $entity->child;
                         <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                     @endif
 
-                    @if (!empty($widget->conf('text')))
+                    @if(!empty($customName))
+                        {{ $customName }}
+                    @elseif (!empty($widget->conf('text')))
                         {{ $widget->conf('text') }}
                     @else
                         {{ $entity->name }}
