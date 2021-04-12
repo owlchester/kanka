@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class PluginVersionEntity
  * @package App\Models
  *
+ * @property int $id
  * @property string $name
  * @property int $plugin_version_id
  * @property int $type_id

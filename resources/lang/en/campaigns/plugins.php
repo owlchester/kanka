@@ -35,6 +35,9 @@ return [
         'updates'       => 'Updates',
         'your_version'  => 'Your version',
     ],
+    'import' => [
+        'success' => '{1} Imported :count entity from the plugin :plugin.|[2,*] Imported :count entities from the plugin :plugin.',
+    ],
     'status'        => [
         'disabled'  => 'Disabled',
         'enabled'   => 'Enabled',
