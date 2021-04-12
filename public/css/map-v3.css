@@ -142,6 +142,11 @@
   z-index: 800;
 }
 
+.leaflet-popup img,
+.marker-details img {
+  max-width: 100%;
+}
+
 @media (min-width: 767px) {
   #map-body .main-sidebar {
     width: 430px;
