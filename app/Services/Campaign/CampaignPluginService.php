@@ -37,6 +37,9 @@ class CampaignPluginService
     /** @var array  */
     protected $miscIds = [];
 
+    /** @var array  */
+    protected $entityTypes = [];
+
     /** @var array */
     protected $models = [];
 
@@ -179,10 +182,12 @@ class CampaignPluginService
     protected function importModel(PluginVersionEntity $pluginEntity)
     {
         // Updating?
+        /** @var Entity $model */
         $model = $this->importedEntities->where('marketplace_uuid', $pluginEntity->uuid)->first();
         if ($model) {
             $this->entityIds[$pluginEntity->id] = $model->id;
             $this->miscIds[$pluginEntity->id] = $model->entity_id;
+            $this->entityTypes[$pluginEntity->id] = $model->type;
             //dump('existing ' . $pluginEntity->uuid);
             $model = $model->child;
         } else {
@@ -192,7 +197,7 @@ class CampaignPluginService
             /** @var MiscModel $model */
             $model = new $className();
             $model->name = $pluginEntity->name;
-            $model->entry = $pluginEntity->entry;
+            //$model->entry = $this->$pluginEntity->entry;
             $model->save();
 
             $entity = $model->entity;
@@ -200,6 +205,7 @@ class CampaignPluginService
             $entity->save();
 
             $this->miscIds[$pluginEntity->id] = $model->id;
+            $this->entityTypes[$pluginEntity->id] = $model->getEntityType();
             $this->entityIds[$pluginEntity->id] = $model->entity->id;
         }
         $this->models[$pluginEntity->id] = $model;
@@ -210,6 +216,7 @@ class CampaignPluginService
      */
     protected function importFields(PluginVersionEntity $pluginEntity)
     {
+        //dump('Parsing entity ' . $pluginEntity->name . ' #' . $pluginEntity->id . '');
         $model = $this->models[$pluginEntity->id];
         $entityId = $this->getEntityId($pluginEntity->id);
         $blocks = ['personality', 'appearance'];
@@ -237,6 +244,16 @@ class CampaignPluginService
         }
 
         $model = $this->importImage($model, $pluginEntity);
+
+        // Mentions
+        $model->entry = preg_replace_callback('`\[entity:(.*?)\]`i', function ($matches) {
+            $id = (int) $matches[1];
+            if (empty($id) || !isset($this->entityIds[$id])) {
+                return 'wat';
+            }
+
+            return '[' . $this->entityTypes[$id] . ':' . $this->entityIds[$id] . ']';
+        }, $pluginEntity->entry);
 
         $model->save();
 
