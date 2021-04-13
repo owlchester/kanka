@@ -7,6 +7,7 @@ namespace App\Services\Campaign;
 use App\Facades\CampaignCache;
 use App\Models\Campaign;
 use App\Models\CampaignPlugin;
+use App\Models\CharacterTrait;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Models\OrganisationMember;
@@ -211,6 +212,7 @@ class CampaignPluginService
     {
         $model = $this->models[$pluginEntity->id];
         $entityId = $this->getEntityId($pluginEntity->id);
+        $blocks = ['personality', 'appearance'];
         //dump("entityId: $entityId");
         foreach ($pluginEntity->fields as $field => $value) {
             //dump("field $field => $value");
@@ -227,6 +229,8 @@ class CampaignPluginService
                 } else {
                     $model->$field = $this->miscIds[$value];
                 }
+            } elseif (in_array($field, $blocks)) {
+                $this->importBlock($field, $value, $model);
             } else {
                 $model->$field = $value;
             }
@@ -345,6 +349,32 @@ class CampaignPluginService
         }
 
         return $model;
+    }
+
+    protected function importBlock(string $block, array $values = null, MiscModel $model)
+    {
+        if (empty($values)) {
+            return;
+        }
+
+        /** @var CharacterTrait[] $existing */
+        $existing = [];
+        foreach ($model->characterTraits()->{$block}()->get() as $pers) {
+            $existing[$pers->name] = $pers;
+        }
+        foreach ($values as $name => $value) {
+            if (isset($existing[$name])) {
+                $existing[$name]->entry = $value;
+                $existing[$name]->save();
+            } else {
+                CharacterTrait::create([
+                    'character_id' => $model->id,
+                    'section' => $block,
+                    'name' => $name,
+                    'entry' => $value
+                ]);
+            }
+        }
     }
 
     /**
