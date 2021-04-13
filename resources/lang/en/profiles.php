@@ -50,9 +50,9 @@ return [
     'sections'      => [
         'delete'    => [
             'delete'    => 'Delete my account',
+            'helper'    => 'Deleting your account will also delete any campaign you are the only member of. This action is permanent and can\'t be undone.',
             'title'     => 'Delete your account',
             'warning'   => 'By deleting your account, all your data will be lost. Are you sure?',
-            'helper'    => 'Deleting your account will also delete any campaign you are the only member of. This action is permanent and can\'t be undone.',
         ],
         'password'  => [
             'title' => 'Change your password',

@@ -29,7 +29,8 @@ return [
         'type'          => 'Type',
     ],
     'helpers'       => [
-        'nested'    => 'Ce mode de navigation permet d\'afficher les races de manière imbriquée. Les races sans race parent seront affichées par défaut. Les races possédant des sous-races peuvent être cliquées pour afficher leurs enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
+        'nested_parent' => 'Affichage des races de :parent.',
+        'nested_without'=> 'Affichage des races sans parent. Cliquer sur une rangée pour afficher les races enfants.',
     ],
     'index'         => [
         'add'           => 'Nouvelle Race',

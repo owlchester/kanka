@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'account-deletion'       => [
-        'account_settings' => 'Account settings',
-        'answer'    => 'To delete your account, go to your :account page and scroll down to the account deletion section. This will delete your account and any campaigns where you are the sole member.',
-        'question'  => 'How can I delete my account?',
+    'account-deletion'      => [
+        'account_settings'  => 'Account settings',
+        'answer'            => 'To delete your account, go to your :account page and scroll down to the account deletion section. This will delete your account and any campaigns where you are the sole member.',
+        'question'          => 'How can I delete my account?',
     ],
     'app_backup'            => [
         'answer'    => 'We perform two backups a day to prevent any data loss. Our own campaigns are on the server, so we don’t want to take any risks!',

@@ -94,7 +94,11 @@ return [
     'title'             => 'Tableau de bord',
     'welcome'           => [],
     'widgets'           => [
-        'calendar'      => [
+        'actions'                   => [
+            'advanced-options'  => 'Options avancées',
+        ],
+        'advanced_options_boosted'  => 'Les :boosted_campaigns ont des options avancées tel que pouvoir afficher les enfants d\'une famille ou les attributs d\'une entité sur le tableau de bord.',
+        'calendar'                  => [
             'actions'           => [
                 'next'      => 'Changer la date au prochain jour',
                 'previous'  => 'Changer la date au jour précédent',
@@ -103,39 +107,51 @@ return [
             'previous_events'   => 'Précédents',
             'upcoming_events'   => 'Prochainement',
         ],
-        'campaign'      => [
+        'campaign'                  => [
             'helper'    => 'Ce widget affiche l\'entête de campagne. Ce widget est tout le temps visible sur le tableau de bord de défaut.',
         ],
-        'create'        => [
+        'create'                    => [
             'success'   => 'Widget ajouté au tableau de bord.',
         ],
-        'delete'        => [
+        'delete'                    => [
             'success'   => 'Widget retiré du tableau de bord.',
         ],
-        'fields'        => [
-            'name'  => 'Nom de widget personnalisé',
-            'text'  => 'Texte',
-            'width' => 'Largeur',
+        'fields'                    => [
+            'dashboard' => 'Tableau de bord',
+            'name'      => 'Nom de widget personnalisé',
+            'text'      => 'Texte',
+            'width'     => 'Largeur',
         ],
-        'recent'        => [
-            'entity-header' => 'Utiliser l\'image d\'en-tête de l\'entité',
-            'full'          => 'Entier',
-            'help'          => 'Afficher seulement la dernière entité modifiée avec un aperçu de celle-ci.',
-            'helpers'       => [
-                'entity-header' => 'Si l\'entité à une image d\'en-tête (limité aux campagnes boostées), le widget utilisera cette image au lieu de l\'image principale de l\'entité.',
-                'full'          => 'Afficher le contenu entier de l\'entité au lieu d\'un aperçu.',
+        'random'                    => [
+            'helpers'   => [
+                'name'  => 'Le nom de l\'entité au hasard peut être référencé avec {name}',
             ],
-            'singular'      => 'Singulier',
-            'tags'          => 'Filtrer la liste des entités récemment modifiées sur une ou plusieurs étiquettes.',
-            'title'         => 'Récemment modifié',
         ],
-        'unmentioned'   => [
+        'recent'                    => [
+            'entity-header'     => 'Utiliser l\'image d\'en-tête de l\'entité',
+            'filters'           => 'Filtres',
+            'full'              => 'Entier',
+            'help'              => 'Afficher seulement la dernière entité modifiée avec un aperçu de celle-ci.',
+            'helpers'           => [
+                'entity-header'     => 'Si l\'entité à une image d\'en-tête (limité aux campagnes boostées), le widget utilisera cette image au lieu de l\'image principale de l\'entité.',
+                'filters'           => 'Les entités affichées peuvent être filtrées. En savoir plus en lisant la page d\'aide :link.',
+                'full'              => 'Afficher le contenu entier de l\'entité au lieu d\'un aperçu.',
+                'show_attributes'   => 'Afficher les attributs de l\'entité.',
+                'show_members'      => 'Si l\'entité est une famille ou organisation, afficher les membres sous l\'entrée.',
+            ],
+            'show_attributes'   => 'Afficher les attributs',
+            'show_members'      => 'Afficher les membres',
+            'singular'          => 'Singulier',
+            'tags'              => 'Filtrer la liste des entités récemment modifiées sur une ou plusieurs étiquettes.',
+            'title'             => 'Récemment modifié',
+        ],
+        'unmentioned'               => [
             'title' => 'Entité non mentionnées',
         ],
-        'update'        => [
+        'update'                    => [
             'success'   => 'Widget modifié.',
         ],
-        'widths'        => [
+        'widths'                    => [
             '0' => 'Automatique',
             '12'=> 'Complet',
             '3' => 'Minuscule (25%)',

@@ -29,7 +29,8 @@ return [
         'type'          => 'Type',
     ],
     'helpers'       => [
-        'nested'            => 'Affichage des chronologies sans parent par défaut. Cliquer sur une chronologie pour afficher ses descendants.',
+        'nested_parent'     => 'Affichage des chronologies de :parent.',
+        'nested_without'    => 'Affichage des chronologies sans parent. Cliquer sur une rangée pour afficher les chronologies enfants.',
         'reorder'           => 'Glisser déposer les éléments de l\'ère pour les réorganiser.',
         'reorder_tooltip'   => 'Cliquer pour activer la réorganisation des éléments, puis les glisser-déposer pour les réordonner.',
         'reverse_order'     => 'Activer pour afficher les ères dans le sens chronologique inversé (plus ancien en premier)',

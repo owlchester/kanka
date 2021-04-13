@@ -41,8 +41,8 @@ return [
         'families'          => 'Locations can be the seat of powerful families.',
         'map'               => 'Adding a map to a location will allow you to place "Points" on the map, linking to other Entities in the campaign.',
         'map_deprecated_2'  => 'Maps are now their own module! Old maps can still be updated but all new maps go into the new Maps module.',
-        'nested_parent' => 'Displaying the locations of :parent.',
-        'nested_without' => 'Displaying all locations that don\'t have a parent location. Click on a row to see the children locations.',
+        'nested_parent'     => 'Displaying the locations of :parent.',
+        'nested_without'    => 'Displaying all locations that don\'t have a parent location. Click on a row to see the children locations.',
         'organisations'     => 'View all organisations in this location and its children locations, or just those directly located here.',
     ],
     'hints'         => [

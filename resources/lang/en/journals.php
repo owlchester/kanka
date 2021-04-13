@@ -24,9 +24,9 @@ return [
         'type'      => 'Type',
     ],
     'helpers'       => [
-        'journals'  => 'Display all or only the direct sub journals of this journal.',
+        'journals'      => 'Display all or only the direct sub journals of this journal.',
         'nested_parent' => 'Displaying the journals of :parent.',
-        'nested_without' => 'Displaying all journals that don\'t have a parent journal. Click on a row to see the children journals.',
+        'nested_without'=> 'Displaying all journals that don\'t have a parent journal. Click on a row to see the children journals.',
     ],
     'index'         => [
         'add'           => 'New Journal',

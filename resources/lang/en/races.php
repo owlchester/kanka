@@ -30,7 +30,7 @@ return [
     ],
     'helpers'       => [
         'nested_parent' => 'Displaying the races of :parent.',
-        'nested_without' => 'Displaying all races that don\'t have a parent race. Click on a row to see the children races.',
+        'nested_without'=> 'Displaying all races that don\'t have a parent race. Click on a row to see the children races.',
     ],
     'index'         => [
         'add'           => 'New Race',

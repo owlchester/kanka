@@ -25,7 +25,8 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Cette liste contient toutes les organisations qui appartiennent directement ou indirectement à cette organisation.',
-        'nested'        => 'Ce mode de navigation permet d\'afficher les organisations de manière imbriquée. Les organisations sans organisation parent seront affichées par défaut. Les organisations possédant des sous-organisations peuvent être cliquées pour afficher leurs enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
+        'nested_parent' => 'Affichage des organisations de :parent.',
+        'nested_without'=> 'Affichage des organisations sans parent. Cliquer sur une rangées pour afficher les organisations enfants.',
     ],
     'index'         => [
         'add'           => 'Nouvelle Organisation',

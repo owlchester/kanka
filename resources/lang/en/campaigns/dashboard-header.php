@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'edit' => [
-        'title' => 'Campaign dashboard header update',
-        'success' => 'Campaign dashboard header updated.',
-    ]
+    'edit'  => [
+        'success'   => 'Campaign dashboard header updated.',
+        'title'     => 'Campaign dashboard header update',
+    ],
 ];

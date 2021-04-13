@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'account-deletion'      => [
+        'account_settings'  => 'Paramètres de compte',
+        'answer'            => 'Pour supprimer un compte, naviguer à la page :account et vers le bas de la page se trouve la suppression de compte. Ceci supprimera le compte et les campagnes où tu es le seul membre.',
+        'question'          => 'Comment supprimer mon compte?',
+    ],
     'app_backup'            => [
         'answer'    => 'Nous effectuons deux sauvegardes par jour pour éviter toute perte de données. Nos propres campagnes sont sur le serveur, du coup nous ne voulons prendre aucun risque!',
         'question'  => 'À quelle fréquence les données sur Kanka sont-elles sauvegardées?',
