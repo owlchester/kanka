@@ -300,18 +300,15 @@ footer {
     padding: 1.5rem 0 1.5rem;
     text-align: center;
 
-    .email, .socials {
-      display: inline;
+    .email, .socials, .language-switcher {
+      display: block;
       font-size: 18px;
+      margin-bottom: 10px;
 
       a {
         font-size: 1.9rem;
         margin-right: 8px;
       }
-    }
-
-    .email {
-      margin-right: 20px;
     }
   }
 
@@ -1129,6 +1126,19 @@ summary { display: list-item; }
   margin: 3px 10px;
 }
 
+@media(min-width: 787px) {
+  footer {
+    .footer-socials {
+      .email, .socials, .language-switcher {
+        display: inline;
+      }
+
+      .email, .socials {
+        margin-right: 20px;
+      }
+    }
+  }
+}
 
 // Other stylings
 @import "calendar";
