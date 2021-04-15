@@ -25,6 +25,8 @@ use Exception;
  * @property int $target_id
  * @property bool $is_star
  * @property string $colour
+ * @property string $marketplace_uuid
+ *
  * @property Relation $mirror
  * @property Relation $target
  * @property Relation $owner

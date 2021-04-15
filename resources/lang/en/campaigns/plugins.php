@@ -6,6 +6,7 @@ return [
         'enable'            => 'Enable plugin',
         'go_to_marketplace' => 'Go to the Marketplace',
         'remove'            => 'Remove plugin',
+        'import'            => 'Import',
         'update'            => 'Update plugin',
         'update_available'  => 'Update available!',
     ],
@@ -33,6 +34,9 @@ return [
         'title'         => 'Plugin :plugin updates',
         'updates'       => 'Updates',
         'your_version'  => 'Your version',
+    ],
+    'import' => [
+        'success' => '{1} Imported :count entity from the plugin :plugin.|[2,*] Imported :count entities from the plugin :plugin.',
     ],
     'status'        => [
         'disabled'  => 'Disabled',

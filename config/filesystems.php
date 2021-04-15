@@ -61,6 +61,8 @@ return [
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
+            'root' => env('APP_ENV') != 'prod' ? env('APP_ENV') : null,
+            'visibility' => 'public',
         ],
 
         's3-assets' => [
@@ -83,6 +85,18 @@ return [
             'visibility' => 'public',
             // We have to declare the url otherwise voyager gets confused
             'url' => 'https://images.kanka.io/'
+        ],
+
+        's3-marketplace' => [
+            'driver' => 's3',
+            'key' => env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'region' => env('AWS_DEFAULT_REGION'),
+            'bucket' => env('AWS_BUCKET_MARKETPLACE'),
+            'visibility' => 'public',
+            // We have to declare the url otherwise voyager gets confused
+            'url' => 'https://' . env('AWS_BUCKET_APP') . '.s3.amazonaws.com/'
+
         ]
 
     ],

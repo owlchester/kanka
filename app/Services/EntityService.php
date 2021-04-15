@@ -260,13 +260,6 @@ class EntityService
                 if (!Storage::exists($newPath)) {
                     Storage::copy($entity->child->image, $newPath);
                 }
-
-                // Copy thumb
-//                $oldThumb = str_replace('.', '_thumb.', $entity->child->image);
-//                $newThumb = str_replace('.', $uniqid . '_thumb.', $entity->child->image);
-//                if (!Storage::exists($newThumb)) {
-//                    Storage::copy($oldThumb, $newThumb);
-//                }
             }
 
             // The model is ready to be saved.

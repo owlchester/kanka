@@ -91,4 +91,28 @@ class Plugin extends Model
         return __('crud.users.unknown');
     }
 
+    /**
+     * @return bool
+     */
+    public function isContentPack(): bool
+    {
+        return $this->type_id == PluginType::TYPE_PACK;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isTheme(): bool
+    {
+        return $this->type_id == PluginType::TYPE_THEME;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAttributeTemplate(): bool
+    {
+        return $this->type_id == PluginType::TYPE_ATTRIBUTE;
+    }
+
 }
