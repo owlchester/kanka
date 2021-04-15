@@ -96,7 +96,8 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Les mois intercalaires n\'utilisent pas les jours de la semaine, mais ont quand-même une influence sur les lunes et saisons.',
-        'nested'        => 'Affichage de calendriers sans calendrier parent. Cliquer sur un calendrier affiche les sous-calendriers de celui-ci.',
+        'nested_parent' => 'Affichage des calendriers de :parent.',
+        'nested_without'=> 'Affichage des calendriers sans parent. Cliquer sur une rangée pour afficher les calendriers enfants.',
         'start_offset'  => 'Un calendrier commence par défaut le premier jour de la première semaine de l\'année 0. Modifier ce champ permet d\'influencer quand le premier jour tombe.',
     ],
     'hints'         => [

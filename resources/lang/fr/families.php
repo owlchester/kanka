@@ -28,7 +28,8 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Cette liste contient toutes les familles qui sont des descendants de cette famille, et pas seulement celles directement sous celle-ci.',
-        'nested'        => 'Ce mode de navigation permet d\'afficher les familles de manière imbriquée. Les familles sans famille parent seront affichées par défaut. Les familles possédant des sous-familles peuvent être cliquées pour afficher leurs enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
+        'nested_parent' => 'Affichage des familles de :parent.',
+        'nested_without'=> 'Affichage des familles sans parent. Cliquer sur une rangée pour afficher les familles enfants.',
     ],
     'hints'         => [
         'members'   => 'Les membres d\'une famille sont affichés ici. Un personnage peut être ajouté à une famille lors de l\'édition du personnage en utilisant le champ "Famille".',

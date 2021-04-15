@@ -51,6 +51,7 @@ trait TreeControllerTrait
 
         /** @var Tag $model **/
         $parentKey = $model->getTable() . '.' . (!empty($this->treeControllerParentKey) ? $this->treeControllerParentKey : $singularModel . '_id');
+        $parent = null;
         if (request()->has('parent_id')) {
             $base->where([$parentKey => request()->get('parent_id')]);
 
@@ -114,7 +115,8 @@ trait TreeControllerTrait
             'unfilteredCount',
             'filteredCount',
             'createOptions',
-            'templates'
+            'templates',
+            'parent'
         ));
     }
 }

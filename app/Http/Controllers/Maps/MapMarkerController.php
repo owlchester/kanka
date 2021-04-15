@@ -148,7 +148,11 @@ class MapMarkerController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $mapMarker->update($request->only($this->fields));
+        $data = $request->only($this->fields);
+        if (!request()->has('entity_id') && !isset($data['entity_id'])) {
+            $data['entity_id'] = null;
+        }
+        $mapMarker->update($data);
 
         if ($request->has('submit-explore')) {
             return redirect()

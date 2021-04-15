@@ -85,10 +85,12 @@ TEXT
         'boost_required'                => 'Für diese Funktion muss die Kampagne geboosted werden. Weitere Informationen finden Sie hier :settings page.',
         'boosted'                       => 'Einige Funktionen sind freigeschaltet, da diese Kampagne geboosted wird. Weitere Informationen finden Sie auf der :settings page.',
         'css'                           => 'Schreibe dein eigenes CSS, das du auf die Seiten deiner Kampagne laden kannst. Bitte beachte, dass jeder Missbrauch dieser Funktion dazu führen kann, dass dein benutzerdefiniertes CSS entfernt wird. Wiederholungen oder schwerwiegende Verstöße können dazu führen, dass deine Kampagne entfernt wird.',
+        'dashboard'                     => 'Passen Sie die Anzeige des Kampagnen-Dashboard-Widgets an, indem Sie die folgenden Felder ausfüllen.',
         'entity_note_visibility'        => 'Beim Erstellen einer neuen Objektnotiz wird automatisch die Option "Fixiert" ausgewählt.',
         'entity_personality_visibility' => 'Wenn ein neuer Charakter erstellt wird, wird die "Persönlichkeit sichtbar" Option automatisch deaktiviert.',
         'entity_visibility'             => 'Wenn du ein neues Objekt erstellst, wird es automatisch auf "Privat" gesetzt.',
         'excerpt'                       => 'Die Kampagnenzusammenfassung wird im Dashboard angezeigt. Schreib daher ein paar Sätze, die deine Welt vorstellen. Idealerweise hältst du es kurz und informativ.',
+        'header_image'                  => 'Das Bild wird im Widget des Kampagnen-Header-Dashboards als Hintergrund angezeigt.',
         'hide_history'                  => 'Aktivieren Sie diese Option, um den Verlauf von Objekten vor Nichtmitglieder der Kampagne zu verbergen.',
         'hide_members'                  => 'Aktivieren Sie diese Option, um die Liste der Kampagnenmitglieder der Kampagne für Nicht-Administratoren auszublenden.',
         'locale'                        => 'Die Sprache, in der deine Kampagne geschrieben ist. Dies wird genutzt, um Inhalte zu erstellen und öffentliche Kampagnen zu gruppieren.',
@@ -302,7 +304,8 @@ TEXT
         ],
         'users'         => [
             'actions'   => [
-                'add'   => 'Hinzufügen',
+                'add'       => 'Hinzufügen',
+                'remove'    => ':user von der :role Rolle',
             ],
             'create'    => [
                 'success'   => 'Benutzer zu Rolle hinzugefügt.',

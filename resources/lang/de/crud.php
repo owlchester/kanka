@@ -25,7 +25,8 @@ return [
     ],
     'add'                       => 'Hinzufügen',
     'alerts'                    => [
-        'copy_mention'  => 'Die erweiterte Erwähnung dieses Objekts wurde in Ihre Zwischenablage kopiert.',
+        'copy_attribute'    => 'Die Erwähnung des Attributs wurde in Ihre Zwischenablage kopiert.',
+        'copy_mention'      => 'Die erweiterte Erwähnung dieses Objekts wurde in Ihre Zwischenablage kopiert.',
     ],
     'attributes'                => [
         'actions'       => [
@@ -50,6 +51,9 @@ return [
             'description'   => 'Aktualisiere ein bestehendes Attribut',
             'success'       => 'Attribut :name für :entity aktualisiert',
             'title'         => 'Aktualisiere Attribut für :name',
+        ],
+        'errors'        => [
+            'loop'  => 'Diese Attributberechnung enthält eine Endlosschleife!',
         ],
         'fields'        => [
             'attribute'             => 'Attribut',
@@ -77,6 +81,10 @@ return [
                 'class' => 'FontAwesome oder RPG Awesome class: fas fa-users',
                 'name'  => 'Symbolname',
             ],
+            'random'    => [
+                'name'  => 'Attributname',
+                'value' => '1-100 oder Liste von Werten, die durch ein Komma getrennt sind',
+            ],
             'section'   => 'Abteilungsname',
             'template'  => 'Wähle eine Vorlage',
             'value'     => 'Wert des Attributs',
@@ -90,6 +98,7 @@ return [
             'block'     => 'Block',
             'checkbox'  => 'Checkbox',
             'icon'      => 'Symbol',
+            'random'    => 'Zufällig',
             'section'   => 'Abteilung',
             'text'      => 'Mehrzeiliger Text',
         ],

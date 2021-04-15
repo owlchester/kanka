@@ -44,15 +44,22 @@ $specificPreview = 'dashboard.widgets.previews.' . $widget->entity->type;
     <div class="panel-body">
         @if ($widget->conf('full') === '1')
             {!! $model->entry() !!}
+
+            @include('dashboard.widgets.previews._members')
+            @include('dashboard.widgets.previews._attributes')
         @else
         <div class="pinned-entity preview" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">
             {!! $model->entry() !!}
+
+            @include('dashboard.widgets.previews._members')
+            @include('dashboard.widgets.previews._attributes')
         </div>
         <a href="#" class="preview-switch hidden"
            id="widget-preview-switch-{{ $widget->id }}" data-widget="{{ $widget->id }}">
             <i class="fa fa-chevron-down"></i>
         </a>
         @endif
+
     </div>
 
     @if ($widget->entity->typeId() == config('entities.ids.location'))

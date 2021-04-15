@@ -48,7 +48,8 @@ return [
         'max_zoom'          => 'The most a map can be zoomed in on. The default value is :default, while the highest allowed value is :max.',
         'min_zoom'          => 'The most a map can be zoomed out of. The default value is :default, while the lowest allowed value is :min.',
         'missing_image'     => 'Save the map with an image before being able to add layers and markers.',
-        'nested'            => 'When in Nested View, you can view your Maps in a nested manner. Maps with no parent map will be shown by default. Maps with children maps can be clicked to view those children. You can keep clicking until there are no more children to view.',
+        'nested_parent'     => 'Displaying the maps of :parent.',
+        'nested_without'    => 'Displaying all maps that don\'t have a parent map. Click on a row to see the children maps.',
     ],
     'index'         => [
         'add'   => 'New Map',

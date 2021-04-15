@@ -96,7 +96,8 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Intercalary months don\'t use week days, but still influence moons and seasons.',
-        'nested'        => 'Displaying calendars that have no parent calendar first. Click on a calendar to explore it\'s sub calendars.',
+        'nested_parent' => 'Displaying the calendars of :parent.',
+        'nested_without'=> 'Displaying all calendars that don\'t have a parent calendar. Click on a row to see the children calendars.',
         'start_offset'  => 'By default, the calendar starts on the first weekday of year 0. Changing this field influences where the calendar\'s first day is placed.',
     ],
     'hints'         => [

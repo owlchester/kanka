@@ -155,3 +155,10 @@ input[type="checkbox"]:checked ~ label:before {
   content: "\2605";
 }
 
+.navbar .user-image {
+  background-color: $Unfocused;
+
+  &:hover {
+    background-color: $Hard;
+  }
+}

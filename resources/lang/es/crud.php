@@ -22,31 +22,18 @@ return [
     ],
     'add'                       => 'Añadir',
     'alerts'                    => [
-        'copy_mention'  => 'La mención avanzada de la entidad se ha copiado al portapapeles.',
+        'copy_attribute'    => 'Se ha copiado la mención del atributo al portapapeles.',
+        'copy_mention'      => 'La mención avanzada de la entidad se ha copiado al portapapeles.',
     ],
     'attributes'                => [
         'actions'       => [
-            'add'               => 'Añadir atributo',
-            'add_block'         => 'Añadir bloque',
-            'add_checkbox'      => 'Añadir casilla',
-            'add_text'          => 'Añadir texto',
             'apply_template'    => 'Aplicar plantilla de atributos',
             'manage'            => 'Administrar',
             'more'              => 'Más opciones',
             'remove_all'        => 'Eliminar todos',
         ],
-        'create'        => [
-            'description'   => 'Crear nuevo atributo',
-            'success'       => 'Atributo :name añadido a :entity.',
-            'title'         => 'Nuevo atributo para :name',
-        ],
-        'destroy'       => [
-            'success'   => 'Atributo :name de :entity eliminado.',
-        ],
-        'edit'          => [
-            'description'   => 'Actualizar un atributo existente',
-            'success'       => 'Atributo :name de :entity actualizado.',
-            'title'         => 'Actualizar atributo de :name',
+        'errors'        => [
+            'loop'  => '¡Hay un bucle infinito en el cálculo de este atributo!',
         ],
         'fields'        => [
             'attribute'             => 'Atributo',
@@ -70,6 +57,14 @@ return [
             'attribute' => 'Número de conquistas, Iniciativa, Población...',
             'block'     => 'Nombre del bloque',
             'checkbox'  => 'Nombre de la casilla',
+            'icon'      => [
+                'class' => 'Clase de FontAwesome o RPG Awesome: fas fa-users',
+                'name'  => 'Nombre del icono',
+            ],
+            'random'    => [
+                'name'  => 'Nombre del atributo',
+                'value' => '1-100 o una lista de valores separados por comas',
+            ],
             'section'   => 'Nombre de la sección',
             'template'  => 'Seleccionar plantilla',
             'value'     => 'Valor del atributo',
@@ -82,6 +77,8 @@ return [
             'attribute' => 'Atributo',
             'block'     => 'Bloque',
             'checkbox'  => 'Casilla',
+            'icon'      => 'Icono',
+            'random'    => 'Aleatorio',
             'section'   => 'Sección',
             'text'      => 'Texto multilínea',
         ],
@@ -295,7 +292,6 @@ return [
     'linking_help'              => '¿Como se enlazan otras entradas?',
     'manage'                    => 'Administrar',
     'move'                      => [
-        'description'   => 'Mover esta entidad a otro lugar',
         'errors'        => [
             'permission'        => 'No tienes permiso para crear entidades de este tipo en la campaña seleccionada.',
             'same_campaign'     => 'Debes seleccionar otra campaña donde mover la entidad.',
@@ -363,8 +359,7 @@ return [
         ],
         'helper'            => 'Desde aquí puedes afinar qué usuarios y roles pueden interactuar con esta entidad.',
         'helpers'           => [
-            'entity_note'   => 'Permite a los usuarios crear notas dentro de esta entidad. Sin este permiso, podrán seguir viendo las notas de entidad que se muestren a todos.',
-            'setup'         => 'Desde aquí puedes afinar cómo los diferentes roles y usuarios pueden interactuar con esta entidad. :allow les permitirá hacer dicha acción; :deny se la denegará, y :inherit usará el permiso que ya tenga el rol o usuario. Un usuario con una acción puesta en :allow podrá hacerla, aunque su rol esté en :deny.',
+            'setup' => 'Desde aquí puedes afinar cómo los diferentes roles y usuarios pueden interactuar con esta entidad. :allow les permitirá hacer dicha acción; :deny se la denegará, y :inherit usará el permiso que ya tenga el rol o usuario. Un usuario con una acción puesta en :allow podrá hacerla, aunque su rol esté en :deny.',
         ],
         'inherited'         => 'Este rol ya tiene este permiso en esta entidad.',
         'inherited_by'      => 'Este usuario forma parte del rol ":role", que le otorga este permiso en esta entidad.',

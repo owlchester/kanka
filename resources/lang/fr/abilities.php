@@ -15,6 +15,9 @@ return [
         'success'   => 'Pouvoir \':name\' modifié.',
         'title'     => 'Modifier le pouvoir :name',
     ],
+    'entities'      => [
+        'title' => 'Entités avec le pouvoir :name',
+    ],
     'fields'        => [
         'abilities' => 'Pouvoirs',
         'ability'   => 'Pouvoir Parent',
@@ -24,7 +27,8 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Cette liste contient tous les pouvoirs qui sont descendants de ce pouvoir, et pas seulement les descendants directs.',
-        'nested'        => 'Ce mode de navigation permet d\'afficher les pouvoirs de manière imbriquée. Les pouvoirs sans pouvoir parent seront affichés par défaut. Les pouvoirs possédant des sous-pouvoirs peuvent être cliqués pour afficher ces enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
+        'nested_parent' => 'Affichage des pouvoirs de :parent.',
+        'nested_without'=> 'Affichage des pouvoirs sans parent. Cliquer sur une rangée pour afficher les pouvoirs enfants.',
     ],
     'index'         => [
         'add'           => 'Nouveau pouvoir',
@@ -40,6 +44,7 @@ return [
     'show'          => [
         'tabs'  => [
             'abilities' => 'Pouvoirs',
+            'entities'  => 'Entités',
         ],
         'title' => 'Pouvoir :name',
     ],

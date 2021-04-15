@@ -15,6 +15,9 @@ return [
         'note'      => 'Nota',
         'position'  => 'Posición',
     ],
+    'helpers'   => [
+        'note'  => 'Puedes referenciar entidades mediante las menciones avanzadas (por ejemplo, :code) y atributos de la entidad (por ejemplo, :attr) en este campo.',
+    ],
     'import'    => [
         'errors'    => [
             'no_race'       => 'El personaje no tiene raza.',

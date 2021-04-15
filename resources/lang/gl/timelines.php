@@ -24,9 +24,12 @@ return [
         'eras'          => 'Eras',
         'name'          => 'Nome',
         'reverse_order' => 'Invertir orde das eras',
+        'timeline'      => 'Liña temporal nai',
+        'timelines'     => 'Liñas temporais',
         'type'          => 'Tipo',
     ],
     'helpers'       => [
+        'nested'            => 'Mostrando liñas temporais sen nais por defecto. Fai clic na fila dunha liña temporal para ver as súas descendentes.',
         'reorder'           => 'Arrastra elementos da era para reordenalos.',
         'reorder_tooltip'   => 'Fai click para habilitar a reordenación manual de elementos arrastrando o cursor.',
         'reverse_order'     => 'Activa isto para mostrar as eras en orde cronolóxica inversa (as eras máis antigas primeiro)',
@@ -41,5 +44,8 @@ return [
     ],
     'show'          => [
         'title' => 'Liña temporal ":name"',
+    ],
+    'timelines'     => [
+        'title' => 'Liñas temporais de ":name"',
     ],
 ];

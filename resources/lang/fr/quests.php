@@ -52,7 +52,8 @@ return [
         'type'          => 'Type',
     ],
     'helpers'       => [
-        'nested'    => 'Ce mode de navigation permet d\'afficher les quêtes de manière imbriquée. Les quêtes sans quête parent seront affichées par défaut. Une quête possédant des sous-quêtes peut être cliquée pour afficher ses enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
+        'nested_parent' => 'Affichage des quêtes de :parent.',
+        'nested_without'=> 'Affichage des quêtes sans parent. Cliquer sur une rangée pour afficher les quêtes enfants.',
     ],
     'hints'         => [
         'quests'    => 'Un réseau de quêtes liées peut être créé à l\'aide du champ Quête Parentale.',

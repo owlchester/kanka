@@ -2,7 +2,10 @@
 
 namespace App\Renderers;
 
+use App\Facades\CampaignLocalization;
+use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\MiscModel;
 use App\Services\FilterService;
 use Collective\Html\FormFacade;
 use Illuminate\Database\Eloquent\Model;
@@ -43,6 +46,9 @@ class DatagridRenderer
     protected $filters = null;
 
     protected $dateRenderer;
+
+    /** @var Campaign|bool */
+    protected $campaign = false;
 
     /**
      * @var null
@@ -92,7 +98,9 @@ class DatagridRenderer
     {
         $html = '';
         // Checkbox for delete
-        $html .= '<th>' . Form::checkbox('all', 1, false, ['id' => 'datagrid-select-all']) . '</th>';
+        if (auth()->check()) {
+            $html .= '<th>' . Form::checkbox('all', 1, false, ['id' => 'datagrid-select-all']) . '</th>';
+        }
 
         foreach ($this->columns as $column) {
             $html .= $this->renderHeadColumn($column);
@@ -279,7 +287,9 @@ class DatagridRenderer
         $html .= '>';
 
         // Delete
-        $html .= '<td>' . Form::checkbox('model[]', $model->id, false) . '</td>';
+        if (auth()->check()) {
+            $html .= '<td>' . Form::checkbox('model[]', $model->id, false) . '</td>';
+        }
 
         foreach ($this->columns as $column) {
             $html .= $this->renderColumn($column, $model);
@@ -303,7 +313,6 @@ class DatagridRenderer
         if (is_string($column)) {
             // Just for name, a link to the view
             if ($column == 'name') {
-                $route = route($this->getOption('baseRoute') . '.show', [$model]);
                 $content = $model->tooltipedLink();
             } else {
                 // Handle boolean values (has, is)
@@ -423,7 +432,11 @@ class DatagridRenderer
         return $field;
     }
 
-    private function renderActionRow(Model $model)
+    /**
+     * @param MiscModel $model
+     * @return string
+     */
+    private function renderActionRow(MiscModel $model)
     {
         $content = '
         <a href="' . route($this->getOption('baseRoute') . '.show', [$model]) .
@@ -439,7 +452,24 @@ class DatagridRenderer
             </a>';
         }
 
-        return '<td class="text-right table-actions">' . $content . '</td>';
+        $content = '';
+        $actions = $model->datagridActions($this->getCampaign());
+        if (!empty($actions)) {
+            $content = '
+        <div class="dropdown">
+            <a class="dropdown-toggle cursor" data-toggle="dropdown" aria-expanded="false" data-placement="right">
+                <i class="fa fa-ellipsis-v"></i>
+                <span class="sr-only">' . __('crud.actions.actions') . '</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                ' . implode("\n", $actions) . '
+            </ul>
+        </div>
+        ';
+        }
+
+
+        return '<td class="text-center table-actions">' . $content . '</td>';
     }
 
     /**
@@ -468,34 +498,6 @@ class DatagridRenderer
     protected function renderFilters()
     {
         return '';
-
-        /*$filtersHtml = view('cruds._filters2')->with([
-            'filters' => $this->filters,
-            'filterService' => $this->filterService,
-            'route' => $this->getOption('route'),
-            'name' => $this->getOption('trans')
-        ]);
-
-
-        $filtersHtml = str_replace("&#039;", '&lsquo;', $filtersHtml);
-        $filtersHtml = str_replace('"', '\'', $filtersHtml);
-        $activeFilters = $this->filterService->activeFilters();
-
-        $route = route('helpers.filters');
-        $html = '
-        <div class="table-filters" title="' . __('crud.filters.title') . '
-            <a href=\'' . $route . '\' class=\'pull-right\' target=\'_blank\' title=\'' . __('helpers.filters.title') .'\'>
-                <i class=\'fa fa-question-circle\'></i>
-            </a>
-        " data-toggle="popover" '
-            . 'data-html="true" data-placement="left" data-content="' . $filtersHtml . '">
-            <i class="fa fa-filter"></i>
-            ' . (!empty($activeFilters) ? '<span class="label label-danger">' . count($activeFilters) . '</span>' : null) . '
-            <i class="fa fa-caret-down"></i>
-        </div>';
-
-
-        return $html;*/
     }
 
     /**
@@ -507,5 +509,26 @@ class DatagridRenderer
     {
         $this->nestedFilter = $key;
         return $this;
+    }
+
+    /**
+     * @param Campaign $campaign
+     * @return $this
+     */
+    public function campaign(Campaign $campaign): self
+    {
+        $this->campaign = $campaign;
+        return $this;
+    }
+
+    /**
+     * @return Campaign
+     */
+    protected function getCampaign()
+    {
+        if ($this->campaign === false) {
+            $this->campaign = CampaignLocalization::getCampaign();
+        }
+        return $this->campaign;
     }
 }

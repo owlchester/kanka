@@ -44,6 +44,7 @@ Route::group([
     Route::get('/helper/age', 'HelperController@age')->name('helpers.age');
     Route::get('/helper/attributes', 'HelperController@attributes')->name('helpers.attributes');
     Route::get('/helper/entity-templates', 'HelperController@entityTemplates')->name('helpers.entity-templates');
+    Route::get('/helper/widget-filters', 'HelperController@widgetFilters')->name('helpers.widget-filters');
 
     // OAuth Routes
     Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider')->name('auth.provider');
@@ -73,8 +74,8 @@ Route::group([
         Route::get('/gallery/ajax-gallery', 'Campaign\AjaxGalleryController@index')->name('campaign.gallery.summernote');
 
         // Abilities
-        //Route::get('/abilities/{ability}/map-points', 'AbilityController@mapPoints')->name('abilities.map-points');
         Route::get('/abilities/{ability}/abilities', 'AbilityController@abilities')->name('abilities.abilities');
+        Route::get('/abilities/{ability}/entities', 'AbilityController@entities')->name('abilities.entities');
         Route::get('/abilities/tree', 'AbilityController@tree')->name('abilities.tree');
 
         // Maps
@@ -316,6 +317,9 @@ Route::group([
         ]);
         Route::get('/campaigns/{campaign}/leave', 'CampaignController@leave')->name('campaigns.leave');
         Route::post('/campaigns/{campaign}/campaign_settings', 'CampaignSettingController@save')->name('campaigns.settings.save');
+
+        Route::get('/campaigns/{campaign}/dashboard-header/{campaignDashboardWidget?}', 'Campaign\DashboardHeaderController@edit')->name('campaigns.dashboard-header.edit');
+        Route::patch('/campaigns/{campaign}/dashboard-header', 'Campaign\DashboardHeaderController@update')->name('campaigns.dashboard-header.update');
 
         // Helper links
         Route::get('/campaign/{campaign}/campaign_roles/admin', 'CampaignRoleController@admin')->name('campaigns.campaign_roles.admin');

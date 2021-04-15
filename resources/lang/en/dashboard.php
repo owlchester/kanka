@@ -93,7 +93,11 @@ return [
     ],
     'title'             => 'Dashboard',
     'widgets'           => [
-        'calendar'      => [
+        'actions'                   => [
+            'advanced-options'  => 'Advanced options',
+        ],
+        'advanced_options_boosted'  => ':boosted_campaigns have advanced options like showing members of a family or the entity\'s attributes on the dashboard.',
+        'calendar'                  => [
             'actions'           => [
                 'next'      => 'Change date to next day',
                 'previous'  => 'Change date to previous day',
@@ -102,39 +106,51 @@ return [
             'previous_events'   => 'Previous',
             'upcoming_events'   => 'Upcoming',
         ],
-        'campaign'      => [
+        'campaign'                  => [
             'helper'    => 'This widget displays the campaign header. This widget is always shown on the default dashboard.',
         ],
-        'create'        => [
+        'create'                    => [
             'success'   => 'Widget added to the dashboard.',
         ],
-        'delete'        => [
+        'delete'                    => [
             'success'   => 'Widget removed from the dashboard.',
         ],
-        'fields'        => [
-            'name'  => 'Custom widget name',
-            'text'  => 'Text',
-            'width' => 'Width',
+        'fields'                    => [
+            'dashboard' => 'Dashboard',
+            'name'      => 'Custom widget name',
+            'text'      => 'Text',
+            'width'     => 'Width',
         ],
-        'recent'        => [
-            'entity-header' => 'Use entity header as image',
-            'full'          => 'Full',
-            'help'          => 'Only show the last updated entity, but show a whole preview of the entity',
-            'helpers'       => [
-                'entity-header' => 'If your entity has an entity header (boosted campaign feature), set this widget to use that image instead of the entity\'s image.',
-                'full'          => 'Display the whole entity\'s entry by default instead of a preview.',
+        'random'                    => [
+            'helpers'   => [
+                'name'  => 'You can reference the random entity\'s name with {name}',
             ],
-            'singular'      => 'Singular',
-            'tags'          => 'Filter the list of recently modified entities on specified tags.',
-            'title'         => 'Recently modified',
         ],
-        'unmentioned'   => [
+        'recent'                    => [
+            'entity-header'     => 'Use entity header as image',
+            'filters'           => 'Filters',
+            'full'              => 'Display full entry',
+            'help'              => 'Only show the last updated entity, but show a whole preview of the entity',
+            'helpers'           => [
+                'entity-header'     => 'If your entity has an entity header (boosted campaign feature), set this widget to use that image instead of the entity\'s image.',
+                'filters'           => 'You can filter the kind of entities that show up. Learn how to use this field by visiting the :link helper page.',
+                'full'              => 'Display the whole entity\'s entry by default instead of a preview.',
+                'show_attributes'   => 'Show the entity\'s attributes below the entry.',
+                'show_members'      => 'If the entity is a family or organisation, show its members below the entry.',
+            ],
+            'show_attributes'   => 'Show attributes',
+            'show_members'      => 'Show members',
+            'singular'          => 'Singular',
+            'tags'              => 'Filter the list of recently modified entities on specified tags.',
+            'title'             => 'Recently modified',
+        ],
+        'unmentioned'               => [
             'title' => 'Unmentioned entities',
         ],
-        'update'        => [
+        'update'                    => [
             'success'   => 'Widget modified.',
         ],
-        'widths'        => [
+        'widths'                    => [
             '0' => 'Auto',
             '12'=> 'Full (100%)',
             '3' => 'Tiny (25%)',

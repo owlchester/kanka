@@ -17,6 +17,9 @@ return [
         'export_error'  => 'Beim Export deiner Kampagne ist ein Fehler aufgetreten. Bitte kontaktiere uns, wenn das Problem weiterhin besteht.',
         'join'          => ':user ist der Kampagne :campaign beigetreten.',
         'leave'         => ':user hat die Kampagne :campaign verlassen.',
+        'plugin'        => [
+            'deleted'   => 'Das Plugin :plugin wurde vom Marktplatz gelöscht und aus Ihrer Kampagne :campaign entfernt.',
+        ],
         'role'          => [
             'add'       => 'Du wurdest zur Rolle :role in der Kampagne :campaign hinzugefügt.',
             'remove'    => 'Du wurdest aus der Rolle :role in der Kampagne :campaign entfernt.',

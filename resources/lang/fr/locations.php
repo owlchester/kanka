@@ -41,7 +41,8 @@ return [
         'families'          => 'Un lien peut être le siège d\'une puissante famille.',
         'map'               => 'Ajouter une carte au lieu permet ensuite d\'ajouter des "Points" sur la carte, liant vers d\'autres entités de la campagne.',
         'map_deprecated_2'  => 'Les cartes ont désormais leur propre module! Les anciennes cartes peuvent toujours être modifiées, mais toutes les nouvelles cartes vont dans le module de Carte.',
-        'nested'            => 'Ce mode de navigation permet d\'afficher tes lieux de manière imbriquée. Les lieux sans lieu parent seront affichés par défaut. Les lieux possédant des sous-lieux peuvent être cliqués pour afficher ces enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
+        'nested_parent'     => 'Affichage des lieux de :parent.',
+        'nested_without'    => 'Affichage des lieux sans parent. Cliquer sur une rangée pour afficher les lieux enfants.',
         'organisations'     => 'Afficher toutes les organisations dans ce lieu et sous-lieux, ou seulement ceux directement ici.',
     ],
     'hints'         => [

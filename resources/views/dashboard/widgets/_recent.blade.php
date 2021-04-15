@@ -9,14 +9,7 @@ if (!isset($offset)) {
     $offset = 0;
 }
 $entityType = $widget->conf('entity');
-$entities = \App\Models\Entity::recentlyModified()
-        ->inTags($widget->tags->pluck('id')->toArray())
-        ->type($entityType)
-        ->acl()
-        ->with(['tags', 'updater', 'image'])
-        ->take(10)
-        ->offset($offset)
-        ->get();
+$entities = $widget->entities($offset);
 
 $entityString = !empty($entityType) ? ($widget->conf('singular') ? $entityType : Str::plural($entityType)) : null;
 ?>

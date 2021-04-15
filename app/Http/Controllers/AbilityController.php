@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Datagrids\Bulks\AbilityBulk;
 use App\Datagrids\Filters\AbilityFilter;
 use App\Datagrids\Sorters\AbilityAbilitySorter;
+use App\Datagrids\Sorters\AbilityEntitySorter;
 use App\Models\Character;
 use App\Http\Requests\StoreAbility;
 use App\Models\Ability;
@@ -104,5 +105,16 @@ class AbilityController extends CrudController
     {
         return $this->datagridSorter(AbilityAbilitySorter::class)
             ->menuView($ability, 'abilities');
+    }
+
+    /**
+     * @param Ability $ability
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function entities(Ability $ability)
+    {
+        return $this->datagridSorter(AbilityEntitySorter::class)
+            ->menuView($ability, 'entities');
     }
 }

@@ -315,7 +315,7 @@ class Map extends MiscModel
                     'longitude' => $marker->longitude,
                     'latitude' => $marker->latitude,
                     'name' => $marker->markerTitle(true),
-                    'lower_name' => strtolower($marker->markerTitle(true)),
+                    'lower_name' => strtolower($marker->markerTitle(false)),
                 ]);
                 continue;
             }
@@ -324,14 +324,14 @@ class Map extends MiscModel
                 'longitude' => $marker->longitude,
                 'latitude' => $marker->latitude,
                 'name' => $marker->markerTitle(true),
-                'lower_name' => strtolower($marker->markerTitle(true)),
+                'lower_name' => strtolower($marker->markerTitle(false)),
             ]);
         }
 
         $all = $markers->sortBy('lower_name')->toArray();
 
         usort($groups, function ($a, $b) {
-            return $a['lower_name'] > $b['lower_name'];
+            return strcmp($a['lower_name'], $b['lower_name']);
         });
 
         foreach ($groups as $id => $group) {
@@ -341,7 +341,7 @@ class Map extends MiscModel
         }
 
         usort($all, function ($a, $b) {
-            return $a['lower_name'] > $b['lower_name'];
+            return strcmp($a['lower_name'], $b['lower_name']);
         });
 
         return $all;

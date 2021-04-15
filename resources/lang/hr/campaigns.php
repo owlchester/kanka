@@ -83,10 +83,12 @@ TEXT
         'boost_required'                => 'Ova funkcionalnost zahtjeva pojačanu kampanju. Više informacija na stranici :settings.',
         'boosted'                       => 'Neke funkcionalnosti su otključane jer je ova kampanja pojačana. Pronađi više na stranicama :settings.',
         'css'                           => 'Napiši svoj CSS koji će biti učitan u stranice tvoje kampanje. Zlonamjerno korištenje ove funkiconalnosti će rezultirati uklanjanjem tvog CSS-a. Ponovni ili posebno teški prijestupi mogu dovesti do uklanjanja tvoje kampanje.',
+        'dashboard'                     => 'Prilagodi način na koji se prikazuje programčić naslovne ploče kampanje popunjavanjem sljedećih polja.',
         'entity_note_visibility'        => 'Prilikom izrade nove bilješke entiteta, automatski će se odabrati opcija "Pričvršćeno".',
         'entity_personality_visibility' => 'Prilikom kreiranja novog lika, opcija "Osobnost vidljiva" će automatski biti odznačena.',
         'entity_visibility'             => 'Prilikom kreiranja novog entiteta, opcija "Privatno" će automatski biti odabrana.',
         'excerpt'                       => 'Isječak kampanje će biti prikazan na naslovnoj ploči pa napiši nekoliko rečenica kao uvod u svoj svijet. Za najbolje rezultate, neka bude kratko.',
+        'header_image'                  => 'Slika koja se prikazuje kao pozadina u programčiću naslovne ploče zaglavlja kampanje.',
         'hide_history'                  => 'Omogući ovu opciju za skrivanje povijesti entiteta članovima kampanje koji nisu administratori.',
         'hide_members'                  => 'Omogući ovu opciju za sakrivanje popisa članova kampanje za članove koji nisu administratori.',
         'locale'                        => 'Jezik u kojem je tvoja kampanja napisana. Ovo se koristi za generiranje sadržaja i grupiranje javnih kampanja.',
@@ -295,7 +297,8 @@ TEXT
         ],
         'users'         => [
             'actions'   => [
-                'add'   => 'Dodaj člana',
+                'add'       => 'Dodaj člana',
+                'remove'    => ':user iz uloge :role',
             ],
             'create'    => [
                 'success'   => 'Korisnik dodan u ulogu.',

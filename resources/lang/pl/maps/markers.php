@@ -2,9 +2,10 @@
 
 return [
     'actions'       => [
-        'entry' => 'Dodaj opis do tego znacznika.',
-        'remove'=> 'Usuń znacznik',
-        'update'=> 'Edytuj znacznik',
+        'entry'             => 'Dodaj opis do tego znacznika.',
+        'remove'            => 'Usuń znacznik',
+        'save_and_explore'  => 'Zapisz i eksploruj',
+        'update'            => 'Edytuj znacznik',
     ],
     'create'        => [
         'success'   => 'Stworzono znacznik :name.',

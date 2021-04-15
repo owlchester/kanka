@@ -6,7 +6,6 @@
     @endcan
     <div class="btn-group pull-right">
         <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-            <span></span>
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">

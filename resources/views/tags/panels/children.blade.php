@@ -28,11 +28,11 @@ $r = $r->acl()
 <div class="box box-solid">
     <div class="box-body">
         <h2 class="page-header with-border">
-            {{ trans('tags.show.tabs.children') }}
+            {{ __('tags.show.tabs.children') }}
         </h2>
 
         <p class="help-block export-hidden">
-            {{ trans('tags.hints.children') }}
+            {{ __('tags.hints.children') }}
         </p>
 
         <div class="row export-hidden">
@@ -54,8 +54,8 @@ $r = $r->acl()
         <table id="section-children" class="table table-hover">
             <tbody><tr>
                 <th class="avatar"><br /></th>
-                <th>{{ trans('crud.fields.name') }}</th>
-                <th>{{ trans('crud.fields.entity_type') }}</th>
+                <th>{{ __('crud.fields.name') }}</th>
+                <th>{{ __('crud.fields.entity_type') }}</th>
                 <th class="text-right">
                     @can('update', $model)
                         <a href="{{ $addEntityUrl }}" class="btn btn-primary btn-sm"
@@ -67,15 +67,15 @@ $r = $r->acl()
             </tr>
             @foreach ($r as $child)
                 <tr>
-                        <td>
-                            <a class="entity-image" style="background-image: url('{{ $child->avatar(true) }}');" title="{{ $child->name }}" href="{{ $child->url() }}"></a>
-                        </td>
-                        <td>
-                            {!! $child->tooltipedLink() !!}
-                        </td>
-                        <td colspan="2">
-                            {{ trans('entities.' . $child->pluralType()) }}
-                        </td>
+                    <td>
+                        <a class="entity-image" style="background-image: url('{{ $child->avatar(true) }}');" title="{{ $child->name }}" href="{{ $child->url() }}"></a>
+                    </td>
+                    <td>
+                        {!! $child->tooltipedLink() !!}
+                    </td>
+                    <td colspan="2">
+                        {{ __('entities.' . $child->pluralType()) }}
+                    </td>
                 </tr>
             @endforeach
             </tbody>

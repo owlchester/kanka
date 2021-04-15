@@ -101,6 +101,23 @@ function initDashboardAdminUI() {
             });
         }
     });
+
+    $(document).on('shown.bs.modal shown.bs.popover', function() {
+        let summernoteConfig = $('#summernote-config');
+        if (summernoteConfig.length > 0) {
+            window.initSummernote();
+        }
+
+        $.each($('.img-delete'), function () {
+            $(this).click(function (e) {
+                e.preventDefault();
+                $('input[name=' + $(this).data('target') + ']')[0].value = 1;
+                $(this).parent().parent().hide();
+            });
+        });
+        initWidgetSubform();
+
+    });
     //$('#widgets').disableSelection();
 }
 
@@ -109,6 +126,9 @@ function initDashboardAdminUI() {
  * @param url
  */
 function loadModalForm(url) {
+    // Remove content from any edit widget already loaded (to avoid having multiple fields with the tag id
+    $('#edit-widget .modal-content').html('');
+
     modalContentButtons.fadeOut(400, function() {
         modalContentSpinner.fadeIn();
     });
@@ -119,14 +139,26 @@ function loadModalForm(url) {
 
         window.initSelect2();
         window.initCategories();
+        console.log('sub');
+        initWidgetSubform();
+    });
+}
+
+function initWidgetSubform() {
+    // Recent entities: filter field dynamic display
+    $('.recent-entity-type').change(function (e) {
+        if (this.value) {
+            $('.recent-filters').show();
+        } else {
+            $('.recent-filters').hide();
+        }
     });
 }
 
 /**
  *
  */
-function initDashboardRecent()
-{
+function initDashboardRecent() {
     $('.widget-recent-more').click(function(e) {
         e.preventDefault();
         $(this).html('<i class="fa fa-spin fa-spinner"></i>');

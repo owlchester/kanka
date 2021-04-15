@@ -2,6 +2,8 @@
 
 namespace App\Datagrids\Filters;
 
+use App\Models\Note;
+
 class NoteFilter extends DatagridFilter
 {
     /**
@@ -12,6 +14,14 @@ class NoteFilter extends DatagridFilter
         $this
             ->add('name')
             ->add('type')
+            ->add([
+                'field' => 'note_id',
+                'label' => __('notes.fields.note'),
+                'type' => 'select2',
+                'route' => route('notes.find'),
+                'placeholder' =>  trans('notes.placeholders.note'),
+                'model' => Note::class,
+            ])
             ->isPrivate()
             ->hasImage()
             ->hasEntityNotes()

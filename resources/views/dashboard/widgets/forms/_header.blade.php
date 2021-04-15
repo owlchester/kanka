@@ -1,4 +1,9 @@
-<div class="form-group required">
-    <label>{{ __('dashboard.widgets.fields.text') }}</label>
-    {!! Form::text('config[text]', null, ['class' => 'form-control']) !!}
+
+<div class="row">
+    <div class="col-sm-6">
+        @include('dashboard.widgets.forms._name')
+    </div>
+    <div class="col-sm-6">
+        @include('dashboard.widgets.forms._width')
+    </div>
 </div>

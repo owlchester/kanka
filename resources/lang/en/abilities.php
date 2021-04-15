@@ -15,6 +15,9 @@ return [
         'success'   => 'Ability \':name\' updated.',
         'title'     => 'Edit Ability :name',
     ],
+    'entities'      => [
+        'title' => 'Entities with the :name ability',
+    ],
     'fields'        => [
         'abilities' => 'Abilities',
         'ability'   => 'Parent Ability',
@@ -24,7 +27,8 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'This list contains all abilities which are descendants of this ability, and not only those directly under it.',
-        'nested'        => 'When in Nested View, you can view your Abilities in a nested manner. Abilities with no parent ability will be shown by default. Abilities with sub abilities can be clicked to view those children. You can keep clicking until there are no more children to view.',
+        'nested_parent' => 'Displaying the abilities of :parent.',
+        'nested_without'=> 'Displaying all abilities that don\'t have a parent ability. Click on a row to see the children abilities.',
     ],
     'index'         => [
         'add'           => 'New Ability',
@@ -40,6 +44,7 @@ return [
     'show'          => [
         'tabs'  => [
             'abilities' => 'Abilities',
+            'entities'  => 'Entities',
         ],
         'title' => 'Ability :name',
     ],

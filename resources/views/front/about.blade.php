@@ -137,10 +137,20 @@
                         </p>
                         <p>
                             <strong>{{ __('languages.codes.tr') }}</strong>: Lxran
+                        </p>
+                        <p>
+                            <strong>{{ __('languages.codes.gl') }}</strong>: Daenvil
+                        </p>
+                        <p>
+                            <strong>{{ __('languages.codes.nb') }}</strong>: bigboi
                         </p>--}}
                         <p>
                             <strong>{{ __('languages.codes.pl') }}</strong>: <a href="{{ route('front.partners') }}">Gramel Books</a>
                         </p>
+                        <p>
+                            <strong>{{ __('languages.codes.nl') }}</strong>: ThatChickenGuy
+                        </p>
+
                         <p>
                             <strong>{{ __('languages.codes.fr') }}</strong>: Ilestis
                         </p>

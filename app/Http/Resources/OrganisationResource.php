@@ -17,7 +17,7 @@ class OrganisationResource extends EntityResource
         return $this->entity([
             'type' => $this->type,
             'organisation_id' => $this->organisation_id,
-            'members' => $this->members()->has('character')->count()
+            'members' => OrganisationMemberResource::collection($this->members()->has('character')->with('character')->get())
         ]);
     }
 }

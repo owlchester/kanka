@@ -92,6 +92,18 @@ class LinkController extends Controller
     }
 
     /**
+     * Show exists but doesn't do anything, redirect to main view
+     * @param Entity $entity
+     * @param EntityLink $entityLink
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function show(Entity $entity, EntityLink $entityLink)
+    {
+        return redirect()
+            ->route('entities.entity_links.index', $entity);
+    }
+
+    /**
      * @param Request $request
      * @param Model $model
      * @return \Illuminate\Http\RedirectResponse

@@ -30,7 +30,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
 
         <section class="sidebar" style="height: auto">
             <ul class="sidebar-menu tree" data-widget="tree">
-                <li class="{{ $sidebar->active('dashboard') }}">
+                <li class="{{ $sidebar->active('dashboard') }} section section-dashboard">
                     <a href="{{ route('dashboard') }}">
                         <i class="fas fa-th-large"></i> <span>{{ __('sidebar.dashboard') }}</span>
                     </a>
@@ -78,8 +78,8 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                     @endforeach
                 @endif
 
-                <li class="{{ $sidebar->active('campaigns') }}">
-                    <a href="{{ (auth()->check() ? route('campaign') : '#') }}">
+                <li class="{{ $sidebar->active('campaigns') }} section section-world">
+                    <a href="{{ route('campaign') }}">
                         <i class="fa fa-globe"></i>
                         <span>{{ __('sidebar.world') }}</span>
                     </a>
@@ -126,8 +126,8 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                     </li>
                 @endif
 
-                <li class="sidebar-section">
-                    <a href="{{ (auth()->check() ? route('campaign') : '#') }}">
+                <li class="section section-campaign">
+                    <a href="{{ route('campaign') }}">
                         <i class="fa fa-globe"></i>
                         <span>{{ __('sidebar.campaign') }}</span>
                     </a>
@@ -166,7 +166,7 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                     </li>
                 @endif
 
-                <li class="sidebar-section">
+                <li class="sidebar-section section-other">
                     <div class="sidebar-text">
                         <i class="fas fa-cubes"></i>
                         <span>{{ __('sidebar.other') }}</span>

@@ -24,8 +24,9 @@ return [
         'type'      => 'Type',
     ],
     'helpers'       => [
-        'journals'  => 'Afficher tous les sous-journaux de ce journal.',
-        'nested'    => 'Affichage des journaux sans journal parent. Cliquer sur une ligne affiche les sous-journaux.',
+        'journals'      => 'Afficher tous les sous-journaux de ce journal.',
+        'nested_parent' => 'Affichage des journaux de :parent.',
+        'nested_without'=> 'Affichage des journaux sans parent. Cliquer sur une rangée pour afficher les journaux enfants.',
     ],
     'index'         => [
         'add'           => 'Nouveau Journal',

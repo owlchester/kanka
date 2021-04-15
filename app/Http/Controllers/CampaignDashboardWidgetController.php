@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCampaignDashboardWidget;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
 use App\Services\EntityService;
+use Illuminate\Support\Str;
 
 class CampaignDashboardWidgetController extends Controller
 {
@@ -95,10 +96,16 @@ class CampaignDashboardWidgetController extends Controller
         $this->authorize('dashboard', $campaign);
         $entities = $this->buildEntities();
 
+        $dashboards = [null => __('dashboard.dashboards.default.title')];
+        foreach (CampaignDashboard::orderBy('name')->pluck('name', 'id')->toArray() as $id => $dashboard) {
+            $dashboards[$id] = $dashboard;
+        }
+
         return view('dashboard.widgets.forms.form', [
             'model' => $campaignDashboardWidget,
             'widget' => $campaignDashboardWidget->widget,
-            'entities' => $entities
+            'entities' => $entities,
+            'dashboards' => $dashboards
         ]);
     }
 

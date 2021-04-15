@@ -507,7 +507,60 @@ abstract class MiscModel extends Model
         return $this;
     }
 
+    /**
+     * Copy related elements to new target. Override this in individual models (ex maps)
+     * @param MiscModel $target
+     */
     public function copyRelatedToTarget(MiscModel $target)
     {
+
+    }
+
+    /**
+     * Available datagrid actions
+     * @param Campaign $campaign
+     * @return string[]
+     * @throws Exception
+     */
+    public function datagridActions(Campaign $campaign): array
+    {
+        $actions = [];
+
+        // Relations & Inventory
+        if (!isset($this->hasRelations)) {
+            $actions[] = '<li>
+                <a href="' . route('entities.relations.index', $this->entity) . '" class="dropdown-item">
+                    <i class="fa fa-users" aria-hidden="true"></i> ' . __('crud.tabs.relations') . '
+                </a>
+            </li>';
+            $actions[] = '<li>
+                <a href="' . route('entities.inventory', $this->entity) . '" class="dropdown-item">
+                    <i class="ra ra-round-bottom-flask" aria-hidden="true"></i> ' . __('crud.tabs.inventory') . '
+                </a>
+            </li>';
+
+            if ($campaign->enabled('abilities') && $this->entityTypeId() != config('entities.ids.ability')) {
+                $actions[] = '<li>
+                <a href="' . route('entities.entity_abilities.index', $this->entity) . '" class="dropdown-item">
+                    <i class="ra ra-fire-symbol" aria-hidden="true"></i> ' . __('crud.tabs.abilities') . '
+                </a>
+            </li>';
+            }
+        }
+
+
+        if (auth()->check() && auth()->user()->can('update', $this)) {
+            if (!empty($actions)) {
+                $actions[] = '<li class="divider"></li>';
+            }
+            $actions[] = '<li>
+                <a href="' . $this->getLink('edit') . '" class="dropdown-item">
+                    <i class="fa fa-edit" aria-hidden="true"></i> ' . __('crud.edit') . '
+                </a>
+            </li>';
+        }
+
+        return $actions;
+
     }
 }

@@ -134,6 +134,18 @@ class Ability extends MiscModel
         return $this->hasMany('App\Models\Ability', 'ability_id', 'id');
     }
 
+    public function entities()
+    {
+        return $this->hasManyThrough(
+            'App\Models\Entity',
+            'App\Models\EntityAbility',
+            'ability_id',
+            'id',
+            'id',
+            'entity_id'
+        );
+    }
+
     /**
      * Detach children when moving this entity from one campaign to another
      */
@@ -158,6 +170,11 @@ class Ability extends MiscModel
             'name' => 'abilities.show.tabs.abilities',
             'route' => 'abilities.abilities',
             'count' => $this->descendants()->count()
+        ];
+        $items['entities'] = [
+            'name' => 'abilities.show.tabs.entities',
+            'route' => 'abilities.entities',
+            'count' => $this->entities()->acl()->count()
         ];
         return parent::menuItems($items);
     }

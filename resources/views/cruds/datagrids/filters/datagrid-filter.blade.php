@@ -176,7 +176,7 @@ $count = 0;
                 <i class="fa fa-filter"></i> {{ __('crud.filter') }}
             </button>
 
-            <a href="#" data-toggle="collapse" data-target="#datagrid-filters" class="hidden-xs">
+            <a href="#" data-toggle="collapse" data-target="#datagrid-filters" class="hidden-lg">
                 <i class="fa fa-chevron-up"></i>
             </a>
 

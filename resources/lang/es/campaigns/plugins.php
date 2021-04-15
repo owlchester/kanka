@@ -44,7 +44,6 @@ return [
     'title'         => 'Plugins de la campaña :name',
     'types'         => [
         'attribute' => 'Plantilla de atributos',
-        'attributes'=> 'Plantilla de atributos',
         'pack'      => 'Pack de contenido',
         'theme'     => 'Tema',
     ],

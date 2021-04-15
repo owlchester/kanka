@@ -45,6 +45,7 @@ return [
     'placeholders'  => [
         'name'  => 'Name of the organization',
     ],
+    'quests'        => [],
     'show'          => [
         'description'   => 'A detailed view of an organization',
         'tabs'          => [

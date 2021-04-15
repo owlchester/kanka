@@ -14,7 +14,7 @@ return [
     'create'        => [
         'description'   => 'Ajouter une nouvelle étiquette',
         'success'       => 'Nouvelle étiquette \':name\' ajoutée.',
-        'title'         => 'Nouvelle Etiquette',
+        'title'         => 'Nouvelle étiquette',
     ],
     'destroy'       => [
         'success'   => 'L\'étiquette \':name\' a été retirée.',
@@ -27,12 +27,13 @@ return [
         'characters'    => 'Personnages',
         'children'      => 'Enfants',
         'name'          => 'Nom',
-        'tag'           => 'Etiquette Parentale',
-        'tags'          => 'Etiquettes',
+        'tag'           => 'Étiquette Parentale',
+        'tags'          => 'Étiquettes',
         'type'          => 'Type',
     ],
     'helpers'       => [
-        'nested'    => 'Ce mode de navigation permet d\'afficher les étiquettes de manière imbriquée. Les étiquettes sans étiquette parent seront affichés par défaut. Les étiquettes possédant des sous-étiquettes peuvent être cliquées pour afficher leurs enfants. Tu peux continuer à cliquer jusqu\'à ce qu\'il n\'y ait plus d\'enfants à voir.',
+        'nested_parent' => 'Affichage des étiquettes de :parent.',
+        'nested_without'=> 'Affichage des étiquettes sans parent. Cliquer sur une rangée pour afficher les étiquettes enfants.',
     ],
     'hints'         => [
         'children'  => 'Cette liste contient toutes les entités directement dans cette étiquette et toutes les étiquettes enfants.',
@@ -42,12 +43,12 @@ return [
         'actions'       => [
             'explore_view'  => 'Mode Exploration',
         ],
-        'add'           => 'Nouvelle Etiquette',
+        'add'           => 'Nouvelle étiquette',
         'description'   => 'Gérer les étiquettes pour :name.',
         'header'        => 'Les étiquettes dans :name',
-        'title'         => 'Etiquettes',
+        'title'         => 'Étiquettes',
     ],
-    'new_tag'       => 'Nouvelle Etiquette',
+    'new_tag'       => 'Nouvelle étiquette',
     'placeholders'  => [
         'name'  => 'Nom de l\'étiquette',
         'tag'   => 'Choix de l\'étiquette parent',
@@ -58,12 +59,12 @@ return [
         'tabs'          => [
             'children'      => 'Enfants',
             'information'   => 'Information',
-            'tags'          => 'Etiquettes',
+            'tags'          => 'Étiquettes',
         ],
-        'title'         => 'Etiquette :name',
+        'title'         => 'Étiquette :name',
     ],
     'tags'          => [
         'description'   => 'Enfants d\'étiquette',
-        'title'         => 'Etiquette :name',
+        'title'         => 'Étiquette :name',
     ],
 ];

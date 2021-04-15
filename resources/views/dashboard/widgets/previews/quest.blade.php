@@ -30,7 +30,9 @@ $model = $entity->child;
                     <i class="fa fa-check-circle pull-right margin-r-5" title="{{ trans('quests.fields.is_completed') }}"></i>
                 @endif
 
-                @if (!empty($widget->conf('text')))
+                @if(!empty($customName))
+                    {{ $customName }}
+                @elseif (!empty($widget->conf('text')))
                     {{ $widget->conf('text') }}
                 @else
                     {{ $entity->name }}
@@ -51,6 +53,9 @@ $model = $entity->child;
             </dl>
 
             {!! $model->entry() !!}
+
+            @include('dashboard.widgets.previews._members')
+            @include('dashboard.widgets.previews._attributes')
         @else
         <div class="pinned-entity preview" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">
 
@@ -64,6 +69,9 @@ $model = $entity->child;
             </dl>
 
             {!! $model->entry() !!}
+
+            @include('dashboard.widgets.previews._members')
+            @include('dashboard.widgets.previews._attributes')
         </div>
         <a href="#" class="preview-switch hidden"
            id="widget-preview-switch-{{ $widget->id }}" data-widget="{{ $widget->id }}">

@@ -62,7 +62,7 @@
        data-toggle="ajax-modal" data-target="#entity-modal"
        data-url="{{ route('timelines.timeline_eras.create', ['timeline' => $model]) }}"
     >
-        <i class="fas fa-plus"></i> {{ __('maps/groups.actions.add') }}
+        <i class="fas fa-plus"></i> {{ __('timelines/eras.actions.add') }}
     </a>
 
     <hr />

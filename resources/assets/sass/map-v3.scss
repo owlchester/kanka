@@ -164,6 +164,9 @@
 .leaflet-top, .leaflet-bottom {
   z-index: 800;
 }
+.leaflet-popup img, .marker-details img {
+  max-width: 100%;
+}
 
 @media(min-width: 767px) {
   #map-body {

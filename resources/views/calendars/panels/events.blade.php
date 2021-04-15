@@ -17,12 +17,11 @@
                 <tr>
                     <th class="avatar"><br /></th>
                     <th>{{ __('crud.fields.entity') }}</th>
+                    <th>{{ __('crud.fields.entity_type') }}</th>
                     <th>{{ __('events.fields.date') }}</th>
                     <th>{{ __('calendars.fields.length') }}</th>
-                    <th>
-                        <i class="fa fa-comment" title="{{ __('calendars.fields.comment') }}" data-toggle="tooltip"></i>
-                    </th>
-                    <th>{{ __('calendars.fields.is_recurring') }}</th>
+                    <th></th>
+                    <th></th>
                     <th></th>
                 </tr>
             </thead>
@@ -38,6 +37,7 @@
                     <td>
                         {!! $event->entity->tooltipedLink() !!}
                     </td>
+                    <td>{{ $event->entity->entityType() }}</td>
                     <td>{{ $event->readableDate() }}</td>
                     <td>{{ trans_choice('calendars.fields.length_days', $event->length, ['count' => $event->length]) }}</td>
                     <td>@if ($event->comment)

@@ -61,4 +61,10 @@ return [
     ],
     'public'            => 'Une vidéo sur Youtube explique comment fonctionne les campagnes publiques.',
     'title'             => 'Aides',
+    'widget-filters'    => [
+        'description'   => 'Les entités affichées peuvent être filtrées en indiquant une liste de champs et leur valeur. Par example, utiliser :example pour filter les personnages morts et de type NPC.',
+        'link'          => 'filtres de widget',
+        'more'          => 'Tu peux copier les valeurs de l\'URL sur les listes d\'entités. Par exemple, lorsque tu affiches les personnages de la campagne, filtres sur le type de personnages que tu souhaites afficher et copies les valeurs après la :question dans l\'URL.',
+        'title'         => 'Filtres de widget de tableau de bord',
+    ],
 ];

@@ -164,6 +164,7 @@ return array(
         'admin.referrals',
         'admin.releases',
         'admin.users',
+        'randomisers.characters',
     ),
     /**
      * Exclude specific groups from Laravel Translation Manager in page edit mode.

@@ -29,7 +29,8 @@ return [
         'type'          => 'Type',
     ],
     'helpers'       => [
-        'nested'    => 'When in Nested View, you can view your Races in a nested manner. Races with no parent race will be shown by default. Races with sub races can be clicked to view those children. You can keep clicking until there are no more children to view.',
+        'nested_parent' => 'Displaying the races of :parent.',
+        'nested_without'=> 'Displaying all races that don\'t have a parent race. Click on a row to see the children races.',
     ],
     'index'         => [
         'add'           => 'New Race',

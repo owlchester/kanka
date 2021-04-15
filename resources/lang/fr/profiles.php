@@ -50,6 +50,7 @@ return [
     'sections'      => [
         'delete'    => [
             'delete'    => 'Supprimer mon compte',
+            'helper'    => 'Supprimer ton compte supprimera aussi toutes les campagnes où tu es le seul membre. Ceci est permanent et ne peut pas être défait.',
             'title'     => 'Suppression du compte',
             'warning'   => 'Toutes les données relatives au compte seront supprimées. Êtes-vous certain?',
         ],

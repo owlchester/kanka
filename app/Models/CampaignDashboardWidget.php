@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Services\FilterService;
 use App\Traits\CampaignTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 /**
  * Class CampaignDashboardWidget
@@ -181,5 +183,121 @@ class CampaignDashboardWidget extends Model
         $new = $this->replicate(['dashboard_id']);
         $new->dashboard_id = $target->id;
         return $new->save();
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasAdvancedOptions(): bool
+    {
+        return $this->conf('attributes') == 1 || $this->conf('members') == '1' || $this->conf('entity-header') == '1';
+    }
+
+    /**
+     * @return bool
+     */
+    public function showAttributes(): bool
+    {
+        if ($this->widget != self::WIDGET_PREVIEW) {
+            return false;
+        }
+
+        return $this->conf('attributes') == '1' && !empty($this->entity);
+    }
+    /**
+     * @return bool
+     */
+    public function showMembers(): bool
+    {
+        if ($this->widget != self::WIDGET_PREVIEW || $this->conf('members') !== '1') {
+            return false;
+        }
+        $types = [
+            config('entities.ids.family'),
+            config('entities.ids.organisation'),
+        ];
+
+        return !empty($this->entity) && in_array($this->entity->typeId(), $types);
+    }
+
+    /**
+     * Get the entities of a widget
+     * @param int $offset
+     * @return Entity[]|Builder[]|\Illuminate\Database\Eloquent\Collection
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
+    public function entities($offset = 0)
+    {
+        $entityIds = [];
+
+        $base = null;
+
+        if ($this->widget == self::WIDGET_UNMENTIONED) {
+            $excludedTypes = [];
+            if (empty($entityType)) {
+                $excludedTypes = [
+                    'tag',
+                    'conversation',
+                    'attribute_template'
+                ];
+            }
+            $base = \App\Models\Entity::unmentioned()
+                ->whereNotIn('type', $excludedTypes)
+            ;
+        } else {
+            $base = \App\Models\Entity::recentlyModified();
+        }
+
+        // If an entity type is provided, we can combine that with filters. We need to get the list of the misc
+        // ids first to pass on to the entity query.
+        $entityType = $this->conf('entity');
+        if (!empty($entityType) && !empty($this->config['filters'])) {
+
+            $className = 'App\Models\\' . Str::studly($entityType);
+            /** @var MiscModel $model */
+            $model = new $className();
+
+            /** @var FilterService $filterService */
+            $filterService = app()->make('App\Services\FilterService');
+            $filterService->session(false)->make($entityType, $this->filterOptions(), $model);
+
+            $models = $model->select('id')
+                ->filter($filterService->filters())
+                ->get();
+
+            $entityIds = $models->pluck('id');
+
+            // Add the filter to the base query
+            $base = $base->whereIn('entity_id', $entityIds);
+        }
+
+        return $base
+            ->inTags($this->tags->pluck('id')->toArray())
+            ->type($entityType)
+            ->acl()
+            ->with(['tags', 'updater', 'image'])
+            ->take(10)
+            ->offset($offset)
+            ->get();
+    }
+
+    /**
+     * Get the widget filters
+     * @return array
+     */
+    private function filterOptions(): array
+    {
+        $filters = [];
+        if (empty($this->config['filters'])) {
+            return $filters;
+        }
+
+        $segments = explode('&', $this->config['filters']);
+        foreach ($segments as $segment) {
+            $params = explode('=', $segment);
+            $filters[$params[0]] = $params[1];
+        }
+
+        return $filters;
     }
 }

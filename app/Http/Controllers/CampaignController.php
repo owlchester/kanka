@@ -38,7 +38,7 @@ class CampaignController extends Controller
      */
     public function __construct(CampaignService $campaignService, EntityService $entityService)
     {
-        $this->middleware('auth', ['except' => ['show', 'css']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'css']]);
         $this->campaignService = $campaignService;
         $this->entityService = $entityService;
     }
