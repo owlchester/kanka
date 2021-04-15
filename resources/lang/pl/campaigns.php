@@ -83,10 +83,12 @@ TEXT
         'boost_required'                => 'Ta opcja jest dostępna tylko w doładowanych kampaniach. Więcej informacji znajdziesz na stronie :settings.',
         'boosted'                       => 'Odblokowano nowe opcje ponieważ kampania jest doładowana. Więcej informacji znajdziesz na stronie :settings.',
         'css'                           => 'Twórz własne style CSS do używania w kampanii. Uwaga - nadużywanie tej opcji może poskutkować usunięciem stworzonych stylów. Powtarzające się albo poważne wykroczenia mogą spowodować usunięcie kampanii.',
+        'dashboard'                     => 'Dostosuj sposób wyświetlania widżetów na pulpicie kampanii wypełniając poniższe pola',
         'entity_note_visibility'        => 'Kiedy tworzysz nowy komentarz do elementu, domyślnie wybrana będzie opcja "Przypięty".',
         'entity_personality_visibility' => 'Gdy tworzysz nową postać, opcja "Postać jawna" będzie domyślnie wyłączona.',
         'entity_visibility'             => 'Gdy tworzysz nowy element, domyślnie włączona będzie opcja "Tajne".',
         'excerpt'                       => 'Podsumowanie kampanii będzie wyświetlane na pulpicie, więc poświęć mu kilka zdań. Najlepiej, gdy jest krótkie i dobitne.',
+        'header_image'                  => 'Obraz wyświetlany w tle nagłówka pulpitu kampanii',
         'hide_history'                  => 'Zaznacz, by ukryć historię edycji elementów kampanii przed nieposiadającymi statusu administratora.',
         'hide_members'                  => 'Zaznacz, by ukryć listę uczestników kampanii przed nieposiadającymi statusu administratora.',
         'locale'                        => 'Język, w którym piszesz kampanię. Służy do tworzenia zawartości oraz filtrowania kampanii publicznych.',
@@ -296,7 +298,8 @@ TEXT
         ],
         'users'         => [
             'actions'   => [
-                'add'   => 'Dodaj uczestnika',
+                'add'       => 'Dodaj uczestnika',
+                'remove'    => ':user z roli :role',
             ],
             'create'    => [
                 'success'   => 'Uczestnikowi przypisano rolę.',

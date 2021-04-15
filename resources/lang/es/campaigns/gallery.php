@@ -13,6 +13,7 @@ return [
         'created_by'    => 'Subida por',
         'ext'           => 'Ext',
         'folder'        => 'Carpeta',
+        'image_used_in' => '{1}Se usa como la imagen de una entidad.|[2,*]Se usa como la imagen de :count entidades.',
         'name'          => 'Nombre',
         'size'          => 'Tamaño',
     ],

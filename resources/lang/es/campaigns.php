@@ -83,10 +83,12 @@ TEXT
         'boost_required'                => 'Esta funcionalidad requiere mejorar la campaña. Más información en la página de :settings.',
         'boosted'                       => 'Algunas características están desbloqueadas porque esta campaña está mejorada. Para saber más sobre esto, echa un vistazo en la página de :settings.',
         'css'                           => 'Escribe tu propio CSS para las páginas de tu campaña. Ten en cuenta que abusar de esta herramienta puede llevar a la eliminación de tu CSS personalizado. Incumplimientos repetidos o graves pueden llevar a la eliminación de tu campaña.',
+        'dashboard'                     => 'Personaliza la forma en que el widget se muestra en el tablero rellenando los campos siguientes.',
         'entity_note_visibility'        => 'Al crear una nueva nota de entidad, la opción "Fijada" estará seleccionada automáticamente.',
         'entity_personality_visibility' => 'Al crear un nuevo personaje, la opción de "Personalidad visible" estará deseleccionada automáticamente.',
         'entity_visibility'             => 'Al crear una nueva entidad, se seleccionará automáticamente la opción de "Privada".',
-        'excerpt'                       => 'El extracto de la campaña se mostrará en el tablero principal. Escribe unas pocas líneas para introducir tu mundo.',
+        'excerpt'                       => 'El extracto de la campaña se mostrará en el tablero principal. Escribe unas pocas líneas para introducir tu mundo. Si lo dejas en blanco, se mostrarán los primeros 1.000 caracteres de la descripción de la campaña.',
+        'header_image'                  => 'La imagen que se muestra como fondo en el widget de la cabecera del tablero.',
         'hide_history'                  => 'Habilita esta opción para esconder el historial de entidades a los miembros no administradores.',
         'hide_members'                  => 'Habilita esta opción para esconder la lista de miembros de la campaña a los no administradores.',
         'locale'                        => 'El idioma en que está escrita tu campaña. Esto se usa para generar contenido y agrupar campañas públicas.',
@@ -114,7 +116,6 @@ TEXT
             'link'  => 'Nuevo enlace',
         ],
         'create'                => [
-            'button'        => 'Invitar',
             'buttons'       => [
                 'create'    => 'Crear invitación',
                 'send'      => 'Enviar invitación',
@@ -296,7 +297,8 @@ TEXT
         ],
         'users'         => [
             'actions'   => [
-                'add'   => 'Añadir miembro',
+                'add'       => 'Añadir miembro',
+                'remove'    => ':user del rol :role',
             ],
             'create'    => [
                 'success'   => 'Usuario añadido al rol.',
