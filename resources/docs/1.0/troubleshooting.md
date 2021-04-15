@@ -37,6 +37,19 @@ Generate a new token in your [Api settings](https://kanka.io/en/settings/api) an
 
 Kanka tokens are valid for 100 years by default, but when we update our servers, all tokens get invalidated. This happens about once a year on average.
 
+## 422 Unprocessable Entity
+If your `POST`, `PUT` or `PATCH` requests to the API are returning something about missing required field name like this
+```json
+{"message":"The given data was invalid.",
+  "errors":{
+    "name":["The name field is required."]
+  }
+}
+```
+
+You are probably hitting the kanka.io domain in `http` instead of `https`. For example, the Postman application defaults to http when no scheme is provided.
+
+
 ## Other issues
 
 For all other issues, join us on [Discord](http://discord.gg/rhsyZJ4) and ask in the `#development-talk` channel where someone from the team or the community will help you out.
