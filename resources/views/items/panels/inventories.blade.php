@@ -4,7 +4,7 @@
             {{ trans('items.show.tabs.inventories') }}
         </h2>
 
-        <?php  $r = $model->inventories()->acl()->orderBy('entity_id', 'ASC')->with(['entity'])->paginate(); ?>
+        <?php $r = $model->inventories()->acl()->orderBy('entity_id', 'ASC')->with(['entity'])->has('entity')->paginate(); ?>
         <table id="item-inventories" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>

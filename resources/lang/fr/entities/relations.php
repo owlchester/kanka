@@ -2,11 +2,11 @@
 
 return [
     'create'        => [
-        'success'   => 'Relation ajoutée pour :name.',
+        'success'   => 'Relation :target ajoutée pour :entity.',
         'title'     => 'Nouvelle relation pour :name',
     ],
     'destroy'       => [
-        'success'   => 'Relation supprimée pour :name.',
+        'success'   => 'Relation :target supprimée pour :entity.',
     ],
     'fields'        => [
         'attitude'          => 'Attitude',
@@ -40,7 +40,7 @@ return [
         'organisation_member'   => 'Membre d\'organisation',
     ],
     'update'        => [
-        'success'   => 'Relation modifiée pour :name.',
+        'success'   => 'Relation :target modifiée pour :entity.',
         'title'     => 'Modifier la relation de :name',
     ],
 ];

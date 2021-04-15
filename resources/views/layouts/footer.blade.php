@@ -126,6 +126,28 @@
                         <i class="fab fa-twitter"></i>
                     </a>
                 </div>
+
+                <div id="language-switcher" class="language-switcher">
+                    <div class="dropup inline">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="languageDropdown" aria-haspopup="true" aria-expanded="false" name="list-languages">
+                            <i class="fas fa-globe"></i> {{ LaravelLocalization::getCurrentLocaleNative() }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                            @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $langData)
+                                <?php $url = LaravelLocalization::getLocalizedURL($localeCode, null, [], true); ?>
+                                <li>
+                                    @if (App::getLocale() == $localeCode)
+                                        <a href="#"><strong>{{ $langData['native'] }}</strong></a>
+                                    @else
+                                        <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ $url . (strpos($url, '?') !== false ? '&' : '?') }}updateLocale=true">
+                                            {{ $langData['native'] }}
+                                        </a>
+                                    @endif
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="footer-copyright text-center">
