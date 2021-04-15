@@ -22,7 +22,8 @@ return [
     ],
     'add'                       => 'Dodaj',
     'alerts'                    => [
-        'copy_mention'  => 'Zaawansowana wzmianka elementu została skopiowana do schowka.',
+        'copy_attribute'    => 'Wzmianka cechy została skopiowana do schowka.',
+        'copy_mention'      => 'Zaawansowana wzmianka elementu została skopiowana do schowka.',
     ],
     'attributes'                => [
         'actions'       => [
@@ -30,6 +31,9 @@ return [
             'manage'            => 'Zarządzaj',
             'more'              => 'Więcej opcji',
             'remove_all'        => 'Usuń wszystko',
+        ],
+        'errors'        => [
+            'loop'  => 'W obliczeniu tej cechy występuje nie kończąca się pętla!',
         ],
         'fields'        => [
             'attribute'             => 'Cecha',
@@ -57,6 +61,10 @@ return [
                 'class' => 'Klasa FontAwesome lub RPG Awesome: fas fa-users',
                 'name'  => 'Nazwa ikony',
             ],
+            'random'    => [
+                'name'  => 'Nazwa cechy',
+                'value' => '1-100 lub lista wartości rozdzielonych przecinkiem',
+            ],
             'section'   => 'Nazwa sekcji',
             'template'  => 'Wybierz szablon',
             'value'     => 'Wartość cechy',
@@ -70,6 +78,7 @@ return [
             'block'     => 'Blok',
             'checkbox'  => 'Pole wyboru',
             'icon'      => 'Ikona',
+            'random'    => 'Losowy',
             'section'   => 'Sekcja',
             'text'      => 'Kilka wierszy',
         ],

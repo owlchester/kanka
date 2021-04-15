@@ -1,28 +1,37 @@
 <?php
 
 return [
-    'age'           => [
+    'age'               => [
         'description'   => 'Sie können einen Charakter mit einem Kalender der Kampagne verknüpfen, indem Sie einen Charakter anzeigen und zur Registerkarte Erinnerungen wechseln. Fügen Sie von dort aus eine neue Erinnerung hinzu und setzen Sie den Typ auf Geburt oder Tod, um das Alter des Charakters automatisch zu berechnen. Wenn sowohl Geburt als auch Tod vorliegen, werden beide Daten und das Todesalter angezeigt. Wenn nur die Geburt eingestellt ist, werden das Datum und das aktuelle Alter angezeigt. Wenn nur der Tod festgelegt ist, werden das Datum und die Jahre seit dem Tod angezeigt.',
         'title'         => 'Charakter alter und Tod',
     ],
-    'attributes'    => [
-        'con'           => 'con',
-        'description'   => 'Verwenden Sie Attribute, um Werte darzustellen, die an ein Objekt angehängt sind, die keine Texte sind. Sie können Objekte in Attributen mithilfe der erweiterten Erwähnungssyntax referenzieren :mention. Sie können auch auf andere Attribute verweisen, indem Sie die :attribute syntax verwenden.',
-        'level'         => 'Level',
-        'link'          => 'Attributoptionen',
-        'math'          => 'Sie können auch mit einigen grundlegenden mathematischen Optionen kreativ werden. Beispiel :example multipliziert die Attribute :level und :con dieses Objektes. Wenn Sie auf- oder abrunden möchten, können Sie Folgendes verwenden :floor oder :ceil',
-        'pinned'        => 'Wenn Sie ein Attribut mit dem :icon Symbol fixieren, wird es im Menü des Objekts unter dem Bild angezeigt.',
-        'private'       => 'Private Attribute, die das :icon verwenden, sind nur für Kampagnenadministratoren sichtbar.',
-        'title'         => 'Attribute',
+    'attributes'        => [
+        'con'               => 'con',
+        'description'       => 'Verwenden Sie Attribute, um Werte darzustellen, die an ein Objekt angehängt sind, die keine Texte sind. Sie können Objekte in Attributen mithilfe der erweiterten Erwähnungssyntax referenzieren :mention. Sie können auch auf andere Attribute verweisen, indem Sie die :attribute syntax verwenden.',
+        'level'             => 'Level',
+        'link'              => 'Attributoptionen',
+        'math'              => 'Sie können auch mit einigen grundlegenden mathematischen Optionen kreativ werden. Beispiel :example multipliziert die Attribute :level und :con dieses Objektes. Wenn Sie auf- oder abrunden möchten, können Sie Folgendes verwenden :floor oder :ceil',
+        'name'              => 'Sie können auf den Namen des Objektes verweisen mit :name. Wenn ein Attribut mit diesem Namen vorhanden ist, wird stattdessen das Attribut verwendet.',
+        'pinned'            => 'Wenn Sie ein Attribut mit dem :icon Symbol fixieren, wird es im Menü des Objekts unter dem Bild angezeigt.',
+        'private'           => 'Private Attribute, die das :icon verwenden, sind nur für Kampagnenadministratoren sichtbar.',
+        'random'            => 'Beim Erstellen oder Bearbeiten einer Attributvorlage können Sie zufällige Attribute festlegen. Dies kann entweder ein Zufallswert zwischen zwei durch :dash getrennten Zahlen oder ein Zufallswert aus einer durch :comma getrennten Werteliste sein. Der Wert für das Attribut wird bestimmt, wenn die Vorlage auf ein Objekt angewendet wird oder wenn ein Objekt gespeichert wird.',
+        'random_examples'   => 'Wenn Sie beispielsweise eine Zahl zwischen 1 und 100 möchten, verwenden Sie :number. Wenn Sie einen Wert aus einer Liste von Optionen wünschen, verwenden Sie :list.',
+        'title'             => 'Attribute',
     ],
-    'description'   => 'Einige hilfreiche Tipps und Tricks, um dir mit Kanka zu helfen',
-    'dice'          => [
+    'description'       => 'Einige hilfreiche Tipps und Tricks, um dir mit Kanka zu helfen',
+    'dice'              => [
         'description'               => 'Allgemeine Würfelwürfe sind möglich, wenn du "d20", "4d4+4", "d%" (Prozentwürfe) oder "df" (FUDGE-würfe) schreibst.',
         'description_attributes'    => 'Es ist auch möglich ein Charakterattribut zu verwenden mittels {character.attribute_name} Syntac. Zum Beispiel, {character.level}d6+{character.wisdom}.',
         'more'                      => 'Mehr Optionen sind verfügbar und werden auf der Würfelwurf-Plugin Seite erklärt.',
         'title'                     => 'Würfelwürfe',
     ],
-    'filters'       => [
+    'entity_templates'  => [
+        'description'   => 'Wenn Sie ein neues Objekt erstellen, können Sie es basierend auf einer Vorlage erstellen, anstatt von einem leeren Formular aus zu beginnen. Um ein Objekt als Vorlage festzulegen, klicken Sie auf :link in der Schaltfläche Aktionen :action oben rechts. Beim Anzeigen einer Liste von Objekten stehen Vorlagen dieses Objekttyps neben der Schaltfläche :new  zur Verfügung. Sie können für jeden Objekttyp mehrere Vorlagen haben.',
+        'link'          => 'So legen Sie Vorlagen fest',
+        'remove'        => 'Um ein Objekt als Vorlage zu entfernen, klicken Sie auf die Aktion :remove, die die oben beschriebene Aktion :link ersetzt.',
+        'title'         => 'Objekttemplates',
+    ],
+    'filters'           => [
         'description'   => 'Sie können Filter verwenden, um die Anzahl der in Listen angezeigten Ergebnisse zu begrenzen. Textfelder unterstützen verschiedene Optionen, um detaillierter zu steuern, was herausgefiltert wird.',
         'empty'         => 'Schreibt man :tag in ein Feld wird in allen Objekten, bei denen dieses Feld leer ist gesucht.',
         'ending_with'   => 'Durch Platzieren eines :tag am Ende Ihres Textes können Sie nach jedem Objekt mit genau diesem Text im Feld suchen.',
@@ -31,7 +40,7 @@ return [
         'starting_with' => 'Durch Platzieren eines :tag vor Ihrem Text können Sie nach Objekten suchen, die den Text in diesem Feld nicht enthalten.',
         'title'         => 'Verwendung von Filtern',
     ],
-    'link'          => [
+    'link'              => [
         'attributes'        => 'Sie können auf Attribute der Objekte verweisen, indem Sie Folgendes eingeben :code. Dies funktioniert nur für vorhandene Attribute der Objekte.',
         'auto_update'       => 'Links zu ändern Objekten werden automatisch aktualisiert, wenn der Name des Ziels oder die Beschreibung sich geändert hat.',
         'description'       => 'Mit einem "@" kannst du ganz einfach Links zu anderen Einträgen setzen. Ein "#" zeigt dir stattdessen eine Namensliste mit Monaten aus deinen Kalendern an.',
@@ -46,11 +55,11 @@ return [
         'months'            => 'Geben Sie :code ein, um eine Liste der Monate aus Ihrem Kalendern abzurufen.',
         'title'             => 'Andere Objekte verlinken',
     ],
-    'map'           => [
+    'map'               => [
         'description'   => 'Wenn Sie eine Karte an einen Ort hochladen, wird das Menü "Karte" auf der Ansichtsseite des Standorts und ein direkter Link zur Karte von der Standortseite der Kampagne aktiviert. In der Kartenansicht können Benutzer, die den Standort bearbeiten können, den Bearbeitungsmodus aktivieren, mit dem sie Kartenpunkte auf der Karte platzieren können. Diese können mit einem vorhandenen Objekt verknüpft sein oder ein Etikett sein und verschiedene Formen und Größen haben.',
         'private'       => 'Mitglieder in der Administratorrolle der Kampagne können eine Karte privat machen. Auf diese Weise können Benutzer einen Standort anzeigen, Administratoren können die Karte jedoch geheim halten.',
         'title'         => 'Standortkarten',
     ],
-    'public'        => 'Sie die Tutorial Videos über öffentliche Kampagnen auf Youtube an.',
-    'title'         => 'Hilfe',
+    'public'            => 'Sie die Tutorial Videos über öffentliche Kampagnen auf Youtube an.',
+    'title'             => 'Hilfe',
 ];

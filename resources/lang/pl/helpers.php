@@ -1,27 +1,36 @@
 <?php
 
 return [
-    'age'           => [
+    'age'               => [
         'description'   => 'Możesz połączyć postać z kalendarzem kampanii wchodząc w zakładkę Powiadomienia w menu postaci. Tam dodaj nowe powiadomienie i ustaw typ jako Narodziny albo Śmierć, by automatycznie obliczyć wiek postaci. Jeżeli dodasz obie daty, nie tylko zostaną wyświetlone, ale program obliczy też wiek postaci w chwili śmierci. Dodanie wyłącznie daty narodzin spowoduje wyświetlenie obecnego wieku, a wyłącznie daty śmierci - liczby lat, która od niej upłynęła.',
         'title'         => 'Wiek i śmierć postaci',
     ],
-    'attributes'    => [
-        'con'           => 'Kon',
-        'description'   => 'By oznaczyć współczynniki postaci, które nie są tekstem, używaj cech. Możesz tworzyć odnośniki do postaci w cechach używając składni zaawansowanych wzmianek :mention. Możesz też wspominać inne cechy za pomocą składni :attribute.',
-        'level'         => 'Poziom',
-        'link'          => 'Opcje cech',
-        'math'          => 'Możesz też bawić się obliczeniami. Na przykład :example pomnoży cechę :level przez cechę :con tego elementu. Jeżeli chcesz zaokrąglać w górę albo w dół, użyj :floor albo :ceil.',
-        'pinned'        => 'Przypięcie cechy za pomocą ikony :icon spowoduje, że będzie się wyświetlać w głównym menu elementu, pod obrazkiem.',
-        'private'       => 'Cechy tajne, używające ikony :icon będą widoczne tylko dla administratorów kampanii.',
-        'title'         => 'Cechy',
+    'attributes'        => [
+        'con'               => 'Kon',
+        'description'       => 'By oznaczyć współczynniki postaci, które nie są tekstem, używaj cech. Możesz tworzyć odnośniki do postaci w cechach używając składni zaawansowanych wzmianek :mention. Możesz też wspominać inne cechy za pomocą składni :attribute.',
+        'level'             => 'Poziom',
+        'link'              => 'Opcje cech',
+        'math'              => 'Możesz też bawić się obliczeniami. Na przykład :example pomnoży cechę :level przez cechę :con tego elementu. Jeżeli chcesz zaokrąglać w górę albo w dół, użyj :floor albo :ceil.',
+        'name'              => 'Możesz stworzyć odnośnik do nazwy elementu za pomocą :name. Jeżeli istnieje cecha o tej nazwie, zostanie użyta w zastępstwie.',
+        'pinned'            => 'Przypięcie cechy za pomocą ikony :icon spowoduje, że będzie się wyświetlać w głównym menu elementu, pod obrazkiem.',
+        'private'           => 'Cechy tajne, używające ikony :icon będą widoczne tylko dla administratorów kampanii.',
+        'random'            => 'Podczas tworzenia albo edycji szablonu cech, możesz ustawić cechę losową. Może wybierać z dwóch wartości rozdzielonych przez :dash, albo losową wartość z listy rozdzielonej z pomocą :comma. Losowa wartość cechy zostaje wybrana kiedy szablon zostaje przypisany do elementu albo gdy element jest zapisywany.',
+        'random_examples'   => 'Na przykład, jeżeli chcesz wartości od 1 do 100, użyj :number. Jeżeli natomiast chcesz wartości wybranej z listy dostępnych opcji, użyj :list.',
+        'title'             => 'Cechy',
     ],
-    'dice'          => [
+    'dice'              => [
         'description'               => 'Możesz konfigurować podstawowe rzuty kośćmi po prostu pisząc "d20", "4d4+4", "d%" dla kości procentowej i "df" dla kostki fudge.',
         'description_attributes'    => 'Możesz też użyć cechy postaci za pomocą składni {character.attribute_name}. Na przykład pisząc {character.level}d6+{character.wisdom}.',
         'more'                      => 'Więcej opcji i przykładów znajduje się na stronie modułu rzucania kośćmi.',
         'title'                     => 'Rzuty kośćmi',
     ],
-    'filters'       => [
+    'entity_templates'  => [
+        'description'   => 'Kiedy tworzysz nowy element, nie musisz zaczynać od zera. Możesz zamiast tego ustawić inny istniejący element jako szablon - wystarczy że wejdziesz w jego wygląd szczegółowy i wybierzesz :link w menu akcji :actions, w prawym górnym rogu. Od tej pory szablon tego elementu będzie dostępny zaraz obok przycisku :new. Możesz ustawić wiele elementów danego typu w roli szablonów.',
+        'link'          => 'Jak stworzyć szablon',
+        'remove'        => 'By usunąć szablon elementu, wybierz akcję :remove, która zastępuje akcję :link opisaną wyżej.',
+        'title'         => 'Szablony elementów',
+    ],
+    'filters'           => [
         'description'   => 'Możesz zmniejszyć liczbę wyświetlanych elementów za pomocą filtrów. Pola tekstowe posiadają kilka opcji które pozwalają dodatkowo zawęzić filtrowanie.',
         'empty'         => 'Wpisując w treści zapytania :tag wyszukasz elementy, które mają to pole puste.',
         'ending_with'   => 'Umieszczając po tekście zapytania :tag możesz szukać wszystkiego, co posiada dokładnie taki tekst.',
@@ -30,7 +39,7 @@ return [
         'starting_with' => 'Umieszczając przed tekstem zapytania :tag możesz szukać wszystkiego, co nie posiada w takiego tekstu.',
         'title'         => 'Jak używać filtrów',
     ],
-    'link'          => [
+    'link'              => [
         'attributes'        => 'Możesz stworzyć odnośnik do cechy elementy pisząc :code. Funkcja działa wyłącznie z już istniejącymi cechami tego elementu.',
         'auto_update'       => 'Odnośniki do innych elementów aktualizują się automatycznie, kiedy zmienia się nazwa albo opis celu.',
         'description'       => 'Możesz z łatwością tworzyć odnośniki do innych elementów kampanii przy pomocy następującego zapisu.',
@@ -45,11 +54,11 @@ return [
         'months'            => 'Wpisz :code by dodać numer miesiąca z kalnedarza.',
         'title'             => 'Tworzenie odnośników i skrótów',
     ],
-    'map'           => [
+    'map'               => [
         'description'   => 'Dodanie do miejsca mapy uruchomi menu \'Mapa\' w widoku tego miejsca oraz bezpośredni odnośnik do tej mapy z menu miejsca. Oglądając mapę, uczestnicy kampanii z prawem do edycji mogą uruchomić \'Tryb Edycji\', który pozwala dodawać na mapę punkty. Te z kolei mogą być samymi podpisami albo prowadzić do istniejących elementów kampanii. Mają różne kształty i rozmiary.',
         'private'       => 'Administratorzy mogą utajniać mapy. Dzięki temu zwykli uczestnicy mogą oglądać miejsca i nie widzieć ich map.',
         'title'         => 'Mapy miejsc',
     ],
-    'public'        => 'Zobacz tutorial na Youtube dotyczący kampanii publicznych.',
-    'title'         => 'Pomoc',
+    'public'            => 'Zobacz tutorial na Youtube dotyczący kampanii publicznych.',
+    'title'             => 'Pomoc',
 ];

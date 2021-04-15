@@ -17,6 +17,9 @@ return [
         'export_error'  => 'Došlo je do pogreške prilikom izvoza kampanje. Molimo kontaktiraj nas ako se ovaj problem nastavi.',
         'join'          => ':user se priključio/la :campaign.',
         'leave'         => ':user je napustio/la :campaign.',
+        'plugin'        => [
+            'deleted'   => 'Dodatak :plugin je izbrisan s tržišta i uklonjen iz kampanje :campaign.',
+        ],
         'role'          => [
             'add'       => 'Dodana ti je uloga :role u kampanji :campaign.',
             'remove'    => 'Uklonjena ti je uloga :role iz kampanje :campaign.',
@@ -28,10 +31,7 @@ return [
         'title'         => 'Obavijesti',
     ],
     'no_notifications'  => 'Trenutno nema obavijesti.',
-    'permissions'       => [
-        'body'  => 'Hej, želimo te obavijestiti da smo u potpunosti promijenili sustav dopuštenja za svaku kampanju!</p><p>Kampanje sada mogu imati uloge i svaka uloga može imati ovlasti za pristup, uređivanje ili brisanje entiteta. Svaki entitet se također može prilagoditi specifičnim dopuštenjima za korisnika, što znači da Bojana i Ante mogu uređivati vlastite likove!</p><p>Jedina mana je da će kampanje s nekoliko korisnika morati postaviti svoja nova dopuštenja. Ako si administrator kampanje, to možeš učiniti na stranici za upravljanje kampanjom. Ako si dio kampanje, ništa nećeš vidjeti dok se administrator kampanje ne pobrine za to.',
-        'title' => 'Promjene ovlasti',
-    ],
+    'permissions'       => [],
     'subscriptions'     => [
         'charge_fail'   => 'Došlo je do pogreške tijekom obrade tvoje uplate. Pričekaj trenutak dok pokušavamo ponovo. Ako se ništa ne promijeni, kontaktiraj nas.',
         'deleted'       => 'Tvoja pretplata na Kanku je otkazana nakon previše neuspjelih pokušaja naplate tvoje kartice. Idi u postavke pretplate i pokušaj ažurirati svoje podatke o plaćanju.',

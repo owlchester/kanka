@@ -17,6 +17,9 @@ return [
         'export_error'  => 'Podczas eksportowania plików kampanii wystąpił błąd. Jeżeli będzie się powtarzał, skontaktuj się z nami. To się zdarza w dużych kampaniach posiadających duże obrazy.',
         'join'          => ':user dołącza do kampanii :campaign.',
         'leave'         => ':user opuszcza do kampanię :campaign.',
+        'plugin'        => [
+            'deleted'   => 'Wtyczka :plugin została usunięta z targowiska, więc usunięto ją również z kampanii :campaign.',
+        ],
         'role'          => [
             'add'       => 'Nadano ci rolę :role w kampanii :campaign.',
             'remove'    => 'Odebrano ci rolę :role w kampanii :campaign.',

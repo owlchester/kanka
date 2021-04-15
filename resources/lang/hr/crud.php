@@ -22,7 +22,8 @@ return [
     ],
     'add'                       => 'Dodaj',
     'alerts'                    => [
-        'copy_mention'  => 'Napredno spominjanje entiteta kopirano je u međuspremnik.',
+        'copy_attribute'    => 'Spomen atributa kopiran je u tvoj međuspremnik.',
+        'copy_mention'      => 'Napredno spominjanje entiteta kopirano je u međuspremnik.',
     ],
     'attributes'                => [
         'actions'       => [
@@ -30,6 +31,9 @@ return [
             'manage'            => 'Upravljanje',
             'more'              => 'Više opcija',
             'remove_all'        => 'Izbriši sve',
+        ],
+        'errors'        => [
+            'loop'  => 'U ovom izračunu atributa postoji beskonačna petlja!',
         ],
         'fields'        => [
             'attribute'             => 'Atribut',
@@ -57,6 +61,10 @@ return [
                 'class' => 'Klase FontAwesome ili RPG Awesome: fas fa-users',
                 'name'  => 'Naziv ikone',
             ],
+            'random'    => [
+                'name'  => 'Naziv atributa',
+                'value' => '1-100 ili popis vrijednosti odvojenih zarezom',
+            ],
             'section'   => 'Naziv odjeljka',
             'template'  => 'Odaberi predložak',
             'value'     => 'Vrijednost atributa',
@@ -70,6 +78,7 @@ return [
             'block'     => 'Blok',
             'checkbox'  => 'Potvrdni okvir',
             'icon'      => 'Ikona',
+            'random'    => 'Nasumično',
             'section'   => 'Odjeljak',
             'text'      => 'Tekst u više redova',
         ],

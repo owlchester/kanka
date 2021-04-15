@@ -2,9 +2,10 @@
 
 return [
     'actions'       => [
-        'entry' => 'Schreibe ein benutzerdefiniertes Eingabefeld für diesen Marker.',
-        'remove'=> 'Marker entfernen',
-        'update'=> 'Marker editieren',
+        'entry'             => 'Schreibe ein benutzerdefiniertes Eingabefeld für diesen Marker.',
+        'remove'            => 'Marker entfernen',
+        'save_and_explore'  => 'Speichern und Erkunden',
+        'update'            => 'Marker editieren',
     ],
     'create'        => [
         'success'   => 'Marker :name erstellt',

@@ -2,9 +2,10 @@
 
 return [
     'actions'       => [
-        'entry' => 'Napiši proizvoljno polje za unos za ovaj marker.',
-        'remove'=> 'Ukloni marker',
-        'update'=> 'Uredi marker',
+        'entry'             => 'Napiši proizvoljno polje za unos za ovaj marker.',
+        'remove'            => 'Ukloni marker',
+        'save_and_explore'  => 'Spremi i istraži',
+        'update'            => 'Uredi marker',
     ],
     'create'        => [
         'success'   => 'Kreiran marker :name.',

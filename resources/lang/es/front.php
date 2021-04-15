@@ -118,6 +118,7 @@ return [
             'title'         => 'Personajes, Familias, Localizaciones',
         ],
         'learn_more'        => 'Saber más sobre las funciones de Kanka',
+        'learn_more_about'  => 'Saber más sobre esta funcionalidad',
         'maps'              => [
             'description'   => 'Sube mapas de tus mundos, ciudades y cuevas, y añádeles prácticos marcadores y enlaces.',
             'title'         => 'Mapas',
@@ -166,6 +167,10 @@ return [
             'description'   => 'Desde un sistema de permisos muy detallado, hasta Misiones, Diarios, Personajes, Pabilidades e inserciones de audio y vídeo, te ayudamos a gestionar tu campaña.',
             'title'         => 'Gestión de campañas de rol',
         ],
+        'secrets'           => [
+            'description'   => 'Cada entidad puede tener asociados muchos secretos en forma de notas de entidad. Puedes ajustar los permisos de cada una para controlar quién la ve, y se pueden fijar a la vista principal de la entidad para acceder a ellas de un vistazo.',
+            'title'         => 'Gestionar secretos',
+        ],
         'superboosts'       => [
             'boosted'       => 'Supermejorada',
             'description'   => 'Para supermejorar una campaña y desbloquear las siguientes funcionalidades puedes usar tres mejoras de campaña en una sola.',
@@ -200,7 +205,7 @@ return [
         'headings'  => [
             'app'           => 'App',
             'community'     => 'Comunidad',
-            'friends'       => 'Nuestros amigos',
+            'other'         => 'Otros',
             'useful_links'  => 'Enlaces útiles',
         ],
         'navigation'=> 'Navegación',
@@ -251,6 +256,7 @@ return [
         'media'         => 'Medios',
         'news'          => 'Novedades',
         'newsletter'    => 'Newsletter',
+        'other'         => 'Otros',
         'pricing'       => 'Tarifas',
         'privacy'       => 'Política de Privacidad',
         'register'      => 'Registrarse',
@@ -274,13 +280,15 @@ return [
             'support'   => 'Apoyar',
         ],
         'benefits'      => [
-            'boosters'          => 'Mejoras de campaña',
-            'core'              => 'Acceso a todas las funciones principales',
-            'higher_uploads'    => 'Subir archivos grandes',
-            'huge_uploads'      => 'Subir archivos enormes',
-            'no_boosters'       => 'Sin mejoras de campaña',
-            'unlimited'         => 'Campañas y archivos subidos ilimitados',
-            'updates'           => 'Actualizaciones y mejoras frecuentes',
+            'big_maps'      => 'Mapas grandes (:size)',
+            'bigger_maps'   => 'Mapas más grandes (:size)',
+            'boosters'      => 'Mejoras de campaña',
+            'core'          => 'Acceso a todas las funciones principales',
+            'huge_maps'     => 'Mapas enormes (:size)',
+            'huge_uploads'  => 'Subir archivos enormes',
+            'no_boosters'   => 'Sin mejoras de campaña',
+            'unlimited'     => 'Campañas y archivos subidos ilimitados',
+            'updates'       => 'Actualizaciones y mejoras frecuentes',
         ],
         'description'   => 'A pesar de que todas las funciones principales son gratuitas, al apoyar a Kanka nos ayudas a mantenerla actualizada con frecuencia y mejorarla para todos los usuarios.',
         'tier'          => [
@@ -317,7 +325,6 @@ return [
     ],
     'second_block'  => [
         'call_to_action'    => '¡Registra tu cuenta gratuita!',
-        'title'             => 'Dedica menos tiempo a organizar y más a crear.',
     ],
     'seo'           => [
         'keywords'  => 'Worldbuilding, Creación de mundos, RPG, Rol, Juego de rol, Gestión de campaña de rol',
