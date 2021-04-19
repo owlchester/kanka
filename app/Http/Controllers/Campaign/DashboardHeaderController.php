@@ -22,8 +22,10 @@ class DashboardHeaderController extends Controller
         $this->authorize('update', $campaign);
         $ajax = request()->ajax();
 
-        if (!empty($campaignDashboardWidget) && !empty($campaignDashboardWidget->campaign_id) && $campaignDashboardWidget->campaign_id != $campaign->id) {
-            abort(404);
+        if (!empty($campaignDashboardWidget) && !empty($campaignDashboardWidget->campaign_id)) {
+            if ($campaignDashboardWidget->campaign_id != $campaign->id) {
+                abort(404);
+            }
         } else {
             $campaignDashboardWidget = null;
         }
