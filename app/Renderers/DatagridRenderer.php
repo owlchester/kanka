@@ -457,8 +457,8 @@ class DatagridRenderer
         if (!empty($actions)) {
             $content = '
         <div class="dropdown">
-            <a class="dropdown-toggle cursor" data-toggle="dropdown" aria-expanded="false" data-placement="right">
-                <i class="fa fa-ellipsis-v"></i>
+            <a class="dropdown-toggle cursor" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
+                <i class="fa fa-ellipsis-v" data-tree="escape"></i>
                 <span class="sr-only">' . __('crud.actions.actions') . '</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-right" role="menu">
