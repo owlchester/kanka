@@ -48,7 +48,7 @@ trait Picture
      */
     protected function avatarUrl(string $avatar)
     {
-        // If it's a default image, patreons have the nicer pictures.
+        // If it's a default image, subscribers have the nicer pictures.
         // Why do we do this here? Because it's based on the user, so it can't go in cache
         if (Str::contains($avatar, '/images/defaults/') && !Str::contains($avatar, '/patreon/')) {
             // Check if the campaign has a default image first
