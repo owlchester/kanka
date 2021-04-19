@@ -315,7 +315,7 @@ class PermissionService
     public function change($request, Entity $entity, bool $override = true)
     {
         // First, let's get all the stuff for this entity
-        $permissions = $this->entityPermissions($entity);
+        $permissions = $this->clearEntityPermissions()->entityPermissions($entity);
 
         // Next, start looping the data
         if (!empty($request['role'])) {
@@ -445,6 +445,15 @@ class PermissionService
 
 
         return $this->cachedPermissions = $permissions;
+    }
+
+    /**
+     * @return $this
+     */
+    protected function clearEntityPermissions(): self
+    {
+        $this->cachedPermissions = false;
+        return $this;
     }
 
     /**

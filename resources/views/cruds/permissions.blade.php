@@ -42,23 +42,15 @@ $permissions = $permissionService->type($entity->type)->entityPermissions($entit
 
             @include('partials.errors')
 
-            @notEnv('shadow')
             {!! Form::open(['route' => ['entities.permissions', $entity->id], 'method'=>'POST', 'data-shortcut' => "1"]) !!}
-            @endif
 
             @include('cruds.permissions.permissions_table')
 
-
-            @notEnv('shadow')
             {!! Form::hidden('entity_id', $entity->id) !!}
-
             <div class="form-group">
                 <button class="btn btn-success">{{ __('crud.save') }}</button>
             </div>
-
             {!! Form::close() !!}
-            @endif
-
         </div>
     </div>
 @endsection
