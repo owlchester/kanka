@@ -21,6 +21,9 @@ if (empty($entity->child)) {
 
     <div class="pinned-entity preview" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">
         {!! $entity->child->entry() !!}
+
+        @include('dashboard.widgets.previews._members')
+        @include('dashboard.widgets.previews._attributes')
     </div>
     <a href="#" class="preview-switch hidden"
        id="widget-preview-switch-{{ $widget->id }}" data-widget="{{ $widget->id }}">

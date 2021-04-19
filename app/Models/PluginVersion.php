@@ -110,6 +110,9 @@ class PluginVersion extends Model
 
         $html = preg_replace_callback('`\{(.*?[^\!])\}`i', function ($matches) {
             $name = trim((string) $matches[1]);
+            if(Str::startsWith($name, '{')) {
+                return '{' . $name . ' }';
+            }
             $this->templateAttributes[$name] = null;
             return '{{ $' . $name . ' }}';
         }, $html);

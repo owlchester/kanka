@@ -198,11 +198,15 @@ class CampaignDashboardWidget extends Model
      */
     public function showAttributes(): bool
     {
-        if ($this->widget != self::WIDGET_PREVIEW) {
+        if (!in_array($this->widget, [self::WIDGET_PREVIEW, self::WIDGET_RECENT])) {
             return false;
         }
 
-        return $this->conf('attributes') == '1' && !empty($this->entity);
+        return $this->conf('attributes') == '1' && (
+            ($this->widget == self::WIDGET_PREVIEW && !empty($this->entity))
+            ||
+            ($this->widget == self::WIDGET_RECENT)
+        );
     }
     /**
      * @return bool
@@ -228,8 +232,6 @@ class CampaignDashboardWidget extends Model
      */
     public function entities($offset = 0)
     {
-        $entityIds = [];
-
         $base = null;
 
         if ($this->widget == self::WIDGET_UNMENTIONED) {
@@ -275,7 +277,7 @@ class CampaignDashboardWidget extends Model
             ->inTags($this->tags->pluck('id')->toArray())
             ->type($entityType)
             ->acl()
-            ->with(['tags', 'updater', 'image'])
+            ->with(['tags', 'image'])
             ->take(10)
             ->offset($offset)
             ->get();

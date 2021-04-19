@@ -68,6 +68,10 @@
   .panel-body {
     .pinned-entity {
       transition: all 0.5s ease;
+      img {
+        max-width: 100%;
+        height: auto;
+      }
     }
 
     .preview {

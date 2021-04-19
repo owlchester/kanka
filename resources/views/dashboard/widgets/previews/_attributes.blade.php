@@ -11,8 +11,8 @@
 @inject('attributeService', 'App\Services\AttributeService')
 
 <div class="widget-advanced-attributes">
+    <dl class="dl-horizontal">
 
-    @include('cruds.partials.attributes', [
-        'attributes' => $model->entity->attributes()->with('entity')->order(null, 'default_order')->get()
-    ])
+    @include('entities.components.attributes')
+    </dl>
 </div>
