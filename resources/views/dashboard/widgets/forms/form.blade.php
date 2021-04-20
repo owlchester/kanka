@@ -46,8 +46,9 @@
                     <i class="fa fa-trash" aria-hidden="true"></i> <span class="hidden-xs hidden-sm">{{ __('crud.remove') }}</span>
                 </button>
                 {!! Form::close() !!}
+
+            @endif
         </div>
-        @endif
     </div>
 </div>
 

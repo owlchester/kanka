@@ -20,9 +20,7 @@ use Illuminate\Support\Str;
  * @property string $entry
  * @property string $content
  * @property int $approved_by
- *
  * @property Plugin $plugin
- * @property PluginVersionEntity[] $entities
  */
 class PluginVersion extends Model
 {
@@ -113,6 +111,7 @@ class PluginVersion extends Model
             if(Str::startsWith($name, '{')) {
                 return '{' . $name . ' }';
             }
+
             $this->templateAttributes[$name] = null;
             return '{{ $' . $name . ' }}';
         }, $html);
@@ -319,13 +318,5 @@ class PluginVersion extends Model
         } else {
             return $query->where('status_id', 3);
         }
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function entities()
-    {
-        return $this->hasMany(PluginVersionEntity::class);
     }
 }

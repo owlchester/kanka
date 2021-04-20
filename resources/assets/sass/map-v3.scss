@@ -166,6 +166,7 @@
 }
 .leaflet-popup img, .marker-details img {
   max-width: 100%;
+  height: auto;
 }
 
 @media(min-width: 767px) {

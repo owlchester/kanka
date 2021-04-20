@@ -2,8 +2,11 @@
 
 namespace App\Http\Resources;
 
+use App\Facades\CampaignLocalization;
+use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\MiscModel;
+use App\Services\Api\ApiService;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -73,12 +76,16 @@ class EntityResource extends JsonResource
             $data['inventory'] = InventoryResource::collection($this->inventories);
             $data['entity_abilities'] = EntityAbilityResource::collection($this->abilities);
             $data['entity_links'] = EntityLinkResource::collection($entity->links);
+        }
 
+        if (request()->get('related', false) || request()->get('image', false)) {
+            $campaign = CampaignLocalization::getCampaign();
+            $image = $campaign->boosted(true) && !empty($entity->image);
             $data['child'] = [
-                'image' => $entity->child->image,
-                'image_full' => $entity->child->getImageUrl(0),
-                'image_thumb' => $entity->child->getImageUrl(40),
-                'has_custom_image' => !empty($entity->child->image)
+                'image' => $image ? $entity->image->path : $entity->child->image,
+                'image_full' => $image ? Img::resetCrop()->url($entity->image->path) : $entity->avatar(),
+                'image_thumb' => $image ? Img::crop(40, 40)->url($entity->image->path) : $entity->avatar(true),
+                'has_custom_image' => $image || !empty($entity->child->image)
             ];
         }
 
@@ -159,9 +166,13 @@ class EntityResource extends JsonResource
      */
     public static function collection($resource)
     {
+        $additional = [
+            'sync' => Carbon::now(),
+        ];
+        if (config('app.debug')) {
+            $additional['queries'] = new ApiService();
+        }
         return parent::collection($resource)
-            ->additional([
-                'sync' => Carbon::now(),
-            ]);
+            ->additional($additional);
     }
 }
