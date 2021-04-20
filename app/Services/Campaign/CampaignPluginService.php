@@ -14,6 +14,10 @@ use App\Models\OrganisationMember;
 use App\Models\Plugin;
 use App\Models\PluginVersion;
 use App\Models\PluginVersionEntity;
+use App\Models\QuestCharacter;
+use App\Models\QuestItem;
+use App\Models\QuestLocation;
+use App\Models\QuestOrganisation;
 use App\Models\Relation;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
@@ -266,6 +270,8 @@ class CampaignPluginService
                         $this->saveRelation($data, $uuid, $entityId);
                     } elseif ($type == 'member') {
                         $this->saveOrganisationMember($data, $uuid, $model->id, $pluginEntity);
+                    } elseif ($type == 'quest_element') {
+                        $this->saveQuestElement($data, $uuid, $model->id, $pluginEntity);
                     } else {
                         Log::info('Unknown relation type \'' . $type . '\' for marketplace entity #' . $pluginEntity->id);
                     }
@@ -338,6 +344,42 @@ class CampaignPluginService
             $member->save();
         } catch (Exception $e) {
             Log::error('Invalid org member ' . $uuid . ' for plugin entity #' . $pluginEntity->id . ': ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * @param array $data
+     * @param string $uuid
+     * @param int $questId
+     * @param PluginVersionEntity $pluginEntity
+     */
+    protected function saveQuestElement(array $data, string $uuid, int $questId, PluginVersionEntity $pluginEntity)
+    {
+        //dump('importing a quest element.');
+
+        // Determine what we're adding
+        $target = $this->miscIds[$data['target']];
+        $targetType = $this->entityTypes[$data['target']];
+        $class = 'App\Models\Quest' . Str::studly($targetType);
+        $foreign = $targetType . '_id';
+
+        //dump("want to add target $target ($targetType) as a $class to $questId");
+
+        // Does it exist?
+        try {
+            $element = $class::where('quest_id', $questId)->where($foreign, $target)->first();
+            if (empty($element)) {
+                /** @var QuestCharacter|QuestLocation|QuestItem|QuestOrganisation $element */
+                $element = new $class();
+                $element->quest_id = $questId;
+                $element->$foreign = $target;
+            }
+            $element->role = Arr::get($data, 'role', null);
+            $element->description = $this->mentions(Arr::get($data, 'description', ''));
+            //dd($element);
+            $element->save();
+        } catch(Exception $e) {
+            Log::error('Invalid quest element ' . $uuid . ' for plugin entity #' . $pluginEntity->id . ' (' . $class . ', ' . $foreign . '): ' . $e->getMessage());
         }
     }
 
@@ -416,5 +458,21 @@ class CampaignPluginService
             }
             $this->loadedRelations[$relation->marketplace_uuid] = $relation;
         }
+    }
+
+    /**
+     * @param string $text
+     * @return string
+     */
+    protected function mentions(string $text): string
+    {
+        return preg_replace_callback('`\[entity:(.*?)\]`i', function ($matches) {
+            $id = (int) $matches[1];
+            if (empty($id) || !isset($this->entityIds[$id])) {
+                return 'wat';
+            }
+
+            return '[' . $this->entityTypes[$id] . ':' . $this->entityIds[$id] . ']';
+        }, $text);
     }
 }

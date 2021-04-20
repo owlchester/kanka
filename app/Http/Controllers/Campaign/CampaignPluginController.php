@@ -168,7 +168,10 @@ class CampaignPluginController extends Controller
         $this->authorize('recover', $campaign);
 
         try {
-            $count = $this->service->plugin($plugin)->campaign($campaign)->import();
+            $count = $this->service
+                ->plugin($plugin)
+                ->campaign($campaign)
+                ->import();
 
             return redirect()->route('campaign_plugins.index')
                 ->with(
