@@ -43,6 +43,7 @@ return [
         'title'     => 'App Integration',
     ],
     'boost'         => [
+        'available_boosts' => 'Available boosts: :amount / :max',
         'benefits'      => [
             'campaign_gallery'  => 'A campaign gallery to upload images that you can re-use through the campaign.',
             'entity_files'      => 'Upload up to 10 files per entity.',
@@ -76,6 +77,7 @@ return [
                 'boost'         => 'Boosting a campaign uses up :amount of your boosts',
                 'superboost'    => 'Superboosting a campaign uses :amount of your boosts',
             ],
+            'unboost'       => 'Unboost',
         ],
         'campaigns'     => 'Boosted Campaigns :count / :max',
         'exceptions'    => [

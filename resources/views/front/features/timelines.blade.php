@@ -52,7 +52,7 @@
 
             <div class="row">
                 <div class="col-lg-4">
-                    @include('front.features._permissions')
+                    @include('front.features._dashboards')
                 </div>
                 <div class="col-lg-4">
                     @include('front.features._calendars')

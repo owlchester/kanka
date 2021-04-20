@@ -23,6 +23,7 @@ class CleanupEntityLogs extends Command
      */
     protected $description = 'Cleanup entity log details';
 
+    /** @var int number of cleaned up logs */
     protected $count = 0;
 
     /**
@@ -42,8 +43,9 @@ class CleanupEntityLogs extends Command
      */
     public function handle()
     {
+        $amount = config('entities.logs');
         EntityLog::
-            where('updated_at', '<=', Carbon::now()->subDays(30)->toDateString())
+            where('updated_at', '<=', Carbon::now()->subDays($amount)->toDateString())
             ->whereNotNull('changes')
             ->chunk(100, function ($models) {
                 $entityIds = [];

@@ -114,7 +114,7 @@ class EntityLog extends Model
         $name = Str::beforeLast($attribute, '_id');
         $key = 'crud.fields.' . $name;
         $translation = __($key);
-        if ($key !== $transKey) {
+        if ($key !== $translation) {
             return $translation;
         }
 

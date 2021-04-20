@@ -319,4 +319,12 @@ class PluginVersion extends Model
             return $query->where('status_id', 3);
         }
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function entities()
+    {
+        return $this->hasMany(PluginVersionEntity::class);
+    }
 }

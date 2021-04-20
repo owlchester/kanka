@@ -76,7 +76,7 @@
         <div class="box box-solid">
             <div class="box-header with-border">
                 <h3 class="box-title">
-                    {{ __('settings.boost.campaigns', ['max' => Auth::user()->maxBoosts(), 'count' => Auth::user()->boosting()]) }}
+                    {{ __('settings.boost.available_boosts', ['max' => auth()->user()->maxBoosts(), 'amount' => auth()->user()->availableBoosts()]) }}
                 </h3>
             </div>
             <div class="box-body">
@@ -140,7 +140,7 @@
                                 @endif
                                 @can('destroy', $boost)
                                     <a href="#" class="delete-confirm btn btn-danger" data-name="{!! $boost->campaign->name !!}" data-toggle="modal" data-target="#unboost-confirm" data-delete-target="delete-confirm-form-{{ $boost->id }}" data-confirm-target="#unboost-confirm-name">
-                                        <i class="fa fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
+                                        {{ __('settings.boost.buttons.unboost') }}
                                     </a>
                                     {!! Form::open(['method' => 'DELETE', 'route' => ['campaign_boosts.destroy', $boost->id], 'style' => 'display:inline', 'id' => 'delete-confirm-form-' . $boost->id]) !!}
                                     {!! Form::close() !!}
@@ -210,7 +210,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                     <button type="button" class="btn btn-danger delete-confirm-submit">
-                        <span class="fa fa-trash"></span> {{ __('crud.remove') }}
+                        {{ __('settings.boost.buttons.unboost') }}
                     </button>
                 </div>
             </div>

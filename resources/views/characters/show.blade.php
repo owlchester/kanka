@@ -49,6 +49,9 @@
         @endif
 
         @include('entities.components.notes')
+
+
+        @include('cruds.boxes.history')
     </div>
 
     <div class="col-lg-2 col-md-3 @if (!$model->showAppearance()) hidden @endif">
@@ -84,11 +87,6 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-8 col-md-offset-2">
-        @include('cruds.boxes.history')
-    </div>
-</div>
 
 @if(isset($exporting))
     @if ($campaign->enabled('items') && $model->items()->count() > 0)

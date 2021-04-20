@@ -192,6 +192,11 @@
                                     {{ __('faq.public-campaigns.question') }}
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'discord', 'slug' => Str::slug(__('faq.discord.question'))]) }}">
+                                    {{ __('faq.discord.question') }}
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

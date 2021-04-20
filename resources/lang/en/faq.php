@@ -45,6 +45,10 @@ TEXT
         'answer'    => 'Go to your campaign dashboard, and click on "Campaign" on the left menu. A "Delete" campaign button will appear if you are last member of the campaign. Deleting a campaign is a permanent action that will delete all the data stored on our servers, including images.',
         'question'  => 'How can I delete a campaign?',
     ],
+    'discord'               => [
+        'answer' => 'To link your Kanka account with :discord, you first need to click on your avatar on the top-right of the app, and click on the Profile button. From there, navigate to the :apps subpage and click on Connect.',
+        'question' => 'How to link my Kanka account with Discord?',
+    ],
     'early-access'          => [
         'answer'    => 'Early Access is a way for us to reward our amazing subscribers by giving them an exclusive 30 day period where they can try out the latest modules before anyone else.',
         'question'  => 'What is Early Access?',

@@ -87,6 +87,11 @@
                     @else
                         {{ $logs->links() }}
                     @endif
+
+                    <p class="help-block">{!! __('entities/logs.superboosted', [
+    'superboosted-campaigns' => link_to_route('front.features', __('crud.superboosted_campaigns'), ['#superboost'], ['target' => '_blank']),
+    'amount' => config('entities.logs'),
+]) !!}</p>
                 </div>
             </div>
         </div>

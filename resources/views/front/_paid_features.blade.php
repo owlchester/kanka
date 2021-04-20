@@ -158,7 +158,7 @@
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
-                <td class="text">{{ __('front.features.boosts.dashboards') }}</td>
+                <td class="text">{{ __('front.features.boosts.dashboards') }} {!! link_to_route('front.features.dashboards', __('front.cookie.link'), [], ['target' => '_blank', 'class' => 'ml-2']) !!}</td>
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
@@ -182,7 +182,7 @@
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
-                <td class="text">{{ __('front.features.boosts.recovery') }}</td>
+                <td class="text">{{ __('front.features.boosts.recovery', ['amount' => config('entities.hard_delete')]) }}</td>
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
@@ -229,7 +229,7 @@
                     <td><i class="fa fa-check-circle"></i></td>
                 </tr>
                 <tr>
-                    <td class="text">{{ __('front.features.superboosts.logs') }}</td>
+                    <td class="text">{{ __('front.features.superboosts.logs', ['amount' => config('entities.logs')]) }}</td>
                     <td><i class="fa fa-check-circle"></i></td>
                 </tr>
                 <tr>

@@ -44,6 +44,11 @@ class FeatureController extends Controller
         return $this->cachedResponse('front.features.inventory-abilities');
     }
 
+    public function dashboards()
+    {
+        return $this->cachedResponse('front.features.dashboards');
+    }
+
 
     protected function cachedResponse(string $view, int $days = 7)
     {

@@ -23,7 +23,6 @@
                 <div class="col-lg-12">
                     <div class="container-fluid">
                         <div class="row">
-
                             <div class="col-lg-4 col-6">
                                 @include('front.features._permissions')
                             </div>
@@ -44,7 +43,10 @@
                                 @include('front.features._abilities')
                             </div>
 
-                            <div class="col-lg-4 col-6 offset-lg-2">
+                            <div class="col-lg-4 col-6">
+                                @include('front.features._dashboards')
+                            </div>
+                            <div class="col-lg-4 col-6">
                                 @include('front.features._audio')
                             </div>
                             <div class="col-lg-4 col-6">
