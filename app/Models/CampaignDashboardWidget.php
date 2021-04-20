@@ -18,7 +18,7 @@ use Illuminate\Support\Str;
  * @property integer $entity_id
  * @property int $dashboard_id
  * @property string $widget
- * @property string $config
+ * @property array $config
  * @property integer $width
  * @property integer $position
  * @property Tag[] $tags
@@ -247,7 +247,13 @@ class CampaignDashboardWidget extends Model
                 ->whereNotIn('type', $excludedTypes)
             ;
         } else {
-            $base = \App\Models\Entity::recentlyModified();
+            $order = Arr::get($this->config, 'order', null);
+            if (empty($order)) {
+                $base = \App\Models\Entity::recentlyModified();
+            } else {
+                list ($field, $order) = explode('_', $order);
+                $base = \App\Models\Entity::orderBy($field, $order);
+            }
         }
 
         // If an entity type is provided, we can combine that with filters. We need to get the list of the misc

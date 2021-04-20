@@ -15,8 +15,9 @@
     </div>
 </div>
 
-
-@includeWhen(!empty($dashboards), 'dashboard.widgets.forms._dashboard')
+<div class="row">
+    @includeWhen(!empty($dashboards), 'dashboard.widgets.forms._dashboard')
+</div>
 
 <div class="form-group">
     {!! Form::tags(

@@ -120,6 +120,7 @@ return [
             'name'      => 'Custom widget name',
             'text'      => 'Text',
             'width'     => 'Width',
+            'order'     => 'Ordering',
         ],
         'random'                    => [
             'helpers'   => [
@@ -149,6 +150,11 @@ return [
         ],
         'update'                    => [
             'success'   => 'Widget modified.',
+        ],
+        'orders'    => [
+            'recent' => 'Recently modified',
+            'name_asc' => 'Name ascending',
+            'name_desc' => 'Name descending',
         ],
         'widths'                    => [
             '0' => 'Auto',

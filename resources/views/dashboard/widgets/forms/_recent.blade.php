@@ -84,4 +84,17 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label>{{ __('dashboard.widgets.fields.order') }}</label>
+            {!! Form::select('config[order]', [
+        '' => __('dashboard.widgets.orders.recent'),
+        'name_asc' => __('dashboard.widgets.orders.name_asc'),
+        'name_desc' => __('dashboard.widgets.orders.name_desc'),
+    ], null, ['class' => 'form-control']) !!}
+        </div>
+
+    </div>
 @includeWhen(!empty($dashboards), 'dashboard.widgets.forms._dashboard')
+</div>
