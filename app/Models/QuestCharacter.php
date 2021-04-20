@@ -16,7 +16,7 @@ use App\Traits\VisibleTrait;
  * @property string $colour
  * @property integer $impact
  */
-class QuestCharacter extends QuestElement
+class QuestCharacter extends QuestAbstract
 {
 
     /**

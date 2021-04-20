@@ -40,6 +40,7 @@ Route::apiResources([
     'campaigns.quests.quest_locations' => 'QuestLocationApiController',
     'campaigns.quests.quest_items' => 'QuestItemApiController',
     'campaigns.quests.quest_organisations' => 'QuestOrganisationApiController',
+    'campaigns.quests.quest_elements' => 'QuestElementApiController',
     'campaigns.races' => 'RaceApiController',
     'campaigns.tags' => 'TagApiController',
     'campaigns.timelines' => 'TimelineApiController',

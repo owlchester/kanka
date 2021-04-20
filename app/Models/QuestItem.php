@@ -16,7 +16,7 @@ use App\Traits\VisibleTrait;
  * @property string $colour
  * @property integer $impact
  */
-class QuestItem extends QuestElement
+class QuestItem extends QuestAbstract
 {
     /**
      * ACL Trait config

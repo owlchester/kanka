@@ -1,25 +1,22 @@
 <?php
 
 return [
-    'characters'    => [
+    'elements'    => [
         'create'    => [
-            'description'   => 'Set a character to a Quest',
-            'success'       => 'Character added to :name.',
-            'title'         => 'New Character for :name',
+            'success'       => 'Entity :entity added to the quest.',
+            'title'         => 'New element for :name',
         ],
         'destroy'   => [
-            'success'   => 'Quest character for :name removed.',
+            'success'   => 'Quest element :entity removed.',
         ],
         'edit'      => [
-            'description'   => 'Update a quest\'s character',
-            'success'       => 'Quest character for :name updated.',
-            'title'         => 'Update character for :name',
+            'success'       => 'Quest element :entity updated.',
+            'title'         => 'Update quest element for :name',
         ],
         'fields'    => [
-            'character'     => 'Character',
             'description'   => 'Description',
         ],
-        'title'     => 'Characters in :name',
+        'title' => 'Quest :name Elements',
     ],
     'create'        => [
         'description'   => 'Create a new quest',
@@ -36,16 +33,12 @@ return [
     ],
     'fields'        => [
         'character'     => 'Instigator',
-        'characters'    => 'Characters',
         'copy_elements' => 'Copy elements attached to the quest',
         'date'          => 'Date',
         'description'   => 'Description',
         'image'         => 'Image',
         'is_completed'  => 'Completed',
-        'items'         => 'Items',
-        'locations'     => 'Locations',
         'name'          => 'Name',
-        'organisations' => 'Organisations',
         'quest'         => 'Parent Quest',
         'quests'        => 'Sub Quests',
         'role'          => 'Role',
@@ -64,66 +57,6 @@ return [
         'header'        => 'Quests of :name',
         'title'         => 'Quests',
     ],
-    'items'         => [
-        'create'    => [
-            'description'   => 'Set an item to a Quest',
-            'success'       => 'Item added to :name.',
-            'title'         => 'New Item for :name',
-        ],
-        'destroy'   => [
-            'success'   => 'Quest item for :name removed.',
-        ],
-        'edit'      => [
-            'description'   => 'Update a quest\'s item',
-            'success'       => 'Quest item for :name updated.',
-            'title'         => 'Update item for :name',
-        ],
-        'fields'    => [
-            'description'   => 'Description',
-            'item'          => 'Item',
-        ],
-        'title'     => 'Items in :name',
-    ],
-    'locations'     => [
-        'create'    => [
-            'description'   => 'Set a location to a Quest',
-            'success'       => 'Location added to :name.',
-            'title'         => 'New Location for :name',
-        ],
-        'destroy'   => [
-            'success'   => 'Quest location for :name removed.',
-        ],
-        'edit'      => [
-            'description'   => 'Update a quest\'s location',
-            'success'       => 'Quest location for :name updated.',
-            'title'         => 'Update location for :name',
-        ],
-        'fields'    => [
-            'description'   => 'Description',
-            'location'      => 'Location',
-        ],
-        'title'     => 'Locations in :name',
-    ],
-    'organisations' => [
-        'create'    => [
-            'description'   => 'Set an organisation to a Quest',
-            'success'       => 'Organisation added to :name.',
-            'title'         => 'New Organisation for :name',
-        ],
-        'destroy'   => [
-            'success'   => 'Quest organisation for :name removed.',
-        ],
-        'edit'      => [
-            'description'   => 'Update a quest\'s organisation',
-            'success'       => 'Quest organisation for :name updated.',
-            'title'         => 'Update organisation for :name',
-        ],
-        'fields'    => [
-            'description'   => 'Description',
-            'organisation'  => 'Organisation',
-        ],
-        'title'     => 'Organisations in :name',
-    ],
     'placeholders'  => [
         'date'  => 'Real world date for the quest',
         'name'  => 'Name of the quest',
@@ -133,19 +66,13 @@ return [
     ],
     'show'          => [
         'actions'       => [
-            'add_character'     => 'Add a character',
-            'add_item'          => 'Add an item',
-            'add_location'      => 'Add a location',
-            'add_organisation'  => 'Add an organisation',
+            'add_element'     => 'Add an element',
         ],
         'description'   => 'A detailed view of a quest',
         'tabs'          => [
-            'characters'    => 'Characters',
             'information'   => 'Information',
-            'items'         => 'Items',
-            'locations'     => 'Locations',
-            'organisations' => 'Organisations',
             'quests'        => 'Quests',
+            'elements'      => 'Elements',
         ],
         'title'         => 'Quest :name',
     ],

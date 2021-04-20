@@ -141,10 +141,10 @@ Route::group([
         Route::get('/items/{item}/inventories', 'ItemController@inventories')->name('items.inventories');
 
         // Quest menus
-        Route::get('/quests/{quest}/characters', 'QuestController@characters')->name('quests.characters');
+        /*Route::get('/quests/{quest}/characters', 'QuestController@characters')->name('quests.characters');
         Route::get('/quests/{quest}/locations', 'QuestController@locations')->name('quests.locations');
         Route::get('/quests/{quest}/items', 'QuestController@items')->name('quests.items');
-        Route::get('/quests/{quest}/organisations', 'QuestController@organisations')->name('quests.organisations');
+        Route::get('/quests/{quest}/organisations', 'QuestController@organisations')->name('quests.organisations');*/
         Route::get('/quests/tree', 'QuestController@tree')->name('quests.tree');
         //Route::get('/quests/{quest}/map-points', 'QuestController@mapPoints')->name('quests.map-points');
 
@@ -281,10 +281,11 @@ Route::group([
             'organisations.organisation_members' => 'OrganisationMemberController',
             'notes' => 'NoteController',
             'quests' => 'QuestController',
-            'quests.quest_locations' => 'QuestLocationController',
-            'quests.quest_characters' => 'QuestCharacterController',
-            'quests.quest_items' => 'QuestItemController',
-            'quests.quest_organisations' => 'QuestOrganisationController',
+            //'quests.quest_locations' => 'QuestLocationController',
+            //'quests.quest_characters' => 'QuestCharacterController',
+            //'quests.quest_items' => 'QuestItemController',
+            //'quests.quest_organisations' => 'QuestOrganisationController',
+            'quests.quest_elements' => 'QuestElementController',
             'tags' => 'TagController',
             'timelines' => 'Timelines\TimelineController',
             'timelines.timeline_eras' => 'Timelines\TimelineEraController',

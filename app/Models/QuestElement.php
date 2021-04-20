@@ -1,25 +1,40 @@
 <?php
 
-
 namespace App\Models;
 
-
 use App\Facades\Mentions;
+use App\Facades\UserPermission;
 use App\Models\Concerns\SimpleSortableTrait;
+use App\Traits\VisibilityTrait;
 use App\Traits\VisibleTrait;
 
 /**
- * Class QuestElement
+ * Class QuestCharacter
  * @package App\Models
- *
+ * @property integer $entity_id
+ * @property integer $quest_id
+ * @property string $description
+ * @property string $role
+ * @property string $colour
  * @property Quest $quest
+ * @property Entity $entity
+ *
  */
-abstract class QuestElement extends MiscModel
+class QuestElement extends QuestAbstract
 {
+    use VisibilityTrait;
+
     /**
-     * Traits
+     * @var array
      */
-    use VisibleTrait, SimpleSortableTrait;
+    protected $fillable = [
+        'quest_id',
+        'entity_id',
+        'description',
+        'role',
+        'colour',
+        'visibility'
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -30,16 +45,45 @@ abstract class QuestElement extends MiscModel
     }
 
     /**
-     * @return string
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function colourClass(): string
+    public function entity()
     {
-        if (empty($this->colour)) {
-            return 'bg-none';
+        return $this->belongsTo('App\Models\Entity', 'entity_id');
+    }
+
+    /**
+     * Scope a query to only include elements that are visible
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $type
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeAcl($query, $action = 'read', $user = null)
+    {
+        // Use the User Permission Service to handle all of this easily.
+        /** @var \App\Services\UserPermission $service */
+        $service = UserPermission::user($user)->action($action);
+
+        if ($service->isCampaignOwner()) {
+            return $query;
         }
 
-        return $this->colour == 'grey' ? 'bg-gray' : 'bg-' . $this->colour;
+        return $query
+            ->select('quest_elements.*')
+            ->join('entities', 'quest_elements.entity_id', '=', 'entities.id')
+            ->where('entities.is_private', false)
+            ->where(function ($subquery) use ($service) {
+                return $subquery
+                    ->where(function ($sub) use ($service) {
+                        return $sub->whereIn('entities.id', $service->entityIds())
+                            ->orWhereIn('entities.type', $service->entityTypes());
+                    })
+                    ->whereNotIn('entities.id', $service->deniedEntityIds());
+            });
     }
+
+
 
     /**
      * @return mixed

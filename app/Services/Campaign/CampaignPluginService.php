@@ -5,6 +5,7 @@ namespace App\Services\Campaign;
 
 
 use App\Facades\CampaignCache;
+use App\Http\Resources\QuestElementResource;
 use App\Models\Campaign;
 use App\Models\CampaignPlugin;
 use App\Models\CharacterTrait;
@@ -15,6 +16,7 @@ use App\Models\Plugin;
 use App\Models\PluginVersion;
 use App\Models\PluginVersionEntity;
 use App\Models\QuestCharacter;
+use App\Models\QuestElement;
 use App\Models\QuestItem;
 use App\Models\QuestLocation;
 use App\Models\QuestOrganisation;
@@ -358,28 +360,26 @@ class CampaignPluginService
         //dump('importing a quest element.');
 
         // Determine what we're adding
-        $target = $this->miscIds[$data['target']];
-        $targetType = $this->entityTypes[$data['target']];
-        $class = 'App\Models\Quest' . Str::studly($targetType);
-        $foreign = $targetType . '_id';
+        $target = $this->entityIds[$data['target']];
 
         //dump("want to add target $target ($targetType) as a $class to $questId");
 
         // Does it exist?
         try {
-            $element = $class::where('quest_id', $questId)->where($foreign, $target)->first();
+            $element = QuestElement::where('quest_id', $questId)->where('entity_id', $target)->first();
             if (empty($element)) {
-                /** @var QuestCharacter|QuestLocation|QuestItem|QuestOrganisation $element */
-                $element = new $class();
+                /** @var QuestElement $element */
+                $element = new QuestElement();
                 $element->quest_id = $questId;
-                $element->$foreign = $target;
+                $element->entity_id = $target;
             }
             $element->role = Arr::get($data, 'role', null);
             $element->description = $this->mentions(Arr::get($data, 'description', ''));
+            $element->visibility = 'all';
             //dd($element);
             $element->save();
         } catch(Exception $e) {
-            Log::error('Invalid quest element ' . $uuid . ' for plugin entity #' . $pluginEntity->id . ' (' . $class . ', ' . $foreign . '): ' . $e->getMessage());
+            Log::error('Invalid quest element ' . $uuid . ' for plugin entity #' . $pluginEntity->id . ' (entity #' . $target . '): ' . $e->getMessage());
         }
     }
 

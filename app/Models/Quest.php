@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Quest[] $quests
  * @property Item[] $items
  * @property Organisation[] $organisations
+ * @property QuestElement[] $elements
  */
 class Quest extends MiscModel
 {
@@ -205,22 +206,22 @@ class Quest extends MiscModel
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function elements()
+    {
+        return $this->hasMany(QuestElement::class);
+    }
+
+    /**
      * Detach children when moving this entity from one campaign to another
      */
     public function detach()
     {
-        foreach ($this->locations as $child) {
+        foreach ($this->elements as $child) {
             $child->delete();
         }
-        foreach ($this->characters as $child) {
-            $child->delete();
-        }
-        foreach ($this->items as $child) {
-            $child->delete();
-        }
-        foreach ($this->organisations as $child) {
-            $child->delete();
-        }
+
         foreach ($this->quests as $quest) {
             $quest->quest_id = null;
             $quest->save();
@@ -235,38 +236,12 @@ class Quest extends MiscModel
     {
         $campaign = CampaignLocalization::getCampaign();
 
-        if ($campaign->enabled('characters')) {
-            $count = $this->characters()->with('character')->has('character')->count();
-            $items['characters'] = [
-                'name' => 'quests.show.tabs.characters',
-                'route' => 'quests.characters',
-                'count' => $count
-            ];
-        }
-        if ($campaign->enabled('locations')) {
-            $count = $this->locations()->with('location')->has('location')->count();
-            $items['locations'] = [
-                'name' => 'quests.show.tabs.locations',
-                'route' => 'quests.locations',
-                'count' => $count
-            ];
-        }
-        if ($campaign->enabled('items')) {
-            $count = $this->items()->with('item')->has('item')->count();
-            $items['items'] = [
-                'name' => 'quests.show.tabs.items',
-                'route' => 'quests.items',
-                'count' => $count
-            ];
-        }
-        if ($campaign->enabled('organisations')) {
-            $count = $this->organisations()->with('organisation')->has('organisation')->count();
-            $items['organisations'] = [
-                'name' => 'quests.show.tabs.organisations',
-                'route' => 'quests.organisations',
-                'count' => $count
-            ];
-        }
+        $count = $this->elements()->with('entity')->has('entity')->count();
+        $items['elements'] = [
+            'name' => 'quests.show.tabs.elements',
+            'route' => 'quests.quest_elements.index',
+            'count' => $count
+        ];
         return parent::menuItems($items);
     }
 
