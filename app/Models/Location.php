@@ -439,14 +439,6 @@ class Location extends MiscModel
                 'count' => $count
             ];
         }
-        $count = $this->relatedQuests()->with('quest')->count();
-        if ($campaign->enabled('quests') && $count > 0) {
-            $items['quests'] = [
-                'name' => 'locations.show.tabs.quests',
-                'route' => 'locations.quests',
-                'count' => $count
-            ];
-        }
         $count = $this->journals()->count();
         if ($campaign->enabled('journals') && $count > 0) {
             $items['journals'] = [

@@ -238,6 +238,14 @@ trait EntityRelations
     /**
      * @return \Illuminate\Database\Eloquent\Relations\hasOne
      */
+    public function quests()
+    {
+        return $this->hasMany('App\Models\QuestElement', 'entity_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     */
     public function conversation()
     {
         return $this->hasOne('App\Models\Conversation', 'id', 'entity_id');

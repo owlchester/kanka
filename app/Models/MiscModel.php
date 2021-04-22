@@ -357,6 +357,19 @@ abstract class MiscModel extends Model
             }
         }
 
+        if ($campaign->enabled('quests')) {
+            $quests = $this->entity->quests()->with('quest')->has('quest')->count();
+            if ($quests > 0) {
+                $items['quests'] = [
+                    'name' => 'crud.tabs.quests',
+                    'route' => 'entities.quests',
+                    'count' => $quests,
+                    'entity' => true,
+                    'icon' => 'ra ra-wooden-sign',
+                ];
+            }
+        }
+
         // Each entity can have an inventory
         $items['inventory'] = [
             'name' => 'crud.tabs.inventory',

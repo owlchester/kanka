@@ -332,14 +332,6 @@ class Character extends MiscModel
                 'count' => $count
             ];
         }
-        $questCount = $this->relatedQuests()->count() + $this->questGiver()->count();
-        if ($campaign->enabled('quests') && $questCount > 0) {
-            $items['quests'] = [
-                'name' => 'characters.show.tabs.quests',
-                'route' => 'characters.quests',
-                'count' => $questCount
-            ];
-        }
         $diceRollCount = $this->diceRolls()->count();
         if ($campaign->enabled('dice_rolls') && $diceRollCount > 0) {
             $items['dice_rolls'] = [

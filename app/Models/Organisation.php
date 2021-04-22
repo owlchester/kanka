@@ -248,15 +248,6 @@ class Organisation extends MiscModel
             ];
         }
 
-        $count = $this->relatedQuests()->count();
-        if ($campaign->enabled('quests') && $count > 0) {
-            $items['quests'] = [
-                'name' => 'organisations.show.tabs.quests',
-                'route' => 'organisations.quests',
-                'count' => $count
-            ];
-        }
-
         return parent::menuItems($items);
     }
 

@@ -249,6 +249,7 @@ Route::group([
         Route::get('/entities/{entity}/entity_abilities/reset', 'Entity\AbilityController@resetCharges')->name('entities.entity_abilities.reset');
 
         Route::get('/entities/{entity}/entity_links/{entity_link}/go', 'Entity\LinkController@go')->name('entities.entity_links.go');
+        Route::get('/entities/{entity}/quests', 'Entity\QuestController@index')->name('entities.quests');
 
         //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
         Route::resources([

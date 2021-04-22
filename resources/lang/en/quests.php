@@ -14,6 +14,7 @@ return [
             'title'         => 'Update quest element for :name',
         ],
         'fields'    => [
+            'quest'         => 'Quest',
             'description'   => 'Description',
         ],
         'title' => 'Quest :name Elements',

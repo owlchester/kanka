@@ -214,15 +214,6 @@ class Item extends MiscModel
     {
         $campaign = CampaignLocalization::getCampaign();
 
-        $questCount = $this->quests()->count();
-        if ($campaign->enabled('quests') && $questCount > 0) {
-            $items['quests'] = [
-                'name' => 'items.show.tabs.quests',
-                'route' => 'items.quests',
-                'count' => $questCount
-            ];
-        }
-
         $inventoryCount = $this->inventories()->with('item')->acl()->has('entity')->count();
         if ($inventoryCount > 0) {
             $items['inventories'] = [
