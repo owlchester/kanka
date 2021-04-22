@@ -132,9 +132,9 @@ class Quest extends MiscModel
             'entity',
             'entity.image',
             'quests',
-            'locations',
-            'characters',
-            'organisations',
+            'character',
+            'character.entity',
+            //'elements',
             'quest',
             'quest.entity',
         ]);
