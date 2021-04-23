@@ -19,7 +19,7 @@ abstract class QuestAbstract extends MiscModel
     /**
      * Traits
      */
-    use VisibleTrait, SimpleSortableTrait;
+    use SimpleSortableTrait;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
