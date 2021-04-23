@@ -160,9 +160,10 @@ class Ability extends MiscModel
     }
 
     /**
+     * Menu items for the entity
      * @return array
      */
-    public function menuItems($items = [])
+    public function menuItems(array $items = []): array
     {
         $campaign = CampaignLocalization::getCampaign();
 
@@ -171,7 +172,7 @@ class Ability extends MiscModel
             'route' => 'abilities.abilities',
             'count' => $this->descendants()->count()
         ];
-        $items['entities'] = [
+        $items['second']['entities'] = [
             'name' => 'abilities.show.tabs.entities',
             'route' => 'abilities.entities',
             'count' => $this->entities()->acl()->count()

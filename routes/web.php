@@ -403,6 +403,7 @@ Route::group([
         Route::post('/entities/move/{entity}', 'EntityController@post')->name('entities.move');
 
         Route::get('/entities/{entity}/tooltip', 'EntityTooltipController@show')->name('entities.tooltip');
+        Route::get('/entities/{entity}/assets', 'Entity\AssetController@index')->name('entities.assets');
 
         Route::get('/entities/{entity}/json-export', 'Entity\ExportController@json')->name('entities.json-export');
 

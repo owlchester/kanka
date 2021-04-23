@@ -1,0 +1,43 @@
+.entity-assets .entity-asset {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+.entity-assets .entity-asset .child {
+  width: 50%;
+  height: 82px;
+}
+
+.entity-assets .entity-asset .icon {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 50%;
+  text-align: center;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.entity-assets .entity-asset .icon i {
+  display: inline-block;
+  font-size: 3em;
+  vertical-align: middle;
+  line-height: 82px;
+}
+
+.entity-assets .entity-asset .text {
+  width: 50%;
+  padding: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 22px;
+  font-size: 12px;
+}
+
+.entity-assets .entity-asset .text i {
+  font-size: 16px;
+}
+

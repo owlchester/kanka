@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Rules\EntityFileRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreEntityFile extends FormRequest
+class UpdateEntityFile extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,13 +25,7 @@ class StoreEntityFile extends FormRequest
     public function rules()
     {
         return [
-            'file' => [
-                'required',
-                'file',
-                'max:' . auth()->user()->maxUploadSize(),
-                new EntityFileRule
-            ],
-            'name' => 'nullable|string|max:45',
+            'name' => 'required|string|max:45',
             'visibility' => 'nullable|string|max:10',
         ];
     }

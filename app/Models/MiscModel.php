@@ -315,7 +315,7 @@ abstract class MiscModel extends Model
      * @param array $items
      * @return array
      */
-    public function menuItems($items = [])
+    public function menuItems(array $items = []): array
     {
         $campaign = CampaignLocalization::getCampaign();
 
@@ -323,7 +323,7 @@ abstract class MiscModel extends Model
         $mapPoints = $this->entity->targetMapPoints()->has('location')->count();
         $newMapPoints = $this->entity->mapMarkers()->has('map')->count();
         if (($mapPoints + $newMapPoints) > 0) {
-            $items['map-points'] = [
+            $items['second']['map-points'] = [
                 'name' => 'crud.tabs.map-points',
                 'route' => 'entities.map-markers',
                 'count' => $mapPoints + $newMapPoints,
@@ -332,9 +332,15 @@ abstract class MiscModel extends Model
             ];
         }
 
+        $items['first']['story'] = [
+            'name' => 'crud.tabs.story',
+            'route' => $this->entity->pluralType() . '.show',
+        ];
+
+
         // Each entity can have relations
         if (!isset($this->hasRelations) || $this->hasRelations === true) {
-            $items['relations'] = [
+            $items['first']['relations'] = [
                 'name' => 'crud.tabs.relations',
                 'route' => 'entities.relations.index',
                 'count' => $this->entity->relationships()->acl()->count(),
@@ -347,7 +353,7 @@ abstract class MiscModel extends Model
         if ((!isset($this->hasTimelines) || $this->hasTimelines === true) && $campaign->enabled('timelines')) {
             $timelines = $this->entity->timelines()->with('timeline')->has('timeline')->count();
             if ($timelines > 0) {
-                $items['timelines'] = [
+                $items['second']['timelines'] = [
                     'name' => 'crud.tabs.timelines',
                     'route' => 'entities.timelines',
                     'count' => $timelines,
@@ -360,7 +366,7 @@ abstract class MiscModel extends Model
         if ($campaign->enabled('quests')) {
             $quests = $this->entity->quests()->with('quest')->has('quest')->count();
             if ($quests > 0) {
-                $items['quests'] = [
+                $items['second']['quests'] = [
                     'name' => 'crud.tabs.quests',
                     'route' => 'entities.quests',
                     'count' => $quests,
@@ -370,18 +376,9 @@ abstract class MiscModel extends Model
             }
         }
 
-        // Each entity can have an inventory
-        $items['inventory'] = [
-            'name' => 'crud.tabs.inventory',
-            'route' => 'entities.inventory',
-            'count' => $this->entity->inventories()->has('item')->count(),
-            'entity' => true,
-            'icon' => 'ra ra-round-bottom-flask',
-        ];
-
         // Each entity can have abilities
         if ($campaign->enabled('abilities') && $this->entityTypeId() != config('entities.ids.ability')) {
-            $items['abilities'] = [
+            $items['third']['abilities'] = [
                 'name' => 'crud.tabs.abilities',
                 'route' => 'entities.entity_abilities.index',
                 'count' => $this->entity->abilities()->has('ability')->count(),
@@ -390,7 +387,41 @@ abstract class MiscModel extends Model
             ];
         }
 
-        return $items;
+        // Each entity can have an inventory
+        $items['third']['inventory'] = [
+            'name' => 'crud.tabs.inventory',
+            'route' => 'entities.inventory',
+            'count' => $this->entity->inventories()->has('item')->count(),
+            'entity' => true,
+            'icon' => 'ra ra-round-bottom-flask',
+        ];
+
+        // Each entity can have assets
+        if (config('entities.file_upload') && $this->entity->hasFiles()) {
+            $items['third']['assets'] = [
+                'name' => 'crud.tabs.assets',
+                'route' => 'entities.assets',
+                'count' => $this->entity->files()->count() + $this->entity->links()->count(),
+                'entity' => true,
+                'icon' => 'fa fa-file',
+            ];
+        }
+
+        //dump($items);
+        $menuItems = [];
+        if (Arr::has($items, 'first')) {
+            $menuItems[] = $items['first'];
+        }
+        if (Arr::has($items, 'second')) {
+            $menuItems[] = $items['second'];
+        }
+        if (Arr::has($items, 'third')) {
+            $menuItems[] = $items['third'];
+        }
+
+        //dd($menuItems);
+
+        return $menuItems;
     }
 
     /**

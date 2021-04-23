@@ -76517,10 +76517,11 @@ $(document).ready(function () {
   if (!window.kankaIsMobile.matches) {
     initTooltips();
   }
+  /*$('[data-toggle="popover"]').popover({
+      sanitize: false,
+  });*/
 
-  $('[data-toggle="popover"]').popover({
-    sanitize: false
-  });
+
   initSelect2();
   initSpectrum();
   initCheckboxSwitch();
@@ -76631,6 +76632,7 @@ $(document).ready(function () {
   initAjaxPagination();
   initTimelineToggle();
   initEntityNoteToggle();
+  initDynamicDelete();
   /**
    * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
    */
@@ -76644,6 +76646,7 @@ $(document).ready(function () {
     initTooltips();
     initCategories();
     initSpectrum();
+    initDynamicDelete();
     Object(_components_delete_confirm_js__WEBPACK_IMPORTED_MODULE_1__["default"])(); // Handle when opening the entity-creator ui
 
     entityCreatorUI();
@@ -76683,8 +76686,7 @@ function treeViewInit() {
       $(this).addClass('tr-hover');
       $(this).on('click', function (e) {
         var target = $(e.target); // Don't trigger the click on the checkbox (used for bulk actions)
-
-        console.log('click tr', target);
+        //console.log('click tr', target);
 
         if (e.target.type !== 'checkbox' && target.data('tree') !== 'escape') {
           window.location = link + '?parent_id=' + $(this).data('id');
@@ -76916,6 +76918,20 @@ function initSpectrum() {
     showInput: true,
     showPalette: true,
     allowEmpty: true
+  });
+}
+
+function initDynamicDelete() {
+  $('.btn-dynamic-delete').popover({
+    html: true,
+    placement: 'top',
+    sanitize: false
+  });
+  $('a[data-toggle="delete-form"]').unbind('click').click(function (e) {
+    e.preventDefault;
+    var target = $(this).data('target');
+    console.log('target', target);
+    $(target).submit();
   });
 }
 /**
@@ -78579,6 +78595,17 @@ $(document).ready(function () {
 
 /***/ }),
 
+/***/ "./resources/assets/sass/assets.scss":
+/*!*******************************************!*\
+  !*** ./resources/assets/sass/assets.scss ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/assets/sass/auth.scss":
 /*!*****************************************!*\
   !*** ./resources/assets/sass/auth.scss ***!
@@ -78822,9 +78849,9 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ 0:
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/bootstrap.scss ./resources/assets/sass/vendor.scss ./resources/assets/sass/app.scss ./resources/assets/sass/app-rtl.scss ./resources/assets/sass/abilities.scss ./resources/assets/sass/export.scss ./resources/assets/sass/map.scss ./resources/assets/sass/map-v2.scss ./resources/assets/sass/map-v3.scss ./resources/assets/sass/subscription.scss ./resources/assets/sass/conversation.scss ./resources/assets/sass/gallery.scss ./resources/assets/sass/front.scss ./resources/assets/sass/auth.scss ./resources/assets/sass/front-rtl.scss ./resources/assets/sass/front/critical.scss ./resources/assets/sass/community-votes.scss ./resources/assets/sass/relations.scss ./resources/assets/sass/dashboard.scss ./resources/assets/sass/settings.scss ./resources/assets/sass/themes/future.scss ./resources/assets/sass/themes/dark.scss ./resources/assets/sass/themes/midnight.scss ./resources/assets/sass/tinymce.scss ./resources/assets/sass/freyja/freyja.scss ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/bootstrap.scss ./resources/assets/sass/vendor.scss ./resources/assets/sass/app.scss ./resources/assets/sass/app-rtl.scss ./resources/assets/sass/abilities.scss ./resources/assets/sass/assets.scss ./resources/assets/sass/export.scss ./resources/assets/sass/map.scss ./resources/assets/sass/map-v2.scss ./resources/assets/sass/map-v3.scss ./resources/assets/sass/subscription.scss ./resources/assets/sass/conversation.scss ./resources/assets/sass/gallery.scss ./resources/assets/sass/front.scss ./resources/assets/sass/auth.scss ./resources/assets/sass/front-rtl.scss ./resources/assets/sass/front/critical.scss ./resources/assets/sass/community-votes.scss ./resources/assets/sass/relations.scss ./resources/assets/sass/dashboard.scss ./resources/assets/sass/settings.scss ./resources/assets/sass/themes/future.scss ./resources/assets/sass/themes/dark.scss ./resources/assets/sass/themes/midnight.scss ./resources/assets/sass/tinymce.scss ./resources/assets/sass/freyja/freyja.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -78834,6 +78861,7 @@ __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/app.scss */"./resources/assets/sass/app.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/app-rtl.scss */"./resources/assets/sass/app-rtl.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/abilities.scss */"./resources/assets/sass/abilities.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/assets.scss */"./resources/assets/sass/assets.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/export.scss */"./resources/assets/sass/export.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/map.scss */"./resources/assets/sass/map.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/map-v2.scss */"./resources/assets/sass/map-v2.scss");

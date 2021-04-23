@@ -662,45 +662,6 @@ div.mce-fullscreen {
   }
 }
 
-.panel-entity-files {
-  .well {
-    padding: 30px 0;
-    text-align: center;
-    border: 1px solid #eee;
-    border-radius: 7px;
-  }
-
-  .entity-files-drop {
-    cursor: pointer;
-  }
-
-  .entity-file-remove {
-    cursor: pointer;
-    &:hover {
-      color: #b31830;
-    }
-  }
-
-  .entity-file-name {
-    border: none;
-    background: none;
-    display: inline-block;
-    width: 95%;
-    margin-right: -20px;
-  }
-}
-.entity-file-rename {
-  cursor: pointer;
-  &:hover {
-    color: rgba(0, 0, 0, 0.7);
-  }
-}
-
-.entity-file {
-  display: block;
-  padding: 3px 6px;
-}
-
 .list-group-unbordered {
   margin-bottom: 0;
   .list-group-item {

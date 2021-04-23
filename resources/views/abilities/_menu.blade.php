@@ -29,5 +29,5 @@
     </div>
 </div>
 
-@include('entities.components.menu')
+@includeIf(!isset($exporting), 'entities.components.menu')
 @include('entities.components.actions')

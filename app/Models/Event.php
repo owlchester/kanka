@@ -191,7 +191,7 @@ class Event extends MiscModel
     /**
      * @return array
      */
-    public function menuItems($items = [])
+    public function menuItems(array $items = []): array
     {
         $items['events'] = [
             'name' => 'events.fields.events',

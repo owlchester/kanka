@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use App\Facades\Img;
 use App\Models\Concerns\Blameable;
+use App\Models\Concerns\EntityAsset;
 use App\Models\Concerns\Paginatable;
 use App\Traits\OrderableTrait;
 use App\Traits\VisibilityTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
+use Illuminate\Support\Str;
 
 /**
  * Class Attribute
@@ -25,6 +28,13 @@ use DateTime;
  */
 class EntityFile extends Model
 {
+
+    /**
+     * Traits
+     */
+    use VisibleTrait, VisibilityTrait, Blameable,
+        EntityAsset;
+
     /**
      * @var array
      */
@@ -35,16 +45,15 @@ class EntityFile extends Model
         'visibility',
     ];
 
+    /** EntityAsset booleans */
+    protected $isFile = true;
+    protected $isLink = false;
+
     /**
      * Trigger for filtering based on the order request.
      * @var string
      */
     protected $orderTrigger = 'files/';
-
-    /**
-     * Traits
-     */
-    use VisibleTrait, VisibilityTrait, Blameable;
 
     /**
      * Searchable fields
@@ -60,5 +69,18 @@ class EntityFile extends Model
     public function entity()
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
+    }
+
+    /**
+     * @return bool
+     */
+    public function isImage(): bool
+    {
+        return Str::startsWith($this->type, 'image/');
+    }
+
+    public function imageUrl(): string
+    {
+        return Img::crop(120, 80)->url($this->path);
     }
 }

@@ -19,6 +19,7 @@ use App\Traits\TooltipTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
@@ -332,5 +333,20 @@ class Entity extends Model
             $this->updated_by = auth()->user()->id;
             return $this->touch();
         });
+    }
+
+    /**
+     * Entity assets: files and links
+     * @return array
+     */
+    public function assets(): Collection
+    {
+        /** @var Collection $assets */
+        $assets = $this->files;
+        $assets = $assets->merge($this->links);
+        //$assets
+        return $assets->sort(function ($a, $b) {
+            return strcmp($a->name, $b->name);
+        });;
     }
 }

@@ -1,5 +1,5 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => trans('entities/links.create.title', ['name' => $entity->name]),
+    'title' => trans('entities/files.create.title', ['entity' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
         ['url' => $entity->url('index'), 'label' => trans($entity->pluralType() . '.index.title')],
@@ -14,20 +14,20 @@
             <div class="panel-heading">
                 <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
                 <h4>
-                    {{ __('entities/links.create.title', ['name' => $entity->name]) }}
+                    {{ __('entities/files.create.title', ['entity' => $entity->name]) }}
                 </h4>
-        </div>
+            </div>
         @endif
         <div class="panel-body">
             @include('partials.errors')
 
-            {!! Form::open(['route' => ['entities.entity_links.store', $entity], 'method'=>'POST', 'data-shortcut' => 1]) !!}
-            @include('entities.pages.links._form')
+            {!! Form::open(['route' => ['entities.entity_files.store', $entity], 'method'=>'POST', 'data-shortcut' => 1, 'enctype' => 'multipart/form-data']) !!}
+            @include('entities.pages.files._form')
 
             <div class="form-group">
                 <button class="btn btn-success">{{ trans('crud.save') }}</button>
                 @if (!request()->ajax())
-                {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
+                    {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
                 @endif
             </div>
 

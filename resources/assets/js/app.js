@@ -17,9 +17,9 @@ $(document).ready(function() {
         initTooltips();
     }
 
-    $('[data-toggle="popover"]').popover({
+    /*$('[data-toggle="popover"]').popover({
         sanitize: false,
-    });
+    });*/
 
 
     initSelect2();
@@ -143,6 +143,7 @@ $(document).ready(function() {
     initAjaxPagination();
     initTimelineToggle();
     initEntityNoteToggle();
+    initDynamicDelete();
 
     /**
      * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
@@ -157,6 +158,7 @@ $(document).ready(function() {
         initTooltips();
         initCategories();
         initSpectrum();
+        initDynamicDelete();
         deleteConfirm();
 
         // Handle when opening the entity-creator ui
@@ -434,6 +436,21 @@ function initSpectrum() {
         showInput: true,
         showPalette: true,
         allowEmpty: true
+    });
+}
+
+function initDynamicDelete() {
+    $('.btn-dynamic-delete').popover({
+        html: true,
+        placement: 'top',
+        sanitize: false
+    });
+
+    $('a[data-toggle="delete-form"]').unbind('click').click(function (e) {
+        e.preventDefault;
+        let target = $(this).data('target');
+        console.log('target', target);
+        $(target).submit();
     });
 }
 

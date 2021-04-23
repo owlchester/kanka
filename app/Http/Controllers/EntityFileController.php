@@ -6,6 +6,7 @@ use App\Exceptions\EntityFileException;
 use App\Facades\CampaignLocalization;
 use App\Http\Requests\RenameEntityFile;
 use App\Http\Requests\StoreEntityFile;
+use App\Http\Requests\UpdateEntityFile;
 use App\Models\EntityFile;
 use App\Services\EntityFileService;
 use Illuminate\Http\Request;
@@ -36,19 +37,12 @@ class EntityFileController extends Controller
 
     /**
      * @param Entity $entity
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function index(Entity $entity)
     {
-        $this->authorize('update', $entity->child);
-
-        $campaign = CampaignLocalization::getCampaign();
-        $enabled = $entity->files()->withInvisible()->count() < $campaign->maxEntityFiles();
-        return view('cruds.files.index', compact(
-            'entity',
-            'campaign',
-            'enabled'
-        ));
+        return redirect()
+            ->route('entities.assets', $entity);
     }
 
     /**
@@ -58,7 +52,21 @@ class EntityFileController extends Controller
      */
     public function show(Entity $entity, EntityFile $entityFile)
     {
-        return redirect()->to($entity->url());
+        return redirect()
+            ->route('entities.assets', $entity);
+    }
+
+    /**
+     * @param Entity $entity
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function create(Entity $entity)
+    {
+        $this->authorize('update', $entity->child);
+
+        return view('entities.pages.files.create')
+            ->with('entity', $entity);
     }
 
     /**
@@ -73,29 +81,41 @@ class EntityFileController extends Controller
         $campaign = CampaignLocalization::getCampaign();
 
         try {
-            $this->entityFile
+            $file = $this->entityFile
                 ->entity($entity)
                 ->campaign($campaign)
-                ->upload();
+                ->upload($request);
 
             $entity->load('files');
 
+            return redirect()
+                ->route('entities.assets', $entity)
+                ->with('success', __('entities/files.create.success', ['file' => $file->name]));
 
-            // Send back the new list of files to the view
-            $html = view('cruds.files.files', compact('entity', 'campaign'))->render();
-            return response()->json([
-                'success' => true,
-                'html' => $html,
-                'enabled' => $entity->files->count() < $campaign->maxEntityFiles()
-            ]);
         } catch (EntityFileException $e) {
-            return response()->json([
-                'success' => false,
-                'error' => __('crud.files.errors.' . $e->getMessage(), ['max' => $campaign->maxEntityFiles()])
-            ]);
+            return redirect()
+                ->route('entities.assets', $entity)
+                ->with('error', __('crud.files.errors.' . $e->getMessage(), ['max' => $campaign->maxEntityFiles()]));
         } catch (\Exception $e) {
-            return response()->json(['success' => false, 'error' => $e->getMessage()]);
+            return redirect()
+                ->route('entities.assets', $entity)
+                ->with('error', $e->getMessage());
         }
+    }
+
+    /**
+     * @param Entity $entity
+     * @param EntityFile $entityFile
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function edit(Entity $entity, EntityFile $entityFile)
+    {
+        $this->authorize('update', $entity->child);
+
+        return view('entities.pages.files.update')
+            ->with('entity', $entity)
+            ->with('entityFile', $entityFile);
     }
 
     /**
@@ -104,13 +124,15 @@ class EntityFileController extends Controller
      * @param EntityFile $entityFile
      * @throws \RenameEntityFile\Auth\Access\AuthorizationException
      */
-    public function update(RenameEntityFile $request, Entity $entity, EntityFile $entityFile)
+    public function update(UpdateEntityFile $request, Entity $entity, EntityFile $entityFile)
     {
         $this->authorize('update', $entity->child);
 
         $entityFile->update($request->only('name', 'visibility'));
 
-        return response()->json(['success' => true]);
+        return redirect()
+            ->route('entities.assets', $entity)
+            ->with('success', __('entities/files.update.success', ['file' => $entityFile->name]));
     }
 
     /**
@@ -126,11 +148,10 @@ class EntityFileController extends Controller
         $this->authorize('update', $entity->child);
 
         $entityFile->delete();
-        $campaign = CampaignLocalization::getCampaign();
 
-        return response()->json([
-            'success' => true,
-            'enabled' => $entity->files->count() < $campaign->maxEntityFiles()
-        ]);
+        return redirect()
+            ->route('entities.assets', $entity)
+            ->with('success', __('entities/files.destroy.success', ['file' => $entityFile->name]));
+
     }
 }

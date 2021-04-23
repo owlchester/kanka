@@ -73,11 +73,6 @@
   color: #eee;
 }
 
-.panel-entity-files .well {
-  background-color: #333;
-  color: #424240;
-}
-
 .filters {
   background: #222 !important;
   color: white;
@@ -647,10 +642,6 @@ body {
 
 .alert a {
   color: #fff !important;
-}
-
-.panel-entity-files .well {
-  color: #fff;
 }
 
 .mce-edit-area,

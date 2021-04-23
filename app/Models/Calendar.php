@@ -494,7 +494,7 @@ class Calendar extends MiscModel
     /**
      * @return array
      */
-    public function menuItems($items = []): array
+    public function menuItems(array $items = []): array
     {
         $count = $this->calendarEvents()->entityAcl()->count();
         if ($count > 0) {

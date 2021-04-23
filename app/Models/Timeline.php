@@ -154,7 +154,7 @@ class Timeline extends MiscModel
     /**
      * @return array
      */
-    public function menuItems($items = [])
+    public function menuItems(array $items = []): array
     {
         $items['timelines'] = [
             'name' => 'timelines.fields.timelines',

@@ -22,35 +22,6 @@
             </div>
             @endif
 
-            @if (config('entities.file_upload') && $model->entity && $model->entity->hasFiles())
-                <div class="btn-group">
-                    @can('update', $model)
-                        <button type="button" class="btn btn-default entity-file-ui" data-url="{{ route('entities.entity_files.index', $model->entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('crud.files.actions.manage') }}">
-                    @else
-                        <button type="button" class="btn btn-default">
-                    @endif
-                        <i class="fa fa-cloud-upload-alt"></i> <span class="hidden-xs">{{ __('crud.fields.files') }}</span>
-
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ $model->entity->files->count() }}
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        @foreach ($model->entity->files as $file)
-                            <li>
-                                <a href="{{ Storage::url($file->path) }}" target="_blank" class="entity-file">
-                                    {{ $file->name }}
-                                </a>
-                            </li>
-                        @endforeach
-                        @if ($model->entity->files->count() == 0)
-                            <li>
-                                <a>{{ __('crud.files.errors.no_files') }}</a>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
-            @endif
-
             @can('permission', $model)
                 <div class="btn-group">
                     <a href="{{ route('entities.permissions', $model->entity) }}" data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ route('entities.permissions', $model->entity) }}" class="btn btn-default">

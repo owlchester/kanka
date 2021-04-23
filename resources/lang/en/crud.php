@@ -152,10 +152,11 @@ return [
     ],
     'delete_modal'              => [
         'close'         => 'Close',
-        'delete'        => 'Delete',
+        'delete'        => 'Remove',
         'description'   => 'Are you sure you want to remove :tag?',
+        'description_final' => 'Are you sure you want to remove :tag? This action cannot be undone.',
         'mirrored'      => 'Remove mirrored relation.',
-        'title'         => 'Delete confirmation',
+        'title'         => 'Removal confirmation',
     ],
     'destroy_many'              => [
         'success'   => 'Deleted :count entity|Deleted :count entities.',
@@ -410,6 +411,7 @@ return [
     'superboosted_campaigns'    => 'Superboosted Campaigns',
     'tabs'                      => [
         'abilities'     => 'Abilities',
+        'assets'        => 'Assets',
         'attributes'    => 'Attributes',
         'boost'         => 'Boost',
         'calendars'     => 'Calendars',
@@ -423,6 +425,7 @@ return [
         'notes'         => 'Entity Notes',
         'permissions'   => 'Permissions',
         'quests'        => 'Quests',
+        'story'         => 'Story',
         'relations'     => 'Relations',
         'reminders'     => 'Reminders',
         'timelines'     => 'Timelines',
