@@ -7,6 +7,7 @@ use App\Facades\UserPermission;
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\VisibilityTrait;
 use App\Traits\VisibleTrait;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class QuestCharacter
@@ -20,9 +21,12 @@ use App\Traits\VisibleTrait;
  * @property Entity $entity
  *
  */
-class QuestElement extends QuestAbstract
+class QuestElement extends Model
 {
-    use VisibilityTrait;
+    /**
+     * Traits
+     */
+    use SimpleSortableTrait, VisibilityTrait;
 
     /**
      * @var array
@@ -90,7 +94,7 @@ class QuestElement extends QuestAbstract
      */
     public function entry()
     {
-        return Mentions::map($this, 'description');
+        return Mentions::mapAny($this, 'description');
     }
 
     /**
@@ -98,7 +102,19 @@ class QuestElement extends QuestAbstract
      */
     public function getEntryForEditionAttribute()
     {
-        $text = Mentions::edit($this, 'description');
+        $text = Mentions::editAny($this, 'description');
         return $text;
+    }
+
+    /**
+     * @return string
+     */
+    public function colourClass(): string
+    {
+        if (empty($this->colour)) {
+            return 'bg-none';
+        }
+
+        return $this->colour == 'grey' ? 'bg-gray' : 'bg-' . $this->colour;
     }
 }
