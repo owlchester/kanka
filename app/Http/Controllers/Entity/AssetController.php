@@ -21,7 +21,7 @@ class AssetController extends Controller
 
     public function __construct()
     {
-        $this->middleware('campaign.boosted');
+        //$this->middleware('campaign.boosted');
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Entity;
 
+use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntityLink;
 use App\Models\Entity;
@@ -21,7 +22,7 @@ class LinkController extends Controller
 
     public function __construct()
     {
-        $this->middleware('campaign.boosted');
+        $this->middleware('campaign.boosted', ['except' => 'create']);
     }
 
     /**
@@ -42,6 +43,11 @@ class LinkController extends Controller
     public function create(Entity $entity)
     {
         $this->authorize('update', $entity->child);
+
+        $campaign = CampaignLocalization::getCampaign();
+        if (!$campaign->boosted()) {
+            return view('entities.pages.links.unboosted');
+        }
 
         return view('entities.pages.links.create', compact(
             'entity'

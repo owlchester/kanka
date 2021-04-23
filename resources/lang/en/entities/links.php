@@ -36,4 +36,8 @@ return [
         'success'   => 'Link :name updated for :entity.',
         'title'     => 'Update link for :name',
     ],
+    'unboosted' => [
+        'text' => 'Adding links to external resources that are displayed directly in the entity\'s header is reserved to :boosted-campaigns.',
+        'title' => 'Boosted campaign feature',
+    ],
 ];

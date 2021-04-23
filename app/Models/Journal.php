@@ -129,7 +129,7 @@ class Journal extends MiscModel
      */
     public function menuItems(array $items = []): array
     {
-        $items['journals'] = [
+        $items['second']['journals'] = [
             'name' => 'journals.show.tabs.journals',
             'route' => 'journals.journals',
             'count' => $this->descendants()->count()
