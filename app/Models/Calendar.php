@@ -498,7 +498,7 @@ class Calendar extends MiscModel
     {
         $count = $this->calendarEvents()->entityAcl()->count();
         if ($count > 0) {
-            $items['events'] = [
+            $items['second']['events'] = [
                 'name' => 'calendars.show.tabs.events',
                 'route' => 'calendars.events',
                 'count' => $count

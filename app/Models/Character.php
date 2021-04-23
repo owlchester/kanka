@@ -309,7 +309,7 @@ class Character extends MiscModel
 
         $count = $this->items()->count();
         if ($campaign->enabled('items') && $count > 0) {
-            $items['items'] = [
+            $items['second']['items'] = [
                 'name' => 'characters.show.tabs.items',
                 'route' => 'characters.items',
                 'count' => $count
@@ -318,7 +318,7 @@ class Character extends MiscModel
 
         $count = $this->organisations()->has('organisation')->count();
         if ($campaign->enabled('organisations') && ($count > 0 || $canEdit)) {
-            $items['organisations'] = [
+            $items['second']['organisations'] = [
                 'name' => 'characters.show.tabs.organisations',
                 'route' => 'characters.organisations',
                 'count' => $count
@@ -326,7 +326,7 @@ class Character extends MiscModel
         }
         $count = $this->journals()->count();
         if ($campaign->enabled('journals') && $count > 0) {
-            $items['journals'] = [
+            $items['second']['journals'] = [
                 'name' => 'characters.show.tabs.journals',
                 'route' => 'characters.journals',
                 'count' => $count
@@ -334,7 +334,7 @@ class Character extends MiscModel
         }
         $diceRollCount = $this->diceRolls()->count();
         if ($campaign->enabled('dice_rolls') && $diceRollCount > 0) {
-            $items['dice_rolls'] = [
+            $items['second']['dice_rolls'] = [
                 'name' => 'characters.show.tabs.dice_rolls',
                 'route' => 'characters.dice_rolls',
                 'count' => $diceRollCount
@@ -342,7 +342,7 @@ class Character extends MiscModel
         }
         $conversationCount = $this->conversations()->count();
         if ($campaign->enabled('conversations') && $conversationCount > 0) {
-            $items['conversations'] = [
+            $items['second']['conversations'] = [
                 'name' => 'characters.show.tabs.conversations',
                 'route' => 'characters.conversations',
                 'count' => $conversationCount

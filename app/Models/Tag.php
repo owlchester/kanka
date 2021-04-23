@@ -200,7 +200,7 @@ class Tag extends MiscModel
 
         $count = $this->descendants->count();
         if ($count > 0) {
-            $items['tags'] = [
+            $items['second']['tags'] = [
                 'name' => 'tags.show.tabs.tags',
                 'route' => 'tags.tags',
                 'count' => $count

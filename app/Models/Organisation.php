@@ -241,7 +241,7 @@ class Organisation extends MiscModel
 
         $count = $this->descendants()->count();
         if ($count > 0) {
-            $items['organisations'] = [
+            $items['second']['organisations'] = [
                 'name' => 'organisations.show.tabs.organisations',
                 'route' => 'organisations.organisations',
                 'count' => $count,

@@ -216,7 +216,7 @@ class Item extends MiscModel
 
         $inventoryCount = $this->inventories()->with('item')->acl()->has('entity')->count();
         if ($inventoryCount > 0) {
-            $items['inventories'] = [
+            $items['second']['inventories'] = [
                 'name' => 'items.show.tabs.inventories',
                 'route' => 'items.inventories',
                 'count' => $inventoryCount

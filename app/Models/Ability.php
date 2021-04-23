@@ -167,7 +167,7 @@ class Ability extends MiscModel
     {
         $campaign = CampaignLocalization::getCampaign();
 
-        $items['abilities'] = [
+        $items['second']['abilities'] = [
             'name' => 'abilities.show.tabs.abilities',
             'route' => 'abilities.abilities',
             'count' => $this->descendants()->count()

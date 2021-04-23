@@ -374,7 +374,7 @@ class Location extends MiscModel
 
         if (!empty($this->map)) {
             if (!$this->is_map_private || (auth()->check() && auth()->user()->can('map', $this))) {
-                $items['map'] = [
+                $items['second']['map'] = [
                     'name' => 'locations.show.tabs.map',
                     'route' => 'locations.map',
                 ];
@@ -383,7 +383,7 @@ class Location extends MiscModel
 
         $count = $this->descendants()->has('location')->count();
         if ($count > 0) {
-            $items['locations'] = [
+            $items['second']['locations'] = [
                 'name' => 'locations.show.tabs.locations',
                 'route' => 'locations.locations',
                 'count' => $count
@@ -392,7 +392,7 @@ class Location extends MiscModel
 
         $count = $this->maps()->count();
         if ($campaign->enabled('maps') && $count > 0) {
-            $items['maps'] = [
+            $items['second']['maps'] = [
                 'name' => 'locations.show.tabs.maps',
                 'route' => 'locations.maps',
                 'count' => $count
@@ -401,7 +401,7 @@ class Location extends MiscModel
 
         $count = $this->allCharacters()->count();
         if ($campaign->enabled('characters') && $count > 0) {
-            $items['characters'] = [
+            $items['second']['characters'] = [
                 'name' => 'locations.show.tabs.characters',
                 'route' => 'locations.characters',
                 'count' => $count
@@ -409,7 +409,7 @@ class Location extends MiscModel
         }
         $count = $this->allFamilies()->count();
         if ($campaign->enabled('families') && $count > 0) {
-            $items['families'] = [
+            $items['second']['families'] = [
                 'name' => 'locations.show.tabs.families',
                 'route' => 'locations.families',
                 'count' => $count
@@ -417,7 +417,7 @@ class Location extends MiscModel
         }
         $count = $this->events()->count();
         if ($campaign->enabled('events') && $count > 0) {
-            $items['events'] = [
+            $items['second']['events'] = [
                 'name' => 'locations.show.tabs.events',
                 'route' => 'locations.events',
                 'count' => $count
@@ -425,7 +425,7 @@ class Location extends MiscModel
         }
         $count = $this->items()->count();
         if ($campaign->enabled('items') && $count > 0) {
-            $items['items'] = [
+            $items['second']['items'] = [
                 'name' => 'locations.show.tabs.items',
                 'route' => 'locations.items',
                 'count' => $count
@@ -433,7 +433,7 @@ class Location extends MiscModel
         }
         $count = $this->organisations()->count();
         if ($campaign->enabled('organisations') && $count > 0) {
-            $items['organisations'] = [
+            $items['second']['organisations'] = [
                 'name' => 'locations.show.tabs.organisations',
                 'route' => 'locations.organisations',
                 'count' => $count
@@ -441,7 +441,7 @@ class Location extends MiscModel
         }
         $count = $this->journals()->count();
         if ($campaign->enabled('journals') && $count > 0) {
-            $items['journals'] = [
+            $items['second']['journals'] = [
                 'name' => 'locations.show.tabs.journals',
                 'route' => 'locations.journals',
                 'count' => $count
