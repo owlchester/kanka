@@ -160,15 +160,15 @@ class PluginVersion extends Model
         }
 
         $obLevel = ob_get_level();
-        ob_start();
-        extract($data, EXTR_SKIP);
+        ob_start() and extract($data, EXTR_SKIP);
 
         $errors = null;
 
         try {
+
             eval('?' . '>' . $html);
-            return '';
-            //return $html;
+            $blade = ob_get_clean();
+            return $blade;
         } catch (\Exception $e) {
             while (ob_get_level() > $obLevel) ob_end_clean();
             $errors = $e->getMessage();

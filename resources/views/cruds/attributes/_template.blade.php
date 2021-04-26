@@ -7,7 +7,7 @@
     </div>
     @endif
     <div class="panel-body">
-        {!! Form::open(['route' => ['entities.attributes.template', $entity->id], 'method'=>'POST', 'data-shortcut' => '1']) !!}
+        {!! Form::open(['route' => ['entities.attributes.apply-template', $entity->id], 'method'=>'POST', 'data-shortcut' => '1']) !!}
         {{ csrf_field() }}
         <div class="form-group required">
             <label>{{ trans('crud.attributes.fields.template') }}</label>

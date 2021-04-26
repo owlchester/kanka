@@ -206,7 +206,9 @@ Route::group([
         //Route::get('/conversations/{conversation}/map-points', 'ConversationController@mapPoints')->name('conversations.map-points');
 
         // Attribute multi-save
-        Route::post('/entities/{entity}/attributes/saveMany', [\App\Http\Controllers\AttributeController::class, 'saveMany'])->name('entities.attributes.saveMany');
+        Route::get('/entities/{entity}/attributes', [\App\Http\Controllers\Entity\AttributeController::class, 'index'])->name('entities.attributes');
+        Route::get('/entities/{entity}/attributes/edit', [\App\Http\Controllers\Entity\AttributeController::class, 'edit'])->name('entities.attributes.edit');
+        Route::post('/entities/{entity}/attributes/save', [\App\Http\Controllers\Entity\AttributeController::class, 'save'])->name('entities.attributes.save');
         Route::post('/entities/{entity}/toggle-privacy', [\App\Http\Controllers\Entity\PrivacyController::class, 'toggle'])->name('entities.privacy.toggle');
 
         Route::get('/entities/{entity}/relations_map', 'Entity\RelationController@map')->name('entities.relations_map');
@@ -296,7 +298,7 @@ Route::group([
             'races' => 'RaceController',
 
             // Entities
-            'entities.attributes' => 'AttributeController',
+            //'entities.attributes' => 'AttributeController',
             'entities.entity_abilities' => 'Entity\AbilityController',
             'entities.entity_notes' => 'EntityNoteController',
             'entities.entity_events' => 'EntityEventController',
@@ -427,8 +429,8 @@ Route::group([
         Route::get('/entities/{entity}/template', 'EntityController@template')->name('entities.template');
 
         // Attribute template
-        Route::get('/entities/{entity}/attribute/template', 'AttributeController@template')->name('entities.attributes.template');
-        Route::post('/entities/{entity}/attribute/template', 'AttributeController@applyTemplate')->name('entities.attributes.template');
+        Route::get('/entities/{entity}/attribute/template', 'Entity\AttributeController@template')->name('entities.attributes.template');
+        Route::post('/entities/{entity}/attribute/apply-template', 'Entity\AttributeController@applyTemplate')->name('entities.attributes.apply-template');
         Route::get('/entities/{entity}/permissions', 'PermissionController@view')->name('entities.permissions');
         Route::post('/entities/{entity}/permissions', 'PermissionController@store')->name('entities.permissions');
 

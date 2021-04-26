@@ -1,15 +1,15 @@
-@extends('layouts.app', [
+@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => __('entities/attributes.template.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route($parentRoute . '.index'), 'label' => trans($parentRoute . '.index.title')],
-        ['url' => route($parentRoute . '.show', $entity->child->id), 'label' => $entity->name]
+        ['url' => route($parentRoute . '.index'), 'label' => __($parentRoute . '.index.title')],
+        ['url' => route($parentRoute . '.show', $entity->child->id), 'label' => $entity->name],
+        __('crud.tabs.attributes')
     ]
 ])
 
 @section('content')
     @include('partials.errors')
-
 
     <div class="panel panel-default">
         @if ($ajax)
@@ -34,9 +34,9 @@
             {!! Form::hidden('entity_id', $entity->id) !!}
 
             <div class="form-group">
-                <button class="btn btn-success">{{ __('entities/actions.apply') }}</button>
+                <button class="btn btn-success">{{ __('crud.actions.apply') }}</button>
                 @if (!$ajax)
-                    {!! __('entities/or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous() . (strpos(url()->previous(), '?tab=') === false ? '?tab=attribute' : null))]) !!}
+                    {!! __('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous() . (strpos(url()->previous(), '?tab=') === false ? '?tab=attribute' : null))]) !!}
                 @endif
             </div>
 

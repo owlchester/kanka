@@ -17,7 +17,7 @@ if ($layout) {
             <i class="fa fa-copy"></i> <span class="hidden-xs hidden-sm">{{ trans('crud.attributes.actions.apply_template') }}</span>
         </a>
 
-        <a href="{{ route('entities.attributes.index', ['entity' => $model->entity]) }}" class="btn btn-primary">
+        <a href="{{ route('entities.attributes.edit', ['entity' => $model->entity]) }}" class="btn btn-primary">
             <i class="fa fa-list"></i> <span class="hidden-xs hidden-sm">{{ trans('crud.attributes.actions.manage') }}</span>
         </a>
     </p>
