@@ -2,18 +2,12 @@
 
 namespace App\Http\Controllers\Entity;
 
-use App\Datagrids\Sorters\EntityInventorySorter;
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ApplyAttributeTemplate;
-use App\Http\Requests\StoreInventory;
 use App\Models\Entity;
-use App\Models\Inventory;
-use App\Models\MiscModel;
 use App\Services\AttributeService;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AttributeController extends Controller
