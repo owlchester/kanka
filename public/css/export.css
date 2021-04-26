@@ -11,6 +11,11 @@
   display: none !important;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 .tab-pane {
   display: block !important;
   visibility: visible !important;

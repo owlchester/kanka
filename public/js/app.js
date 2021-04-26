@@ -76683,8 +76683,7 @@ function treeViewInit() {
       $(this).addClass('tr-hover');
       $(this).on('click', function (e) {
         var target = $(e.target); // Don't trigger the click on the checkbox (used for bulk actions)
-
-        console.log('click tr', target);
+        //console.log('click tr', target);
 
         if (e.target.type !== 'checkbox' && target.data('tree') !== 'escape') {
           window.location = link + '?parent_id=' + $(this).data('id');

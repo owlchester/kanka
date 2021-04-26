@@ -87,13 +87,13 @@ class EntityController extends Controller
         $pdf = \App::make('dompdf.wrapper');
         $entities = [$realEntity->child];
         $name = $realEntity->pluralType();
-        $entity = $realEntity->pluralType();
+        $entityType = $realEntity->pluralType();
         $exporting = true; // This can be used in views to know we are exporting
         $datagridSorter = null;
 
         if (request()->has('html')) {
             return view('cruds.export', compact(
-                'entity',
+                'entityType',
                 'name',
                 'entities',
                 'exporting'
@@ -103,7 +103,7 @@ class EntityController extends Controller
         //return view('cruds.export', compact('entity', 'name', 'entities', 'exporting', 'datagridSorter'));
 
         return $pdf
-            ->loadView('cruds.export', compact('entity', 'name', 'entities', 'exporting', 'datagridSorter'))
+            ->loadView('cruds.export', compact('entityType', 'name', 'entities', 'exporting', 'datagridSorter'))
             ->download('kanka ' . strip_tags($realEntity->name) . ' export.pdf');
     }
 
