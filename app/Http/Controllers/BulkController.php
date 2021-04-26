@@ -63,9 +63,10 @@ class BulkController extends Controller
             } elseif ($action === 'export') {
                 $pdf = \App::make('dompdf.wrapper');
                 $entities = $this->bulkService->export();
+                $entityType = $entity;
                 $name = $entity;
                 return $pdf
-                    ->loadView('cruds.export', compact('entity', 'entities', 'name'))
+                    ->loadView('cruds.export', compact('entityType', 'entities', 'name'))
                     ->download('kanka ' . $entity . ' export.pdf');
             } elseif ($action === 'permissions') {
                 $models = explode(',', $request->get('models'));

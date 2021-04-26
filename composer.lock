@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0067ca095b9a230b21707a812c99cfaa",
+    "content-hash": "4d44a0981678da66d138caf382f76f22",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -3031,20 +3031,20 @@
         },
         {
             "name": "ilestis/kanka-dnd5e-monster",
-            "version": "3.0",
+            "version": "4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ilestis/kanka-dnd5e-monster.git",
-                "reference": "0c84490e15b0f6c20753cf4d4da2f1bf340b4c78"
+                "reference": "2ad3b0bbbaa713097d80c7c7cc0577e7c33d6337"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ilestis/kanka-dnd5e-monster/zipball/0c84490e15b0f6c20753cf4d4da2f1bf340b4c78",
-                "reference": "0c84490e15b0f6c20753cf4d4da2f1bf340b4c78",
+                "url": "https://api.github.com/repos/ilestis/kanka-dnd5e-monster/zipball/2ad3b0bbbaa713097d80c7c7cc0577e7c33d6337",
+                "reference": "2ad3b0bbbaa713097d80c7c7cc0577e7c33d6337",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "^6.0|^7.0"
+                "illuminate/support": "^6.0|^7.0|^8.0"
             },
             "type": "library",
             "extra": {
@@ -3080,9 +3080,9 @@
             ],
             "support": {
                 "issues": "https://github.com/ilestis/kanka-dnd5e-monster/issues",
-                "source": "https://github.com/ilestis/kanka-dnd5e-monster/tree/3.0"
+                "source": "https://github.com/ilestis/kanka-dnd5e-monster/tree/4.1"
             },
-            "time": "2020-08-20T10:34:02+00:00"
+            "time": "2021-04-26T18:39:27+00:00"
         },
         {
             "name": "intervention/image",
@@ -11448,61 +11448,6 @@
                 }
             ],
             "time": "2021-01-24T12:00:00+00:00"
-        },
-        {
-            "name": "fzaninotto/faker",
-            "version": "v1.9.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "848d8125239d7dbf8ab25cb7f054f1a630e68c2e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/848d8125239d7dbf8ab25cb7f054f1a630e68c2e",
-                "reference": "848d8125239d7dbf8ab25cb7f054f1a630e68c2e",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.3.3 || ^7.0"
-            },
-            "require-dev": {
-                "ext-intl": "*",
-                "phpunit/phpunit": "^4.8.35 || ^5.7",
-                "squizlabs/php_codesniffer": "^2.9.2"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.9-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Faker\\": "src/Faker/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "François Zaninotto"
-                }
-            ],
-            "description": "Faker is a PHP library that generates fake data for you.",
-            "keywords": [
-                "data",
-                "faker",
-                "fixtures"
-            ],
-            "support": {
-                "issues": "https://github.com/fzaninotto/Faker/issues",
-                "source": "https://github.com/fzaninotto/Faker/tree/v1.9.2"
-            },
-            "abandoned": true,
-            "time": "2020-12-11T09:56:16+00:00"
         },
         {
             "name": "martinlindhe/laravel-vue-i18n-generator",
