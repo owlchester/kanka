@@ -203,6 +203,7 @@ return [
         'is_private_v2'         => 'Only show this to members of the campaign\'s :admin-role. This overrides any other permission.',
         'is_star'               => 'Pinned',
         'item'                  => 'Item',
+        'journal'               => 'Journal',
         'location'              => 'Location',
         'map'                   => 'Map',
         'name'                  => 'Name',
