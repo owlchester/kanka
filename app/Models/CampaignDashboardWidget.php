@@ -268,7 +268,7 @@ class CampaignDashboardWidget extends Model
             $entityIds = $models->pluck('id');
 
             // Add the filter to the base query
-            $base = $base->whereIn('entity_id', $entityIds);
+            $base = $base->whereIn('entities.entity_id', $entityIds);
         }
 
         return $base
@@ -292,12 +292,16 @@ class CampaignDashboardWidget extends Model
             return $filters;
         }
 
-        $segments = explode('&', $this->config['filters']);
-        foreach ($segments as $segment) {
-            $params = explode('=', $segment);
-            $filters[$params[0]] = $params[1];
-        }
+        try {
+            $segments = explode('&', $this->config['filters']);
+            foreach ($segments as $segment) {
+                $params = explode('=', $segment);
+                $filters[$params[0]] = $params[1];
+            }
 
-        return $filters;
+            return $filters;
+        } catch (\Exception $e) {
+            return [];
+        }
     }
 }
