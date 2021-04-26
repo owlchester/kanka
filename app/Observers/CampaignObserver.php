@@ -176,9 +176,8 @@ class CampaignObserver
 
         // In case the campaign is no longer public, update any followers
         if ($campaign->isDirty('visibility') && $campaign->visibility == Campaign::VISIBILITY_PRIVATE) {
-            /** @var CampaignFollower $follow */
-            foreach ($campaign->followers()->with('user')->get() as $follow) {
-                UserCache::user($follow->user)->clearFollows();
+            foreach ($campaign->followers as $follow) {
+                UserCache::user($follow)->clearFollows();
             }
         }
     }
