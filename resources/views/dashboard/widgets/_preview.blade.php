@@ -4,13 +4,14 @@
  * @var \App\Models\MiscModel $model
  */
 $model = $widget->entity->child;
+$entity = $widget->entity;
 
-$specificPreview = 'dashboard.widgets.previews.' . $widget->entity->type;
+$specificPreview = 'dashboard.widgets.previews.' . $entity->type;
 
-\App\Facades\Dashboard::add($widget->entity);
+\App\Facades\Dashboard::add($entity);
 ?>
 @if(view()->exists($specificPreview))
-    @include($specificPreview, ['entity' => $widget->entity])
+    @include($specificPreview, ['entity' => $entity])
 @else
 <div class="panel panel-default widget-preview" id="dashboard-widget-{{ $widget->id }}">
     <div
