@@ -282,7 +282,7 @@ class CampaignDashboardWidget extends Model
             $entityIds = $models->pluck('id');
 
             // Add the filter to the base query
-            $base = $base->whereIn('entity_id', $entityIds);
+            $base = $base->whereIn('entities.entity_id', $entityIds);
         }
 
         return $base
