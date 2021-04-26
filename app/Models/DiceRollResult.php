@@ -13,6 +13,7 @@ class DiceRollResult extends MiscModel
 {
     use Filterable;
 
+
     //
     protected $fillable = [
         'dice_roll_id',
@@ -52,6 +53,9 @@ class DiceRollResult extends MiscModel
      * @var string
      */
     protected $entityType = 'dice_roll';
+
+    /** @var bool No relations for this entity "type" */
+    protected $hasRelations = false;
 
     /**
      *
