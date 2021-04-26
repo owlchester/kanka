@@ -116,7 +116,7 @@ class UserCacheService extends BaseCache
     {
         $key = $this->nameKey($userId);
         if ($this->has($key)) {
-            return $this->get($key);
+            return (string) $this->get($key);
         }
 
         $data = null;
