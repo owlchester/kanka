@@ -47,8 +47,7 @@ return [
      * Sets the Access-Control-Expose-Headers response header.
      */
     'exposed_headers' => [
-        'X-RateLimit-Limit',
-        'X-RateLimit-Remaining'
+        '*'
     ],
 
     /*
