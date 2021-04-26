@@ -41,7 +41,4 @@
     </div>
 </div>
 
-
-@if (isset($exporting))
-    @include('abilities.panels.abilities')
-@endif
+@includeWhen(isset($exporting), 'abilities.panels.abilities')

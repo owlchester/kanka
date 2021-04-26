@@ -54,5 +54,5 @@
     </div>
 </div>
 
-@include('entities.components.menu')
-@include('entities.components.actions', ['disableMove' => true])
+@includeWhen(!isset($exporting), 'entities.components.menu')
+@includeWhen(!isset($exporting), 'entities.components.actions', ['disableMove' => true])

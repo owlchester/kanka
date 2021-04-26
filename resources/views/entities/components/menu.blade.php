@@ -1,4 +1,4 @@
-    @foreach ($model->menuItems() as $section => $menuItems)
+@foreach ($model->menuItems() as $section => $menuItems)
     <div class="box box-solid entity-menu-{{ $section }}">
         <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked entity-menu">
@@ -17,4 +17,4 @@
             </ul>
         </div>
     </div>
-    @endforeach
+@endforeach

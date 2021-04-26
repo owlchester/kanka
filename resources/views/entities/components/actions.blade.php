@@ -137,13 +137,3 @@
     </div>
 @endsection
 
-
-@section('scripts')
-    @parent
-    @if (auth()->check() && config('entities.file_upload'))
-        <script src="{{ mix('js/entity.js') }}" defer></script>
-        <script src="{{ mix('js/jquery.fileupload.js') }}" defer></script>
-        <script src="{{ mix('js/jquery.iframe-transport.js') }}" defer></script>
-        <script src="{{ mix('js/vendor/jquery.ui.widget.js') }}" defer></script>
-    @endif
-@endsection

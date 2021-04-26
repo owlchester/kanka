@@ -29,5 +29,5 @@
     </div>
 </div>
 
-@includeIf(!isset($exporting), 'entities.components.menu')
-@include('entities.components.actions')
+@includeWhen(!isset($exporting), 'entities.components.menu')
+@includeWhen(auth()->check() && !isset($exporting), 'entities.components.actions')
