@@ -315,7 +315,7 @@ class CampaignDashboardWidget extends Model
 
             return $filters;
         } catch (\Exception $e) {
-            Log::error('Widget error:' . $e->getMessage());
+            //Log::error('Widget error:' . $e->getMessage());
             return [];
         }
     }
