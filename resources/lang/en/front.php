@@ -102,8 +102,8 @@ return [
             'title'         => 'Collaborative',
         ],
         'dashboards'        => [
-            'description'   => 'Control the information visible to you players when they open Kanka.',
-            'title' => 'Dashboards',
+            'description'   => 'Control the information visible to your players when they open Kanka.',
+            'title'         => 'Dashboards',
         ],
         'description'       => 'With our @mentions, our tags, and our in-depth permissions system, Kanka makes it easy to keep track of your world or campaign. This includes Characters and their relations, Locations and their history, Quests and their objectives, Timelines and their eras, and Calendars with both events and weather effects. Best of all, Kanka’s users have a say in which new features are developed through regular Community Votes.',
         'description_full'  => 'Kanka is constantly being updated with new features and improvements, but here are some of the most important ones we think you’ll love.',

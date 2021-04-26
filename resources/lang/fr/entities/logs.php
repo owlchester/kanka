@@ -15,4 +15,5 @@ return [
     'show'          => [
         'title' => 'Journaux de l\'entité :name',
     ],
+    'superboosted'  => 'Les :superboosted-campaigns gardent une liste détaillée des modifications sur les entités pour :amont jours.',
 ];

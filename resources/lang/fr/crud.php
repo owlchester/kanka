@@ -422,6 +422,7 @@ return [
         'menu'          => 'Menu',
         'notes'         => 'Notes',
         'permissions'   => 'Permissions',
+        'quests'        => 'Quêtes',
         'relations'     => 'Relations',
         'reminders'     => 'Rappels',
         'timelines'     => 'Chronologies',

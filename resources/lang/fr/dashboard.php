@@ -119,8 +119,14 @@ return [
         'fields'                    => [
             'dashboard' => 'Tableau de bord',
             'name'      => 'Nom de widget personnalisé',
+            'order'     => 'Ordre d\'affichage',
             'text'      => 'Texte',
             'width'     => 'Largeur',
+        ],
+        'orders'                    => [
+            'name_asc'  => 'Nom ascendant',
+            'name_desc' => 'Nom descendant',
+            'recent'    => 'Récemment modifié',
         ],
         'random'                    => [
             'helpers'   => [

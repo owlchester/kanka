@@ -43,7 +43,8 @@ return [
         'title'     => 'Intégration d\'app',
     ],
     'boost'         => [
-        'benefits'      => [
+        'available_boosts'  => 'Boosts disponibles: :amount / :max',
+        'benefits'          => [
             'campaign_gallery'  => 'Une galerie d\'image pour télécharger des images réutilisables dans toute la campagne.',
             'entity_files'      => 'Télécharger jusqu\'à 10 fichiers par entité.',
             'entity_logs'       => 'Historique complet des changements sur une entité.',
@@ -69,27 +70,28 @@ return [
             'tooltip'           => 'Infobulles personnalisées pour les entités.',
             'upload'            => 'Taille des fichiers uploadés plus grande pour tous les membres de la campagne.',
         ],
-        'buttons'       => [
+        'buttons'           => [
             'boost'         => 'Boost',
             'superboost'    => 'Superboost',
             'tooltips'      => [
                 'boost'         => 'Booster une campagne utilise :amount boosts.',
                 'superboost'    => 'Superbooster une campagne utilise :amount boosts.',
             ],
+            'unboost'       => 'Débooster',
         ],
-        'campaigns'     => 'Campagnes boostées :count / :max',
-        'exceptions'    => [
+        'campaigns'         => 'Campagnes boostées :count / :max',
+        'exceptions'        => [
             'already_boosted'       => 'La campagne :name est déjà boostée.',
             'exhausted_boosts'      => 'Tu n\'as plus de boost disponnible. Retire un boost d\'une campagne avant de pouvoir l\'attribuer à une autre.',
             'exhausted_superboosts' => 'Tu n\'as plus de boosts. Tu as besoin de 3 boosts pour superbooster une campagne.',
         ],
-        'success'       => [
+        'success'           => [
             'boost'         => 'La campagne :name est boostée.',
             'delete'        => 'Boost retiré de :name.',
             'superboost'    => 'La campagne :name est superboostée.',
         ],
-        'title'         => 'Boost',
-        'unboost'       => [
+        'title'             => 'Boost',
+        'unboost'           => [
             'description'   => 'Es-tu sûr de vouloir arrêter de booster la campagne :tag?',
             'title'         => 'Débooster une campagne',
         ],

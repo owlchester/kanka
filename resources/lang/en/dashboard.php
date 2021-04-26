@@ -118,9 +118,14 @@ return [
         'fields'                    => [
             'dashboard' => 'Dashboard',
             'name'      => 'Custom widget name',
+            'order'     => 'Ordering',
             'text'      => 'Text',
             'width'     => 'Width',
-            'order'     => 'Ordering',
+        ],
+        'orders'                    => [
+            'name_asc'  => 'Name ascending',
+            'name_desc' => 'Name descending',
+            'recent'    => 'Recently modified',
         ],
         'random'                    => [
             'helpers'   => [
@@ -150,11 +155,6 @@ return [
         ],
         'update'                    => [
             'success'   => 'Widget modified.',
-        ],
-        'orders'    => [
-            'recent' => 'Recently modified',
-            'name_asc' => 'Name ascending',
-            'name_desc' => 'Name descending',
         ],
         'widths'                    => [
             '0' => 'Auto',
