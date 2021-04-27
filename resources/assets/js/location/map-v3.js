@@ -42,10 +42,7 @@ $(document).ready(function() {
     // $('.map .custom-icon svg').each(function (e) {
     //     $(this).attr("height", 32).attr("width", 32).css('margin-top', '4px');
     // });
-});
 
-$(document).on('shown.bs.modal shown.bs.popover', function() {
-    initMapForms();
 });
 
 /**
@@ -53,7 +50,12 @@ $(document).on('shown.bs.modal shown.bs.popover', function() {
  */
 function initMapExplore()
 {
+    //console.log('initMapExplore', '');
     mapPageBody = $('#map-body');
+    if (mapPageBody.length === 0) {
+        //console.log('initMapExplore', 'no explore mode');
+        return;
+    }
     sidebarMap = $('#sidebar-map');
     sidebarMarker = $('#sidebar-marker');
     markerModal = $('#map-marker-modal');
@@ -98,6 +100,13 @@ function initMapExplore()
         window.map.panTo(L.latLng($(this).data('lat'), $(this).data('lng')));
         window[$(this).data('id')].openPopup();
     });
+
+
+
+    $(document).one('shown.bs.modal shown.bs.popover', function() {
+        //console.warn('modal show or popover');
+        initSubforms();
+    });
 }
 
 /**
@@ -106,14 +115,14 @@ function initMapExplore()
  */
 function initMapForms()
 {
+    //console.info('mapsv3', 'initMapForms');
     let layerForm = $('#map-layer-form');
     let markerForm = $('#map-marker-form');
-    let newMarkerForm = $('#map-marker-new-form');
     let groupForm = $('#map-group-form');
-    if (layerForm.length === 0 && markerForm.length === 0 && groupForm.length === 0 && newMarkerForm.length === 0) {
+    if ($('#entity-form').length === 0) {
+        //console.info('initMapForms empty');
         return;
     }
-    //console.info('mapsv3', 'initMapForms');
 
     layerForm.unbind('submit').on('submit', function() {
         window.entityFormHasUnsavedChanges = false;
@@ -141,90 +150,34 @@ function initMapForms()
         $('.map-marker-entry-entry').show();
     });
 
-    newMarkerForm.unbind('submit').on('submit', function(e) {
-        window.entityFormHasUnsavedChanges = false;
-        if (validEntityForm) {
-            //console.log('mapsv3', 'new marker form real submit');
-            return true;
-        }
-
-        e.preventDefault();
-        //console.info('newMarkerForm', 'submit');
-
-        // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $('#map-marker-new-form .form-submit-main span').hide();
-        $('#map-marker-new-form .form-submit-main i.fa').show();
-
-        $.ajax({
-            url: $(this).attr('action'),
-            method: $(this).attr('method'),
-            data: $(this).serialize()
-        }).done(function (res) {
-            // If the validation succeeded, we can really submit the form
-            validEntityForm = true;
-            //console.log('mapsv3', 'new marker ajax success');
-            newMarkerForm.submit();
-            return true;
-        }).fail(function (err) {
-            //console.log('mapsv3', 'new marker error', err);
-            // Reset any error fields
-            //$('.input-error').removeClass('input-error');
-            //$('.text-danger').remove();
-
-            // Loop through the errors to add the class and error message
-            var errors = err.responseJSON.errors;
-
-            var errorKeys = Object.keys(errors);
-            var foundAllErrors = true;
-            errorKeys.forEach(function (i) {
-                var errorSelector = $('[name="' + i + '"]');
-                if (errorSelector.length > 0) {
-                    if (!errorSelector.hasClass('input-error')) {
-                        errorSelector.addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
-                    }
-                } else {
-                    foundAllErrors = false;
-                }
-            });
-
-            $('#map-marker-new-form .form-submit-main span').show();
-            $('#map-marker-new-form .form-submit-main i.fa').hide();
-        });
-    })
-
-    $(document).on('shown.bs.modal shown.bs.popover', function() {
+    $(document).on('shown.bs.modal shown.bs.popover', function(e) {
+        //console.warn('modal show or popover');
         initSubforms();
+        e.stopPropagation();
     });
 }
 
 function initSubforms()
 {
+    //console.info('initSubforms');
     subForm = $('.ajax-subform');
     if (subForm.length === 0) {
+        //console.info('not ajax subforms');
         return;
     }
 
-    subForm.on('submit', function(e) {
+    subForm.one('submit', function(e) {
+        //console.info('ajax-subform submit');
         if (validSubform) {
+            //console.info('ajax-subform real submit');
             return true;
         }
 
         window.entityFormHasUnsavedChanges = false;
         e.preventDefault();
 
-        let submitBtn = $(this)
-            .find('.form-submit-main');
-
-        console.info('submitBtn', submitBtn);
-        submitBtn.data('reset', submitBtn.html())
-            .html('<i class="fa fa-spinner fa-spin"></i>')
-            .prop('disabled', true);
+        $(this).find('.form-submit-main span').hide();
+        $(this).find('.form-submit-main i.fa').show();
 
         // Allow ajax requests to use the X_CSRF_TOKEN for deletes
         $.ajaxSetup({
@@ -293,6 +246,10 @@ function initSubforms()
 
             // Reset submit buttons
             resetSubformSubmitAnimation();
+
+            //console.log('reset stuff');
+            $(subForm).find('.form-submit-main i.fa').hide();
+            $(subForm).find('.form-submit-main span').show();
         });
     });
 }

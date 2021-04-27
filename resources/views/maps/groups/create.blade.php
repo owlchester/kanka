@@ -35,7 +35,9 @@
             @include('maps.groups._form', ['model' => null])
 
             <div class="form-group">
-                <button class="btn btn-success form-submit-main">{{ trans('crud.save') }}</button>
+                <button class="btn btn-success form-submit-main">
+                    <i class="fa fa-spin fa-spinner" style="display:none;"></i><span>{{ __('crud.save') }}</span>
+                </button>
                 @if (!$ajax)
                     {!! __('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
                 @endif

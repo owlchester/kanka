@@ -35,7 +35,7 @@
                 'method' => 'POST',
                 'data-shortcut' => 1,
                 'id' => 'map-marker-form',
-                'enctype' => 'multipart/form-data'
+                'class' => 'ajax-subform',
                ]) !!}
             @include('maps.markers._form', ['model' => null])
 
