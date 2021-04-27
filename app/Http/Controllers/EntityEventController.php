@@ -3,14 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddCalendarEvent;
-use App\Http\Requests\StoreCalendar;
 use App\Models\Calendar;
-use App\Models\CalendarEvent;
 use App\Models\Entity;
 use App\Models\EntityEvent;
 use App\Services\CalendarService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class EntityEventController extends Controller

@@ -66,6 +66,8 @@
     </div>
 </div>
 
+@include('cruds.fields.visibility', ['model' => isset($entityEvent) ? $entityEvent : null])
+
 @if (!empty($entity) && $entity->typeId() == config('entities.ids.character'))
     <div class="form-group">
         <label>{{ __('entities/events.fields.type') }}</label>

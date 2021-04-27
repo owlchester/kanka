@@ -9,6 +9,7 @@ use App\Models\Scopes\VisibilityScope;
  * @package App\Traits
  *
  * @property string $visibility
+ * @property int $created_by
  */
 trait VisibilityTrait
 {
