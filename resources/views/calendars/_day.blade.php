@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\Calendar $model */?>
 @if (empty($day))
     <td class=""></td>
 @else
@@ -5,22 +6,38 @@
         @if ($day['day'])
             <h5 class="pull-left{{ $day['isToday'] ? " label label-primary" : null}}">{{ $day['day'] }}</h5>
             @if ($canEdit)
-                <span class="pull-right">
-                    <a href="{{ route('calendars.today', [$model, 'date' => $day['date']]) }}"
-                       class="add btn btn-xs btn-default calendar-set-today" data-date="{{ $day['date'] }}" title="{{ __('calendars.actions.set_today') }}">
-                        <i class="fa fa-check"></i>
+                <div class="dropdown pull-right">
+                    <a class="dropdown-toggle btn btn-xs btn-default" data-toggle="dropdown" aria-expanded="false" data-placement="right">
+                        <i class="fa fa-ellipsis-h" data-tree="escape"></i>
+                        <span class="sr-only">' . __('crud.actions.actions') . '</span>
                     </a>
-                    <a href="{{ route('calendars.calendar_weather.create', [$model, 'date' => $day['date']]) }}" data-toggle="ajax-modal"
-                       data-target="#entity-modal" data-url="{{ route('calendars.calendar_weather.create', [$model, 'date' => $day['date']]) }}"
-                       class="add btn btn-xs btn-default" data-date="{{ $day['date'] }}">
-                        <i class="fa fa-cloud"></i>
-                    </a>
-                    <a href="{{ route('calendars.event.create', [$model, 'date' => $day['date']]) }}" data-toggle="ajax-modal"
-                       data-target="#entity-modal" data-url="{{ route('calendars.event.create', [$model, 'date' => $day['date']]) }}"
-                       class="add btn btn-xs btn-default" data-date="{{ $day['date'] }}">
-                        <i class="fa fa-plus"></i>
-                    </a>
-                </span>
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        <li>
+                            <a href="{{ route('calendars.event.create', [$model, 'date' => $day['date']]) }}" data-toggle="ajax-modal"
+                               data-target="#entity-modal" data-url="{{ route('calendars.event.create', [$model, 'date' => $day['date']]) }}"
+                               class="" data-date="{{ $day['date'] }}">
+                                <i class="fa fa-plus"></i> {{ __('calendars.actions.add_reminder') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('calendars.calendar_weather.create', [$model, 'date' => $day['date']]) }}" data-toggle="ajax-modal"
+                               data-target="#entity-modal" data-url="{{ route('calendars.calendar_weather.create', [$model, 'date' => $day['date']]) }}"
+                               class="" data-date="{{ $day['date'] }}">
+                                <i class="fa fa-snowflake"></i> {{ __('calendars.actions.add_weather') }}
+                            </a>
+                        </li>
+
+                        @if (!\Illuminate\Support\Arr::get($day, 'isToday', false))
+                            <li class="divider"></li>
+                            <li>
+                                <a href="{{ route('calendars.today', [$model, 'date' => $day['date']]) }}"
+                                   class="" data-date="{{ $day['date'] }}">
+                                    <i class="fa fa-check"></i> {{ __('calendars.actions.set_today') }}
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
+                </div>
             @endif
             @if ($day['day'] == 1 && !empty($showMonth))
             <span class="hidden-xs hidden-sm">{{ $day['month'] }}</span>

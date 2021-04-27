@@ -7,10 +7,6 @@
       vertical-align: top !important;
       word-wrap: break-word;
 
-      .add {
-        visibility: hidden;
-      }
-
       h5 {
         float: left;
         margin-top: 3px;
@@ -82,12 +78,6 @@
 
     td.today {
       background-color: #FFFDE2;
-    }
-
-    td:hover {
-      .add {
-        visibility: visible;
-      }
     }
 
     tr.named_week {
