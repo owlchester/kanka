@@ -29,7 +29,9 @@ return [
         'type'          => 'Typ',
     ],
     'helpers'       => [
-        'nested'    => 'In der verschachtelten Ansicht, siehst du alle Rassen verschachtelt. Rassen ohne Oberrasse werden im Standard angezeigt. Rassen mit Unterrassen, können per Klick geöffnet werden, um die Unterrassen zu sehen. Das geht so tief, bis es keine Unterrasse mehr gibt.',
+        'nested'        => 'In der verschachtelten Ansicht, siehst du alle Rassen verschachtelt. Rassen ohne Oberrasse werden im Standard angezeigt. Rassen mit Unterrassen, können per Klick geöffnet werden, um die Unterrassen zu sehen. Das geht so tief, bis es keine Unterrasse mehr gibt.',
+        'nested_parent' => 'Anzeigen der Rassen von :parent.',
+        'nested_without'=> 'Anzeige aller Rassen, die keine übergeordnete Rasse haben. Klicken Sie auf eine Zeile, um die untergeordneten Rassen anzuzeigen.',
     ],
     'index'         => [
         'add'           => 'Neue Rasse',

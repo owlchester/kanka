@@ -15,6 +15,9 @@ return [
         'success'   => 'S\'ha actualitzat l\'habilitat «:name».',
         'title'     => 'Edita l\'habilitat :name',
     ],
+    'entities'      => [
+        'title' => 'Entitats amb l\'habilitat :name',
+    ],
     'fields'        => [
         'abilities' => 'Habilitats',
         'ability'   => 'Habilitat superior',
@@ -24,7 +27,8 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Aquí es mostren totes les habilitats descendents d\'aquesta, no només les que es troben al nivell immediatament inferior.',
-        'nested'        => 'Amb la vista niada es mostren les habilitats de forma agrupada. Les habilitats sense cap superior es mostraran per defecte. A les que tinguin sub-habilitats s\'hi pot clicar per a mostrar els seus descendents. Es pot seguir clicant fins que no hi hagi més descendents a mostrar.',
+        'nested_parent' => 'S\'estan mostrant les habilitats de :parent.',
+        'nested_without'=> 'S\'estan mostrant totes les habilitats que no tenen cap pare. Cliqueu una fila per a veure\'n les habilitats descendents.',
     ],
     'index'         => [
         'add'           => 'Nova habilitat',
@@ -40,6 +44,7 @@ return [
     'show'          => [
         'tabs'  => [
             'abilities' => 'Habilitats',
+            'entities'  => 'Entitats',
         ],
         'title' => 'Habilitat :name',
     ],

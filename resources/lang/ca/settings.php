@@ -20,12 +20,9 @@ return [
         'title'             => 'Compte',
     ],
     'api'           => [
-        'experimental'          => 'Benvingut a les APIs de Kanka! Aquestes prestacions encara són experimentals però haurien de ser prou estables perquè permetin comunicar-se amb les APIs. Creeu un Token d\'Accés Personal per a usar a les vostres sol·licituds d\'API, o useu el Token Client si voleu que la vostra app tingui accés a dades d\'usuari.',
-        'help'                  => 'Kanka oferirà pròximament una RESTful API perquè aplicacions terceres puguin connectar-se a l\'app. Aquí s\'aniran mostrant els detalls sobre com gestionar les claus API.',
-        'helper'                => 'Benvingut a les APIs de Kanka. Genereu un Token d\'Accés Personal per a usar a les vostres crides a la API per a obtenir la informació de les campanyes a les que pertanyeu.',
-        'link'                  => 'Llegeix la documentació de l\'API',
-        'request_permission'    => 'Actualment estem construint una poderosa RESTful API perquè aplicacions terceres puguin connectar-se a l\'app. No obstant això, de moment limitem el nombre d\'usuaris que poden interactuar amb la API mentre la polim. Si voleu accedir a l\'API i construir apps interessants que interactuin amb Kanka, contacteu-nos i us enviarem tota la informació que calgui.',
-        'title'                 => 'API',
+        'helper'    => 'Benvingut a les APIs de Kanka. Genereu un Token d\'Accés Personal per a usar a les vostres crides a la API per a obtenir la informació de les campanyes a les que pertanyeu.',
+        'link'      => 'Llegeix la documentació de l\'API',
+        'title'     => 'API',
     ],
     'apps'          => [
         'actions'   => [
@@ -66,7 +63,6 @@ return [
                 'superboosted'  => 'Totes les funcionalitats de les campanyes supermillorades',
             ],
             'recovery'          => 'Recuperació d\'entitats eliminades des de fins a :amount dies.',
-            'second'            => 'Millorar una campanya activa els següents beneficis:',
             'superboost'        => 'Una campanya supermillorada fa servir 3 millores i desbloqueja funcionalitats addicionals, a més de les de les campanyes millorades.',
             'theme'             => 'Tema i estil personalitzat a nivell de campanya.',
             'third'             => 'Per a millorar una campanya, dirigiu-vos a la pàgina de la campanya i cliqueu el botó de ":boost_button" que hi ha sobre el botó de ":edit_button".',
@@ -165,12 +161,6 @@ return [
         'benefits_features' => 'funcions increïbles',
         'deprecated'        => 'Funcionalitat discontinuada. Si desitgeu fer suport a Kanka, podeu fer-ho mitjançant una :subscription. La vinculació amb Patreon encara continua activa per als nostres Patrons que van vincular els seus comptes abans de la mudança de Patreon.',
         'description'       => 'Sincronizant amb Patreon',
-        'errors'            => [
-            'invalid_token' => 'Token no vàlid! Patreon no ha pogut validar la vostra petició.',
-            'missing_code'  => 'Manca el codi! Patreon no ha enviat un codi per a identificar el vostre compte.',
-            'no_pledge'     => 'Sense "pledge"! Patreon ha identificat el vostre compte, però no detecta cap "pledge" actiu.',
-        ],
-        'link'              => 'Cliqueu següent botó si esteu fent suport a Kanka en Patreon actualment. Això us donarà accés a més coses fantàstiques extres!',
         'linked'            => 'Gràcies per fer suport a Kanka en Patreon! S\'ha vinculat el vostre compte.',
         'pledge'            => 'Pledge :name',
         'remove'            => [
@@ -284,6 +274,14 @@ return [
         'trial_period'          => 'Les subscripcions anuals tenen un període de cancel·lació de 14 dies. Contacteu-nos per :email si vols cancel·lar la subscripció anual i recuperar els diners.',
         'upgrade_downgrade'     => [
             'button'    => 'Informació sobre pujar o baixar de nivell',
+            'cancel'    => [
+                'bullets'   => [
+                    'bonuses'   => 'Els bonus es mantindran actius fins al final del vostre periode de pagament.',
+                    'boosts'    => 'El mateix passa amb les vostres campanyes millorades. Les funcionalitats millorades quedaran amagades però no s\'esborraran quan la campanya deixi d\'estar millorada.',
+                    'kobold'    => 'Per a cancelar la vostra subscripció, canvieu al nivell de Kobold.',
+                ],
+                'title'     => 'Cancelar la subscripció',
+            ],
             'downgrade' => [
                 'bullets'   => [
                     'end'   => 'El vostre nivell actual estarà actiu fins al final del cicle de pagament actual, després del qual es baixarà la subscripció al nou nivell.',

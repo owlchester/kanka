@@ -94,7 +94,11 @@ return [
     'title'             => 'Tablero de',
     'welcome'           => [],
     'widgets'           => [
-        'calendar'      => [
+        'actions'                   => [
+            'advanced-options'  => 'Opciones avanzadas',
+        ],
+        'advanced_options_boosted'  => 'Las :boosted_campaigns tienen opciones avanzadas, como mostrar los miembros de una familia o los atributos de una entidad desde el tablero.',
+        'calendar'                  => [
             'actions'           => [
                 'next'      => 'Cambiar fecha al día siguiente',
                 'previous'  => 'Cambiar fecha al día anterior',
@@ -103,39 +107,51 @@ return [
             'previous_events'   => 'Anterior',
             'upcoming_events'   => 'Próximo',
         ],
-        'campaign'      => [
+        'campaign'                  => [
             'helper'    => 'Este widget muestra el encabezado de la campaña. Siempre se muestra en el tablero por defecto.',
         ],
-        'create'        => [
+        'create'                    => [
             'success'   => 'Widget añadido al tablero.',
         ],
-        'delete'        => [
+        'delete'                    => [
             'success'   => 'Widget eliminado del tablero.',
         ],
-        'fields'        => [
-            'name'  => 'Nombre personalizado del widget',
-            'text'  => 'Texto',
-            'width' => 'Anchura',
+        'fields'                    => [
+            'dashboard' => 'Tablero',
+            'name'      => 'Nombre personalizado del widget',
+            'text'      => 'Texto',
+            'width'     => 'Anchura',
         ],
-        'recent'        => [
-            'entity-header' => 'Usar la cabecera de la entidad como imagen',
-            'full'          => 'Completa',
-            'help'          => 'Solo muestra la previsualización de la última entidad actualizada.',
-            'helpers'       => [
-                'entity-header' => 'Si la entidad tiene una imagen de cabecera (funcionalidad de campañas mejoradas), puedes habilitar que este widget use dicha imagen en lugar de la imagen de la entidad.',
-                'full'          => 'Muestra toda la entidad por defecto en lugar de una previsualización.',
+        'random'                    => [
+            'helpers'   => [
+                'name'  => 'Puedes referenciar el nombre de la entidad aleatoria con {name}',
             ],
-            'singular'      => 'Singular',
-            'tags'          => 'Filtra la lista de las entidades recientemente modificadas con etiquetas específicas.',
-            'title'         => 'Modificado recientemente',
         ],
-        'unmentioned'   => [
+        'recent'                    => [
+            'entity-header'     => 'Usar la cabecera de la entidad como imagen',
+            'filters'           => 'Filtros',
+            'full'              => 'Completa',
+            'help'              => 'Solo muestra la previsualización de la última entidad actualizada.',
+            'helpers'           => [
+                'entity-header'     => 'Si la entidad tiene una imagen de cabecera (funcionalidad de campañas mejoradas), puedes habilitar que este widget use dicha imagen en lugar de la imagen de la entidad.',
+                'filters'           => 'Puedes filtrar qué tipo de entidades se muestran. Para saber más sobre este campo, accede a la página de ayuda :link.',
+                'full'              => 'Muestra toda la entidad por defecto en lugar de una previsualización.',
+                'show_attributes'   => 'Mostrar los atributos bajo la entrada',
+                'show_members'      => 'Si la entidad es una familia u organización, muestra sus miembros bajo la entrada.',
+            ],
+            'show_attributes'   => 'Mostrar atributos',
+            'show_members'      => 'Mostrar miembros',
+            'singular'          => 'Singular',
+            'tags'              => 'Filtra la lista de las entidades recientemente modificadas con etiquetas específicas.',
+            'title'             => 'Modificado recientemente',
+        ],
+        'unmentioned'               => [
             'title' => 'Entidades no mencionadas',
         ],
-        'update'        => [
+        'update'                    => [
             'success'   => 'Widget modificado.',
         ],
-        'widths'        => [
+        'widths'                    => [
             '0' => 'Auto',
             '12'=> 'Completa (100%)',
             '3' => 'Cuarto (25%)',

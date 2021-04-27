@@ -26,6 +26,8 @@ return [
     'helpers'       => [
         'descendants'   => 'Diese Liste enthält alle Organisationen, die direkt unter dieser Organisation und allen untergeordneten Organisationen sind.',
         'nested'        => 'In der verschachtelten Ansicht, siehst du alle Organisationen verschachtelt. Organisationen ohne Oberorganisation werden im Standard angezeigt. Organisationen mit Unterorganisationen, können per Klick geöffnet werden, um die Unterorganisationen zu sehen. Das geht so tief, bis es keine Unterorganisation mehr gibt.',
+        'nested_parent' => 'Anzeigen der Organisationen von :parent.',
+        'nested_without'=> 'Anzeigen aller Organisationen, die keine übergeordnete Organisation haben. Klicken Sie auf eine Zeile, um die untergeordneten Organisationen anzuzeigen.',
     ],
     'index'         => [
         'add'           => 'Neue Organisation',

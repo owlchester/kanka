@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'account-deletion'      => [
+        'account_settings'  => 'Configuració del compte',
+        'answer'            => 'Per a eliminar el compte, aneu a la pàgina del :account i baixeu fins la secció d\'eliminar el compte. Aquesta acció eliminarà el compte i totes les campanyes on en sigueu l\'únic membre.',
+        'question'          => 'Com puc eliminar el meu compte?',
+    ],
     'app_backup'            => [
         'answer'    => 'Fem dues còpies de seguretat al dia per a evitar cualsevol pèrdua de dades. Les nostres pròpies campanyes són al servidor, així que no volem córrer cap risc!',
         'question'  => 'Cada quant temps es fa una còpia de seguretat de les dades de Kanka?',

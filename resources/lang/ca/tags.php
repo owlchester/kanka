@@ -32,7 +32,8 @@ return [
         'type'          => 'Tipus',
     ],
     'helpers'       => [
-        'nested'    => 'Amb la vista niada, les etiquetes es mostren de forma agrupada. Les etiquetes sense cap superior es mostraran aquí per defecte. Les que tinguin subetiquetes niades es poden anar clicant per a mostrar-les. Es pot seguir clicant fins que no hi hagi més etiquetes niades a mostrar.',
+        'nested_parent' => 'S\'estan mostrant les etiquetes de :parent.',
+        'nested_without'=> 'S\'estan mostrant les etiquetes sense pare. Feu clic a la fila d\'un mapa per a mostrar-ne les descendents.',
     ],
     'hints'         => [
         'children'  => 'Aquí es mostren totes les entitats que pertanyen directament a aquesta etiqueta i a totes les etiquetes niades.',

@@ -61,4 +61,10 @@ return [
     ],
     'public'            => 'Zobacz tutorial na Youtube dotyczący kampanii publicznych.',
     'title'             => 'Pomoc',
+    'widget-filters'    => [
+        'description'   => 'Możesz filtrować elementy wyświetlane przez zmodyfikowany widżet tworząc listę pól dla elementów albo wartości. Na przykład możesz użyć :example by filtrować martwe postaci na liście BNów.',
+        'link'          => 'filtry widżetów',
+        'more'          => 'Możesz kopiować wartość z URL list elementów. Na przykład, możesz użyć filtra na liście postaci kampanii by określić, jakie postaci chcesz wyświetlać, a potem skopiować wartość pojawiającą się w adresie URL po :question.',
+        'title'         => 'Filtry widżetów pulpitu',
+    ],
 ];

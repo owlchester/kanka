@@ -15,41 +15,25 @@ return [
         'go_to'             => 'Ves a :name',
         'json-export'       => 'Exporta (JSON)',
         'manage_links'      => 'Configura els enllaços',
-        'more'              => 'Més accions',
         'move'              => 'Mou',
         'new'               => 'Nou',
         'next'              => 'Següent',
-        'private'           => 'Privat',
-        'public'            => 'Públic',
         'reset'             => 'Restableix',
     ],
     'add'                       => 'Afegeix',
     'alerts'                    => [
-        'copy_mention'  => 'S\'ha copiat la menció avançada de l\'entitat al porta-retalls.',
+        'copy_attribute'    => 'S\'ha copiat la menció de l\'atribut.',
+        'copy_mention'      => 'S\'ha copiat la menció avançada de l\'entitat al porta-retalls.',
     ],
     'attributes'                => [
         'actions'       => [
-            'add'               => 'Afegeix un atribut',
-            'add_block'         => 'Afegeix un bloc',
-            'add_checkbox'      => 'Afegeix una casella',
-            'add_text'          => 'Afegeix un text',
             'apply_template'    => 'Aplica una plantilla d\'atributs',
             'manage'            => 'Administra',
             'more'              => 'Més opcions',
             'remove_all'        => 'Elimina\'ls tots',
         ],
-        'create'        => [
-            'description'   => 'Crea un nou atribut',
-            'success'       => 'S\'ha afegit l\'atribut :name a :entity.',
-            'title'         => 'Atribut nou per a :name',
-        ],
-        'destroy'       => [
-            'success'   => 'S\'ha eliminat l\'atribut :name de :entity.',
-        ],
-        'edit'          => [
-            'description'   => 'Actualitza un atribut existent',
-            'success'       => 'S\'ha actualitzat l\'atribut :name de :entity.',
-            'title'         => 'Actualitza l\'atribut de :name',
+        'errors'        => [
+            'loop'  => 'Hi ha un bucle infinit en aquest càlcul d\'atributs!',
         ],
         'fields'        => [
             'attribute'             => 'Atribut',
@@ -73,6 +57,14 @@ return [
             'attribute' => 'Nombre de conquestes, Iniciativa, Població...',
             'block'     => 'Nom del bloc',
             'checkbox'  => 'Nom de la casella',
+            'icon'      => [
+                'class' => 'Classe de FontAwesome o RPG Awesome: fas fa-users',
+                'name'  => 'Nom de la icona',
+            ],
+            'random'    => [
+                'name'  => 'Nom de l\'atribut',
+                'value' => '1-100 o una llista de valors separats per comes',
+            ],
             'section'   => 'Nom de la secció',
             'template'  => 'Selecciona una plantilla',
             'value'     => 'Valor de l\'atribut',
@@ -85,6 +77,8 @@ return [
             'attribute' => 'Atribut',
             'block'     => 'Bloc',
             'checkbox'  => 'Casella',
+            'icon'      => 'Icona',
+            'random'    => 'Aleatori',
             'section'   => 'Secció',
             'text'      => 'Text multilínia',
         ],
@@ -298,7 +292,6 @@ return [
     'linking_help'              => 'Com es poden enllaçar altres entitats?',
     'manage'                    => 'Administra',
     'move'                      => [
-        'description'   => 'Mou aquesta entitat a un altre lloc',
         'errors'        => [
             'permission'        => 'No teniu permís per a crear entitats d\'aquest tipus a la campanya seleccionada.',
             'same_campaign'     => 'Heu de seleccionar una altra campanya per moure-hi l\'entitat.',
@@ -366,8 +359,7 @@ return [
         ],
         'helper'            => 'Des d\'aquí podeu afinar quins usuaris i rols poden interactuar amb aquesta entitat.',
         'helpers'           => [
-            'entity_note'   => 'Permite a los usuarios crear notas dentro de esta entidad. Sin este permiso, podrán seguir viendo las notas de entidad que se muestren a todos.',
-            'setup'         => 'Des d\'aquí podeu afinar com els diferents rols i usuaris poden interactuar amb aquesta entitat. :allow els permetrà fer l\'acció; :deny els la denegarà, i :inherit utilitzarà el permís que ja tingui el rol o l\'usuari. Un usuari amb una acció en :allow podrà fer-la, malgrat que el seu rol estigui en :deny.',
+            'setup' => 'Des d\'aquí podeu afinar com els diferents rols i usuaris poden interactuar amb aquesta entitat. :allow els permetrà fer l\'acció; :deny els la denegarà, i :inherit utilitzarà el permís que ja tingui el rol o l\'usuari. Un usuari amb una acció en :allow podrà fer-la, malgrat que el seu rol estigui en :deny.',
         ],
         'inherited'         => 'Aquest rol ja té aquest permís a aquesta entitat.',
         'inherited_by'      => 'Aquest usuari forma part del rol «:role», que li atorga aquest permís en aquesta entitat.',

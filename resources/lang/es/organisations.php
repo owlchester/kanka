@@ -25,7 +25,8 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Esta lista contiene todas las organizaciones que descienden de esta organización, no solo las que están directamente por debajo.',
-        'nested'        => 'Con la vista anidada, puedes ver tus organizaciones de forma anidada. Las organizaciones que no tengan organización superior se mostrarán por defecto. A las organizaciones con suborganizaciones se les puede hacer click para mostrar sus descendientes. Puedes seguir haciendo click hasta que no haya más descendientes que mostrar.',
+        'nested_parent' => 'Mostrando organizaciones de :parent.',
+        'nested_without'=> 'Mostrando todas las organizaciones sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
     ],
     'index'         => [
         'add'           => 'Nueva organización',

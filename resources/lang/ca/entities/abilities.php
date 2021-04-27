@@ -15,6 +15,9 @@ return [
         'note'      => 'Nota',
         'position'  => 'Posició',
     ],
+    'helpers'   => [
+        'note'  => 'Podeu referenciar entitats mitjançant les mencions avançades (per exemple, :code) i els atributs de les entitats (ex., :attr) dins d\'aquest camp.',
+    ],
     'import'    => [
         'errors'    => [
             'no_race'       => 'El personatge no té cap raça.',

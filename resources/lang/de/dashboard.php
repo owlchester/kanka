@@ -119,7 +119,11 @@ TEXT
 ,
     ],
     'widgets'           => [
-        'calendar'      => [
+        'actions'                   => [
+            'advanced-options'  => 'Erweiterte Optionen',
+        ],
+        'advanced_options_boosted'  => ':boosted_campaigns verfügt über erweiterte Optionen wie das Anzeigen von Mitgliedern einer Familie oder der Attribute der Objekt im Dashboard.',
+        'calendar'                  => [
             'actions'           => [
                 'next'      => 'Datum auf nächsten Tag ändern',
                 'previous'  => 'Datum auf vorigen Tag ändern',
@@ -128,39 +132,51 @@ TEXT
             'previous_events'   => 'Vorige',
             'upcoming_events'   => 'Bevorstehende',
         ],
-        'campaign'      => [
+        'campaign'                  => [
             'helper'    => 'Dieses Widget zeigte den Kampagnenkopf an. Dieses Widget wird immer im Standard-Dashboard angezeigt.',
         ],
-        'create'        => [
+        'create'                    => [
             'success'   => 'Widget zum Dashboard hinzugefügt.',
         ],
-        'delete'        => [
+        'delete'                    => [
             'success'   => 'Widget vom Dashboard entfernt.',
         ],
-        'fields'        => [
-            'name'  => 'Benutzerdefinierter Widget-Name',
-            'text'  => 'Text',
-            'width' => 'Breite',
+        'fields'                    => [
+            'dashboard' => 'Dashboard',
+            'name'      => 'Benutzerdefinierter Widget-Name',
+            'text'      => 'Text',
+            'width'     => 'Breite',
         ],
-        'recent'        => [
-            'entity-header' => 'Verwenden Sie den Objekt-Header als Bild',
-            'full'          => 'Voll',
-            'help'          => 'Nur das zuletzt aktualisierte Objekt anzeigen, aber eine vollständige Vorschau des Objektes anzeigen',
-            'helpers'       => [
-                'entity-header' => 'Wenn Ihr Objekt über einen Objekt-Header verfügt (erweiterte Kampagnenfunktion), stellen Sie dieses Widget so ein, dass dieses Bild anstelle des Bilds des Objektes verwendet wird.',
-                'full'          => 'Zeigen Sie standardmäßig den Eintrag des gesamten Objektes anstelle einer Vorschau an.',
+        'random'                    => [
+            'helpers'   => [
+                'name'  => 'Sie können den Namen der zufälligen Objekte mit {name} referenzieren',
             ],
-            'singular'      => 'Einzelnes Objekt',
-            'tags'          => 'Filtern Sie die Liste der zuletzt geänderten Objekte nach bestimmten Tags.',
-            'title'         => 'Vor kurzem aktualisiert',
         ],
-        'unmentioned'   => [
+        'recent'                    => [
+            'entity-header'     => 'Verwenden Sie den Objekt-Header als Bild',
+            'filters'           => 'Filter',
+            'full'              => 'Voll',
+            'help'              => 'Nur das zuletzt aktualisierte Objekt anzeigen, aber eine vollständige Vorschau des Objektes anzeigen',
+            'helpers'           => [
+                'entity-header'     => 'Wenn Ihr Objekt über einen Objekt-Header verfügt (erweiterte Kampagnenfunktion), stellen Sie dieses Widget so ein, dass dieses Bild anstelle des Bilds des Objektes verwendet wird.',
+                'filters'           => 'Sie können die Art der angezeigten Objekte filtern. Erfahren Sie, wie Sie dieses Feld verwenden, indem Sie die Hilfeseite :link besuchen.',
+                'full'              => 'Zeigen Sie standardmäßig den Eintrag des gesamten Objektes anstelle einer Vorschau an.',
+                'show_attributes'   => 'Zeigen Sie die Attribute der Objekte unter dem Eintrag an.',
+                'show_members'      => 'Wenn es sich bei dem Objekt um eine Familie oder Organisation handelt, zeigen Sie ihre Mitglieder unter dem Eintrag an.',
+            ],
+            'show_attributes'   => 'Zeige Attribute',
+            'show_members'      => 'Zeige Mitglieder',
+            'singular'          => 'Einzelnes Objekt',
+            'tags'              => 'Filtern Sie die Liste der zuletzt geänderten Objekte nach bestimmten Tags.',
+            'title'             => 'Vor kurzem aktualisiert',
+        ],
+        'unmentioned'               => [
             'title' => 'Unerwähnte Objekte',
         ],
-        'update'        => [
+        'update'                    => [
             'success'   => 'Widget angepasst.',
         ],
-        'widths'        => [
+        'widths'                    => [
             '0' => 'automatisch',
             '12'=> 'Komplett (100%)',
             '3' => 'winzig (25%)',

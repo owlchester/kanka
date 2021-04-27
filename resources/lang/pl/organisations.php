@@ -26,6 +26,8 @@ return [
     'helpers'       => [
         'descendants'   => 'Na liście znajdują się wszystkie organizacje wywodzące się od tej, nie tylko bezpośrednio.',
         'nested'        => 'W widoku hierarchii najpierw wyświetlane są organizacje, które nie mają źródła. Po kliknięciu na wiersz organizacji zobaczysz jej pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
+        'nested_parent' => 'Wyświetlono organizacje pochodzące od :parent.',
+        'nested_without'=> 'Wyświetlono wszystkie organizacje nie posiadające źródła. Kliknij na rząd, by wyświetlić organizacje pochodne.',
     ],
     'index'         => [
         'add'           => 'Nowa organizacja',

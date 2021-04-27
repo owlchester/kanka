@@ -118,6 +118,7 @@ return [
             'title'         => 'Personatges, famílies, indrets',
         ],
         'learn_more'        => 'Saber més sobre les funcions de Kanka',
+        'learn_more_about'  => 'Saber més sobre aquesta funcionalitat',
         'maps'              => [
             'description'   => 'Pugeu mapes dels vostres mons, ciutats i coves, i afegiu-hi pràctics marcadors i enllaços.',
             'title'         => 'Mapes',
@@ -166,6 +167,10 @@ return [
             'description'   => 'Des d\'un sistema avançat de permisos, fins a Missions, Cròniques, Personatges i Habilitats, amb àudio i vídeo inserit, us ajudem a gestionar les vostres campanyes.',
             'title'         => 'Gestió de campanyes de rol',
         ],
+        'secrets'           => [
+            'description'   => 'Cada entitat pot tenir diversos secrets associats mitjançant les anotacions. Se\'n poden ajustar els permisos per a controlar qui els veu, i se\'ls pot fixar a la vista principal de l\'entitat per accedir-hi d\'una ullada.',
+            'title'         => 'Gestió de secrets',
+        ],
         'superboosts'       => [
             'boosted'       => 'Supermillorades',
             'description'   => 'Per a Supermillorar una campanya i desbloquejar les següents funcionalitats cal utilitzar tres millores a una mateixa campanya.',
@@ -200,7 +205,7 @@ return [
         'headings'  => [
             'app'           => 'App',
             'community'     => 'Comunitat',
-            'friends'       => 'Els nostres amics',
+            'other'         => 'Altres',
             'useful_links'  => 'Enllaços útils',
         ],
         'navigation'=> 'Navegació',
@@ -251,6 +256,7 @@ return [
         'media'         => 'Mitjans',
         'news'          => 'Novetats',
         'newsletter'    => 'Newsletter',
+        'other'         => 'Altres',
         'pricing'       => 'Tarifes',
         'privacy'       => 'Política de privacitat',
         'register'      => 'Regístra\'m',
@@ -274,13 +280,15 @@ return [
             'support'   => 'Fer suport',
         ],
         'benefits'      => [
-            'boosters'          => 'Millores de campanya',
-            'core'              => 'Accés a totes les funcions principals',
-            'higher_uploads'    => 'Puja arxius grans',
-            'huge_uploads'      => 'Puja arxius enormes',
-            'no_boosters'       => 'Sense millores de campanya',
-            'unlimited'         => 'Campanyes i arxius pujats il·limitats',
-            'updates'           => 'Actualitzacions i millores freqüents',
+            'big_maps'      => 'Mapes grans (:size)',
+            'bigger_maps'   => 'Mapes més grans (:size)',
+            'boosters'      => 'Millores de campanya',
+            'core'          => 'Accés a totes les funcions principals',
+            'huge_maps'     => 'Mapes enormes (:size)',
+            'huge_uploads'  => 'Puja arxius enormes',
+            'no_boosters'   => 'Sense millores de campanya',
+            'unlimited'     => 'Campanyes i arxius pujats il·limitats',
+            'updates'       => 'Actualitzacions i millores freqüents',
         ],
         'description'   => 'Malgrat que totes les funcions principals són gratuïtes, en fer suport a Kanka ens ajudeu a mantenir-la actualitzada amb freqüència i millorar-la per a tots els usuaris.',
         'tier'          => [
@@ -317,7 +325,6 @@ return [
     ],
     'second_block'  => [
         'call_to_action'    => 'Registra un compte gratuït!',
-        'title'             => 'Dediqueu menys temps a organitzar i més a crear.',
     ],
     'seo'           => [
         'keywords'  => 'Worldbuilding, Creació de mons, RPG, Rol, Joc de rol, Gestió de campanya de rol',

@@ -25,7 +25,8 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Aquí es mostren totes les organitzacions que descendeixen d\'aquesta organització, no només les directament inferiors.',
-        'nested'        => 'Amb la vista niada, es poden veure les organitzacions de forma agrupada. Les organitzacions que no tinguin organització superior es mostraran per defecte. Cliqueu les organitzacions amb suborganizaciones per a mostrar els seus descendents. Es pot seguir clicant fins que no hi hagi més descendents a mostrar.',
+        'nested_parent' => 'S\'estan mostrant les organitzacions de :parent.',
+        'nested_without'=> 'S\'estan mostrant les organitzacions sense pare. Feu clic a la fila d\'una organització per a mostrar-ne les descendents.',
     ],
     'index'         => [
         'add'           => 'Nova organització',

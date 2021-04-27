@@ -29,7 +29,8 @@ return [
         'type'          => 'Tipus',
     ],
     'helpers'       => [
-        'nested'            => 'Aquí es mostren les línies de temps sense pare per defecte. Feu clic a la fila d\'una línia de temps per a mostrar-ne els descendents.',
+        'nested_parent'     => 'S\'estan mostrant les línies de temps de :parent.',
+        'nested_without'    => 'S\'estan mostrant les línies de temps sense pare. Feu clic a la fila d\'un mapa per a mostrar-ne les descendents.',
         'reorder'           => 'Agafeu i arrossegueu els elements de l\'era per a reordenar-los.',
         'reorder_tooltip'   => 'Cliqueu per a habilitar la reordenació dels elements mitjançant arrossegar i deixar anar.',
         'reverse_order'     => 'Habiliteu-ho per a mostrar les eres en ordre cronològic invers (l\'era més antiga primer)',

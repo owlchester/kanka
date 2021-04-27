@@ -43,9 +43,10 @@ return [
     ],
     'title'         => 'Extensións da campaña ":name"',
     'types'         => [
-        'attributes'    => 'Padrón de atributos',
-        'pack'          => 'Paquete de contido',
-        'theme'         => 'Tema',
+        'attribute' => 'Padrón de atributos',
+        'attributes'=> 'Padrón de atributos',
+        'pack'      => 'Paquete de contido',
+        'theme'     => 'Tema',
     ],
     'update'        => [
         'success'   => 'Extensión ":plugin" actualizada.',

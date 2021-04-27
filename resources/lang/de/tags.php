@@ -32,7 +32,9 @@ return [
         'type'          => 'Typ',
     ],
     'helpers'       => [
-        'nested'    => 'Du kannst deine Kategorien in einer verschachtelten Ansicht ansehen. Kategorien ohne einen übergeordneten Kategorie werden direkt angezeigt. Kategorien, die untergeordnete Kategorien haben, können angeklickt werden um die untergeordneten Kategorien anzuzeigen. Du kannst so lange klicken, bis es keine untergeordneten Kategorien mehr gibt.',
+        'nested'        => 'Du kannst deine Kategorien in einer verschachtelten Ansicht ansehen. Kategorien ohne einen übergeordneten Kategorie werden direkt angezeigt. Kategorien, die untergeordnete Kategorien haben, können angeklickt werden um die untergeordneten Kategorien anzuzeigen. Du kannst so lange klicken, bis es keine untergeordneten Kategorien mehr gibt.',
+        'nested_parent' => 'Anzeigen der Tags von :parent.',
+        'nested_without'=> 'Anzeigen aller Tags, die kein übergeordnetes Tag haben. Klicken Sie auf eine Zeile, um die untergeordneten Tags anzuzeigen.',
     ],
     'hints'         => [
         'children'  => 'Diese Liste enthält alle Objekte, die direkt in dieser Kategorie und allen Unterkategorien sind.',

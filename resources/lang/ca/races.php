@@ -29,7 +29,8 @@ return [
         'type'          => 'Tipus',
     ],
     'helpers'       => [
-        'nested'    => 'Amb la vista niada, les races es mostren de forma agrupada. Les races que no tinguin raça superior es mostraran per defecte. A les races amb sub-races se\'ls pot clicar per a mostrar els seus descendents. Es pot seguir clicant fins que no hi hagi més descendents a mostrar.',
+        'nested_parent' => 'S\'estan mostrant les races de :parent.',
+        'nested_without'=> 'S\'estan mostrant les races sense pare. Feu clic a la fila d\'una raça per a mostrar-ne les descendents.',
     ],
     'index'         => [
         'add'           => 'Nova raça',

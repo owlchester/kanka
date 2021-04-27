@@ -24,8 +24,9 @@ return [
         'type'      => 'Tipus',
     ],
     'helpers'       => [
-        'journals'  => 'Mostra totes o només les descendents directes d\'aquesta crònica.',
-        'nested'    => 'Primer es mostren les cròniques que no ténen cap superior. Feu clic a una filera per a explorar-ne les subcròniques.',
+        'journals'      => 'Mostra totes o només les descendents directes d\'aquesta crònica.',
+        'nested_parent' => 'S\'estan mostrant les cròniques de :parent.',
+        'nested_without'=> 'S\'estan mostrant les cròniques sense pare. Feu clic a la fila d\'una família per a mostrar-ne les subcròniques.',
     ],
     'index'         => [
         'add'           => 'Nova crònica',

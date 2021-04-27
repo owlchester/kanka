@@ -52,7 +52,8 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'nested'    => 'Con la vista anidada, puedes ver tus misiones de forma anidada. Las misiones que no tengan misión superior se mostrarán por defecto. A las misiones con submisiones se les puede hacer click para mostrar sus descendientes. Puedes seguir haciendo click hasta que no haya más descendientes que mostrar.',
+        'nested_parent' => 'Mostrando las misiones de :parent.',
+        'nested_without'=> 'Mostrando todas las misiones sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
     ],
     'hints'         => [
         'quests'    => 'Se puede crear una red de misiones entrelazadas usando el campo Misión Superior.',

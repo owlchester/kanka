@@ -13,6 +13,7 @@ return [
         'created_by'    => 'Pujada per',
         'ext'           => 'Extensió',
         'folder'        => 'Carpeta',
+        'image_used_in' => '{1}S\'utilitza com a imatge a una entitat.|{2,*}S\'utilitza com a imatge a :count entitats.',
         'name'          => 'Nom',
         'size'          => 'Pes',
     ],

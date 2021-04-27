@@ -96,7 +96,8 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Los meses intercalares no usan los días de la semana, pero influyen en las lunas y las estaciones.',
-        'nested'        => 'Se muestran primero los calendarios que no tienen un calendario superior. Haz clic en un calendario para explorar sus subcalendarios.',
+        'nested_parent' => 'Mostrando calendarios de :parent.',
+        'nested_without'=> 'Mostrando todos los calendarios que no tienen ningún superior. Haz clic sobre una fila para mostrar los subcalendarios.',
         'start_offset'  => 'Por defecto, el calendario empieza en el primer día de la semana del año 0. En este campo puedes cambiar dónde se situará el primer día del calendario.',
     ],
     'hints'         => [

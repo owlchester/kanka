@@ -49,6 +49,8 @@ return [
         'min_zoom'          => 'Większość map można oddalać. Domyślna wartość oddalenia to :default, a najwyższa możliwa wynosi :min.',
         'missing_image'     => 'Zapisz obraz mapy zanim dodasz do niego znaczniki i warstwy.',
         'nested'            => 'W widoku hierarchii najpierw wyświetlane są mapy, które nie mają źródła. Po kliknięciu na wiersz mapy zobaczysz jej pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
+        'nested_parent'     => 'Wyświetlono mapy pochodzące od :parent.',
+        'nested_without'    => 'Wyświetlono wszystkie mapy nie posiadające źródła. Kliknij na rząd, by wyświetlić mapy pochodne.',
     ],
     'index'         => [
         'add'   => 'Nowa mapa',

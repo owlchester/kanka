@@ -23,7 +23,8 @@ return [
         'type'          => 'Tipus',
     ],
     'helpers'       => [
-        'nested'    => 'Primer es mostren les notes que no tenen cap superior. Cliqueu a una nota per a explorar-ne les subnotes.',
+        'nested_parent' => 'S\'estan mostrant les notes de :parent.',
+        'nested_without'=> 'S\'estan mostrant les notes sense pare. Feu clic a la fila d\'una nota per a mostrar-ne les descendents.',
     ],
     'hints'         => [
         'is_pinned' => 'Es poden fixar fins a 3 notes al tauler de la campanya.',

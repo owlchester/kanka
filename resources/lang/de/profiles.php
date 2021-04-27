@@ -50,6 +50,7 @@ return [
     'sections'      => [
         'delete'    => [
             'delete'    => 'Lösche meinen Account',
+            'helper'    => 'Durch das Löschen Ihres Kontos werden auch alle Kampagnen gelöscht, bei denen Sie das einzige Mitglied sind. Diese Aktion ist permanent und kann nicht rückgängig gemacht werden.',
             'title'     => 'Lösche deinen Account',
             'warning'   => 'Wenn du deinen Account löschst, werden alle Daten gelöscht. Bist du sicher?',
         ],

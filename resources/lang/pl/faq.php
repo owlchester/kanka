@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'account-deletion'      => [
+        'account_settings'  => 'Ustawienia konta',
+        'answer'            => 'Aby usunąć konto, przejdź na stronę :account i przewiń na dół, do sekcji usuwania. W ten sposób usuniesz zarówno konto, jak wszystkie kampanie których jesteś jedynym uczestnikiem.',
+        'question'          => 'Jak mogę usunąć konto?',
+    ],
     'app_backup'            => [
         'answer'    => 'Tworzymy dwie kopie zapasowe dziennie, żeby nie doszło do utraty danych. Na tym serwerze są nasze własne kampanie, nie zamierzamy ryzykować!',
         'question'  => 'Jak często Kanka archiwizuje dane?',

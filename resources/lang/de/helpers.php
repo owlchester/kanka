@@ -62,4 +62,10 @@ return [
     ],
     'public'            => 'Sie die Tutorial Videos über öffentliche Kampagnen auf Youtube an.',
     'title'             => 'Hilfe',
+    'widget-filters'    => [
+        'description'   => 'Sie können Objekte filtern, die im kürzlich geänderten Widget angezeigt werden, indem Sie eine Liste der Felder der Objekte und der Werte bereitstellen. Zum Beispiel können Sie :example verwenden, um nach toten Charakteren des NPC-Typs zu filtern.',
+        'link'          => 'Widget Filter',
+        'more'          => 'Sie können Werte von der URL in Objektlisten kopieren. Wenn Sie beispielsweise die Zeichen der Kampagne anzeigen, filtern Sie nach der Art der Zeichen, die Sie anzeigen möchten, und kopieren Sie die Werte nach der :question in die URL.',
+        'title'         => 'Dashboard Widget Filter',
+    ],
 ];

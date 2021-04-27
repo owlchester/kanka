@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'account-deletion'      => [
+        'account_settings'  => 'Ajustes de la cuenta',
+        'answer'            => 'Para eliminar tu cuenta, dirígete a la página de :account y baja hasta la sección de eliminación de la cuenta. Esto eliminará tu cuenta y todas las campañas de las que seas el único miembro.',
+        'question'          => '¿Cómo puedo eliminar mi cuenta?',
+    ],
     'app_backup'            => [
         'answer'    => 'Realizamos dos copias de seguridad al día para evitar cualquier pérdida de datos. Nuestras propias campañas están en el servidor, así que no queremos correr ningún riesgo!',
         'question'  => '¿Cada cuánto tiempo se hace una copia de seguridad de los datos de Kanka?',

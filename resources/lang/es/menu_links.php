@@ -2,17 +2,15 @@
 
 return [
     'create'        => [
-        'description'   => 'Crear nuevo enlace rápido',
-        'success'       => 'Enlace rápido ":name" creado.',
-        'title'         => 'Nuevo enlace rápido',
+        'success'   => 'Enlace rápido ":name" creado.',
+        'title'     => 'Nuevo enlace rápido',
     ],
     'destroy'       => [
         'success'   => 'Enlace rápido ":name" eliminado.',
     ],
     'edit'          => [
-        'description'   => 'Editar enlace rápido',
-        'success'       => 'Enlace rápido ":name" actualizado.',
-        'title'         => 'Enlace rápido :name',
+        'success'   => 'Enlace rápido ":name" actualizado.',
+        'title'     => 'Enlace rápido :name',
     ],
     'fields'        => [
         'dashboard'     => 'Tablero',
@@ -36,10 +34,8 @@ return [
         'type'      => 'Configura este enlace de menú para ir directamente a una lista de entidades. Para filtrar los resultados, copia las partes de la URL de la lista filtrada a partir del símbolo :? en el campo de :filter.',
     ],
     'index'         => [
-        'add'           => 'Nuevo enlace rápido',
-        'description'   => 'Administrar enlaces rápidos de :name.',
-        'header'        => 'Enlace rápido de :name',
-        'title'         => 'Acceso rápido',
+        'add'   => 'Nuevo enlace rápido',
+        'title' => 'Acceso rápido',
     ],
     'placeholders'  => [
         'entity'    => 'Elige una entidad',
@@ -52,10 +48,9 @@ return [
         'any'   => 'Cualquier entidad',
     ],
     'show'          => [
-        'description'   => 'Vista detallada del enlace rápido',
-        'tabs'          => [
+        'tabs'  => [
             'information'   => 'Información',
         ],
-        'title'         => 'Enlace rápido :name',
+        'title' => 'Enlace rápido :name',
     ],
 ];

@@ -44,7 +44,6 @@ return [
     'title'         => 'Connectors de la campanya :name',
     'types'         => [
         'attribute' => 'Plantilla d\'atributs',
-        'attributes'=> 'Plantilla d\'atributs',
         'pack'      => 'Paquet de contingut',
         'theme'     => 'Tema',
     ],

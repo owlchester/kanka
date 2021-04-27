@@ -7,8 +7,7 @@ return [
         'unfollow'  => 'Deixa de seguir',
     ],
     'campaigns'         => [
-        'manage'    => 'Gestiona la campaña',
-        'tabs'      => [
+        'tabs'  => [
             'modules'   => ':count mòduls',
             'roles'     => ':count rols',
             'users'     => ':count usuaris',
@@ -70,27 +69,16 @@ return [
         ],
     ],
     'recent'            => [
-        'add'           => 'Crea un nou :name',
-        'no_entries'    => 'Actualment no hi ha entrades d\'aquest tipus.',
-        'title'         => ':name que s\'han modificat recentement',
-        'view'          => 'Veu tots els :name',
+        'title' => ':name que s\'han modificat recentement',
     ],
     'settings'          => [
-        'description'   => 'Personalitza la vista del taulell',
-        'edit'          => [
-            'success'   => 'S\'han desat les modificacions.',
-        ],
-        'fields'        => [
-            'helper'        => 'Es pot canviar fàcilment la vista del taulell. Tingueu en compte que totes les campanyes es veuran afectades, independentement de la configuració d\'aquestes.',
-            'recent_count'  => 'Nombre d\'elements recents',
-        ],
-        'title'         => 'Configuració del taulell',
+        'title' => 'Configuració del taulell',
     ],
     'setup'             => [
         'actions'   => [
-            'add'               => 'Afegeix un giny',
+            'add'               => 'Afegeix un widget',
             'back_to_dashboard' => 'Torna al taulell',
-            'edit'              => 'Edita el giny',
+            'edit'              => 'Edita el widget',
         ],
         'title'     => 'Configura el taulell de la campanya',
         'widgets'   => [
@@ -106,7 +94,11 @@ return [
     'title'             => 'Taulell de',
     'welcome'           => [],
     'widgets'           => [
-        'calendar'      => [
+        'actions'                   => [
+            'advanced-options'  => 'Opcions avançades',
+        ],
+        'advanced_options_boosted'  => 'Les :boosted_campaigns tenen opcions avançades, com ara mostrar els membres d\'una família o els atributs de l\'entitat directament al taulell.',
+        'calendar'                  => [
             'actions'           => [
                 'next'      => 'Canvia la data al dia següent',
                 'previous'  => 'Canvia la data al dia anterior',
@@ -115,39 +107,51 @@ return [
             'previous_events'   => 'Previ',
             'upcoming_events'   => 'Proper',
         ],
-        'campaign'      => [
-            'helper'    => 'Aquest giny mostra la capçalera de la campanya i sempre es mostra al taulell per defecte.',
+        'campaign'                  => [
+            'helper'    => 'Aquest widget mostra la capçalera de la campanya i sempre es mostra al taulell per defecte.',
         ],
-        'create'        => [
-            'success'   => 'Giny afegit al taulell.',
+        'create'                    => [
+            'success'   => 'S\'ha afegit el widget al taulell.',
         ],
-        'delete'        => [
-            'success'   => 'Giny eliminat del taulell.',
+        'delete'                    => [
+            'success'   => 'S\'ha eliminat el widget del taulell.',
         ],
-        'fields'        => [
-            'name'  => 'Nom de giny personalitzat',
-            'text'  => 'Text',
-            'width' => 'Amplada',
+        'fields'                    => [
+            'dashboard' => 'Taulell',
+            'name'      => 'Nom personalitzat pel widget',
+            'text'      => 'Text',
+            'width'     => 'Amplada',
         ],
-        'recent'        => [
-            'entity-header' => 'Utilitza la capçalera de l\'entitat com a imatge',
-            'full'          => 'Completa',
-            'help'          => 'Mostra només la previsualització de l\'última entitat actualitzada.',
-            'helpers'       => [
-                'entity-header' => 'Si l\'entitat té una capçalera (funcionalitat de campanyes millorades), podeu indicar que aquest giny la utilitzi en comptes de la imatge de l\'entitat.',
-                'full'          => 'Mostra tota l\'entitat per defecte en comptes d\'una previsualització.',
+        'random'                    => [
+            'helpers'   => [
+                'name'  => 'Podeu referenciar el nom de l\'entitat aleatòria amb {name}',
             ],
-            'singular'      => 'Singular',
-            'tags'          => 'Filtra la llista de les entitats modificades recentment amb etiquetes específiques.',
-            'title'         => 'Modificades recentment',
         ],
-        'unmentioned'   => [
+        'recent'                    => [
+            'entity-header'     => 'Utilitza la capçalera de l\'entitat com a imatge',
+            'filters'           => 'Filtres',
+            'full'              => 'Completa',
+            'help'              => 'Mostra només la previsualització de l\'última entitat actualitzada.',
+            'helpers'           => [
+                'entity-header'     => 'Si l\'entitat té una capçalera (funcionalitat de campanyes millorades), podeu indicar que aquest widget la utilitzi en comptes de la imatge de l\'entitat.',
+                'filters'           => 'Podeu filtrar quin tipus d\'entitats es mostren. Per saber-ne més, consulteu la pàgina d\'ajuda a :link.',
+                'full'              => 'Mostra tota l\'entitat per defecte en comptes d\'una previsualització.',
+                'show_attributes'   => 'Mostra els atributs de l\'entitat sota la descripció.',
+                'show_members'      => 'Si l\'entitat és una família o una organització, mostra els seus membres sota la descripció.',
+            ],
+            'show_attributes'   => 'Mostra els atributs',
+            'show_members'      => 'Mostra els membres',
+            'singular'          => 'Singular',
+            'tags'              => 'Filtra la llista de les entitats modificades recentment amb etiquetes específiques.',
+            'title'             => 'Modificades recentment',
+        ],
+        'unmentioned'               => [
             'title' => 'Entitats no mencionades',
         ],
-        'update'        => [
-            'success'   => 'Giny modificat.',
+        'update'                    => [
+            'success'   => 'S\'ha modificat el widget.',
         ],
-        'widths'        => [
+        'widths'                    => [
             '0' => 'Auto',
             '12'=> 'Completa (100%)',
             '3' => 'Quart (25%)',

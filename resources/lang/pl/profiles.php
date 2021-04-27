@@ -50,6 +50,7 @@ return [
     'sections'      => [
         'delete'    => [
             'delete'    => 'Usuń konto',
+            'helper'    => 'Usunięcie konta spowoduje również usunięcie wszystkich kampanii, których jesteś jednym członkiem. To działanie nieodwracalne, którego nie można cofnąć.',
             'title'     => 'Usuwanie konta',
             'warning'   => 'Po usunięciu konta wszystkie dane zostaną wykasowane. Czy na pewno chcesz to zrobić?',
         ],

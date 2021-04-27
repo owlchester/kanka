@@ -1,0 +1,11 @@
+<?php
+
+return [
+    'description'   => 'A Kanka podeu afinar els permisos per a controlar exactament què pot i no pot veure un usuari. Podeu ser tan oberts o restrictius com escaigui, depenent de les necessitats.',
+    'fifth'         => 'Moltes entitats tenen una casella de selecció amb l\'opció "Privada". Aquesta opció substituïrà totes les altres configuracions de permisos. Si està activada, només els administradors de la campanya podran veure aquesta entitat.',
+    'first'         => 'Els permisos de Kanka estan dividits en diversos conceptes: permisos per rol i permisos per entitat. Per defecte, cada campanya ve amb un rol d\'Admin, un de Públic i un de Jugador. Els membres del rol d\'administrador poden veure i fer-ho tot a la campanya. El rol públic es fa servir si la campanya es pública i un usuari no en forma part; per defecte, aquest rol no té cap permís. Finalment, el rol de jugador s\'assigna als membres de la campanya i tampoc té cap permís per defecte. Quan convideu un nou membre a la campanya, podeu seleccionar quin rol tindrà. Podeu crear més rols i canviar els rols dels membres, així com tenir-ne amb més d\'un rol.',
+    'fourth'        => 'Per a comprovar els permisos d\'un usuari, aneu a la pàgina de membres de la campanya i cliqueu el botó de "Veure com". Aquest botó només està disponible per a administradors i només es pot fer servir sobre membres no administradors. En crear o editar entitats amb aquesta funcionalitat, la informació sobre l\'autoria quedarà reflexada al registre de l\'entitat.',
+    'second'        => 'Es pot configurar un rol de diverses formes. Per exemple, podeu permetre als membres d\'un rol que vegin i crein personatges, però no els puguin editar o esborrar. Si un usuari pot crear una entitat però no modificar-la, automàticament se li assignaran permisos per actualitzar-la.',
+    'third'         => 'Per altra banda, si no voleu que els membres d\'un rol puguin veure cap personatge, podeu definir els permisos individualment a cada personatge, ja sigui editant-los individualment o mitjançant el botó d\'edició en bloc (visible només per administradors). El mateix concepte s\'aplica també a altres tipus d\'entitat.',
+    'title'         => 'Permisos',
+];

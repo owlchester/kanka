@@ -97,6 +97,8 @@ return [
     'helpers'       => [
         'month_type'    => 'Schaltmonate benutzen keine Wochentage, aber beeinflussen trotzdem Monde und Jahreszeiten.',
         'nested'        => 'Anzeigen von Kalendern ohne übergeordneten Kalender. Klicken Sie auf einen Kalender, um dessen Unterkalender anzuzeigen.',
+        'nested_parent' => 'Anzeigen der Kalender von :parent.',
+        'nested_without'=> 'Anzeigen aller Kalender ohne übergeordneten Kalender. Klicken Sie auf eine Zeile, um die untergeordneten Kalender anzuzeigen.',
         'start_offset'  => 'Standardmäßig startet der Kalender am ersten Wochentag des Jahres 0. Das Ändern dieses Felds beeinflusst, wo der erste Tag des Kalenders platziert wird.',
     ],
     'hints'         => [

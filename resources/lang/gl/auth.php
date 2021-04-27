@@ -13,5 +13,51 @@ return [
     */
 
     'failed'    => 'Estas credenciais non coinciden cos nosos rexistros.',
+    'helpers'   => [
+        'password'  => 'Mostrar / Ocultar contrasinal',
+    ],
+    'login'     => [
+        'fields'                => [
+            'email'     => 'Dirección de correo electrónico',
+            'password'  => 'Contrasinal',
+        ],
+        'login_with_facebook'   => 'Iniciar sesión con Facebook',
+        'login_with_google'     => 'Iniciar sesión cón Google',
+        'login_with_twitter'    => 'Iniciar sesión con Twitter',
+        'new_account'           => 'Rexistrar unha nova conta',
+        'or'                    => 'OU',
+        'password_forgotten'    => 'Esqueciches o teu contrasinal?',
+        'remember_me'           => 'Lémbrame',
+        'submit'                => 'Iniciar sesión',
+        'title'                 => 'Iniciar sesión',
+    ],
+    'register'  => [
+        'already_account'           => 'Xa tes unha conta?',
+        'errors'                    => [
+            'email_already_taken'   => 'Xa existe unha conta con esta dirección de correo electrónico.',
+            'general_error'         => 'Produciuse un erro ao rexistrar a túa conta. Por favor, inténtao de novo.',
+        ],
+        'fields'                    => [
+            'email'     => 'Dirección de correo electrónico',
+            'name'      => 'Nome da conta',
+            'password'  => 'Contrasinal',
+            'tos'       => 'Acepto a <a href=":privacyUrl" target="_blank">Política de Privacidade</a>.',
+        ],
+        'register_with_facebook'    => 'Rexistrarse con Facebook',
+        'register_with_google'      => 'Rexistrarse con Google',
+        'register_with_twitter'     => 'Rexistrarse con Twitter',
+        'submit'                    => 'Rexistrarse',
+        'title'                     => 'Rexistrarse',
+    ],
+    'reset'     => [
+        'fields'    => [
+            'email'                 => 'Dirección de correo electrónico',
+            'password'              => 'Contrasinal',
+            'password_confirmation' => 'Confirma o teu contrasinal',
+        ],
+        'send'      => 'Enviar ligazón de restablecemento de contrasinal',
+        'submit'    => 'Restablecer contrasinal',
+        'title'     => 'Restablecer contrasinal',
+    ],
     'throttle'  => 'Demasiados intentos de acceso. Por favor, inténtao de novo en :seconds segundos.',
 ];

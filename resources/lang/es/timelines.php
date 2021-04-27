@@ -29,7 +29,8 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'nested'            => 'Por defecto se muestran las líneas de tiempo sin ningún superior. Haz clic en la fila de una línea de tiempo para ver sus descendientes.',
+        'nested_parent'     => 'Mostrando las líneas de tiempo de :parent.',
+        'nested_without'    => 'Mostrando todas las líneas de tiempo sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
         'reorder'           => 'Arrastra los elementos de la era para reordenarlos.',
         'reorder_tooltip'   => 'Haz clic para habilitar la reordenación manual de los elementos mediante arrastrar y soltar.',
         'reverse_order'     => 'Habilitar para mostrar las eras en orden cronológico inverso (la era más antigua primero)',
