@@ -110,31 +110,18 @@ class MigrateQuestElements extends Command
         }
 
         try {
-            $entity = $model->$key->entity;
-            /*Entity::select('id')
-                ->withTrashed()
-                ->where('entity_id', $model->{$key . '_id'})
-                ->where('type', $key)
-                ->first();*/
-
-            if (empty($entity)) {
+            // If the entity was deleted, we skip this.
+            if (empty($model->$key) || empty($model->$key->entity)) {
                 // No idea what this is supposed to be, junk
                 $this->error("Unknown $key #" . $model->{$key . '_id'});
                 return;
             }
 
-            $quest = null;
-            if (empty($model->quest)) {
-
-                $quest = Entity::withTrashed()
-                    ->where('entity_id', $model->quest_id)
-                    ->where('type', 'quest')
-                    ->first();
-                $this->info('Quest #' . $model->quest_id . ' was deleted');
-            } else {
-                $quest = $model->quest->entity;
+            // If the quest was deleted, skip
+            if (empty($model->quest) || empty($model->quest->entity)) {
+                return;
             }
-            $entityId = $entity->id;
+            $entityId = $model->$key->entity->id;
             unset($entity);
 
 
@@ -145,14 +132,15 @@ class MigrateQuestElements extends Command
             $new->description = $model->description;
             $new->colour = $model->colour;
             $new->role = $model->role;
-            $new->created_by = $quest->created_by;
+            $new->created_by = $model->quest->entity->created_by;
             $new->save();
 
             $this->count++;
 
             unset($new);
         } catch (\Exception $e) {
-            $this->error('Error: ' . $model->getTable() . '#' . $model->id . 'd key(' . $key . ') ' . $e->getMessage());
+            $this->error('Error: ' . $model->getTable() . '#' . $model->id . ' key(' . $key . ') ' . $e->getMessage());
+            //$this->error($e->getTraceAsString());
         }
     }
 }
