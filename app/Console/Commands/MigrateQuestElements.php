@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Entity;
 use App\Models\MiscModel;
+use App\Models\QuestAbstract;
 use App\Models\QuestCharacter;
 use App\Models\QuestElement;
 use App\Models\QuestItem;
@@ -47,36 +48,44 @@ class MigrateQuestElements extends Command
      */
     public function handle()
     {
-
+        $this->info('Start importing characters');
+        $chunk = 500;
         QuestCharacter::with('character', 'character.entity', 'quest', 'quest.entity')
-            ->chunk(1000, function ($elements) {
+            ->chunk($chunk, function ($elements) {
+                $this->info('New chunk');
                 foreach ($elements as $element) {
                     $this->importElement($element);
                 }
             });
         $this->info('Migrated ' . $this->count . ' characters');
 
+        $this->info('Start importing locations');
         $this->count = 0;
         QuestLocation::with('location', 'location.entity', 'quest', 'quest.entity')
-            ->chunk(1000, function ($elements) {
+            ->chunk($chunk, function ($elements) {
+                $this->info('New chunk');
                 foreach ($elements as $element) {
                     $this->importElement($element);
                 }
             });
         $this->info('Migrated ' . $this->count . ' locations');
 
+        $this->info('Start importing ite s');
         $this->count = 0;
         QuestItem::with('item', 'item.entity', 'quest', 'quest.entity')
-            ->chunk(1000, function ($elements) {
+            ->chunk($chunk, function ($elements) {
+                $this->info('New chunk');
                 foreach ($elements as $element) {
                     $this->importElement($element);
                 }
             });
         $this->info('Migrated ' . $this->count . ' items');
 
+        $this->info('Start importing organisations');
         $this->count = 0;
         QuestOrganisation::with('organisation', 'organisation.entity', 'quest', 'quest.entity')
-            ->chunk(1000, function ($elements) {
+            ->chunk($chunk, function ($elements) {
+                $this->info('New chunk');
                 foreach ($elements as $element) {
                     $this->importElement($element);
                 }
@@ -86,7 +95,7 @@ class MigrateQuestElements extends Command
     }
 
     /**
-     * @param QuestCharacter|QuestLocation|QuestItem|QuestOrganisation $model
+     * @param QuestAbstract $model
      */
     protected function importElement($model)
     {
@@ -101,16 +110,29 @@ class MigrateQuestElements extends Command
         }
 
         try {
-            $entity = Entity::select('id')
+            $entity = $model->$key->entity;
+            /*Entity::select('id')
                 ->withTrashed()
                 ->where('entity_id', $model->{$key . '_id'})
                 ->where('type', $key)
-                ->first();
+                ->first();*/
 
             if (empty($entity)) {
                 // No idea what this is supposed to be, junk
                 $this->error("Unknown $key #" . $model->{$key . '_id'});
                 return;
+            }
+
+            $quest = null;
+            if (empty($model->quest)) {
+
+                $quest = Entity::withTrashed()
+                    ->where('entity_id', $model->quest_id)
+                    ->where('type', 'quest')
+                    ->first();
+                $this->info('Quest #' . $model->quest_id . ' was deleted');
+            } else {
+                $quest = $model->quest->entity;
             }
             $entityId = $entity->id;
             unset($entity);
@@ -123,14 +145,14 @@ class MigrateQuestElements extends Command
             $new->description = $model->description;
             $new->colour = $model->colour;
             $new->role = $model->role;
-            $new->created_by = $model->quest->entity->created_by;
+            $new->created_by = $quest->created_by;
             $new->save();
 
             $this->count++;
 
             unset($new);
         } catch (\Exception $e) {
-            $this->error('Error: ' . $e->getMessage());
+            $this->error('Error: ' . $model->getTable() . '#' . $model->id . 'd key(' . $key . ') ' . $e->getMessage());
         }
     }
 }
