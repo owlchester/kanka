@@ -39,7 +39,9 @@ You can get a list of all the entity-events of an entity by using the following 
             "recurring_until": null,
             "type_id": null,
             "updated_at":  "2019-08-29T13:48:54.000000Z",
-            "updated_by": null
+            "updated_by": null,
+            "visibility": "all",
+            "year": 1
         }
     ]
 }
@@ -73,7 +75,9 @@ To get the details of a single entity-event, use the following endpoint.
         "recurring_until": null,
         "type_id": null,
         "updated_at":  "2019-08-29T13:48:54.000000Z",
-        "updated_by": null
+        "updated_by": null,
+        "visibility": "all",
+        "year": 1
     }
 }
 ```
@@ -104,6 +108,7 @@ To create an entity-event, use the following endpoint.
 | `entity_id` | `integer` (Required) | The entity event's parent entity |
 | `is_private` | `boolean` | If the entity event is only visible to `admin` members of the campaign |
 | `type_id` | `null` or `int` | Special field for calculating the age of a character. `2` for birthday, `3` for death. |
+`| `visibility` | `string` | The visibility: `all` (default), `self`, member`, `admin` or `self-admin`. |
 
 ### Results
 
