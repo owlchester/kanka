@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Datagrids\Sorters\EntityRelationSorter;
 use App\Datagrids\Sorters\QuestElementSorter;
 use App\Models\Quest;
 use App\Models\QuestElement;
 use App\Http\Requests\StoreQuestElement;
-use Illuminate\Http\Request;
+use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class QuestElementController extends Controller
 {
+    /** For unlogged user permissions */
+    use GuestAuthTrait;
+
     /**
      * @var string
      */
