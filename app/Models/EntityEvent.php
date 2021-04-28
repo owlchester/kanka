@@ -226,6 +226,29 @@ class EntityEvent extends MiscModel
     }
 
     /**
+     * @param int $year
+     * @param int $month
+     * @param int $day
+     * @return bool
+     */
+    public function isPastDate(int $year, int $month, int $day): bool
+    {
+        if ($this->year < $year) {
+            return true;
+        } elseif ($this->year > $year) {
+            return false;
+        }
+
+        if ($this->month < $month) {
+            return true;
+        } elseif ($this->month > $month) {
+            return false;
+        }
+
+        return $this->day <= $day;
+    }
+
+    /**
      * Calculate the elapsed time since the event happened
      */
     public function calcElasped(EntityEvent $event = null)

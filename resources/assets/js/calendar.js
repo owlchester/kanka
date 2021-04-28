@@ -52,7 +52,7 @@ $(document).ready(function() {
     $(document).on('shown.bs.modal', function() {
         initCalendarEventModal();
     });
-    if ($('input[name="is_recurring"]').length === 1) {
+    if ($('select[name="recurring_periodicity"]').length === 1) {
         initCalendarEventModal();
     }
 });
@@ -184,7 +184,7 @@ function calendarDeleteRowHandler() {
     calendarSortMoons.sortable();
     calendarSortSeasons.sortable();
     calendarSortIntercalary.sortable();
-    calendarSortWeek.sortable();
+    //calendarSortWeek.sortable();
 }
 
 function initCalendarEventBlock() {
@@ -198,8 +198,12 @@ function initCalendarEventBlock() {
 }
 
 function initCalendarEventModal() {
-    $('input[name="is_recurring"]').on('click', function(e) {
-        $('#add_event_recurring_until').toggle();
+    $('select[name="recurring_periodicity"]').change(function (e) {
+        if (this.value) {
+            $('#add_event_recurring_until').show();
+        } else {
+            $('#add_event_recurring_until').hide();
+        }
     });
 
     $('#calendar-action-existing').on('click', function() {

@@ -112,12 +112,13 @@ class CalendarController extends CrudController
             $year = -$year;
         }
 
+
         return view('calendars.events.create', compact(
             'calendar',
             'day',
             'month',
             'year',
-            'ajax'
+            'ajax',
         ));
     }
 
@@ -159,7 +160,8 @@ class CalendarController extends CrudController
                 'year' => $calendar->currentDate('year'),
                 'month' => $calendar->currentDate('month'),
                 'day' => $calendar->currentDate('date')
-            ]
+            ],
+            'recurring' => $calendar->recurringOptions(true),
         ]);
     }
 

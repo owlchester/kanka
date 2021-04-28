@@ -103,6 +103,7 @@ return [
         'start_offset'  => 'By default, the calendar starts on the first weekday of year 0. Changing this field influences where the calendar\'s first day is placed.',
     ],
     'hints'         => [
+        'event_length'      => 'How long an event is set to last. An event can\'t span over more than two months.',
         'intercalary'       => 'Days that fall outside of the standard months and weeks. They don\'t influence week days but influence moon cycles.',
         'is_incrementing'   => 'Advancing calendars will automatically have their current date incremented at 00:00 UTC.',
         'is_recurring'      => 'An event can be set to recurring. It will reappear every year on the same date.',
@@ -137,8 +138,13 @@ return [
     'options'       => [
         'events'    => [
             'recurring_periodicity' => [
+                'none'  => 'None',
                 'month' => 'Monthly',
                 'year'  => 'Yearly',
+                'fullmoon' => 'Full moon',
+                'newmoon' => 'New moon',
+                'fullmoon_name' => ':moon full moon',
+                'newmoon_name' => ':moon new moon',
             ],
         ],
         'resets'    => [
@@ -210,7 +216,7 @@ return [
         'moon_waning_moon'  => ':moon Waning',
         'moon_waxing_moon'  => ':moon Waxing',
         'tabs'              => [
-            'events'        => 'Calendar Events',
+            'events'        => 'Reminders',
             'information'   => 'Information',
             'weather'       => 'Weather',
         ],

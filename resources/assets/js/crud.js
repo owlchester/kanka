@@ -416,7 +416,7 @@ function loadCalendarDates(calendarID)
         entityCalendarYearField.html('');
         entityCalendarMonthField.html('');
         entityCalendarDayField.html('');
-        var id = 1;
+        let id = 1;
         $.each(data.months, function () {
             var selected = id == data.current.month ? ' selected="selected"' : '';
             entityCalendarMonthField.append('<option value="' + id + '"' + selected + '>' + this.name + '</option>');
@@ -427,6 +427,12 @@ function loadCalendarDates(calendarID)
 
         entityCalendarDayField.val(data.current.day);
         entityCalendarYearField.val(data.current.year);
+
+        $.each(data.recurring, function (key, value) {
+            console.log('moon', key, value);
+            $('select[name="recurring_periodicity"]').append('<option value="' + key + '">' + value + '</option>');
+        });
+
         $('input[name="length"]').val(1);
 
         // However, if there is only one result, select id.

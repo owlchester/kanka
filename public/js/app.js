@@ -77160,7 +77160,7 @@ $(document).ready(function () {
     initCalendarEventModal();
   });
 
-  if ($('input[name="is_recurring"]').length === 1) {
+  if ($('select[name="recurring_periodicity"]').length === 1) {
     initCalendarEventModal();
   }
 });
@@ -77245,8 +77245,7 @@ function calendarDeleteRowHandler() {
   calendarSortYears.sortable();
   calendarSortMoons.sortable();
   calendarSortSeasons.sortable();
-  calendarSortIntercalary.sortable();
-  calendarSortWeek.sortable();
+  calendarSortIntercalary.sortable(); //calendarSortWeek.sortable();
 }
 
 function initCalendarEventBlock() {
@@ -77260,8 +77259,12 @@ function initCalendarEventBlock() {
 }
 
 function initCalendarEventModal() {
-  $('input[name="is_recurring"]').on('click', function (e) {
-    $('#add_event_recurring_until').toggle();
+  $('select[name="recurring_periodicity"]').change(function (e) {
+    if (this.value) {
+      $('#add_event_recurring_until').show();
+    } else {
+      $('#add_event_recurring_until').hide();
+    }
   });
   $('#calendar-action-existing').on('click', function () {
     $('#calendar-event-first').hide();
@@ -77829,6 +77832,10 @@ function loadCalendarDates(calendarID) {
     entityCalendarSubForm.show();
     entityCalendarDayField.val(data.current.day);
     entityCalendarYearField.val(data.current.year);
+    $.each(data.recurring, function (key, value) {
+      console.log('moon', key, value);
+      $('select[name="recurring_periodicity"]').append('<option value="' + key + '">' + value + '</option>');
+    });
     $('input[name="length"]').val(1); // However, if there is only one result, select id.
 
     if (data.length === 1) {

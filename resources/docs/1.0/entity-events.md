@@ -34,6 +34,7 @@ You can get a list of all the entity-events of an entity by using the following 
             "id": 60,
             "is_private": false,
             "is_recurring": true,
+            "recurring_periodicity": "yearly",
             "length": 1,
             "recurring_until": null,
             "type_id": null,
@@ -67,6 +68,7 @@ To get the details of a single entity-event, use the following endpoint.
         "id": 60,
         "is_private": false,
         "is_recurring": true,
+        "recurring_periodicity": "yearly",
         "length": 1,
         "recurring_until": null,
         "type_id": null,
@@ -95,7 +97,7 @@ To create an entity-event, use the following endpoint.
 | `month` | `integer` (Required) | Month (id) on which the event takes place |
 | `year` | `integer` (Required) | Year on which the event takes place |
 | `length` | `integer` (Required) | Duration in days of the event |
-| `is_recurring` | `boolean` | True if the event is recurring |
+| `recurring_periodicity` | `string` | Null if the event isn't recurring. `yearly`, `monthly` or `{moon.id}_(f|n)` where `f` is full moon and `n` is new moon |
 | `recurring_until` | `integer` | Year until the event reoccurs |
 | `colour` | `string` | Colour of the entity event in the calendar |
 | `comment` | `string` | Comment of the entity event |
