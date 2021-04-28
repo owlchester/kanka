@@ -429,17 +429,19 @@ abstract class MiscModel extends Model
 
     /**
      * Get the entity link with ajax tooltip
+     * @param string $displayName
      * @return string
      */
-    public function tooltipedLink(): string
+    public function tooltipedLink(string $displayName = null): string
     {
         if (empty($this->entity)) {
             return e($this->name);
         }
+
         return '<a class="name" data-toggle="tooltip-ajax" data-id="' . $this->entity->id . '" ' .
             'data-url="' . route('entities.tooltip', $this->entity->id) . '" href="' .
             $this->getLink() . '">' .
-            e($this->name) .
+            (!empty($displayName) ? $displayName : e($this->name)) .
             '</a>';
     }
 
