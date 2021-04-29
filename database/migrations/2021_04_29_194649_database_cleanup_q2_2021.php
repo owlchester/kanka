@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class UpdateCalendarsAddStartOffset extends Migration
+class DatabaseCleanupQ22021 extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class UpdateCalendarsAddStartOffset extends Migration
     public function up()
     {
         Schema::table('calendars', function (Blueprint $table) {
-            $table->unsignedTinyInteger('start_offset')->nullable()->default(0);
+            $table->unsignedTinyInteger('start_offset')->nullable()->default(0)->change();
         });
     }
 
@@ -25,8 +25,6 @@ class UpdateCalendarsAddStartOffset extends Migration
      */
     public function down()
     {
-        Schema::table('calendars', function (Blueprint $table) {
-            $table->dropColumn('start_offset');
-        });
+        //
     }
 }
