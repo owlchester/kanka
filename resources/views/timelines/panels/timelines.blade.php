@@ -29,7 +29,9 @@
                         {{ $timeline->type }}
                     </td>
                     <td>
+                        @if ($timeline->timeline)
                         {!! $timeline->timeline->tooltipedLink() !!}
+                        @endif
                     </td>
                     <td class="text-right">
                         <a href="{{ route('timelines.show', [$timeline]) }}" class="btn btn-xs btn-primary">
