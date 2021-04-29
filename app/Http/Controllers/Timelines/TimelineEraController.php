@@ -29,6 +29,15 @@ class TimelineEraController extends Controller
         $this->service = $timelineService;
     }
 
+    public function index(Timeline $timeline)
+    {
+        return redirect()->route('timelines.show', $timeline);
+    }
+    public function show(Timeline $timeline, TimelineEra $timelineEra)
+    {
+        return redirect()->route('timelines.show', $timeline);
+    }
+
     /**
      * @param Timeline $timeline
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
