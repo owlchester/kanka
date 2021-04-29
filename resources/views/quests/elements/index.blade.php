@@ -81,6 +81,8 @@
                 @endforeach
             </div>
 
+            {!! $elements->links() !!}
+
         </div>
     </div>
 @endsection

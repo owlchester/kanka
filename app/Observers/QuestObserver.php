@@ -39,22 +39,7 @@ class QuestObserver extends MiscObserver
             $source = Entity::findOrFail($sourceId);
             if ($source->typeId() == config('entities.ids.quest')) {
 
-                foreach ($source->quest->characters as $sub) {
-                    $newSub = $sub->replicate();
-                    $newSub->quest_id = $model->id;
-                    $newSub->save();
-                }
-                foreach ($source->quest->locations as $sub) {
-                    $newSub = $sub->replicate();
-                    $newSub->quest_id = $model->id;
-                    $newSub->save();
-                }
-                foreach ($source->quest->organisations as $sub) {
-                    $newSub = $sub->replicate();
-                    $newSub->quest_id = $model->id;
-                    $newSub->save();
-                }
-                foreach ($source->quest->items as $sub) {
+                foreach ($source->quest->elements as $sub) {
                     $newSub = $sub->replicate();
                     $newSub->quest_id = $model->id;
                     $newSub->save();
