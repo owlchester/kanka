@@ -28,7 +28,7 @@
     </p>
 </div>
 
-<div class="collapse {{ isset($model) && ($model->hasAdvancedOptions() || $model->conf('singular')) ? 'in' : null }}" id="widget-advanced">
+<div class="collapse {{ isset($model) && $model->conf('singular') ? 'in' : null }}" id="widget-advanced">
     @if($campaign->campaign()->boosted())
         {!! Form::hidden('config[entity-header]', 0) !!}
         <div class="form-group checkbox">
