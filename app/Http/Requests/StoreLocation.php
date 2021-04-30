@@ -31,7 +31,7 @@ class StoreLocation extends FormRequest
             'image_url' => 'nullable|url|active_url',
             'map' => 'mimes:jpeg,png,jpg,gif,svg|max:' . auth()->user()->maxUploadSize(false, 'map'),
             'map_url' => 'nullable|url|active_url',
-            'template_id' => 'nullable|exists:attribute_templates,id',
+            'template_id' => 'nullable',
         ];
 
         $self = request()->segment(5);

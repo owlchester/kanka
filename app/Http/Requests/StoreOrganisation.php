@@ -30,7 +30,7 @@ class StoreOrganisation extends FormRequest
             'location_id' => 'nullable|integer|exists:locations,id',
             'organisation_id' => 'nullable|exists:organisations,id',
             'image_url' => 'nullable|url|active_url',
-            'template_id' => 'nullable|exists:attribute_templates,id',
+            'template_id' => 'nullable',
         ];
 
         $self = request()->segment(5);

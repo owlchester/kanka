@@ -30,7 +30,7 @@ class StoreQuest extends FormRequest
             'image_url' => 'nullable|url|active_url',
             'quest_id' => 'nullable|integer|exists:quests,id',
             'character_id' => 'nullable|integer|exists:characters,id',
-            'template_id' => 'nullable|exists:attribute_templates,id',
+            'template_id' => 'nullable',
         ];
 
         if (request()->has('calendar_id') && request()->post('calendar_id') !== null) {

@@ -33,7 +33,7 @@ class StoreCharacter extends FormRequest
             'age' => 'nullable|max:25',
             'sex' => 'nullable|max:45',
             'title' => 'nullable|max:191',
-            'template_id' => 'nullable|exists:attribute_templates,id',
+            'template_id' => 'nullable',
         ];
     }
 }

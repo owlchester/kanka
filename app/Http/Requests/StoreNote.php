@@ -27,7 +27,7 @@ class StoreNote extends FormRequest
             'name' => 'required',
             'image' => 'mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
-            'template_id' => 'nullable|exists:attribute_templates,id',
+            'template_id' => 'nullable',
             'note_id' => 'nullable|integer|exists:notes,id',
         ];
         $self = request()->segment(5);

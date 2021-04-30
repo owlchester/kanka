@@ -117,47 +117,4 @@ class AttributeController extends CrudAttributeController
     {
         return $this->crudDestroy($entity, $attribute);
     }
-
-    /**
-     * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function template(Entity $entity)
-    {
-        $this->authorize('update', $entity->child);
-        $this->authorize('attributes', $entity);
-
-        $name = $entity->pluralType() . '.attributes' . $this->view;
-        $route = 'entities.attributes';
-        $parentRoute = $entity->pluralType();
-        $ajax = request()->ajax();
-        $campaign = CampaignLocalization::getCampaign();
-        $communityTemplates = $this->attributeService->templates($campaign);
-
-
-        return view('cruds.attributes.' . ($ajax ? '_' : null) . 'template', compact(
-            'communityTemplates',
-            'name',
-            'route',
-            'entity',
-            'parentRoute',
-            'ajax'
-        ));
-    }
-
-    public function applyTemplate(ApplyAttributeTemplate $request, Entity $entity)
-    {
-        $this->authorize('update', $entity->child);
-        $templateName = $this->attributeService->apply($entity, $request->only(['template_id', 'template']));
-
-        if (!$templateName) {
-            return redirect()->back()->with('error', trans('crud.attributes.template.error'));
-        }
-
-        return redirect()
-            ->route($entity->pluralType() . '.show', [$entity->child->id, '#tab_attribute'])
-            ->with('success', trans('crud.attributes.template.success', [
-                'name' => $templateName, 'entity' => $entity->child->name
-            ]));
-    }
 }

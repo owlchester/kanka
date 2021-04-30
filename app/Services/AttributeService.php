@@ -25,8 +25,20 @@ class AttributeService
 
     protected $loadedEntity = null;
 
+    /** @var Campaign */
+    protected $campaign;
+
     /** @var null|Collection */
     protected $calculatedAttributes = null;
+
+    /**
+     * @param Campaign $campaign
+     * @return $this
+     */
+    public function campaign(Campaign $campaign): self {
+        $this->campaign = $campaign;
+        return $this;
+    }
 
     /**
      * @param Entity $entity
@@ -171,86 +183,94 @@ class AttributeService
      * @param $request
      * @return string
      */
-    public function apply(Entity $entity, $request)
+    public function apply(Entity $entity, $templateId)
     {
-        // Are we using a local template?
-        $templateId = Arr::get($request, 'template_id');
-        $communityTemplate = Arr::get($request, 'template');
-
-        if ($templateId) {
+        $templateIdInt = (int) $templateId;
+        if (Str::isUuid($templateId)) {
+            return $this->applyMarketplaceTemplate($templateId, $entity);
+        } elseif (is_integer($templateIdInt) && !empty($templateIdInt)) {
             /** @var AttributeTemplate $template */
             $template = $this->getAttributeTemplate($templateId);
             $template->apply($entity);
             return $template->name;
-        } elseif ($communityTemplate) {
-            $templates = config('attribute-templates.templates');
-            if (Arr::exists($templates, $communityTemplate)) {
-                /** @var Template $template */
-                $template = new $templates[$communityTemplate];
-                $order = $entity->attributes()->count();
-
-                $existing = array_values($entity->attributes()->pluck('name')->toArray());
-                foreach ($template->attributes() as $name => $attribute) {
-                    // If the config is simply a name, we default to a small varchar
-                    if (!is_array($attribute)) {
-                        $name = $attribute;
-                        $attribute = [];
-                    }
-
-                    // Don't re-create existing attributes.
-                    if (in_array($name, $existing)) {
-                        continue;
-                    }
-
-                    $type = Arr::get($attribute, 'type', null);
-                    $private = Arr::get($attribute, 'is_private', false);
-                    $star = Arr::get($attribute, 'is_star', false);
-
-                    // Value is based on the translation. This can get confusing
-                    $translationKey = $template->alias() . '::template.values.' . $name;
-                    $value = __($translationKey);
-                    if ($value == $translationKey) {
-                        $value = '';
-                    }
-
-                    list($type, $value) = $this->randomAttribute($type, $value);
-                    $order++;
-
-                    Attribute::create([
-                        'entity_id' => $entity->id,
-                        'name' => $name,
-                        'value' => $value,
-                        'default_order' => $order,
-                        'is_private' => $private,
-                        'type' => $type,
-                        'is_star' => $star
-                    ]);
-                }
-
-                // Layout attribute for rendering
-                $layout = '_layout';
-                if (!in_array($layout, $existing)) {
-                    $order++;
-
-                    Attribute::create([
-                        'entity_id' => $entity->id,
-                        'name' => '_layout',
-                        'value' => $communityTemplate,
-                        'default_order' => $order,
-                        'is_private' => false,
-                        'is_star' => false,
-                        'type' => null,
-                    ]);
-                }
-
-
-                return $template->name();
-            }
-
-            // We might be getting a plugin
-            return $this->applyMarketplaceTemplate((int) $communityTemplate, $entity);
+        } elseif(is_string($templateId)) {
+            return $this->applyKankaTemplate($templateId, $entity);
         }
         return false;
+    }
+
+    /**
+     * @param $template
+     * @param Entity $entity
+     * @return false|string
+     */
+    protected function applyKankaTemplate($templateName, Entity $entity)
+    {
+        $templates = config('attribute-templates.templates');
+        if (!Arr::exists($templates, $templateName)) {
+            return false;
+        }
+        /** @var Template $template */
+        $template = new $templates[$templateName];
+        $order = $entity->attributes()->count();
+
+        $existing = array_values($entity->attributes()->pluck('name')->toArray());
+        foreach ($template->attributes() as $name => $attribute) {
+            // If the config is simply a name, we default to a small varchar
+            if (!is_array($attribute)) {
+                $name = $attribute;
+                $attribute = [];
+            }
+
+            // Don't re-create existing attributes.
+            if (in_array($name, $existing)) {
+                continue;
+            }
+
+            $type = Arr::get($attribute, 'type', null);
+            $private = Arr::get($attribute, 'is_private', false);
+            $star = Arr::get($attribute, 'is_star', false);
+
+            // Value is based on the translation. This can get confusing
+            $translationKey = $template->alias() . '::template.values.' . $name;
+            $value = __($translationKey);
+            if ($value == $translationKey) {
+                $value = '';
+            }
+
+            list($type, $value) = $this->randomAttribute($type, $value);
+            $order++;
+
+            Attribute::create([
+                'entity_id' => $entity->id,
+                'name' => $name,
+                'value' => $value,
+                'default_order' => $order,
+                'is_private' => $private,
+                'type' => $type,
+                'is_star' => $star
+            ]);
+        }
+
+        // Layout attribute for rendering
+        $layout = '_layout';
+        if (!in_array($layout, $existing)) {
+            $order++;
+
+            Attribute::create([
+                'entity_id' => $entity->id,
+                'name' => '_layout',
+                'value' => $templateName,
+                'default_order' => $order,
+                'is_private' => false,
+                'is_star' => false,
+                'type' => null,
+            ]);
+        }
+
+
+        return $template->name();
+
     }
 
     /**
@@ -349,9 +369,7 @@ class AttributeService
 
         // If a template id was provided, try and add it to the new entity.
         if (!empty($templateId)) {
-            /** @var AttributeTemplate $template */
-            $template = AttributeTemplate::findOrFail($templateId);
-            $order = $template->apply($entity, $order);
+            $this->apply($entity, $templateId);
         }
 
         if ($touch) {
@@ -379,6 +397,10 @@ class AttributeService
         return $order;
     }
 
+    /**
+     * @param Campaign $campaign
+     * @return array
+     */
     public function templates(Campaign $campaign): array
     {
         $templates = [];
@@ -404,18 +426,59 @@ class AttributeService
     }
 
     /**
+     * @return array
+     */
+    public function templateList(): array
+    {
+        $templates = [];
+
+        // Campaign templates
+        $campaignTemplates = AttributeTemplate::orderBy('name', 'ASC')->pluck('name', 'id');
+        $key = __('attributes/templates.list.campaign');
+        foreach ($campaignTemplates as $id => $name) {
+            $templates[$key][$id] = $name;
+        }
+
+        // Kanka templates
+        $key = __('attributes/templates.list.kanka');
+        foreach (config('attribute-templates.templates') as $code => $class) {
+            $template = new $class;
+            $templates[$key][$code] = $template->name();
+        }
+
+        if (!$this->campaign->boosted()) {
+            return $templates;
+        }
+
+
+        // Marketplace campaigns
+        $key = __('attributes/templates.list.marketplace');
+        foreach(CampaignPlugin::templates($this->campaign)->get() as $plugin) {
+            if (empty($plugin->plugin)) {
+                continue;
+            }
+            $templates[$key][$plugin->plugin->uuid] = __('campaigns/plugins.templates.name', [
+                'name' => $plugin->name,
+                'user' => $plugin->plugin->author()
+            ]);
+        }
+
+        return $templates;
+    }
+
+    /**
      * @param int $id
      * @param Entity $entity
      * @return false|\Illuminate\Database\Eloquent\HigherOrderBuilderProxy|mixed
      */
-    public function applyMarketplaceTemplate(int $id, Entity $entity)
+    public function applyMarketplaceTemplate(string $uuid, Entity $entity)
     {
         $campaign = $entity->campaign;
         if (!$campaign->boosted()) {
             return false;
         }
 
-        $plugin = $this->getMarketplacePlugin($id, $campaign);
+        $plugin = $this->getMarketplacePlugin($uuid, $campaign);
         if (empty($plugin)) {
             return false;
         }
@@ -514,15 +577,15 @@ class AttributeService
      * @param int $campaign
      * @return CampaignPlugin
      */
-    protected function getMarketplacePlugin(int $pluginId, $campaign)
+    protected function getMarketplacePlugin(string $pluginUuid, $campaign)
     {
-        if (isset($this->loadedPlugins[$pluginId])) {
-            return $this->loadedPlugins[$pluginId];
+        if (isset($this->loadedPlugins[$pluginUuid])) {
+            return $this->loadedPlugins[$pluginUuid];
         }
-        return $this->loadedPlugins[$pluginId] = CampaignPlugin::templates($campaign)
+        return $this->loadedPlugins[$pluginUuid] = CampaignPlugin::templates($campaign)
             ->select('campaign_plugins.*')
             //->leftJoin('plugins as p', 'p.id', 'plugin_id')
-            ->where('p.uuid', $pluginId)
+            ->where('p.uuid', $pluginUuid)
             ->first();
     }
 

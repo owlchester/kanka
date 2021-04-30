@@ -24,8 +24,7 @@ class ApplyAttributeTemplate extends FormRequest
     public function rules()
     {
         return [
-            'template_id' => 'nullable|exists:attribute_templates,id',
-            'template' => 'required_without:template_id',
+            'template_id' => 'required',
         ];
     }
 }

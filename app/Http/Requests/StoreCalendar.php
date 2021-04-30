@@ -35,7 +35,7 @@ class StoreCalendar extends FormRequest
             'moon_name' => 'nullable|array',
             'epoch_name' => 'nullable|array',
             'season_name' => 'nullable|array',
-            'template_id' => 'nullable|exists:attribute_templates,id',
+            'template_id' => 'nullable',
         ];
 
         $leapYear = request()->post('has_leap_year');
