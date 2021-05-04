@@ -80,7 +80,7 @@
 </div>
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
-        @include('campaigns.settings.box', ['icon' => 'fa fa-suitecase', 'module' => 'inventories'])
+        @include('campaigns.settings.box', ['icon' => 'fas fa-suitcase', 'module' => 'inventories'])
     </div>
 </div>
 
