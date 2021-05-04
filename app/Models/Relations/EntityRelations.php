@@ -48,6 +48,7 @@ use App\User;
  * @property Relation[] $relations
  * @property EntityEvent[] $elapsedEvents
  * @property Image $image
+ * @property Image $header
  */
 trait EntityRelations
 {
@@ -379,6 +380,14 @@ trait EntityRelations
     public function image()
     {
         return $this->hasOne('App\Models\Image', 'id', 'image_uuid');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function header()
+    {
+        return $this->hasOne('App\Models\Image', 'id', 'header_uuid');
     }
 
     /**

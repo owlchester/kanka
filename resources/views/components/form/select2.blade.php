@@ -50,7 +50,7 @@ if (!empty($from)) {
 
 $fieldUniqIdentifier = $fieldId . '_' . uniqid();
 ?>
-<label>{{ trans($labelKey) }}</label>
+<label>{{ __($labelKey) }}</label>
 @if ($allowNew)
     <div class="input-group input-group-sm">
 @endif
@@ -63,7 +63,7 @@ $fieldUniqIdentifier = $fieldId . '_' . uniqid();
         'class' => 'form-control select2',
         'style' => 'width: 100%',
         'data-url' => route($searchRouteName, $searchParams),
-        'data-placeholder' => trans($placeholderKey),
+        'data-placeholder' => __($placeholderKey),
         'data-language' => LaravelLocalization::getCurrentLocale()
     ]
 ) !!}
