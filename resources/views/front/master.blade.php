@@ -1,4 +1,4 @@
-<header class="masthead masthead-img @nowebp webpfallback @endnowebp">
+<header class="masthead">
     <div class="container h-100">
         <div class="row h-100">
             <div class="col-lg-12 my-auto landing-heading">

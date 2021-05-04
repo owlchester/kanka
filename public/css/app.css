@@ -1002,6 +1002,10 @@ td.breakable {
   padding: 2px;
 }
 
+#entry {
+  word-break: break-word;
+}
+
 hr {
   border-top: 1px solid #eeeeee;
 }

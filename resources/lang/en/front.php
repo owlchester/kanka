@@ -318,6 +318,10 @@ return [
         'featured_requests' => [
             'title' => 'Feature Requests',
         ],
+        'blog'              => [
+            'title' => 'Monthly Roadmaps',
+            'description' => 'We release a roadmap at the beginning of every month, following our Community Vote.',
+        ],
         'next'              => [
             'description'   => 'This Trello board contains all the features, improvements, and bugs that are currently being worked on following the latest :community_vote.',
             'title'         => 'Next',
