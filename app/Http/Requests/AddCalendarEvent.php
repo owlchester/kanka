@@ -24,8 +24,8 @@ class AddCalendarEvent extends FormRequest
     public function rules()
     {
         return [
-            'entity_id' => 'exists:entities,id',
-            'name' => 'nullable',
+            'entity_id' => 'required_without:name|integer|exists:entities,id',
+            'name' => 'required_without:entity_id|nullable',
             'day' => 'required',
             'month' => 'required',
             'year' => 'required',

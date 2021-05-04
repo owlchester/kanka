@@ -14,11 +14,15 @@
         <div class="panel-body">
             @include('partials.errors')
 
-            {!! Form::open(['route' => ['calendars.event.store', $calendar->id], 'method'=>'POST', 'data-shortcut' => 1]) !!}
+            {!! Form::open(['route' => ['calendars.event.store', $calendar->id], 'method'=>'POST', 'data-shortcut' => 1, 'class' => 'ajax-validation']) !!}
             @include('calendars.events._form')
 
             <div class="form-group">
-                <button class="btn btn-success" id="calendar-event-submit" style="display: none">{{ trans('crud.save') }}</button>
+                <button class="btn btn-success" id="calendar-event-submit" style="display: none">
+
+                    <i class="fa fa-spinner fa-spin" style="display:none;"></i>
+                    <span>{{ __('crud.save') }}</span>
+                </button>
                 @if (!$ajax)
                     {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous() . (strpos(url()->previous(), '#relation') === false ? '#relation' : null))]) !!}
                 @endif

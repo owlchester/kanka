@@ -129,6 +129,11 @@ class CalendarController extends CrudController
      */
     public function eventStore(AddCalendarEvent $request, Calendar $calendar)
     {
+        // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
         // We need to handle negative year dates (start with -)
         $link = $this->calendarService->addEvent($calendar, $request->all());
 

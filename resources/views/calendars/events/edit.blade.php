@@ -25,15 +25,18 @@
                 </div>
             @endif
 
-            {!! Form::model($entityEvent, ['method' => 'PATCH', 'route' => ['entities.entity_events.update', $entity->id, $entityEvent->id], 'data-shortcut' => '1']) !!}
+            {!! Form::model($entityEvent, ['method' => 'PATCH', 'route' => ['entities.entity_events.update', $entity->id, $entityEvent->id], 'data-shortcut' => '1', 'class' => 'ajax-validation']) !!}
             @include('calendars.events._form')
 
             <div class="row">
                 <div class="col-xs-6 pull-right">
                     <div class="form-group text-right">
-                        <button type="submit" class="btn btn-success">{{ trans('crud.save') }}</button>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fa fa-spinner fa-spin" style="display:none;"></i>
+                            <span>{{ __('crud.save') }}</span>
+                        </button>
                         @if (!$ajax)
-                            {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
+                            {!! __('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
                         @endif
                     </div>
 
