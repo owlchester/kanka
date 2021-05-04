@@ -371,13 +371,15 @@ abstract class MiscModel extends Model
         }
 
         // Each entity can have an inventory
-        $items['inventory'] = [
-            'name' => 'crud.tabs.inventory',
-            'route' => 'entities.inventory',
-            'count' => $this->entity->inventories()->has('item')->count(),
-            'entity' => true,
-            'icon' => 'ra ra-round-bottom-flask',
-        ];
+        if ($campaign->enabled('inventories')) {
+            $items['inventory'] = [
+                'name' => 'crud.tabs.inventory',
+                'route' => 'entities.inventory',
+                'count' => $this->entity->inventories()->has('item')->count(),
+                'entity' => true,
+                'icon' => 'ra ra-round-bottom-flask',
+            ];
+        }
 
         // Each entity can have abilities
         if ($campaign->enabled('abilities') && $this->entityTypeId() != config('entities.ids.ability')) {
@@ -548,11 +550,14 @@ abstract class MiscModel extends Model
                     <i class="fa fa-users" aria-hidden="true"></i> ' . __('crud.tabs.relations') . '
                 </a>
             </li>';
-            $actions[] = '<li>
+
+            if ($campaign->enabled('inventories')) {
+                $actions[] = '<li>
                 <a href="' . route('entities.inventory', $this->entity) . '" class="dropdown-item">
                     <i class="ra ra-round-bottom-flask" aria-hidden="true"></i> ' . __('crud.tabs.inventory') . '
                 </a>
             </li>';
+            }
 
             if ($campaign->enabled('abilities') && $this->entityTypeId() != config('entities.ids.ability')) {
                 $actions[] = '<li>
