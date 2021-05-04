@@ -10,6 +10,7 @@ use App\Models\Campaign;
 use App\Models\CampaignPlugin;
 use App\Models\CharacterTrait;
 use App\Models\Entity;
+use App\Models\EntityTag;
 use App\Models\MiscModel;
 use App\Models\OrganisationMember;
 use App\Models\Plugin;
@@ -244,6 +245,8 @@ class CampaignPluginService
                 }
             } elseif (in_array($field, $blocks)) {
                 $this->importBlock($field, $value, $model);
+            } elseif ($field == 'tags') {
+                $this->importTags($value, $model);
             } else {
                 $model->$field = $value;
             }
@@ -410,6 +413,11 @@ class CampaignPluginService
         return $model;
     }
 
+    /**
+     * @param string $block
+     * @param array|null $values
+     * @param MiscModel $model
+     */
     protected function importBlock(string $block, array $values = null, MiscModel $model)
     {
         if (empty($values)) {
@@ -433,6 +441,41 @@ class CampaignPluginService
                     'entry' => $value
                 ]);
             }
+        }
+    }
+
+
+    protected function importTags(array $values = null, MiscModel $model)
+    {
+        if (empty($values)) {
+            return;
+        }
+        $real = [];
+        foreach ($values as $val) {
+            if (!empty($val)) {
+                $real[] = $val;
+            }
+        }
+        if (empty($real)) {
+            return;
+        }
+
+        // Importing tags for
+
+        // Get existing tags on this entity
+        $existing = $model->entity->tags->pluck('id')->toArray();
+
+        foreach ($real as $tag) {
+
+            $target = $this->miscIds[$tag];
+            if (in_array($target, $existing)) {
+                continue;
+            }
+
+            $new = new EntityTag();
+            $new->entity_id = $model->entity->id;
+            $new->tag_id = $target;
+            $new->save();
         }
     }
 
