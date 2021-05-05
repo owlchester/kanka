@@ -79,10 +79,13 @@ class EntityEventController extends Controller
     {
         $this->authorize('update', $entity->child);
 
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
         $reminder = new EntityEvent($request->all());
         $reminder->entity_id = $entity->id;
         $reminder->save();
-
 
         $next = request()->post('next', false);
         if ($next == 'entity.events') {
@@ -140,6 +143,10 @@ class EntityEventController extends Controller
     public function update(UpdateCalendarEvent $request, Entity $entity, EntityEvent $entityEvent)
     {
         $this->authorize('update', $entityEvent->calendar);
+
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $routeOptions = ['calendar' => $entityEvent->calendar->id, 'year' => request()->post('year')];
         $entityEvent->update($request->all());

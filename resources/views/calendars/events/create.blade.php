@@ -19,7 +19,6 @@
 
             <div class="form-group">
                 <button class="btn btn-success" id="calendar-event-submit" style="display: none">
-
                     <i class="fa fa-spinner fa-spin" style="display:none;"></i>
                     <span>{{ __('crud.save') }}</span>
                 </button>
