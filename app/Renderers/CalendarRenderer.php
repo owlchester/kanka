@@ -304,7 +304,7 @@ class CalendarRenderer
                         //dump('found events for ' . $key);
                         foreach ($this->recurring[$key] as $event) {
                             if (!$event->isPastDate($this->getYear(), $this->getMonth(), $day)) {
-                                dd("$event->year $event->month $event->day is past {$this->getYear()} {$this->getMonth()} $day");
+                                //dd("$event->year $event->month $event->day is past {$this->getYear()} {$this->getMonth()} $day");
                                 continue;
                             }
                             $dayData['events'][] = $event;
