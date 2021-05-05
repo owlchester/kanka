@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Datagrids\Bulks\AbilityBulk;
 use App\Datagrids\Filters\AbilityFilter;
 use App\Datagrids\Sorters\AbilityAbilitySorter;
 use App\Datagrids\Sorters\AbilityEntitySorter;
 use App\Http\Requests\StoreAbilityEntity;
-use App\Models\Character;
 use App\Http\Requests\StoreAbility;
 use App\Models\Ability;
 use App\Traits\TreeControllerTrait;
