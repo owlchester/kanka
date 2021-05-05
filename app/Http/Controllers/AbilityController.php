@@ -6,6 +6,7 @@ use App\Datagrids\Bulks\AbilityBulk;
 use App\Datagrids\Filters\AbilityFilter;
 use App\Datagrids\Sorters\AbilityAbilitySorter;
 use App\Datagrids\Sorters\AbilityEntitySorter;
+use App\Http\Requests\StoreAbilityEntity;
 use App\Models\Character;
 use App\Http\Requests\StoreAbility;
 use App\Models\Ability;
@@ -116,5 +117,45 @@ class AbilityController extends CrudController
     {
         return $this->datagridSorter(AbilityEntitySorter::class)
             ->menuView($ability, 'entities');
+    }
+
+    /**
+     * @param Ability $ability
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function entityAdd(Ability $ability)
+    {
+        $this->authorize('update', $ability);
+        $ajax = request()->ajax();
+        $formOptions = ['abilities.entity-add', 'ability' => $ability];
+        if (request()->has('from-children')) {
+            $formOptions['from-children'] = true;
+        }
+
+        return view('abilities.entities.create', [
+            'model' => $ability,
+            'ajax' => $ajax,
+            'formOptions' => $formOptions
+        ]);
+    }
+
+    /**
+     * @param StoreAbilityEntity $request
+     * @param Ability $ability
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function entityStore(StoreAbilityEntity $request, Ability $ability)
+    {
+        $this->authorize('update', $ability);
+        $redirectUrlOptions = ['ability' => $ability->id];
+        if (request()->has('from-children')) {
+            $redirectUrlOptions['ability_id'] = $ability->id;
+        }
+
+        $ability->attachEntity($request->only('entity_id', 'visibility'));
+        return redirect()->route('abilities.entities', ['ability' => $ability->id])
+            ->with('success', trans('abilities.children.create.success', ['name' => $ability->name]));
     }
 }

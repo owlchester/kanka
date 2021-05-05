@@ -78,6 +78,9 @@ Route::group([
         Route::get('/abilities/{ability}/entities', 'AbilityController@entities')->name('abilities.entities');
         Route::get('/abilities/tree', 'AbilityController@tree')->name('abilities.tree');
 
+        Route::get('/abilities/{ability}/entity-add', 'AbilityController@entityAdd')->name('abilities.entity-add');
+        Route::post('/abilities/{ability}/entity-add', 'AbilityController@entityStore')->name('abilities.entity-add');
+
         // Maps
         Route::get('/maps/{map}/maps', 'Maps\MapController@maps')->name('maps.maps');
         Route::get('/maps/{map}/explore', 'Maps\MapController@explore')->name('maps.explore');
