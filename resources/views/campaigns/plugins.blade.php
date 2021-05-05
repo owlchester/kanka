@@ -11,6 +11,21 @@
 
 @section('content')
     @include('partials.errors')
+
+    @if(session('plugin_entities_created'))
+        <div class="alert alert-info alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <strong>{{ __('campaigns/plugins.import.created') }}</strong><br />
+            {!! session('plugin_entities_created') !!}
+        </div>
+    @endif
+    @if(session('plugin_entities_updated'))
+        <div class="alert alert-info alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <strong>{{ __('campaigns/plugins.import.updated') }}</strong><br />
+            {!! session('plugin_entities_updated') !!}
+        </div>
+    @endif
     <div class="row">
         <div class="col-md-3">
             @include('campaigns._menu', ['active' => 'plugins'])

@@ -9,7 +9,7 @@
     </div>
     <div class="box-body">
 
-        <p class="help-block">{{ trans('campaigns/plugins.helper')}}</p>
+        <p class="help-block">{{ __('campaigns/plugins.helper')}}</p>
 
         <p class="text-center">
             <a href="{{ config('marketplace.url') }}" target="_blank" class="btn btn-large btn-primary">

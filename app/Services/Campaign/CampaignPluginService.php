@@ -56,6 +56,12 @@ class CampaignPluginService
     /** @var null|Collection */
     protected $importedEntities = null;
 
+    /** @var array updated entities */
+    protected $updated = [];
+
+    /** @var array created entities */
+    protected $created = [];
+
     /**
      * @param Campaign $campaign
      * @return $this
@@ -190,13 +196,16 @@ class CampaignPluginService
     {
         // Updating?
         /** @var Entity $model */
-        $model = $this->importedEntities->where('marketplace_uuid', $pluginEntity->uuid)->first();
-        if ($model) {
-            $this->entityIds[$pluginEntity->id] = $model->id;
-            $this->miscIds[$pluginEntity->id] = $model->entity_id;
-            $this->entityTypes[$pluginEntity->id] = $model->type;
+        $model = null;
+        $entity = $this->importedEntities->where('marketplace_uuid', $pluginEntity->uuid)->first();
+        if ($entity) {
+            $this->entityIds[$pluginEntity->id] = $entity->id;
+            $this->miscIds[$pluginEntity->id] = $entity->entity_id;
+            $this->entityTypes[$pluginEntity->id] = $entity->type;
             //dump('existing ' . $pluginEntity->uuid);
-            $model = $model->child;
+            $model = $entity->child;
+
+            $this->updated[] = link_to($entity->url(), $entity->name);
         } else {
             $className = '\App\Models\\' . Str::studly($pluginEntity->type->code);
             //dump('new ' . $className);
@@ -214,6 +223,8 @@ class CampaignPluginService
             $this->miscIds[$pluginEntity->id] = $model->id;
             $this->entityTypes[$pluginEntity->id] = $model->getEntityType();
             $this->entityIds[$pluginEntity->id] = $model->entity->id;
+
+            $this->created[] = link_to($entity->url(), $model->name);
         }
         $this->models[$pluginEntity->id] = $model;
     }
@@ -517,5 +528,24 @@ class CampaignPluginService
 
             return '[' . $this->entityTypes[$id] . ':' . $this->entityIds[$id] . ']';
         }, $text);
+    }
+
+    /**
+     * List of created entities
+     * @return string
+     */
+    public function created(): string
+    {
+        return (string) implode(', ', $this->created);
+    }
+
+
+    /**
+     * List of created entities
+     * @return string
+     */
+    public function updated(): string
+    {
+        return (string) implode(', ', $this->updated);
     }
 }
