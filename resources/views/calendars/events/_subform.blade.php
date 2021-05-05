@@ -53,7 +53,7 @@
             <label>
                 {{ __('calendars.fields.is_recurring') }}
             </label>
-            {!! Form::select('recurring_periodicity', (isset($calendar) ? $calendar->recurringOptions() : null), null, ['class' => 'form-control']) !!}
+            {!! Form::select('recurring_periodicity', (isset($calendar) ? $calendar->recurringOptions() : []), null, ['class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-md-6" style="@if (!isset($entityEvent) || empty($entityEvent->recurring_periodicity)) display:none @endif" id="add_event_recurring_until">

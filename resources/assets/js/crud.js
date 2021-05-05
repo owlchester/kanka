@@ -428,8 +428,9 @@ function loadCalendarDates(calendarID)
         entityCalendarDayField.val(data.current.day);
         entityCalendarYearField.val(data.current.year);
 
+        $('select[name="recurring_periodicity"] option').remove();
         $.each(data.recurring, function (key, value) {
-            console.log('moon', key, value);
+            //console.log('moon', key, value);
             $('select[name="recurring_periodicity"]').append('<option value="' + key + '">' + value + '</option>');
         });
 
@@ -439,6 +440,8 @@ function loadCalendarDates(calendarID)
         if (data.length === 1) {
             entityCalendarMonthField.val(data[0].id);
         }
+
+        initSpectrum();
     });
 }
 
@@ -753,5 +756,19 @@ function registerEntityNoteDeleteEvents()
         $(this).on('click', function() {
             $(this).parent().parent().parent().parent().remove();
         });
+    });
+}
+
+
+function initSpectrum()
+{
+    if (!$.isFunction($.fn.spectrum)) {
+        return;
+    }
+    $(".spectrum").spectrum({
+        preferredFormat: "hex",
+        showInput: true,
+        showPalette: true,
+        allowEmpty: true
     });
 }

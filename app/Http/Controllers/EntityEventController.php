@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddCalendarEvent;
+use App\Http\Requests\UpdateCalendarEvent;
 use App\Models\Calendar;
 use App\Models\Entity;
 use App\Models\EntityEvent;
@@ -136,7 +137,7 @@ class EntityEventController extends Controller
      * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function update(AddCalendarEvent $request, Entity $entity, EntityEvent $entityEvent)
+    public function update(UpdateCalendarEvent $request, Entity $entity, EntityEvent $entityEvent)
     {
         $this->authorize('update', $entityEvent->calendar);
 
