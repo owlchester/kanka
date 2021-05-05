@@ -222,4 +222,8 @@ return [
         ],
         'title'             => 'Calendar :name',
     ],
+    'sorters' => [
+        'before' => 'Today & before',
+        'after' => 'Today & after',
+    ],
 ];
