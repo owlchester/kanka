@@ -237,6 +237,8 @@ return [
     'filters'                   => [
         'all'       => 'Filter to all descendants',
         'clear'     => 'Clear Filters',
+        'copy_to_clipboard' => 'Copy filters to clipboard',
+        'copy_helper' => 'Use the copied filters in your clipboard as values for filters on dashboard widgets and quick links.',
         'direct'    => 'Filter to direct descendants',
         'filtered'  => 'Showing :count of :total :entity.',
         'hide'      => 'Hide Filters',
@@ -244,6 +246,10 @@ return [
             'exclude'   => 'Exclude',
             'include'   => 'Include',
             'none'      => 'None',
+        ],
+        'mobile' => [
+            'copy' => 'Clipboard',
+            'clear' => 'Clear',
         ],
         'show'      => 'Show Filters',
         'sorting'   => [

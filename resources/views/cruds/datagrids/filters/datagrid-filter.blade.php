@@ -8,6 +8,7 @@ $filters = $filter->filters();
 $activeFilters = $filterService->activeFiltersCount();
 $entityModel = $model;
 $count = 0;
+$clipboardFilters = $filterService->clipboardFilters();
 
 @endphp
 
@@ -114,8 +115,8 @@ $count = 0;
                                 @if ($filterService->isCheckbox($field))
                                     <select class="filter-select form-control" id="{{ $field }}" name="{{ $field }}">
                                         <option value=""></option>
-                                        <option value="0" @if ($filterService->filterValue($field) === '0') selected="selected" @endif>{{ trans('voyager.generic.no') }}</option>
-                                        <option value="1"  @if ($filterService->filterValue($field) === '1') selected="selected" @endif>{{ trans('voyager.generic.yes') }}</option>
+                                        <option value="0" @if ($filterService->filterValue($field) === '0') selected="selected" @endif>{{ __('voyager.generic.no') }}</option>
+                                        <option value="1"  @if ($filterService->filterValue($field) === '1') selected="selected" @endif>{{ __('voyager.generic.yes') }}</option>
                                     </select>
                                 @elseif ($field === 'type' && !empty($entityModel))
 
@@ -156,8 +157,14 @@ $count = 0;
         <div class="box-footer text-center">
             <div class="pull-left hidden-xs">
                 <a href="{{ route($route, ['reset-filter' => 'true']) }}" class="btn btn-default">
-                    <i class="fa fa-eraser"></i> {{ trans('crud.filters.clear') }}
+                    <i class="fa fa-eraser"></i> {{ __('crud.filters.clear') }}
                 </a>
+
+
+                <a href="#" class="btn btn-default margin-r-5" data-clipboard="{{ $clipboardFilters }}" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper') }}">
+                    <i class="fas fa-clipboard"></i> {{ __('crud.filters.copy_to_clipboard') }}
+                </a>
+
                 <a href="{{ route('helpers.filters') }}" data-url="{{ route('helpers.filters') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.filters.title') }}">
                     {{ __('helpers.filters.title') }} <i class="fa fa-question-circle"></i>
                 </a>
@@ -165,8 +172,13 @@ $count = 0;
 
             <div class="visible-xs pull-left block">
                 <a href="{{ route($route, ['reset-filter' => 'true']) }}" class="btn btn-default margin-r-5">
-                    <i class="fa fa-eraser"></i> {{ trans('crud.filters.clear') }}
+                    <i class="fa fa-eraser"></i> {{ __('crud.filters.mobile.clear') }}
                 </a>
+
+                <a href="#" class="btn btn-default margin-r-5" data-clipboard="{{ $clipboardFilters }}" data-toggle="tooltip">
+                    <i class="fas fa-clipboard"></i> {{ __('crud.filters.mobile.copy') }}
+                </a>
+
                 <a href="{{ route('helpers.filters') }}" data-url="{{ route('helpers.filters') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.filters.title') }}">
                     <i class="fa fa-question-circle"></i>
                 </a>
