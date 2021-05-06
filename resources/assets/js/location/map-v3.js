@@ -102,7 +102,11 @@ function initMapExplore()
         window[$(this).data('id')].openPopup();
     });
 
-
+    $('.map-marker-entry-click').click(function (e) {
+        e.preventDefault();
+        $(this).parent().hide();
+        $('.map-marker-entry-entry').show();
+    });
 
     $(document).one('shown.bs.modal shown.bs.popover', function() {
         //console.warn('modal show or popover');
