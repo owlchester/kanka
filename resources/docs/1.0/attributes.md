@@ -37,7 +37,8 @@ You can get a list of all the attributes of an entity by using the following end
             "type": "text",
             "updated_at": "2020-03-11T13:31:34.000000Z",
             "updated_by": null,
-            "value": "5"
+            "value": "5",
+            "parsed": "5"
         }
     ]
 }
@@ -69,7 +70,8 @@ To get the details of a single attribute, use the following endpoint.
         "type": "text",
         "updated_at": "2020-03-11T13:31:34.000000Z",
         "updated_by": null,
-        "value": "5"
+        "value": "5",
+        "parsed": "5"
     }
 }
 ```
