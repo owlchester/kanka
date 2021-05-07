@@ -131,7 +131,6 @@
 
                         {!! Form::open(['route' => ['maps.map_markers.store', $model],
                             'method' => 'POST',
-                            'data-shortcut' => 1,
                             //'enctype' => 'multipart/form-data',
                             //'id' => 'map-marker-new-form'
                             'class' => 'ajax-subform',

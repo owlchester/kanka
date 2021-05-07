@@ -7,6 +7,7 @@ var validEntityForm = false;
 
 var validSubform = false;
 var subForm;
+var currentAjaxForm;
 
 $(document).ready(function() {
 
@@ -95,13 +96,8 @@ function initMapExplore()
         })
     }
 
-    $('.map-legend-marker').click(function (ev) {
-        ev.preventDefault();
-        window.map.panTo(L.latLng($(this).data('lat'), $(this).data('lng')));
-        window[$(this).data('id')].openPopup();
-    });
-
-
+    initLegend();
+    initMapEntryClick();
 
     $(document).one('shown.bs.modal shown.bs.popover', function() {
         //console.warn('modal show or popover');
@@ -144,17 +140,14 @@ function initMapForms()
         }
     });
 
-    $('.map-marker-entry-click').click(function (e) {
-        e.preventDefault();
-        $(this).parent().hide();
-        $('.map-marker-entry-entry').show();
-    });
-
     $(document).on('shown.bs.modal shown.bs.popover', function(e) {
         //console.warn('modal show or popover');
         initSubforms();
         e.stopPropagation();
     });
+
+    initLegend();
+    initMapEntryClick();
 }
 
 function initSubforms()
@@ -172,6 +165,8 @@ function initSubforms()
             //console.info('ajax-subform real submit');
             return true;
         }
+
+        currentAjaxForm = $(this);
 
         window.entityFormHasUnsavedChanges = false;
         e.preventDefault();
@@ -198,13 +193,13 @@ function initSubforms()
         }).done(function (res) {
             // If the validation succeeded, we can really submit the form
             validSubform = true;
-            subForm.submit();
+            currentAjaxForm.submit();
             return true;
         }).fail(function (err) {
             //console.log('error', err);
             // Reset any error fields
-            subForm.find('.input-error').removeClass('input-error');
-            subForm.find('.text-danger').remove();
+            currentAjaxForm.find('.input-error').removeClass('input-error');
+            currentAjaxForm.find('.text-danger').remove();
 
             // If we have a 503 error status, let's assume it's from cloudflare and help the user
             // properly save their data.
@@ -228,7 +223,7 @@ function initSubforms()
                 let errorSelector = $('[name="' + i + '"]');
                 //console.log('error field', '[name="' + i + '"]');
                 if (errorSelector.length > 0) {
-                    subForm.find('[name="' + i + '"]').addClass('input-error')
+                    currentAjaxForm.find('[name="' + i + '"]').addClass('input-error')
                         .parent()
                         .append('<div class="text-danger">' + errors[i][0] + '</div>');
                 } else {
@@ -248,8 +243,8 @@ function initSubforms()
             resetSubformSubmitAnimation();
 
             //console.log('reset stuff');
-            $(subForm).find('.form-submit-main i.fa').hide();
-            $(subForm).find('.form-submit-main span').show();
+            currentAjaxForm.find('.form-submit-main i.fa').hide();
+            currentAjaxForm.find('.form-submit-main span').show();
         });
     });
 }
@@ -291,4 +286,21 @@ function handleCloseMarker()
         sidebarMarker.hide();
         sidebarMap.show();
     });
+}
+
+function initLegend()
+{
+    $('.map-legend-marker').click(function (ev) {
+        ev.preventDefault();
+        window.map.panTo(L.latLng($(this).data('lat'), $(this).data('lng')));
+        window[$(this).data('id')].openPopup();
+    });
+}
+function initMapEntryClick() {
+    $('.map-marker-entry-click').click(function (e) {
+        e.preventDefault();
+        $(this).parent().hide();
+        $('.map-marker-entry-entry').show();
+    });
+
 }

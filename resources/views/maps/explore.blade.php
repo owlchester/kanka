@@ -203,7 +203,6 @@
                                         </li>
                                     </ul>
                                 </div>
-                                {!! Form::hidden('submit', null) !!}
                             </div>
 
                             {!! Form::hidden('from', 'explore') !!}
