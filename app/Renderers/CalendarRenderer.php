@@ -258,6 +258,7 @@ class CalendarRenderer
         $monthLength = $month['length'];
         $weekLength = 0;
         $week = [];
+        $remainingRecurring = [];
 
         for ($day = 1; $day <= $monthLength; $day++) {
             if ($offset > 0) {
@@ -293,6 +294,16 @@ class CalendarRenderer
                     $dayData['season'] = $this->seasons[$monthday];
                 }
 
+                // Add recurring events that span multiple days from the previous call
+                $newRemaining = [];
+                foreach ($remainingRecurring as $recurring) {
+                    $dayData['events'][] = $recurring['event'];
+                    if ($recurring['remaining'] > 1) {
+                        $newRemaining[] = ['remaining' => $recurring['remaining'] - 1, 'event' => $recurring['event']];
+                    }
+                }
+                $remainingRecurring = $newRemaining;
+
                 // Add recurring events if the moon stuff fits
                 if (!empty($dayData['moons'])) {
                     foreach ($dayData['moons'] as $moon) {
@@ -308,6 +319,10 @@ class CalendarRenderer
                                 continue;
                             }
                             $dayData['events'][] = $event;
+
+                            if ($event->length > 1) {
+                                $remainingRecurring[] = ['remaining' => $event->length - 1, 'event' => $event];
+                            }
                         }
                     }
                 }
@@ -414,6 +429,7 @@ class CalendarRenderer
             }
 
             // Add each day of the month to the day thing
+            $remainingRecurring = [];
             $endedWeek = false;
             $weekday = 0;
             for ($day = 1; $day <= $monthLength; $day++) {
@@ -444,6 +460,16 @@ class CalendarRenderer
                     $dayData['weather'] = $this->weather[$exact];
                 }
 
+                // Add recurring events that span multiple days from the previous call
+                $newRemaining = [];
+                foreach ($remainingRecurring as $recurring) {
+                    $dayData['events'][] = $recurring['event'];
+                    if ($recurring['remaining'] > 1) {
+                        $newRemaining[] = ['remaining' => $recurring['remaining'] - 1, 'event' => $recurring['event']];
+                    }
+                }
+                $remainingRecurring = $newRemaining;
+
                 // Add recurring events if the moon stuff fits
                 if (!empty($dayData['moons'])) {
                     foreach ($dayData['moons'] as $moon) {
@@ -458,6 +484,10 @@ class CalendarRenderer
                                 continue;
                             }
                             $dayData['events'][] = $event;
+
+                            if ($event->length > 1) {
+                                $remainingRecurring[] = ['remaining' => $event->length - 1, 'event' => $event];
+                            }
                         }
                     }
                 }
@@ -740,8 +770,10 @@ class CalendarRenderer
                 } elseif ($event->is_recurring && $event->recurring_periodicity !== 'year') {
                     // If we haven't passed the max date for this event, show it in the recurring blocks
                     if (empty($event->recurring_until) || $this->getYear() < $event->recurring_until) {
-                        //$this->events[$date][] = $event;
                         $this->recurring[$event->recurring_periodicity][] = $event;
+                        if ($event->length == 0) {
+                            continue;
+                        }
                     }
                 } else {
                     // Only add it once
@@ -756,7 +788,7 @@ class CalendarRenderer
      * @param EntityEvent $event
      * @param string $date
      */
-    protected function addMultidayEvent(EntityEvent $event, string $date)
+    protected function addMultidayEvent(EntityEvent $event, string $date, bool $recurring = false)
     {
         // Does the day go over a few days?
         if ($event->length == 1) {
@@ -765,7 +797,11 @@ class CalendarRenderer
         $extraDate = $date;
         for ($extra = 1; $extra < $event->length; $extra++) {
             $extraDate = $this->addDay($extraDate);
-            $this->events[$extraDate][] = $event;
+            if ($recurring) {
+
+            } else {
+                $this->events[$extraDate][] = $event;
+            }
         }
     }
 

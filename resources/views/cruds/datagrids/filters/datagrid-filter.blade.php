@@ -175,9 +175,11 @@ $clipboardFilters = $filterService->clipboardFilters();
                     <i class="fa fa-eraser"></i> {{ __('crud.filters.mobile.clear') }}
                 </a>
 
+                @if($activeFilters > 0)
                 <a href="#" class="btn btn-default margin-r-5" data-clipboard="{{ $clipboardFilters }}" data-toggle="tooltip">
                     <i class="fas fa-clipboard"></i> {{ __('crud.filters.mobile.copy') }}
                 </a>
+                @endif
 
                 <a href="{{ route('helpers.filters') }}" data-url="{{ route('helpers.filters') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.filters.title') }}">
                     <i class="fa fa-question-circle"></i>
