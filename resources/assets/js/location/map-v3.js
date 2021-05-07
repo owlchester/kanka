@@ -290,7 +290,6 @@ function handleCloseMarker()
 
 function initLegend()
 {
-    console.log('inot map legend');
     $('.map-legend-marker').click(function (ev) {
         ev.preventDefault();
         window.map.panTo(L.latLng($(this).data('lat'), $(this).data('lng')));
