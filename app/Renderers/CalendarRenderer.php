@@ -207,10 +207,10 @@ class CalendarRenderer
     }
 
     /**
-     * Build the month with the weeks and days
+     * Build the calendar events for a month view
      * @return array
      */
-    public function month()
+    public function buildForMonth()
     {
         // Number of weeks in this month?
         $weekdays = $this->calendar->weekdays();
@@ -356,9 +356,10 @@ class CalendarRenderer
     }
 
     /**
+     * Build the calendar for the yearly view
      * @return array
      */
-    public function weeks()
+    public function buildForYear()
     {
         // Number of weeks in this month?
         $weekdays = $this->calendar->weekdays();
@@ -771,9 +772,6 @@ class CalendarRenderer
                     // If we haven't passed the max date for this event, show it in the recurring blocks
                     if (empty($event->recurring_until) || $this->getYear() < $event->recurring_until) {
                         $this->recurring[$event->recurring_periodicity][] = $event;
-                        if ($event->length == 0) {
-                            continue;
-                        }
                     }
                 } else {
                     // Only add it once
@@ -936,7 +934,7 @@ class CalendarRenderer
     protected function buildFullmoons()
     {
         //dump('full moons go brr');
-        // Calculate the number of days since the 1.1.0
+        // Calculate the number of days since 0000-01-01
         $totalDays = $this->daysToDate();
 
         // We'll need this later to know how many full moons to add
@@ -1085,6 +1083,9 @@ class CalendarRenderer
     {
         // Moons can be float so we "floor" them
         $nextFullMoon = floor($nextFullMoon);
+        if($nextFullMoon < 0) {
+            return;
+        }
         if (!isset($this->moons[$nextFullMoon])) {
             $this->moons[$nextFullMoon] = [];
         }

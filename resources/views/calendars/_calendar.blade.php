@@ -55,7 +55,7 @@ $weekNumber = 1;
     <tbody>
     @if ($renderer->isYearlyLayout())
         <tr>
-        @foreach ($renderer->weeks() as $key => $day)
+        @foreach ($renderer->buildForYear() as $key => $day)
             @if($key % count($model->weekdays()) == 0)
                 </tr><tr>
 
@@ -75,7 +75,7 @@ $weekNumber = 1;
         @endforeach
         </tr>
     @else
-        @foreach ($renderer->month() as $week => $days)
+        @foreach ($renderer->buildForMonth() as $week => $days)
             @if (!empty($days) && $renderer->isNamedWeek($week))
                 <tr class="named_week week-nr-{{ $week }}">
                     <td colspan="{{ count($model->weekdays()) }}">
