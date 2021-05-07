@@ -27,7 +27,6 @@
 
             {!! Form::open(['route' => ['maps.map_groups.store', $map],
                 'method' => 'POST',
-                'data-shortcut' => 1,
                 'id' => 'map-group-form',
                 'enctype' => 'multipart/form-data',
                 'class' => 'ajax-subform'

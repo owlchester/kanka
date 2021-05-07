@@ -291,7 +291,7 @@ class Map extends MiscModel
      * List of markers for the map legend (ordered by "name")
      * @return array
      */
-    public function legendMarkers(): array
+    public function legendMarkers(bool $link = true): array
     {
         $markers = new Collection();
         $groups = [];
@@ -314,7 +314,7 @@ class Map extends MiscModel
                     'id' => $marker->id,
                     'longitude' => $marker->longitude,
                     'latitude' => $marker->latitude,
-                    'name' => $marker->markerTitle(true),
+                    'name' => $marker->markerTitle($link),
                     'lower_name' => strtolower($marker->markerTitle(false)),
                 ]);
                 continue;
@@ -323,7 +323,7 @@ class Map extends MiscModel
                 'id' => $marker->id,
                 'longitude' => $marker->longitude,
                 'latitude' => $marker->latitude,
-                'name' => $marker->markerTitle(true),
+                'name' => $marker->markerTitle($link),
                 'lower_name' => strtolower($marker->markerTitle(false)),
             ]);
         }
