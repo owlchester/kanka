@@ -19,7 +19,7 @@ class CharacterTraitResource extends EntityResource
             'name' => $this->name,
             'entry' => $this->entry,
             'section' => $this->section,
-            'is_private' => (bool) $this->is_private,
+            //'is_private' => (bool) $this->is_private,
             'default_order' => $this->default_order,
         ];
     }

@@ -33,6 +33,7 @@ You can get a list of all the characters of a campaign by using the following en
             "image_thumb": "{url}",
             "has_custom_image": false,
             "is_private": true,
+            "is_personality_visible": true,
             "entity_id": 4,
             "tags": [],
             "created_at": "2019-01-29T16:40:34.000000Z",
@@ -53,7 +54,6 @@ You can get a list of all the characters of a campaign by using the following en
                     "name": "Goals",
                     "entry": "Become a Paladin.",
                     "section": "personality",
-                    "is_private": false,
                     "default_order": 0
                 }
             ]
@@ -85,6 +85,7 @@ To get the details of a single character, use the following endpoint.
         "image_thumb": "{url}",
         "has_custom_image": false,
         "is_private": true,
+        "is_personality_visible": true,
         "entity_id": 4,
         "tags": [],
         "created_at": "2019-01-29T16:40:34.000000Z",
@@ -147,6 +148,7 @@ To create a character, use the following endpoint.
 | `personality_entry` | `array` | An array representing the values of personality traits. For exemple ```["To become a King", "Quiet places"]```  |
 | `appearance_name` | `array` | An array representing the name of appearance traits. For exemple ```["Hair", "Eyes"]```  |
 | `appearance_entry` | `array` | An array representing the values of appearance traits. For exemple ```["Curly black", "Light Green"]```  |
+| `is_personality_visible` | `bool` | If the personality traits should be visible to all (true) or just admins (false) |
 
 ### Results
 

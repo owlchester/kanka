@@ -25,6 +25,7 @@ class CharacterResource extends EntityResource
 
             'is_dead' => (bool) $this->is_dead,
             'traits' => CharacterTraitResource::collection($this->characterTraits),
+            'is_personality_visible' => (bool) $this->is_personality_visible,
         ];
 
         if (request()->get('related', false)) {
