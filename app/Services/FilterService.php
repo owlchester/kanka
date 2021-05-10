@@ -359,7 +359,14 @@ class FilterService
         $filters = [];
         foreach ($this->filters as $key => $val) {
             if ($val !== null) {
-                $filters[] = $key . '=' . $val;
+                if (!is_array($val)) {
+                    $filters[] = $key . '=' . $val;
+                    continue;
+                }
+
+                foreach ($val as $arrValue) {
+                    $filters[] = $key . '[]=' . $arrValue;
+                }
             }
         }
         return (string) implode('&', $filters);
