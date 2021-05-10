@@ -477,7 +477,10 @@ class CampaignPluginService
         $existing = $model->entity->tags->pluck('id')->toArray();
 
         foreach ($real as $tag) {
-
+            // Tag doesn't properly exist, skip
+            if (!isset($this->miscIds[$tag])) {
+                continue;
+            }
             $target = $this->miscIds[$tag];
             if (in_array($target, $existing)) {
                 continue;
