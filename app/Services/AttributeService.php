@@ -452,7 +452,7 @@ class AttributeService
 
 
         // Marketplace campaigns
-        if (config('marketplace.enabled')) {
+        if (!config('marketplace.enabled')) {
             return $templates;
         }
 
