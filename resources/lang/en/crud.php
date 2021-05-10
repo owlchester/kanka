@@ -239,6 +239,7 @@ return [
         'clear'     => 'Clear Filters',
         'copy_to_clipboard' => 'Copy filters to clipboard',
         'copy_helper' => 'Use the copied filters in your clipboard as values for filters on dashboard widgets and quick links.',
+        'copy_helper_no_filters' => 'Define some filters first to be able to copy them to your clipboard.',
         'direct'    => 'Filter to direct descendants',
         'filtered'  => 'Showing :count of :total :entity.',
         'hide'      => 'Hide Filters',
