@@ -446,16 +446,12 @@ class AttributeService
             $templates[$key][$code] = $template->name();
         }
 
-        if (!$this->campaign->boosted()) {
+        // If the campaign isn't boosted, or the marketplace isn't enable, end here
+        if (!$this->campaign->boosted() || !config('marketplace.enabled')) {
             return $templates;
         }
-
 
         // Marketplace campaigns
-        if (!config('marketplace.enabled')) {
-            return $templates;
-        }
-
         $key = __('attributes/templates.list.marketplace');
         foreach(CampaignPlugin::templates($this->campaign)->get() as $plugin) {
             if (empty($plugin->plugin)) {
