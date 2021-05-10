@@ -251,7 +251,7 @@ class CampaignPluginService
             if (Str::endsWith($field, '_id')) {
                 if (empty($value)) {
                     $model->$field = null;
-                } else {
+                } elseif(isset($this->miscIds[$value])) {
                     $model->$field = $this->miscIds[$value];
                 }
             } elseif (in_array($field, $blocks)) {
