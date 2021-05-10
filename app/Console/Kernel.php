@@ -36,7 +36,8 @@ class Kernel extends ConsoleKernel
         $schedule->command(CleanupEntityLogs::class)->dailyAt('03:30');
         //$schedule->command(CleanupTrashed::class)->dailyAt('04:00');
 
-        $schedule->command('db:backup --database=mysql --destination=s3 --compression=gzip --destinationPath=prod/ --timestamp="d-m-Y H"')->twiceDaily(2, 14);
+        $schedule->command('backup:clean')->daily()->at('01:00');
+        $schedule->command('backup:run')->twiceDaily(2, 14);
     }
 
     /**

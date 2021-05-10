@@ -58,6 +58,9 @@ return [
             'prefix' => '',
             'strict' => false,
             'engine' => null,
+            'dump' => [
+                'dump_binary_path' => env('DB_BINARY_DUMP_PATH')
+            ],
         ],
 
         'pgsql' => [
