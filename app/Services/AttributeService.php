@@ -410,7 +410,7 @@ class AttributeService
             $templates[$code] = $template->name();
         }
         // Get templates from the plugins
-        if ($campaign->boosted()) {
+        if ($campaign->boosted() && config('marketplace.enabled')) {
             foreach(CampaignPlugin::templates($campaign)->get() as $plugin) {
                 if (empty($plugin->plugin)) {
                     continue;
@@ -542,7 +542,7 @@ class AttributeService
      */
     public function marketplaceTemplate($uuid, Campaign $campaign)
     {
-        if (!$campaign->boosted()) {
+        if (!$campaign->boosted() || !config('marketplace.enabled')) {
             return null;
         }
 
