@@ -452,6 +452,10 @@ class AttributeService
 
 
         // Marketplace campaigns
+        if (config('marketplace.enabled')) {
+            return $templates;
+        }
+
         $key = __('attributes/templates.list.marketplace');
         foreach(CampaignPlugin::templates($this->campaign)->get() as $plugin) {
             if (empty($plugin->plugin)) {
