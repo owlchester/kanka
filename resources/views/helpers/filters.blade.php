@@ -27,6 +27,10 @@
             <p>{!! __('helpers.filters.multiple', ['syntax' => '<code>;</code>', 'example' => '<code>Alex;!Smith</code>']) !!}</p>
 
             <p>{{ __('helpers.filters.session') }}</p>
+
+            <hr />
+
+            <p>{{ __('helpers.filters.clipboard') }}</p>
         </div>
     </div>
 @endsection
