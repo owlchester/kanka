@@ -44,6 +44,7 @@ return [
         'title'                     => 'Titre',
         'traits'                    => 'Traits',
         'type'                      => 'Type',
+        'pronouns'                  => 'Pronoms',
     ],
     'helpers'       => [
         'age'   => 'Il est possible de lier cette entité avec un calendrier de la campagne pour automatiquement calculer l\'âge. :more.',
@@ -120,6 +121,7 @@ return [
         'title'             => 'Titre',
         'traits'            => 'Traits',
         'type'              => 'PNJ, Joueurs, Autre',
+        'pronouns'          => 'Il, Elle',
     ],
     'quests'        => [
         'description'   => 'Quêtes auxquelles le personnage est lié.',

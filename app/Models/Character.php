@@ -16,6 +16,7 @@ use Stevebauman\Purify\Facades\Purify;
  * @property string $title
  * @property string $age
  * @property string $sex
+ * @property string $pronouns
  * @property bool $is_dead
  * @property Family $family
  * @property Location $location
@@ -40,6 +41,7 @@ class Character extends MiscModel
         'entry',
         'age',
         'sex',
+        'pronouns',
         'image',
         'is_private',
         'type',
@@ -57,6 +59,7 @@ class Character extends MiscModel
         'title',
         'age',
         'sex',
+        'pronouns',
         'location_id',
         'family_id',
         'type',

@@ -32,6 +32,7 @@ class StoreCharacter extends FormRequest
             'race_id' => 'nullable|integer|exists:races,id',
             'age' => 'nullable|max:25',
             'sex' => 'nullable|max:45',
+            'pronouns' => 'nullable|max:45',
             'title' => 'nullable|max:191',
             'template_id' => 'nullable',
         ];
