@@ -29,7 +29,7 @@ class StoreEvent extends FormRequest
             'event_id', 'nullable|integer|exists:events,id',
             'type' => 'max:191',
             'date' => 'max:191',
-            'image' => 'mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
+            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable',
         ];

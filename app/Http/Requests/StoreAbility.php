@@ -28,7 +28,7 @@ class StoreAbility extends FormRequest
             'type' => 'nullable:max:191',
             'ability_id' => 'nullable|integer|exists:abilities,id',
             'charges' => 'nullable|max:120',
-            'image' => 'mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
+            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable',
         ];

@@ -82,7 +82,7 @@ TEXT
         'question'  => 'How can I help?',
     ],
     'map'                   => [
-        'answer'    => 'The Maps module supports PNG, JPG, and SVG images. These maps can have layers, groups, and markers pointing of various shapes and sizes that point to other entities in a campaign.',
+        'answer'    => 'The Maps module supports PNG, JPG, WEBP and SVG images. These maps can have layers, groups, and markers pointing of various shapes and sizes that point to other entities in a campaign.',
         'question'  => 'Can I upload maps to Kanka?',
     ],
     'mobile'                => [

@@ -119,7 +119,7 @@ return [
 
 
     'entity_link' => 'Invalid :attribute. Please verify that it is a valid Kanka link and that it points to a public campaign.',
-    'entity_file' => 'Allowed extensions: jpg, jpeg, png, gif, pdf, xls(x), mp3, json and ogg.',
+    'entity_file' => 'Allowed extensions: jpg, jpeg, png, gif, webp, pdf, xls(x), mp3, json and ogg.',
 
     /*
     |--------------------------------------------------------------------------
