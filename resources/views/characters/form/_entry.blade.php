@@ -43,6 +43,7 @@ if (request()->route()->getName() == 'characters.random') {
             </datalist>
         </div>
 
+        @include('cruds.fields.pronouns')
 
         <div class="form-group">
             {!! Form::hidden('is_dead', 0) !!}

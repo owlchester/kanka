@@ -2,11 +2,19 @@
 
 ---
 
-- [All Characters](#all-characters)
-- [Single Character](#character)
-- [Create a Character](#create-character)
-- [Update a Character](#update-character)
-- [Delete a Character](#delete-character)
+- [Characters](#characters)
+  - [All Characters](#all-characters)
+    - [Results](#results)
+  - [Character](#character)
+    - [Results](#results-1)
+  - [Create a Character](#create-a-character)
+    - [Body](#body)
+    - [Results](#results-2)
+  - [Update a Character](#update-a-character)
+    - [Body](#body-1)
+    - [Results](#results-3)
+  - [Delete a Character](#delete-a-character)
+    - [Results](#results-4)
 
 <a name="all-characters"></a>
 ## All Characters
@@ -43,6 +51,7 @@ You can get a list of all the characters of a campaign by using the following en
             "title": null,
             "age": "39",
             "sex": "Male",
+            "pronouns": null,
             "race_id": 3,
             "type": null,
             "family_id": 34,
@@ -95,6 +104,7 @@ To get the details of a single character, use the following endpoint.
         "title": null,
         "age": "39",
         "sex": "Male",
+        "pronouns": null,
         "race_id": 3,
         "type": null,
         "family_id": 34,
@@ -134,6 +144,7 @@ To create a character, use the following endpoint.
 | `title` | `string`  | Title of the character |
 | `age` | `string`  | Age of the character |
 | `sex` | `string`  | Gender of the character |
+| `pronouns` | `string`  | Prefered pronouns of the character |
 | `type` | `string`  | Type of the character |
 | `family_id` | `integer` | Family id |
 | `location_id` | `integer` | Location id |

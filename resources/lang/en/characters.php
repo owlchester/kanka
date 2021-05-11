@@ -44,6 +44,7 @@ return [
         'title'                     => 'Title',
         'traits'                    => 'Traits',
         'type'                      => 'Type',
+        'pronouns'                  => 'Pronouns',
     ],
     'helpers'       => [
         'age'   => 'You can link this entity with a calendar of your campaign to automatically calculate their age instead. :more.',
@@ -120,6 +121,7 @@ return [
         'title'             => 'Title',
         'traits'            => 'Traits',
         'type'              => 'NPC, Player Character, Deity',
+        'pronouns'          => 'He/Him, She/Her, They/Their',
     ],
     'quests'        => [
         'description'   => 'Quests a character is a part of.',
