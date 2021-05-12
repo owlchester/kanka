@@ -26,7 +26,7 @@ class StoreRace extends FormRequest
         $rules = [
             'name' => 'required',
             'race_id' => 'nullable|integer|exists:races,id',
-            'image' => 'mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
+            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable',
         ];

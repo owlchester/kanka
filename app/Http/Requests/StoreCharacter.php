@@ -25,7 +25,7 @@ class StoreCharacter extends FormRequest
     {
         return [
             'name' => 'required|max:191',
-            'image' => 'mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
+            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
             'family_id' => 'integer|exists:families,id',
             'location_id' => 'integer|exists:locations,id',
