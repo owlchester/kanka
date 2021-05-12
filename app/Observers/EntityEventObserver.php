@@ -10,11 +10,9 @@ class EntityEventObserver
 {
     public function saving(EntityEvent $entityEvent)
     {
-        if (!empty($entityEvent->type_id)) {
-            // Compare to the calendar
-            $calendar = $entityEvent->calendar;
-
-            $years = $calendar->currentDate('year') - $entityEvent;
+        $entityEvent->is_recurring = !empty($entityEvent->recurring_periodicity);
+        if (!$entityEvent->is_recurring) {
+            $entityEvent->recurring_until = null;
         }
     }
 }

@@ -30,7 +30,7 @@ trait CampaignScopes
      */
     public function scopeVisibility(Builder $query, $visibility)
     {
-        return $query->where('visibility', $visibility);
+        return $query->where($this->getTable() . '.visibility', $visibility);
     }
 
     /**

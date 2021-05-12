@@ -49,7 +49,7 @@
               <input type="file" id="file-upload" name="file" multiple />
         </span>
 
-            <p>{{ trans('crud.files.hints.limitations', ['formats' => 'jpg, png, gif', 'size' => auth()->user()->maxUploadSize(true)]) }}</p>
+            <p>{{ trans('crud.files.hints.limitations', ['formats' => 'jpg, png, webp, gif', 'size' => auth()->user()->maxUploadSize(true)]) }}</p>
 
 
             <p class="text-red gallery-error" style="display:none"></p>

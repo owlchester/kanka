@@ -52,7 +52,8 @@ return [
         'type'          => 'Tipus',
     ],
     'helpers'       => [
-        'nested'    => 'Amb la vista niada, es poden veure les missions de forma agrupada. Les missions que no tinguin missió superior es mostraran per defecte. A les missions amb submisiones se\'ls pot clicar per a mostrar els seus descendents. Podeu seguir clicant fins que no hi hagi més descendents a mostrar.',
+        'nested_parent' => 'S\'estan mostrant les missions de :parent.',
+        'nested_without'=> 'S\'estan mostrant les missions sense pare. Feu clic a la fila d\'una missió per a mostrar-ne les descendents.',
     ],
     'hints'         => [
         'quests'    => 'Es pot crear una xarxa de missions entrellaçades usant el camp de missió superior.',

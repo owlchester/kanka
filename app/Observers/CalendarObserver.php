@@ -99,10 +99,27 @@ class CalendarObserver extends MiscObserver
         $moonNames = request()->post('moon_name', []);
         $moonOffsets = request()->post('moon_offset', []);
         $moonColours = request()->post('moon_colour', []);
+        $moonIds = request()->post('moon_id', []);
+
+        // Get the highest moon id
+        $autoMoonId = 0;
+        foreach ($moonIds as $id) {
+            if (!empty($id) && $id > $autoMoonId) {
+                $autoMoonId = $id;
+            }
+        }
+        $autoMoonId++;
+
         if ($moonValues) {
             foreach ($moonValues as $moon) {
                 if (empty($moon)) {
                     continue;
+                }
+
+                $moonId = $moonIds[$moonCount];
+                if (empty($moonId)) {
+                    $moonId = $autoMoonId;
+                    $autoMoonId++;
                 }
 
                 $moons[] = [
@@ -110,6 +127,7 @@ class CalendarObserver extends MiscObserver
                     'fullmoon' => round($moon, 3),
                     'offset' => (int) $moonOffsets[$moonCount],
                     'colour' => $this->purify($moonColours[$moonCount]),
+                    'id' => (int) $moonId,
                 ];
                 $moonCount++;
             }

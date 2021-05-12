@@ -90,7 +90,7 @@ class UserCacheService extends BaseCache
             return $this->get($key);
         }
 
-        $data = $this->user->following;
+        $data = $this->user->following()->public()->get();
         $this->forever($key, $data);
 
         return $data;
@@ -116,7 +116,7 @@ class UserCacheService extends BaseCache
     {
         $key = $this->nameKey($userId);
         if ($this->has($key)) {
-            return $this->get($key);
+            return (string) $this->get($key);
         }
 
         $data = null;

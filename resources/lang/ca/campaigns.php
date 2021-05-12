@@ -83,10 +83,12 @@ TEXT
         'boost_required'                => 'Aquesta funcionalitat requereix millorar la campanya. Per a més informació, aneu a la pàgina de :settings.',
         'boosted'                       => 'Algunes característiques estan desbloquejades perquè aquesta campanya està millorada. Per a saber-ne més, feu una ullada a la pàgina de :settings.',
         'css'                           => 'Escriviu CSS propi per a les pàgines de la campanya. Tingueu en compte que abusar d\'aquesta eina pot comportar l\'eliminació del CSS personalitzat. Els incompliments repetits o greus poden comportar l\'eliminació de la campanya.',
+        'dashboard'                     => 'Personalitzeu la forma en què es mostra el widget al taulell mitjançant els següents camps.',
         'entity_note_visibility'        => 'En crear una nova anotació d\'entitat, l\'opció "Fixada" estarà seleccionada automàticament.',
         'entity_personality_visibility' => 'En crear un nou personatge, l\'opció de «Personalitat visible» estarà deseleccionada automàticament.',
         'entity_visibility'             => 'En crear una nova entitat, se seleccionarà automàticament l\'opció de «Privada».',
         'excerpt'                       => 'L\'extracte de la campanya es mostrarà al taulell principal. Escriviu unes línies per introduïr el món.',
+        'header_image'                  => 'Imatge mostrada com a fons a la capçalera de la campanya.',
         'hide_history'                  => 'Habiliteu aquesta opció per a amagar l\'historial d\'entitats als membres no administradors.',
         'hide_members'                  => 'Habiliteu aquesta opció per a amagar la llista de membres de la campanya als no administradors.',
         'locale'                        => 'L\'idioma en què està escrita la campanya. Això serveix per a agrupar les campanyes públiques.',
@@ -114,7 +116,6 @@ TEXT
             'link'  => 'Nou enllaç',
         ],
         'create'                => [
-            'button'        => 'Convida',
             'buttons'       => [
                 'create'    => 'Crea una invitació',
                 'send'      => 'Envia l\'invitació',
@@ -296,7 +297,8 @@ TEXT
         ],
         'users'         => [
             'actions'   => [
-                'add'   => 'Afegeix',
+                'add'       => 'Afegeix',
+                'remove'    => ':user amb el rol :role',
             ],
             'create'    => [
                 'success'   => 'S\'ha afegit el rol a l\'usuari.',

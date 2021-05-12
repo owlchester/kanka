@@ -97,6 +97,8 @@ return [
     'helpers'       => [
         'month_type'    => 'Miesiące dodatkowe nie mają dni tygodnia, ale wpływają na pory roku czy fazy księżyca.',
         'nested'        => 'W widoku hierarchii najpierw wyświetlane są kalendarze, które nie mają źródła. Po kliknięciu na wiersz kalendarza zobaczysz jego pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
+        'nested_parent' => 'Wyświetlono kalendarze pochodzące od :parent.',
+        'nested_without'=> 'Wyświetlono wszystkie kalendarze nie posiadające źródła. Kliknij na rząd, by wyświetlić kalendarze pochodne.',
         'start_offset'  => 'Domyślnie kalendarz zaczyna się pierwszego dnia roku 0. Liczba w tym polu zmienia położenie pierwszego dnia kalendarza.',
     ],
     'hints'         => [

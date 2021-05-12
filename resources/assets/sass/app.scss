@@ -967,6 +967,9 @@ td.breakable {
 #entry td, #entry th {
   padding:2px;
 }
+#entry {
+  word-break: break-word;
+}
 
 hr {
   border-top: 1px solid #eeeeee

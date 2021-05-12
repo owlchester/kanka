@@ -26,11 +26,11 @@ class StoreQuest extends FormRequest
         $rules = [
             'name' => 'required|max:191',
             'type' => 'nullable|max:45',
-            'image' => 'mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
+            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
             'quest_id' => 'nullable|integer|exists:quests,id',
             'character_id' => 'nullable|integer|exists:characters,id',
-            'template_id' => 'nullable|exists:attribute_templates,id',
+            'template_id' => 'nullable',
         ];
 
         if (request()->has('calendar_id') && request()->post('calendar_id') !== null) {

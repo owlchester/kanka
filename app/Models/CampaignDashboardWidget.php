@@ -7,6 +7,7 @@ use App\Traits\CampaignTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 /**
@@ -208,12 +209,15 @@ class CampaignDashboardWidget extends Model
             ($this->widget == self::WIDGET_RECENT)
         );
     }
-    /**
+
+    /*
+     * Show members of families and organisations
+     * @param Entity|null $entity
      * @return bool
      */
-    public function showMembers(): bool
+    public function showMembers(Entity $entity = null): bool
     {
-        if ($this->widget != self::WIDGET_PREVIEW || $this->conf('members') !== '1') {
+        if (!in_array($this->widget, [self::WIDGET_PREVIEW, self::WIDGET_RECENT]) || $this->conf('members') !== '1') {
             return false;
         }
         $types = [
@@ -221,7 +225,9 @@ class CampaignDashboardWidget extends Model
             config('entities.ids.organisation'),
         ];
 
-        return !empty($this->entity) && in_array($this->entity->typeId(), $types);
+        // Preview, check the linked entity
+        $entity = !empty($entity) ? $entity : $this->entity;
+        return !empty($entity) && in_array($entity->typeId(), $types);
     }
 
     /**
@@ -276,7 +282,7 @@ class CampaignDashboardWidget extends Model
             $entityIds = $models->pluck('id');
 
             // Add the filter to the base query
-            $base = $base->whereIn('entity_id', $entityIds);
+            $base = $base->whereIn('entities.entity_id', $entityIds);
         }
 
         return $base
@@ -300,12 +306,17 @@ class CampaignDashboardWidget extends Model
             return $filters;
         }
 
-        $segments = explode('&', $this->config['filters']);
-        foreach ($segments as $segment) {
-            $params = explode('=', $segment);
-            $filters[$params[0]] = $params[1];
-        }
+        try {
+            $segments = explode('&', $this->config['filters']);
+            foreach ($segments as $segment) {
+                $params = explode('=', $segment);
+                $filters[$params[0]] = $params[1];
+            }
 
-        return $filters;
+            return $filters;
+        } catch (\Exception $e) {
+            //Log::error('Widget error:' . $e->getMessage());
+            return [];
+        }
     }
 }

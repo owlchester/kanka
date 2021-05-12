@@ -14,6 +14,7 @@ $moonNames = old('moon_name');
 $moonFullmoons = old('moon_fullmoon');
 $moonOffsets = old('moon_offset');
 $moonColours = old('moon_colour');
+$moonIds = old('moon_id');
 if (!empty($moonNames)) {
     $cpt = 0;
     foreach ($moonNames as $name) {
@@ -23,6 +24,7 @@ if (!empty($moonNames)) {
                 'fullmoon' => $moonFullmoons[$cpt],
                 'offset' => $moonOffsets[$cpt],
                 'colour' => $moonColours[$cpt],
+                'id' => $moonIds[$cpt],
             ];
         }
         $cpt++;
@@ -62,6 +64,7 @@ if (!empty($moonNames)) {
                 </div>
             </div>
         </div>
+        {!! Form::hidden('moon_id[]', $fullmoon['id']) !!}
     @endforeach
 </div>
 <a class="btn btn-default" id="add_moon" href="#" title="{{ __('calendars.actions.add_moon') }}">
@@ -95,4 +98,5 @@ if (!empty($moonNames)) {
             </div>
         </div>
     </div>
+    {!! Form::hidden('moon_id[]', null) !!}
 </div>

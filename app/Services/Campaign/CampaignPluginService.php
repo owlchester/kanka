@@ -10,6 +10,7 @@ use App\Models\Campaign;
 use App\Models\CampaignPlugin;
 use App\Models\CharacterTrait;
 use App\Models\Entity;
+use App\Models\EntityTag;
 use App\Models\MiscModel;
 use App\Models\OrganisationMember;
 use App\Models\Plugin;
@@ -54,6 +55,12 @@ class CampaignPluginService
 
     /** @var null|Collection */
     protected $importedEntities = null;
+
+    /** @var array updated entities */
+    protected $updated = [];
+
+    /** @var array created entities */
+    protected $created = [];
 
     /**
      * @param Campaign $campaign
@@ -189,13 +196,16 @@ class CampaignPluginService
     {
         // Updating?
         /** @var Entity $model */
-        $model = $this->importedEntities->where('marketplace_uuid', $pluginEntity->uuid)->first();
-        if ($model) {
-            $this->entityIds[$pluginEntity->id] = $model->id;
-            $this->miscIds[$pluginEntity->id] = $model->entity_id;
-            $this->entityTypes[$pluginEntity->id] = $model->type;
+        $model = null;
+        $entity = $this->importedEntities->where('marketplace_uuid', $pluginEntity->uuid)->first();
+        if ($entity) {
+            $this->entityIds[$pluginEntity->id] = $entity->id;
+            $this->miscIds[$pluginEntity->id] = $entity->entity_id;
+            $this->entityTypes[$pluginEntity->id] = $entity->type;
             //dump('existing ' . $pluginEntity->uuid);
-            $model = $model->child;
+            $model = $entity->child;
+
+            $this->updated[] = link_to($entity->url(), $entity->name);
         } else {
             $className = '\App\Models\\' . Str::studly($pluginEntity->type->code);
             //dump('new ' . $className);
@@ -213,6 +223,8 @@ class CampaignPluginService
             $this->miscIds[$pluginEntity->id] = $model->id;
             $this->entityTypes[$pluginEntity->id] = $model->getEntityType();
             $this->entityIds[$pluginEntity->id] = $model->entity->id;
+
+            $this->created[] = link_to($entity->url(), $model->name);
         }
         $this->models[$pluginEntity->id] = $model;
     }
@@ -239,11 +251,13 @@ class CampaignPluginService
             if (Str::endsWith($field, '_id')) {
                 if (empty($value)) {
                     $model->$field = null;
-                } else {
+                } elseif(isset($this->miscIds[$value])) {
                     $model->$field = $this->miscIds[$value];
                 }
             } elseif (in_array($field, $blocks)) {
                 $this->importBlock($field, $value, $model);
+            } elseif ($field == 'tags') {
+                $this->importTags($value, $model);
             } else {
                 $model->$field = $value;
             }
@@ -410,6 +424,11 @@ class CampaignPluginService
         return $model;
     }
 
+    /**
+     * @param string $block
+     * @param array|null $values
+     * @param MiscModel $model
+     */
     protected function importBlock(string $block, array $values = null, MiscModel $model)
     {
         if (empty($values)) {
@@ -433,6 +452,44 @@ class CampaignPluginService
                     'entry' => $value
                 ]);
             }
+        }
+    }
+
+
+    protected function importTags(array $values = null, MiscModel $model)
+    {
+        if (empty($values)) {
+            return;
+        }
+        $real = [];
+        foreach ($values as $val) {
+            if (!empty($val)) {
+                $real[] = $val;
+            }
+        }
+        if (empty($real)) {
+            return;
+        }
+
+        // Importing tags for
+
+        // Get existing tags on this entity
+        $existing = $model->entity->tags->pluck('id')->toArray();
+
+        foreach ($real as $tag) {
+            // Tag doesn't properly exist, skip
+            if (!isset($this->miscIds[$tag])) {
+                continue;
+            }
+            $target = $this->miscIds[$tag];
+            if (in_array($target, $existing)) {
+                continue;
+            }
+
+            $new = new EntityTag();
+            $new->entity_id = $model->entity->id;
+            $new->tag_id = $target;
+            $new->save();
         }
     }
 
@@ -474,5 +531,24 @@ class CampaignPluginService
 
             return '[' . $this->entityTypes[$id] . ':' . $this->entityIds[$id] . ']';
         }, $text);
+    }
+
+    /**
+     * List of created entities
+     * @return string
+     */
+    public function created(): string
+    {
+        return (string) implode(', ', $this->created);
+    }
+
+
+    /**
+     * List of created entities
+     * @return string
+     */
+    public function updated(): string
+    {
+        return (string) implode(', ', $this->updated);
     }
 }

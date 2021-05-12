@@ -24,8 +24,10 @@ return [
         'type'      => 'Rodzaj',
     ],
     'helpers'       => [
-        'journals'  => 'Wyświetla wszystkie dzienniki pochodne, albo tylko pochodzące bezpośrednio od tego.',
-        'nested'    => 'W widoku hierarchii najpierw wyświetlane są dzienniki, które nie mają źródła. Po kliknięciu na wiersz dziennika zobaczysz jego pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
+        'journals'      => 'Wyświetla wszystkie dzienniki pochodne, albo tylko pochodzące bezpośrednio od tego.',
+        'nested'        => 'W widoku hierarchii najpierw wyświetlane są dzienniki, które nie mają źródła. Po kliknięciu na wiersz dziennika zobaczysz jego pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
+        'nested_parent' => 'Wyświetlono dzienniki pochodzące od :parent.',
+        'nested_without'=> 'Wyświetlono wszystkie dzienniki nie posiadające źródła. Kliknij na rząd, by wyświetlić dzienniki pochodne.',
     ],
     'index'         => [
         'add'           => 'Nowy dziennik',

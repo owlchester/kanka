@@ -52,7 +52,9 @@ return [
         'type'          => 'Typ',
     ],
     'helpers'       => [
-        'nested'    => 'In der verschachtelten Ansicht, siehst du alle Quests verschachtelt. Quests ohne Oberquest werden im Standard angezeigt. Quests mit Subquests, können per Klick geöffnet werden, um die Subquests zu sehen. Das geht so tief, bis es keine Subquest mehr gibt.',
+        'nested'        => 'In der verschachtelten Ansicht, siehst du alle Quests verschachtelt. Quests ohne Oberquest werden im Standard angezeigt. Quests mit Subquests, können per Klick geöffnet werden, um die Subquests zu sehen. Das geht so tief, bis es keine Subquest mehr gibt.',
+        'nested_parent' => 'Anzeigen der Quests von :parent.',
+        'nested_without'=> 'Anzeigen aller Quests, die keine übergeordnete Quest haben. Klicken Sie auf eine Zeile, um die Quests für Kinder anzuzeigen.',
     ],
     'hints'         => [
         'quests'    => 'Ein Netz aus verknüpften Quests kann mit dem Elternquest-Feld erstellt werden.',

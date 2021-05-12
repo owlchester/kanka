@@ -23,6 +23,14 @@
                 <th class="avatar"><br /></th>
                 <th>{{ trans('crud.fields.entity') }}</th>
                 <th>{{ trans('crud.fields.entity_type') }}</th>
+                <th class="text-right">
+                    @can('update', $model)
+                        <a href="{{ route('abilities.entity-add', $model) }}" class="btn btn-primary btn-sm"
+                           data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('abilities.entity-add', $model) }}">
+                            <i class="fa fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('abilities.children.actions.add') }}</span>
+                        </a>
+                    @endcan
+                </th>
             </tr>
             @foreach ($r as $entity)
                 <tr>
@@ -34,6 +42,8 @@
                     </td>
                     <td>
                         {{ __('entities.' . $entity->pluralType()) }}
+                    </td>
+                    <td>
                     </td>
                 </tr>
             @endforeach

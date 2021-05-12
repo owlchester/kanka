@@ -15,6 +15,7 @@ return [
     'fields'        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'Adreça electrònica',
+        'hide_subscription'         => 'Amaga el meu nom del :hall_of_fame.',
         'last_login_share'          => 'Comparteix l\'última vegada que vaig estar en línia amb altres membres de la campanya.',
         'name'                      => 'Nom',
         'new_password'              => 'Contrasenya nova',
@@ -49,6 +50,7 @@ return [
     'sections'      => [
         'delete'    => [
             'delete'    => 'Elimina el compte',
+            'helper'    => 'En eliminar el compte s\'eliminaran també les campanyes on en sigueu l\'únic membre. Aquesta acció és permanent i no es pot desfer.',
             'title'     => 'Eliminació del compte',
             'warning'   => 'En eliminar el compte, totes les vostres dades s\'esborraran. N\'esteu segur?',
         ],
@@ -66,7 +68,6 @@ return [
             'pagination'            => 'Paginació (elements per pàgina)',
         ],
         'helpers'   => [
-            'editor'    => 'L\'editor de text per defecte (TinyMCE 4) és antic però funciona bé en escriptori, encara que no en mòbil. Summernote és un editor més nou que funciona a tots els dispositius, però encara l\'estem provant.',
             'editor_v2' => 'L\'editor de text obsolet (TinyMCE) no suporta mencions als dispositius mòbils, i no té suport per a funcionalitats com la galeria de campanya.',
         ],
         'hints'     => [

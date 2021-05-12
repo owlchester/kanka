@@ -557,4 +557,32 @@ class Calendar extends MiscModel
             return [1, 1, 1];
         }
     }
+
+    /**
+     * @param bool $flat
+     * @return array
+     */
+    public function recurringOptions(bool $flat = false): array
+    {
+        $options = [
+            '' => __('calendars.options.events.recurring_periodicity.none'),
+            'month' => __('calendars.options.events.recurring_periodicity.month'),
+            'year' => __('calendars.options.events.recurring_periodicity.year'),
+        ];
+
+        // Add options based on moons
+        foreach ($this->moons() as $moon) {
+            if ($flat) {
+                $options[$moon['id'] . '_f'] = __('calendars.options.events.recurring_periodicity.fullmoon_name', ['moon' => $moon['name']]);
+                $options[$moon['id'] . '_n'] = __('calendars.options.events.recurring_periodicity.newmoon_name', ['moon' => $moon['name']]);
+                continue;
+            }
+            $options[$moon['name']] = [
+                $moon['id'] . '_f' => __('calendars.options.events.recurring_periodicity.fullmoon'),
+                $moon['id'] . '_n' => __('calendars.options.events.recurring_periodicity.newmoon'),
+            ];
+        }
+
+        return $options;
+    }
 }

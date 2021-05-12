@@ -24,8 +24,10 @@ return [
         'type'      => 'Typ',
     ],
     'helpers'       => [
-        'journals'  => 'Zeigen Sie alle oder nur die direkt Untergeordneten Logbücher dieses Logbuchs an.',
-        'nested'    => 'Anzeigen von Logbüchern ohne übergeordnetetes Logbuch als erstes. Klicken Sie auf eine Zeile, um die untergordneten Logbücher des Logbuchs zu durchsuchen.',
+        'journals'      => 'Zeigen Sie alle oder nur die direkt Untergeordneten Logbücher dieses Logbuchs an.',
+        'nested'        => 'Anzeigen von Logbüchern ohne übergeordnetetes Logbuch als erstes. Klicken Sie auf eine Zeile, um die untergordneten Logbücher des Logbuchs zu durchsuchen.',
+        'nested_parent' => 'Anzeigen der Journale von :parent.',
+        'nested_without'=> 'Anzeigen aller Journale ohne übergeordnetes Journal. Klicken Sie auf eine Zeile, um die Kinderjournale anzuzeigen.',
     ],
     'index'         => [
         'add'           => 'Neues Logbuch',

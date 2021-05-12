@@ -26,8 +26,9 @@ return [
         'type'      => 'Tipo',
     ],
     'helpers'       => [
-        'date'      => 'Este campo puede contener cualquier cosa y no está vinculado a los calendarios de la campaña. Para vincular este evento con un calendario, añádelo desde la pestaña de recordatorios o desde el mismo calendario.',
-        'nested'    => 'Por defecto se muestran los eventos sin ningún superior. Haz clic en la fila de un evento para ver sus descendientes.',
+        'date'          => 'Este campo puede contener cualquier cosa y no está vinculado a los calendarios de la campaña. Para vincular este evento con un calendario, añádelo desde la pestaña de recordatorios o desde el mismo calendario.',
+        'nested_parent' => 'Mostrando eventos de :parent.',
+        'nested_without'=> 'Mostrando todos los eventos sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
     ],
     'index'         => [
         'add'           => 'Nuevo evento',

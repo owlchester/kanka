@@ -26,8 +26,9 @@ return [
         'type'      => 'Tipus',
     ],
     'helpers'       => [
-        'date'      => 'Aquest camp pot contenir qualsevol cosa i no està vinculat als calendaris de la campanya. Per vincular aquest esdeveniment amb un calendari, afegiu-lo des de la pestanya de recordatoris o des del mateix calendari.',
-        'nested'    => 'Aquí es mostren els esdeveniments sense pare per defecte. Feu clic a la fila d\'un esdeveniment per a mostrar-ne els descendents.',
+        'date'          => 'Aquest camp pot contenir qualsevol cosa i no està vinculat als calendaris de la campanya. Per vincular aquest esdeveniment amb un calendari, afegiu-lo des de la pestanya de recordatoris o des del mateix calendari.',
+        'nested_parent' => 'S\'estan mostrant els esdeveniments de :parent.',
+        'nested_without'=> 'S\'estan mostrant els esdeveniments sense pare. Feu clic a la fila d\'un esdeveniment per a mostrar-ne els descendents.',
     ],
     'index'         => [
         'add'           => 'Nou esdeveniment',

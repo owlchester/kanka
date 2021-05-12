@@ -50,6 +50,10 @@ TEXT
         'answer'    => 'Accède au tableau de bord de ta campagne et clique sur "Campagne" dans le menu de gauche. Un bouton de campagne "Supprimer" apparaîtra si tu es le seul administrateur de la campagne. La suppression d\'une campagne est une action permanente qui supprimera toutes les données stockées sur nos serveurs, y compris les images.',
         'question'  => 'Comment supprimer une campagne?',
     ],
+    'discord'               => [
+        'answer'    => 'Pour lier ton compte Kanka avec :discord, tu dois d\'abord cliquer sur ton image de profile en haut à droite de l\'application, puis cliquer sur le bouton Profil. Sur cette page, accèdes à la sous-page :apps et cliques sur connecter.',
+        'question'  => 'Comment lié mon compte Kanka avec Discord?',
+    ],
     'early-access'          => [
         'answer'    => 'L\'accès anticipé est un moyen pour nous de récompenser nos incroyables abonnés en leur donnant une période exclusive de 30 jours où ils peuvent essayer les derniers nouveautés avant tout le monde.',
         'question'  => 'Que-ce que l\'accès anticipé?',
@@ -84,7 +88,7 @@ TEXT
     ],
     'map'                   => [
         'answer'    => <<<'TEXT'
-Chaque lieu peut contenir une carte (png, jpg ou svg) qui elle-même contient des "endroits" qui sont placés sur la carte avec une icône de certaine taille, forme, et couleur, et ces endroits peuvent être liés à des entités ou un texte.
+Chaque lieu peut contenir une carte (png, jpg, webp ou svg) qui elle-même contient des "endroits" qui sont placés sur la carte avec une icône de certaine taille, forme, et couleur, et ces endroits peuvent être liés à des entités ou un texte.
 
 Les fichiers SVG venant de :azgaar et :watabou sont pleinement compatibles avex Kanka. Attention cependant, les images générées par d'autres outils sont comprimées de telle sorte à ce qu'elles soient incompatibles avec l'application. Une solution consiste à ouvrir les images dans Inkscape ou Photoshop et simplement réenregistrer les images SVG avant de les uploader.
 TEXT

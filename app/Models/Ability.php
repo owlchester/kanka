@@ -9,6 +9,7 @@ use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Arr;
 use Kalnoy\Nestedset\NodeTrait;
 
 /**
@@ -189,12 +190,37 @@ class Ability extends MiscModel
         return (int) config('entities.ids.ability');
     }
 
-
     /**
      * @return mixed
      */
     public function entryWithAttributes()
     {
         return Mentions::map($this);
+    }
+
+    /**
+     * Attach an entity to the tag
+     * @param array $request
+     * @return bool
+     */
+    public function attachEntity(array $request): bool
+    {
+        $entityId = Arr::get($request, 'entity_id');
+        $entity = Entity::with('abilities')->findOrFail($entityId);
+
+        // Make sure the tag isn't already attached to the entity
+        foreach ($entity->abilities as $ability) {
+            if ($ability->ability_id == $this->id) {
+                return true;
+            }
+        }
+
+        $entityAbility = EntityAbility::create([
+            'ability_id' => $this->id,
+            'entity_id' => $entityId,
+            'visibility' => Arr::get($request, 'visibility', 'all'),
+        ]);
+
+        return $entityAbility !== false;
     }
 }

@@ -26,8 +26,10 @@ return [
         'type'      => 'Rodzaj',
     ],
     'helpers'       => [
-        'date'      => 'W tym polu można umieścić wszystko - nie jest związane z kalendarzami kampanii. By umieścić je w kalendarzu, dodaj je ręcznie w menu kalendarza albo zakładce "Ważne daty" wydarzenia.',
-        'nested'    => 'W widoku hierarchii najpierw wyświetlane są wydarzenia, które nie mają źródła. Po kliknięciu na wiersz wydarzenia zobaczysz jego pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
+        'date'          => 'W tym polu można umieścić wszystko - nie jest związane z kalendarzami kampanii. By umieścić je w kalendarzu, dodaj je ręcznie w menu kalendarza albo zakładce "Ważne daty" wydarzenia.',
+        'nested'        => 'W widoku hierarchii najpierw wyświetlane są wydarzenia, które nie mają źródła. Po kliknięciu na wiersz wydarzenia zobaczysz jego pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
+        'nested_parent' => 'Wyświetlono wydarzenia pochodzące od :parent.',
+        'nested_without'=> 'Wyświetlono wszystkie wydarzenia nie posiadające źródła. Kliknij na rząd, by wyświetlić wydarzenia pochodne.',
     ],
     'index'         => [
         'add'           => 'Nowe wydarzenie',

@@ -32,7 +32,8 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'nested'    => 'Con la vista anidada se muestran las etiquetas de forma agrupada. Las etiquetas que no tengan ninguna superior se mostrarán aquí por defecto. Las que tengan subetiquetas anidadas se pueden ir clicando para mostrarlas. Puedes seguir haciendo click hasta que no haya más etiquetas anidadas que ver.',
+        'nested_parent' => 'Mostrando etiquetas de :parent.',
+        'nested_without'=> 'Mostrando todas las etiquetas sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
     ],
     'hints'         => [
         'children'  => 'Aquí se muestran todas las entidades que pertenecen directamente a esta etiqueta y a todas las etiquetas anidadas.',

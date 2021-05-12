@@ -221,12 +221,17 @@ class EntityObserver
         // Handle map. Let's use a service for this.
         ImageService::entity($entity, 'campaign/' . $entity->campaign_id, false, 'header_image');
 
+        // Superboosted image gallery selection
         if ($campaign->boosted(true)) {
             if (request()->has('entity_image_uuid')) {
                 $entity->image_uuid = request()->get('entity_image_uuid');
-
             } else {
                 $entity->image_uuid = null;
+            }
+            if (request()->has('entity_header_uuid')) {
+                $entity->header_uuid = request()->get('entity_header_uuid');
+            } else {
+                $entity->header_uuid = null;
             }
         }
 

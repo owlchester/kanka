@@ -29,6 +29,8 @@ return [
     'helpers'       => [
         'descendants'   => 'Na liście znajdują się wszystkie rodziny wywodzące się od tej rodziny, nie tylko bezpośrednio.',
         'nested'        => 'W widoku hierarchii najpierw wyświetlane są rodziny, które nie mają źródła. Po kliknięciu na wiersz rodziny zobaczysz jej pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
+        'nested_parent' => 'Wyświetlono rodziny pochodzące od :parent.',
+        'nested_without'=> 'Wyświetlono wszystkie rodziny nie posiadające źródła. Kliknij na rząd, by wyświetlić rodziny pochodne.',
     ],
     'hints'         => [
         'members'   => 'Lista członków rodziny. Aby dodać postać do rodziny, wybierz ją z listy w pozycji "Rodzina" podczas edycji tej postaci.',

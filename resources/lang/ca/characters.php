@@ -47,10 +47,8 @@ return [
     ],
     'helpers'       => [
         'age'   => 'Es pot vincular aquesta entitat amb un calendari de la campanya per calcular automàticament la seva edat. :more',
-        'free'  => '¿No encuentras el campo "Libre"? Si este personaje tenía uno, ha sido movido a la nueva pestaña de Notas.',
     ],
     'hints'         => [
-        'hide_personality'          => 'Es pot ocultar aquesta pestanya puede ocultarse als usuaris no administradors desactivant la opció «Personalitat visible» a l\'edició del personatge.',
         'is_dead'                   => 'Aquest personatge és mort',
         'is_personality_visible'    => 'La secció de la personalitat es pot ocultar als usuaris no administradors.',
         'personality_not_visible'   => 'Els trets de personalitat d\'aquest personatge ara només són visibles pels administradors.',

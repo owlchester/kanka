@@ -14,6 +14,7 @@ return [
         'community-votes'   => 'Community Votes',
         'news'              => 'News',
         'newsletter'        => 'Newsletter',
+        'updates'           => 'Updates',
     ],
     'headline'  => 'Subscribe to one or all of our newsletters to stay up to date with Kanka.',
     'title'     => 'Email Updates',

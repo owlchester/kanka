@@ -172,8 +172,8 @@
                             {!! Form::open(['route' => ['maps.map_markers.store', $map],
                                 'method' => 'POST',
                                 'data-shortcut' => 1,
-                                'enctype' => 'multipart/form-data',
-                                'id' => 'map-marker-new-form'
+                                'id' => 'map-marker-form',
+                                'class' => 'ajax-subform',
                                ]) !!}
                             @include('maps.markers._form', ['model' => null, 'map' => $map, 'activeTab' => 1])
 
@@ -203,7 +203,6 @@
                                         </li>
                                     </ul>
                                 </div>
-                                {!! Form::hidden('submit', null) !!}
                             </div>
 
                             {!! Form::hidden('from', 'explore') !!}

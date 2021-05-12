@@ -339,10 +339,10 @@ class MenuLink extends MiscModel
      * Override the tooltiped link for the datagrid
      * @return string
      */
-    public function tooltipedLink(): string
+    public function tooltipedLink(string $dislayName = null): string
     {
         return '<a href="' . $this->getLink() . '">' .
-            e($this->name) .
+            (!empty($displayName) ? $displayName : e($this->name)) .
         '</a>';
     }
 }

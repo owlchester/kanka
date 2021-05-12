@@ -43,8 +43,8 @@ return [
         'title'     => 'App Integration',
     ],
     'boost'         => [
-        'available_boosts' => 'Available boosts: :amount / :max',
-        'benefits'      => [
+        'available_boosts'  => 'Available boosts: :amount / :max',
+        'benefits'          => [
             'campaign_gallery'  => 'A campaign gallery to upload images that you can re-use through the campaign.',
             'entity_files'      => 'Upload up to 10 files per entity.',
             'entity_logs'       => 'Full entity logs of what was changed on an entity with each update.',
@@ -70,7 +70,7 @@ return [
             'tooltip'           => 'Custom tooltips for entities.',
             'upload'            => 'Increased upload size for every member in the campaign.',
         ],
-        'buttons'       => [
+        'buttons'           => [
             'boost'         => 'Boost',
             'superboost'    => 'Superboost',
             'tooltips'      => [
@@ -79,19 +79,19 @@ return [
             ],
             'unboost'       => 'Unboost',
         ],
-        'campaigns'     => 'Boosted Campaigns :count / :max',
-        'exceptions'    => [
+        'campaigns'         => 'Boosted Campaigns :count / :max',
+        'exceptions'        => [
             'already_boosted'       => 'Campaign :name is already boosted.',
             'exhausted_boosts'      => 'You are out of boosts to give. Remove your boost from a campaign before giving it to another.',
             'exhausted_superboosts' => 'You are out of boosts. You need 3 boosters to superboost a campaign.',
         ],
-        'success'       => [
+        'success'           => [
             'boost'         => 'Campaign :name boosted.',
             'delete'        => 'Removed your boost from :name.',
             'superboost'    => 'Campaign :name superboosted',
         ],
-        'title'         => 'Boost',
-        'unboost'       => [
+        'title'             => 'Boost',
+        'unboost'           => [
             'description'   => 'Are you sure you want to stop boosting the campaign :tag?',
             'title'         => 'Unboosting a campaign',
         ],

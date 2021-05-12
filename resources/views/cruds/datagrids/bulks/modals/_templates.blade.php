@@ -5,17 +5,20 @@
 </div>
 <div class="modal-body">
     <div class="form-group required">
-        <label>{{ trans('crud.attributes.fields.template') }}</label>
-        {!! Form::select('template_id', \App\Models\AttributeTemplate::orderBy('name', 'ASC')->pluck('name', 'id'), null, ['placeholder' => trans('crud.attributes.placeholders.template'), 'class' => 'form-control']) !!}
+        <label>{{ __('crud.attributes.fields.template') }}</label>
+        {!! Form::select('template_id', $templates, null, ['placeholder' => trans('crud.attributes.placeholders.template'), 'class' => 'form-control']) !!}
     </div>
 
-    <div class="form-group">
-        <label>{{ trans('crud.attributes.fields.community_templates') }}</label>
-        {!! Form::select('template', $communityTemplates, null, ['placeholder' => trans('crud.attributes.placeholders.template'), 'class' => 'form-control']) !!}
-    </div>
+
+    <p class="help-block">
+        {!! __('attributes/templates.helpers.marketplace', [
+    'boosted-campaigns' => link_to_route('front.features', __('crud.boosted_campaigns'), '#boost'),
+    'marketplace' => link_to('https://marketplace.kanka.io/attribute-templates', __('front.menu.marketplace'), ['target' => '_blank'])
+    ]) !!}
+    </p>
 </div>
 
 <div class="modal-footer">
     <a href="#" class="pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</a>
-    <button class="btn btn-primary" type="submit" name="datagrid-action" value="templates">{{ __('crud.click_modal.confirm') }}</button>
+    <button class="btn btn-primary" type="submit" name="datagrid-action" value="templates">{{ __('crud.actions.apply') }}</button>
 </div>

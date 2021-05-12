@@ -28,9 +28,9 @@ class StoreTimeline extends FormRequest
             'type' => 'nullable|max:191',
             'timeline_id', 'nullable|integer|exists:timelines,id',
             'calendar_id' => 'nullable|integer|exists:calendars,id',
-            'image' => 'mimes:jpeg,png,jpg,gif,svg|max:' . auth()->user()->maxUploadSize(false, 'map'),
+            'image' => 'mimes:jpeg,png,jpg,gif,webp,svg|max:' . auth()->user()->maxUploadSize(false, 'map'),
             'image_url' => 'nullable|url|active_url',
-            'template_id' => 'nullable|exists:attribute_templates,id',
+            'template_id' => 'nullable',
             'revert_order' => 'nullable',
         ];
 

@@ -27,6 +27,7 @@ return [
     'events'                => 'Events',
     'families'              => 'Families',
     'family'                => 'Family',
+    'inventories'           => 'Inventories',
     'item'                  => 'Item',
     'items'                 => 'Items',
     'journal'               => 'Journal',

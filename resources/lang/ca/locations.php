@@ -41,7 +41,8 @@ return [
         'families'          => 'Hi ha indrets on s\'assenten poderoses famílies.',
         'map'               => 'En afegir un mapa a un indret, s\'hi poden crear punts i enllaçar-los a altres entitats de la campanya.',
         'map_deprecated_2'  => 'Ara els mapes són un mòdul per si mateixos! Aquesta nova funció està actualment disponible com a accés anticipat a les :boosted. La interfície prèvia deixarà d\'estar disponible quan s\'obri l\'accés al nou mòdul, però continuareu podent editar mapes antics.',
-        'nested'            => 'Amb la vista niada es poden veure els indrets de forma agrupada. Els indrets que no tinguin cap localització superior es mostraran aquí per defecte. Els que tinguin localitzacions niades es poden anar clicant per a mostrar-les. Continueu clicant fins que no hi hagi més llocs niats a mostrar.',
+        'nested_parent'     => 'S\'estan mostrant els indrets de :parent.',
+        'nested_without'    => 'S\'estan mostrant els indrets sense pare. Feu clic a la fila d\'un indret per a mostrar-ne els descendents.',
         'organisations'     => 'Veu totes les organitzacions d\'aquest indret i les seves sublocalizaciones, o només les que estan directament aquí.',
     ],
     'hints'         => [
@@ -180,6 +181,7 @@ return [
                 'square'    => 'Quadrat',
             ],
             'sizes'         => [
+                'custom'    => 'Personalitzada',
                 'huge'      => 'Enorme',
                 'large'     => 'Gran',
                 'small'     => 'Pequeño',
@@ -199,8 +201,7 @@ return [
         'title' => 'Mapes de :name',
     ],
     'organisations' => [
-        'description'   => 'Organitzacions situades a l\'indret.',
-        'title'         => 'Organitzacions de :name',
+        'title' => 'Organitzacions de :name',
     ],
     'panels'        => [
         'map'   => 'Mapa',

@@ -174,12 +174,11 @@ class CampaignObserver
             UserCache::user($member->user)->clearCampaigns();
         }
 
-        // In case the campaign is no longer public, update any followers
-        if ($campaign->isDirty('visibility') && $campaign->visibility == Campaign::VISIBILITY_PRIVATE) {
-            /** @var CampaignFollower $follow */
-            foreach ($campaign->followers()->with('user')->get() as $follow) {
-                UserCache::user($follow->user)->clearFollows();
-            }
+        // Whenever a campaign is changed, clear the cache for followers.
+        // This can be for the name, image, public status etc which needs to be reflected
+        // in the user's sidebar.
+        foreach ($campaign->followers as $follow) {
+            UserCache::user($follow)->clearFollows();
         }
     }
 

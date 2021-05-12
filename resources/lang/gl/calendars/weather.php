@@ -14,6 +14,7 @@ return [
     ],
     'fields'        => [
         'effect'        => 'Fenómeno',
+        'name'          => 'Nome',
         'precipitation' => 'Precipitación',
         'temperature'   => 'Temperatura',
         'weather'       => 'Clima',
@@ -36,6 +37,7 @@ return [
     ],
     'placeholders'  => [
         'effect'        => 'Fenómeno natural ou máxico',
+        'name'          => 'Texto de clima personalizado opcional',
         'precipitation' => 'Cantidade de auga',
         'temperature'   => 'Máxima e mínima diarias',
         'wind'          => 'Velocidade do vento',

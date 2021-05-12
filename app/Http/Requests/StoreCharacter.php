@@ -25,15 +25,16 @@ class StoreCharacter extends FormRequest
     {
         return [
             'name' => 'required|max:191',
-            'image' => 'mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
+            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
             'family_id' => 'integer|exists:families,id',
             'location_id' => 'integer|exists:locations,id',
             'race_id' => 'nullable|integer|exists:races,id',
             'age' => 'nullable|max:25',
             'sex' => 'nullable|max:45',
+            'pronouns' => 'nullable|max:45',
             'title' => 'nullable|max:191',
-            'template_id' => 'nullable|exists:attribute_templates,id',
+            'template_id' => 'nullable',
         ];
     }
 }

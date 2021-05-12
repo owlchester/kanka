@@ -26,7 +26,7 @@ class StoreCalendar extends FormRequest
         $rules = [
             'name' => 'required',
             'type' => 'max:191',
-            'image' => 'mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
+            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
             'month_name' => 'required|array|min:2',
             'weekday' => 'required|array|min:2',
@@ -35,7 +35,7 @@ class StoreCalendar extends FormRequest
             'moon_name' => 'nullable|array',
             'epoch_name' => 'nullable|array',
             'season_name' => 'nullable|array',
-            'template_id' => 'nullable|exists:attribute_templates,id',
+            'template_id' => 'nullable',
         ];
 
         $leapYear = request()->post('has_leap_year');

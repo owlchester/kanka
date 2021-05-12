@@ -5,6 +5,7 @@ return [
         'disable'           => 'Désactiver le plugin',
         'enable'            => 'Activer le plugin',
         'go_to_marketplace' => 'Aller au marketplace',
+        'import'            => 'Importer',
         'remove'            => 'Retirer le plugin',
         'update'            => 'Mettre à jour le plugin',
         'update_available'  => 'Mise-à-jour disponnible!',
@@ -28,6 +29,9 @@ return [
         'type'      => 'Type de plugin',
     ],
     'helper'        => 'La communauté de Kanka est constamment en train d\'ajouter de nouveaux plugins incroyables sur le marketplace. Les campagnes boostées peuvent installer les plugins du marketplace. Cette interface permet de gérer les plugins installés sur la campagne.',
+    'import'        => [
+        'success'   => '{1} Importé :count entité du plugin :plugin.|[2,*] Importé :count entités du plugin :plugin.',
+    ],
     'info'          => [
         'helper'        => 'Dès qu\'un plugin a une nouvelle version, tu peux mettre à jour le plugin à la version la plus récente.',
         'title'         => 'Mise-à-jours du plugin :plugin',

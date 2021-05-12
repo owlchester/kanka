@@ -78,6 +78,11 @@
         @include('campaigns.settings.box', ['icon' => 'fa fa-link', 'module' => 'menu_links'])
     </div>
 </div>
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        @include('campaigns.settings.box', ['icon' => 'fas fa-suitcase', 'module' => 'inventories'])
+    </div>
+</div>
 
         <button class="btn btn-success btn-block">
             <i class="fa fa-check"></i> {{ __('crud.save') }}

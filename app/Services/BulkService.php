@@ -258,11 +258,11 @@ class BulkService
 
     /**
      * Bulk apply attribute templates
-     * @param array $options
+     * @param string $template
      * @return int
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function templates(array $options): int
+    public function templates($template): int
     {
         $count = 0;
         $model = $this->getEntity();
@@ -274,7 +274,7 @@ class BulkService
 
         foreach ($entities as $entity) {
             if (Auth::user()->can('update', $entity)) {
-                $service->apply($entity->entity, $options);
+                $service->apply($entity->entity, $template);
                 $count++;
             }
         }

@@ -388,13 +388,15 @@ abstract class MiscModel extends Model
         }
 
         // Each entity can have an inventory
-        $items['third']['inventory'] = [
-            'name' => 'crud.tabs.inventory',
-            'route' => 'entities.inventory',
-            'count' => $this->entity->inventories()->has('item')->count(),
-            'entity' => true,
-            'icon' => 'ra ra-round-bottom-flask',
-        ];
+        if ($campaign->enabled('inventories')) {
+            $items['third']['inventory'] = [
+                'name' => 'crud.tabs.inventory',
+                'route' => 'entities.inventory',
+                'count' => $this->entity->inventories()->has('item')->count(),
+                'entity' => true,
+                'icon' => 'ra ra-round-bottom-flask',
+            ];
+        }
 
         // Each entity can have assets
         if (config('entities.file_upload') && $this->entity->hasFiles()) {
@@ -460,17 +462,19 @@ abstract class MiscModel extends Model
 
     /**
      * Get the entity link with ajax tooltip
+     * @param string $displayName
      * @return string
      */
-    public function tooltipedLink(): string
+    public function tooltipedLink(string $displayName = null): string
     {
         if (empty($this->entity)) {
             return e($this->name);
         }
+
         return '<a class="name" data-toggle="tooltip-ajax" data-id="' . $this->entity->id . '" ' .
             'data-url="' . route('entities.tooltip', $this->entity->id) . '" href="' .
             $this->getLink() . '">' .
-            e($this->name) .
+            (!empty($displayName) ? $displayName : e($this->name)) .
             '</a>';
     }
 
@@ -577,11 +581,14 @@ abstract class MiscModel extends Model
                     <i class="fa fa-users" aria-hidden="true"></i> ' . __('crud.tabs.relations') . '
                 </a>
             </li>';
-            $actions[] = '<li>
+
+            if ($campaign->enabled('inventories')) {
+                $actions[] = '<li>
                 <a href="' . route('entities.inventory', $this->entity) . '" class="dropdown-item">
                     <i class="ra ra-round-bottom-flask" aria-hidden="true"></i> ' . __('crud.tabs.inventory') . '
                 </a>
             </li>';
+            }
 
             if ($campaign->enabled('abilities') && $this->entityTypeId() != config('entities.ids.ability')) {
                 $actions[] = '<li>

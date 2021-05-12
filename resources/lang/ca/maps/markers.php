@@ -2,8 +2,10 @@
 
 return [
     'actions'       => [
-        'remove'    => 'Elimina el marcador',
-        'update'    => 'Edita el marcador',
+        'entry'             => 'Escriviu una entrada personalitzada per aquest marcador.',
+        'remove'            => 'Elimina el marcador',
+        'save_and_explore'  => 'Guarda i explora',
+        'update'            => 'Edita el marcador',
     ],
     'create'        => [
         'success'   => 'S\'ha creat el marcador «:name».',
@@ -17,6 +19,8 @@ return [
         'title'     => 'Edita el marcador :name',
     ],
     'fields'        => [
+        'circle_radius' => 'Radi circular',
+        'copy_elements' => 'Copia els elements',
         'custom_icon'   => 'Icona personalitzada',
         'custom_shape'  => 'Forma personalitzada',
         'font_colour'   => 'Color de la icona',
@@ -26,11 +30,24 @@ return [
         'longitude'     => 'Longitud',
         'opacity'       => 'Opacitat',
         'pin_size'      => 'Tamany del marcador',
+        'polygon_style' => [
+            'stroke'            => 'Color del traç',
+            'stroke-opacity'    => 'Opacitat del traç',
+            'stroke-width'      => 'Gruix del traç',
+        ],
     ],
     'helpers'       => [
-        'base'          => 'Afegiu marcadors al mapa fent clic a qualsevol lloc.',
-        'custom_icon'   => 'Copieu l\'HTML d\'una icona de :fontawesome o :rpgawesome, o una icona SVG personalitzada.',
-        'draggable'     => 'Permet moure els marcadors al mode d\'exploració.',
+        'base'                      => 'Afegiu marcadors al mapa fent clic a qualsevol lloc.',
+        'copy_elements'             => 'Copia grups, capes i marcadors.',
+        'copy_elements_to_campaign' => 'Copia grups, capes i marcadors dels mapes. Els marcadors vinculats a una entitat es convertiran en marcadors estàndard.',
+        'custom_icon'               => 'Copieu l\'HTML d\'una icona de :fontawesome o :rpgawesome, o una icona SVG personalitzada.',
+        'custom_radius'             => 'Seleccioneu l\'opció de tamany personalitzat al desplegable per a definir un tamany.',
+        'draggable'                 => 'Permet moure els marcadors al mode d\'exploració.',
+        'label'                     => 'Una etiqueta es mostra com un bloc de text al mapa. El seu contingut serà el nom del marcador.',
+        'polygon'                   => [
+            'edit'  => 'Cliqueu al mapa per a afegir-ne la posició a les coordenades del polígon.',
+            'new'   => 'Moveu el marcador pel mapa per a guardar-ne la posició al polígon.',
+        ],
     ],
     'icons'         => [
         'custom'        => 'Personalitzada',

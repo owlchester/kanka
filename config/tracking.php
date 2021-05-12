@@ -23,6 +23,12 @@ return [
     'ga_convo' => env('TRACKING_GA_CONVERSION', null),
 
     /*
+     * Facebook tracking pixel on homepage for "join now"
+     * If empty, tracking will be disabled
+     */
+    'fb' => env('TRACKING_FB', null),
+
+    /*
      * Reddit tracking pixel on homepage for reddit ads
      * If empty, tracking will be disabled
      */

@@ -34,11 +34,14 @@ You can get a list of all the entity-events of an entity by using the following 
             "id": 60,
             "is_private": false,
             "is_recurring": true,
+            "recurring_periodicity": "yearly",
             "length": 1,
             "recurring_until": null,
             "type_id": null,
             "updated_at":  "2019-08-29T13:48:54.000000Z",
-            "updated_by": null
+            "updated_by": null,
+            "visibility": "all",
+            "year": 1
         }
     ]
 }
@@ -67,11 +70,14 @@ To get the details of a single entity-event, use the following endpoint.
         "id": 60,
         "is_private": false,
         "is_recurring": true,
+        "recurring_periodicity": "yearly",
         "length": 1,
         "recurring_until": null,
         "type_id": null,
         "updated_at":  "2019-08-29T13:48:54.000000Z",
-        "updated_by": null
+        "updated_by": null,
+        "visibility": "all",
+        "year": 1
     }
 }
 ```
@@ -95,13 +101,14 @@ To create an entity-event, use the following endpoint.
 | `month` | `integer` (Required) | Month (id) on which the event takes place |
 | `year` | `integer` (Required) | Year on which the event takes place |
 | `length` | `integer` (Required) | Duration in days of the event |
-| `is_recurring` | `boolean` | True if the event is recurring |
+| `recurring_periodicity` | `string` | Null if the event isn't recurring. `yearly`, `monthly` or `{moon.id}_(f|n)` where `f` is full moon and `n` is new moon |
 | `recurring_until` | `integer` | Year until the event reoccurs |
 | `colour` | `string` | Colour of the entity event in the calendar |
 | `comment` | `string` | Comment of the entity event |
 | `entity_id` | `integer` (Required) | The entity event's parent entity |
 | `is_private` | `boolean` | If the entity event is only visible to `admin` members of the campaign |
 | `type_id` | `null` or `int` | Special field for calculating the age of a character. `2` for birthday, `3` for death. |
+`| `visibility` | `string` | The visibility: `all` (default), `self`, member`, `admin` or `self-admin`. |
 
 ### Results
 

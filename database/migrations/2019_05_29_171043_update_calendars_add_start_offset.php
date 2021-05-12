@@ -14,7 +14,7 @@ class UpdateCalendarsAddStartOffset extends Migration
     public function up()
     {
         Schema::table('calendars', function (Blueprint $table) {
-            $table->unsignedTinyInteger('start_offset')->default(0);
+            $table->unsignedTinyInteger('start_offset')->nullable()->default(0);
         });
     }
 

@@ -19,7 +19,7 @@ if (!empty($oldCalendarID)) {
 
     <a href="#" id="entity-calendar-form-add" class="btn btn-default"
        style="<?=(!empty($model) && $model->hasCalendar() || !empty($oldCalendarID) ? "display: none" : null)?>" data-default-calendar="{{ ($onlyOneCalendar ? $calendars->first()->id : null) }}">
-        <i class="ra ra-moon-sun"></i> {{ trans('crud.forms.actions.calendar') }}
+        <i class="ra ra-moon-sun"></i> {{ __('crud.forms.actions.calendar') }}
     </a>
 
     <div class="entity-calendar-form" style="<?=((!isset($model) || !$model->hasCalendar()) && empty($oldCalendarID) ? "display: none" : null)?>">
@@ -67,25 +67,16 @@ if (!empty($oldCalendarID)) {
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <div class="form-group">
-                        <label>{{ __('calendars.fields.colour') }}</label>
-                        {!! Form::select('calendar_colour', FormCopy::colours(false), !empty($model) && $model->hasCalendar() ? $model->calendarColour : 'grey', ['class' => 'form-control']) !!}
+                        <label>{{ __('calendars.fields.colour') }}</label><br />
+                        {!! Form::text('calendar_colour', !empty($model) && $model->hasCalendar() ? $model->calendarColour : '#cccccc', ['class' => 'form-control spectrum', 'maxlength' => 7]) !!}
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4 col-sm-6">
                     <div class="form-group">
-                        {!! Form::hidden('is_recurring', 0) !!}
-                        <label>
-                            {!! Form::checkbox('is_recurring') !!}
-                            {{ __('calendars.fields.is_recurring') }}
-                        </label>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="form-group">
                         <label>{{ __('calendars.fields.recurring_periodicity') }}</label>
-                         {!! Form::select('recurring_periodicity', __('calendars.options.events.recurring_periodicity'), null, ['class' => 'form-control']) !!}
+                         {!! Form::select('recurring_periodicity', (!empty($model) && $model->hasCalendar() ? $model->calendar->recurringOptions(): (!empty($calendar) ? $calendar->recurringOptions() : [])), null, ['class' => 'form-control']) !!}
                     </div>
                 </div>
             </div>

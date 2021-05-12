@@ -28,8 +28,8 @@
 @inject('campaign', 'App\Services\CampaignService')
     <?php $cpt = 0; ?>
     @foreach ($entities as $model)
-        <?php $cpt++; ?>
-        @include($entity . '.show')
+        <?php $cpt++; $entity = $model->entity; ?>
+        @include($entityType . '.show')
         @if ($cpt < count($entities))
         <div class="page-break"></div>
         @endif

@@ -29,6 +29,15 @@ class CharacterOrganisationController extends Controller
     }
 
     /**
+     * @param Character $character
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function index(Character $character)
+    {
+        return redirect()->route('characters.show', $character);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

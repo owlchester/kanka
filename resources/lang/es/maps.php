@@ -48,7 +48,8 @@ return [
         'max_zoom'          => 'El máximo que se puede acercar un mapa. El valor por defecto es :default, mientras que el valor máximo permitido es :max.',
         'min_zoom'          => 'El máximo que se puede alejar un mapa. El valor por defecto es :default, mientras que el valor máximo permitido es :min.',
         'missing_image'     => 'Guarda el mapa con una imagen antes de añadir capas y marcadores.',
-        'nested'            => 'Desde la vista anidada, puedes ver tus mapas de forma anidada. Los mapas que no tengan ningún superior se mostrarán por defecto. Puedes hacer clic sobre los mapas con descendientes para mostrarlos. Puedes seguir haciendo clic hasta que no haya más descendientes que mostrar.',
+        'nested_parent'     => 'Mostrando mapas de :parent.',
+        'nested_without'    => 'Mostrando todos los mapas sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
     ],
     'index'         => [
         'add'   => 'Nuevo mapa',

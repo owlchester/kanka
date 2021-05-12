@@ -131,14 +131,16 @@
 
                         {!! Form::open(['route' => ['maps.map_markers.store', $model],
                             'method' => 'POST',
-                            'data-shortcut' => 1,
-                            'enctype' => 'multipart/form-data',
-                            'id' => 'map-marker-new-form'
+                            //'enctype' => 'multipart/form-data',
+                            //'id' => 'map-marker-new-form'
+                            'class' => 'ajax-subform',
                            ]) !!}
                         @include('maps.markers._form', ['model' => null, 'map' => $model, 'activeTab' => 1])
 
                         <div class="form-group">
-                            <button class="btn btn-success"><i class="fa fa-spin fa-spinner" style="display:none;"></i><span>{{ __('crud.save') }}</span></button>
+                            <button class="btn btn-success">
+                                <i class="fa fa-spin fa-spinner" style="display:none;"></i><span>{{ __('crud.save') }}</span>
+                            </button>
                         </div>
 
                         {!! Form::close() !!}

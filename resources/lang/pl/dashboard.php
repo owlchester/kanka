@@ -83,7 +83,7 @@ return [
         'title'     => 'Konfiguracja pulpitu kampanii',
         'widgets'   => [
             'calendar'      => 'Kalendarz',
-            'campaign'      => 'Nagłowek kampanii',
+            'campaign'      => 'Nagłówek kampanii',
             'header'        => 'Nagłówek',
             'preview'       => 'Skrót elementu',
             'random'        => 'Losowy element',
@@ -93,7 +93,11 @@ return [
     ],
     'title'             => 'Pulpit',
     'widgets'           => [
-        'calendar'      => [
+        'actions'                   => [
+            'advanced-options'  => 'Opcje zaawansowane',
+        ],
+        'advanced_options_boosted'  => ':boosted_campaigns posiadają zaawansowane opcje widżetów, pozwalające wyświetlać na pulpicie cechy albo członków rodzin.',
+        'calendar'                  => [
             'actions'           => [
                 'next'      => 'Zmień datę na kolejny dzień',
                 'previous'  => 'Zmień datę na poprzedni dzień',
@@ -102,39 +106,51 @@ return [
             'previous_events'   => 'Poprzedni',
             'upcoming_events'   => 'Nadchodzące',
         ],
-        'campaign'      => [
+        'campaign'                  => [
             'helper'    => 'Ten widżet wyświetla nagłówek kampanii. Jest zawsze widoczny na podstawowym pulpicie.',
         ],
-        'create'        => [
+        'create'                    => [
             'success'   => 'Dodano widżet do pulpitu.',
         ],
-        'delete'        => [
+        'delete'                    => [
             'success'   => 'Usunięto widżet z pulpitu.',
         ],
-        'fields'        => [
-            'name'  => 'Własna nazwa widżetu',
-            'text'  => 'Tekst',
-            'width' => 'Szerokość',
+        'fields'                    => [
+            'dashboard' => 'Pulpit',
+            'name'      => 'Własna nazwa widżetu',
+            'text'      => 'Tekst',
+            'width'     => 'Szerokość',
         ],
-        'recent'        => [
-            'entity-header' => 'Używaj nagłówka elementu jako obrazu widżetu',
-            'full'          => 'Pełny',
-            'help'          => 'Pokazuj tylko ostatni zmodyfikowany element, ale publikuj cały skrót',
-            'helpers'       => [
-                'entity-header' => 'Jeżeli element ma obraz w nagłówku (w doładowanej kampanii), widżet będzie wyświetlał nagłówek zamiast obrazu samego elementu.',
-                'full'          => 'Zamiast skrótu elementu domyślnie wyświetla jego cały opis.',
+        'random'                    => [
+            'helpers'   => [
+                'name'  => 'Możesz wskazać nazwę losowego elementu przy pomocy {name}.',
             ],
-            'singular'      => 'Pojedynczy',
-            'tags'          => 'Filtruj listę niedawno zmienianych elementów według konkretnych etykiet.',
-            'title'         => 'Ostatnio zmieniane',
         ],
-        'unmentioned'   => [
+        'recent'                    => [
+            'entity-header'     => 'Używaj nagłówka elementu jako obrazu widżetu',
+            'filters'           => 'Filtry',
+            'full'              => 'Pełny',
+            'help'              => 'Pokazuj tylko ostatni zmodyfikowany element, ale publikuj cały skrót',
+            'helpers'           => [
+                'entity-header'     => 'Jeżeli element ma obraz w nagłówku (w doładowanej kampanii), widżet będzie wyświetlał nagłówek zamiast obrazu samego elementu.',
+                'filters'           => 'Możesz filtrować rodzaje elementów, które będą wyświetlane. Instrukcję używania tej opcji znajdziesz na :link stronie pomocy.',
+                'full'              => 'Zamiast skrótu elementu domyślnie wyświetla jego cały opis.',
+                'show_attributes'   => 'Wyświetla cechy elementu pod jego opisem.',
+                'show_members'      => 'Jeżeli element jest rodziną albo organizacją, wyświetla jej członków pod opisem.',
+            ],
+            'show_attributes'   => 'Pokaż cechy',
+            'show_members'      => 'Pokaż członków',
+            'singular'          => 'Pojedynczy',
+            'tags'              => 'Filtruj listę niedawno zmienianych elementów według konkretnych etykiet.',
+            'title'             => 'Ostatnio zmieniane',
+        ],
+        'unmentioned'               => [
             'title' => 'Elementy bez wzmianki',
         ],
-        'update'        => [
+        'update'                    => [
             'success'   => 'Zmodyfikowano widżet.',
         ],
-        'widths'        => [
+        'widths'                    => [
             '0' => 'Automatyczna',
             '12'=> 'Pełny (100%)',
             '3' => 'Malutki (25%)',

@@ -40,7 +40,7 @@ class EntityFileRule implements Rule
             return false;
         }
 
-        $validExtensions = explode(',', 'jpeg,png,jpg,gif,pdf,xls,xlsx,mp3');
+        $validExtensions = explode(',', 'jpeg,png,jpg,gif,webp,pdf,xls,xlsx,mp3');
         if (in_array($value->guessExtension(), $validExtensions)) {
             return true;
         }

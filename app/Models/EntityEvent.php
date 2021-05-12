@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Blameable;
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\OrderableTrait;
+use App\Traits\VisibilityTrait;
 use Illuminate\Support\Str;
 
 /**
@@ -35,7 +37,7 @@ class EntityEvent extends MiscModel
      * Traits
      */
     //use VisibleTrait;
-    use OrderableTrait, SimpleSortableTrait;
+    use OrderableTrait, SimpleSortableTrait, VisibilityTrait, Blameable;
 
     /**
      * Trigger for filtering based on the order request.
@@ -88,7 +90,8 @@ class EntityEvent extends MiscModel
         'day',
         'month',
         'year',
-        'type_id'
+        'type_id',
+        'visibility',
     ];
 
     /**
@@ -220,6 +223,29 @@ class EntityEvent extends MiscModel
 
         // Current month, check on day
         return $this->day < $calendar->currentDate('date');
+    }
+
+    /**
+     * @param int $year
+     * @param int $month
+     * @param int $day
+     * @return bool
+     */
+    public function isPastDate(int $year, int $month, int $day): bool
+    {
+        if ($this->year < $year) {
+            return true;
+        } elseif ($this->year > $year) {
+            return false;
+        }
+
+        if ($this->month < $month) {
+            return true;
+        } elseif ($this->month > $month) {
+            return false;
+        }
+
+        return $this->day <= $day;
     }
 
     /**

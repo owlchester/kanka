@@ -27,6 +27,8 @@ class EntityEventResource extends EntityChild
             'recurring_periodicity' => $this->recurring_periodicity,
             'colour' => $this->colour,
             'type_id' => $this->type_id,
+            'visibility' => $this->visibility,
+            'created_by' => $this->created_by,
         ]);
     }
 }

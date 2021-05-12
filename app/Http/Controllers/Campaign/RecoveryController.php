@@ -8,6 +8,7 @@ use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Models\Entity;
 use App\Services\RecoveryService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class RecoveryController extends Controller
@@ -23,6 +24,10 @@ class RecoveryController extends Controller
         $this->service = $service;
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function index()
     {
         $campaign = CampaignLocalization::getCampaign();
@@ -30,11 +35,16 @@ class RecoveryController extends Controller
 
         $entities = Entity::onlyTrashed()
             ->orderBy('deleted_at', 'DESC')
+            ->whereDate('deleted_at', '>=', Carbon::today()->subDays(config('entities.hard_delete')))
             ->paginate();
 
         return view('campaigns.recovery.index', compact('entities', 'campaign'));
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function recover(Request $request)
     {
         try {

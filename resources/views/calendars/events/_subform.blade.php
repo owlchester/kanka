@@ -30,41 +30,41 @@
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
-            <label>{{ __('calendars.fields.length') }}</label>
+            <label>{{ __('calendars.fields.length') }}
+            <i class="fa fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('calendars.hints.event_length') }}"></i>
+            </label>
             {!! Form::number('length', (empty($entityEvent) ? 1 : null), ['placeholder' => __('calendars.placeholders.length'), 'class' => 'form-control', 'maxlength' => 1]) !!}
+
+            <p class="help-block hidden-md hidden-lg">{{ __('calendars.hints.event_length') }}</p>
+
         </div>
     </div>
     <div class="col-md-6">
         <div class="form-group">
-            <label>{{ __('calendars.fields.colour') }}</label>
+            <label>{{ __('calendars.fields.colour') }}</label><br />
             {!! Form::text('colour', (!empty($entityEvent) ? null : '#cccccc'), ['class' => 'form-control spectrum', 'maxlength' => 7] ) !!}
         </div>
     </div>
 </div>
 
-<div class="form-group">
-    <label>
-        {!! Form::checkbox('is_recurring') !!}
-        {{ __('calendars.fields.is_recurring') }}
-    </label>
-</div>
-<div class="row" style="@if (!isset($entityEvent) || !$entityEvent->is_recurring) display:none @endif" id="add_event_recurring_until">
+<div class="row">
     <div class="col-md-6">
         <div class="form-group">
-            <label>{{ __('calendars.fields.recurring_periodicity') }}</label>
-            {!! Form::select('recurring_periodicity', __('calendars.options.events.recurring_periodicity'), null, ['class' => 'form-control']) !!}
+            <label>
+                {{ __('calendars.fields.is_recurring') }}
+            </label>
+            {!! Form::select('recurring_periodicity', (isset($calendar) ? $calendar->recurringOptions() : []), null, ['class' => 'form-control']) !!}
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6" style="@if (!isset($entityEvent) || empty($entityEvent->recurring_periodicity)) display:none @endif" id="add_event_recurring_until">
         <div class="form-group">
             <label>{{ __('calendars.fields.recurring_until') }}</label>
             {!! Form::text('recurring_until', null, ['placeholder' => __('calendars.placeholders.recurring_until'), 'class' => 'form-control', 'maxlength' => 12]) !!}
         </div>
     </div>
-    <div class="col-md-12">
-        <p class="help-block">{{ __('calendars.hints.is_recurring') }}</p>
-    </div>
 </div>
+
+@include('cruds.fields.visibility', ['model' => isset($entityEvent) ? $entityEvent : null])
 
 @if (!empty($entity) && $entity->typeId() == config('entities.ids.character'))
     <div class="form-group">

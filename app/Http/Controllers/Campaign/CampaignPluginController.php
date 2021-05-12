@@ -162,6 +162,11 @@ class CampaignPluginController extends Controller
 
     }
 
+    /**
+     * @param Plugin $plugin
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function import(Plugin $plugin)
     {
         $campaign = CampaignLocalization::getCampaign();
@@ -177,7 +182,10 @@ class CampaignPluginController extends Controller
                 ->with(
                     'success',
                     trans_choice('campaigns/plugins.import.success', $count, ['plugin' => $plugin->name, 'count' => $count])
-                );
+                )
+                ->with('plugin_entities_created', $this->service->created())
+                ->with('plugin_entities_updated', $this->service->updated())
+                ;
         }
         catch (\Exception $e) {
             return redirect()->route('campaign_plugins.index')

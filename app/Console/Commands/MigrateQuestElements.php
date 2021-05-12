@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Entity;
 use App\Models\MiscModel;
+use App\Models\QuestAbstract;
 use App\Models\QuestCharacter;
 use App\Models\QuestElement;
 use App\Models\QuestItem;
@@ -47,36 +48,44 @@ class MigrateQuestElements extends Command
      */
     public function handle()
     {
-
+        $this->info('Start importing characters');
+        $chunk = 500;
         QuestCharacter::with('character', 'character.entity', 'quest', 'quest.entity')
-            ->chunk(1000, function ($elements) {
+            ->chunk($chunk, function ($elements) {
+                $this->info('New chunk');
                 foreach ($elements as $element) {
                     $this->importElement($element);
                 }
             });
         $this->info('Migrated ' . $this->count . ' characters');
 
+        $this->info('Start importing locations');
         $this->count = 0;
         QuestLocation::with('location', 'location.entity', 'quest', 'quest.entity')
-            ->chunk(1000, function ($elements) {
+            ->chunk($chunk, function ($elements) {
+                $this->info('New chunk');
                 foreach ($elements as $element) {
                     $this->importElement($element);
                 }
             });
         $this->info('Migrated ' . $this->count . ' locations');
 
+        $this->info('Start importing ite s');
         $this->count = 0;
         QuestItem::with('item', 'item.entity', 'quest', 'quest.entity')
-            ->chunk(1000, function ($elements) {
+            ->chunk($chunk, function ($elements) {
+                $this->info('New chunk');
                 foreach ($elements as $element) {
                     $this->importElement($element);
                 }
             });
         $this->info('Migrated ' . $this->count . ' items');
 
+        $this->info('Start importing organisations');
         $this->count = 0;
         QuestOrganisation::with('organisation', 'organisation.entity', 'quest', 'quest.entity')
-            ->chunk(1000, function ($elements) {
+            ->chunk($chunk, function ($elements) {
+                $this->info('New chunk');
                 foreach ($elements as $element) {
                     $this->importElement($element);
                 }
@@ -86,7 +95,7 @@ class MigrateQuestElements extends Command
     }
 
     /**
-     * @param QuestCharacter|QuestLocation|QuestItem|QuestOrganisation $model
+     * @param QuestAbstract $model
      */
     protected function importElement($model)
     {
@@ -101,18 +110,18 @@ class MigrateQuestElements extends Command
         }
 
         try {
-            $entity = Entity::select('id')
-                ->withTrashed()
-                ->where('entity_id', $model->{$key . '_id'})
-                ->where('type', $key)
-                ->first();
-
-            if (empty($entity)) {
+            // If the entity was deleted, we skip this.
+            if (empty($model->$key) || empty($model->$key->entity)) {
                 // No idea what this is supposed to be, junk
                 $this->error("Unknown $key #" . $model->{$key . '_id'});
                 return;
             }
-            $entityId = $entity->id;
+
+            // If the quest was deleted, skip
+            if (empty($model->quest) || empty($model->quest->entity)) {
+                return;
+            }
+            $entityId = $model->$key->entity->id;
             unset($entity);
 
 
@@ -130,7 +139,8 @@ class MigrateQuestElements extends Command
 
             unset($new);
         } catch (\Exception $e) {
-            $this->error('Error: ' . $e->getMessage());
+            $this->error('Error: ' . $model->getTable() . '#' . $model->id . ' key(' . $key . ') ' . $e->getMessage());
+            //$this->error($e->getTraceAsString());
         }
     }
 }

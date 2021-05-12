@@ -962,6 +962,10 @@ td.breakable {
   padding: 2px;
 }
 
+#entry {
+  word-break: break-word;
+}
+
 hr {
   border-top: 1px solid #eeeeee;
 }
@@ -1105,10 +1109,6 @@ summary {
   word-wrap: break-word;
 }
 
-.calendar tbody td .add {
-  visibility: hidden;
-}
-
 .calendar tbody td h5 {
   float: left;
   margin-top: 3px;
@@ -1174,10 +1174,6 @@ summary {
 
 .calendar tbody td.today {
   background-color: #FFFDE2;
-}
-
-.calendar tbody td:hover .add {
-  visibility: visible;
 }
 
 .calendar tbody tr.named_week td {

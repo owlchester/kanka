@@ -31,7 +31,6 @@
                 'method' => 'PATCH',
                 'data-shortcut' => 1,
                 'id' => 'map-marker-form',
-                'enctype' => 'multipart/form-data'
                ]) !!}
             @include('maps.markers._form')
 

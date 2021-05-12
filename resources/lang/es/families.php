@@ -28,7 +28,8 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Aquí se muestran todas las familias que descienden de esta, no solo las inmediatamente inferiores.',
-        'nested'        => 'Con la vista anidada, puedes ver tus familias de forma anidada. Las familias que no tengan familia antecesora se mostrarán por defecto. A las familias con subfamilias se les puede hacer click para mostrar sus descendientes. Puedes seguir haciendo click hasta que no haya más descendientes que mostrar.',
+        'nested_parent' => 'Mostrando familias de :parent.',
+        'nested_without'=> 'Mostrando todas las familias sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
     ],
     'hints'         => [
         'members'   => 'Aquí se muestran los miembros de la familia. Se puede añadir un personaje a una familia en el menú de edición de dicho personaje, usando el desplegable "Familia".',

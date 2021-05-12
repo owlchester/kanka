@@ -29636,14 +29636,15 @@ return jQuery;
   var undefined;
 
   /** Used as the semantic version number. */
-  var VERSION = '4.17.19';
+  var VERSION = '4.17.21';
 
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
 
   /** Error message constants. */
   var CORE_ERROR_TEXT = 'Unsupported core-js use. Try https://npms.io/search?q=ponyfill.',
-      FUNC_ERROR_TEXT = 'Expected a function';
+      FUNC_ERROR_TEXT = 'Expected a function',
+      INVALID_TEMPL_VAR_ERROR_TEXT = 'Invalid `variable` option passed into `_.template`';
 
   /** Used to stand-in for `undefined` hash values. */
   var HASH_UNDEFINED = '__lodash_hash_undefined__';
@@ -29776,10 +29777,11 @@ return jQuery;
   var reRegExpChar = /[\\^$.*+?()[\]{}|]/g,
       reHasRegExpChar = RegExp(reRegExpChar.source);
 
-  /** Used to match leading and trailing whitespace. */
-  var reTrim = /^\s+|\s+$/g,
-      reTrimStart = /^\s+/,
-      reTrimEnd = /\s+$/;
+  /** Used to match leading whitespace. */
+  var reTrimStart = /^\s+/;
+
+  /** Used to match a single whitespace character. */
+  var reWhitespace = /\s/;
 
   /** Used to match wrap detail comments. */
   var reWrapComment = /\{(?:\n\/\* \[wrapped with .+\] \*\/)?\n?/,
@@ -29788,6 +29790,18 @@ return jQuery;
 
   /** Used to match words composed of alphanumeric characters. */
   var reAsciiWord = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
+
+  /**
+   * Used to validate the `validate` option in `_.template` variable.
+   *
+   * Forbids characters which could potentially change the meaning of the function argument definition:
+   * - "()," (modification of function parameters)
+   * - "=" (default value)
+   * - "[]{}" (destructuring of function parameters)
+   * - "/" (beginning of a comment)
+   * - whitespace
+   */
+  var reForbiddenIdentifierChars = /[()=,{}\[\]\/\s]/;
 
   /** Used to match backslashes in property paths. */
   var reEscapeChar = /\\(\\)?/g;
@@ -30618,6 +30632,19 @@ return jQuery;
   }
 
   /**
+   * The base implementation of `_.trim`.
+   *
+   * @private
+   * @param {string} string The string to trim.
+   * @returns {string} Returns the trimmed string.
+   */
+  function baseTrim(string) {
+    return string
+      ? string.slice(0, trimmedEndIndex(string) + 1).replace(reTrimStart, '')
+      : string;
+  }
+
+  /**
    * The base implementation of `_.unary` without support for storing metadata.
    *
    * @private
@@ -30948,6 +30975,21 @@ return jQuery;
     return hasUnicode(string)
       ? unicodeToArray(string)
       : asciiToArray(string);
+  }
+
+  /**
+   * Used by `_.trim` and `_.trimEnd` to get the index of the last non-whitespace
+   * character of `string`.
+   *
+   * @private
+   * @param {string} string The string to inspect.
+   * @returns {number} Returns the index of the last non-whitespace character.
+   */
+  function trimmedEndIndex(string) {
+    var index = string.length;
+
+    while (index-- && reWhitespace.test(string.charAt(index))) {}
+    return index;
   }
 
   /**
@@ -42118,7 +42160,7 @@ return jQuery;
       if (typeof value != 'string') {
         return value === 0 ? value : +value;
       }
-      value = value.replace(reTrim, '');
+      value = baseTrim(value);
       var isBinary = reIsBinary.test(value);
       return (isBinary || reIsOctal.test(value))
         ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
@@ -44490,6 +44532,12 @@ return jQuery;
       if (!variable) {
         source = 'with (obj) {\n' + source + '\n}\n';
       }
+      // Throw an error if a forbidden character was found in `variable`, to prevent
+      // potential command injection attacks.
+      else if (reForbiddenIdentifierChars.test(variable)) {
+        throw new Error(INVALID_TEMPL_VAR_ERROR_TEXT);
+      }
+
       // Cleanup code by stripping empty strings.
       source = (isEvaluating ? source.replace(reEmptyStringLeading, '') : source)
         .replace(reEmptyStringMiddle, '$1')
@@ -44603,7 +44651,7 @@ return jQuery;
     function trim(string, chars, guard) {
       string = toString(string);
       if (string && (guard || chars === undefined)) {
-        return string.replace(reTrim, '');
+        return baseTrim(string);
       }
       if (!string || !(chars = baseToString(chars))) {
         return string;
@@ -44638,7 +44686,7 @@ return jQuery;
     function trimEnd(string, chars, guard) {
       string = toString(string);
       if (string && (guard || chars === undefined)) {
-        return string.replace(reTrimEnd, '');
+        return string.slice(0, trimmedEndIndex(string) + 1);
       }
       if (!string || !(chars = baseToString(chars))) {
         return string;
@@ -45212,7 +45260,7 @@ return jQuery;
      * // => [{ 'a': 4, 'b': 5, 'c': 6 }]
      *
      * // Checking for several possible values
-     * _.filter(users, _.overSome([_.matches({ 'a': 1 }), _.matches({ 'a': 4 })]));
+     * _.filter(objects, _.overSome([_.matches({ 'a': 1 }), _.matches({ 'a': 4 })]));
      * // => [{ 'a': 1, 'b': 2, 'c': 3 }, { 'a': 4, 'b': 5, 'c': 6 }]
      */
     function matches(source) {
@@ -45249,7 +45297,7 @@ return jQuery;
      * // => { 'a': 4, 'b': 5, 'c': 6 }
      *
      * // Checking for several possible values
-     * _.filter(users, _.overSome([_.matchesProperty('a', 1), _.matchesProperty('a', 4)]));
+     * _.filter(objects, _.overSome([_.matchesProperty('a', 1), _.matchesProperty('a', 4)]));
      * // => [{ 'a': 1, 'b': 2, 'c': 3 }, { 'a': 4, 'b': 5, 'c': 6 }]
      */
     function matchesProperty(path, srcValue) {
@@ -77133,6 +77181,8 @@ var calendarAddEpoch, calendarTemplateEpoch;
 var calendarAddIntercalary, calendarTemplateIntercalary, calendarSortIntercalary;
 var calendarYearSwitcher, calendarYearSwitcherField, calendarEventModal;
 var calendarSortMonths, calendarSortWeekdays, calendarSortYears, calendarSortMoons, calendarSortSeasons, calendarSortEpochs;
+var reminderFormValid = false,
+    reminderForm;
 $(document).ready(function () {
   // Form
   calendarAddMonth = $('#add_month');
@@ -77177,7 +77227,7 @@ $(document).ready(function () {
     initCalendarEventModal();
   });
 
-  if ($('input[name="is_recurring"]').length === 1) {
+  if ($('select[name="recurring_periodicity"]').length === 1) {
     initCalendarEventModal();
   }
 });
@@ -77262,8 +77312,7 @@ function calendarDeleteRowHandler() {
   calendarSortYears.sortable();
   calendarSortMoons.sortable();
   calendarSortSeasons.sortable();
-  calendarSortIntercalary.sortable();
-  calendarSortWeek.sortable();
+  calendarSortIntercalary.sortable(); //calendarSortWeek.sortable();
 }
 
 function initCalendarEventBlock() {
@@ -77277,8 +77326,12 @@ function initCalendarEventBlock() {
 }
 
 function initCalendarEventModal() {
-  $('input[name="is_recurring"]').on('click', function (e) {
-    $('#add_event_recurring_until').toggle();
+  $('select[name="recurring_periodicity"]').change(function (e) {
+    if (this.value) {
+      $('#add_event_recurring_until').show();
+    } else {
+      $('#add_event_recurring_until').hide();
+    }
   });
   $('#calendar-action-existing').on('click', function () {
     $('#calendar-event-first').hide();
@@ -77300,6 +77353,84 @@ function initCalendarEventModal() {
     $('.calendar-new-event-field').show();
     $('#calendar-event-submit').toggle();
   });
+  $('form.ajax-validation').unbind('submit').on('submit', function (e) {
+    reminderForm = $(this);
+
+    if (reminderFormValid) {
+      return true;
+    }
+
+    e.preventDefault();
+    $(this).find('.btn-success').prop('disabled', true);
+    $(this).find('.btn-success span').hide();
+    $(this).find('.btn-success i.fa').show(); // Allow ajax requests to use the X_CSRF_TOKEN for deletes
+
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    var formData = new FormData(this);
+    $.ajax({
+      url: $(this).attr('action'),
+      method: $(this).attr('method'),
+      data: formData,
+      cache: false,
+      contentType: false,
+      processData: false
+    }).done(function (res) {
+      // If the validation succeeded, we can really submit the form
+      reminderFormValid = true;
+      reminderForm.submit();
+    }).fail(function (err) {
+      //console.log('error', err);
+      // Reset any error fields
+      reminderForm.find('.input-error').removeClass('input-error');
+      reminderForm.find('.text-danger').remove(); // If we have a 503 error status, let's assume it's from cloudflare and help the user
+      // properly save their data.
+
+      if (err.status === 503) {
+        $('#entity-form-503-error').show();
+        resetReminderAnimation();
+      } // If it's 403, the session is gone
+
+
+      if (err.status === 403) {
+        $('#entity-form-403-error').show();
+        resetReminderAnimation();
+      } // Loop through the errors to add the class and error message
+
+
+      var errors = err.responseJSON.errors;
+      var errorKeys = Object.keys(errors);
+      var foundAllErrors = true;
+      errorKeys.forEach(function (i) {
+        var errorSelector = $('[name="' + i + '"]'); //console.log('error field', '[name="' + i + '"]');
+
+        if (errorSelector.length > 0) {
+          reminderForm.find('[name="' + i + '"]').addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
+        } else {
+          foundAllErrors = false;
+        }
+      });
+      var firstItem = Object.keys(errors)[0];
+      var firstItemDom = reminderForm.find('[name="' + firstItem + '"]'); // If we can actually find the first element, switch to it and the correct tab.
+
+      if (firstItemDom.length > 0) {
+        firstItemDom.focus();
+      } //console.log('reset stuff');
+
+
+      resetReminderAnimation();
+    });
+    return false;
+  });
+}
+
+function resetReminderAnimation() {
+  reminderForm.find('.btn-success i.fa').hide();
+  reminderForm.find('.btn-success span').show();
+  reminderForm.find('.btn-success').prop('disabled', false);
 }
 
 /***/ }),
@@ -77846,11 +77977,18 @@ function loadCalendarDates(calendarID) {
     entityCalendarSubForm.show();
     entityCalendarDayField.val(data.current.day);
     entityCalendarYearField.val(data.current.year);
+    $('select[name="recurring_periodicity"] option').remove();
+    $.each(data.recurring, function (key, value) {
+      //console.log('moon', key, value);
+      $('select[name="recurring_periodicity"]').append('<option value="' + key + '">' + value + '</option>');
+    });
     $('input[name="length"]').val(1); // However, if there is only one result, select id.
 
     if (data.length === 1) {
       entityCalendarMonthField.val(data[0].id);
     }
+
+    initSpectrum();
   });
 }
 /**
@@ -78156,6 +78294,19 @@ function registerEntityNoteDeleteEvents() {
     $(this).on('click', function () {
       $(this).parent().parent().parent().parent().remove();
     });
+  });
+}
+
+function initSpectrum() {
+  if (!$.isFunction($.fn.spectrum)) {
+    return;
+  }
+
+  $(".spectrum").spectrum({
+    preferredFormat: "hex",
+    showInput: true,
+    showPalette: true,
+    allowEmpty: true
   });
 }
 

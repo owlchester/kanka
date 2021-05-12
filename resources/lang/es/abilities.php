@@ -15,6 +15,9 @@ return [
         'success'   => 'Habilidad ":name" actualizada.',
         'title'     => 'Editar habilidad :name',
     ],
+    'entities'      => [
+        'title' => 'Entidades con la habilidad :name',
+    ],
     'fields'        => [
         'abilities' => 'Habilidades',
         'ability'   => 'Habilidad superior',
@@ -24,7 +27,8 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Esta lista contiene todas las habilidades descendientes de esta habilidad, no solo las que están en el nivel inmediatamente inferior.',
-        'nested'        => 'En la vista anidada se muestran las habilidades de forma anidada. Las habilidades sin ningún superior se mostrarán por defecto. Las que tengan sub habilidades se les puede hacer clic para mostrar dichos descendientes. Puedes seguir haciendo clic hasta que no haya más descendientes que mostrar.',
+        'nested_parent' => 'Mostrando habilidades de :parent.',
+        'nested_without'=> 'Mostrando todas las habilidades que no tienen superior. Haz clic sobre una fila para mostrar las habilidades anidadas.',
     ],
     'index'         => [
         'add'           => 'Nueva habilidad',
@@ -40,6 +44,7 @@ return [
     'show'          => [
         'tabs'  => [
             'abilities' => 'Habilidades',
+            'entities'  => 'Entidades',
         ],
         'title' => 'Habilidad :name',
     ],

@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddCalendarEvent;
-use App\Http\Requests\StoreCalendar;
+use App\Http\Requests\UpdateCalendarEvent;
 use App\Models\Calendar;
-use App\Models\CalendarEvent;
 use App\Models\Entity;
 use App\Models\EntityEvent;
 use App\Services\CalendarService;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class EntityEventController extends Controller
@@ -82,10 +79,13 @@ class EntityEventController extends Controller
     {
         $this->authorize('update', $entity->child);
 
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
         $reminder = new EntityEvent($request->all());
         $reminder->entity_id = $entity->id;
         $reminder->save();
-
 
         $next = request()->post('next', false);
         if ($next == 'entity.events') {
@@ -140,9 +140,13 @@ class EntityEventController extends Controller
      * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
-    public function update(AddCalendarEvent $request, Entity $entity, EntityEvent $entityEvent)
+    public function update(UpdateCalendarEvent $request, Entity $entity, EntityEvent $entityEvent)
     {
         $this->authorize('update', $entityEvent->calendar);
+
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $routeOptions = ['calendar' => $entityEvent->calendar->id, 'year' => request()->post('year')];
         $entityEvent->update($request->all());

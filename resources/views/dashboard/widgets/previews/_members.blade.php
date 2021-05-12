@@ -2,22 +2,23 @@
 /**
  * @var \App\Models\CampaignDashboardWidget $widget
  * @var \App\Models\MiscModel $model
+ * @var \App\Models\Entity $entity
  */
 ?>
-@if(!$campaign->boosted() || !$widget->showMembers())
+@if(!$campaign->boosted() || !$widget->showMembers($entity))
     @php return @endphp
 @endif
 
 @php
-$members = $widget->entity->typeId() == config('entities.ids.family')
-    ? $model->entity->child->members()->orderBy('name')->get()
-    : $model->entity->child->members()->with(['character', 'character.entity'])->get()
+$members = $entity->typeId() == config('entities.ids.family')
+    ? $entity->child->members()->orderBy('name')->get()
+    : $entity->child->members()->with(['character', 'character.entity'])->get()
 ;
 @endphp
 
 <div class="widget-advanced-members">
 
-@if($widget->entity->typeId() == config('entities.ids.family'))
+@if($entity->typeId() == config('entities.ids.family'))
     <ul class="list-group">
         @foreach ($members as $member)
         <li class="list-group-item">{!! $member->tooltipedLink() !!}

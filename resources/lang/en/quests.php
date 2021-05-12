@@ -1,24 +1,6 @@
 <?php
 
 return [
-    'elements'    => [
-        'create'    => [
-            'success'       => 'Entity :entity added to the quest.',
-            'title'         => 'New element for :name',
-        ],
-        'destroy'   => [
-            'success'   => 'Quest element :entity removed.',
-        ],
-        'edit'      => [
-            'success'       => 'Quest element :entity updated.',
-            'title'         => 'Update quest element for :name',
-        ],
-        'fields'    => [
-            'quest'         => 'Quest',
-            'description'   => 'Description',
-        ],
-        'title' => 'Quest :name Elements',
-    ],
     'create'        => [
         'description'   => 'Create a new quest',
         'success'       => 'Quest \':name\' created.',
@@ -31,6 +13,24 @@ return [
         'description'   => 'Edit a quest',
         'success'       => 'Quest \':name\' updated.',
         'title'         => 'Edit Quest :name',
+    ],
+    'elements'      => [
+        'create'    => [
+            'success'   => 'Entity :entity added to the quest.',
+            'title'     => 'New element for :name',
+        ],
+        'destroy'   => [
+            'success'   => 'Quest element :entity removed.',
+        ],
+        'edit'      => [
+            'success'   => 'Quest element :entity updated.',
+            'title'     => 'Update quest element for :name',
+        ],
+        'fields'    => [
+            'description'   => 'Description',
+            'quest'         => 'Quest',
+        ],
+        'title'     => 'Quest :name Elements',
     ],
     'fields'        => [
         'character'     => 'Instigator',
@@ -67,13 +67,13 @@ return [
     ],
     'show'          => [
         'actions'       => [
-            'add_element'     => 'Add an element',
+            'add_element'   => 'Add an element',
         ],
         'description'   => 'A detailed view of a quest',
         'tabs'          => [
+            'elements'      => 'Elements',
             'information'   => 'Information',
             'quests'        => 'Quests',
-            'elements'      => 'Elements',
         ],
         'title'         => 'Quest :name',
     ],

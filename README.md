@@ -3,7 +3,7 @@
 [![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%207.3-8892BF.svg)](https://php.net/)
 [![Discord](https://img.shields.io/discord/413623253366603777.svg)](https://discord.gg/rhsyZJ4)
 
-Miscellany is a collaborative world building and campaign management tool tailored for tabletop RPG players and game masters.
+Miscellany is the code source of [Kanka](https://kanka.io/en-US), a collaborative world building and campaign management tool tailored for tabletop RPG players and game masters.
 
 - [Run](#run)
 - [Concepts](#concepts)
@@ -48,22 +48,22 @@ For example, there are `Relations` that link two entities together, as well as `
 
 ### Assets
 
-Assets can be compiled by following the [Laravel Documentation](https://laravel.com/docs/5.6/mix)
+Assets can be compiled by following the [Laravel Documentation](https://laravel.com/docs/7.x/mix)
 
-You'll need to install the various npm packages first:
-> npm install
+You'll need to install the various node packages first:
+> yarn install
 
 Select2 needs to be forced to 4.0.5 because newer builds (4.0.7) break:
 
-> npm install select2@4.0.5 --save
+> yarn install select2@4.0.5 --save
 
 The following will produce assets for development:
 
-> npm run dev
+> yarn run dev
 
 The following will produce assets for production:
 
-> npm run prod
+> yarn run prod
 
 ## Development
 

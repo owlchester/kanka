@@ -1,11 +1,11 @@
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
-    'title' => trans('calendars.event.create.title', ['name' => $entity->name]),
+    'title' => __('calendars.event.create.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route('calendars.index'), 'label' => trans('calendars.index.title')],
+        ['url' => route('calendars.index'), 'label' => __('calendars.index.title')],
         ['url' => $entity->url(), 'label' => $entity->name],
-        ['url' => $entity->url() . '#calendars', 'label' => trans('crud.tabs.events')],
-        trans('crud.tabs.reminders'),
+        ['url' => $entity->url() . '#calendars', 'label' => __('crud.tabs.events')],
+        __('crud.tabs.reminders'),
     ],
     'canonical' => true,
 ])
@@ -14,15 +14,20 @@
         <div class="panel-body">
             @include('partials.errors')
 
-            {!! Form::open(['method' => 'POST', 'route' => ['entities.entity_events.store', $entity->id], 'data-shortcut' => "1"]) !!}
+            {!! Form::open(['method' => 'POST', 'route' => ['entities.entity_events.store', $entity->id], 'data-shortcut' => 1, 'class' => 'ajax-validation']) !!}
             @include('calendars.events._entity_form')
+
+            {!! Form::hidden('entity_id', $entity->id) !!}
 
             <div class="row">
                 <div class="col-md-6 pull-right text-right ">
                     <div class="form-group text-right">
-                        <button class="btn btn-success">{{ trans('crud.save') }}</button>
+                        <button class="btn btn-success" id="calendar-event-submit">
+                            <i class="fa fa-spinner fa-spin" style="display:none;"></i>
+                            <span>{{ __('crud.save') }}</span>
+                        </button>
                         @if (!$ajax)
-                            {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
+                            {!! __('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
                         @endif
                     </div>
 
@@ -35,4 +40,16 @@
         </div>
 
     </div>
+@endsection
+
+
+@section('scripts')
+@parent
+<script src="/vendor/spectrum/spectrum.js" defer></script>
+@endsection
+
+
+@section('styles')
+    @parent
+    <link href="/vendor/spectrum/spectrum.css" rel="stylesheet">
 @endsection

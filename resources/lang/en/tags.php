@@ -7,6 +7,7 @@ return [
         ],
         'create'        => [
             'title' => 'Add an entity to :name',
+            'success' => 'Added the tag :name to the entity.',
         ],
         'description'   => 'Entities belonging to the tag',
         'title'         => 'Tag :name Children',

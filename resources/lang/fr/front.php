@@ -101,6 +101,10 @@ return [
             'description'   => 'Tu préfères le travel en équipe? Pas de problème! Tu peux inviter tes amis ou co-contributeurs pour t\'aidez dans tes campagnes.',
             'title'         => 'Collaboratif',
         ],
+        'dashboards'        => [
+            'description'   => 'Personaliser les informations visibles quand tes membres ouvrent Kanka.',
+            'title'         => 'Tableaux de bords',
+        ],
         'description'       => 'Avec nos @mentions, nos étiquettes et notre système de permissions, Kanka facilite le suivi de ton monde ou de ta campagne. Cela inclut les personnages et leurs relations, les lieux et leur histoire, les quêtes et leurs objectifs, les chronologies et leurs époques, et les calendriers. Mieux encore, les utilisateurs de Kanka ont leur mot à dire sur le développement de nouvelles fonctionnalités grâce à nos votes réguliers.',
         'description_full'  => 'Kanka est constamment mis à jour avec de nouvelles fonctionnalités, mais voici quelques-unes des plus importantes qu\'on pense que tu vas aimer!',
         'flora'             => [

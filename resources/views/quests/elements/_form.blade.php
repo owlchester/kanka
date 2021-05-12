@@ -16,7 +16,7 @@
 
     <div class="col-md-6">
         <div class="form-group">
-            <label>{{ __('quests.elements.fields.description') }}</label>
+            <label>{{ __('quests.fields.role') }}</label>
             {!! Form::text('role', null, ['class' => 'form-control', 'maxlength' => 45, 'spellcheck' => 'true']) !!}
         </div>
     </div>

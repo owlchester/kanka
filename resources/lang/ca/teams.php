@@ -12,14 +12,8 @@ return [
         'title'         => 'Equip',
         'translations'  => 'Traduccions',
     ],
-    'patreon'       => [
-        'description'   => 'Aquestes persones meravelloses ajuden i fan costat a Kanka des de Patreon o les subscripcions de l\'app.',
-        'learn_more'    => 'Saber més sobre els beneficis de les subscripcions',
-    ],
+    'patreon'       => [],
     'people'        => [
-        'iz'        => [
-            'title' => 'Desenvolupadors',
-        ],
         'jay'       => [
             'text'  => <<<'TEXT'
 Vaig crear Kanka a l'octubre del 2017 perquè no hi havia cap eina amb la qual pogués inventar un món amb els meus amics, al mateix temps que controlar qui podia veure o fer qualsevol cosa.

@@ -17,6 +17,7 @@ class AttributeResource extends EntityChild
         return $this->entity([
             'name' => $this->name,
             'value' => $this->value,
+            'parsed' => $this->mappedValue(),
             'type' => $this->type,
             'default_order' => $this->default_order,
             'is_star' => (bool) $this->is_star,
