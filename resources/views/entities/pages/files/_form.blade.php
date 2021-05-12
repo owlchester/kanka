@@ -8,7 +8,7 @@
                 {!! Form::file('file', array('class' => 'image form-control')) !!}
 
                 <p class="help-block">
-                    {{ __('crud.files.hints.limitations', ['formats' => 'jpg, jpeg, png, gif, pdf, xls(x), mp3, ogg, json', 'size' => auth()->user()->maxUploadSize(true)]) }}
+                    {{ __('crud.files.hints.limitations', ['formats' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), mp3, ogg, json', 'size' => auth()->user()->maxUploadSize(true)]) }}
                 @if (!\App\Facades\CampaignLocalization::getCampaign()->boosted() && !auth()->user()->hasRole('patreon'))
                     <br />
                     <a href="{{ route('settings.subscription') }}" target="_blank">{{ __('crud.hints.image_patreon') }}</a>
