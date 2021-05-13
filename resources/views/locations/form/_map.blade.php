@@ -15,7 +15,7 @@
             </div>
 
             <p class="help-block">
-                {{ trans('crud.hints.map_limitations', ['size' => auth()->user()->maxUploadSize(true, 'map')]) }}
+                {{ __('crud.hints.image_limitations', ['formats' => 'jpg, png, gif, webp, svg', 'size' => auth()->user()->maxUploadSize(true, 'map')]) }}
                 @if (!auth()->user()->hasRole('patreon'))
                     <a href="{{ config('patreon.url') }}" target="_blank">{{ __('crud.hints.image_patreon') }}</a>
                 @endif
