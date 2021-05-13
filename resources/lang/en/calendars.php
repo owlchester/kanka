@@ -4,14 +4,14 @@ return [
     'actions'       => [
         'add_epoch'         => 'Add an epoch',
         'add_intercalary'   => 'Add intercalary days',
-        'add_reminder'      => 'Add a reminder',
         'add_month'         => 'Add a month',
         'add_moon'          => 'Add a moon',
+        'add_reminder'      => 'Add a reminder',
         'add_season'        => 'Add a season',
+        'add_weather'       => 'Set weather effect',
         'add_week'          => 'Add a named week',
         'add_weekday'       => 'Add a week day',
         'add_year'          => 'Add a year name',
-        'add_weather'       => 'Set weather effect',
         'set_today'         => 'Set as current day',
         'today'             => 'Today',
     ],
@@ -138,13 +138,13 @@ return [
     'options'       => [
         'events'    => [
             'recurring_periodicity' => [
-                'none'  => 'None',
-                'month' => 'Monthly',
-                'year'  => 'Yearly',
-                'fullmoon' => 'Full moon',
-                'newmoon' => 'New moon',
+                'fullmoon'      => 'Full moon',
                 'fullmoon_name' => ':moon full moon',
-                'newmoon_name' => ':moon new moon',
+                'month'         => 'Monthly',
+                'newmoon'       => 'New moon',
+                'newmoon_name'  => ':moon new moon',
+                'none'          => 'None',
+                'year'          => 'Yearly',
             ],
         ],
         'resets'    => [
@@ -222,8 +222,8 @@ return [
         ],
         'title'             => 'Calendar :name',
     ],
-    'sorters' => [
-        'before' => 'Today & before',
+    'sorters'       => [
         'after' => 'Today & after',
+        'before'=> 'Today & before',
     ],
 ];

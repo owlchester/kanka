@@ -30,8 +30,8 @@ return [
     ],
     'helper'        => 'The Kanka community is constantly creating amazing plugins on our marketplace. If your campaign is boosted, you can install plugins from the marketplace. Use this interface to uninstall plugins in your campaign.',
     'import'        => [
-        'success'   => '{1} Imported :count entity from the plugin :plugin.|[2,*] Imported :count entities from the plugin :plugin.',
         'created'   => 'Created the following entities:',
+        'success'   => '{1} Imported :count entity from the plugin :plugin.|[2,*] Imported :count entities from the plugin :plugin.',
         'updated'   => 'Updated the following entities:',
     ],
     'info'          => [

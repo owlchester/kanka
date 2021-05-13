@@ -4,6 +4,17 @@ return [
     'abilities'     => [
         'title' => 'Pouvoirs enfants de :name',
     ],
+    'children'      => [
+        'actions'       => [
+            'add'   => 'Ajouter un pouvoir à une entité',
+        ],
+        'create'        => [
+            'success'   => 'Le pouvoir :name a été ajouté à l\'entité.',
+            'title'     => 'Ajouter une entité à :name',
+        ],
+        'description'   => 'Entités ayant le pouvoir',
+        'title'         => 'Entités du pouvoir :name',
+    ],
     'create'        => [
         'success'   => 'Pouvoir \':name\' créé.',
         'title'     => 'Nouveau pouvoir',

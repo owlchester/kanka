@@ -31,6 +31,7 @@ return [
         'title'         => 'Entity Templates',
     ],
     'filters'           => [
+        'clipboard'     => 'When filters are active, the copy to clipboard button becomes active. This copies the filters to your clipboard, and you can use those for dashboard widget filters or for quick link filters.',
         'description'   => 'You can use filters to limit the amount of results shown in lists. Text fields support various options to control in further detail what is filtered out.',
         'empty'         => 'Writing :tag in a field will search for all entities where this field is empty.',
         'ending_with'   => 'By placing an :tag at the end of your text, you can search for every entity with exactly this text in the field.',
@@ -38,7 +39,6 @@ return [
         'session'       => 'Filters and ordered columns set for an entity list are saved into your session, so as long as you stay connected you don\'t need to re-set them on every page.',
         'starting_with' => 'By placing an :tag before your text, you can search for anything that doesn\'t contain the text in the field.',
         'title'         => 'How to use filters',
-        'clipboard'     => 'When filters are active, the copy to clipboard button becomes active. This copies the filters to your clipboard, and you can use those for dashboard widget filters or for quick link filters.'
     ],
     'link'              => [
         'attributes'        => 'You can reference attributes of the entity by typing :code. This only works for on existing attributes of the entity.',

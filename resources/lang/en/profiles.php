@@ -28,13 +28,13 @@ return [
     'newsletter'    => [
         'links'     => [
             'community-vote'    => 'Community Vote',
-            'updates'           => 'Kanka updates',
             'news'              => 'News',
+            'updates'           => 'Kanka updates',
         ],
         'settings'  => [
             'news'          => 'News - be notified when there\'s :news.',
-            'updates'       => 'Updates - be notified when there is an update to Kanka.',
             'newsletter'    => 'Newsletter - receive the Kanka newsletter.',
+            'updates'       => 'Updates - be notified when there is an update to Kanka.',
             'votes'         => 'Community Votes - be notified as soon as a new :vote is available.',
         ],
         'title'     => 'Newsletters',

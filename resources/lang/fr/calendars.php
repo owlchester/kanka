@@ -6,7 +6,9 @@ return [
         'add_intercalary'   => 'Ajouter des jours intercalaires',
         'add_month'         => 'Ajouter un mois',
         'add_moon'          => 'Ajouter une lune',
+        'add_reminder'      => 'Ajouter un rappel',
         'add_season'        => 'Ajouter une saison',
+        'add_weather'       => 'Effet météo',
         'add_week'          => 'Ajouter un nom de semaine',
         'add_weekday'       => 'Ajouter un jour de semaine',
         'add_year'          => 'Ajouter un nom d\'année',
@@ -101,6 +103,7 @@ return [
         'start_offset'  => 'Un calendrier commence par défaut le premier jour de la première semaine de l\'année 0. Modifier ce champ permet d\'influencer quand le premier jour tombe.',
     ],
     'hints'         => [
+        'event_length'      => 'La durée d\'un événement. Un événement ne peux pas durer plus de 2 mois.',
         'intercalary'       => 'Les jours tombants hors des mois et semaines standards. Ils n\'influenceronts pas le jour de semaine.',
         'is_incrementing'   => 'Un calendrier avec cette option vera son jour actuel automatiquement avancer chaque jour à 00:00 UTC.',
         'is_recurring'      => 'Un événement peut être récurrent. Il réapparaitera chaque année à la même date.',
@@ -135,8 +138,13 @@ return [
     'options'       => [
         'events'    => [
             'recurring_periodicity' => [
-                'month' => 'Chaque mois',
-                'year'  => 'Chaque année',
+                'fullmoon'      => 'Pleine lune',
+                'fullmoon_name' => ':moon pleine lune',
+                'month'         => 'Chaque mois',
+                'newmoon'       => 'Nouvelle lune',
+                'newmoon_name'  => ':moon nouvelle lune',
+                'none'          => 'Aucun',
+                'year'          => 'Chaque année',
             ],
         ],
         'resets'    => [
@@ -213,5 +221,9 @@ return [
             'weather'       => 'Météo',
         ],
         'title'             => 'Calendrier :name',
+    ],
+    'sorters'       => [
+        'after' => 'Aujourd\'hui et après',
+        'before'=> 'Aujourd\'hui et avant',
     ],
 ];
