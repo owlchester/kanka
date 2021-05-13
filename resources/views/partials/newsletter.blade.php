@@ -42,7 +42,7 @@
                         </div>
                         <div class="mc-field-group input-group">
                             <strong>{{ __('front/newsletter.fields.notifications') }} </strong>
-                            <ul><li><input type="checkbox" value="4" name="group[4868][4]" id="mce-group[4868]-4868-0"><label for="mce-group[4868]-4868-0"> {{ __('front/newsletter.groups.newsletter') }}</label></li>
+                            <ul><li><input type="checkbox" value="4" name="group[4868][4]" id="mce-group[4868]-4868-0"><label for="mce-group[4868]-4868-0"> {{ __('front/newsletter.groups.updates') }}</label></li>
                                 <li><input type="checkbox" value="2" name="group[4868][2]" id="mce-group[4868]-4868-1" @if (!empty($source) && $source == 'news') checked="checked" @endif><label for="mce-group[4868]-4868-1"> {{ __('front/newsletter.groups.news') }}</label></li>
                                 <li><input type="checkbox" value="1" name="group[4868][1]" id="mce-group[4868]-4868-2" @if (!empty($source) && $source == 'vote') checked="checked" @endif><label for="mce-group[4868]-4868-2"> {{ __('front/newsletter.groups.community-votes') }}</label></li>
                             </ul>

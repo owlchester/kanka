@@ -75,7 +75,7 @@
                                 </td>
                                 <td>
                                     @if($item->item)
-                                    {!! $item->item->tooltipedLink() !!}
+                                    {!! $item->item->tooltipedLink($item->name) !!}
                                     @else
                                     {!! $item->name !!}
                                     @endif<br />

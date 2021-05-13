@@ -1,10 +1,11 @@
 <?php
 
 return [
-    'gm'            => [
-        'title' => 'Directoras de xogo',
+    'gm'                => [
+        'title' => 'Direción de xogo',
     ],
-    'worldbuilding' => [
-        'title' => 'Creadoras de mundos',
+    'other_features'    => 'Outras funcionalidades',
+    'worldbuilding'     => [
+        'title' => 'Creación de mundos',
     ],
 ];

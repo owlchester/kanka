@@ -119,8 +119,14 @@ return [
         'fields'                    => [
             'dashboard' => 'Taulell',
             'name'      => 'Nom personalitzat pel widget',
+            'order'     => 'Ordre',
             'text'      => 'Text',
             'width'     => 'Amplada',
+        ],
+        'orders'                    => [
+            'name_asc'  => 'Ascendent per nom',
+            'name_desc' => 'Descendent per nom',
+            'recent'    => 'Modificat recentment',
         ],
         'random'                    => [
             'helpers'   => [

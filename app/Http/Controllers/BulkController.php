@@ -92,7 +92,7 @@ class BulkController extends Controller
             } elseif ($action === 'templates') {
                 $count = $this->bulkService
                     ->entities(explode(',', $request->get('models')))
-                    ->templates($request->only(['template_id', 'template']));
+                    ->templates($request->get('template_id'));
                 return redirect()
                     ->route($entity . '.' . $subroute, $routeParams)
                     ->with('success', trans_choice('crud.bulk.success.templates', $count, ['count' => $count]));
@@ -126,18 +126,18 @@ class BulkController extends Controller
             return response()->json(['error' => 'invalid view']);
         }
 
-        $communityTemplates = [];
+        $templates = [];
         if (request()->get('view') == 'templates') {
             $campaign = CampaignLocalization::getCampaign();
             /** @var AttributeService $service */
             $service = app()->make('App\Services\AttributeService');
-            $communityTemplates = $service->templates($campaign);
+            $templates = $service->campaign(CampaignLocalization::getCampaign())->templateList($campaign);
         }
         $type = request()->get('type');
 
         $campaign = CampaignLocalization::getCampaign();
         return view('cruds.datagrids.bulks.modals._' . $request->get('view'), compact(
-            'campaign', 'communityTemplates', 'type'
+            'campaign', 'templates', 'type'
         ));
     }
 }

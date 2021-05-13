@@ -15,4 +15,5 @@ return [
     'show'          => [
         'title' => 'Objektprotokoll: :name',
     ],
+    'superboosted'  => 'Objekte aktualisiert in :superboosted-campaigns führen vollständige Änderungsprotokolle für bis zu :amount days.',
 ];

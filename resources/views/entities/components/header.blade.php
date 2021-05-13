@@ -1,6 +1,6 @@
-@if ($model->entity && !empty($model->entity->header_image) && $campaign->campaign()->boosted())
+@if ($model->entity && $campaign->campaign()->boosted() && $model->entity->hasHeaderImage($campaign->campaign()->boosted(true)))
     @section('entity-header')
-        <div class="entity-header" style="background-image: url('{{ $model->entity->getImageUrl(0, 0, 'header_image') }}');">
+        <div class="entity-header" style="background-image: url('{{ !empty($model->entity->header_image) ? $model->entity->getImageUrl(0, 0, 'header_image') : ($campaign->campaign()->boosted(true) && !empty($model->entity->header) ? Img::crop(0, 0)->url($model->entity->header->path) : null)}}');">
             <div class="bottom">
                 @if ($model->image)
                     <a class="entity-avatar" href="{{ $model->getImageUrl(0) }}" title="{{ $model->name }}" target="_blank">

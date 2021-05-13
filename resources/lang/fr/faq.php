@@ -88,7 +88,7 @@ TEXT
     ],
     'map'                   => [
         'answer'    => <<<'TEXT'
-Chaque lieu peut contenir une carte (png, jpg ou svg) qui elle-même contient des "endroits" qui sont placés sur la carte avec une icône de certaine taille, forme, et couleur, et ces endroits peuvent être liés à des entités ou un texte.
+Chaque lieu peut contenir une carte (png, jpg, webp ou svg) qui elle-même contient des "endroits" qui sont placés sur la carte avec une icône de certaine taille, forme, et couleur, et ces endroits peuvent être liés à des entités ou un texte.
 
 Les fichiers SVG venant de :azgaar et :watabou sont pleinement compatibles avex Kanka. Attention cependant, les images générées par d'autres outils sont comprimées de telle sorte à ce qu'elles soient incompatibles avec l'application. Une solution consiste à ouvrir les images dans Inkscape ou Photoshop et simplement réenregistrer les images SVG avant de les uploader.
 TEXT

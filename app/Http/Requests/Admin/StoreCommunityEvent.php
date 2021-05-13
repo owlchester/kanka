@@ -31,7 +31,7 @@ class StoreCommunityEvent extends FormRequest
             'excerpt' => 'nullable|string',
             'start_at' => 'required',
             'end_at' => 'required',
-            'image' => 'mimes:jpeg,png,jpg,gif|max:10000',
+            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:10000',
         ];
     }
 }

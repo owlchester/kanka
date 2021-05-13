@@ -44,6 +44,7 @@ class CharacterFilter extends DatagridFilter
             ->add('type')
             ->add('age')
             ->add('sex')
+            ->add('pronouns')
             ->add('is_dead')
             ->isPrivate()
             ->hasImage()

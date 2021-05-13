@@ -3,11 +3,11 @@
 return [
     'actions'           => [
         'follow'    => 'Seguir',
+        'join'      => 'Unirse',
         'unfollow'  => 'Deixar de seguir',
     ],
     'campaigns'         => [
-        'manage'    => 'Xerir',
-        'tabs'      => [
+        'tabs'  => [
             'modules'   => ':count módulos',
             'roles'     => ':count roles',
             'users'     => ':count usuarios',
@@ -58,6 +58,7 @@ return [
     'description'       => 'O lar da túa creatividade',
     'helpers'           => [
         'follow'    => 'Seguir unha campaña fará que esta apareza no selector de campañas (arriba á esquerda) baixo as túas campañas.',
+        'join'      => 'Esta campaña está aberta a novas integrantes. Fai clic para solicitar unirte a ela.',
         'setup'     => 'Configura os taboleiros da túa campaña.',
     ],
     'latest_release'    => 'Último lanzamento',
@@ -92,7 +93,11 @@ return [
     ],
     'title'             => 'Taboleiro',
     'widgets'           => [
-        'calendar'      => [
+        'actions'                   => [
+            'advanced-options'  => 'Opcións avanzadas',
+        ],
+        'advanced_options_boosted'  => 'As :boosted_campaigns teñen opcións avanzadas, como mostrar as integrantes dunha familia ou os atributos dunha entidade no taboleiro de campaña.',
+        'calendar'                  => [
             'actions'           => [
                 'next'      => 'Cambiar ao día seguinte',
                 'previous'  => 'Cambiar ao día anterior.',
@@ -101,39 +106,57 @@ return [
             'previous_events'   => 'Eventos pasados',
             'upcoming_events'   => 'Próximos eventos',
         ],
-        'campaign'      => [
+        'campaign'                  => [
             'helper'    => 'Este complemento mostrou a cabeceira da campaña. Este complemento sempre é mostrado no taboleiro por defecto.',
         ],
-        'create'        => [
+        'create'                    => [
             'success'   => 'Complemento engadido ao taboleiro.',
         ],
-        'delete'        => [
+        'delete'                    => [
             'success'   => 'Complemento eliminado do taboleiro.',
         ],
-        'fields'        => [
-            'name'  => 'Nome personalizado',
-            'text'  => 'Texto',
-            'width' => 'Anchura',
+        'fields'                    => [
+            'dashboard' => 'Taboleiro',
+            'name'      => 'Nome personalizado',
+            'order'     => 'Orde',
+            'text'      => 'Texto',
+            'width'     => 'Anchura',
         ],
-        'recent'        => [
-            'entity-header' => 'Usar cabeceira da entidade como imaxe',
-            'full'          => 'Completo',
-            'help'          => 'Mostra só a última entidade actualizada, pero mostra unha previsualización completa da entidade.',
-            'helpers'       => [
-                'entity-header' => 'Se a entidade ten unha cabeceira (funcionalidade de campañas potenciadas), activa este complemento para usar esa imaxe no lugar da imaxe da entidade.',
-                'full'          => 'Mostra a entidade completa por defecto en vez dunha previsualización.',
+        'orders'                    => [
+            'name_asc'  => 'Nome (ascendente)',
+            'name_desc' => 'Nome (descendente)',
+            'recent'    => 'Modificada recentemente',
+        ],
+        'random'                    => [
+            'helpers'   => [
+                'name'  => 'Podes referenciar o nome da entidade aleatoria con {name}',
             ],
-            'singular'      => 'Singular',
-            'tags'          => 'Filtra a lista de entidades modificadas recentemente con etiquetas específicas.',
-            'title'         => 'Modificadas recentemente',
         ],
-        'unmentioned'   => [
+        'recent'                    => [
+            'entity-header'     => 'Usar cabeceira da entidade como imaxe',
+            'filters'           => 'Filtros',
+            'full'              => 'Completo',
+            'help'              => 'Mostra só a última entidade actualizada, pero mostra unha previsualización completa da entidade.',
+            'helpers'           => [
+                'entity-header'     => 'Se a entidade ten unha cabeceira (funcionalidade de campañas potenciadas), activa este complemento para usar esa imaxe no lugar da imaxe da entidade.',
+                'filters'           => 'Podes filtrar o tipo de entidades que aparecen. Aprende a usar este campo visitando a páxina de axuda :link.',
+                'full'              => 'Mostra a entidade completa por defecto en vez dunha previsualización.',
+                'show_attributes'   => 'Mostra os atributos fixados da entidade baixo a entrada.',
+                'show_members'      => 'Se a entidade é unha familia ou unha organización, mostra as súas integrantes baixo a entrada.',
+            ],
+            'show_attributes'   => 'Mostrar atributos fixados',
+            'show_members'      => 'Mostrar integrantes',
+            'singular'          => 'Singular',
+            'tags'              => 'Filtra a lista de entidades modificadas recentemente con etiquetas específicas.',
+            'title'             => 'Modificadas recentemente',
+        ],
+        'unmentioned'               => [
             'title' => 'Entidades non mencionadas',
         ],
-        'update'        => [
+        'update'                    => [
             'success'   => 'Complemento modificado.',
         ],
-        'widths'        => [
+        'widths'                    => [
             '0' => 'Automática',
             '12'=> 'Completa (100%)',
             '3' => 'Un cuarto (25%)',

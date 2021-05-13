@@ -414,7 +414,7 @@ return [
         'notes'         => 'Entiteit Notities',
         'permissions'   => 'Permissies',
         'relations'     => 'Relaties',
-        'reminders'     => 'Herrineringen',
+        'reminders'     => 'Herinneringen',
         'timelines'     => 'Tijdlijnen',
         'tooltip'       => 'Tooltip',
     ],

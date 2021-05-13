@@ -26,11 +26,11 @@ class StoreOrganisation extends FormRequest
         $rules = [
             'name' => 'required|max:191',
             'type' => 'nullable|max:191',
-            'image' => 'mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
+            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'location_id' => 'nullable|integer|exists:locations,id',
             'organisation_id' => 'nullable|exists:organisations,id',
             'image_url' => 'nullable|url|active_url',
-            'template_id' => 'nullable|exists:attribute_templates,id',
+            'template_id' => 'nullable',
         ];
 
         $self = request()->segment(5);

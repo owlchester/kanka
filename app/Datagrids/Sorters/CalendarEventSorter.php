@@ -19,6 +19,7 @@ class CalendarEventSorter extends DatagridSorter
         'entity.type' => 'crud.fields.entity_type',
         'date' => 'events.fields.date',
         'length' => 'calendars.fields.length',
+        'today' => 'calendars.sorters.today',
     ];
 
     /**

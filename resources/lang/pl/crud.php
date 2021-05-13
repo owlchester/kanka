@@ -422,6 +422,7 @@ return [
         'menu'          => 'Menu',
         'notes'         => 'Komentarze',
         'permissions'   => 'Uprawnienia',
+        'quests'        => 'Misje',
         'relations'     => 'Relacje',
         'reminders'     => 'Ważne daty',
         'timelines'     => 'Historie',

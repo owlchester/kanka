@@ -23,5 +23,33 @@ class RolesTableSeeder extends Seeder
                     'display_name' => 'Normal User',
                 ])->save();
         }
+
+        $role = Role::firstOrNew(['name' => 'translator']);
+        if (!$role->exists) {
+            $role->fill([
+                    'display_name' => 'Translator',
+                ])->save();
+        }
+
+        $role = Role::firstOrNew(['name' => 'api']);
+        if (!$role->exists) {
+            $role->fill([
+                    'display_name' => 'Api',
+                ])->save();
+        }
+
+        $role = Role::firstOrNew(['name' => 'patreon']);
+        if (!$role->exists) {
+            $role->fill([
+                    'display_name' => 'Patreon',
+                ])->save();
+        }
+
+        $role = Role::firstOrNew(['name' => 'partner']);
+        if (!$role->exists) {
+            $role->fill([
+                    'display_name' => 'Partner',
+                ])->save();
+        }
     }
 }

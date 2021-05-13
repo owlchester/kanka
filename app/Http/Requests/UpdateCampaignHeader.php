@@ -25,7 +25,7 @@ class UpdateCampaignHeader extends FormRequest
     {
         return [
             'excerpt' => 'nullable',
-            'header_image' => 'nullable|mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
+            'header_image' => 'nullable|mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
         ];
     }
 }

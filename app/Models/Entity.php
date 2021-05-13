@@ -38,6 +38,7 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property string $tooltip
  * @property string $header_image
  * @property string $image_uuid
+ * @property string $header_uuid
  * @property boolean $is_template
  * @property string $marketplace_uuid
  *
@@ -59,6 +60,7 @@ class Entity extends Model
         'is_attributes_private',
         'header_image',
         'image_uuid',
+        'header_uuid',
         'is_template',
     ];
 
@@ -332,5 +334,22 @@ class Entity extends Model
             $this->updated_by = auth()->user()->id;
             return $this->touch();
         });
+    }
+
+    /**
+     * @param bool $superboosted
+     * @return bool
+     */
+    public function hasHeaderImage(bool $superboosted = false): bool
+    {
+        if (!empty($this->header_image)) {
+            return true;
+        }
+
+        if ($superboosted && !empty($this->header_uuid)) {
+            return true;
+        }
+
+        return false;
     }
 }

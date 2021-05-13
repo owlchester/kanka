@@ -350,4 +350,25 @@ class FilterService
         session()->put($key, $data);
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function clipboardFilters(): string
+    {
+        $filters = [];
+        foreach ($this->filters as $key => $val) {
+            if ($val !== null) {
+                if (!is_array($val)) {
+                    $filters[] = $key . '=' . $val;
+                    continue;
+                }
+
+                foreach ($val as $arrValue) {
+                    $filters[] = $key . '[]=' . $arrValue;
+                }
+            }
+        }
+        return (string) implode('&', $filters);
+    }
 }

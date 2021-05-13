@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'account-deletion'      => [
+        'account_settings'  => 'Axustes da conta',
+        'answer'            => 'Para eliminar a túa conta, vai á túa páxina de :account e baixa á sección de eliminación de conta. Isto eliminará a túa conta e calquera campaña na que non haxa máis integrantes.',
+        'question'          => 'Como podo eliminar a miña conta?',
+    ],
     'app_backup'            => [
         'answer'    => 'Realizamos dúas copias de seguridade cada día para evitar pérdidas de datos. As nosas propias campañas están no servidor, así que non queremos correr riscos!',
         'question'  => 'Con que frecuencia se realizan copias de seguridade dos datos de Kanka?',
@@ -39,6 +44,10 @@ TEXT
     'delete-campaign'       => [
         'answer'    => 'Vai ao taboleiro da campaña e fai click en "Campaña" no menú da esquerda. Se eres administradora da campaña, aparecerache un botón de "Eliminar". Eliminar unha campaña é unha acción permanente que borrará todos os datos dos nosos servidores, incluíndo as imaxes.',
         'question'  => 'Como podo eliminar unha campaña?',
+    ],
+    'discord'               => [
+        'answer'    => 'Para ligar a túa conta de Kanka a :discord, primeiro tes que facer clic no teu avatar na esquina superior dereita da aplicación, e facer clic no botón Perfil. Dende aí, vai á subpáxina :apps e fai clic en Ligar.',
+        'question'  => 'Como ligo a miña conta de Kanka á miña conta de Discord?',
     ],
     'early-access'          => [
         'answer'    => 'O Acceso Anticipado é o noso xeito de recompensar ás nosas incríbeis subscriptoras, dándolles un periodo de 30 días nos que poden probar as últimas novedades antes que calquera outra persoa.',

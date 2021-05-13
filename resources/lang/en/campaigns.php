@@ -330,6 +330,7 @@ TEXT
             'dice_rolls'    => 'For those who use Kanka for RPG campaigns, a way to handle dice rolls. This module is deprecated.',
             'events'        => 'Holidays, festivals, disasters, birthdays, wars.',
             'families'      => 'Clans or families, their relations and their members.',
+            'inventories'   => 'Manage inventories on your entities.',
             'items'         => 'Weapons, vehicles, relics, potions.',
             'journals'      => 'Observations written by characters, or session prep for the dungeon master.',
             'locations'     => 'Planets, planes, continents, rivers, states, settlements, temples, taverns.',

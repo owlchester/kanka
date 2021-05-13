@@ -15,4 +15,5 @@ return [
     'show'          => [
         'title' => 'Historial de :name',
     ],
+    'superboosted'  => 'Les entitats de les :superboosted-campaigns guarden els registres de canvis fins a :amount dies.',
 ];

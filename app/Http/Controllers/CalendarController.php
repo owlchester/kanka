@@ -112,12 +112,13 @@ class CalendarController extends CrudController
             $year = -$year;
         }
 
+
         return view('calendars.events.create', compact(
             'calendar',
             'day',
             'month',
             'year',
-            'ajax'
+            'ajax',
         ));
     }
 
@@ -128,6 +129,11 @@ class CalendarController extends CrudController
      */
     public function eventStore(AddCalendarEvent $request, Calendar $calendar)
     {
+        // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
         // We need to handle negative year dates (start with -)
         $link = $this->calendarService->addEvent($calendar, $request->all());
 
@@ -159,7 +165,8 @@ class CalendarController extends CrudController
                 'year' => $calendar->currentDate('year'),
                 'month' => $calendar->currentDate('month'),
                 'day' => $calendar->currentDate('date')
-            ]
+            ],
+            'recurring' => $calendar->recurringOptions(true),
         ]);
     }
 

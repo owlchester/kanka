@@ -71,7 +71,7 @@ return [
         ],
         'template'      => [
             'success'   => 'Attribute Template :name applied to :entity',
-            'title'     => 'Apply an Attribute Template for :name',
+            'title'     => 'Apply an Attribute Template to :name',
         ],
         'types'         => [
             'attribute' => 'Attribute',
@@ -192,6 +192,7 @@ return [
         'excerpt'               => 'Excerpt',
         'family'                => 'Family',
         'files'                 => 'Files',
+        'gallery_header'        => 'Gallery Header',
         'gallery_image'         => 'Gallery Image',
         'has_entity_files'      => 'Has entity files',
         'has_entity_notes'      => 'Has entity notes',
@@ -234,23 +235,30 @@ return [
     ],
     'filter'                    => 'Filter',
     'filters'                   => [
-        'all'       => 'Filter to all descendants',
-        'clear'     => 'Clear Filters',
-        'direct'    => 'Filter to direct descendants',
-        'filtered'  => 'Showing :count of :total :entity.',
-        'hide'      => 'Hide Filters',
-        'options'   => [
+        'all'                       => 'Filter to all descendants',
+        'clear'                     => 'Clear Filters',
+        'copy_helper'               => 'Use the copied filters in your clipboard as values for filters on dashboard widgets and quick links.',
+        'copy_helper_no_filters'    => 'Define some filters first to be able to copy them to your clipboard.',
+        'copy_to_clipboard'         => 'Copy filters to clipboard',
+        'direct'                    => 'Filter to direct descendants',
+        'filtered'                  => 'Showing :count of :total :entity.',
+        'hide'                      => 'Hide Filters',
+        'mobile'                    => [
+            'clear' => 'Clear',
+            'copy'  => 'Clipboard',
+        ],
+        'options'                   => [
             'exclude'   => 'Exclude',
             'include'   => 'Include',
             'none'      => 'None',
         ],
-        'show'      => 'Show Filters',
-        'sorting'   => [
+        'show'                      => 'Show Filters',
+        'sorting'                   => [
             'asc'       => ':field Ascending',
             'desc'      => ':field Descending',
             'helper'    => 'Control in which order results appear.',
         ],
-        'title'     => 'Filters',
+        'title'                     => 'Filters',
     ],
     'forms'                     => [
         'actions'       => [
@@ -263,15 +271,16 @@ return [
     ],
     'hidden'                    => 'Hidden',
     'hints'                     => [
-        'attribute_template'    => 'Apply an attribute template directly when creating or editing this entity.',
+        'attribute_template'    => 'The selected attribute template will be applied saving the entity.',
         'calendar_date'         => 'A calendar date allows easy filtering in lists, and also maintains a calendar event in the selected calendar.',
+        'gallery_header'        => 'If the entity has no header, display an image from the campaign gallery instead.',
         'gallery_image'         => 'If the entity has no image, display an image from the campaign gallery instead.',
         'header_image'          => 'This image is placed above the entity. For best results, use a wide image.',
-        'image_limitations'     => 'Supported formats: jpg, png and gif. Max file size: :size.',
+        'image_limitations'     => 'Supported formats: jpg, png, gif and webp. Max file size: :size.',
         'image_patreon'         => 'Increase file size limit?',
         'is_private'            => 'If set to private, this entity will only be visible to members who are in the campaign\'s "Admin" role.',
         'is_star'               => 'Pinned elements will appear on the entity\'s menu',
-        'map_limitations'       => 'Supported formats: jpg, png, gif and svg. Max file size: :size.',
+        'map_limitations'       => 'Supported formats: jpg, png, gif, webp and svg. Max file size: :size.',
         'tooltip'               => 'Replace the automatically generated tooltip with the following contents. Any HTML code will be stripped, but you can still mention other entities using advanced mentions.',
         'visibility'            => 'Setting the visibility to admin means only members in the Admin campaign role can view this. Setting it to self means only you can view this.',
     ],

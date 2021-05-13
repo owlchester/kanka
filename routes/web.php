@@ -78,6 +78,9 @@ Route::group([
         Route::get('/abilities/{ability}/entities', 'AbilityController@entities')->name('abilities.entities');
         Route::get('/abilities/tree', 'AbilityController@tree')->name('abilities.tree');
 
+        Route::get('/abilities/{ability}/entity-add', 'AbilityController@entityAdd')->name('abilities.entity-add');
+        Route::post('/abilities/{ability}/entity-add', 'AbilityController@entityStore')->name('abilities.entity-add');
+
         // Maps
         Route::get('/maps/{map}/maps', 'Maps\MapController@maps')->name('maps.maps');
         Route::get('/maps/{map}/explore', 'Maps\MapController@explore')->name('maps.explore');
@@ -426,8 +429,9 @@ Route::group([
         Route::get('/entities/{entity}/template', 'EntityController@template')->name('entities.template');
 
         // Attribute template
-        Route::get('/entities/{entity}/attribute/template', 'AttributeController@template')->name('entities.attributes.template');
-        Route::post('/entities/{entity}/attribute/template', 'AttributeController@applyTemplate')->name('entities.attributes.template');
+        Route::get('/entities/{entity}/attribute-template', 'Entity\AttributeTemplateController@apply')->name('entities.attributes.template');
+        Route::post('/entities/{entity}/attribute-template', 'Entity\AttributeTemplateController@applyTemplate')->name('entities.attributes.template');
+
         Route::get('/entities/{entity}/permissions', 'PermissionController@view')->name('entities.permissions');
         Route::post('/entities/{entity}/permissions', 'PermissionController@store')->name('entities.permissions');
 

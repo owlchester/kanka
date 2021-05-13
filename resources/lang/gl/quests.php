@@ -34,6 +34,24 @@ return [
         'success'       => 'Misión ":name" actualizada.',
         'title'         => 'Editar misión ":name"',
     ],
+    'elements'      => [
+        'create'    => [
+            'success'   => 'Entidade ":entity" engadida á misión.',
+            'title'     => 'Novo elemento para ":name"',
+        ],
+        'destroy'   => [
+            'success'   => 'Elemento ":entity" eliminado da misión.',
+        ],
+        'edit'      => [
+            'success'   => 'Elemento ":entity" actualizado na misión.',
+            'title'     => 'Actualizar elemento da misión ":name"',
+        ],
+        'fields'    => [
+            'description'   => 'Descrición',
+            'quest'         => 'Misión',
+        ],
+        'title'     => 'Elementos da misión ":name"',
+    ],
     'fields'        => [
         'character'     => 'Quen deu a misión',
         'characters'    => 'Personaxes',
@@ -133,6 +151,7 @@ return [
     'show'          => [
         'actions'       => [
             'add_character'     => 'Engadir personaxe',
+            'add_element'       => 'Engadir un elemento',
             'add_item'          => 'Engadir obxeto',
             'add_location'      => 'Engadir lugar',
             'add_organisation'  => 'Engadir organización',
@@ -140,6 +159,7 @@ return [
         'description'   => 'Vista detallada dunha misión',
         'tabs'          => [
             'characters'    => 'Personaxes',
+            'elements'      => 'Elementos',
             'information'   => 'Información',
             'items'         => 'Obxetos',
             'locations'     => 'Lugares',

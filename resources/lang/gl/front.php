@@ -11,6 +11,13 @@ return [
             'description'   => 'A nosa comunidade crea cousas incríbeis que nos encanta mostrar nas Campañas Destacadas. Asegúrate de voltar de vez en cando para ver máis campañas destacadas.',
             'title'         => 'Campañas Destacadas',
         ],
+        'open'              => [
+            'filters'   => [
+                'all'       => 'Estado de apertura',
+                'closed'    => 'Campañas pechadas',
+                'open'      => 'Campañas abertas',
+            ],
+        ],
         'public'            => [
             'description'   => 'Bótalle un ollo ás campañas públicas para inspirarte.',
             'filters'       => [
@@ -94,6 +101,10 @@ return [
             'description'   => 'Non estás só? Conta connosco! Podes invitar ás túas amigas e co-creadoras para axudarte a crear a túa campaña!',
             'title'         => 'Colaborativo',
         ],
+        'dashboards'        => [
+            'description'   => 'Controla a información que é visíbel para as integrantes da campaña cando abren Kanka.',
+            'title'         => 'Taboleiros',
+        ],
         'description'       => 'Coas nosas @mencións, etiquetas, e sistema de permisos en profundidade, Kanka facilita a administración do teu mundo ou campaña. Isto inclúe Personaxes e as súas relacións, Lugares e a súa historia, Misións e os seus obxetivos, Liñas temporais e as súas eras, e Calendarios con tanto eventos como fenómenos meteorolóxicos. E por se fose pouco, as usuarias de Kanka teñen voz e voto en decidir que novas funcionalidades son implementadas a través dos Votos da Comunidade.',
         'description_full'  => 'Kanka está constantemente sendo actualizada con novas funcionalidades e melloras, mais aquí están algunhas das máis importantes que pensamos que che gustarán.',
         'flora'             => [
@@ -111,6 +122,7 @@ return [
             'title'         => 'Personaxes, Familias, Lugares',
         ],
         'learn_more'        => 'Lista completa de funcionalidades de Kanka',
+        'learn_more_about'  => 'Aprende máis sobre esta funcionalidade',
         'maps'              => [
             'description'   => 'Sube mapas dos teus mundos, cidades, e covas, e engade marcadores e ligazóns neles.',
             'title'         => 'Mapas',
@@ -159,6 +171,10 @@ return [
             'description'   => 'Cun sistema de permisos profundo, misións, cadernos, personaxes, habilidades, e audio e vídeo integrados, axudámoste a administrar a túa campaña.',
             'title'         => 'Administración de campañas de rol',
         ],
+        'secrets'           => [
+            'description'   => 'Toda entidade pode ter múltiples segredos ligados a ela en forma de notas de entidade. Estas poden ter permisos individuais para controlar quen pode velas, e poden ser fixadas na vista principal dunha entidade para ser facilmente accesíbeis.',
+            'title'         => 'Xestionar segredos',
+        ],
         'superboosts'       => [
             'boosted'       => 'Superpotenciada',
             'description'   => 'Usar tres potenciadores de campaña nunha soa campaña farana superpotenciada, desbloqueando as seguintes funcionalidades.',
@@ -189,11 +205,11 @@ return [
     ],
     'footer'        => [
         'app'       => 'Aplicación',
-        'copyright' => '© 2017 - :current kanka.io. Todos os dereitos reservados.',
+        'copyright' => 'Copyright :copy :year Owlchester SNC',
         'headings'  => [
             'app'           => 'Aplicación',
             'community'     => 'Comunidade',
-            'friends'       => 'Nosas amizades',
+            'other'         => 'Miscelánea',
             'useful_links'  => 'Ligazóns útiles',
         ],
         'navigation'=> 'Navegación',
@@ -244,6 +260,7 @@ return [
         'media'         => 'Media',
         'news'          => 'Novas',
         'newsletter'    => 'Boletín informativo',
+        'other'         => 'Miscelánea',
         'pricing'       => 'Prezos',
         'privacy'       => 'Política de privacidade',
         'register'      => 'Rexistrarse',
@@ -267,13 +284,15 @@ return [
             'support'   => 'Apoiar',
         ],
         'benefits'      => [
-            'boosters'          => 'Potenciadores de campaña',
-            'core'              => 'Acceso a todas as funcionalidades principais',
-            'higher_uploads'    => 'Maior tamaño de arquivos subidos',
-            'huge_uploads'      => 'Moito máis tamaño de arquivos subidos',
-            'no_boosters'       => 'Sen potenciadores de campaña',
-            'unlimited'         => 'Campañas e arquivos subidos ilimitados',
-            'updates'           => 'Actualizacións e melloras frecuentes',
+            'big_maps'      => 'Tamaño de mapa grande (:size)',
+            'bigger_maps'   => 'Tamaño de mapa máis grande (:size)',
+            'boosters'      => 'Potenciadores de campaña',
+            'core'          => 'Acceso a todas as funcionalidades principais',
+            'huge_maps'     => 'Tamaño enorme de mapa (:size)',
+            'huge_uploads'  => 'Moito máis tamaño de arquivos subidos',
+            'no_boosters'   => 'Sen potenciadores de campaña',
+            'unlimited'     => 'Campañas e arquivos subidos ilimitados',
+            'updates'       => 'Actualizacións e melloras frecuentes',
         ],
         'description'   => 'Todas as funcionalidades principais son gratuítas, mais apoiar a Kanka axúdanos a dar actualizacións e melloras frecuentes a todas as usuarias.',
         'tier'          => [
@@ -297,7 +316,7 @@ return [
         ],
         'description'       => 'As votacións da comunidade dan forma ao noso traballo, así que, aínda que non temos unha folla de ruta de varios meses, é fácil estar ao tanto do que foi solicitado e de no que se está traballando actualmente.',
         'featured_requests' => [
-            'title' => 'Solicitacións de funcionalidades',
+            'title' => 'Solicitudes de funcionalidades',
         ],
         'next'              => [
             'description'   => 'Este taboleiro de Trello contén todas as funcionalidades, melloras, e erros nos que se está traballando actualmente, seguindo a última :community_vote.',

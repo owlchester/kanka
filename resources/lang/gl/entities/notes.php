@@ -19,6 +19,7 @@ return [
         'title'         => 'Actualizar nota de entidade de :name',
     ],
     'fields'        => [
+        'collapsed' => 'Pechar nota de entidade fixada por defecto.',
         'creator'   => 'Creadora',
         'entry'     => 'Entrada',
         'is_pinned' => 'Fixada',

@@ -45,6 +45,10 @@ TEXT
         'answer'    => 'Wejdź na pulpit kampanii i kliknij "Kampania" w menu po lewej stronie. Jeżeli jesteś jedynym użytkownikiem kampanii, pojawi się guzik "Usuń". Usunięcie kampanii to akcja nieodwracalna, która wymaże z naszych serwerów wszystko, łącznie z obrazami.',
         'question'  => 'Jak usunąć kampanię?',
     ],
+    'discord'               => [
+        'answer'    => 'By połączyć Kankę z profilem na :discord należy najpierw kliknąć na awatar w prawym górnym rogu aplikacji, a następnie wybrać opcję Profil. Tam przejdź na podstronę :apps i wybierz Połącz.',
+        'question'  => 'Jak połączyć konto Kanki z moim profilem Discord?',
+    ],
     'early-access'          => [
         'answer'    => 'Wczesny dostęp to sposób, w jaki nagradzamy naszych wspaniałych subskrybentów. Otrzymują oni możliwość korzystania z najnowszych modułów na 30 dni przed pozostałymi użytkownikami.',
         'question'  => 'Czym jest "wczesny dostęp"?',

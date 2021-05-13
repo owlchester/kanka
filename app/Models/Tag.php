@@ -17,6 +17,8 @@ use Kalnoy\Nestedset\NodeTrait;
  * Class Tag
  * @package App\Models
  *
+ * @property string $name
+ * @property string $type
  * @property string $colour
  */
 class Tag extends MiscModel

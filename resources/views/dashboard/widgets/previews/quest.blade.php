@@ -11,6 +11,9 @@ $model = $entity->child;
     @if ($widget->conf('entity-header') && $campaign->boosted() && $entity->header_image)
         class="panel-heading panel-heading-entity"
         style="background-image: url({{ $entity->getImageUrl(1200, 400, 'header_image') }})"
+    @elseif ($widget->conf('entity-header') && $campaign->boosted(true) && $widget->entity->header)
+        class="panel-heading panel-heading-entity"
+        style="background-image: url({{ Img::crop(1200, 400)->url($widget->entity->header->path) }})"
     @elseif ($entity->child->image)
         class="panel-heading panel-heading-entity"
         style="background-image: url({{ $entity->child->getImageUrl() }})"

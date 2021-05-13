@@ -4,6 +4,17 @@ return [
     'abilities'     => [
         'title' => 'Child abilities of :name',
     ],
+    'children'      => [
+        'actions'       => [
+            'add'   => 'Add ability to entity',
+        ],
+        'create'        => [
+            'success'   => 'Added the ability :name to the entity.',
+            'title'     => 'Add an entity to :name',
+        ],
+        'description'   => 'Entities having the ability',
+        'title'         => 'Ability :name Entities',
+    ],
     'create'        => [
         'success'   => 'Ability \':name\' created.',
         'title'     => 'New Ability',

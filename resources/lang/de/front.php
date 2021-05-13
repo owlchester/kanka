@@ -101,6 +101,10 @@ return [
             'description'   => 'Nicht allein? Wir haben die Lösung für dich! Du kannst deine Freunde und Co-Dungeonmaster einladen, mit dir zusammen deine Kampagne aufzubauen!',
             'title'         => 'Gemeinsam',
         ],
+        'dashboards'        => [
+            'description'   => 'Kontrolliere die Informationen, die deine Spieler sehen, wenn sie Kanka öffnen.',
+            'title'         => 'Dashboards',
+        ],
         'description'       => 'Hier sind einige Dinge, die du an unserer App lieben wirst!',
         'description_full'  => 'Hier einige unserer besten und beliebtesten Features.',
         'flora'             => [

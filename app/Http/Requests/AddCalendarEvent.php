@@ -24,8 +24,8 @@ class AddCalendarEvent extends FormRequest
     public function rules()
     {
         return [
-            'entity_id' => 'exists:entities,id',
-            'name' => 'nullable',
+            'entity_id' => 'required_without:name|integer|exists:entities,id',
+            'name' => 'required_without:entity_id|nullable',
             'day' => 'required',
             'month' => 'required',
             'year' => 'required',
@@ -35,7 +35,8 @@ class AddCalendarEvent extends FormRequest
             'recurring_periodicity' => 'nullable|max:5',
             'colour' => 'nullable|string',
             'comment' => 'nullable|max:191',
-            'type_id' => 'nullable|integer|exists:entity_event_types,id'
+            'type_id' => 'nullable|integer|exists:entity_event_types,id',
+            'visibility' => 'nullable|string|in:all,admin,self,members,admin-self'
         ];
     }
 }

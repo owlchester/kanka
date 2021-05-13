@@ -6,7 +6,8 @@ return [
             'add'   => 'Add to tag',
         ],
         'create'        => [
-            'title' => 'Add an entity to :name',
+            'success'   => 'Added the tag :name to the entity.',
+            'title'     => 'Add an entity to :name',
         ],
         'description'   => 'Entities belonging to the tag',
         'title'         => 'Tag :name Children',

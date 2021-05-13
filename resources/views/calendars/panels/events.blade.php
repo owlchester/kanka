@@ -44,7 +44,7 @@
                         <i class="fa fa-comment" title="{{ $event->comment }}" data-toggle="tooltip"></i>
                     @endif</td>
                     <td>@if ($event->is_recurring)
-                        <i class="fa fa-check"></i>
+                        <i class="fa fa-refresh" title="{{ __('calendars.fields.is_recurring') }}" data-toggle="tooltip"></i>
                     @endif</td>
                     <td>
                         @can('update', $model)

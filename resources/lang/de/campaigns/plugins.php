@@ -5,6 +5,7 @@ return [
         'disable'           => 'Plugin deaktivieren',
         'enable'            => 'Plugin aktivieren',
         'go_to_marketplace' => 'Gehe zum Marktplatz',
+        'import'            => 'Importieren',
         'remove'            => 'Plugin entfernen',
         'update'            => 'Plugin aktualisieren',
         'update_available'  => 'Update verfügbar!',
@@ -28,6 +29,9 @@ return [
         'type'      => 'Plugin Typ',
     ],
     'helper'        => 'Die Kanka-Community erstellt ständig erstaunliche Plugins auf unserem Marktplatz. Wenn Ihre Kampagne geboostet wird, können Sie Plugins vom Marktplatz installieren. Verwenden Sie diese Schnittstelle, um Plugins in Ihrer Kampagne zu deinstallieren.',
+    'import'        => [
+        'success'   => '{1} Importiert :count Objekt aus dem Plugin :plugin. |[2,*] Importiert :count  Objekte aus dem Plugin zählen :plugin.',
+    ],
     'info'          => [
         'helper'        => 'Wenn eine neue Version eines Plugins veröffentlicht wird, können Sie es auf die neueste Version für Ihre Kampagne aktualisieren.',
         'title'         => 'Plugin :plugin Aktualisierungen',

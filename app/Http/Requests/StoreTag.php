@@ -29,9 +29,9 @@ class StoreTag extends FormRequest
             'name' => 'required|max:191',
             'type' => 'max:45',
             'tag_id', 'nullable|integer|exists:tags,id',
-            'image' => 'mimes:jpeg,png,jpg,gif|max:' . auth()->user()->maxUploadSize(),
+            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
-            'template_id' => 'nullable|exists:attribute_templates,id',
+            'template_id' => 'nullable',
             'colour' => [
                 'nullable',
                 Rule::in($colours)

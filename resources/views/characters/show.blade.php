@@ -75,6 +75,12 @@
                             <br class="clear" />
                         </li>
                     @endif
+                    @if ($model->pronouns)
+                        <li class="list-group-item">
+                            <b>{{ trans('characters.fields.pronouns') }}</b> <span class="pull-right">{{ $model->pronouns }}</span>
+                            <br class="clear" />
+                        </li>
+                    @endif
                     @foreach ($model->characterTraits()->appearance()->orderBy('default_order')->get() as $trait)
                         <li class="list-group-item">
                             <b>{{ $trait->name }}</b> <span class="pull-right">{{ $trait->entry }}</span>

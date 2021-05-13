@@ -13,11 +13,15 @@ $specificPreview = 'dashboard.widgets.previews.' . $entity->type;
 @if(view()->exists($specificPreview))
     @include($specificPreview, ['entity' => $entity])
 @else
+
 <div class="panel panel-default widget-preview" id="dashboard-widget-{{ $widget->id }}">
     <div
     @if ($widget->conf('entity-header') && $campaign->boosted() && $widget->entity->header_image)
         class="panel-heading panel-heading-entity"
         style="background-image: url({{ $widget->entity->getImageUrl(1200, 400, 'header_image') }})"
+    @elseif ($widget->conf('entity-header') && $campaign->boosted(true) && $widget->entity->header)
+        class="panel-heading panel-heading-entity"
+        style="background-image: url({{ Img::crop(1200, 400)->url($widget->entity->header->path) }})"
     @elseif ($model->image)
         class="panel-heading panel-heading-entity"
         style="background-image: url({{ $widget->entity->child->getImageUrl() }})"

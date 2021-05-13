@@ -144,8 +144,14 @@ TEXT
         'fields'                    => [
             'dashboard' => 'Dashboard',
             'name'      => 'Benutzerdefinierter Widget-Name',
+            'order'     => 'Bestellung',
             'text'      => 'Text',
             'width'     => 'Breite',
+        ],
+        'orders'                    => [
+            'name_asc'  => 'Name aufsteigend',
+            'name_desc' => 'Name absteigend',
+            'recent'    => 'Kürzlich modifiziert',
         ],
         'random'                    => [
             'helpers'   => [

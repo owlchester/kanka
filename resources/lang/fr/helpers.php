@@ -31,6 +31,7 @@ return [
         'title'         => 'Modèles d\'entités',
     ],
     'filters'           => [
+        'clipboard'     => 'Lorsque des filtres sont actifs, le bouton copier les filtres devient actif. Ce bouton copie les filtres dans le presse-papier, et cette valeur peut être utilisée dans le champ filtre des widgets de tableau de bord ou des liens rapides.',
         'description'   => 'Utilise les filtres pour limiter le nombre de résultats. Les champs de texte supportent plusieurs fonctionnalités pour plus de granularité.',
         'empty'         => 'Le code :tag: dans un champ cherche pour toutes les entités ou ce champ est vide.',
         'ending_with'   => 'En plaçant un :tag à la fin du texte, seuls les résultats avec exactement ce terme seront affichés.',
