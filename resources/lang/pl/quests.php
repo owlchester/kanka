@@ -34,6 +34,24 @@ return [
         'success'       => 'Zmieniono misję \':name\'.',
         'title'         => 'Edycja misji :name',
     ],
+    'elements'      => [
+        'create'    => [
+            'success'   => 'Nowy element misji :name',
+            'title'     => 'Nowy element misji :name',
+        ],
+        'destroy'   => [
+            'success'   => 'Usunięto element misji :entity.',
+        ],
+        'edit'      => [
+            'success'   => 'Zmieniono element misji :entity.',
+            'title'     => 'Zmień element misji :name',
+        ],
+        'fields'    => [
+            'description'   => 'Szczegóły',
+            'quest'         => 'Misja',
+        ],
+        'title'     => 'Elementy misji :name',
+    ],
     'fields'        => [
         'character'     => 'Donator',
         'characters'    => 'Postaci',
@@ -135,6 +153,7 @@ return [
     'show'          => [
         'actions'       => [
             'add_character'     => 'Dodaj postać',
+            'add_element'       => 'Dodaj element',
             'add_item'          => 'Dodaj przedmiot',
             'add_location'      => 'Dodaj miejsce',
             'add_organisation'  => 'Dodaj organizację',
@@ -142,6 +161,7 @@ return [
         'description'   => 'Szczegółowy widok misji',
         'tabs'          => [
             'characters'    => 'Postaci',
+            'elements'      => 'Elementy',
             'information'   => 'Informacje',
             'items'         => 'Przedmioty',
             'locations'     => 'Miejsca',

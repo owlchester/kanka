@@ -12,14 +12,8 @@ return [
         'title'         => 'Equipo',
         'translations'  => 'Traducións',
     ],
-    'patreon'       => [
-        'description'   => 'Esta marabillosa xente axuda e apoia Kanka mediante a súa subscrición.',
-        'learn_more'    => 'Lista completa de funcionalidades desbloqueadas subscribíndose',
-    ],
+    'patreon'       => [],
     'people'        => [
-        'iz'        => [
-            'title' => 'Desenvolvemento do produto',
-        ],
         'jay'       => [
             'text'  => <<<'TEXT'
 Creei Kanka en outubro do 2017 porque non había unha ferramenta que me permitise crear un mundo facilmente coas miñas amizades e que ao mesmo tempo me deixase controlar quen pode ver ou facer cada cousa.

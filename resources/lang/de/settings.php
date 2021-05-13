@@ -48,7 +48,8 @@ return [
         'title'     => 'App Integration',
     ],
     'boost'         => [
-        'benefits'      => [
+        'available_boosts'  => 'Verfügbare Boosts : :amount / :max',
+        'benefits'          => [
             'campaign_gallery'  => 'Eine Kampagnengalerie zum Hochladen von Bildern, die Sie während der Kampagne wiederverwenden können.',
             'entity_files'      => 'Laden Sie bis zu 10 Dateien pro Objekt hoch.',
             'entity_logs'       => 'Vollständige Objektprotokolle der Änderungen an einem Objekt bei jeder Aktualisierung.',
@@ -75,27 +76,28 @@ return [
             'tooltip'           => 'Benutzerdefinierte Kurzinfo für Objekt.',
             'upload'            => 'Erhöhte Upload-Größe für jedes Mitglied in der Kampagne.',
         ],
-        'buttons'       => [
+        'buttons'           => [
             'boost'         => 'Boost',
             'superboost'    => 'Superboost',
             'tooltips'      => [
                 'boost'         => 'Das Boosten einer Kampagne verbraucht :amount Ihrer Boosts',
                 'superboost'    => 'Das Superboosten einer Kampagne verbraucht :amount Ihrer Boosts',
             ],
+            'unboost'       => 'Unboost',
         ],
-        'campaigns'     => 'Geboostete Kampagne :count / :max',
-        'exceptions'    => [
+        'campaigns'         => 'Geboostete Kampagne :count / :max',
+        'exceptions'        => [
             'already_boosted'       => 'Kampagne :name ist bereits geboostet',
             'exhausted_boosts'      => 'Sie haben keine Boosts mehr zu geben. Entfernen Sie Ihren Boost aus einer Kampagne, bevor Sie ihn einer anderen geben.',
             'exhausted_superboosts' => 'Sie haben keine Boosts mehr. Sie benötigen 3 Booster, um eine Kampagne zu verbessern.',
         ],
-        'success'       => [
+        'success'           => [
             'boost'         => 'Kampagne :name geboostet',
             'delete'        => 'Entferne den boost von :name',
             'superboost'    => 'Kampagne :name supergeboostet',
         ],
-        'title'         => 'Boost',
-        'unboost'       => [
+        'title'             => 'Boost',
+        'unboost'           => [
             'description'   => 'Möchten Sie die Kampagnen :tag nicht mehr boosten?',
             'title'         => 'Kampagnen boosting beenden',
         ],

@@ -43,7 +43,8 @@ return [
         'title'     => 'Integracja z aplikacjami',
     ],
     'boost'         => [
-        'benefits'      => [
+        'available_boosts'  => 'Dostępne doładowania. :amount / :max',
+        'benefits'          => [
             'campaign_gallery'  => 'Galeria kampanii, do której możesz dodawać obrazy dostępne w całej kampanii.',
             'entity_files'      => 'Dodaj do 10 plików do elementu.',
             'entity_logs'       => 'Pełen dziennik wszystkich zmian i aktualizacji elementów.',
@@ -70,27 +71,28 @@ return [
             'tooltip'           => 'Własne dymki z poradami.',
             'upload'            => 'Zwiększona wielkość plików dodawanych przez wszystkich uczestników kampanii.',
         ],
-        'buttons'       => [
+        'buttons'           => [
             'boost'         => 'Doładuj',
             'superboost'    => 'Turbodoładuj',
             'tooltips'      => [
                 'boost'         => 'Doładowanie kampanii zużyje do :amount twoich doładowań',
                 'superboost'    => 'Turbodoładowanie kampanii zużyje :amount twoich doładowań',
             ],
+            'unboost'       => 'Usuń doładowanie',
         ],
-        'campaigns'     => 'Doładowane kampanie :count/:max',
-        'exceptions'    => [
+        'campaigns'         => 'Doładowane kampanie :count/:max',
+        'exceptions'        => [
             'already_boosted'       => 'Kampania :name jest już doładowana.',
             'exhausted_boosts'      => 'Nie masz już doładowań. Musisz usunąć doładowanie z którejś kampanii, by je ponownie wykorzystać.',
             'exhausted_superboosts' => 'Nie masz doładowań. Potrzebujesz 3, by turbodoładować kampanię.',
         ],
-        'success'       => [
+        'success'           => [
             'boost'         => 'Doładowano kampanię :name.',
             'delete'        => 'Usunięto doładowanie kampanii :name.',
             'superboost'    => 'Turbodoładowano kampanię :name',
         ],
-        'title'         => 'Doładowanie',
-        'unboost'       => [
+        'title'             => 'Doładowanie',
+        'unboost'           => [
             'description'   => 'Czy na pewno usunąć doładowanie kampanii :tag?',
             'title'         => 'Usunięcie doładowania',
         ],

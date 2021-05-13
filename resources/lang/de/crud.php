@@ -444,6 +444,7 @@ return [
         'menu'          => 'Menü',
         'notes'         => 'Notizen',
         'permissions'   => 'Berechtigungen',
+        'quests'        => 'Abenteuer',
         'relations'     => 'Beziehungen',
         'reminders'     => 'Erinnerungen',
         'timelines'     => 'Zeitstrahlen',

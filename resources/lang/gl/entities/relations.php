@@ -9,20 +9,22 @@ return [
         'success'   => 'Relación ":target" eliminada de :entity.',
     ],
     'fields'        => [
-        'attitude'  => 'Actitude',
-        'is_star'   => 'Fixada',
-        'relation'  => 'Relación',
-        'target'    => 'Obxetivo',
-        'two_way'   => 'Crear relación reflectida',
+        'attitude'          => 'Actitude',
+        'is_star'           => 'Fixada',
+        'relation'          => 'Relación',
+        'target'            => 'Obxetivo',
+        'target_relation'   => 'Relación para o obxetivo',
+        'two_way'           => 'Crear relación reflectida',
     ],
     'helper'        => 'Establece relacións entre entidades con actitude e visibilidade. As relacións poden ser fixadas ao menú da entidade.',
     'hints'         => [
-        'attitude'  => 'As relacións aparecerán ordenadas de forma descendente segundo este campo.',
-        'mirrored'  => [
+        'attitude'          => 'As relacións aparecerán ordenadas de forma descendente segundo este campo.',
+        'mirrored'          => [
             'text'  => 'Esta relación está reflectida en :link.',
             'title' => 'Reflectida',
         ],
-        'two_way'   => 'Ao reflectir unha relación, a mesma relación será creada na entidade obxectivo. Unha vez creada, podes editalas sen que unha sexa afectada pola outra.',
+        'target_relation'   => 'A descrición da relación no obxetivo. Déixaa en branco para que use a mesma.',
+        'two_way'           => 'Ao reflectir unha relación, a mesma relación será creada na entidade obxectivo. Unha vez creada, podes editalas sen que unha sexa afectada pola outra.',
     ],
     'placeholders'  => [
         'attitude'  => 'De -100 a 100, sendo 100 moi positiva',

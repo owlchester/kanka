@@ -101,6 +101,10 @@ return [
             'description'   => 'Pracujesz w zespole? Żaden problem, możesz zaprosić przyjaciół i innych mistrzów gry, by wspólnie budować kampanię!',
             'title'         => 'Praca zespołowa',
         ],
+        'dashboards'        => [
+            'description'   => 'Określ, jakie informacje zobaczą gracze po uruchomieniu Kanki.',
+            'title'         => 'Pulpity',
+        ],
         'description'       => 'Dzięki @wzmiankom, etykietom i złożonemu systemowi uprawnień, Kanka pozwala z łatwością zarządzać światem albo kampanią. Możesz tworzyć postacie i relacje między nimi, miejsca wraz z ich historią, zadania i cele misji, historie podzielone na ery oraz kalendarze, w których znajdują się bieżące wydarzenia i aktualna pogoda. A najlepsze jest to, że użytkownicy Kanki sami decydują, które funkcje będą rozwijane, podczas głosowań społeczności.',
         'description_full'  => 'Kanka jest przez cały czas rozbudowywana i otrzymuje nowe funkcje. Tu wymieniamy najważniejsze, które na pewno ci się spodobają.',
         'flora'             => [

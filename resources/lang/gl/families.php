@@ -28,7 +28,8 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Esta lista contén todas as familias que son descendentes desta familia, non só as que están directamente relacionadas.',
-        'nested'        => 'Na vista en árbore, podes ver as familias de forma agrupada. As familias sen ningunha familia superior serán mostradas primeiro. As que teñan subfamilias poden ser clicadas para explorar as súas descendentes.',
+        'nested_parent' => 'Mostrando as familias de :parent.',
+        'nested_without'=> 'Mostrando todas as familias que non teñen unha familia superior. Fai clic nunha fila para ver as súas subfamilias.',
     ],
     'hints'         => [
         'members'   => 'As membras dunha familia móstranse aquí. Unha personaxe pode ser engadida a unha familia editando esa personaxe e usando o campo "Familia".',
