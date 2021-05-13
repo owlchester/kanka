@@ -290,6 +290,9 @@ class Tag extends MiscModel
             . e($this->name) . '</span>';
     }
 
+    /**
+     * @return string
+     */
     public function bubble(): string
     {
         return '<span class="label label-tag-bubble ' . ($this->hasColour() ? $this->colourClass() : 'label-default') . '" title="'

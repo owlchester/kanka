@@ -2,13 +2,13 @@
 
 @inject('campaign', 'App\Services\CampaignService')
 @php
-$headerImage = !empty($model->entity->header_image) && $campaign->campaign()->boosted();
+$headerImage = true;
 @endphp
 
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
-    'title' => trans($name . '.show.title', ['name' => $model->name]),
+    'title' => __($name . '.show.title', ['name' => $model->name]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($name), 'label' => trans($name . '.index.title')],
+        ['url' => Breadcrumb::index($name), 'label' => __($name . '.index.title')],
         $model->name,
     ],
     'miscModel' => $model,
@@ -23,9 +23,17 @@ $headerImage = !empty($model->entity->header_image) && $campaign->campaign()->bo
     <meta property="og:url" content="{{ $model->getLink()  }}" />
 @endsection
 
+@section('entity-header-actions')
+    <div class="pull-right">
+    <a href="{{ route('entities.entity_notes.create', $model->entity) }}" class="btn btn-primary">
+        <i class="fa fa-plus"></i> {{ __('crud.actions.new_post') }}
+    </a>
+    </div>
+@endsection
+
 @include('entities.components.header', ['model' => $model])
 
-@section('content')
 
+@section('content')
     @include($name . '.show')
 @endsection

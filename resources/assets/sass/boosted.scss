@@ -9,71 +9,59 @@
 }
 
 .entity-header {
-  height: calc(40vh);
-  max-height: 240px;
-  min-height: 190px;
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: cover;
+  padding: 20px 0;
   display: flex;
-  border-radius: 3px;
-  margin-bottom: 15px;
+  flex-wrap: wrap;
 
-  .bottom {
-    align-items: flex-end;
+  [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 5px;
+  }
+
+  .entity-header-col {
     align-self: flex-end;
     display: flex;
-
-    .texts {
-      margin-bottom: 15px;
-      h1, h3 {
-        margin: 0;
-        align-self: flex-end;
-        text-shadow: rgba(0, 0, 0, 0.5) 0px 1px 4px;
-        color: white;
-      }
-      h3 {
-        margin-top: 5px;
-        font-style: italic;
-      }
-    }
-
-    .entity-avatar {
-      margin: 10px;
-      margin-bottom: 15px;
-
-      img {
-        transition: all 1.0s ease;
-        border-radius: 3px;
-        max-width: 160px;
-        max-height: 160px;
-        box-shadow: $box-shadow-white;
-      }
-
-      &:hover {
-        img {
-          box-shadow: $box-shadow-hover;
-        }
-      }
+    .entity-texts {
     }
   }
 
-  .entity-links {
-    margin: 5px 0 0 2px;
-    li {
-      margin: 0 3px 0 0;
-      padding: 0;
-      a {
-        display: inline-block;
-        /*width: 32px;
-        height: 32px;*/
-        text-align: center;
-        padding: 3px;
-        background-color: white;
-        border-radius: 5px;
-        font-size: 20px;
-      }
+  .entity-name {
+    margin: 0;
+    overflow: visible;
+
+    display: flex;
+    align-items: center;
+
+    i.entity-icons {
+      margin-left: 15px;
+      font-size: 18px;
+      cursor: pointer;
     }
+
+    .btn-group.open .dropdown-toggle {
+      box-shadow: unset;
+    }
+  }
+
+  .entity-tags {
+    margin-bottom: 10px;
+    .label {
+      margin-right: 6px;
+      font-size: 80%;
+      line-height: 20px;
+    }
+  }
+
+  .entity-header-locations {
   }
 }
 .entity-links {
@@ -89,10 +77,6 @@
   background-repeat: no-repeat;
   width: 100%;
   padding: 150px 0;
-
-  .bob {
-
-  }
 
   a {
     display: block;
@@ -111,3 +95,11 @@
   }
 }
 
+@media (max-width: 787px) {
+ .entity-header {
+   img {
+     max-width: 50%;
+     max-height: 50%;
+   }
+ }
+}

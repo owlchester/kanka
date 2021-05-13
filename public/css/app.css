@@ -481,7 +481,7 @@ tr.entity-hidden td {
 }
 
 .entity-title {
-  margin: 0px;
+  margin: 0;
 }
 
 .entity-title .entity-image {
@@ -1389,75 +1389,55 @@ summary {
 }
 
 .entity-header {
-  height: calc(40vh);
-  max-height: 240px;
-  min-height: 190px;
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: cover;
+  padding: 20px 0;
   display: flex;
-  border-radius: 3px;
-  margin-bottom: 15px;
+  flex-wrap: wrap;
 }
 
-.entity-header .bottom {
-  align-items: flex-end;
-  align-self: flex-end;
+.entity-header [class*=col-] {
   display: flex;
+  flex-direction: column;
 }
 
-.entity-header .bottom .texts {
-  margin-bottom: 15px;
-}
-
-.entity-header .bottom .texts h1,
-.entity-header .bottom .texts h3 {
-  margin: 0;
-  align-self: flex-end;
-  text-shadow: rgba(0, 0, 0, 0.5) 0px 1px 4px;
-  color: white;
-}
-
-.entity-header .bottom .texts h3 {
-  margin-top: 5px;
-  font-style: italic;
-}
-
-.entity-header .bottom .entity-avatar {
-  margin: 10px;
-  margin-bottom: 15px;
-}
-
-.entity-header .bottom .entity-avatar img {
-  transition: all 1s ease;
-  border-radius: 3px;
-  max-width: 160px;
-  max-height: 160px;
-  box-shadow: 0 6px 6px rgba(150, 150, 150, 0.3), 0 1px 3px rgba(255, 255, 255, 0.08);
-}
-
-.entity-header .bottom .entity-avatar:hover img {
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.31), 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-
-.entity-header .entity-links {
-  margin: 5px 0 0 2px;
-}
-
-.entity-header .entity-links li {
-  margin: 0 3px 0 0;
-  padding: 0;
-}
-
-.entity-header .entity-links li a {
-  display: inline-block;
-  /*width: 32px;
-  height: 32px;*/
-  text-align: center;
-  padding: 3px;
-  background-color: white;
+.entity-header img {
+  max-width: 100%;
+  max-height: 100%;
   border-radius: 5px;
-  font-size: 20px;
+}
+
+.entity-header .entity-header-col {
+  align-self: flex-end;
+  display: flex;
+}
+
+.entity-header .entity-name {
+  margin: 0;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+}
+
+.entity-header .entity-name i.entity-icons {
+  margin-left: 15px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.entity-header .entity-name .btn-group.open .dropdown-toggle {
+  box-shadow: unset;
+}
+
+.entity-header .entity-tags {
+  margin-bottom: 10px;
+}
+
+.entity-header .entity-tags .label {
+  margin-right: 6px;
+  font-size: 80%;
+  line-height: 20px;
 }
 
 .entity-links {
@@ -1490,6 +1470,13 @@ summary {
 
 .visu-teaser a:hover {
   background-color: rgba(45, 127, 255, 0.6);
+}
+
+@media (max-width: 787px) {
+  .entity-header img {
+    max-width: 50%;
+    max-height: 50%;
+  }
 }
 
 .entity-menu-head {
