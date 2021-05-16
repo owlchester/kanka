@@ -16,6 +16,7 @@ trait PurifiableTrait
      */
     public function purify($text = '')
     {
+        //dd('help');
         $purified = Purify::clean($text);
 
         // If it's really empty, zap it

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use HTMLPurifier_HTMLDefinition;
+use HTMLPurifier_AttrDef_Enum;
 use Stevebauman\Purify\Facades\Purify;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,6 +31,18 @@ class PurifySetupProvider extends ServiceProvider
         if ($def = $config->maybeGetRawHTMLDefinition()) {
             $this->setupDefinitions($def);
         }
+
+        $css = $config->getCSSDefinition();
+
+        $css->info['word-break'] = new HTMLPurifier_AttrDef_Enum(
+            [
+                'normal',
+                'break-all',
+                'keep-all',
+                'break-word'
+            ]
+        );
+        //dd($css);
 
         $purifier->config = $config;
     }
@@ -74,6 +87,8 @@ class PurifySetupProvider extends ServiceProvider
 //        $def->addAttribute('img', 'data-trix-store-key', 'Text');
         $def->addAttribute('a', 'data-toggle', 'Text');
         $def->addAttribute('a', 'data-html', 'Text');
+
+        //$def->addAttribute('span', 'word-break')
 
         $def->addElement(
             'details',
