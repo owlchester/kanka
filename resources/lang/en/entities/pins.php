@@ -2,4 +2,5 @@
 
 return [
     'title' => 'Pins',
+    'links' => 'Links',
 ];

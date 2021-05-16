@@ -104,6 +104,9 @@ class Entity extends Model
      */
     public $permissionGrantSelf = false;
 
+    /** @var bool|string */
+    protected $cachedPluralName = false;
+
     /**
      * Get the child entity
      * @return \Illuminate\Database\Eloquent\Relations\HasMany|\Illuminate\Database\Eloquent\Relations\HasOne
@@ -258,11 +261,15 @@ class Entity extends Model
     }
 
     /**
+     * Get the plural name of the entity for routes
      * @return string
      */
     public function pluralType(): string
     {
-        return Str::plural($this->type);
+        if ($this->cachedPluralName !== false) {
+            return $this->cachedPluralName;
+        }
+        return $this->cachedPluralName = Str::plural($this->type);
     }
 
     /**
@@ -349,7 +356,7 @@ class Entity extends Model
         //$assets
         return $assets->sort(function ($a, $b) {
             return strcmp($a->name, $b->name);
-        });;
+        });
     }
 
     /**
@@ -367,5 +374,13 @@ class Entity extends Model
         }
 
         return false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasLinks(): bool
+    {
+        return $this->links->count() > 0;
     }
 }

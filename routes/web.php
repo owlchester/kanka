@@ -92,6 +92,7 @@ Route::group([
 
         // Character
         Route::get('/characters/random', 'CharacterController@random')->name('characters.random');
+        Route::get('/characters/{character}/profile', 'CharacterSubController@profile')->name('characters.profile');
         Route::get('/characters/{character}/quests', 'CharacterSubController@quests')->name('characters.quests');
         Route::get('/characters/{character}/organisations', 'CharacterSubController@organisations')->name('characters.organisations');
         Route::get('/characters/{character}/items', 'CharacterSubController@items')->name('characters.items');
@@ -213,6 +214,10 @@ Route::group([
         Route::get('/entities/{entity}/attributes/edit', [\App\Http\Controllers\Entity\AttributeController::class, 'edit'])->name('entities.attributes.edit');
         Route::post('/entities/{entity}/attributes/save', [\App\Http\Controllers\Entity\AttributeController::class, 'save'])->name('entities.attributes.save');
         Route::post('/entities/{entity}/toggle-privacy', [\App\Http\Controllers\Entity\PrivacyController::class, 'toggle'])->name('entities.privacy.toggle');
+
+        // Entity update entry
+        Route::get('/entities/{entity}/entry', [\App\Http\Controllers\Entity\EntryController::class, 'edit'])->name('entities.entry.edit');
+        Route::post('/entities/{entity}/entry', [\App\Http\Controllers\Entity\EntryController::class, 'update'])->name('entities.entry.update');
 
         Route::get('/entities/{entity}/relations_map', 'Entity\RelationController@map')->name('entities.relations_map');
 

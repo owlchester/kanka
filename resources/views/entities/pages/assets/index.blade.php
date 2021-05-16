@@ -13,23 +13,29 @@ $assetCount = 0; ?>
 ])
 @inject('campaign', 'App\Services\CampaignService')
 
+@section('entity-header-actions')
+    @can('update', $entity->child)
+        <div class="header-buttons">
+            <a href="#" class="btn btn-warning" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_files.create', [$entity]) }}">
+                <i class="fas fa-plus"></i> {{ __('entities/assets.actions.file') }}
+            </a>
+            <a href="#" class="btn btn-warning" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_links.create', [$entity]) }}">
+                <i class="fas fa-plus"></i> {{ __('entities/assets.actions.link') }}
+            </a>
+        </div>
+    @endcan
+@endsection
+
+@include('entities.components.header', ['model' => $entity->child, 'entity' => $entity])
+
+
 @section('content')
     @include('partials.errors')
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
             @include($entity->pluralType() . '._menu', ['active' => 'assets', 'model' => $entity->child, 'name' => $entity->pluralType()])
         </div>
-        <div class="col-md-9">
-        @can('update', $entity->child)
-            <div class="text-right">
-                <a href="#" class="btn btn-warning" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_files.create', [$entity]) }}">
-                    <i class="fas fa-plus"></i> {{ __('entities/assets.actions.file') }}
-                </a>
-                <a href="#" class="btn btn-warning" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_links.create', [$entity]) }}">
-                    <i class="fas fa-plus"></i> {{ __('entities/assets.actions.link') }}
-                </a>
-            </div>
-        @endcan
+        <div class="col-md-10">
             <div class="entity-assets">
                 <div class="row">
                 @foreach ($entity->assets() as $asset)

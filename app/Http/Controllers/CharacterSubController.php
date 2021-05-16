@@ -13,6 +13,7 @@ use App\Models\Location;
 use App\Services\CharacterRelationMapBuilder;
 use App\Services\RandomCharacterService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class CharacterSubController extends CharacterController
@@ -22,6 +23,24 @@ class CharacterSubController extends CharacterController
     public function __construct(CharacterRelationMapBuilder $characterRelationMapBuilder)
     {
         $this->characterRelationMapBuilder = $characterRelationMapBuilder;
+    }
+
+    /**
+     * @param Character $character
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function profile(Character $character)
+    {
+        if (Auth::check()) {
+            $this->authorize('view', $character);
+        } else {
+            $this->authorizeForGuest('read', $character);
+        }
+
+        return view('characters.profile')
+            ->with('model', $character)
+            ->with('name', $this->view);
     }
 
     /**

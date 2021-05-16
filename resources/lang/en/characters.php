@@ -5,6 +5,7 @@ return [
         'add_appearance'    => 'Add an appearance',
         'add_organisation'  => 'Add an organisation',
         'add_personality'   => 'Add a personality',
+        'edit_profile'      => 'Edit profile',
     ],
     'conversations' => [
         'description'   => 'Conversations the character is participating in.',
@@ -146,6 +147,7 @@ return [
             'map'           => 'Relation Map',
             'organisations' => 'Organisations',
             'personality'   => 'Personality',
+            'profile'       => 'Profile',
             'quests'        => 'Quests',
         ],
         'title'         => 'Character :name',

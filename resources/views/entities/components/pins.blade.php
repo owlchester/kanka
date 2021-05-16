@@ -4,10 +4,11 @@
         <h3 class="box-title">{{ __('entities/pins.title') }}</h3>
     </div>
     <div class="box-body">
-        @include('entities.components.links')
         <ul class="list-group list-group-unbordered">
             @include('entities.components.relations')
             @include('entities.components.attributes')
         </ul>
     </div>
 </div>
+
+@includeWhen($campaign->campaign()->boosted() && $model->entity->hasLinks(), 'entities.components.links')

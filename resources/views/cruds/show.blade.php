@@ -24,11 +24,13 @@ $headerImage = true;
 @endsection
 
 @section('entity-header-actions')
-    <div class="pull-right">
-    <a href="{{ route('entities.entity_notes.create', $model->entity) }}" class="btn btn-primary">
-        <i class="fa fa-plus"></i> {{ __('crud.actions.new_post') }}
-    </a>
-    </div>
+    @can('entity-note', [$model, 'add'])
+        <div class="header-buttons">
+            <a href="{{ route('entities.entity_notes.create', $model->entity) }}" class="btn btn-primary">
+                <i class="fa fa-plus"></i> {{ __('crud.actions.new_post') }}
+            </a>
+        </div>
+    @endcan
 @endsection
 
 @include('entities.components.header', ['model' => $model])

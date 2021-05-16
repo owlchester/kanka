@@ -21,12 +21,6 @@ $permissions = [
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
-            {!! Form::hidden('is_pinned', 0) !!}
-            <label>{!! Form::checkbox('is_pinned', 1, empty($model) ? CampaignLocalization::getCampaign()->entity_note_visibility : $model->is_pinned) !!}
-                {{ __('entities/notes.fields.is_pinned') }}
-            </label>
-            <p class="help-block">{{ __('entities/notes.hints.is_pinned') }}</p>
-
             <label>{{ __('entities/notes.fields.position') }}</label>
             {!! Form::number('position', null, ['class' => 'form-control', 'min' => 0, 'max' => 128, 'maxlength' => 3, 'increment' => 1]) !!}
         </div>

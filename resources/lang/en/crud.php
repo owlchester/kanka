@@ -337,7 +337,7 @@ return [
     ],
     'relations'                 => [
         'actions'   => [
-            'add'   => 'Add a relation',
+            'add'   => 'New relation',
         ],
         'fields'    => [
             'location'  => 'Location',

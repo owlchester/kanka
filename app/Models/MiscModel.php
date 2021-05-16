@@ -381,22 +381,30 @@ abstract class MiscModel extends Model
             $items['third']['abilities'] = [
                 'name' => 'crud.tabs.abilities',
                 'route' => 'entities.entity_abilities.index',
-                'count' => $this->entity->abilities()->has('ability')->count(),
+                'count' => 0, //$this->entity->abilities()->has('ability')->count(),
                 'entity' => true,
                 'icon' => 'ra ra-fire-symbol',
             ];
         }
+
+        $items['third']['attributes'] = [
+            'name' => 'crud.tabs.attributes',
+            'route' => 'entities.attributes',
+            'entity' => true,
+            'icon' => '',
+        ];
 
         // Each entity can have an inventory
         if ($campaign->enabled('inventories')) {
             $items['third']['inventory'] = [
                 'name' => 'crud.tabs.inventory',
                 'route' => 'entities.inventory',
-                'count' => $this->entity->inventories()->has('item')->count(),
+                'count' => 0, //$this->entity->inventories()->has('item')->count(),
                 'entity' => true,
                 'icon' => 'ra ra-round-bottom-flask',
             ];
         }
+
 
         // Each entity can have assets
         if (config('entities.file_upload') && $this->entity->hasFiles()) {
@@ -406,6 +414,18 @@ abstract class MiscModel extends Model
                 'count' => $this->entity->files()->count() + $this->entity->links()->count(),
                 'entity' => true,
                 'icon' => 'fa fa-file',
+            ];
+        }
+
+        // Permissions for the admin?
+        if (auth()->check() && auth()->user()->can('permission', $this)) {
+
+            $items['fourth']['permissions'] = [
+                'name' => 'crud.tabs.permissions',
+                'route' => 'entities.permissions',
+                'entity' => true,
+                'icon' => 'fa fa-lock',
+                'ajax' => true
             ];
         }
 
@@ -419,6 +439,9 @@ abstract class MiscModel extends Model
         }
         if (Arr::has($items, 'third')) {
             $menuItems[] = $items['third'];
+        }
+        if (Arr::has($items, 'fourth')) {
+            $menuItems[] = $items['fourth'];
         }
 
         //dd($menuItems);

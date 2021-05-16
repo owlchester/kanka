@@ -15,13 +15,29 @@
 ])
 @inject('campaign', 'App\Services\CampaignService')
 
+
+@section('entity-header-actions')
+    @can('relation', [$entity->child, 'add'])
+        <div class="pheader-buttons">
+            <a href="{{ route('entities.relations.create', [$entity]) }}" class="btn btn-primary btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity]) }}">
+                <i class="fa fa-plus"></i>
+                <span class="hidden-xs hidden-sm">
+                    {{ __('crud.relations.actions.add') }}
+                </span>
+            </a>
+        </div>
+    @endcan
+@endsection
+
+@include('entities.components.header', ['model' => $entity->child, 'entity' => $entity])
+
 @section('content')
     @include('partials.errors')
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
             @include($entity->pluralType() . '._menu', ['active' => 'relations', 'model' => $entity->child, 'name' => $entity->pluralType()])
         </div>
-        <div class="col-md-9">
+        <div class="col-md-10">
             <div class="box box-solid">
                 <div class="box-body">
                     <h2 class="page-header with-border">
@@ -37,12 +53,7 @@
                             @include('cruds.datagrids.sorters.simple-sorter')
                         </div>
                         <div class="col-md-6 text-right">
-                            @can('relation', [$entity->child, 'add'])
-                                <a href="{{ route('entities.relations.create', [$entity]) }}" class="btn btn-primary btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity]) }}">
-                                    <i class="fa fa-plus"></i> <span class="hidden-xs hidden-sm">
-                        {{ __('crud.relations.actions.add') }}
-                        </span></a>
-                            @endcan
+
                         </div>
                     </div>
 

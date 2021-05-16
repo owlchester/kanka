@@ -158,11 +158,13 @@ table label {
   font-weight: normal;
 }
 
-.tab-content table {
+.tab-content table,
+.box-body table {
   max-width: 100% !important;
 }
 
-.tab-content img {
+.tab-content img,
+.box-body img {
   max-width: 100%;
 }
 
@@ -1413,21 +1415,30 @@ summary {
   display: flex;
 }
 
-.entity-header .entity-name {
-  margin: 0;
-  overflow: visible;
+.entity-header .entity-name-header {
   display: flex;
   align-items: center;
 }
 
-.entity-header .entity-name i.entity-icons {
+.entity-header .entity-name-header .entity-name {
+  margin: 0;
+  overflow: visible;
+}
+
+.entity-header .entity-name-header i.entity-icons {
   margin-left: 15px;
   font-size: 18px;
   cursor: pointer;
 }
 
-.entity-header .entity-name .btn-group.open .dropdown-toggle {
+.entity-header .entity-name-header .btn-group.open .dropdown-toggle {
   box-shadow: unset;
+}
+
+.entity-header .header-buttons {
+  margin-left: auto;
+  order: 2;
+  margin-top: -36px;
 }
 
 .entity-header .entity-tags {
@@ -1438,6 +1449,15 @@ summary {
   margin-right: 6px;
   font-size: 80%;
   line-height: 20px;
+}
+
+.entity-header.with-entity-header {
+  margin-bottom: 20px;
+  color: white;
+}
+
+.entity-header.with-entity-header .entity-name {
+  text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
 }
 
 .entity-links {
