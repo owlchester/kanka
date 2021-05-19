@@ -5,6 +5,7 @@ namespace App\Models;
 
 
 use App\Facades\Mentions;
+use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
 use App\Traits\SourceCopiable;
 use App\Traits\VisibilityTrait;
@@ -43,7 +44,7 @@ use Illuminate\Support\Str;
  */
 class MapMarker extends Model
 {
-    use VisibilityTrait, Paginatable, SourceCopiable;
+    use Blameable, VisibilityTrait, Paginatable, SourceCopiable;
 
     const SHAPE_MARKER = 1;
     const SHAPE_LABEL = 2;
