@@ -46,10 +46,16 @@ class WelcomeEmailJob implements ShouldQueue
     public function handle()
     {
         $user = User::findOrFail($this->userId);
-        Mail::to($user->email)
-            ->locale($this->language)
-            ->send(
-                new WelcomeEmail($user)
-            );
+
+        try {
+            Mail::to($user->email)
+                ->locale($this->language)
+                ->send(
+                    new WelcomeEmail($user)
+                );
+        } catch (\Exception $e) {
+            // Something went wrong with mailgun, or the email is invalid. Silence these errors
+            // to avoid spamming sentry.
+        }
     }
 }
