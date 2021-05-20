@@ -8230,6 +8230,9 @@ var render = function() {
                 id: "message",
                 maxlength: "1000",
                 autocomplete: "off",
+                placeholder: _vm.disabled
+                  ? _vm.$t("conversations.show.is_closed")
+                  : "",
                 disabled: _vm.inputFormDisabled || _vm.disabled
               },
               domProps: { value: _vm.body },
@@ -8243,13 +8246,7 @@ var render = function() {
                 }
               }
             })
-          ]),
-          _vm._v(" "),
-          _vm.disabled
-            ? _c("div", { staticClass: "col-md-3" }, [
-                _vm._v(_vm._s(_vm.$t("conversations.show.is_closed")))
-              ])
-            : _vm._e()
+          ])
         ])
       ])
     : _vm._e()

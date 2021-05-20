@@ -17,10 +17,10 @@
                         class="form-control"
                         @keydown="typing"
                         v-model="body"
+                        :placeholder=" disabled? $t('conversations.show.is_closed') : ''"
                         :disabled="(inputFormDisabled || disabled)"
                 />
             </div>
-            <div class="col-md-3" v-if="disabled">{{ $t("conversations.show.is_closed") }}</div>
         </div>
     </div>
 </template>
