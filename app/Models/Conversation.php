@@ -8,6 +8,18 @@ use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Conversation
+ * @package App\Models
+ * @property string $name
+ * @property string $image
+ * @property string $slug
+ * @property string $type
+ * @property string $target
+ * @property bool $is_private
+ * @property bool $is_closed
+ * @property User $created_by
+ */
 class Conversation extends MiscModel
 {
     use CampaignTrait,
@@ -24,6 +36,7 @@ class Conversation extends MiscModel
         'campaign_id',
         'target',
         'is_private',
+        'is_closed'
     ];
 
     const TARGET_USERS = 'users';
@@ -51,6 +64,7 @@ class Conversation extends MiscModel
         'target',
         'tag_id',
         'is_private',
+        'is_closed',
         'tags',
     ];
 

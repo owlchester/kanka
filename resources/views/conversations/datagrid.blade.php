@@ -35,7 +35,7 @@
         ],
         [
             'type' => 'is_private',
-        ]
+        ],
     ],
     // Data
     $models,

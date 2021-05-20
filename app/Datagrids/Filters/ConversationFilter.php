@@ -20,6 +20,7 @@ class ConversationFilter extends DatagridFilter
 //                'placeholder' =>  trans('conversations.placeholders.target'),
 //                'data' => trans('conversations.targets')
 //            ])
+            ->add('is_closed')
             ->isPrivate()
             ->tags()
         ;

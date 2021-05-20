@@ -16,3 +16,4 @@
     </div>
 </div>
 @include('cruds.fields.private2')
+@include('cruds.fields.closed')
