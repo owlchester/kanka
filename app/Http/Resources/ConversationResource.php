@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Conversation;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ConversationResource extends EntityResource
@@ -14,11 +15,15 @@ class ConversationResource extends EntityResource
      */
     public function toArray($request)
     {
+        /** @var Conversation $model */
+        $model = $this->resource;
+
         return $this->entity([
-            'type' => $this->type,
-            'target' => $this->target,
-            'participants' => $this->participants()->count(),
-            'messages' => $this->messages()->count(),
+            'type' => $model->type,
+            'target' => $model->target,
+            'is_closed' => $model->is_closed,
+            'participants' => $model->participants()->count(),
+            'messages' => $model->messages()->count(),
         ]);
     }
 }

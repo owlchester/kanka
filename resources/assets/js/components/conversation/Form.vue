@@ -3,12 +3,12 @@
         <div class="row">
             <div class="col-md-3" v-if="targetCharacter">
                 <select class="form-control" v-model="character_id">
-                    <option v-for="(name, key) in targets" :value="key">
+                    <option v-for="(name, key) in targets" :value="key" :key="key">
                         {{ name }}
                     </option>
                 </select>
             </div>
-            <div v-bind:class="inputForm">
+            <div :class="inputForm">
                 <input
                         type="text"
                         id="message"
@@ -17,9 +17,10 @@
                         class="form-control"
                         @keydown="typing"
                         v-model="body"
-                        v-bind:disabled="inputFormDisabled"
+                        :disabled="(inputFormDisabled || disabled)"
                 />
             </div>
+            <div class="col-md-3" v-if="disabled">{{ $t("conversations.show.is_closed") }}</div>
         </div>
     </div>
 </template>
@@ -36,6 +37,7 @@
             'target',
             'api',
             'targets',
+            'disabled'
         ],
 
         data() {

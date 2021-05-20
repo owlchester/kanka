@@ -2,13 +2,23 @@
 
 ---
 
-- [All Conversations](#all-conversations)
-- [Single Conversation](#conversation)
-- [Conversation Participants](#conversation-participants)
-- [Conversation Messages](#conversation-messages)
-- [Create a Conversation](#create-conversation)
-- [Update a Conversation](#update-conversation)
-- [Delete a Conversation](#delete-conversation)
+- [Conversations](#conversations)
+  - [All Conversations](#all-conversations)
+    - [Results](#results)
+  - [Conversation](#conversation)
+    - [Results](#results-1)
+  - [Conversation Participants](#conversation-participants)
+    - [Results](#results-2)
+  - [Conversation Messages](#conversation-messages)
+    - [Results](#results-3)
+  - [Create a Conversation](#create-a-conversation)
+    - [Body](#body)
+    - [Results](#results-4)
+  - [Update a Conversation](#update-a-conversation)
+    - [Body](#body-1)
+    - [Results](#results-5)
+  - [Delete a Conversation](#delete-a-conversation)
+    - [Results](#results-6)
 
 <a name="all-conversations"></a>
 ## All Conversations
@@ -33,6 +43,7 @@ You can get a list of all the conversations of a campaign by using the following
                 "image": "conversations/ORn3vytRVIGkWHAAfdLqgf4xN9NHdtgjRxQbf0ef.jpeg",
                 "image_full": "http://kanka.loc/storage/conversations/ORn3vytRVIGkWHAAfdLqgf4xN9NHdtgjRxQbf0ef.jpeg",
                 "image_thumb": "http://kanka.loc/storage/conversations/ORn3vytRVIGkWHAAfdLqgf4xN9NHdtgjRxQbf0ef_thumb.jpeg",
+                "is_closed": false,
                 "is_private": false,
                 "entity_id": 335,
                 "tags": [],
@@ -69,6 +80,7 @@ To get the details of a single conversation, use the following endpoint.
         "image": "conversations/ORn3vytRVIGkWHAAfdLqgf4xN9NHdtgjRxQbf0ef.jpeg",
         "image_full": "http://kanka.loc/storage/conversations/ORn3vytRVIGkWHAAfdLqgf4xN9NHdtgjRxQbf0ef.jpeg",
         "image_thumb": "http://kanka.loc/storage/conversations/ORn3vytRVIGkWHAAfdLqgf4xN9NHdtgjRxQbf0ef_thumb.jpeg",
+        "is_closed": false,
         "is_private": false,
         "entity_id": 335,
         "tags": [],
@@ -182,6 +194,7 @@ To create a conversation, use the following endpoint.
 | `type` | `string` | Type of conversation |
 | `target` | `string` | Available options: `users` and `characters`  |
 | `tags` | `array` | Array of tag ids |
+| `is_closed` | `boolean` | If the conversation is closed |
 | `is_private` | `boolean` | If the conversation is only visible to `admin` members of the campaign |
 | `image` | `stream` | Stream to file uploaded to the conversation |
 | `image_url` | `string` | URL to a picture to be used for the conversation |
