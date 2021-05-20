@@ -20,7 +20,6 @@ export default {
   props: ["id", "api", "target", "targets", "send", "disabled"],
 
   mounted() {
-      console.log(this.$t);
   }
 };
 </script>
