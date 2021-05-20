@@ -16,7 +16,13 @@ $permissions = [
 
 <div class="form-group">
     {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
+    <div class="text-right">
+        <a href="{{ route('helpers.link') }}" data-url="{{ route('helpers.link') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.link.description') }}">
+            {{ __('crud.linking_help') }} <i class="fa fa-question-circle"></i>
+        </a>
+    </div>
 </div>
+
 
 <div class="row">
     <div class="col-md-6">
@@ -98,8 +104,8 @@ $permissions = [
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">{{ trans('entities/notes.show.advanced') }}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ __('entities/notes.show.advanced') }}</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -108,7 +114,7 @@ $permissions = [
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('crud.cancel') }}</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                     <button class="btn btn-primary" id="entity-note-perm-add">
                         <i class="fa fa-plus"></i> {{ __('entities/notes.actions.add_user') }}
                     </button>
