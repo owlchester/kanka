@@ -81,133 +81,54 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 20);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/assets/js/timeline.js":
-/*!*****************************************!*\
-  !*** ./resources/assets/js/timeline.js ***!
-  \*****************************************/
+/***/ "./resources/assets/js/story.js":
+/*!**************************************!*\
+  !*** ./resources/assets/js/story.js ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var validTimelineForm = false;
-var eraForm;
 $(document).ready(function () {
-  initTimelineForms();
-  $(document).on('shown.bs.modal shown.bs.popover', function () {
-    initTimelineForms();
-  });
-});
-/**
- *
- */
+  var selector = $('.entity-notes-reorder');
+  selector.sortable(); //selector.disableSelection();
 
-function initTimelineForms() {
-  eraForm = $('#timeline-era-form');
+  $('.fa-arrow-up').click(function (e) {
+    var $current = $(this).closest('div.story');
+    var $previous = $current.prev('div.story');
 
-  if (eraForm.length === 0) {
-    return;
-  }
-
-  eraForm.on('submit', function (e) {
-    if (validTimelineForm) {
-      return true;
+    if ($previous.length !== 0) {
+      $current.insertBefore($previous);
     }
 
-    window.entityFormHasUnsavedChanges = false;
-    e.preventDefault();
-    var submitBtn = $(this).find('.btn-success');
-    submitBtn.data('reset', submitBtn.html()).html('<i class="fa fa-spinner fa-spin"></i>').prop('disabled', true); // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
-    $.ajax({
-      url: $(this).attr('action'),
-      method: $(this).attr('method'),
-      data: $(this).serialize()
-    }).done(function (res) {
-      // If the validation succeeded, we can really submit the form
-      validTimelineForm = true;
-      eraForm.submit();
-      return true;
-    }).fail(function (err) {
-      //console.log('error', err);
-      // Reset any error fields
-      eraForm.find('.input-error').removeClass('input-error');
-      eraForm.find('.text-danger').remove(); // If we have a 503 error status, let's assume it's from cloudflare and help the user
-      // properly save their data.
-
-      if (err.status === 503) {
-        $('#entity-form-503-error').show();
-        resetFormSubmitAnimation();
-      } // If it's 403, the session is gone
-
-
-      if (err.status === 403) {
-        $('#entity-form-403-error').show();
-        resetFormSubmitAnimation();
-      } // Loop through the errors to add the class and error message
-
-
-      var errors = err.responseJSON.errors;
-      var errorKeys = Object.keys(errors);
-      var foundAllErrors = true;
-      errorKeys.forEach(function (i) {
-        var errorSelector = $('[name="' + i + '"]'); //console.log('error field', '[name="' + i + '"]');
-
-        if (errorSelector.length > 0) {
-          eraForm.find('[name="' + i + '"]').addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
-        } else {
-          foundAllErrors = false;
-        }
-      });
-      var firstItem = Object.keys(errors)[0];
-      var firstItemDom = eraForm.find('[name="' + firstItem + '"]'); // If we can actually find the first element, switch to it and the correct tab.
-
-      if (firstItemDom.length > 0) {
-        firstItemDom.focus();
-      } // Reset submit buttons
-
-
-      resetFormSubmitAnimation();
-    });
+    return false;
   });
-}
-/**
- *
- */
+  $('.fa-arrow-down').click(function (e) {
+    var $current = $(this).closest('div.story');
+    var $previous = $current.next('div.story');
 
+    if ($previous.length !== 0) {
+      $current.insertAfter($previous);
+    }
 
-function resetFormSubmitAnimation() {
-  var submitBtn = eraForm.find('.btn-success');
-
-  if (submitBtn.length > 0) {
-    $.each(submitBtn, function () {
-      $(this).removeAttr('disabled');
-
-      if ($(this).data('reset')) {
-        $(this).html($(this).data('reset'));
-      }
-    });
-  }
-}
+    return false;
+  });
+});
 
 /***/ }),
 
-/***/ 20:
-/*!********************************************!*\
-  !*** multi ./resources/assets/js/timeline ***!
-  \********************************************/
+/***/ 11:
+/*!*****************************************!*\
+  !*** multi ./resources/assets/js/story ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/js/timeline */"./resources/assets/js/timeline.js");
+module.exports = __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/js/story */"./resources/assets/js/story.js");
 
 
 /***/ })

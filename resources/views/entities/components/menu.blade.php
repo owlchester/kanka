@@ -12,6 +12,12 @@
                             </span>
                             @endif
                         </a>
+
+                        @if(!empty($menuItem['button']))
+                            <a href="{{ $menuItem['button']['url'] }}" class="icon" @if(!empty($menuItem['button']['tooltip'])) title="{{ $menuItem['button']['tooltip'] }}" data-toggle="tooltip" @endif>
+                                <i class="{{ $menuItem['button']['icon'] }}"></i>
+                            </a>
+                        @endif
                     </li>
                 @endforeach
             </ul>

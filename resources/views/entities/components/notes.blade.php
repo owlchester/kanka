@@ -3,7 +3,7 @@
  * @var \App\Models\MiscModel $model
  * @var \App\Models\EntityNote $note
  */
-$pinnedNotes = $model->entity->notes;
+$pinnedNotes = $model->entity->notes()->ordered()->get();
 @endphp
 <div class="entity-notes">
     @foreach ($pinnedNotes as $note)

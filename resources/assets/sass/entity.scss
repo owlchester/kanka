@@ -31,6 +31,25 @@
   }
 }
 
+.entity-menu {
+  li {
+    display: flex;
+    a {
+      flex-grow: 1;
+    }
+    a.icon {
+      margin-left: auto;
+      flex-grow: unset;
+      padding: 10px 12px;
+    }
+  }
+  li.active {
+    a.icon {
+      border-left: none;
+    }
+  }
+}
+
 .entity-notes {
   img {
     max-width: 100%;
