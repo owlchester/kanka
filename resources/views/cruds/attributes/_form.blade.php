@@ -2,12 +2,12 @@
 <div class="row">
     <div class="col-md-12">
         <div class="form-group required">
-            <label>{{ trans('crud.attributes.fields.attribute') }}</label>
-            {!! Form::text('name', null, ['placeholder' => trans('crud.attributes.placeholders.attribute'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+            <label>{{ trans('entities/attributes.fields.attribute') }}</label>
+            {!! Form::text('name', null, ['placeholder' => trans('entities/attributes.placeholders.attribute'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
         <div class="form-group">
-            <label>{{ trans('crud.attributes.fields.value') }}</label>
-            {!! Form::text('value', null, ['placeholder' => trans('crud.attributes.placeholders.value'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+            <label>{{ trans('entities/attributes.fields.value') }}</label>
+            {!! Form::text('value', null, ['placeholder' => trans('entities/attributes.placeholders.value'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
 
         @if (Auth::user()->isAdmin())

@@ -1,5 +1,5 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('crud.attributes.template.title', ['name' => $entity->name]),
+    'title' => __('entities/attributes.template.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
         ['url' => $entity->url('index'), 'label' => __($entity->pluralType() . '.index.title')],

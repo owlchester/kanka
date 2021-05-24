@@ -6,7 +6,7 @@
 $isAdmin = Auth::user()->isAdmin();
 ?>
 @extends('layouts.app', [
-    'title' => trans('crud.attributes.index.title', ['name' => $entity->name]),
+    'title' => trans('entities/attributes.index.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
         ['url' => route($parentRoute . '.index'), 'label' => trans($parentRoute . '.index.title')],

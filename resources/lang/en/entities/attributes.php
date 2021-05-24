@@ -60,6 +60,9 @@ return [
         'section'   => 'Section',
         'text'      => 'Multiline Text',
     ],
+    'update'         => [
+        'success'   => 'Attributes for :entity updated.',
+    ],
     'visibility'    => [
         'entry'     => 'Attribute is displayed on the entity menu.',
         'private'   => 'Attribute only visible to members of the "Admin" role.',
