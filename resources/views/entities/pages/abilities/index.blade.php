@@ -15,7 +15,7 @@
 
 @section('entity-header-actions')
     @can('update', $entity->child)
-        <div class="pull-right">
+        <div class="header-buttons">
             <a href="{{ route('entities.entity_abilities.reset', $entity) }}" class="btn btn-sm btn-default margin-r-5">
                 <i class="fa fa-redo"></i> <span class="hidden-xs hidden-sm">{{ __('entities/abilities.actions.reset') }}</span>
                 <span class="visible-xs visible-sm">{{ __('crud.actions.reset') }}</span>

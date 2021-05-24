@@ -76977,9 +76977,15 @@ function initDynamicDelete() {
   });
   $('a[data-toggle="delete-form"]').unbind('click').click(function (e) {
     e.preventDefault;
-    var target = $(this).data('target');
-    console.log('target', target);
+    var target = $(this).data('target'); //console.log('target', target);
+
     $(target).submit();
+  });
+  $('.btn-popover').popover({
+    html: true,
+    placement: 'bottom',
+    sanitize: false,
+    trigger: 'focus'
   });
 }
 /**
@@ -77667,6 +77673,7 @@ $(document).ready(function () {
   registerDatagridSorter();
   registerPermissionToggler();
   registerEntityNotePerms();
+  registerStoryActions();
 });
 /**
  * Re-register any events that need to be binded when a modal is loaded
@@ -78307,6 +78314,30 @@ function initSpectrum() {
     showInput: true,
     showPalette: true,
     allowEmpty: true
+  });
+}
+
+function registerStoryActions() {
+  var posts = $('.entity-note-body');
+  $('.btn-post-collapse').click(function (e) {
+    posts.each(function (i) {
+      if ($(this).hasClass('in')) {
+        $(this).removeClass('in');
+        $(this).prev().find('.fa-chevron-up').hide();
+        $(this).prev().find('.fa-chevron-down').show();
+      }
+    });
+    return false;
+  });
+  $('.btn-post-expand').click(function (e) {
+    posts.each(function (i) {
+      if (!$(this).hasClass('in')) {
+        $(this).addClass('in');
+        $(this).prev().find('.fa-chevron-up').show();
+        $(this).prev().find('.fa-chevron-down').hide();
+      }
+    });
+    return false;
   });
 }
 

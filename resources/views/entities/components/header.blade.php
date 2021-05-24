@@ -13,8 +13,7 @@ if (!isset($entity)) {
 
         <div class="col-lg-2">
             @if ($model->image)
-                <a class="entity-avatar" href="{{ $model->getImageUrl(0) }}" title="{{ $model->name }}" target="_blank">
-                    <img src="{{ $model->getImageUrl(0) }}" alt="{{ $model->name }} img">
+                <a class="entity-image" href="{{ $model->getImageUrl(0) }}" title="{{ $model->name }}" target="_blank" style="background-image: url({{ $model->getImageUrl(250, 250) }});">
                 </a>
             @elseif ($campaign->campaign()->boosted(true) && !empty($entity) && $entity->image)
                 <a class="entity-avatar" href="{{ $entity->image->getUrl() }}" title="{{ $model->name }}" target="_blank">
@@ -29,10 +28,12 @@ if (!isset($entity)) {
                         {{ $model->name }}
                     </h1>
                     <div class="entity-name-icons">
-                        @if ($model->is_private)
-                            <i class="fas fa-lock entity-icons" title="{{ __('crud.is_private') }}"></i>
-                        @else
-                            <i class="fas fa-lock-open entity-icons" title="{{ __('crud.is_not_private') }}"></i>
+                        @if (auth()->check() && auth()->user()->isAdmin())
+                            @if ($model->is_private)
+                                <i role="button" tabindex="0" class="fas fa-lock entity-icons btn-popover" title="{{ __('entities/permissions.quick.title') }}" data-content="{{ __('entities/permissions.quick.private') }}"></i>
+                            @else
+                                <i role="button" tabindex="0" class="fas fa-lock-open entity-icons btn-popover" title="{{ __('entities/permissions.quick.title') }}" data-content="{{ __('entities/permissions.quick.public') }}"></i>
+                            @endif
                         @endif
                         @if ($model instanceof \App\Models\Character && $model->is_dead)
                             <span class="ra ra-skull entity-icons" title="{{ __('characters.hints.is_dead') }}"></span>
@@ -40,7 +41,7 @@ if (!isset($entity)) {
 
                         <div class="btn-group entity-actions">
                             <i class="fas fa-cog entity-icons dropdown-toggle" data-toggle="dropdown" aria-expanded="false"></i>
-                            <ul class="dropdown-menu" role="menu">
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                 @can('create', $model)
                                     <li>
                                         <a href="{{ route($entity->pluralType() . '.create') }}">
@@ -58,7 +59,7 @@ if (!isset($entity)) {
                                     <li>
                                         <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}]" data-toggle="tooltip"
                                            data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}]" data-success="#copy-mention-success">
-                                            <i class="fa fa-link"></i> <span class="hidden-xs">{{ __('crud.actions.copy_mention') }}</span>
+                                            <i class="fa fa-link"></i> {{ __('crud.actions.copy_mention') }}
                                         </a>
                                     </li>
                                     @if (Auth::user()->isAdmin())

@@ -44,6 +44,9 @@ return [
         'template'  => 'Select a template',
         'value'     => 'Value of the attribute',
     ],
+    'show'          => [
+        'title'     => ':name Attributes',
+    ],
     'template'      => [
         'success'   => 'Attribute Template :name applied to :entity',
         'title'     => 'Apply an Attribute Template for :name',

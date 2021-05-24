@@ -59,6 +59,8 @@ class AttributeController extends Controller
 
         $ajax = request()->ajax();
         $campaign = CampaignLocalization::getCampaign();
+        $template = null;
+        $marketplaceTemplate = null;
 
         $layout = $entity->attributes()->where(['name' => '_layout'])->first();
         if ($layout) {
@@ -75,6 +77,11 @@ class AttributeController extends Controller
         ));
     }
 
+    /**
+     * @param Entity $entity
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function edit(Entity $entity)
     {
         if (empty($entity->child)) {

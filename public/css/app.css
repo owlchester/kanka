@@ -1404,15 +1404,28 @@ summary {
   flex-direction: column;
 }
 
-.entity-header img {
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: 5px;
+.entity-header .entity-image {
+  width: 100%;
+  padding-top: 100%;
+  position: relative;
+  border-radius: 2px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
 }
 
 .entity-header .entity-header-col {
   align-self: flex-end;
   display: flex;
+}
+
+.entity-header .entity-header-col .entity-header-locations {
+  color: white;
+}
+
+.entity-header .entity-header-col .entity-header-locations a {
+  color: white;
+  text-decoration: underline;
 }
 
 .entity-header .entity-name-header {
@@ -1452,12 +1465,17 @@ summary {
 }
 
 .entity-header.with-entity-header {
+  padding-top: 50px;
   margin-bottom: 20px;
-  color: white;
 }
 
 .entity-header.with-entity-header .entity-name {
   text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
+  color: white;
+}
+
+.entity-header.with-entity-header i.entity-icons {
+  color: white;
 }
 
 .entity-links {
@@ -1493,9 +1511,13 @@ summary {
 }
 
 @media (max-width: 787px) {
-  .entity-header img {
-    max-width: 50%;
-    max-height: 50%;
+  .entity-header .entity-image {
+    width: 100px;
+    margin-bottom: 10px;
+  }
+
+  .entity-header .header-buttons {
+    margin-top: 8px;
   }
 }
 

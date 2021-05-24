@@ -27,7 +27,7 @@ $pinnedNotes = $model->entity->notes()->ordered()->get();
                         @endif
                     </div>
                 </div>
-                <div class="box-body collapse @if(!$note->collapsed()) in @endif" id="entity-note-body-{{ $note->id }}">
+                <div class="entity-note-body box-body collapse @if(!$note->collapsed()) in @endif" id="entity-note-body-{{ $note->id }}">
                     {!! $note->entry() !!}
                 </div>
             </div>

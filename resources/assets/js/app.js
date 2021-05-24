@@ -449,9 +449,16 @@ function initDynamicDelete() {
     $('a[data-toggle="delete-form"]').unbind('click').click(function (e) {
         e.preventDefault;
         let target = $(this).data('target');
-        console.log('target', target);
+        //console.log('target', target);
         $(target).submit();
     });
+
+    $('.btn-popover').popover({
+        html: true,
+        placement: 'bottom',
+        sanitize: false,
+        trigger: 'focus'
+    })
 }
 
 /**

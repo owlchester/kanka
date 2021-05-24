@@ -392,6 +392,16 @@ abstract class MiscModel extends Model
             ];
         }
 
+        if ($campaign->enabled('calendars')) {
+            $items['third']['reminders'] = [
+                'name' => 'crud.tabs.reminders',
+                'route' => 'entities.entity_events.index',
+                'count' => 0, //$this->entity->abilities()->has('ability')->count(),
+                'entity' => true,
+                'icon' => 'ra ra-sun-moon',
+            ];
+        }
+
         $items['third']['attributes'] = [
             'name' => 'crud.tabs.attributes',
             'route' => 'entities.attributes',

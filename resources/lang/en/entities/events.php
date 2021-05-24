@@ -12,4 +12,10 @@ return [
         'death'     => 'Death',
         'primary'   => 'Primary',
     ],
+    'show' => [
+        'title' => ':name Reminders',
+        'actions' => [
+            'add' => 'Add reminder',
+        ]
+    ],
 ];

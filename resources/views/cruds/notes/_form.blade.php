@@ -21,11 +21,6 @@ $permissions = [
 <div class="row">
     <div class="col-md-6">
         <div class="form-group">
-            <label>{{ __('entities/notes.fields.position') }}</label>
-            {!! Form::number('position', null, ['class' => 'form-control', 'min' => 0, 'max' => 128, 'maxlength' => 3, 'increment' => 1]) !!}
-        </div>
-
-        <div class="form-group">
             {!! Form::hidden('settings[collapsed]', 0) !!}
             <label>{!! Form::checkbox('settings[collapsed]', 1, null) !!}
                 {{ __('entities/notes.fields.collapsed') }}

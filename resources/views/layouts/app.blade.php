@@ -85,9 +85,23 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                 <ol class="breadcrumb">
                 @if (!isset($breadcrumbsDashboard) || $breadcrumbsDashboard === true)
                     @if ($campaign)
-                        <li><a href="{{ route('dashboard') }}"><i class="fa fa-globe"></i> {!! $campaign->name !!}</a></li>
+                        <li>
+                            <a href="{{ route('dashboard') }}">
+                                <i class="fa fa-globe"></i>
+                                <span class="hidden-xs hidden-sm">
+                                    {!! $campaign->name !!}
+                                </span>
+                            </a>
+                        </li>
                     @else
-                        <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> {{ trans('dashboard.title') }}</a></li>
+                        <li>
+                            <a href="{{ route('home') }}">
+                                <i class="fa fa-dashboard"></i>
+                                <span class="hidden-xs hidden-sm">
+                                    {{ __('dashboard.title') }}
+                                </span>
+                            </a>
+                        </li>
                     @endif
                 @endif
                     @if (isset($breadcrumbs))
@@ -170,15 +184,15 @@ $campaign = CampaignLocalization::getCampaign(); ?>
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="clickModalLabel">{{ trans('crud.click_modal.title') }}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="clickModalLabel">{{ __('crud.click_modal.title') }}</h4>
                 </div>
                 <div class="modal-body">
                     <p id="click-confirm-text"></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('crud.delete_modal.close') }}</button>
-                    <a href="" type="button" class="btn btn-danger" id="click-confirm-url">{{ trans('crud.click_modal.confirm') }}</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.delete_modal.close') }}</button>
+                    <a href="" type="button" class="btn btn-danger" id="click-confirm-url">{{ __('crud.click_modal.confirm') }}</a>
                 </div>
             </div>
         </div>
@@ -188,19 +202,19 @@ $campaign = CampaignLocalization::getCampaign(); ?>
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="newEntityModalLabel">{{ trans('crud.new_entity.title') }}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="newEntityModalLabel">{{ __('crud.new_entity.title') }}</h4>
                 </div>
                 {!! Form::open(['url' => route('entities.create'), 'method' => 'POST', 'id' => 'new-entity-form']) !!}
                 <div class="modal-body">
                     <div class="form-group required">
-                        <label>{{ trans('crud.new_entity.fields.name') }}</label>
+                        <label>{{ __('crud.new_entity.fields.name') }}</label>
                         {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'new-entity-name']) !!}
                     </div>
-                    <p class="text-red" id="new-entity-errors" style="display:none">{{ trans('crud.new_entity.error') }}</p>
+                    <p class="text-red" id="new-entity-errors" style="display:none">{{ __('crud.new_entity.error') }}</p>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-success" id="new-entity-save" data-text="{{ trans('crud.save') }}">{{ trans('crud.save') }}</button>
+                    <button class="btn btn-success" id="new-entity-save" data-text="{{ __('crud.save') }}">{{ __('crud.save') }}</button>
                 </div>
                 {{ csrf_field() }}
                 {!! Form::hidden('target', null, ['id' => 'new-entity-type']) !!}
@@ -226,12 +240,12 @@ $campaign = CampaignLocalization::getCampaign(); ?>
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">{{ trans('crud.delete_modal.title') }}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ __('crud.delete_modal.title') }}</h4>
                 </div>
                 <div class="modal-body">
                     <p id="delete-confirm-text">
-                        {!! trans('crud.delete_modal.description', ['tag' => '<b><span id="delete-confirm-name"></span></b>']) !!}
+                        {!! __('crud.delete_modal.description', ['tag' => '<b><span id="delete-confirm-name"></span></b>']) !!}
                     </p>
                     <div id="delete-confirm-mirror" class="form-group" style="display: none">
                         <label>

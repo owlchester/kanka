@@ -85,6 +85,7 @@ $(document).ready(function () {
     registerDatagridSorter();
     registerPermissionToggler();
     registerEntityNotePerms();
+    registerStoryActions();
 });
 
 /**
@@ -770,5 +771,31 @@ function initSpectrum()
         showInput: true,
         showPalette: true,
         allowEmpty: true
+    });
+}
+
+function registerStoryActions()
+{
+    let posts = $('.entity-note-body');
+    $('.btn-post-collapse').click(function (e) {
+        posts.each(function (i) {
+            if ($(this).hasClass('in')) {
+                $(this).removeClass('in');
+                $(this).prev().find('.fa-chevron-up').hide();
+                $(this).prev().find('.fa-chevron-down').show();
+            }
+        });
+        return false;
+    });
+
+    $('.btn-post-expand').click(function (e) {
+        posts.each(function (i) {
+            if (!$(this).hasClass('in')) {
+                $(this).addClass('in');
+                $(this).prev().find('.fa-chevron-up').show();
+                $(this).prev().find('.fa-chevron-down').hide();
+            }
+        });
+        return false;
     });
 }
