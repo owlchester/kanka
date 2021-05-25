@@ -33,12 +33,14 @@
      * Messy party: we can have a list of characters that the user can edit, or send as the current user.
      */
     export default {
-        props: [
-            'target',
-            'api',
-            'targets',
-            'disabled'
-        ],
+        props: {
+            target: undefined,
+            api: undefined,
+            targets: undefined,
+            disabled: {
+                type: Boolean
+            }
+        },
 
         data() {
             return {
@@ -48,6 +50,14 @@
                 message_id: null,
                 edit_message: null
             }
+        },
+        created(){
+            console.log("form created");
+            console.log("form",this.disabled);
+        },
+        mounted(){
+            console.log("yes");
+            console.log("form",this.disabled);
         },
         methods: {
             /**

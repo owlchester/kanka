@@ -114,9 +114,15 @@ __webpack_require__.r(__webpack_exports__);
  * All the juicy stuff is in Messages
  */
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["id", "api", "target", "targets", "send", "disabled"],
-  mounted: function mounted() {
-    console.log(this.$t);
+  props: {
+    id: undefined,
+    send: undefined,
+    target: undefined,
+    api: undefined,
+    targets: undefined,
+    disabled: {
+      type: Boolean
+    }
   }
 });
 
@@ -132,6 +138,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _event_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../event.js */ "./resources/assets/js/components/event.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -165,8 +173,15 @@ __webpack_require__.r(__webpack_exports__);
  * Messy party: we can have a list of characters that the user can edit, or send as the current user.
  */
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['target', 'api', 'targets', 'disabled'],
+/* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
+  props: {
+    target: undefined,
+    api: undefined,
+    targets: undefined,
+    disabled: {
+      type: Boolean
+    }
+  },
   data: function data() {
     return {
       body: null,
@@ -175,6 +190,14 @@ __webpack_require__.r(__webpack_exports__);
       message_id: null,
       edit_message: null
     };
+  },
+  created: function created() {
+    console.log("form created");
+    console.log("form", this.disabled);
+  },
+  mounted: function mounted() {
+    console.log("yes");
+    console.log("form", this.disabled);
   },
   methods: {
     /**
@@ -261,15 +284,14 @@ __webpack_require__.r(__webpack_exports__);
 
       return true;
     }
-  },
-  mounted: function mounted() {
-    var _this2 = this;
-
-    _event_js__WEBPACK_IMPORTED_MODULE_0__["default"].$on('edit_message', function (message, body) {
-      _this2.editMessage(message, body);
-    });
   }
-});
+}, "mounted", function mounted() {
+  var _this2 = this;
+
+  _event_js__WEBPACK_IMPORTED_MODULE_0__["default"].$on('edit_message', function (message, body) {
+    _this2.editMessage(message, body);
+  });
+}));
 
 /***/ }),
 
@@ -448,7 +470,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var messageBox = _this2.$refs.messagebox;
         messageBox.scrollTop = messageBox.scrollHeight;
       }, 50);
-      this.newest = this.messages[this.messages.length - 1].id;
+      if (this.messages.length > 0) this.newest = this.messages[this.messages.length - 1].id;else this.newest = undefined;
     },
 
     /**
