@@ -51,14 +51,6 @@
                 edit_message: null
             }
         },
-        created(){
-            console.log("form created");
-            console.log("form",this.disabled);
-        },
-        mounted(){
-            console.log("yes");
-            console.log("form",this.disabled);
-        },
         methods: {
             /**
              * We don't want a "send" button, so listen to the enter key. No multi-line support here.
