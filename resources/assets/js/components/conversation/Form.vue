@@ -33,12 +33,14 @@
      * Messy party: we can have a list of characters that the user can edit, or send as the current user.
      */
     export default {
-        props: [
-            'target',
-            'api',
-            'targets',
-            'disabled'
-        ],
+        props: {
+            target: undefined,
+            api: undefined,
+            targets: undefined,
+            disabled: {
+                type: Boolean
+            }
+        },
 
         data() {
             return {
