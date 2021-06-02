@@ -76,6 +76,14 @@ img.profile-user-img {
   width: 90px;
 }
 
+.disabledLink {
+  cursor: not-allowed;
+}
+
+.disabledTab {
+  pointer-events: none;
+}
+
 .cover-background {
   background-size: cover !important;
   background-repeat: no-repeat !important;

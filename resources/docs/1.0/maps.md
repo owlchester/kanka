@@ -2,14 +2,19 @@
 
 ---
 
-- [All Maps](#all-maps)
-- [Single Map](#map)
-- [Create a Map](#create-map)
-- [Update a Map](#update-map)
-- [Delete a Map](#delete-map)
-- [Map Markers](/docs/{{version}}/map_markers)
-- [Map Layers](/docs/{{version}}/map_layers)
-- [Map Groups](/docs/{{version}}/map_groups)
+- [Maps](#maps)
+  - [All Maps](#all-maps)
+    - [Results](#results)
+  - [Map](#map)
+    - [Results](#results-1)
+  - [Create a Map](#create-a-map)
+    - [Body](#body)
+    - [Results](#results-2)
+  - [Update a Map](#update-a-map)
+    - [Body](#body-1)
+    - [Results](#results-3)
+  - [Delete a Map](#delete-a-map)
+    - [Results](#results-4)
 
 <a name="all-maps"></a>
 ## All Maps
@@ -52,6 +57,7 @@ You can get a list of all the maps of a campaign by using the following endpoint
             "min_zoom": -1,
             "max_zoom": 10,
             "initial_zoom": -1,
+            "center_marker_id": null,
             "center_x": null,
             "center_y": null,
             "layers": "<array of map Map Layers>",
@@ -99,6 +105,7 @@ To get the details of a single map, use the following endpoint.
         "min_zoom": -1,
         "max_zoom": 10,
         "initial_zoom": -1,
+        "center_marker_id": null,
         "center_x": null,
         "center_y": null,
         "layers": "<array of map Map Layers>",
@@ -125,6 +132,7 @@ To create a map, use the following endpoint.
 | `type` | `string` | Type of map |
 | `map_id` | `integer` | The parent map |
 | `location_id` | `integer` | The related location id |
+| `center_marker_id` | `integer` | The map marker the map will center on page load |
 | `center_x` | `integer` | The custom longitude on page load |
 | `center_y` | `integer` | The custom latitude on page load |
 | `tags` | `array` | Array of tag ids |
