@@ -17,9 +17,15 @@
  * All the juicy stuff is in Messages
  */
 export default {
-  props: ["id", "api", "target", "targets", "send", "disabled"],
-
-  mounted() {
-  }
+  props: {
+    id: undefined,
+    send: undefined,
+    target: undefined,
+    api: undefined,
+    targets: undefined,
+    disabled: {
+      type: Boolean
+    }
+  },
 };
 </script>

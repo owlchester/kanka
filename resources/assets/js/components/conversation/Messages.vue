@@ -76,7 +76,10 @@
                     messageBox.scrollTop = messageBox.scrollHeight;
                 }, 50);
 
-                this.newest = this.messages[this.messages.length - 1].id;
+                if(this.messages.length > 0)
+                    this.newest = this.messages[this.messages.length - 1].id;
+                else
+                    this.newest = undefined;
             },
             /**
              * Load previous messages that are on the server but not in memory.
