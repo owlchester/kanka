@@ -31,6 +31,7 @@
                 'method' => 'PATCH',
                 'data-shortcut' => 1,
                 'id' => 'map-marker-form',
+                'class' => 'map-marker-edit-form',
                ]) !!}
             @include('maps.markers._form')
 

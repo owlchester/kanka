@@ -39,6 +39,7 @@ $(document).ready(function() {
     initMapExplore();
     initMapForms();
 
+
     // Limit the size of custom svg icons to not overblow the marker size
     // $('.map .custom-icon svg').each(function (e) {
     //     $(this).attr("height", 32).attr("width", 32).css('margin-top', '4px');
@@ -115,7 +116,7 @@ function initMapForms()
     let layerForm = $('#map-layer-form');
     let markerForm = $('#map-marker-form');
     let groupForm = $('#map-group-form');
-    if ($('#entity-form').length === 0) {
+    if ($('#entity-form').length === 0 && $('.map-marker-edit-form').length === 0) {
         //console.info('initMapForms empty');
         return;
     }
