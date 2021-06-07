@@ -19,20 +19,23 @@
                     <a href="{{ route($name . '.create') }}" class="btn btn-primary">
                         <i class="fa fa-plus"></i> <span class="hidden-xs hidden-sm">{{ trans($name . '.index.add') }}</span>
                     </a>
-                    @if(!empty($templates) && !$templates->isEmpty())
-                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            @foreach ($templates as $entityTemplate)
-                                <li>
-                                    <a href="{{ route($name . '.create', ['copy' => $entityTemplate->entity_id, 'template' => true]) }}">
-                                        <i class="fa fa-star-o"></i> {{ $entityTemplate->name  }}</span>
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    @endif
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        @foreach ($templates as $entityTemplate)
+                            <li>
+                                <a href="{{ route($name . '.create', ['copy' => $entityTemplate->entity_id, 'template' => true]) }}">
+                                    <i class="fa fa-star-o"></i> {{ $entityTemplate->name  }}</span>
+                                </a>
+                            </li>
+                        @endforeach
+                        <li>
+                            <a href="{{ route('helpers.entity-templates') }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('helpers.entity-templates') }}">
+                                <i class="fa fa-external-link"></i> {{ __('helpers.entity_templates.link') }}
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             @endcan
             @foreach ($actions as $action)

@@ -36,7 +36,7 @@
                             <li class="divider"></li>
                             @endif
                             <li>
-                                <a href="{{ route('helpers.entity-templates') }}" target="_blank">
+                                <a href="{{ route('helpers.entity-templates') }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('helpers.entity-templates') }}">
                                     <i class="fa fa-external-link"></i> {{ __('helpers.entity_templates.link') }}
                                 </a>
                             </li>
