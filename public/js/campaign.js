@@ -134,7 +134,7 @@ function registerModules() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/js/campaign.js */"./resources/assets/js/campaign.js");
+module.exports = __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/js/campaign.js */"./resources/assets/js/campaign.js");
 
 
 /***/ })

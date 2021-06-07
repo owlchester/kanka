@@ -1745,6 +1745,7 @@ export default {
                 "title": "Conversation {name}"
             },
             "fields": {
+                "is_closed": "Closed",
                 "messages": "Messages",
                 "name": "Name",
                 "participants": "Participants",
@@ -3421,6 +3422,7 @@ export default {
                 "title": "Conversation {name}"
             },
             "fields": {
+                "is_closed": "Fermée",
                 "messages": "Messages",
                 "name": "Nom",
                 "participants": "Participants",

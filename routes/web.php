@@ -12,7 +12,6 @@
 */
 use Vsch\TranslationManager\Translator;
 
-
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime' ]
@@ -365,6 +364,7 @@ Route::group([
         Route::get('/search/races', 'Search\MiscController@races')->name('races.find');
         Route::get('/search/abilities', 'Search\MiscController@abilities')->name('abilities.find');
         Route::get('/search/maps', 'Search\MiscController@maps')->name('maps.find');
+        Route::get('/search/markers', 'Search\MiscController@markers')->name('markers.find');
         Route::get('/search/attribute-templates', 'Search\MiscController@attributeTemplates')->name('attribute_templates.find');
         Route::get('/search/images', 'Search\ImageSearchController@index')->name('images.find');
 
