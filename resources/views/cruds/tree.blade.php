@@ -23,6 +23,7 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
+                        @if (!empty($templates) && !$templates->isEmpty())
                         @foreach ($templates as $entityTemplate)
                             <li>
                                 <a href="{{ route($name . '.create', ['copy' => $entityTemplate->entity_id, 'template' => true]) }}">
@@ -30,6 +31,8 @@
                                 </a>
                             </li>
                         @endforeach
+                            <li class="divider"></li>
+                        @endif
                         <li>
                             <a href="{{ route('helpers.entity-templates') }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('helpers.entity-templates') }}">
                                 <i class="fa fa-external-link"></i> {{ __('helpers.entity_templates.link') }}
