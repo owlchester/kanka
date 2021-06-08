@@ -89,6 +89,12 @@ img.profile-user-img {
     }
   }
 }
+.disabledLink{
+  cursor: not-allowed;
+}
+.disabledTab{
+  pointer-events: none;
+}
 
 .cover-background {
   background-size: cover !important;

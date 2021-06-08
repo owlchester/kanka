@@ -216,6 +216,44 @@ class MiscController extends Controller
      * @param Request $request
      * @return mixed
      */
+    public function markers(Request $request)
+    {
+        $term = trim($request->q);
+        //parent map_id allowed for the marker (limits search to the markers of the map only)
+        $include = $request->has('include') ? [$request->get('include')] : [];
+
+        /** @var Builder $modelClass */
+        $modelClass = new \App\Models\MapMarker();
+        //marker must be in given map
+        $modelClass->whereIn('map_id', $include);
+
+        //Search text
+        if (Str::startsWith($term, '=')) {
+            $modelClass->where('name', ltrim($term, '='));
+        } else {
+            $modelClass->where('name', 'like', "%$term%");
+        }
+        //execute query
+        $models = $modelClass->limit(10)
+            ->get();
+
+        //format results for frontend select
+        foreach ($models as $model) {
+            $format = [
+                'id' => $model->id,
+                'text' => $model->name
+            ];
+
+            $formatted[] = $format;
+        }
+
+        return Response::json($formatted);
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function notes(Request $request)
     {
         $term = trim($request->q);
