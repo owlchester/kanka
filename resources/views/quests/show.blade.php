@@ -37,16 +37,11 @@
 </div>
 
 @if (isset($exporting))
-    @if ($campaign->enabled('characters'))
-        @include('quests.panels.characters')
-    @endif
-    @if ($campaign->enabled('locations'))
-        @include('quests.panels.locations')
-    @endif
-    @if ($campaign->enabled('items'))
-        @include('quests.panels.items')
-    @endif
-    @if ($campaign->enabled('organisations'))
-        @include('quests.panels.organisations')
-    @endif
+    @include('quests.elements.index', ['elements' => $model
+            ->elements()
+            ->with('entity')
+            ->has('entity')
+            ->acl()
+            ->paginate()
+    ])
 @endif
