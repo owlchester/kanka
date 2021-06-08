@@ -29,6 +29,6 @@ if ($layout) {
     @include('cruds.attributes.marketplace_template', ['plugin' => $marketplaceTemplate])
 @else
     @include('cruds.partials.attributes', [
-        'attributes' => $model->entity->attributes()->with('entity')->order(request()->get('order'), 'default_order')->get()
+        'attributes' => $model->entity->attributes()->with('entity')->ordered()->get()
     ])
 @endif
