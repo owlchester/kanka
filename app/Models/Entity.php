@@ -191,7 +191,8 @@ class Entity extends Model
         $avatar = $text = null;
 
         if ($this->campaign->boosted()) {
-            $boostedTooltip = strip_tags($this->tooltip);
+            $boostedTooltip = str_replace(['</h', '</p', '<br'], [' </h', ' </p', ' <br'], $this->tooltip);
+            $boostedTooltip = strip_tags(preg_replace('!\s+!', ' ', $boostedTooltip));
             if (!empty(trim($boostedTooltip))) {
                 $text = Mentions::mapEntity($this);
                 $text = strip_tags($text);
@@ -201,8 +202,21 @@ class Entity extends Model
             }
         }
         if (empty($text)) {
-            $text = Str::limit($this->child->entry(), 500);
+            $text = $this->child->entry();
+            $text = preg_replace("/\s|&nbsp;/",'_', $text);
+            dd($text);
+            $text = str_replace(['</h', '</p', '<br'], [' </h', ' </p', ' <br'], $text);
+            dump('before');
+            var_dump($text);
+
             $text = strip_tags($text);
+            dump('after strip');
+            var_dump($text);
+            $text = preg_replace('/\s+/', ' ', $text);
+            dump('dupli whitespace');
+            var_dump($text);
+            dd($text);
+            $text = Str::limit($text, 500);
         }
 
         $name = '<span class="entity-name">' . $this->child->tooltipName() . '</span>';
