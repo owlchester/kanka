@@ -12,6 +12,7 @@
 
         @include('races.panels.characters')
 
+        @include('cruds.partials.mentions')
         @include('cruds.boxes.history')
     </div>
 

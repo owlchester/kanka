@@ -28,6 +28,7 @@
             </div>
         @endif
 
+        @include('cruds.partials.mentions')
         @include('cruds.boxes.history')
     </div>
 

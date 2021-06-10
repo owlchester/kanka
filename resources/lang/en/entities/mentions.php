@@ -5,8 +5,11 @@ return [
     'fields'        => [
         'entity'    => 'Entity',
     ],
-    'helper'        => 'The following is a list of entities that mention this entity in their "Entry" field.',
+    'helper'        => 'This entity is mentioned in the following entities, entity notes, or campaign description.',
     'mentioned_in'  => 'Mentioned in :count Entities.',
+    'mentioned_in_v2'  => 'This entity is mentioned in :count entities, entity notes or campaigns. :more.',
+    'see_more' => 'View details',
+    'title' => 'Mentioned entity',
     'show'          => [
         'title' => 'Entity :name Mentions',
     ],

@@ -12,6 +12,7 @@
 
         @include('tags.panels.children')
 
+        @include('cruds.partials.mentions')
         @include('cruds.boxes.history')
     </div>
 

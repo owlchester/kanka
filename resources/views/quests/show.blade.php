@@ -8,6 +8,7 @@
         @include('entities.components.entry')
         @include('entities.components.notes')
 
+        @include('cruds.partials.mentions')
         @include('cruds.boxes.history')
     </div>
 

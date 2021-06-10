@@ -12,6 +12,7 @@
                 @include('dice_rolls._results')
             </div>
         </div>
+        @include('cruds.partials.mentions')
         @include('cruds.boxes.history')
     </div>
 

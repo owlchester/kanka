@@ -13,6 +13,7 @@
         @include('organisations.panels._members')
 
 
+        @include('cruds.partials.mentions')
         @include('cruds.boxes.history')
     </div>
 

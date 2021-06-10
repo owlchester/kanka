@@ -11,6 +11,7 @@
 
         @include('families.panels._members')
 
+        @include('cruds.partials.mentions')
         @include('cruds.boxes.history')
     </div>
 
