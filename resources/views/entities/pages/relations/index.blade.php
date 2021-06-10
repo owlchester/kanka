@@ -19,7 +19,7 @@
 @section('entity-header-actions')
     @can('relation', [$entity->child, 'add'])
         <div class="header-buttons">
-            <a href="{{ route('entities.relations.create', [$entity]) }}" class="btn btn-primary btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity]) }}">
+            <a href="{{ route('entities.relations.create', [$entity]) }}" class="btn btn-sm btn-warning" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity]) }}">
                 <i class="fa fa-plus"></i>
                 <span class="hidden-xs hidden-sm">
                     {{ __('crud.relations.actions.add') }}

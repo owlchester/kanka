@@ -4,6 +4,7 @@ return [
     'actions'   => [
         'add'               => 'Add abilities',
         'import_from_race'  => 'Add race abilities',
+        'import_from_race_mobile'  => 'Race abilities',
         'reset'             => 'Reset ability usages',
     ],
     'create'    => [

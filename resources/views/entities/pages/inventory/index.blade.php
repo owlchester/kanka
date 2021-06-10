@@ -18,7 +18,7 @@
 @section('entity-header-actions')
     @can('inventory', $entity->child)
         <div class="header-buttons">
-            <a href="{{ route('entities.inventories.create', ['entity' => $entity]) }}" class="btn btn-primary btn-sm"
+            <a href="{{ route('entities.inventories.create', ['entity' => $entity]) }}" class="btn btn-warning btn-sm"
                data-toggle="ajax-modal" data-target="#entity-modal"
                data-url="{{ route('entities.inventories.create', ['entity' => $entity]) }}"
             >

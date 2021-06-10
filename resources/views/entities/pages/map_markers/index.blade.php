@@ -9,7 +9,7 @@
     'breadcrumbs' => [
         ['url' => $entity->url('index'), 'label' => __($entity->pluralType() . '.index.title')],
         ['url' => $entity->url('show'), 'label' => $entity->name],
-        __('crud.tabs.timelines')
+        __('crud.tabs.map-points')
     ],
     'mainTitle' => false,
     'canonical' => true,

@@ -19,7 +19,7 @@
     @can('events', $entity->child)
         <div class="header-buttons">
             <a href="{{ route('entities.entity_events.create', [$entity, 'next' => 'entity.events']) }}" id="entity-calendar-modal-add"
-               class="btn btn-sm btn-primary pull-right" data-toggle="ajax-modal" data-target="#entity-modal"
+               class="btn btn-sm btn-warning pull-right" data-toggle="ajax-modal" data-target="#entity-modal"
                data-url="{{ route('entities.entity_events.create', [$entity, 'next' => 'entity.events']) }}">
                 <i class="fa fa-plus"></i> {{ __('entities/events.show.actions.add') }}
             </a>
