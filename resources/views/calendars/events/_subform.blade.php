@@ -1,4 +1,4 @@
-
+<?php /** @var \App\Models\EntityEvent $entityEvent */?>
 <div class="row">
     <div class="col-md-4">
         <div class="form-group">
@@ -56,7 +56,7 @@
             {!! Form::select('recurring_periodicity', (isset($calendar) ? $calendar->recurringOptions() : []), null, ['class' => 'form-control']) !!}
         </div>
     </div>
-    <div class="col-md-6" style="@if (!isset($entityEvent) || empty($entityEvent->recurring_periodicity)) display:none @endif" id="add_event_recurring_until">
+    <div class="col-md-6" style="@if (!isset($entityEvent) || !$entityEvent->is_recurring) display:none @endif" id="add_event_recurring_until">
         <div class="form-group">
             <label>{{ __('calendars.fields.recurring_until') }}</label>
             {!! Form::text('recurring_until', null, ['placeholder' => __('calendars.placeholders.recurring_until'), 'class' => 'form-control', 'maxlength' => 12]) !!}
