@@ -17,13 +17,16 @@
 ])
 @inject('campaign', 'App\Services\CampaignService')
 
+
+@include('entities.components.header', ['model' => $entity->child, 'entity' => $entity])
+
 @section('content')
     @include('partials.errors')
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
             @include($entity->pluralType() . '._menu', ['active' => 'quests', 'model' => $entity->child, 'name' => $entity->pluralType()])
         </div>
-        <div class="col-md-9">
+        <div class="col-md-10">
             <div class="box box-solid">
                 <div class="box-body">
                     <h2 class="page-header with-border">

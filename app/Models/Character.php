@@ -310,18 +310,6 @@ class Character extends MiscModel
         $campaign = CampaignLocalization::getCampaign();
         $canEdit = auth()->check() && auth()->user()->can('update', $this);
 
-        $items['second']['profile'] = [
-            'name' => 'characters.show.tabs.profile',
-            'route' => 'characters.profile',
-
-            'button' => [
-                'url' => route('characters.edit', $this->id),
-                'icon' => 'fa fa-pencil',
-                'tooltip' => __('crud.edit'),
-            ],
-        ];
-
-
         $count = $this->items()->count();
         if ($campaign->enabled('items') && $count > 0) {
             $items['second']['items'] = [

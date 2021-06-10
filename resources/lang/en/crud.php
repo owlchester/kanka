@@ -372,6 +372,7 @@ return [
         'menu'          => 'Menu',
         'notes'         => 'Entity Notes',
         'permissions'   => 'Permissions',
+        'profile'       => 'Profile',
         'quests'        => 'Quests',
         'story'         => 'Story',
         'relations'     => 'Relations',

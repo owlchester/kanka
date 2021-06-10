@@ -37,13 +37,6 @@
     .entity-texts {
 
     }
-    .entity-header-locations {
-      color: white;
-      a {
-        color: white;
-        text-decoration: underline;
-      }
-    }
   }
 
   .entity-name-header {
@@ -97,6 +90,13 @@
   }
   i.entity-icons {
     color: white;
+  }
+  .entity-header-sub {
+    color: white;
+    a {
+      color: white;
+      text-decoration: underline;
+    }
   }
 }
 .entity-links {

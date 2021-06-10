@@ -7,21 +7,26 @@
 if (!isset($entity)) {
     $entity = $model->entity;
 }
+
+$imageUrl = $imagePath = null;
+if ($model->image) {
+    $imageUrl = $model->getImageUrl(0);
+    $imagePath = $model->getImageUrl(250, 250);
+} elseif ($campaign->campaign()->boosted(true) && !empty($entity) && $entity->image) {
+    $imageUrl = $entity->image->getUrl();
+    $imagePath = Img::crop(250, 250)->url($entity->image->path);
+}
 ?>
 @section('entity-header')
     <div class="row entity-header @if($campaign->campaign()->boosted() && $entity->hasHeaderImage($campaign->campaign()->boosted(true))) with-entity-header" style="background-image: url('{{ !empty($entity->header_image) ? $entity->getImageUrl(0, 0, 'header_image') : ($campaign->campaign()->boosted(true) && !empty($entity->header) ? Img::crop(0, 0)->url($entity->header->path) : null)}}');@endif">
 
-        <div class="col-lg-2">
-            @if ($model->image)
-                <a class="entity-image" href="{{ $model->getImageUrl(0) }}" title="{{ $model->name }}" target="_blank" style="background-image: url({{ $model->getImageUrl(250, 250) }});">
-                </a>
-            @elseif ($campaign->campaign()->boosted(true) && !empty($entity) && $entity->image)
-                <a class="entity-avatar" href="{{ $entity->image->getUrl() }}" title="{{ $model->name }}" target="_blank">
-                    <img src="{{ Img::crop(400, 400)->url($entity->image->path) }}" alt="{{ $model->name }} img">
-                </a>
-            @endif
+        @if ($imageUrl)
+        <div class="col-md-2">
+            <a class="entity-image" href="{{ $imageUrl }}" title="{{ $model->name }}" target="_blank" style="background-image: url({{ $imagePath }});">
+            </a>
         </div>
-        <div class="col-lg-10 entity-header-col">
+        @endif
+        <div class="col-md-{{ ($imageUrl) ? 10 : 12 }} entity-header-col">
             <div class="entity-texts">
                 <div class="entity-name-header">
                     <h1 class="entity-name">
@@ -37,6 +42,9 @@ if (!isset($entity)) {
                         @endif
                         @if ($model instanceof \App\Models\Character && $model->is_dead)
                             <span class="ra ra-skull entity-icons" title="{{ __('characters.hints.is_dead') }}"></span>
+                        @endif
+                        @if ($model instanceof \App\Models\Quest && $model->is_completed)
+                            <span class="fas fa-check-circle entity-icons" title="{{ __('quests.fields.is_completed') }}"></span>
                         @endif
 
                         <div class="btn-group entity-actions">
@@ -62,7 +70,7 @@ if (!isset($entity)) {
                                             <i class="fa fa-link"></i> {{ __('crud.actions.copy_mention') }}
                                         </a>
                                     </li>
-                                    @if (Auth::user()->isAdmin())
+                                    @if (auth()->check() && auth()->user()->isAdmin())
                                         <li>
                                             <a href="{{ route('entities.template', $entity) }}">
                                                 @if($entity->is_template)
@@ -85,7 +93,7 @@ if (!isset($entity)) {
                                         </a>
                                     </li>
                                 @endif
-                                @if ((empty($disableCopyCampaign) || !$disableCopyCampaign) && Auth::check() && Auth::user()->hasOtherCampaigns($model->campaign_id))
+                                @if ((empty($disableCopyCampaign) || !$disableCopyCampaign) && auth()->check() && auth()->user()->hasOtherCampaigns($model->campaign_id))
                                     <li class="divider"></li>
                                     <li>
                                         <a href="{{ route('entities.copy_to_campaign', $entity->id) }}">
@@ -94,7 +102,7 @@ if (!isset($entity)) {
                                     </li>
                                 @endif
 
-                                @if ((empty($disableMove) || !$disableMove) && Auth::user()->can('move', $model))
+                                @if ((empty($disableMove) || !$disableMove) && auth()->check() && auth()->user()->can('move', $model))
                                     <li>
                                         <a href="{{ route('entities.move', $entity->id) }}">
                                             <i class="fa fa-exchange-alt" aria-hidden="true"></i> {{ __('crud.actions.move') }}
@@ -130,6 +138,6 @@ if (!isset($entity)) {
             @includeIf('entities.headers._' . $model->getEntityType())
 
             @yield('entity-header-actions')
-            </div>
+        </div>
     </div>
 @endsection

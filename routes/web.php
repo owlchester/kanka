@@ -45,6 +45,7 @@ Route::group([
     Route::get('/helper/attributes', 'HelperController@attributes')->name('helpers.attributes');
     Route::get('/helper/entity-templates', 'HelperController@entityTemplates')->name('helpers.entity-templates');
     Route::get('/helper/widget-filters', 'HelperController@widgetFilters')->name('helpers.widget-filters');
+    Route::get('/helper/pins', 'HelperController@pins')->name('helpers.pins');
 
     // OAuth Routes
     Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider')->name('auth.provider');
@@ -92,7 +93,6 @@ Route::group([
 
         // Character
         Route::get('/characters/random', 'CharacterController@random')->name('characters.random');
-        Route::get('/characters/{character}/profile', 'CharacterSubController@profile')->name('characters.profile');
         Route::get('/characters/{character}/quests', 'CharacterSubController@quests')->name('characters.quests');
         Route::get('/characters/{character}/organisations', 'CharacterSubController@organisations')->name('characters.organisations');
         Route::get('/characters/{character}/items', 'CharacterSubController@items')->name('characters.items');
@@ -263,6 +263,9 @@ Route::group([
 
         Route::get('/entities/{entity}/entity_links/{entity_link}/go', 'Entity\LinkController@go')->name('entities.entity_links.go');
         Route::get('/entities/{entity}/quests', 'Entity\QuestController@index')->name('entities.quests');
+
+        Route::get('/entities/{entity}/profile', 'Entity\ProfileController@index')
+            ->name('entities.profile');
 
         //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
         Route::resources([

@@ -61,6 +61,10 @@ return [
         'title'         => 'Location Maps',
     ],
     'public'            => 'Watch a tutorial video on Youtube explaining public campaigns.',
+    'pins'              => [
+        'title' => 'Entity Pins',
+        'description' => 'Entities can have relations and attributes pinned to the right of their story view. To pin an element, go and edit the relation or attributes and set the pinned value on those.',
+    ],
     'title'             => 'Helpers',
     'widget-filters'    => [
         'description'   => 'You can filter entities displayed on the recently modified widget by providing a list of fields of the entity and values. For example, you can use :example to filter on dead characters of the NPC type.',

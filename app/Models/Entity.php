@@ -216,7 +216,7 @@ class Entity extends Model
         }
         $text = $this->child->tooltipAddTags($text, $this->tags);
 
-        return "<div class='entity-header'>$avatar<div class='entity-names'>" . $name . $subtitle . '</div></div>' . $text;
+        return "<div class='entity-tooltip-avatar'>$avatar<div class='entity-names'>" . $name . $subtitle . '</div></div>' . $text;
     }
 
     /**

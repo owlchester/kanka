@@ -19,18 +19,18 @@ $datagridSorter = new \App\Datagrids\Sorters\FamilyCharacterSorter();
 $datagridSorter->request(request()->all());
 $r = $r->with(['race', 'location'])->simpleSort($datagridSorter)->orderBy('name')->paginate();
 ?>
-<div class="box box-solid">
+<div class="box box-solid" id="family-members">
     <div class="box-header with-border">
         <h3 class="box-title">
             {{ trans('families.show.tabs.members') }}
         </h3>
         <div class="box-tools pull-right">
             @if (!$allMembers)
-                <a href="{{ route('families.show', [$model, 'all_members' => true]) }}" class="btn btn-default btn-sm">
+                <a href="{{ route('families.show', [$model, 'all_members' => true, '#family-members']) }}" class="btn btn-default btn-sm">
                     <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allMembers()->count() }})
                 </a>
             @else
-                <a href="{{ route('families.show', [$model]) }}" class="btn btn-default btn-sm">
+                <a href="{{ route('families.show', [$model, '#family-members']) }}" class="btn btn-default btn-sm">
                     <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->members()->count() }})
                 </a>
             @endif

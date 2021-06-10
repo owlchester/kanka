@@ -354,6 +354,19 @@ abstract class MiscModel extends Model
             ];
         }
 
+        $items['second']['profile'] = [
+            'name' => 'entities/profile.show.tab_name',
+            'route' => 'entities.profile',
+            'entity' => true,
+
+            'button' => auth()->check() && auth()->user()->can('update', $this) ? [
+                'url' => $this->getLink('edit'),
+                'icon' => 'fa fa-pencil',
+                'tooltip' => __('crud.edit'),
+            ] : null,
+        ];
+
+
         // Timelines
         if ((!isset($this->hasTimelines) || $this->hasTimelines === true) && $campaign->enabled('timelines')) {
             $timelines = $this->entity->timelines()->with('timeline')->has('timeline')->count();

@@ -161,14 +161,6 @@ class Race extends MiscModel
     {
         $campaign = CampaignLocalization::getCampaign();
 
-        $count = $this->characters()->count();
-        if ($campaign->enabled('characters') && $count > 0) {
-            $items['second']['characters'] = [
-                'name' => 'races.show.tabs.characters',
-                'route' => 'races.characters',
-                'count' => $count
-            ];
-        }
         $count = $this->races()->count();
         if ($campaign->enabled('races') && $count > 0) {
             $items['second']['races'] = [

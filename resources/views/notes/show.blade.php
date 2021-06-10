@@ -1,29 +1,37 @@
+<?php /** @var \App\Models\Note $model */?>
 <div class="row">
-    <div class="col-md-3">
-        @include('notes._menu')
+    <div class="col-md-2">
+        @include('maps._menu')
     </div>
 
-    <div class="col-md-9">
-        <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-                <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                    <a href="#entry" data-toggle="tooltip" title="{{ trans('crud.panels.entry') }}">
-                        <i class="fa fa-align-justify"></i> <span class="hidden-sm hidden-xs">{{ trans('crud.panels.entry') }}</span>
-                    </a>
-                </li>
-                @include('cruds._tabs')
-            </ul>
+    <div class="col-md-8">
 
-            <div class="tab-content">
-                <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="entry">
-                    <p>{!! $model->entry() !!}</p>
-                    @include('cruds.partials.mentions')
-                </div>
-                @include('cruds._panes')
-            </div>
-        </div>
-
+        @include('entities.components.entry')
         @include('entities.components.notes')
+
+
+
+        @if(!$model->notes->isEmpty())
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{{ __('notes.fields.notes') }}</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                    @foreach ($model->notes->sortBy('name') as $subNote)
+                        <div class="col-sm-6">
+                        {!! $subNote->tooltipedLink() !!}<br />
+                        </div>
+                    @endforeach
+                    </div>
+                </div>
+            </div>
+        @endif
+
         @include('cruds.boxes.history')
+    </div>
+
+    <div class="col-md-2">
+        @include('entities.components.pins')
     </div>
 </div>

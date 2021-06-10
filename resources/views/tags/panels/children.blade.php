@@ -25,7 +25,7 @@ $r = $r->acl()
     ->paginate();
 
 ?>
-<div class="box box-solid">
+<div class="box box-solid" id="tag-children">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ __('tags.show.tabs.children') }}
@@ -41,11 +41,11 @@ $r = $r->acl()
             </div>
             <div class="col-md-6 text-right">
                 @if (!$allMembers)
-                    <a href="{{ route('tags.children', [$model, 'all_members' => true]) }}" class="btn btn-default btn-sm pull-right">
+                    <a href="{{ route('tags.show', [$model, 'all_members' => true, '#tag-children']) }}" class="btn btn-default btn-sm pull-right">
                         <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allChildren()->acl()->count() }})
                     </a>
                 @else
-                    <a href="{{ route('tags.children', [$model]) }}" class="btn btn-default btn-sm pull-right">
+                    <a href="{{ route('tags.show', [$model, '#tag-children']) }}" class="btn btn-default btn-sm pull-right">
                         <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->entities()->acl()->count() }})
                     </a>
                 @endif

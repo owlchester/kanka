@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $type
  * @property string $price
  * @property string $size
+ * @property string $weight
  * @property integer $character_id
  * @property integer $location_id
  * @property Character $character
