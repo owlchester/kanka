@@ -40,7 +40,7 @@
                         <li>{{ __('settings.boost.benefits.recovery', ['amount' => config('entities.hard_delete')]) }}</li>
                     </ul>
                     <div class="text-center">
-                    <a href="{{ route('front.features', '#boost') }}" target="_blank">
+                    <a href="{{ route('front.pricing', '#boost') }}" target="_blank">
                         {{ __('settings.boost.benefits.more.boosted') }}
                     </a>
                     </div>

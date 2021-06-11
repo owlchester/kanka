@@ -139,7 +139,7 @@
                     @else
 
                         <div class="visu-teaser text-center">
-                            <a href="{{ route('front.features', '#boost') }}" target="_blank">
+                            <a href="{{ route('front.pricing', '#boost') }}" target="_blank">
                                 {!! __('entities/relations.teaser') !!}
                             </a>
                         </div>

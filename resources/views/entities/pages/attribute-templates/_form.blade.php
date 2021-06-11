@@ -16,7 +16,7 @@
 
         <p class="help-block">
         {!! __('attributes/templates.helpers.marketplace', [
-    'boosted-campaigns' => link_to_route('front.features', __('crud.boosted_campaigns'), '#boost'),
+    'boosted-campaigns' => link_to_route('front.pricing', __('crud.boosted_campaigns'), '#boost'),
     'marketplace' => link_to('https://marketplace.kanka.io/attribute-templates', __('front.menu.marketplace'), ['target' => '_blank'])
     ]) !!}
         </p>

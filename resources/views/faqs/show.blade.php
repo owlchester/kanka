@@ -19,7 +19,7 @@
                         <p class="mb-5">{!! nl2br(__("faq.$key.answer", [
                             'patreon' => link_to(config('patreon.url'), 'Patreon', ['target' => '_blank']),
                             'discord' => link_to(config('social.discord'), 'Discord', ['target' => '_blank']),
-                            'boosters' => link_to_route('front.features', __('front.features.patreon.boosts'), ['#boost']),
+                            'boosters' => link_to_route('front.pricing', __('front.features.patreon.boosts'), ['#boost']),
                             'public-campaigns' => link_to_route('front.public_campaigns', __('front.menu.campaigns')),
                             'lfgm' => link_to('https://lookingforgm.com', 'LookingForGM.com', ['target' => '_blank']),
                             'account' => link_to_route('settings.account', __('settings.menu.account'), ['#account-deletion'], ['target' => '_blank']),

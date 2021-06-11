@@ -25,7 +25,7 @@
             @endif
 
             @if (!$campaign->campaign()->boosted())
-                {!! __('dashboard.dashboards.boosted', ['boosted_campaigns' => link_to_route('front.features', __('crud.boosted_campaigns'), '#boost')])!!}
+                {!! __('dashboard.dashboards.boosted', ['boosted_campaigns' => link_to_route('front.pricing', __('crud.boosted_campaigns'), '#boost')])!!}
            @endif
         </div>
         @if ($campaign->campaign()->boosted())

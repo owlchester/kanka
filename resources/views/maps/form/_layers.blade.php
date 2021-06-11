@@ -14,7 +14,7 @@
     <p class="help-block">
         {{ __('maps/layers.helper.amount', ['amount' => $campaign->campaign()->maxMapLayers()]) }}
         @if (!$campaign->campaign()->boosted())
-            {!! __('maps/layers.helper.boosted_campaign', ['boosted' => link_to_route('front.features', __('crud.boosted_campaigns'), '#boost'), 'amount' => \App\Models\Campaign::LAYER_COUNT_MAX])!!}
+            {!! __('maps/layers.helper.boosted_campaign', ['boosted' => link_to_route('front.pricing', __('crud.boosted_campaigns'), '#boost'), 'amount' => \App\Models\Campaign::LAYER_COUNT_MAX])!!}
         @endif
     </p>
 

@@ -148,7 +148,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                 <p class="text-center text-muted">
                     {!! __('misc.ads.remove_v2', [
     'supporting' => link_to_route('settings.subscription', __('misc.ads.supporting'), [], ['target' => '_blank']),
-    'boosting' => link_to_route('front.features', __('misc.ads.boosting'), ['#boost'], ['target' => '_blank']),
+    'boosting' => link_to_route('front.pricing', __('misc.ads.boosting'), ['#boost'], ['target' => '_blank']),
     ]) !!}
                 </p>
 @endif
