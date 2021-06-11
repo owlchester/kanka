@@ -31,7 +31,9 @@
                         <p>{{ __('front/features/relations.second') }}</p>
                         <p>{{ __('front/features/relations.third') }}</p>
 
-                        <p>{!! __('front/features/relations.fourth') !!}</p>
+                        <p>{!! __('front/features/relations.fourth', [
+    'boosted_campaigns' => link_to_route('front.features', __('crud.boosted_campaigns'), '#boost')
+]) !!}</p>
 
                         <div class="text-center">
                         <img src="/images/features/relation-explorer.jpg" alt="Kanka relation explorer" class="mb-5" style="max-width: 100%" />

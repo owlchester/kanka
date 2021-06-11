@@ -96,7 +96,7 @@ return [
         ],
         'boosts_v2'          => [
             'title' => 'Boosted and Superboosted campaigns',
-            'description' => 'Our pledge levels gives you access to boosters, which you can use to boost or superboost campaigns. Doing so unlocks the following benefits for a campaign.',
+            'description' => 'Our pledge levels give you access to boosters, which you can use to boost or superboost campaigns. Doing so unlocks the following benefits for a campaign.',
         ],
         'calendars'         => [
             'description'   => 'Create fully custom calendars with the weeks and months you want. Add seasons, weather, moons for flavour and knowing how the world is. Attach entities to the calendar as a reminder with control on how long they last, and how often they occur.',
