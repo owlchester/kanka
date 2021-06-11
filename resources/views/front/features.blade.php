@@ -23,6 +23,4 @@
             @include('front.features.main')
         </div>
     </section>
-
-    @include('front._paid_features')
 @endsection

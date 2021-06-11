@@ -28,6 +28,8 @@ Route::get('/features/permissions', 'Front\FeatureController@permissions')->name
 Route::get('/features/boosters', 'Front\FeatureController@boosters')->name('front.features.boosters');
 Route::get('/features/inventories-abilities', 'Front\FeatureController@inventoriesAbilities')->name('front.features.inventories-abilities');
 Route::get('/features/dashboards', 'Front\FeatureController@dashboards')->name('front.features.dashboards');
+Route::get('/features/relations', 'Front\FeatureController@relations')->name('front.features.relations');
+//Route::get('/features/rich-text', 'Front\FeatureController@richText')->name('front.features.rich-text');
 
 Route::get('/hall-of-fame', 'FrontController@hallOfFame')->name('front.hall-of-fame');
 
