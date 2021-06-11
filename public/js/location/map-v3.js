@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -264,10 +264,6 @@ function initMapExplore() {
 
   initLegend();
   initMapEntryClick();
-  $(document).one('shown.bs.modal shown.bs.popover', function () {
-    //console.warn('modal show or popover');
-    initSubforms();
-  });
 }
 /**
  * When submitting the layer or marker form from the map modal, disable the map form unsaved changed
@@ -304,114 +300,8 @@ function initMapForms() {
       $('.map-marker-circle-helper').show();
     }
   });
-  $(document).on('shown.bs.modal shown.bs.popover', function (e) {
-    //console.warn('modal show or popover');
-    initSubforms();
-    e.stopPropagation();
-  });
   initLegend();
   initMapEntryClick();
-}
-
-function initSubforms() {
-  //console.info('initSubforms');
-  subForm = $('.ajax-subform');
-
-  if (subForm.length === 0) {
-    //console.info('not ajax subforms');
-    return;
-  }
-
-  subForm.one('submit', function (e) {
-    //console.info('ajax-subform submit');
-    if (validSubform) {
-      //console.info('ajax-subform real submit');
-      return true;
-    }
-
-    currentAjaxForm = $(this);
-    window.entityFormHasUnsavedChanges = false;
-    e.preventDefault();
-    $(this).find('.form-submit-main span').hide();
-    $(this).find('.form-submit-main i.fa').show(); // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
-    var formData = new FormData(this);
-    $.ajax({
-      url: $(this).attr('action'),
-      method: $(this).attr('method'),
-      data: formData,
-      cache: false,
-      contentType: false,
-      processData: false
-    }).done(function (res) {
-      // If the validation succeeded, we can really submit the form
-      validSubform = true;
-      currentAjaxForm.submit();
-      return true;
-    }).fail(function (err) {
-      //console.log('error', err);
-      // Reset any error fields
-      currentAjaxForm.find('.input-error').removeClass('input-error');
-      currentAjaxForm.find('.text-danger').remove(); // If we have a 503 error status, let's assume it's from cloudflare and help the user
-      // properly save their data.
-
-      if (err.status === 503) {
-        $('#entity-form-503-error').show();
-        resetSubformSubmitAnimation();
-      } // If it's 403, the session is gone
-
-
-      if (err.status === 403) {
-        $('#entity-form-403-error').show();
-        resetSubformSubmitAnimation();
-      } // Loop through the errors to add the class and error message
-
-
-      var errors = err.responseJSON.errors;
-      var errorKeys = Object.keys(errors);
-      var foundAllErrors = true;
-      errorKeys.forEach(function (i) {
-        var errorSelector = $('[name="' + i + '"]'); //console.log('error field', '[name="' + i + '"]');
-
-        if (errorSelector.length > 0) {
-          currentAjaxForm.find('[name="' + i + '"]').addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
-        } else {
-          foundAllErrors = false;
-        }
-      });
-      var firstItem = Object.keys(errors)[0];
-      var firstItemDom = subForm.find('[name="' + firstItem + '"]'); // If we can actually find the first element, switch to it and the correct tab.
-
-      if (firstItemDom.length > 0) {
-        firstItemDom.focus();
-      } // Reset submit buttons
-
-
-      resetSubformSubmitAnimation(); //console.log('reset stuff');
-
-      currentAjaxForm.find('.form-submit-main i.fa').hide();
-      currentAjaxForm.find('.form-submit-main span').show();
-    });
-  });
-}
-
-function resetSubformSubmitAnimation() {
-  var submitBtn = subForm.find('.btn-success');
-
-  if (submitBtn.length > 0) {
-    $.each(submitBtn, function () {
-      $(this).removeAttr('disabled');
-
-      if ($(this).data('reset')) {
-        $(this).html($(this).data('reset'));
-      }
-    });
-  }
 }
 
 function showSidebar() {
@@ -454,7 +344,7 @@ function initMapEntryClick() {
 
 /***/ }),
 
-/***/ 4:
+/***/ 5:
 /*!******************************************************!*\
   !*** multi ./resources/assets/js/location/map-v3.js ***!
   \******************************************************/

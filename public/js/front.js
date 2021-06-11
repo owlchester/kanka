@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 18);
+/******/ 	return __webpack_require__(__webpack_require__.s = 19);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -120,7 +120,7 @@ $(document).ready(function (e) {
 
 /***/ }),
 
-/***/ 18:
+/***/ 19:
 /*!*****************************************!*\
   !*** multi ./resources/assets/js/front ***!
   \*****************************************/

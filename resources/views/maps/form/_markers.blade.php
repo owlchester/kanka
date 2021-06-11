@@ -28,6 +28,7 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
             integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
             crossorigin=""></script>
+    <script src="{{ mix('js/ajax-subforms.js') }}" defer></script>
     <script src="{{ mix('js/location/map-v3.js') }}" defer></script>
     <script src="/vendor/spectrum/spectrum.js" defer></script>
 
@@ -138,9 +139,9 @@
                         @include('maps.markers._form', ['model' => null, 'map' => $model, 'activeTab' => 1])
 
                         <div class="form-group">
-                            <button class="btn btn-success">
-                                <i class="fa fa-spin fa-spinner" style="display:none;"></i><span>{{ __('crud.save') }}</span>
-                            </button>
+                            <div class="submit-group">
+                                <button class="btn btn-success">{{ __('crud.save') }}</button>
+                            </div>
                         </div>
 
                         {!! Form::close() !!}

@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 24);
+/******/ 	return __webpack_require__(__webpack_require__.s = 25);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -425,7 +425,7 @@ function debug(e) {//console.log('e', e);
 
 /***/ }),
 
-/***/ 24:
+/***/ 25:
 /*!******************************************************!*\
   !*** multi ./resources/assets/js/editors/summernote ***!
   \******************************************************/

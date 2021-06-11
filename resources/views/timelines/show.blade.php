@@ -34,3 +34,8 @@
         @include('cruds.boxes.history')
     </div>
 </div>
+
+@section('scripts')
+    @parent
+    <script src="{{ mix('js/ajax-subforms.js') }}" defer></script>
+@endsection

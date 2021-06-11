@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 11);
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -138,8 +138,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _event_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../event.js */ "./resources/assets/js/components/event.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -173,7 +171,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  * Messy party: we can have a list of characters that the user can edit, or send as the current user.
  */
 
-/* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
+/* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     target: undefined,
     api: undefined,
@@ -190,14 +188,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       message_id: null,
       edit_message: null
     };
-  },
-  created: function created() {
-    console.log("form created");
-    console.log("form", this.disabled);
-  },
-  mounted: function mounted() {
-    console.log("yes");
-    console.log("form", this.disabled);
   },
   methods: {
     /**
@@ -284,14 +274,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       return true;
     }
-  }
-}, "mounted", function mounted() {
-  var _this2 = this;
+  },
+  mounted: function mounted() {
+    var _this2 = this;
 
-  _event_js__WEBPACK_IMPORTED_MODULE_0__["default"].$on('edit_message', function (message, body) {
-    _this2.editMessage(message, body);
-  });
-}));
+    _event_js__WEBPACK_IMPORTED_MODULE_0__["default"].$on('edit_message', function (message, body) {
+      _this2.editMessage(message, body);
+    });
+  }
+});
 
 /***/ }),
 
@@ -20933,7 +20924,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 11:
+/***/ 12:
 /*!************************************************!*\
   !*** multi ./resources/assets/js/conversation ***!
   \************************************************/

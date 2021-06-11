@@ -13,6 +13,7 @@ require('laravel-mix-brotli');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
+    .js('resources/assets/js/ajax-subforms.js', 'public/js')
     .js('resources/assets/js/character-map.js', 'public/js')
     .js('resources/assets/js/location/map.js', 'public/js/location')
     .js('resources/assets/js/location/map-v3.js', 'public/js/location')
