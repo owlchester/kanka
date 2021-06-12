@@ -8,6 +8,9 @@ use App\Models\EntityEvent;
 
 class EntityEventObserver
 {
+    /**
+     * @param EntityEvent $entityEvent
+     */
     public function saving(EntityEvent $entityEvent)
     {
         $entityEvent->is_recurring = !empty($entityEvent->recurring_periodicity);
