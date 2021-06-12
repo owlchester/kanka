@@ -61,6 +61,7 @@ class AttributeController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $template = null;
         $marketplaceTemplate = null;
+        $model = $entity->child;
 
         $layout = $entity->attributes()->where(['name' => '_layout'])->first();
         if ($layout) {
@@ -72,6 +73,7 @@ class AttributeController extends Controller
         return view('entities.pages.attributes.index', compact(
             'ajax',
             'entity',
+            'model',
             'marketplaceTemplate',
             'template'
         ));
