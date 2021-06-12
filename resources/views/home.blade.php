@@ -5,7 +5,7 @@
 <?php $position = 0; ?>
 
 @extends('layouts.app', [
-    'title' => __('dashboard.title') . ' ' . $campaign->name,
+    'title' => __('dashboard.title') . ' ' . (!empty($dashboard) ? $dashboard->name : $campaign->name),
     'breadcrumbs' => false,
     'canonical' => true,
     'contentId' => 'campaign-dashboard'
