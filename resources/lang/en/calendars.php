@@ -145,6 +145,7 @@ return [
                 'newmoon_name'  => ':moon new moon',
                 'none'          => 'None',
                 'year'          => 'Yearly',
+                'unnamed_moon'  => 'Moon :number',
             ],
         ],
         'resets'    => [
