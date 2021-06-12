@@ -114,8 +114,16 @@ __webpack_require__.r(__webpack_exports__);
  * All the juicy stuff is in Messages
  */
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["id", "api", "target", "targets", "send", "disabled"],
-  mounted: function mounted() {}
+  props: {
+    id: undefined,
+    send: undefined,
+    target: undefined,
+    api: undefined,
+    targets: undefined,
+    disabled: {
+      type: Boolean
+    }
+  }
 });
 
 /***/ }),
@@ -164,7 +172,14 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['target', 'api', 'targets', 'disabled'],
+  props: {
+    target: undefined,
+    api: undefined,
+    targets: undefined,
+    disabled: {
+      type: Boolean
+    }
+  },
   data: function data() {
     return {
       body: null,
@@ -446,7 +461,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var messageBox = _this2.$refs.messagebox;
         messageBox.scrollTop = messageBox.scrollHeight;
       }, 50);
-      this.newest = this.messages[this.messages.length - 1].id;
+      if (this.messages.length > 0) this.newest = this.messages[this.messages.length - 1].id;else this.newest = undefined;
     },
 
     /**
@@ -20916,7 +20931,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/js/conversation */"./resources/assets/js/conversation.js");
+module.exports = __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/js/conversation */"./resources/assets/js/conversation.js");
 
 
 /***/ })

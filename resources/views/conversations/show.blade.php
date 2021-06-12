@@ -28,7 +28,7 @@
                         api="{{ route('conversations.conversation_messages.index', $model) }}"
                         target="{{ $model->target == \App\Models\Conversation::TARGET_CHARACTERS ? 'character' : 'user'}}"
                         :targets="{{ $model->jsonParticipants() }}"
-                        disabled="{{ ($model->is_closed ? 'true' : 'false') }}"
+                        :disabled="{{ ($model->is_closed ? 'true' : 'false') }}"
                         send="{{ route('conversations.conversation_messages.store', $model) }}"
                     >
                     </conversation>
