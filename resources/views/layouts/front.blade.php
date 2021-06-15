@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content='width=device-width, initial-scale=1, maximum-scale=5, shrink-to-fit=no'>
     <meta name="author" content="{{ config('app.name') }}">
-    <meta name="description" content="{{ $metaDescription ?? __('front.home.seo.description') }}">
+    <meta name="description" content="{{ $metaDescription ?? __('front.home.seo.meta-description') }}">
     <meta name="keywords" content="{{  $metaKeywords ?? __('front.seo.keywords') }}">
 
     <meta property="og:title" content="{{ $title ?? __('front.meta.title') }}@if (!isset($skipEnding)) - {{ config('app.name') }} @endif">

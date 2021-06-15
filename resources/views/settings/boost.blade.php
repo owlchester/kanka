@@ -165,7 +165,7 @@
                                         </button>
 
                                         @if(Auth::user()->availableBoosts() >= 3)
-                                            <button type="submit" class="btn bg-maroon" name="action" value="superboost" title="{{ __('settings.boost.buttons.tooltips.boost', ['amount' => 3]) }}" data-toggle="tooltip">
+                                            <button type="submit" class="btn bg-maroon" name="action" value="superboost" title="{{ __('settings.boost.buttons.tooltips.superboost', ['amount' => 3]) }}" data-toggle="tooltip">
                                                 <i class="fa fa-rocket"></i> {{ __('settings.boost.buttons.superboost') }}
                                             </button>
                                         @else
