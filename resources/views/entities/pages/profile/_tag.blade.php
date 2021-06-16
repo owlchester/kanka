@@ -4,18 +4,18 @@
 @inject('dateRenderer', 'App\Renderers\DateRenderer')
 
 
-<div class="box box-solid">
+<div class="box box-solid box-entity-profile">
     <div class="box-body">
         <div class="row">
             <div class="col-sm-4">
                 @if ($model->type)
-                    <p>
+                    <p class="entity-type">
                         <b>{{ trans('tags.fields.type') }}</b><br />
                         {{ $model->type }}
                     </p>
                 @endif
                 @if ($model->hasColour())
-                    <p>
+                    <p class="entity-colour">
                         <b>{{ trans('calendars.fields.colour') }}</b><br />
                         <span class="{{ $model->colourClass() }}">{{ __('colours.' . $model->colour) }}</span>
                     </p>

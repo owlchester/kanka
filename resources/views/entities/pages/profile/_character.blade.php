@@ -2,54 +2,54 @@
 $appearances = $model->characterTraits()->appearance()->orderBy('default_order')->get();
 $traits = $model->characterTraits()->personality()->orderBy('default_order')->get();
 ?>
-<div class="box box-solid">
+<div class="box box-solid box-entity-profile">
     <div class="box-body">
         <div class="row">
             <div class="col-sm-4">
                 @if ($model->title)
-                    <p>
+                    <p class="entity-character-title">
                         <b>{{ __('characters.fields.title') }}</b><br />
                         {{ $model->title }}
                     </p>
                 @endif
 
                 @if ($model->type)
-                    <p>
+                    <p class="entity-type">
                         <b>{{ __('characters.fields.type') }}</b><br />
                         {{ $model->type }}
                     </p>
                 @endif
 
                 @if ($campaign->enabled('races') && $model->race)
-                    <p>
+                    <p class="entity-race" data-foreign="{{ $model->race_id }}">
                         <b>{{ __('characters.fields.race') }}</b><br />
                         {!! $model->race->tooltipedLink() !!}
                     </p>
                 @endif
 
                 @if ($campaign->enabled('families') && $model->family)
-                    <p>
+                    <p class="entity-family" data-foreign="{{ $model->family_id }}">
                         <b>{{ __('characters.fields.family') }}</b><br />
                         {!! $model->family->tooltipedLink() !!}
                     </p>
                 @endif
 
                 @if ($model->age || $model->age === '0')
-                    <p>
+                    <p class="entity-age">
                         <b>{{ __('characters.fields.age') }}</b><br />
                         {{ $model->age }}
                     </p>
                 @endif
 
                 @if ($model->sex)
-                    <p>
+                    <p class="entity-gender">
                         <b>{{ __('characters.fields.sex') }}</b><br />
                         {{ $model->sex }}
                     </p>
                 @endif
 
                 @if ($model->pronouns)
-                    <p>
+                    <p class="entity-pronouns">
                         <b>{{ __('characters.fields.pronouns') }}</b><br />
                         {{ $model->pronouns }}
                     </p>
@@ -58,9 +58,8 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
 
             @if (count($appearances) > 0)
                 <div class="col-md-3">
-
                     @foreach ($appearances as $trait)
-                        <p>
+                        <p class="entity-appearance-{{ \Illuminate\Support\Str::slug($trait->name) }}">
                             <b>{{ $trait->name }}</b><br />
                             {{ $trait->entry }}
                         </p>
@@ -82,7 +81,7 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
                     @endif
 
                     @foreach ($traits as $trait)
-                        <p>
+                        <p class="entity-trait-{{ \Illuminate\Support\Str::slug($trait->name) }}">
                             <b>{{ $trait->name }}</b><br />
                             {!! nl2br(\App\Facades\Mentions::mapAny($trait, 'entry')) !!}
                         </p>
