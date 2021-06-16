@@ -22,16 +22,22 @@ You can get a list of entities marked as templates by calling the following API 
 {
     "data": [
         {
-            "id": 1,
-            "entity_id": 34,
-            "item_id": 12,
-            "amount": 3,
-            "is_equipped": false,
+            "id": 5,
+            "name": "Dagger of Darkness",
+            "type": "item",
+            "child_id": 1,
+            "tags": [],
             "is_private": false,
-            "item": {},
-            "name": null,
-            "position":  "hand",
-            "visibility": "all"
+            "is_template": true,
+            "campaign_id": 1,
+            "is_attributes_private": false,
+            "tooltip": "",
+            "header_image": null,
+            "image_uuid": null,
+            "created_at": "2020-06-03T11:04:30.000000Z",
+            "created_by": 1,
+            "updated_at": "2021-06-16T08:01:02.000000Z",
+            "updated_by": 1
         }
     ]
 }
