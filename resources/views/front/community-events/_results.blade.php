@@ -27,7 +27,11 @@
 @foreach ($model->rankedResults as $entry)
     <tr>
         <td>
-            # {{ $entry->rank }}
+            @if ($entry->rank == 1)
+                # {{ $entry->rank }}
+            @else
+                {{ __('front/community-events.fields.honorable') }}
+            @endif
         </td>
         <td>
             {{ $entry->user->name }}
