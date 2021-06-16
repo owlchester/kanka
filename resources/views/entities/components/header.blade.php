@@ -96,16 +96,16 @@ if ($model->image) {
                                 @if ((empty($disableCopyCampaign) || !$disableCopyCampaign) && auth()->check() && auth()->user()->hasOtherCampaigns($model->campaign_id))
                                     <li class="divider"></li>
                                     <li>
-                                        <a href="{{ route('entities.copy_to_campaign', $entity->id) }}">
-                                            <i class="fa fa-clone" aria-hidden="true"></i> {{ __('crud.actions.copy_to_campaign') }}
+                                        <a href="{{ route('entities.move', $entity->id) }}">
+                                            <i class="fa fa-clone" aria-hidden="true"></i> {{ __('crud.actions.move') }}
                                         </a>
                                     </li>
                                 @endif
 
                                 @if ((empty($disableMove) || !$disableMove) && auth()->check() && auth()->user()->can('move', $model))
                                     <li>
-                                        <a href="{{ route('entities.move', $entity->id) }}">
-                                            <i class="fa fa-exchange-alt" aria-hidden="true"></i> {{ __('crud.actions.move') }}
+                                        <a href="{{ route('entities.transform', $entity->id) }}">
+                                            <i class="fa fa-exchange-alt" aria-hidden="true"></i> {{ __('crud.actions.transform') }}
                                         </a>
                                     </li>
                                 @endif

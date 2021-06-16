@@ -415,16 +415,23 @@ Route::group([
 //        Route::post('/entities/{entity}/entity_files/{entity_file}/rename', 'EntityFileController@rename')->name('entities.entity_files.rename');
 
         // Move
-        Route::get('/entities/move/{entity}', 'EntityController@move')->name('entities.move');
-        Route::post('/entities/move/{entity}', 'EntityController@post')->name('entities.move');
+        //Route::get('/entities/move/{entity}', 'EntityController@move')->name('entities.move');
+        //Route::post('/entities/move/{entity}', 'EntityController@post')->name('entities.move');
+        Route::get('/entities/{entity}/move', 'Entity\MoveController@index')->name('entities.move');
+        Route::post('/entities/{entity}/move', 'Entity\MoveController@move')->name('entities.move');
+
+        // Transform
+        Route::get('/entities/{entity}/transform', 'Entity\TransformController@index')->name('entities.transform');
+        Route::post('/entities/{entity}/transform', 'Entity\TransformController@transform')->name('entities.transform');
+
 
         Route::get('/entities/{entity}/tooltip', 'EntityTooltipController@show')->name('entities.tooltip');
         Route::get('/entities/{entity}/assets', 'Entity\AssetController@index')->name('entities.assets');
 
         Route::get('/entities/{entity}/json-export', 'Entity\ExportController@json')->name('entities.json-export');
 
-        Route::get('/entities/copy-to-campaign/{entity}', 'EntityController@copyToCampaign')->name('entities.copy_to_campaign');
-        Route::post('/entities/copy-to-campaign/{entity}', 'EntityController@copyEntityToCampaign')->name('entities.copy_to_campaign');
+        //Route::get('/entities/copy-to-campaign/{entity}', 'EntityController@copyToCampaign')->name('entities.copy_to_campaign');
+        //Route::post('/entities/copy-to-campaign/{entity}', 'EntityController@copyEntityToCampaign')->name('entities.copy_to_campaign');
 
         // Entity files
         Route::get('/entities/{entity}/files', 'EntityController@files')->name('entities.files');

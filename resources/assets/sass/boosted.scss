@@ -130,6 +130,10 @@
   }
 }
 
+.box .nav-stacked > li {
+  word-break: break-all;
+}
+
 @media (max-width: 787px) {
  .entity-header {
    .entity-image {
@@ -141,5 +145,4 @@
      margin-top: 8px;
    }
  }
-
 }
