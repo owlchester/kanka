@@ -19,7 +19,7 @@ return [
     'panel'        => [
         'title'                 => 'Move or copy an entity to another campaign',
         'description'           => 'Select a campaign you want to move or make a copy of this entity in.',
-        'description_bulk_copy' => 'Select a campaign you want to copy these entities to.',
+        'description_bulk_copy' => 'Select a campaign you want to copy the selected entities to.',
     ],
     'success'       => 'Entity \':name\' moved.',
     'success_copy'  => 'Entity \':name\' copied.',
