@@ -2,13 +2,13 @@
 
 ---
 
-- [All Entity Inventorys](#all-entity-inventory)
+- [All Entity Inventories](#all-entity-inventory)
 - [Create an Entity Inventory](#create-inventory)
 - [Update an Entity Inventory](#update-inventory)
 - [Delete an Entity Inventory](#delete-inventory)
 
 <a name="all-entity-inventory"></a>
-## All Entity Inventorys
+## All Entity Inventories
 
 You can get a list of all items of an entity's inventory by using the following endpoint.
 

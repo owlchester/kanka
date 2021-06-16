@@ -2,13 +2,27 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Resources\EntityResource;
+use App\Http\Resources\EntityResource as Resource;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Http\Resources\EntityResource as Resource;
+use App\Services\EntityService;
 use Illuminate\Support\Facades\DB;
 
-class EntityApiController extends ApiController
+class EntityTemplateApiController extends ApiController
 {
+    /** @var EntityService */
+    protected $service;
+
+    /**
+     * EntityApiController constructor.
+     * @param EntityService $service
+     */
+    public function __construct(EntityService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * @param Campaign $campaign
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
@@ -23,6 +37,7 @@ class EntityApiController extends ApiController
         return Resource::collection($campaign->entities()
             ->apiFilter(request()->all())
             ->lastSync(request()->get('lastSync'))
+            ->where('is_template', true)
             ->paginate()
             ->appends(request()->except(['page', 'lastSync'])));
     }
@@ -31,15 +46,18 @@ class EntityApiController extends ApiController
      * @param Campaign $campaign
      * @param Entity $entity
      * @return Resource
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function show(Campaign $campaign, Entity $entity)
+    public function switch(Campaign $campaign, Entity $entity)
     {
-        if (config('app.debug')) {
-            DB::enableQueryLog();
-        }
         $this->authorize('access', $campaign);
-        $this->authorize('view', $entity->child);
+        $this->authorize('update', $entity->child);
+
+        $entity = $this->service->toggleTemplate($entity);
+
         $resource = new Resource($entity);
         return $resource->withMisc();
+
+
     }
 }

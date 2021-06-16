@@ -56,6 +56,7 @@
     - [Dashboard Widgets](/docs/{{version}}/dashboard-widgets)
     - [Mention Language](/docs/{{version}}/mention-language)
     - [Gallery](/docs/{{version}}/images)
+    - [Templates](/docs/{{version}}/templates)
 
 - ## Help
     - [Troubleshooting](/docs/{{version}}/troubleshooting)

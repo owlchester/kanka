@@ -122,6 +122,8 @@ class EntityResource extends JsonResource
             'has_custom_image' => !empty($this->image),
 
             'is_private' => (bool) $this->is_private,
+            'is_template' => (bool) $this->entity->is_template,
+
             'entity_id' => $this->entity->id,
             'tags' => $this->entity->tags()->pluck('tags.id')->toArray(),
 

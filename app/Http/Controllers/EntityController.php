@@ -166,6 +166,8 @@ class EntityController extends Controller
      */
     public function template(Entity $entity)
     {
+        $this->authorize('update', $entity->child);
+
         $entity = $this->entityService->toggleTemplate($entity);
         return redirect()->back()
             ->with(
