@@ -78339,6 +78339,32 @@ function registerStoryActions() {
     });
     return false;
   });
+  registerStoryLoadMore();
+}
+
+function registerStoryLoadMore() {
+  $('.story-load-more').click(function (e) {
+    var url = $(this).data('url');
+    var btn = $(this);
+    e.preventDefault();
+    $('#story-more-spinner').show();
+    $(this).hide();
+    $.ajax({
+      url: $(this).attr('data-url')
+    }).done(function (result, textStatus, xhr) {
+      btn.parent().remove();
+
+      if (result) {
+        $('.entity-notes').append(result);
+        registerStoryLoadMore();
+      }
+    }).fail(function (result, textStatus, xhr) {
+      //console.log('modal ajax error', result);
+      $('#story-more-spinner').hide();
+      btn.show();
+    });
+    return false;
+  });
 }
 
 /***/ }),

@@ -10,5 +10,6 @@ return [
     'actions' => [
         'collapse_all' => 'Collapse all posts',
         'expand_all' => 'Expand all posts',
+        'load_more' => 'Load more',
     ],
 ];

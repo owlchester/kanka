@@ -63,4 +63,17 @@ class StoryController extends Controller
             ->with('success', __('entities/story.reorder.success'));
     }
 
+    public function more(Entity $entity)
+    {
+        $this->authorize('view', $entity->child);
+
+        $notes = $entity->notes()->ordered()->paginate(15);
+
+        return view('entities.components.notes')
+            ->with('entity', $entity)
+            ->with('model', $entity->child)
+            ->with('pinnedNotes', $notes);
+
+    }
+
 }
