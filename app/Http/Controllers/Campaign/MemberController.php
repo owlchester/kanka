@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers\Campaign;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Identity;
 use App\Http\Controllers\Controller;
 use App\Models\CampaignRole;
 use App\Models\CampaignUser;
 use App\Services\Campaign\UserService;
-use App\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 
 class MemberController extends Controller
