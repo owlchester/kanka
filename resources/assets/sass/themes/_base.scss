@@ -33,7 +33,6 @@
 .content-wrapper {
   background: none !important;
   p {
-    text-align: justify;
     color: $White;
   }
 }
@@ -547,4 +546,10 @@ footer {
   .sp-input {
     color: white;
   }
+}
+
+.well {
+  background-color: $Detail;
+  color: $Hard;
+  border: none;
 }
