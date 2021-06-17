@@ -86,6 +86,7 @@ $(document).ready(function () {
     registerPermissionToggler();
     registerEntityNotePerms();
     registerStoryActions();
+    registerStoryLoadMore();
 });
 
 /**
@@ -774,10 +775,13 @@ function initSpectrum()
     });
 }
 
+/*
+ *
+ */
 function registerStoryActions()
 {
     let posts = $('.entity-note-body');
-    $('.btn-post-collapse').click(function (e) {
+    $('.btn-post-collapse').unbind('click').click(function (e) {
         posts.each(function (i) {
             if ($(this).hasClass('in')) {
                 $(this).removeClass('in');
@@ -788,7 +792,7 @@ function registerStoryActions()
         return false;
     });
 
-    $('.btn-post-expand').click(function (e) {
+    $('.btn-post-expand').unbind('click').click(function (e) {
         posts.each(function (i) {
             if (!$(this).hasClass('in')) {
                 $(this).addClass('in');
@@ -798,10 +802,11 @@ function registerStoryActions()
         });
         return false;
     });
-
-    registerStoryLoadMore();
 }
 
+/*
+ *
+ */
 function registerStoryLoadMore()
 {
     $('.story-load-more').click(function (e) {
@@ -820,6 +825,7 @@ function registerStoryLoadMore()
             if (result) {
                 $('.entity-notes').append(result);
                 registerStoryLoadMore();
+                registerStoryActions();
             }
         }).fail(function (result, textStatus, xhr) {
             //console.log('modal ajax error', result);
