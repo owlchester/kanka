@@ -5,19 +5,27 @@ namespace App\Http\Controllers\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Facades\Identity;
 use App\Http\Controllers\Controller;
+use App\Models\CampaignRole;
 use App\Models\CampaignUser;
+use App\Services\Campaign\UserService;
+use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 
 class MemberController extends Controller
 {
+    /** @var UserService */
+    protected $service;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserService $userService)
     {
         $this->middleware('auth');
+        $this->service = $userService;
     }
 
     /**
@@ -49,5 +57,23 @@ class MemberController extends Controller
         }
         return redirect()
             ->route('dashboard');
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateRoles(CampaignUser $campaignUser, CampaignRole $campaignRole)
+    {
+        $this->authorize('update', $campaignUser);
+
+        $added = $this->service->update($campaignUser, $campaignRole);
+
+        return redirect()
+            ->route('campaign_users.index')
+            ->with('success', __('campaigns.members.updates.' . ($added ? 'added' : 'removed'), [
+                'user' => $campaignUser->user->name,
+                'role' => $campaignRole->name
+            ]));
     }
 }

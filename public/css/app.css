@@ -1088,6 +1088,10 @@ summary {
   margin: 3px 10px;
 }
 
+.user-role-update .btn {
+  margin-bottom: 5px;
+}
+
 @media (min-width: 787px) {
   footer .footer-socials .email,
   footer .footer-socials .socials,

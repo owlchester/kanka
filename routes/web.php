@@ -232,6 +232,9 @@ Route::group([
         Route::get('/members/switch/{campaign_user}', 'Campaign\MemberController@switch')->name('identity.switch');
         Route::get('/members/back', 'Campaign\MemberController@back')->name('identity.back');
 
+
+        Route::post('/campaign_users/{campaign_user}/update-role/{campaign_role}', 'Campaign\MemberController@updateRoles')->name('campaign_users.update-roles');
+
         // Recovery
         Route::get('/recovery', 'Campaign\RecoveryController@index')->name('recovery');
         Route::post('/recovery', 'Campaign\RecoveryController@recover')->name('recovery');
