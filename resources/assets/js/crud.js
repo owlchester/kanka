@@ -810,7 +810,6 @@ function registerStoryActions()
 function registerStoryLoadMore()
 {
     $('.story-load-more').click(function (e) {
-        let url = $(this).data('url');
         let btn = $(this);
 
         e.preventDefault();
@@ -819,7 +818,7 @@ function registerStoryLoadMore()
         $(this).hide();
 
         $.ajax({
-            url: $(this).attr('data-url')
+            url: $(this).data('url')
         }).done(function (result, textStatus, xhr) {
             btn.parent().remove();
             if (result) {
