@@ -32,12 +32,12 @@ return [
         'helper'    => 'Boosted campaigns can add links to entities that point to external websites.',
         'title'     => 'Links for :name',
     ],
+    'unboosted'     => [
+        'text'  => 'Adding links to external resources that are displayed directly on the entity is reserved to :boosted-campaigns.',
+        'title' => 'Boosted campaign feature',
+    ],
     'update'        => [
         'success'   => 'Link :name updated for :entity.',
         'title'     => 'Update link for :name',
-    ],
-    'unboosted' => [
-        'text' => 'Adding links to external resources that are displayed directly in the entity\'s header is reserved to :boosted-campaigns.',
-        'title' => 'Boosted campaign feature',
     ],
 ];

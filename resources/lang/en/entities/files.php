@@ -1,19 +1,19 @@
 <?php
 
 return [
-    'fields' => [
-        'name' => 'File name',
-        'file' => 'File',
+    'create'    => [
+        'success'   => 'File :file added.',
+        'title'     => 'New file for :entity',
     ],
-    'update' => [
-        'title' => 'Update file :file for :entity',
-        'success' => 'File :file updated.',
+    'destroy'   => [
+        'success'   => 'File :file removed.',
     ],
-    'create' => [
-        'title' => 'New file for :entity',
-        'success' => 'File :file added.',
+    'fields'    => [
+        'file'  => 'File',
+        'name'  => 'File name',
     ],
-    'destroy' => [
-        'success' => 'File :file removed.',
+    'update'    => [
+        'success'   => 'File :file updated.',
+        'title'     => 'Update file :file for :entity',
     ],
 ];

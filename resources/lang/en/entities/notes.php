@@ -25,8 +25,7 @@ return [
         'name'      => 'Name',
     ],
     'hint'          => 'Information that doesn\'t quite fit in the standard fields of an entity or that should be kept private can be added as Entity Notes.',
-    'hints'         => [
-    ],
+    'hints'         => [],
     'index'         => [
         'title' => 'Entity Notes for :name',
     ],

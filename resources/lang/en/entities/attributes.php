@@ -45,7 +45,7 @@ return [
         'value'     => 'Value of the attribute',
     ],
     'show'          => [
-        'title'     => ':name Attributes',
+        'title' => ':name Attributes',
     ],
     'template'      => [
         'success'   => 'Attribute Template :name applied to :entity',
@@ -60,7 +60,7 @@ return [
         'section'   => 'Section',
         'text'      => 'Multiline Text',
     ],
-    'update'         => [
+    'update'        => [
         'success'   => 'Attributes for :entity updated.',
     ],
     'visibility'    => [

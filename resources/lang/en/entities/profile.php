@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'actions' => [
-        'edit_profile' => 'Edit profile',
+    'actions'   => [
+        'edit_profile'  => 'Edit profile',
     ],
-    'show' => [
-        'title' => ':name Profile',
-        'tab_name' => 'Profile',
-    ]
+    'show'      => [
+        'tab_name'  => 'Profile',
+        'title'     => ':name Profile',
+    ],
 ];

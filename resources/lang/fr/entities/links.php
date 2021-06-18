@@ -32,6 +32,10 @@ return [
         'helper'    => 'Les campagnes boostées peuvent définir des liens sur les entités.',
         'title'     => 'Liens pour :name',
     ],
+    'unboosted'     => [
+        'text'  => 'Ajouter des liens vers des resources externes qui sont directement visible sur l\'entité est réservé aux :boosted-campaigns.',
+        'title' => 'Fonctionnalité de campagne boostée',
+    ],
     'update'        => [
         'success'   => 'Lien :name modifié pour :entity.',
         'title'     => 'Modifier le lien pour :name',

@@ -210,8 +210,8 @@ TEXT
         'switch_back_success'   => 'You are now back to your original user.',
         'title'                 => 'Campaign :name Members',
         'updates'               => [
-            'added'             => 'Role :role added tu :user.',
-            'removed'           => 'Role :role removed from :user.',
+            'added'     => 'Role :role added to :user.',
+            'removed'   => 'Role :role removed from :user.',
         ],
         'your_role'             => 'Your role: <i>:role</i>',
     ],

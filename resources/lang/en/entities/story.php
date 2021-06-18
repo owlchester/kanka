@@ -1,15 +1,15 @@
 <?php
 
 return [
-    'reorder' => [
-        'icon_tooltip' => 'Reorder posts',
-        'success' => 'Posts reordered.',
-        'panel_title' => 'Reorder posts',
-        'title' => 'Entity :name post reordering',
+    'actions'   => [
+        'collapse_all'  => 'Collapse all',
+        'expand_all'    => 'Expand all',
+        'load_more'     => 'Load more',
     ],
-    'actions' => [
-        'collapse_all' => 'Collapse all posts',
-        'expand_all' => 'Expand all posts',
-        'load_more' => 'Load more',
+    'reorder'   => [
+        'icon_tooltip'  => 'Reorder posts',
+        'panel_title'   => 'Reorder posts',
+        'success'       => 'Posts reordered.',
+        'title'         => 'Entity :name post reordering',
     ],
 ];

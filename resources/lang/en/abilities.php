@@ -5,15 +5,15 @@ return [
         'title' => 'Child abilities of :name',
     ],
     'children'      => [
+        'actions'       => [
+            'add'   => 'Add ability to entity',
+        ],
         'create'        => [
-            'title' => 'Add an entity to :name',
-            'success' => 'Added the ability :name to the entity.',
+            'success'   => 'Added the ability :name to the entity.',
+            'title'     => 'Add an entity to :name',
         ],
         'description'   => 'Entities having the ability',
         'title'         => 'Ability :name Entities',
-        'actions' => [
-            'add' => 'Add ability to entity',
-        ],
     ],
     'create'        => [
         'success'   => 'Ability \':name\' created.',
