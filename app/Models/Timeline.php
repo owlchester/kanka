@@ -154,9 +154,9 @@ class Timeline extends MiscModel
     /**
      * @return array
      */
-    public function menuItems($items = [])
+    public function menuItems(array $items = []): array
     {
-        $items['timelines'] = [
+        $items['second']['timelines'] = [
             'name' => 'timelines.fields.timelines',
             'route' => 'timelines.timelines',
             'count' => $this->descendants()->count()

@@ -316,6 +316,10 @@ return [
             'description'   => 'Na tej tablicy Trello znajdują się funkcje, o dodanie których prosi społeczność oraz lista planowanych usprawnień i nowości, które pewnego dnia dodamy do Kanki.',
             'title'         => 'Plany rozwoju',
         ],
+        'blog'              => [
+            'description'   => 'Na początku każdego miesiąca, po głosowaniach społeczności, publikujemy plany aktualizacji.',
+            'title'         => 'Plany na ten miesiąc',
+        ],
         'description'       => 'O kierunku rozwoju decyduje głosowanie społeczności, więc chociaż nie przedstawiamy planu na wiele miesięcy, łatwo jest śledzić zamówienia na nowe funkcje i sprawdzać nad czym właśnie pracujemy.',
         'featured_requests' => [
             'title' => 'Zamówienia funkcji',

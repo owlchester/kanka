@@ -5,6 +5,7 @@ return [
         'disable'           => 'Desativar plug-in',
         'enable'            => 'Ativar plug-in',
         'go_to_marketplace' => 'Ir para o Mercado',
+        'import'            => 'Importar',
         'remove'            => 'Remover plug-in',
         'update'            => 'Atualizar plug-in',
         'update_available'  => 'Atualização disponível!',
@@ -28,6 +29,11 @@ return [
         'type'      => 'Tipo de plug-in',
     ],
     'helper'        => 'A comunidade Kanka está constantemente criando plug-ins incríveis em nosso mercado. Se sua campanha for impulsionada, você pode instalar plug-ins do marketplace. Use esta interface para desinstalar plug-ins em sua campanha.',
+    'import'        => [
+        'created'   => 'Criada as seguintes entidades:',
+        'success'   => '{1} Importada :count entidades do plugin :plugin.|[2,*] Importada :count enidades do plugin :plugin.',
+        'updated'   => 'Atualizadas as seguintes entidades:',
+    ],
     'info'          => [
         'helper'        => 'Quando uma nova versão de um plug-in é liberada, você pode atualizá-lo para a nova versão para sua campanha.',
         'title'         => 'Atualizações do plug-in :plugin',

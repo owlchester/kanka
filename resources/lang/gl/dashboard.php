@@ -10,7 +10,7 @@ return [
         'tabs'  => [
             'modules'   => ':count módulos',
             'roles'     => ':count roles',
-            'users'     => ':count usuarios',
+            'users'     => ':count integrantes',
         ],
     ],
     'dashboards'        => [
@@ -58,10 +58,10 @@ return [
     'description'       => 'O lar da túa creatividade',
     'helpers'           => [
         'follow'    => 'Seguir unha campaña fará que esta apareza no selector de campañas (arriba á esquerda) baixo as túas campañas.',
-        'join'      => 'Esta campaña está aberta a novas integrantes. Fai clic para solicitar unirte a ela.',
+        'join'      => 'Esta campaña está aberta a inscricións. Fai clic para solicitar unirte a ela.',
         'setup'     => 'Configura os taboleiros da túa campaña.',
     ],
-    'latest_release'    => 'Último lanzamento',
+    'latest_release'    => 'Última versión',
     'notifications'     => [
         'modal' => [
             'confirm'   => 'De acordo',
@@ -69,7 +69,7 @@ return [
         ],
     ],
     'recent'            => [
-        'title' => ':name modificad@s recentemente',
+        'title' => ':name modificacións recentes',
     ],
     'settings'          => [
         'title' => 'Configuración do taboleiro',

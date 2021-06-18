@@ -15,6 +15,7 @@ return [
     'fields'        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'E-mail',
+        'hide_subscription'         => 'Skryť moje meno zo :hall_of_fame.',
         'last_login_share'          => 'Zdieľaj s ostatnými členmi kampane tvoj posledný čas online.',
         'name'                      => 'Meno',
         'new_password'              => 'Nové heslo (voliteľné)',
@@ -28,10 +29,12 @@ return [
         'links'     => [
             'community-vote'    => 'Komunitné hlasovanie',
             'news'              => 'Novinky',
+            'updates'           => 'Aktualizácie Kanky',
         ],
         'settings'  => [
             'news'          => 'Novinky - oznámenie pri publikovaní nových :news.',
             'newsletter'    => 'Newsletter - zaslanie newslettra Kanky.',
+            'updates'       => 'Aktualizácie - informácie o aktualizáciách v Kanke.',
             'votes'         => 'Komunitné hlasovania - oznámenie o novom :vote.',
         ],
         'title'     => 'Newsletter',
@@ -49,6 +52,7 @@ return [
     'sections'      => [
         'delete'    => [
             'delete'    => 'Odstrániť moje konto',
+            'helper'    => 'Odstránenie tvojho konta odstráni aj všetky kampane, ktorých si jediným členom. Táto akcia je trvalá a nemôže byť vrátená späť.',
             'title'     => 'Odstránenie môjho konta',
             'warning'   => 'Odstránením tvojho konta sa odstránia aj všetky tvoje údaje. Chceš to naozaj urobiť?',
         ],

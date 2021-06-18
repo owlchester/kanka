@@ -43,13 +43,14 @@ TEXT
         'unknown_id'    => 'Campanha desconhecida',
     ],
     'export'                            => [
-        'description'   => 'Exportar a campanha.',
-        'errors'        => [
+        'description'       => 'Exportar a campanha.',
+        'errors'            => [
             'limit' => 'Você excedeu o máximo de uma exportação por dia. Por favor, tente novamente amanhã.',
         ],
-        'helper'        => 'Exporte sua campanha. Uma notificação com um link para download será disponibilizada.',
-        'success'       => 'A exportação da sua campanha está sendo preparada. Você receberá uma notificação em Kanka para um arquivo .zip para download assim que estiver pronto.',
-        'title'         => 'Exportação da campanha :name',
+        'helper'            => 'Exporte sua campanha. Uma notificação com um link para download será disponibilizada.',
+        'helper_secondary'  => 'Serão disponibilizados dois arquivos, um com as entidades exportadas como JSON e outro com imagens carregadas nas entidades. Observe que em campanhas maiores, a exportação de imagens trava e só pode ser recuperada usando a :api.',
+        'success'           => 'A exportação da sua campanha está sendo preparada. Você receberá uma notificação em Kanka para um arquivo .zip para download assim que estiver pronto.',
+        'title'             => 'Exportação da campanha :name',
     ],
     'fields'                            => [
         'boosted'                       => 'Impulsionada por',
@@ -84,10 +85,12 @@ TEXT
         'boost_required'                => 'Este recurso requer que a campanha seja impulsionada. Mais informações na página :settings.',
         'boosted'                       => 'Alguns recursos requerem que a campanha esteja sendo impulsionada. Mais informações na página :settings.',
         'css'                           => 'Escreva seu próprio CSS que será carregado nas páginas de sua campanha. Observe que qualquer abuso desse recurso pode levar à remoção do seu CSS personalizado. Ofensas repetidas ou graves podem levar à remoção de sua campanha.',
+        'dashboard'                     => 'Personalize a forma como o widget do dashboard da campanha é exibido preenchendo os campos a seguir.',
         'entity_note_visibility'        => 'Quando você criar uma nova nota de entidade, a opção "Fixada" será selecionada automaticamente',
         'entity_personality_visibility' => 'Ao criar um novo personagem, a opção "Personalidade Visível" será automaticamente desmarcada.',
         'entity_visibility'             => 'Ao criar uma nova entidade, a opção "Privada" será automaticamente selecionada.',
         'excerpt'                       => 'O resumo da campanha será exibido no painel, então escreva algumas frases apresentando o seu mundo. Mantenha-o curto para obter os melhores resultados.',
+        'header_image'                  => 'Imagem exibida como plano de fundo no widget cabeçalho da campanha do dashboard.',
         'hide_history'                  => 'Habilite esta opção para ocultar o histórico de entidades para membros não administradores da campanha.',
         'hide_members'                  => 'Habilite esta opção para ocultar a lista de membros da campanha para membros não administradores.',
         'locale'                        => 'O idioma em que sua campanha está escrita. É usado para gerar conteúdo e agrupar campanhas públicas.',
@@ -212,6 +215,7 @@ TEXT
     ],
     'open_campaign'                     => [
         'helper'    => 'Uma campanha pública definida como aberta permitirá que os usuários enviem solicitações para ingressar nela. Encontre a lista de solicitações em nossa página :link.',
+        'link'      => 'aplicações de campanha',
         'title'     => 'Abrir a campanha',
     ],
     'panels'                            => [
@@ -296,7 +300,8 @@ TEXT
         ],
         'users'         => [
             'actions'   => [
-                'add'   => 'Adicionar',
+                'add'       => 'Adicionar',
+                'remove'    => ':user da função :role',
             ],
             'create'    => [
                 'success'   => 'Usuário adicionado ao cargo',
@@ -329,6 +334,7 @@ TEXT
             'dice_rolls'    => 'Para aqueles que usam Kanka para campanhas de RPG, uma maneira de cuidar das rolagens de dados.',
             'events'        => 'Feriados, festivais, desastres, aniversários, guerras.',
             'families'      => 'Clãs ou famílias, suas relações e seus membros.',
+            'inventories'   => 'Gerenciar inventários em suas entidades.',
             'items'         => 'Armas, veículos, relíquias, poções.',
             'journals'      => 'Observações escritas por personagens, ou preparações de sessões para o mestre do jogo.',
             'locations'     => 'Planetas, planos, continentes, rios, estados, acampamentos, templos, tavernas.',

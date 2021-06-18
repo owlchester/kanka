@@ -24,8 +24,10 @@ return [
         'type'      => 'Tipo',
     ],
     'helpers'       => [
-        'journals'  => 'Mostrar todos ou somente os jornais secundários deste Jornal',
-        'nested'    => 'Mostrando Jornais sem jornais secundários primeiro. Clique em uma linha para explorar os jornais secundários de um Jornal.',
+        'journals'      => 'Mostrar todos ou somente os jornais secundários deste Jornal',
+        'nested'        => 'Mostrando Jornais sem jornais secundários primeiro. Clique em uma linha para explorar os jornais secundários de um Jornal.',
+        'nested_parent' => 'Mostrando os jornais de :parent.',
+        'nested_without'=> 'Mostrando todos os jornais que não tem um jornal-pai. Clique em uma linha para ver os jornais-filhos.',
     ],
     'index'         => [
         'add'           => 'Novo Jornal',

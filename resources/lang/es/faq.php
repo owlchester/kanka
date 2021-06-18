@@ -45,6 +45,10 @@ TEXT
         'answer'    => 'Ve al tablero de campaña y haz clic en "Campaña" en el menú de la izquierda. Si eres el administrador de la campaña, te aparecerá el botón de "Eliminar". Ten en cuenta que eliminar una campaña es una acción permanente que eliminará todos los datos almacenados en nuestros servidores, incluyendo las imágenes.',
         'question'  => '¿Cómo puedo eliminar una campaña?',
     ],
+    'discord'               => [
+        'answer'    => 'Para vincular tu cuenta de Kanka con :discord, primero has de hacer clic sobre tu avatar en la esquina superior derecha de la página e ir al Perfil. Desde ahí, navega hasta la subpágina de :apps y haz clic en Conectar.',
+        'question'  => '¿Cómo vinculo mi cuenta de Kanka con Discord?',
+    ],
     'early-access'          => [
         'answer'    => 'El acceso anticipado es nuestra manera de recompensar a nuestros increíbles suscriptores, dándoles un periodo exclusivo de 30 días en el que pueden probar las últimas novedades antes que el resto.',
         'question'  => '¿Qué es el acceso anticipado?',

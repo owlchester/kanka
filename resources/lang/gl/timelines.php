@@ -29,11 +29,10 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'nested'            => 'Mostrando liñas temporais sen nais por defecto. Fai clic na fila dunha liña temporal para ver as súas descendentes.',
-        'nested_parent'     => 'Mostrando as liñas temporais de :parent.',
+        'nested_parent'     => 'Mostrando as liñas temporais de ":parent".',
         'nested_without'    => 'Mostrando todas as liñas temporais que non teñen unha liña temporal nai. Fai clic nunha liña para ver as súas descendentes.',
         'reorder'           => 'Arrastra elementos da era para reordenalos.',
-        'reorder_tooltip'   => 'Fai click para habilitar a reordenación manual de elementos arrastrando o cursor.',
+        'reorder_tooltip'   => 'Fai clic para habilitar a reordenación manual de elementos arrastrando o cursor.',
         'reverse_order'     => 'Activa isto para mostrar as eras en orde cronolóxica inversa (as eras máis antigas primeiro)',
     ],
     'index'         => [

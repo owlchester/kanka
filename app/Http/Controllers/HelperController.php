@@ -68,6 +68,14 @@ class HelperController
         return $this->render('widget_filters');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function pins()
+    {
+        return $this->render('pins');
+    }
+
     protected function render(string $view)
     {
         $ajax = request()->ajax();

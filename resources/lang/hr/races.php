@@ -29,7 +29,8 @@ return [
         'type'          => 'Tip',
     ],
     'helpers'       => [
-        'nested'    => 'U "Ugniježđenom pregledu" možeš vidjeti rase na ugniježđeni način. Rase bez rase roditelj će biti prikazane na osnovnom pregledu. Rase s podrasama se mogu kliknuti kako bi se prikazale te podrase. Možeš nastaviti klikati dok ima podrasa za prikazati.',
+        'nested_parent' => 'Prikaz rasa od :parent.',
+        'nested_without'=> 'Prikazuju se sve rase koje nemaju rasu roditelj. Klikni redak da bi vidio/la rase djecu.',
     ],
     'index'         => [
         'add'           => 'Nova rasa',

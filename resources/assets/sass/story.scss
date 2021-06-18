@@ -1,0 +1,27 @@
+.entity-notes-reorder {
+  .story {
+    display: flex;
+    flex-flow: row wrap;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    padding: 10px;
+    cursor: grab;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+
+    .dragger {
+      padding-right: 10px;
+      //align-self: flex-start;
+    }
+
+    .name {
+      overflow: hidden;
+      //align-self: flex-start;
+    }
+
+    .icons {
+      margin-left: auto;
+    }
+  }
+}

@@ -15,7 +15,7 @@ return [
     'fields'        => [
         'date'  => 'Dátum',
         'era'   => 'Vek',
-        'icon'  => 'Ikona',
+        'icon'  => 'Symbol',
     ],
     'helpers'       => [
         'icon'  => 'Skopíruj HTML kód nejakého symbolu z :fontawesome alebo :rpgawesome.',

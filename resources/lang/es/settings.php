@@ -43,7 +43,8 @@ return [
         'title'     => 'Integración de aplicaciones',
     ],
     'boost'         => [
-        'benefits'      => [
+        'available_boosts'  => 'Mejoras disponibles: :amount / :max',
+        'benefits'          => [
             'campaign_gallery'  => 'Una galería para subir imágenes que podrás reutilizar en la campaña.',
             'entity_files'      => 'Sube hasta 10 archivos por entidad.',
             'entity_logs'       => 'Registros completos de los cambios de una entidad.',
@@ -69,27 +70,28 @@ return [
             'tooltip'           => 'Descripciones emergentes personalizadas para las entidades.',
             'upload'            => 'Capacidad de subida de archivos ampliada para todos los miembros de la campaña.',
         ],
-        'buttons'       => [
+        'buttons'           => [
             'boost'         => 'Mejorar',
             'superboost'    => 'Supermejorar',
             'tooltips'      => [
                 'boost'         => 'Mejorar una campaña usa hasta :amount de tus mejoras',
                 'superboost'    => 'Supermejorar una campaña usa :amount de tus mejoras',
             ],
+            'unboost'       => 'Quitar mejoras',
         ],
-        'campaigns'     => 'Campañas mejoradas :count / :max',
-        'exceptions'    => [
+        'campaigns'         => 'Campañas mejoradas :count / :max',
+        'exceptions'        => [
             'already_boosted'       => 'La campaña :name ya está mejorada.',
             'exhausted_boosts'      => 'Te has quedado sin mejoras. Elimina tu mejora de una campaña antes de dársela a otra.',
             'exhausted_superboosts' => 'Te has quedado sin mejoras. Necesitas 3 mejoras para supermejorar una campaña.',
         ],
-        'success'       => [
+        'success'           => [
             'boost'         => 'Campaña :name mejorada.',
             'delete'        => 'Tu mejora de :name se ha eliminado.',
             'superboost'    => 'Campaña :name supermejorada',
         ],
-        'title'         => 'Mejorar',
-        'unboost'       => [
+        'title'             => 'Mejorar',
+        'unboost'           => [
             'description'   => '¿Seguro que quieres dejar de mejorar la campaña :tag?',
             'title'         => 'Dejar de mejorar una campaña',
         ],

@@ -1,20 +1,10 @@
-@if (!isset($exporting))
-    <div class="box box-solid">
-        <div class="box-header with-border visible-xs">
-            <h3 class="box-title">
-                {{ __('crud.tabs.menu') }}
-            </h3>
-        </div>
+@foreach ($model->menuItems() as $section => $menuItems)
+    <div class="box box-solid entity-menu-{{ $section }}">
         <div class="box-body no-padding">
-            <ul class="nav nav-pills nav-stacked">
-                <li class="@if(empty($active))active @endif">
-                    <a href="{{ route($name . '.show', $model) }}">
-                        {{ __('crud.panels.entry') }}
-                    </a>
-                </li>
-                @foreach ($model->menuItems() as $key => $menuItem)
+            <ul class="nav nav-pills nav-stacked entity-menu">
+                @foreach ($menuItems as $key => $menuItem)
                     <li class="@if(!empty($active) && $active == $key)active @endif">
-                        <a href="{{ route($menuItem['route'], (!isset($menuItem['entity']) ? $model : $model->entity)) }}" title="{{ __($menuItem['name']) }}">
+                        <a href="{{ route($menuItem['route'], (!isset($menuItem['entity']) ? $model : $model->entity)) }}" title="{{ __($menuItem['name']) }}" @if(\Illuminate\Support\Arr::get($menuItem, 'ajax')) data-toggle="ajax-modal" data-target="#large-modal" data-url="{{ route($menuItem['route'], (!isset($menuItem['entity']) ? $model : $model->entity)) }}"@endif>
                             {{ __($menuItem['name']) }}
                             @if (!empty($menuItem['count']))
                             <span class="label label-default pull-right">
@@ -22,9 +12,15 @@
                             </span>
                             @endif
                         </a>
+
+                        @if(!empty($menuItem['button']))
+                            <a href="{{ $menuItem['button']['url'] }}" class="icon" @if(!empty($menuItem['button']['tooltip'])) title="{{ $menuItem['button']['tooltip'] }}" data-toggle="tooltip" @endif>
+                                <i class="{{ $menuItem['button']['icon'] }}"></i>
+                            </a>
+                        @endif
                     </li>
                 @endforeach
             </ul>
         </div>
     </div>
-@endif
+@endforeach

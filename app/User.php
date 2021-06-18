@@ -6,6 +6,7 @@ use App\Facades\Img;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
+use App\Models\CampaignRole;
 use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
@@ -173,6 +174,14 @@ class User extends \TCG\Voyager\Models\User
         }
         $roles = $this->campaignRoles->where('campaign_id', $campaignId);
         return $roles->implode('name', ', ');
+    }
+
+    public function hasCampaignRole(int $roleId)
+    {
+        $campaignId = $this->campaign->id;
+        $roleIds = $this->campaignRoles->where('campaign_id', $campaignId)->pluck('id')->toArray();
+
+        return in_array($roleId, $roleIds);
     }
 
     /**

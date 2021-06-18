@@ -31,6 +31,7 @@ return [
         'title'         => 'Plantillas de entidad',
     ],
     'filters'           => [
+        'clipboard'     => 'Cuando haya filtros puestos, se activará el botón de copiar, con el que puedes copiar dichos filtros al portapapeles y usarlos para los widgets del tablero o los enlaces del acceso rápido.',
         'description'   => 'Puedes usar los filtros para limitar la cantidad de resultados que se muestra en las listas. Se puede filtrar por más de un campo para controlar detalladamente qué se excluye con los filtros.',
         'empty'         => 'Si escribes :tag en un campo, se buscarán todas las entidades donde este campo esté vacío.',
         'ending_with'   => 'Poniendo una :tag al final del texto, puedes buscar todas las demás entidades con este texto en ese campo.',

@@ -30,7 +30,9 @@ return [
     ],
     'helper'        => 'Die Kanka-Community erstellt ständig erstaunliche Plugins auf unserem Marktplatz. Wenn Ihre Kampagne geboostet wird, können Sie Plugins vom Marktplatz installieren. Verwenden Sie diese Schnittstelle, um Plugins in Ihrer Kampagne zu deinstallieren.',
     'import'        => [
+        'created'   => 'Folgende Objekte wurden erstellt:',
         'success'   => '{1} Importiert :count Objekt aus dem Plugin :plugin. |[2,*] Importiert :count  Objekte aus dem Plugin zählen :plugin.',
+        'updated'   => 'Folgende Objekte wurden aktualisiert:',
     ],
     'info'          => [
         'helper'        => 'Wenn eine neue Version eines Plugins veröffentlicht wird, können Sie es auf die neueste Version für Ihre Kampagne aktualisieren.',

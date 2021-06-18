@@ -3,12 +3,12 @@
         <div class="row">
             <div class="col-md-3" v-if="targetCharacter">
                 <select class="form-control" v-model="character_id">
-                    <option v-for="(name, key) in targets" :value="key">
+                    <option v-for="(name, key) in targets" :value="key" :key="key">
                         {{ name }}
                     </option>
                 </select>
             </div>
-            <div v-bind:class="inputForm">
+            <div :class="inputForm">
                 <input
                         type="text"
                         id="message"
@@ -17,7 +17,8 @@
                         class="form-control"
                         @keydown="typing"
                         v-model="body"
-                        v-bind:disabled="inputFormDisabled"
+                        :placeholder=" disabled? $t('conversations.show.is_closed') : ''"
+                        :disabled="(inputFormDisabled || disabled)"
                 />
             </div>
         </div>
@@ -32,11 +33,14 @@
      * Messy party: we can have a list of characters that the user can edit, or send as the current user.
      */
     export default {
-        props: [
-            'target',
-            'api',
-            'targets',
-        ],
+        props: {
+            target: undefined,
+            api: undefined,
+            targets: undefined,
+            disabled: {
+                type: Boolean
+            }
+        },
 
         data() {
             return {

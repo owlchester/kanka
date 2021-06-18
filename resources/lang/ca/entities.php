@@ -27,6 +27,7 @@ return [
     'events'                => 'Esdeveniments',
     'families'              => 'Famílies',
     'family'                => 'Família',
+    'inventories'           => 'Inventaris',
     'item'                  => 'Objecte',
     'items'                 => 'Objectes',
     'journal'               => 'Crònica',

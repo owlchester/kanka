@@ -162,7 +162,7 @@ class MapMarker extends Model
                 opacity: 0,
                 icon: labelShapeIcon,'
                 . ($this->editing ? 'draggable: true' : null) . '
-            }).bindTooltip(`' . $this->name . '`, {
+            }).bindTooltip(`' . str_replace('`', '\'', $this->name) . '`, {
                 direction: \'center\',
                 permanent: true,
                 offset: [0,0]

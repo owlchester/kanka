@@ -25,7 +25,8 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Popis sadrži sve organizacije koje su unutar trenutne organizacije, a ne samo one koje su direktno ispod nje.',
-        'nested'        => 'U "Ugniježđenom pregledu" možeš vidjeti organizacije na ugniježđeni način. Organizacije bez organizacije roditelj će biti prikazane na osnovnom pregledu. Organizacije s podorganizacijama se mogu kliknuti kako bi se prikazale te podorganizacije. Možeš nastaviti klikati dok ima podorganizacija za prikazati.',
+        'nested_parent' => 'Prikaz organizacije od :parent.',
+        'nested_without'=> 'Prikazuju se sve organizacije koje nemaju organizaciju roditelj. Klikni redak da bi vidio/la organizacije djecu.',
     ],
     'index'         => [
         'add'           => 'Nova organizacija',

@@ -4,8 +4,12 @@
     <h4 class="modal-title" id="clickModalLabel">{{ __('crud.copy_to_campaign.bulk_title') }}</h4>
 </div>
 <div class="modal-body">
+    <p class="help-block">
+        {{ __('entities/move.panel.description_bulk_copy') }}
+    </p>
+
     <div class="form-group">
-        <label>{{ __('crud.move.fields.campaign') }}</label>
+        <label>{{ __('entities/move.fields.campaign') }}</label>
         {!! Form::select('campaign', Auth::user()->moveCampaignList(false), null, ['class' => 'form-control']) !!}
     </div>
 
@@ -16,5 +20,5 @@
 
 <div class="modal-footer">
     <a href="#" class="pull-left" data-dismiss="modal">{{ __('crud.cancel') }}</a>
-    <button class="btn btn-primary" type="submit" name="datagrid-action" value="copy-campaign">{{ __('crud.click_modal.confirm') }}</button>
+    <button class="btn btn-primary" type="submit" name="datagrid-action" value="copy-campaign">{{ __('entities/move.actions.copy') }}</button>
 </div>

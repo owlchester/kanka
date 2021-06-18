@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'account-deletion'      => [
+        'account_settings'  => 'Account Einstellungen',
+        'answer'            => 'Um Ihr Konto zu löschen, gehen Sie zu Ihrer :account Seite und scrollen Sie nach unten zum Abschnitt zum Löschen des Kontos. Dadurch werden Ihr Konto und alle Kampagnen gelöscht, bei denen Sie das einzige Mitglied sind.',
+        'question'          => 'Wie kann ich meinen Account löschen?',
+    ],
     'app_backup'            => [
         'answer'    => 'Wir führen täglich zwei Sicherungen durch, um Datenverlust zu vermeiden. Unsere eigenen Kampagnen befinden sich ebenfalls auf dem Server, daher möchten wir kein Risiko eingehen!',
         'question'  => 'Wie oft werden die Daten von Kanka gesichert?',
@@ -39,6 +44,10 @@ TEXT
     'delete-campaign'       => [
         'answer'    => 'Gehen Sie zu Ihrem Kampagnen-Dashboard und klicken Sie im linken Menü auf "Kampagne". Eine Schaltfläche "Löschen" wird angezeigt, wenn Sie das letzte Mitglied der Kampagne sind. Das Löschen einer Kampagne ist eine endgültige Aktion, mit der alle auf unseren Servern gespeicherten Daten, einschließlich Bilder, gelöscht werden.',
         'question'  => 'Wie kann ich eine Kampagne löschen?',
+    ],
+    'discord'               => [
+        'answer'    => 'Um Ihr Kanka-Konto mit :discord zu verknüpfen, müssen Sie zuerst oben rechts in der App auf Ihren Avatar klicken und auf die Schaltfläche Profil klicken. Navigieren Sie von dort zur :apps Unterseite und klicken Sie auf Verbinden.',
+        'question'  => 'Wie kann ich meinen Kanka Account mit Discord verknüpfen?',
     ],
     'early-access'          => [
         'answer'    => 'Mit Early Access können wir unsere großartigen Abonnenten belohnen, indem wir ihnen einen exklusiven Zeitraum von 30 Tagen gewähren, in dem sie die neuesten Module vor allen anderen ausprobieren können.',

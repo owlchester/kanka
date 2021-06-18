@@ -31,6 +31,8 @@ class StoreEntityFile extends FormRequest
                 'max:' . auth()->user()->maxUploadSize(),
                 new EntityFileRule
             ],
+            'name' => 'nullable|string|max:45',
+            'visibility' => 'nullable|string|max:10',
         ];
     }
 }

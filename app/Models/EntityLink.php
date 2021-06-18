@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\EntityAsset;
 use App\Traits\VisibilityTrait;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
@@ -23,7 +24,8 @@ use Illuminate\Support\Str;
  */
 class EntityLink extends Model
 {
-    use VisibilityTrait;
+    use VisibilityTrait,
+        EntityAsset;
 
     public $fillable = [
         'entity_id',
@@ -34,6 +36,10 @@ class EntityLink extends Model
         'position',
         'visibility',
     ];
+
+    /** EntityAsset booleans */
+    protected $isLink = true;
+    protected $isFile = false;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

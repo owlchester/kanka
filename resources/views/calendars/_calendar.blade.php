@@ -13,7 +13,8 @@ $weekNumber = 1;
 @inject('renderer', 'App\Renderers\CalendarRenderer')
 <?php $canEdit = auth()->check() && auth()->user()->can('update', $model) ?>
 {{ $renderer->setCalendar($model) }}
-
+<div class="box box-solid">
+    <div class="box-body">
 <div class="calendar-toolbar">
     {{ $renderer->todayButton() }}
     <div class="btn-group">
@@ -92,6 +93,8 @@ $weekNumber = 1;
     @endif
     </tbody>
 </table>
+    </div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="calendar-year-switcher" tabindex="-1" role="dialog" aria-labelledby="deleteYearSwitcherLabel">

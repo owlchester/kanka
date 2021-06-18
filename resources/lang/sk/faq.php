@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'account-deletion'      => [
+        'account_settings'  => 'Nastavenia konta',
+        'answer'            => 'Ak chceš odstrániť svoje konto, choď na stránku :account a skroluj nadol k sekcii o odstránení konta. Tu vieš odstrániť tvoje konto a všetky kampane, v ktorých si jediným členom.',
+        'question'          => 'Ako viem odstrániť moje konto?',
+    ],
     'app_backup'            => [
         'answer'    => 'Denne vytvárame dve zálohy, aby sme zabezpečili ochranu proti strate dát. Naše vlastné kampane sa nachádzajú na tomto serveri, takže nechceme podstupovať žiadne riziko!',
         'question'  => 'Ako často sa zálohujú dáta v Kanke?',
@@ -39,6 +44,10 @@ TEXT
     'delete-campaign'       => [
         'answer'    => 'Na nástenke tvojej kampane klikni na "Kampaň" v ľavom menu. Ak si posledným členom kampane, objaví sa tlačidlo "Zmazať". Zmazanie kampane je nevratná akcia, ktorá zmaže z našich serverov všetky údaje, vrátane obrázkov.',
         'question'  => 'Ako môžem kampaň zmazať?',
+    ],
+    'discord'               => [
+        'answer'    => 'Ak chceš prepojiť tvoje konto s :discord, musíš najprv kliknúť na tvojho avatara vpravo hore v aplikácii a následne na tlačidlo Profil. Tu vieš dostať na substránku :apps a kliknúť na Prepojiť.',
+        'question'  => 'Ako prepojím moje konto v Kanke s Discordom?',
     ],
     'early-access'          => [
         'answer'    => 'Early Access (Skorý prístup) je spôsob, akým môžeme odmeniť našich prispievateľov. Počas 30 dní môžu exkluzívne vyskúšať všetky najnovšie moduly predtým, než sú dostupné pre všetkých.',

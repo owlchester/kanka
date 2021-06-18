@@ -29,7 +29,9 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'nested'    => 'Quando em Visão Aninhada, você pode ver suas Raças de maneira aninhada. Raças que não tenham Raças Ancestrais serão mostradas de modo padrão. Raças que contém Raças Descendentes podem ser clicadas para mostrar as \'crianças\'. Você pode continuar clicando até não haverem mais \'crianças\' para clicar.',
+        'nested'        => 'Quando em Visão Aninhada, você pode ver suas Raças de maneira aninhada. Raças que não tenham Raças Ancestrais serão mostradas de modo padrão. Raças que contém Raças Descendentes podem ser clicadas para mostrar as \'crianças\'. Você pode continuar clicando até não haverem mais \'crianças\' para clicar.',
+        'nested_parent' => 'Mostrando as raças de :parent.',
+        'nested_without'=> 'Mostrando todas as raças que não tem uma raça-pai. Clique em uma linha para ver as raças-filhos.',
     ],
     'index'         => [
         'add'           => 'Nova raça',

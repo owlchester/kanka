@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'account-deletion'      => [
+        'account_settings'  => 'Configurações da conta',
+        'answer'            => 'Para excluir sua conta, vá para a página da sua :account e role para baixo até a seção de exclusão da conta. Isso excluirá sua conta e todas as campanhas nas quais você é o único membro.',
+        'question'          => 'Como posso deletar a minha conta?',
+    ],
     'app_backup'            => [
         'answer'    => 'Fazemos dois backups por dia para evitar qualquer perda de dados. Nossas próprias campanhas estão no servidor, então não queremos correr riscos!',
         'question'  => 'Com que frequência é feito backup dos dados em Kanka?',
@@ -39,6 +44,10 @@ TEXT
     'delete-campaign'       => [
         'answer'    => 'Vá para o painel de sua campanha e clique em "Campanha" no menu à esquerda. Um botão "Excluir" campanha aparecerá se você for o último membro da campanha. Excluir uma campanha é uma ação permanente que irá excluir todos os dados armazenados em nossos servidores, incluindo imagens.',
         'question'  => 'Como posso deletar uma campanha?',
+    ],
+    'discord'               => [
+        'answer'    => 'Para vincular sua conta Kanka ao :discord, primeiro você precisa clicar em seu avatar no canto superior direito do aplicativo e clicar no botão Perfil. A partir daí, navegue até a subpágina de aplicativos e clique em Conectar.',
+        'question'  => 'Como posso linkar minha conta do Kanka com o Discord?',
     ],
     'early-access'          => [
         'answer'    => 'O Acesso Antecipado é uma forma de recompensar nossos incríveis assinantes, dando-lhes um período exclusivo de 30 dias, onde podem experimentar os módulos mais recentes antes de qualquer outra pessoa.',

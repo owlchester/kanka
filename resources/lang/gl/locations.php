@@ -18,7 +18,7 @@ return [
         'title'     => 'Editar lugar ":name"',
     ],
     'events'        => [
-        'description'   => 'Eventos ocorridos neste lugar.',
+        'description'   => 'Eventos neste lugar.',
         'title'         => 'Eventos en :name',
     ],
     'families'      => [
@@ -41,11 +41,12 @@ return [
         'families'          => 'Hai lugares onde se asentan poderosas familias.',
         'map'               => 'Engadir un mapa a un lugar permitiraches colocar "Puntos" no mapa, os cales poden ligar a outras entidades da campaña.',
         'map_deprecated_2'  => 'Os mapas teñen agora o seu propio módulo! Os mapas antigos aínda poden actualizarse, pero todos os novos mapas irán no novo módulo Mapas.',
-        'nested'            => 'Na vista en árbore, poder ver os lugares de forma agrupada. os lugares sen ningún lugar superior serán mostrados por defecto. Os lugares con descendentes poden ser clicados para explorar os seus descendentes. Podes seguir clicando ata que non haxa máis descendentes que ver.',
+        'nested_parent'     => 'Mostrando todos os lugares de :parent.',
+        'nested_without'    => 'Mostrando todos os lugares que non teñen un lugar superior. Fai clic nunha fila para ver os seus descendentes.',
         'organisations'     => 'Ver todas as organizacións neste lugar e nos seus descendentes, ou só as que están directamente aquí.',
     ],
     'hints'         => [
-        'is_map_private'    => 'Un mapa privado só será visíbel para a administración da campaña.',
+        'is_map_private'    => 'Un mapa privado só será visíbel para a Administración da campaña.',
     ],
     'index'         => [
         'actions'       => [
@@ -57,8 +58,8 @@ return [
         'title'         => 'Lugares',
     ],
     'items'         => [
-        'description'   => 'Obxetos localizados ou procedentes deste lugar.',
-        'title'         => 'Obxetos de :name',
+        'description'   => 'Obxectos localizados ou procedentes deste lugar.',
+        'title'         => 'Obxectos de :name',
     ],
     'journals'      => [
         'description'   => 'Cadernos escritos neste lugar.',
@@ -92,7 +93,7 @@ return [
         'legend'    => 'Lenda',
         'modal'     => [
             'submit'    => 'Engadir',
-            'title'     => 'Obxetivo do novo punto',
+            'title'     => 'Obxectivo do novo punto',
         ],
         'no_map'    => 'Podes subir un mapa a este lugar ao editalo. Ao subilo, o mapa aparecerá aquí.',
         'points'    => [
@@ -131,7 +132,7 @@ return [
                 'diamond'       => 'Diamante',
                 'dragon'        => 'Dragón',
                 'emerald'       => 'Esmeralda',
-                'entity'        => 'Imaxe da entidade obxetivo',
+                'entity'        => 'Imaxe da entidade obxectivo',
                 'fire'          => 'Lume',
                 'flask'         => 'Frasco',
                 'flower'        => 'Flor',
@@ -180,6 +181,7 @@ return [
                 'square'    => 'Cadrado',
             ],
             'sizes'         => [
+                'custom'    => 'Personalizado',
                 'huge'      => 'Enorme',
                 'large'     => 'Grande',
                 'small'     => 'Pequeno',
@@ -199,7 +201,7 @@ return [
         'title' => 'Mapas de :name',
     ],
     'organisations' => [
-        'title' => 'Organizacións de :name',
+        'title' => 'Organizacións en :name',
     ],
     'panels'        => [
         'map'   => 'Mapa',
@@ -220,7 +222,7 @@ return [
             'events'        => 'Eventos',
             'families'      => 'Familias',
             'information'   => 'Información',
-            'items'         => 'Obxetos',
+            'items'         => 'Obxectos',
             'journals'      => 'Cadernos',
             'locations'     => 'Lugares',
             'map'           => 'Mapa',

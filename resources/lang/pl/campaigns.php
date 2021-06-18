@@ -331,6 +331,7 @@ TEXT
             'dice_rolls'    => 'Jeżeli używasz Kanki do prowadzenia kampanii, tu możesz zarządzać wykonywaniem rzutów kośćmi. Ten moduł bywa niedoceniany.',
             'events'        => 'Święta, festyny, katastrofy, urodziny i wojny.',
             'families'      => 'Klany lub rodziny, ich członkowie i wzajemne relacje.',
+            'inventories'   => 'Zarządzaj wyposażeniem elementów.',
             'items'         => 'Uzbrojenie, pojazdy, artefakty, eliksiry.',
             'journals'      => 'Rozmaite spostrzeżenia spisane przez postaci oraz notatki MG.',
             'locations'     => 'Planety, wymiary, kontynenty, państwa, miasta, rzeki, świątynie, gospody.',

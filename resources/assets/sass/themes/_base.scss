@@ -33,7 +33,6 @@
 .content-wrapper {
   background: none !important;
   p {
-    text-align: justify;
     color: $White;
   }
 }
@@ -66,10 +65,6 @@
   }
 }
 
-.panel-entity-files .well {
-  background-color: $Soft;
-  color: $Hard;
-}
 
 .filters {
   background: $Detail !important;
@@ -551,4 +546,10 @@ footer {
   .sp-input {
     color: white;
   }
+}
+
+.well {
+  background-color: $Detail;
+  color: $Hard;
+  border: none;
 }

@@ -18,7 +18,7 @@ return [
         'messages'      => 'Mensaxes',
         'name'          => 'Nome',
         'participants'  => 'Participantes',
-        'target'        => 'Obxetivo',
+        'target'        => 'Obxectivo',
         'type'          => 'Tipo',
     ],
     'hints'         => [
@@ -26,7 +26,7 @@ return [
     ],
     'index'         => [
         'add'           => 'Nova conversa',
-        'description'   => 'Administra a categoría de ":name".',
+        'description'   => 'Xestiona a categoría de ":name".',
         'header'        => 'Conversas en ":name"',
         'title'         => 'Conversas',
     ],
@@ -65,6 +65,6 @@ return [
     ],
     'targets'       => [
         'characters'    => 'Personaxes',
-        'members'       => 'Membras',
+        'members'       => 'Integrantes',
     ],
 ];

@@ -12,17 +12,17 @@ if (!request()->has('all_members')) {
 $datagridSorter = new \App\Datagrids\Sorters\OrganisationCharacterSorter();
 $datagridSorter->request(request()->all());
 ?>
-<div class="box box-solid">
+<div class="box box-solid" id="organisation-members">
     <div class="box-header with-border">
         <h3 class="box-title">{{ __('organisations.fields.members') }}</h3>
 
         <div class="box-tools pull-right">
             @if (!$allMembers)
-                <a href="{{ route('organisations.show', [$model, 'all_members' => true]) }}" class="btn btn-default btn-sm">
+                <a href="{{ route('organisations.show', [$model, 'all_members' => true, '#organisation-members']) }}" class="btn btn-default btn-sm">
                     <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allMembers()->has('character')->count() }})
                 </a>
             @else
-                <a href="{{ route('organisations.show', $model) }}" class="btn btn-default btn-sm">
+                <a href="{{ route('organisations.show', [$model, '#organisation-members']) }}" class="btn btn-default btn-sm">
                     <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->members()->has('character')->count() }})
                 </a>
             @endif

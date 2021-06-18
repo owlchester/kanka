@@ -12,8 +12,15 @@ return [
     'fields'        => [
         'created_by'    => 'Nahrané od',
         'ext'           => 'Ext',
+        'folder'        => 'Priečinok',
+        'image_used_in' => '{1}Použitý ako obrázok jedného objektu.|[2,*]Použitý ako obrázok :count objektov.',
+        'name'          => 'Názov',
         'size'          => 'Veľkosť',
     ],
+    'new_folder'    => [
+        'title' => 'Nový priečinok',
+    ],
+    'no_folder'     => 'Bez priečinku',
     'placeholders'  => [
         'search'    => 'Hľadať názov obrázku...',
     ],
@@ -24,6 +31,7 @@ return [
     ],
     'uploader'      => [
         'add'           => 'Pridať nový',
+        'new_folder'    => 'Nový priečinok',
         'or'            => 'alebo',
         'select_file'   => 'Vybrať súbor',
         'well'          => 'Prenes súbor sem k nahratiu',

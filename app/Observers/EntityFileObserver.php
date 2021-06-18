@@ -7,12 +7,22 @@ use App\Services\ImageService;
 
 class EntityFileObserver
 {
+    use PurifiableTrait;
+
     /**
      * @param EntityFile $EntityFile
      */
     public function creating(EntityFile $entityFile)
     {
         $entityFile->created_by = auth()->user()->id;
+    }
+
+    /**
+     * @param EntityFile $entityFile
+     */
+    public function saving(EntityFile $entityFile)
+    {
+        $entityFile->name = $this->purify($entityFile->name);
     }
 
     /**

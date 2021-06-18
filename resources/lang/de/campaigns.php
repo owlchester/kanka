@@ -337,6 +337,7 @@ TEXT
             'dice_rolls'    => 'Für die, die Kanka für RPG Kampagnen benutzen, eine Möglichkeit Würfelwürfe zu verwalten.',
             'events'        => 'Feiertage, Festlichkeiten, Katastrophen, Geburtstage, Kriege.',
             'families'      => 'Klans oder Familien, deren Beziehungen und deren Mitglieder.',
+            'inventories'   => 'verwalten sie die Inventare ihrer Objekte',
             'items'         => 'Waffen, Fahrzeuge, Reliquien, Tränke.',
             'journals'      => 'Beobachtungen von Spielern oder Spielvorbereitungen vom Spielleiter.',
             'locations'     => 'Planeten, Ebenen, Kontinente, Flüsse, Staaten, Siedlungen, Tempel, Tavernen.',

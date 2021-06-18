@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'account-deletion'      => [
+        'account_settings'  => 'Postavke računa',
+        'answer'            => 'Ako želiš izbrisati svoj račun, idi na stranicu: :account i pomakni se dolje do odjeljka za brisanje računa. Ovim ćeš izbrisati svoj račun i sve kampanje u kojima si jedini član.',
+        'question'          => 'Kako mogu izbrisati svoj račun?',
+    ],
     'app_backup'            => [
         'answer'    => 'Izvodimo dvije sigurnosne kopije dnevno kako bismo spriječili gubitak podataka. Naše se vlastite kampanje nalaze na poslužitelju, tako da ne želimo riskirati!',
         'question'  => 'Koliko često se obavlja sigurnosno kopiranje podataka u Kanki?',
@@ -39,6 +44,10 @@ TEXT
     'delete-campaign'       => [
         'answer'    => 'Idi na naslovnu ploču kampanje i klikni na "Kampanja" na lijevom izborniku. Gumb "Izbriši" pojavit će se ako si posljednji član kampanje. Brisanje kampanje trajna je akcija kojom ćeš izbrisati sve podatke pohranjene na našim poslužiteljima, uključujući slike.',
         'question'  => 'Kako mogu izbrisati kampanju?',
+    ],
+    'discord'               => [
+        'answer'    => 'Za povezivanje svog Kanka računa s :discord, prvo moraš kliknuti svoj avatar u gornjem desnom kutu aplikacije i kliknuti gumb Profil. Od tamo dođi do podstranice :apps i klikni Poveži.',
+        'question'  => 'Kako povezati moj Kanka račun s Discordom?',
     ],
     'early-access'          => [
         'answer'    => 'Rani pristup način je da nagradimo naše nevjerojatne pretplatnike dajući im ekskluzivno razdoblje od 30 dana gdje mogu isprobati najnovije module prije bilo koga drugog.',
@@ -85,7 +94,7 @@ TEXT
         'question'  => 'Gdje stvoriti čudovišta?',
     ],
     'multiworld'            => [
-        'answer'    => 'Možeš biti dio onoliko kampanja koliko želiš, uključujući i one koje si kreirao/la. Za promjenu ili stvaranje nove kampanje, idi na preglednu ploču kampanje i u gornjem desnom kutu klikni na trenutnu kampanju za prikaz sučelja prebacivanja kampanje.',
+        'answer'    => 'Možeš biti dio onoliko kampanja koliko želiš, uključujući i one koje si kreirao/la. Za promjenu ili stvaranje nove kampanje, idi na naslovnu ploču kampanje i u gornjem desnom kutu klikni na trenutnu kampanju za prikaz sučelja prebacivanja kampanje.',
         'question'  => 'Mogu li imati više kampanja?',
     ],
     'nested'                => [

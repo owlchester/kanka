@@ -2,7 +2,7 @@
 
 return [
     'gm'                => [
-        'title' => 'Direción de xogo',
+        'title' => 'Dirección de xogo',
     ],
     'other_features'    => 'Outras funcionalidades',
     'worldbuilding'     => [

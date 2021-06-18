@@ -27,6 +27,7 @@ return [
     'events'                => 'Ereignisse',
     'families'              => 'Familien',
     'family'                => 'Familie',
+    'inventories'           => 'Inventare',
     'item'                  => 'Gegenstand',
     'items'                 => 'Gegenstände',
     'journal'               => 'Logbuch',

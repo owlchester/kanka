@@ -14,6 +14,7 @@ return [
         'community-votes'   => 'Votacions comunitàries',
         'news'              => 'Novetats',
         'newsletter'        => 'Newsletter',
+        'updates'           => 'Actualitzacions',
     ],
     'headline'  => 'Subscriviu-vos a una (o a totes) de les nostres newsletters per a estar al dia de les novetats de Kanka.',
     'title'     => 'Correus de novetats',

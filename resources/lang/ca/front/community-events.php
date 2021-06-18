@@ -13,7 +13,7 @@ return [
     'fields'        => [
         'comment'       => 'Comentari',
         'entity_link'   => 'Enllaç a l\'entitat',
-        'rank'          => 'Rang',
+        'rank'          => 'Resultat',
         'submitter'     => 'Remitent',
     ],
     'index'         => [

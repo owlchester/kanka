@@ -29,10 +29,12 @@ return [
         'links'     => [
             'community-vote'    => 'Głosowanie społeczności',
             'news'              => 'Aktualności',
+            'updates'           => 'Aktualizacje Kanki',
         ],
         'settings'  => [
             'news'          => 'Aktualności - otrzymuj powiadomienia, gdy mamy :news.',
             'newsletter'    => 'Newsletter - otrzymuj newsletter Kanki.',
+            'updates'       => 'Aktualizacje - otrzymasz wiadomość kiedy Kanka zostanie zaktualizowana',
             'votes'         => 'Głosowania społeczności - otrzymuj powiadomienia, gdy możliwe jest :vote.',
         ],
         'title'     => 'Newslettery',

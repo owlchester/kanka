@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Facades\Mentions;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CampaignResource extends JsonResource
@@ -19,6 +20,7 @@ class CampaignResource extends JsonResource
             'name' => $this->name,
             'locale' => $this->locale,
             'entry' => $this->entry,
+            'entry_parsed' => Mentions::mapCampaign($this->resource),
             'image' => $this->image,
             'image_full' => $this->getImageUrl(0),
             'image_thumb' => $this->getImageUrl(40),

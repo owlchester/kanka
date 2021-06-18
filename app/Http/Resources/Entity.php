@@ -23,7 +23,7 @@ class Entity extends EntityChild
             'has_custom_image' => !empty($this->child->image),
 
             'type' => $this->type,
-            'tooltip' => $this->tooltip(),
+            'tooltip' => $this->tooltip,
             'url' => $this->url(),
             'is_attributes_private' => $this->is_attributes_private,
 

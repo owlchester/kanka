@@ -6,7 +6,9 @@ return [
         'add_intercalary'   => 'Afegeix dies intercalars',
         'add_month'         => 'Afegeix un mes',
         'add_moon'          => 'Afegeix una lluna',
+        'add_reminder'      => 'Afegeix un recordatori',
         'add_season'        => 'Afegeix una estació',
+        'add_weather'       => 'Afegeix un fenomen climàtic',
         'add_week'          => 'Afegeix una setmana amb nom',
         'add_weekday'       => 'Afegeix un dia de la setmana',
         'add_year'          => 'Afegeix un any amb nom',
@@ -101,6 +103,7 @@ return [
         'start_offset'  => 'Per defecte, el calendari comença el primer dia de la setmana de l\'any 0. Aquí es pot canviar on se situarà el primer dia del calendari.',
     ],
     'hints'         => [
+        'event_length'      => 'Quant dura un esdeveniment. Un esdeveniment no pot durar més de dos mesos.',
         'intercalary'       => 'Dias que estan fora dels mesos i setmanes estàndard. No influeixen als dies de la setmana, però afecten als cicles lunars.',
         'is_incrementing'   => 'Si està activat, s\'incrementarà la data actual automàticament a les 00:00h UTC.',
         'is_recurring'      => 'Si un esdeveniment és recurrent, reapareixerà cada any a la mateixa data.',
@@ -135,8 +138,13 @@ return [
     'options'       => [
         'events'    => [
             'recurring_periodicity' => [
-                'month' => 'Mensual',
-                'year'  => 'Anual',
+                'fullmoon'      => 'Lluna plena',
+                'fullmoon_name' => 'Lluna :moon plena',
+                'month'         => 'Mensual',
+                'newmoon'       => 'Lluna nova',
+                'newmoon_name'  => 'Lluna :moon nova',
+                'none'          => 'Cap',
+                'year'          => 'Anual',
             ],
         ],
         'resets'    => [
@@ -213,5 +221,9 @@ return [
             'weather'       => 'Clima',
         ],
         'title'             => 'Calendari :name',
+    ],
+    'sorters'       => [
+        'after' => 'D\'avui endavant',
+        'before'=> 'Fins avui',
     ],
 ];

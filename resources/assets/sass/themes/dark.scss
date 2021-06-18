@@ -51,10 +51,6 @@ body {
   color: $Hard !important;
 }
 
-.panel-entity-files .well {
-  color: $Hard;
-}
-
 .mce-edit-area, .mce-content-body {
   filter: invert(90%) !important;
 }
@@ -202,3 +198,6 @@ hr {
   color: $Hard;
 }
 
+.gallery ul li .image-preview .gallery-folder .text {
+  color: $Soft;
+}

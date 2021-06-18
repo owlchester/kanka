@@ -250,6 +250,15 @@ abstract class MiscObserver
                 }
                 return '';
             }
+            //special treatment for map center markers
+            if($attribute == 'center_marker_id'){
+                $originalMarker = \App\Models\MapMarker::where('id', $original)->first();
+                if (!empty($originalMarker)) {
+                    return (string) $originalMarker->name;
+                }
+                return '';
+            }
+
             // Let's try based off of the attribute name
             $relationName = Str::before($attribute, '_id');
             $relationName = Str::camel($relationName);

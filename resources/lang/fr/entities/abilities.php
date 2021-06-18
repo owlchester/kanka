@@ -2,9 +2,10 @@
 
 return [
     'actions'   => [
-        'add'               => 'Ajouter un pouvoir',
-        'import_from_race'  => 'Ajouter les pouvoirs de la race',
-        'reset'             => 'Réinitialiser les charges',
+        'add'                       => 'Ajouter un pouvoir',
+        'import_from_race'          => 'Ajouter les pouvoirs de la race',
+        'import_from_race_mobile'   => 'Pouvoir de race',
+        'reset'                     => 'Réinitialiser les charges',
     ],
     'create'    => [
         'success'           => 'Pouvoir :ability ajouté à :entity.',

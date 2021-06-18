@@ -23,7 +23,9 @@ return [
         'type'          => 'Typ',
     ],
     'helpers'       => [
-        'nested'    => 'Poznámky bez nadradených poznámok sa zobrazia ako prvé. Klikni na poznámku, ak chceš zobraziť jej podradené.',
+        'nested'        => 'Poznámky bez nadradených poznámok sa zobrazia ako prvé. Klikni na poznámku, ak chceš zobraziť jej podradené.',
+        'nested_parent' => 'Zobraziť poznámky :parent.',
+        'nested_without'=> 'Zobraziť všetky poznámky, ktoré nemajú nadradenú poznámku. Kliknutím na riadok zobrazíš podradené poznámky.',
     ],
     'hints'         => [
         'is_pinned' => 'Na nástenku môžete pripnúť max. 3 poznámky.',

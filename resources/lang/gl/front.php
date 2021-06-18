@@ -31,9 +31,9 @@ return [
         'title'             => 'Campañas públicas',
     ],
     'community'     => [
-        'description'   => 'Kanka non só é unha aplicación, tamén é unha próspera comunidade de creadoras, directoras de xogo, xogadoras de rol, e entusiastas creativos.',
+        'description'   => 'Kanka non só é unha aplicación, tamén é unha próspera comunidade de persoas creadoras, directoras de xogo, xogadoras de rol, e entusiastas creativas.',
         'discord'       => 'O Discord de Kanka é o lugar máis activo para falar sobre a aplicación, erros, funcionalidades, pedir axuda, e axudar.',
-        'facebook'      => 'Mantente informado de todas as actualizacións na nosa páxina de Facebook.',
+        'facebook'      => 'Mantente ao tanto de todas as actualizacións na nosa páxina de Facebook.',
         'instagram'     => 'Queres ver máis fotos de nós traballando en Kanka ou xogando? Séguenos en Instagram!',
         'join'          => 'Únete a nós!',
         'reddit'        => 'O subreddit de Kanka é un lugar máis tranquilo onde se poden discutir as cousas durante un tempo máis longo.',
@@ -59,15 +59,15 @@ return [
     ],
     'features'      => [
         'abilities'         => [
-            'description'   => 'Administra os inventarios das entidades. Engade feitizos e poderes a personaxes mediante habilidades.',
-            'title'         => 'Habilidades e obxetos',
+            'description'   => 'Xestiona os inventarios das entidades. Engade feitizos e poderes a personaxes mediante habilidades.',
+            'title'         => 'Habilidades e obxectos',
         ],
         'actions'           => [
             'rpg'           => 'Para campañas de rol',
             'worldbuilder'  => 'Para creadores de mundos',
         ],
         'api'               => [
-            'description'   => 'Queres crear ferramentas que se integren en Kanka? Visita o :link.',
+            'description'   => 'Queres crear ferramentas que se integren en Kanka? Visita :link.',
             'link'          => 'Documentación API',
             'title'         => 'API',
         ],
@@ -98,14 +98,14 @@ return [
             'title'         => 'Calendarios',
         ],
         'collaborative'     => [
-            'description'   => 'Non estás só? Conta connosco! Podes invitar ás túas amigas e co-creadoras para axudarte a crear a túa campaña!',
+            'description'   => 'Non estás só? Conta connosco! Podes invitar ás túas amizades e co-creadoras para axudarte a crear a túa campaña!',
             'title'         => 'Colaborativo',
         ],
         'dashboards'        => [
             'description'   => 'Controla a información que é visíbel para as integrantes da campaña cando abren Kanka.',
             'title'         => 'Taboleiros',
         ],
-        'description'       => 'Coas nosas @mencións, etiquetas, e sistema de permisos en profundidade, Kanka facilita a administración do teu mundo ou campaña. Isto inclúe Personaxes e as súas relacións, Lugares e a súa historia, Misións e os seus obxetivos, Liñas temporais e as súas eras, e Calendarios con tanto eventos como fenómenos meteorolóxicos. E por se fose pouco, as usuarias de Kanka teñen voz e voto en decidir que novas funcionalidades son implementadas a través dos Votos da Comunidade.',
+        'description'       => 'Coas nosas @mencións, etiquetas, e sistema de permisos en profundidade, Kanka facilita a administración do teu mundo ou campaña. Isto inclúe Personaxes e as súas relacións, Lugares e a súa historia, Misións e os seus obxectivos, Liñas temporais e as súas eras, e Calendarios con tanto eventos como fenómenos meteorolóxicos. E por se fose pouco, as usuarias de Kanka teñen voz e voto en decidir que novas funcionalidades son implementadas a través dos Votos da Comunidade.',
         'description_full'  => 'Kanka está constantemente sendo actualizada con novas funcionalidades e melloras, mais aquí están algunhas das máis importantes que pensamos que che gustarán.',
         'flora'             => [
             'description'   => 'Leva conta das criaturas que viven no teu mundo usando o módulo Raza, e constrúe un complexo ecosistema usando as relacións parentais.',
@@ -274,7 +274,7 @@ return [
         'title'         => 'Kanka - Xestión de campañas de rol e creación de mundos',
     ],
     'partners'      => [
-        'description'   => 'Asociámonos con algunhas incríbeis ferramentas e comunidades que comparten os nosos obxetivos e valores.',
+        'description'   => 'Asociámonos con algunhas incríbeis ferramentas e comunidades que comparten os nosos obxectivos e valores.',
         'title'         => 'Socias',
     ],
     'pricing'       => [
@@ -314,6 +314,10 @@ return [
             'description'   => 'Este taboleiro de Trello contén todas as funcionalidades solicitadas pola comunidade, así como todas as planexadas que chegarán á aplicación algún día.',
             'title'         => 'Traballos pendentes',
         ],
+        'blog'              => [
+            'description'   => 'Publicamos unha folla de ruta ao comezo de cada mes, seguindo a votación da comunidade.',
+            'title'         => 'Follas de ruta mensuais',
+        ],
         'description'       => 'As votacións da comunidade dan forma ao noso traballo, así que, aínda que non temos unha folla de ruta de varios meses, é fácil estar ao tanto do que foi solicitado e de no que se está traballando actualmente.',
         'featured_requests' => [
             'title' => 'Solicitudes de funcionalidades',
@@ -338,6 +342,6 @@ return [
     ],
     'terms'         => [
         'description'   => 'Data efectiva: :date',
-        'title'         => 'Términos e condicións',
+        'title'         => 'Termos e condicións',
     ],
 ];

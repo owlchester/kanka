@@ -24,8 +24,10 @@ return [
         'type'      => 'Typ',
     ],
     'helpers'       => [
-        'journals'  => 'Zobrazí všetky alebo len priamo podradené denníky tohto denníka.',
-        'nested'    => 'Zobrazí najprv denníky bez nadradeného denníka. Kliknutie na riadok zobrazí podradené denníky daného denníka.',
+        'journals'      => 'Zobrazí všetky alebo len priamo podradené denníky tohto denníka.',
+        'nested'        => 'Zobrazí najprv denníky bez nadradeného denníka. Kliknutie na riadok zobrazí podradené denníky daného denníka.',
+        'nested_parent' => 'Zobraziť denníky :parent.',
+        'nested_without'=> 'Zobraziť všetky denníky, ktoré nemajú nadradený denník. Kliknutím na riadok zobrazíš podradené denníky.',
     ],
     'index'         => [
         'add'           => 'Nový záznam v denníku',

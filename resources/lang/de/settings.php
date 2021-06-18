@@ -61,7 +61,7 @@ return [
             ],
             'helpers'           => [
                 'boosted'       => 'Durch das Boosten einer Kampagne wird der Kampagne ein einzelner Booster zugewiesen.',
-                'superboosted'  => 'Durch das Superboosten einer Kampagne wird der Kampagne drei Booster zugewiesen.',
+                'superboosted'  => 'Durch das Superboosten einer Kampagne werden der Kampagne drei Booster zugewiesen.',
             ],
             'images'            => 'Benutzerdefinitierte Standardobjektbilder.',
             'more'              => [

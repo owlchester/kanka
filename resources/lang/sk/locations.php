@@ -43,6 +43,8 @@ return [
         'map_deprecated'    => 'Mapy majú teraz vlastný modul! Táto nová funkcia je zatiaľ dostupná len pre :boosted. Toto aktuálne rozhranie nebude dostupné, akonáhle bude nová funkcia dostupná pre všetkých. Pôvodné mapy môžete teraz ale naďalej upravovať.',
         'map_deprecated_2'  => 'Mapy sú teraz samostatný modul! Staré mapy môžeš ešte stále upravovať, ale nové mapy sa zobrazia už v novom module Mapy.',
         'nested'            => 'Miesta vieš zoradiť vo vnorenom zobrazení. Miesta bez nadradeného miesta sa zoradia štandardným spôsobom. Miesta s podradenými miestami je možné rozkliknúť, dokiaľ nebudú existovať už žiadne ďalšie podradené miesta.',
+        'nested_parent'     => 'Zobraziť miesta :parent.',
+        'nested_without'    => 'Zobraziť všetky miesta, ktoré nemajú nadradené miesto. Kliknutím na riadok zobrazíš podradené miesta.',
         'organisations'     => 'Zobraz všetky organizácie na tomto mieste a jemu podradených miestach, alebo iba tie nachádzajúce sa priamo na tomto mieste.',
     ],
     'hints'         => [
@@ -102,7 +104,7 @@ return [
                 'axis_x'    => 'Osa X',
                 'axis_y'    => 'Osa Y',
                 'colour'    => 'Farba pozadia',
-                'icon'      => 'Ikona',
+                'icon'      => 'Symbol',
                 'name'      => 'Označenie',
                 'shape'     => 'Tvar',
                 'size'      => 'Veľkosť',
@@ -177,10 +179,11 @@ return [
             'return'        => 'Späť na :name',
             'shapes'        => [
                 'circle'    => 'kruh',
-                'custom'    => 'Vlastné',
+                'custom'    => 'vlastný',
                 'square'    => 'štvorec',
             ],
             'sizes'         => [
+                'custom'    => 'vlastná',
                 'huge'      => 'XL',
                 'large'     => 'L',
                 'small'     => 'S',

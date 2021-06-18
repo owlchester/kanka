@@ -101,6 +101,10 @@ return [
             'description'   => 'Nisi sam/a? Nema problema! Možeš pozvati svoje prijatelje i su-voditelja igre da ti pomognu u izgradnji kampanje!',
             'title'         => 'Kolaborativno',
         ],
+        'dashboards'        => [
+            'description'   => 'Kontroliraj informacije vidljive tvojim igračima kad otvore Kanku.',
+            'title'         => 'Naslovne ploče',
+        ],
         'description'       => 'Kanka ima veliki broj funkcionalnosti. Pratite likove svog svijeta i njihove odnose, lokacije i njihovu povijest, zadatke i njihove ciljeve, kalendare i njihove događaje i vremenske učinke, te još puno toga. Najbolje od svega je što Kanka dobiva nekoliko nadogradnji svakog mjeseca na temelju povratnih informacija korisnika.',
         'description_full'  => 'Neprestano dodajemo nove funkcionalnosti i poboljšanja Kanki, a sve temeljne funkcionalnosti su besplatne.',
         'flora'             => [
@@ -309,6 +313,10 @@ return [
         'backlog'           => [
             'description'   => 'Ova Trello ploča sadrži sve funkcionalnosti koje je zajednica tražila, kao i sve planirane funkcionalnosti i poboljšanja koja će jednog dana biti dio aplikacije.',
             'title'         => 'Za obaviti kasnije',
+        ],
+        'blog'              => [
+            'description'   => 'Plan razvoja objavljujemo početkom svakog mjeseca, nakon našeg glasanja zajednice.',
+            'title'         => 'Mjesečni planovi razvoja',
         ],
         'description'       => 'Naša glasanja zajednice oblikuju naš rad, tako da iako nemamo višemjesečni plan puta, lako je biti u tijeku s onim što je traženo i na čemu se trenutno radi.',
         'featured_requests' => [

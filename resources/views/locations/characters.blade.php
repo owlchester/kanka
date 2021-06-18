@@ -13,10 +13,10 @@
 @section('content')
     @include('partials.errors')
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
             @include('locations._menu', ['active' => 'characters'])
         </div>
-        <div class="col-md-9">
+        <div class="col-md-10">
             @include('locations.panels.characters')
         </div>
     </div>

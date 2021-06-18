@@ -1,10 +1,11 @@
 <?php
 
 return [
-    'gm'            => [
+    'gm'                => [
         'title' => 'Rozprávači a rozprávačky príbehov',
     ],
-    'worldbuilding' => [
+    'other_features'    => 'Ďalšie fičúry',
+    'worldbuilding'     => [
         'title' => 'Tvorcovia a tvorkyne svetov',
     ],
 ];

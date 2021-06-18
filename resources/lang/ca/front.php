@@ -314,6 +314,10 @@ return [
             'description'   => 'Aquest tauler de Trello conté totes les peticions de característiques proposades per la comunitat, així com les millores planejades que algun dia arribaran a l\'app.',
             'title'         => 'Feines pendents',
         ],
+        'blog'              => [
+            'description'   => 'Llançem un full de ruta a principis de cada mes, seguit de les votacions comunitàries.',
+            'title'         => 'Fulls de ruta mensuals',
+        ],
         'description'       => 'Les votacions de la nostra comunitat modelen la nostra feina, així que, malgrat no tenir un full de ruta a mesos vista, és fàcil estar al corrent del que s\'ha demanat i en el que s\'està treballant a cada moment.',
         'featured_requests' => [
             'title' => 'Peticions destacades',

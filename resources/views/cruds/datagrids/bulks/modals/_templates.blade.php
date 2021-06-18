@@ -5,8 +5,8 @@
 </div>
 <div class="modal-body">
     <div class="form-group required">
-        <label>{{ __('crud.attributes.fields.template') }}</label>
-        {!! Form::select('template_id', $templates, null, ['placeholder' => trans('crud.attributes.placeholders.template'), 'class' => 'form-control']) !!}
+        <label>{{ __('entities/attributes.fields.template') }}</label>
+        {!! Form::select('template_id', $templates, null, ['placeholder' => trans('entities/attributes.placeholders.template'), 'class' => 'form-control']) !!}
     </div>
 
 
