@@ -13,7 +13,7 @@ return [
     'fields'        => [
         'comment'       => 'Comentario',
         'entity_link'   => 'Enlace a la entidad',
-        'rank'          => 'Rango',
+        'rank'          => 'Puesto',
         'submitter'     => 'Participante',
     ],
     'index'         => [

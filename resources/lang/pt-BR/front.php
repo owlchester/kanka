@@ -11,6 +11,13 @@ return [
             'description'   => 'Nossa comunidade cria coisas incríveis que adoramos mostrar como campanhas Destaque. Volte de vez em quando para ver mais campanhas que estão em Destaque.',
             'title'         => 'Campanhas Destaque',
         ],
+        'open'              => [
+            'filters'   => [
+                'all'       => 'Status Aberto',
+                'closed'    => 'Campanhas fechadas',
+                'open'      => 'Campanhas abertas',
+            ],
+        ],
         'public'            => [
             'description'   => 'Dê uma olhada nas Campanhas Públicas para se inspirar.',
             'filters'       => [
@@ -75,6 +82,7 @@ return [
             'dashboards'            => 'Definir dashboards personalizados para cargos da campanha',
             'description'           => 'Certos níveis de pledge fornecem aos usuários boosters, que podem ser usados para impulsionar campanhas. Eles fornecem os seguintes benefícios.',
             'entity_files'          => 'Aumento da quantidade máxima de arquivos enviados por entidade (até 5 em vez de 3)',
+            'entity_links'          => 'Configure links em entidades para websites e fontes externas.',
             'header_image'          => 'Imagem do cabeçalho da entidade',
             'images'                => 'Definir imagens de entidade padrão personalizadas',
             'no_ads'                => 'Sem anúncios na campanha',
@@ -93,6 +101,10 @@ return [
             'description'   => 'Não está sozinho? Nós te ajudamos! Você pode convidar amigos e co-criadores para te ajudar a criar sua campanha juntos!',
             'title'         => 'Colaborativo',
         ],
+        'dashboards'        => [
+            'description'   => 'Controle a informação visível aos seus jogadores quando eles abrirem o Kanka.',
+            'title'         => 'Dashboards',
+        ],
         'description'       => 'Aqui estão algumas coisas que nós acreditamos que você amará em nosso app!',
         'description_full'  => 'Kanka é constantemente atualizado com novos recursos e melhorias, mas aqui estão alguns dos mais importantes que achamos que você vai adorar.',
         'flora'             => [
@@ -110,6 +122,7 @@ return [
             'title'         => 'Personagens, Famílias, Locais',
         ],
         'learn_more'        => 'Lista completa de recusrsos do Kanka',
+        'learn_more_about'  => 'Aprenda mais sobre esse recurso',
         'maps'              => [
             'description'   => 'Carregue mapas de seus mundos, cidades e cavernas e adicione marcadores e links úteis a eles.',
             'title'         => 'Mapas',
@@ -162,6 +175,10 @@ return [
             'description'   => 'De um sistema de permissão aprofundado, a missões, diários, personagens, habilidades e áudio e vídeo incorporados, ajudamos você a gerenciar sua campanha e futuros tpk!',
             'title'         => 'Gerenciamento de Campanha',
         ],
+        'secrets'           => [
+            'description'   => 'Cada entidade pode ter vários segredos anexados a eles na forma de notas de entidade. Eles podem ter permissões para controlar quem os vê e podem ser fixados na visualização principal da entidade para acessá-los rapidamente.',
+            'title'         => 'Gerenciar Segredos',
+        ],
         'superboosts'       => [
             'boosted'       => 'Super impulsionada',
             'description'   => 'Usar três impulsionadores de campanha em uma campanha irá torná-la Super Impulsionada, desbloqueando os seguintes recursos.',
@@ -197,6 +214,7 @@ return [
             'app'           => 'Aplicativo',
             'community'     => 'Comunidade',
             'friends'       => 'Nossos parceiros',
+            'other'         => 'Outro',
             'useful_links'  => 'Links úteis',
         ],
         'navigation'=> 'Navegação',
@@ -247,6 +265,7 @@ return [
         'media'         => 'Mídia',
         'news'          => 'Novidades',
         'newsletter'    => 'Newsletter',
+        'other'         => 'Outro',
         'pricing'       => 'Preços',
         'privacy'       => 'Política de Privacidade',
         'register'      => 'Registrar',
@@ -270,9 +289,12 @@ return [
             'support'   => 'Suporte',
         ],
         'benefits'      => [
+            'big_maps'          => 'Tamanho grande do mapa (:size)',
+            'bigger_maps'       => 'Tamanho maior do mapa (:size)',
             'boosters'          => 'Impulsos de campanha',
             'core'              => 'Acesso a todos os recursos principais',
             'higher_uploads'    => 'Tamanhos maiores de upload de arquivo',
+            'huge_maps'         => 'Tamanho enorme do mapa (:size)',
             'huge_uploads'      => 'Tamanhos enormes de upload de arquivo',
             'no_boosters'       => 'Nenhum impulso de campanha',
             'unlimited'         => 'Campanhas e uploads ilimitados',
@@ -297,6 +319,10 @@ return [
         'backlog'           => [
             'description'   => 'Este quadro da Trello contém todos os recursos solicitados que foram enviados pela comunidade, bem como todos os recursos planejados e melhorias que um dia chegarão ao aplicativo.',
             'title'         => 'Backlog',
+        ],
+        'blog'              => [
+            'description'   => 'Nós lançamos um roadmap no começo de cada mês, seguindo o nosso Voto da Comunidade.',
+            'title'         => 'Roadmaps mensais',
         ],
         'description'       => 'Os votos da nossa comunidade moldam o nosso trabalho, portanto, embora não tenhamos um roteiro de vários meses, é fácil nos mantermos atualizados com o que foi solicitado e o que está sendo trabalhado no momento.',
         'featured_requests' => [

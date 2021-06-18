@@ -3,6 +3,7 @@
 return [
     'actions'           => [
         'follow'    => 'Seguir',
+        'join'      => 'Entrar',
         'unfollow'  => 'Deixar de seguir',
     ],
     'campaigns'         => [
@@ -35,8 +36,12 @@ return [
             'success'   => 'Dashboard :name removido',
         ],
         'fields'        => [
+            'copy_widgets'  => 'Copiar widgets',
             'name'          => 'Nome do Dashboard',
             'visibility'    => 'Visibilidade',
+        ],
+        'helpers'       => [
+            'copy_widgets'  => 'Duplica os widgets do dashboard :name neste novo.',
         ],
         'placeholders'  => [
             'name'  => 'Nome do Dashboard',
@@ -54,6 +59,7 @@ return [
     'description'       => 'O lar de sua criatividade',
     'helpers'           => [
         'follow'    => 'Seguir uma campanha fará com que ela apareça no seletor de campanha (canto superior esquerdo) abaixo de suas campanhas.',
+        'join'      => 'Essa campanha é aberta a novos membros. Clique para solicitar sua inscrição.',
         'setup'     => 'Configure o dashboard de sua campanha.',
     ],
     'latest_release'    => 'Última Atualização',
@@ -99,7 +105,11 @@ return [
     ],
     'title'             => 'Dashboard',
     'widgets'           => [
-        'calendar'      => [
+        'actions'                   => [
+            'advanced-options'  => 'Opções avançadas',
+        ],
+        'advanced_options_boosted'  => ':boosted_campaigns têm opções avançadas, como mostrar membros de uma família ou atributos da entidade no dashboard.',
+        'calendar'                  => [
             'actions'           => [
                 'next'      => 'Mudar data para o próximo dia',
                 'previous'  => 'Mudar data para o dia anterior',
@@ -108,39 +118,57 @@ return [
             'previous_events'   => 'Anterior',
             'upcoming_events'   => 'Próximo',
         ],
-        'campaign'      => [
+        'campaign'                  => [
             'helper'    => 'Este widget mostra o cabeçalho da campanha. Este widget é sempre mostrado no painel padrão.',
         ],
-        'create'        => [
+        'create'                    => [
             'success'   => 'Widget adicionado ao dashboard',
         ],
-        'delete'        => [
+        'delete'                    => [
             'success'   => 'Widget removido so dashboard',
         ],
-        'fields'        => [
-            'name'  => 'Nome do widget personalizado',
-            'text'  => 'Texto',
-            'width' => 'Largura',
+        'fields'                    => [
+            'dashboard' => 'Dashboard',
+            'name'      => 'Nome do widget personalizado',
+            'order'     => 'Ordenação',
+            'text'      => 'Texto',
+            'width'     => 'Largura',
         ],
-        'recent'        => [
-            'entity-header' => 'Use o cabeçalho da entidade como imagem',
-            'full'          => 'Inteiro',
-            'help'          => 'Mostra apenas a última entidade atualizada, mas mostra uma visualização completa da entidade',
-            'helpers'       => [
-                'entity-header' => 'Se sua entidade tiver um cabeçalho de entidade (recurso de campanha impulsionada), defina este widget para usar essa imagem em vez da imagem da entidade.',
-                'full'          => 'Exibe a entrada da entidade inteira por padrão em vez de uma visualização.',
+        'orders'                    => [
+            'name_asc'  => 'Nome Ascendente',
+            'name_desc' => 'Nome Descendente',
+            'recent'    => 'Recentemente modificado',
+        ],
+        'random'                    => [
+            'helpers'   => [
+                'name'  => 'Você pode fazer referência ao nome da entidade aleatória com {name}',
             ],
-            'singular'      => 'Singular',
-            'tags'          => 'Filtre a lista de entidades modificadas recentemente em tags específicas.',
-            'title'         => 'Modificado recentemente',
         ],
-        'unmentioned'   => [
+        'recent'                    => [
+            'entity-header'     => 'Use o cabeçalho da entidade como imagem',
+            'filters'           => 'Filtros',
+            'full'              => 'Inteiro',
+            'help'              => 'Mostra apenas a última entidade atualizada, mas mostra uma visualização completa da entidade',
+            'helpers'           => [
+                'entity-header'     => 'Se sua entidade tiver um cabeçalho de entidade (recurso de campanha impulsionada), defina este widget para usar essa imagem em vez da imagem da entidade.',
+                'filters'           => 'Você pode filtrar o tipo de entidades que aparecem. Aprenda a usar este campo visitando a página auxiliar :link.',
+                'full'              => 'Exibe a entrada da entidade inteira por padrão em vez de uma visualização.',
+                'show_attributes'   => 'Mostra os atributos fixados da entidade abaixo da entrada.',
+                'show_members'      => 'Se a entidade for uma família ou organização, mostra seus membros abaixo da entrada.',
+            ],
+            'show_attributes'   => 'Mostrar atributos fixos',
+            'show_members'      => 'Mostrar membros',
+            'singular'          => 'Singular',
+            'tags'              => 'Filtre a lista de entidades modificadas recentemente em tags específicas.',
+            'title'             => 'Modificado recentemente',
+        ],
+        'unmentioned'               => [
             'title' => 'Entidades não mencionadas',
         ],
-        'update'        => [
+        'update'                    => [
             'success'   => 'Widget modificado',
         ],
-        'widths'        => [
+        'widths'                    => [
             '0' => 'Automático',
             '12'=> 'Inteiro (100%)',
             '3' => 'Minúsculo (25%)',

@@ -15,7 +15,7 @@ return [
     ],
     'fields'        => [
         'image'         => 'Imaxe',
-        'location'      => 'Locación',
+        'location'      => 'Localización',
         'members'       => 'Integrantes',
         'name'          => 'Nome',
         'organisation'  => 'Organización superior',
@@ -25,11 +25,12 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Esta lista contén todas as organizacións que son descendentes desta organización, non só as descendentes directas.',
-        'nested'        => 'Na vista en árbore, podes ver as organizacións de forma agrupada. As organizacións sen ningunha organizzación superior serán mostradas por defecto. Podes facer clic nas organizacións con suborganizacións para explorar as súas descendentes.',
+        'nested_parent' => 'Mostrando as organizacións de ":parent".',
+        'nested_without'=> 'Mostrando todas as organizacións que non teñen unhas organización superior. Fai clic nunha fila para ver as súas descendentes.',
     ],
     'index'         => [
         'add'           => 'Nova organización',
-        'description'   => 'Administra as organizacións de ":name".',
+        'description'   => 'Xestiona as organizacións de ":name".',
         'header'        => 'Organizacións de ":name"',
         'title'         => 'Organizacións',
     ],

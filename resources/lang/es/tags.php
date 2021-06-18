@@ -6,7 +6,8 @@ return [
             'add'   => 'Añadir etiqueta nueva',
         ],
         'create'        => [
-            'title' => 'Añadir etiqueta a :name',
+            'success'   => 'Se ha añadido la etiqueta :name a la entidad.',
+            'title'     => 'Añadir etiqueta a :name',
         ],
         'description'   => 'Entidades etiquetadas',
         'title'         => 'Descendientes de la etiqueta :name',

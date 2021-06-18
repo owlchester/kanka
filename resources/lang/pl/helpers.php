@@ -31,6 +31,7 @@ return [
         'title'         => 'Szablony elementów',
     ],
     'filters'           => [
+        'clipboard'     => 'Kiedy ustawisz filtry, możesz skopiować ich wartość do schowka. Możesz ich wówczas użyć do filtrowania widżetów pulpitu albo tworząc skróty.',
         'description'   => 'Możesz zmniejszyć liczbę wyświetlanych elementów za pomocą filtrów. Pola tekstowe posiadają kilka opcji które pozwalają dodatkowo zawęzić filtrowanie.',
         'empty'         => 'Wpisując w treści zapytania :tag wyszukasz elementy, które mają to pole puste.',
         'ending_with'   => 'Umieszczając po tekście zapytania :tag możesz szukać wszystkiego, co posiada dokładnie taki tekst.',

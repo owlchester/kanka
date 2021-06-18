@@ -48,7 +48,8 @@ return [
         'max_zoom'          => 'Najviše što se karta može povećati. Zadana vrijednost je :default, dok je najviša dozvoljena vrijednost :max.',
         'min_zoom'          => 'Najviše što se karta može udaljiti. Zadana vrijednost je :default, dok je najniža dozvoljena vrijednost :min.',
         'missing_image'     => 'Spremi kartu sa slikom prije nego što možeš dodavati slojeve i markere.',
-        'nested'            => 'Kada si u ugniježđenom prikazu, možeš pregledati Karte na ugniježđen način. Karte bez nadređene karte prikazat će se prema zadanim postavkama. Karte s oznakama za djecu mogu se kliknuti da bi se prikazala ta djeca. Možeš klikati sve dok više nema djece koju se može pogledati.',
+        'nested_parent'     => 'Prikaz mapa od :parent.',
+        'nested_without'    => 'Prikazuju se sve mape koje nemaju mapu roditelj. Klikni redak da bi vidio/la mapu djecu.',
     ],
     'index'         => [
         'add'   => 'Nova karta',

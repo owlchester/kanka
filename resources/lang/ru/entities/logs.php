@@ -2,17 +2,18 @@
 
 return [
     'actions'       => [
-        'create'    => 'Создать',
-        'delete'    => 'Удалить',
-        'restore'   => 'Восстановить',
-        'update'    => 'Обновить',
+        'create'    => 'Создание',
+        'delete'    => 'Удаление',
+        'restore'   => 'Восстановление',
+        'update'    => 'Обновление',
     ],
     'fields'        => [
         'action'    => 'Действие',
         'date'      => 'Дата',
     ],
-    'impersonated'  => 'Выполнено :name',
+    'impersonated'  => 'Во время тестирования :name',
     'show'          => [
-        'title' => 'Журналы объекта :name',
+        'title' => 'История объекта :name',
     ],
+    'superboosted'  => ':superboosted-campaigns позволяют хранить полную историю изменений объекта в течение :amount дней.',
 ];

@@ -3,10 +3,11 @@
 return [
     'children'      => [
         'actions'       => [
-            'add'   => 'Afegeix una etiqueta nova',
+            'add'   => 'Afegeix a l\'etiqueta',
         ],
         'create'        => [
-            'title' => 'Afegeix una etiqueta a :name',
+            'success'   => 'S\'ha afegit l\'etiqueta :name a l\'entitat.',
+            'title'     => 'Afegeix una etiqueta a :name',
         ],
         'description'   => 'Entitats etiquetades',
         'title'         => 'Descendents de l\'etiqueta :name',

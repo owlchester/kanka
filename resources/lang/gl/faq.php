@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'account-deletion'      => [
+        'account_settings'  => 'Axustes da conta',
+        'answer'            => 'Para eliminar a túa conta, vai á túa páxina de :account e baixa á sección de eliminación de conta. Isto eliminará a túa conta e calquera campaña na que non haxa máis integrantes.',
+        'question'          => 'Como podo eliminar a miña conta?',
+    ],
     'app_backup'            => [
         'answer'    => 'Realizamos dúas copias de seguridade cada día para evitar pérdidas de datos. As nosas propias campañas están no servidor, así que non queremos correr riscos!',
         'question'  => 'Con que frecuencia se realizan copias de seguridade dos datos de Kanka?',
@@ -40,12 +45,16 @@ TEXT
         'answer'    => 'Vai ao taboleiro da campaña e fai click en "Campaña" no menú da esquerda. Se eres administradora da campaña, aparecerache un botón de "Eliminar". Eliminar unha campaña é unha acción permanente que borrará todos os datos dos nosos servidores, incluíndo as imaxes.',
         'question'  => 'Como podo eliminar unha campaña?',
     ],
+    'discord'               => [
+        'answer'    => 'Para ligar a túa conta de Kanka a :discord, primeiro tes que facer clic no teu avatar na esquina superior dereita da aplicación, e facer clic no botón Perfil. Dende aí, vai á subpáxina :apps e fai clic en Ligar.',
+        'question'  => 'Como ligo a miña conta de Kanka á miña conta de Discord?',
+    ],
     'early-access'          => [
-        'answer'    => 'O Acceso Anticipado é o noso xeito de recompensar ás nosas incríbeis subscriptoras, dándolles un periodo de 30 días nos que poden probar as últimas novedades antes que calquera outra persoa.',
+        'answer'    => 'O Acceso Anticipado é o noso xeito de recompensar ás incríbeis persoas que se subscriben a Kanka, dándolles un periodo de 30 días nos que poden probar as últimas novedades antes que calquera outra persoa.',
         'question'  => 'Que é o Acceso Anticipado?',
     ],
     'entity-notes'          => [
-        'answer'    => 'Todas as entidades teñen unha lapela "Notas de entidade", que son pequenos fragmentos de texto aos cales se lles pode asignar permisos de visibilidade individualmente. Tamén podes darlle permiso ás túas xogadoras para crear e editar notas de entidade sen que teñan permiso para editar as entidades de forma completa.',
+        'answer'    => 'Todas as entidades teñen unha lapela "Notas de entidade", que son pequenos fragmentos de texto aos cales se lles pode asignar permisos de visibilidade individualmente. Tamén podes darlle permiso ás persoas xogantes para crear e editar notas de entidade sen que teñan permiso para editar as entidades de forma completa.',
         'question'  => 'Como lidia Kanka con información parcialmente oculta?',
     ],
     'fields'                => [
@@ -65,11 +74,11 @@ TEXT
         'question'  => 'Seguirá a aplicación sendo de balde?',
     ],
     'gods-and-religions'    => [
-        'answer'    => 'Recomendamos crear os deuses como Personaxes, e crear as relixións como Organizacións. Se queres atopar rapidamente as túas deidades, recomendamos etiquetalas cunha Etiqueta apropiada.',
-        'question'  => 'Onde crear deuses e relixións?',
+        'answer'    => 'Recomendamos crear as deidades como Personaxes, e crear as relixións como Organizacións. Se queres atopar rapidamente as túas deidades, recomendamos etiquetalas cunha Etiqueta apropiada.',
+        'question'  => 'Onde crear deidades e relixións?',
     ],
     'help'                  => [
-        'answer'    => 'En primeiro lugar, grazas por querer axudar! Sempre estamos interesadas en xente que poida axudar coas traducións, probar novas funcionalidades, ou que poidan axudar a novas usuarias. Tamén nos encanta que a xente promocione Kanka para chegar a usuarias en lugares nos que nunca pensáramos. O mellor que podes facer é unirte a nós no :discord, onde hai unha canle dedicada a axudar.',
+        'answer'    => 'En primeiro lugar, grazas por querer axudar! Sempre estamos interesadas en xente que poida axudar coas traducións, probar novas funcionalidades, ou que poidan axudar a novas integrantes. Tamén nos encanta que a xente promocione Kanka para chegar a persoas en lugares nos que nunca pensáramos. O mellor que podes facer é unirte a nós no :discord, onde hai unha canle dedicada a axudar.',
         'question'  => 'Como podo axudar?',
     ],
     'map'                   => [
@@ -97,14 +106,14 @@ TEXT
         'question'  => 'Como podo administrar cando fago as miñas sesións?',
     ],
     'permissions'           => [
-        'answer'    => 'Por suposto, é por iso que creamos Kanka! Podes invitar todas as túas xogadoras ás túas campañas e darlles roles e permisos. Construimos o sistema para ser extremadamente flexible (podes usar opcións de inclusión e de exclusión) para cubrir as máximas necesidades e situacións posíbeis.',
-        'question'  => 'Podo limitar a información que as miñas xogadoras ven na miña campaña?',
+        'answer'    => 'Por suposto, é por iso que creamos Kanka! Podes invitar todas as túas xogantes ás túas campañas e darlles roles e permisos. Construímos o sistema para ser extremadamente flexíbel (podes usar opcións de inclusión e de exclusión) para cubrir as máximas necesidades e situacións posíbeis.',
+        'question'  => 'Podo limitar a información que as persoas xogantes ven na miña campaña?',
     ],
     'plans'                 => [
         'answer'    => <<<'TEXT'
-O plan a longo prazo para Kanka é crearmos unha ferramenta de creación de mundos e administración de campañas versátil que non sexa dependente dun sistema de xogo de rol en concreto, con contido administrado pola comunidade na forma de "Padróns da comunidade". Outro obxetivo noso é crearmos ferramentas que sexa integrables con outras plataformas como aplicacións de taboleiros virtuais.
+O plan a longo prazo para Kanka é crearmos unha ferramenta de creación de mundos e administración de campañas versátil que non sexa dependente dun sistema de xogo de rol en concreto, con contido administrado pola comunidade na forma de "Padróns da comunidade". Outro obxectivo noso é crearmos ferramentas que sexan integrábeis con outras plataformas como aplicacións de taboleiros virtuais.
 
-Usamos Kanka nós mesmas, así que non temos plans de deixar de desenvolvela e de mellorala. Por se acaso, o proxecto tamén é de código aberto e pode ser retomado pola comunidade se algo nos pasara nalgún momento.
+Usamos Kanka nós mesmas, así que non temos plans de deixar de desenvolvela e de mellorala. Por se acaso, o proxecto tamén é de código aberto e pode ser retomado pola comunidade se algo nos pasase nalgún momento.
 TEXT
 ,
         'question'  => 'Cales son os plans a longo prazo?',
@@ -114,7 +123,7 @@ TEXT
         'question'  => 'Como usan Kanka outras persoas?',
     ],
     'renaming-modules'      => [
-        'answer'    => 'Por defecto, Kanka non deixa que cambios o nome dos módulos. Isto é debido á corrección gramática e á experiencia das usuarias con linguas que teñen palabras con xénero. Aínda así, unha campaña potenciada pode cambiar o nome dos módulos na barra lateral usando CSS personalizado.',
+        'answer'    => 'Por defecto, Kanka non deixa que cambies o nome dos módulos. Isto é debido á corrección gramática e á experiencia das integrantes con linguas que teñen palabras con xénero. Aínda así, unha campaña potenciada pode cambiar o nome dos módulos na barra lateral usando CSS personalizado.',
         'question'  => 'Podo renomear módulos? Por exemplo Familias a Clans, ou Organizacións a Faccións?',
     ],
     'sections'              => [
@@ -135,7 +144,7 @@ TEXT
         'question'  => 'Que pasa se unha campaña deixa de estar potenciada?',
     ],
     'user-switch'           => [
-        'answer'    => 'Os permisos poden ser complicados, especialmente en campañas grandes. Como administradora da campaña, podes ir á páxina de membras da campaña e facer clic no botón "Ver como" que aparecerá xunto a cada membra non administradora. Facer isto permitirache ver a campaña da mesma forma que a vería a usuaria seleccionada. Esta é a forma máis fácil de comprobar os permisos da túa campaña.',
+        'answer'    => 'Os permisos poden ser complicados, especialmente en campañas grandes. Se eres parte da Administración da campaña, podes ir á páxina de integrantes da campaña e facer clic no botón "Ver como" que aparecerá xunto a cada persoa non administradora. Facer isto permitirache ver a campaña da mesma forma que a vería a persoa seleccionada. Esta é a forma máis fácil de comprobar os permisos da túa campaña.',
         'question'  => 'Os permisos da miña campaña están configurados, como podo comprobalos?',
     ],
     'visibility'            => [

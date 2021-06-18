@@ -15,6 +15,7 @@ return [
     'fields'        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'Correo electrónico',
+        'hide_subscription'         => 'Ocultar o meu nome no :hall_of_fame.',
         'last_login_share'          => 'Compartir a última vez que estiven en liña coas integrantes da campaña.',
         'name'                      => 'Nome',
         'new_password'              => 'Novo contrasinal',
@@ -28,10 +29,12 @@ return [
         'links'     => [
             'community-vote'    => 'Votación da comunidade',
             'news'              => 'Novas',
+            'updates'           => 'Actualizacións de Kanka',
         ],
         'settings'  => [
             'news'          => 'Novas - Notificarme cando houber :news.',
             'newsletter'    => 'Boletín de información - Recibir o boletín de información de Kanka.',
+            'updates'       => 'Actualizacións - Notificarme cando saia unha nova versión de Kanka.',
             'votes'         => 'Votacións da comunidade - Notificarme cando unha nova :vote estiver dispoñíbel.',
         ],
         'title'     => 'Boletíns de información',
@@ -40,7 +43,7 @@ return [
         'success'   => 'Contrasinal actualizado',
     ],
     'placeholders'  => [
-        'email'                     => 'A túa dirección de correo electrónico',
+        'email'                     => 'O teu enderezo de correo electrónico',
         'name'                      => 'O nome que será mostrado',
         'new_password'              => 'O teu novo contrasinal',
         'new_password_confirmation' => 'Confirma o teu novo contrasinal',
@@ -49,6 +52,7 @@ return [
     'sections'      => [
         'delete'    => [
             'delete'    => 'Eliminar a miña conta',
+            'helper'    => 'Eliminar a túa conta eliminará tamén calquera campaña na que non haxa máis integrantes ca ti. Esta acción é permanente e non pode desfacerse.',
             'title'     => 'Elimina a túa conta',
             'warning'   => 'Eliminando a túa conta, todos os teus datos perderanse. Seguro que queres facelo?',
         ],
@@ -66,7 +70,6 @@ return [
             'pagination'            => 'Paxinación (elementos por páxina)',
         ],
         'helpers'   => [
-            'editor'    => 'O editor por defecto (TinyMCE 4) é antigo e funciona ben en computador, pero non en móbil. Summernote é máis novo e funciona en todos os diapositivos, pero aínda está en fase de proba.',
             'editor_v2' => 'O editor de texto obsoleto (TinyMCE) non soporta mencións en dispositivos móbeis nin algunhas funcionalidades como a galería de campaña.',
         ],
         'hints'     => [

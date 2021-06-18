@@ -49,6 +49,8 @@ return [
         'min_zoom'          => 'Mapa môže byť oddialená maximálne na túto hodnotu. Štandardná hodnota je :default, najnižšia povolená hodnota je :max.',
         'missing_image'     => 'Na použitie vrstiev a značiek budeš musieť najprv pridať obrázok mapy.',
         'nested'            => 'Vo vnorenom zobrazení vieš zoradiť tvoje mapy podľa nadradených máp. Mapy bez nadradenej mapy sa zoradia štandardným spôsobom. Mapy s podradenými mapami je možné rozkliknúť, dokiaľ nebudú existovať už žiadne ďalšie podradené mapy.',
+        'nested_parent'     => 'Zobraziť mapy :parent.',
+        'nested_without'    => 'Zobraziť všetky mapy, ktoré nemajú nadradenú mapu. Kliknutím na riadok zobrazíš podradené mapy.',
     ],
     'index'         => [
         'add'   => 'Nová mapa',

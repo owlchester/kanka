@@ -28,6 +28,10 @@ return [
         'races'         => 'Subrazas',
         'type'          => 'Tipo',
     ],
+    'helpers'       => [
+        'nested_parent' => 'Mostrando as razas de :parent.',
+        'nested_without'=> 'Mostrando todas as razas que non teñen unha raza nai. Fai clic nunha fila para ver as súas subrazas.',
+    ],
     'index'         => [
         'add'           => 'Nova raza',
         'description'   => 'Xestionar as razas de :name',

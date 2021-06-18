@@ -6,7 +6,8 @@ return [
             'add'   => 'Füge neue Kategorie hinzu',
         ],
         'create'        => [
-            'title' => 'Füge Kategorie zu :name hinzu',
+            'success'   => 'Der Tag :name wurde dem Objekt hinzugefügt.',
+            'title'     => 'Füge Kategorie zu :name hinzu',
         ],
         'description'   => 'Objekte mit diesem Tag',
         'title'         => 'Kategorie :name Unterkategorien',

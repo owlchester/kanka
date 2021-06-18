@@ -2,14 +2,14 @@
 
 return [
     'actions'       => [
-        'add'   => 'Engadir obxeto',
+        'add'   => 'Engadir obxecto',
     ],
     'create'        => [
-        'success'   => 'Obxeto ":item" engadido a :entity.',
-        'title'     => 'Engadir un obxeto a :name',
+        'success'   => 'Obxecto ":item" engadido a :entity.',
+        'title'     => 'Engadir un obxecto a :name',
     ],
     'destroy'       => [
-        'success'   => 'Obxeto ":item" eliminado de :entity.',
+        'success'   => 'Obxecto ":item" eliminado de :entity.',
     ],
     'fields'        => [
         'amount'        => 'Cantidade',
@@ -21,16 +21,16 @@ return [
     'placeholders'  => [
         'amount'        => 'Calquera cantidade',
         'description'   => 'Usado, danado, sintonizado...',
-        'name'          => 'Requerido se non se selecciona ningún obxeto',
+        'name'          => 'Requerido se non se selecciona ningún obxecto',
         'position'      => 'Equipado, mochila, almacenamento, banco...',
     ],
     'show'          => [
-        'helper'    => 'As entidades poden ter obxetos asociados, creando un inventario.',
+        'helper'    => 'As entidades poden ter obxectos asociados, creando un inventario.',
         'title'     => 'Inventario de :name',
         'unsorted'  => 'Sen ordenar',
     ],
     'update'        => [
-        'success'   => 'Obxeto ":item" actualizado en :entity.',
-        'title'     => 'Actualizar un obxeto de :name',
+        'success'   => 'Obxecto ":item" actualizado en :entity.',
+        'title'     => 'Actualizar un obxecto de :name',
     ],
 ];

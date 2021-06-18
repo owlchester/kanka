@@ -101,6 +101,10 @@ return [
             'description'   => 'Nicht allein? Wir haben die Lösung für dich! Du kannst deine Freunde und Co-Dungeonmaster einladen, mit dir zusammen deine Kampagne aufzubauen!',
             'title'         => 'Gemeinsam',
         ],
+        'dashboards'        => [
+            'description'   => 'Kontrolliere die Informationen, die deine Spieler sehen, wenn sie Kanka öffnen.',
+            'title'         => 'Dashboards',
+        ],
         'description'       => 'Hier sind einige Dinge, die du an unserer App lieben wirst!',
         'description_full'  => 'Hier einige unserer besten und beliebtesten Features.',
         'flora'             => [
@@ -315,6 +319,10 @@ return [
         'backlog'           => [
             'description'   => 'Dieses Trello Board enthält alle von der Community angefragten Features, wie auch alle geplanten Features und Verbesserungen die eines Tages in die App schaffen werden.',
             'title'         => 'Backlog',
+        ],
+        'blog'              => [
+            'description'   => 'Wir veröffentlichen zu Beginn eines jeden Monats nach unserer Community-Abstimmung einen Verlaufplan.',
+            'title'         => 'monatlicher Verlaufplan',
         ],
         'description'       => 'Unsere großartigen Patrons stimmen einmal im Monat darüber ab, an welchen Features als nächstes gearbeitet wird. Auch wenn wir keine Roadmap über mehrere Monate haben, ist es einfach nachzuverfolgen, welche Features bereits angefragt wurden und was momentan in Arbeit ist.',
         'featured_requests' => [

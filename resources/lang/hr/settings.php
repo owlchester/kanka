@@ -43,7 +43,8 @@ return [
         'title'     => 'Integracija s aplikacijom',
     ],
     'boost'         => [
-        'benefits'      => [
+        'available_boosts'  => 'Dozvoljena pojačanja: :amount / :max',
+        'benefits'          => [
             'campaign_gallery'  => 'Galerija slika u koju možeš učitati slike za ponovo korištenje kroz kampanju.',
             'entity_files'      => 'Učitaj do 10 slika po entitetu.',
             'entity_logs'       => 'Cjeloviti zapisnici entiteta onoga što je promijenjeno na entitetu sa svakim ažuriranjem.',
@@ -69,27 +70,28 @@ return [
             'tooltip'           => 'Proizvoljni kratki opisi entiteta.',
             'upload'            => 'Povećana veličina prijenosa za svakog člana u kampanji.',
         ],
-        'buttons'       => [
+        'buttons'           => [
             'boost'         => 'Pojačaj',
             'superboost'    => 'Super pojačanje',
             'tooltips'      => [
                 'boost'         => 'Pojačanje kampanje troši {1} tvoje :amount pojačanje.|{2,4} tvoja :amount pojačanja.|{5,*} tvojih :amount pojačanja.',
                 'superboost'    => 'Super pojačanje kampanje troši {1} tvoje :amount pojačanje.|{2,4} tvoja :amount pojačanja.|{5,*} tvojih :amount pojačanja.',
             ],
+            'unboost'       => 'Ukloni pojačanje',
         ],
-        'campaigns'     => 'Pojačane kampanje :count / :max',
-        'exceptions'    => [
+        'campaigns'         => 'Pojačane kampanje :count / :max',
+        'exceptions'        => [
             'already_boosted'       => 'Kampanja :name je već pojačana.',
             'exhausted_boosts'      => 'Nemaš više pojačanja za pokloniti. Ukloni svoje pojačanje iz neke kampanje prije nego što ga daš drugoj.',
             'exhausted_superboosts' => 'Nemaš više pojačanja. Trebaš 3 pojačanja da bi super pojačao kampanju.',
         ],
-        'success'       => [
+        'success'           => [
             'boost'         => 'Kampanja :name pojačana.',
             'delete'        => 'Tvoje pojačanje je uklonjeno s :name.',
             'superboost'    => 'Super pojačana kampanja :name',
         ],
-        'title'         => 'Pojačanje',
-        'unboost'       => [
+        'title'             => 'Pojačanje',
+        'unboost'           => [
             'description'   => 'Sigurno želiš prestati pojačavati kampanju :tag?',
             'title'         => 'Poništavanje pojačavanja kampanje',
         ],

@@ -14,7 +14,7 @@ return [
         'title'     => 'Editar o caderno ":name"',
     ],
     'fields'        => [
-        'author'    => 'Autora',
+        'author'    => 'Autoría',
         'date'      => 'Data',
         'image'     => 'Imaxe',
         'journal'   => 'Caderno pai',
@@ -24,12 +24,13 @@ return [
         'type'      => 'Tipo',
     ],
     'helpers'       => [
-        'journals'  => 'Mostrar todos os subcadernos ou só os descendentes directos deste caderno.',
-        'nested'    => 'Mostrando os cadernos sen pais primeiro. Fai clic para explorar os subcadernos de cada un.',
+        'journals'      => 'Mostrar todos os subcadernos ou só os descendentes directos deste caderno.',
+        'nested_parent' => 'Mostrando os cadernos de ":parent".',
+        'nested_without'=> 'Mostrando todos os cadernos que non teñen un caderno pai. Fai clic nunha fila para ver os seus descendentes.',
     ],
     'index'         => [
         'add'           => 'Novo caderno',
-        'description'   => 'Administra os cadernos de ":name".',
+        'description'   => 'Xestiona os cadernos de ":name".',
         'header'        => 'Cadernos de ":name"',
         'title'         => 'Cadernos',
     ],

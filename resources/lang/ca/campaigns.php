@@ -330,6 +330,7 @@ TEXT
             'dice_rolls'    => 'Una manera de gestionar les tirades de daus per a aquells que utilitzen Kanka per a campanyes de rol.',
             'events'        => 'Celebracions, festivaes, desastres, aniversaris, guerres...',
             'families'      => 'Clans o famílies, les seves relacions i membres.',
+            'inventories'   => 'Gestioneu els inventaris de les entitats.',
             'items'         => 'Armes, vehicles, relíquies, pocions...',
             'journals'      => 'Observacions escrites pels personatges, o la preparació de la sessió del màster.',
             'locations'     => 'Planetes, continents, rius, estats, assentaments, temples, tavernes...',

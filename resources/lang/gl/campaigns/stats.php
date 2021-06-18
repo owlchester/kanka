@@ -16,7 +16,7 @@ return [
     'targets'       => [
         'calendars' => 'Crea :target calendarios',
         'characters'=> 'Crea :target personaxes',
-        'dead'      => 'Mata :target characters',
+        'dead'      => 'Mata :target personaxes',
         'families'  => 'Crea :target familias',
         'locations' => 'Crea :target lugares',
         'races'     => 'Crea :target razas',

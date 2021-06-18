@@ -6,7 +6,9 @@ return [
         'add_intercalary'   => 'Engadir días intercalares',
         'add_month'         => 'Engadir un mes',
         'add_moon'          => 'Engadir unha lúa',
+        'add_reminder'      => 'Engadir un lebrete',
         'add_season'        => 'Engadir unha estación',
+        'add_weather'       => 'Engadir fenómeno climático',
         'add_week'          => 'Engadir unha semana con nome',
         'add_weekday'       => 'Engadir un día da semana',
         'add_year'          => 'Engadir un nome de ano',
@@ -87,7 +89,7 @@ return [
         'recurring_periodicity' => 'Periodo de recorrencia',
         'recurring_until'       => 'Recorrente ata o ano',
         'reset'                 => 'Reinicio semanal',
-        'seasons'               => 'Estaciones',
+        'seasons'               => 'Estacións',
         'start_offset'          => 'Retraso inicial',
         'suffix'                => 'Sufixo',
         'type'                  => 'Tipo',
@@ -96,28 +98,28 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Os meses intercalares non usan días da semana, pero inflúen nas lúas e nas estacións.',
-        'nested'        => 'Mostrando calendarios principais primeiro. Fai click nun calendario para explorar os seus subcalendarios.',
         'nested_parent' => 'Mostrando os calendarios de ":parent".',
         'nested_without'=> 'Mostrando todos os calendarios que non teñen un calendario pai. Fai clic nunha fila para ver os seus descendentes.',
         'start_offset'  => 'Por defecto, os calendarios comezan no primeiro día da semana no ano 0. Con este campo podes cambiar en que día comeza o calendario.',
     ],
     'hints'         => [
+        'event_length'      => 'Canto tempo dura un evento. Un evento non pode durar máis de dous meses.',
         'intercalary'       => 'Días que están fóra dos meses e semanas estándar. Non inflúen nos días da semana pero si nos ciclos luares.',
         'is_incrementing'   => 'Activar a "Data incremental" fai que o día actual do calendario cambie automáticamente ás 00:00 UTC de cada día real.',
         'is_recurring'      => 'Un evento marcado como recorrente reaparecerá cada ano na mesma data.',
         'months'            => 'O teu calendario debe ter polo menos dous meses.',
         'moons'             => 'Ao engadir lúas, as súas correspondentes lúas cheas e lúas novas mostraranse no calendario. Se o periodo luar é maior que 10 días, tamén serán mostrados os cuartos crecentes e minguantes.',
-        'parent_calendar'   => 'Os lembretes e fenómenos climáticos do calendario pai serán incluidos automáticamente nos seus subcalendarios.',
+        'parent_calendar'   => 'Os lembretes e fenómenos climáticos do calendario pai serán incluídos automaticamente nos seus subcalendarios.',
         'reset'             => 'O inicio do mes ou do ano será sempre no primeiro día da semana.',
         'seasons'           => 'Crea estacións para o teu calendario establecendo cando comeza cada unha. Kanka encargarase do resto.',
-        'weekdays'          => 'Establece os nomes dos tías da semana. Requírense polo menos 2 días da semana.',
+        'weekdays'          => 'Establece os nomes dos días da semana. Requírense polo menos 2 días da semana.',
         'weeks'             => 'Define nomes para semanas de especial importancia no teu calendario.',
         'years'             => 'Algúns anos son tan importantes que teñen o seu propio nome.',
     ],
     'index'         => [
         'add'           => 'Novo calendario',
-        'description'   => 'Administra os calendarios de :name',
-        'header'        => 'Calendarios de :name',
+        'description'   => 'Administra os calendarios de ":name"',
+        'header'        => 'Calendarios de ":name"',
         'title'         => 'Calendarios',
     ],
     'layouts'       => [
@@ -136,8 +138,13 @@ return [
     'options'       => [
         'events'    => [
             'recurring_periodicity' => [
-                'month' => 'Mensual',
-                'year'  => 'Anual',
+                'fullmoon'      => 'Lúa chea',
+                'fullmoon_name' => 'Lúa :moon chea',
+                'month'         => 'Mensual',
+                'newmoon'       => 'Lúa nova',
+                'newmoon_name'  => 'Lúa :moon nova',
+                'none'          => 'Ningunha',
+                'year'          => 'Anual',
             ],
         ],
         'resets'    => [
@@ -214,5 +221,9 @@ return [
             'weather'       => 'Clima',
         ],
         'title'             => 'Calendario ":name"',
+    ],
+    'sorters'       => [
+        'after' => 'De hoxe en adiante',
+        'before'=> 'De hoxe cara atrás',
     ],
 ];

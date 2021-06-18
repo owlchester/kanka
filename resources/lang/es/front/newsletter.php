@@ -14,6 +14,7 @@ return [
         'community-votes'   => 'Votaciones comunitarias',
         'news'              => 'Novedades',
         'newsletter'        => 'Newsletter',
+        'updates'           => 'Actualizaciones',
     ],
     'headline'  => 'Suscríbete a una (o a todas) nuestras newsletters para estar al día de las novedades de Kanka.',
     'title'     => 'Correos de novedades',

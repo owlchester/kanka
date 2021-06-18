@@ -101,6 +101,10 @@ return [
             'description'   => 'Teniu companyia? Compteu amb nosaltres! Podeu convidar tots els amics per a ajudar-vos a construir la campanya junts!',
             'title'         => 'Col·laboratiu',
         ],
+        'dashboards'        => [
+            'description'   => 'Controleu la informació visible pels jugadors quan ells accedeixen a Kanka.',
+            'title'         => 'Taulells',
+        ],
         'description'       => 'Kanka té una gran quantitat de funcions. Des de fer un seguiment dels teus personatges i les seves relacions, els llocs i la seva història, passant per les missions i els seus objectius, fins als calendaris i els seus esdeveniments i fenòmens meteorològics, i molt més. El millor de tot és que Kanka rep moltes actualitzacions cada mes basades en els comentaris dels usuaris.',
         'description_full'  => 'Kanka s\'actualitza constantment, però aquí hi ha algunes de les funcions més importants.',
         'flora'             => [
@@ -309,6 +313,10 @@ return [
         'backlog'           => [
             'description'   => 'Aquest tauler de Trello conté totes les peticions de característiques proposades per la comunitat, així com les millores planejades que algun dia arribaran a l\'app.',
             'title'         => 'Feines pendents',
+        ],
+        'blog'              => [
+            'description'   => 'Llançem un full de ruta a principis de cada mes, seguit de les votacions comunitàries.',
+            'title'         => 'Fulls de ruta mensuals',
         ],
         'description'       => 'Les votacions de la nostra comunitat modelen la nostra feina, així que, malgrat no tenir un full de ruta a mesos vista, és fàcil estar al corrent del que s\'ha demanat i en el que s\'està treballant a cada moment.',
         'featured_requests' => [

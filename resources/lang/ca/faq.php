@@ -45,6 +45,10 @@ TEXT
         'answer'    => 'Al tauler de campanya, cliqueu a "Campanya" des del menú de l\'esquerra. Si sou l\'administrador de la campanya, apareixerà el botó d\'eliminar. Tingueu en compte que eliminar una campanya és una acció permanent que eliminarà totes les dades emmagatzemades als nostres servidors, incloent les imatges.',
         'question'  => 'Com s\'elimina una campanya?',
     ],
+    'discord'               => [
+        'answer'    => 'Per a vincular el compte de Kanka amb :discord, primer heu de clicar l\'avatar a la cantonada superior dreta de l\'aplicació i dirigir-vos al Perfil. Des d\'allà, navegueu a la subpàgina de :apps i cliqueu l\'opció de connectar.',
+        'question'  => 'Com es vincula el compte de Kanka amb Discord?',
+    ],
     'early-access'          => [
         'answer'    => 'L\'accés anticipat és la nostra manera de recompensar els nostres increïbles subscriptors, donant-los un període exclusiu de 30 dies en què poden provar les últimes novetats abans que la resta.',
         'question'  => 'Què és l\'accés anticipat?',

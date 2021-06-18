@@ -330,6 +330,7 @@ TEXT
             'dice_rolls'    => 'Pour ceux qui utilisent Kanka pour une campagne JdR, un système pour des jets de dés.',
             'events'        => 'Jours fériés, festivals, désastres, anniversaires, guerres.',
             'families'      => 'Clans ou familles, leurs relations et leurs membres.',
+            'inventories'   => 'Gérer l\'inventaires des entités de la campagne.',
             'items'         => 'Armes, véhicules, artéfacts, objets légendaires.',
             'journals'      => 'Observations écrites par des personnages, ou préparation de session pour le maître de jeu.',
             'locations'     => 'Planètes, plaines, continents, rivières, pays, temples, tavernes.',

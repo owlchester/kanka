@@ -330,6 +330,7 @@ TEXT
             'dice_rolls'    => 'Za one koji koriste Kanka za RPG kampanje, način za upravljanje bacanjem kockica. Ovaj modul je zastario.',
             'events'        => 'Praznici, festivali, katastrofe, rođendani, ratovi.',
             'families'      => 'Klanovi ili obitelji, njihovi odnosi i njihovi članovi.',
+            'inventories'   => 'Upravljaj inventarom svojih entiteta.',
             'items'         => 'Oružje, vozila, relikvije, napitci.',
             'journals'      => 'Opažanja napisana od strane likova ili priprema za sesiju za voditelja igre.',
             'locations'     => 'Planeti, ravni postojanja, kontinenti, rijeke, države, naselja, hramovi, krčme.',

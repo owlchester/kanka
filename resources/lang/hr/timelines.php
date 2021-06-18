@@ -29,7 +29,8 @@ return [
         'type'          => 'Tip',
     ],
     'helpers'       => [
-        'nested'            => 'Prema zadanim postavkama su prikazane kronologije bez nadređene kronologije. Kliknite redak kronologije da biste vidjeli potomke.',
+        'nested_parent'     => 'Prikaz kronologija od :parent.',
+        'nested_without'    => 'Prikazuju se sve kronologije koje nemaju kronologiju roditelj. Klikni redak da bi vidio/la kronologije djecu.',
         'reorder'           => 'Povucite i ispustite elemente razdoblja da biste ih presložili.',
         'reorder_tooltip'   => 'Klikni da omogućiš ručno preuređivanje elemenata pomoću povlačenja i ispuštanja.',
         'reverse_order'     => 'Omogući za prikaz razdoblja obrnutim kronološkim redoslijedom (prvo starije ere)',

@@ -5,6 +5,7 @@ return [
         'disable'           => 'Onemogući dodatak',
         'enable'            => 'Omogući dodatak',
         'go_to_marketplace' => 'Idi na Tržnicu',
+        'import'            => 'Uvoz',
         'remove'            => 'Ukloni dodatak',
         'update'            => 'Ažuriraj dodatak',
         'update_available'  => 'Ažuriranje dostupno!',
@@ -28,6 +29,11 @@ return [
         'type'      => 'Vrsta dodatka',
     ],
     'helper'        => 'Kanka zajednica neprestano stvara nevjerojatne dodatke na našoj Tržnici. Ako je tvoja kampanja pojačana, dodatke možeš instalirati s Tržnice. Upotrijebi ovo sučelje za deinstalaciju dodataka u kampanji.',
+    'import'        => [
+        'created'   => 'Stvoreni sljedeći entiteti:',
+        'success'   => '{1}Uvezen :count entitet iz dodatka :plugin.|[2,*]Uvezeno :count entiteta iz dodatka :plugin.',
+        'updated'   => 'Ažurirani sljedeći entiteti:',
+    ],
     'info'          => [
         'helper'        => 'Kad izađe nova verzija dodatka, možeš ga ažurirati na najnoviju verziju za svoju kampanju.',
         'title'         => 'Ažuriranja dodatka :plugin',

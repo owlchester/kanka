@@ -6,7 +6,8 @@ return [
             'add'   => 'Ajouter une nouvelle étiquette',
         ],
         'create'        => [
-            'title' => 'Ajouter une nouvelle étiquette pour :name',
+            'success'   => 'L\'étiquette :name a été ajoutée à l\'entité.',
+            'title'     => 'Ajouter une nouvelle étiquette pour :name',
         ],
         'description'   => 'Entités appartenant à l\'étiquette',
         'title'         => 'Enfants de l\'étiquette :name',

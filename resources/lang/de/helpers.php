@@ -32,6 +32,7 @@ return [
         'title'         => 'Objekttemplates',
     ],
     'filters'           => [
+        'clipboard'     => 'Wenn Filter aktiv sind, wird die Schaltfläche in die Zwischenablage kopieren aktiv. Dadurch werden die Filter in Ihre Zwischenablage kopiert und Sie können sie für Dashboard-Widget-Filter oder für Quicklink-Filter verwenden.',
         'description'   => 'Sie können Filter verwenden, um die Anzahl der in Listen angezeigten Ergebnisse zu begrenzen. Textfelder unterstützen verschiedene Optionen, um detaillierter zu steuern, was herausgefiltert wird.',
         'empty'         => 'Schreibt man :tag in ein Feld wird in allen Objekten, bei denen dieses Feld leer ist gesucht.',
         'ending_with'   => 'Durch Platzieren eines :tag am Ende Ihres Textes können Sie nach jedem Objekt mit genau diesem Text im Feld suchen.',

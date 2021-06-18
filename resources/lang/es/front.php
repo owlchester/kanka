@@ -101,6 +101,10 @@ return [
             'description'   => '¿No estás solo? ¡Cuenta con nosotros! ¡Puedes invitar a tus amigos para ayudarte a construir tu campaña juntos!',
             'title'         => 'Colaborativo',
         ],
+        'dashboards'        => [
+            'description'   => 'Controla la información que ven tus jugadores cuando abren Kanka.',
+            'title'         => 'Tableros',
+        ],
         'description'       => 'Kanka tiene una gran cantidad de funciones. Puedes hacer un seguimiento de tus personajes y sus relaciones, los lugares y su historia, las misiones y sus objetivos, los calendarios y sus eventos y fenómenos meteorológicos, y mucho más. Lo mejor de todo es que Kanka recibe muchas actualizaciones cada mes basadas en los comentarios de los usuarios.',
         'description_full'  => 'Kanka se actualiza constantemente, pero aquí hay algunas de las más importantes que creemos que te van a encantar.',
         'flora'             => [
@@ -309,6 +313,10 @@ return [
         'backlog'           => [
             'description'   => 'Este tablón de Trello contiene todas las peticiones de características propuestas por la comunidad, así como las mejoras planeadas que algún día llegarán a la app.',
             'title'         => 'Trabajos pendientes',
+        ],
+        'blog'              => [
+            'description'   => 'Lanzamos una hoja de ruta a principios de mes, tras las votaciones comunitarias.',
+            'title'         => 'Hojas de ruta mensuales',
         ],
         'description'       => 'Los votaciones de nuestra comunidad moldean nuestro trabajo, así que, aunque no tenemos una hoja de ruta a meses vista, es sencillo estar al tanto de lo que se ha pedido y en lo que se está trabajando en cada momento.',
         'featured_requests' => [

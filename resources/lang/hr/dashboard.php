@@ -93,7 +93,11 @@ return [
     ],
     'title'             => 'Naslovna ploča',
     'widgets'           => [
-        'calendar'      => [
+        'actions'                   => [
+            'advanced-options'  => 'Napredne opcije',
+        ],
+        'advanced_options_boosted'  => ':boosted_campaigns imaju napredne opcije poput prikazivanja članova obitelji ili atributa entiteta na naslovnoj ploči.',
+        'calendar'                  => [
             'actions'           => [
                 'next'      => 'Promijeni trenutni datum na sljedeći dan',
                 'previous'  => 'Promijeni trenutni datum na prethodni dan',
@@ -102,39 +106,57 @@ return [
             'previous_events'   => 'Prošli događaji',
             'upcoming_events'   => 'Nadolazeći događaji',
         ],
-        'campaign'      => [
+        'campaign'                  => [
             'helper'    => 'Ovaj programčić prikazuje zaglavlje kampanje i uvijek se prikazuje zadanoj nadzornoj ploči.',
         ],
-        'create'        => [
+        'create'                    => [
             'success'   => 'Programčić dodan na naslovnu ploču.',
         ],
-        'delete'        => [
+        'delete'                    => [
             'success'   => 'Programčić uklonjen s naslovne ploče.',
         ],
-        'fields'        => [
-            'name'  => 'Proizvoljan naziv programčića',
-            'text'  => 'Tekst',
-            'width' => 'Širina',
+        'fields'                    => [
+            'dashboard' => 'Naslovna ploča',
+            'name'      => 'Proizvoljan naziv programčića',
+            'order'     => 'Sortiranje',
+            'text'      => 'Tekst',
+            'width'     => 'Širina',
         ],
-        'recent'        => [
-            'entity-header' => 'Koristi zaglavlje entiteta kao sliku',
-            'full'          => 'Puna',
-            'help'          => 'Prikaži samo posljednji ažurirani entitet, ali prikaži cijeli pregled entiteta',
-            'helpers'       => [
-                'entity-header' => 'Ako entitet ima zaglavlje entiteta (značajka pojačane kampanje), postavite ovaj programčić da koristi tu sliku umjesto slike entiteta.',
-                'full'          => 'Prikaži unos cijelog entiteta umjesto skraćenog pregleda.',
+        'orders'                    => [
+            'name_asc'  => 'Po imenu uzlazno',
+            'name_desc' => 'Po imenu silazno',
+            'recent'    => 'Nedavno izmijenjeno',
+        ],
+        'random'                    => [
+            'helpers'   => [
+                'name'  => 'Možeš referencirati nasumičan entitet s {ime}.',
             ],
-            'singular'      => 'Jedan',
-            'tags'          => 'Filtrirajte popis nedavno izmijenjenih entiteta po navedenim oznakama.',
-            'title'         => 'Nedavno izmijenjeno',
         ],
-        'unmentioned'   => [
+        'recent'                    => [
+            'entity-header'     => 'Koristi zaglavlje entiteta kao sliku',
+            'filters'           => 'Filteri',
+            'full'              => 'Puna',
+            'help'              => 'Prikaži samo posljednji ažurirani entitet, ali prikaži cijeli pregled entiteta',
+            'helpers'           => [
+                'entity-header'     => 'Ako entitet ima zaglavlje entiteta (značajka pojačane kampanje), postavite ovaj programčić da koristi tu sliku umjesto slike entiteta.',
+                'filters'           => 'Možeš filtrirati vrstu entiteta koji se pojavljuju. Nauči kako koristiti ovo polje tako što ćeš posjetiti pomoćnu stranicu :link.',
+                'full'              => 'Prikaži unos cijelog entiteta umjesto skraćenog pregleda.',
+                'show_attributes'   => 'Prikaži prikvačene atribute entiteta ispod unosa.',
+                'show_members'      => 'Ako je entitet obitelj ili organizacija, pokaži njezine članove ispod unosa.',
+            ],
+            'show_attributes'   => 'Prikaži prikvačene atribute',
+            'show_members'      => 'Prikaži članove',
+            'singular'          => 'Jedan',
+            'tags'              => 'Filtrirajte popis nedavno izmijenjenih entiteta po navedenim oznakama.',
+            'title'             => 'Nedavno izmijenjeno',
+        ],
+        'unmentioned'               => [
             'title' => 'Entiteti koji nisu nigdje spomenuti',
         ],
-        'update'        => [
+        'update'                    => [
             'success'   => 'Programčić ažuriran.',
         ],
-        'widths'        => [
+        'widths'                    => [
             '0' => 'Automatski',
             '12'=> 'Puna (100%)',
             '3' => 'Sićušna (25%)',

@@ -15,4 +15,5 @@ return [
     'show'          => [
         'title' => 'Historial da entidade ":name"',
     ],
+    'superboosted'  => 'As entidades actualizadas nas :superboosted-campaigns teñen rexistros completos cos cambios dos últimos :amount días.',
 ];

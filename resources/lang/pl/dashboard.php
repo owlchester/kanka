@@ -87,7 +87,7 @@ return [
             'header'        => 'Nagłówek',
             'preview'       => 'Skrót elementu',
             'random'        => 'Losowy element',
-            'recent'        => 'Ostatnio zmieniany',
+            'recent'        => 'Ostatnie zmiany',
             'unmentioned'   => 'Elementy bez wzmianki',
         ],
     ],
@@ -118,8 +118,14 @@ return [
         'fields'                    => [
             'dashboard' => 'Pulpit',
             'name'      => 'Własna nazwa widżetu',
+            'order'     => 'Kolejność',
             'text'      => 'Tekst',
             'width'     => 'Szerokość',
+        ],
+        'orders'                    => [
+            'name_asc'  => 'Nazwa rosnąco',
+            'name_desc' => 'Nazwa malejąco',
+            'recent'    => 'Ostatnie zmiany',
         ],
         'random'                    => [
             'helpers'   => [
@@ -142,7 +148,7 @@ return [
             'show_members'      => 'Pokaż członków',
             'singular'          => 'Pojedynczy',
             'tags'              => 'Filtruj listę niedawno zmienianych elementów według konkretnych etykiet.',
-            'title'             => 'Ostatnio zmieniane',
+            'title'             => 'Ostatnie zmiany',
         ],
         'unmentioned'               => [
             'title' => 'Elementy bez wzmianki',

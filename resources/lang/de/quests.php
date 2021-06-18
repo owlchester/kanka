@@ -34,6 +34,24 @@ return [
         'success'       => 'Quest \':name\' aktualisiert',
         'title'         => 'Bearbeite Quest :name',
     ],
+    'elements'      => [
+        'create'    => [
+            'success'   => 'Objekt :entity zur Quest hinzugefügt',
+            'title'     => 'Neues Element für :name',
+        ],
+        'destroy'   => [
+            'success'   => 'Quest Element :entity entfernt',
+        ],
+        'edit'      => [
+            'success'   => 'Quest Element :entity aktualisiert',
+            'title'     => 'Questelement für aktualisieren :name',
+        ],
+        'fields'    => [
+            'description'   => 'Beschreibung',
+            'quest'         => 'Quest',
+        ],
+        'title'     => 'Quest :name Elemente',
+    ],
     'fields'        => [
         'character'     => 'Auslöser',
         'characters'    => 'Charaktere',
@@ -135,6 +153,7 @@ return [
     'show'          => [
         'actions'       => [
             'add_character'     => 'Füge einen Charakter hinzu',
+            'add_element'       => 'Element hinzufügen',
             'add_item'          => 'Füge einen Gegenstand hinzu',
             'add_location'      => 'Füge einen Ort hinzu',
             'add_organisation'  => 'Füge eine Organisation hinzu',
@@ -142,6 +161,7 @@ return [
         'description'   => 'Eine detaillierte Ansicht eines Quests',
         'tabs'          => [
             'characters'    => 'Charaktere',
+            'elements'      => 'Elemente',
             'information'   => 'Informationen',
             'items'         => 'Gegenstände',
             'locations'     => 'Orte',

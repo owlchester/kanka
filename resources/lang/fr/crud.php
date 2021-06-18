@@ -192,6 +192,7 @@ return [
         'excerpt'               => 'Extrait',
         'family'                => 'Famille',
         'files'                 => 'Fichiers',
+        'gallery_header'        => 'Entête de gallerie',
         'gallery_image'         => 'Galerie d\'image',
         'has_entity_files'      => 'Possède des fichiers',
         'has_entity_notes'      => 'Possède des notes',
@@ -234,23 +235,30 @@ return [
     ],
     'filter'                    => 'Filtre',
     'filters'                   => [
-        'all'       => 'Afficher tous les descendants',
-        'clear'     => 'Effacer les filtres',
-        'direct'    => 'Afficher seulement les descendants directs',
-        'filtered'  => 'Affichant :count de :total :entity.',
-        'hide'      => 'Cacher les filtres',
-        'options'   => [
+        'all'                       => 'Afficher tous les descendants',
+        'clear'                     => 'Effacer les filtres',
+        'copy_helper'               => 'Utilises les filtres copiers dans ton presse-papier comme valeurs de filtre pour les widget de tableau de bord et liens rapides.',
+        'copy_helper_no_filters'    => 'Dès que des filtres sont définis, ils peuvent être copiés au presse-papier',
+        'copy_to_clipboard'         => 'Copier les filtres',
+        'direct'                    => 'Afficher seulement les descendants directs',
+        'filtered'                  => 'Affichant :count de :total :entity.',
+        'hide'                      => 'Cacher les filtres',
+        'mobile'                    => [
+            'clear' => 'Effacer',
+            'copy'  => 'Presse-papier',
+        ],
+        'options'                   => [
             'exclude'   => 'Exclure',
             'include'   => 'Inclure',
             'none'      => 'Aucun(e)',
         ],
-        'show'      => 'Afficher les filtres',
-        'sorting'   => [
+        'show'                      => 'Afficher les filtres',
+        'sorting'                   => [
             'asc'       => ':field ascendant',
             'desc'      => ':field descendant',
             'helper'    => 'Contrôler l\'ordre d\'affichage des résultats.',
         ],
-        'title'     => 'Filtres',
+        'title'                     => 'Filtres',
     ],
     'forms'                     => [
         'actions'       => [
@@ -265,13 +273,13 @@ return [
     'hints'                     => [
         'attribute_template'    => 'Appliquer un modèle d\'attribut lors de la création ou l\'édition de cette entité.',
         'calendar_date'         => 'Une date de calendrier permet un triage plus facile dans les listes, et garde à jour un événement de calendrier dans le calendrier sélectionné.',
+        'gallery_header'        => 'Si l\'entité n\'a pas d\'entête, afficher une image depuis la gallerie de la campagne.',
         'gallery_image'         => 'Si l\'entité n\'a pas d\'image, afficher une image depuis la galerie de la campagne.',
         'header_image'          => 'Cette image s\'affiche au-delà de l\'entité. Les images larges mènent a un meilleur résultat.',
-        'image_limitations'     => 'Formats supportés: jpg, png, webp et gif. Taille max: :size.',
+        'image_limitations'     => 'Formats supportés: :formats. Taille maximale: :size.',
         'image_patreon'         => 'Augmenter la taille limite?',
         'is_private'            => 'Cacher des membres de type non-Admin',
         'is_star'               => 'Les éléments épinglés sont affichés sur le menu de l\'entité.',
-        'map_limitations'       => 'Formats supportés: jpg, png, gif, webp et svg. Taille maximale: :size.',
         'tooltip'               => 'Remplace l\'infobulle automatiquement généré avec le texte ci-dessous.',
         'visibility'            => 'Si la visibilité est définie à Admin, seuls les membres du rôle Admin de la campagne verront ceci. La visibilité "Soi-même" signifie que tu es le seul à le voir.',
     ],

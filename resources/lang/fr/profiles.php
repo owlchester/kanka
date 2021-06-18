@@ -29,10 +29,12 @@ return [
         'links'     => [
             'community-vote'    => 'Vote Communautaire',
             'news'              => 'News',
+            'updates'           => 'Mises à jour Kanka',
         ],
         'settings'  => [
             'news'          => 'News - être notifié lors de nouvelles :news.',
             'newsletter'    => 'Newsletter - recevoir la newsletter Kanka.',
+            'updates'       => 'Mises à jours - être notifié dès que Kanka est mis à jour.',
             'votes'         => 'Vote Communautaire - être notifié dès qu\'il y a un nouveau vote communautaire.',
         ],
         'title'     => 'Newsletter',

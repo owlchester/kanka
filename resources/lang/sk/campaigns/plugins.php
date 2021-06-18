@@ -5,6 +5,7 @@ return [
         'disable'           => 'Deaktivovať plugin',
         'enable'            => 'Aktivovať plugin',
         'go_to_marketplace' => 'Prejsť do Trhoviska',
+        'import'            => 'Importovať',
         'remove'            => 'Odstrániť plugin',
         'update'            => 'Aktualizovať plugin',
         'update_available'  => 'Dostupná aktualizácia!',
@@ -28,6 +29,11 @@ return [
         'type'      => 'Typ pluginu',
     ],
     'helper'        => 'Komunita okolo Kanky vytvára neustále úžasné pluginy, ktoré sú dostupné na Trhovisku. Ak máš boostnutú kampaň, môžeš si ich tam nainštalovať. Na tomto mieste ich potom môžeš odinštalovať z tvojej kampane.',
+    'import'        => [
+        'created'   => 'Nasledujúce objekty boli vytvorené:',
+        'success'   => '{1} Importovaný :count objekt z pluginu :plugin.|[2,4] Importované :count objekty z pluginu :plugin.|[5,*] Importovaných :count objektov z pluginu :plugin.',
+        'updated'   => 'Nasledujúce objekty boli aktualizované:',
+    ],
     'info'          => [
         'helper'        => 'Ak je vydaná novšia verzia pluginu, môžeš si ho aktualizovať v tvojej kampani na poslednú verziu.',
         'title'         => 'Aktualizácie pluginu :plugin',

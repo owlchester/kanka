@@ -26,6 +26,8 @@ return [
     'helpers'       => [
         'descendants'   => 'Tento zoznam obsahuje všetky organizácie, ktoré sú podradené tejto a všetkým podradeným organizáciám.',
         'nested'        => 'Vo vnorenom zobrazení vieš zoradiť tvoje organizácie podľa nadradených organizácií. Organizácie bez nadradenej sa zoradia štandardným spôsobom. Organizácie s podradenými je možné rozkliknúť, dokiaľ nebudú existovať už žiadne ďalšie podradené organizácie.',
+        'nested_parent' => 'Zobraziť organizácie :parent.',
+        'nested_without'=> 'Zobraziť všetky organizácie, ktoré nemajú nadradenú organizáciu. Kliknutím na riadok zobrazíš podradené organizácie.',
     ],
     'index'         => [
         'add'           => 'Nová organizácia',

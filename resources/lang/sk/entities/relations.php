@@ -9,20 +9,22 @@ return [
         'success'   => 'Vzťah pre :name odstránený',
     ],
     'fields'        => [
-        'attitude'  => 'Postoj',
-        'is_star'   => 'Pripnutý',
-        'relation'  => 'Vzťah',
-        'target'    => 'Cieľ',
-        'two_way'   => 'Vytvoriť zrkadlenie vzťahu',
+        'attitude'          => 'Postoj',
+        'is_star'           => 'Pripnutý',
+        'relation'          => 'Vzťah',
+        'target'            => 'Cieľ',
+        'target_relation'   => 'Vzťah cieľa',
+        'two_way'           => 'Vytvoriť zrkadlenie vzťahu',
     ],
     'helper'        => 'Vytvor vzťahy medzi objektami s postojom a viditeľnosťou. Vzťahy môžu byť tiež pripnuté k menu objektu.',
     'hints'         => [
-        'attitude'  => 'Toto nepovinné pole môže usporiadať poradie vzťahov štandardne podľa hodnoty vzťahu.',
-        'mirrored'  => [
+        'attitude'          => 'Toto nepovinné pole môže usporiadať poradie vzťahov štandardne podľa hodnoty vzťahu.',
+        'mirrored'          => [
             'text'  => 'Tento vzťah je zrkadlený s :link.',
             'title' => 'Zrkadlený',
         ],
-        'two_way'   => 'Keď vytvoríš zrkadlenie vzťahu, vytvorí sa rovnaký vzťah aj u cieľového objektu. Ak bude neskôr upravovaný, zrkadlený vzťah nebude zmenami dotknutý.',
+        'target_relation'   => 'Popis vzťahu u cieľa. Ponechaj prázdne, ak sa má použiť text tohto vzťahu.',
+        'two_way'           => 'Keď vytvoríš zrkadlenie vzťahu, vytvorí sa rovnaký vzťah aj u cieľového objektu. Ak bude neskôr upravovaný, zrkadlený vzťah nebude zmenami dotknutý.',
     ],
     'placeholders'  => [
         'attitude'  => '-100 až 100, kde 100 je max. pozitívny',
