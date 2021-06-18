@@ -48,7 +48,8 @@ return [
         'max_zoom'          => 'O máximo que pode ser ampliado o mapa. O valor por defecto é :default, e o máximo permitido é :max.',
         'min_zoom'          => 'O valor mínimo de zoom permitido. O valor por defecto é :default, mentres que o valor mínimo permito é :min.',
         'missing_image'     => 'Garda o mapa cunha imaxe antes de engadir capas e marcadores.',
-        'nested'            => 'Na vista en árbore, podes ver os mapas de forma agrupada. Os mapas sen ningún mapa superior serán mostrados primeiro. Podes facer clic nos mapas con descendentes para explorar os seus descendentes. Podes seguir facendo clic ata que non haxa máis descendentes que mostrar.',
+        'nested_parent'     => 'Mostrando os mapas de ":parent".',
+        'nested_without'    => 'Mostrando todos os mapas que non teñen un mapa superior. Fai clic nunha fila para ver os seus descendentes.',
     ],
     'index'         => [
         'add'   => 'Novo mapa',
@@ -70,7 +71,7 @@ return [
         'distance_name'     => 'Nome da unidade de distancia (quilómetro, milla...)',
         'grid'              => 'Distancia en píxeis entre elementos da reixa. Deixar baleiro para ocultar a reixa.',
         'name'              => 'Nome do mapa',
-        'type'              => 'Mazmorra, cidade, galaxia...',
+        'type'              => 'Cripta, cidade, galaxia...',
     ],
     'show'          => [
         'tabs'  => [

@@ -21,7 +21,7 @@ return [
         'goto'      => 'Ir a ":name"',
         'icon'      => 'Podes personalizar a icona mostrada da ligazón. Usa algunha das iconas gratuítas de :fontawesome ou deixa este campo en branco para mostrar a icona por defecto.',
         'leaving'   => 'Estás saíndo de Kanka e entrando noutro dominio. A páxina á que estás indo foi proporcionada por unha usuaria e non foi revisada pola nosa web.',
-        'url'       => 'A dirección á que te dirixes é :url.',
+        'url'       => 'O enderezo ao que te dirixes é :url.',
     ],
     'placeholders'  => [
         'icon'  => 'fab fa-d-and-d-beyond',

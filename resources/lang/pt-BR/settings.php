@@ -46,7 +46,8 @@ return [
         'title'     => 'Integração de aplicativos',
     ],
     'boost'         => [
-        'benefits'      => [
+        'available_boosts'  => 'Impulsões disponíveis: :amount / :max',
+        'benefits'          => [
             'campaign_gallery'  => 'Uma galeria de campanha que você pode reusar por toda campanha',
             'entity_files'      => 'Adicione até 10 arquivos por entidade',
             'entity_logs'       => 'Relatórios completos do que foi mudado nas entidades em cada uma das atualizações.',
@@ -55,6 +56,10 @@ return [
             'headers'           => [
                 'boosted'       => 'Benefícios da campanha Impulsionada',
                 'superboosted'  => 'Benefícios da campanha Super Impulsionada',
+            ],
+            'helpers'           => [
+                'boosted'       => 'Impulsionar uma campanha atribui um único impulso à campanha.',
+                'superboosted'  => 'Super impulsionar uma campanha atribui um total de três impulsos à campanha.',
             ],
             'images'            => 'Imagens de entidade padrão personalizadas.',
             'more'              => [
@@ -69,27 +74,28 @@ return [
             'tooltip'           => 'Dicas de ferramentas personalizadas para entidades.',
             'upload'            => 'Aumento do tamanho de upload para todos os membros da campanha.',
         ],
-        'buttons'       => [
+        'buttons'           => [
             'boost'         => 'Impulsionamento',
             'superboost'    => 'Super Impulso',
             'tooltips'      => [
                 'boost'         => 'Impulsionar uma campanha usa :amount de seus impulsos',
                 'superboost'    => 'Super impulsionar uma campanha usa :amount de seus impulsos',
             ],
+            'unboost'       => 'Deixar de impulsionar',
         ],
-        'campaigns'     => 'Campanhas impulsionadas :count / :max',
-        'exceptions'    => [
+        'campaigns'         => 'Campanhas impulsionadas :count / :max',
+        'exceptions'        => [
             'already_boosted'       => 'Campanha :name já está sendo impulsionada',
             'exhausted_boosts'      => 'Você está sem impulsos para dar. Remova o impulso de uma campanha antes de dar a outra.',
             'exhausted_superboosts' => 'Você está sem impulsionamentos. Você precisa de 3 impulsos para tornar uma campanha Super Impulsionada.',
         ],
-        'success'       => [
+        'success'           => [
             'boost'         => 'Campanha :name impulsionada',
             'delete'        => 'Seu impulsionamento foi removido de :name',
             'superboost'    => 'Campanha :name foi Super Impulsionada',
         ],
-        'title'         => 'Impulso',
-        'unboost'       => [
+        'title'             => 'Impulso',
+        'unboost'           => [
             'description'   => 'Você tem certeza de que quer parar de impulsionar a campanha :tag?',
             'title'         => 'Deixar de impulsionar uma campanha',
         ],
@@ -276,6 +282,8 @@ return [
             'button'    => 'Informação de Upgrade e Downgrade',
             'cancel'    => [
                 'bullets'   => [
+                    'bonuses'   => 'Seus bônus permanecem ativados até o final do período de pagamento.',
+                    'boosts'    => 'O mesmo acontece com suas campanhas impulsionadas. Os recursos impulsionados se tornam invisíveis, mas não são excluídos quando uma campanha não é mais impulsionada.',
                     'kobold'    => 'Para cancelar sua assinatura, mude para o nível Kobold',
                 ],
                 'title'     => 'Quando for cancelar sua assinatura',

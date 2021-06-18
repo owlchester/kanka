@@ -26,6 +26,8 @@ return [
     'helpers'       => [
         'descendants'   => 'Esta lista contém todas organizações que descendem desta organização, e não apenas aquelas diretamente relacionadas a ela.',
         'nested'        => 'Quando em Visão Aninhada, você pode ver suas Organizações de uma maneira aninhada. Organizações que não fazem parte de uma Organização Primária serão mostradas por padrão. Organizações com suborganizações podem ser clicadas para ver essas suborganizações. Você pode continuar clicando até que não haja mais suborganizações para ver.',
+        'nested_parent' => 'Mostrando as organizações de :parent.',
+        'nested_without'=> 'Mostrando todas as organizações que não tem uma organização-pai. Clique em uma linha para ver as organizações-filhos.',
     ],
     'index'         => [
         'add'           => 'Nova Organização',

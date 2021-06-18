@@ -2,16 +2,16 @@
 
 return [
     'create'        => [
-        'description'   => 'Crear un novo obxeto',
-        'success'       => 'Obxeto ":name" creado.',
-        'title'         => 'Novo obxeto',
+        'description'   => 'Crear un novo obxecto',
+        'success'       => 'Obxecto ":name" creado.',
+        'title'         => 'Novo obxecto',
     ],
     'destroy'       => [
-        'success'   => 'Obxeto ":name" eliminado.',
+        'success'   => 'Obxecto ":name" eliminado.',
     ],
     'edit'          => [
-        'success'   => 'Obxeto ":name" actualizado.',
-        'title'     => 'Editar obxeto ":name"',
+        'success'   => 'Obxecto ":name" actualizado.',
+        'title'     => 'Editar obxecto ":name"',
     ],
     'fields'        => [
         'character' => 'Personaxe',
@@ -24,34 +24,34 @@ return [
         'type'      => 'Tipo',
     ],
     'index'         => [
-        'add'           => 'Novo obxeto',
-        'description'   => 'Administra os obxetos de ":name".',
-        'header'        => 'Obxetos de ":name"',
-        'title'         => 'Obxetos',
+        'add'           => 'Novo obxecto',
+        'description'   => 'Xestiona os obxectos de ":name".',
+        'header'        => 'Obxectos de ":name"',
+        'title'         => 'Obxectos',
     ],
     'inventories'   => [
-        'description'   => 'Inventarios de entidades nos que está este obxeto.',
-        'title'         => 'Inventarios do obxeto ":name"',
+        'description'   => 'Inventarios de entidades nos que está este obxecto.',
+        'title'         => 'Inventarios do obxecto ":name"',
     ],
     'placeholders'  => [
         'character' => 'Elixe unha personaxe',
         'location'  => 'Elixe un lugar',
-        'name'      => 'Nome do obxeto',
-        'price'     => 'Prezo do obxeto',
+        'name'      => 'Nome do obxecto',
+        'price'     => 'Prezo do obxecto',
         'size'      => 'Tamaño, peso, dimensións...',
         'type'      => 'Arma, apócema, artefacto...',
     ],
     'quests'        => [
-        'description'   => 'Misións das que o obxeto é parte',
-        'title'         => 'Misións do obxeto ":name"',
+        'description'   => 'Misións das que o obxecto é parte',
+        'title'         => 'Misións do obxecto ":name"',
     ],
     'show'          => [
-        'description'   => 'Vista detallada dun obxeto',
+        'description'   => 'Vista detallada dun obxecto',
         'tabs'          => [
             'information'   => 'Información',
             'inventories'   => 'Inventarios',
             'quests'        => 'Misións',
         ],
-        'title'         => 'Obxeto ":name"',
+        'title'         => 'Obxecto ":name"',
     ],
 ];

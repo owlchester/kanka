@@ -212,6 +212,7 @@ return [
         'excerpt'               => 'Auszug',
         'family'                => 'Familie',
         'files'                 => 'Dateien',
+        'gallery_header'        => 'Galerie-Header',
         'gallery_image'         => 'Galerie Bild',
         'has_entity_files'      => 'Hat Objektdateien',
         'has_entity_notes'      => 'Hat Objektnotizen',
@@ -254,23 +255,30 @@ return [
     ],
     'filter'                    => 'Filter',
     'filters'                   => [
-        'all'       => 'Filter um alle Unterobjekte zu sehen',
-        'clear'     => 'Filter zurücksetzen',
-        'direct'    => 'Filter um nur direkte Unterobjekte zu sehen',
-        'filtered'  => 'Zeige :count von :total :entity.',
-        'hide'      => 'Verstecken',
-        'options'   => [
+        'all'                       => 'Filter um alle Unterobjekte zu sehen',
+        'clear'                     => 'Filter zurücksetzen',
+        'copy_helper'               => 'Verwenden Sie die kopierten Filter in Ihrer Zwischenablage als Werte für Filter in Dashboard-Widgets und Quicklinks.',
+        'copy_helper_no_filters'    => 'Definieren Sie zuerst einige Filter, um sie in Ihre Zwischenablage kopieren zu können.',
+        'copy_to_clipboard'         => 'Kopiere Filter in die Zwischenablage',
+        'direct'                    => 'Filter um nur direkte Unterobjekte zu sehen',
+        'filtered'                  => 'Zeige :count von :total :entity.',
+        'hide'                      => 'Verstecken',
+        'mobile'                    => [
+            'clear' => 'Löschen',
+            'copy'  => 'Clipboard',
+        ],
+        'options'                   => [
             'exclude'   => 'Ausschließen',
             'include'   => 'Einschließen',
             'none'      => 'keine',
         ],
-        'show'      => 'Zeigen',
-        'sorting'   => [
+        'show'                      => 'Zeigen',
+        'sorting'                   => [
             'asc'       => ':field Aufsteigend',
             'desc'      => ':field absteigend',
             'helper'    => 'Steuern Sie, in welcher Reihenfolge die Ergebnisse angezeigt werden.',
         ],
-        'title'     => 'Filter',
+        'title'                     => 'Filter',
     ],
     'forms'                     => [
         'actions'       => [
@@ -285,6 +293,7 @@ return [
     'hints'                     => [
         'attribute_template'    => 'Wende eine Attributsvorlage direkt beim erstellen des Objektes an.',
         'calendar_date'         => 'Ein Datum erlaubt es, Listen einfach zu filtern und pflegt ein Ereignis im ausgewählten Kalender.',
+        'gallery_header'        => 'Wenn das Objekt keine Kopfzeile hat, zeigen Sie stattdessen ein Bild aus der Kampagnengalerie an.',
         'gallery_image'         => 'Wenn das Objekt kein Bild hat, wird  ein Bild aus der Kampagnengalerie angezeigt.',
         'header_image'          => 'Dieses Bild wird über dem Objekt platziert. Verwenden Sie ein breites Bild, um optimale Ergebnisse zu erzielen.',
         'image_limitations'     => 'Unterstützte Formate: :formats. Maximale Dateigröße: :size.',

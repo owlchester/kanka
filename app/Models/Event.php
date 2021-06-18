@@ -191,9 +191,9 @@ class Event extends MiscModel
     /**
      * @return array
      */
-    public function menuItems($items = [])
+    public function menuItems(array $items = []): array
     {
-        $items['events'] = [
+        $items['second']['events'] = [
             'name' => 'events.fields.events',
             'route' => 'events.events',
             'count' => $this->descendants()->count()

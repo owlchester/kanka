@@ -5,7 +5,7 @@ return [
         'read'      => 'Ler o artigo',
         'return'    => 'Voltar á lista de artigos',
     ],
-    'description'   => 'Mantente actualizado na evolución continua de Kanka.',
+    'description'   => 'Mantente ao día na evolución contínua de Kanka.',
     'index'         => [
         'title' => 'Últimas novas',
     ],

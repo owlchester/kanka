@@ -113,8 +113,9 @@ class AbilityController extends CrudController
      */
     public function entities(Ability $ability)
     {
-        return $this->datagridSorter(AbilityEntitySorter::class)
-            ->menuView($ability, 'entities');
+        return view('abilities.entities')
+            ->with('model', $ability)
+            ->with('datagridSorter', new AbilityEntitySorter());
     }
 
     /**

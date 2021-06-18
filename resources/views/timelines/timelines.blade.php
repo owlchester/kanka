@@ -15,10 +15,10 @@
 @section('content')
     @include('partials.errors')
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
             @include('timelines._menu', ['active' => 'timelines'])
         </div>
-        <div class="col-md-9">
+        <div class="col-md-10">
             @include('timelines.panels.timelines')
         </div>
     </div>

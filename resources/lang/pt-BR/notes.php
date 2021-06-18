@@ -23,7 +23,9 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'nested'    => 'Mostrando primeiro notas que não tem uma Nota Primária. Clique em uma nota para explorar suas notas secundárias.',
+        'nested'        => 'Mostrando primeiro notas que não tem uma Nota Primária. Clique em uma nota para explorar suas notas secundárias.',
+        'nested_parent' => 'Mostrando as notas de :parent.',
+        'nested_without'=> 'Mostrando todas as notas que não tem uma nota-pai. Clique em uma linha para ver as notas-filhos.',
     ],
     'hints'         => [
         'is_pinned' => 'Até 3 notas podem ser fixadas no dashboard',

@@ -119,8 +119,14 @@ return [
         'fields'                    => [
             'dashboard' => 'Tablero',
             'name'      => 'Nombre personalizado del widget',
+            'order'     => 'Orden',
             'text'      => 'Texto',
             'width'     => 'Anchura',
+        ],
+        'orders'                    => [
+            'name_asc'  => 'Ascendente por nombre',
+            'name_desc' => 'Descendiente por nombre',
+            'recent'    => 'Recientemente modificadas',
         ],
         'random'                    => [
             'helpers'   => [

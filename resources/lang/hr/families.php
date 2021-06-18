@@ -28,7 +28,8 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Ovaj popis sadrži sve obitelji koje su potomci ove obitelji, a ne samo one koje su neposredno pod trenutnom obitelji.',
-        'nested'        => 'U "Ugniježđenom pregledu" možeš vidjeti obitelji na ugniježđeni način. Obitelji bez veće iznad sebe obitelji će biti prikazane na osnovnom pregledu. Obitelji s manjim obiteljima se mogu kliknuti kako bi se prikazale te manje obitelji. Možeš nastaviti klikati dok ima obitelji za prikazati.',
+        'nested_parent' => 'Prikaz obitelji od :parent.',
+        'nested_without'=> 'Prikaz svih obitelji koji nemaju obiteljn roditelj. Klikni redak da bi vidio/la obitelji djecu.',
     ],
     'hints'         => [
         'members'   => 'Ovdje su navedeni članovi obitelji. Lik se može dodati u obitelj uređivanjem željenog lika, upotrebom padajućeg izbornika "Obitelj".',

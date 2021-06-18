@@ -1,32 +1,22 @@
+<?php /** @var \App\Models\Note $model */?>
 <div class="row">
-    <div class="col-md-3">
-        @include('tags._menu')
+    <div class="col-md-2">
+        @include('maps._menu')
     </div>
 
-    <div class="col-md-9">
-        <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-                <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                    <a href="#entry" data-toggle="tooltip" title="{{ trans('crud.panels.entry') }}">
-                        <i class="fa fa-th-list"></i> <span class="hidden-sm hidden-xs">
-                            {{ trans('crud.panels.entry') }}</span>
-                    </a>
-                </li>
-                @include('cruds._tabs', ['calendars' => false])
-            </ul>
+    <div class="col-md-8">
 
-            <div class="tab-content">
-                <div class="tab-pane {{ (request()->get('tab') == null ? ' active' : '') }}" id="entry">
-                    <p>{!! $model->entry() !!}</p>
-                    @include('cruds.partials.mentions')
-                </div>
-                @include('cruds._panes')
-            </div>
-        </div>
-
+        @include('entities.components.entry')
         @include('entities.components.notes')
+
+
         @include('tags.panels.children')
 
+        @include('cruds.partials.mentions')
         @include('cruds.boxes.history')
+    </div>
+
+    <div class="col-md-2">
+        @include('entities.components.pins')
     </div>
 </div>

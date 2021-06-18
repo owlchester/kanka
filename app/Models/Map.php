@@ -225,11 +225,11 @@ class Map extends MiscModel
     /**
      * @return array
      */
-    public function menuItems($items = [])
+    public function menuItems(array $items = []): array
     {
         $campaign = CampaignLocalization::getCampaign();
 
-        $items['maps'] = [
+        $items['second']['maps'] = [
             'name' => 'maps.show.tabs.maps',
             'route' => 'maps.maps',
             'count' => $this->descendants()->count()

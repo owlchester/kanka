@@ -15,7 +15,6 @@ return [
         'go_to'             => 'Ir a :name',
         'json-export'       => 'Exportar (JSON)',
         'manage_links'      => 'Administrar ligazóns',
-        'more'              => 'Máis',
         'move'              => 'Mover',
         'new'               => 'Crear nova',
         'next'              => 'Seguinte',
@@ -28,27 +27,10 @@ return [
     ],
     'attributes'                => [
         'actions'       => [
-            'add'               => 'Engadir atributo',
-            'add_block'         => 'Engadir bloque',
-            'add_checkbox'      => 'Engadir caixa de selección',
-            'add_text'          => 'Engadir texto',
             'apply_template'    => 'Aplicar un padrón de atributos',
             'manage'            => 'Administrar',
             'more'              => 'Máis opcións',
             'remove_all'        => 'Eliminar todos',
-        ],
-        'create'        => [
-            'description'   => 'Crear novo atributo',
-            'success'       => 'Atributo ":name" engadido a :entity.',
-            'title'         => 'Novo atributo para :name',
-        ],
-        'destroy'       => [
-            'success'   => 'Atributo ":name" de :entity eliminado.',
-        ],
-        'edit'          => [
-            'description'   => 'Actualizar un atributo existente',
-            'success'       => 'Atributo ":name" de :entity actualizado.',
-            'title'         => 'Actualizar atributo de :name',
         ],
         'errors'        => [
             'loop'  => 'Hai un bucle infinito neste cálculo de atributo!',
@@ -65,7 +47,7 @@ return [
             'delete_all'    => 'Seguro que queres eliminar todos os atributos desta entidade?',
         ],
         'hints'         => [
-            'is_private'    => 'Podes ocultar todos os atributos a todos os usuarios non administradores facendo que a entidade sexa privada.',
+            'is_private'    => 'Podes ocultar todos os atributos a toda persoa non administradora facendo que a entidade sexa privada.',
         ],
         'index'         => [
             'success'   => 'Atributos de :entity actualizados.',
@@ -76,6 +58,7 @@ return [
             'block'     => 'Nome do bloque',
             'checkbox'  => 'Nome da caixa de selección',
             'icon'      => [
+                'class' => 'Clase de FontAwesome ou de RPG Awesome: fas fa-users',
                 'name'  => 'Nome da icona',
             ],
             'random'    => [
@@ -101,8 +84,8 @@ return [
         ],
         'visibility'    => [
             'entry'     => 'O atributo é mostrado no menú da entidade.',
-            'private'   => 'Atributo só visíbel para administradoras.',
-            'public'    => 'Atributo visíbel a todas as membras.',
+            'private'   => 'Atributo só visíbel para a Administración.',
+            'public'    => 'Atributo visíbel a toda persoa integrante da campaña.',
             'tab'       => 'O atributo é mostrado na lapela "Atributos".',
         ],
     ],
@@ -128,15 +111,15 @@ return [
             'title'     => 'Editando múltiples entidades',
         ],
         'errors'        => [
-            'admin'     => 'Só as administradoras da campaña poden cambiar o estado de privacidade das entidades.',
-            'general'   => 'Houbo un erro ao procesar a acción. Inténtao de novo e contáctanos se o problema persiste. Mesaxe do erro: :hint.',
+            'admin'     => 'Só a administración da campaña pode cambiar o estado de privacidade das entidades.',
+            'general'   => 'Houbo un erro ao procesar a acción. Inténtao de novo e contáctanos se o problema persiste. Mensaxe do erro: :hint.',
         ],
         'permissions'   => [
             'fields'    => [
-                'override'  => 'Substituir',
+                'override'  => 'Substituír',
             ],
             'helpers'   => [
-                'override'  => 'Se está seleccionado, os permisos das entidades seleccionadas serán substituidos por estes. Se non está seleccionado, os permisos seleccionados serán engadidos aos existentes.',
+                'override'  => 'Se está seleccionado, os permisos das entidades seleccionadas serán substituídos por estes. Se non está seleccionado, os permisos seleccionados serán engadidos aos existentes.',
             ],
             'title'     => 'Cambiar os permisos a varias entidades',
         ],
@@ -200,7 +183,7 @@ return [
         'copy_inventory'        => 'Copiar inventario',
         'copy_links'            => 'Copiar ligazóns de entidade',
         'copy_notes'            => 'Copiar notas de entidade',
-        'creator'               => 'Creadora',
+        'creator'               => 'Creada por',
         'dice_roll'             => 'Tirada de dados',
         'entity'                => 'Entidade',
         'entity_type'           => 'Tipo de entidade',
@@ -209,6 +192,7 @@ return [
         'excerpt'               => 'Limiar',
         'family'                => 'Familia',
         'files'                 => 'Arquivos',
+        'gallery_header'        => 'Cabeceira de galería',
         'gallery_image'         => 'Imaxe de galería',
         'has_entity_files'      => 'Ten arquivos de entidade',
         'has_entity_notes'      => 'Ten notas de entidade',
@@ -216,9 +200,9 @@ return [
         'header_image'          => 'Imaxe de cabeceira',
         'image'                 => 'Imaxe',
         'is_private'            => 'Privada',
-        'is_private_v2'         => 'Mostra isto só a integrantes do :admin-role da campaña. Isto sobrescrebe calquer outro permiso.',
+        'is_private_v2'         => 'Mostra isto só a integrantes da :admin-role da campaña. Isto sobrescrebe calquer outro permiso.',
         'is_star'               => 'Fixada',
-        'item'                  => 'Obxeto',
+        'item'                  => 'Obxecto',
         'location'              => 'Localización',
         'map'                   => 'Mapa',
         'name'                  => 'Nome',
@@ -235,7 +219,7 @@ return [
     ],
     'files'                     => [
         'actions'   => [
-            'drop'      => 'Fai click para engadir un arquivo, ou arrástrao ata aquí.',
+            'drop'      => 'Fai clic para engadir un arquivo, ou arrástrao ata aquí.',
             'manage'    => 'Administrar arquivos de entidade',
         ],
         'errors'    => [
@@ -251,23 +235,30 @@ return [
     ],
     'filter'                    => 'Filtrar',
     'filters'                   => [
-        'all'       => 'Filtrar para todas as entidades descendentes',
-        'clear'     => 'Quitar filtros',
-        'direct'    => 'Filtrar só descendentes directas',
-        'filtered'  => 'Mostrando :count de :total :entity.',
-        'hide'      => 'Ocultar filtros',
-        'options'   => [
+        'all'                       => 'Filtrar para todas as entidades descendentes',
+        'clear'                     => 'Quitar filtros',
+        'copy_helper'               => 'Usa os filtros copiados no teu portapapeis como valores para filtros en extensións de taboleiro e accesos directos.',
+        'copy_helper_no_filters'    => 'Define primeiro algúns filtros para poder copialos ao teu portapapeis.',
+        'copy_to_clipboard'         => 'Copiar filtros ao portapapeis',
+        'direct'                    => 'Filtrar só descendentes directas',
+        'filtered'                  => 'Mostrando :count de :total :entity.',
+        'hide'                      => 'Ocultar filtros',
+        'mobile'                    => [
+            'clear' => 'Limpar',
+            'copy'  => 'Portapapeis',
+        ],
+        'options'                   => [
             'exclude'   => 'Excluír',
             'include'   => 'Incluír',
             'none'      => 'Ningún',
         ],
-        'show'      => 'Mostrar filtros',
-        'sorting'   => [
+        'show'                      => 'Mostrar filtros',
+        'sorting'                   => [
             'asc'       => 'Ascendente segundo :field',
             'desc'      => 'Descendente segundo :field',
             'helper'    => 'Controla en que orde aparecen os resultados.',
         ],
-        'title'     => 'Filtros',
+        'title'                     => 'Filtros',
     ],
     'forms'                     => [
         'actions'       => [
@@ -282,18 +273,19 @@ return [
     'hints'                     => [
         'attribute_template'    => 'Aplica un padrón de atributos directamente ao crear ou editar esta entidade.',
         'calendar_date'         => 'Unha data de calendario permite filtrar facilmente en listas, e tamén asigna un evento ao calendario seleccionado.',
+        'gallery_header'        => 'Se a entidade non ten cabeceira, mostra unha imaxe da galería da campaña no seu lugar.',
         'gallery_image'         => 'Se a entidade non ten imaxe, mostra unha imaxe da galería da campaña no seu lugar.',
         'header_image'          => 'Esta imaxe é situada enriba da entidade. Para obter os mellores resultados, usa unha imaxe ancha.',
         'image_limitations'     => 'Formatos soportados: :formats. Tamaño máximo do arquivo: :size.',
         'image_patreon'         => 'Queres aumentar o tamaño máximo dos arquivos?',
-        'is_private'            => 'Se está marcada como privada, a entidade será visíbel só para usuarios que teñen o rol "Administrador" nesta campaña.',
+        'is_private'            => 'Se está marcada como privada, a entidade será visíbel só para a Administración da campaña.',
         'is_star'               => 'Os elementos fixados aparecerán no menú da entidade',
         'tooltip'               => 'Substitúe a previsualización emerxente por defecto polo seguinte contido.',
-        'visibility'            => 'Seleccionando "Administrador", só os usuarios co rol "Administrador" poderán ver isto. "Só eu" significa que só ti poderás velo.',
+        'visibility'            => 'Seleccionando "Administración", só a Administración da campaña poderá ver isto. "Só eu" significa que só ti poderás velo.',
     ],
     'history'                   => [
-        'created'       => 'Creado por <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'created_date'  => 'Creado o <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'created'       => 'Creada por <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
+        'created_date'  => 'Creada o <span data-toggle="tooltip" title=":realdate">:date</span>',
         'unknown'       => 'Descoñecido',
         'updated'       => 'Modificado por última vez por <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
         'updated_date'  => 'Modificado por última vez o <span data-toggle="tooltip" title=":realdate">:date</span>',
@@ -303,11 +295,11 @@ return [
         'error' => 'Non fomos capaces de obter a imaxe solicitada. Pode ser que a páxina web non nos deixe descargala (típico de Squarespace e DevianArt), ou pode que a ligazón non sexa válida. Asegúrate de que a imaxe non supera os :size.',
     ],
     'is_not_private'            => 'Actualmente, esta entidade non é privada.',
-    'is_private'                => 'Est aentidade é privada e só visíbel para administradoras.',
-    'linking_help'              => 'Como enlazar outras entidades?',
+    'is_private'                => 'Esta entidade é privada e só visíbel para a Administración da campaña.',
+    'legacy'                    => 'En desuso',
+    'linking_help'              => 'Como ligar a outras entidades?',
     'manage'                    => 'Administrar',
     'move'                      => [
-        'description'   => 'Mover esta entidade a outro lugar',
         'errors'        => [
             'permission'        => 'Non tes permiso para crear entidades deste tipo na campaña seleccionada.',
             'same_campaign'     => 'Debes seleccionar outra campaña á que mover a entidade.',
@@ -373,15 +365,15 @@ return [
             'member'    => 'Membra',
             'role'      => 'Rol',
         ],
-        'helper'            => 'Usa esta interface para axustar que usuarios e que roles poden interaccionar con esta entidade. :allow',
+        'helper'            => 'Usa esta interface para axustar que integrantes e que roles poden interaccionar con esta entidade. :allow',
         'helpers'           => [
-            'setup' => 'Usa esta interface para axustar como os diferentes roles e usuarios poden interaccionar con esta entidade. :allow permitirá ao usuario/rol realizar a acción correspondente. :deny non lles deixará realizar a acción. :inherit usará os permisos do rol do usuario ou do rol principal. Un usuario cunha acción establecida en :allow poderá realizar esa acción, aínda que no seu rol esté en :deny.',
+            'setup' => 'Usa esta interface para axustar como os diferentes roles e integrantes poden interaccionar con esta entidade. :allow permitirá á integrante/rol realizar a acción correspondente. :deny non lles deixará realizar a acción. :inherit usará os permisos do rol da integrante ou do rol principal. Unha integrante cunha acción establecida en :allow poderá realizar esa acción, aínda que no seu rol esté en :deny.',
         ],
         'inherited'         => 'Este rol xa ten este permiso establecido para este tipo de entidade.',
-        'inherited_by'      => 'Este usuario é parte do rol ":role", o cal lle otorga permisos neste tipo de entidade.',
-        'success'           => 'Permisos guardados.',
+        'inherited_by'      => 'Esta persoa é parte do rol ":role", o cal lle otorga permisos neste tipo de entidade.',
+        'success'           => 'Permisos gardados.',
         'title'             => 'Permisos',
-        'too_many_members'  => 'Est acampaña ten demasiadas membras (>10) para poder mostralas todas nesta interface. Usa o botón "Permisos" na vista de entidade para controlar os permisos detalladamente.',
+        'too_many_members'  => 'Esta campaña ten demasiadas integrantes (>10) para poder mostralas todas nesta interface. Usa o botón "Permisos" na vista de entidade para controlar os permisos detalladamente.',
     ],
     'placeholders'              => [
         'ability'       => 'Escolle unha habilidade',
@@ -392,7 +384,7 @@ return [
         'family'        => 'Escolle unha familia',
         'gallery_image' => 'Escolle unha imaxe da galería da campaña',
         'image_url'     => 'Tamén podes subir unha imaxe dende a súa URL',
-        'item'          => 'Escolle un obxeto',
+        'item'          => 'Escolle un obxecto',
         'journal'       => 'Escolle un caderno',
         'location'      => 'Escolle un lugar',
         'map'           => 'Escolle un mapa',
@@ -438,6 +430,7 @@ return [
         'menu'          => 'Menú',
         'notes'         => 'Notas da entidade',
         'permissions'   => 'Permisos',
+        'quests'        => 'Misións',
         'relations'     => 'Relacións',
         'reminders'     => 'Lembretes',
         'timelines'     => 'Liñas temporais',
@@ -445,13 +438,13 @@ return [
     ],
     'update'                    => 'Actualizar',
     'users'                     => [
-        'unknown'   => 'Descoñecido',
+        'unknown'   => 'Descoñecida',
     ],
     'view'                      => 'Ver',
     'visibilities'              => [
-        'admin'         => 'Administradoras',
-        'admin-self'    => 'Eu e Administradoras',
-        'all'           => 'Todas',
+        'admin'         => 'Administración',
+        'admin-self'    => 'Eu e Administración',
+        'all'           => 'Todo o mundo',
         'members'       => 'Integrantes',
         'self'          => 'Só eu',
     ],

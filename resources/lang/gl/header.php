@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'avatar'            => 'Imaxe de usuario',
+    'avatar'            => 'Imaxe de perfil',
     'logout'            => 'Pechar sesión',
     'member_since'      => 'Uniuse o',
     'notifications'     => [

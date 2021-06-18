@@ -60,6 +60,10 @@ return [
         'private'       => 'Members in the campaign\'s Admin role can make a map private. This allows users to view a location but for admins to keep the map a secret.',
         'title'         => 'Location Maps',
     ],
+    'pins'              => [
+        'description'   => 'Entities can have relations and attributes pinned to the right of their story view. To pin an element, go and edit the relation or attributes and set the pinned value on those.',
+        'title'         => 'Entity Pins',
+    ],
     'public'            => 'Watch a tutorial video on Youtube explaining public campaigns.',
     'title'             => 'Helpers',
     'widget-filters'    => [

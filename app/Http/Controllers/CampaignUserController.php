@@ -28,7 +28,9 @@ class CampaignUserController extends Controller
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('members', $campaign);
-        return view('campaigns.users', ['campaign' => $campaign]);
+
+        $roles = $campaign->roles->where('is_public', false)->all();
+        return view('campaigns.users', ['campaign' => $campaign, 'roles' => $roles]);
     }
 
     /**

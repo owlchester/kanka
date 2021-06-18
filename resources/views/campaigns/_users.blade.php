@@ -29,7 +29,27 @@
                         </div>
                         <div class="entity-name-img">{{ $relation->user->name }}</div>
                     </td>
-                    <td>{{ $relation->user->rolesList($campaign->id) }}</td>
+                    <td>
+                        {{ $relation->user->rolesList($campaign->id) }}
+                        @can('update', $relation)
+                            <i role="button" tabindex="0" class="fas fa-plus-circle cursor btn-user-roles" title="{{ __('campaigns.members.manage_roles') }}" data-content="
+                            @foreach($roles as $role)
+                            <form method='post' action='{{ route('campaign_users.update-roles', [$relation, $role]) }}' class='user-role-update'>
+{!! str_replace('"', '\'', csrf_field()) !!}
+
+                                <button class='btn btn-block btn-role-update'>
+                                @if($relation->user->hasCampaignRole($role->id))
+                                    <span class='text-danger'><i class='fas fa-times'></i> {{ $role->name }}</span>
+                                @else
+                                    <i class='fas fa-plus'></i> {{ $role->name }}
+                                @endif
+                                </button>
+                            </form>
+                            @endforeach
+</form>
+"></i>
+                        @endcan
+                    </td>
                     <td class="hidden-xs hidden-md">
                         @if (!empty($relation->created_at))
                             <span title="{{ $relation->created_at }}+00:00">{{ $relation->created_at->diffForHumans() }}</span>
@@ -75,6 +95,19 @@
     <div class="box box-solid">
         <div class="box-header with-border">
             <h3 class="box-title ">{{ __('campaigns.members.invite.title') }}</h3>
+            <div class="box-tools">
+                <a href="{{ route('campaign_invites.create', ['type' => 'link']) }}" class="btn btn-primary btn-sm"
+                   data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_invites.create', ['type' => 'link']) }}">
+                    <i class="fa fa-link" aria-hidden="true"></i>
+                    <span class="hidden-xs hidden-md">{{ __('campaigns.invites.actions.link') }}</span>
+                </a>
+
+                <a href="{{ route('campaign_invites.create') }}" class="btn btn-primary btn-sm"
+                   data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_invites.create') }}">
+                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                    <span class="hidden-xs hidden-md">{{ __('campaigns.invites.actions.add') }}</span>
+                </a>
+            </div>
         </div>
         <div class="box-body">
             <p class="help-block">
@@ -94,17 +127,7 @@
                     <th>{{ __('campaigns.invites.fields.role') }}</th>
                     <th class="hidden-xs hidden-md">{{ __('campaigns.invites.fields.created') }}</th>
                     <th class="text-right">
-                        <a href="{{ route('campaign_invites.create', ['type' => 'link']) }}" class="btn btn-primary btn-sm"
-                           data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_invites.create', ['type' => 'link']) }}">
-                            <i class="fa fa-link" aria-hidden="true"></i>
-                            <span class="hidden-xs hidden-md">{{ __('campaigns.invites.actions.link') }}</span>
-                        </a>
 
-                        <a href="{{ route('campaign_invites.create') }}" class="btn btn-primary btn-sm"
-                        data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_invites.create') }}">
-                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                            <span class="hidden-xs hidden-md">{{ __('campaigns.invites.actions.add') }}</span>
-                        </a>
                     </th>
                 </tr>
                 @foreach ($r = $campaign->unusedInvites()->with('role')->paginate() as $relation)

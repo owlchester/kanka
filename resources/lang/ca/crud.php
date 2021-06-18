@@ -192,7 +192,8 @@ return [
         'excerpt'               => 'Extracte',
         'family'                => 'Família',
         'files'                 => 'Fitxers',
-        'gallery_image'         => 'Galeria d\'imatges',
+        'gallery_header'        => 'Capçalera de la galeria',
+        'gallery_image'         => 'Imatge de la galeria',
         'has_entity_files'      => 'Té fitxers',
         'has_entity_notes'      => 'Té anotacions',
         'has_image'             => 'Té imatge',
@@ -234,23 +235,30 @@ return [
     ],
     'filter'                    => 'Filtra',
     'filters'                   => [
-        'all'       => 'Mostra tots els descendents',
-        'clear'     => 'Treu els filtres',
-        'direct'    => 'Filtra només els descendents directes',
-        'filtered'  => 'Es mostren :count de :total :entity.',
-        'hide'      => 'Amaga els filtres',
-        'options'   => [
+        'all'                       => 'Mostra tots els descendents',
+        'clear'                     => 'Treu els filtres',
+        'copy_helper'               => 'Els filtres copiats es poden utilitzar per a filtrar els widgets del taulell i els enllaços de l\'accés ràpid.',
+        'copy_helper_no_filters'    => 'Cal definir algun filtre abans per a poder copiar-lo.',
+        'copy_to_clipboard'         => 'Copia els filtres',
+        'direct'                    => 'Filtra només els descendents directes',
+        'filtered'                  => 'Es mostren :count de :total :entity.',
+        'hide'                      => 'Amaga els filtres',
+        'mobile'                    => [
+            'clear' => 'Neteja',
+            'copy'  => 'Copia',
+        ],
+        'options'                   => [
             'exclude'   => 'Exclou',
             'include'   => 'Inclou',
             'none'      => 'Res',
         ],
-        'show'      => 'Mostra els filtres',
-        'sorting'   => [
+        'show'                      => 'Mostra els filtres',
+        'sorting'                   => [
             'asc'       => 'Ascendent per :field',
             'desc'      => 'Descendent per :field',
             'helper'    => 'Controla en quin ordre apareixen els resultats.',
         ],
-        'title'     => 'Filtres',
+        'title'                     => 'Filtres',
     ],
     'forms'                     => [
         'actions'       => [
@@ -265,6 +273,7 @@ return [
     'hints'                     => [
         'attribute_template'    => 'Aplica una plantilla d\'atributs directament al crear aquesta entitat.',
         'calendar_date'         => 'Les dates del calendari faciliten el filtrat de les llistes, i també fixen els esdeveniments al calendari seleccionat.',
+        'gallery_header'        => 'Si l\'entitat no té capçalera, mostra una imatge de la galeria al seu lloc.',
         'gallery_image'         => 'Si l\'entitat no té imatge, mostra una imatge de la galeria de la campanya.',
         'header_image'          => 'Aquesta imatge es troba sobre la entitat. Per a obtenir resultats millors, feu servir una imatge apaisada.',
         'image_limitations'     => 'Formats acceptats: :formats. Tamany màxim del fitxer: :size.',

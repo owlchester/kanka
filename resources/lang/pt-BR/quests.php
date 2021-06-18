@@ -34,6 +34,24 @@ return [
         'success'       => 'Missão \':name\' atualizada.',
         'title'         => 'Editar Missão :name',
     ],
+    'elements'      => [
+        'create'    => [
+            'success'   => 'Entidade :entity adicionada à missão.',
+            'title'     => 'Novo elemento para :name',
+        ],
+        'destroy'   => [
+            'success'   => 'Elemento da missão :entity removido.',
+        ],
+        'edit'      => [
+            'success'   => 'Elemento da missão :entity atualizado.',
+            'title'     => 'Atualizar elementos da missão para :name',
+        ],
+        'fields'    => [
+            'description'   => 'Descrição',
+            'quest'         => 'Missão',
+        ],
+        'title'     => 'Elementos da Missão :name',
+    ],
     'fields'        => [
         'character'     => 'Quem deu a missão',
         'characters'    => 'Personagem',
@@ -52,7 +70,9 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'nested'    => 'Quando em Visão Aninhada, você pode ver suas missões de maneira aninhada. Missões que não tenham uma Missão Primária serão mostradas de modo padrão. Missões que contém Missões Secundárias podem ser clicadas para mostrar as \'crianças\'. Você pode continuar clicando até não haverem mais \'crianças\' para clicar.',
+        'nested'        => 'Quando em Visão Aninhada, você pode ver suas missões de maneira aninhada. Missões que não tenham uma Missão Primária serão mostradas de modo padrão. Missões que contém Missões Secundárias podem ser clicadas para mostrar as \'crianças\'. Você pode continuar clicando até não haverem mais \'crianças\' para clicar.',
+        'nested_parent' => 'Mostrando as missões de :parent.',
+        'nested_without'=> 'Mostrando todas as missões que não tem uma missão-pai. Clique em uma linha para ver as missões-filhos.',
     ],
     'hints'         => [
         'quests'    => 'Uma "teia" de missões interligadas pode ser construída usando o campo de Missão Principal',
@@ -133,6 +153,7 @@ return [
     'show'          => [
         'actions'       => [
             'add_character'     => 'Adicionar um personagem',
+            'add_element'       => 'Adicionar um elemento',
             'add_item'          => 'Adicionar um item',
             'add_location'      => 'Adicionar um local',
             'add_organisation'  => 'Adicionar uma organização',
@@ -140,6 +161,7 @@ return [
         'description'   => 'Uma visão detalhada de uma missão',
         'tabs'          => [
             'characters'    => 'Personagens',
+            'elements'      => 'Elementos',
             'information'   => 'Informações',
             'items'         => 'Itens',
             'locations'     => 'Locais',

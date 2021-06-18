@@ -4,6 +4,17 @@ return [
     'abilities'     => [
         'title' => 'Habilitats descendents de :name',
     ],
+    'children'      => [
+        'actions'       => [
+            'add'   => 'Afegeix una habilitat a l\'entitat',
+        ],
+        'create'        => [
+            'success'   => 'S\'ha afegit l\'habilitat :name a l\'entitat.',
+            'title'     => 'Afegeix una entitat a :name',
+        ],
+        'description'   => 'Entitats que tenen l\'habilitat',
+        'title'         => 'Entitats de l\'habilitat :name',
+    ],
     'create'        => [
         'success'   => 'S\'ha creat l\'habilitat «:name».',
         'title'     => 'Nova habilitat',

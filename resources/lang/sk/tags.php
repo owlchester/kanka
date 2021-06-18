@@ -6,7 +6,8 @@ return [
             'add'   => 'Pridať novú kategóriu',
         ],
         'create'        => [
-            'title' => 'Pridaj kategóriu k :name',
+            'success'   => 'Kategória :name bola priradená objektu.',
+            'title'     => 'Pridaj kategóriu k :name',
         ],
         'description'   => 'Objekty priradené kategórii',
         'title'         => 'Podradené kategórie :name',
@@ -32,7 +33,9 @@ return [
         'type'          => 'Typ',
     ],
     'helpers'       => [
-        'nested'    => 'Kategórie vieš zoradiť vo vnorenom zobrazení. Kategórie bez nadradenej kategórie sa zobrazia štandardným spôsobom. Kategórie s podradenými kategóriami je možné rozkliknúť, dokiaľ nebudú existovať pod nimi už žiadne ďalšie podradené kategórie.',
+        'nested'        => 'Kategórie vieš zoradiť vo vnorenom zobrazení. Kategórie bez nadradenej kategórie sa zobrazia štandardným spôsobom. Kategórie s podradenými kategóriami je možné rozkliknúť, dokiaľ nebudú existovať pod nimi už žiadne ďalšie podradené kategórie.',
+        'nested_parent' => 'Zobraziť kategórie :parent.',
+        'nested_without'=> 'Zobrazujú sa všetky kategórie, ktoré nemajú nadradenú kategóriu. Kliknutím na riadok zobrazíš podradené kategórie.',
     ],
     'hints'         => [
         'children'  => 'Tento zoznam obsahuje všetky objekty priamo pod touto kategóriou a jej podriadenými kategóriami.',

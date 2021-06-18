@@ -13,10 +13,10 @@
 @section('content')
     @include('partials.errors')
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
             @include('tags._menu', ['active' => 'children'])
         </div>
-        <div class="col-md-9">
+        <div class="col-md-10">
             @include('tags.panels.children')
         </div>
     </div>

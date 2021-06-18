@@ -494,11 +494,11 @@ class Calendar extends MiscModel
     /**
      * @return array
      */
-    public function menuItems($items = []): array
+    public function menuItems(array $items = []): array
     {
         $count = $this->calendarEvents()->entityAcl()->count();
         if ($count > 0) {
-            $items['events'] = [
+            $items['second']['events'] = [
                 'name' => 'calendars.show.tabs.events',
                 'route' => 'calendars.events',
                 'count' => $count

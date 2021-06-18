@@ -6,10 +6,11 @@ return [
             'add'   => 'Engadir á etiqueta',
         ],
         'create'        => [
-            'title' => 'Engadir unha entidade a ":name"',
+            'success'   => 'A etiqueta ":name" foi engadida á entidade.',
+            'title'     => 'Engadir unha entidade a ":name"',
         ],
         'description'   => 'Entidades asociadas á etiqueta',
-        'title'         => 'Descendentes da etiqueta ":name"',
+        'title'         => 'Subetiquetas da etiqueta ":name"',
     ],
     'create'        => [
         'description'   => 'Crear unha nova etiqueta',
@@ -25,7 +26,7 @@ return [
     ],
     'fields'        => [
         'characters'    => 'Personaxes',
-        'children'      => 'Descendentes',
+        'children'      => 'Subetiquetas',
         'name'          => 'Nome',
         'tag'           => 'Etiqueta nai',
         'tags'          => 'Subetiquetas',
@@ -33,17 +34,18 @@ return [
     ],
     'helpers'       => [
         'nested_parent' => 'Mostrando as etiquetas de ":parent".',
-        'nested_without'=> 'Mostrando todas as etiquetas que non teñen nai. Fai clic nunha liña para ver as súas descendentes.',
+        'nested_without'=> 'Mostrando todas as etiquetas que non teñen nai. Fai clic nunha liña para ver as súas subetiquetas.',
     ],
     'hints'         => [
-        'tag'   => 'Abaixo están mostradas todas as etiquetas directamente baixo esta etiqueta.',
+        'children'  => 'Esta lista contén todas as entidades que pertencen a esta etiqueta ou ás súas subetiquetas.',
+        'tag'       => 'Abaixo están mostradas todas as etiquetas directamente baixo esta etiqueta.',
     ],
     'index'         => [
         'actions'       => [
             'explore_view'  => 'Vista en árbore',
         ],
         'add'           => 'Nova etiqueta',
-        'description'   => 'Administrar a etiqueta de ":name"',
+        'description'   => 'Xestionar a etiqueta de ":name"',
         'header'        => 'Etiquetas en ":name"',
         'title'         => 'Etiquetas',
     ],
@@ -56,7 +58,7 @@ return [
     'show'          => [
         'description'   => 'Vista detallada dunha etiqueta',
         'tabs'          => [
-            'children'      => 'Descendentes',
+            'children'      => 'Subetiquetas',
             'information'   => 'Información',
             'tags'          => 'Etiquetas',
         ],

@@ -62,10 +62,16 @@ class EntityNote extends Model
     protected $orderTrigger = 'notes/';
 
     /**
-     * Set to false to skip save observers
+     * Set to false to skip saved observers
      * @var bool
      */
     public $savedObserver = true;
+
+    /**
+     * Set to false to skip saving observers
+     * @var bool
+     */
+    public $savingObserver = true;
 
     /**
      * Searchable fields
@@ -128,9 +134,13 @@ class EntityNote extends Model
         return $text;
     }
 
-    public function scopePinned($query)
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeOrdered($query)
     {
-        return $query->where('is_pinned', true)
+        return $query
             ->orderBy('position');
     }
 

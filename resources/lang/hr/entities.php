@@ -27,6 +27,7 @@ return [
     'events'                => 'Događaji',
     'families'              => 'Obitelji',
     'family'                => 'Obitelj',
+    'inventories'           => 'Inventari',
     'item'                  => 'Predmet',
     'items'                 => 'Predmeti',
     'journal'               => 'Dnevnik',

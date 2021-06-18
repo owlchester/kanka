@@ -4,10 +4,24 @@ $mentionCount = $model->entity->targetMentions()->entity()->has('entity')->entit
     $model->entity->targetMentions()->campaign()->count();
 ?>
 @if ($mentionCount > 0)
-    <hr />
-    <p class="help-block">
-    <a href="{{ route('entities.mentions', $model->entity) }}" data-toggle="ajax-modal" data-target="#entity-modal"
-       data-url="{{ route('entities.mentions', $model->entity) }}" title="{{ __('entities/mentions.mentioned_in', ['count' => $mentionCount]) }}">
-        {{ __('entities/mentions.mentioned_in', ['count' => $mentionCount]) }}
-    </a></p>
+    <div class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">{{ __('entities/mentions.title') }}</h3>
+        </div>
+        <div class="box-body">
+            {!! __('entities/mentions.mentioned_in_v2', [
+    'count' => $mentionCount,
+    'more' => link_to_route(
+        'entities.mentions',
+        __('entities/mentions.see_more'),
+        $model->entity,
+        [
+            'data-toggle' => 'ajax-modal',
+            'data-url' => route('entities.mentions', $model->entity),
+            'data-target' => '#entity-modal',
+        ]
+    )
+]) !!}
+        </div>
+    </div>
 @endif

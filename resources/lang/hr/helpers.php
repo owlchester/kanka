@@ -31,6 +31,7 @@ return [
         'title'         => 'Predlošci entiteta',
     ],
     'filters'           => [
+        'clipboard'     => 'Kad su filtri aktivni, gumb za kopiranje u međuspremnik postaje aktivan. Ovo kopira filtre u tvoj međuspremnik, a možeš ih koristiti za filtre programčića naslovne ploče ili za brze veze.',
         'description'   => 'Pomoću filtara možeš ograničiti količinu rezultata prikazanih na popisima. Tekstualna polja podržavaju različite opcije za daljnju kontrolu onoga što je filtrirano.',
         'empty'         => 'Pisanje :tag u polju pretražit će sve entitete u kojima je ovo polje prazno.',
         'ending_with'   => 'Postavljanjem :tag na kraju teksta možeš potražiti svaki entitet s točno ovim tekstom u polju.',
@@ -61,4 +62,10 @@ return [
     ],
     'public'            => 'Pogledajte Youtube vodič na koji objašnjava javne kampanje.',
     'title'             => 'Pomagači',
+    'widget-filters'    => [
+        'description'   => 'Možeš filtrirati entitete prikazane na programčiću s nedavno izmijenjenim entitetima pružajući popis polja entiteta i vrijednosti. Na primjer, možeš koristiti :example za filtriranje mrtvih likova s kojima igrači ne mogu igrati (NPC).',
+        'link'          => 'Filteri programčića',
+        'more'          => 'Možeš kopirati vrijednosti iz URL-a na popise entiteta. Na primjer, prilikom pregledavanja znakova kampanje, filtriraj vrstu znakova koje želiš prikazati i kopiraj vrijednosti nakon :question u URL-u.',
+        'title'         => 'Filteri programčića naslovne ploče',
+    ],
 ];

@@ -6,7 +6,7 @@
 $isAdmin = Auth::user()->isAdmin();
 ?>
 @extends('layouts.app', [
-    'title' => trans('crud.attributes.index.title', ['name' => $entity->name]),
+    'title' => trans('entities/attributes.index.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
         ['url' => route($parentRoute . '.index'), 'label' => trans($parentRoute . '.index.title')],
@@ -16,7 +16,7 @@ $isAdmin = Auth::user()->isAdmin();
 ])
 
 @section('fullpage-form')
-    {!! Form::open(['url' => route('entities.attributes.saveMany', ['entity' => $entity]), 'method' => 'POST', 'data-shortcut' => 1, 'class' => 'entity-form']) !!}
+    {!! Form::open(['url' => route('entities.attributes.save', ['entity' => $entity]), 'method' => 'POST', 'data-shortcut' => 1, 'class' => 'entity-form']) !!}
 @endsection
 
 @section('content')

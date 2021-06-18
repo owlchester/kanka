@@ -192,7 +192,8 @@ return [
         'excerpt'               => 'Extracto',
         'family'                => 'Familia',
         'files'                 => 'Archivos',
-        'gallery_image'         => 'Galería de imágenes',
+        'gallery_header'        => 'Cabecera de la galería',
+        'gallery_image'         => 'Imagen de la galería',
         'has_entity_files'      => 'Tiene archivos',
         'has_entity_notes'      => 'Tiene notas de entidad',
         'has_image'             => 'Tiene imagen',
@@ -234,23 +235,30 @@ return [
     ],
     'filter'                    => 'Filtrar',
     'filters'                   => [
-        'all'       => 'Mostrar todos los descendientes',
-        'clear'     => 'Quitar filtros',
-        'direct'    => 'Filtrar solo los descendientes directos',
-        'filtered'  => 'Mostrando :count de :total :entity.',
-        'hide'      => 'Ocultar filtros',
-        'options'   => [
+        'all'                       => 'Mostrar todos los descendientes',
+        'clear'                     => 'Quitar filtros',
+        'copy_helper'               => 'Usa los filtros copiados en el portapapeles para filtrar los widgets del tablero y los accesos directos.',
+        'copy_helper_no_filters'    => 'Define algún filtro primero para poder copiarlos al portapapeles.',
+        'copy_to_clipboard'         => 'Copiar filtros',
+        'direct'                    => 'Filtrar solo los descendientes directos',
+        'filtered'                  => 'Mostrando :count de :total :entity.',
+        'hide'                      => 'Ocultar filtros',
+        'mobile'                    => [
+            'clear' => 'Quitar',
+            'copy'  => 'Portapapeles',
+        ],
+        'options'                   => [
             'exclude'   => 'Excluir',
             'include'   => 'Incluir',
             'none'      => 'Nada',
         ],
-        'show'      => 'Mostrar filtros',
-        'sorting'   => [
+        'show'                      => 'Mostrar filtros',
+        'sorting'                   => [
             'asc'       => 'Ascendiente por :field',
             'desc'      => 'Descendiente por :field',
             'helper'    => 'Controla en qué orden aparecen los resultados.',
         ],
-        'title'     => 'Filtros',
+        'title'                     => 'Filtros',
     ],
     'forms'                     => [
         'actions'       => [
@@ -265,6 +273,7 @@ return [
     'hints'                     => [
         'attribute_template'    => 'Aplica una plantilla de atributos directamente al crear esta entidad.',
         'calendar_date'         => 'Las fechas de calendario hacen que sea más fácil filtrar las listas, y también fijan los eventos al calendario seleccionado.',
+        'gallery_header'        => 'Si la entidad no tiene cabecera, muestra una imagen de la galería en su lugar.',
         'gallery_image'         => 'Si la entidad no tiene imagen, muestra una imagen de la galería en su lugar.',
         'header_image'          => 'Esta imagen está situada sobre la entidad. Para obtener mejores resultados, usa una imagen apaisada.',
         'image_limitations'     => 'Formatos soportados: :formats. Tamaño máximo del archivo: :size.',
@@ -421,6 +430,7 @@ return [
         'menu'          => 'Menú',
         'notes'         => 'Notas',
         'permissions'   => 'Permisos',
+        'quests'        => 'Misiones',
         'relations'     => 'Relaciones',
         'reminders'     => 'Recordatorios',
         'timelines'     => 'Líneas de tiempo',

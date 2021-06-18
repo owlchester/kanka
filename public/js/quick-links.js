@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 23);
+/******/ 	return __webpack_require__(__webpack_require__.s = 24);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -118,7 +118,7 @@ function initQuickLinksForm() {
 
 /***/ }),
 
-/***/ 23:
+/***/ 24:
 /*!***********************************************!*\
   !*** multi ./resources/assets/js/quick-links ***!
   \***********************************************/

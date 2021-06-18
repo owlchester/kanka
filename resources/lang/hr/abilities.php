@@ -4,6 +4,17 @@ return [
     'abilities'     => [
         'title' => 'Sposobnosti djeca od :name',
     ],
+    'children'      => [
+        'actions'       => [
+            'add'   => 'Dodaj sposobnost entitetu',
+        ],
+        'create'        => [
+            'success'   => 'Entitetu je dodana sposobnost :name.',
+            'title'     => 'Dodaj entitet u :name',
+        ],
+        'description'   => 'Entiteti koji imaju sposobnost',
+        'title'         => 'Sposobnost :name entiteta',
+    ],
     'create'        => [
         'success'   => 'Kreirana sposobnost ":name".',
         'title'     => 'Nova sposobnost',
@@ -15,6 +26,9 @@ return [
         'success'   => 'Ažurirana sposobnost ":name".',
         'title'     => 'Uredi sposobnost :name',
     ],
+    'entities'      => [
+        'title' => 'Entiteti sa sposobnošću :name',
+    ],
     'fields'        => [
         'abilities' => 'Sposobnosti',
         'ability'   => 'Sposobnost roditelj',
@@ -24,7 +38,8 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Popis sadrži sve sposobnosti koje su djeca trenutne sposobnosti, a ne samo one koje su direktno ispod nje.',
-        'nested'        => 'U "Ugniježđenom pregledu" možeš vidjeti sposobnosti na ugniježđeni način. Sposobnosti bez sposobnosti roditelj će biti prikazane na osnovnom pregledu. Sposobnosti sa sposobnostima djecom se mogu kliknuti kako bi se prikazale te sposobnosti djeca. Možeš nastaviti klikati dok ima sposobnosti za prikazati.',
+        'nested_parent' => 'Prikaz sposobnosti :parent.',
+        'nested_without'=> 'Prikaz svih sposobnosti koje nemaju roditeljske sposobnosti. Klikni red da bi vidio/vidjela sposobnosti djecu.',
     ],
     'index'         => [
         'add'           => 'Nova sposobnost',
@@ -40,6 +55,7 @@ return [
     'show'          => [
         'tabs'  => [
             'abilities' => 'Sposobnosti',
+            'entities'  => 'Entiteti',
         ],
         'title' => 'Sposobnost :name',
     ],

@@ -6,7 +6,9 @@ return [
         'add_intercalary'   => 'Adicionar dias intercalares',
         'add_month'         => 'Adicionar um mês',
         'add_moon'          => 'Adicionar uma lua',
+        'add_reminder'      => 'Adicionar um lembrete',
         'add_season'        => 'Adicione uma temporada',
+        'add_weather'       => 'Configurar um efeito de clima',
         'add_week'          => 'Adicionar uma semana nomeada',
         'add_weekday'       => 'Adicionar um dia da semana',
         'add_year'          => 'Adicionar um nome para o ano',
@@ -97,9 +99,12 @@ return [
     'helpers'       => [
         'month_type'    => 'Os meses intercalares não usam os dias da semana, mas ainda influenciam as luas e as estações.',
         'nested'        => 'Exibindo calendários que não são parte de um calendário principal primeiro. Clique em um calendário para explorar seus subcalendários.',
+        'nested_parent' => 'Mostrando os calendários de :parent.',
+        'nested_without'=> 'Mostrando todos os calendários que não tem um calendário-pai. Clique em uma linha para ver os calendários-filhos.',
         'start_offset'  => 'Por padrão, o calendário começa no primeiro dia da semana do ano 0. A alteração deste campo influencia onde o primeiro dia do calendário é colocado.',
     ],
     'hints'         => [
+        'event_length'      => 'Quanto tempo um evento deve durar. Um evento não pode durar mais de dois meses.',
         'intercalary'       => 'Dias que estão fora dos meses e semanas padrão. Eles não influenciam os dias da semana, mas influenciam os ciclos lunares.',
         'is_incrementing'   => 'Avançar calendários terá automaticamente seu incremento de data atual às 00:00 UTC.',
         'is_recurring'      => 'Um evento pode ser marcado como recorrente. Ele reaparecerá todo ano na mesma data.',
@@ -134,8 +139,13 @@ return [
     'options'       => [
         'events'    => [
             'recurring_periodicity' => [
-                'month' => 'Por mês',
-                'year'  => 'Anual',
+                'fullmoon'      => 'Lua cheia',
+                'fullmoon_name' => ':moon lua cheia',
+                'month'         => 'Por mês',
+                'newmoon'       => 'Lua nova',
+                'newmoon_name'  => ':moon lua nova',
+                'none'          => 'Nenhum',
+                'year'          => 'Anual',
             ],
         ],
         'resets'    => [
@@ -212,5 +222,9 @@ return [
             'weather'       => 'Clima',
         ],
         'title'             => 'Calendário :name',
+    ],
+    'sorters'       => [
+        'after' => 'Hoje e depois',
+        'before'=> 'Hoje e antes',
     ],
 ];

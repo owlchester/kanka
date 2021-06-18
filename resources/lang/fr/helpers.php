@@ -60,6 +60,10 @@ return [
         'private'       => 'Les membres du rôle Admin de la campagne peuvent rendre les cartes privées. Cela permet à un utilisateur de voir un lieu tout en gardant la carte secrète.',
         'title'         => 'Carte de lieux',
     ],
+    'pins'              => [
+        'description'   => 'Les entités peuvent avoir leurs relations et attributs épinglés sur la droite du mode histoire. Un élément peut être épinglé lors de l\'édition en cliquant sur le champs épingler ou l\'étoile.',
+        'title'         => 'Épinglé',
+    ],
     'public'            => 'Une vidéo sur Youtube explique comment fonctionne les campagnes publiques.',
     'title'             => 'Aides',
     'widget-filters'    => [

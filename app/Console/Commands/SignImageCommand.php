@@ -14,8 +14,9 @@ class SignImageCommand extends Command
      * @var string
      *
      * @example php artisan img:sign images/tiers/xxx-325.png app 200
+     * @example php artisan img:sign locations/xxx.png user 200x304
      */
-    protected $signature = 'img:sign {img} {base=users} {size=200}';
+    protected $signature = 'img:sign {img} {base=user} {size=200}';
 
     /**
      * The console command description.

@@ -18,13 +18,13 @@ return [
     ],
     'login'     => [
         'fields'                => [
-            'email'     => 'Dirección de correo electrónico',
+            'email'     => 'Enderezo de correo electrónico',
             'password'  => 'Contrasinal',
         ],
         'login_with_facebook'   => 'Iniciar sesión con Facebook',
         'login_with_google'     => 'Iniciar sesión cón Google',
         'login_with_twitter'    => 'Iniciar sesión con Twitter',
-        'new_account'           => 'Rexistrar unha nova conta',
+        'new_account'           => 'Rexistrar unha conta nova',
         'or'                    => 'OU',
         'password_forgotten'    => 'Esqueciches o teu contrasinal?',
         'remember_me'           => 'Lémbrame',
@@ -34,11 +34,11 @@ return [
     'register'  => [
         'already_account'           => 'Xa tes unha conta?',
         'errors'                    => [
-            'email_already_taken'   => 'Xa existe unha conta con esta dirección de correo electrónico.',
+            'email_already_taken'   => 'Xa existe unha conta con este enderezo de correo electrónico.',
             'general_error'         => 'Produciuse un erro ao rexistrar a túa conta. Por favor, inténtao de novo.',
         ],
         'fields'                    => [
-            'email'     => 'Dirección de correo electrónico',
+            'email'     => 'Enderezo de correo electrónico',
             'name'      => 'Nome da conta',
             'password'  => 'Contrasinal',
             'tos'       => 'Acepto a <a href=":privacyUrl" target="_blank">Política de Privacidade</a>.',
@@ -51,11 +51,11 @@ return [
     ],
     'reset'     => [
         'fields'    => [
-            'email'                 => 'Dirección de correo electrónico',
+            'email'                 => 'Enderezo de correo electrónico',
             'password'              => 'Contrasinal',
             'password_confirmation' => 'Confirma o teu contrasinal',
         ],
-        'send'      => 'Enviar ligazón de restablecemento de contrasinal',
+        'send'      => 'Enviar ligazón de restablecemento do contrasinal',
         'submit'    => 'Restablecer contrasinal',
         'title'     => 'Restablecer contrasinal',
     ],

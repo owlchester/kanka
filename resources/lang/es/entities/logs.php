@@ -15,4 +15,5 @@ return [
     'show'          => [
         'title' => 'Historial de :name',
     ],
+    'superboosted'  => 'Las entidades de las :superboosted-campaigns guardan registros completos de cambios hasta :amount días.',
 ];

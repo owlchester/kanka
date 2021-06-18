@@ -1,0 +1,11 @@
+<?php
+
+return [
+    'description'   => 'As permissões no Kanka podem ser ajustadas para controlar exatamente o que um usuário pode ou não fazer. Você pode ser tão aberto ou restritivo quanto desejar, dependendo de suas necessidades.',
+    'fifth'         => 'A maioria das entidades tem uma opção de caixa de seleção "privacidade" que substituirá todas as outras permissões. Quando marcada, apenas membros da função de administrador da campanha verão a entidade.',
+    'first'         => 'As permissões de Kanka são divididas em vários conceitos: permissões de função e permissões de entidade. Por padrão, cada campanha vem com uma função de Administrador, Pública e Jogador. Os membros da função de administrador podem ver e fazer tudo em uma campanha. A função pública é usada se a campanha for pública e um usuário não fizer parte dela e, por padrão, a função não tiver permissões. Por último, a função do jogador também vem sem permissões por padrão e é usada por qualquer pessoa que faça parte da campanha. Ao convidar um novo membro para sua campanha, você define em qual função ele participa. Você pode criar mais funções e mover pessoas, bem como ter membros em várias funções.',
+    'fourth'        => 'Para verificar as permissões de um usuário, acesse a página de membros da sua campanha e clique no botão "Visualizar como". Este botão está disponível apenas para administradores de campanha e só pode ser usado por não administradores de campanha. Ao criar ou editar uma entidade usando este recurso, as informações serão salvas nos logs da entidade.',
+    'second'        => 'Uma função pode ser configurada de maneiras diferentes. Você pode, por exemplo, permitir que os membros de uma função vejam e criem personagens, mas não os edite ou exclua. Se um usuário puder criar uma entidade, mas não puder modificá-la, ele obterá automaticamente as permissões de atualização.',
+    'third'         => 'Se você não quiser permitir que membros de uma função vejam todos os personagens, você pode definir permissões individualmente para cada personagem, editando-os ou usando o botão de permissões em massa visível para administradores de campanha na lista de personagens. Os mesmos conceitos se aplicam a todos os outros tipos de entidade.',
+    'title'         => 'Permissões',
+];

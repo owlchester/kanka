@@ -6,7 +6,9 @@ return [
         'add_intercalary'   => 'Schalttage hinzufügen',
         'add_month'         => 'Monat hinzufügen',
         'add_moon'          => 'Mond hinzufügen',
+        'add_reminder'      => 'Ereignis hinzufügen',
         'add_season'        => 'Jahreszeit hinzufügen',
+        'add_weather'       => 'Wettereffekt einstellen',
         'add_week'          => 'Wochennamen hinzufügen',
         'add_weekday'       => 'Wochentag hinzufügen',
         'add_year'          => 'Jahr hinzufügen',
@@ -102,6 +104,7 @@ return [
         'start_offset'  => 'Standardmäßig startet der Kalender am ersten Wochentag des Jahres 0. Das Ändern dieses Felds beeinflusst, wo der erste Tag des Kalenders platziert wird.',
     ],
     'hints'         => [
+        'event_length'      => 'Wie lange ein Ereignis dauern soll. Ein Ereignis kann nicht länger als zwei Monate dauern.',
         'intercalary'       => 'Tage die außerhalb der Standard Monate und Wochen liegen. Sie beeinflussen keine Wochentage aber beeinflussen Mondzyklen.',
         'is_incrementing'   => 'Wenn aktiviert, wird das aktuelle Datum des Kalenders automatisch um 00:00 UTC erhöht',
         'is_recurring'      => 'Ein Event kann wiederkehrend sein. Es wird dann jedes Jahr am gleichen Tag erscheinen.',
@@ -136,8 +139,13 @@ return [
     'options'       => [
         'events'    => [
             'recurring_periodicity' => [
-                'month' => 'Monatlich',
-                'year'  => 'Jährlich',
+                'fullmoon'      => 'Vollmond',
+                'fullmoon_name' => ':moon Vollmond',
+                'month'         => 'Monatlich',
+                'newmoon'       => 'Neumond',
+                'newmoon_name'  => ':moon Neumond',
+                'none'          => 'Keiner',
+                'year'          => 'Jährlich',
             ],
         ],
         'resets'    => [
@@ -214,5 +222,9 @@ return [
             'weather'       => 'Wetter',
         ],
         'title'             => 'Kalender :name',
+    ],
+    'sorters'       => [
+        'after' => 'Heute & danach',
+        'before'=> 'Heute & davor',
     ],
 ];

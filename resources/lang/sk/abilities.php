@@ -4,6 +4,17 @@ return [
     'abilities'     => [
         'title' => 'Schopnosti priradené :name',
     ],
+    'children'      => [
+        'actions'       => [
+            'add'   => 'Priradiť schopnosť k objektu',
+        ],
+        'create'        => [
+            'success'   => 'Schopnosť :name priradená k objektu.',
+            'title'     => 'Priradiť objekt k :name',
+        ],
+        'description'   => 'Objekty s touto schopnosťou',
+        'title'         => 'Objekty schopnosti :name',
+    ],
     'create'        => [
         'success'   => 'Schopnosť :name vytvorená.',
         'title'     => 'Nová schopnosť',
@@ -15,6 +26,9 @@ return [
         'success'   => 'Schopnosť :name upravená.',
         'title'     => 'Upraviť schopnosť :name',
     ],
+    'entities'      => [
+        'title' => 'Objekty so schopnosťou :name',
+    ],
     'fields'        => [
         'abilities' => 'Schopnosti',
         'ability'   => 'Schopnosť',
@@ -25,6 +39,8 @@ return [
     'helpers'       => [
         'descendants'   => 'Tento zoznam obsahuje všetky schopnosti, ktoré sú pod touto schopnosťou a nielen tie, ktoré sú priradené len priamo nej.',
         'nested'        => 'Vo vnorenom zobrazení vieš zoradiť tvoje schopnosti podľa nadradených schopností. Schopnosti bez nadradenej schopnosti sa zoradia štandardným spôsobom. Schopnosti s podradenými schopnosťami je možné rozkliknúť, dokiaľ nebudú existovať už žiadne ďalšie podradené schopnosti.',
+        'nested_parent' => 'Zobraziť schopnosti :parent',
+        'nested_without'=> 'Zobrazujú sa všetky schopnosti, ktoré nemajú nadradenú schopnosť. Kliknutím na riadok zobrazíš podradené schopnosti.',
     ],
     'index'         => [
         'add'           => 'Nová schopnosť',
@@ -40,6 +56,7 @@ return [
     'show'          => [
         'tabs'  => [
             'abilities' => 'Schopnosti',
+            'entities'  => 'Objekty',
         ],
         'title' => 'Schopnosť :name',
     ],

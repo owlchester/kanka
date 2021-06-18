@@ -7,7 +7,7 @@ return [
         'save'  => 'Gardar',
     ],
     'destroy'       => [
-        'success'   => 'Imaxe :name eliminada.',
+        'success'   => 'Imaxe ":name" eliminada.',
     ],
     'fields'        => [
         'created_by'    => 'Subida por',
@@ -24,7 +24,7 @@ return [
     'placeholders'  => [
         'search'    => 'Buscar nome de imaxe...',
     ],
-    'title'         => 'Galería da campaña :campaign',
+    'title'         => 'Galería da campaña ":campaign"',
     'update'        => [
         'success'   => 'Imaxe modificada.',
         'title'     => 'Detalles da imaxe',

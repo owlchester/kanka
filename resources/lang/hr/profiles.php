@@ -29,10 +29,12 @@ return [
         'links'     => [
             'community-vote'    => 'Glasanje zajednice',
             'news'              => 'Vijesti',
+            'updates'           => 'Kanka ažuriranja',
         ],
         'settings'  => [
             'news'          => 'Vijesti - budi obaviješten kada ima :news.',
             'newsletter'    => 'Bilten - primajte Kanka bilten.',
+            'updates'       => 'Ažuriranja - budi obaviješten kada se Kanka ažurira.',
             'votes'         => 'Glasanje zajednice - budi obaviješten čim je novo :vote dostupno.',
         ],
         'title'     => 'Bilteni',
@@ -50,6 +52,7 @@ return [
     'sections'      => [
         'delete'    => [
             'delete'    => 'Obriši moj račun',
+            'helper'    => 'Brisanjem računa izbrisat će se i sve kampanje čiji si jedini član. Ova je radnja trajna i ne može se poništiti.',
             'title'     => 'Obriši svoj račun',
             'warning'   => 'Brisanjem računa će se svi tvoji podaci izgubiti. Jesi li siguran/a?',
         ],

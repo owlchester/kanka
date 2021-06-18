@@ -4,7 +4,7 @@
     'breadcrumbs' => [
         ['url' => $entity->url('index'), 'label' => trans($entity->pluralType() . '.index.title')],
         ['url' => $entity->url('show'), 'label' => $entity->name],
-        ['url' => route('entities.entity_links.index', $entity->id), 'label' => trans('crud.tabs.links')],
+        ['url' => route('entities.assets', $entity->id), 'label' => trans('crud.tabs.assets')],
     ]
 ])
 

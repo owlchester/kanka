@@ -13,13 +13,30 @@
 ])
 @inject('campaign', 'App\Services\CampaignService')
 
+
+
+@section('entity-header-actions')
+    @can('inventory', $entity->child)
+        <div class="header-buttons">
+            <a href="{{ route('entities.inventories.create', ['entity' => $entity]) }}" class="btn btn-warning btn-sm"
+               data-toggle="ajax-modal" data-target="#entity-modal"
+               data-url="{{ route('entities.inventories.create', ['entity' => $entity]) }}"
+            >
+                <i class="fa fa-plus"></i> <span class="visible-lg-inline">{{ __('entities/inventories.actions.add') }}</span>
+            </a>
+        </div>
+    @endcan
+@endsection
+
+@include('entities.components.header', ['model' => $entity->child, 'entity' => $entity])
+
 @section('content')
     @include('partials.errors')
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-2">
             @include($entity->pluralType() . '._menu', ['active' => 'inventory', 'model' => $entity->child, 'name' => $entity->pluralType()])
         </div>
-        <div class="col-md-9">
+        <div class="col-md-10">
             <div class="box box-solid">
                 <div class="box-body">
                     <h2 class="page-header with-border">
@@ -27,19 +44,6 @@
                     </h2>
 
                     <p class="help-block">{{ __('entities/inventories.show.helper') }}</p>
-
-                    <div class="text-right">
-                            @can('inventory', $entity->child)
-                                <th class="text-right">
-                                    <a href="{{ route('entities.inventories.create', ['entity' => $entity]) }}" class="btn btn-primary btn-sm"
-                                       data-toggle="ajax-modal" data-target="#entity-modal"
-                                       data-url="{{ route('entities.inventories.create', ['entity' => $entity]) }}"
-                                    >
-                                        <i class="fa fa-plus"></i> <span class="visible-lg-inline">{{ __('entities/inventories.actions.add') }}</span>
-                                    </a>
-                                </th>
-                            @endcan
-                        </div>
 
                     <table class="table table-hover">
                         <thead>

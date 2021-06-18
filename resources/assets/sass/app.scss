@@ -179,7 +179,7 @@ table {
     font-weight: normal;
   }
 }
-.tab-content {
+.tab-content, .box-body {
   table {
     max-width: 100% !important;
   }
@@ -479,7 +479,7 @@ tr.entity-hidden {
   display: inline-block;
 }
 .entity-title {
-  margin: 0px;
+  margin: 0;
   .entity-image {
     display: inline-block;
     margin-right: 5px;
@@ -631,7 +631,7 @@ div.mce-fullscreen {
   min-width: 320px;
   text-align: left;
 
-  .entity-header {
+  .entity-tooltip-avatar {
     display: flex;
     align-items: center;
     align-content: stretch;
@@ -666,45 +666,6 @@ div.mce-fullscreen {
     font-size: 12pt;
     display: block;
   }
-}
-
-.panel-entity-files {
-  .well {
-    padding: 30px 0;
-    text-align: center;
-    border: 1px solid #eee;
-    border-radius: 7px;
-  }
-
-  .entity-files-drop {
-    cursor: pointer;
-  }
-
-  .entity-file-remove {
-    cursor: pointer;
-    &:hover {
-      color: #b31830;
-    }
-  }
-
-  .entity-file-name {
-    border: none;
-    background: none;
-    display: inline-block;
-    width: 95%;
-    margin-right: -20px;
-  }
-}
-.entity-file-rename {
-  cursor: pointer;
-  &:hover {
-    color: rgba(0, 0, 0, 0.7);
-  }
-}
-
-.entity-file {
-  display: block;
-  padding: 3px 6px;
 }
 
 .list-group-unbordered {
@@ -1133,6 +1094,12 @@ summary { display: list-item; }
 
 .table .table-actions .dropdown-toggle i {
   margin: 3px 10px;
+}
+
+.user-role-update {
+  .btn {
+    margin-bottom: 5px;
+  }
 }
 
 @media(min-width: 787px) {

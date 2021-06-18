@@ -1,27 +1,37 @@
 <?php
 
 return [
-    'age'           => [
+    'age'               => [
         'description'   => 'Podes ligar unha personaxe a un calendario da campaña dende a lapela Lembretes na páxina da personaxe. Dende aí, engade un novo lembrete e establece o tipo como Nacemento ou Morte para que a idade da personaxe sexa calculada automaticamente. Se tanto o nacemento como a morte están presentes, ámbalas dúas serán mostradas, así como a idade no momento da morte. Se só está establecido o nacemento, mostraranse a data e a idade actual. Se só está establecida a morte, mostraranse a data e os anos que pasaron dende a súa morte.',
         'title'         => 'Idade e Morte da personaxe',
     ],
-    'attributes'    => [
-        'con'           => 'Con',
-        'description'   => 'Usa atributos para representar valores non textuais asociados a unha entidade. Podes referenciar entidades dentro de atributos usando a sintaxe de mencións avanzadas :mention. Tamén podes referenciar outros atributos usando a sintaxe :attribute.',
-        'level'         => 'Nivel',
-        'link'          => 'Opcións de atributos',
-        'math'          => 'Tamén podes usar matemáticas básicas. Por exemplo, :example multiplicaría os atributos :level e :con desta entidade. Se queres arredondar cara arriba ou cara abaixo, podes usar :ceil ou :floor respectivamente.',
-        'pinned'        => 'Fixar un atributo usando a icona :icon fará que apareza no menú da entidade baixo a súa imaxe.',
-        'private'       => 'Os atributos privados usando o :icon serán visíbeis só para a administración da campaña.',
-        'title'         => 'Atributos',
+    'attributes'        => [
+        'con'               => 'Con',
+        'description'       => 'Usa atributos para representar valores non textuais asociados a unha entidade. Podes referenciar entidades dentro de atributos usando a sintaxe de mencións avanzadas :mention. Tamén podes referenciar outros atributos usando a sintaxe :attribute.',
+        'level'             => 'Nivel',
+        'link'              => 'Opcións de atributos',
+        'math'              => 'Tamén podes usar matemáticas básicas. Por exemplo, :example multiplicaría os atributos :level e :con desta entidade. Se queres arredondar cara arriba ou cara abaixo, podes usar :ceil ou :floor respectivamente.',
+        'name'              => 'Podes referenciar o nome da entidade con :name. Se xa existe un atributo con ese nome, usarase ese atributo no seu lugar.',
+        'pinned'            => 'Fixar un atributo usando a icona :icon fará que apareza no menú da entidade baixo a súa imaxe.',
+        'private'           => 'Os atributos privados usando o :icon serán visíbeis só para a administración da campaña.',
+        'random'            => 'Ao crear ou editar un padrón de atributos, podes definir atributos aleatorios. Estes poden ser un valor aleatorio entre dous números separados por :dash, ou un valor aleatorio dunha listaxe de valores separados por :comma. O valor do atributo é determinado ao aplicar o padrón a unha entidade, ou cando a entidade é gardada.',
+        'random_examples'   => 'Por exemplo, se queres un número entre o 1 e o 100, usa :number. Se queres un valor de entre unha serie de opcións, usa :list.',
+        'title'             => 'Atributos',
     ],
-    'dice'          => [
+    'dice'              => [
         'description'               => 'As tiradas de dados xenéricas pódense realizar escrebendo "d20", "4d4+4", "d%" para percentiles e "df" para dados "fudge".',
         'description_attributes'    => 'Tamén é posíbel obter un atributo dunha personaxe usando a sintaxe {character.nome_do_atributo}. Por exemplo, {character.nivel}d6+{character.sabiduria}.',
         'more'                      => 'Podes ver todas as opcións dispoñíbeis na páxina da extensión de tiradas de dados.',
         'title'                     => 'Tiradas de dados',
     ],
-    'filters'       => [
+    'entity_templates'  => [
+        'description'   => 'Ao crear novas entidades, podes crear unha basada nun padrón en vez de empezala dende cero. Para definir unha entidade como un padrón, ábrea e fai clic en :link no botón de :action arriba á dereita. Ao ver unha lista de entidades, os padróns dese tipo de entidade estarán dispoñíbeis xunto ao botón de :new. Podes ter múltiples padróns para cada tipo de entidade.',
+        'link'          => 'Como definir padróns',
+        'remove'        => 'Para eliminar unha entidade padrón, fai clic no botón de :remove que estará no lugar do :link previamente descrito.',
+        'title'         => 'Padróns de entidade',
+    ],
+    'filters'           => [
+        'clipboard'     => 'Cando os filtros están activos, o botón de copiar ao portapapeis tamén o está. Este botón copia os filtros ao teu portapapeis, e así podes usalos en filtros de complementos do taboleiro ou en filtros de accesos directos.',
         'description'   => 'Podes usar filtros para limitar o número de resultados que se mostran nas listas. Os campos de texto ofrecen opcións variadas para controlar en detalle o que é excluído polo filtro.',
         'empty'         => 'Escrebendo :tag nun campo buscará todas as entidades nas que ese campo está baleiro.',
         'ending_with'   => 'Colocando :tag ao final do texto, podes buscar todas as entidades que conteñen exactamente ese texto nese campo.',
@@ -30,25 +40,32 @@ return [
         'starting_with' => 'Colocando :tag antes do texto, podes buscar calquera entidade que non conteña ese texto nese campo.',
         'title'         => 'Como usar os filtros',
     ],
-    'link'          => [
+    'link'              => [
         'attributes'        => 'Podes referenciar os atributos dunha entidade escrebendo :code. Isto só funciona para os atributos existentes da entidade.',
-        'auto_update'       => 'As ligazóns a outras entidades serán actualizadas automaticamente cando o nome ou a descrición da entidade obxetivo cambie.',
+        'auto_update'       => 'As ligazóns a outras entidades serán actualizadas automaticamente cando o nome ou a descrición da entidade obxectivo cambie.',
         'description'       => 'Podes crea ligazóns a outras entidades facilmente usando os seguintes atallos.',
         'formatting'        => [
             'text'  => 'A lista de etiquetas e atributos HTML permitidas pode atoparse no noso :github.',
             'title' => 'Formatación',
         ],
         'friendly_mentions' => 'Crea ligazóns a outras entidades escrebendo :code e os primeiros caracteres dunha entidade para buscala. Isto insertará :example no editor de texto, e mostrarase como unha ligazón á entidade.',
-        'limitations'       => 'Ten en conta que, debido a limitacións técnicas, estes atallos non funcionan en dispositivos móbiles Android, a menos que se esté usando o novo editor Summernote. Podes cambiar o teu editor en nas opcións de Deseño.',
-        'mentions'          => 'Crea ligazóns a outras entidades escrebendo :code e os primeiros caracteres dunha entidade para buscala. Isto insertará :example no editor de texto. Para personalizar o nome co que se mostra a ligazón á entidade, podes escreber :example_name. Para establecer a subpáxina da entidade á que estás ligando, usa :example_page. Para establecer a lapela, usa :esample_tab.',
+        'limitations'       => 'Ten en conta que, debido a limitacións técnicas, estes atallos non funcionan en dispositivos móbiles Android, a menos que se esté usando o novo editor Summernote. Podes cambiar o teu editor nas opcións de Deseño.',
+        'mention_helpers'   => 'Se o nome da túa entidade contén un espazo, usa :example no lugar do espazo. Se queres buscar unha entidade con exactamente ese nome, escrebe :exact.',
+        'mentions'          => 'Crea ligazóns a outras entidades escrebendo :code e os primeiros caracteres dunha entidade para buscala. Isto insertará :example no editor de texto. Para personalizar o nome co que se mostra a ligazón á entidade, podes escreber :example_name. Para establecer a subpáxina da entidade á que estás ligando, usa :example_page. Para establecer a lapela, usa :example_tab.',
         'months'            => 'Escrebe :code para obter unha lista dos meses dos teus calendarios.',
         'title'             => 'Crear ligazóns a outras entidades e atallos.',
     ],
-    'map'           => [
+    'map'               => [
         'description'   => 'Subir un mapa a un Lugar habilitará o menú "Mapa" na páxina do Lugar, e unha ligazón directa ao mapa dende a páxina Lugares da campaña. Dende a vista de mapa, quen teña permisos de edición no Lugar poden activar o "Modo de edición", o cal lles permite colocar Puntos no mapa. Estes Puntos poden ligar a outras entidades ou ser simplemente etiquetas, e ter diferentes formas e tamaños.',
         'private'       => 'Un mapa pode ser marcado como privado pola administración da campaña. Isto permitirá ao resto de integrantes da campaña ver un Lugar, pero manter o mapa segredo.',
         'title'         => 'Mapas de Lugares',
     ],
-    'public'        => 'Aprende máis sobre campañas públicas vendo o vídeo tutorial en Youtube.',
-    'title'         => 'Consellos',
+    'public'            => 'Aprende máis sobre campañas públicas vendo o vídeo tutorial en Youtube.',
+    'title'             => 'Consellos',
+    'widget-filters'    => [
+        'description'   => 'Podes filtrar as entidades mostradas no complemento de "modificadas recentemente" proporcionando unha lista de campos da entidade e valores. Por exemplo, podes usar :example para filtrar as personaxes mortas do tipo NPC.',
+        'link'          => 'filtros de complemento',
+        'more'          => 'Podes copiar os valores da URL en listas de entidades. Por exemplo, ao ver as personaxes da campaña, filtra o tipo de personaxes que queres mostrar, e copia os valores que hai despois de :question na URL.',
+        'title'         => 'Filtros para complementos de taboleiro',
+    ],
 ];

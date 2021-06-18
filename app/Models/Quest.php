@@ -232,12 +232,12 @@ class Quest extends MiscModel
     /**
      * @return array
      */
-    public function menuItems($items = [])
+    public function menuItems(array $items = []): array
     {
         $campaign = CampaignLocalization::getCampaign();
 
         $count = $this->elements()->with('entity')->has('entity')->count();
-        $items['elements'] = [
+        $items['second']['elements'] = [
             'name' => 'quests.show.tabs.elements',
             'route' => 'quests.quest_elements.index',
             'count' => $count

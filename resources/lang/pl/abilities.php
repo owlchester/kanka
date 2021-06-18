@@ -4,6 +4,17 @@ return [
     'abilities'     => [
         'title' => 'Zdolności wywodzące się od :name',
     ],
+    'children'      => [
+        'actions'       => [
+            'add'   => 'Dodaj zdolność do elementu',
+        ],
+        'create'        => [
+            'success'   => 'Dodano elementowi zdolność :name',
+            'title'     => 'Dodaj elementowi zdolność :name',
+        ],
+        'description'   => 'Elementy posiadające tę zdolność',
+        'title'         => 'Elementy zdolności :name',
+    ],
     'create'        => [
         'success'   => 'Stworzono zdolność \':name\'.',
         'title'     => 'Nowa zdolność',

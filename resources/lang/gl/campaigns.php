@@ -4,7 +4,6 @@ return [
     'create'                            => [
         'description'           => 'Crear unha nova campaña',
         'helper'                => [
-            'first'     => 'Grazas por probar a nosa app! Antes de continuarmos, precisamos que nos digas unha cousa: <b>o nome da túa campaña</b>. Este será o nome do teu mundo que o diferencia dos demáis, polo tanto, precisa ser único. Se aínda non tes un bo nome, non te preocupes, <b>sempre podes cambialo máis tarde</b>, ou crear máis campañas.',
             'title'     => 'Dámosche a benvida a :name',
             'welcome'   => <<<'TEXT'
 Antes de continuar, escolle un nome para a campaña. Este é o nome do teu mundo. Se aínda non tes un bo nome, non te preocupes, sempre pode cambialo máis tarde ou crear máis campañas.
@@ -19,7 +18,7 @@ TEXT
     ],
     'destroy'                           => [
         'action'    => 'Eliminar campaña',
-        'helper'    => 'Só podes eliminar a campaña se es a súa única integrante.',
+        'helper'    => 'Só podes eliminar a campaña se non hai máis persoas nela.',
         'success'   => 'Campaña eliminada.',
     ],
     'edit'                              => [
@@ -112,12 +111,11 @@ TEXT
     ],
     'invites'                           => [
         'actions'               => [
-            'add'   => 'Convidar',
+            'add'   => 'Convidar por correo electrónico',
             'copy'  => 'Copiar a ligazón ao portapapeis',
             'link'  => 'Nova ligazón',
         ],
         'create'                => [
-            'button'        => 'Convidar',
             'buttons'       => [
                 'create'    => 'Crear convite',
                 'send'      => 'Enviar convite',
@@ -153,7 +151,7 @@ TEXT
             'validity'  => 'Cantas persoas poden usar esta ligazón antes de que se desactive. Déixao en branco para que non haxa límite.',
         ],
         'placeholders'          => [
-            'email' => 'Dirección de correo electrónico da persoa que queres convidar',
+            'email' => 'Enderezo de correo electrónico da persoa que queres convidar',
         ],
         'types'                 => [
             'email' => 'Correo electrónico',
@@ -196,15 +194,15 @@ TEXT
             'title'     => 'Estás vendo como :name',
         ],
         'invite'                => [
-            'description'   => 'Podes invitar amizades a unirse á túa campaña mediante unha ligazón de convite. Cando acepten o convite, serán engadidas como integrante no rol correspondente. Tamén podes enviarlles un convite mediante correo electrónico, sempre e cando non sexa unha dirección de Hotmail, xa que Hotmail sempre rexeita os correos de Kanka.',
+            'description'   => 'Podes invitar amizades a unirse á túa campaña mediante unha ligazón de convite. Cando acepten o convite, serán engadidas como integrante no rol correspondente. Tamén podes enviarlles un convite mediante correo electrónico, sempre e cando non sexa un enderezo de Hotmail, xa que Hotmail sempre rexeita os correos de Kanka.',
             'more'          => 'Podes engadir máis roles en :link',
             'roles_page'    => 'Páxina de roles',
             'title'         => 'Convidar',
         ],
         'roles'                 => [
             'member'    => 'Integrante',
-            'owner'     => 'Administradora',
-            'player'    => 'Xogadora',
+            'owner'     => 'Administración',
+            'player'    => 'Xogante',
             'public'    => 'Público',
             'viewer'    => 'Espectadora',
         ],
@@ -256,7 +254,7 @@ TEXT
             'users'         => 'Integrantes',
         ],
         'helper'        => [
-            '1' => 'Unha campaña pode ter tantos roles como queiras. As persoas co rol de "Administradora" teñen automaticamente acceso a todo dentro da campaña, pero todos os demáis roles poden ter permisos específicos en diferentes tipos de entidades (personaxes, lugares, etc.).',
+            '1' => 'Unha campaña pode ter tantos roles como queiras. As persoas co rol de "Administración" teñen automaticamente acceso a todo dentro da campaña, pero todos os demáis roles poden ter permisos específicos en diferentes tipos de entidades (personaxes, lugares, etc.).',
             '2' => 'Podes asignar permisos máis específicos a unha entidade mediante a lapela "Permisos". Esta lapela aparece unha vez a túa campaña ten varios roles ou integrantes.',
             '3' => 'Pódese usar un sistema de exclusión, no que se da acceso a todas as entidades, e marcar a caixa "Privada" nas entidades para ocultalas. Tamén se pode dar poucos permisos aos roles e configurar a visibilidade de cada entidade individualmente.',
         ],
@@ -323,7 +321,7 @@ TEXT
         'edit'          => [
             'success'   => 'Configuración da campaña actualizada.',
         ],
-        'helper'        => 'Todos os módulos dunha campaña poden ser habilitados ou deshabilitados a vontade. Deshabilitar un módulo simplemente ocultará todos os elementos da interface relacionados con el, e as entidades preexistentes seguirán existindo pero ocultas, no caso de que cambies de parecer. Este cambio afecta a todos os usuarios nunha campaña, incluíndo os Administradores.',
+        'helper'        => 'Todos os módulos dunha campaña poden ser habilitados ou deshabilitados a vontade. Deshabilitar un módulo simplemente ocultará todos os elementos da interface relacionados con el, e as entidades preexistentes seguirán existindo pero ocultas, no caso de que cambies de parecer. Este cambio afecta a todas as persoas integrantes dunha campaña, incluíndo a Administración.',
         'helpers'       => [
             'abilities'     => 'Crea habilidades (talentos, feitizos, poderes...) que poden ser asignados a entidades.',
             'calendars'     => 'Un lugar para definir os calendarios do teu mundo.',
@@ -332,6 +330,7 @@ TEXT
             'dice_rolls'    => 'Un xeito de tirar dados para quen usa Kanka nas súas partidas de rol. Este módulo está obsoleto.',
             'events'        => 'Celebracións, festivais, desastres, aniversarios, guerras...',
             'families'      => 'Clans ou familias, as súas relacións e as persoas que as forman.',
+            'inventories'   => 'Xestiona inventarios nas túas entidades.',
             'items'         => 'Armas, vehículos, reliquias, apócemas...',
             'journals'      => 'Observacións escritas por personaxes, ou notas de preparación para dirixir partidas.',
             'locations'     => 'Planetas, planos, continentes, ríos, estados, asentamentos, templos, tabernas...',

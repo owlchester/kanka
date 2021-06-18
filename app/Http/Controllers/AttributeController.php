@@ -49,6 +49,7 @@ class AttributeController extends CrudAttributeController
      */
     public function index(Entity $entity)
     {
+        dump('yo');
         $this->authorize('attributes', $entity);
         return $this->crudIndex($entity);
     }

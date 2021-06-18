@@ -26,8 +26,10 @@ return [
         'type'      => 'Typ',
     ],
     'helpers'       => [
-        'date'      => 'Toto pole môže obsahovať čokoľvek a nie je prepojené s kalendármi kampane. Na zobrazenie tejto udalosti v kalendári je nutné ju pridať do kalendára alebo do karty Pripomenutia tejto udalosti.',
-        'nested'    => 'Štandardne sa zobrazia udalosti bez nadradenej. Kliknutím na riadok udalosti zobrazíš jej podradené.',
+        'date'          => 'Toto pole môže obsahovať čokoľvek a nie je prepojené s kalendármi kampane. Na zobrazenie tejto udalosti v kalendári je nutné ju pridať do kalendára alebo do karty Pripomenutia tejto udalosti.',
+        'nested'        => 'Štandardne sa zobrazia udalosti bez nadradenej. Kliknutím na riadok udalosti zobrazíš jej podradené.',
+        'nested_parent' => 'Zobraziť udalosti :parent.',
+        'nested_without'=> 'Zobraziť všetky udalosti, ktoré nemajú nadradenú udalosť. Kliknutím na riadok zobrazíš podradené udalosti.',
     ],
     'index'         => [
         'add'           => 'Nová udalosť',

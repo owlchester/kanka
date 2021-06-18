@@ -9,20 +9,22 @@ return [
         'success'   => 'Relação de :name removida.',
     ],
     'fields'        => [
-        'attitude'  => 'Atitude',
-        'is_star'   => 'Fixado',
-        'relation'  => 'Relação',
-        'target'    => 'Alvo',
-        'two_way'   => 'Criar relação mútua',
+        'attitude'          => 'Atitude',
+        'is_star'           => 'Fixado',
+        'relation'          => 'Relação',
+        'target'            => 'Alvo',
+        'target_relation'   => 'Relação Alvo',
+        'two_way'           => 'Criar relação mútua',
     ],
     'helper'        => 'Estabeleça relações entre entidades com atitudes e visibilidade. Relações também podem ser fixadas no menu da entidade.',
     'hints'         => [
-        'attitude'  => 'Este campo opcional pode ser usado para definir a ordem na qual as relações aparecem, em ordem decrescente.',
-        'mirrored'  => [
+        'attitude'          => 'Este campo opcional pode ser usado para definir a ordem na qual as relações aparecem, em ordem decrescente.',
+        'mirrored'          => [
             'text'  => 'Esta relação é espelhada com :link',
             'title' => 'Espelhada',
         ],
-        'two_way'   => 'Se você selecionar para criar relação mútua, a mesma relação será criada no alvo. Entretanto, se você editar uma, a outra não será atualizada.',
+        'target_relation'   => 'A descrição da relação do alvo. Deixe em branco para usar esse texto da relação.',
+        'two_way'           => 'Se você selecionar para criar relação mútua, a mesma relação será criada no alvo. Entretanto, se você editar uma, a outra não será atualizada.',
     ],
     'placeholders'  => [
         'attitude'  => 'De -100 a100, com 100 sendo muito positiva',

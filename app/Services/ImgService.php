@@ -98,10 +98,10 @@ class ImgService
 
         $img = Str::before($img, '?');
         $full = $this->s3 . $img;
-        $thumborUrl = $this->crop . $full;
+        $thumborUrl = $this->crop . 'smart/' . $full;
         $sign = $this->sign($thumborUrl);
 
-        return config('thumbor.url') . $this->base . '/' . $sign . '/' . $this->crop
+        return config('thumbor.url') . $this->base . '/' . $sign . '/' . $this->crop . 'smart/'
             . 'src/' . urlencode($img)
             . ($this->nowebp() ? '?webpfallback' : null)
         ;

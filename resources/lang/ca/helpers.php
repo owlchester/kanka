@@ -31,6 +31,7 @@ return [
         'title'         => 'Plantilles d\'entitat',
     ],
     'filters'           => [
+        'clipboard'     => 'Si hi ha cap filtre, el botó de copiar s\'activa i permet copiar els filtres, per a utilitzar-los després als widgets del taulell o filtrar els enllaços de l\'accés directe.',
         'description'   => 'Es poden usar els filtres per a limitar la quantitat de resultats mostrats a les llistes. Es pot filtrar per més d\'un camp per a controlar detalladament què s\'exclou amb els filtres.',
         'empty'         => 'En escriure :tag a un camp, es buscaran totes les entitats on aquest camp estigui buit.',
         'ending_with'   => 'Posant una :tag al final del text, es busquen totes les altres entitats amb aquest text.',

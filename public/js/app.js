@@ -76565,10 +76565,11 @@ $(document).ready(function () {
   if (!window.kankaIsMobile.matches) {
     initTooltips();
   }
+  /*$('[data-toggle="popover"]').popover({
+      sanitize: false,
+  });*/
 
-  $('[data-toggle="popover"]').popover({
-    sanitize: false
-  });
+
   initSelect2();
   initSpectrum();
   initCheckboxSwitch();
@@ -76679,6 +76680,7 @@ $(document).ready(function () {
   initAjaxPagination();
   initTimelineToggle();
   initEntityNoteToggle();
+  initDynamicDelete();
   /**
    * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
    */
@@ -76692,6 +76694,7 @@ $(document).ready(function () {
     initTooltips();
     initCategories();
     initSpectrum();
+    initDynamicDelete();
     Object(_components_delete_confirm_js__WEBPACK_IMPORTED_MODULE_1__["default"])(); // Handle when opening the entity-creator ui
 
     entityCreatorUI();
@@ -76963,6 +76966,26 @@ function initSpectrum() {
     showInput: true,
     showPalette: true,
     allowEmpty: true
+  });
+}
+
+function initDynamicDelete() {
+  $('.btn-dynamic-delete').popover({
+    html: true,
+    placement: 'top',
+    sanitize: false
+  });
+  $('a[data-toggle="delete-form"]').unbind('click').click(function (e) {
+    e.preventDefault;
+    var target = $(this).data('target'); //console.log('target', target);
+
+    $(target).submit();
+  });
+  $('.btn-popover').popover({
+    html: true,
+    placement: 'bottom',
+    sanitize: false,
+    trigger: 'focus'
   });
 }
 /**
@@ -77650,6 +77673,8 @@ $(document).ready(function () {
   registerDatagridSorter();
   registerPermissionToggler();
   registerEntityNotePerms();
+  registerStoryActions();
+  registerStoryLoadMore();
 });
 /**
  * Re-register any events that need to be binded when a modal is loaded
@@ -78292,6 +78317,63 @@ function initSpectrum() {
     allowEmpty: true
   });
 }
+/*
+ *
+ */
+
+
+function registerStoryActions() {
+  var posts = $('.entity-note-body');
+  $('.btn-post-collapse').unbind('click').click(function (e) {
+    posts.each(function (i) {
+      if ($(this).hasClass('in')) {
+        $(this).removeClass('in');
+        $(this).prev().find('.fa-chevron-up').hide();
+        $(this).prev().find('.fa-chevron-down').show();
+      }
+    });
+    return false;
+  });
+  $('.btn-post-expand').unbind('click').click(function (e) {
+    posts.each(function (i) {
+      if (!$(this).hasClass('in')) {
+        $(this).addClass('in');
+        $(this).prev().find('.fa-chevron-up').show();
+        $(this).prev().find('.fa-chevron-down').hide();
+      }
+    });
+    return false;
+  });
+}
+/*
+ *
+ */
+
+
+function registerStoryLoadMore() {
+  $('.story-load-more').click(function (e) {
+    var btn = $(this);
+    e.preventDefault();
+    $('#story-more-spinner').show();
+    $(this).hide();
+    $.ajax({
+      url: $(this).data('url')
+    }).done(function (result, textStatus, xhr) {
+      btn.parent().remove();
+
+      if (result) {
+        $('.entity-notes').append(result);
+        registerStoryLoadMore();
+        registerStoryActions();
+      }
+    }).fail(function (result, textStatus, xhr) {
+      //console.log('modal ajax error', result);
+      $('#story-more-spinner').hide();
+      btn.show();
+    });
+    return false;
+  });
+}
 
 /***/ }),
 
@@ -78729,6 +78811,17 @@ $(document).ready(function () {
 
 /***/ }),
 
+/***/ "./resources/assets/sass/assets.scss":
+/*!*******************************************!*\
+  !*** ./resources/assets/sass/assets.scss ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/assets/sass/auth.scss":
 /*!*****************************************!*\
   !*** ./resources/assets/sass/auth.scss ***!
@@ -78905,6 +78998,17 @@ $(document).ready(function () {
 
 /***/ }),
 
+/***/ "./resources/assets/sass/story.scss":
+/*!******************************************!*\
+  !*** ./resources/assets/sass/story.scss ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/assets/sass/subscription.scss":
 /*!*************************************************!*\
   !*** ./resources/assets/sass/subscription.scss ***!
@@ -78972,9 +79076,9 @@ $(document).ready(function () {
 /***/ }),
 
 /***/ 0:
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/bootstrap.scss ./resources/assets/sass/vendor.scss ./resources/assets/sass/app.scss ./resources/assets/sass/app-rtl.scss ./resources/assets/sass/abilities.scss ./resources/assets/sass/export.scss ./resources/assets/sass/map.scss ./resources/assets/sass/map-v2.scss ./resources/assets/sass/map-v3.scss ./resources/assets/sass/subscription.scss ./resources/assets/sass/conversation.scss ./resources/assets/sass/gallery.scss ./resources/assets/sass/front.scss ./resources/assets/sass/auth.scss ./resources/assets/sass/front-rtl.scss ./resources/assets/sass/front/critical.scss ./resources/assets/sass/community-votes.scss ./resources/assets/sass/relations.scss ./resources/assets/sass/dashboard.scss ./resources/assets/sass/settings.scss ./resources/assets/sass/themes/future.scss ./resources/assets/sass/themes/dark.scss ./resources/assets/sass/themes/midnight.scss ./resources/assets/sass/tinymce.scss ./resources/assets/sass/freyja/freyja.scss ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/bootstrap.scss ./resources/assets/sass/vendor.scss ./resources/assets/sass/app.scss ./resources/assets/sass/app-rtl.scss ./resources/assets/sass/abilities.scss ./resources/assets/sass/story.scss ./resources/assets/sass/assets.scss ./resources/assets/sass/export.scss ./resources/assets/sass/map.scss ./resources/assets/sass/map-v2.scss ./resources/assets/sass/map-v3.scss ./resources/assets/sass/subscription.scss ./resources/assets/sass/conversation.scss ./resources/assets/sass/gallery.scss ./resources/assets/sass/front.scss ./resources/assets/sass/auth.scss ./resources/assets/sass/front-rtl.scss ./resources/assets/sass/front/critical.scss ./resources/assets/sass/community-votes.scss ./resources/assets/sass/relations.scss ./resources/assets/sass/dashboard.scss ./resources/assets/sass/settings.scss ./resources/assets/sass/themes/future.scss ./resources/assets/sass/themes/dark.scss ./resources/assets/sass/themes/midnight.scss ./resources/assets/sass/tinymce.scss ./resources/assets/sass/freyja/freyja.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -78984,6 +79088,8 @@ __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/app.scss */"./resources/assets/sass/app.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/app-rtl.scss */"./resources/assets/sass/app-rtl.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/abilities.scss */"./resources/assets/sass/abilities.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/story.scss */"./resources/assets/sass/story.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/assets.scss */"./resources/assets/sass/assets.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/export.scss */"./resources/assets/sass/export.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/map.scss */"./resources/assets/sass/map.scss");
 __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/map-v2.scss */"./resources/assets/sass/map-v2.scss");

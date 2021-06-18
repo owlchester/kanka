@@ -19,7 +19,6 @@
 }
 
 .content-wrapper p {
-  text-align: justify;
   color: #eee;
 }
 
@@ -71,11 +70,6 @@
 .panel .panel-body ul,
 .timeline-item .panel-body ul {
   color: #eee;
-}
-
-.panel-entity-files .well {
-  background-color: #333;
-  color: #fff;
 }
 
 .filters {
@@ -610,6 +604,12 @@ footer img.logo-white {
   color: white;
 }
 
+.well {
+  background-color: #0a121b;
+  color: #fff;
+  border: none;
+}
+
 body {
   background-color: #061F2F;
   color: #d3d4d4;
@@ -822,5 +822,9 @@ a:hover {
 
 .panel-body .preview:before {
   background: linear-gradient(transparent 0px, #0a121b) !important;
+}
+
+.gallery ul li .image-preview .gallery-folder .text {
+  color: #333;
 }
 

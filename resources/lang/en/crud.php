@@ -15,79 +15,17 @@ return [
         'go_to'             => 'Go to :name',
         'json-export'       => 'Export (JSON)',
         'manage_links'      => 'Manage Links',
-        'move'              => 'Change or Move',
+        'move'              => 'Move',
         'new'               => 'New',
+        'new_post'          => 'New entity note',
         'next'              => 'Next',
         'reset'             => 'Reset',
+        'transform'         => 'Transform',
     ],
     'add'                       => 'Add',
     'alerts'                    => [
         'copy_attribute'    => 'The attribute\'s mention was copied to your clipboard.',
         'copy_mention'      => 'The entity\'s advanced mention was copied to your clipboard.',
-    ],
-    'attributes'                => [
-        'actions'       => [
-            'apply_template'    => 'Apply an Attribute Template',
-            'manage'            => 'Manage',
-            'more'              => 'More options',
-            'remove_all'        => 'Delete All',
-        ],
-        'errors'        => [
-            'loop'  => 'There is an endless loop in this attribute calculation!',
-        ],
-        'fields'        => [
-            'attribute'             => 'Attribute',
-            'community_templates'   => 'Community Templates',
-            'is_private'            => 'Private Attributes',
-            'is_star'               => 'Pinned',
-            'template'              => 'Template',
-            'value'                 => 'Value',
-        ],
-        'helpers'       => [
-            'delete_all'    => 'Are you sure you want to delete all of this entity\'s attributes?',
-        ],
-        'hints'         => [
-            'is_private'    => 'You can hide all the attributes of an entity for all members outside of the admin role by making it private.',
-        ],
-        'index'         => [
-            'success'   => 'Attributes for :entity updated.',
-            'title'     => 'Attributes for :name',
-        ],
-        'placeholders'  => [
-            'attribute' => 'Number of conquests, Challenge Rating, Initiative, Population',
-            'block'     => 'Block name',
-            'checkbox'  => 'Checkbox name',
-            'icon'      => [
-                'class' => 'FontAwesome or RPG Awesome class: fas fa-users',
-                'name'  => 'Icon name',
-            ],
-            'random'    => [
-                'name'  => 'Attribute name',
-                'value' => '1-100 or list of values separated by a comma',
-            ],
-            'section'   => 'Section name',
-            'template'  => 'Select a template',
-            'value'     => 'Value of the attribute',
-        ],
-        'template'      => [
-            'success'   => 'Attribute Template :name applied to :entity',
-            'title'     => 'Apply an Attribute Template to :name',
-        ],
-        'types'         => [
-            'attribute' => 'Attribute',
-            'block'     => 'Block',
-            'checkbox'  => 'Checkbox',
-            'icon'      => 'Icon',
-            'random'    => 'Random',
-            'section'   => 'Section',
-            'text'      => 'Multiline Text',
-        ],
-        'visibility'    => [
-            'entry'     => 'Attribute is displayed on the entity menu.',
-            'private'   => 'Attribute only visible to members of the "Admin" role.',
-            'public'    => 'Attribute visible to all members.',
-            'tab'       => 'Attribute is displayed only on the Attributes tab.',
-        ],
     ],
     'boosted'                   => 'Boosted',
     'boosted_campaigns'         => 'Boosted Campaigns',
@@ -151,11 +89,12 @@ return [
         'empty' => 'Nothing to show yet.',
     ],
     'delete_modal'              => [
-        'close'         => 'Close',
-        'delete'        => 'Delete',
-        'description'   => 'Are you sure you want to remove :tag?',
-        'mirrored'      => 'Remove mirrored relation.',
-        'title'         => 'Delete confirmation',
+        'close'             => 'Close',
+        'delete'            => 'Remove',
+        'description'       => 'Are you sure you want to remove :tag?',
+        'description_final' => 'Are you sure you want to remove :tag? This action cannot be undone.',
+        'mirrored'          => 'Remove mirrored relation.',
+        'title'             => 'Removal confirmation',
     ],
     'destroy_many'              => [
         'success'   => 'Deleted :count entity|Deleted :count entities.',
@@ -205,7 +144,9 @@ return [
         'is_private_v2'         => 'Only show this to members of the campaign\'s :admin-role. This overrides any other permission.',
         'is_star'               => 'Pinned',
         'item'                  => 'Item',
+        'journal'               => 'Journal',
         'location'              => 'Location',
+        'locations'             => ':first in :second',
         'map'                   => 'Map',
         'name'                  => 'Name',
         'organisation'          => 'Organisation',
@@ -301,30 +242,6 @@ return [
     'legacy'                    => 'Legacy',
     'linking_help'              => 'How can I link to other entities?',
     'manage'                    => 'Manage',
-    'move'                      => [
-        'errors'        => [
-            'permission'        => 'You aren\'t allowed to create entities of that type in the target campaign.',
-            'same_campaign'     => 'You need to select another campaign to move the entity to.',
-            'unknown_campaign'  => 'Unknown campaign.',
-        ],
-        'fields'        => [
-            'campaign'  => 'New campaign',
-            'copy'      => 'Make a copy',
-            'target'    => 'New type',
-        ],
-        'hints'         => [
-            'campaign'  => 'You can also try to move this entity to another campaign.',
-            'copy'      => 'Select this option if you want to create copy in the new campaign.',
-            'target'    => 'Please be aware that some data might be lost when moving an element from one type to another.',
-        ],
-        'panels'        => [
-            'change'    => 'Change entity type',
-            'move'      => 'Move to another campaign',
-        ],
-        'success'       => 'Entity \':name\' moved.',
-        'success_copy'  => 'Entity \':name\' copied.',
-        'title'         => 'Change or Move :name',
-    ],
     'new_entity'                => [
         'error' => 'Please review your values.',
         'fields'=> [
@@ -398,7 +315,7 @@ return [
     ],
     'relations'                 => [
         'actions'   => [
-            'add'   => 'Add a relation',
+            'add'   => 'New relation',
         ],
         'fields'    => [
             'location'  => 'Location',
@@ -420,6 +337,7 @@ return [
     'superboosted_campaigns'    => 'Superboosted Campaigns',
     'tabs'                      => [
         'abilities'     => 'Abilities',
+        'assets'        => 'Assets',
         'attributes'    => 'Attributes',
         'boost'         => 'Boost',
         'calendars'     => 'Calendars',
@@ -432,9 +350,11 @@ return [
         'menu'          => 'Menu',
         'notes'         => 'Entity Notes',
         'permissions'   => 'Permissions',
+        'profile'       => 'Profile',
         'quests'        => 'Quests',
         'relations'     => 'Relations',
         'reminders'     => 'Reminders',
+        'story'         => 'Story',
         'timelines'     => 'Timelines',
         'tooltip'       => 'Tooltip',
     ],

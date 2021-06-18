@@ -199,6 +199,7 @@ TEXT
             'roles_page'    => 'Roles page',
             'title'         => 'Invite',
         ],
+        'manage_roles'          => 'Manage user roles',
         'roles'                 => [
             'member'    => 'Member',
             'owner'     => 'Admin',
@@ -208,6 +209,10 @@ TEXT
         ],
         'switch_back_success'   => 'You are now back to your original user.',
         'title'                 => 'Campaign :name Members',
+        'updates'               => [
+            'added'     => 'Role :role added to :user.',
+            'removed'   => 'Role :role removed from :user.',
+        ],
         'your_role'             => 'Your role: <i>:role</i>',
     ],
     'open_campaign'                     => [

@@ -40,7 +40,11 @@ class EntityEventController extends Controller
      */
     public function index(Entity $entity)
     {
-        return redirect()->to($entity->url());
+        $this->authorize('view', $entity->child);
+
+        return view('entities.pages.reminders.index', compact(
+            'entity',
+        ));
     }
 
     /**
@@ -90,12 +94,12 @@ class EntityEventController extends Controller
         $next = request()->post('next', false);
         if ($next == 'entity.events') {
             return redirect()
-                ->to($entity->url('show', 'tab_calendars'))
+                ->route('entities.entity_events.index', $entity)
                 ->with('success', trans('calendars.event.create.success'));
         }
 
         return redirect()
-            ->route($entity->pluralType() . '.show', [$entity->entity_id, '#calendars'])
+            ->route('entities.entity_events.index', $entity)
             ->with('success', trans('calendars.event.create.success'));
     }
 
@@ -164,7 +168,7 @@ class EntityEventController extends Controller
                 ->with('success', trans('calendars.event.edit.success'));
         } elseif ($next == 'entity.events') {
             return redirect()
-                ->to($entity->url('show', 'tab_calendars'))
+                ->route('entities.entity_events.index', $entity)
                 ->with('success', trans('calendars.event.edit.success'));
         } elseif (Str::startsWith($next, 'calendar.')) {
             $id = Str::after($next, 'calendar.');
@@ -195,7 +199,7 @@ class EntityEventController extends Controller
 
         } elseif ($next == 'entity.events') {
             return redirect()
-                ->to($entity->url('show', 'tab_calendars'))
+                ->route('entities.entity_events.index', $entity)
                 ->with('success', $success);
         }
 
@@ -206,7 +210,8 @@ class EntityEventController extends Controller
                 ->with('success', $success);
         }
 
-        return redirect()->route($entity->pluralType() . '.show', [$entity->child->id, 'tab' => 'calendars'])
+        return redirect()
+            ->route('entities.entity_events.index', $entity)
             ->with('success', $success);
     }
 }

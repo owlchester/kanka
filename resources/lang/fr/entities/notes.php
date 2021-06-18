@@ -22,14 +22,10 @@ return [
         'collapsed' => 'Fermer la note d\'entité par défault',
         'creator'   => 'Créé par',
         'entry'     => 'Entrée',
-        'is_pinned' => 'Épinglé',
         'name'      => 'Nom',
-        'position'  => 'Position épinglée',
     ],
     'hint'          => 'Les informations qui n\'entrent pas vraiment dans les champs pré-définis ou qui doivent être privées peuvent être ajoutées en tant que Note.',
-    'hints'         => [
-        'is_pinned' => 'Les notes d\'entités épinglées sont affichées sous le text d\'une entité. Le champ position épinglé permet de contrôler dans quel ordre les notes sont affichées.',
-    ],
+    'hints'         => [],
     'index'         => [
         'title' => 'Notes pour :name',
     ],

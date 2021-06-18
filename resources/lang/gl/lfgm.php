@@ -12,6 +12,6 @@ return [
         'successes' => [
             'sync'  => 'Calendario LFGM sincronizado.',
         ],
-        'title'     => 'Subcronización de campaña con LookingForGM.com',
+        'title'     => 'Sincronización de campaña con LookingForGM.com',
     ],
 ];

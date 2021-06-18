@@ -6,7 +6,9 @@ return [
         'add_intercalary'   => 'Dodaj dni dodatkowe',
         'add_month'         => 'Dodaj miesiąc',
         'add_moon'          => 'Dodaj księżyc',
+        'add_reminder'      => 'Dodaj przypomnienie',
         'add_season'        => 'Dodaj porę roku',
+        'add_weather'       => 'Dodaj pogodę',
         'add_week'          => 'Dodaj tydzień specjalny',
         'add_weekday'       => 'Dodaj dzień tygodnia',
         'add_year'          => 'Dodaj nazwę roku',
@@ -102,6 +104,7 @@ return [
         'start_offset'  => 'Domyślnie kalendarz zaczyna się pierwszego dnia roku 0. Liczba w tym polu zmienia położenie pierwszego dnia kalendarza.',
     ],
     'hints'         => [
+        'event_length'      => 'Czas trwania wydarzenia. Nie może być dłuższy, niż dwa miesiące.',
         'intercalary'       => 'Dni, których nie wlicza się do miesięcy oraz tygodni. Wpływają jednak na fazy księżyca.',
         'is_incrementing'   => 'Kalendarze, którym zaznaczono tę opcję, automatycznie przesuwają w przód datę każdego dnia o 00:00 UTC.',
         'is_recurring'      => 'Wydarzenie może być cykliczne. Nastąpi wówczas tego samego dnia każdego kolejnego roku.',
@@ -136,8 +139,13 @@ return [
     'options'       => [
         'events'    => [
             'recurring_periodicity' => [
-                'month' => 'Co miesiąc',
-                'year'  => 'Co rok',
+                'fullmoon'      => 'Pełnia',
+                'fullmoon_name' => 'Pełnia księżyca :moon',
+                'month'         => 'Co miesiąc',
+                'newmoon'       => 'Nów',
+                'newmoon_name'  => 'Nów księżyca :moon',
+                'none'          => 'Brak',
+                'year'          => 'Co rok',
             ],
         ],
         'resets'    => [
@@ -214,5 +222,9 @@ return [
             'weather'       => 'Pogoda',
         ],
         'title'             => 'Kalendarz :name',
+    ],
+    'sorters'       => [
+        'after' => 'Dziś i wcześniej',
+        'before'=> 'Dziś i później',
     ],
 ];

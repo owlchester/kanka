@@ -19,6 +19,7 @@ use App\Traits\TooltipTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use RichanFongdasen\EloquentBlameable\BlameableTrait;
 
@@ -102,6 +103,9 @@ class Entity extends Model
      * @var bool
      */
     public $permissionGrantSelf = false;
+
+    /** @var bool|string */
+    protected $cachedPluralName = false;
 
     /**
      * Get the child entity
@@ -226,7 +230,7 @@ class Entity extends Model
         }
         $text = $this->child->tooltipAddTags($text, $this->tags);
 
-        return "<div class='entity-header'>$avatar<div class='entity-names'>" . $name . $subtitle . '</div></div>' . $text;
+        return "<div class='entity-tooltip-avatar'>$avatar<div class='entity-names'>" . $name . $subtitle . '</div></div>' . $text;
     }
 
     /**
@@ -271,11 +275,15 @@ class Entity extends Model
     }
 
     /**
+     * Get the plural name of the entity for routes
      * @return string
      */
     public function pluralType(): string
     {
-        return Str::plural($this->type);
+        if ($this->cachedPluralName !== false) {
+            return $this->cachedPluralName;
+        }
+        return $this->cachedPluralName = Str::plural($this->type);
     }
 
     /**
@@ -351,6 +359,21 @@ class Entity extends Model
     }
 
     /**
+     * Entity assets: files and links
+     * @return array
+     */
+    public function assets(): Collection
+    {
+        /** @var Collection $assets */
+        $assets = $this->files;
+        $assets = $assets->merge($this->links);
+        //$assets
+        return $assets->sort(function ($a, $b) {
+            return strcmp($a->name, $b->name);
+        });
+    }
+
+    /**
      * @param bool $superboosted
      * @return bool
      */
@@ -365,5 +388,13 @@ class Entity extends Model
         }
 
         return false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasLinks(): bool
+    {
+        return $this->links->count() > 0;
     }
 }

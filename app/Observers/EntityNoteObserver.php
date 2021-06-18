@@ -36,6 +36,10 @@ class EntityNoteObserver
      */
     public function saving(EntityNote $entityNote)
     {
+        if (!$entityNote->savingObserver) {
+            return;
+        }
+
         $entityNote->entry = $this->purify(Mentions::codify($entityNote->entry));
 
         // Is private hook for non-admin (who can't set is_private)

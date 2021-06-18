@@ -330,6 +330,7 @@ TEXT
             'dice_rolls'    => 'Una manera de manejar las tiradas de dados para aquellos que usan Kanka para campañas de rol.',
             'events'        => 'Celebraciones, festivales, desastres, cumpleaños, guerras...',
             'families'      => 'Clanes o familias, sus relaciones y sus miembros.',
+            'inventories'   => 'Gestiona el inventario de tus entidades.',
             'items'         => 'Armas, vehículos, reliquias, pociones...',
             'journals'      => 'Observaciones escritas por los personajes, o preparación de la sesión del máster.',
             'locations'     => 'Planetas, planos, continentes, ríos, estados, asentamientos, templos, tabernas...',
