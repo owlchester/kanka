@@ -44,6 +44,9 @@ return [
         'template'  => 'Sélectionner un modèle',
         'value'     => 'Valeur de l\'attribut',
     ],
+    'show'          => [
+        'title' => 'Attributs de :name',
+    ],
     'template'      => [
         'success'   => 'Modèle d\'attribut :name appliqué pour :entity.',
         'title'     => 'Appliquer un modèle d\'attribut pour :name',
@@ -56,6 +59,9 @@ return [
         'random'    => 'Aléatoire',
         'section'   => 'Section',
         'text'      => 'Texte multiligne',
+    ],
+    'update'        => [
+        'success'   => 'Les attributs de :entity ont été modifiés.',
     ],
     'visibility'    => [
         'entry'     => 'Attribut affiché sur le menu d\'entité.',
