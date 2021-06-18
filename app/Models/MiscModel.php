@@ -335,11 +335,11 @@ abstract class MiscModel extends Model
         $items['first']['story'] = [
             'name' => 'crud.tabs.story',
             'route' => $this->entity->pluralType() . '.show',
-            'button' => [
+            'button' => auth()->check() && auth()->user()->can('update', $this) ? [
                 'url' => route('entities.story.reorder', $this->entity->id),
                 'icon' => 'fa fa-cog',
                 'tooltip' => __('entities/story.reorder.icon_tooltip'),
-            ],
+            ] : null,
         ];
 
 
