@@ -1,5 +1,5 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('entities/entry.update.title', ['name' => $entity->name]),
+    'title' => __('entities/story.update.title', ['entity' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
         ['url' => $entity->url('index'), 'label' => __($entity->pluralType() . '.index.title')],

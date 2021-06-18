@@ -220,7 +220,7 @@ Route::group([
 
         // Entity update entry
         Route::get('/entities/{entity}/entry', [\App\Http\Controllers\Entity\EntryController::class, 'edit'])->name('entities.entry.edit');
-        Route::post('/entities/{entity}/entry', [\App\Http\Controllers\Entity\EntryController::class, 'update'])->name('entities.entry.update');
+        Route::patch('/entities/{entity}/entry', [\App\Http\Controllers\Entity\EntryController::class, 'update'])->name('entities.entry.update');
 
         Route::get('/entities/{entity}/relations_map', 'Entity\RelationController@map')->name('entities.relations_map');
 
