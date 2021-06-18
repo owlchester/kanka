@@ -207,19 +207,19 @@ class Entity extends Model
         }
         if (empty($text)) {
             $text = $this->child->entry();
-            $text = preg_replace("/\s|&nbsp;/",'_', $text);
-            dd($text);
+            $text = preg_replace("/\s|&nbsp;/",' ', $text);
+            //dd($text);
             $text = str_replace(['</h', '</p', '<br'], [' </h', ' </p', ' <br'], $text);
-            dump('before');
-            var_dump($text);
+            /*dump('before');
+            var_dump($text);*/
 
             $text = strip_tags($text);
-            dump('after strip');
-            var_dump($text);
+            /*dump('after strip');
+            var_dump($text);*/
             $text = preg_replace('/\s+/', ' ', $text);
-            dump('dupli whitespace');
+            /*dump('dupli whitespace');
             var_dump($text);
-            dd($text);
+            dd($text);*/
             $text = Str::limit($text, 500);
         }
 
