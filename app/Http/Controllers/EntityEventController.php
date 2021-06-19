@@ -8,10 +8,14 @@ use App\Models\Calendar;
 use App\Models\Entity;
 use App\Models\EntityEvent;
 use App\Services\CalendarService;
+use App\Traits\GuestAuthTrait;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class EntityEventController extends Controller
 {
+    use GuestAuthTrait;
+
     /**
      * @var string
      */
@@ -40,7 +44,11 @@ class EntityEventController extends Controller
      */
     public function index(Entity $entity)
     {
-        $this->authorize('view', $entity->child);
+        if (Auth::check()) {
+            $this->authorize('view', $entity->child);
+        } else {
+            $this->authorizeForGuest('read', $entity->child, $entity->child->getEntityType());
+        }
 
         return view('entities.pages.reminders.index', compact(
             'entity',

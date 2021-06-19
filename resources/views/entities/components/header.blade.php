@@ -4,6 +4,15 @@
  * @var \App\Models\Entity $entity
  * @var \App\Models\Tag $tag
  */
+
+
+if ($model instanceof \App\Models\MenuLink) {
+    ?>
+    @include('entities.components.menu_link_header')
+    <?php
+    return;
+}
+
 if (!isset($entity)) {
     $entity = $model->entity;
 }
