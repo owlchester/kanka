@@ -26,7 +26,7 @@
                 @endif
             </div>
         </div>
-        <div class="entity-note-body box-body collapse @if(!$note->collapsed()) in @endif" id="entity-note-body-{{ $note->id }}">
+        <div class="entity-note-body entity-content box-body collapse @if(!$note->collapsed()) in @endif" id="entity-note-body-{{ $note->id }}">
             {!! $note->entry() !!}
         </div>
     </div>

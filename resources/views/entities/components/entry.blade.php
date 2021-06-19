@@ -13,7 +13,7 @@
             @endif
         </div>
     </div>
-    <div class="box-body">
+    <div class="box-body entity-content">
         {!! $model->entry() !!}
     </div>
 </div>

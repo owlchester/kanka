@@ -46,7 +46,7 @@ $specificPreview = 'dashboard.widgets.previews.' . $entity->type;
 
         </h3>
     </div>
-    <div class="panel-body">
+    <div class="panel-body entity-content">
         @if ($widget->conf('full') === '1')
             {!! $model->entry() !!}
 
