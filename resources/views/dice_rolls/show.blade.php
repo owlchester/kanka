@@ -4,7 +4,6 @@
     </div>
 
     <div class="col-md-8">
-        @include('entities.components.entry')
         @include('entities.components.notes')
 
         <div class="box box-solid">
