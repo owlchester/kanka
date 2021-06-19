@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\Note $model */?>
 <div class="row">
     <div class="col-md-2">
-        @include('maps._menu')
+        @include('tags._menu', ['active' => 'story'])
     </div>
 
     <div class="col-md-8">

@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-md-2">
-        @include('locations._menu')
+        @include('locations._menu', ['active' => 'story'])
     </div>
 
 

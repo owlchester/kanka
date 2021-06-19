@@ -3,7 +3,7 @@
     <div class="col-md-2">
 
         @include('entities.components.pins')
-        @include('calendars._menu')
+        @include('calendars._menu', ['active' => 'story'])
     </div>
 
 

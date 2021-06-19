@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-2">
-        @include('timelines._menu')
+        @include('timelines._menu', ['active' => 'story'])
     </div>
 
 

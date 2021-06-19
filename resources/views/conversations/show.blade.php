@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\Conversation $model */ ?>
 <div class="row">
     <div class="col-md-2">
-        @include('conversations._menu')
+        @include('conversations._menu', ['active' => 'story'])
     </div>
 
     <div class="col-md-8">

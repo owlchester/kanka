@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-2">
-        @include('attribute_templates._menu')
+        @include('attribute_templates._menu', ['active' => 'story'])
     </div>
 
     <div class="col-md-10">

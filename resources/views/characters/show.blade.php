@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\Character $model */?>
 <div class="row">
     <div class="col-md-2">
-        @include('characters._menu')
+        @include('characters._menu', ['active' => 'story'])
     </div>
 
     <div class="col-md-8">

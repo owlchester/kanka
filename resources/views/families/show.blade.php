@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-2">
-        @include('families._menu')
+        @include('families._menu', ['active' => 'story'])
     </div>
 
 
