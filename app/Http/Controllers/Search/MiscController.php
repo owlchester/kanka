@@ -238,6 +238,7 @@ class MiscController extends Controller
                     ->get();
 
         //format results for frontend select
+        $formatted = [];
         foreach ($models as $model) {
             $format = [
                 'id' => $model->id,
