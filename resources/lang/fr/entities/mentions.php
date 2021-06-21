@@ -8,7 +8,7 @@ return [
     'helper'            => 'Cette liste affiche les entités qui mentionnent cette entité dans leur description.',
     'mentioned_in'      => 'Mentionné dans :count entité(s).',
     'mentioned_in_v2'   => 'Cette entité est mentionnée dans :count entités, notes d\'entités, ou campagnes. :more.',
-    'see_more'          => 'Affichier les détails',
+    'see_more'          => 'Afficher les détails',
     'show'              => [
         'title' => 'Mention d\'entité :name',
     ],
