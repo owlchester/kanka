@@ -1,6 +1,6 @@
 
-<div class="box box-solid">
-    <div class="box-header  with-border">
+<div class="box box-solid box-entity-entry">
+    <div class="box-header with-border">
         <h3 class="box-title">{{ __('crud.fields.entry') }}</h3>
 
         <div class="box-tools">

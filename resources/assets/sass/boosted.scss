@@ -46,6 +46,8 @@
     .entity-name {
       margin: 0;
       overflow: visible;
+      max-height: unset;
+      word-break: break-all;
     }
 
     .entity-name-icons {
@@ -56,6 +58,7 @@
       margin-left: 15px;
       font-size: 18px;
       cursor: pointer;
+      //margin-bottom: 15px;
     }
 
     .btn-group.open .dropdown-toggle {
@@ -136,13 +139,43 @@
 
 @media (max-width: 787px) {
  .entity-header {
+   display: block;
+   .col-md-2 {
+     display: block;
+     float: left;
+   }
    .entity-image {
      width: 100px;
      margin-bottom: 10px;
    }
 
+   .entity-header-col {
+     display: block;
+   }
+
+   .entity-name-header {
+     display: block;
+
+     .entity-name-icons {
+       float: right;
+     }
+
+     i.entity-icons {
+       margin-bottom: 0;
+     }
+   }
+
+   .entity-name {
+     display: block;
+     max-height: unset;
+     word-break: initial;
+   }
+
    .header-buttons {
-     margin-top: 8px;
+     margin: 0;
+     display: inline-block;
+     width: 100%;
+     text-align: right;
    }
  }
 }

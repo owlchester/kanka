@@ -9,6 +9,7 @@
     ],
     'mainTitle' => false,
     'miscModel' => $entity->child,
+    'bodyClass' => 'entity-abilities'
 ])
 @inject('campaign', 'App\Services\CampaignService')
 

@@ -10,6 +10,7 @@ $assetCount = 0; ?>
     ],
     'mainTitle' => false,
     'miscModel' => $entity->child,
+    'bodyClass' => 'entity-assets'
 ])
 @inject('campaign', 'App\Services\CampaignService')
 

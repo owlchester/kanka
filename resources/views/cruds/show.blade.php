@@ -14,6 +14,7 @@ $headerImage = true;
     'miscModel' => $model,
     'canonical' => true,
     'mainTitle' => false,
+    'bodyClass' => 'entity-story'
 ])
 
 @section('og')

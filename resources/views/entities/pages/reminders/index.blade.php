@@ -11,6 +11,7 @@
     ],
     'mainTitle' => false,
     'miscModel' => $entity->child,
+    'bodyClass' => 'entity-reminders'
 ])
 @inject('campaign', 'App\Services\CampaignService')
 

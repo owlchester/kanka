@@ -14,6 +14,7 @@
     'mainTitle' => false,
     'canonical' => true,
     'miscModel' => $entity->child,
+    'bodyClass' => 'entity-quests'
 ])
 @inject('campaign', 'App\Services\CampaignService')
 

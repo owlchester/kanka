@@ -10,6 +10,7 @@
     'canonical' => true,
     'mainTitle' => false,
     'miscModel' => $model,
+    'bodyClass' => 'entity-profile'
 ])
 @inject('campaign', 'App\Services\CampaignService')
 

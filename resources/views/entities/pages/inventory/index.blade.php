@@ -10,6 +10,7 @@
     ],
     'mainTitle' => false,
     'miscModel' => $entity->child,
+    'bodyClass' => 'entity-inventory'
 ])
 @inject('campaign', 'App\Services\CampaignService')
 

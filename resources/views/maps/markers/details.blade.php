@@ -2,7 +2,7 @@
 <div class="marker-details">
     @if (!request()->has('mobile'))
     <h3 class="marker-name">{{ $marker->name }}<span class="pull-right marker-close" title="{{ __('crud.click_modal.close') }}"><i class="fa fa-close"></i></span></h3>
-    <div class="marker-entry">
+    <div class="marker-entry entity-content">
         {!! \App\Facades\Mentions::mapAny($marker) !!}
     </div>
     @endif

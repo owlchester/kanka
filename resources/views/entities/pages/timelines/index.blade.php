@@ -13,6 +13,7 @@
     'canonical' => true,
     'mainTitle' => false,
     'miscModel' => $entity->child,
+    'bodyClass' => 'entity-timelines'
 ])
 @inject('campaign', 'App\Services\CampaignService')
 
