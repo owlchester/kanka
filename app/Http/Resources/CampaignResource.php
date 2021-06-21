@@ -33,6 +33,7 @@ class CampaignResource extends JsonResource
             'name' => $this->name,
             'locale' => $this->locale,
             'entry' => $this->entry,
+            'entry_parsed' => 'not available on the campaigns/ endpoint',
             'image' => $this->image,
             'image_full' => $this->getImageUrl(0),
             'image_thumb' => $this->getImageUrl(40),
