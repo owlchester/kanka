@@ -144,9 +144,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
 
             @yield('content-header')
 
-            <!-- Main content -->
             <section class="content">
-                <!-- Your Page Content Here -->
                 @if (auth()->check() && \App\Facades\Identity::isImpersonating())
                     <div class="alert alert-warning">
                         <h4>

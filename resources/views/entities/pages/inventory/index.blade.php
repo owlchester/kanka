@@ -33,12 +33,12 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="row">
-        <div class="col-md-2">
+    <div class="row entity-grid">
+        <div class="col-md-2 entity-sidebar-submenu">
             @include($entity->pluralType() . '._menu', ['active' => 'inventory', 'model' => $entity->child, 'name' => $entity->pluralType()])
         </div>
-        <div class="col-md-10">
-            <div class="box box-solid">
+        <div class="col-md-10 entity-main-block">
+            <div class="box box-solid box-entity-inventory">
                 <div class="box-body">
                     <h2 class="page-header with-border">
                         {{ trans('crud.tabs.inventory') }}
@@ -46,7 +46,7 @@
 
                     <p class="help-block">{{ __('entities/inventories.show.helper') }}</p>
 
-                    <table class="table table-hover">
+                    <table class="table table-hover table-entity-inventory">
                         <thead>
                         <tr>
                             <th>{{ __('entities/inventories.fields.is_equipped') }}</th>

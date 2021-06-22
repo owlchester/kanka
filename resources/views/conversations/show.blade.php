@@ -1,10 +1,10 @@
 <?php /** @var \App\Models\Conversation $model */ ?>
-<div class="row">
-    <div class="col-md-2">
+<div class="row entity-grid">
+    <div class="col-md-2 entity-sidebar-submenu">
         @include('conversations._menu', ['active' => 'story'])
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-8 entity-story-block">
 
         <div class="box box-solid">
             <div class="box-body">

@@ -13,11 +13,11 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="row">
-        <div class="col-md-2">
+    <div class="row entity-grid">
+        <div class="col-md-2 entity-sidebar-submenu">
             @include('attribute_templates._menu', ['active' => 'attribute_templates'])
         </div>
-        <div class="col-md-10">
+        <div class="col-md-10 entity-main-block">
             @include('attribute_templates.panels.attribute_templates')
         </div>
     </div>

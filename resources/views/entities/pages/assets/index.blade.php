@@ -32,16 +32,16 @@ $assetCount = 0; ?>
 
 @section('content')
     @include('partials.errors')
-    <div class="row">
-        <div class="col-md-2">
+    <div class="row entity-grid">
+        <div class="col-md-2 entity-sidebar-submenu">
             @include($entity->pluralType() . '._menu', ['active' => 'assets', 'model' => $entity->child, 'name' => $entity->pluralType()])
         </div>
-        <div class="col-md-10">
+        <div class="col-md-10 entity-main-block">
             <div class="entity-assets">
-                <div class="row">
+                <div class="row entity-assets-row">
                 @foreach ($entity->assets() as $asset)
                     @if($assetCount % 3 == 0)
-                </div><div class="row">
+                </div><div class="row entity-assets-row">
                     @endif
                     @includeWhen($asset->isFile(), 'entities.pages.assets._file')
                     @includeWhen($asset->isLink(), 'entities.pages.assets._link')

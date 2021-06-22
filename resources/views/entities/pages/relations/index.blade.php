@@ -34,12 +34,12 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="row">
-        <div class="col-md-2">
+    <div class="row entity-grid">
+        <div class="col-md-2 entity-sidebar-submenu">
             @include($entity->pluralType() . '._menu', ['active' => 'relations', 'model' => $entity->child, 'name' => $entity->pluralType()])
         </div>
-        <div class="col-md-10">
-            <div class="box box-solid">
+        <div class="col-md-10 entity-main-block">
+            <div class="box box-solid box-entity-relations">
                 <div class="box-body">
                     <h2 class="page-header with-border">
                         {{ __('crud.tabs.relations') }}
@@ -49,7 +49,7 @@
                         {{ __('entities/relations.helper') }}
                     </p>
 
-                    <div class="row">
+                    <div class="row row-sorting">
                         <div class="col-md-6">
                             @include('cruds.datagrids.sorters.simple-sorter')
                         </div>

@@ -1,5 +1,5 @@
-<div class="row">
-    <div class="col-md-3">
+<div class="row entity-grid">
+    <div class="col-md-3 entity-sidebar-menu">
         <div class="box box-solid">
             <div class="box-body">
                 @include ('cruds._image')
@@ -68,7 +68,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-9 entity-main-block">
         @include('cruds.boxes.history')
     </div>
 </div>

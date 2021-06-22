@@ -30,7 +30,7 @@ if ($model->image) {
     <div class="row entity-header @if($campaign->campaign()->boosted() && $entity->hasHeaderImage($campaign->campaign()->boosted(true))) with-entity-header" style="background-image: url('{{ !empty($entity->header_image) ? $entity->getImageUrl(0, 0, 'header_image') : ($campaign->campaign()->boosted(true) && !empty($entity->header) ? Img::crop(0, 0)->url($entity->header->path) : null)}}');@endif">
 
         @if ($imageUrl)
-        <div class="col-md-2">
+        <div class="col-md-2 entity-image-col">
             <a class="entity-image" href="{{ $imageUrl }}" title="{{ $model->name }}" target="_blank" style="background-image: url({{ $imagePath }});">
             </a>
         </div>

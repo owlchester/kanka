@@ -1,9 +1,9 @@
-<div class="row">
-    <div class="col-md-2">
+<div class="row entity-grid">
+    <div class="col-md-2 entity-sidebar-submenu">
         @include('journals._menu', ['active' => 'story'])
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-8 entity-story-block">
         @include('entities.components.notes')
 
         <div class="box box-solid">
@@ -15,7 +15,7 @@
         @include('cruds.boxes.history')
     </div>
 
-    <div class="col-md-2">
+    <div class="col-md-2 entity-sidebar-pins">
         @include('entities.components.pins')
     </div>
 </div>

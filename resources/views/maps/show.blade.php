@@ -1,11 +1,10 @@
 <?php /** @var \App\Models\Map $model */?>
-<div class="row">
-    <div class="col-md-2">
+<div class="row entity-grid">
+    <div class="col-md-2 entity-sidebar-submenu">
         @include('maps._menu', ['active' => 'story'])
     </div>
 
-    <div class="col-md-8">
-
+    <div class="col-md-8 entity-story-block">
         @if (!empty($model->image))
         <div class="row">
             <div class="col-md-12">
@@ -25,7 +24,7 @@
         @include('cruds.boxes.history')
     </div>
 
-    <div class="col-md-2">
+    <div class="col-md-2 entity-sidebar-pins">
         @include('entities.components.pins')
     </div>
 </div>

@@ -28,11 +28,11 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="row">
-        <div class="col-md-2">
+    <div class="row entity-grid">
+        <div class="col-md-2 entity-sidebar-submenu">
             @include('abilities._menu', ['active' => 'entities'])
         </div>
-        <div class="col-md-10">
+        <div class="col-md-10 entity-main-block">
             @include('abilities.panels.entities')
         </div>
     </div>

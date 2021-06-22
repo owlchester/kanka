@@ -19,12 +19,12 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="row">
-        <div class="col-md-3">
+    <div class="row entity-grid">
+        <div class="col-md-2 entity-sidebar-submenu">
             @include($entity->pluralType() . '._menu', ['active' => 'timelines', 'model' => $entity->child, 'name' => $entity->pluralType()])
         </div>
-        <div class="col-md-9">
-            <div class="box box-solid">
+        <div class="col-md-10">
+            <div class="box box-solid box-entity-timelines">
                 <div class="box-body">
                     <h2 class="page-header with-border">
                         {{ __('crud.tabs.timelines') }}

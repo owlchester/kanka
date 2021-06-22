@@ -6,12 +6,13 @@
     'title' => trans('campaigns/gallery.title', ['campaign' => $campaign->name]),
     'breadcrumbs' => [
         __('campaigns/gallery.title', ['campaign' => $campaign->name]),
-    ]
+    ],
+    'bodyClass' => 'campaign-gallery',
 ])
 
 @section('content')
 
-    <div class="box no-border">
+    <div class="box no-border box-gallery">
         <div class="box-body">
             <button class="btn btn-primary" data-toggle="collapse" data-target="#uploader">
                 <i class="fa fa-upload"></i> {{ __('campaigns/gallery.uploader.add') }}
