@@ -29,7 +29,7 @@
         @include('cruds.boxes.history')
     </div>
 
-    <div class="col-md-2">
+    <div class="col-md-2 entity-sidebar-pins">
         @include('entities.components.pins')
     </div>
 </div>

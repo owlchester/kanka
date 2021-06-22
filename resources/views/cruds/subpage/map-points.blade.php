@@ -11,16 +11,17 @@
         trans('crud.tabs.map-points')
     ],
     'mainTitle' => false,
+    'bodyClass' => 'entity-map-points'
 ])
 
 @section('content')
     @include('partials.errors')
-    <div class="row">
-        <div class="col-md-3">
+    <div class="row entity-grid">
+        <div class="col-md-2 entity-sidebar-submenu">
             @include($name . '._menu', ['active' => 'map-points'])
         </div>
-        <div class="col-md-9">
-            <div class="box box-solid">
+        <div class="col-md-10 entity-main-block">
+            <div class="box box-solid box-entity-map-points">
                 <div class="box-body">
                     <h2 class="page-header with-border">
                         {{ trans('entities/map-points.title', ['name' => $model->name]) }}

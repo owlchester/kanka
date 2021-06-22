@@ -10,6 +10,7 @@
     ],
     'mainTitle' => false,
     'miscModel' => $entity->child,
+    'bodyClass' => 'entity-story-reorder'
 ])
 @inject('campaign', 'App\Services\CampaignService')
 
@@ -18,12 +19,12 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="row">
-        <div class="col-md-2">
+    <div class="row entity-grid">
+        <div class="col-md-2 entity-sidebar-submenu">
             @include($entity->pluralType() . '._menu', ['active' => 'story', 'model' => $entity->child, 'name' => $entity->pluralType()])
         </div>
-        <div class="col-lg-6 col-md-9">
-            <div class="box box-solid">
+        <div class="col-md-10 entity-main-block">
+            <div class="box box-solid box-entity-story-reorder">
                 <div class="box-body">
                     <h2 class="page-header with-border">
                         {{ __('entities/story.reorder.panel_title') }}
