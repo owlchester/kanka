@@ -42,6 +42,8 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property string $header_uuid
  * @property boolean $is_template
  * @property string $marketplace_uuid
+ * @property integer $focus_x
+ * @property integer $focus_y
  *
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -202,9 +204,10 @@ class Entity extends Model
                 $text = strip_tags($text);
             }
             if ($this->campaign->tooltip_image) {
-                $avatar = '<div class=\'entity-image\' style=\'background-image: url(' . $this->child->getImageUrl(60) . ');\'></div>';
+                $avatar = "<div class=\"entity-image\" style=\"background-image: url('" . $this->child->withEntity($this)->getImageUrl(60) . "');\"></div>";
             }
         }
+
         if (empty($text)) {
             $text = $this->child->entry();
             $text = preg_replace("/\s|&nbsp;/",' ', $text);

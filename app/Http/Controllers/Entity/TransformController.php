@@ -66,12 +66,12 @@ class TransformController extends Controller
 
             return redirect()
                 ->route($entity->pluralType() . '.index')
-                ->with('success', trans('crud.move.success', ['name' => $entity->name]));
+                ->with('success', __('entities/transform.success', ['name' => $entity->name]));
         }
         catch (TranslatableException $ex) {
             return redirect()
                 ->route($entity->pluralType() . '.show', $entity->entity_id)
-                ->with('error', trans($ex->getMessage(), ['name' => $entity->name]));
+                ->with('error', __($ex->getMessage(), ['name' => $entity->name]));
         }
     }
 }

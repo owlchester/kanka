@@ -111,15 +111,21 @@ class EntityResource extends JsonResource
      */
     public function entity(array $prepared = [])
     {
+        /** @var MiscModel $misc */
+        $misc = $this->resource;
+
         $merged = [
-            'id' => $this->id,
-            'name' => $this->name,
-            'entry' => $this->hasEntry() ? $this->entry : null,
-            'entry_parsed' => $this->hasEntry() ? Mentions::map($this->resource) : null,
-            'image' => $this->image,
-            'image_full' => $this->getImageUrl(0),
-            'image_thumb' => $this->getImageUrl(40),
-            'has_custom_image' => !empty($this->image),
+            'id' => $misc->id,
+            'name' => $misc->name,
+            'entry' => $this->hasEntry() ? $misc->entry : null,
+            'entry_parsed' => $misc->hasEntry() ? Mentions::map($this->resource) : null,
+            'image' => $misc->image,
+            'focus_x' => $misc->entity->focus_x,
+            'focus_y' => $misc->entity->focus_y,
+
+            'image_full' => $misc->getImageUrl(0),
+            'image_thumb' => $misc->getImageUrl(40),
+            'has_custom_image' => !empty($misc->image),
 
             'is_private' => (bool) $this->is_private,
             'is_template' => (bool) $this->entity->is_template,
@@ -127,14 +133,15 @@ class EntityResource extends JsonResource
             'entity_id' => $this->entity->id,
             'tags' => $this->entity->tags()->pluck('tags.id')->toArray(),
 
-            'created_at' => $this->created_at,
-            'created_by' => $this->entity->created_by,
-            'updated_at' => $this->updated_at,
-            'updated_by' => $this->entity->updated_by,
+
+            'created_at' => $misc->created_at,
+            'created_by' => $misc->entity->created_by,
+            'updated_at' => $misc->updated_at,
+            'updated_by' => $misc->entity->updated_by,
         ];
 
         // Foreign elements
-        $attributes = $this->getAttributes();
+        $attributes = $misc->getAttributes();
         if (array_key_exists('location_id', $attributes)) {
             $merged['location_id'] = $this->location_id;
         }

@@ -205,8 +205,18 @@ abstract class MiscModel extends Model
         if (empty($this->$field)) {
             return $this->getImageFallback($width);
         }
-        return Img::resetCrop()
-            ->crop($width, (!empty($height) ? $height : $width))
+
+        $img = Img::resetCrop()
+            ->crop($width, (!empty($height) ? $height : $width));
+
+
+        if (!empty($width)) {
+            $entity = $this->cachedEntity !== false ? $this->cachedEntity : $this->entity;
+            if(!empty($entity->focus_x) && !empty($entity->focus_y)) {
+                $img = $img->focus($entity->focus_x, $entity->focus_y);
+            }
+        }
+        return $img
             ->url($this->$field);
     }
 
@@ -354,7 +364,8 @@ abstract class MiscModel extends Model
             ];
         }
 
-        $items['second']['profile'] = [
+        // Put profile at the start
+        $items['second'] = array_merge(['first' => [
             'name' => 'entities/profile.show.tab_name',
             'route' => 'entities.profile',
             'entity' => true,
@@ -364,7 +375,7 @@ abstract class MiscModel extends Model
                 'icon' => 'fa fa-pencil',
                 'tooltip' => __('crud.edit'),
             ] : null,
-        ];
+        ]], $items['second']);
 
 
         // Timelines

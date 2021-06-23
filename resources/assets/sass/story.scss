@@ -25,3 +25,28 @@
     }
   }
 }
+
+
+.entity-image-focus {
+  .focus-selector {
+    overflow: auto;
+    position: relative;
+    max-height: calc(70vh);
+    margin-bottom: 10px;
+
+    .focus {
+      position: absolute;
+      color: white;
+      text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
+      cursor: pointer;
+
+      &:hover {
+        color: red;
+      }
+    }
+
+    img {
+      max-width: unset;
+    }
+  }
+}

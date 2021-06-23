@@ -27,6 +27,9 @@ class ImgService
     /** @var bool if the device supports webp */
     protected $nowebp;
 
+    protected $focusX;
+    protected $focusY;
+
     public function __construct()
     {
         $this->enabled = !empty(config('thumbor.key'));
@@ -51,6 +54,18 @@ class ImgService
         if ($width !== 0) {
             $this->crop = "{$width}x{$height}/";
         }
+        return $this;
+    }
+
+    /**
+     * @param int $width
+     * @param int $height
+     * @return $this
+     */
+    public function focus(int $x, int $y): self
+    {
+        $this->focusX = $x;
+        $this->focusY = $y;
         return $this;
     }
 
@@ -98,10 +113,16 @@ class ImgService
 
         $img = Str::before($img, '?');
         $full = $this->s3 . $img;
-        $thumborUrl = $this->crop . 'smart/' . $full;
+        $filter = 'smart/';
+        if (!empty($this->focusX)) {
+            // left x top:right x bottom
+            $filter = 'filters:focal(' . ($this->focusX - 10) . 'x' . ($this->focusY - 10) . ':' . ($this->focusX + 10) . 'x' . ($this->focusY + 10) . ')/';
+            $this->focusX = $this->focusY = null;
+        }
+        $thumborUrl = $this->crop . $filter . $full;
         $sign = $this->sign($thumborUrl);
 
-        return config('thumbor.url') . $this->base . '/' . $sign . '/' . $this->crop . 'smart/'
+        return config('thumbor.url') . $this->base . '/' . $sign . '/' . $this->crop . $filter
             . 'src/' . urlencode($img)
             . ($this->nowebp() ? '?webpfallback' : null)
         ;

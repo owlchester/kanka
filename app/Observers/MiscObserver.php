@@ -43,6 +43,7 @@ abstract class MiscObserver
     {
         $model->slug = Str::slug($model->name, '');
         $model->campaign_id = CampaignLocalization::getCampaign()->id;
+        $model->name = trim($model->name); // Remove empty spaces in names
         //$model->name = strip_tags($model->name);
 
         // If we're from the "move" service, we can skip this part.
@@ -184,6 +185,11 @@ abstract class MiscObserver
         // Check if the entity exists, because it won't while moving an entity from one type to another.
         if ($model->entity) {
             $model->entity->touch();
+
+            // If the updated_at is the same as the created_at, we don't need to create a log.
+            //if ($model->entity->created_at->is($model->entity->updated_at)) {
+            //    return;
+            //}
 
             // Updated log. We do this here to have the dirty attributes of the child
             $log = new EntityLog();

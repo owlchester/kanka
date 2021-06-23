@@ -31,8 +31,31 @@ if ($model->image) {
 
         @if ($imageUrl)
         <div class="col-md-2 entity-image-col">
-            <a class="entity-image" href="{{ $imageUrl }}" title="{{ $model->name }}" target="_blank" style="background-image: url({{ $imagePath }});">
-            </a>
+
+            @can('update', $model)
+                <div class="entity-image dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="background-image: url('{{ $imagePath }}');"></div>
+
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                    <li>
+                        <a href="{{ $imageUrl }}" target="_blank">
+                            <i class="fa fa-external-link"></i> {{ __('entities/image.actions.view') }}
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="{{ route('entities.image.replace', $model->entity) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.image.replace', $model->entity) }}">
+                            {{ __('entities/image.actions.replace_image') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('entities.image.focus', $model->entity) }}">
+                            {{ __('entities/image.actions.change_focus') }}
+                        </a>
+                    </li>
+                </ul>
+            @else
+                <a class="entity-image" href="{{ $imageUrl }}" target="_blank" style="background-image: url('{{ $imagePath }}');"></a>
+            @endcan
         </div>
         @endif
         <div class="col-md-{{ ($imageUrl) ? 10 : 12 }} entity-header-col">
@@ -60,6 +83,13 @@ if ($model->image) {
                         <div class="btn-group entity-actions">
                             <i class="fas fa-cog entity-icons dropdown-toggle" data-toggle="dropdown" aria-expanded="false"></i>
                             <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                @can('update', $model)
+                                    <li>
+                                        <a href="{{ route($entity->pluralType() . '.edit', $model->id) }}">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i> {{ __('crud.edit') }}
+                                        </a>
+                                    </li>
+                                @endcan
                                 @can('create', $model)
                                     <li>
                                         <a href="{{ route($entity->pluralType() . '.create') }}">

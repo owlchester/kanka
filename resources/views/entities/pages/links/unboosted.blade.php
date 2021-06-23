@@ -7,7 +7,7 @@
     </div>
     <div class="panel-body">
         <p class="alert alert-warning">{!! __('entities/links.unboosted.text', [
-            'boosted-campaigns' => link_to_route('front.features', __('crud.boosted_campaigns'), ['#boost'], ['target' => '_blank'])
+            'boosted-campaigns' => link_to_route('front.pricing', __('crud.boosted_campaigns'), ['#boost'], ['target' => '_blank'])
         ]) !!}</p>
     </div>
 </div>

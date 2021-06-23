@@ -29,6 +29,18 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
+    cursor: pointer;
+
+  }
+
+  .tooltip {
+    .entity-image {
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: unset;
+      padding-top: 0;
+    }
   }
 
   .entity-header-col {
