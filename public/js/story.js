@@ -132,7 +132,7 @@ function initImageFocus() {
     var posX = e.pageX - elm.offset().left;
     var posY = e.pageY - elm.offset().top; //console.log('where click', posX, posY);
 
-    $('.focus').css('top', posY - 10).css('left', posX - 10).show();
+    $('.focus').css('top', posY - 22).css('left', posX - 22).show();
     $('input[name="focus_x"]').val(posX);
     $('input[name="focus_y"]').val(posY);
   });

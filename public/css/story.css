@@ -35,6 +35,7 @@
   color: white;
   text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
   cursor: pointer;
+  font-size: 18pt;
 }
 
 .entity-image-focus .focus-selector .focus:hover {
