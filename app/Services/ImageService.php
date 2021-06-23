@@ -51,7 +51,15 @@ class ImageService
                 copy($externalUrl, $tempImage);
 
                 $file = $tempImage;
-                $path = "$folder/" . uniqid() . "_" . Str::before(Str::before($externalFile, '%3F'), '?');
+                // Clean up the file name because weird letters can confuse thumbor
+                $path = "$folder/" . uniqid() . "_" . Str::limit(
+                    Str::slug(
+                        Str::before(
+                            Str::before($externalFile, '%3F'),
+                            '?'
+                        )
+                    ),
+                20);
 
                 // Check if file is too big
                 $copiedFileSize = ceil(filesize($tempImage) / 1000);
