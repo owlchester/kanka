@@ -99,6 +99,7 @@ class Timeline extends MiscModel
             'entity.image',
             'calendar',
             'calendar.entity',
+            'eras',
         ]);
     }
 

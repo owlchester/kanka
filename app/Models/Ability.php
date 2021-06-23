@@ -115,6 +115,7 @@ class Ability extends MiscModel
             'entity',
             'entity.image',
             'ability',
+            'abilities',
             'ability.entity',
         ]);
     }

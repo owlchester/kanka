@@ -137,6 +137,8 @@ class Quest extends MiscModel
             //'elements',
             'quest',
             'quest.entity',
+
+            'calendar',
         ]);
     }
 
