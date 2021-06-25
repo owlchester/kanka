@@ -22,11 +22,10 @@
                     <i class="fa fa-spinner fa-spin" style="display:none;"></i>
                     <span>{{ __('crud.save') }}</span>
                 </button>
-                @if (!$ajax)
-                    {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous() . (strpos(url()->previous(), '#relation') === false ? '#relation' : null))]) !!}
-                @endif
+                @includeWhen(!$ajax, 'partials.or_cancel')
             </div>
 
             {!! Form::close() !!}
-        </div>    </div>
+        </div>
+    </div>
 @endsection

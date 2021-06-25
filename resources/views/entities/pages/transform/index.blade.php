@@ -29,7 +29,7 @@
 
                     <div class="form-group">
                         <button class="btn btn-success">{{ __('entities/transform.actions.transform') }}</button>
-                        {!! __('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
+                        @includeWhen(!request()->ajax(), 'partials.or_cancel')
                     </div>
                 </div>
             </div>

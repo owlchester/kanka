@@ -121,8 +121,8 @@ TEXT
                 'create'    => 'Create invite',
                 'send'      => 'Send invite',
             ],
+            'success_link' => 'Link created: :link',
             'description'   => 'Invite a friend to your campaign',
-            'link'          => 'Link created: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Invitation sent.',
             'title'         => 'Invite someone to your campaign',
         ],
@@ -130,8 +130,8 @@ TEXT
             'success'   => 'Invitation removed.',
         ],
         'email'                 => [
-            'link'      => '<a href=":link">Join :name\'s campaign</a>',
-            'subject'   => ':name has invited you to join their campaign \':campaign\' on kanka.io! Use the following link to accept their invitation.',
+            'link_text' => 'Join :name\'s campaign',
+            'subject'   => ':name has invited you to join their \':campaign\' campaign on kanka.io! Use the following link to accept their invitation.',
             'title'     => 'Invitation from :name',
         ],
         'error'                 => [

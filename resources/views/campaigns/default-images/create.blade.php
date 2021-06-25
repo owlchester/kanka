@@ -26,9 +26,7 @@
         </div>
         <div class="panel-footer">
             <button class="btn btn-success">{{ trans('crud.save') }}</button>
-            @if (!request()->ajax())
-                {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
-            @endif
+            @includeWhen(!request()->ajax(), 'partials.or_cancel')
         </div>
     </div>
 

@@ -65,9 +65,7 @@
                 </div>
                 {!! Form::hidden('submit', null) !!}
 
-                @if (!$ajax)
-                    {!! __('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
-                @endif
+                @includeWhen(!request()->ajax(), 'partials.or_cancel')
             </div>
 
             {!! Form::close() !!}

@@ -37,9 +37,7 @@
                 <button class="btn btn-success form-submit-main">
                     <i class="fa fa-spin fa-spinner" style="display:none;"></i><span>{{ __('crud.save') }}</span>
                 </button>
-                @if (!$ajax)
-                    {!! __('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
-                @endif
+                @includeWhen(!request()->ajax(), 'partials.or_cancel')
             </div>
 
             {!! Form::close() !!}

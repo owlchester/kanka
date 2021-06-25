@@ -28,4 +28,4 @@
 <input type="hidden" name="faq_category_id" value="1" />
 
 <button class="btn btn-success" id="form-submit-main" data-unsaved="{{ __('crud.hints.unsaved_changes') }}">{{ trans('crud.save') }}</button>
-{!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
+@include('partials.or_cancel')

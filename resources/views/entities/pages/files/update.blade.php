@@ -26,9 +26,7 @@
             @include('entities.pages.files._form')
 
             <button class="btn btn-success">{{ __('crud.save') }}</button>
-            @if (!request()->ajax())
-                {!! __('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
-            @endif
+            @includeWhen(!request()->ajax(), 'partials.or_cancel')
 
             <div class="pull-right">
                 <a role="button" tabindex="0" class="btn btn-danger btn-dynamic-delete" data-toggle="popover"
