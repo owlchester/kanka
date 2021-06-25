@@ -17,6 +17,14 @@
                         {!! $model->map->tooltipedLink() !!}
                     </p>
                 @endif
+
+                @if ($model->location)
+                    <p class="entity-location" data-foreign="{{ $model->location_id }}">
+                        <b>{{ __('maps.fields.location') }}</b><br />
+                        {!! $model->location->tooltipedLink() !!}
+                    </p>
+                @endif
+        </div>
             </div>
         </div>
     </div>

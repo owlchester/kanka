@@ -57,7 +57,7 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
             </div>
 
             @if (count($appearances) > 0)
-                <div class="col-md-3">
+                <div class="col-md-3 character-appearances">
                     @foreach ($appearances as $trait)
                         <p class="entity-appearance-{{ \Illuminate\Support\Str::slug($trait->name) }}">
                             <b>{{ $trait->name }}</b><br />
@@ -68,7 +68,7 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
             @endif
 
             @if (((auth()->check() && auth()->user()->can('personality', $model)) || $model->is_personality_visible) && count($traits) > 0)
-                <div class="col-md-5">
+                <div class="col-md-5 character-personalities">
 
                     @if(auth()->check() && auth()->user()->can('personality', $model))
                         <span class="pull-right">

@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\Note $model */?>
 <div class="row entity-grid">
     <div class="col-md-2 entity-sidebar-submenu">
-        @include('maps._menu', ['active' => 'story'])
+        @include('notes._menu', ['active' => 'story'])
     </div>
 
     <div class="col-md-8 entity-story-block">
