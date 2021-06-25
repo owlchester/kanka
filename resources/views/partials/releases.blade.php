@@ -24,7 +24,7 @@
                 @auth
                 @endauth
             </div>
-            <div class="box-body">
+            <div class="box-body release-excerpt">
                 {{ $release->excerpt }}
             </div>
         </div>
