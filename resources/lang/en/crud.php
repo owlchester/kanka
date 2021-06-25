@@ -203,6 +203,7 @@ return [
         ],
         'title'                     => 'Filters',
     ],
+    'fix-this-issue' => 'Fix this issue',
     'forms'                     => [
         'actions'       => [
             'calendar'  => 'Add a calendar date',

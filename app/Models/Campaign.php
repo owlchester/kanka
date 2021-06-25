@@ -436,4 +436,15 @@ class Campaign extends MiscModel
     {
         return Arr::get($this->settings, 'default_visibility', 'all');
     }
+
+    public function publicHasNoVisibility(): bool
+    {
+        /** @var CampaignRole $publicRole */
+        $publicRole = $this->roles()->public()->first();
+        $permissionCount = $publicRole->permissions()
+            ->where('key', 'like', '%_read')
+            ->where('access', 1)
+            ->count();
+        return $permissionCount == 0;
+    }
 }

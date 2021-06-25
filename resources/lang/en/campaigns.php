@@ -100,6 +100,7 @@ TEXT
         'theme'                         => 'Force the theme for the campaign, overriding a user\'s preference.',
         'view_public'                   => 'To view your campaign as a public viewer would, open :link in an incognito window.',
         'visibility'                    => 'Making a campaign public will mean anyone with a link to it will be able to see it.',
+        'public_no_visibility'          => 'Heads up! Your campaign is public, but the campaign\'s public role can\'t access anything. :fix.',
     ],
     'index'                             => [
         'actions'   => [

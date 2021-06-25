@@ -125,6 +125,7 @@ class CampaignController extends Controller
         $this->authorize('update', $campaign);
 
         $campaign->update($request->all());
+
         return redirect()->route('campaign')
             ->with('success', trans($this->view . '.edit.success'));
     }
