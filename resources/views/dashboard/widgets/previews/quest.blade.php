@@ -55,12 +55,14 @@ $model = $entity->child;
                 @endif
             </dl>
 
+            <div class="entity-content">
             {!! $model->entry() !!}
+            </div>
 
             @include('dashboard.widgets.previews._members')
             @include('dashboard.widgets.previews._attributes')
         @else
-        <div class="pinned-entity preview entity-content" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">
+        <div class="pinned-entity preview" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">
 
             <dl class="dl-horizontal">
                 @if ($campaign->enabled('characters') && !empty($model->character))
@@ -71,7 +73,9 @@ $model = $entity->child;
                 @endif
             </dl>
 
+            <div class="entity-content">
             {!! $model->entry() !!}
+            </div>
 
             @include('dashboard.widgets.previews._members')
             @include('dashboard.widgets.previews._attributes')

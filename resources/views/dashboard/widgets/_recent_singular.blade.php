@@ -20,7 +20,9 @@ if (empty($entity->child)) {
     {!! $entity->tooltipedLink() !!}
 
     <div class="pinned-entity preview" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">
+        <div class="entity-content">
         {!! $entity->child->entry() !!}
+        </div>
 
         @include('dashboard.widgets.previews._members')
         @include('dashboard.widgets.previews._attributes')

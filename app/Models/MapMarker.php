@@ -472,4 +472,14 @@ class MapMarker extends Model
         }
         return (int) $this->size_id * 20;
     }
+
+
+    /**
+     * @return bool
+     */
+    public function hasEntry(): bool
+    {
+        // If all that's in the entry is two \n, then there is no real content
+        return strlen($this->entry) > 2;
+    }
 }
