@@ -22,6 +22,8 @@ return [
         'excerpt' => 'Excerpt',
         'link' => 'Link',
         'published_at' => 'Published at',
+        'end_at' => 'Visible until',
+        'visibility' => 'Visibility',
     ],
     'placeholders' => [
         ''
