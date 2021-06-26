@@ -138,7 +138,7 @@ class DatagridRenderer
             $type = $column['type'];
             $class = $column['type'];
             if ($type == 'avatar') {
-                $class = !empty($column['parent']) ? 'hidden-xs hidden-sm' : $class;
+                $class = !empty($column['parent']) ? 'avatar hidden-xs hidden-sm' : $class;
                 $html = null;
             } elseif ($type == 'location') {
                 $class .= '  hidden-xs hidden-sm';
