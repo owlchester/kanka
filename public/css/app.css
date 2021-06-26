@@ -1446,7 +1446,6 @@ summary {
 
 .entity-header .entity-name-header {
   display: flex;
-  align-items: center;
 }
 
 .entity-header .entity-name-header .entity-name {
@@ -1454,6 +1453,10 @@ summary {
   overflow: visible;
   max-height: unset;
   word-break: break-all;
+}
+
+.entity-header .entity-name-header .entity-name-icons {
+  padding-top: 8px;
 }
 
 .entity-header .entity-name-header .entity-name-icons-2 {
