@@ -313,6 +313,7 @@ return [
         'map'           => 'Choose a map',
         'note'          => 'Choose a note',
         'organisation'  => 'Choose an organisation',
+        'quest'         => 'Choose a quest',
         'race'          => 'Choose a race',
         'tag'           => 'Choose a tag',
         'timeline'      => 'Choose a timeline',

@@ -1,6 +1,6 @@
 <?php
 /** @var \App\Models\Quest[] $subquests */
-$subquests = $model->quests()->has('quest')->orderBy('name', 'ASC')->paginate();
+$subquests = $model->quests()->has('quest')->orderBy('name', 'ASC')->paginate(1);
 if($subquests->count() == 0) {
     return;
 }
