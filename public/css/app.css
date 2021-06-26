@@ -1440,6 +1440,10 @@ summary {
   display: flex;
 }
 
+.entity-header .entity-header-col .entity-header-sub {
+  padding-top: 12px;
+}
+
 .entity-header .entity-name-header {
   display: flex;
   align-items: center;
@@ -1452,8 +1456,16 @@ summary {
   word-break: break-all;
 }
 
+.entity-header .entity-name-header .entity-name-icons-2 {
+  min-width: 70px;
+}
+
+.entity-header .entity-name-header .entity-name-icons-3 {
+  min-width: 100px;
+}
+
 .entity-header .entity-name-header i.entity-icons {
-  margin-left: 15px;
+  margin-left: 10px;
   font-size: 18px;
   cursor: pointer;
 }
@@ -1556,14 +1568,6 @@ summary {
     display: block;
   }
 
-  .entity-header .entity-name-header {
-    display: block;
-  }
-
-  .entity-header .entity-name-header .entity-name-icons {
-    float: right;
-  }
-
   .entity-header .entity-name-header i.entity-icons {
     margin-bottom: 0;
   }
@@ -1577,8 +1581,8 @@ summary {
   .entity-header .header-buttons {
     margin: 0;
     display: inline-block;
-    width: 100%;
-    text-align: right;
+    float: right;
+    margin-left: auto;
   }
 }
 
@@ -1594,10 +1598,6 @@ summary {
   font-size: 1.2em;
   margin: 8px;
   text-align: center;
-}
-
-.entity-actions {
-  margin-bottom: 4px;
 }
 
 .entity-actions h1 {

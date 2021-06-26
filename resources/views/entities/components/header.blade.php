@@ -25,6 +25,20 @@ if ($model->image) {
     $imageUrl = $entity->image->getUrl();
     $imagePath = Img::crop(250, 250)->url($entity->image->path);
 }
+/** @var \App\Models\Tag[] $entityTags */
+$entityTags = $entity->tags()->with('entity')->get();
+
+$buttonsClass = 1;
+if ($model instanceof \App\Models\Character && $model->is_dead) {
+    $buttonsClass++;
+}
+if ($model instanceof \App\Models\Quest && $model->is_completed) {
+    $buttonsClass++;
+}
+if (auth()->check() && auth()->user()->isAdmin()) {
+    $buttonsClass ++;
+}
+
 ?>
 @section('entity-header')
     <div class="row entity-header @if($campaign->campaign()->boosted() && $entity->hasHeaderImage($campaign->campaign()->boosted(true))) with-entity-header" style="background-image: url('{{ !empty($entity->header_image) ? $entity->getImageUrl(0, 0, 'header_image') : ($campaign->campaign()->boosted(true) && !empty($entity->header) ? Img::crop(0, 0)->url($entity->header->path) : null)}}');@endif">
@@ -64,7 +78,7 @@ if ($model->image) {
                     <h1 class="entity-name">
                         {{ $model->name }}
                     </h1>
-                    <div class="entity-name-icons">
+                    <div class="entity-name-icons entity-name-icons-{{ $buttonsClass }}">
                         @if ($model instanceof \App\Models\Character && $model->is_dead)
                             <i role="button" tabindex="0" class="ra ra-skull entity-icons btn-popover" title="{{ __('characters.hints.is_dead') }}"></i>
                         @endif
@@ -166,14 +180,16 @@ if ($model->image) {
                 </div>
             </div>
 
+            @if($entityTags->count() > 0)
             <div class="entity-tags">
-                @foreach ($entity->tags()->with('entity')->get() as $tag)
+                @foreach ($entityTags as $tag)
                     <a href="{{ route('tags.show', $tag) }}" data-toggle="tooltip-ajax" data-id="{{ $tag->entity->id }}"
                        data-url="{{ route('entities.tooltip', $tag->entity->id) }}">
                         {!! $tag->html() !!}
                     </a>
                 @endforeach
             </div>
+            @endif
 
             @includeIf('entities.headers._' . $model->getEntityType())
 
