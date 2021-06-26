@@ -375,7 +375,7 @@ abstract class MiscModel extends Model
                 'icon' => 'fa fa-pencil',
                 'tooltip' => __('crud.edit'),
             ] : null,
-        ]], $items['second']);
+        ]], $items['second'] ?? []);
 
 
         // Timelines
