@@ -11,7 +11,10 @@
         <div class="card-text">
 
             @foreach($model->sortedFaqs() as $faq)
-                <a href="{{ route('front.faqs.show', [$faq, 'slug' => \Illuminate\Support\Str::slug($faq->question)]) }}">{{ $faq->question }}</a>
+                <a href="{{ route('front.faqs.show', [$faq, 'slug' => \Illuminate\Support\Str::slug($faq->question)]) }}">
+                    {{ $faq->question }}
+                </a>
+                <br />
             @endforeach
         </div>
     </div>

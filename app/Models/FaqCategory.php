@@ -43,7 +43,7 @@ class FaqCategory extends Model
      */
     public function scopeVisible($query, $visible = true)
     {
-        return $query->where('visible', $visible);
+        return $query->where('is_visible', $visible);
     }
 
     /**
