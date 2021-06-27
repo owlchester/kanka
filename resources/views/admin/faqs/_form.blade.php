@@ -1,12 +1,11 @@
 
-{{ csrf_field() }}
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="form-group required">
-                    <label>{{ trans('faq.fields.locale') }}</label>
-                    {!! Form::select('locale', trans('languages.codes'), old('locale'), ['class' => 'form-control']) !!}
+                    <label>{{ trans('faq.fields.category') }}</label>
+                    {!! Form::select('faq_category_id', \App\Models\FaqCategory::orderBy('title')->pluck('title', 'id')->toArray(), old('faq_category_id'), ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group required">
                     <label>{{ trans('faq.fields.question') }}</label>
@@ -14,7 +13,7 @@
                 </div>
                 <div class="form-group required">
                     <label>{{ trans('faq.fields.answer') }}</label>
-                    {!! Form::textarea('answer', old('answer'), ['placeholder' => trans('faq.fields.answer'), 'class' => 'form-control']) !!}
+                    {!! Form::textarea('answer', old('answer'), ['placeholder' => trans('faq.fields.answer'), 'class' => 'form-control html-editor']) !!}
                 </div>
                 <div class="form-group required">
                     <label>{{ trans('faq.fields.order') }}</label>
@@ -25,7 +24,7 @@
     </div>
 </div>
 
-<input type="hidden" name="faq_category_id" value="1" />
+{!! Form::hidden('locale', 'en') !!}
 
 <button class="btn btn-success" id="form-submit-main" data-unsaved="{{ __('crud.hints.unsaved_changes') }}">{{ trans('crud.save') }}</button>
 @include('partials.or_cancel')

@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Requests;
+
+namespace App\Http\Requests\Admin;
+
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreFaq extends FormRequest
+class StoreFaqCategory extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +26,8 @@ class StoreFaq extends FormRequest
     public function rules()
     {
         return [
-            'faq_category_id' => 'required|exists:categories,id',
-            'question' => 'required|max:191',
-            'answer' => 'required',
-            'locale' => 'required|max:5',
-            'order' => 'required',
+            'title' => 'required|max:191',
+            'order' => 'required|integer',
         ];
     }
 }

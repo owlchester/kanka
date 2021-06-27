@@ -1,5 +1,6 @@
 <?php
 
+Route::get('/front', 'FrontController@index')->name('front.home');
 Route::get('/about', 'FrontController@about')->name('front.about');
 //Route::get('/terms-of-service', 'FrontController@tos')->name('tos');
 Route::get('/privacy-policy', 'FrontController@privacy')->name('front.privacy');
@@ -19,6 +20,9 @@ Route::get('/partners', 'FrontController@partners')->name('front.partners');
 Route::get('/news', 'Front\NewsController@index')->name('front.news');
 Route::get('/newsletter', 'Front\NewsletterController@index')->name('front.newsletter');
 Route::get('/news/show/{id}-{slug?}', 'Front\NewsController@show')->name('front.news.show');
+
+Route::get('/kb', 'Front\FaqController@index')->name('front.faqs.index');
+Route::get('/kb/{faq}-{slug?}', 'Front\FaqController@show')->name('front.faqs.show');
 
 Route::get('/features/calendars', 'Front\FeatureController@calendars')->name('front.features.calendars');
 Route::get('/features/timelines', 'Front\FeatureController@timelines')->name('front.features.timelines');

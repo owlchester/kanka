@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\Admin\StoreFaq;
-use App\Models\Faq;
+use App\Http\Requests\Admin\StoreFaqCategory;
+use App\Models\FaqCategory;
+use App\Models\FaqCategoryEntry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
-class FaqController extends AdminCrudController
+class FaqCategoryController extends AdminCrudController
 {
     /**
      * @var string
      */
-    protected $view = 'admin.faqs';
-    protected $route = 'admin.faqs';
-    protected $trans = 'admin/faqs';
+    protected $view = 'admin.faq-categories';
+    protected $route = 'admin.faq-categories';
+    protected $trans = 'admin/faqs.categories';
 
     /**
      * @var string
      */
-    protected $model = \App\Models\Faq::class;
+    protected $model = \App\Models\FaqCategory::class;
 
     /**
      * CharacterController constructor.
@@ -26,9 +28,7 @@ class FaqController extends AdminCrudController
     public function __construct()
     {
         $this->filters = [
-            'question',
-            'locale',
-            'order',
+            'name',
         ];
 
         parent::__construct();
@@ -51,9 +51,8 @@ class FaqController extends AdminCrudController
         $filterService = $this->filterService;
 
         $models = $model
-            ->search(request()->get('search'))
-            ->filter($this->filterService->filters())
-            ->orderBy('faq_category_id')
+            ->with('faqs')
+            ->search($filterService->search())
             ->orderBy('order')
             ->paginate();
         return view('admin.cruds.index', compact(
@@ -68,14 +67,23 @@ class FaqController extends AdminCrudController
         ));
     }
 
+    /**
+     * @param FaqCategory $faqCategory
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function show(FaqCategory $faqCategory)
+    {
+        return redirect()
+            ->route('admin.faq-categories.index');
+    }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Faq  $faq
+     * @param  \App\Models\FaqCategory $faqCategory
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreFaq $request)
+    public function store(StoreFaqCategory $request)
     {
         return $this->crudStore($request);
     }
@@ -83,12 +91,12 @@ class FaqController extends AdminCrudController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Faq  $faq
+     * @param  \App\Models\FaqCategory $faqCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(Faq $faq)
+    public function edit(FaqCategory $faqCategory)
     {
-        return $this->crudEdit($faq);
+        return $this->crudEdit($faqCategory);
     }
 
     /**
@@ -98,19 +106,24 @@ class FaqController extends AdminCrudController
      * @param  \App\Models\Faq  $character
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreFaq $request, Faq $faq)
+    public function update(StoreFaqCategory $request, FaqCategory $faqCategory)
     {
-        return $this->crudUpdate($request, $faq);
+        return $this->crudUpdate($request, $faqCategory, []);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Faq $faq
+     * @param  FaqCategory $faqCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Faq $faq)
+    public function destroy(FaqCategory $faqCategory)
     {
-        return $this->crudDestroy($faq);
+        //$this->authorize('unboost', $faqCategory);
+        $faqCategory->delete();
+
+        return redirect()->route($this->route . '.index')
+            ->with('success', trans($this->trans . '.destroy.success', ['name' => $faqCategory->name]));
+
     }
 }
