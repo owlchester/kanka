@@ -37,8 +37,8 @@ function initImageFocus() {
         //console.log('where click', posX, posY);
 
         $('.focus').css('top', posY - 22).css('left', posX - 22).show();
-        $('input[name="focus_x"]').val(posX);
-        $('input[name="focus_y"]').val(posY);
+        $('input[name="focus_x"]').val(parseInt(posX));
+        $('input[name="focus_y"]').val(parseInt(posY));
     });
 
     $('.focus').click(function (e) {
