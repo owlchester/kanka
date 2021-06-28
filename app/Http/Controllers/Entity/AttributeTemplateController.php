@@ -49,6 +49,12 @@ class AttributeTemplateController extends Controller
         ));
     }
 
+    /**
+     * @param ApplyAttributeTemplate $request
+     * @param Entity $entity
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function applyTemplate(ApplyAttributeTemplate $request, Entity $entity)
     {
         $this->authorize('update', $entity->child);
