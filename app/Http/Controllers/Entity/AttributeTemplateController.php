@@ -55,12 +55,12 @@ class AttributeTemplateController extends Controller
         $templateName = $this->service->apply($entity, $request->get('template_id'));
 
         if (!$templateName) {
-            return redirect()->back()->with('error', trans('entities/attributes.template.error'));
+            return redirect()->back()->with('error', __('entities/attributes.template.error'));
         }
 
         return redirect()
-            ->route($entity->pluralType() . '.show', [$entity->child->id, '#tab_attribute'])
-            ->with('success', trans('entities/attributes.template.success', [
+            ->route('entities.attributes', $entity)
+            ->with('success', __('entities/attributes.template.success', [
                 'name' => $templateName, 'entity' => $entity->child->name
             ]));
     }
