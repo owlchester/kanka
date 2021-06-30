@@ -25,7 +25,9 @@ return [
         'name'      => 'Name',
     ],
     'hint'          => 'Information that doesn\'t quite fit in the standard fields of an entity or that should be kept private can be added as Entity Notes.',
-    'hints'         => [],
+    'hints'         => [
+        'reorder'   => 'You can reorder entity notes of an entity by clicking on the :icon icon next to story in entity\'s menu.',
+    ],
     'index'         => [
         'title' => 'Entity Notes for :name',
     ],

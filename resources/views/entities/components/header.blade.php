@@ -180,6 +180,12 @@ if (auth()->check() && auth()->user()->isAdmin()) {
                 </div>
             </div>
 
+            @if (!empty($model->type))
+                <div class="entity-type">
+                    {{ $model->type }}
+                </div>
+            @endif
+
             @if($entityTags->count() > 0)
             <div class="entity-tags">
                 @foreach ($entityTags as $tag)

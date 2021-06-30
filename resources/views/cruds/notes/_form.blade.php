@@ -32,11 +32,16 @@ $permissions = [
                 {{ __('entities/notes.fields.collapsed') }}
             </label>
         </div>
+
+        <div class="help-block">
+            {!! __('entities/notes.hints.reorder', ['icon' => '<i class="fas fa-cog"></i>']) !!}
+        </div>
     </div>
     <div class="col-md-6">
         @include('cruds.fields.visibility')
     </div>
 </div>
+
 
 @if(auth()->user()->isAdmin())
     <hr />
@@ -112,4 +117,6 @@ $permissions = [
         </div>
     </div>
 @endif
+
+
 {!! Form::hidden('entity_id', $entity->id) !!}

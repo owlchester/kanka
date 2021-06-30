@@ -1493,6 +1493,11 @@ summary {
   line-height: 20px;
 }
 
+.entity-header .entity-type {
+  margin-top: 10px;
+  display: none;
+}
+
 .entity-header.with-entity-header {
   padding-top: 50px;
   margin-bottom: 20px;

@@ -34,6 +34,11 @@ $headerImage = true;
                 <i class="fas fa-bars"></i>
             </div>
         </div>
+        @can('update', $model)
+            <a href="{{ $model->getLink('edit') }}" class="btn btn-primary btn-sm ">
+                <i class="fa fa-pencil"></i> {{ __('crud.edit') }}
+            </a>
+        @endcan
         @can('entity-note', [$model, 'add'])
         <a href="{{ route('entities.entity_notes.create', $model->entity) }}" class="btn btn-warning btn-sm ">
             <i class="fa fa-plus"></i> {{ __('crud.actions.new_post') }}
