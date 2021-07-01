@@ -95,4 +95,5 @@
 @section('scripts')
     @parent
     <script src="{{ mix('js/timeline.js') }}" defer></script>
+    <script src="{{ mix('js/ajax-subforms.js') }}" defer></script>
 @endsection

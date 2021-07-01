@@ -45,3 +45,8 @@ __('timelines/elements.edit.title', ['name' => $model->name])
         </div>
     </div>
 @endsection
+
+@section('scripts')
+    @parent
+    <script src="{{ mix('js/ajax-subforms.js') }}" defer></script>
+@endsection
