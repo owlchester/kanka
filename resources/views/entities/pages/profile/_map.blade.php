@@ -24,7 +24,6 @@
                         {!! $model->location->tooltipedLink() !!}
                     </p>
                 @endif
-        </div>
             </div>
         </div>
     </div>
