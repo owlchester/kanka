@@ -203,7 +203,7 @@ return [
         ],
         'title'                     => 'Filters',
     ],
-    'fix-this-issue' => 'Fix this issue',
+    'fix-this-issue'            => 'Fix this issue',
     'forms'                     => [
         'actions'       => [
             'calendar'  => 'Add a calendar date',
@@ -243,9 +243,9 @@ return [
     'legacy'                    => 'Legacy',
     'linking_help'              => 'How can I link to other entities?',
     'manage'                    => 'Manage',
-    'navigation' => [
+    'navigation'                => [
+        'cancel'    => 'cancel',
         'or_cancel' => 'or :cancel',
-        'cancel' => 'cancel',
     ],
     'new_entity'                => [
         'error' => 'Please review your values.',

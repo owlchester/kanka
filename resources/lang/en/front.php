@@ -85,18 +85,18 @@ return [
             'entity_links'          => 'Set links on entities to external resources and websites',
             'header_image'          => 'Entity header image',
             'images'                => 'Set custom default entity images',
+            'marketplace'           => 'Access to the :marketplace',
             'no_ads'                => 'No ads on the campaign',
             'recovery'              => 'Entity recovery for up to :amount days',
             'relation-visualiser'   => 'Explore the relations of entities visually',
-            'marketplace'           => 'Access to the :marketplace',
             'theme'                 => 'Fixed campaign theme',
             'title'                 => 'Boosted Campaigns',
             'tooltip'               => 'Custom entity tooltips: show image, change text',
             'upload'                => 'Increased upload sizes for all members',
         ],
-        'boosts_v2'          => [
-            'title' => 'Boosted and Superboosted campaigns',
-            'description' => 'Our pledge levels give you access to boosters, which you can use to boost or superboost campaigns. Doing so unlocks the following benefits for a campaign.',
+        'boosts_v2'         => [
+            'description'   => 'Our pledge levels give you access to boosters, which you can use to boost or superboost campaigns. Doing so unlocks the following benefits for a campaign.',
+            'title'         => 'Boosted and Superboosted campaigns',
         ],
         'calendars'         => [
             'description'   => 'Create fully custom calendars with the weeks and months you want. Add seasons, weather, moons for flavour and knowing how the world is. Attach entities to the calendar as a reminder with control on how long they last, and how often they occur.',
@@ -181,10 +181,10 @@ return [
             'title'         => 'Manage Secrets',
         ],
         'superboosts'       => [
-            'boosted'       => 'Superboosted',
-            'gallery'       => 'Campaign Gallery and integrations with the Summernote text editor',
-            'logs'          => 'Full change logs on entities (up to :amount days)',
-            'stats'         => 'Campaign achievements page',
+            'boosted'   => 'Superboosted',
+            'gallery'   => 'Campaign Gallery and integrations with the Summernote text editor',
+            'logs'      => 'Full change logs on entities (up to :amount days)',
+            'stats'     => 'Campaign achievements page',
         ],
         'timelines'         => [
             'description'   => 'Visually represent the timelines of your worlds, empires, noble families, or even a single character.',

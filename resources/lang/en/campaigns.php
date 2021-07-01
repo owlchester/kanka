@@ -94,13 +94,13 @@ TEXT
         'locale'                        => 'The language your campaign is written in. This is used for generating content and grouping public campaigns.',
         'name'                          => 'Your campaign/world can have any name as long as it contains at least 4 letters or numbers.',
         'public_campaign_filters'       => 'Help others find the campaign among other public campaigns by providing the following information.',
+        'public_no_visibility'          => 'Heads up! Your campaign is public, but the campaign\'s public role can\'t access anything. :fix.',
         'related_visibility'            => 'Default Visibility value when creating a new element with this field (entity notes, relations, abilities, etc)',
         'system'                        => 'If your campaign is publicly visible, the system is shown in the :link page.',
         'systems'                       => 'To avoid cluttering users with options, some features of Kanka are only available with specific RPG systems (ie the D&D 5e monster stat block). Adding supported systems here will enable those features.',
         'theme'                         => 'Force the theme for the campaign, overriding a user\'s preference.',
         'view_public'                   => 'To view your campaign as a public viewer would, open :link in an incognito window.',
         'visibility'                    => 'Making a campaign public will mean anyone with a link to it will be able to see it.',
-        'public_no_visibility'          => 'Heads up! Your campaign is public, but the campaign\'s public role can\'t access anything. :fix.',
     ],
     'index'                             => [
         'actions'   => [
@@ -121,9 +121,9 @@ TEXT
                 'create'    => 'Create invite',
                 'send'      => 'Send invite',
             ],
-            'success_link' => 'Link created: :link',
             'description'   => 'Invite a friend to your campaign',
             'success'       => 'Invitation sent.',
+            'success_link'  => 'Link created: :link',
             'title'         => 'Invite someone to your campaign',
         ],
         'destroy'               => [

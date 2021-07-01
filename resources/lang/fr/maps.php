@@ -26,8 +26,10 @@ return [
         ],
     ],
     'fields'        => [
+        'center_marker'     => 'Marqueur',
         'center_x'          => 'Longitude par défaut',
         'center_y'          => 'Latitude par défaut',
+        'centering'         => 'Centrage',
         'distance_measure'  => 'Mesure de distance',
         'distance_name'     => 'Unité de distance',
         'grid'              => 'Grille',
@@ -37,10 +39,15 @@ return [
         'max_zoom'          => 'Zoom maximal',
         'min_zoom'          => 'Zoom minimal',
         'name'              => 'Nom',
+        'tabs'              => [
+            'coordinates'   => 'Coordinnées',
+            'marker'        => 'Marqueur',
+        ],
         'type'              => 'Type',
     ],
     'helpers'       => [
         'center'            => 'Modifier les valeurs par défaut défini le centre de la carte lors de l\'affichage de celle-ci. Ci les champs sont vides, le centre de la carte sera utilisé.',
+        'centering'         => 'Centrer la carte sur un marqueur est prioritaire sur les coordinnées.',
         'descendants'       => 'Liste des cartes qui sont groupées dans cette carte.',
         'distance_measure'  => 'Définir une unité de distance activera l\'outil de calcul de distance dans le mode d\'exploration.',
         'grid'              => 'Définir une taille de grille qui s\'affichera dans le mode d\'exploration.',
@@ -65,6 +72,7 @@ return [
         'settings'  => 'Paramètres',
     ],
     'placeholders'  => [
+        'center_marker'     => 'Laisser vide pour afficher au milieu',
         'center_x'          => 'Laisser vide pour afficher au milieu',
         'center_y'          => 'Laisser vide pour afficher au milieu',
         'distance_measure'  => 'Unités par pixel',
