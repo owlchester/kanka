@@ -330,7 +330,7 @@ abstract class MiscModel extends Model
         $campaign = CampaignLocalization::getCampaign();
 
         // Todo: point to the new points
-        $mapPoints = $this->entity->targetMapPoints()->has('location')->count();
+        /*$mapPoints = $this->entity->targetMapPoints()->has('location')->count();
         $newMapPoints = $this->entity->mapMarkers()->has('map')->count();
         if (($mapPoints + $newMapPoints) > 0) {
             $items['second']['map-points'] = [
@@ -340,7 +340,7 @@ abstract class MiscModel extends Model
                 'icon' => 'fa fa-map-marked',
                 'entity' => true,
             ];
-        }
+        }*/
 
         $items['first']['story'] = [
             'name' => 'crud.tabs.story',
@@ -379,7 +379,7 @@ abstract class MiscModel extends Model
 
 
         // Timelines
-        if ((!isset($this->hasTimelines) || $this->hasTimelines === true) && $campaign->enabled('timelines')) {
+        /*if ((!isset($this->hasTimelines) || $this->hasTimelines === true) && $campaign->enabled('timelines')) {
             $timelines = $this->entity->timelines()->with('timeline')->has('timeline')->count();
             if ($timelines > 0) {
                 $items['second']['timelines'] = [
@@ -390,9 +390,9 @@ abstract class MiscModel extends Model
                     'icon' => 'fas fa-hourglass-half',
                 ];
             }
-        }
+        }*/
 
-        if ($campaign->enabled('quests')) {
+        /*if ($campaign->enabled('quests')) {
             $quests = $this->entity->quests()->with('quest')->has('quest')->count();
             if ($quests > 0) {
                 $items['second']['quests'] = [
@@ -403,7 +403,7 @@ abstract class MiscModel extends Model
                     'icon' => 'ra ra-wooden-sign',
                 ];
             }
-        }
+        }*/
 
         // Each entity can have abilities
         if ($campaign->enabled('abilities') && $this->entityTypeId() != config('entities.ids.ability')) {

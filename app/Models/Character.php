@@ -310,14 +310,14 @@ class Character extends MiscModel
         $campaign = CampaignLocalization::getCampaign();
         $canEdit = auth()->check() && auth()->user()->can('update', $this);
 
-        $count = $this->items()->count();
+        /*$count = $this->items()->count();
         if ($campaign->enabled('items') && $count > 0) {
             $items['second']['items'] = [
                 'name' => 'characters.show.tabs.items',
                 'route' => 'characters.items',
                 'count' => $count
             ];
-        }
+        }*/
 
         $count = $this->organisations()->has('organisation')->count();
         if ($campaign->enabled('organisations') && ($count > 0 || $canEdit)) {
@@ -327,15 +327,15 @@ class Character extends MiscModel
                 'count' => $count
             ];
         }
-        $count = $this->journals()->count();
+        /*$count = $this->journals()->count();
         if ($campaign->enabled('journals') && $count > 0) {
             $items['second']['journals'] = [
                 'name' => 'characters.show.tabs.journals',
                 'route' => 'characters.journals',
                 'count' => $count
             ];
-        }
-        $diceRollCount = $this->diceRolls()->count();
+        }*/
+        /*$diceRollCount = $this->diceRolls()->count();
         if ($campaign->enabled('dice_rolls') && $diceRollCount > 0) {
             $items['second']['dice_rolls'] = [
                 'name' => 'characters.show.tabs.dice_rolls',
@@ -350,7 +350,7 @@ class Character extends MiscModel
                 'route' => 'characters.conversations',
                 'count' => $conversationCount
             ];
-        }
+        }*/
         return parent::menuItems($items);
     }
 

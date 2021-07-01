@@ -674,11 +674,25 @@ function resetRelationFormSubmitAnimation() {
  */
 function registerDatagridSorter() {
     $('#datagrid-simple-sorter').change(function () {
-        var options = '';
+        let options = '';
         if (this.value) {
             options = this.name + '=' + this.value;
         }
-        window.location = $(this).data('url') + ($(this).data('url').includes('?') ? '&' : '?') + options;
+        let url = $(this).data('url');
+        // Remove target
+        let target = null;
+        if (url.includes('#')) {
+            target = '#' + url.split('#')[1];
+            url = url.split('#')[0];
+        }
+        if ($(this).data('url').includes('?')) {
+            url += '&' + options;
+        } else {
+            url += '?' + options;
+        }
+
+        url += target;
+        window.location = url;
     });
 }
 

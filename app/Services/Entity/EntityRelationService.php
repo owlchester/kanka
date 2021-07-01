@@ -11,8 +11,12 @@ use App\Models\Entity;
 use App\Models\Family;
 use App\Models\Item;
 use App\Models\Journal;
+use App\Models\Map;
+use App\Models\MapMarker;
+use App\Models\MiscModel;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
+use App\Models\QuestElement;
 use App\Models\Relation;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -46,6 +50,9 @@ class EntityRelationService
     /** @var bool Enable loading entities on relations */
     protected $withEntity = false;
 
+    /** @var array  */
+    protected $options = [];
+
     /**
      * @param Entity $entity
      * @return $this
@@ -53,6 +60,12 @@ class EntityRelationService
     public function entity(Entity $entity): self
     {
         $this->entity = $entity;
+        return $this;
+    }
+
+    public function options(array $options): self
+    {
+        $this->options = $options;
         return $this;
     }
 
@@ -93,11 +106,21 @@ class EntityRelationService
         // Other: just relations
         else {
             $this->addEntity($this->entity)
-                ->withEntity()
-                ->addRelations($this->entity)
-                ->addParent()
-                ->addLocation();
+                ->withEntity();
+
+            if ($this->loadRelations()) {
+                $this->addRelations($this->entity);
+            }
+
+            if ($this->loadRelated()) {
+                $this->addParent()
+                    ->addLocation()
+                    ->addQuests()
+                    ->addMaps();
+            }
         }
+
+        $this->addMentions();
 
         $this->cleanup();
 
@@ -302,16 +325,23 @@ class EntityRelationService
     protected function initFamily(): self
     {
         $this->addEntity($this->entity)
-            ->withEntity()
-            ->addRelations($this->entity)
-            ->withEntity(false);
+            ->withEntity();
 
-        $this->addFamilyMembers($this->entity->child, true);
+        if ($this->loadRelations()) {
+            $this
+                ->addRelations($this->entity)
+                ->withEntity(false);
+        }
 
-        $this->addFamilies()
-            ->addParent()
-            ->addLocation()
-        ;
+        if ($this->loadRelated()) {
+            $this->addFamilyMembers($this->entity->child, true);
+
+            $this->addFamilies()
+                ->addParent()
+                ->addLocation()
+                ->addQuests()
+                ->addMaps();
+        }
         return $this;
     }
 
@@ -372,19 +402,26 @@ class EntityRelationService
     protected function initCharacter(): self
     {
         $this->addEntity($this->entity)
-            ->withEntity()
-            ->addRelations($this->entity)
-            ->withEntity(false)
-            ->relatedRelations();
+            ->withEntity();
 
-        $this->addFamily()
-            ->addOrganisation()
-            ->addItems()
-            ->addJournals()
-            ->addLocation()
-            ->addDiceRolls()
-            ->addConversations()
-        ;
+        if ($this->loadRelations()) {
+            $this
+                ->addRelations($this->entity)
+                ->withEntity(false)
+                ->relatedRelations();
+        }
+
+        if ($this->loadRelated()) {
+            $this->addFamily()
+                ->addOrganisation()
+                ->addItems()
+                ->addJournals()
+                ->addLocation()
+                ->addDiceRolls()
+                ->addConversations()
+                ->addMaps()
+                ->addQuests();
+        }
 
         return $this;
     }
@@ -395,12 +432,28 @@ class EntityRelationService
     protected function initLocation(): self
     {
         $this->addEntity($this->entity)
-            ->withEntity()
-            ->addRelations($this->entity)
-            ->withEntity(false)
-            ->relatedRelations();
+            ->withEntity();
 
-        $this->addItems()->addJournals()->addParent();
+        if ($this->loadRelations()) {
+            $this
+                ->addRelations($this->entity)
+                ->withEntity(false);
+        }
+
+        if ($this->loadRelated()) {
+            $this->relatedRelations()
+                ->addCharacters()
+                ->addItems()
+                ->addFamilies()
+                ->addJournals()
+                ->addOrganisations()
+                ->addParent()
+                ->addQuests()
+                ->addMaps()
+                ->addMap()
+            ;
+        }
+
 
         return $this;
     }
@@ -412,13 +465,25 @@ class EntityRelationService
     protected function initOrganisation(): self
     {
         $this->addEntity($this->entity)
-            ->withEntity()
-            ->addRelations($this->entity)
-            ->withEntity(false);
+            ->withEntity();
 
-        $this->addOrganisationMembers($this->entity, true);
+        if ($this->loadRelations()) {
+            $this
+                ->addRelations($this->entity)
+                ->withEntity(false);
+        }
 
-        $this->addOrganisations()->addParent();
+        if ($this->loadRelated()) {
+            $this->addOrganisationMembers($this->entity, true);
+            $this->addOrganisation()
+                ->addParent()
+                ->addOrganisations()
+                ->addLocation()
+                ->addQuests()
+                ->addMaps()
+            ;
+        }
+
         return $this;
     }
 
@@ -466,6 +531,31 @@ class EntityRelationService
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'sub-org',
+                'shape' => 'triangle',
+            ];
+        }
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    protected function addCharacters(): self
+    {
+        /** @var MiscModel $related */
+        $related = $this->entity->child;
+
+        foreach ($related->characters()->with('entity')->has('entity')->get() as $sub) {
+            $this->addEntity($sub->entity);
+            //$this->addRelations($sub->entity);
+
+            $this->relations[] = [
+                'target' => $sub->entity->id,
+                'source' => $this->entity->id,
+                'text' => __('entities.character'),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'entity-character',
                 'shape' => 'triangle',
             ];
         }
@@ -618,6 +708,69 @@ class EntityRelationService
     }
 
     /**
+     * @return $this
+     */
+    protected function addMaps(): self
+    {
+        /** @var MapMarker $related */
+        foreach ($this->entity->mapMarkers()->with(['map', 'map.entity'])->has('map')->get() as $related) {
+            $this->addEntity($related->map->entity);
+            $this->relations[] = [
+                'source' => $this->entity->id,
+                'target' => $related->map->entity->id,
+                'text' => __('crud.tabs.map-points'),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'entity-quest-element',
+                'shape' => 'none',
+            ];
+        }
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    protected function addMap(): self
+    {
+        /** @var Map $related */
+        foreach ($this->entity->map()->with(['entity'])->has('entity')->get() as $related) {
+            $this->addEntity($related->entity);
+            $this->relations[] = [
+                'source' => $this->entity->id,
+                'target' => $related->entity->id,
+                'text' => __('locations.show.tabs.maps'),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'location-map',
+                'shape' => 'none',
+            ];
+        }
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    protected function addQuests(): self
+    {
+        /** @var QuestElement $related */
+        foreach ($this->entity->quests()->with(['quest', 'quest.entity'])->has('quest')->get() as $related) {
+            $this->addEntity($related->quest->entity);
+            $this->relations[] = [
+                'source' => $this->entity->id,
+                'target' => $related->quest->entity->id,
+                'text' => __('crud.tabs.map-points'),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'entity-map-point',
+                'shape' => 'none',
+            ];
+        }
+        return $this;
+    }
+
+    /**
      * Load relations between linked entities
      * @return $this
      */
@@ -635,5 +788,41 @@ class EntityRelationService
             $this->addRelations($entity);
         }
         return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    protected function addMentions(): self
+    {
+        if (!$this->loadMentions()) {
+            return $this;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function loadRelations(): bool
+    {
+        return(bool) Arr::get($this->options, 'relations', true);
+    }
+
+    /**
+     * @return bool
+     */
+    protected function loadRelated(): bool
+    {
+        return(bool) Arr::get($this->options, 'related', true);
+    }
+
+    /**
+     * @return bool
+     */
+    protected function loadMentions(): bool
+    {
+        return(bool) Arr::get($this->options, 'mentions', false);
     }
 }

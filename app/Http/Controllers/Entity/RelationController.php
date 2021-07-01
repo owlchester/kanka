@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Entity;
 
 use App\Datagrids\Sorters\EntityRelationSorter;
+use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRelation;
 use App\Models\Entity;
 use App\Models\Relation;
 use App\Models\MiscModel;
+use App\Services\Entity\ConnectionService;
 use App\Services\Entity\EntityRelationService;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -35,13 +37,17 @@ class RelationController extends Controller
     /** @var EntityRelationService */
     protected $service;
 
+    /** @var ConnectionService */
+    protected $connectionService;
+
     /**
      * RelationController constructor.
      * @param EntityRelationService $entityRelationService
      */
-    public function __construct(EntityRelationService $entityRelationService)
+    public function __construct(EntityRelationService $entityRelationService, ConnectionService $connectionService)
     {
         $this->service = $entityRelationService;
+        $this->connectionService = $connectionService;
     }
 
     /**
@@ -63,23 +69,54 @@ class RelationController extends Controller
 
         $datagridSorter = new EntityRelationSorter();
         $datagridSorter->request(request()->all());
+        $campaign = CampaignLocalization::getCampaign();
+
+        $mode = request()->get('mode', null);
+        if (!in_array($mode, ['map', 'table'])) {
+            $mode = null;
+        }
+
+        $options = [];
+        if (request()->has('relations')) {
+            $options['relations'] = request()->get('relations');
+        }
+        if (request()->has('related')) {
+            $options['related'] = request()->get('related');
+        }
+        if (request()->has('mentions')) {
+            $options['mentions'] = request()->get('mentions');
+        }
 
         $ajax = request()->ajax();
-        $relations = $entity
-            ->relationships()
-            ->select('relations.*')
-            ->with('target')
-            ->has('target')
-            ->leftJoin('entities as t', 't.id', '=', 'relations.target_id')
-            ->acl()
-            ->simpleSort($datagridSorter)
-            ->paginate();
+
+        $relations = $connections = $connectionService = [];
+        if ($mode == 'table' || (empty($mode) && !$campaign->boosted())) {
+            $relations = $entity
+                ->relationships()
+                ->select('relations.*')
+                ->with('target')
+                ->has('target')
+                ->leftJoin('entities as t', 't.id', '=', 'relations.target_id')
+                ->acl()
+                ->simpleSort($datagridSorter)
+                ->paginate();
+
+            $connections = $this->connectionService
+                ->entity($entity)
+                ->connections();
+
+            $connectionService = $this->connectionService;
+        }
 
         return view('entities.pages.relations.index', compact(
             'ajax',
             'entity',
             'relations',
-            'datagridSorter'
+            'datagridSorter',
+            'mode',
+            'options',
+            'connections',
+            'connectionService'
         ));
     }
 
@@ -232,7 +269,7 @@ class RelationController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function map(Entity  $entity)
+    public function map(Entity $entity)
     {
         if (empty($entity->child)) {
             abort(404);
@@ -245,7 +282,9 @@ class RelationController extends Controller
             $this->authorizeEntityForGuest('read', $entity->child);
         }
 
-        $map = $this->service->entity($entity)->map();
+        $map = $this->service->entity($entity)
+            ->options(request()->only('relations', 'mentions', 'related'))
+            ->map();
         return response()->json(
             $map
         );

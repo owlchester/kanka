@@ -78249,7 +78249,23 @@ function registerDatagridSorter() {
       options = this.name + '=' + this.value;
     }
 
-    window.location = $(this).data('url') + ($(this).data('url').includes('?') ? '&' : '?') + options;
+    var url = $(this).data('url'); // Remove target
+
+    var target = null;
+
+    if (url.includes('#')) {
+      target = '#' + url.split('#')[1];
+      url = url.split('#')[0];
+    }
+
+    if ($(this).data('url').includes('?')) {
+      url += '&' + options;
+    } else {
+      url += '?' + options;
+    }
+
+    url += target;
+    window.location = url;
   });
 }
 
@@ -79088,34 +79104,34 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/js/app.js */"./resources/assets/js/app.js");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/bootstrap.scss */"./resources/assets/sass/bootstrap.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/vendor.scss */"./resources/assets/sass/vendor.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/app.scss */"./resources/assets/sass/app.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/app-rtl.scss */"./resources/assets/sass/app-rtl.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/abilities.scss */"./resources/assets/sass/abilities.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/story.scss */"./resources/assets/sass/story.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/assets.scss */"./resources/assets/sass/assets.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/export.scss */"./resources/assets/sass/export.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/map.scss */"./resources/assets/sass/map.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/map-v2.scss */"./resources/assets/sass/map-v2.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/map-v3.scss */"./resources/assets/sass/map-v3.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/subscription.scss */"./resources/assets/sass/subscription.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/conversation.scss */"./resources/assets/sass/conversation.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/gallery.scss */"./resources/assets/sass/gallery.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/front.scss */"./resources/assets/sass/front.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/auth.scss */"./resources/assets/sass/auth.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/front-rtl.scss */"./resources/assets/sass/front-rtl.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/front/critical.scss */"./resources/assets/sass/front/critical.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/community-votes.scss */"./resources/assets/sass/community-votes.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/relations.scss */"./resources/assets/sass/relations.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/dashboard.scss */"./resources/assets/sass/dashboard.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/settings.scss */"./resources/assets/sass/settings.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/themes/future.scss */"./resources/assets/sass/themes/future.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/themes/dark.scss */"./resources/assets/sass/themes/dark.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/themes/midnight.scss */"./resources/assets/sass/themes/midnight.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/tinymce.scss */"./resources/assets/sass/tinymce.scss");
-module.exports = __webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/freyja/freyja.scss */"./resources/assets/sass/freyja/freyja.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/js/app.js */"./resources/assets/js/app.js");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/bootstrap.scss */"./resources/assets/sass/bootstrap.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/vendor.scss */"./resources/assets/sass/vendor.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/app-rtl.scss */"./resources/assets/sass/app-rtl.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/abilities.scss */"./resources/assets/sass/abilities.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/story.scss */"./resources/assets/sass/story.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/assets.scss */"./resources/assets/sass/assets.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/export.scss */"./resources/assets/sass/export.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/map.scss */"./resources/assets/sass/map.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/map-v2.scss */"./resources/assets/sass/map-v2.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/map-v3.scss */"./resources/assets/sass/map-v3.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/subscription.scss */"./resources/assets/sass/subscription.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/conversation.scss */"./resources/assets/sass/conversation.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/gallery.scss */"./resources/assets/sass/gallery.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/front.scss */"./resources/assets/sass/front.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/auth.scss */"./resources/assets/sass/auth.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/front-rtl.scss */"./resources/assets/sass/front-rtl.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/front/critical.scss */"./resources/assets/sass/front/critical.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/community-votes.scss */"./resources/assets/sass/community-votes.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/relations.scss */"./resources/assets/sass/relations.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/dashboard.scss */"./resources/assets/sass/dashboard.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/settings.scss */"./resources/assets/sass/settings.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/themes/future.scss */"./resources/assets/sass/themes/future.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/themes/dark.scss */"./resources/assets/sass/themes/dark.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/themes/midnight.scss */"./resources/assets/sass/themes/midnight.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/tinymce.scss */"./resources/assets/sass/tinymce.scss");
+module.exports = __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/freyja/freyja.scss */"./resources/assets/sass/freyja/freyja.scss");
 
 
 /***/ }),

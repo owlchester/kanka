@@ -9,16 +9,21 @@
 ])
 
 @section('content')
+    @if (request()->ajax())
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">
+            {{ __('entities/relations.create.title', ['name' => $entity->name]) }}
+        </h4>
+    </div>
+    <div class="modal-body">
+    @else
     <div class="panel panel-default">
-        @if ($ajax)
-            <div class="panel-heading">
-                <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                <h4>
-                    {{ __('entities/relations.create.title', ['name' => $entity->name]) }}
-                </h4>
-        </div>
-        @endif
         <div class="panel-body">
+    @endif
+
             @include('partials.errors')
 
             {!! Form::open(['route' => ['entities.relations.store', $entity->id], 'method' => 'POST', 'data-shortcut' => 1]) !!}
@@ -33,8 +38,13 @@
             </div>
 
             {!! Form::close() !!}
+
+            @if(request()->ajax())
+        </div>
+        @else
         </div>
     </div>
+    @endif
 @endsection
 
 @section('scripts')
