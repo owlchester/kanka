@@ -1,4 +1,4 @@
-<?php /** @var \App\Models\CampaignRole $relation */?>
+<?php /** @var \App\Models\CampaignRole $relation */ ?>
 <div class="box-header with-border">
     <h3 class="box-title">
         <i class="fa fa-users-cog"></i> {{ __('campaigns.show.tabs.roles') }}
@@ -39,10 +39,10 @@
                 </td>
                 <td class="hidden-xs">
                     @if (!$relation->is_admin)
-                        {{ $relation->permissions->count() }}
+                        {{ $relation->permissions->whereNull('entity_id')->count() }}
                     @endif</td>
                 <td>
-                    @if($relation->is_public && !$campaign->is_public)
+                    @if($relation->is_public && !$campaign->is_public && $relation->permissions->whereNull('entity_id')->count() > 0)
                         <div class="hidden-xs">
                             <i class="fa fa-exclamation-triangle" data-toggle="tooltip" title="{{ __('campaigns.roles.hints.campaign_not_public') }}"></i>
                         </div>

@@ -7,7 +7,7 @@ return [
             'new'       => 'Nová prihláška pre :campaign.',
             'rejected'  => 'Tvoja prihláška do kampane :campaign bola odmietnutá. Uvedený dôvod: :reason',
         ],
-        'asset_export'  => 'Export hodnôt kampane je dostupný. Link je dostupný na :time min.',
+        'asset_export'  => 'Export materiálov kampane je dostupný. Link je dostupný na :time min.',
         'boost'         => [
             'add'           => 'Kampaň :campaign bola boostnutá používateľom :user.',
             'remove'        => 'Kampaň :campaign už nie je boostovaná používateľom :user.',

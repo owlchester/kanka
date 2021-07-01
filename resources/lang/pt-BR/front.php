@@ -82,9 +82,11 @@ return [
             'dashboards'            => 'Definir dashboards personalizados para cargos da campanha',
             'description'           => 'Certos níveis de pledge fornecem aos usuários boosters, que podem ser usados para impulsionar campanhas. Eles fornecem os seguintes benefícios.',
             'entity_files'          => 'Aumento da quantidade máxima de arquivos enviados por entidade (até 5 em vez de 3)',
+            'entity_files_v2'       => 'Máximo de arquivos atualizados por entidade',
             'entity_links'          => 'Configure links em entidades para websites e fontes externas.',
             'header_image'          => 'Imagem do cabeçalho da entidade',
             'images'                => 'Definir imagens de entidade padrão personalizadas',
+            'marketplace'           => 'Acesso ao :marketplace',
             'no_ads'                => 'Sem anúncios na campanha',
             'recovery'              => 'Recuperação de entidade por até 30 dias',
             'relation-visualiser'   => 'Explore as relações das entidades visualmente',
@@ -92,6 +94,10 @@ return [
             'title'                 => 'Campanhas impulsionadas',
             'tooltip'               => 'Dicas de entidades personalizadas: mostrar imagem, alterar texto',
             'upload'                => 'Tamanhos de upload maiores para todos os membros',
+        ],
+        'boosts_v2'         => [
+            'description'   => 'Nossos níveis pagos oferecem acesso a impulsões, que você pode usar para impulsionar ou superimpulsionar campanhas. Isso desbloqueia os seguintes benefícios para uma campanha.',
+            'title'         => 'Campanhas Impulsionadas e Super Impulsionadas',
         ],
         'calendars'         => [
             'description'   => 'Crie calendários personalizados e organize sua campanha em torno deles.',

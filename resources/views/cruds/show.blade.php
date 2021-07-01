@@ -27,15 +27,20 @@ $headerImage = true;
 @section('entity-header-actions')
     <div class="header-buttons">
         <div class="btn-group">
-            <div class="btn btn-default btn-post-collapse" title="{{ __('entities/story.actions.collapse_all') }}" data-toggle="tooltip">
+            <div class="btn btn-default btn-sm btn-post-collapse" title="{{ __('entities/story.actions.collapse_all') }}" data-toggle="tooltip">
                 <i class="fas fa-grip-lines"></i>
             </div>
-            <div class="btn btn-default btn-post-expand" title="{{ __('entities/story.actions.expand_all') }}" data-toggle="tooltip">
+            <div class="btn btn-default btn-sm btn-post-expand" title="{{ __('entities/story.actions.expand_all') }}" data-toggle="tooltip">
                 <i class="fas fa-bars"></i>
             </div>
         </div>
+        @can('update', $model)
+            <a href="{{ $model->getLink('edit') }}" class="btn btn-primary btn-sm ">
+                <i class="fa fa-pencil"></i> {{ __('crud.edit') }}
+            </a>
+        @endcan
         @can('entity-note', [$model, 'add'])
-        <a href="{{ route('entities.entity_notes.create', $model->entity) }}" class="btn btn-primary">
+        <a href="{{ route('entities.entity_notes.create', $model->entity) }}" class="btn btn-warning btn-sm ">
             <i class="fa fa-plus"></i> {{ __('crud.actions.new_post') }}
         </a>
         @endcan

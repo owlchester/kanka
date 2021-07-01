@@ -17,10 +17,8 @@
             @include('calendars.weather._form')
 
             <div class="form-group">
-                <button class="btn btn-success">{{ trans('crud.save') }}</button>
-                @if (!$ajax)
-                    {!! __('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
-                @endif
+                <button class="btn btn-success">{{ __('crud.save') }}</button>
+                @includeWhen(!$ajax, 'partials.or_cancel')
             </div>
 
             {!! Form::hidden('year', $year) !!}

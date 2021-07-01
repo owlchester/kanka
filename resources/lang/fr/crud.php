@@ -203,6 +203,7 @@ return [
         ],
         'title'                     => 'Filtres',
     ],
+    'fix-this-issue'            => 'Réparer ce problème',
     'forms'                     => [
         'actions'       => [
             'calendar'  => 'Ajouter une date de calendrier',
@@ -223,7 +224,6 @@ return [
         'image_patreon'         => 'Augmenter la taille limite?',
         'is_private'            => 'Cacher des membres de type non-Admin',
         'is_star'               => 'Les éléments épinglés sont affichés sur le menu de l\'entité.',
-        'map_limitations'       => 'Formats supportés: jpg, png, gif, webp et svg. Taille max de fichier: :size.',
         'tooltip'               => 'Remplace l\'infobulle automatiquement généré avec le texte ci-dessous.',
         'visibility'            => 'Si la visibilité est définie à Admin, seuls les membres du rôle Admin de la campagne verront ceci. La visibilité "Soi-même" signifie que tu es le seul à le voir.',
     ],
@@ -243,6 +243,10 @@ return [
     'legacy'                    => 'Ancien',
     'linking_help'              => 'Comment lier vers d\'autres éléments?',
     'manage'                    => 'Gérer',
+    'navigation'                => [
+        'cancel'    => 'annuler',
+        'or_cancel' => 'ou :cancel',
+    ],
     'new_entity'                => [
         'error' => 'Vérifier les valeurs.',
         'fields'=> [
@@ -250,7 +254,6 @@ return [
         ],
         'title' => 'Nouvel élément',
     ],
-    'or_cancel'                 => 'ou <a href=":url">annuler</a>',
     'panels'                    => [
         'appearance'            => 'Apparence',
         'attribute_template'    => 'Modèle d\'attribut',
@@ -310,6 +313,7 @@ return [
         'map'           => 'Choix d\'une carte',
         'note'          => 'Choix d\'une note',
         'organisation'  => 'Choix d\'une organisation',
+        'quest'         => 'Choix d\'une quête',
         'race'          => 'Choix d\'une race',
         'tag'           => 'Choix d\'une étiquette',
         'timeline'      => 'Choix d\'une chronologie',

@@ -13,8 +13,8 @@ return [
     'fields'        => [
         'comment'       => 'Comment',
         'entity_link'   => 'Link to the entity',
-        'rank'          => 'Rank',
         'honorable'     => 'Honorable mention',
+        'rank'          => 'Rank',
         'submitter'     => 'Submitter',
     ],
     'index'         => [
@@ -38,9 +38,9 @@ return [
     ],
     'results'       => [
         'description'       => 'Our jury selected the following submissions as winners for the event.',
+        'scheduled'         => 'This event will start on :start.',
         'title'             => 'Event Winners',
         'waiting_results'   => 'The event is over! The event jury will look at the submissions and as soon as winners are selected, they will be displayed here.',
-        'scheduled'         => 'This event will start on :start.',
     ],
     'show'          => [
         'participants'  => '{1} :number entry submitted.|[2,*] :number entries submitted.',

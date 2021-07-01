@@ -25,7 +25,9 @@ return [
         'name'      => 'Nom',
     ],
     'hint'          => 'Les informations qui n\'entrent pas vraiment dans les champs pré-définis ou qui doivent être privées peuvent être ajoutées en tant que Note.',
-    'hints'         => [],
+    'hints'         => [
+        'reorder'   => 'Les notes d\'entité peuvent être réarrangée en cliquant sur l\'icône :icon à côté de Histoire dans le menu de l\'entité.',
+    ],
     'index'         => [
         'title' => 'Notes pour :name',
     ],

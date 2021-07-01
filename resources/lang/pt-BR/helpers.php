@@ -61,6 +61,10 @@ return [
         'private'       => 'Os membros na função de Administrador da campanha podem tornar um mapa privado. Isso permite que os usuários vejam um local, mas para o mapa ficará escondido.',
         'title'         => 'Mapas de locais',
     ],
+    'pins'              => [
+        'description'   => 'As entidades podem ter relações e atributos fixados à direita de sua exibição de história. Para fixar um elemento, vá e edite a relação ou atributos e defina o valor fixado neles.',
+        'title'         => 'Entidades Fixadas',
+    ],
     'public'            => 'Assista a um tutorial em vídeo no Youtube explicando as campanhas públicas.',
     'title'             => 'Ajuda',
     'widget-filters'    => [

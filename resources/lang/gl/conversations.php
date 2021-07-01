@@ -15,6 +15,7 @@ return [
         'title'         => 'Conversa ":name"',
     ],
     'fields'        => [
+        'is_closed'     => 'Pechada',
         'messages'      => 'Mensaxes',
         'name'          => 'Nome',
         'participants'  => 'Participantes',
@@ -57,6 +58,7 @@ return [
     ],
     'show'          => [
         'description'   => 'Vista detallada dunha conversa',
+        'is_closed'     => 'A conversa está pechada.',
         'title'         => 'Conversa ":name"',
     ],
     'tabs'          => [

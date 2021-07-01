@@ -23,9 +23,7 @@
 
         <div class="form-group">
             <button class="btn btn-success">{{ __('crud.actions.apply') }}</button>
-            @if (!request()->ajax())
-            {!! __('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous() . (strpos(url()->previous(), '?tab=') === false ? '?tab=attribute' : null))]) !!}
-            @endif
+            @includeWhen(!request()->ajax(), 'partials.or_cancel')
         </div>
 
         {!! Form::close() !!}

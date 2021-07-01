@@ -44,6 +44,9 @@ return [
         'template'  => 'Wybierz szablon',
         'value'     => 'Wartość cechy',
     ],
+    'show'          => [
+        'title' => 'Cechy elementu :name',
+    ],
     'template'      => [
         'success'   => 'Zastosowano szablon cech :name dla :entity',
         'title'     => 'Zastosuj szablon cech dla :name',
@@ -56,6 +59,9 @@ return [
         'random'    => 'Losowy',
         'section'   => 'Sekcja',
         'text'      => 'Kilka wierszy',
+    ],
+    'update'        => [
+        'success'   => 'Zaktualizowano cechy elementu :entity.',
     ],
     'visibility'    => [
         'entry'     => 'Cecha wyświetlana na stronie głównej elementu.',

@@ -29,7 +29,7 @@
 
                     <div class="form-group">
                         <button class="btn btn-success">{{ trans('crud.save') }}</button>
-                        {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous() . (strpos(url()->previous(), '?tab=') === false ? '?tab=attribute' : null))]) !!}
+                        @include('partials.or_cancel')
                     </div>
 
                     {!! Form::close() !!}

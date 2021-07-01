@@ -26,8 +26,10 @@ return [
         ],
     ],
     'fields'        => [
+        'center_marker'     => 'Znacznik',
         'center_x'          => 'Wyjściowa szerokość geograficzna',
         'center_y'          => 'Wyjściowa długość geograficzna',
+        'centering'         => 'Wyśrodkowanie',
         'distance_measure'  => 'Miara odległości',
         'distance_name'     => 'Jednostka odległości',
         'grid'              => 'Siatka',
@@ -37,10 +39,15 @@ return [
         'max_zoom'          => 'Maksymalne powiększenie',
         'min_zoom'          => 'Maksymalne oddalenie',
         'name'              => 'Nazwa',
+        'tabs'              => [
+            'coordinates'   => 'Współrzędne',
+            'marker'        => 'Znacznik',
+        ],
         'type'              => 'Rodzaj',
     ],
     'helpers'       => [
         'center'            => 'Zmiana tych wartości wpłynie na obszar, na którym domyślnie skupia się mapa. Jeżeli zostawisz je puste, mapa skoncentruje się na środku.',
+        'centering'         => 'Środkowanie na znaczniku ma pierwszeństwo wobec domyślnych współrzędnych',
         'descendants'       => 'Na liście znajdują się wszystkie mapy pochodzące od tej, nie tylko bezpośrednio.',
         'distance_measure'  => 'Wyposażając mapę w miary odległości uruchomisz narzędzie odmierzania dystansu w trybie eksploracji.',
         'grid'              => 'Określ wielkość siatki wyświetlanej w trybie eksploracji',
@@ -66,6 +73,7 @@ return [
         'settings'  => 'Ustawienia',
     ],
     'placeholders'  => [
+        'center_marker'     => 'Zostaw pusty, by mapa wyświetlała się wyśrodkowana w centrum',
         'center_x'          => 'Pozostaw puste, by mapa wyświetlała się skupiona na środku',
         'center_y'          => 'Pozostaw puste, by mapa wyświetlała się skupiona na środku',
         'distance_measure'  => 'Jednostka na piksel',

@@ -32,6 +32,10 @@ return [
         'helper'    => 'W doładowanych kampaniach można dodawać elementom odnośniki do stron zewnętrznych.',
         'title'     => 'Odnośniki elementu :name',
     ],
+    'unboosted'     => [
+        'text'  => 'Dodawanie linków do zasobów zewnętrznych, wyświetlanych bezpośrednio w opisie elementu wymaga :boosted-campaigns.',
+        'title' => 'doładowania kampanii',
+    ],
     'update'        => [
         'success'   => 'Zaktualizowano odnośnik :name dla elementu :entity.',
         'title'     => 'Aktualizacja odnośnika elementu :name',

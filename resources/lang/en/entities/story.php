@@ -12,7 +12,7 @@ return [
         'success'       => 'Posts reordered.',
         'title'         => 'Entity :name post reordering',
     ],
-    'update' => [
+    'update'    => [
         'title' => 'Update :entity entry',
-    ]
+    ],
 ];

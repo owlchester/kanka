@@ -15,6 +15,7 @@ return [
         'title'         => 'Razgovor :name',
     ],
     'fields'        => [
+        'is_closed'     => 'Zatvoreno',
         'messages'      => 'Poruke',
         'name'          => 'Naziv',
         'participants'  => 'Sudionici',
@@ -57,6 +58,7 @@ return [
     ],
     'show'          => [
         'description'   => 'Detaljan prikaz razgovora',
+        'is_closed'     => 'Razgovor je zatvoren.',
         'title'         => 'Razgovor :name',
     ],
     'tabs'          => [

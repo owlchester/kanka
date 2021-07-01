@@ -2,52 +2,41 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Orderable;
+use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
+/**
+ * Class Faq
+ * @package App\Models
+ *
+ * @property int $id
+ * @property int $category_id
+ * @property string $locale
+ * @property string $question
+ * @property string $answer
+ */
 class Faq extends Model
 {
     public $table = 'faq';
 
-    use  Orderable, Sortable;
-
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
+    use  Orderable, Sortable, Filterable, Searchable;
 
 
-        $this->defaultOrderField = 'question';
-        $this->defaultOrderDirection = 'asc';
-    }
+    public $searchableColumns = ['question', 'answer'];
+    public $sortableColumns = [];
+    public $filterableColumns = ['question', 'answer'];
 
-    /**
-     * Filterable fields
-     * @var array
-     */
-    protected $filterableColumns = [
-        'locale',
-        'question',
-        'answer',
-        'category_id',
-    ];
-
-    protected $searchableColumns = [
-        'question',
-        'answer'
-    ];
-
-    protected $sortableColumns = [
-        'question'
-    ];
-
-    protected $fillable = [
-        'locale',
+    public $fillable = [
+        'faq_category_id',
         'question',
         'answer',
         'order',
-        'faq_category_id',
+        'is_visible',
+        'locale'
     ];
 
     /**

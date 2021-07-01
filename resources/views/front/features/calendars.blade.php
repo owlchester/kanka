@@ -44,7 +44,7 @@
 
                         <p class="text-center mb-5">
                             <a href="https://kanka.io/{{ app()->getLocale() }}/campaign/6529/calendars/626" target="_blank" class="">
-                                {{ __('front/features/maps.example') }}
+                                {{ __('front/features/calendars.example') }}
                             </a>
                         </p>
 

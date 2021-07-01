@@ -82,9 +82,11 @@ return [
             'dashboards'            => 'Nastaviť vlastné nástenky pre role v kampani',
             'description'           => 'Niektoré formy predplatného dávajú užívateľom možnosť boostnuť kampane. Tieto následne získajú tieto výhody.',
             'entity_files'          => 'Navýšený max. počet nahraných súborov v objekte (5 namiesto 3)',
+            'entity_files_v2'       => 'Maximálny počet súborov v objekte',
             'entity_links'          => 'Nastav linky na objekty pre externé zdroje a webstránky',
             'header_image'          => 'Obrázok záhlavia objektu',
             'images'                => 'Prednastavenie štandardných obrázkov typov objektov',
+            'marketplace'           => 'Prístup do :marketplace',
             'no_ads'                => 'Kampaň bez reklám',
             'recovery'              => 'Obnovenie odstránených objektov do 30 dní',
             'relation-visualiser'   => 'Objavuj vizuálne vzťahové prepojenia medzi objektami',
@@ -92,6 +94,10 @@ return [
             'title'                 => 'Boostnuté kampane',
             'tooltip'               => 'Bubliny objektov s možnosťou zobrazenia obrázku a úpravy textu',
             'upload'                => 'Navýšenie veľkosti uploadu pre všetkých členov',
+        ],
+        'boosts_v2'         => [
+            'description'   => 'Naše úrovne podpory ti dajú prístup k boostom, ktoré môžeš použiť na boostnutie alebo superboostnutie kampaní. Ak tak spravíš, odomknú sa v kampani nasledujúce výhody.',
+            'title'         => 'Boostnuté a Superboostnuté kampane',
         ],
         'calendars'         => [
             'description'   => 'Vytvor vlastné kalendáre a organizuj pomocou nich tvoju kampaň.',

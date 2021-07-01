@@ -202,6 +202,7 @@ TEXT
             'roles_page'    => 'Página de Cargos',
             'title'         => 'Convidar',
         ],
+        'manage_roles'          => 'Gerenciar funções de usuário',
         'roles'                 => [
             'member'    => 'Membro',
             'owner'     => 'Dono',
@@ -211,6 +212,10 @@ TEXT
         ],
         'switch_back_success'   => 'Você voltou para seu usuário original',
         'title'                 => 'Menbros da campanha :name',
+        'updates'               => [
+            'added'     => 'Função :role adicionada ao :user.',
+            'removed'   => 'Função :role removida do :user.',
+        ],
         'your_role'             => 'Você é  <i>:role</i>',
     ],
     'open_campaign'                     => [

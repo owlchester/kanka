@@ -12,4 +12,7 @@ return [
         'success'       => 'Les éléments ont été réordonnés.',
         'title'         => 'Réordonner l\'entité :name',
     ],
+    'update'    => [
+        'title' => 'Modifier l\'entité :entity',
+    ],
 ];

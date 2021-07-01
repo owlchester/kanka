@@ -120,7 +120,8 @@ class Journal extends MiscModel
             'entity.image',
             'character', 'character.entity',
             'location', 'location.entity',
-            'journal', 'journal.entity'
+            'journal', 'journal.entity',
+            'calendar',
         ]);
     }
 

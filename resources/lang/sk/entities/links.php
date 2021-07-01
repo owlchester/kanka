@@ -32,6 +32,10 @@ return [
         'helper'    => 'Boostované kampane môžu pridávať k objektom linky, ktoré smerujú na externé webstránky.',
         'title'     => 'Linky pre :name',
     ],
+    'unboosted'     => [
+        'text'  => 'Pridávať linky na externé zdroje, ktoré budú zobrazené priamo v objekte, je rezervované pre :boosted-campaigns.',
+        'title' => 'Funkcionalita boostnutej kampane',
+    ],
     'update'        => [
         'success'   => 'Link :name aktualizovaný pre :entity.',
         'title'     => 'Aktualizovať link pre :name',

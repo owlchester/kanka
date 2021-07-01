@@ -164,7 +164,10 @@ return array(
         'admin.referrals',
         'admin.releases',
         'admin.users',
+        'admin.faqs',
+        'front.kb',
         'randomisers.characters',
+        'backup::notifications',
     ),
     /**
      * Exclude specific groups from Laravel Translation Manager in page edit mode.

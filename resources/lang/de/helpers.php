@@ -61,6 +61,10 @@ return [
         'private'       => 'Mitglieder in der Administratorrolle der Kampagne können eine Karte privat machen. Auf diese Weise können Benutzer einen Standort anzeigen, Administratoren können die Karte jedoch geheim halten.',
         'title'         => 'Standortkarten',
     ],
+    'pins'              => [
+        'description'   => 'Objekte können rechts neben ihrer Story-Ansicht Beziehungen und Attribute haben. Um ein Element anzuheften, bearbeiten Sie die Beziehung oder die Attribute und legen Sie den angehefteten Wert für diese fest.',
+        'title'         => 'Objekt Pins',
+    ],
     'public'            => 'Sie die Tutorial Videos über öffentliche Kampagnen auf Youtube an.',
     'title'             => 'Hilfe',
     'widget-filters'    => [

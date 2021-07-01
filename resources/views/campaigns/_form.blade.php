@@ -155,7 +155,5 @@
 
 <div class="form-group">
     <button class="btn btn-success">{{ __('crud.save') }}</button>
-    @if (!$start)
-        {!! __('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
-    @endif
+    @includeWhen(!$start, 'partials.or_cancel')
 </div>

@@ -58,6 +58,9 @@ return [
         'template'  => 'Selecione um modelo',
         'value'     => 'Valor do atributo',
     ],
+    'show'          => [
+        'title' => ':name Atributos',
+    ],
     'template'      => [
         'success'   => 'Modelo de Atributo :name aplicado em :entity',
         'title'     => 'Aplicar um Modelo de Atributo a :name',
@@ -70,6 +73,9 @@ return [
         'random'    => 'Aleatório',
         'section'   => 'Seção',
         'text'      => 'Texto multilinha',
+    ],
+    'update'        => [
+        'success'   => 'Atributos para :entity atualizados.',
     ],
     'visibility'    => [
         'entry'     => 'O atributo é exibido no menu da entidade.',

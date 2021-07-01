@@ -203,6 +203,7 @@ return [
         ],
         'title'                     => 'Filters',
     ],
+    'fix-this-issue'            => 'Fix this issue',
     'forms'                     => [
         'actions'       => [
             'calendar'  => 'Add a calendar date',
@@ -242,6 +243,10 @@ return [
     'legacy'                    => 'Legacy',
     'linking_help'              => 'How can I link to other entities?',
     'manage'                    => 'Manage',
+    'navigation'                => [
+        'cancel'    => 'cancel',
+        'or_cancel' => 'or :cancel',
+    ],
     'new_entity'                => [
         'error' => 'Please review your values.',
         'fields'=> [
@@ -249,7 +254,6 @@ return [
         ],
         'title' => 'New entity',
     ],
-    'or_cancel'                 => 'or <a href=":url">cancel</a>',
     'panels'                    => [
         'appearance'            => 'Appearance',
         'attribute_template'    => 'Attribute Template',
@@ -309,6 +313,7 @@ return [
         'map'           => 'Choose a map',
         'note'          => 'Choose a note',
         'organisation'  => 'Choose an organisation',
+        'quest'         => 'Choose a quest',
         'race'          => 'Choose a race',
         'tag'           => 'Choose a tag',
         'timeline'      => 'Choose a timeline',

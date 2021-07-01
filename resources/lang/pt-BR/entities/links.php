@@ -32,6 +32,10 @@ return [
         'helper'    => 'Campanhas impulsionadas podem adicionar links a entidades que apontam para sites externos.',
         'title'     => 'Links para :name',
     ],
+    'unboosted'     => [
+        'text'  => 'Adicionar links a fontes externas que são exibidos diretamente na entidade está reservado para :boosted-campaigns.',
+        'title' => 'Recurso de campanha impulsionada',
+    ],
     'update'        => [
         'success'   => 'Link :name atualizado para :entity.',
         'title'     => 'Atualizar link para :name',

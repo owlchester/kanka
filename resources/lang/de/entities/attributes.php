@@ -61,6 +61,9 @@ return [
         'template'  => 'Wähle eine Vorlage',
         'value'     => 'Wert des Attributs',
     ],
+    'show'          => [
+        'title' => ':name Attribut',
+    ],
     'template'      => [
         'success'   => 'Attributvorlage :name wird auf :entity angewendet',
         'title'     => 'Wende eine Attributvorlage auf :name an',
@@ -73,6 +76,9 @@ return [
         'random'    => 'Zufällig',
         'section'   => 'Abteilung',
         'text'      => 'Mehrzeiliger Text',
+    ],
+    'update'        => [
+        'success'   => 'Attribut von :entity aktualisiert',
     ],
     'visibility'    => [
         'entry'     => 'Das Attribut wird im Objektmenü angezeigt.',

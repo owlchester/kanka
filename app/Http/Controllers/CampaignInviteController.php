@@ -61,9 +61,9 @@ class CampaignInviteController extends Controller
         return redirect()->route('campaign_users.index')
             ->with(
                 'success_raw',
-                trans(
-                    'campaigns.invites.create.' . ($invitation->type == 'email' ? 'success' : 'link'),
-                    ['url' => route('campaigns.join', $invitation->token)]
+                __(
+                    'campaigns.invites.create.' . ($invitation->type == 'email' ? 'success' : 'success_link'),
+                    ['link' => link_to_route('campaigns.join', route('campaigns.join', $invitation->token), $invitation->token)]
                 )
             );
     }

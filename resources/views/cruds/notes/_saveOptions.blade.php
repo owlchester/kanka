@@ -18,7 +18,6 @@
                 </a></li>
             </ul>
         </div>
-        {!! __('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
-
+        @include('partials.or_cancel')
     </div>
 

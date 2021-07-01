@@ -15,6 +15,7 @@ return [
         'title'         => 'Diskusia :name',
     ],
     'fields'        => [
+        'is_closed'     => 'Uzavretá',
         'messages'      => 'Správy',
         'name'          => 'Meno',
         'participants'  => 'Účastníci',
@@ -57,6 +58,7 @@ return [
     ],
     'show'          => [
         'description'   => 'Detailné zobrazenie diskusie',
+        'is_closed'     => 'Diskusia je uzavretá.',
         'title'         => 'Diskusia :name',
     ],
     'tabs'          => [

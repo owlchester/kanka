@@ -42,7 +42,7 @@
 
                     <div class="form-group">
                         <button class="btn btn-success">@can('update', $entity->child) {{ __('entities/move.actions.move') }} @else  {{ __('entities/move.actions.copy') }} @endcan</button>
-                        {!! __('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
+                        @include('partials.or_cancel')
                     </div>
                 </div>
             </div>

@@ -26,10 +26,10 @@ return [
         ],
     ],
     'fields'        => [
-        'centering'         => 'Centering',
         'center_marker'     => 'Marker',
         'center_x'          => 'Default Longitude Position',
         'center_y'          => 'Default Latitude Position',
+        'centering'         => 'Centering',
         'distance_measure'  => 'Distance Measure',
         'distance_name'     => 'Distance Unit',
         'grid'              => 'Grid',
@@ -41,13 +41,13 @@ return [
         'name'              => 'Name',
         'tabs'              => [
             'coordinates'   => 'Coordinates',
-            'marker'        => 'Marker'
+            'marker'        => 'Marker',
         ],
         'type'              => 'Type',
     ],
     'helpers'       => [
-        'centering'         => 'Centering on a marker will take priority on default coordinates.',
         'center'            => 'Changing the following values will control which area of the map is focused on. Leaving these values empty will result in the center of the map being focued on.',
+        'centering'         => 'Centering on a marker will take priority on default coordinates.',
         'descendants'       => 'This list contains all maps which are descendants of this map, and not only those directly under it.',
         'distance_measure'  => 'Giving the map a distance measurement will enable the measurement tool on the exploration mode.',
         'grid'              => 'Define a grid size that will be displayed on the exploration mode.',

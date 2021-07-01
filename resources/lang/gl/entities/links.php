@@ -32,6 +32,10 @@ return [
         'helper'    => 'As campañas potenciadas poden engadir ligazóns externas a entidades.',
         'title'     => 'Ligazóns de ":name"',
     ],
+    'unboosted'     => [
+        'text'  => 'Engadir ligazóns a recursos externos que sexan mostrados directamente na entidade está reservado para :boosted-campaigns.',
+        'title' => 'Funcionalidade de campaña potenciada',
+    ],
     'update'        => [
         'success'   => 'Ligazón ":name" actualizada en ":entity".',
         'title'     => 'Actualizar ligazón de ":name"',

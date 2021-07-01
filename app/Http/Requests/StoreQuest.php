@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreQuest extends FormRequest
 {
@@ -44,7 +45,14 @@ class StoreQuest extends FormRequest
 
         $self = request()->segment(5);
         if (!empty($self)) {
-            $rules['quest_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:quests,id';
+            $rules['quest_id'] = [
+                'nullable',
+                'integer',
+                'not_in:' . ((int) $self),
+                Rule::exists('quests')->where(function ($query)  use ($self) {
+                    return $query->where('quest_id', '!=', $self);
+                }),
+            ];
         }
 
         return $rules;

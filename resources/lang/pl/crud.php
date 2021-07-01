@@ -354,6 +354,7 @@ return [
     'superboosted_campaigns'    => 'Turbodoładowane kampanie',
     'tabs'                      => [
         'abilities'     => 'Zdolności',
+        'assets'        => 'Zasoby',
         'attributes'    => 'Cechy',
         'boost'         => 'Doładowanie',
         'calendars'     => 'Kalendarze',

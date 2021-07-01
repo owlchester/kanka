@@ -34,9 +34,7 @@
         </div>
         <div class="panel-footer">
             <button class="btn btn-success">{{ empty($submission) ? __('campaigns/submissions.apply.apply') : __('crud.update') }}</button>
-            @if (!$ajax)
-                {!! __('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
-            @endif
+            @includeWhen(!request()->ajax(), 'partials.or_cancel')
             {!! Form::close() !!}
 
             @if($submission)

@@ -13,6 +13,7 @@ return [
     'fields'        => [
         'comment'       => 'Komentár',
         'entity_link'   => 'Link k objektu',
+        'honorable'     => 'Čestná zmienka',
         'rank'          => 'Poradie',
         'submitter'     => 'Prispievateľ',
     ],
@@ -37,6 +38,7 @@ return [
     ],
     'results'       => [
         'description'       => 'Naša porota vybrala medzi víťazov nasledujúce príspevky',
+        'scheduled'         => 'Táto udalosť začne :start.',
         'title'             => 'Víťazi udalosti',
         'waiting_results'   => 'Táto udalosť skončila! Porota udalosti zhodnotí všetky príspevky a akonáhle vyberie víťazov, zobrazia sa títo na tomto mieste.',
     ],

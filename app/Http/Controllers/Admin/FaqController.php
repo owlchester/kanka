@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StoreFaq;
+use App\Http\Requests\Admin\StoreFaq;
 use App\Models\Faq;
 use Illuminate\Http\Request;
 
@@ -13,6 +13,7 @@ class FaqController extends AdminCrudController
      */
     protected $view = 'admin.faqs';
     protected $route = 'admin.faqs';
+    protected $trans = 'admin/faqs';
 
     /**
      * @var string
@@ -40,28 +41,30 @@ class FaqController extends AdminCrudController
      */
     public function index(\Illuminate\Http\Request $request)
     {
-        /** @var Faq $model */
         $model = new $this->model;
-        $this->filterService->make($this->view, request()->all(), $model);
         $name = $this->view;
         $actions = $this->indexActions;
-        $filters = $this->filters;
-        $filterService = $this->filterService;
         $route = $this->route;
+        $trans = $this->trans;
+        $createAction = $this->createAction;
+        $this->filterService->make($this->view, request()->all(), $model);
+        $filterService = $this->filterService;
 
         $models = $model
             ->search(request()->get('search'))
             ->filter($this->filterService->filters())
-            ->order($this->filterService->order(), 'question')
+            ->orderBy('faq_category_id')
+            ->orderBy('order')
             ->paginate();
         return view('admin.cruds.index', compact(
             'models',
             'name',
             'model',
             'actions',
-            'filters',
+            'createAction',
+            'route',
             'filterService',
-            'route'
+            'trans'
         ));
     }
 

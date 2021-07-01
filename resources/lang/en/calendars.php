@@ -144,8 +144,8 @@ return [
                 'newmoon'       => 'New moon',
                 'newmoon_name'  => ':moon new moon',
                 'none'          => 'None',
-                'year'          => 'Yearly',
                 'unnamed_moon'  => 'Moon :number',
+                'year'          => 'Yearly',
             ],
         ],
         'resets'    => [

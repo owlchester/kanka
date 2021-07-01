@@ -60,6 +60,10 @@ return [
         'private'       => 'Članovi u administrativnoj ulozi kampanje mogu kartu učiniti privatnom. To omogućuje korisnicima da pregledaju lokaciju, ali administratorima da kartu čuvaju u tajnosti.',
         'title'         => 'Karte lokacije',
     ],
+    'pins'              => [
+        'description'   => 'Entiteti mogu imati odnose i atribute prikvačene s desne strane pogleda na priču. Da bi prikvačio/la element, idi i uredi relaciju ili atribute i postavi prikvačenu vrijednost na njih.',
+        'title'         => 'Prikvačeno za entitet',
+    ],
     'public'            => 'Pogledajte Youtube vodič na koji objašnjava javne kampanje.',
     'title'             => 'Pomagači',
     'widget-filters'    => [

@@ -21,9 +21,7 @@
                 <div class="col-md-6 pull-right text-right ">
                     <div class="form-group text-right">
                         <button class="btn btn-success">{{ __('crud.save') }}</button>
-                        @if (!$ajax)
-                            {!! __('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
-                        @endif
+                        @includeWhen(!$ajax, 'partials.or_cancel')
                     </div>
                     {!! Form::hidden('year', $weather->year) !!}
                     {!! Form::hidden('month', $weather->month) !!}

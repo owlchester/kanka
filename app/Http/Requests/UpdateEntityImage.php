@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreFaq extends FormRequest
+class UpdateEntityImage extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,12 +23,11 @@ class StoreFaq extends FormRequest
      */
     public function rules()
     {
-        return [
-            'faq_category_id' => 'required|exists:categories,id',
-            'question' => 'required|max:191',
-            'answer' => 'required',
-            'locale' => 'required|max:5',
-            'order' => 'required',
+        $rules = [
+            'image' => 'nullable|mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
+            'image_url' => 'nullable|url',
         ];
+
+        return $rules;
     }
 }

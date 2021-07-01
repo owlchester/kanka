@@ -13,6 +13,7 @@ return [
     'fields'        => [
         'comment'       => 'Komentar',
         'entity_link'   => 'Veza do entiteta',
+        'honorable'     => 'Javna pohvala',
         'rank'          => 'Rang',
         'submitter'     => 'Podnositelj',
     ],
@@ -37,6 +38,7 @@ return [
     ],
     'results'       => [
         'description'       => 'Naš je žiri odabrao sljedeće prijave kao pobjednike za događaj.',
+        'scheduled'         => 'Ovaj će događaj započeti na :start.',
         'title'             => 'Pobjednici događaja',
         'waiting_results'   => 'Događaj je završen! Žiri događaja će razmotriti prijave, a čim se odaberu pobjednici, oni će biti prikazani ovdje.',
     ],

@@ -145,6 +145,7 @@ return [
                 'newmoon'       => 'Nów',
                 'newmoon_name'  => 'Nów księżyca :moon',
                 'none'          => 'Brak',
+                'unnamed_moon'  => 'Księżyc :number',
                 'year'          => 'Co rok',
             ],
         ],
