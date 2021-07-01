@@ -26,6 +26,7 @@ class UpdateEntityImage extends FormRequest
         $rules = [
             'image' => 'nullable|mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url',
+            'entity_image_uuid' => 'nullable|exists:images,id',
         ];
 
         return $rules;

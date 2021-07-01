@@ -33,7 +33,6 @@
                     'example' => '<code>[entity:123]</code>',
                     'example_name' => '<code>[entity:123|Alex]</code>',
                     'example_page' => '<code>[entity:123|page:inventory]</code>',
-                    'example_tab' => '<code>[entity:123|tab:relations]</code>',
                 ]) !!}
             </p>
             <p>
