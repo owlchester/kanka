@@ -9,7 +9,7 @@
     @foreach ($map->legendMarkers(false) as $marker)
         <li>
             @if(isset($marker['markers']))
-                <a href="#" class="map-legend-marker map-legend-group" data-toggle="collapse" data-target="#map-legend-group-{{ $marker['id'] }}">{!! $marker['name'] !!} w</a>
+                <a href="#" class="map-legend-marker map-legend-group" data-toggle="collapse" data-target="#map-legend-group-{{ $marker['id'] }}">{!! $marker['name'] !!}</a>
 
                 <ul class="collapse in" id="map-legend-group-{{ $marker['id'] }}">
                     @foreach ($marker['markers'] as $mk)
