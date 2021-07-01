@@ -34,6 +34,8 @@ class EntityService
      */
     protected $entities = [];
 
+    protected $copied = false;
+
     /**
      * EntityService constructor.
      */
@@ -83,6 +85,11 @@ class EntityService
             }
         }
         return $entities;
+    }
+
+    public function copied(): bool
+    {
+        return $this->copied;
     }
 
     /**
@@ -144,16 +151,22 @@ class EntityService
      */
     public function move(Entity $entity, $request)
     {
-        if (!empty($request['target'])) {
-            return $this->moveType($entity, $request['target']);
-        } elseif (!empty($request['campaign'])) {
-            return $this->moveCampaign(
-                $entity,
-                $request['campaign'],
-                Arr::get($request, 'copy', false)
-            );
-        }
-        return false;
+        return $this->moveCampaign(
+            $entity,
+            $request['campaign'],
+            Arr::get($request, 'copy', false)
+        );
+    }
+
+    /**
+     * @param Entity $entity
+     * @param $entityType
+     * @return Entity
+     * @throws \Exception
+     */
+    public function transform(Entity $entity, $entityType): Entity
+    {
+        return $this->moveType($entity, $entityType);
     }
 
     /**
@@ -167,22 +180,28 @@ class EntityService
     protected function moveCampaign(Entity $entity, int $campaignId, bool $copy)
     {
         // First we make sure we have access to the new campaign.
-        $campaign = Auth::user()->campaigns()->where('campaign_id', $campaignId)->first();
+        $campaign = auth()->user()->campaigns()->where('campaign_id', $campaignId)->first();
         if (empty($campaign)) {
-            throw new TranslatableException('crud.move.errors.unknown_campaign');
+            throw new TranslatableException('entities/move.errors.unknown_campaign');
         }
 
         // Check that the new campaign is different than the current one.
         if ($campaign->id == $entity->campaign_id) {
-            throw new TranslatableException('crud.move.errors.same_campaign');
+            throw new TranslatableException('entities/move.errors.same_campaign');
         }
 
         // Can the user create an entity of that type on the new campaign?
-        if (!Auth::user()->can('create', [get_class($entity->child), null, $campaign])) {
-            throw new TranslatableException('crud.move.errors.permission');
+        if (!auth()->user()->can('create', [get_class($entity->child), null, $campaign])) {
+            throw new TranslatableException('entities/move.errors.permission');
+        }
+
+        // Trying to move (not copy) but can't update the original entity
+        if (!$copy && !auth()->user()->can('update', $entity->child)) {
+            throw new TranslatableException('entities/move.errors.permission_update');
         }
 
         if ($copy) {
+            $this->copied = true;
             return $this->copyToCampaign($entity, $campaign);
         }
 
@@ -330,7 +349,7 @@ class EntityService
     {
         // Create new model
         if (!isset($this->entities[$target])) {
-            throw new \Exception("Unknown target '$target' for moving entity");
+            throw new \Exception("Unknown target '$target' for transforming entity");
         }
         /**
          * @var $new MiscModel
@@ -365,13 +384,6 @@ class EntityService
             if (!Storage::exists($newPath)) {
                 Storage::copy($old->image, $newPath);
             }
-
-            // Copy thumb
-//            $oldThumb = str_replace('.', '_thumb.', $old->image);
-//            $newThumb = str_replace($old->getTable(), $new->getTable(), $oldThumb);
-//            if (!Storage::exists($newThumb)) {
-//                Storage::copy($oldThumb, $newThumb);
-//            }
         }
 
         // Finally, we can save. Should be all good. But tell the app not to create the entity

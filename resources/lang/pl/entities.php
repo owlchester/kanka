@@ -27,6 +27,7 @@ return [
     'events'                => 'Wydarzenia',
     'families'              => 'Rodziny',
     'family'                => 'Rodzina',
+    'inventories'           => 'Wyposażenia',
     'item'                  => 'Przedmiot',
     'items'                 => 'Przedmioty',
     'journal'               => 'Dziennik',

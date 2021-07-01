@@ -31,7 +31,8 @@ __('maps/markers.edit.title', ['name' => $model->name])
         {!! Form::model($model, ['route' => ['maps.map_markers.update', 'map' => $map, 'map_marker' => $model],
         'method' => 'PATCH',
         'id' => 'map-marker-form',
-        'class' => 'ajax-subform'
+        'class' => 'ajax-subform',
+        'data-shortcut' => 1,
         ]) !!}
         @include('maps.markers._form')
 
@@ -65,9 +66,7 @@ __('maps/markers.edit.title', ['name' => $model->name])
                 </div>
                 {!! Form::hidden('submit', null) !!}
             </div>
-            @if (!$ajax)
-            {!! __('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
-            @endif
+            @includeWhen(!request()->ajax(), 'partials.or_cancel')
         </div>
 
         {!! Form::close() !!}
@@ -119,117 +118,31 @@ __('maps/markers.edit.title', ['name' => $model->name])
 <link href="/vendor/spectrum/spectrum.css" rel="stylesheet">
 
 
-<style>
-    .marker- {
-            {
-            $model->id
+    <style>
+        .marker-{{ $model->id }}  {
+@if(!empty($model->font_colour))
+            color: {{ $model->font_colour }};
+@endif
         }
-    }
-
-        {
-        @if( !empty($model->font_colour)) color: {
-                {
-                $model->font_colour
-            }
-        }
-
-        ;
+@if ($model->entity && $model->icon == 4)
+        .marker-{{ $model->id }} .marker-pin::after {
+            background-image: url('{{ $model->entity->child->getImageUrl(400) }}');
+        @if(!empty($model->pin_size))
+            width: {{ $model->pinSize(false) - 4 }}px;
+            height: {{ $model->pinSize(false) - 4 }}px;
+            margin: 2px 0 0 -{{ ceil(($model->pinSize(false)-4)/2) }}px;
         @endif
+        }@endif
+
+@if(!empty($model->pin_size))
+    .marker-{{ $model->id }} .marker-pin {
+         width: {{ $model->pinSize() }};
+         height: {{ $model->pinSize() }};
+        margin: -{{ $model->pinSize(false) / 2 }}px 0 0 -{{ $model->pinSize(false) / 2 }}px;
+     }
+    .marker-{{ $model->id }} i {
+        font-size: {{ $model->pinSize(false) / 2 }}px;
     }
-
-    @if ($model->entity && $model->icon==4) .marker- {
-            {
-            $model->id
-        }
-    }
-
-    .marker-pin::after {
-        background-image: url({{ $model->entity->child->getImageUrl(400)
-    }
-    }
-
-    );
-
-    @if( !empty($model->pin_size)) width: {
-            {
-            $model->pinSize(false) - 4
-        }
-    }
-
-    px;
-
-    height: {
-            {
-            $model->pinSize(false) - 4
-        }
-    }
-
-    px;
-
-    margin: 2px 0 0 - {
-            {
-            ceil(($model->pinSize(false)-4)/2)
-        }
-    }
-
-    px;
-    @endif
-    }
-
-    @endif @if( !empty($model->pin_size)) .marker- {
-            {
-            $model->id
-        }
-    }
-
-    .marker-pin {
-        width: {
-                {
-                $model->pinSize()
-            }
-        }
-
-        ;
-
-        height: {
-                {
-                $model->pinSize()
-            }
-        }
-
-        ;
-
-        margin: - {
-                {
-                $model->pinSize(false) / 2
-            }
-        }
-
-        px 0 0 - {
-                {
-                $model->pinSize(false) / 2
-            }
-        }
-
-        px;
-    }
-
-    .marker- {
-            {
-            $model->id
-        }
-    }
-
-    i {
-        font-size: {
-                {
-                $model->pinSize(false) / 2
-            }
-        }
-
-        px;
-    }
-
     @endif
 </style>
 @endsection

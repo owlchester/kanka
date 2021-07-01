@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content='width=device-width, initial-scale=1, maximum-scale=5, shrink-to-fit=no'>
     <meta name="author" content="{{ config('app.name') }}">
-    <meta name="description" content="{{ $metaDescription ?? __('front.home.seo.description') }}">
+    <meta name="description" content="{{ $metaDescription ?? __('front.home.seo.meta-description') }}">
     <meta name="keywords" content="{{  $metaKeywords ?? __('front.seo.keywords') }}">
 
     <meta property="og:title" content="{{ $title ?? __('front.meta.title') }}@if (!isset($skipEnding)) - {{ config('app.name') }} @endif">
@@ -54,7 +54,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('home') }}">
+        <a class="navbar-brand" href="{{ (auth()->check() ? route('front.home') : route('home')) }}">
             <img class="d-none d-lg-block" @if(\App\Facades\Img::nowebp()) src="https://images.kanka.io/app/lYYwvb1TENQSosFKdgDCLd2oLdU=/228x77/src/images%2Flogos%2Ftext-white.png?webpfallback?webpfallback" @else src="https://images.kanka.io/app/lYYwvb1TENQSosFKdgDCLd2oLdU=/228x77/src/images%2Flogos%2Ftext-white.png?webpfallback" @endif title="Kanka logo text white" alt="kanka logo text white" width="95" height="32" />
             <img class="d-xl-none d-lg-none" @if(\App\Facades\Img::nowebp()) src="https://images.kanka.io/app/G2bnfyER8xMuMzPX4LM0Phdrjew=/228x77/src/images%
 2Flogos%2Ftext-blue.png?webpfallback" @else src="https://images.kanka.io/app/G2bnfyER8xMuMzPX4LM0Phdrjew=/228x77/src/images%
@@ -95,6 +95,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link @if(!empty($active) && $active == 'pricing') nav-active @endif" href="{{ route("front.pricing") }}">{{ __('front.menu.pricing') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @if(!empty($active) && $active == 'public-campaigns') nav-active @endif" href="{{ route("front.public_campaigns") }}">{{ __('front.menu.campaigns') }}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link @if(!empty($active) && $active == 'contact') nav-active @endif" href="{{ route("front.contact") }}">{{ __('front.menu.contact') }}</a>

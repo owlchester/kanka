@@ -9,11 +9,13 @@ return [
         'success'   => 'Perfil atualizado',
     ],
     'editors'       => [
+        'legacy'        => 'Legado (TinyMCE 4)',
         'summernote'    => 'Summernote',
     ],
     'fields'        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'Email',
+        'hide_subscription'         => 'Esconder meu nome do :hall_of_fame.',
         'last_login_share'          => 'Mostrar a outros membros da campanha a última vez que estive online.',
         'name'                      => 'Nome',
         'new_password'              => 'Nova senha (opcional)',
@@ -27,10 +29,12 @@ return [
         'links'     => [
             'community-vote'    => 'Voto da Comunidade',
             'news'              => 'Novidades',
+            'updates'           => 'Atualizações do Kanka',
         ],
         'settings'  => [
             'news'          => 'Novidades - Seja notificado(a) quando houver novidades.',
             'newsletter'    => 'Boletim de Notícias - receber o Boletim de Notícias do Kanka.',
+            'updates'       => 'Atualizações - seja notificado(a) quando houve uma atualização em Kanka.',
             'votes'         => 'Votos da Comunidade - Ser notificado(a) assim que um novo :vote estiver disponível',
         ],
         'title'     => 'Boletim de Notícias',
@@ -48,6 +52,7 @@ return [
     'sections'      => [
         'delete'    => [
             'delete'    => 'Deletar minha conta',
+            'helper'    => 'Deletar sua conta também deletará quaisquer campanhas que você é o único membro dela. Essa ação é permanente e não pode ser desfeita.',
             'title'     => 'Deletar sua conta',
             'warning'   => 'Deletando sua conta, todos os seus dados serão perdidos. Você tem certeza?',
         ],
@@ -70,6 +75,7 @@ O editor de texto padrão (TinyMCE 4) é antigo e funciona bem no computador, ma
 Summernote é um novo editor de texto que funciona em todos dispositivos mas ainda estamos testando ele.
 TEXT
 ,
+            'editor_v2' => 'O uso do editor de texto legado (TinyMCE) não oferece suporte a menções em dispositivos móveis e não oferece suporte a alguns recursos como a galeria da campanha.',
         ],
         'hints'     => [
             'advanced_mentions'     => 'Se ativado, menções vão sempre ser mostradas como [entity:123] quando editando a entidade.',

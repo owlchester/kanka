@@ -26,8 +26,10 @@ return [
         ],
     ],
     'fields'        => [
+        'center_marker'     => 'Marcador',
         'center_x'          => 'Posição de longitude padrão',
         'center_y'          => 'Posição de latitude padrão',
+        'centering'         => 'Centralizando',
         'distance_measure'  => 'Medida de distância',
         'distance_name'     => 'Unidade de distância',
         'grid'              => 'Grid',
@@ -37,10 +39,15 @@ return [
         'max_zoom'          => 'Zoom máximo',
         'min_zoom'          => 'Zoom mínimo',
         'name'              => 'Nome',
+        'tabs'              => [
+            'coordinates'   => 'Coordenadas',
+            'marker'        => 'Marcador',
+        ],
         'type'              => 'Tipo',
     ],
     'helpers'       => [
         'center'            => 'Alterar os valores a seguir controlará em qual área do mapa está o foco. Deixar esses valores vazios resultará no centro do mapa ser considerado o foco.',
+        'centering'         => 'Centralizar em um marcador terá prioridade sobre as coordenadas padrão.',
         'descendants'       => 'Esta lista contém todos os mapas que são relacionados a este mapa, e não apenas aqueles diretamente relacionados a ele.',
         'distance_measure'  => 'Dar ao mapa uma medida de distância habilitará a ferramenta de medição no modo de exploração.',
         'grid'              => 'Defina o tamanho do grid que será mostrado no modo exploração.',
@@ -49,6 +56,8 @@ return [
         'min_zoom'          => 'O máximo que um mapa pode ser diminuído. O valor padrão é :default, enquanto o menor valor permitido é :max.',
         'missing_image'     => 'Você precisa salvar o mapa com uma imagem antes de poder adicionar camadas e marcadores.',
         'nested'            => 'Quando na visualização aninhada, você pode visualizar seus mapas de uma maneira aninhada. Mapas sem mapas primários serão mostrados por padrão. Mapas comrelacionados podem ser clicados para ver esses mapas secundários. Você pode continuar clicando até que não haja mais mapas secundários para ver.',
+        'nested_parent'     => 'Mostrando os mapas de :parent.',
+        'nested_without'    => 'Mostrando todos os mapas que não tem um mapa-pai. Clique em uma linha para ver os mapas-filhos.',
     ],
     'index'         => [
         'add'   => 'Novo mapa',
@@ -64,6 +73,7 @@ return [
         'settings'  => 'Configurações',
     ],
     'placeholders'  => [
+        'center_marker'     => 'Deixe vazio para carregar o mapa centralizado.',
         'center_x'          => 'Deixe vazio para carregar o mapa centralizado.',
         'center_y'          => 'Deixe vazio para carregar o mapa centralizado.',
         'distance_measure'  => 'Unidades por pixel',

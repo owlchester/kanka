@@ -49,6 +49,16 @@ class FeatureController extends Controller
         return $this->cachedResponse('front.features.dashboards');
     }
 
+    public function relations()
+    {
+        return $this->cachedResponse('front.features.relations');
+    }
+
+    public function richText()
+    {
+        return $this->cachedResponse('front.features.rich-text');
+    }
+
 
     protected function cachedResponse(string $view, int $days = 7)
     {

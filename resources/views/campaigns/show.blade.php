@@ -26,6 +26,15 @@
                     <h3 class="box-title">{{ __('campaigns.show.menus.overview') }}</h3>
                 </div>
                 <div class="box-body">
+                    @can('update', $campaign)
+                        @if($campaign->isPublic() && $campaign->publicHasNoVisibility())
+                            <div class="alert alert-warning">
+                                <p>{!! __('campaigns.helpers.public_no_visibility', [
+    'fix' => link_to_route('campaigns.campaign_roles.public', __('crud.fix-this-issue'), $campaign)
+]) !!}</p>
+                            </div>
+                        @endif
+                    @endcan
                     <div class="row">
                         <div class="col-sm-6">
                             <dl class="dl-horizontal dl-force-mobile">
@@ -41,7 +50,6 @@
                                 <dt>{{ __('campaigns.fields.followers') }}</dt>
                                 <dd>{{ \App\Facades\CampaignCache::followerCount() }}</dd>
                                 @endif
-
                             </dl>
                         </div>
                         <div class="col-sm-6">

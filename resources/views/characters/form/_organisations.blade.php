@@ -36,7 +36,7 @@ $isAdmin = Auth::user()->isAdmin();
                 @if ($isAdmin)
                     <div class="col-sm-1 text-center">
                         {!! Form::hidden('organisation_privates[' . $organisation->id . ']', $organisation->is_private) !!}
-                        <i class="fa @if($organisation->is_private) fa-lock @else fa-unlock-alt @endif fa-2x" data-toggle="private" data-private="{{ __('crud.attributes.visibility.private') }}" data-public="{{ __('crud.attributes.visibility.public') }}"></i>
+                        <i class="fa @if($organisation->is_private) fa-lock @else fa-unlock-alt @endif fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
                     </div>
                 @endif
                 <div class="col-sm-1 text-center">
@@ -74,7 +74,7 @@ $isAdmin = Auth::user()->isAdmin();
         @if ($isAdmin)
             <div class="col-sm-1 text-center">
                 {!! Form::hidden('organisation_privates[]', 0) !!}
-                <i class="fa fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('crud.attributes.visibility.private') }}" data-public="{{ __('crud.attributes.visibility.public') }}"></i>
+                <i class="fa fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"></i>
             </div>
         @endif
         <div class="col-sm-1 text-center">

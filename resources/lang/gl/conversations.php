@@ -15,10 +15,11 @@ return [
         'title'         => 'Conversa ":name"',
     ],
     'fields'        => [
+        'is_closed'     => 'Pechada',
         'messages'      => 'Mensaxes',
         'name'          => 'Nome',
         'participants'  => 'Participantes',
-        'target'        => 'Obxetivo',
+        'target'        => 'Obxectivo',
         'type'          => 'Tipo',
     ],
     'hints'         => [
@@ -26,7 +27,7 @@ return [
     ],
     'index'         => [
         'add'           => 'Nova conversa',
-        'description'   => 'Administra a categoría de ":name".',
+        'description'   => 'Xestiona a categoría de ":name".',
         'header'        => 'Conversas en ":name"',
         'title'         => 'Conversas',
     ],
@@ -57,6 +58,7 @@ return [
     ],
     'show'          => [
         'description'   => 'Vista detallada dunha conversa',
+        'is_closed'     => 'A conversa está pechada.',
         'title'         => 'Conversa ":name"',
     ],
     'tabs'          => [
@@ -65,6 +67,6 @@ return [
     ],
     'targets'       => [
         'characters'    => 'Personaxes',
-        'members'       => 'Membras',
+        'members'       => 'Integrantes',
     ],
 ];

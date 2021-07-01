@@ -5,12 +5,17 @@ namespace App\Services\Entity;
 
 
 use App\Models\Character;
+use App\Models\Conversation;
+use App\Models\DiceRoll;
 use App\Models\Entity;
 use App\Models\Family;
+use App\Models\Item;
+use App\Models\Journal;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
 use App\Models\Relation;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class EntityRelationService
 {
@@ -80,29 +85,18 @@ class EntityRelationService
      */
     public function map(): array
     {
-
-        // Character: Family and orgs
-        if ($this->entity->typeId() == config('entities.ids.character')) {
-            // Prepare self
-            $this->addEntity($this->entity)
-                ->withEntity()
-                ->addRelations($this->entity)
-                ->withEntity(false)
-                ->relatedRelations();
-            $this->addFamily()->addOrganisation();
-        }
-        // Family: children and parent families
-        if ($this->entity->typeId() == config('entities.ids.family')) {
-            $this->initFamily();
-        }
-        // Organisation: children and parent organisations
-        if ($this->entity->typeId() == config('entities.ids.organisation')) {
-            $this->initOrganisation();
+        $entityHook = 'init' . $this->entity->entityType();
+        if (method_exists($this, $entityHook)) {
+            $this->$entityHook();
         }
 
         // Other: just relations
         else {
-            $this->addEntity($this->entity)->withEntity()->addRelations($this->entity);
+            $this->addEntity($this->entity)
+                ->withEntity()
+                ->addRelations($this->entity)
+                ->addParent()
+                ->addLocation();
         }
 
         $this->cleanup();
@@ -219,6 +213,9 @@ class EntityRelationService
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     protected function addFamily() : self
     {
         if (empty($this->entity->child->family)) {
@@ -245,6 +242,9 @@ class EntityRelationService
         $this->addFamilyMembers($family);
     }
 
+    /**
+     * @return $this
+     */
     protected function addOrganisation() : self
     {
         /** @var Character $character */
@@ -261,6 +261,9 @@ class EntityRelationService
         return $this;
     }
 
+    /**
+     * @param Organisation $organisation
+     */
     protected function addOrganisationRelations(Organisation $organisation)
     {
         if (empty($organisation) || empty($organisation->entity)) {
@@ -305,10 +308,17 @@ class EntityRelationService
 
         $this->addFamilyMembers($this->entity->child, true);
 
-        $this->addFamilies();
+        $this->addFamilies()
+            ->addParent()
+            ->addLocation()
+        ;
         return $this;
     }
 
+    /**
+     * @param Family $family
+     * @return $this
+     */
     protected function addFamilyMembers(Family $family): self
     {
         /** @var Character $member */
@@ -331,26 +341,13 @@ class EntityRelationService
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     protected function addFamilies(): self
     {
         /** @var Family $family */
         $family = $this->entity->child;
-
-        // Parent family
-        if (!empty($family->family)) {
-            $this->addEntity($family->family->entity);
-            $this->addRelations($family->family->entity);
-
-            $this->relations[] = [
-                'source' => $this->entity->id,
-                'target' => $family->family->entity->id,
-                'text' => __('families.fields.family'),
-                'colour' => '#ccc',
-                'attitude' => null,
-                'type' => 'sub-family',
-                'shape' => 'triangle',
-            ];
-        }
 
         foreach ($family->families()->with('entity')->has('entity')->get() as $subfamily) {
             $this->addEntity($subfamily->entity);
@@ -370,6 +367,45 @@ class EntityRelationService
     }
 
     /**
+     * @return $this
+     */
+    protected function initCharacter(): self
+    {
+        $this->addEntity($this->entity)
+            ->withEntity()
+            ->addRelations($this->entity)
+            ->withEntity(false)
+            ->relatedRelations();
+
+        $this->addFamily()
+            ->addOrganisation()
+            ->addItems()
+            ->addJournals()
+            ->addLocation()
+            ->addDiceRolls()
+            ->addConversations()
+        ;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    protected function initLocation(): self
+    {
+        $this->addEntity($this->entity)
+            ->withEntity()
+            ->addRelations($this->entity)
+            ->withEntity(false)
+            ->relatedRelations();
+
+        $this->addItems()->addJournals()->addParent();
+
+        return $this;
+    }
+
+    /**
      * Prepare en organisation
      * @return $this
      */
@@ -382,7 +418,7 @@ class EntityRelationService
 
         $this->addOrganisationMembers($this->entity, true);
 
-        $this->addOrganisations();
+        $this->addOrganisations()->addParent();
         return $this;
     }
 
@@ -411,26 +447,13 @@ class EntityRelationService
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     protected function addOrganisations(): self
     {
         /** @var Organisation $organisation */
         $organisation = $this->entity->child;
-
-        // Parent org
-        if (!empty($organisation->organisation)) {
-            $this->addEntity($organisation->organisation->entity);
-            $this->addRelations($organisation->organisation->entity);
-
-            $this->relations[] = [
-                'source' => $this->entity->id,
-                'target' => $organisation->organisation->entity->id,
-                'text' => __('entities/relations.types.organisation_member'),
-                'colour' => '#ccc',
-                'attitude' => null,
-                'type' => 'sub-family',
-                'shape' => 'triangle',
-            ];
-        }
 
         foreach ($organisation->organisations()->with('entity')->has('entity')->get() as $sub) {
             $this->addEntity($sub->entity);
@@ -444,6 +467,151 @@ class EntityRelationService
                 'attitude' => null,
                 'type' => 'sub-org',
                 'shape' => 'triangle',
+            ];
+        }
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    protected function addItems(): self
+    {
+        /** @var Item $item */
+        foreach ($this->entity->child->items()->with('entity')->has('entity')->get() as $item) {
+            $this->addEntity($item->entity);
+            $this->relations[] = [
+                'source' => $this->entity->id,
+                'target' => $item->entity->id,
+                'text' => __('crud.fields.item'),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'journal-author',
+                'shape' => 'none',
+            ];
+        }
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    protected function addJournals(): self
+    {
+        /** @var Journal $journal */
+        $isCharacter = $this->entity->typeId() == config('entities.ids.character');
+        foreach ($this->entity->child->journals()->with('entity')->has('entity')->get() as $journal) {
+            $this->addEntity($journal->entity);
+            $this->relations[] = [
+                'source' => $this->entity->id,
+                'target' => $journal->entity->id,
+                'text' => $isCharacter ? __('journals.fields.author') : __('crud.fields.journal'),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'journal-' . ($isCharacter ? 'author' : 'location'),
+                'shape' => 'none',
+            ];
+        }
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    protected function addLocation(): self
+    {
+        if (!array_key_exists('location_id', $this->entity->child->getAttributes())) {
+            return $this;
+        }
+        if (empty($this->entity->child->location_id) || empty($this->entity->child->location)) {
+            return $this;
+        }
+
+        $this->addEntity($this->entity->child->location->entity);
+        $this->relations[] = [
+            'source' => $this->entity->id,
+            'target' => $this->entity->child->location->entity->id,
+            'text' => __('crud.fields.location'),
+            'colour' => '#ccc',
+            'attitude' => null,
+            'type' => 'entity-location',
+            'shape' => 'none',
+        ];
+
+        return $this;
+    }
+
+    /**
+     * Add the entity's parent if it has one
+     * @return $this
+     */
+    protected function addParent()
+    {
+        if (!method_exists($this->entity->child, 'getParentIdName')) {
+            // If not part of the node model, check for the {self}_id attribute
+            if (!array_key_exists($this->entity->type . '_id', $this->entity->child->getAttributes())) {
+                return $this;
+            }
+        }
+
+        $relationName = $this->entity->entityType();
+        $parent = $this->entity->child->$relationName;
+        if (empty($parent)) {
+            return $this;
+        }
+
+        $transKey = $this->entity->pluralType() . '.fields.' . $this->entity->type;
+
+        $this->addEntity($parent->entity);
+        $this->relations[] = [
+            'source' => $this->entity->id,
+            'target' => $parent->entity->id,
+            'text' => __($transKey),
+            'colour' => '#ccc',
+            'attitude' => null,
+            'type' => 'entity-parent',
+            'shape' => 'triangle',
+        ];
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    protected function addDiceRolls(): self
+    {
+        /** @var DiceRoll $related */
+        foreach ($this->entity->child->diceRolls()->with('entity')->has('entity')->get() as $related) {
+            $this->addEntity($related->entity);
+            $this->relations[] = [
+                'source' => $this->entity->id,
+                'target' => $related->entity->id,
+                'text' => __('characters.show.tabs.dice_rolls'),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'character-diceroll',
+                'shape' => 'none',
+            ];
+        }
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    protected function addConversations(): self
+    {
+        /** @var Conversation $related */
+        foreach ($this->entity->child->conversations()->with('entity')->has('entity')->get() as $related) {
+            $this->addEntity($related->entity);
+            $this->relations[] = [
+                'source' => $this->entity->id,
+                'target' => $related->entity->id,
+                'text' => __('characters.show.tabs.conversations'),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'character-diceroll',
+                'shape' => 'none',
             ];
         }
         return $this;

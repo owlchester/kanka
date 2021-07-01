@@ -23,7 +23,16 @@
 
                     @include('cruds.notes._form')
 
+                    <div class="pull-right">
+                        <a role="button" tabindex="0" class="btn btn-danger btn-dynamic-delete" data-toggle="popover"
+                           title="{{ __('crud.delete_modal.title') }}"
+                           data-content="<p>{{ __('crud.delete_modal.description_final', ['tag' => $model->name]) }}</p>
+                       <a href='#' class='btn btn-danger btn-block' data-toggle='delete-form' data-target='#delete-form-note-{{ $model->id}}'>{{ __('crud.remove') }}</a>">
+                            <i class="fa fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
+                        </a>
+                    </div>
                     @include('cruds.notes._saveOptions')
+
                 </div>
             </div>
         </div>
@@ -36,5 +45,12 @@
     @if(!empty($from))
         <input type="hidden" name="from" value="main" />
     @endif
+    {!! Form::close() !!}
+@endsection
+
+@section('modals')
+
+
+    {!! Form::open(['method' => 'DELETE', 'route' => ['entities.entity_notes.destroy', 'entity' => $entity, 'entity_note' => $model], 'style' => 'display:inline', 'id' => 'delete-form-note-' . $model->id]) !!}
     {!! Form::close() !!}
 @endsection

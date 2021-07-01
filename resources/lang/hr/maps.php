@@ -26,8 +26,10 @@ return [
         ],
     ],
     'fields'        => [
+        'center_marker'     => 'Marker',
         'center_x'          => 'Zadana pozicija zemljopisne dužine',
         'center_y'          => 'Zadana pozicija zemljopisne širine',
+        'centering'         => 'Centriranje',
         'distance_measure'  => 'Mjera udaljenosti',
         'distance_name'     => 'Jedinica udaljenosti',
         'grid'              => 'Mreža',
@@ -37,10 +39,15 @@ return [
         'max_zoom'          => 'Maksimalno povećanje',
         'min_zoom'          => 'Minimalno povećanje',
         'name'              => 'Ime',
+        'tabs'              => [
+            'coordinates'   => 'Koordinate',
+            'marker'        => 'Marker',
+        ],
         'type'              => 'Tip',
     ],
     'helpers'       => [
         'center'            => 'Promjena sljedećih vrijednosti kontrolira na koje područje je karta fokusirana. Ostavljanje ovih vrijednosti praznima rezultirat će se fokusom na središte karte.',
+        'centering'         => 'Centriranje na markeru imat će prioritet nad zadanim koordinatama.',
         'descendants'       => 'Ovaj popis sadrži sve karte koje su potomci ove karte, a ne samo one koje se nalaze neposredno ispod nje.',
         'distance_measure'  => 'Davanjem karte mjere udaljenosti omogućit će se alat za mjerenje u načinu istraživanja.',
         'grid'              => 'Definiraj veličinu mreže koja će biti prikazana u načinu istraživanja.',
@@ -48,7 +55,8 @@ return [
         'max_zoom'          => 'Najviše što se karta može povećati. Zadana vrijednost je :default, dok je najviša dozvoljena vrijednost :max.',
         'min_zoom'          => 'Najviše što se karta može udaljiti. Zadana vrijednost je :default, dok je najniža dozvoljena vrijednost :min.',
         'missing_image'     => 'Spremi kartu sa slikom prije nego što možeš dodavati slojeve i markere.',
-        'nested'            => 'Kada si u ugniježđenom prikazu, možeš pregledati Karte na ugniježđen način. Karte bez nadređene karte prikazat će se prema zadanim postavkama. Karte s oznakama za djecu mogu se kliknuti da bi se prikazala ta djeca. Možeš klikati sve dok više nema djece koju se može pogledati.',
+        'nested_parent'     => 'Prikaz mapa od :parent.',
+        'nested_without'    => 'Prikazuju se sve mape koje nemaju mapu roditelj. Klikni redak da bi vidio/la mapu djecu.',
     ],
     'index'         => [
         'add'   => 'Nova karta',
@@ -64,6 +72,7 @@ return [
         'settings'  => 'Postavke',
     ],
     'placeholders'  => [
+        'center_marker'     => 'Ostavi prazno za učitavanje karte u sredini',
         'center_x'          => 'Ostavi prazno za učitavanje karte u sredini',
         'center_y'          => 'Ostavi prazno za učitavanje karte u sredini',
         'distance_measure'  => 'Jedinica po pikselu',

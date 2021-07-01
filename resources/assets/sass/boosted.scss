@@ -9,70 +9,121 @@
 }
 
 .entity-header {
-  height: calc(40vh);
-  max-height: 240px;
-  min-height: 190px;
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: cover;
+  padding-bottom: 20px;
   display: flex;
-  border-radius: 3px;
-  margin-bottom: 15px;
+  flex-wrap: wrap;
 
-  .bottom {
-    align-items: flex-end;
-    align-self: flex-end;
+  [class*='col-'] {
     display: flex;
+    flex-direction: column;
+  }
 
-    .texts {
-      margin-bottom: 15px;
-      h1, h3 {
-        margin: 0;
-        align-self: flex-end;
-        text-shadow: rgba(0, 0, 0, 0.5) 0px 1px 4px;
-        color: white;
-      }
-      h3 {
-        margin-top: 5px;
-        font-style: italic;
-      }
-    }
+  .entity-image {
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+    border-radius: 2px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    cursor: pointer;
+  }
 
-    .entity-avatar {
-      margin: 10px;
-      margin-bottom: 15px;
-
-      img {
-        transition: all 1.0s ease;
-        border-radius: 3px;
-        max-width: 160px;
-        max-height: 160px;
-        box-shadow: $box-shadow-white;
-      }
-
-      &:hover {
-        img {
-          box-shadow: $box-shadow-hover;
-        }
-      }
+  .tooltip {
+    .entity-image {
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: unset;
+      padding-top: 0;
     }
   }
 
-  .entity-links {
-    margin: 5px 0 0 2px;
-    li {
-      margin: 0 3px 0 0;
-      padding: 0;
-      a {
-        display: inline-block;
-        /*width: 32px;
-        height: 32px;*/
-        text-align: center;
-        padding: 3px;
-        background-color: white;
-        border-radius: 5px;
-        font-size: 20px;
-      }
+  .entity-header-col {
+    align-self: flex-end;
+    display: flex;
+    .entity-texts {
+    }
+
+    .entity-header-sub {
+      padding-top: 12px;
+    }
+  }
+
+  .entity-name-header {
+    display: flex;
+    //align-items: center;
+
+    .entity-name {
+      margin: 0;
+      overflow: visible;
+      max-height: unset;
+      word-break: break-all;
+    }
+
+    .entity-name-icons {
+      padding-top: 8px;
+      //margin-left: 5px;
+    }
+    .entity-name-icons-2 {
+      min-width: 70px;
+    }
+    .entity-name-icons-3 {
+      min-width: 100px;
+    }
+
+    i.entity-icons {
+      margin-left: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      //margin-bottom: 15px;
+    }
+
+    .btn-group.open .dropdown-toggle {
+      box-shadow: unset;
+    }
+  }
+
+  .header-buttons {
+    margin-left: auto;
+    order: 2;
+    margin-top: -36px;
+  }
+
+  .entity-tags {
+    margin-top: 10px;
+    .label {
+      margin-right: 6px;
+      font-size: 80%;
+      line-height: 20px;
+    }
+  }
+  .entity-type {
+    margin-top: 10px;
+    display: none;
+  }
+
+  .entity-header-locations {
+  }
+}
+.entity-header.with-entity-header {
+  padding-top: 50px;
+  margin-bottom: 20px;
+  .entity-name {
+    text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
+    color: white;
+  }
+  i.entity-icons {
+    color: white;
+  }
+  .entity-header-sub {
+    color: white;
+    a {
+      color: white;
+      text-decoration: underline;
     }
   }
 }
@@ -89,10 +140,6 @@
   background-repeat: no-repeat;
   width: 100%;
   padding: 150px 0;
-
-  .bob {
-
-  }
 
   a {
     display: block;
@@ -111,3 +158,51 @@
   }
 }
 
+.box .nav-stacked > li {
+  word-break: break-all;
+}
+
+@media (max-width: 787px) {
+ .entity-header {
+   display: block;
+   .col-md-2 {
+     display: block;
+     float: left;
+   }
+   .entity-image {
+     width: 100px;
+     margin-bottom: 10px;
+   }
+
+   .entity-header-col {
+     display: block;
+
+   }
+
+   .entity-name-header {
+     //display: block;
+
+     .entity-name-icons {
+       //float: right;
+     }
+
+     i.entity-icons {
+       margin-bottom: 0;
+     }
+   }
+
+   .entity-name {
+     display: block;
+     max-height: unset;
+     word-break: initial;
+   }
+
+   .header-buttons {
+     margin: 0;
+     display: inline-block;
+     float: right;
+     //width: 100%;
+     margin-left: auto;
+   }
+ }
+}

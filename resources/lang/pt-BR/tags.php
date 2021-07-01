@@ -6,7 +6,8 @@ return [
             'add'   => 'Adicionar nova tag',
         ],
         'create'        => [
-            'title' => 'Adicionar uma tag a :name',
+            'success'   => 'Adicionada a tag :name a entidade.',
+            'title'     => 'Adicionar uma tag a :name',
         ],
         'description'   => 'Entidades que pertencem à tag',
         'title'         => 'Tags secundárias da tag :name',
@@ -32,7 +33,9 @@ return [
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'nested'    => 'Quando em visualização aninhada, você pode visualizar suas tags de uma maneira aninhada. Tags que não estão relacionadas a uma tag primária serão mostradas por padrão. As tags com tags secundárias podem ser clicadas para visualizar essas tags. Você pode continuar clicando até que não haja mais tags secundárias para ver.',
+        'nested'        => 'Quando em visualização aninhada, você pode visualizar suas tags de uma maneira aninhada. Tags que não estão relacionadas a uma tag primária serão mostradas por padrão. As tags com tags secundárias podem ser clicadas para visualizar essas tags. Você pode continuar clicando até que não haja mais tags secundárias para ver.',
+        'nested_parent' => 'Mostrando as tags de :parent.',
+        'nested_without'=> 'Mostrando todas as tags que não tem uma tag-pai. Clique em uma linha para ver as tags-filhos.',
     ],
     'hints'         => [
         'children'  => 'Esta lista contém todas entidades diretamente relacionadas a esta tag e todas tags aninhadas nela.',

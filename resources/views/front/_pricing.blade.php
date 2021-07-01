@@ -9,7 +9,7 @@
                 <ul class="fa-ul">
                     <li>
                         <span class="fa-li"><i class="fas fa-times"></i></span>
-                        <a href="{{ route('front.features', ['#boost']) }}" target="_blank">
+                        <a href="{{ route('front.pricing', ['#boost']) }}" target="_blank">
                             <strong>{{ __('front.pricing.benefits.no_boosters') }}</strong>
                         </a>
                     </li>
@@ -48,7 +48,7 @@
                 <ul class="fa-ul">
                     <li>
                         <span class="fa-li"><i class="fas fa-check"></i></span>
-                        <a href="{{ route('front.features', ['#boost']) }}" target="_blank">
+                        <a href="{{ route('front.pricing', ['#boost']) }}" target="_blank">
                             <strong>3 {{ __('front.pricing.benefits.boosters') }}</strong>
                         </a>
                     </li>
@@ -90,7 +90,7 @@
                 <ul class="fa-ul">
                     <li>
                         <span class="fa-li"><i class="fas fa-check"></i></span>
-                        <a href="{{ route('front.features', ['#boost']) }}" target="_blank">
+                        <a href="{{ route('front.pricing', ['#boost']) }}" target="_blank">
                             <strong>6 {{ __('front.pricing.benefits.boosters') }}</strong>
                         </a>
                     </li>
@@ -131,7 +131,7 @@
                 <ul class="fa-ul">
                     <li>
                         <span class="fa-li"><i class="fas fa-check"></i></span>
-                        <a href="{{ route('front.features', ['#boost']) }}" target="_blank">
+                        <a href="{{ route('front.pricing', ['#boost']) }}" target="_blank">
                             <strong>10 {{ __('front.pricing.benefits.boosters') }}</strong>
                         </a>
                     </li>

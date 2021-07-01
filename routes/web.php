@@ -12,7 +12,6 @@
 */
 use Vsch\TranslationManager\Translator;
 
-
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime' ]
@@ -45,6 +44,7 @@ Route::group([
     Route::get('/helper/attributes', 'HelperController@attributes')->name('helpers.attributes');
     Route::get('/helper/entity-templates', 'HelperController@entityTemplates')->name('helpers.entity-templates');
     Route::get('/helper/widget-filters', 'HelperController@widgetFilters')->name('helpers.widget-filters');
+    Route::get('/helper/pins', 'HelperController@pins')->name('helpers.pins');
 
     // OAuth Routes
     Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider')->name('auth.provider');
@@ -209,8 +209,26 @@ Route::group([
         //Route::get('/conversations/{conversation}/map-points', 'ConversationController@mapPoints')->name('conversations.map-points');
 
         // Attribute multi-save
-        Route::post('/entities/{entity}/attributes/saveMany', [\App\Http\Controllers\AttributeController::class, 'saveMany'])->name('entities.attributes.saveMany');
+        Route::get('/entities/{entity}/attributes', [\App\Http\Controllers\Entity\AttributeController::class, 'index'])->name('entities.attributes');
+        Route::get('/entities/{entity}/attributes/edit', [\App\Http\Controllers\Entity\AttributeController::class, 'edit'])->name('entities.attributes.edit');
+        Route::post('/entities/{entity}/attributes/save', [\App\Http\Controllers\Entity\AttributeController::class, 'save'])->name('entities.attributes.save');
         Route::post('/entities/{entity}/toggle-privacy', [\App\Http\Controllers\Entity\PrivacyController::class, 'toggle'])->name('entities.privacy.toggle');
+
+        Route::get('/entities/{entity}/story-reorder', [\App\Http\Controllers\Entity\StoryController::class, 'edit'])->name('entities.story.reorder');
+        Route::post('/entities/{entity}/story-reorder', [\App\Http\Controllers\Entity\StoryController::class, 'save'])->name('entities.story.reorder-save');
+        Route::get('/entities/{entity}/story-more', [\App\Http\Controllers\Entity\StoryController::class, 'more'])->name('entities.story.load-more');
+
+        // Image of entities
+        Route::get('/entities/{entity}/image-focus', [\App\Http\Controllers\Entity\ImageController::class, 'focus'])->name('entities.image.focus');
+        Route::post('/entities/{entity}/image-focus', [\App\Http\Controllers\Entity\ImageController::class, 'saveFocus'])->name('entities.image.save-focus');
+
+        Route::get('/entities/{entity}/image-replace', [\App\Http\Controllers\Entity\ImageController::class, 'replace'])->name('entities.image.replace');
+        Route::post('/entities/{entity}/image-replace', [\App\Http\Controllers\Entity\ImageController::class, 'update'])->name('entities.image.replace');
+
+
+        // Entity update entry
+        Route::get('/entities/{entity}/entry', [\App\Http\Controllers\Entity\EntryController::class, 'edit'])->name('entities.entry.edit');
+        Route::patch('/entities/{entity}/entry', [\App\Http\Controllers\Entity\EntryController::class, 'update'])->name('entities.entry.update');
 
         Route::get('/entities/{entity}/relations_map', 'Entity\RelationController@map')->name('entities.relations_map');
 
@@ -220,6 +238,9 @@ Route::group([
         // Impersonator
         Route::get('/members/switch/{campaign_user}', 'Campaign\MemberController@switch')->name('identity.switch');
         Route::get('/members/back', 'Campaign\MemberController@back')->name('identity.back');
+
+
+        Route::post('/campaign_users/{campaign_user}/update-role/{campaign_role}', 'Campaign\MemberController@updateRoles')->name('campaign_users.update-roles');
 
         // Recovery
         Route::get('/recovery', 'Campaign\RecoveryController@index')->name('recovery');
@@ -253,6 +274,9 @@ Route::group([
 
         Route::get('/entities/{entity}/entity_links/{entity_link}/go', 'Entity\LinkController@go')->name('entities.entity_links.go');
         Route::get('/entities/{entity}/quests', 'Entity\QuestController@index')->name('entities.quests');
+
+        Route::get('/entities/{entity}/profile', 'Entity\ProfileController@index')
+            ->name('entities.profile');
 
         //Route::get('/my-campaigns', 'CampaignController@index')->name('campaign');
         Route::resources([
@@ -299,7 +323,7 @@ Route::group([
             'races' => 'RaceController',
 
             // Entities
-            'entities.attributes' => 'AttributeController',
+            //'entities.attributes' => 'AttributeController',
             'entities.entity_abilities' => 'Entity\AbilityController',
             'entities.entity_notes' => 'EntityNoteController',
             'entities.entity_events' => 'EntityEventController',
@@ -365,6 +389,7 @@ Route::group([
         Route::get('/search/races', 'Search\MiscController@races')->name('races.find');
         Route::get('/search/abilities', 'Search\MiscController@abilities')->name('abilities.find');
         Route::get('/search/maps', 'Search\MiscController@maps')->name('maps.find');
+        Route::get('/search/markers', 'Search\MiscController@markers')->name('markers.find');
         Route::get('/search/attribute-templates', 'Search\MiscController@attributeTemplates')->name('attribute_templates.find');
         Route::get('/search/images', 'Search\ImageSearchController@index')->name('images.find');
 
@@ -402,15 +427,23 @@ Route::group([
 //        Route::post('/entities/{entity}/entity_files/{entity_file}/rename', 'EntityFileController@rename')->name('entities.entity_files.rename');
 
         // Move
-        Route::get('/entities/move/{entity}', 'EntityController@move')->name('entities.move');
-        Route::post('/entities/move/{entity}', 'EntityController@post')->name('entities.move');
+        //Route::get('/entities/move/{entity}', 'EntityController@move')->name('entities.move');
+        //Route::post('/entities/move/{entity}', 'EntityController@post')->name('entities.move');
+        Route::get('/entities/{entity}/move', 'Entity\MoveController@index')->name('entities.move');
+        Route::post('/entities/{entity}/move', 'Entity\MoveController@move')->name('entities.move');
+
+        // Transform
+        Route::get('/entities/{entity}/transform', 'Entity\TransformController@index')->name('entities.transform');
+        Route::post('/entities/{entity}/transform', 'Entity\TransformController@transform')->name('entities.transform');
+
 
         Route::get('/entities/{entity}/tooltip', 'EntityTooltipController@show')->name('entities.tooltip');
+        Route::get('/entities/{entity}/assets', 'Entity\AssetController@index')->name('entities.assets');
 
         Route::get('/entities/{entity}/json-export', 'Entity\ExportController@json')->name('entities.json-export');
 
-        Route::get('/entities/copy-to-campaign/{entity}', 'EntityController@copyToCampaign')->name('entities.copy_to_campaign');
-        Route::post('/entities/copy-to-campaign/{entity}', 'EntityController@copyEntityToCampaign')->name('entities.copy_to_campaign');
+        //Route::get('/entities/copy-to-campaign/{entity}', 'EntityController@copyToCampaign')->name('entities.copy_to_campaign');
+        //Route::post('/entities/copy-to-campaign/{entity}', 'EntityController@copyEntityToCampaign')->name('entities.copy_to_campaign');
 
         // Entity files
         Route::get('/entities/{entity}/files', 'EntityController@files')->name('entities.files');

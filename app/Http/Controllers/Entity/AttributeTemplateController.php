@@ -49,18 +49,24 @@ class AttributeTemplateController extends Controller
         ));
     }
 
+    /**
+     * @param ApplyAttributeTemplate $request
+     * @param Entity $entity
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function applyTemplate(ApplyAttributeTemplate $request, Entity $entity)
     {
         $this->authorize('update', $entity->child);
         $templateName = $this->service->apply($entity, $request->get('template_id'));
 
         if (!$templateName) {
-            return redirect()->back()->with('error', trans('crud.attributes.template.error'));
+            return redirect()->back()->with('error', __('entities/attributes.template.error'));
         }
 
         return redirect()
-            ->route($entity->pluralType() . '.show', [$entity->child->id, '#tab_attribute'])
-            ->with('success', trans('crud.attributes.template.success', [
+            ->route('entities.attributes', $entity)
+            ->with('success', __('entities/attributes.template.success', [
                 'name' => $templateName, 'entity' => $entity->child->name
             ]));
     }

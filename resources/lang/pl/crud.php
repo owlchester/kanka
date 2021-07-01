@@ -25,70 +25,6 @@ return [
         'copy_attribute'    => 'Wzmianka cechy została skopiowana do schowka.',
         'copy_mention'      => 'Zaawansowana wzmianka elementu została skopiowana do schowka.',
     ],
-    'attributes'                => [
-        'actions'       => [
-            'apply_template'    => 'Zastosuj szablon cech',
-            'manage'            => 'Zarządzaj',
-            'more'              => 'Więcej opcji',
-            'remove_all'        => 'Usuń wszystko',
-        ],
-        'errors'        => [
-            'loop'  => 'W obliczeniu tej cechy występuje nie kończąca się pętla!',
-        ],
-        'fields'        => [
-            'attribute'             => 'Cecha',
-            'community_templates'   => 'Szablony społeczności',
-            'is_private'            => 'Szablony Tajne',
-            'is_star'               => 'Przypięte',
-            'template'              => 'Szablon',
-            'value'                 => 'Wartość',
-        ],
-        'helpers'       => [
-            'delete_all'    => 'Czy na pewno chcesz usunąć cechy tego elementu?',
-        ],
-        'hints'         => [
-            'is_private'    => 'Oznaczając cechy jako tajne ukrywasz je przed graczami nie posiadającymi roli administratora.',
-        ],
-        'index'         => [
-            'success'   => 'Zaktualizowano cechy :entity',
-            'title'     => 'Cechy :name',
-        ],
-        'placeholders'  => [
-            'attribute' => 'Liczba zwycięstw, Skala Wyzwania, Inicjatywa, Populacja',
-            'block'     => 'Nazwa bloku',
-            'checkbox'  => 'Nazwa pola wyboru',
-            'icon'      => [
-                'class' => 'Klasa FontAwesome lub RPG Awesome: fas fa-users',
-                'name'  => 'Nazwa ikony',
-            ],
-            'random'    => [
-                'name'  => 'Nazwa cechy',
-                'value' => '1-100 lub lista wartości rozdzielonych przecinkiem',
-            ],
-            'section'   => 'Nazwa sekcji',
-            'template'  => 'Wybierz szablon',
-            'value'     => 'Wartość cechy',
-        ],
-        'template'      => [
-            'success'   => 'Zastosowano szablon cech :name dla :entity',
-            'title'     => 'Zastosuj szablon cech dla :name',
-        ],
-        'types'         => [
-            'attribute' => 'Cecha',
-            'block'     => 'Blok',
-            'checkbox'  => 'Pole wyboru',
-            'icon'      => 'Ikona',
-            'random'    => 'Losowy',
-            'section'   => 'Sekcja',
-            'text'      => 'Kilka wierszy',
-        ],
-        'visibility'    => [
-            'entry'     => 'Cecha wyświetlana na stronie głównej elementu.',
-            'private'   => 'Cecha widoczna wyłącznie dla posiadaczy roli "administrator".',
-            'public'    => 'Cecha widoczna dla wszystkich.',
-            'tab'       => 'Cecha wyświetlana wyłącznie w zakładce Cechy.',
-        ],
-    ],
     'boosted'                   => 'Doładowana',
     'boosted_campaigns'         => 'Doładowanie kampanie',
     'bulk'                      => [
@@ -192,6 +128,7 @@ return [
         'excerpt'               => 'Fragment',
         'family'                => 'Rodzina',
         'files'                 => 'Pliki',
+        'gallery_header'        => 'Nagłowek z galerii',
         'gallery_image'         => 'Obraz w galerii',
         'has_entity_files'      => 'Ma dołączone pliki',
         'has_entity_notes'      => 'Posiada komentarze',
@@ -234,23 +171,30 @@ return [
     ],
     'filter'                    => 'Filtruj',
     'filters'                   => [
-        'all'       => 'Pokaż wszystkie elementy pochodne',
-        'clear'     => 'Usuń filtry',
-        'direct'    => 'Pokaż elementy bezpośrednio pochodne',
-        'filtered'  => 'Wyświetlono :count z :total elementów.',
-        'hide'      => 'Ukryj filtry',
-        'options'   => [
+        'all'                       => 'Pokaż wszystkie elementy pochodne',
+        'clear'                     => 'Usuń filtry',
+        'copy_helper'               => 'Użyj skopiowanych do schowka filtrów by stworzyć filtry na pulpicie albo skróty.',
+        'copy_helper_no_filters'    => 'By skopiować filtry do schowka, musisz je najpierw ustawić.',
+        'copy_to_clipboard'         => 'Kopiuj filtry do schowka',
+        'direct'                    => 'Pokaż elementy bezpośrednio pochodne',
+        'filtered'                  => 'Wyświetlono :count z :total elementów.',
+        'hide'                      => 'Ukryj filtry',
+        'mobile'                    => [
+            'clear' => 'Wyczyść',
+            'copy'  => 'Schowek',
+        ],
+        'options'                   => [
             'exclude'   => 'Nie zawiera',
             'include'   => 'Zawiera',
             'none'      => 'Brak',
         ],
-        'show'      => 'Pokaż filtry',
-        'sorting'   => [
+        'show'                      => 'Pokaż filtry',
+        'sorting'                   => [
             'asc'       => ':field rosnąco',
             'desc'      => ':field malejąco',
             'helper'    => 'Określa kolejność wyświetlania rezultatów.',
         ],
-        'title'     => 'Filtry',
+        'title'                     => 'Filtry',
     ],
     'forms'                     => [
         'actions'       => [
@@ -265,6 +209,7 @@ return [
     'hints'                     => [
         'attribute_template'    => 'Zastosuj szablon cech bezpośrednio podczas tworzenia lub edycji tego elementu.',
         'calendar_date'         => 'Data kalendarzowa umożliwia łatwiejsze filtrowanie i sprawia, że dane wydarzenie zostaje przypisane do kalendarza.',
+        'gallery_header'        => 'Jeżeli element nie ma nagłówka, wyświetla zamiast tego obraz z galerii kampanii.',
         'gallery_image'         => 'Jeżeli element nie posiada własnego obrazu, zamiast niego wyświetlany będzie wybrany obraz z galerii kampanii.',
         'header_image'          => 'Obraz umieszczony w nagłówku elementu. Użyj szerokiego obrazu by osiągnąć najlepszy efekt.',
         'image_limitations'     => 'Dozwolone formaty: :formats. Maksymalny rozmiar pliku :size.',
@@ -409,6 +354,7 @@ return [
     'superboosted_campaigns'    => 'Turbodoładowane kampanie',
     'tabs'                      => [
         'abilities'     => 'Zdolności',
+        'assets'        => 'Zasoby',
         'attributes'    => 'Cechy',
         'boost'         => 'Doładowanie',
         'calendars'     => 'Kalendarze',

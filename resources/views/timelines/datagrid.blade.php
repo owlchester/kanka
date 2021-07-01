@@ -24,7 +24,7 @@
         [
             'label' => __('timelines.fields.eras'),
             'render' => function($model) {
-                return $model->eras()->count();
+                return $model->eras->count();
             },
             'disableSort' => true,
         ],

@@ -15,4 +15,5 @@ return [
     'show'          => [
         'title' => 'Objekt :name Log',
     ],
+    'superboosted'  => 'Objekty aktualizované na :superboosted-campaigns si ponechávajú protokoly o zmenách po dobu :amount dní.',
 ];

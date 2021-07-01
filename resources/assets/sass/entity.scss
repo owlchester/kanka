@@ -13,7 +13,6 @@
 }
 
 .entity-actions {
-  margin-bottom: 4px;
   //margin-top: -25px;
 
   h1 {
@@ -27,6 +26,25 @@
   .actions {
     .btn-group {
       margin-left: 8px;
+    }
+  }
+}
+
+.entity-menu {
+  li {
+    display: flex;
+    a {
+      flex-grow: 1;
+    }
+    a.icon {
+      margin-left: auto;
+      flex-grow: unset;
+      padding: 10px 12px;
+    }
+  }
+  li.active {
+    a.icon {
+      border-left: none;
     }
   }
 }

@@ -29,7 +29,9 @@ return [
         'type'          => 'Typ',
     ],
     'helpers'       => [
-        'nested'    => 'Vo vnorenom zobrazení vieš zoradiť tvoje rasy podľa nadradených rás. Rasy bez nadradenej rasy sa zoradia štandardným spôsobom. Rasy s podrasami je možné rozkliknúť, dokiaľ nebudú existovať už žiadne ďalšie podrasy.',
+        'nested'        => 'Vo vnorenom zobrazení vieš zoradiť tvoje rasy podľa nadradených rás. Rasy bez nadradenej rasy sa zoradia štandardným spôsobom. Rasy s podrasami je možné rozkliknúť, dokiaľ nebudú existovať už žiadne ďalšie podrasy.',
+        'nested_parent' => 'Zobraziť rasy :parent.',
+        'nested_without'=> 'Zobrazujú sa všetky rasy, ktoré nemajú nadradenú rasu. Kliknutím na riadok zobrazíš podradené rasy.',
     ],
     'index'         => [
         'add'           => 'Nová rasa',

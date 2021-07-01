@@ -19,11 +19,17 @@ return [
         'title'         => 'Atualizar Nota de :name',
     ],
     'fields'        => [
+        'collapsed' => 'Fechar notas de entidade fixas por padrão',
         'creator'   => 'Criador',
         'entry'     => 'Entrada',
+        'is_pinned' => 'Fixado',
         'name'      => 'Nome',
+        'position'  => 'Posição fixada',
     ],
     'hint'          => 'As informações que não se enquadram nos campos padrão de uma entidade ou que devem ser mantidas em sigilo podem ser adicionadas como notas da entidade.',
+    'hints'         => [
+        'is_pinned' => 'As notas da entidade fixadas são exibidas abaixo do texto da entidade na visualização primária da entidade. Combine com o campo de posição para controlar em que ordem as notas da entidade fixadas aparecem.',
+    ],
     'index'         => [
         'title' => 'Notas de :name',
     ],

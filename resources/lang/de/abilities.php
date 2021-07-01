@@ -4,6 +4,17 @@ return [
     'abilities'     => [
         'title' => 'Kinderfähigkeiten von :name',
     ],
+    'children'      => [
+        'actions'       => [
+            'add'   => 'Fähigkeit zum Objekt hinzufügen',
+        ],
+        'create'        => [
+            'success'   => 'Fähigkeit :name zum Objekt hinzugefügt',
+            'title'     => 'Objekt zu :name hinzufügen',
+        ],
+        'description'   => 'Objekte mit dieser Fähigkeit',
+        'title'         => 'Fähigkeit :name Objekt',
+    ],
     'create'        => [
         'success'   => 'Fähigkeit \':name\' erstellt',
         'title'     => 'Neue Fähigkeit',

@@ -26,8 +26,10 @@ return [
         ],
     ],
     'fields'        => [
+        'center_marker'     => 'Značka',
         'center_x'          => 'Štandardná zemepisná dĺžka',
         'center_y'          => 'Štandardná zemepisná šírka',
+        'centering'         => 'Vystredniť',
         'distance_measure'  => 'Mierka vzdialenosti',
         'distance_name'     => 'Jednotka vzdialenosti',
         'grid'              => 'Mriežka',
@@ -37,10 +39,15 @@ return [
         'max_zoom'          => 'Maximálne priblíženie',
         'min_zoom'          => 'Minimálne priblíženie',
         'name'              => 'Názov',
+        'tabs'              => [
+            'coordinates'   => 'Koordináty',
+            'marker'        => 'Značka',
+        ],
         'type'              => 'Typ',
     ],
     'helpers'       => [
         'center'            => 'Zmenou týchto hodnôt vieš kontrolovať, na ktorú oblasť mapy bude zameraný náhľad. Ak hodnoty ponecháš prázdne, bude zameranie na stred mapy.',
+        'centering'         => 'Vystrednenie značky bude prioritou pred štandardnými koordinátmi.',
         'descendants'       => 'Tento zoznam obsahuje všetky mapy, ktoré sú podradené tejto mape, ale nielen priamo pod ňou.',
         'distance_measure'  => 'Pridaním merania vzdialenosti sa aktivuje nástroj merania v Prieskumníkovi.',
         'grid'              => 'Definuj veľkosť mriežky, ktorá sa zobrazí v Prieskumníkovi.',
@@ -49,6 +56,8 @@ return [
         'min_zoom'          => 'Mapa môže byť oddialená maximálne na túto hodnotu. Štandardná hodnota je :default, najnižšia povolená hodnota je :max.',
         'missing_image'     => 'Na použitie vrstiev a značiek budeš musieť najprv pridať obrázok mapy.',
         'nested'            => 'Vo vnorenom zobrazení vieš zoradiť tvoje mapy podľa nadradených máp. Mapy bez nadradenej mapy sa zoradia štandardným spôsobom. Mapy s podradenými mapami je možné rozkliknúť, dokiaľ nebudú existovať už žiadne ďalšie podradené mapy.',
+        'nested_parent'     => 'Zobraziť mapy :parent.',
+        'nested_without'    => 'Zobraziť všetky mapy, ktoré nemajú nadradenú mapu. Kliknutím na riadok zobrazíš podradené mapy.',
     ],
     'index'         => [
         'add'   => 'Nová mapa',
@@ -64,8 +73,9 @@ return [
         'settings'  => 'Nastavenia',
     ],
     'placeholders'  => [
-        'center_x'          => 'Ponechaj prázdne, ak sa mapa zobraziť vycentrovane',
-        'center_y'          => 'Ponechaj prázdne, ak sa mapa zobraziť vycentrovane',
+        'center_marker'     => 'Ponechaj prázdne, ak sa má mapa zobraziť nastred',
+        'center_x'          => 'Ponechaj prázdne, ak sa má mapa zobraziť nastred',
+        'center_y'          => 'Ponechaj prázdne, ak sa má mapa zobraziť nastred',
         'distance_measure'  => 'Počet jednotiek na pixel',
         'distance_name'     => 'Názov jednotky vzdialenosti (kilometer, míľa)',
         'grid'              => 'Vzdialenosť v pixloch medzi prvkami mriežky. Ponechaj prázdne, ak chceš mriežku vypnúť.',

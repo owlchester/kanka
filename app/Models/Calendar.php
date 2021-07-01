@@ -494,11 +494,11 @@ class Calendar extends MiscModel
     /**
      * @return array
      */
-    public function menuItems($items = []): array
+    public function menuItems(array $items = []): array
     {
         $count = $this->calendarEvents()->entityAcl()->count();
         if ($count > 0) {
-            $items['events'] = [
+            $items['second']['events'] = [
                 'name' => 'calendars.show.tabs.events',
                 'route' => 'calendars.events',
                 'count' => $count
@@ -571,13 +571,19 @@ class Calendar extends MiscModel
         ];
 
         // Add options based on moons
+        $unnamed = 0;
         foreach ($this->moons() as $moon) {
             if ($flat) {
                 $options[$moon['id'] . '_f'] = __('calendars.options.events.recurring_periodicity.fullmoon_name', ['moon' => $moon['name']]);
                 $options[$moon['id'] . '_n'] = __('calendars.options.events.recurring_periodicity.newmoon_name', ['moon' => $moon['name']]);
                 continue;
             }
-            $options[$moon['name']] = [
+            $name = $moon['name'];
+            if (empty($name)) {
+                $unnamed++;
+                $name = __('calendars.options.events.recurring_periodicity.unnamed_moon', ['number' => $unnamed]);
+            }
+            $options[$name] = [
                 $moon['id'] . '_f' => __('calendars.options.events.recurring_periodicity.fullmoon'),
                 $moon['id'] . '_n' => __('calendars.options.events.recurring_periodicity.newmoon'),
             ];

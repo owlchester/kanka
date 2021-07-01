@@ -4,6 +4,7 @@
     <tr>
         <th>{{ __('admin/releases.fields.name') }}</th>
         <th>{{ __('admin/releases.fields.category') }}</th>
+        <th>{{ __('admin/releases.fields.visibility') }}</th>
         <th></th>
     </tr>
     </thead>
@@ -16,6 +17,9 @@
             </td>
             <td>
                 {{ $model->category() }}
+            </td>
+            <td>
+                {{ $model->visibility() }}
             </td>
             <td>
                 <a href="{{ route('admin.app-releases.edit', $model) }}">

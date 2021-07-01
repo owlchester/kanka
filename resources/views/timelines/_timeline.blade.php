@@ -51,7 +51,7 @@ $eras = $timeline->eras()->ordered($timeline->revert_order)->get();
             </div>
         </div>
         <!-- /.box-header -->
-        <div class="box-body">
+        <div class="box-body entity-content">
             {!! \App\Facades\Mentions::mapAny($era)  !!}
         </div>
     </div>
@@ -92,7 +92,7 @@ $eras = $timeline->eras()->ordered($timeline->revert_order)->get();
                     {!! $element->htmlName() !!} @if(isset($element->date))<span class="text-muted">{{ $element->date }}</span>@endif
                 </h3>
 
-                <div class="timeline-body">
+                <div class="timeline-body entity-content">
                     {!! \App\Facades\Mentions::mapAny($element) !!}
                 </div>
                 <div class="timeline-footer">

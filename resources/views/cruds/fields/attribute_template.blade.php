@@ -8,7 +8,7 @@
                     {{ __('crud.fields.attribute_template') }}
                     <i class="fa fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('crud.hints.attribute_template') }}"></i>
                 </label>
-                {!! Form::select('template_id', $attributeTemplates, null, ['placeholder' => trans('crud.attributes.placeholders.template'), 'class' => 'form-control']) !!}
+                {!! Form::select('template_id', $attributeTemplates, null, ['placeholder' => trans('entities/attributes.placeholders.template'), 'class' => 'form-control']) !!}
 
                 <p class="help-block visible-xs visible-sm">{{ __('crud.hints.attribute_template') }}</p>
             </div>

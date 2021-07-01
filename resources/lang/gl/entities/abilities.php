@@ -2,14 +2,15 @@
 
 return [
     'actions'   => [
-        'add'               => 'Engadir habilidades',
-        'import_from_race'  => 'Engadir habilidades de raza',
-        'reset'             => 'Restablecer número de usos de habilidade',
+        'add'                       => 'Engadir habilidades',
+        'import_from_race'          => 'Engadir habilidades de raza',
+        'import_from_race_mobile'   => 'Habilidades raciais',
+        'reset'                     => 'Restablecer número de usos de habilidade',
     ],
     'create'    => [
-        'success'           => 'Habilidade ":ability" engadida a :entity.',
-        'success_multiple'  => 'Habilidades ":abilities" engadidas a :entity.',
-        'title'             => 'Engadir habilidades a :name',
+        'success'           => 'Habilidade ":ability" engadida a ":entity".',
+        'success_multiple'  => 'Habilidades ":abilities" engadidas a ":entity".',
+        'title'             => 'Engadir habilidades a ":name"',
     ],
     'fields'    => [
         'note'      => 'Nota',
@@ -27,7 +28,7 @@ return [
     ],
     'show'      => [
         'helper'    => 'Engade habilidades a esta entidade. Sempre podes editar a visibilidade ou eliminar unha habilidade. As habilidades pertencentes á mesma habilidade nai serán mostradas como caixas de filtro.',
-        'title'     => 'Habilidades de :name',
+        'title'     => 'Habilidades de ":name"',
     ],
     'update'    => [
         'title' => 'Habilidade de :name',

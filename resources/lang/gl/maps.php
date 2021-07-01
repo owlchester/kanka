@@ -26,8 +26,10 @@ return [
         ],
     ],
     'fields'        => [
+        'center_marker'     => 'Marcador',
         'center_x'          => 'Posición de lonxitude por defecto',
         'center_y'          => 'Posición de latitude por defecto',
+        'centering'         => 'Centrado',
         'distance_measure'  => 'Medida da distancia',
         'distance_name'     => 'Unidade de distancia',
         'grid'              => 'Reixa',
@@ -37,10 +39,15 @@ return [
         'max_zoom'          => 'Zoom máximo',
         'min_zoom'          => 'Zoom mínimo',
         'name'              => 'Nome',
+        'tabs'              => [
+            'coordinates'   => 'Coordenadas',
+            'marker'        => 'Marcador',
+        ],
         'type'              => 'Tipo',
     ],
     'helpers'       => [
         'center'            => 'Os seguintes valores controlan en que área do mapa está o foco. Deixar estes valores baleiros fará que o foco esté no centro.',
+        'centering'         => 'Centrar nun marcador será prioritario sobre as coordenadas por defecto.',
         'descendants'       => 'Esta lista contén todos os mapas descendentes deste mapa, non só os directamente debaixo del.',
         'distance_measure'  => 'Engadir unha medida da distancia ao mapa, habilitará a ferramenta de medida no modo de exploración.',
         'grid'              => 'Establece un tamaño para a reixa que se mostrará no modo de exploración.',
@@ -48,7 +55,8 @@ return [
         'max_zoom'          => 'O máximo que pode ser ampliado o mapa. O valor por defecto é :default, e o máximo permitido é :max.',
         'min_zoom'          => 'O valor mínimo de zoom permitido. O valor por defecto é :default, mentres que o valor mínimo permito é :min.',
         'missing_image'     => 'Garda o mapa cunha imaxe antes de engadir capas e marcadores.',
-        'nested'            => 'Na vista en árbore, podes ver os mapas de forma agrupada. Os mapas sen ningún mapa superior serán mostrados primeiro. Podes facer clic nos mapas con descendentes para explorar os seus descendentes. Podes seguir facendo clic ata que non haxa máis descendentes que mostrar.',
+        'nested_parent'     => 'Mostrando os mapas de ":parent".',
+        'nested_without'    => 'Mostrando todos os mapas que non teñen un mapa superior. Fai clic nunha fila para ver os seus descendentes.',
     ],
     'index'         => [
         'add'   => 'Novo mapa',
@@ -64,13 +72,14 @@ return [
         'settings'  => 'Configuración',
     ],
     'placeholders'  => [
+        'center_marker'     => 'Déixao baleiro para cargar o mapa no centro',
         'center_x'          => 'Déixao baleiro para cargar o mapa no centro',
         'center_y'          => 'Déixao baleiro para cargar o mapa no centro',
         'distance_measure'  => 'Unidades por píxel',
         'distance_name'     => 'Nome da unidade de distancia (quilómetro, milla...)',
         'grid'              => 'Distancia en píxeis entre elementos da reixa. Deixar baleiro para ocultar a reixa.',
         'name'              => 'Nome do mapa',
-        'type'              => 'Mazmorra, cidade, galaxia...',
+        'type'              => 'Cripta, cidade, galaxia...',
     ],
     'show'          => [
         'tabs'  => [

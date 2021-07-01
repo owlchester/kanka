@@ -74,6 +74,14 @@ class CommunityEvent extends Model
     }
 
     /**
+     * @return bool
+     */
+    public function isScheduled(): bool
+    {
+        return $this->start_at->isFuture();
+    }
+
+    /**
      * Get the image (or default image) of an entity
      * @param int $width = 200
      * @param int $width = null

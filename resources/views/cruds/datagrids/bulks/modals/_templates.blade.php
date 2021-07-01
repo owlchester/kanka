@@ -5,14 +5,14 @@
 </div>
 <div class="modal-body">
     <div class="form-group required">
-        <label>{{ __('crud.attributes.fields.template') }}</label>
-        {!! Form::select('template_id', $templates, null, ['placeholder' => trans('crud.attributes.placeholders.template'), 'class' => 'form-control']) !!}
+        <label>{{ __('entities/attributes.fields.template') }}</label>
+        {!! Form::select('template_id', $templates, null, ['placeholder' => trans('entities/attributes.placeholders.template'), 'class' => 'form-control']) !!}
     </div>
 
 
     <p class="help-block">
         {!! __('attributes/templates.helpers.marketplace', [
-    'boosted-campaigns' => link_to_route('front.features', __('crud.boosted_campaigns'), '#boost'),
+    'boosted-campaigns' => link_to_route('front.pricing', __('crud.boosted_campaigns'), '#boost'),
     'marketplace' => link_to('https://marketplace.kanka.io/attribute-templates', __('front.menu.marketplace'), ['target' => '_blank'])
     ]) !!}
     </p>

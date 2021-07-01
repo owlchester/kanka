@@ -32,6 +32,7 @@ return [
         'title'         => 'Objekttemplates',
     ],
     'filters'           => [
+        'clipboard'     => 'Wenn Filter aktiv sind, wird die Schaltfläche in die Zwischenablage kopieren aktiv. Dadurch werden die Filter in Ihre Zwischenablage kopiert und Sie können sie für Dashboard-Widget-Filter oder für Quicklink-Filter verwenden.',
         'description'   => 'Sie können Filter verwenden, um die Anzahl der in Listen angezeigten Ergebnisse zu begrenzen. Textfelder unterstützen verschiedene Optionen, um detaillierter zu steuern, was herausgefiltert wird.',
         'empty'         => 'Schreibt man :tag in ein Feld wird in allen Objekten, bei denen dieses Feld leer ist gesucht.',
         'ending_with'   => 'Durch Platzieren eines :tag am Ende Ihres Textes können Sie nach jedem Objekt mit genau diesem Text im Feld suchen.',
@@ -59,6 +60,10 @@ return [
         'description'   => 'Wenn Sie eine Karte an einen Ort hochladen, wird das Menü "Karte" auf der Ansichtsseite des Standorts und ein direkter Link zur Karte von der Standortseite der Kampagne aktiviert. In der Kartenansicht können Benutzer, die den Standort bearbeiten können, den Bearbeitungsmodus aktivieren, mit dem sie Kartenpunkte auf der Karte platzieren können. Diese können mit einem vorhandenen Objekt verknüpft sein oder ein Etikett sein und verschiedene Formen und Größen haben.',
         'private'       => 'Mitglieder in der Administratorrolle der Kampagne können eine Karte privat machen. Auf diese Weise können Benutzer einen Standort anzeigen, Administratoren können die Karte jedoch geheim halten.',
         'title'         => 'Standortkarten',
+    ],
+    'pins'              => [
+        'description'   => 'Objekte können rechts neben ihrer Story-Ansicht Beziehungen und Attribute haben. Um ein Element anzuheften, bearbeiten Sie die Beziehung oder die Attribute und legen Sie den angehefteten Wert für diese fest.',
+        'title'         => 'Objekt Pins',
     ],
     'public'            => 'Sie die Tutorial Videos über öffentliche Kampagnen auf Youtube an.',
     'title'             => 'Hilfe',

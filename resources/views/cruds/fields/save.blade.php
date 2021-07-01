@@ -27,8 +27,6 @@
                 @endif
             </ul>
         </div>
-        @if (!isset($disableCancel))
-            {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
-        @endif
+        @includeWhen(!isset($disableCancel), 'partials.or_cancel')
     </div>
 @endif

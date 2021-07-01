@@ -2,10 +2,24 @@
 
 namespace App\Http\Resources;
 
+use App\Facades\Mentions;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CampaignResource extends JsonResource
 {
+    /**
+     * @var bool
+     */
+    protected $withMentions = false;
+
+    /**
+     * @return $this
+     */
+    public function withMentions()
+    {
+        $this->withMentions = true;
+        return $this;
+    }
     /**
      * Transform the resource into an array.
      *
@@ -14,11 +28,12 @@ class CampaignResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        $data = [
             'id' => $this->id,
             'name' => $this->name,
             'locale' => $this->locale,
             'entry' => $this->entry,
+            'entry_parsed' => 'not available on the campaigns/ endpoint',
             'image' => $this->image,
             'image_full' => $this->getImageUrl(0),
             'image_thumb' => $this->getImageUrl(40),
@@ -30,5 +45,11 @@ class CampaignResource extends JsonResource
             'ui_settings' => $this->ui_settings,
             'default_images' => $this->default_images,
         ];
+
+        if ($this->withMentions) {
+            $data['entry_parsed'] = Mentions::mapCampaign($this->resource);
+        }
+
+        return $data;
     }
 }

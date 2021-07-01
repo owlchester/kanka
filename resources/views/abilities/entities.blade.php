@@ -7,17 +7,32 @@
         __('abilities.show.tabs.entities')
     ],
     'mainTitle' => false,
+    'miscModel' => $model,
 ])
 
 @inject('campaign', 'App\Services\CampaignService')
 
+
+@section('entity-header-actions')
+    @can('update', $model)
+        <div class="header-buttons">
+            <a href="{{ route('abilities.entity-add', $model) }}" class="btn btn-warning btn-sm"
+               data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('abilities.entity-add', $model) }}">
+                <i class="fa fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('abilities.children.actions.add') }}</span>
+            </a>
+        </div>
+    @endcan
+@endsection
+
+@include('entities.components.header', ['model' => $model, 'entity' => $model->entity])
+
 @section('content')
     @include('partials.errors')
-    <div class="row">
-        <div class="col-md-3">
+    <div class="row entity-grid">
+        <div class="col-md-2 entity-sidebar-submenu">
             @include('abilities._menu', ['active' => 'entities'])
         </div>
-        <div class="col-md-9">
+        <div class="col-md-10 entity-main-block">
             @include('abilities.panels.entities')
         </div>
     </div>

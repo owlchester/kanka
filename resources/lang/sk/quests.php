@@ -34,6 +34,24 @@ return [
         'success'       => 'Úloha :name upravená.',
         'title'         => 'Upraviť úlohu :name',
     ],
+    'elements'      => [
+        'create'    => [
+            'success'   => 'Objekt :entity pridaný k úlohe.',
+            'title'     => 'Nový prvok pre :name',
+        ],
+        'destroy'   => [
+            'success'   => 'Prvok úlohy :entity odstránený.',
+        ],
+        'edit'      => [
+            'success'   => 'Prvok úlohy :entity aktualizovaný.',
+            'title'     => 'Aktualizovať prvok úlohy pre :name',
+        ],
+        'fields'    => [
+            'description'   => 'Popis',
+            'quest'         => 'Úloha',
+        ],
+        'title'     => 'Prvky úlohy :name',
+    ],
     'fields'        => [
         'character'     => 'Zadávateľ/ka',
         'characters'    => 'Postavy',
@@ -52,7 +70,9 @@ return [
         'type'          => 'Typ',
     ],
     'helpers'       => [
-        'nested'    => 'Úlohy vieš usporiadať vnoreným zobrazením. Úlohy bez nadradenej úlohy sa zobrazia štandardným spôsobom. Úlohy s podradenými úlohami je možné rozkliknúť, dokiaľ nebudú existovať už žiadne ďalšie podradené úlohy.',
+        'nested'        => 'Úlohy vieš usporiadať vnoreným zobrazením. Úlohy bez nadradenej úlohy sa zobrazia štandardným spôsobom. Úlohy s podradenými úlohami je možné rozkliknúť, dokiaľ nebudú existovať už žiadne ďalšie podradené úlohy.',
+        'nested_parent' => 'Zobraziť úlohy :parent.',
+        'nested_without'=> 'Zobraziť všetky úlohy, ktoré nemajú nadradenú úlohu. Kliknutím na riadok zobrazíš podradené úlohy.',
     ],
     'hints'         => [
         'quests'    => 'Sieť prepojených úloh je možné vytvoriť cez nadradenú úlohu.',
@@ -133,6 +153,7 @@ return [
     'show'          => [
         'actions'       => [
             'add_character'     => 'Pridať postavu',
+            'add_element'       => 'Pridať prvok',
             'add_item'          => 'Pridať predmet',
             'add_location'      => 'Pridať miesto',
             'add_organisation'  => 'Pridať organizáciu',
@@ -140,6 +161,7 @@ return [
         'description'   => 'Detailný náhľad na úlohu',
         'tabs'          => [
             'characters'    => 'Postavy',
+            'elements'      => 'Prvky',
             'information'   => 'Informácie',
             'items'         => 'Predmety',
             'locations'     => 'Miesta',

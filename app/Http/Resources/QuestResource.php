@@ -24,7 +24,8 @@ class QuestResource extends EntityResource
             'calendar_year' => $this->calendar_year,
             'calendar_month' => $this->calendar_month,
             'calendar_day' => $this->calendar_day,
-            'elements' => $this->elements->count(),
+            'elements_count' => $this->elements->count(),
+            'elements' => QuestElementResource::collection($this->elements)
         ]);
     }
 }

@@ -81,10 +81,11 @@ return [
             'css'                   => 'Proizvoljni CSS kampanje',
             'dashboards'            => 'Postavi prilagođene naslove ploče za uloge kampanje',
             'description'           => 'Određene razine pretplate pružaju korisnicima pojačanja koja mogu koristiti za unaprijeđenje kampanja. Ona omogućuju sljedeće prednosti.',
-            'entity_files'          => 'Povećan maksimalan broj prenesenih datoteka po entitetu (do 5 umjesto 3)',
+            'entity_files_v2'       => 'Maksimalno prenesenih datoteka po entitetu',
             'entity_links'          => 'Postavi poveznice entiteta na vanjske resurse i web stranice',
             'header_image'          => 'Slika zaglavlja entiteta',
             'images'                => 'Postavi proizvoljne zadane slike entiteta',
+            'marketplace'           => 'Pristup :marketplace',
             'no_ads'                => 'U kampanji nema reklama',
             'recovery'              => 'Oporavak entiteta do 30 dana',
             'relation-visualiser'   => 'Vizualno istraži odnose entiteta',
@@ -93,6 +94,10 @@ return [
             'tooltip'               => 'Proizvoljni kratki opisi entiteta',
             'upload'                => 'Povećane dozvoljene veličine prijenosa za sve članove',
         ],
+        'boosts_v2'         => [
+            'description'   => 'Naše razine zaloga omogućuju pristup pojačivačima koje možeš koristiti za pojačavanje ili superpojačavanje kampanja. Na taj način otključavaš sljedeće pogodnosti za kampanju.',
+            'title'         => 'Pojačane i Super pojačane kampanje',
+        ],
         'calendars'         => [
             'description'   => 'Izradi vlastite kalendare i organiziraj svoju kampanju oko njih.',
             'title'         => 'Kalendari',
@@ -100,6 +105,10 @@ return [
         'collaborative'     => [
             'description'   => 'Nisi sam/a? Nema problema! Možeš pozvati svoje prijatelje i su-voditelja igre da ti pomognu u izgradnji kampanje!',
             'title'         => 'Kolaborativno',
+        ],
+        'dashboards'        => [
+            'description'   => 'Kontroliraj informacije vidljive tvojim igračima kad otvore Kanku.',
+            'title'         => 'Naslovne ploče',
         ],
         'description'       => 'Kanka ima veliki broj funkcionalnosti. Pratite likove svog svijeta i njihove odnose, lokacije i njihovu povijest, zadatke i njihove ciljeve, kalendare i njihove događaje i vremenske učinke, te još puno toga. Najbolje od svega je što Kanka dobiva nekoliko nadogradnji svakog mjeseca na temelju povratnih informacija korisnika.',
         'description_full'  => 'Neprestano dodajemo nove funkcionalnosti i poboljšanja Kanki, a sve temeljne funkcionalnosti su besplatne.',
@@ -172,13 +181,10 @@ return [
             'title'         => 'Upravljaj tajnama',
         ],
         'superboosts'       => [
-            'boosted'       => 'Super pojačano',
-            'description'   => 'Korištenje tri pojačanja kampanje za jednu kampanju će je učiniti Super pojačanom, što otključava sljedeće značajke.',
-            'files'         => 'Učitaj do 10 slika po entitetu.',
-            'gallery'       => 'Galerija slika kampanje i integracije s uređivačem teksta Summernote',
-            'logs'          => 'Potpuni zapisnici promjena na entitetima (do 30 dana)',
-            'stats'         => 'Stranica postignuća kampanje',
-            'title'         => 'Super pojačane kampanje',
+            'boosted'   => 'Super pojačano',
+            'gallery'   => 'Galerija slika kampanje i integracije s uređivačem teksta Summernote',
+            'logs'      => 'Potpuni zapisnici promjena na entitetima (do 30 dana)',
+            'stats'     => 'Stranica postignuća kampanje',
         ],
         'timelines'         => [
             'description'   => 'Vizualno predstavi kronologije svojih svjetova, carstava, plemićkih obitelji ili čak jednog lika.',
@@ -309,6 +315,10 @@ return [
         'backlog'           => [
             'description'   => 'Ova Trello ploča sadrži sve funkcionalnosti koje je zajednica tražila, kao i sve planirane funkcionalnosti i poboljšanja koja će jednog dana biti dio aplikacije.',
             'title'         => 'Za obaviti kasnije',
+        ],
+        'blog'              => [
+            'description'   => 'Plan razvoja objavljujemo početkom svakog mjeseca, nakon našeg glasanja zajednice.',
+            'title'         => 'Mjesečni planovi razvoja',
         ],
         'description'       => 'Naša glasanja zajednice oblikuju naš rad, tako da iako nemamo višemjesečni plan puta, lako je biti u tijeku s onim što je traženo i na čemu se trenutno radi.',
         'featured_requests' => [

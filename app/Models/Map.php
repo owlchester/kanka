@@ -28,11 +28,13 @@ use Kalnoy\Nestedset\NodeTrait;
  * @property int $initial_zoom
  * @property int $center_x
  * @property int $center_y
+ * @property int $center_marker_id
  * @property Map $map
  * @property Map[] $maps
  * @property Location $location
  * @property MapLayer[] $layers
  * @property MapMarker[] $markers
+ * @property MapMarker $center_marker
  * @property MapGroup[] $groups
  * @property [] $grids
  */
@@ -70,6 +72,7 @@ class Map extends MiscModel
         'initial_zoom',
         'center_x',
         'center_y',
+        'center_marker_id'
     ];
 
     /**
@@ -108,6 +111,7 @@ class Map extends MiscModel
      */
     public $nullableForeignKeys = [
         'map_id',
+        'center_marker_id'
     ];
 
     /**
@@ -198,6 +202,14 @@ class Map extends MiscModel
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function center_marker()
+    {
+        return $this->hasOne('App\Models\MapMarker', 'id', 'center_marker_id');
+    }
+
+    /**
      * Detach children when moving this entity from one campaign to another
      */
     public function detach()
@@ -213,11 +225,11 @@ class Map extends MiscModel
     /**
      * @return array
      */
-    public function menuItems($items = [])
+    public function menuItems(array $items = []): array
     {
         $campaign = CampaignLocalization::getCampaign();
 
-        $items['maps'] = [
+        $items['second']['maps'] = [
             'name' => 'maps.show.tabs.maps',
             'route' => 'maps.maps',
             'count' => $this->descendants()->count()
@@ -243,12 +255,12 @@ class Map extends MiscModel
 
         // Horizontal lines
         $grid = $this->grid;
-        for($i = $grid; $i <= $this->height; $i += $grid) {
+        for ($i = $grid; $i <= $this->height; $i += $grid) {
             $lines[] = [$i, 0, $i, $this->width];
         }
 
         // Vertical lines
-        for($i = $grid; $i <= $this->width; $i += $grid) {
+        for ($i = $grid; $i <= $this->width; $i += $grid) {
             $lines[] = [0, $i, $this->height, $i];
         }
 
@@ -400,15 +412,25 @@ class Map extends MiscModel
      */
     public function centerFocus(): string
     {
+        //init position in the middle of the map
         $latitude = floor($this->height / 2);
-        if (!empty($this->center_y)) {
-            $latitude = $this->center_y;
-        }
         $longitude = floor($this->width / 2);
-        if (!empty($this->center_x)) {
-            $longitude = $this->center_x;
-        }
 
+        //if we have a center marker
+        if ($this->center_marker != null) {
+            //use his position
+            $latitude = $this->center_marker->latitude;
+            $longitude = $this->center_marker->longitude;
+        } else {
+            //use the center positions if they exist
+            if (!empty($this->center_y)) {
+                $latitude = $this->center_y;
+            }
+
+            if (!empty($this->center_x)) {
+                $longitude = $this->center_x;
+            }
+        }
         return "$latitude, $longitude";
     }
 

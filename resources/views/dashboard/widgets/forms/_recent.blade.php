@@ -69,7 +69,7 @@
         </div>
     @else
         <p class="help-block">{!! __('dashboard.widgets.advanced_options_boosted', [
-    'boosted_campaigns' => link_to_route('front.features', __('crud.boosted_campaigns'), '#boost', ['target' => '_blank'])
+    'boosted_campaigns' => link_to_route('front.pricing', __('crud.boosted_campaigns'), '#boost', ['target' => '_blank'])
 ]) !!}"</p>
     @endif
 </div>

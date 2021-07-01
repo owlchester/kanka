@@ -9,6 +9,7 @@ $prefill = \Illuminate\Support\Arr::get($options, 'preset');
 $prefillModel = \Illuminate\Support\Arr::get($options, 'class');
 $allowNew = \Illuminate\Support\Arr::get($options, 'allowNew', false);
 $labelKey = \Illuminate\Support\Arr::get($options, 'labelKey');
+$searchParams = \Illuminate\Support\Arr::get($options, 'searchParams');
 $searchRouteName = \Illuminate\Support\Arr::get($options, 'searchRouteName');
 $placeholderKey = \Illuminate\Support\Arr::get($options, 'placeholderKey');
 $from = \Illuminate\Support\Arr::get($options, 'from');
@@ -31,6 +32,8 @@ if (empty($selectedOption) && !empty($prefill)) {
         $selectedOption = [$prefill->id => $prefill->name];
     } elseif ($prefill instanceof \App\Models\Image) {
         $selectedOption = [$prefill->id => $prefill->name];
+    } elseif ($prefill instanceof \App\Models\MapMarker) {
+        $selectedOption = [$prefill->id => $prefill->name];
     } elseif (is_array($prefill)) {
         $selectedOption = $prefill;
     }
@@ -51,8 +54,11 @@ if ($allowNew) {
     $allowNew = auth()->user()->can('create', new $prefillModel);
 }
 
+//initialise to empty array if empty
+if(empty($searchParams)){
+    $searchParams = [];
+}
 // From source to exclude duplicates
-$searchParams = [];
 if (!empty($from)) {
     $searchParams['exclude'] = $from->id;
 }

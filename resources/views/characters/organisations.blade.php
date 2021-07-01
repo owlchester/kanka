@@ -12,13 +12,15 @@
 
 @inject('campaign', 'App\Services\CampaignService')
 
+@include('entities.components.header', ['model' => $model])
+
 @section('content')
     @include('partials.errors')
-    <div class="row">
-        <div class="col-md-3">
+    <div class="row entity-grid">
+        <div class="col-md-2 entity-sidebar-submenu">
             @include('characters._menu', ['active' => 'organisations'])
         </div>
-        <div class="col-md-9">
+        <div class="col-md-10 entity-main-block">
             @include('characters.panels.organisations')
         </div>
     </div>

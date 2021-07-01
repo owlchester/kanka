@@ -1,26 +1,7 @@
 <?php
 
 return [
-    'characters'    => [
-        'create'    => [
-            'description'   => 'Añadir personaje a la misión',
-            'success'       => 'Personaje añadido a :name.',
-            'title'         => 'Nuevo personaje para :name',
-        ],
-        'destroy'   => [
-            'success'   => 'Personaje eliminado de la misión :name.',
-        ],
-        'edit'      => [
-            'description'   => 'Actualizar personaje de la misión',
-            'success'       => 'Personaje de la misión :name actualizado.',
-            'title'         => 'Actualizar personaje de :name',
-        ],
-        'fields'    => [
-            'character'     => 'Personaje',
-            'description'   => 'Descripción',
-        ],
-        'title'     => 'Personajes en :name',
-    ],
+    'characters'    => [],
     'create'        => [
         'description'   => 'Crear nueva misión',
         'success'       => 'Misión ":name" creada.',
@@ -34,18 +15,32 @@ return [
         'success'       => 'Misión ":name" actualizada.',
         'title'         => 'Editar misión :name',
     ],
+    'elements'      => [
+        'create'    => [
+            'success'   => 'Se ha añadido la entidad :entity a la misión.',
+            'title'     => 'Nuevo elemento para :name',
+        ],
+        'destroy'   => [
+            'success'   => 'Se ha quitado :entidad de la misión.',
+        ],
+        'edit'      => [
+            'success'   => 'Se ha actualizado :entity en la misión.',
+            'title'     => 'Actualizar elemento de la misión :name',
+        ],
+        'fields'    => [
+            'description'   => 'Descripción',
+            'quest'         => 'Misión',
+        ],
+        'title'     => 'Elementos de la misión :name',
+    ],
     'fields'        => [
         'character'     => 'Instigador',
-        'characters'    => 'Personajes',
         'copy_elements' => 'Copiar elementos vinculados a la misión',
         'date'          => 'Fecha',
         'description'   => 'Descripción',
         'image'         => 'Imagen',
         'is_completed'  => 'Completada',
-        'items'         => 'Objetos',
-        'locations'     => 'Lugares',
         'name'          => 'Nombre',
-        'organisations' => 'Organizaciones',
         'quest'         => 'Misión superior',
         'quests'        => 'Submisiones',
         'role'          => 'Rol',
@@ -64,66 +59,9 @@ return [
         'header'        => 'Misiones de :name',
         'title'         => 'Misiones',
     ],
-    'items'         => [
-        'create'    => [
-            'description'   => 'Añadir objeto a la misión',
-            'success'       => 'Objeto añadido a :name.',
-            'title'         => 'Nuevo objeto en :name',
-        ],
-        'destroy'   => [
-            'success'   => 'Objeto eliminado de :name.',
-        ],
-        'edit'      => [
-            'description'   => 'Actualizar objeto de misión',
-            'success'       => 'Objeto de :name actualizado.',
-            'title'         => 'Actualizar objeto de :name',
-        ],
-        'fields'    => [
-            'description'   => 'Descripción',
-            'item'          => 'Objeto',
-        ],
-        'title'     => 'Objetos de :name',
-    ],
-    'locations'     => [
-        'create'    => [
-            'description'   => 'Seleccionar una localización para la misión',
-            'success'       => 'Localización añadida a :name.',
-            'title'         => 'Nueva localización para :name',
-        ],
-        'destroy'   => [
-            'success'   => 'Localización de la misión :name eliminada.',
-        ],
-        'edit'      => [
-            'description'   => 'Actualizar la localización de una misión',
-            'success'       => 'Localización de la misión :name actualizada.',
-            'title'         => 'Actualizar localización para :name',
-        ],
-        'fields'    => [
-            'description'   => 'Descripción',
-            'location'      => 'Localización',
-        ],
-        'title'     => 'Lugares en :name',
-    ],
-    'organisations' => [
-        'create'    => [
-            'description'   => 'Añadir una organización a la misión',
-            'success'       => 'Organización añadida a :name.',
-            'title'         => 'Nueva organización para :name',
-        ],
-        'destroy'   => [
-            'success'   => 'Organización de :name eliminada de la misión.',
-        ],
-        'edit'      => [
-            'description'   => 'Actualizar organización de la misión',
-            'success'       => 'Organización de :name actualizada.',
-            'title'         => 'Actualizar organización de :name',
-        ],
-        'fields'    => [
-            'description'   => 'Descripción',
-            'organisation'  => 'Organización',
-        ],
-        'title'     => 'Organizaciones en :name',
-    ],
+    'items'         => [],
+    'locations'     => [],
+    'organisations' => [],
     'placeholders'  => [
         'date'  => 'Fecha real de la misión',
         'name'  => 'Nombre de la misión',
@@ -133,18 +71,12 @@ return [
     ],
     'show'          => [
         'actions'       => [
-            'add_character'     => 'Añadir personaje',
-            'add_item'          => 'Añadir objeto',
-            'add_location'      => 'Añadir localización',
-            'add_organisation'  => 'Añadir organización',
+            'add_element'   => 'Añadir elemento',
         ],
         'description'   => 'Vista detallada de la misión',
         'tabs'          => [
-            'characters'    => 'Personajes',
+            'elements'      => 'Elementos',
             'information'   => 'Información',
-            'items'         => 'Objetos',
-            'locations'     => 'Lugares',
-            'organisations' => 'Organizaciones',
             'quests'        => 'Misiones',
         ],
         'title'         => 'Misión :name',

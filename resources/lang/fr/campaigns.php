@@ -94,6 +94,7 @@ TEXT
         'locale'                        => 'La langue dans laquelle la campagne est écrite. Ceci est utilisé pour générer du contenu ainsi que pour grouper les campagnes publiques.',
         'name'                          => 'Le nom de la campagne doit contenir au minimum 4 caractères.',
         'public_campaign_filters'       => 'Aides les autres utilisateurs à trouver la campagne parmi les autres campagnes publiques en fournissant les détails suivants.',
+        'public_no_visibility'          => 'Attention! La campagne est public, mais le rôle publique de la campagne n\'a pas d\'accès. :fix.',
         'related_visibility'            => 'Visibilité par défaut lors de la création d\'un nouvel élément avec ce champ (note d\'entité, relation, pouvoir, etc)',
         'system'                        => 'Si la campagne est publiquement visible, elle sera affichée dans la page :link.',
         'systems'                       => 'A définir.',
@@ -121,15 +122,15 @@ TEXT
                 'send'      => 'Envoyer une invitation',
             ],
             'description'   => 'Invite tes amis à ta campagne',
-            'link'          => 'Lien créé: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Invitation envoyée.',
+            'success_link'  => 'Liens créé: :link',
             'title'         => 'Invite un ami à la campagne',
         ],
         'destroy'               => [
             'success'   => 'Invitation annulée.',
         ],
         'email'                 => [
-            'link'      => '<a href=":link">Joindre la campagne de :name</a>',
+            'link_text' => 'Joindre la campagne :name',
             'subject'   => ':name t\'as invité à rejoindre la campagne \':campagne\' sur kanka.io! Utilise ce lien pour accepter son invitation.',
             'title'     => 'Invitation de :name',
         ],
@@ -199,6 +200,7 @@ TEXT
             'roles_page'    => 'page des rôles',
             'title'         => 'Invitation',
         ],
+        'manage_roles'          => 'Gérer les rôles de l\'utilisateur',
         'roles'                 => [
             'member'    => 'Membre',
             'owner'     => 'Administrateur',
@@ -208,6 +210,10 @@ TEXT
         ],
         'switch_back_success'   => 'Tu es de retour à ton compte.',
         'title'                 => 'Membres de la campagne :name',
+        'updates'               => [
+            'added'     => 'Le rôle :role a été ajouté à :user.',
+            'removed'   => 'Le rôle :role a été retiré de :user.',
+        ],
         'your_role'             => 'Rôle: \'<i>:rôle</i>\'',
     ],
     'open_campaign'                     => [

@@ -18,7 +18,7 @@
     <div class="form-group">
         <button class="btn btn-success">{{ trans('crud.save') }}</button>
         @if(!isset($ajax))
-        {!! trans('crud.or_cancel', ['url' => route('locations.map_points.index', [$location])]) !!}
+            @include('partials.or_cancel', ['cancel' => route('locations.map_points.index', [$location])])
         @else
         <a class="pull-right btn btn-default"
            data-toggle="popover" data-html="true" data-placement="top"

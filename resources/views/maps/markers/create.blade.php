@@ -70,10 +70,8 @@ __('maps/markers.create.title')
                 {!! Form::hidden('submit', null) !!}
             </div>
 
-            @if (!$ajax)
-            {!! __('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
-            @endif
-        </div>
+                @includeWhen(!request()->ajax(), 'partials.or_cancel')
+            </div>
 
         {!! Form::close() !!}
     </div>

@@ -157,21 +157,13 @@ class Race extends MiscModel
     /**
      * @return array
      */
-    public function menuItems($items = [])
+    public function menuItems(array $items = []): array
     {
         $campaign = CampaignLocalization::getCampaign();
 
-        $count = $this->characters()->count();
-        if ($campaign->enabled('characters') && $count > 0) {
-            $items['characters'] = [
-                'name' => 'races.show.tabs.characters',
-                'route' => 'races.characters',
-                'count' => $count
-            ];
-        }
         $count = $this->races()->count();
         if ($campaign->enabled('races') && $count > 0) {
-            $items['races'] = [
+            $items['second']['races'] = [
                 'name' => 'races.show.tabs.races',
                 'route' => 'races.races',
                 'count' => $count

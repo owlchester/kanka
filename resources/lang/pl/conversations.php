@@ -15,6 +15,7 @@ return [
         'title'         => 'Konwersacja :name',
     ],
     'fields'        => [
+        'is_closed'     => 'Zamknięta',
         'messages'      => 'Wiadomości',
         'name'          => 'Nazwa',
         'participants'  => 'Uczestnicy',
@@ -57,6 +58,7 @@ return [
     ],
     'show'          => [
         'description'   => 'Szczegóły konwersacji',
+        'is_closed'     => 'Konwersacja jest zamknięta.',
         'title'         => 'Konwersacja :name',
     ],
     'tabs'          => [

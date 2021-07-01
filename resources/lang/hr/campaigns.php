@@ -199,6 +199,7 @@ TEXT
             'roles_page'    => 'stranici uloga',
             'title'         => 'Pozvati',
         ],
+        'manage_roles'          => 'Upravljanje korisničkim ulogama',
         'roles'                 => [
             'member'    => 'Član',
             'owner'     => 'Administrator',
@@ -208,6 +209,10 @@ TEXT
         ],
         'switch_back_success'   => 'Vratio si se na svog korisnika.',
         'title'                 => 'Članovi kampanje :name',
+        'updates'               => [
+            'added'     => 'Uloga :role dodana korisniku :user.',
+            'removed'   => 'Uloga :role uklonjena od korisnika :user.',
+        ],
         'your_role'             => 'Tvoja uloga <i>:role</i>',
     ],
     'open_campaign'                     => [
@@ -330,6 +335,7 @@ TEXT
             'dice_rolls'    => 'Za one koji koriste Kanka za RPG kampanje, način za upravljanje bacanjem kockica. Ovaj modul je zastario.',
             'events'        => 'Praznici, festivali, katastrofe, rođendani, ratovi.',
             'families'      => 'Klanovi ili obitelji, njihovi odnosi i njihovi članovi.',
+            'inventories'   => 'Upravljaj inventarom svojih entiteta.',
             'items'         => 'Oružje, vozila, relikvije, napitci.',
             'journals'      => 'Opažanja napisana od strane likova ili priprema za sesiju za voditelja igre.',
             'locations'     => 'Planeti, ravni postojanja, kontinenti, rijeke, države, naselja, hramovi, krčme.',

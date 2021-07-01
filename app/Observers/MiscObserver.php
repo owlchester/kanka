@@ -43,6 +43,7 @@ abstract class MiscObserver
     {
         $model->slug = Str::slug($model->name, '');
         $model->campaign_id = CampaignLocalization::getCampaign()->id;
+        $model->name = trim($model->name); // Remove empty spaces in names
         //$model->name = strip_tags($model->name);
 
         // If we're from the "move" service, we can skip this part.
@@ -185,6 +186,11 @@ abstract class MiscObserver
         if ($model->entity) {
             $model->entity->touch();
 
+            // If the updated_at is the same as the created_at, we don't need to create a log.
+            //if ($model->entity->created_at->is($model->entity->updated_at)) {
+            //    return;
+            //}
+
             // Updated log. We do this here to have the dirty attributes of the child
             $log = new EntityLog();
             $log->entity_id = $model->entity->id;
@@ -250,6 +256,15 @@ abstract class MiscObserver
                 }
                 return '';
             }
+            //special treatment for map center markers
+            if($attribute == 'center_marker_id'){
+                $originalMarker = \App\Models\MapMarker::where('id', $original)->first();
+                if (!empty($originalMarker)) {
+                    return (string) $originalMarker->name;
+                }
+                return '';
+            }
+
             // Let's try based off of the attribute name
             $relationName = Str::before($attribute, '_id');
             $relationName = Str::camel($relationName);

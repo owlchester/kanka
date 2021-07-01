@@ -15,7 +15,7 @@ trait Tooltip
     public function tooltip($limit = 250, $stripSpecial = true)
     {
         // Replace return chars to space to avoid "text blabla.New sentence"
-        $pureHistory = str_replace('<br />', " ", $this->{$this->tooltipField});
+        $pureHistory = str_replace('<br\s*/*>', " ", $this->{$this->tooltipField});
 
         // Always remove tags. ALWAYS.
         $pureHistory = strip_tags($pureHistory);

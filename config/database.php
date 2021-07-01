@@ -59,7 +59,8 @@ return [
             'strict' => false,
             'engine' => null,
             'dump' => [
-                'dump_binary_path' => env('DB_BINARY_DUMP_PATH')
+                'dump_binary_path' => env('DB_BINARY_DUMP_PATH'),
+                'add_extra_option' => '--single-transaction --skip-lock-tables'
             ],
         ],
 

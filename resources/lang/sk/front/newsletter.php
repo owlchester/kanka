@@ -14,6 +14,7 @@ return [
         'community-votes'   => 'Hlasovania komunity',
         'news'              => 'Novinky',
         'newsletter'        => 'Newsletter',
+        'updates'           => 'Aktualizácie',
     ],
     'headline'  => 'Prihlás sa k odberu jedného alebo viacerých našich newsletterov k obdržaniu aktuálnych informácií o Kanke.',
     'title'     => 'E-mailové novinky',

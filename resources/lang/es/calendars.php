@@ -6,7 +6,9 @@ return [
         'add_intercalary'   => 'Añadir días intercalares',
         'add_month'         => 'Añadir mes',
         'add_moon'          => 'Añadir luna',
+        'add_reminder'      => 'Añadir recordatorio',
         'add_season'        => 'Añadir estación',
+        'add_weather'       => 'Añadir fenómeno climático',
         'add_week'          => 'Añadir semana con nombre',
         'add_weekday'       => 'Añadir día de la semana',
         'add_year'          => 'Añadir año con nombre',
@@ -101,6 +103,7 @@ return [
         'start_offset'  => 'Por defecto, el calendario empieza en el primer día de la semana del año 0. En este campo puedes cambiar dónde se situará el primer día del calendario.',
     ],
     'hints'         => [
+        'event_length'      => 'Cuánto dura el evento. Un evento no puede durar más de dos meses.',
         'intercalary'       => 'Días que están fuera de los meses y semanas estándar. No influyen en los días de la semana, pero afectan a los ciclos lunares.',
         'is_incrementing'   => 'Si está activado, se incrementará la fecha actual automáticamente a las 00:00h UTC.',
         'is_recurring'      => 'Si un evento es recurrente, reaparecerá cada año en la misma fecha.',
@@ -135,8 +138,13 @@ return [
     'options'       => [
         'events'    => [
             'recurring_periodicity' => [
-                'month' => 'Mensual',
-                'year'  => 'Anual',
+                'fullmoon'      => 'Luna llena',
+                'fullmoon_name' => 'Luna :moon llena',
+                'month'         => 'Mensual',
+                'newmoon'       => 'Luna nueva',
+                'newmoon_name'  => 'Luna :moon nueva',
+                'none'          => 'Ninguna',
+                'year'          => 'Anual',
             ],
         ],
         'resets'    => [
@@ -213,5 +221,9 @@ return [
             'weather'       => 'Clima',
         ],
         'title'             => 'Calendario :name',
+    ],
+    'sorters'       => [
+        'after' => 'De hoy en adelante',
+        'before'=> 'Hasta hoy',
     ],
 ];

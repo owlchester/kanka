@@ -82,9 +82,11 @@ return [
             'dashboards'            => 'Legen Sie benutzerdefinierte Dashboards für die Rollen der Kampagne fest',
             'description'           => 'Bestimmte Versprechen bieten Benutzern mit Booster, mit denen sie Kampagnen steigern können. Diese bieten die folgenden Vorteile.',
             'entity_files'          => 'Maximal hochgeladene Dateien pro Objekt erhöht (bis zu 5 statt 3)',
+            'entity_files_v2'       => 'Maximal hochgeladene Dateien pro Objekt',
             'entity_links'          => 'Setzen Sie Links auf Objekten zu externen Ressourcen und Webseiten',
             'header_image'          => 'Objekt-Header-Bild',
             'images'                => 'Legen Sie benutzerdefinierte Standardobjektbilder fest',
+            'marketplace'           => 'Zugang zum :marketplace',
             'no_ads'                => 'Keine Anzeigen in der Kampagne',
             'recovery'              => 'Wiederherstellung des Objektes für bis zu 30 Tage',
             'relation-visualiser'   => 'Erforschen Sie die Beziehungen von Objekten visuell',
@@ -92,6 +94,10 @@ return [
             'title'                 => 'geboostete Kampagne',
             'tooltip'               => 'Kurzinfo für benutzerdefinierte Objekte: Bild anzeigen, Text ändern',
             'upload'                => 'Erhöhte Upload-Größen für alle Mitglieder',
+        ],
+        'boosts_v2'         => [
+            'description'   => 'Unsere Pledge-Level geben dir Zugang zu Boostern, mit denen du Kampagnen boosten oder superboosten kannst. Dadurch werden die folgenden Vorteile für eine Kampagne freigeschaltet.',
+            'title'         => 'Boosted und Superboosted Kampagnen',
         ],
         'calendars'         => [
             'description'   => 'Erstelle eigene Kalender und organisiere deine Kampagne damit.',
@@ -319,6 +325,10 @@ return [
         'backlog'           => [
             'description'   => 'Dieses Trello Board enthält alle von der Community angefragten Features, wie auch alle geplanten Features und Verbesserungen die eines Tages in die App schaffen werden.',
             'title'         => 'Backlog',
+        ],
+        'blog'              => [
+            'description'   => 'Wir veröffentlichen zu Beginn eines jeden Monats nach unserer Community-Abstimmung einen Verlaufplan.',
+            'title'         => 'monatlicher Verlaufplan',
         ],
         'description'       => 'Unsere großartigen Patrons stimmen einmal im Monat darüber ab, an welchen Features als nächstes gearbeitet wird. Auch wenn wir keine Roadmap über mehrere Monate haben, ist es einfach nachzuverfolgen, welche Features bereits angefragt wurden und was momentan in Arbeit ist.',
         'featured_requests' => [

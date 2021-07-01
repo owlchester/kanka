@@ -27,6 +27,7 @@ return [
     'events'                => 'Udalosti',
     'families'              => 'Rody',
     'family'                => 'Rod',
+    'inventories'           => 'Inventáre',
     'item'                  => 'Predmet',
     'items'                 => 'Predmety',
     'journal'               => 'Denník',
@@ -40,7 +41,7 @@ return [
     'new'                   => [
         'character'     => 'Nová postava',
         'event'         => 'Nová udalosť',
-        'family'        => 'Nový rok',
+        'family'        => 'Nový rod',
         'item'          => 'Nový predmet',
         'location'      => 'Nové miesto',
         'note'          => 'Nová poznámka',

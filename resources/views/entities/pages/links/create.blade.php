@@ -4,7 +4,7 @@
     'breadcrumbs' => [
         ['url' => $entity->url('index'), 'label' => trans($entity->pluralType() . '.index.title')],
         ['url' => $entity->url('show'), 'label' => $entity->name],
-        ['url' => route('entities.entity_links.index', $entity->id), 'label' => trans('crud.tabs.links')],
+        ['url' => route('entities.assets', $entity->id), 'label' => trans('crud.tabs.assets')],
     ]
 ])
 
@@ -26,9 +26,7 @@
 
             <div class="form-group">
                 <button class="btn btn-success">{{ trans('crud.save') }}</button>
-                @if (!request()->ajax())
-                {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
-                @endif
+                @includeWhen(!request()->ajax(), 'partials.or_cancel')
             </div>
 
             {!! Form::close() !!}

@@ -2,9 +2,10 @@
 
 return [
     'actions'   => [
-        'add'               => 'Dodaj sposobnost',
-        'import_from_race'  => 'Dodajte sposobnosti rase',
-        'reset'             => 'Poništi korištenje sposobnosti',
+        'add'                       => 'Dodaj sposobnost',
+        'import_from_race'          => 'Dodajte sposobnosti rase',
+        'import_from_race_mobile'   => 'Rasne sposobnosti',
+        'reset'                     => 'Poništi korištenje sposobnosti',
     ],
     'create'    => [
         'success'           => 'Sposobnost :ability dodana na :entity.',

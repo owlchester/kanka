@@ -18,16 +18,16 @@ $specificPreview = 'dashboard.widgets.previews.' . $entity->type;
     <div
     @if ($widget->conf('entity-header') && $campaign->boosted() && $widget->entity->header_image)
         class="panel-heading panel-heading-entity"
-        style="background-image: url({{ $widget->entity->getImageUrl(1200, 400, 'header_image') }})"
+        style="background-image: url('{{ $widget->entity->getImageUrl(1200, 400, 'header_image') }}')"
     @elseif ($widget->conf('entity-header') && $campaign->boosted(true) && $widget->entity->header)
         class="panel-heading panel-heading-entity"
-        style="background-image: url({{ Img::crop(1200, 400)->url($widget->entity->header->path) }})"
+        style="background-image: url('{{ Img::crop(1200, 400)->url($widget->entity->header->path) }}')"
     @elseif ($model->image)
         class="panel-heading panel-heading-entity"
-        style="background-image: url({{ $widget->entity->child->getImageUrl() }})"
+        style="background-image: url('{{ $widget->entity->child->getImageUrl() }}')"
     @elseif($campaign->boosted(true) && !empty($widget->entity->image))
         class="panel-heading panel-heading-entity"
-        style="background-image: url({{ Img::crop(1200, 400)->url($widget->entity->image->path) }})"
+        style="background-image: url('{{ Img::crop(1200, 400)->url($widget->entity->image->path) }}')"
     @else
         class="panel-heading"
     @endif
@@ -48,13 +48,18 @@ $specificPreview = 'dashboard.widgets.previews.' . $entity->type;
     </div>
     <div class="panel-body">
         @if ($widget->conf('full') === '1')
+            <div class="entity-content">
             {!! $model->entry() !!}
+            </div>
 
             @include('dashboard.widgets.previews._members')
             @include('dashboard.widgets.previews._attributes')
         @else
         <div class="pinned-entity preview" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">
+
+            <div class="entity-content">
             {!! $model->entry() !!}
+            </div>
 
             @include('dashboard.widgets.previews._members')
             @include('dashboard.widgets.previews._attributes')

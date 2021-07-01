@@ -16,7 +16,9 @@ class CampaignApiController extends ApiController
 
     public function show(Campaign $campaign)
     {
-        return new CampaignResource($campaign);
+        $resource = new CampaignResource($campaign);
+
+        return $resource->withMentions();
     }
 
     public function store(Request $request)

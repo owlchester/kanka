@@ -13,6 +13,7 @@ return [
     'fields'        => [
         'comment'       => 'Commentaire',
         'entity_link'   => 'Liens vers l\'entité',
+        'honorable'     => 'Mentions honorables',
         'rank'          => 'Rang',
         'submitter'     => 'Participant',
     ],
@@ -37,6 +38,7 @@ return [
     ],
     'results'       => [
         'description'       => 'Notre jury à sélectionner ces participants comme gagnants.',
+        'scheduled'         => 'L\'événement commence le :start.',
         'title'             => 'Gagnants',
         'waiting_results'   => 'L\'événement est fini! Le jury va maintenant délibérer et les gagnants seront bientôt affichés.',
     ],

@@ -38,9 +38,7 @@ __('timelines/eras.create.title')
             <div class="submit-group">
                 <button class="btn btn-success">{{ trans('crud.save') }}</button>
             </div>
-            @if (!$ajax)
-            {!! __('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
-            @endif
+            @includeWhen(!request()->ajax(), 'partials.or_cancel')
         </div>
 
         {!! Form::close() !!}

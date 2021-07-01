@@ -6,7 +6,8 @@ return [
             'add'   => 'Dodaj novu oznaku',
         ],
         'create'        => [
-            'title' => 'Dodaj oznaku na :name',
+            'success'   => 'Dodana oznaka :name entitetu.',
+            'title'     => 'Dodaj oznaku na :name',
         ],
         'description'   => 'Entiteti koji pripadaju oznaci',
         'title'         => 'Djeca oznake :name',
@@ -32,7 +33,8 @@ return [
         'type'          => 'Tip',
     ],
     'helpers'       => [
-        'nested'    => 'U "Ugniježđenom pregledu" možeš vidjeti oznake na ugniježđeni način. Oznake bez oznake roditelj će biti prikazane na osnovnom pregledu. Oznake s oznakam djecom se mogu kliknuti kako bi se prikazale te oznake djeca. Možeš nastaviti klikati dok ima oznaka za prikazati.',
+        'nested_parent' => 'Prikaz oznake od :parent.',
+        'nested_without'=> 'Prikazuju se sve oznake koje nemaju oznaku roditelj. Klikni redak da bi vidio/la oznake djecu.',
     ],
     'hints'         => [
         'children'  => 'Popis sadrži sve oznake koje su unutar trenutne oznake, a ne samo one koje su direktno ispod nje.',

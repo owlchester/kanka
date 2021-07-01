@@ -1,5 +1,9 @@
+<?php /** @var \App\Models\AppRelease $release */?>
 <div class="row dashboard-releases">
 @foreach ($releases as $release)
+    @if($release->isPast())
+        @continue
+    @endif
     <div class="col-md-{{ count($releases) == 1 ? 12 : 6 }}">
         <div class="box box-widget">
             <div class="box-header with-border">
@@ -20,7 +24,7 @@
                 @auth
                 @endauth
             </div>
-            <div class="box-body">
+            <div class="box-body release-excerpt">
                 {{ $release->excerpt }}
             </div>
         </div>

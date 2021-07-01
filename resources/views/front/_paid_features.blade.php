@@ -127,8 +127,8 @@
     <div class="container">
         <div class="col-lg-12 my-auto">
             <div class="header-content mx-auto">
-                <h1 class="mb-5">{{ __('front.features.boosts.title') }}</h1>
-                <p class="mb-5">{{ __('front.features.boosts.description') }}</p>
+                <h1 class="mb-5">{{ __('front.features.boosts_v2.title') }}</h1>
+                <p class="mb-5">{{ __('front.features.boosts_v2.description') }}</p>
             </div>
         </div>
 
@@ -138,59 +138,93 @@
             <tr>
                 <th></th>
                 <th>{{ __('front.features.boosts.boosted') }}</th>
+                <th>{{ __('front.features.superboosts.boosted') }}</th>
             </tr>
             </thead>
             <tbody>
             <tr>
+                <td class="text">{!! __('front.features.boosts.marketplace', ['marketplace' => link_to('https://marketplace.kanka.io', __('front.menu.marketplace'), ['target' => '_blank'])]) !!}</td>
+                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa fa-check-circle"></i></td>
+            </tr>
+            <tr>
                 <td class="text">{{ __('front.features.boosts.theme') }}</td>
+                <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.css') }}</td>
                 <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.tooltip') }}</td>
+                <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.header_image') }}</td>
                 <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.dashboards') }} {!! link_to_route('front.features.dashboards', __('front.cookie.link'), [], ['target' => '_blank', 'class' => 'ml-2']) !!}</td>
+                <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.images') }}</td>
                 <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.entity_links') }}</td>
+                <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.no_ads') }}</td>
                 <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.upload') }}</td>
                 <td><i class="fa fa-check-circle"></i></td>
-            </tr>
-            <tr>
-                <td class="text">{{ __('front.features.boosts.entity_files') }}</td>
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.recovery', ['amount' => config('entities.hard_delete')]) }}</td>
                 <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
-                <td class="text">{{ __('front.features.boosts.relation-visualiser') }}</td>
+                <td class="text">{{ __('front.features.boosts.relation-visualiser') }} {!! link_to_route('front.features.relations', __('front.cookie.link'), [], ['target' => '_blank', 'class' => 'ml-2']) !!}</td>
+                <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.boosts.beta') }}</td>
+                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa fa-check-circle"></i></td>
+            </tr>
+            <tr>
+                <td class="text">{{ __('front.features.boosts.entity_files_v2') }}</td>
+                <td>5</td>
+                <td>10</td>
+            </tr>
+            <tr id="superboost">
+                <td class="text">{{ __('front.features.superboosts.gallery') }}</td>
+                <td></td>
+                <td><i class="fa fa-check-circle"></i></td>
+            </tr>
+            <tr>
+                <td class="text">{{ __('front.features.superboosts.logs', ['amount' => config('entities.logs')]) }}</td>
+                <td></td>
+                <td><i class="fa fa-check-circle"></i></td>
+            </tr>
+            <tr>
+                <td class="text">{{ __('front.features.superboosts.stats') }}</td>
+                <td></td>
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             </tbody>
@@ -201,47 +235,6 @@
                 <iframe class="embed-responsive-item" src="" data-src="https://www.youtube.com/embed/eSyHGSq4SbE" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
-        </div>
-    </div>
-</section>
-
-
-<section class="minimal-padding" id="superboost">
-    <div class="container">
-        <div class="col-lg-12 my-auto">
-            <div class="header-content mx-auto">
-                <h1 class="mb-5">{{ __('front.features.superboosts.title') }}</h1>
-                <p class="mb-5">{{ __('front.features.superboosts.description') }}</p>
-            </div>
-        </div>
-
-        <div class="table-responsive">
-            <table class="table">
-                <thead class="">
-                <tr>
-                    <th></th>
-                    <th>{{ __('front.features.superboosts.boosted') }}</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td class="text">{{ __('front.features.superboosts.gallery') }}</td>
-                    <td><i class="fa fa-check-circle"></i></td>
-                </tr>
-                <tr>
-                    <td class="text">{{ __('front.features.superboosts.logs', ['amount' => config('entities.logs')]) }}</td>
-                    <td><i class="fa fa-check-circle"></i></td>
-                </tr>
-                <tr>
-                    <td class="text">{{ __('front.features.superboosts.stats') }}</td>
-                    <td><i class="fa fa-check-circle"></i></td>
-                </tr>
-                <tr>
-                    <td class="text">{{ __('front.features.superboosts.files') }}</td>
-                    <td><i class="fa fa-check-circle"></i></td>
-                </tr>
-                </tbody>
-            </table>
         </div>
     </div>
 </section>

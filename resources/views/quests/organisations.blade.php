@@ -14,11 +14,11 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="row">
-        <div class="col-md-3">
+    <div class="row entity-grid">
+        <div class="col-md-2 entity-sidebar-submenu">
             @include('quests._menu', ['active' => 'organisations'])
         </div>
-        <div class="col-md-9">
+        <div class="col-md-10 entity-main-block">
             @include('quests.panels.organisations')
         </div>
     </div>

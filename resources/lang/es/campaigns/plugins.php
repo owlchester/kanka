@@ -29,6 +29,11 @@ return [
         'type'      => 'Tipo de plugin',
     ],
     'helper'        => 'La comunidad de Kanka crea continuamente plugins estupendos para la tienda. Si tienes una campaña mejorada, puedes instalarle plugins de la tienda. Desde aquí puedes desinstalar los plugins de la campaña.',
+    'import'        => [
+        'created'   => 'Se han creado las siguientes entidades:',
+        'success'   => '{1} Se ha importado :count entidad del plugin :plugin.|[2,*] Se han importado :count entidades del plugin :plugin.',
+        'updated'   => 'Se han actualizado las siguientes entidades:',
+    ],
     'info'          => [
         'helper'        => 'Cuando salga una nueva versión de un plugin, puedes actualizarla a la nueva versión.',
         'title'         => 'Actualitzaciones del plugin :plugin',

@@ -6,7 +6,8 @@ return [
             'add'   => 'Dodaj nową etykietę',
         ],
         'create'        => [
-            'title' => 'Dodaj etykietę do elementu :name',
+            'success'   => 'Dodano do elementu etykietę :name.',
+            'title'     => 'Dodaj etykietę do elementu :name',
         ],
         'description'   => 'Elementy posiadające etykietę',
         'title'         => 'Etykiety pochodne od :name',

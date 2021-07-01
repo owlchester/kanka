@@ -47,33 +47,56 @@ return [
         'title'     => 'Integrácia aplikácie',
     ],
     'boost'         => [
-        'benefits'      => [
-            'first'     => 'Aby sme zabezpečili pre Kanku ďalší vývoj, niektoré funkcionality sa odomknú len pre boostnuté kampane. Boosty je možné získať pomocou predplatného. Hocikto, kto vie zobraziť danú kampaň, môže ju aj boostnuť, aby nemusel za ne platiť GM. Kampaň je boostnutá, dokedy ju daný užívateľ boostuje a je podporovateľ Kanky. Ak kampaň prestane byť boostnutá, dané údaje nie sú stratené, len skryté, dokiaľ nie je boostnutá opäť.',
-            'header'    => 'Obrázky záhlaví objektov.',
-            'images'    => 'Nastaviteľné štandardné obrázky objektov.',
-            'more'      => 'Zisti viac o všetkých funkcionalitách.',
-            'second'    => 'Boostnutie kampane odomkne nasledujúce výhody:',
-            'theme'     => 'Nastaviteľnú tému a vizuálny štýl kampane.',
-            'third'     => 'Ak chceš boostnuť kampaň, prejdi na stránku kampane a klikni na tlačidlo ":boost_button" nad tlačidlom ":edit_button".',
-            'tooltip'   => 'Nastaviteľné bubliny pre objekty.',
-            'upload'    => 'Navýšená veľkosť pre nahrávanie súborov pre každého člena kampane.',
+        'available_boosts'  => 'Dostupné boosty: :amount / :max',
+        'benefits'          => [
+            'campaign_gallery'  => 'Galéria kampane pre nahraté obrázky, ktoré môžeš v kampani opätovne použiť.',
+            'entity_files'      => 'Možnosť nahrať až 10 súborov k objektu.',
+            'entity_logs'       => 'Plné protokoly k objektom o tom, čo sa na objekte zmenilo pri každej úprave.',
+            'first'             => 'Aby sme zabezpečili pre Kanku ďalší vývoj, niektoré funkcionality sa odomknú len pre boostnuté kampane. Boosty je možné získať pomocou predplatného. Hocikto, kto vie zobraziť danú kampaň, môže ju aj boostnuť, aby nemusel za ne platiť GM. Kampaň je boostnutá, dokedy ju daný užívateľ boostuje a je podporovateľ Kanky. Ak kampaň prestane byť boostnutá, dané údaje nie sú stratené, len skryté, dokiaľ nie je boostnutá opäť.',
+            'header'            => 'Obrázky záhlaví objektov.',
+            'headers'           => [
+                'boosted'       => 'Výhody boostnutej kampane',
+                'superboosted'  => 'Výhody superboostnutej kampane',
+            ],
+            'helpers'           => [
+                'boosted'       => 'Boostnutie kampane pridelí kampani jeden boost.',
+                'superboosted'  => 'Superboostnutie kampane pridelí kampani celkovo tri boosty.',
+            ],
+            'images'            => 'Nastaviteľné štandardné obrázky objektov.',
+            'more'              => [
+                'boosted'       => 'Všetky výhody boostnutej kampane',
+                'superboosted'  => 'Všetky výhody superboostnutej kampane',
+            ],
+            'recovery'          => 'Obnovenie odstránených objektov do :amount dní.',
+            'second'            => 'Boostnutie kampane odomkne nasledujúce výhody:',
+            'superboost'        => 'Superboostnutie kampane použije 3 z tvojich boostov a odomkne ďalšie výhody nadmieru tých z boostnutej kampane.',
+            'theme'             => 'Nastaviteľnú tému a vizuálny štýl kampane.',
+            'third'             => 'Ak chceš boostnuť kampaň, prejdi na stránku kampane a klikni na tlačidlo ":boost_button" nad tlačidlom ":edit_button".',
+            'tooltip'           => 'Nastaviteľné bubliny pre objekty.',
+            'upload'            => 'Navýšená veľkosť pre nahrávanie súborov pre každého člena kampane.',
         ],
-        'buttons'       => [
+        'buttons'           => [
             'boost'         => 'Boost',
             'superboost'    => 'Superboost',
+            'tooltips'      => [
+                'boost'         => 'Boostnutie kampane používa :amount z tvojich boostov.',
+                'superboost'    => 'Superboostnutie kampane používa :amount z tvojich boostov',
+            ],
+            'unboost'       => 'Zruš boostnutie',
         ],
-        'campaigns'     => 'Boostnuté kampane :count / :max',
-        'exceptions'    => [
-            'already_boosted'   => 'Kampaň :name už je boostnutá.',
-            'exhausted_boosts'  => 'Nemáš už žiadne boosty na rozdávanie. Odstráň najprv boost od existujúcej kampane pred priradením inej.',
+        'campaigns'         => 'Boostnuté kampane :count / :max',
+        'exceptions'        => [
+            'already_boosted'       => 'Kampaň :name už je boostnutá.',
+            'exhausted_boosts'      => 'Nemáš už žiadne boosty na rozdávanie. Odstráň najprv boost od existujúcej kampane pred priradením inej.',
+            'exhausted_superboosts' => 'Došli ti boosty. Na superboostnutie kampane potrebuješ 3 boosty.',
         ],
-        'success'       => [
+        'success'           => [
             'boost'         => 'Kampaň :name boostnutá',
             'delete'        => 'Boost z kampane :name odstránený.',
             'superboost'    => 'Kampaň :name superboostnutá',
         ],
-        'title'         => 'Boost',
-        'unboost'       => [
+        'title'             => 'Boost',
+        'unboost'           => [
             'description'   => 'Naozaj chceš ukončiť boost kampane :tag?',
             'title'         => 'Ukončiť boost kampane',
         ],
@@ -258,6 +281,14 @@ return [
         'trial_period'          => 'Ročné predplatné má 14-dňovú skúšobnú lehotu. Kontaktuj nás prostredníctvom :email, ak vypovieš tvoje ročné predplatné a požaduješ vrátenie peňazí.',
         'upgrade_downgrade'     => [
             'button'    => 'Informácie o zmene úrovne predplatného',
+            'cancel'    => [
+                'bullets'   => [
+                    'bonuses'   => 'Tvoje bonusy ostanú aktívne do konca platobného obdobia.',
+                    'boosts'    => 'To isté sa stane aj tvojim boostnutým kampaniam. Výhody boostnutia sa stanú neviditeľnými, ale nebudú odstránené, ak kampaň prestane byť boostnutá.',
+                    'kobold'    => 'Ak chceš zrušiť tvoje predplatné, zmeň úroveň na Kobolda.',
+                ],
+                'title'     => 'Čo obnáša zrušenie predplatného',
+            ],
             'downgrade' => [
                 'bullets'   => [
                     'end'   => 'Tvoja aktuálna úroveň ostáva aktívna do konca aktuálneho platobného obdobia. Potom bude znížená na novú úroveň.',

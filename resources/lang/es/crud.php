@@ -25,70 +25,6 @@ return [
         'copy_attribute'    => 'Se ha copiado la mención del atributo al portapapeles.',
         'copy_mention'      => 'La mención avanzada de la entidad se ha copiado al portapapeles.',
     ],
-    'attributes'                => [
-        'actions'       => [
-            'apply_template'    => 'Aplicar plantilla de atributos',
-            'manage'            => 'Administrar',
-            'more'              => 'Más opciones',
-            'remove_all'        => 'Eliminar todos',
-        ],
-        'errors'        => [
-            'loop'  => '¡Hay un bucle infinito en el cálculo de este atributo!',
-        ],
-        'fields'        => [
-            'attribute'             => 'Atributo',
-            'community_templates'   => 'Plantillas de la comunidad',
-            'is_private'            => 'Atributos privados',
-            'is_star'               => 'Fijado',
-            'template'              => 'Plantilla',
-            'value'                 => 'Valor',
-        ],
-        'helpers'       => [
-            'delete_all'    => '¿Seguro que quieres eliminar todos los atributos de esta entidad?',
-        ],
-        'hints'         => [
-            'is_private'    => 'Oculta todos los atributos de una entidad a todos los miembros no administradores haciéndola privada.',
-        ],
-        'index'         => [
-            'success'   => 'Atributos de :entity actualizados.',
-            'title'     => 'Atributos de :name',
-        ],
-        'placeholders'  => [
-            'attribute' => 'Número de conquistas, Iniciativa, Población...',
-            'block'     => 'Nombre del bloque',
-            'checkbox'  => 'Nombre de la casilla',
-            'icon'      => [
-                'class' => 'Clase de FontAwesome o RPG Awesome: fas fa-users',
-                'name'  => 'Nombre del icono',
-            ],
-            'random'    => [
-                'name'  => 'Nombre del atributo',
-                'value' => '1-100 o una lista de valores separados por comas',
-            ],
-            'section'   => 'Nombre de la sección',
-            'template'  => 'Seleccionar plantilla',
-            'value'     => 'Valor del atributo',
-        ],
-        'template'      => [
-            'success'   => 'Plantilla de atributos :name aplicada a :entity',
-            'title'     => 'Aplicar plantilla de atributos a :name',
-        ],
-        'types'         => [
-            'attribute' => 'Atributo',
-            'block'     => 'Bloque',
-            'checkbox'  => 'Casilla',
-            'icon'      => 'Icono',
-            'random'    => 'Aleatorio',
-            'section'   => 'Sección',
-            'text'      => 'Texto multilínea',
-        ],
-        'visibility'    => [
-            'entry'     => 'El atributo se muestra en el menú de la entidad.',
-            'private'   => 'Atributo visible solo para miembros con el rol "Admin".',
-            'public'    => 'Atributo visible por todos los miembros.',
-            'tab'       => 'El atributo se muestra solo en la pestaña de Atributos.',
-        ],
-    ],
     'boosted'                   => 'mejorada',
     'boosted_campaigns'         => 'Campañas mejoradas',
     'bulk'                      => [
@@ -192,7 +128,8 @@ return [
         'excerpt'               => 'Extracto',
         'family'                => 'Familia',
         'files'                 => 'Archivos',
-        'gallery_image'         => 'Galería de imágenes',
+        'gallery_header'        => 'Cabecera de la galería',
+        'gallery_image'         => 'Imagen de la galería',
         'has_entity_files'      => 'Tiene archivos',
         'has_entity_notes'      => 'Tiene notas de entidad',
         'has_image'             => 'Tiene imagen',
@@ -234,23 +171,30 @@ return [
     ],
     'filter'                    => 'Filtrar',
     'filters'                   => [
-        'all'       => 'Mostrar todos los descendientes',
-        'clear'     => 'Quitar filtros',
-        'direct'    => 'Filtrar solo los descendientes directos',
-        'filtered'  => 'Mostrando :count de :total :entity.',
-        'hide'      => 'Ocultar filtros',
-        'options'   => [
+        'all'                       => 'Mostrar todos los descendientes',
+        'clear'                     => 'Quitar filtros',
+        'copy_helper'               => 'Usa los filtros copiados en el portapapeles para filtrar los widgets del tablero y los accesos directos.',
+        'copy_helper_no_filters'    => 'Define algún filtro primero para poder copiarlos al portapapeles.',
+        'copy_to_clipboard'         => 'Copiar filtros',
+        'direct'                    => 'Filtrar solo los descendientes directos',
+        'filtered'                  => 'Mostrando :count de :total :entity.',
+        'hide'                      => 'Ocultar filtros',
+        'mobile'                    => [
+            'clear' => 'Quitar',
+            'copy'  => 'Portapapeles',
+        ],
+        'options'                   => [
             'exclude'   => 'Excluir',
             'include'   => 'Incluir',
             'none'      => 'Nada',
         ],
-        'show'      => 'Mostrar filtros',
-        'sorting'   => [
+        'show'                      => 'Mostrar filtros',
+        'sorting'                   => [
             'asc'       => 'Ascendiente por :field',
             'desc'      => 'Descendiente por :field',
             'helper'    => 'Controla en qué orden aparecen los resultados.',
         ],
-        'title'     => 'Filtros',
+        'title'                     => 'Filtros',
     ],
     'forms'                     => [
         'actions'       => [
@@ -265,6 +209,7 @@ return [
     'hints'                     => [
         'attribute_template'    => 'Aplica una plantilla de atributos directamente al crear esta entidad.',
         'calendar_date'         => 'Las fechas de calendario hacen que sea más fácil filtrar las listas, y también fijan los eventos al calendario seleccionado.',
+        'gallery_header'        => 'Si la entidad no tiene cabecera, muestra una imagen de la galería en su lugar.',
         'gallery_image'         => 'Si la entidad no tiene imagen, muestra una imagen de la galería en su lugar.',
         'header_image'          => 'Esta imagen está situada sobre la entidad. Para obtener mejores resultados, usa una imagen apaisada.',
         'image_limitations'     => 'Formatos soportados: :formats. Tamaño máximo del archivo: :size.',
@@ -421,6 +366,7 @@ return [
         'menu'          => 'Menú',
         'notes'         => 'Notas',
         'permissions'   => 'Permisos',
+        'quests'        => 'Misiones',
         'relations'     => 'Relaciones',
         'reminders'     => 'Recordatorios',
         'timelines'     => 'Líneas de tiempo',

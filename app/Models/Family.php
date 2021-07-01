@@ -196,9 +196,9 @@ class Family extends MiscModel
     /**
      * @return array
      */
-    public function menuItems($items = [])
+    public function menuItems(array $items = []): array
     {
-        $items['families'] = [
+        $items['second']['families'] = [
             'name' => 'families.show.tabs.families',
             'route' => 'families.families',
             'count' => $this->descendants()->count()

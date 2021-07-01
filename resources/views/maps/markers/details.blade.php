@@ -1,11 +1,13 @@
 <?php /** @var \App\Models\MapMarker $marker */?>
 <div class="marker-details">
-    @if (!request()->has('mobile'))
+@if (!request()->has('mobile'))
     <h3 class="marker-name">{{ $marker->name }}<span class="pull-right marker-close" title="{{ __('crud.click_modal.close') }}"><i class="fa fa-close"></i></span></h3>
-    <div class="marker-entry">
-        {!! \App\Facades\Mentions::mapAny($marker) !!}
-    </div>
+    @if ($marker->hasEntry())
+        <div class="marker-entry entity-content">
+            {!! \App\Facades\Mentions::mapAny($marker) !!}
+        </div>
     @endif
+@endif
 
     @if ($marker->entity)
         <div class="marker-entity entity-title">
@@ -15,10 +17,11 @@
                 <span class="entity-name">{{ $marker->entity->name }}</span>
             </a>
         </div>
+        @if($marker->entity->child->hasEntry())
         <div class="marker-entity entity-content">
             {!! $marker->entity->child->entry() !!}
         </div>
-
+        @endif
 
 
         @if($marker->entity->typeId() == config('entities.ids.map'))

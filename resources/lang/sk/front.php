@@ -11,6 +11,13 @@ return [
             'description'   => 'Naša komunita vytvára úžasné veci, ktoré sme sa rozhodli prezentovať formou Zvýraznených kampaní. Zoznam časom obmeňujeme, takže stránku navštív aj neskôr, nech objavíš ďalšie.',
             'title'         => 'Zvýraznené kampane',
         ],
+        'open'              => [
+            'filters'   => [
+                'all'       => 'Stav otvorenia',
+                'closed'    => 'Uzavreté kampane',
+                'open'      => 'Otvorené kampane',
+            ],
+        ],
         'public'            => [
             'description'   => 'Pozri sa a inšpiruj verejnými kampaňami.',
             'filters'       => [
@@ -75,8 +82,11 @@ return [
             'dashboards'            => 'Nastaviť vlastné nástenky pre role v kampani',
             'description'           => 'Niektoré formy predplatného dávajú užívateľom možnosť boostnuť kampane. Tieto následne získajú tieto výhody.',
             'entity_files'          => 'Navýšený max. počet nahraných súborov v objekte (5 namiesto 3)',
+            'entity_files_v2'       => 'Maximálny počet súborov v objekte',
+            'entity_links'          => 'Nastav linky na objekty pre externé zdroje a webstránky',
             'header_image'          => 'Obrázok záhlavia objektu',
             'images'                => 'Prednastavenie štandardných obrázkov typov objektov',
+            'marketplace'           => 'Prístup do :marketplace',
             'no_ads'                => 'Kampaň bez reklám',
             'recovery'              => 'Obnovenie odstránených objektov do 30 dní',
             'relation-visualiser'   => 'Objavuj vizuálne vzťahové prepojenia medzi objektami',
@@ -85,6 +95,10 @@ return [
             'tooltip'               => 'Bubliny objektov s možnosťou zobrazenia obrázku a úpravy textu',
             'upload'                => 'Navýšenie veľkosti uploadu pre všetkých členov',
         ],
+        'boosts_v2'         => [
+            'description'   => 'Naše úrovne podpory ti dajú prístup k boostom, ktoré môžeš použiť na boostnutie alebo superboostnutie kampaní. Ak tak spravíš, odomknú sa v kampani nasledujúce výhody.',
+            'title'         => 'Boostnuté a Superboostnuté kampane',
+        ],
         'calendars'         => [
             'description'   => 'Vytvor vlastné kalendáre a organizuj pomocou nich tvoju kampaň.',
             'title'         => 'Kalendáre',
@@ -92,6 +106,10 @@ return [
         'collaborative'     => [
             'description'   => 'Ste viacerí? Máme pre teba riešenie! Môžeš pozvať ľudí, ktorí hrajú alebo GMujú tvoju kampaň, aby ste ju tvorili spolu!',
             'title'         => 'Spoločne',
+        ],
+        'dashboards'        => [
+            'description'   => 'Kontroluj informácie viditeľné pre hráčov/ky, keď otvoria Kanku.',
+            'title'         => 'Nástenky',
         ],
         'description'       => 'Kanka je plná úžasných funkcionalít. Spravuj postavy v tvojom svete a ich vzájomné vzťahy, miesta a ich dejiny, úlohy a ich smerovanie, kalendáre a udalosti v nich či počasie a mnoho ďalších. To najlepšie je, že Kanka je aktualizovaná niekoľkokrát mesačne na základe spätnej väzby od používateľov.',
         'description_full'  => 'Neustále do Kanky pridávame nové funkcionality a zlepšenia, všetky hlavné funkcionality sú však dostupné zadarmo.',
@@ -110,6 +128,7 @@ return [
             'title'         => 'Postavy, rody, miesta',
         ],
         'learn_more'        => 'Zisti viac o funkciách Kanky',
+        'learn_more_about'  => 'Zisti viac o tejto funkcionalite',
         'maps'              => [
             'description'   => 'Nahraj mapy tvojho sveta, miest či jaskýň a pridaj do nich praktické body a prepojenia na objekty.',
             'title'         => 'Mapy',
@@ -162,6 +181,10 @@ return [
             'description'   => 'Pomáhame ti spravovať tvoju kampaň - od systému oprávnení pre úlohy, denníky, postavy, schopnosti, s vloženým audiom a videom až po TPK.',
             'title'         => 'Správa RPG kampane',
         ],
+        'secrets'           => [
+            'description'   => 'Každý objekt môže mať niekoľko tajomstiev, ktoré sú mu pridelené vo forme poznámok. Tieto môžu mať oprávnenia podľa toho, kto ich môže vidieť a môžu byť pripnuté na hlavné zobrazenie, aby boli rýchlo dostupné.',
+            'title'         => 'Spravovať tajomstvá',
+        ],
         'superboosts'       => [
             'boosted'       => 'Superboostnutie',
             'description'   => 'Za použitie troch boostrov na jednu kampaň sa táto stane Superboostovaná, čím sa odomknú tieto funkcionality.',
@@ -197,6 +220,7 @@ return [
             'app'           => 'Aplikácia',
             'community'     => 'Komunita',
             'friends'       => 'Naši priatelia',
+            'other'         => 'Iné',
             'useful_links'  => 'Užitočné linky',
         ],
         'navigation'=> 'Navigácia',
@@ -222,6 +246,14 @@ return [
         'heading'           => 'Manažment RPG kampaní a tvorba svetov čo najjednoduchšie',
         'title'             => 'Kanka',
     ],
+    'media'         => [
+        'description'   => 'Na tejto stránke nájdeš obrázky Kanky vo vysokom rozlíšení. Použi ich, ak chceš Kanku spropagovať, alebo vytváraš nástroje pre interakciu s Kankou.',
+        'images'        => [
+            'primary'   => 'Primárne logo Kanky',
+            'social'    => 'Sociálne logo Kanky',
+        ],
+        'title'         => 'Médiá',
+    ],
     'menu'          => [
         'about'         => 'O Kanke',
         'api'           => 'API',
@@ -236,8 +268,10 @@ return [
         'home'          => 'Domov',
         'login'         => 'Login',
         'marketplace'   => 'Trhovisko',
+        'media'         => 'Médiá',
         'news'          => 'Novinky',
         'newsletter'    => 'Newsletter',
+        'other'         => 'Iné',
         'pricing'       => 'Cenník',
         'privacy'       => 'Ochrana osobných údajov',
         'register'      => 'Registrácia',
@@ -261,9 +295,12 @@ return [
             'support'   => 'Podpora',
         ],
         'benefits'      => [
-            'boosters'          => 'x Boost pre kampane',
+            'big_maps'          => 'Veľké mapy (:size)',
+            'bigger_maps'       => 'Väčšie mapy (:size)',
+            'boosters'          => 'Boosty pre kampane',
             'core'              => 'Prístup ku všetkým funkciám',
             'higher_uploads'    => 'Vyššia veľkosť nahrávaných súborov',
+            'huge_maps'         => 'Obrovské mapy (:size)',
             'huge_uploads'      => 'Obrovská veľkosť nahrávaných súborov',
             'no_boosters'       => 'Žiadne Boosty kampaní',
             'unlimited'         => 'Neobmedzený počet kampaní a nahrávaných súborov',
@@ -288,6 +325,10 @@ return [
         'backlog'           => [
             'description'   => 'Táto nástenka v Trelle obsahuje všetky komunitou požadované funkcionality, ako aj všetky plánované funkcie a vylepšenia, ktoré sa jedného dňa dostanú do aplikácie.',
             'title'         => 'Backlog',
+        ],
+        'blog'              => [
+            'description'   => 'Na začiatku každého mesiaca vydávame plán, ktorý sa odvíja od komunitného hlasovania.',
+            'title'         => 'Mesačné plány',
         ],
         'description'       => 'Naše komunitné hlasovania ovplyvňujú našu prácu, takže hoci nemáme viacmesačný plán, vieme všetci jednoducho získať prehľad o aktuálnom stave požiadaviek a o tom, na čom sa aktuálne pracuje.',
         'featured_requests' => [

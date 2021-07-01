@@ -25,70 +25,6 @@ return [
         'copy_attribute'    => 'S\'ha copiat la menció de l\'atribut.',
         'copy_mention'      => 'S\'ha copiat la menció avançada de l\'entitat al porta-retalls.',
     ],
-    'attributes'                => [
-        'actions'       => [
-            'apply_template'    => 'Aplica una plantilla d\'atributs',
-            'manage'            => 'Administra',
-            'more'              => 'Més opcions',
-            'remove_all'        => 'Elimina\'ls tots',
-        ],
-        'errors'        => [
-            'loop'  => 'Hi ha un bucle infinit en aquest càlcul d\'atributs!',
-        ],
-        'fields'        => [
-            'attribute'             => 'Atribut',
-            'community_templates'   => 'Plantilles de la comunitat',
-            'is_private'            => 'Atributs privats',
-            'is_star'               => 'Fixat',
-            'template'              => 'Plantilla',
-            'value'                 => 'Valor',
-        ],
-        'helpers'       => [
-            'delete_all'    => '¿Segur que voleu eliminar tots els atributs d\'aquesta entitat?',
-        ],
-        'hints'         => [
-            'is_private'    => 'Podeu amagar tots els atributs d\'una entitat a tots els membres no administradors fent-la privada.',
-        ],
-        'index'         => [
-            'success'   => 'S\'han actualitzat els atributs de :entity.',
-            'title'     => 'Atributs de :name',
-        ],
-        'placeholders'  => [
-            'attribute' => 'Nombre de conquestes, Iniciativa, Població...',
-            'block'     => 'Nom del bloc',
-            'checkbox'  => 'Nom de la casella',
-            'icon'      => [
-                'class' => 'Classe de FontAwesome o RPG Awesome: fas fa-users',
-                'name'  => 'Nom de la icona',
-            ],
-            'random'    => [
-                'name'  => 'Nom de l\'atribut',
-                'value' => '1-100 o una llista de valors separats per comes',
-            ],
-            'section'   => 'Nom de la secció',
-            'template'  => 'Selecciona una plantilla',
-            'value'     => 'Valor de l\'atribut',
-        ],
-        'template'      => [
-            'success'   => 'S\'ha aplicat la plantilla d\'atributs :name a :entity',
-            'title'     => 'Aplica una plantilla d\'atributs a :name',
-        ],
-        'types'         => [
-            'attribute' => 'Atribut',
-            'block'     => 'Bloc',
-            'checkbox'  => 'Casella',
-            'icon'      => 'Icona',
-            'random'    => 'Aleatori',
-            'section'   => 'Secció',
-            'text'      => 'Text multilínia',
-        ],
-        'visibility'    => [
-            'entry'     => 'L\'atribut es mostra al menú de l\'entitat.',
-            'private'   => 'L\'atribut només és visible per a membres amb el rol "Admin".',
-            'public'    => 'L\'atribut és visible per a tots els membres.',
-            'tab'       => 'L\'atribut només es mostra a la pestanya d\'atributs.',
-        ],
-    ],
     'boosted'                   => 'millorada',
     'boosted_campaigns'         => 'Campanyes millorades',
     'bulk'                      => [
@@ -192,7 +128,8 @@ return [
         'excerpt'               => 'Extracte',
         'family'                => 'Família',
         'files'                 => 'Fitxers',
-        'gallery_image'         => 'Galeria d\'imatges',
+        'gallery_header'        => 'Capçalera de la galeria',
+        'gallery_image'         => 'Imatge de la galeria',
         'has_entity_files'      => 'Té fitxers',
         'has_entity_notes'      => 'Té anotacions',
         'has_image'             => 'Té imatge',
@@ -234,23 +171,30 @@ return [
     ],
     'filter'                    => 'Filtra',
     'filters'                   => [
-        'all'       => 'Mostra tots els descendents',
-        'clear'     => 'Treu els filtres',
-        'direct'    => 'Filtra només els descendents directes',
-        'filtered'  => 'Es mostren :count de :total :entity.',
-        'hide'      => 'Amaga els filtres',
-        'options'   => [
+        'all'                       => 'Mostra tots els descendents',
+        'clear'                     => 'Treu els filtres',
+        'copy_helper'               => 'Els filtres copiats es poden utilitzar per a filtrar els widgets del taulell i els enllaços de l\'accés ràpid.',
+        'copy_helper_no_filters'    => 'Cal definir algun filtre abans per a poder copiar-lo.',
+        'copy_to_clipboard'         => 'Copia els filtres',
+        'direct'                    => 'Filtra només els descendents directes',
+        'filtered'                  => 'Es mostren :count de :total :entity.',
+        'hide'                      => 'Amaga els filtres',
+        'mobile'                    => [
+            'clear' => 'Neteja',
+            'copy'  => 'Copia',
+        ],
+        'options'                   => [
             'exclude'   => 'Exclou',
             'include'   => 'Inclou',
             'none'      => 'Res',
         ],
-        'show'      => 'Mostra els filtres',
-        'sorting'   => [
+        'show'                      => 'Mostra els filtres',
+        'sorting'                   => [
             'asc'       => 'Ascendent per :field',
             'desc'      => 'Descendent per :field',
             'helper'    => 'Controla en quin ordre apareixen els resultats.',
         ],
-        'title'     => 'Filtres',
+        'title'                     => 'Filtres',
     ],
     'forms'                     => [
         'actions'       => [
@@ -265,6 +209,7 @@ return [
     'hints'                     => [
         'attribute_template'    => 'Aplica una plantilla d\'atributs directament al crear aquesta entitat.',
         'calendar_date'         => 'Les dates del calendari faciliten el filtrat de les llistes, i també fixen els esdeveniments al calendari seleccionat.',
+        'gallery_header'        => 'Si l\'entitat no té capçalera, mostra una imatge de la galeria al seu lloc.',
         'gallery_image'         => 'Si l\'entitat no té imatge, mostra una imatge de la galeria de la campanya.',
         'header_image'          => 'Aquesta imatge es troba sobre la entitat. Per a obtenir resultats millors, feu servir una imatge apaisada.',
         'image_limitations'     => 'Formats acceptats: :formats. Tamany màxim del fitxer: :size.',

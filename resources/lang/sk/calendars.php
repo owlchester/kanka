@@ -6,7 +6,9 @@ return [
         'add_intercalary'   => 'Pridať priestupný deň',
         'add_month'         => 'Pridať kalendárny mesiac',
         'add_moon'          => 'Pridať družicu',
+        'add_reminder'      => 'Pridať pripomienku',
         'add_season'        => 'Pridať ročné obdobie',
+        'add_weather'       => 'Nastaviť efekt počasia',
         'add_week'          => 'Pridať týždeň',
         'add_weekday'       => 'Pridať deň týždňa',
         'add_year'          => 'Pridať názov roka',
@@ -97,9 +99,12 @@ return [
     'helpers'       => [
         'month_type'    => 'Priestupné mesiace nepoužívajú dni v týždni, ale ovplyvňujú družice a ročné obdobia.',
         'nested'        => 'Najprv sa zobrazujú kalendáre nepodradené žiadnemu inému kalendáru. Klikni na kalendár, aby sa zobrazili podradené kalendáre.',
+        'nested_parent' => 'Zobraziť kalendáre :parent.',
+        'nested_without'=> 'Zobraziť všetky kalendáre, ktoré nemajú nadradený kalendár. Kliknutím na riadok zobrazíš podradené kalendáre.',
         'start_offset'  => 'Štandardne začína kalendár prvý deň v týždni v roku 0. Nastavenie tejto hodnoty ovplyvňuje, na ktorý deň v kalendári pripadne prvý deň.',
     ],
     'hints'         => [
+        'event_length'      => 'Ako dlho má trvať daná udalosť. Udalosť nemôže trvať dlhšie ako dva mesiace.',
         'intercalary'       => 'Dni, ktoré spadajú mimo štandardné mesiace a týždne. Neovplyvňujú dni v týždni, ale ovplyvňujú cykly družíc.',
         'is_incrementing'   => 'Narastajúci kalendár automaticky posunie aktuálny deň o 00:00 UTC.',
         'is_recurring'      => 'Udalosť je možné nastaviť ako opakujúcu sa. Bude sa následne zobrazovať každý rok v ten istý deň.',
@@ -134,8 +139,14 @@ return [
     'options'       => [
         'events'    => [
             'recurring_periodicity' => [
-                'month' => 'Mesačne',
-                'year'  => 'Ročne',
+                'fullmoon'      => 'Spln',
+                'fullmoon_name' => 'Spln :moon',
+                'month'         => 'Mesačne',
+                'newmoon'       => 'Nov',
+                'newmoon_name'  => 'Nov :moon',
+                'none'          => 'Žiadna',
+                'unnamed_moon'  => 'Mesiac :number',
+                'year'          => 'Ročne',
             ],
         ],
         'resets'    => [
@@ -212,5 +223,9 @@ return [
             'weather'       => 'Počasie',
         ],
         'title'             => 'Kalendár :name',
+    ],
+    'sorters'       => [
+        'after' => 'Dnes a potom',
+        'before'=> 'Dnes a predtým',
     ],
 ];

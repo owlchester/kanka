@@ -234,14 +234,14 @@ class Organisation extends MiscModel
     /**
      * @return array
      */
-    public function menuItems($items = [])
+    public function menuItems(array $items = []): array
     {
         $campaign = CampaignLocalization::getCampaign();
         $canEdit = auth()->check() && auth()->user()->can('update', $this);
 
         $count = $this->descendants()->count();
         if ($count > 0) {
-            $items['organisations'] = [
+            $items['second']['organisations'] = [
                 'name' => 'organisations.show.tabs.organisations',
                 'route' => 'organisations.organisations',
                 'count' => $count,

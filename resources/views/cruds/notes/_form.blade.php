@@ -16,32 +16,32 @@ $permissions = [
 
 <div class="form-group">
     {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
+    <div class="text-right">
+        <a href="{{ route('helpers.link') }}" data-url="{{ route('helpers.link') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.link.description') }}">
+            {{ __('crud.linking_help') }} <i class="fa fa-question-circle"></i>
+        </a>
+    </div>
 </div>
+
 
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group">
-            {!! Form::hidden('is_pinned', 0) !!}
-            <label>{!! Form::checkbox('is_pinned', 1, empty($model) ? CampaignLocalization::getCampaign()->entity_note_visibility : $model->is_pinned) !!}
-                {{ __('entities/notes.fields.is_pinned') }}
-            </label>
-            <p class="help-block">{{ __('entities/notes.hints.is_pinned') }}</p>
-
-            <label>{{ __('entities/notes.fields.position') }}</label>
-            {!! Form::number('position', null, ['class' => 'form-control', 'min' => 0, 'max' => 128, 'maxlength' => 3, 'increment' => 1]) !!}
-        </div>
-
         <div class="form-group">
             {!! Form::hidden('settings[collapsed]', 0) !!}
             <label>{!! Form::checkbox('settings[collapsed]', 1, null) !!}
                 {{ __('entities/notes.fields.collapsed') }}
             </label>
         </div>
+
+        <div class="help-block">
+            {!! __('entities/notes.hints.reorder', ['icon' => '<i class="fas fa-cog"></i>']) !!}
+        </div>
     </div>
     <div class="col-md-6">
         @include('cruds.fields.visibility')
     </div>
 </div>
+
 
 @if(auth()->user()->isAdmin())
     <hr />
@@ -98,8 +98,8 @@ $permissions = [
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">{{ trans('entities/notes.show.advanced') }}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ __('entities/notes.show.advanced') }}</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -108,7 +108,7 @@ $permissions = [
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('crud.cancel') }}</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                     <button class="btn btn-primary" id="entity-note-perm-add">
                         <i class="fa fa-plus"></i> {{ __('entities/notes.actions.add_user') }}
                     </button>
@@ -117,4 +117,6 @@ $permissions = [
         </div>
     </div>
 @endif
+
+
 {!! Form::hidden('entity_id', $entity->id) !!}

@@ -51,6 +51,7 @@ class FamilyObserver extends MiscObserver
 
                     $character->family_id = $family->id;
                     $character->saveObserver = false;
+                    $character->savingObserver = false;
                     $character->save();
                 }
             }

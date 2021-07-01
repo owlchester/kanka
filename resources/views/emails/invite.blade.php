@@ -1,3 +1,3 @@
-<p>{{ trans('campaigns.invites.email.subject', ['name' => $user->name, 'campaign' => $invite->campaign->name]) }}</p>
+<p>{{ __('campaigns.invites.email.subject', ['name' => $user->name, 'campaign' => $invite->campaign->name]) }}</p>
 
-<p>{!! trans('campaigns.invites.email.link', ['link' => route('campaigns.join', $invite->token), 'name' => e($user->name)]) !!}</p>
+<p>{!! link_to_route('campaigns.join', __('campaigns.invites.email.link_text', ['name' => $user->name]), $invite->token) !!}</p>

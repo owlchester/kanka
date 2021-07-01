@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => trans('crud.attributes.edit.title', ['name' => $entity->name]),
+    'title' => trans('entities/attributes.edit.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
         ['url' => route($parentRoute . '.index'), 'label' => trans($parentRoute . '.index.title')],
@@ -19,7 +19,7 @@
 
                     <div class="form-group">
                         <button class="btn btn-success">{{ trans('crud.save') }}</button>
-                        {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous() . (strpos(url()->previous(), '#attribute') === false ? '#attribute' : null))]) !!}
+                        @include('partials.or_cancel')
                     </div>
 
                     {!! Form::close() !!}

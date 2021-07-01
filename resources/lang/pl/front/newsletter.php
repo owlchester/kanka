@@ -14,6 +14,7 @@ return [
         'community-votes'   => 'Głosowania społeczności',
         'news'              => 'Aktualności',
         'newsletter'        => 'Newsletter',
+        'updates'           => 'Aktualizacje',
     ],
     'headline'  => 'Zasubskrybuj jeden albo wszystkie newslettery, by pozostać na bieżąco.',
     'title'     => 'Powiadomienia E-mail',

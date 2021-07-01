@@ -39,7 +39,7 @@
                     <h2 class="card-title mb-1">
                         <a href="{{ route('community-events.show', $model) }}">{{ $model->name }}</a>
                     </h2>
-                    <div class="text-muted mb-2">{{ $model->start_at->isoFormat('MMMM D, Y') }} - {{ $model->end_at->isoFormat('MMMM D, Y') }}</div>
+                    <div class="text-muted mb-2">{{ $model->start_at->isoFormat('MMMM Do Y') }} - {{ $model->end_at->isoFormat('MMMM Do Y') }}</div>
 
                     <div class="card-text">
                             {!! $model->entry !!}
@@ -54,7 +54,9 @@
 
             <div class="card mb-4">
                 <div class="card-body">
-                @if($model->isOngoing())
+                @if($model->isScheduled())
+                    <p class="text-muted">{{ __('front/community-events.results.scheduled', ['start' => $model->start_at->isoFormat('MMMM Do Y, hh:mm a')]) }}</p>
+                @elseif($model->isOngoing())
                     @include('front.community-events._participate')
                 @elseif($model->hasRankedResults())
                     @include('front.community-events._results')

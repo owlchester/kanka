@@ -9,7 +9,7 @@
             <p>{{ __('campaigns.settings.helpers.' . $module) }}</p>
         </div>
         <div class="box-footer checkbox text-center">
-            <i>{!! __('campaigns.settings.boosted', ['boosted' => link_to_route('front.features', __('crud.boosted_campaigns'), '#boost')]) !!}</i>
+            <i>{!! __('campaigns.settings.boosted', ['boosted' => link_to_route('front.pricing', __('crud.boosted_campaigns'), '#boost')]) !!}</i>
         </div>
     </div>
 @else

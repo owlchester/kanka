@@ -14,7 +14,8 @@ return [
         'community-votes'   => 'Votacións da Comunidade',
         'news'              => 'Novas',
         'newsletter'        => 'Boletín de información',
+        'updates'           => 'Actualizacións',
     ],
-    'headline'  => 'Subscríbete a un ou a todos os nosos boletíns informativos para manterte actualizado.',
+    'headline'  => 'Subscríbete a un ou a todos os nosos boletíns informativos para manterte ao día.',
     'title'     => 'Novidades por correo electrónico',
 ];

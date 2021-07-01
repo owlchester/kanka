@@ -17,6 +17,8 @@ class Handler extends ExceptionHandler
     protected $dontReport = [
         \League\OAuth2\Server\Exception\OAuthServerException::class,
         \Doctrine\DBAL\Driver\PDOException::class,
+        \Symfony\Component\Console\Exception\NamespaceNotFoundException::class,
+        \Symfony\Component\Console\Exception\CommandNotFoundException::class,
     ];
 
     /**
@@ -39,6 +41,7 @@ class Handler extends ExceptionHandler
      */
     public function report(Throwable $exception)
     {
+       // dump($exception);
         if (app()->bound('sentry') && $this->shouldReport($exception)) {
             app('sentry')->captureException($exception);
         }

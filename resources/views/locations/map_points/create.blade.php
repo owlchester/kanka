@@ -15,9 +15,7 @@
 
     <div class="form-group point-save " style="display: none">
         <button class="btn btn-success">{{ trans('crud.save') }}</button>
-        @if(!isset($ajax))
-        {!! trans('crud.or_cancel', ['url' => route('locations.map_points.index', [$location])]) !!}
-        @endif
+        @includeWhen(!request()->ajax(), 'partials.or_cancel', ['cancel' => route('locations.map_points.index', [$location])])
     </div>
 
     {!! Form::close() !!}

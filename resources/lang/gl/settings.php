@@ -4,16 +4,16 @@ return [
     'account'       => [
         'actions'           => [
             'social'            => 'Cambiar a inicio de sesión con Kanka',
-            'update_email'      => 'Actualizar dirección de correo electrónico',
+            'update_email'      => 'Actualizar enderezo de correo electrónico',
             'update_password'   => 'Actualizar contrasinal',
         ],
-        'email'             => 'Cambiar dirección de correo electrónico',
-        'email_success'     => 'Dirección de correo electrónico actualizada.',
+        'email'             => 'Cambiar enderezo de correo electrónico',
+        'email_success'     => 'Enderezo de correo electrónico actualizada.',
         'password'          => 'Cambiar contrasinal',
         'password_success'  => 'Contrasinal actualizado.',
         'social'            => [
             'error'     => 'Xa estás iniciando sesión con Kanka nesta conta.',
-            'helper'    => 'A túa conta está actualmente xestionada por :provider. Podes cambialo e usar o inicio corriente de sesión con Kanka establecendo un contrasinal.',
+            'helper'    => 'A túa conta está actualmente xestionada por :provider. Podes cambialo e usar o inicio corrente de sesión con Kanka establecendo un contrasinal.',
             'success'   => 'A túa conta usa agora o inicio de sesión con Kanka.',
             'title'     => 'De social a Kanka',
         ],
@@ -270,6 +270,7 @@ return [
             'callback'      => 'A túa subscripción foi exitosa. A túa conta será actualizada en canto o noso provedor de pagamento nos informe do cambio (pode levar uns minutos).',
             'cancel'        => 'A túa subcripción foi cancelada. Continuará estando activa ata o final do actual periodo de pagamento.',
             'currency'      => 'A túa moeda preferida foi actualizada.',
+            'subscribed'    => 'A túa subscripción foi exitosa. Non esquezas subscribirte ao boletín de información para recibir notificacións cada vez que haxa unha votación da comunidade. Podes cambiar a túa configuración de boletíns de información nos axustes do teu Perfil.',
         ],
         'tiers'                 => 'Niveis de subscripción',
         'trial_period'          => 'As subscripcións anuais teñen unha política de cancelación de 14 días. Contacta connosco en :email se desexas cancelar a túa subscripción anual e che devolvamos o diñeiro.',

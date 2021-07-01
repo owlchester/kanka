@@ -44,10 +44,15 @@ class UserEventSubscriber
 
         // Log the login
         if ($event->user) {
+
+            $ip = request()->ip();
+            if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+                $ip = $_SERVER["HTTP_CF_CONNECTING_IP"];
+            }
             $log = UserLog::create([
                 'user_id' => $event->user->id,
                 'action' => 'login',
-                'ip' => request()->ip()
+                'ip' => $ip,
             ]);
             $log->save();
 
@@ -66,10 +71,16 @@ class UserEventSubscriber
     {
         // Log the activity
         if ($event->user) {
+
+            $ip = request()->ip();
+            if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+                $ip = $_SERVER["HTTP_CF_CONNECTING_IP"];
+            }
+
             $log = UserLog::create([
                 'user_id' => $event->user->id,
                 'action' => 'logout',
-                'ip' => request()->ip()
+                'ip' => $ip,
             ]);
             $log->save();
         }

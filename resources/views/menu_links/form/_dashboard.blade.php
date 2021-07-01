@@ -4,7 +4,7 @@ foreach (\App\Facades\Dashboard::campaign($campaign->campaign())->getDashboards(
     $dashboards[$dash->id] = $dash->name;
 }
 ?>
-<p class="help-block">{!! __('menu_links.helpers.dashboard', ['boosted' => link_to_route('front.features', __('crud.boosted_campaigns'), '#boost')]) !!}</p>
+<p class="help-block">{!! __('menu_links.helpers.dashboard', ['boosted' => link_to_route('front.pricing', __('crud.boosted_campaigns'), '#boost')]) !!}</p>
 
 @if($campaign->campaign()->boosted())
 <div class="row">

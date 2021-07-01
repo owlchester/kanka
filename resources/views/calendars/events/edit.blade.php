@@ -35,9 +35,7 @@
                             <i class="fa fa-spinner fa-spin" style="display:none;"></i>
                             <span>{{ __('crud.save') }}</span>
                         </button>
-                        @if (!$ajax)
-                            {!! __('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous())]) !!}
-                        @endif
+                        @includeWhen(!$ajax, 'partials.or_cancel')
                     </div>
 
                     @if (!empty($next))

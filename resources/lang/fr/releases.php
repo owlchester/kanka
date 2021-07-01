@@ -2,10 +2,11 @@
 
 return [
     'categories'    => [
-        'event'     => 'Événement',
-        'other'     => 'Autre',
-        'release'   => 'Version',
-        'vote'      => 'Vote communautaire',
+        'event'         => 'Événement',
+        'livestream'    => 'Livestream',
+        'other'         => 'Autre',
+        'release'       => 'Version',
+        'vote'          => 'Vote communautaire',
     ],
     'index'         => [
         'description'   => 'Les dernières annonces de Kanka',

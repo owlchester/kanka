@@ -55,7 +55,9 @@ $model = $entity->child;
                 @endif
             </dl>
 
+            <div class="entity-content">
             {!! $model->entry() !!}
+            </div>
 
             @include('dashboard.widgets.previews._members')
             @include('dashboard.widgets.previews._attributes')
@@ -71,7 +73,9 @@ $model = $entity->child;
                 @endif
             </dl>
 
+            <div class="entity-content">
             {!! $model->entry() !!}
+            </div>
 
             @include('dashboard.widgets.previews._members')
             @include('dashboard.widgets.previews._attributes')

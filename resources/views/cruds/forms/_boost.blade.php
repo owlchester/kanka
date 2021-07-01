@@ -25,7 +25,7 @@
                 {!! Form::text('header_image_url', null, ['placeholder' => trans('crud.placeholders.image_url'), 'class' => 'form-control']) !!}
 
                 <p class="help-block">
-                    {{ trans('crud.hints.image_limitations', ['size' => auth()->user()->maxUploadSize(true)]) }}
+                    {{ trans('crud.hints.image_limitations', ['formats' => 'PNG, JPG, GIF, WebP', 'size' => auth()->user()->maxUploadSize(true)]) }}
                     @if (!auth()->user()->hasRole('patreon'))
                         <a href="{{ route('settings.patreon') }}">{{ __('crud.hints.image_patreon') }}</a>
                     @endif

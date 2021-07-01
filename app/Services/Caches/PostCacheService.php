@@ -5,6 +5,7 @@ namespace App\Services\Caches;
 
 
 use App\Models\AppRelease;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class PostCacheService extends BaseCache
@@ -19,8 +20,9 @@ class PostCacheService extends BaseCache
            return $this->get($key);
         }
 
+        $date = Carbon::now();
         $data = AppRelease::
-            whereRaw('id IN (select MAX(id) FROM releases GROUP BY category_id)')
+            whereRaw('id IN (select MAX(id) FROM releases WHERE published_at < \'' . $date . '\' AND (end_at IS NULL OR end_at > \'' . $date . '\') GROUP BY category_id)')
             //->groupBy('category_id2')
             ->latest('published_at')
             ->get();

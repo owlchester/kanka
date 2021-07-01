@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Search;
 use App\Http\Controllers\Controller;
 use App\Models\Character;
 use App\Models\Entity;
+use App\Models\MapMarker;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -210,6 +211,44 @@ class MiscController extends Controller
         $term = trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
         return $this->buildSearchResults($term, \App\Models\Map::class, $exclude);
+    }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function markers(Request $request)
+    {
+        $term = trim($request->q);
+        //parent map_id allowed for the marker (limits search to the markers of the map only)
+        $include = $request->has('include') ? [$request->get('include')] : [];
+
+        //marker must be in given map
+        $modelClass = MapMarker::whereIn('map_id', $include);
+
+        //Search text
+        if (Str::startsWith($term, '=')) {
+            $modelClass->where('name', ltrim($term, '='));
+        } else {
+            $modelClass->where('name', 'like', "%$term%");
+        }
+
+        //execute query
+        $models = $modelClass->limit(10)
+                    ->get();
+
+        //format results for frontend select
+        $formatted = [];
+        foreach ($models as $model) {
+            $format = [
+                'id' => $model->id,
+                'text' => $model->name
+            ];
+
+            $formatted[] = $format;
+        }
+
+        return Response::json($formatted);
     }
 
     /**

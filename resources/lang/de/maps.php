@@ -26,8 +26,10 @@ return [
         ],
     ],
     'fields'        => [
+        'center_marker'     => 'Marker',
         'center_x'          => 'Standard-Längengradposition',
         'center_y'          => 'Standard-Breitengradposition',
+        'centering'         => 'Zentrierung',
         'distance_measure'  => 'Abstandsmaß',
         'distance_name'     => 'Entfernungseinheit',
         'grid'              => 'Gitter',
@@ -37,10 +39,15 @@ return [
         'max_zoom'          => 'Maximal Zoom',
         'min_zoom'          => 'Minimal Zoom',
         'name'              => 'Name',
+        'tabs'              => [
+            'coordinates'   => 'Koordinaten',
+            'marker'        => 'Marker',
+        ],
         'type'              => 'Typ',
     ],
     'helpers'       => [
         'center'            => 'Durch Ändern der folgenden Werte wird gesteuert, auf welchen Bereich der Karte der Fokus liegt. Wenn Sie diese Werte leer lassen, wird die Mitte der Karte fokussiert.',
+        'centering'         => 'Das Zentrieren auf eine Markierung hat Vorrang vor den Standardkoordinaten.',
         'descendants'       => 'Diese Liste enthält alle Karten, die Untergeordnete Karten dieser Karte sind, und nicht nur die direkt untergeordneten.',
         'distance_measure'  => 'Wenn Sie der Karte eine Entfernungsmessung geben, wird das Messwerkzeug im Erkundungsmodus aktiviert.',
         'grid'              => 'Definieren Sie eine Rastergröße, die im Erkundungsmodus angezeigt wird.',
@@ -66,6 +73,7 @@ return [
         'settings'  => 'Einstellungen',
     ],
     'placeholders'  => [
+        'center_marker'     => 'Leer lassen, um die Karte in der Mitte zu laden',
         'center_x'          => 'Lassen Sie das Feld leer, um die Karte in der Mitte zu laden (X-Koordinate)',
         'center_y'          => 'Lassen Sie das Feld leer, um die Karte in der Mitte zu laden (Y-Koordinate)',
         'distance_measure'  => 'Einheiten pro Pixel',

@@ -88,7 +88,7 @@ class BulkController extends Controller
                     ->copyToCampaign($campaign->id);
                 return redirect()
                     ->route($entity . '.' . $subroute, $routeParams)
-                    ->with('success', trans_choice('crud.bulk.success.copy_to_campaign', $count, ['count' => $count, 'campaign' => $campaign->name]));
+                    ->with('success_raw', trans_choice('crud.bulk.success.copy_to_campaign', $count, ['count' => $count, 'campaign' => $campaign->name]));
             } elseif ($action === 'templates') {
                 $count = $this->bulkService
                     ->entities(explode(',', $request->get('models')))

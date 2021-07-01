@@ -47,13 +47,17 @@ $model = $entity->child;
     </div>
     <div class="panel-body">
         @if ($widget->conf('full') === '1')
+            <div class="entity-content">
             {!! $model->entry() !!}
+            </div>
 
             @include('dashboard.widgets.previews._members')
             @include('dashboard.widgets.previews._attributes')
         @else
             <div class="pinned-entity preview" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">
+                <div class="entity-content">
                 {!! $model->entry() !!}
+                </div>
 
                 @include('dashboard.widgets.previews._members')
                 @include('dashboard.widgets.previews._attributes')

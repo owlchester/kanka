@@ -249,6 +249,18 @@ class EntityEvent extends MiscModel
     }
 
     /**
+     * @return mixed|null
+     */
+    /*public function getRecurringPeriodicityAttribute()
+    {
+        if (!$this->is_recurring) {
+            return null;
+        }
+
+        return $this->attributes['recurring_periodicity'];
+    }*/
+
+    /**
      * Calculate the elapsed time since the event happened
      */
     public function calcElasped(EntityEvent $event = null)

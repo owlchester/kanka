@@ -6,7 +6,9 @@ return [
         'add_intercalary'   => 'Dodaj interkalarne dane',
         'add_month'         => 'Dodaj kalendarski mjesec',
         'add_moon'          => 'Dodaj mjesec (nebesko tijelo)',
+        'add_reminder'      => 'Dodaj podsjetnik',
         'add_season'        => 'Dodaj sezonu',
+        'add_weather'       => 'Postavi vremenski efekt',
         'add_week'          => 'Dodaj imenovani tjedan',
         'add_weekday'       => 'Dodaj dan u tjednu',
         'add_year'          => 'Dodaj ime godine',
@@ -96,10 +98,12 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Interkalarni mjeseci ne koriste dane, ali utječu na mjesece i sezone.',
-        'nested'        => 'Prvo se prikazuju kalendari koji nemaju kalendar roditelj. Klikni kalendar da bi istražio/la njegove kalendare djecu.',
+        'nested_parent' => 'Prikazivanje kalendara od :parent.',
+        'nested_without'=> 'Prikazivanje svih kalendara koji nemaju kalendar roditelj. Klikni redak da bi vidio/la kalendare djecu.',
         'start_offset'  => 'Zadano je da kalendar počinje od prvog dana u tjednu nulte godine. Promjena ovog polja utječe na to gdje je prvi dan kalendar postavljen.',
     ],
     'hints'         => [
+        'event_length'      => 'Koliko dugo treba trajati događaj. Događaj ne može trajati duže od dva mjeseca.',
         'intercalary'       => 'Dani koji padaju van standardnih mjeseci i tjedana. Oni ne utječu dane u tjednu, ali utječu na cikluse mjeseca.',
         'is_incrementing'   => 'Pomični kalendari će automatski povećati svoj trenutni dan u 00:00 UTC.',
         'is_recurring'      => 'Događaj se može postaviti kao ponavljajući. Pojavit će se svake godine na isti datum.',
@@ -134,8 +138,14 @@ return [
     'options'       => [
         'events'    => [
             'recurring_periodicity' => [
-                'month' => 'Mjesečno',
-                'year'  => 'Godišnje',
+                'fullmoon'      => 'Pun mjesec',
+                'fullmoon_name' => ':moon pun mjesec',
+                'month'         => 'Mjesečno',
+                'newmoon'       => 'Mladi mjesec',
+                'newmoon_name'  => ':moon mladi mjesec',
+                'none'          => 'Ništa',
+                'unnamed_moon'  => 'Mjesec :number',
+                'year'          => 'Godišnje',
             ],
         ],
         'resets'    => [
@@ -212,5 +222,9 @@ return [
             'weather'       => 'Vremenski uvjeti',
         ],
         'title'             => 'Kalendar :name',
+    ],
+    'sorters'       => [
+        'after' => 'Danas i poslije',
+        'before'=> 'Danas i prije',
     ],
 ];

@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $type
  * @property string $price
  * @property string $size
+ * @property string $weight
  * @property integer $character_id
  * @property integer $location_id
  * @property Character $character
@@ -210,13 +211,13 @@ class Item extends MiscModel
     /**
      * @return array
      */
-    public function menuItems($items = [])
+    public function menuItems(array $items = []): array
     {
         $campaign = CampaignLocalization::getCampaign();
 
         $inventoryCount = $this->inventories()->with('item')->acl()->has('entity')->count();
         if ($inventoryCount > 0) {
-            $items['inventories'] = [
+            $items['second']['inventories'] = [
                 'name' => 'items.show.tabs.inventories',
                 'route' => 'items.inventories',
                 'count' => $inventoryCount

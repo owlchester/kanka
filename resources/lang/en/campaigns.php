@@ -94,6 +94,7 @@ TEXT
         'locale'                        => 'The language your campaign is written in. This is used for generating content and grouping public campaigns.',
         'name'                          => 'Your campaign/world can have any name as long as it contains at least 4 letters or numbers.',
         'public_campaign_filters'       => 'Help others find the campaign among other public campaigns by providing the following information.',
+        'public_no_visibility'          => 'Heads up! Your campaign is public, but the campaign\'s public role can\'t access anything. :fix.',
         'related_visibility'            => 'Default Visibility value when creating a new element with this field (entity notes, relations, abilities, etc)',
         'system'                        => 'If your campaign is publicly visible, the system is shown in the :link page.',
         'systems'                       => 'To avoid cluttering users with options, some features of Kanka are only available with specific RPG systems (ie the D&D 5e monster stat block). Adding supported systems here will enable those features.',
@@ -121,16 +122,16 @@ TEXT
                 'send'      => 'Send invite',
             ],
             'description'   => 'Invite a friend to your campaign',
-            'link'          => 'Link created: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Invitation sent.',
+            'success_link'  => 'Link created: :link',
             'title'         => 'Invite someone to your campaign',
         ],
         'destroy'               => [
             'success'   => 'Invitation removed.',
         ],
         'email'                 => [
-            'link'      => '<a href=":link">Join :name\'s campaign</a>',
-            'subject'   => ':name has invited you to join their campaign \':campaign\' on kanka.io! Use the following link to accept their invitation.',
+            'link_text' => 'Join :name\'s campaign',
+            'subject'   => ':name has invited you to join their \':campaign\' campaign on kanka.io! Use the following link to accept their invitation.',
             'title'     => 'Invitation from :name',
         ],
         'error'                 => [
@@ -199,6 +200,7 @@ TEXT
             'roles_page'    => 'Roles page',
             'title'         => 'Invite',
         ],
+        'manage_roles'          => 'Manage user roles',
         'roles'                 => [
             'member'    => 'Member',
             'owner'     => 'Admin',
@@ -208,6 +210,10 @@ TEXT
         ],
         'switch_back_success'   => 'You are now back to your original user.',
         'title'                 => 'Campaign :name Members',
+        'updates'               => [
+            'added'     => 'Role :role added to :user.',
+            'removed'   => 'Role :role removed from :user.',
+        ],
         'your_role'             => 'Your role: <i>:role</i>',
     ],
     'open_campaign'                     => [

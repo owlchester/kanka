@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Entity;
 
+use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntityLink;
 use App\Models\Entity;
@@ -21,26 +22,17 @@ class LinkController extends Controller
 
     public function __construct()
     {
-        $this->middleware('campaign.boosted');
+        $this->middleware('campaign.boosted', ['except' => 'create']);
     }
 
     /**
      * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function index(Entity $entity)
     {
-        // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
-            $this->authorize('view', $entity->child);
-        } else {
-            $this->authorizeEntityForGuest('read', $entity->child);
-        }
-
-        return view('entities.pages.links.index', compact(
-            'entity'
-        ));
+        return redirect()
+            ->route('entities.assets', $entity);
     }
 
     /**
@@ -51,6 +43,11 @@ class LinkController extends Controller
     public function create(Entity $entity)
     {
         $this->authorize('update', $entity->child);
+
+        $campaign = CampaignLocalization::getCampaign();
+        if (!$campaign->boosted()) {
+            return view('entities.pages.links.unboosted');
+        }
 
         return view('entities.pages.links.create', compact(
             'entity'
@@ -72,7 +69,7 @@ class LinkController extends Controller
         $link = EntityLink::create($data);
 
         return redirect()
-            ->route('entities.entity_links.index', $entity)
+            ->route('entities.assets', $entity)
             ->with('success', __('entities/links.create.success', ['name' => $link->name, 'entity' => $entity->name]));
     }
 
@@ -100,7 +97,7 @@ class LinkController extends Controller
     public function show(Entity $entity, EntityLink $entityLink)
     {
         return redirect()
-            ->route('entities.entity_links.index', $entity);
+            ->route('entities.assets', $entity);
     }
 
     /**
@@ -122,7 +119,7 @@ class LinkController extends Controller
             ]);
         }
         return redirect()
-            ->route('entities.entity_links.index', $entity)
+            ->route('entities.assets', $entity)
             ->with('success', __('entities/links.update.success', ['name' => $entityLink->name, 'entity' => $entity->name]));
 
     }
@@ -146,7 +143,7 @@ class LinkController extends Controller
             ]);
         }
         return redirect()
-            ->route('entities.entity_links.index', $entity)
+            ->route('entities.assets', $entity)
             ->with('success', __('entities/links.destroy.success', ['name' => $entityLink->name, 'entity' => $entity->name]));
 
     }

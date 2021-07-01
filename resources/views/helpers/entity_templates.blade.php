@@ -1,4 +1,4 @@
-@extends('layouts.app', [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('helpers.entity_templates.title'),
     'breadcrumbs' => false,
 ])
@@ -6,7 +6,12 @@
 @section('content')
     <div class="box box-solid">
         <div class="box-header with-border">
-            <h4>{{ __('helpers.entity_templates.title') }}</h4>
+            @if (request()->ajax())
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span></button>
+            @endif
+            <h4 class="box-title">{{ __('helpers.entity_templates.title') }}</h4>
+
         </div>
 
         <div class="box-body">

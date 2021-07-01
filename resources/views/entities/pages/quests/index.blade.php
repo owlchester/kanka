@@ -14,17 +14,21 @@
     'mainTitle' => false,
     'canonical' => true,
     'miscModel' => $entity->child,
+    'bodyClass' => 'entity-quests'
 ])
 @inject('campaign', 'App\Services\CampaignService')
 
+
+@include('entities.components.header', ['model' => $entity->child, 'entity' => $entity])
+
 @section('content')
     @include('partials.errors')
-    <div class="row">
-        <div class="col-md-3">
+    <div class="row entity-grid">
+        <div class="col-md-2 entity-sidebar-submenu">
             @include($entity->pluralType() . '._menu', ['active' => 'quests', 'model' => $entity->child, 'name' => $entity->pluralType()])
         </div>
-        <div class="col-md-9">
-            <div class="box box-solid">
+        <div class="col-md-10 entity-main-block">
+            <div class="box box-solid box-entity-quests">
                 <div class="box-body">
                     <h2 class="page-header with-border">
                         {{ __('entities/quests.title', ['name' => $entity->name]) }}
@@ -32,7 +36,7 @@
 
                     <p class="help-block">{{ __('entities/quests.helper') }}</p>
 
-                    <table id="entity-map-points" class="table table-hover {{ $data->count() === 0 ? 'export-hidden' : '' }}">
+                    <table id="entity-quests" class="table table-hover {{ $data->count() === 0 ? 'export-hidden' : '' }}">
                         <tbody><tr>
                             <th class="avatar"></th>
                             <th>{{ __('quests.elements.fields.quest') }}</th>

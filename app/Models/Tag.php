@@ -196,13 +196,13 @@ class Tag extends MiscModel
      * @param array $items
      * @return array
      */
-    public function menuItems($items = [])
+    public function menuItems(array $items = []): array
     {
         $campaign = CampaignLocalization::getCampaign();
 
         $count = $this->descendants->count();
         if ($count > 0) {
-            $items['tags'] = [
+            $items['second']['tags'] = [
                 'name' => 'tags.show.tabs.tags',
                 'route' => 'tags.tags',
                 'count' => $count
@@ -290,6 +290,9 @@ class Tag extends MiscModel
             . e($this->name) . '</span>';
     }
 
+    /**
+     * @return string
+     */
     public function bubble(): string
     {
         return '<span class="label label-tag-bubble ' . ($this->hasColour() ? $this->colourClass() : 'label-default') . '" title="'

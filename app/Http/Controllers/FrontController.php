@@ -28,6 +28,18 @@ class FrontController extends Controller
     }
 
     /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
+    public function index()
+    {
+        // Don't want unlogged people to think about this url
+        if(!auth()->check()) {
+            return redirect()->route('home');
+        }
+        return view('front.home');
+    }
+
+    /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function about()

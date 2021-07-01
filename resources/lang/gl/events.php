@@ -27,12 +27,12 @@ return [
     ],
     'helpers'       => [
         'date'          => 'Este campo pode conter calquera cousa e non está ligado aos calendarios da campaña. Para ligar este evento a un calendario, faino dende o propio calendario ou na lapela "Lembretes" deste evento.',
-        'nested_parent' => 'Mostrando os eventos de :parent.',
+        'nested_parent' => 'Mostrando os eventos de ":parent".',
         'nested_without'=> 'Mostrando todos os eventos que non teñen un evento pai. Fai clic nunha fila para ver os seus descendentes.',
     ],
     'index'         => [
         'add'           => 'Novo evento',
-        'description'   => 'Administra os eventos de ":name"',
+        'description'   => 'Xestiona os eventos de ":name"',
         'header'        => 'Eventos de ":name"',
         'title'         => 'Eventos',
     ],

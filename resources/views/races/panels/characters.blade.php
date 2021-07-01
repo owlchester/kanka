@@ -13,17 +13,17 @@ $datagridSorter = new \App\Datagrids\Sorters\RaceCharacterSorter();
 $datagridSorter->request(request()->all());
 
 ?>
-<div class="box box-solid">
+<div class="box box-solid" id="race-characters">
     <div class="box-header with-border">
         <h3 class="box-title">{{ __('races.show.tabs.characters') }}</h3>
 
         <div class="box-tools pull-right">
             @if (!$allMembers)
-                <a href="{{ route('races.show', [$model, 'all_members' => true]) }}" class="btn btn-default btn-sm">
+                <a href="{{ route('races.show', [$model, 'all_members' => true, '#race-characters']) }}" class="btn btn-default btn-sm">
                     <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allCharacters()->has('entity')->count() }})
                 </a>
             @else
-                <a href="{{ route('races.show', $model) }}" class="btn btn-default btn-sm">
+                <a href="{{ route('races.show', [$model, '#race-characters']) }}" class="btn btn-default btn-sm">
                     <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->characters()->has('entity')->count() }})
                 </a>
             @endif
@@ -49,7 +49,6 @@ $datagridSorter->request(request()->all());
                 @if ($campaign->enabled('families'))
                     <th>{{ __('characters.fields.family') }}</th>
                 @endif
-                <th>&nbsp;</th>
             </tr>
 
 <?php
@@ -81,11 +80,6 @@ $r = $model->allCharacters()
                         @endif
                     </td>
                     @endif
-                    <td class="text-right">
-                        <a href="{{ route('characters.show', [$character]) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-eye" aria-hidden="true"></i> {{ __('crud.view') }}
-                        </a>
-                    </td>
                 </tr>
             @endforeach
             </tbody>

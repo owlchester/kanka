@@ -29,6 +29,12 @@
             <li class="{{ $sidebar->admin('app-releases') }}">
                 <a href="{{ route('admin.app-releases.index') }}"><i class="fa fa-plus"></i> <span>Releases</span></a>
             </li>
+            <li class="{{ $sidebar->admin('faq') }}">
+                <a href="{{ route('admin.faq.index') }}"><i class="fa fa-question-circle"></i> <span>FAQ / KB</span></a>
+            </li>
+            <li class="{{ $sidebar->admin('faq-categories') }}">
+                <a href="{{ route('admin.faq-categories.index') }}"><i class="fa fa-solar-panel"></i> <span>FAQ Categories</span></a>
+            </li>
             <li class="{{ $sidebar->admin('referrals') }}">
                 <a href="{{ route('admin.referrals.index') }}"><i class="fa fa-user-tag"></i> <span>Referrals</span></a>
             </li>

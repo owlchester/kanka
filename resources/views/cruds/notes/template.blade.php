@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => trans('crud.attributes.template.title', ['name' => $entity->name]),
+    'title' => trans('entities/attributes.template.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
         ['url' => route($parentRoute . '.index'), 'label' => trans($parentRoute . '.index.title')],
@@ -19,8 +19,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group required">
-                                <label>{{ trans('crud.attributes.fields.template') }}</label>
-                                {!! Form::select('template_id', \App\Models\AttributeTemplate::pluck('name', 'id'), null, ['placeholder' => trans('crud.attributes.placeholders.template'), 'class' => 'form-control']) !!}
+                                <label>{{ trans('entities/attributes.fields.template') }}</label>
+                                {!! Form::select('template_id', \App\Models\AttributeTemplate::pluck('name', 'id'), null, ['placeholder' => trans('entities/attributes.placeholders.template'), 'class' => 'form-control']) !!}
                             </div>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
 
                     <div class="form-group">
                         <button class="btn btn-success">{{ trans('crud.save') }}</button>
-                        {!! trans('crud.or_cancel', ['url' => (!empty($cancel) ? $cancel : url()->previous() . (strpos(url()->previous(), '?tab=') === false ? '?tab=attribute' : null))]) !!}
+                        @include('partials.or_cancel')
                     </div>
 
                     {!! Form::close() !!}

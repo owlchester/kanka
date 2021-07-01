@@ -13,6 +13,7 @@ return [
     'fields'        => [
         'comment'       => 'Comentario',
         'entity_link'   => 'Ligazón á entidade',
+        'honorable'     => 'Mención honorábel',
         'rank'          => 'Rango',
         'submitter'     => 'Participante',
     ],
@@ -37,6 +38,7 @@ return [
     ],
     'results'       => [
         'description'       => 'O noso xurado seleccionou as seguintes entregas como gañadoras do evento.',
+        'scheduled'         => 'Este evento comezará en :start.',
         'title'             => 'Gañadoras do evento',
         'waiting_results'   => 'O evento terminou! O xurado do evento evaluará as entregas e tan pronto como sexan seleccionadas as gañadoras, mostraranse aquí.',
     ],

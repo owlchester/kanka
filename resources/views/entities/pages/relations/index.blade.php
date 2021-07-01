@@ -12,17 +12,34 @@
     'canonical' => true,
     'mainTitle' => false,
     'miscModel' => $entity->child,
+    'bodyClass' => 'entity-relations'
 ])
 @inject('campaign', 'App\Services\CampaignService')
 
+
+@section('entity-header-actions')
+    @can('relation', [$entity->child, 'add'])
+        <div class="header-buttons">
+            <a href="{{ route('entities.relations.create', [$entity]) }}" class="btn btn-sm btn-warning" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity]) }}">
+                <i class="fa fa-plus"></i>
+                <span class="hidden-xs hidden-sm">
+                    {{ __('crud.relations.actions.add') }}
+                </span>
+            </a>
+        </div>
+    @endcan
+@endsection
+
+@include('entities.components.header', ['model' => $entity->child, 'entity' => $entity])
+
 @section('content')
     @include('partials.errors')
-    <div class="row">
-        <div class="col-md-3">
+    <div class="row entity-grid">
+        <div class="col-md-2 entity-sidebar-submenu">
             @include($entity->pluralType() . '._menu', ['active' => 'relations', 'model' => $entity->child, 'name' => $entity->pluralType()])
         </div>
-        <div class="col-md-9">
-            <div class="box box-solid">
+        <div class="col-md-10 entity-main-block">
+            <div class="box box-solid box-entity-relations">
                 <div class="box-body">
                     <h2 class="page-header with-border">
                         {{ __('crud.tabs.relations') }}
@@ -32,17 +49,12 @@
                         {{ __('entities/relations.helper') }}
                     </p>
 
-                    <div class="row">
+                    <div class="row row-sorting">
                         <div class="col-md-6">
                             @include('cruds.datagrids.sorters.simple-sorter')
                         </div>
                         <div class="col-md-6 text-right">
-                            @can('relation', [$entity->child, 'add'])
-                                <a href="{{ route('entities.relations.create', [$entity]) }}" class="btn btn-primary btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity]) }}">
-                                    <i class="fa fa-plus"></i> <span class="hidden-xs hidden-sm">
-                        {{ __('crud.relations.actions.add') }}
-                        </span></a>
-                            @endcan
+
                         </div>
                     </div>
 
@@ -139,7 +151,7 @@
                     @else
 
                         <div class="visu-teaser text-center">
-                            <a href="{{ route('front.features', '#boost') }}" target="_blank">
+                            <a href="{{ route('front.pricing', '#boost') }}" target="_blank">
                                 {!! __('entities/relations.teaser') !!}
                             </a>
                         </div>

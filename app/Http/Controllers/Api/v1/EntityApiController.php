@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Resources\EntityResource;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Http\Resources\EntityResource as Resource;
@@ -10,6 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class EntityApiController extends ApiController
 {
+    /**
+     * @param Campaign $campaign
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function index(Campaign $campaign)
     {
         if (config('app.debug')) {
