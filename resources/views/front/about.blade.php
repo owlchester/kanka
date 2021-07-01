@@ -100,8 +100,11 @@
         <div class="container">
             <div class="section-body">
                 <div class="row">
-                    <div class="col-6 my-auto">
+                    <div class="col-8 my-auto">
                         <h2>{{ __('teams.index.translations') }}</h2>
+
+                        <p class="text-muted">{!! __('footer.translator_call', ['discord' => link_to(config('discord.url'), 'Discord', ['target' => '_blank'])]) !!}</p>
+
                         <p>
                             <strong>{{ __('languages.codes.de') }}</strong>: TheFurya, Yanila, Thogrim, Xoltax
                         </p>
@@ -125,6 +128,9 @@
                         </p>
                         <p>
                             <strong>{{ __('languages.codes.he') }}</strong>: Beefpotato
+                        </p>
+                        <p>
+                            <strong>{{ __('languages.codes.gl') }}</strong>: Daenvil
                         </p>
                         <p>
                             <strong>{{ __('languages.codes.ru') }}</strong>: Ilia
