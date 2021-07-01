@@ -96,6 +96,7 @@
 $(document).ready(function () {
   initRpgSystems();
   registerModules();
+  registerUserRoles();
 });
 /**
  * Form Rpg Systems field
@@ -122,6 +123,18 @@ function registerModules() {
     } else {
       $(this).closest('div.box').removeClass('box-success').addClass('box-default');
     }
+  });
+}
+/**
+ * User role admin quick interface
+ */
+
+
+function registerUserRoles() {
+  $('.btn-user-roles').popover({
+    html: true,
+    sanitize: false,
+    trigger: 'focus'
   });
 }
 

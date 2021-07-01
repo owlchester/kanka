@@ -124,7 +124,7 @@ function initSubforms() {
     var formIsValid = $(this).attr('is-valid'); //console.log("Form validity", formIsValid);
 
     if (formIsValid) {
-      //console.log("Ajax subform already validated");
+      //console.log("Ajax subform already validated, sending", $(this));
       //do nothing and send form
       return true;
     } //else form is not confirmed valid
@@ -132,11 +132,11 @@ function initSubforms() {
 
 
     window.entityFormHasUnsavedChanges = false;
-    e.preventDefault(); //set submit button to a spinner
+    e.preventDefault(); //show button animation
 
     var currentAjaxForm = $(this);
-    var submitBtn = currentAjaxForm.find('.submit-group');
-    submitBtn.data('reset', submitBtn.html()).html('<button class="btn btn-success" disabled><i class="fa fa-spinner fa-spin"></i></button>'); // Allow ajax requests to use the X_CSRF_TOKEN for deletes
+    currentAjaxForm.find('.submit-group').hide();
+    currentAjaxForm.find('.submit-animation').show(); // Allow ajax requests to use the X_CSRF_TOKEN for deletes
 
     $.ajaxSetup({
       headers: {
@@ -204,17 +204,9 @@ function initSubforms() {
 
 function resetSubformSubmitAnimation(form) {
   //console.log("Resetting ajax subform animation");
-  var submitBtn = form.find('.submit-group');
-
-  if (submitBtn.length > 0) {
-    $.each(submitBtn, function () {
-      $(this).removeAttr('disabled');
-
-      if ($(this).data('reset')) {
-        $(this).html($(this).data('reset'));
-      }
-    });
-  }
+  //reset animation
+  form.find('.submit-group').show();
+  form.find('.submit-animation').hide();
 }
 
 /***/ }),

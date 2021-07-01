@@ -277,7 +277,7 @@ function initMapForms() {
   var markerForm = $('#map-marker-form');
   var groupForm = $('#map-group-form');
 
-  if ($('#entity-form').length === 0) {
+  if ($('#entity-form').length === 0 && $('.map-marker-edit-form').length === 0) {
     //console.info('initMapForms empty');
     return;
   }
