@@ -37,8 +37,8 @@ __('maps/groups.create.title')
         <div class="form-group">
             <div class="submit-group">
                 <button class="btn btn-success">{{ __('crud.save') }}</button>
+                @includeWhen(!request()->ajax(), 'partials.or_cancel')
             </div>
-            @includeWhen(!request()->ajax(), 'partials.or_cancel')
         </div>
 
         {!! Form::close() !!}

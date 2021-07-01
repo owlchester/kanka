@@ -65,8 +65,8 @@ __('maps/markers.edit.title', ['name' => $model->name])
                     </ul>
                 </div>
                 {!! Form::hidden('submit', null) !!}
+                @includeWhen(!request()->ajax(), 'partials.or_cancel')
             </div>
-            @includeWhen(!request()->ajax(), 'partials.or_cancel')
         </div>
 
         {!! Form::close() !!}
