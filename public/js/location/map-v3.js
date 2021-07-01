@@ -1,1 +1,359 @@
-!function(e){var t={};function n(a){if(t[a])return t[a].exports;var i=t[a]={i:a,l:!1,exports:{}};return e[a].call(i.exports,i,i.exports,n),i.l=!0,i.exports}n.m=e,n.c=t,n.d=function(e,t,a){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:a})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var a=Object.create(null);if(n.r(a),Object.defineProperty(a,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var i in e)n.d(a,i,function(t){return e[t]}.bind(null,i));return a},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="/",n(n.s=4)}({4:function(e,t,n){e.exports=n("lX53")},lX53:function(e,t,n){"use strict";n.r(t);var a,i,r,o,s,c,m,d,u=n("tygL"),l=!1;function f(){0!==(m=$(".ajax-subform")).length&&m.one("submit",(function(e){if(l)return!0;d=$(this),window.entityFormHasUnsavedChanges=!1,e.preventDefault(),$(this).find(".form-submit-main span").hide(),$(this).find(".form-submit-main i.fa").show(),$.ajaxSetup({headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")}});var t=new FormData(this);$.ajax({url:$(this).attr("action"),method:$(this).attr("method"),data:t,cache:!1,contentType:!1,processData:!1}).done((function(e){return l=!0,d.submit(),!0})).fail((function(e){d.find(".input-error").removeClass("input-error"),d.find(".text-danger").remove(),503===e.status&&($("#entity-form-503-error").show(),h()),403===e.status&&($("#entity-form-403-error").show(),h());var t=e.responseJSON.errors,n=Object.keys(t);n.forEach((function(e){$('[name="'+e+'"]').length>0?d.find('[name="'+e+'"]').addClass("input-error").parent().append('<div class="text-danger">'+t[e][0]+"</div>"):!1}));var a=Object.keys(t)[0],i=m.find('[name="'+a+'"]');i.length>0&&i.focus(),h(),d.find(".form-submit-main i.fa").hide(),d.find(".form-submit-main span").show()}))}))}function h(){var e=m.find(".btn-success");e.length>0&&$.each(e,(function(){$(this).removeAttr("disabled"),$(this).data("reset")&&$(this).html($(this).data("reset"))}))}function p(){$(".map-legend-marker").click((function(e){e.preventDefault(),window.map.panTo(L.latLng($(this).data("lat"),$(this).data("lng"))),window[$(this).data("id")].openPopup()}))}function b(){$(".map-marker-entry-click").click((function(e){e.preventDefault(),$(this).parent().hide(),$(".map-marker-entry-entry").show()}))}$(document).ready((function(){window.map.invalidateSize(),window.map.on("popupopen",(function(e){Object(u.a)()})),$('a[href="#marker-pin"]').click((function(e){$('input[name="shape_id"]').val(1)})),$('a[href="#marker-label"]').click((function(e){$('input[name="shape_id"]').val(2)})),$('a[href="#marker-circle"]').click((function(e){$('input[name="shape_id"]').val(3)})),$('a[href="#marker-poly"]').click((function(e){$('input[name="shape_id"]').val(5)})),$('a[href="#form-markers"]').click((function(e){window.map.invalidateSize()})),function(){if(0===(a=$("#map-body")).length)return;i=$("#sidebar-map"),r=$("#sidebar-marker"),o=$("#map-marker-modal"),c=$("#map-marker-modal-title"),s=$("#map-marker-modal-content"),$.ajaxSetup({headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")}}),window.markerDetails=function(e){!function(){var e='<div class="text-center"><i class="fa fa-spin fa-spinner fa-2x"></i></div>';if(window.kankaIsMobile.matches)return s.html(e),void o.modal("toggle");a.removeClass("sidebar-collapse").addClass("sidebar-open"),i.hide(),r.show().html(e)}(),window.kankaIsMobile.matches&&(e+="?mobile=1"),$.ajax({url:e,type:"GET",async:!0,success:function(e){e&&(window.kankaIsMobile.matches?(c.html(e.name),s.html(e.body)):(r.html(e.body),$(".marker-close").click((function(e){r.hide(),i.show()})),a.addClass("sidebar-open")),Object(u.a)())}})},p(),b(),$(document).one("shown.bs.modal shown.bs.popover",(function(){f()}))}(),function(){var e=$("#map-layer-form"),t=$("#map-marker-form"),n=$("#map-group-form");if(0===$("#entity-form").length&&0===$(".map-marker-edit-form").length)return;e.unbind("submit").on("submit",(function(){window.entityFormHasUnsavedChanges=!1})),t.unbind("submit").on("submit",(function(){window.entityFormHasUnsavedChanges=!1})),n.unbind("submit").on("submit",(function(){window.entityFormHasUnsavedChanges=!1})),$('select[name="size_id"]').change((function(e){6==this.value?($(".map-marker-circle-helper").hide(),$(".map-marker-circle-radius").show()):($(".map-marker-circle-radius").hide(),$(".map-marker-circle-helper").show())})),$(document).on("shown.bs.modal shown.bs.popover",(function(e){f(),e.stopPropagation()})),p(),b()}()}))},tygL:function(e,t,n){"use strict";function a(){$.each($(".delete-confirm"),(function(){$(this).click((function(e){var t=$(this).data("name"),n=$(this).data("text"),a=$(this).data("delete-target"),i=$(this).data("confirm-target"),r=$(this).data("reset");i||(i="#delete-confirm-name"),n?$("#delete-confirm-text").text(n):$(i).text(t),$(this).data("mirrored")?$("#delete-confirm-mirror").show():$("#delete-confirm-mirror").hide(),a&&$(".delete-confirm-submit").data("target",a),r?($(".delete-button-label").hide(),$(".remove-button-label").show()):($(".delete-button-label").show(),$(".remove-button-label").hide())}))})),$.each($(".delete-confirm-submit"),(function(e){$(this).unbind("click"),$(this).click((function(e){var t=$(this).data("target");t?($("#"+t+" input[name=remove_mirrored]").val($("#delete-confirm-mirror-chexkbox").is(":checked")?1:0),$("#"+t).submit()):$("#delete-confirm-form").submit()}))})),$.each($(".click-confirm"),(function(e){$(this).click((function(e){var t=$(this).data("message");$("#click-confirm-text").text(t),$("#click-confirm-url").attr("href",$(this).data("url"))}))}))}n.d(t,"a",(function(){return a}))}});
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./resources/assets/js/components/delete-confirm.js":
+/*!**********************************************************!*\
+  !*** ./resources/assets/js/components/delete-confirm.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return deleteConfirm; });
+function deleteConfirm() {
+  // Delete confirm dialog
+  $.each($('.delete-confirm'), function () {
+    $(this).click(function (e) {
+      var name = $(this).data('name');
+      var text = $(this).data('text');
+      var target = $(this).data('delete-target');
+      var confirm = $(this).data('confirm-target');
+      var reset = $(this).data('reset');
+
+      if (!confirm) {
+        confirm = '#delete-confirm-name';
+      }
+
+      if (text) {
+        $('#delete-confirm-text').text(text);
+      } else {
+        $(confirm).text(name);
+      }
+
+      if ($(this).data('mirrored')) {
+        $('#delete-confirm-mirror').show();
+      } else {
+        $('#delete-confirm-mirror').hide();
+      }
+
+      if (target) {
+        $('.delete-confirm-submit').data('target', target);
+      }
+
+      if (reset) {
+        $('.delete-button-label').hide();
+        $('.remove-button-label').show();
+      } else {
+        $('.delete-button-label').show();
+        $('.remove-button-label').hide();
+      }
+    });
+  }); // Submit modal form
+
+  $.each($('.delete-confirm-submit'), function (index) {
+    $(this).unbind('click');
+    $(this).click(function (e) {
+      //console.log('clicky submit');
+      var target = $(this).data('target');
+
+      if (target) {
+        $('#' + target + ' input[name=remove_mirrored]').val($('#delete-confirm-mirror-chexkbox').is(':checked') ? 1 : 0); //console.log('target', target, $('#' + target));
+
+        $('#' + target).submit();
+      } else {
+        $('#delete-confirm-form').submit();
+      }
+    });
+  }); // Delete confirm dialog
+
+  $.each($('.click-confirm'), function (index) {
+    $(this).click(function (e) {
+      var name = $(this).data('message');
+      $('#click-confirm-text').text(name);
+      $('#click-confirm-url').attr('href', $(this).data('url'));
+    });
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/assets/js/location/map-v3.js":
+/*!************************************************!*\
+  !*** ./resources/assets/js/location/map-v3.js ***!
+  \************************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_delete_confirm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/delete-confirm */ "./resources/assets/js/components/delete-confirm.js");
+
+var mapPageBody;
+var sidebarMap, sidebarMarker;
+var markerModal, markerModalContent, markerModalTitle;
+var validEntityForm = false;
+var validSubform = false;
+var subForm;
+var currentAjaxForm;
+$(document).ready(function () {
+  window.map.invalidateSize(); //deleteConfirm();
+
+  window.map.on('popupopen', function (ev) {
+    Object(_components_delete_confirm__WEBPACK_IMPORTED_MODULE_0__["default"])();
+  }); // Event fired when clicking on an existing map point
+
+  $('a[href="#marker-pin"]').click(function (e) {
+    $('input[name="shape_id"]').val(1);
+  });
+  $('a[href="#marker-label"]').click(function (e) {
+    $('input[name="shape_id"]').val(2);
+  });
+  $('a[href="#marker-circle"]').click(function (e) {
+    $('input[name="shape_id"]').val(3);
+  });
+  $('a[href="#marker-poly"]').click(function (e) {
+    $('input[name="shape_id"]').val(5);
+  });
+  $('a[href="#form-markers"]').click(function (e) {
+    window.map.invalidateSize();
+  });
+  initMapExplore();
+  initMapForms(); // Limit the size of custom svg icons to not overblow the marker size
+  // $('.map .custom-icon svg').each(function (e) {
+  //     $(this).attr("height", 32).attr("width", 32).css('margin-top', '4px');
+  // });
+});
+/**
+ *
+ */
+
+function initMapExplore() {
+  //console.log('initMapExplore', '');
+  mapPageBody = $('#map-body');
+
+  if (mapPageBody.length === 0) {
+    //console.log('initMapExplore', 'no explore mode');
+    return;
+  }
+
+  sidebarMap = $('#sidebar-map');
+  sidebarMarker = $('#sidebar-marker');
+  markerModal = $('#map-marker-modal');
+  markerModalTitle = $('#map-marker-modal-title');
+  markerModalContent = $('#map-marker-modal-content'); // Allow ajax requests to use the X_CSRF_TOKEN for moves
+
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
+  window.markerDetails = function (url) {
+    showSidebar();
+
+    if (window.kankaIsMobile.matches) {
+      url = url + '?mobile=1';
+    }
+
+    $.ajax({
+      url: url,
+      type: 'GET',
+      async: true,
+      success: function success(result) {
+        if (result) {
+          if (window.kankaIsMobile.matches) {
+            markerModalTitle.html(result.name);
+            markerModalContent.html(result.body);
+          } else {
+            sidebarMarker.html(result.body);
+            handleCloseMarker();
+            mapPageBody.addClass('sidebar-open');
+          }
+
+          Object(_components_delete_confirm__WEBPACK_IMPORTED_MODULE_0__["default"])();
+        }
+      }
+    });
+  };
+
+  initLegend();
+  initMapEntryClick();
+}
+/**
+ * When submitting the layer or marker form from the map modal, disable the map form unsaved changed
+ * alert.
+ */
+
+
+function initMapForms() {
+  //console.info('mapsv3', 'initMapForms');
+  var layerForm = $('#map-layer-form');
+  var markerForm = $('#map-marker-form');
+  var groupForm = $('#map-group-form');
+
+  if ($('#entity-form').length === 0 && $('.map-marker-edit-form').length === 0) {
+    //console.info('initMapForms empty');
+    return;
+  }
+
+  layerForm.unbind('submit').on('submit', function () {
+    window.entityFormHasUnsavedChanges = false;
+  });
+  markerForm.unbind('submit').on('submit', function () {
+    window.entityFormHasUnsavedChanges = false;
+  });
+  groupForm.unbind('submit').on('submit', function () {
+    window.entityFormHasUnsavedChanges = false;
+  });
+  $('select[name="size_id"]').change(function (e) {
+    if (this.value == 6) {
+      $('.map-marker-circle-helper').hide();
+      $('.map-marker-circle-radius').show();
+    } else {
+      $('.map-marker-circle-radius').hide();
+      $('.map-marker-circle-helper').show();
+    }
+  });
+  initLegend();
+  initMapEntryClick();
+}
+
+function showSidebar() {
+  var spinner = '<div class="text-center"><i class="fa fa-spin fa-spinner fa-2x"></i></div>'; // On mobile use the modal instead of the sidebar
+
+  if (window.kankaIsMobile.matches) {
+    markerModalContent.html(spinner);
+    markerModal.modal('toggle');
+    return;
+  } //window.map.invalidateSize();
+
+
+  mapPageBody.removeClass('sidebar-collapse').addClass('sidebar-open');
+  sidebarMap.hide();
+  sidebarMarker.show().html(spinner);
+}
+
+function handleCloseMarker() {
+  $('.marker-close').click(function (ev) {
+    sidebarMarker.hide();
+    sidebarMap.show();
+  });
+}
+
+function initLegend() {
+  $('.map-legend-marker').click(function (ev) {
+    ev.preventDefault();
+    window.map.panTo(L.latLng($(this).data('lat'), $(this).data('lng')));
+    window[$(this).data('id')].openPopup();
+  });
+}
+
+function initMapEntryClick() {
+  $('.map-marker-entry-click').click(function (e) {
+    e.preventDefault();
+    $(this).parent().hide();
+    $('.map-marker-entry-entry').show();
+  });
+}
+
+/***/ }),
+
+/***/ 5:
+/*!******************************************************!*\
+  !*** multi ./resources/assets/js/location/map-v3.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/js/location/map-v3.js */"./resources/assets/js/location/map-v3.js");
+
+
+/***/ })
+
+/******/ });

@@ -8,7 +8,7 @@ import select2 from './components/select2.js';
 var characterAddPersonality, characterTemplatePersonality;
 var characterAddAppearance, characterTemplateAppearance;
 var characterSortPersonality, characterSortAppearance;
-var entityFormActions, entityFormDefaultAction;
+var entityFormActions;
 var characterAddOrganisation, characterTemplateOrganisation, characterOrganisations;
 
 var filtersActionsShow, filtersActionHide;
@@ -93,14 +93,14 @@ $(document).ready(function () {
  * Re-register any events that need to be binded when a modal is loaded
  */
 function registerModalLoad() {
-    $(document).on('shown.bs.modal shown.bs.popover', function() {
+    $(document).on('shown.bs.modal shown.bs.popover', function () {
         registerRelationFormSubmit();
         registerEntityCalendarModal();
     });
 }
 
 function registerEntityNameCheck() {
-    entityName.focusout(function(e) {
+    entityName.focusout(function (e) {
         // Don't bother if the user didn't set any value
         if (!$(this).val()) {
             return;
@@ -116,7 +116,7 @@ function registerEntityNameCheck() {
                 let entities = Object.keys(res)
                     // Filter out what isn't itself
                     .filter(function (k) { return !currentEntityID || currentEntityID != res[k].id })
-                    .map(function (k) { return '<a href="' + res[k].url + '">' + res[k].name + '</a>'})
+                    .map(function (k) { return '<a href="' + res[k].url + '">' + res[k].name + '</a>' })
 
 
                 if (entities.length > 0) {
@@ -133,8 +133,7 @@ function registerEntityNameCheck() {
 /**
  *
  */
-function initCharacterPersonality()
-{
+function initCharacterPersonality() {
     characterTemplatePersonality = $('#template_personality');
     characterAddPersonality.on('click', function (e) {
         e.preventDefault();
@@ -155,8 +154,7 @@ function initCharacterPersonality()
 /**
  *
  */
-function initCharacterAppearance()
-{
+function initCharacterAppearance() {
     characterTemplateAppearance = $('#template_appearance');
     characterAddAppearance.on('click', function (e) {
         e.preventDefault();
@@ -177,8 +175,7 @@ function initCharacterAppearance()
 /**
  *
  */
-function initCharacterOrganisation()
-{
+function initCharacterOrganisation() {
     characterTemplateOrganisation = $('#template_organisation');
     characterAddOrganisation.on('click', function (e) {
         e.preventDefault();
@@ -203,8 +200,7 @@ function initCharacterOrganisation()
 /**
  *
  */
-function characterDeleteRowHandler()
-{
+function characterDeleteRowHandler() {
     $.each($('.personality-delete'), function () {
         $(this).unbind('click'); // remove previous bindings
         $(this).on('click', function (e) {
@@ -230,8 +226,7 @@ function characterDeleteRowHandler()
 /**
  *
  */
-function registerPrivateCheckboxes()
-{
+function registerPrivateCheckboxes() {
     $.each($('[data-toggle="private"]'), function () {
         // Add the title first
         if ($(this).hasClass('fa-lock')) {
@@ -241,7 +236,7 @@ function registerPrivateCheckboxes()
         }
 
         // On click toggle
-        $(this).click(function(e) {
+        $(this).click(function (e) {
             if ($(this).hasClass('fa-lock')) {
                 // Unlock
                 $(this).removeClass('fa-lock').addClass('fa-unlock-alt').prop('title', $(this).data('public'));
@@ -257,20 +252,22 @@ function registerPrivateCheckboxes()
 /**
  *
  */
-function registerEntityFormActions()
-{
-    entityFormDefaultAction = $('#form-submit-main');
+function registerEntityFormActions() {
+    var entityFormMainButton = $('#form-submit-main')
+    var entityFormSubmitMode = $('#submit-mode');
+    if (entityFormSubmitMode == undefined) {
+        throw new Error("No submit mode hidden input found");
+    }
+
     // Register click on each sub action
     $.each(entityFormActions, function () {
         $(this).on('click', function () {
 
-            //console.log('setting the submit name to ' + $(this).data('action'));
+            console.log('setting the submit name to ' + $(this).data('action'));
 
-            entityFormDefaultAction
-                .attr('name', $(this).data('action'))
-                .click();
-            // .prop('disabled', true);
+            entityFormSubmitMode.attr('name', $(this).data('action'));
 
+            entityFormMainButton.trigger("click");
 
             return false;
         });
@@ -280,8 +277,7 @@ function registerEntityFormActions()
 /**
  * On all forms, we want to animate the submit button when it's clicked.
  */
-function registerFormSubmitAnimation()
-{
+function registerFormSubmitAnimation() {
     $.each($('form'), function () {
         $(this).on('submit', function () {
             // Saving, skip alert.
@@ -310,8 +306,7 @@ function registerFormSubmitAnimation()
     });
 }
 
-function registerEntityCalendarForm()
-{
+function registerEntityCalendarForm() {
     entityCalendarAdd = $('#entity-calendar-form-add');
     entityCalendarField = $('[name="calendar_id"]');
     entityCalendarModalForm = $('.entity-calendar-modal-form');
@@ -371,8 +366,7 @@ function registerEntityCalendarForm()
     }
 }
 
-function registerEntityCalendarModal()
-{
+function registerEntityCalendarModal() {
     if ($('#entity-calendar-modal-add').length === 0) {
         return;
     }
@@ -407,51 +401,49 @@ function registerEntityCalendarModal()
  *
  * @param calendarID
  */
-function loadCalendarDates(calendarID)
-{
+function loadCalendarDates(calendarID) {
     entityCalendarLoading.show();
 
     calendarID = parseInt(calendarID);
     var url = $('input[name="calendar-data-url"]').data('url').replace('/0/', '/' + calendarID + '/');
     $.ajax(url)
-    .done(function (data) {
-        entityCalendarYearField.html('');
-        entityCalendarMonthField.html('');
-        entityCalendarDayField.html('');
-        let id = 1;
-        $.each(data.months, function () {
-            var selected = id == data.current.month ? ' selected="selected"' : '';
-            entityCalendarMonthField.append('<option value="' + id + '"' + selected + '>' + this.name + '</option>');
-            id++;
+        .done(function (data) {
+            entityCalendarYearField.html('');
+            entityCalendarMonthField.html('');
+            entityCalendarDayField.html('');
+            let id = 1;
+            $.each(data.months, function () {
+                var selected = id == data.current.month ? ' selected="selected"' : '';
+                entityCalendarMonthField.append('<option value="' + id + '"' + selected + '>' + this.name + '</option>');
+                id++;
+            });
+            entityCalendarLoading.hide();
+            entityCalendarSubForm.show();
+
+            entityCalendarDayField.val(data.current.day);
+            entityCalendarYearField.val(data.current.year);
+
+            $('select[name="recurring_periodicity"] option').remove();
+            $.each(data.recurring, function (key, value) {
+                //console.log('moon', key, value);
+                $('select[name="recurring_periodicity"]').append('<option value="' + key + '">' + value + '</option>');
+            });
+
+            $('input[name="length"]').val(1);
+
+            // However, if there is only one result, select id.
+            if (data.length === 1) {
+                entityCalendarMonthField.val(data[0].id);
+            }
+
+            initSpectrum();
         });
-        entityCalendarLoading.hide();
-        entityCalendarSubForm.show();
-
-        entityCalendarDayField.val(data.current.day);
-        entityCalendarYearField.val(data.current.year);
-
-        $('select[name="recurring_periodicity"] option').remove();
-        $.each(data.recurring, function (key, value) {
-            //console.log('moon', key, value);
-            $('select[name="recurring_periodicity"]').append('<option value="' + key + '">' + value + '</option>');
-        });
-
-        $('input[name="length"]').val(1);
-
-        // However, if there is only one result, select id.
-        if (data.length === 1) {
-            entityCalendarMonthField.val(data[0].id);
-        }
-
-        initSpectrum();
-    });
 }
 
 /**
  *
  */
-function calendarHideSubform()
-{
+function calendarHideSubform() {
     entityCalendarForm.hide();
     entityCalendarAdd.show();
     $('input[name="calendar_day"]').val(null);
@@ -462,8 +454,7 @@ function calendarHideSubform()
 /**
  * Some panels can have their body toggled
  */
-function registerToggablePanels()
-{
+function registerToggablePanels() {
     toggablePanels = $('.panel-toggable');
     $.each(toggablePanels, function () {
         $(this).on('click', function () {
@@ -482,8 +473,7 @@ function registerToggablePanels()
 /**
  * If we change something on a form, avoid losing data when going away.
  */
-function registerUnsavedChanges()
-{
+function registerUnsavedChanges() {
     var save = $('#form-submit-main');
 
     // Save every input change
@@ -506,8 +496,7 @@ function registerUnsavedChanges()
 /**
  * When the entity form is submitted, we want to ajax validate the request first
  */
-function registerEntityFormSubmit()
-{
+function registerEntityFormSubmit() {
     $('#entity-form').submit(function (e) {
         if (validEntityForm) {
             return true;
@@ -575,14 +564,14 @@ function registerEntityFormSubmit()
 
             // If we can actually find the first element, switch to it and the correct tab.
             if (firstItemDom[0]) {
-                firstItemDom[0].scrollIntoView({behavior: 'smooth'});
+                firstItemDom[0].scrollIntoView({ behavior: 'smooth' });
 
                 // Switch tabs/pane
                 $('.tab-content .active').removeClass('active');
                 $('.nav-tabs li.active').removeClass('active');
                 var firstPane = $('[name="' + firstItem + '"').closest('.tab-pane');
                 firstPane.addClass('active');
-                $('a[href="#'+ firstPane.attr('id') + '"]').closest('li').addClass('active');
+                $('a[href="#' + firstPane.attr('id') + '"]').closest('li').addClass('active');
             }
 
             // Reset submit buttons
@@ -594,8 +583,7 @@ function registerEntityFormSubmit()
 /**
  *
  */
-function resetEntityFormSubmitAnimation()
-{
+function resetEntityFormSubmitAnimation() {
     var submit = $('#entity-form').find('.btn-success');
     if (submit.length > 0) {
         $.each(submit, function (su) {
@@ -610,8 +598,7 @@ function resetEntityFormSubmitAnimation()
 /**
  * When the relation form is submitted, we want to ajax validate the request first
  */
-function registerRelationFormSubmit()
-{
+function registerRelationFormSubmit() {
     $('#relation-form').submit(function (e) {
         if (validRelationForm) {
             return true;
@@ -670,8 +657,7 @@ function registerRelationFormSubmit()
 /**
  *
  */
-function resetRelationFormSubmitAnimation()
-{
+function resetRelationFormSubmitAnimation() {
     var submit = $('#relation-form').find('.btn-success');
     if (submit.length > 0) {
         $.each(submit, function (su) {
@@ -696,9 +682,8 @@ function registerDatagridSorter() {
     });
 }
 
-function registerPermissionToggler()
-{
-    $('.permission-toggle').change(function() {
+function registerPermissionToggler() {
+    $('.permission-toggle').change(function () {
         let action = $(this).data('action');
         let selector = "input[data-action=" + action + "]";
         if ($(this).prop('checked')) {
@@ -712,8 +697,7 @@ function registerPermissionToggler()
 /**
  *
  */
-function registerEntityNotePerms()
-{
+function registerEntityNotePerms() {
     let btn = $('#entity-note-perm-add');
     if (btn.length === 0) {
         return;
@@ -751,19 +735,17 @@ function registerEntityNotePerms()
     });
 }
 
-function registerEntityNoteDeleteEvents()
-{
-    $.each($('.entity-note-delete-perm'), function() {
+function registerEntityNoteDeleteEvents() {
+    $.each($('.entity-note-delete-perm'), function () {
         $(this).unbind('click');
-        $(this).on('click', function() {
+        $(this).on('click', function () {
             $(this).parent().parent().parent().parent().remove();
         });
     });
 }
 
 
-function initSpectrum()
-{
+function initSpectrum() {
     if (!$.isFunction($.fn.spectrum)) {
         return;
     }
@@ -778,8 +760,7 @@ function initSpectrum()
 /*
  *
  */
-function registerStoryActions()
-{
+function registerStoryActions() {
     let posts = $('.entity-note-body');
     $('.btn-post-collapse').unbind('click').click(function (e) {
         posts.each(function (i) {
@@ -807,8 +788,7 @@ function registerStoryActions()
 /*
  *
  */
-function registerStoryLoadMore()
-{
+function registerStoryLoadMore() {
     $('.story-load-more').click(function (e) {
         let btn = $(this);
 

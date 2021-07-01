@@ -76,6 +76,11 @@ class TimelineElementController extends Controller
     {
         $this->authorize('update', $timeline);
 
+        // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
         $model = new TimelineElement();
         $data = $request->only($this->fields);
         $data['timeline_id'] = $timeline->id;
@@ -117,6 +122,11 @@ class TimelineElementController extends Controller
     public function update(StoreTimelineElement $request, Timeline $timeline, TimelineElement $timelineElement)
     {
         $this->authorize('update', $timeline);
+
+        // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $data = $request->only($this->fields);
         if (!$request->has('entity_id')) {

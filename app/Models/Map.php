@@ -326,7 +326,7 @@ class Map extends MiscModel
                     'id' => $marker->id,
                     'longitude' => $marker->longitude,
                     'latitude' => $marker->latitude,
-                    'name' => $marker->markerTitle($link),
+                    'name' => str_replace("\\'", "'", $marker->markerTitle($link)),
                     'lower_name' => strtolower($marker->markerTitle(false)),
                 ]);
                 continue;

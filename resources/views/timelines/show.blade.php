@@ -19,3 +19,8 @@
         @include('entities.components.pins')
     </div>
 </div>
+
+@section('scripts')
+    @parent
+    <script src="{{ mix('js/ajax-subforms.js') }}" defer></script>
+@endsection
