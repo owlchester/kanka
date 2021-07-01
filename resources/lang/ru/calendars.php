@@ -144,6 +144,7 @@ return [
                 'newmoon'       => 'Новолуние',
                 'newmoon_name'  => 'Новолуние :moon',
                 'none'          => 'Нет',
+                'unnamed_moon'  => 'Луна :number',
                 'year'          => 'Ежегодное',
             ],
         ],

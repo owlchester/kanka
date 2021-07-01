@@ -61,6 +61,9 @@ return [
         'template'  => 'Vybrať šablónu',
         'value'     => 'Hodnota atribútu',
     ],
+    'show'          => [
+        'title' => 'Atribúty :name',
+    ],
     'template'      => [
         'success'   => 'Šablóna atribútov :name použitá na :entity',
         'title'     => 'Použiť šablónu atribútov na :name',
@@ -73,6 +76,9 @@ return [
         'random'    => 'Náhodne',
         'section'   => 'Sekcia',
         'text'      => 'Viacriadkový text',
+    ],
+    'update'        => [
+        'success'   => 'Atribúty pre :entity aktualizované.',
     ],
     'visibility'    => [
         'entry'     => 'Atribút je zobrazený v menu objektu.',

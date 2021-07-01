@@ -206,6 +206,7 @@ TEXT
             'roles_page'    => 'Rollenseite',
             'title'         => 'Einladen',
         ],
+        'manage_roles'          => 'Verwalten von Benutzerrollen',
         'roles'                 => [
             'member'    => 'Mitglied',
             'owner'     => 'Besitzer (privat Option sichtbar)',
@@ -215,6 +216,10 @@ TEXT
         ],
         'switch_back_success'   => 'Du bist nun zurück in deinem eigentlichen User.',
         'title'                 => 'Kampagne :name Mitglieder',
+        'updates'               => [
+            'added'     => 'Rolle :role zu :user hinzugefügt',
+            'removed'   => 'Rolle :role von :user entfernt',
+        ],
         'your_role'             => 'Du bist ein <i>:role</i>',
     ],
     'open_campaign'                     => [

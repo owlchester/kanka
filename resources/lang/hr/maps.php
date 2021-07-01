@@ -26,8 +26,10 @@ return [
         ],
     ],
     'fields'        => [
+        'center_marker'     => 'Marker',
         'center_x'          => 'Zadana pozicija zemljopisne dužine',
         'center_y'          => 'Zadana pozicija zemljopisne širine',
+        'centering'         => 'Centriranje',
         'distance_measure'  => 'Mjera udaljenosti',
         'distance_name'     => 'Jedinica udaljenosti',
         'grid'              => 'Mreža',
@@ -37,10 +39,15 @@ return [
         'max_zoom'          => 'Maksimalno povećanje',
         'min_zoom'          => 'Minimalno povećanje',
         'name'              => 'Ime',
+        'tabs'              => [
+            'coordinates'   => 'Koordinate',
+            'marker'        => 'Marker',
+        ],
         'type'              => 'Tip',
     ],
     'helpers'       => [
         'center'            => 'Promjena sljedećih vrijednosti kontrolira na koje područje je karta fokusirana. Ostavljanje ovih vrijednosti praznima rezultirat će se fokusom na središte karte.',
+        'centering'         => 'Centriranje na markeru imat će prioritet nad zadanim koordinatama.',
         'descendants'       => 'Ovaj popis sadrži sve karte koje su potomci ove karte, a ne samo one koje se nalaze neposredno ispod nje.',
         'distance_measure'  => 'Davanjem karte mjere udaljenosti omogućit će se alat za mjerenje u načinu istraživanja.',
         'grid'              => 'Definiraj veličinu mreže koja će biti prikazana u načinu istraživanja.',
@@ -65,6 +72,7 @@ return [
         'settings'  => 'Postavke',
     ],
     'placeholders'  => [
+        'center_marker'     => 'Ostavi prazno za učitavanje karte u sredini',
         'center_x'          => 'Ostavi prazno za učitavanje karte u sredini',
         'center_y'          => 'Ostavi prazno za učitavanje karte u sredini',
         'distance_measure'  => 'Jedinica po pikselu',

@@ -82,9 +82,11 @@ return [
             'dashboards'            => 'Establecer taboleiros personalizados para os roles da campaña',
             'description'           => 'Certos niveis de mecenazgo otorgan potenciadores que poden ser usados para potenciar campañas. Estes potenciadores otorgan os seguintes beneficios.',
             'entity_files'          => 'Aumento do número máximo de arquivos subido por entidade (ata 5 en lugar de 3)',
+            'entity_files_v2'       => 'Número máximo de arquivos subidos por entidade',
             'entity_links'          => 'Pon ligazóns a recursos e páxinas externas nas entidades',
             'header_image'          => 'Imaxe de cabeceira nas entidades',
             'images'                => 'Establecer imaxes por defecto personalizadas nas entidades',
+            'marketplace'           => 'Acceso ao :marketplace',
             'no_ads'                => 'Ningún anuncio na campaña',
             'recovery'              => 'Recuperación de entidades de ata 30 días',
             'relation-visualiser'   => 'Explora as relacións entre entidades visualmente',
@@ -92,6 +94,10 @@ return [
             'title'                 => 'Campañas potenciadas',
             'tooltip'               => 'Previsualizacións emerxentes personalizadas: mostrar imaxe, cambiar texto',
             'upload'                => 'Tamaño de arquivos subidos ampliado para todas as membras',
+        ],
+        'boosts_v2'         => [
+            'description'   => 'Os nosos niveis de pagamento danche acceso a potenciadores, os cales podes usar para potenciar ou superpotenciar campañas. Facelo desbloquea os seguintes beneficios para unha campaña.',
+            'title'         => 'Campañas potenciadas e superpotenciadas',
         ],
         'calendars'         => [
             'description'   => 'Crea calendarios personalizados e organiza as túas campañas en torno a eles.',

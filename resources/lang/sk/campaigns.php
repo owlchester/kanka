@@ -202,6 +202,7 @@ TEXT
             'roles_page'    => 'Stránka s rolami',
             'title'         => 'Pozvať',
         ],
+        'manage_roles'          => 'Spravovať roly užívateľov',
         'roles'                 => [
             'member'    => 'Člen',
             'owner'     => 'Administrátor',
@@ -211,6 +212,10 @@ TEXT
         ],
         'switch_back_success'   => 'Teraz si späť ako tvoj vlastný užívateľ.',
         'title'                 => 'Členovia kampane :name',
+        'updates'               => [
+            'added'     => 'Rola :role pridaná užívateľovi :user.',
+            'removed'   => 'Rola :role odňatá užívateľovi :user.',
+        ],
         'your_role'             => 'Tvoja rola: <i>:role</i>',
     ],
     'open_campaign'                     => [

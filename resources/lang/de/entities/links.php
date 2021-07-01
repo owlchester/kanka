@@ -32,6 +32,10 @@ return [
         'helper'    => 'Durch geboostete Kampagnen können Links zu Objekten hinzufügen, die auf externe Websites verweisen.',
         'title'     => 'Links für :name',
     ],
+    'unboosted'     => [
+        'text'  => 'Das Hinzufügen von Links zu externen Ressourcen, die direkt im Objekt angezeigt werden, ist :boosted-campaigns vorbehalten.',
+        'title' => 'Boosted Kampagnenfunktion',
+    ],
     'update'        => [
         'success'   => 'Link :name aktualisiert für :entity.',
         'title'     => 'Link aktualisieren für :name',

@@ -165,6 +165,7 @@ return array(
         'admin.releases',
         'admin.users',
         'randomisers.characters',
+        'backup::notifications',
     ),
     /**
      * Exclude specific groups from Laravel Translation Manager in page edit mode.

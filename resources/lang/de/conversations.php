@@ -15,6 +15,7 @@ return [
         'title'         => 'Unterhaltung :name',
     ],
     'fields'        => [
+        'is_closed'     => 'geschlossen',
         'messages'      => 'Nachrichten',
         'name'          => 'Name',
         'participants'  => 'Teilnehmer',
@@ -57,6 +58,7 @@ return [
     ],
     'show'          => [
         'description'   => 'Eine Detailansicht einer Unterhaltung',
+        'is_closed'     => 'Unterhaltung geschlossen',
         'title'         => 'Unterhaltung :name',
     ],
     'tabs'          => [

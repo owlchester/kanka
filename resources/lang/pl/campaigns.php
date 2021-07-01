@@ -200,6 +200,7 @@ TEXT
             'roles_page'    => 'lista ról',
             'title'         => 'Zaproszenia',
         ],
+        'manage_roles'          => 'Zarządzaj rolami uczestników',
         'roles'                 => [
             'member'    => 'Uczestnik',
             'owner'     => 'Administrator',
@@ -209,6 +210,10 @@ TEXT
         ],
         'switch_back_success'   => 'Powrócono do podstawowego profilu.',
         'title'                 => 'Uczestnicy kampanii :name',
+        'updates'               => [
+            'added'     => 'Uczestnikowi :user przyznano rolę :role.',
+            'removed'   => 'Uczestnikowi :user odebrano rolę :role.',
+        ],
         'your_role'             => 'Twoja rola: <i>:role</i>',
     ],
     'open_campaign'                     => [

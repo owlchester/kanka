@@ -145,6 +145,7 @@ return [
                 'newmoon'       => 'Lua nova',
                 'newmoon_name'  => ':moon lua nova',
                 'none'          => 'Nenhum',
+                'unnamed_moon'  => 'Lua :number',
                 'year'          => 'Anual',
             ],
         ],

@@ -26,8 +26,10 @@ return [
         ],
     ],
     'fields'        => [
+        'center_marker'     => 'Marcador',
         'center_x'          => 'Posición de lonxitude por defecto',
         'center_y'          => 'Posición de latitude por defecto',
+        'centering'         => 'Centrado',
         'distance_measure'  => 'Medida da distancia',
         'distance_name'     => 'Unidade de distancia',
         'grid'              => 'Reixa',
@@ -37,10 +39,15 @@ return [
         'max_zoom'          => 'Zoom máximo',
         'min_zoom'          => 'Zoom mínimo',
         'name'              => 'Nome',
+        'tabs'              => [
+            'coordinates'   => 'Coordenadas',
+            'marker'        => 'Marcador',
+        ],
         'type'              => 'Tipo',
     ],
     'helpers'       => [
         'center'            => 'Os seguintes valores controlan en que área do mapa está o foco. Deixar estes valores baleiros fará que o foco esté no centro.',
+        'centering'         => 'Centrar nun marcador será prioritario sobre as coordenadas por defecto.',
         'descendants'       => 'Esta lista contén todos os mapas descendentes deste mapa, non só os directamente debaixo del.',
         'distance_measure'  => 'Engadir unha medida da distancia ao mapa, habilitará a ferramenta de medida no modo de exploración.',
         'grid'              => 'Establece un tamaño para a reixa que se mostrará no modo de exploración.',
@@ -65,6 +72,7 @@ return [
         'settings'  => 'Configuración',
     ],
     'placeholders'  => [
+        'center_marker'     => 'Déixao baleiro para cargar o mapa no centro',
         'center_x'          => 'Déixao baleiro para cargar o mapa no centro',
         'center_y'          => 'Déixao baleiro para cargar o mapa no centro',
         'distance_measure'  => 'Unidades por píxel',

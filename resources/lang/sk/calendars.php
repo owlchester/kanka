@@ -145,6 +145,7 @@ return [
                 'newmoon'       => 'Nov',
                 'newmoon_name'  => 'Nov :moon',
                 'none'          => 'Žiadna',
+                'unnamed_moon'  => 'Mesiac :number',
                 'year'          => 'Ročne',
             ],
         ],

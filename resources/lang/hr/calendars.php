@@ -144,6 +144,7 @@ return [
                 'newmoon'       => 'Mladi mjesec',
                 'newmoon_name'  => ':moon mladi mjesec',
                 'none'          => 'Ništa',
+                'unnamed_moon'  => 'Mjesec :number',
                 'year'          => 'Godišnje',
             ],
         ],

@@ -44,6 +44,9 @@ return [
         'template'  => 'Odaberi predložak',
         'value'     => 'Vrijednost atributa',
     ],
+    'show'          => [
+        'title' => ':name atributi',
+    ],
     'template'      => [
         'success'   => 'Predložak atributa :name primijenjen na :entity',
         'title'     => 'Primijeni predložak atributa za :name',
@@ -56,6 +59,9 @@ return [
         'random'    => 'Nasumično',
         'section'   => 'Odjeljak',
         'text'      => 'Tekst u više redova',
+    ],
+    'update'        => [
+        'success'   => 'Ažurirani atributi za :entity.',
     ],
     'visibility'    => [
         'entry'     => 'Atribut je prikazan u izborniku entiteta.',

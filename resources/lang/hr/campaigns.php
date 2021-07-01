@@ -199,6 +199,7 @@ TEXT
             'roles_page'    => 'stranici uloga',
             'title'         => 'Pozvati',
         ],
+        'manage_roles'          => 'Upravljanje korisničkim ulogama',
         'roles'                 => [
             'member'    => 'Član',
             'owner'     => 'Administrator',
@@ -208,6 +209,10 @@ TEXT
         ],
         'switch_back_success'   => 'Vratio si se na svog korisnika.',
         'title'                 => 'Članovi kampanje :name',
+        'updates'               => [
+            'added'     => 'Uloga :role dodana korisniku :user.',
+            'removed'   => 'Uloga :role uklonjena od korisnika :user.',
+        ],
         'your_role'             => 'Tvoja uloga <i>:role</i>',
     ],
     'open_campaign'                     => [

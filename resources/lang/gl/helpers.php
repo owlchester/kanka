@@ -60,6 +60,10 @@ return [
         'private'       => 'Un mapa pode ser marcado como privado pola administración da campaña. Isto permitirá ao resto de integrantes da campaña ver un Lugar, pero manter o mapa segredo.',
         'title'         => 'Mapas de Lugares',
     ],
+    'pins'              => [
+        'description'   => 'As entidades poden ter relacións e atributos fixados á dereita da súa vista de historia. Para fixar un elemento, edita a relación ou o atributo e márcao como fixado.',
+        'title'         => 'Elementos fixados',
+    ],
     'public'            => 'Aprende máis sobre campañas públicas vendo o vídeo tutorial en Youtube.',
     'title'             => 'Consellos',
     'widget-filters'    => [

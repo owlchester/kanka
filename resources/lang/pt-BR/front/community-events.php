@@ -13,6 +13,7 @@ return [
     'fields'        => [
         'comment'       => 'Comentário',
         'entity_link'   => 'Link para a entidade',
+        'honorable'     => 'Menção honrosa',
         'rank'          => 'Classificação',
         'submitter'     => 'Participante',
     ],
@@ -37,6 +38,7 @@ return [
     ],
     'results'       => [
         'description'       => 'Nosso júri selecionou os seguintes envios como vencedores do evento.',
+        'scheduled'         => 'Esse evento começará em :start.',
         'title'             => 'Vencedores do evento',
         'waiting_results'   => 'O evento acabou! O júri do evento analisará as inscrições e, assim que os vencedores forem selecionados, eles serão exibidos aqui.',
     ],

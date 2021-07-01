@@ -44,6 +44,9 @@ return [
         'template'  => 'Selecciona un padrón',
         'value'     => 'Valor do atributo',
     ],
+    'show'          => [
+        'title' => 'Atributos de ":name"',
+    ],
     'template'      => [
         'success'   => 'Padrón de atributos ":name" aplicado a :entity',
         'title'     => 'Aplicar un padrón de atributos a :name',
@@ -56,6 +59,9 @@ return [
         'random'    => 'Aleatorio',
         'section'   => 'Sección',
         'text'      => 'Texto multiliña',
+    ],
+    'update'        => [
+        'success'   => 'Atributos de ":entity" actualizados.',
     ],
     'visibility'    => [
         'entry'     => 'O atributo é mostrado no menú da entidade.',

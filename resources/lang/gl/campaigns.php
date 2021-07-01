@@ -199,6 +199,7 @@ TEXT
             'roles_page'    => 'Páxina de roles',
             'title'         => 'Convidar',
         ],
+        'manage_roles'          => 'Administrar roles',
         'roles'                 => [
             'member'    => 'Integrante',
             'owner'     => 'Administración',
@@ -208,6 +209,10 @@ TEXT
         ],
         'switch_back_success'   => 'Voltaches á túa conta orixinal.',
         'title'                 => 'Integrantes da campaña ":name"',
+        'updates'               => [
+            'added'     => 'Rol :role engadido a :user.',
+            'removed'   => 'Rol :role eliminado de :user.',
+        ],
         'your_role'             => 'O teu rol: <i>:role</i>',
     ],
     'open_campaign'                     => [

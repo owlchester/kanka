@@ -13,6 +13,7 @@ return [
     'fields'        => [
         'comment'       => 'Komentarz',
         'entity_link'   => 'Odnośnik do elementu',
+        'honorable'     => 'Wyróżnienie',
         'rank'          => 'Ranga',
         'submitter'     => 'Zgłaszający',
     ],
@@ -37,6 +38,7 @@ return [
     ],
     'results'       => [
         'description'       => 'Nasze jury zdecydowało się wyróżnić następujące zgłoszenia do tego wydarzenia.',
+        'scheduled'         => 'Wydarzenie rozpocznie się :start.',
         'title'             => 'Zwycięzcy wydarzenia',
         'waiting_results'   => 'Wydarzenie zakończone! Jury oceni teraz zgłoszenia i wyłoni zwycięzców, którzy zostaną ogłoszeniu tutaj.',
     ],
