@@ -1,6 +1,14 @@
 <?php /** @var \App\Models\Entity $entity
  * @var \App\Models\Relation $relation
- */?>
+ */
+
+$options = [
+    '' => __('entities/relations.options.relations'),
+    'related' => __('entities/relations.options.related'),
+    'mentions' => __('entities/relations.options.mentions'),
+];
+
+?>
 @if(!$campaign->campaign()->boosted())
 
     <div class="visu-teaser text-center">
@@ -17,32 +25,11 @@
 ]) !!}
 <div class="box box-solid">
     <div class="box-body">
-        <div class="row">
-            <div class="col-sm-3">
-                {!! Form::hidden('relations', 0) !!}
-                <label>
-                    {!! Form::checkbox('relations', 1, request()->get('relations', true)) !!}
-                    {{ __('entities/relations.filters.relations') }}
-                </label>
-            </div>
-            <div class="col-sm-3">
-                {!! Form::hidden('related', 0) !!}
-                <label>
-                    {!! Form::checkbox('related', 1, request()->get('related', true)) !!}
-                    {{ __('entities/relations.filters.related') }}
-                </label>
-            </div>
-            <div class="col-sm-3">
-                {!! Form::hidden('mentions', 0) !!}
-                <label>
-                    {!! Form::checkbox('mentions', 1, request()->get('mentions', false)) !!}
-                    {{ __('entities/relations.filters.mentions') }}
-                </label>
-            </div>
-            <div class="col-sm-3 text-right">
-                <button class="btn btn-primary">
-                    {{ __('entities/relations.filters.submit') }}
-                </button>
+        <div class="input-group">
+            {!! Form::select('option', $options, $option, ['class' => 'form-control']) !!}
+            <div class="input-group-btn">
+
+                <input type="submit" value="{{ __('entities/relations.options.show') }}" class="btn btn-primary" />
             </div>
         </div>
     </div>
@@ -54,7 +41,7 @@
     <div class="loading text-center" id="spinner">
         <i class="fa fa-spinner fa-spin fa-4x"></i>
     </div>
-    <div id="cy" class="cy" style="display: none;" data-url="{{ route('entities.relations_map', array_merge([$entity], $options)) }}"></div>
+    <div id="cy" class="cy" style="display: none;" data-url="{{ route('entities.relations_map', [$entity, 'option' => $option]) }}"></div>
 
     </div>
 </div>

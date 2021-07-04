@@ -27,7 +27,7 @@
                 </a>
             </div>
 
-            <a href="{{ route('entities.relations.create', [$entity, 'from' => $mode]) }}" class="btn btn-sm btn-warning" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity]) }}">
+            <a href="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}" class="btn btn-sm btn-warning" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}">
                 <i class="fa fa-plus"></i>
                 <span class="hidden-xs hidden-sm">
                     {{ __('crud.relations.actions.add') }}

@@ -17,11 +17,11 @@ return [
         'target_relation'   => 'Target Relation',
         'two_way'           => 'Create mirror relation',
     ],
-    'filters' => [
+    'options' => [
         'relations' => 'Relations',
-        'related'   => 'Related',
-        'mentions'  => 'Mentions',
-        'submit'    => 'Show',
+        'related'   => 'Relations + connection',
+        'mentions'  => 'Relations + connection + mentions',
+        'show'    => 'Show',
     ],
     'helper'        => 'Set up relations between entities with attitudes and visibility. Relations can also be pinned to the entity\'s menu.',
     'hints'         => [
@@ -57,5 +57,6 @@ return [
         'quest_element' => 'Quest element',
         'map_point' => 'Map point',
         'timeline_element' => 'Timeline element',
+        'mention'   => 'Mention',
     ],
 ];

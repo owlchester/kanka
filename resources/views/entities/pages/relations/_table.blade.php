@@ -79,8 +79,8 @@
             @endif
             <td class="text-right">
                 @can('relation', [$entity->child, 'edit'])
-                    <a href="{{ route('entities.relations.edit', [$entity, 'relation' => $relation]) }}" class="btn btn-xs btn-primary"
-                       data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.edit', [$entity, 'relation' => $relation]) }}"
+                    <a href="{{ route('entities.relations.edit', [$entity, 'relation' => $relation, 'mode' => 'table']) }}" class="btn btn-xs btn-primary"
+                       data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.edit', [$entity, 'relation' => $relation, 'mode' => 'table']) }}"
                        title=" {{ __('crud.edit') }}"
                     >
                         <i class="fa fa-edit"></i>

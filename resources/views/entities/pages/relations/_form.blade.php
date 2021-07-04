@@ -70,3 +70,7 @@
         ]) !!}</p>
     </div>
 @endif
+
+@if (!empty($mode))
+    <input type="hidden" name="mode" value="{{ $mode }}" />
+@endif

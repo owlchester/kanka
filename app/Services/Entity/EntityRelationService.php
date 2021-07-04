@@ -8,6 +8,7 @@ use App\Models\Character;
 use App\Models\Conversation;
 use App\Models\DiceRoll;
 use App\Models\Entity;
+use App\Models\EntityMention;
 use App\Models\Family;
 use App\Models\Item;
 use App\Models\Journal;
@@ -50,8 +51,8 @@ class EntityRelationService
     /** @var bool Enable loading entities on relations */
     protected $withEntity = false;
 
-    /** @var array  */
-    protected $options = [];
+    /** @var string|null  */
+    protected $option = null;
 
     /**
      * @param Entity $entity
@@ -63,9 +64,12 @@ class EntityRelationService
         return $this;
     }
 
-    public function options(array $options): self
+    public function option(string $option = null): self
     {
-        $this->options = $options;
+        if (!in_array($option, ['related', 'mentions'])) {
+            $option = null;
+        }
+        $this->option = $option;
         return $this;
     }
 
@@ -799,6 +803,25 @@ class EntityRelationService
             return $this;
         }
 
+        /** @var EntityMention[] $mentions */
+        $mentions = $this->entity->targetMentions()->with('entity')->whereNotNull('entity_id')->get();
+        foreach ($mentions as $mention) {
+            // Skip mentions to self
+            if ($mention->entity_id == $this->entity->id) {
+                continue;
+            }
+            $this->addEntity($mention->entity);
+            $this->relations[] = [
+                'source' => $this->entity->id,
+                'target' => $mention->entity->id,
+                'text' => __('entities/relations.connections.mention'),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'entity-mention',
+                'shape' => 'none',
+            ];
+        }
+
         return $this;
     }
 
@@ -807,7 +830,7 @@ class EntityRelationService
      */
     protected function loadRelations(): bool
     {
-        return(bool) Arr::get($this->options, 'relations', true);
+        return(bool) true;
     }
 
     /**
@@ -815,7 +838,7 @@ class EntityRelationService
      */
     protected function loadRelated(): bool
     {
-        return(bool) Arr::get($this->options, 'related', true);
+        return(bool) in_array($this->option, ['related', 'mentions']);
     }
 
     /**
@@ -823,6 +846,6 @@ class EntityRelationService
      */
     protected function loadMentions(): bool
     {
-        return(bool) Arr::get($this->options, 'mentions', false);
+        return (bool) $this->option == 'mentions';
     }
 }

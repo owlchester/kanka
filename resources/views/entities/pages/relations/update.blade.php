@@ -23,7 +23,7 @@
     <div class="panel panel-default">
     @endif
 
-        <div class="@if(request()->ajax()) modal-body @else panel-body @endif">
+        <div class="@if(!request()->ajax()) panel-body @endif">
             @include('partials.errors')
 
             {!! Form::model($relation, ['route' => ['entities.relations.update', $entity->id, $relation], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}

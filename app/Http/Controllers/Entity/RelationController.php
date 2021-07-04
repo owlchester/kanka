@@ -76,15 +76,9 @@ class RelationController extends Controller
             $mode = null;
         }
 
-        $options = [];
-        if (request()->has('relations')) {
-            $options['relations'] = request()->get('relations');
-        }
-        if (request()->has('related')) {
-            $options['related'] = request()->get('related');
-        }
-        if (request()->has('mentions')) {
-            $options['mentions'] = request()->get('mentions');
+        $option = request()->get('option', null);
+        if (!in_array($option, ['related', 'mentions'])) {
+            $option = null;
         }
 
         $ajax = request()->ajax();
@@ -114,7 +108,7 @@ class RelationController extends Controller
             'relations',
             'datagridSorter',
             'mode',
-            'options',
+            'option',
             'connections',
             'connectionService'
         ));
@@ -130,10 +124,12 @@ class RelationController extends Controller
         $this->authorize('update', $entity->child);
 
         $ajax = request()->ajax();
+        $mode = $this->getModeOption();
 
         return view('entities.pages.relations.create', compact(
             'entity',
-            'ajax'
+            'ajax',
+            'mode'
         ));
     }
 
@@ -149,7 +145,6 @@ class RelationController extends Controller
         $data = $request->only([
             'owner_id', 'target_id', 'attitude', 'relation', 'colour', 'is_star', 'two_way', 'visibility'
         ]);
-        $ajax = $request->ajax();
 
         /** @var Relation $relation */
         $relation = new Relation();
@@ -159,8 +154,14 @@ class RelationController extends Controller
             $relation->createMirror();
         }
 
+        $mode = $this->getModeOption(true);
+        $redirect = [$entity];
+        if (!empty($mode)) {
+            $redirect['mode'] = $mode;
+        }
+
         return redirect()
-            ->route('entities.relations.index', $entity)
+            ->route('entities.relations.index', $redirect)
             ->with('success', trans('entities/relations.create.success', [
                 'target' => $relation->target->name,
                 'entity' => $entity->name
@@ -184,12 +185,14 @@ class RelationController extends Controller
 
         $ajax = request()->ajax();
         $from = (int) request()->get('from', 0);
+        $mode = $this->getModeOption();
 
         return view('entities.pages.relations.update', compact(
             'entity',
             'relation',
             'ajax',
-            'from'
+            'from',
+            'mode'
         ));
     }
 
@@ -203,16 +206,21 @@ class RelationController extends Controller
         $this->authorize('update', $entity->child);
 
         $data = $request->only(['target_id', 'attitude', 'relation', 'colour', 'is_star', 'two_way', 'visibility']);
-        $ajax = $request->ajax();
 
         $relation->update($data);
         $relation->refresh();
+        $mode = $this->getModeOption();
 
         if (request()->has('from')) {
             $from = (int) request()->post('from');
             if (!empty($from)) {
+                $redirect = [$from];
+                if (!empty($mode)) {
+                    $redirect['mode'] = $mode;
+                }
+
                 return redirect()
-                    ->route('entities.relations.index', $from)
+                    ->route('entities.relations.index', $redirect)
                     ->with('success', trans('entities/relations' . '.update.success', [
                         'target' => $relation->target->name,
                         'entity' => $entity->name
@@ -220,8 +228,13 @@ class RelationController extends Controller
             }
         }
 
+
+        $redirect = [$entity];
+        if (!empty($mode)) {
+            $redirect['mode'] = $mode;
+        }
         return redirect()
-            ->route('entities.relations.index', $entity)
+            ->route('entities.relations.index', $redirect)
             ->with('success', trans('entities/relations' . '.update.success', [
                 'target' => $relation->target->name,
                 'entity' => $entity->name
@@ -283,10 +296,25 @@ class RelationController extends Controller
         }
 
         $map = $this->service->entity($entity)
-            ->options(request()->only('relations', 'mentions', 'related'))
+            ->option(request()->get('option', null))
             ->map();
         return response()->json(
             $map
         );
+    }
+
+    /**
+     * @return mixed|null
+     */
+    protected function getModeOption(bool $post = false)
+    {
+        $mode = request()->get('mode');
+        if ($post) {
+            $mode = request()->post('mode');
+        }
+        if (in_array($mode, ['mode', 'table'])) {
+            return $mode;
+        }
+        return null;
     }
 }
