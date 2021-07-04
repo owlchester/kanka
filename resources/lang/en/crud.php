@@ -358,6 +358,7 @@ return [
         'profile'       => 'Profile',
         'quests'        => 'Quests',
         'relations'     => 'Relations',
+        'connections'   => 'Connections',
         'reminders'     => 'Reminders',
         'story'         => 'Story',
         'timelines'     => 'Timelines',

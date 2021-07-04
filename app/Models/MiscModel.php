@@ -356,7 +356,7 @@ abstract class MiscModel extends Model
         // Each entity can have relations
         if (!isset($this->hasRelations) || $this->hasRelations === true) {
             $items['first']['relations'] = [
-                'name' => 'crud.tabs.relations',
+                'name' => 'crud.tabs.connections',
                 'route' => 'entities.relations.index',
                 'count' => $this->entity->relationships()->acl()->count(),
                 'entity' => true,
@@ -640,7 +640,7 @@ abstract class MiscModel extends Model
         if (!isset($this->hasRelations)) {
             $actions[] = '<li>
                 <a href="' . route('entities.relations.index', $this->entity) . '" class="dropdown-item">
-                    <i class="fa fa-users" aria-hidden="true"></i> ' . __('crud.tabs.relations') . '
+                    <i class="fa fa-users" aria-hidden="true"></i> ' . __('crud.tabs.mentions') . '
                 </a>
             </li>';
 

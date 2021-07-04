@@ -390,15 +390,6 @@ class Location extends MiscModel
             ];
         }
 
-        $count = $this->maps()->count();
-        if ($campaign->enabled('maps') && $count > 0) {
-            $items['second']['maps'] = [
-                'name' => 'locations.show.tabs.maps',
-                'route' => 'locations.maps',
-                'count' => $count
-            ];
-        }
-
         $count = $this->allCharacters()->count();
         if ($campaign->enabled('characters') && $count > 0) {
             $items['second']['characters'] = [
@@ -407,43 +398,11 @@ class Location extends MiscModel
                 'count' => $count
             ];
         }
-        $count = $this->allFamilies()->count();
-        if ($campaign->enabled('families') && $count > 0) {
-            $items['second']['families'] = [
-                'name' => 'locations.show.tabs.families',
-                'route' => 'locations.families',
-                'count' => $count
-            ];
-        }
         $count = $this->events()->count();
         if ($campaign->enabled('events') && $count > 0) {
             $items['second']['events'] = [
                 'name' => 'locations.show.tabs.events',
                 'route' => 'locations.events',
-                'count' => $count
-            ];
-        }
-        $count = $this->items()->count();
-        if ($campaign->enabled('items') && $count > 0) {
-            $items['second']['items'] = [
-                'name' => 'locations.show.tabs.items',
-                'route' => 'locations.items',
-                'count' => $count
-            ];
-        }
-        $count = $this->organisations()->count();
-        if ($campaign->enabled('organisations') && $count > 0) {
-            $items['second']['organisations'] = [
-                'name' => 'locations.show.tabs.organisations',
-                'route' => 'locations.organisations',
-                'count' => $count
-            ];
-        }
-        $count = $this->journals()->count();
-        if ($campaign->enabled('journals') && $count > 0) {
-            $items['second']['journals'] = [
-                'name' => 'locations.show.tabs.journals',
-                'route' => 'locations.journals',
                 'count' => $count
             ];
         }

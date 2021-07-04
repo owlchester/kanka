@@ -58,10 +58,12 @@ class ConnectionService
         }
     }
 
+    /**
+     * Load anything related to a character
+     */
     protected function initCharacter()
     {
-
-        $this->loadMaps()
+        $this->loadMapMarkerss()
             ->loadQuests()
             ->loadItems()
             ->loadJournals()
@@ -70,6 +72,25 @@ class ConnectionService
         ;
     }
 
+    /**
+     * Load anything related to a location
+     */
+    protected function initLocation()
+    {
+        $this->loadMapMarkers()
+            ->loadQuests()
+            ->loadItems()
+            ->loadOrganisations()
+            ->loadMaps()
+            ->loadJournals()
+            ->loadFamilies()
+            ->loadTimelines()
+        ;
+    }
+
+    /**
+     * @return $this
+     */
     protected function loadQuests(): self
     {
         $elements = $this->entity->quests()->with(['quest', 'quest.entity'])->has('quest')->get();
@@ -92,7 +113,7 @@ class ConnectionService
         return $this;
     }
 
-    protected function loadMaps(): self
+    protected function loadMapMarkers(): self
     {
         $elements = $this->entity->mapMarkers()->with(['map', 'map.entity'])->has('map')->get();
         foreach ($elements as $sub) {
@@ -103,13 +124,24 @@ class ConnectionService
         return $this;
     }
 
+    protected function loadMaps(): self
+    {
+        $elements = $this->entity->child->maps()->with(['entity'])->has('entity')->get();
+        foreach ($elements as $sub) {
+            $entity = $sub->map->entity;
+            $this->ids[] = $entity->id;
+            $this->reasons[$entity->id][] = __('entities.map');
+        }
+        return $this;
+    }
+
     protected function loadDicerolls(): self
     {
         $elements = $this->entity->child->diceRolls()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
-            $this->reasons[$entity->id][] = __('characters.show.tabs.dice_rolls');
+            $this->reasons[$entity->id][] = __('entities.dice_roll');
         }
         return $this;
     }
@@ -120,7 +152,7 @@ class ConnectionService
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
-            $this->reasons[$entity->id][] = __('characters.show.tabs.conversations');
+            $this->reasons[$entity->id][] = __('entities.conversation');
         }
         return $this;
     }
@@ -131,7 +163,7 @@ class ConnectionService
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
-            $this->reasons[$entity->id][] = __('characters.show.tabs.items');
+            $this->reasons[$entity->id][] = __('entities.item');
         }
         return $this;
     }
@@ -142,7 +174,29 @@ class ConnectionService
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
-            $this->reasons[$entity->id][] = __('characters.show.tabs.journals');
+            $this->reasons[$entity->id][] = __('entities.journal');
+        }
+        return $this;
+    }
+
+    protected function loadFamilies(): self
+    {
+        $elements = $this->entity->child->families()->with(['entity'])->has('entity')->get();
+        foreach ($elements as $sub) {
+            $entity = $sub->entity;
+            $this->ids[] = $entity->id;
+            $this->reasons[$entity->id][] = __('entities.family');
+        }
+        return $this;
+    }
+
+    protected function loadOrganisations(): self
+    {
+        $elements = $this->entity->child->organisations()->with(['entity'])->has('entity')->get();
+        foreach ($elements as $sub) {
+            $entity = $sub->entity;
+            $this->ids[] = $entity->id;
+            $this->reasons[$entity->id][] = __('entities.organisation');
         }
         return $this;
     }

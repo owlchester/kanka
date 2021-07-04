@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'actions'         => [
+        'mode-table'    => 'Table of relations and connections',
+        'mode-map'  => 'Relation exploration tool',
+    ],
     'create'        => [
         'success'   => 'Relation :target added to :entity.',
         'title'     => 'New relation for :name',
@@ -17,12 +21,6 @@ return [
         'target_relation'   => 'Target Relation',
         'two_way'           => 'Create mirror relation',
     ],
-    'options' => [
-        'relations' => 'Relations',
-        'related'   => 'Relations + connection',
-        'mentions'  => 'Relations + connection + mentions',
-        'show'    => 'Show',
-    ],
     'helper'        => 'Set up relations between entities with attitudes and visibility. Relations can also be pinned to the entity\'s menu.',
     'hints'         => [
         'attitude'          => 'This optional field can be used to define the default order relations appear in by descending order.',
@@ -33,8 +31,14 @@ return [
         'target_relation'   => 'The relation description on the target. Leave blank to use this relation\'s text.',
         'two_way'           => 'If you select to create a mirror relation, the same relation will be created on the target. However, if you edit one, the mirror won\'t be updated.',
     ],
+    'options'       => [
+        'relations' => 'Relations',
+        'related'   => 'Relations + connection',
+        'mentions'  => 'Relations + connection + mentions',
+        'show'      => 'Show',
+    ],
     'panels'        => [
-        'connections'   => 'Connections',
+        'related'   => 'Related',
     ],
     'placeholders'  => [
         'attitude'  => '-100 to 100, 100 being very positive',

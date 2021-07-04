@@ -3,10 +3,10 @@
  * @var \App\Services\Entity\ConnectionService $connectionService
  */
 ?>
-<div class="box box-solid box-entity-connections" id="entity-connections">
+<div class="box box-solid box-entity-connections" id="entity-related">
     <div class="box-body">
         <h2 class="page-header with-border">
-            {{ __('entities/relations.panels.connections') }}
+            {{ __('entities/relations.panels.related') }}
         </h2>
 
         <table class="table table-hover">
@@ -23,10 +23,15 @@
                 <tr>
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $connection->child->getImageUrl(40) }}');" title="{{ $connection->name }}" href="{{ $connection->url() }}"></a>
-
                     </td>
                     <td>
                         {!! $connection->child->tooltipedLink() !!}
+
+                        @if ($connection->type == 'map')
+                            <a href="{{ route('maps.explore', $connection->child) }}" class="btn btn-xs btn-primary" target="_blank">
+                                <i class="fa fa-map"></i> {{ __('maps.actions.explore') }}
+                            </a>
+                        @endif
                     </td>
                     <td>
                         {{ __('entities.' . $connection->child->getEntityType()) }}

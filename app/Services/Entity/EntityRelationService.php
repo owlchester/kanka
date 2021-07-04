@@ -580,7 +580,7 @@ class EntityRelationService
                 'text' => __('crud.fields.item'),
                 'colour' => '#ccc',
                 'attitude' => null,
-                'type' => 'journal-author',
+                'type' => 'entity-item',
                 'shape' => 'none',
             ];
         }
@@ -680,7 +680,7 @@ class EntityRelationService
             $this->relations[] = [
                 'source' => $this->entity->id,
                 'target' => $related->entity->id,
-                'text' => __('characters.show.tabs.dice_rolls'),
+                'text' => __('entities.dice_roll'),
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'character-diceroll',
@@ -701,7 +701,7 @@ class EntityRelationService
             $this->relations[] = [
                 'source' => $this->entity->id,
                 'target' => $related->entity->id,
-                'text' => __('characters.show.tabs.conversations'),
+                'text' => __('entities.conversation'),
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'character-diceroll',
