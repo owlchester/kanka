@@ -257,6 +257,7 @@ class MentionsService
 
             /** @var Entity $entity */
             $entity = $this->entity($data['id']);
+            $cssClasses = [];
 
             // No entity found, the user might not be allowed to see it
             if (empty($entity) || empty($entity->child)) {
@@ -307,7 +308,13 @@ class MentionsService
                     }
                 }
 
+                // Add tags as a class
+                foreach ($entity->tags as $tag) {
+                    $cssClasses[] = 'tag-' . $tag->id;
+                }
+
                 $replace = '<a href="' . $url . '"'
+                    . ' class="entity-mention ' . implode(' ', $cssClasses) . '"'
                     . ' data-toggle="tooltip-ajax"'
                     . ' data-id="' . $entity->id . '"'
                     . ' data-url="' . $dataUrl . '"'
