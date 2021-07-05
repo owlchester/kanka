@@ -268,7 +268,7 @@ class MentionsService
                     $url .= '/' . strip_tags(trim($data['page'], '/'));
 
                     // Let's validate this new url first. Maybe we need to map to entities/id (ex inventory)
-                    $entityPages = ['inventory', 'abilities', 'relations'];
+                    $entityPages = ['inventory', 'abilities', 'relations', 'attributes', 'assets'];
                     if (in_array($data['page'], $entityPages)) {
                         $page = $data['page'];
                         if ($page == 'relations') {
@@ -284,6 +284,27 @@ class MentionsService
                     $lang = request()->header('kanka-locale', auth()->user()->locale ?? 'en');
                     $url = Str::replaceFirst('campaign/', $lang . '/campaign/', $url);
                     $dataUrl = Str::replaceFirst('campaign/', $lang . '/campaign/', $dataUrl);
+                }
+
+                // Referencing a custom field on the entity
+                if (!empty($data['field'])) {
+                    $field = $data['field'];
+                    // Mapping
+                    if ($field == 'gender') {
+                        $field = 'sex';
+                    }
+                    if (isset($entity->child->$field)) {
+                        $foreign = $entity->child->$field;
+                        if ($foreign instanceof Model) {
+                            if (isset($foreign->name) && !empty($foreign->name)) {
+                                $data['text'] = $foreign->name;
+                            }
+                        } elseif (is_string($foreign)) {
+                            $data['text'] = $foreign;
+                        }
+                    } elseif(isset($entity->$field) && is_string($entity->$field)) {
+                        $data['text'] = $entity->$field;
+                    }
                 }
 
                 $replace = '<a href="' . $url . '"'

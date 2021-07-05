@@ -94,6 +94,9 @@ trait MentionTrait
                 } elseif ($type == 'tab') {
                     $data['tab'] = strtolower($value);
                     $data['custom'] = true;
+                } elseif ($type == 'field') {
+                    $data['field'] = strtolower($value);
+                    $data['custom'] = true;
                 }
             }
         }
