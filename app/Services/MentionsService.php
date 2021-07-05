@@ -310,11 +310,13 @@ class MentionsService
 
                 // Add tags as a class
                 foreach ($entity->tags as $tag) {
-                    $cssClasses[] = 'tag-' . $tag->id;
+                    $cssClasses[] = 'id-' . $tag->id;
+                    $cssClasses[] = Str::slug($tag->name);
                 }
 
                 $replace = '<a href="' . $url . '"'
-                    . ' class="entity-mention ' . implode(' ', $cssClasses) . '"'
+                    . ' class="entity-mention"'
+                    . ' data-entity-tags="' . implode(' ', $cssClasses) . '""'
                     . ' data-toggle="tooltip-ajax"'
                     . ' data-id="' . $entity->id . '"'
                     . ' data-url="' . $dataUrl . '"'
@@ -359,7 +361,7 @@ class MentionsService
             } else {
                 $name = $entity->name;
             }
-            return '<a href="#" class="mention" data-name="' . $name . '" data-mention="' . $matches[0] . '">' . $name . '</a>';
+            return '<a href="#" class="mention invalid-mention" data-name="' . $name . '" data-mention="' . $matches[0] . '">' . $name . '</a>';
         }, $this->text);
 
         // Extract links from the entry to attribute
@@ -375,7 +377,7 @@ class MentionsService
             } else {
                 $name = $attribute->name;
             }
-            return '<a href="#" class="attribute" data-attribute="' . $matches[0] . '">{' . $name . '}</a>';
+            return '<a href="#" class="attribute attribute-mention" data-attribute="' . $matches[0] . '">{' . $name . '}</a>';
         }, $this->text);
 
         return $this->text;
