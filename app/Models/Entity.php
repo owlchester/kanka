@@ -304,27 +304,6 @@ class Entity extends Model
     }
 
     /**
-     * @return mixed
-     */
-    public function starredAttributes()
-    {
-        return $this->attributes()->stared()->ordered();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function starredRelations()
-    {
-        return $this->relationships()
-            ->stared()
-            ->ordered()
-            ->with('target')
-            ->has('target')
-            ->acl();
-    }
-
-    /**
      * Get the image (or default image) of an entity
      * @param int $width = 200
      * @param int $height = null (null takes width)

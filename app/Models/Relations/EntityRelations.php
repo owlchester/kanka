@@ -61,6 +61,18 @@ trait EntityRelations
     }
 
     /**
+     * Call $entity->entityAttributes to avoid multiple calls to the db
+     * @return mixed
+     */
+    public function entityAttributes()
+    {
+        return $this->attributes()
+            ->with('entity')
+            ->order('default_order')
+        ;
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function attributeTemplate()
@@ -396,5 +408,26 @@ trait EntityRelations
     public function links()
     {
         return $this->hasMany('App\Models\EntityLink', 'entity_id', 'id');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function starredAttributes()
+    {
+        return $this->entityAttributes->where('is_star', 1);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function starredRelations()
+    {
+        return $this->relationships()
+            ->stared()
+            ->ordered()
+            ->with('target')
+            ->has('target')
+            ->acl();
     }
 }
