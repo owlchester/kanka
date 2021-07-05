@@ -5,7 +5,7 @@ if (request()->has('tag_id')) {
     $filters['tag_id'] = request()->get('tag_id');
 }
 ?>
-<div class="box box-solid">
+<div class="box box-solid" id="tag-tags">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ trans('tags.show.tabs.children') }}
@@ -20,11 +20,11 @@ if (request()->has('tag_id')) {
             </div>
             <div class="col-md-6 text-right">
                 @if (request()->has('tag_id'))
-                    <a href="{{ route('tags.tags', $model) }}" class="btn btn-default btn-sm pull-right">
+                    <a href="{{ route('tags.tags', [$model, '#tag-tags']) }}" class="btn btn-default btn-sm pull-right">
                         <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
                     </a>
                 @else
-                    <a href="{{ route('tags.tags', [$model, 'tag_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
+                    <a href="{{ route('tags.tags', [$model, 'tag_id' => $model->id, '#tag-tags']) }}" class="btn btn-default btn-sm pull-right">
                         <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->tags()->count() }})
                     </a>
                 @endif
@@ -60,6 +60,6 @@ if (request()->has('tag_id')) {
             </tbody>
         </table>
 
-        {{ $r->links() }}
+        {{ $r->fragment('tag-tags')->links() }}
     </div>
 </div>

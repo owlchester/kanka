@@ -130,6 +130,6 @@ $datagridSorter->request(request()->all());
             </tbody>
         </table>
 
-        {{ $r->appends('all_members', request()->get('all_members'))->links() }}
+        {{ $r->fragment('organisation-members')->appends('all_members', request()->get('all_members'))->links() }}
     </div>
 </div>

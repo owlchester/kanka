@@ -3,7 +3,13 @@ $filters = [];
 if (request()->has('parent_location_id')) {
     $filters['parent_location_id'] = request()->get('parent_location_id');
 }
-?><div class="box box-solid">
+
+$r = $model->descendants()
+        ->filter($filters)
+        ->with('parent')
+        ->simpleSort($datagridSorter)
+        ->paginate();
+?><div class="box box-solid" id="location-locations">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ trans('locations.show.tabs.locations') }}
@@ -19,19 +25,17 @@ if (request()->has('parent_location_id')) {
             </div>
             <div class="col-md-6 text-right">
                 @if (request()->has('parent_location_id'))
-                    <a href="{{ route('locations.locations', $model) }}" class="btn btn-default btn-sm pull-right">
+                    <a href="{{ route('locations.locations', [$model, '#location-locations']) }}" class="btn btn-default btn-sm pull-right">
                         <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
                     </a>
                 @else
-                    <a href="{{ route('locations.locations', [$model, 'parent_location_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
+                    <a href="{{ route('locations.locations', [$model, 'parent_location_id' => $model->id, '#location-locations']) }}" class="btn btn-default btn-sm pull-right">
                         <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->locations()->count() }})
                     </a>
                 @endif
             </div>
         </div>
 
-
-        <?php $r = $model->descendants()->filter($filters)->with('parent')->simpleSort($datagridSorter)->paginate(); ?>
         <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('locations.show.tabs.locations') }}</p>
         <table id="locations" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
@@ -61,6 +65,6 @@ if (request()->has('parent_location_id')) {
             </tbody>
         </table>
 
-        {{ $r->appends($filters)->links() }}
+        {{ $r->fragment('location-locations')->appends($filters)->links() }}
     </div>
 </div>

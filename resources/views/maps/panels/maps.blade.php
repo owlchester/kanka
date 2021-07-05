@@ -1,10 +1,15 @@
 <?php
 $filters = [];
 if (request()->has('map_id')) {
-$filters['map_id'] = request()->get('map_id');
+    $filters['map_id'] = request()->get('map_id');
 }
+$r = $model->descendants()
+        ->filter($filters)
+        ->simpleSort($datagridSorter)
+        ->with('parent')
+        ->paginate();
 ?>
-<div class="box box-solid">
+<div class="box box-solid" id="map-maps">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ trans('maps.show.tabs.maps') }}
@@ -18,18 +23,17 @@ $filters['map_id'] = request()->get('map_id');
             </div>
             <div class="col-md-6 text-right">
                 @if (request()->has('map_id'))
-                    <a href="{{ route('maps.maps', $model) }}" class="btn btn-default btn-sm pull-right">
+                    <a href="{{ route('maps.maps', [$model, '#map-maps']) }}" class="btn btn-default btn-sm pull-right">
                         <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants->count() }})
                     </a>
                 @else
-                    <a href="{{ route('maps.maps', [$model, 'map_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
+                    <a href="{{ route('maps.maps', [$model, 'map_id' => $model->id, '#map-maps']) }}" class="btn btn-default btn-sm pull-right">
                         <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->maps->count() }})
                     </a>
                 @endif
             </div>
         </div>
 
-        <?php $r = $model->descendants()->filter($filters)->simpleSort($datagridSorter)->with('parent')->paginate(); ?>
         <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('maps.show.tabs.maps') }}</p>
         <table id="maps" class="table table-hover margin-top {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
@@ -55,6 +59,6 @@ $filters['map_id'] = request()->get('map_id');
             </tbody>
         </table>
 
-        {{ $r->links() }}
+        {{ $r->fragment('map-maps')->links() }}
     </div>
 </div>

@@ -81,6 +81,6 @@ $r = $r->acl()
             </tbody>
         </table>
 
-        {{ $r->links() }}
+        {{ $r->fragment('tag-children')->links() }}
     </div>
 </div>

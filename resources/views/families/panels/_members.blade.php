@@ -22,7 +22,7 @@ $r = $r->with(['race', 'location'])->simpleSort($datagridSorter)->orderBy('name'
 <div class="box box-solid" id="family-members">
     <div class="box-header with-border">
         <h3 class="box-title">
-            {{ trans('families.show.tabs.members') }}
+            {{ __('families.show.tabs.members') }}
         </h3>
         <div class="box-tools pull-right">
             @if (!$allMembers)
@@ -37,23 +37,23 @@ $r = $r->with(['race', 'location'])->simpleSort($datagridSorter)->orderBy('name'
         </div>
     </div>
     <div class="box-body">
-        <p class="help-block">{{ trans('families.members.helpers.direct_members') }}</p>
+        <p class="help-block">{{ __('families.members.helpers.direct_members') }}</p>
 
         @include('cruds.datagrids.sorters.simple-sorter')
 
         <table id="family-characters" class="table table-hover margin-top">
             <thead><tr>
                 <th class="avatar"><br></th>
-                <th>{{ trans('characters.fields.name') }}</th>
+                <th>{{ __('characters.fields.name') }}</th>
                 @if($allMembers)<th>{{ __('characters.fields.family') }}</th>@endif
                 @if ($campaign->enabled('locations'))
-                    <th>{{ trans('characters.fields.location') }}</th>
+                    <th class="hidden-xs hidden-sm">{{ __('characters.fields.location') }}</th>
                 @endif
                 @if ($campaign->enabled('races'))
-                    <th>{{ trans('characters.fields.race') }}</th>
+                    <th class="hidden-xs hidden-sm">{{ __('characters.fields.race') }}</th>
                 @endif
-                <th>{{ trans('characters.fields.sex') }}</th>
-                <th>{{ trans('characters.fields.is_dead') }}</th>
+                <th>{{ __('characters.fields.sex') }}</th>
+                <th>{{ __('characters.fields.is_dead') }}</th>
             </tr></thead>
             <tbody>
             @foreach ($r as $member)
@@ -67,14 +67,14 @@ $r = $r->with(['race', 'location'])->simpleSort($datagridSorter)->orderBy('name'
                     </td>
                     @if($allMembers)<td>{!! $member->family->tooltipedLink() !!}</td>@endif
                     @if ($campaign->enabled('locations'))
-                        <td>
+                        <td class="hidden-xs hidden-sm">
                             @if ($member->location)
                                 {!! $member->location->tooltipedLink() !!}
                             @endif
                         </td>
                     @endif
                     @if ($campaign->enabled('races'))
-                        <td>
+                        <td class="hidden-xs hidden-sm">
                             @if ($member->race)
                                 {!! $member->race->tooltipedLink() !!}
                             @endif
@@ -87,6 +87,6 @@ $r = $r->with(['race', 'location'])->simpleSort($datagridSorter)->orderBy('name'
             </tbody>
         </table>
 
-        {{ $r->appends('all_members', request()->get('all_members'))->links() }}
+        {{ $r->appends('all_members', request()->get('all_members'))->fragment('family-members')->links() }}
     </div>
 </div>

@@ -52,7 +52,7 @@ class ConnectionService
         if (method_exists($this, $entityHook)) {
             $this->$entityHook();
         } else {
-            $this->loadMaps()
+            $this->loadMapMarkers()
                 ->loadTimelines()
                 ->loadQuests();
         }
@@ -63,7 +63,7 @@ class ConnectionService
      */
     protected function initCharacter()
     {
-        $this->loadMapMarkerss()
+        $this->loadMapMarkers()
             ->loadQuests()
             ->loadItems()
             ->loadJournals()

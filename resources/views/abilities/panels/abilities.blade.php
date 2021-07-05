@@ -1,16 +1,21 @@
 <?php
 $filters = [];
 if (request()->has('ability_id')) {
-$filters['ability_id'] = request()->get('ability_id');
+    $filters['ability_id'] = request()->get('ability_id');
 }
+$r = $model->descendants()
+        ->filter($filters)
+        ->simpleSort($datagridSorter)
+        ->with('parent')
+        ->paginate();
 ?>
-<div class="box box-solid">
+<div class="box box-solid" id="ability-abilities">
     <div class="box-body">
         <h2 class="page-header with-border">
-            {{ trans('abilities.show.tabs.abilities') }}
+            {{ __('abilities.show.tabs.abilities') }}
         </h2>
 
-        <p class="help-block">{{ trans('abilities.helpers.descendants') }}</p>
+        <p class="help-block">{{ __('abilities.helpers.descendants') }}</p>
 
         <div class="row export-hidden">
             <div class="col-md-6">
@@ -18,25 +23,24 @@ $filters['ability_id'] = request()->get('ability_id');
             </div>
             <div class="col-md-6 text-right">
                 @if (request()->has('ability_id'))
-                    <a href="{{ route('abilities.abilities', $model) }}" class="btn btn-default btn-sm pull-right">
+                    <a href="{{ route('abilities.abilities', [$model, '#ability-abilities']) }}" class="btn btn-default btn-sm pull-right">
                         <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants->count() }})
                     </a>
                 @else
-                    <a href="{{ route('abilities.abilities', [$model, 'ability_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
+                    <a href="{{ route('abilities.abilities', [$model, 'ability_id' => $model->id, '#ability-abilities']) }}" class="btn btn-default btn-sm pull-right">
                         <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->abilities->count() }})
                     </a>
                 @endif
             </div>
         </div>
 
-        <?php $r = $model->descendants()->filter($filters)->simpleSort($datagridSorter)->with('parent')->paginate(); ?>
-        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('abilities.show.tabs.abilities') }}</p>
+        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ __('abilities.show.tabs.abilities') }}</p>
         <table id="abilities" class="table table-hover margin-top {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>
-                <th>{{ trans('abilities.fields.name') }}</th>
-                <th>{{ trans('crud.fields.ability') }}</th>
-                <th>{{ trans('crud.fields.type') }}</th>
+                <th>{{ __('abilities.fields.name') }}</th>
+                <th>{{ __('crud.fields.ability') }}</th>
+                <th>{{ __('crud.fields.type') }}</th>
             </tr>
             @foreach ($r as $ability)
                 <tr>
@@ -61,6 +65,6 @@ $filters['ability_id'] = request()->get('ability_id');
             </tbody>
         </table>
 
-        {{ $r->links() }}
+        {{ $r->fragment('ability-abilities')->links() }}
     </div>
 </div>

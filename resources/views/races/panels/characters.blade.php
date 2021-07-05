@@ -85,6 +85,6 @@ $r = $model->allCharacters()
             </tbody>
         </table>
 
-        {{ $r->appends('all_members', request()->get('all_members'))->links() }}
+        {{ $r->fragment('race-characters')->appends('all_members', request()->get('all_members'))->links() }}
     </div>
     </div>

@@ -7,8 +7,13 @@ $filters = [];
 if (request()->has('journal_id')) {
     $filters['journal_id'] = request()->get('journal_id');
 }
+$r = $model->allJournals()
+        ->filter($filters)
+        ->simpleSort($datagridSorter)
+        ->with(['character', 'entity', 'entity.tags'])
+        ->paginate();
 ?>
-<div class="box box-solid">
+<div class="box box-solid" id="journal-journals">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ trans('journals.show.tabs.journals') }}
@@ -26,18 +31,16 @@ if (request()->has('journal_id')) {
             <div class="col-md-6 text-right">
 
                 @if (request()->has('journal_id'))
-                    <a href="{{ route('journals.journals', $model) }}" class="btn btn-default btn-sm pull-right">
+                    <a href="{{ route('journals.journals', [$model, '#journal-journals']) }}" class="btn btn-default btn-sm pull-right">
                         <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allJournals()->count() }})
                     </a>
                 @else
-                    <a href="{{ route('journals.journals', [$model, 'journal_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
+                    <a href="{{ route('journals.journals', [$model, 'journal_id' => $model->id, '#journal-journals']) }}" class="btn btn-default btn-sm pull-right">
                         <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->journals()->count() }})
                     </a>
                 @endif
             </div>
         </div>
-
-        <?php  $r = $model->allJournals()->filter($filters)->simpleSort($datagridSorter)->with(['character', 'entity', 'entity.tags'])->paginate(); ?>
         <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('journals.show.tabs.journalsJourn') }}</p>
         <table id="journals" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
@@ -74,6 +77,6 @@ if (request()->has('journal_id')) {
             </tbody>
         </table>
 
-        {{ $r->appends($filters)->links() }}
+        {{ $r->fragment('journal-journals')->appends($filters)->links() }}
     </div>
 </div>
