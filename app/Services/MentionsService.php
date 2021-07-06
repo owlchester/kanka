@@ -316,7 +316,7 @@ class MentionsService
 
                 $replace = '<a href="' . $url . '"'
                     . ' class="entity-mention"'
-                    . ' data-entity-tags="' . implode(' ', $cssClasses) . '""'
+                    . ' data-entity-tags="' . implode(' ', $cssClasses) . '"'
                     . ' data-toggle="tooltip-ajax"'
                     . ' data-id="' . $entity->id . '"'
                     . ' data-url="' . $dataUrl . '"'
