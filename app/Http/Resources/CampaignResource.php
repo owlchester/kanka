@@ -44,6 +44,7 @@ class CampaignResource extends JsonResource
             'settings' => $this->settings,
             'ui_settings' => $this->ui_settings,
             'default_images' => $this->default_images,
+            'css' => $this->css,
         ];
 
         if ($this->withMentions) {

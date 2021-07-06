@@ -33,8 +33,8 @@ return [
     ],
     'options'       => [
         'relations' => 'Relations',
-        'related'   => 'Relations + connection',
-        'mentions'  => 'Relations + connection + mentions',
+        'related'   => 'Relations + related',
+        'mentions'  => 'Relations + related + mentions',
         'show'      => 'Show',
     ],
     'panels'        => [

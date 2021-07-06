@@ -46,7 +46,8 @@ You can get a list of all the campaigns the user has access to using the followi
             ],
             "setting": [],
             "ui_settings": [],
-            "default_images": []
+            "default_images": [],
+            "css": "..."
         }
     ],
     "links": {
@@ -103,7 +104,8 @@ Getting a single campaign is straightforward. `{id}` is to be replaced with the 
         ],
         "setting": [],
         "ui_settings": [],
-        "default_images": []
+        "default_images": [],
+        "css": "..."
     }
 }
 ```

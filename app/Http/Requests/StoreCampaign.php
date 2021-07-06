@@ -23,7 +23,7 @@ class StoreCampaign extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'name' => 'required|string|min:4',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'header_image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
@@ -34,5 +34,11 @@ class StoreCampaign extends FormRequest
             'css' =>  'nullable|string',
             'theme_id' => 'nullable|exists:themes,id'
         ];
+
+        if (request()->is('api/*')) {
+            $rules['name'] = 'string|min:4';
+        }
+
+        return $rules;
     }
 }
