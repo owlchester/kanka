@@ -210,6 +210,22 @@ class CampaignDashboardWidget extends Model
         );
     }
 
+    /**
+     * @return bool
+     */
+    public function showRelations(): bool
+    {
+        if (!in_array($this->widget, [self::WIDGET_PREVIEW, self::WIDGET_RECENT])) {
+            return false;
+        }
+
+        return $this->conf('relations') == '1' && (
+            ($this->widget == self::WIDGET_PREVIEW && !empty($this->entity))
+            ||
+            ($this->widget == self::WIDGET_RECENT)
+        );
+    }
+
     /*
      * Show members of families and organisations
      * @param Entity|null $entity

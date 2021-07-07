@@ -10,9 +10,15 @@
 @endif
 
 @php
+$child = null;
+if (isset($model)) {
+    $child = $model;
+} else {
+    $child = $entity->child;
+}
 $members = $entity->typeId() == config('entities.ids.family')
-    ? $entity->child->members()->orderBy('name')->get()
-    : $entity->child->members()->with(['character', 'character.entity'])->get()
+    ? $child->members()->orderBy('name')->get()
+    : $child->members()->with(['character', 'character.entity'])->get()
 ;
 @endphp
 

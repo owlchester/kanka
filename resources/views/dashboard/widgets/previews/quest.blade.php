@@ -60,6 +60,7 @@ $model = $entity->child;
             </div>
 
             @include('dashboard.widgets.previews._members')
+            @include('dashboard.widgets.previews._relations')
             @include('dashboard.widgets.previews._attributes')
         @else
         <div class="pinned-entity preview" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">

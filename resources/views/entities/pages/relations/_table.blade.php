@@ -53,6 +53,9 @@
         @viewentity($relation->target)
         <tr>
             <td class="breakable">
+                @if ($relation->is_star)
+                    <i class="fas fa-star" title="{{ __('crud.fields.is_star') }}" data-toggle="tooltip"></i>
+                @endif
                 {{ $relation->relation }}
             </td>
             <td>
@@ -114,3 +117,14 @@
 
 
 @includeWhen(!$connections->isEmpty(), 'entities.pages.relations._connections')
+
+
+@section('scripts')
+    @parent
+    <script src="/vendor/spectrum/spectrum.js" defer></script>
+@endsection
+
+@section('styles')
+    @parent
+    <link href="/vendor/spectrum/spectrum.css" rel="stylesheet">
+@endsection

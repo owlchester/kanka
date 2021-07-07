@@ -223,7 +223,7 @@ return [
         'image_limitations'     => 'Supported formats: :formats. Max file size: :size.',
         'image_patreon'         => 'Increase file size limit?',
         'is_private'            => 'If set to private, this entity will only be visible to members who are in the campaign\'s "Admin" role.',
-        'is_star'               => 'Pinned elements will appear on the entity\'s menu',
+        'is_star'               => 'Pinned elements will appear on the entity\'s story page.',
         'tooltip'               => 'Replace the automatically generated tooltip with the following contents. Any HTML code will be stripped, but you can still mention other entities using advanced mentions.',
         'visibility'            => 'Setting the visibility to admin means only members in the Admin campaign role can view this. Setting it to self means only you can view this.',
     ],

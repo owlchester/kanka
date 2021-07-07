@@ -62,6 +62,7 @@ $specificPreview = 'dashboard.widgets.previews.' . $entity->type;
             </div>
 
             @include('dashboard.widgets.previews._members')
+            @include('dashboard.widgets.previews._relations')
             @include('dashboard.widgets.previews._attributes')
         </div>
         <a href="#" class="preview-switch hidden"
