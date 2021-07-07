@@ -3,7 +3,6 @@
 
 namespace App\Http\Controllers\Maps;
 
-
 use App\Facades\CampaignLocalization;
 use App\Facades\FormCopy;
 use App\Http\Controllers\Controller;
@@ -94,7 +93,7 @@ class MapMarkerController extends Controller
 
         if ($request->has('submit-explore')) {
             return redirect()
-                ->route('maps.explore', [$map])
+                ->route('maps.explore', [$map, 'focus' => $new->id])
                 ->withSuccess(__('maps/markers.create.success', ['name' => $new->name]));
         } elseif ($request->has('submit-update')) {
             return redirect()
@@ -108,7 +107,6 @@ class MapMarkerController extends Controller
         return redirect()
             ->route('maps.edit', [$map, '#tab_form-markers', 'focus' => $new->id])
             ->withSuccess(__('maps/markers.create.success', ['name' => $new->name]));
-
     }
 
     /**
@@ -156,7 +154,7 @@ class MapMarkerController extends Controller
 
         if ($request->has('submit-explore')) {
             return redirect()
-                ->route('maps.explore', [$map])
+                ->route('maps.explore', [$map, 'focus' => $mapMarker->id])
                 ->withSuccess(__('maps/markers.edit.success', ['name' => $mapMarker->name]));
         } elseif ($request->has('submit-update')) {
             return redirect()
@@ -167,7 +165,6 @@ class MapMarkerController extends Controller
         return redirect()
             ->route('maps.edit', [$map, '#tab_form-markers'])
             ->withSuccess(__('maps/markers.edit.success', ['name' => $mapMarker->name]));
-
     }
 
     /**
