@@ -169,6 +169,7 @@ return [
             . "docs.google.com/|"
             . "drive.google.com/|"
             . "www.google.com/maps/embed|"
+            . "calendar.google.com/calendar/embed|"
             . "snazzymaps.com/embed|"
             . "lookingforgm\.com/campaign/|"
             . "w.soundcloud.com/player/|"
