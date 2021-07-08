@@ -95,7 +95,7 @@
             }
 
             @if ($marker->entity && $marker->icon == 4).marker-{{ $marker->id }} .marker-pin::after {
-                background-image: url({{ $marker->entity->child->getImageUrl(400) }});
+                background-image: url('{{ $marker->entity->child->getImageUrl(400) }}');
                 @if (!empty($marker->pin_size))width: {{ $marker->pinSize(false) - 4 }}px;
                 height: {{ $marker->pinSize(false) - 4 }}px;
                 margin: 2px 0 0 -{{ ceil(($marker->pinSize(false) - 4) / 2) }}px;
