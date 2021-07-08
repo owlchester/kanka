@@ -1521,6 +1521,14 @@ summary {
   text-decoration: underline;
 }
 
+.entity-header.with-entity-header .entity-header-sub .entity-header-sub-element {
+  display: inline-block;
+}
+
+.entity-header.with-entity-header .entity-header-sub .entity-header-sub-element:not(:last-child) {
+  margin-right: 10px;
+}
+
 .entity-links {
   margin: 5px 0;
 }

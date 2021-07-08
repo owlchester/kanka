@@ -125,6 +125,14 @@
       color: white;
       text-decoration: underline;
     }
+
+    .entity-header-sub-element {
+      display: inline-block;
+
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
   }
 }
 .entity-links {

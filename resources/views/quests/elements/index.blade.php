@@ -38,7 +38,7 @@
                         <div class="box box-widget widget-user-2 box-quest-element">
                             <div class="widget-user-header {{ $element->colourClass() }}">
                                 <div class="widget-user-image">
-                                    <div class="entity-image" style="background-image: url({{ $element->entity->avatar(true) }})" title="{{ $element->entity->name }}">
+                                    <div class="entity-image" style="background-image: url('{{ $element->entity->avatar(true) }}')" title="{{ $element->entity->name }}">
                                     </div>
                                 </div>
 
