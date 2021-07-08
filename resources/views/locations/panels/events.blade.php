@@ -11,7 +11,7 @@
                 <th class="avatar"><br /></th>
                 <th>{{ trans('events.fields.name') }}</th>
                 <th>{{ trans('events.fields.type') }}</th>
-                <th>&nbsp;</th>
+                <th>{{ trans('events.fields.date') }}</th>
             </tr>
             @foreach ($r as $event)
                 <tr>
@@ -22,11 +22,7 @@
                         {!! $event->tooltipedLink() !!}
                     </td>
                     <td>{{ $event->type }}</td>
-                    <td class="text-right">
-                        <a href="{{ route('events.show', [$event]) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
-                        </a>
-                    </td>
+                    <td>{{ $event->date }}</td>
                 </tr>
             @endforeach
             </tbody>
