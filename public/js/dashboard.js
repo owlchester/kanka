@@ -97,7 +97,6 @@
  * Dashboard
  */
 var newWidget, newWidgetPreview, newWidgetCalendar, newWidgetRecent;
-var btnWidgetPreview, btnWidgetCalendar, btnWidgetRecent;
 var btnAddWidget;
 var modalContentButtons, modalContentTarget, modalContentSpinner;
 $(document).ready(function () {
@@ -154,9 +153,6 @@ function initDashboardAdminUI() {
   newWidgetPreview = $('#new-widget-preview');
   newWidgetCalendar = $('#new-widget-calendar');
   newWidgetRecent = $('#new-widget-recent');
-  btnWidgetPreview = $('#btn-widget-preview');
-  btnWidgetCalendar = $('#btn-widget-calendar');
-  btnWidgetRecent = $('#btn-widget-recent');
   btnAddWidget = $('#btn-add-widget');
   modalContentButtons = $('#modal-content-buttons');
   modalContentTarget = $('#modal-content-target');
@@ -207,15 +203,13 @@ function initDashboardAdminUI() {
 function loadModalForm(url) {
   // Remove content from any edit widget already loaded (to avoid having multiple fields with the tag id
   $('#edit-widget .modal-content').html('');
-  modalContentButtons.fadeOut(400, function () {
-    modalContentSpinner.fadeIn();
-  });
+  modalContentButtons.hide();
+  modalContentSpinner.show();
   $.ajax(url).done(function (data) {
     modalContentSpinner.hide();
     modalContentTarget.html(data);
     window.initSelect2();
     window.initCategories();
-    console.log('sub');
     initWidgetSubform();
   });
 }
@@ -263,7 +257,6 @@ function initDashboardRecent() {
 
 function initDashboardCalendars() {
   $('.widget-calendar-switch').click(function (e) {
-    console.log('click calendar switch');
     var url = $(this).data('url'),
         widget = $(this).data('widget');
     $.ajaxSetup({

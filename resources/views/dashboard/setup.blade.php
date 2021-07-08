@@ -157,40 +157,40 @@
                         {{ trans('dashboard.setup.actions.add') }}
                     </h4>
                 </div>
-                <div class="modal-body">
-                    <div id="modal-content-buttons">
-                        <div class="btn btn-block btn-default btn-lg" id="btn-widget-preview" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'preview', 'dashboard' => $dashboard]) }}">
-                            <i class="fa fa-align-justify"></i> {{ __('dashboard.setup.widgets.preview') }}
-                        </div>
-                        <div class="btn btn-block btn-default btn-lg" id="btn-widget-calendar" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'calendar', 'dashboard' => $dashboard]) }}">
-                            <i class="ra ra-moon-sun"></i> {{ __('dashboard.setup.widgets.calendar') }}
-                        </div>
-                        <div class="btn btn-block btn-default btn-lg" id="btn-widget-recent" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'recent', 'dashboard' => $dashboard]) }}">
-                            <i class="fa fa-history"></i> {{ __('dashboard.setup.widgets.recent') }}
-                        </div>
-                        <div class="btn btn-block btn-default btn-lg" id="btn-widget-header" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => \App\Models\CampaignDashboardWidget::WIDGET_HEADER, 'dashboard' => $dashboard]) }}">
-                            <i class="fas fa-heading"></i> {{ __('dashboard.setup.widgets.header') }}
-                        </div>
-                        <div class="btn btn-block btn-default btn-lg" id="btn-widget-unmentioned" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'unmentioned', 'dashboard' => $dashboard]) }}">
-                            <i class="fa fa-question"></i> {{ __('dashboard.setup.widgets.unmentioned') }}
-                        </div>
-                        <div class="btn btn-block btn-default btn-lg" id="btn-widget-random" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'random', 'dashboard' => $dashboard]) }}">
-                            <i class="fas fa-dice-d20"></i> {{ __('dashboard.setup.widgets.random') }}
-                        </div>
-                        @if(!empty($dashboard))
-
-                            <div class="btn btn-block btn-default btn-lg" id="btn-widget-campaign" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'campaign', 'dashboard' => $dashboard]) }}">
-                                <i class="fas fa-th-list"></i> {{ __('dashboard.setup.widgets.campaign') }}
-                            </div>
-                        @endif
+                <div class="modal-body" id="modal-content-buttons">
+                    <div class="btn btn-block btn-default btn-lg" id="btn-widget-preview" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'preview', 'dashboard' => $dashboard]) }}">
+                        <i class="fa fa-align-justify"></i> {{ __('dashboard.setup.widgets.preview') }}
                     </div>
+                    <div class="btn btn-block btn-default btn-lg" id="btn-widget-calendar" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'calendar', 'dashboard' => $dashboard]) }}">
+                        <i class="ra ra-moon-sun"></i> {{ __('dashboard.setup.widgets.calendar') }}
+                    </div>
+                    <div class="btn btn-block btn-default btn-lg" id="btn-widget-recent" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'recent', 'dashboard' => $dashboard]) }}">
+                        <i class="fa fa-history"></i> {{ __('dashboard.setup.widgets.recent') }}
+                    </div>
+                    <div class="btn btn-block btn-default btn-lg" id="btn-widget-header" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => \App\Models\CampaignDashboardWidget::WIDGET_HEADER, 'dashboard' => $dashboard]) }}">
+                        <i class="fas fa-heading"></i> {{ __('dashboard.setup.widgets.header') }}
+                    </div>
+                    <div class="btn btn-block btn-default btn-lg" id="btn-widget-unmentioned" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'unmentioned', 'dashboard' => $dashboard]) }}">
+                        <i class="fa fa-question"></i> {{ __('dashboard.setup.widgets.unmentioned') }}
+                    </div>
+                    <div class="btn btn-block btn-default btn-lg" id="btn-widget-random" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'random', 'dashboard' => $dashboard]) }}">
+                        <i class="fas fa-dice-d20"></i> {{ __('dashboard.setup.widgets.random') }}
+                    </div>
+                    @if(!empty($dashboard))
 
-                    <div id="modal-content-target">
-                        <div class="text-center" id="modal-content-spinner" style="display: none;">
-                            <h1><i class="fa fa-spin fa-spinner"></i></h1>
+                        <div class="btn btn-block btn-default btn-lg" id="btn-widget-campaign" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'campaign', 'dashboard' => $dashboard]) }}">
+                            <i class="fas fa-th-list"></i> {{ __('dashboard.setup.widgets.campaign') }}
                         </div>
+                    @endif
+                </div>
+
+                <div class="modal-body" id="modal-content-spinner">
+                    <div class="text-center">
+                        <h1><i class="fa fa-spin fa-spinner"></i></h1>
                     </div>
                 </div>
+
+                <div id="modal-content-target"></div>
             </div>
         </div>
     </div>

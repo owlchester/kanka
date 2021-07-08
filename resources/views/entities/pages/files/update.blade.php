@@ -39,9 +39,6 @@
         </div>
 
         {!! Form::close() !!}
-
-
-    </div>
     </div>
 
     {!! Form::open(['method' => 'DELETE', 'route' => ['entities.entity_files.destroy', 'entity' => $entity, 'entity_file' => $entityFile], 'style' => 'display:inline', 'id' => 'delete-form-link-' . $entityFile->id]) !!}

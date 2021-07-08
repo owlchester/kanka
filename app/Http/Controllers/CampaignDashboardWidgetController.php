@@ -7,7 +7,6 @@ use App\Http\Requests\StoreCampaignDashboardWidget;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
 use App\Services\EntityService;
-use Illuminate\Support\Str;
 
 class CampaignDashboardWidgetController extends Controller
 {
@@ -54,9 +53,10 @@ class CampaignDashboardWidgetController extends Controller
         $widget = request()->get('widget', 'preview');
         $entities = $this->buildEntities();
 
-        $dashboard = request()->has('dashboard') ? CampaignDashboard::where('id', request()->get('dashboard'))->first() : null;
+        $dashboard = request()->has('dashboard') ?
+            CampaignDashboard::where('id', request()->get('dashboard'))->first() : null;
 
-        return view('dashboard.widgets.forms.form', [
+        return view('dashboard.widgets.forms.create', [
             'widget' => $widget,
             'entities' => $entities,
             'dashboard' => $dashboard
@@ -64,10 +64,9 @@ class CampaignDashboardWidgetController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreCampaignDashboardWidget $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(StoreCampaignDashboardWidget $request)
     {
@@ -76,19 +75,24 @@ class CampaignDashboardWidgetController extends Controller
 
         $widget = CampaignDashboardWidget::create($request->all());
 
-        return redirect()->route('dashboard.setup', $widget->dashboard_id ? ['dashboard' => $widget->dashboard_id] : null)
-            ->with('success', trans('dashboard.widgets.create.success'));
+        return redirect()
+            ->route('dashboard.setup', $widget->dashboard_id ? ['dashboard' => $widget->dashboard_id] : null)
+            ->with('success', __('dashboard.widgets.create.success'));
     }
 
+    /**
+     * @param CampaignDashboardWidget $campaignDashboardWidget
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function show(CampaignDashboardWidget $campaignDashboardWidget)
     {
         return redirect()->route('dashboard');
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param CampaignDashboardWidget $campaignDashboardWidget
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(CampaignDashboardWidget $campaignDashboardWidget)
     {
@@ -101,7 +105,7 @@ class CampaignDashboardWidgetController extends Controller
             $dashboards[$id] = $dashboard;
         }
 
-        return view('dashboard.widgets.forms.form', [
+        return view('dashboard.widgets.forms.edit', [
             'model' => $campaignDashboardWidget,
             'widget' => $campaignDashboardWidget->widget,
             'entities' => $entities,
@@ -122,8 +126,9 @@ class CampaignDashboardWidgetController extends Controller
 
         $campaignDashboardWidget->update($request->all());
 
-        return redirect()->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ? ['dashboard' => $campaignDashboardWidget->dashboard_id] : null)
-            ->with('success', trans('dashboard.widgets.update.success'));
+        return redirect()
+            ->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ? ['dashboard' => $campaignDashboardWidget->dashboard_id] : null)
+            ->with('success', __('dashboard.widgets.update.success'));
     }
 
 
@@ -140,8 +145,9 @@ class CampaignDashboardWidgetController extends Controller
 
         $campaignDashboardWidget->delete();
 
-        return redirect()->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ? ['dashboard' => $campaignDashboardWidget->dashboard_id] : null)
-            ->with('success', trans('dashboard.widgets.delete.success'));
+        return redirect()
+            ->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ? ['dashboard' => $campaignDashboardWidget->dashboard_id] : null)
+            ->with('success', __('dashboard.widgets.delete.success'));
     }
 
     /**
@@ -154,7 +160,10 @@ class CampaignDashboardWidgetController extends Controller
             '' => 'All',
         ];
 
-        foreach ($this->entityService->getEnabledEntities(CampaignLocalization::getCampaign(), ['menu_links']) as $entity) {
+        $enabledEntities = $this
+            ->entityService
+            ->getEnabledEntities(CampaignLocalization::getCampaign(), ['menu_links']);
+        foreach ($enabledEntities as $entity) {
             $entities[$entity] = __('entities.' . $entity);
         }
 

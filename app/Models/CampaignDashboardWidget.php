@@ -191,7 +191,11 @@ class CampaignDashboardWidget extends Model
      */
     public function hasAdvancedOptions(): bool
     {
-        return $this->conf('attributes') == 1 || $this->conf('members') == '1' || $this->conf('entity-header') == '1';
+        return $this->conf('attributes') == 1 ||
+            $this->conf('members') == '1' ||
+            $this->conf('entity-header') == '1' ||
+            $this->conf('relations') == '1'
+        ;
     }
 
     /**
