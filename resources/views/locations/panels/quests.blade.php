@@ -1,24 +1,24 @@
 <div class="box box-solid">
     <div class="box-body">
         <h2 class="page-header with-border">
-            {{ trans('locations.show.tabs.quests') }}
+            {{ __('locations.show.tabs.quests') }}
         </h2>
 
         <?php  $r = $model->relatedQuests()->paginate(); ?>
         <table id="location-quests" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>
-                <th>{{ trans('quests.fields.name') }}</th>
-                <th class="hidden-sm">{{ trans('quests.fields.role') }}</th>
-                <th class="visible-sm">{{ trans('quests.fields.type') }}</th>
-                <th class="visible-sm">{{ trans('quests.fields.quest') }}</th>
+                <th>{{ __('quests.fields.name') }}</th>
+                <th class="hidden-sm">{{ __('quests.fields.role') }}</th>
+                <th class="visible-sm">{{ __('quests.fields.type') }}</th>
+                <th class="visible-sm">{{ __('quests.fields.quest') }}</th>
                 @if ($campaign->enabled('locations'))
-                    <th class="visible-sm">{{ trans('quests.fields.locations') }}</th>
+                    <th class="visible-sm">{{ __('quests.fields.locations') }}</th>
                 @endif
                 @if ($campaign->enabled('characters'))
-                <th>{{ trans('quests.fields.characters') }}</th>
+                <th>{{ __('quests.fields.characters') }}</th>
                 @endif
-                <th>{{ trans('quests.fields.is_completed') }}</th>
+                <th>{{ __('quests.fields.is_completed') }}</th>
                 <th>&nbsp;</th>
             </tr>
             @foreach ($r as $quest)
@@ -53,7 +53,7 @@
                     </td>
                     <td class="text-right">
                         <a href="{{ route('quests.show', [$quest]) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-eye" aria-hidden="true"></i> <span class="visible-sm">{{ trans('crud.view') }}</span>
+                            <i class="fa fa-eye" aria-hidden="true"></i> <span class="visible-sm">{{ __('crud.view') }}</span>
                         </a>
                     </td>
                 </tr>

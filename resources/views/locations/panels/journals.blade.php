@@ -1,18 +1,18 @@
 <div class="box box-solid">
     <div class="box-body">
         <h2 class="page-header with-border">
-            {{ trans('locations.show.tabs.journals') }}
+            {{ __('locations.show.tabs.journals') }}
         </h2>
 
         <?php  $r = $model->journals()->orderBy('name', 'ASC')->with(['character'])->paginate(); ?>
         <table id="location-journals" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>
-                <th>{{ trans('journals.fields.name') }}</th>
-                <th class="hidden-sm">{{ trans('journals.fields.type') }}</th>
-                <th class="hidden-sm">{{ trans('journals.fields.date') }}</th>
+                <th>{{ __('journals.fields.name') }}</th>
+                <th class="hidden-sm">{{ __('journals.fields.type') }}</th>
+                <th class="hidden-sm">{{ __('journals.fields.date') }}</th>
                 @if ($campaign->enabled('characters'))
-                <th>{{ trans('journals.fields.author') }}</th>
+                <th>{{ __('journals.fields.author') }}</th>
                 @endif
                 <th>&nbsp;</th>
             </tr>
@@ -35,7 +35,7 @@
                     @endif
                     <td class="text-right">
                         <a href="{{ route('journals.show', [$journal]) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-eye" aria-hidden="true"></i> <span class="visible-sm">{{ trans('crud.view') }}</span>
+                            <i class="fa fa-eye" aria-hidden="true"></i> <span class="visible-sm">{{ __('crud.view') }}</span>
                         </a>
                     </td>
                 </tr>

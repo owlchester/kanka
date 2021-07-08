@@ -11,12 +11,12 @@ if (request()->has('location_id')) {
 <div class="box box-solid">
     <div class="box-body">
         <h2 class="page-header with-border">
-            {{ trans('locations.show.tabs.families') }}
+            {{ __('locations.show.tabs.families') }}
         </h2>
 
 
         <p class="help-block export-hidden">
-            {{ trans('locations.helpers.families') }}
+            {{ __('locations.helpers.families') }}
         </p>
 
 
@@ -39,16 +39,16 @@ if (request()->has('location_id')) {
         </div>
 
         <?php  $r = $model->allFamilies()->filter($filters)->simpleSort($datagridSorter)->with(['location', 'family', 'entity', 'entity.tags'])->paginate(); ?>
-        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('locations.show.tabs.families') }}</p>
+        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ __('locations.show.tabs.families') }}</p>
         <table id="families" class="table table-hover margin-top {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>
-                <th>{{ trans('families.fields.name') }}</th>
+                <th>{{ __('families.fields.name') }}</th>
                 @if ($campaign->enabled('locations'))
-                    <th>{{ trans('crud.fields.location') }}</th>
+                    <th>{{ __('crud.fields.location') }}</th>
                 @endif
-                <th>{{ trans('crud.fields.family') }}</th>
-                <th>{{ trans('crud.fields.type') }}</th>
+                <th>{{ __('crud.fields.family') }}</th>
+                <th>{{ __('crud.fields.type') }}</th>
                 <th>&nbsp;</th>
             </tr>
             @foreach ($r as $family)
@@ -74,7 +74,7 @@ if (request()->has('location_id')) {
                     <td>{{ $family->type }}</td>
                     <td class="text-right">
                         <a href="{{ route('families.show', [$family]) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
+                            <i class="fa fa-eye" aria-hidden="true"></i> {{ __('crud.view') }}
                         </a>
                     </td>
                 </tr>

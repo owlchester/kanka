@@ -12,11 +12,11 @@ $r = $model->descendants()
 ?><div class="box box-solid" id="location-locations">
     <div class="box-body">
         <h2 class="page-header with-border">
-            {{ trans('locations.show.tabs.locations') }}
+            {{ __('locations.show.tabs.locations') }}
         </h2>
 
         <p class="help-block">
-            {{ trans('locations.helpers.descendants') }}
+            {{ __('locations.helpers.descendants') }}
         </p>
 
         <div class="row export-hidden">
@@ -36,13 +36,13 @@ $r = $model->descendants()
             </div>
         </div>
 
-        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('locations.show.tabs.locations') }}</p>
+        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ __('locations.show.tabs.locations') }}</p>
         <table id="locations" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>
-                <th>{{ trans('locations.fields.name') }}</th>
-                <th>{{ trans('locations.fields.type') }}</th>
-                <th>{{ trans('crud.fields.location') }}</th>
+                <th>{{ __('locations.fields.name') }}</th>
+                <th>{{ __('locations.fields.type') }}</th>
+                <th>{{ __('crud.fields.location') }}</th>
             </tr>
             @foreach ($r as $model)
                 <tr>

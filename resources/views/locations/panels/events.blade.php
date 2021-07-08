@@ -1,17 +1,17 @@
 <div class="box box-solid">
     <div class="box-body">
         <h2 class="page-header with-border">
-            {{ trans('locations.show.tabs.events') }}
+            {{ __('locations.show.tabs.events') }}
         </h2>
 
         <?php  $r = $model->events()->orderBy('name', 'ASC')->with(['location'])->paginate(); ?>
-        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('locations.show.tabs.events') }}</p>
+        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ __('locations.show.tabs.events') }}</p>
         <table id="events" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>
-                <th>{{ trans('events.fields.name') }}</th>
-                <th>{{ trans('events.fields.type') }}</th>
-                <th>{{ trans('events.fields.date') }}</th>
+                <th>{{ __('events.fields.name') }}</th>
+                <th>{{ __('events.fields.type') }}</th>
+                <th>{{ __('events.fields.date') }}</th>
             </tr>
             @foreach ($r as $event)
                 <tr>
