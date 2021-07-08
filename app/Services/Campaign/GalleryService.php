@@ -22,6 +22,8 @@ class GalleryService
     /** @var Image */
     protected $image;
 
+    protected $folders = [];
+
     /**
      * @param Campaign $campaign
      * @return $this
@@ -108,5 +110,39 @@ class GalleryService
         $folder->save();
 
         return $folder;
+    }
+
+    /**
+     * @return array
+     */
+    public function folderList(): array
+    {
+        $this->folders = ['' => __('campaigns/gallery.no_folder')];
+
+        /** @var Image[] $rootFolders */
+        $rootFolders = $this->campaign->images()->folders()->whereNull('folder_id')
+            ->with('folders')
+            ->select(['id', 'name'])
+            ->orderBy('name')
+            ->get();
+        foreach ($rootFolders as $folder) {
+            $this->folders[$folder->id] = $folder->name;
+            $this->loopSubfolder($folder, 1);
+        }
+
+        return $this->folders;
+    }
+
+    /**
+     * @param Image $folder
+     * @param int $level
+     */
+    protected function loopSubfolder(Image $folder, int $level)
+    {
+        $subfolders = $folder->folders;
+        foreach ($subfolders as $subfolder) {
+            $this->folders[$subfolder->id] = str_repeat('-', $level) . ' ' . $subfolder->name;
+            $this->loopSubfolder($subfolder, $level + 1);
+        }
     }
 }

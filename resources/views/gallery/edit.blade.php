@@ -1,4 +1,6 @@
-<?php /** @var \App\Models\Image $image */?>
+<?php /** @var \App\Models\Image $image */
+$imageCount = 0;
+?>
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('campaigns/gallery.actions.close') }}"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title" id="myModalLabel">{{ __('campaigns/gallery.update.title') }}</h4>
@@ -8,26 +10,30 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-6">
-                @if($image->is_folder)
-                    <i class="fa fa-folder fa-4x"></i>
-                @else
-                    <img src="{{ Img::crop(300, 300)->url($image->path) }}" />
+            @if($image->is_folder)
+                <i class="fa fa-folder fa-4x"></i>
+            @else
+                <img src="{{ Img::crop(300, 300)->url($image->path) }}" alt="{{ $image->name }}" />
 
                 <hr />
                 <p>
-                    {{ trans_choice('campaigns/gallery.fields.image_used_in', $usageCount, ['count' => $usageCount]) }}
+                    {{ trans_choice('campaigns/gallery.fields.image_used_in', $image->inEntitiesCount(), ['count' => $image->inEntitiesCount()]) }}
                 </p>
-                    @if($usageCount > 0)
-                        <div class="row">
-                            @foreach($image->entities as $entity)
-                                <div class="col-xs-6">
-                                <a href="{{ $entity->url() }}">{{ $entity->name }}</a>
-                                </div>
-                            @endforeach
-                        </div>
-                        <hr class="visible-sm visible-xs"/>
-                    @endif
+                @if($image->inEntitiesCount() > 0)
+                    <div class="row">
+                        @foreach($image->inEntities() as $entity)
+                            @if($imageCount % 2 === 0)
+                    </div><div class="row">
+                            @endif
+                            <div class="col-xs-6">
+                            <a href="{{ $entity->url() }}">{{ $entity->name }}</a>
+                            </div>
+                            @php $imageCount++ @endphp
+                        @endforeach
+                    </div>
+                    <hr class="visible-sm visible-xs"/>
                 @endif
+            @endif
             </div>
             <div class="col-md-6">
                 <strong>{{ __('crud.fields.name') }}:</strong> {!! $image->name !!}<br />

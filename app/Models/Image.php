@@ -10,6 +10,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -27,14 +28,18 @@ use Illuminate\Support\Facades\Storage;
  * @property bool $is_folder
  * @property Carbon $created_at
  * @property Carbon $updated_at
- * @property ImageFolder $imageFolder
+ * @property Image $imageFolder
  *
  * @property User $user
  * @property Campaign $campaign
+ * @property Image[] $folders
+ * @property Image[] $images
  *
  * @property string $path
  * @property string $file
  * @property string $folder
+ *
+ * @property int $_usageCount
  */
 class Image extends Model
 {
@@ -72,9 +77,48 @@ class Image extends Model
         return $this->hasMany(Image::class, 'folder_id', 'id');
     }
 
+    public function folders()
+    {
+        return $this->hasMany(Image::class, 'folder_id', 'id')
+            ->where('is_folder', true);
+    }
+
     public function entities()
     {
         return $this->hasMany(Entity::class, 'image_uuid', 'id');
+    }
+
+    public function headers()
+    {
+        return $this->hasMany(Entity::class, 'header_uuid', 'id');
+    }
+
+    public function inEntities(): array
+    {
+        $entities = [];
+        foreach ($this->entities as $entity) {
+            if (isset($entities[$entity->id])) {
+                continue;
+            }
+            $entities[$entity->id] = $entity;
+        }
+        foreach ($this->headers as $entity) {
+            if (isset($entities[$entity->id])) {
+                continue;
+            }
+            $entities[$entity->id] = $entity;
+        }
+
+        return $entities;
+    }
+
+    public function inEntitiesCount(): int
+    {
+        if (isset($this->_usageCount)) {
+            return $this->_usageCount;
+        }
+
+        return $this->_usageCount = count($this->inEntities());
     }
 
     /**

@@ -100,11 +100,9 @@ class GalleryController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('update', $campaign);
 
-        $folders = $campaign->images()->folders()->pluck('name', 'id')->toArray();
-        $folders = array_merge(['' => __('campaigns/gallery.no_folder')], $folders);
-        $usageCount = $image->entities()->count();
+        $folders = $this->service->campaign($campaign)->folderList();
 
-        return view('gallery.edit', compact('image', 'folders', 'usageCount'));
+        return view('gallery.edit', compact('image', 'folders'));
     }
 
     /**
