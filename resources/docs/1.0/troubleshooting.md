@@ -49,6 +49,9 @@ If your `POST`, `PUT` or `PATCH` requests to the API are returning something abo
 
 You are probably hitting the kanka.io domain in `http` instead of `https`. For example, the Postman application defaults to http when no scheme is provided.
 
+## Image upload not working
+
+Image upload using a stream currently doesn't work.
 
 ## Other issues
 

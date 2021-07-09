@@ -145,6 +145,7 @@ To create a timeline, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the timeline |
+| `entry` | `string` | The html description of the timeline |
 | `type` | `string` | The timeline's type |
 | `revert_order` | `boolean` | Revert era rendering order (older first) |
 | `tags` | `array` | Array of tag ids |

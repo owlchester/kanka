@@ -132,6 +132,7 @@ To create a quest, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the quest |
+| `entry` | `string` | The html description of the quest |
 | `type` | `string` | Type of quest |
 | `quest_id` | `integer` | The parent quest |
 | `character_id` | `integer` | The quest's character (quest giver) |

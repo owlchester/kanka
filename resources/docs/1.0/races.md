@@ -77,7 +77,7 @@ To get the details of a single race, use the following endpoint.
         "race_id": 3,
         "type": "Humanoid"
     }
-    
+
 }
 ```
 
@@ -96,6 +96,7 @@ To create a race, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the race |
+| `entry` | `string` | The html description of the race |
 | `type` | `string` | The race's type |
 | `race_id` | `string` | Parent race of the race |
 | `tags` | `array` | Array of tag ids |

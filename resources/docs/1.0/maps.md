@@ -129,6 +129,7 @@ To create a map, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the map |
+| `entry` | `string` | The html description of the map |
 | `type` | `string` | Type of map |
 | `map_id` | `integer` | The parent map |
 | `location_id` | `integer` | The related location id |

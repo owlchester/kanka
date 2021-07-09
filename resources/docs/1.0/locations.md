@@ -82,7 +82,7 @@ To get the details of a single location, use the following endpoint.
         "is_map_private": 0,
         "type": "Kingdom"
     }
-    
+
 }
 ```
 
@@ -118,7 +118,7 @@ To get the map points of a location, use the following endpoint.
 
 #### Creating a Map Point
 
-To create a map point on a location, use the following endpoint.
+To create a map point on a location, use the following endpoint. This feature is deprecated and usage of the maps entity is recommended.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
@@ -158,6 +158,7 @@ To create a location, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the location |
+| `entry` | `string` | The html description of the location |
 | `type` | `string` | Type of location |
 | `parent_location_id` | `integer` | The parent location id (where this location is located)|
 | `tags` | `array` | Array of tag ids |

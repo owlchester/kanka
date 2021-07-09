@@ -211,7 +211,7 @@ To get the details of a single calendar, use the following endpoint.
         "leap_year_offset": 3,
         "leap_year_start": 233
     }
-    
+
 }
 ```
 
@@ -230,6 +230,7 @@ To create a calendar, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the calendar |
+| `entry` | `string` | The html description of the calendar |
 | `type` | `string` | The calendar's type |
 | `current_year` | `integer` | The current calendar year |
 | `current_month` | `integer` | The current calendar month |

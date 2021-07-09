@@ -79,7 +79,7 @@ To get the details of a single journal, use the following endpoint.
         "date": "2017-11-02",
         "type": "Session"
     }
-    
+
 }
 ```
 
@@ -98,6 +98,7 @@ To create a journal, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the journal |
+| `entry` | `string` | The html description of the journal |
 | `type` | `string` | The journal's type |
 | `date` | `string` | The date of the session |
 | `character_id` | `string` | The "author" of the journal |

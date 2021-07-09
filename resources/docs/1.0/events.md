@@ -79,7 +79,7 @@ To get the details of a single event, use the following endpoint.
         "date": "44-3-16",
         "type": "Battle"
     }
-    
+
 }
 ```
 
@@ -98,6 +98,7 @@ To create a event, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the event |
+| `entry` | `string` | The html description of the event |
 | `type` | `string` | The event's type |
 | `date` | `string` | Fictional date at which the event took place |
 | `location_id` | `string` | Location of the event |

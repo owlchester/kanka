@@ -130,6 +130,7 @@ To create an organisation, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the organisation |
+| `entry` | `string` | The html description of the organisation |
 | `type` | `string` | Type of organisation |
 | `organisation_id` | `integer` | The parent organisation |
 | `location_id` | `integer` | The organisation's location |

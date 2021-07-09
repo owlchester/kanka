@@ -155,7 +155,7 @@ To create a character, use the following endpoint.
 | `tags` | `array` | Array of tag ids |
 | `is_dead` | `boolean` | If the character is dead |
 | `is_private` | `boolean` | If the character is only visible to `admin` members of the campaign |
-| `image` | `stream` | Stream to file uploaded to the character |
+| `image` | `stream` | Stream to file uploaded to the character (warning: currently doesn't work) |
 | `image_url` | `string` | URL to a picture to be used for the character |
 | `personality_name` | `array` | An array representing the name of personality traits. For example ```["Goals", "Fears"]```  |
 | `personality_entry` | `array` | An array representing the values of personality traits. For example ```["To become a King", "Quiet places"]```  |

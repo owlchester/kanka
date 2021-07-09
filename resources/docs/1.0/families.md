@@ -85,7 +85,7 @@ To get the details of a single family, use the following endpoint.
           "3"
         ]
     }
-    
+
 }
 ```
 
@@ -107,6 +107,7 @@ To create a family, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the family |
+| `entry` | `string` | The html description of the family |
 | `type` | `string` | The type of family |
 | `location_id` | `integer` | The family's location id |
 | `family_id` | `integer` | The parent family id |

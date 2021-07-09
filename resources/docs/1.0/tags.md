@@ -43,7 +43,7 @@ You can get a list of all the tags of a campaign by using the following endpoint
             "tag_id": null,
             "colour": "green",
             "entities": [
-              352, 
+              352,
               440
             ]
         }
@@ -86,7 +86,7 @@ To get the details of a single tag, use the following endpoint.
           352, 440
         ]
     }
-    
+
 }
 ```
 
@@ -105,6 +105,7 @@ To create a tag, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the tag |
+| `entry` | `string` | The html description of the tag |
 | `type` | `string` | The tag's type |
 | `colour` | `string` | The tag's colour |
 | `tag_id` | `integer` | The parent tag |

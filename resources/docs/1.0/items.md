@@ -83,7 +83,7 @@ To get the details of a single item, use the following endpoint.
         "price": "25 gp",
         "size": "1 lb."
     }
-    
+
 }
 ```
 
@@ -102,6 +102,7 @@ To create a item, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the item |
+| `entry` | `string` | The html description of the item |
 | `type` | `string` | The item's type |
 | `location_id` | `integer` | The item's location |
 | `character_id` | `integer` | The item's owner |

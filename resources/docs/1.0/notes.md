@@ -98,6 +98,7 @@ To create a note, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the note |
+| `entry` | `string` | The html description of the note |
 | `type` | `string` | The note's type |
 | `note_id` | `integer` | The parent note id |
 | `tags` | `array` | Array of tag ids |
