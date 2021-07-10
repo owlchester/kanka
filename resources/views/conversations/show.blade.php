@@ -6,8 +6,15 @@
 
     <div class="col-md-8 entity-story-block">
 
+
         <div class="box box-solid">
             <div class="box-body">
+                <div class="text-right">
+                    <button data-toggle="ajax-modal" data-target="#entity-modal"
+                       data-url="{{ route('conversations.conversation_participants.index', $model) }}">
+                        <i class="fa fa-users"> {{ $model->participants->count() }}</i>
+                    </button>
+                </div>
                 <div class="box-conversation" id="conversation">
                     <conversation
                             id="{{ $model->id }}"
