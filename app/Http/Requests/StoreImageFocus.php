@@ -26,8 +26,8 @@ class StoreImageFocus extends FormRequest
     public function rules()
     {
         return [
-            'focus_x' => 'required|integer',
-            'focus_y' => 'required|integer',
+            'focus_x' => 'nullable|integer',
+            'focus_y' => 'nullable|integer',
         ];
     }
 }

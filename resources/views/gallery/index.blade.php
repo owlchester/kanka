@@ -1,12 +1,20 @@
 <?php /**
  * @var \App\Models\Campaign $campaign
  * @var \App\Models\Image $image
- */?>
+ * @var \App\Models\Image $folder
+ */
+
+$breadcrumbs[] = ['url' => route('campaign.gallery.index'), 'label' => __('campaigns/gallery.breadcrumb')];
+if ($folder) {
+    if (!empty($folder->folder_id)) {
+        $breadcrumbs[] = ['url' => route('campaign.gallery.index', ['folder_id' => $folder->folder_id]), 'label' => e($folder->imageFolder->name)];
+    }
+    $breadcrumbs[] = e($folder->name);
+}
+?>
 @extends('layouts.app', [
-    'title' => trans('campaigns/gallery.title', ['campaign' => $campaign->name]),
-    'breadcrumbs' => [
-        __('campaigns/gallery.title', ['campaign' => $campaign->name]),
-    ],
+    'title' => __('campaigns/gallery.title', ['campaign' => $campaign->name]),
+    'breadcrumbs' => $breadcrumbs,
     'bodyClass' => 'campaign-gallery',
 ])
 

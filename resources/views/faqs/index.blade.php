@@ -54,11 +54,6 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('faq.show', ['key' => 'conversations', 'slug' => Str::slug(__('faq.conversations.question'))]) }}">
-                                    {{ __('faq.conversations.question') }}
-                                </a>
-                            </li>
-                            <li>
                                 <a href="{{ route('faq.show', ['key' => 'attribute-templates', 'slug' => Str::slug(__('faq.attribute-templates.question'))]) }}">
                                     {{ __('faq.attribute-templates.question') }}
                                 </a>
@@ -127,11 +122,6 @@
                             <li>
                                 <a href="{{ route('faq.show', ['key' => 'bugs', 'slug' => Str::slug(__('faq.bugs.question'))]) }}">
                                     {{ __('faq.bugs.question') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('faq.show', ['key' => 'organise_play', 'slug' => Str::slug(__('faq.organise_play.question'))]) }}">
-                                    {{ __('faq.organise_play.question') }}
                                 </a>
                             </li>
                             <li>

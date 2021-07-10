@@ -25,6 +25,17 @@
         <div class="box-body">
 
             @if ($campaign->campaign()->boosted())
+                @if($campaign->campaign()->boosted(true) && empty($model->image) && !empty($entity->image_uuid))
+                    <p class="alert alert-warning">
+                        {{ __('entities/image.focus.warning') }}
+                    </p>
+                    <p>
+                        <a href="{{ url()->previous() }}">
+                            <i class="fas fa-arrow-left"></i>
+                            {{ __('crud.actions.back') }}
+                        </a>
+                    </p>
+                @else
 
             <p class="help-block">{{ __('entities/image.focus.helper') }}</p>
             <div class="focus-selector">
@@ -44,6 +55,7 @@
 
             <input type="submit" class="btn btn-block btn-primary" value="{{ __('entities/image.actions.save_focus') }}" />
             {!! Form::close() !!}
+                @endif
 
             @else
                 <p class="alert alert-warning">{!! __('entities/image.focus.unboosted', [
