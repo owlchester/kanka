@@ -1,5 +1,3 @@
-@if (auth()->user()->isAdmin())
-<hr />
 <h4 class="">{{ __('crud.fields.closed') }}</h4>
 <div class="checkbox">
     {!! Form::hidden('is_closed', 0) !!}
@@ -8,4 +6,3 @@
         {!! __('crud.fields.is_closed') !!}
     </label>
 </div>
-@endif

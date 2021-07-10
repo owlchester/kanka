@@ -151,7 +151,13 @@ $campaign = CampaignLocalization::getCampaign(); ?>
                             <i class="icon fa fa-exclamation-triangle"></i>
                             {{ __('campaigns.members.impersonating.title', ['name' => auth()->user()->name]) }}
                         </h4>
-                        <p>{{ __('campaigns.members.impersonating.message') }}</p>
+                        <p>
+                            {{ __('campaigns.members.impersonating.message') }}
+
+                            <a href="{{ route('identity.back') }}" class="btn btn-warning btn-sm">
+                                <i class="fa fa-sign-out-alt"></i> {{ trans('campaigns.members.actions.switch-back') }}
+                            </a>
+                        </p>
                     </div>
                 @endif
                 @include('partials.success')

@@ -15,5 +15,5 @@
         @include('cruds.fields.image')
     </div>
 </div>
-@include('cruds.fields.private2')
 @include('cruds.fields.closed')
+@include('cruds.fields.private2')
