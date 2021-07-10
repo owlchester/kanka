@@ -6,7 +6,6 @@
 
     <div class="col-md-8 entity-story-block">
 
-
         <div class="box box-solid">
             <div class="box-body">
                 <div class="text-right">
