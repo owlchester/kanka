@@ -23,12 +23,14 @@ class StoreQuestElement extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'entity_id' => 'required|exists:entities,id',
             'description' => '',
             'role' => 'nullable|string|max:191',
             'colour' => 'nullable|string|max:10',
             'visibility' => 'nullable|string|max:10',
         ];
+
+        return $rules;
     }
 }
