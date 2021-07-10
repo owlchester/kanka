@@ -49,8 +49,8 @@ class StoreQuest extends FormRequest
                 'nullable',
                 'integer',
                 'not_in:' . ((int) $self),
-                Rule::exists('quests')->where(function ($query)  use ($self) {
-                    return $query->where('quest_id', '!=', $self);
+                Rule::exists('quests', 'id')->where(function ($query)  use ($self) {
+                    return $query->whereNull('quest_id')->orWhere('quest_id', '!=', $self);
                 }),
             ];
         }
