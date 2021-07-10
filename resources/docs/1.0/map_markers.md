@@ -60,7 +60,7 @@ To create a map marker, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| POST | `maps/{map.id}/map-markers` | Default |
+| POST | `maps/{map.id}/map_markers` | Default |
 
 ### Body
 
@@ -98,7 +98,7 @@ To update a map, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| PUT/PATCH | `maps/{map.id}/map-markers/{map.id}` | Default |
+| PUT/PATCH | `maps/{map.id}/map_markers/{map.id}` | Default |
 
 ### Body
 
@@ -116,7 +116,7 @@ To delete a map, use the following endpoint.
 
 | Method | Endpoint| Headers |
 | :- |   :-   |  :-  |
-| DELETE | `maps/{map.id}/map-markers/{map.id}` | Default |
+| DELETE | `maps/{map.id}/map_markers/{map.id}` | Default |
 
 ### Results
 
