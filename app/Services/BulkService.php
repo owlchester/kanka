@@ -224,6 +224,15 @@ class BulkService
                 // Age can be manage differently (math)
 
                 $entity->update($entityFields);
+
+                // We have to still update the entity object
+                $realEntity = $entity->entity;
+
+                $realEntity->is_private = $model->is_private;
+                $realEntity->name = $model->name;
+                $realEntity->save();
+
+
                 $count++;
 
                 // Tags?
@@ -252,6 +261,8 @@ class BulkService
                 }
             }
         }
+
+        dd('end');
 
         return $count;
     }

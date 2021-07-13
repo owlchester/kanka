@@ -178,13 +178,15 @@ abstract class MiscObserver
      */
     public function updated(MiscModel $model)
     {
+        dump('touched model?');
         // We make an extra write to the db when doing this, but we always want the entity's updated_at to be in
         // sync with the model. For example if we just change the description, which is on the sub entity, we
         // still want the entity to be alerted. This is used for the recently modified dashboard widget.
 
         // Check if the entity exists, because it won't while moving an entity from one type to another.
         if ($model->entity) {
-            $model->entity->touch();
+            // We touch the entity but we don't want a log to be generated just yet
+            $model->entity->withoutUpdateLog()->touch();
 
             // If the updated_at is the same as the created_at, we don't need to create a log.
             //if ($model->entity->created_at->is($model->entity->updated_at)) {
