@@ -178,7 +178,6 @@ abstract class MiscObserver
      */
     public function updated(MiscModel $model)
     {
-        dump('touched model?');
         // We make an extra write to the db when doing this, but we always want the entity's updated_at to be in
         // sync with the model. For example if we just change the description, which is on the sub entity, we
         // still want the entity to be alerted. This is used for the recently modified dashboard widget.
