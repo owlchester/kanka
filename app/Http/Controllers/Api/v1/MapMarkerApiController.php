@@ -44,7 +44,9 @@ class MapMarkerApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $map);
-        $model = MapMarker::create($request->all());
+        $data = $request->all();
+        $data['map_id'] = $map->id;
+        $model = MapMarker::create($data);
         return new Resource($model);
     }
 

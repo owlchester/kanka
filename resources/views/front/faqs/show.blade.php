@@ -18,7 +18,7 @@
             <div class="row h-100">
                 <div class="col-lg-12 my-auto">
                     <div class="header-content mx-auto">
-                        <h1 class="mb-5">{{ $model->question }}</h1>
+                        <h1 class="mb-3">{{ $model->question }}</h1>
 
                         {!! $model->answer !!}
 

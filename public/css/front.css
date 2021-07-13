@@ -45,7 +45,7 @@ section.cta {
 }
 
 header.reduced-masthead {
-  min-height: 325px;
+  min-height: 205px;
   height: unset;
   padding-bottom: 20px;
   padding-top: 20px;
@@ -54,6 +54,10 @@ header.reduced-masthead {
 header.reduced-masthead .header-content {
   margin-top: 40px;
   max-width: unset;
+}
+
+header.reduced-masthead.master-sm {
+  min-height: 185px;
 }
 
 .bg-primary {

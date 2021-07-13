@@ -113,6 +113,11 @@
   ul.list-unstyled {
     padding-left: 10px;
   }
+
+  .list-group-item.list-group-item-repeat {
+    padding-top: 0;
+    border-top: unset;
+  }
 }
 
 .campaign-dashboard-widgets {

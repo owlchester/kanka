@@ -25,6 +25,9 @@
                     <li>
                         <a href="{{ route('front.newsletter') }}">{{ __('front.menu.newsletter') }}</a>
                     </li>
+                    <li>
+                        <a href="https://blog.kanka.io" target="_blank">{{ __('front.menu.news') }}</a>
+                    </li>
                 </ul>
             </div>
 
@@ -59,6 +62,9 @@
                 <ul>
                     <li>
                         <a href="{{ route('faq.index') }}">{{ __('front.menu.faq') }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('front.faqs.index') }}">{{ __('front.menu.kb') }}</a>
                     </li>
                     <li>
                         <a href="{{ route('front.roadmap') }}">{{ __('front.menu.roadmap') }}</a>

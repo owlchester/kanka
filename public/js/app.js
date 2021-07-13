@@ -76605,14 +76605,6 @@ $(document).ready(function () {
     });
   }
 
-  $.each($('.img-delete'), function (index) {
-    $(this).click(function (e) {
-      e.preventDefault();
-      $('input[name=' + $(this).data('target') + ']')[0].value = 1;
-      $(this).parent().parent().hide();
-    });
-  });
-
   if ($('#delete-confirm-form').length > 0) {
     $('#delete-confirm-form').on('keyup keypress', function (e) {
       var keyCode = e.keyCode || e.which;
@@ -76681,6 +76673,7 @@ $(document).ready(function () {
   initTimelineToggle();
   initEntityNoteToggle();
   initDynamicDelete();
+  initImageRemoval();
   /**
    * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
    */
@@ -76695,6 +76688,7 @@ $(document).ready(function () {
     initCategories();
     initSpectrum();
     initDynamicDelete();
+    initImageRemoval();
     Object(_components_delete_confirm_js__WEBPACK_IMPORTED_MODULE_1__["default"])(); // Handle when opening the entity-creator ui
 
     entityCreatorUI();
@@ -76823,6 +76817,16 @@ function initTogglePasswordFields() {
 function resetSubmitButton(id) {
   var newEntitySaveButton = $(id);
   newEntitySaveButton.text(newEntitySaveButton.data('text')).prop('disabled', false);
+}
+
+function initImageRemoval() {
+  $.each($('.img-delete'), function (index) {
+    $(this).unbind('click').click(function (e) {
+      e.preventDefault();
+      $('input[name=' + $(this).data('target') + ']')[0].value = 1;
+      $(this).parent().parent().hide();
+    });
+  });
 }
 /**
  * Quick Entity Creator UI

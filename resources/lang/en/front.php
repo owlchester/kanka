@@ -55,6 +55,11 @@ return [
         'helpers'       => [
             'more'  => 'Didn\'t find what you were looking for?',
         ],
+        'kb' => [
+            'title' => 'Need help using Kanka?',
+            'text' => 'Have a question about how to use features of Kanka? Our ever expanding knowledge base is the place to go.',
+            'button' => 'Find answers in our knowledge base',
+        ],
         'title'         => 'FAQ',
     ],
     'features'      => [
@@ -257,6 +262,7 @@ return [
         'features'      => 'Features',
         'help'          => 'Help',
         'home'          => 'Home',
+        'kb'            => 'Knowledge Base',
         'login'         => 'Login',
         'marketplace'   => 'Marketplace',
         'media'         => 'Media',
