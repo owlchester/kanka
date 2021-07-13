@@ -202,67 +202,70 @@ class BulkService
         unset($filledFields['tags']);
         $tagIds = Arr::get($fields, 'tags', []);
 
+        // Todo: move model fetch above to actually use with()
         foreach ($this->ids as $id) {
             /** @var MiscModel $entity */
             $entity = $model->with('entity', 'entity.tags')->findOrFail($id);
-            if (Auth::user()->can('update', $entity)) {
-                $entity->savingObserver = false;
-                $entityFields = $filledFields;
+            if (!Auth::user()->can('update', $entity)) {
+                // Can't update this? Technically not possible since bulk editing is only available
+                // for admins, but better safe than sorry
+                continue;
+            }
+            $entity->savingObserver = false;
+            $entityFields = $filledFields;
 
-                // Handle math fields
-                foreach ($maths as $math) {
-                    $mathField = Arr::get($entityFields, $math, false);
-                    if ($mathField !== false && Str::startsWith($mathField, ['+', '-']) && is_numeric($entity->{$math})) {
-                        if (Str::startsWith($mathField, '+')) {
-                            $entityFields[$math] = $entity->{$math} + (int) Str::after($mathField, '+');
-                        } else {
-                            $entityFields[$math] = $entity->{$math} - (int)Str::after($mathField, '-');
-                        }
-                    }
-                }
-
-                // Age can be manage differently (math)
-
-                $entity->update($entityFields);
-
-                // We have to still update the entity object
-                $realEntity = $entity->entity;
-
-                $realEntity->is_private = $model->is_private;
-                $realEntity->name = $model->name;
-                $realEntity->save();
-
-
-                $count++;
-
-                // Tags?
-                if (!empty($fields['tags'])) {
-                    /** @var Collection $existingTags */
-                    $tagAction = Arr::get($fields, 'bulk-tagging', 'add');
-                    if ($tagAction === 'remove') {
-                        $entity->entity->tags()->detach($tagIds);
+            // Handle math fields
+            foreach ($maths as $math) {
+                $mathField = Arr::get($entityFields, $math, false);
+                if ($mathField !== false && Str::startsWith($mathField, ['+', '-']) && is_numeric($entity->{$math})) {
+                    if (Str::startsWith($mathField, '+')) {
+                        $entityFields[$math] = $entity->{$math} + (int) Str::after($mathField, '+');
                     } else {
-                        $existingTags = $entity->entity->tags->pluck('id')->toArray();
-                        $addTagIds = $tagIds;
-                        // Exclude existing tags to avoid adding a tag several times
-                        if (!empty($existingTags)) {
-                            $addTagIds = [];
-                            foreach ($tagIds as $tag) {
-                                if (!in_array($tag, $existingTags)) {
-                                    $addTagIds[] = $tag;
-                                }
-                            }
-                        }
-                        // If we have tags to add
-                        if (!empty($tagIds)) {
-                            $entity->entity->tags()->attach($addTagIds);
-                        }
+                        $entityFields[$math] = $entity->{$math} - (int)Str::after($mathField, '-');
                     }
                 }
             }
-        }
 
-        dd('end');
+            // Age can be manage differently (math)
+
+            $entity->update($entityFields);
+
+            // We have to still update the entity object
+            $realEntity = $entity->entity;
+
+            $realEntity->is_private = $model->is_private;
+            $realEntity->name = $model->name;
+            $realEntity->save();
+
+            $count++;
+
+            // No tags? We're done
+            if (empty($fields['tags'])) {
+                continue;
+            }
+
+            /** @var Collection $existingTags */
+            $tagAction = Arr::get($fields, 'bulk-tagging', 'add');
+            if ($tagAction === 'remove') {
+                $entity->entity->tags()->detach($tagIds);
+            } else {
+                $existingTags = $entity->entity->tags->pluck('id')->toArray();
+                $addTagIds = $tagIds;
+                // Exclude existing tags to avoid adding a tag several times
+                if (!empty($existingTags)) {
+                    $addTagIds = [];
+                    foreach ($tagIds as $tag) {
+                        if (!in_array($tag, $existingTags)) {
+                            $addTagIds[] = $tag;
+                        }
+                    }
+                }
+                // If we have tags to add
+                if (!empty($tagIds)) {
+                    $entity->entity->tags()->attach($addTagIds);
+                }
+            }
+        }
 
         return $count;
     }
