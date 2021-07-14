@@ -12,4 +12,7 @@ return [
         'success'       => 'Beiträge neu geordnet.',
         'title'         => 'Objekt :name nach Neuordnung',
     ],
+    'update'    => [
+        'title' => 'Aktualisieren :entity Eintrag',
+    ],
 ];

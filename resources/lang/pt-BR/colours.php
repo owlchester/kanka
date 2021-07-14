@@ -10,7 +10,7 @@ return [
     'light-blue'    => 'Azul',
     'maroon'        => 'Bordô',
     'navy'          => 'Azul Marinho',
-    'none'          => 'Sem Cor',
+    'none'          => 'Nenhum',
     'orange'        => 'Laranja',
     'pink'          => 'Rosa',
     'purple'        => 'Roxo',

@@ -2,10 +2,11 @@
 
 return [
     'categories'    => [
-        'event'     => 'Событие',
-        'other'     => 'Другое',
-        'release'   => 'Обновление',
-        'vote'      => 'Голосование',
+        'event'         => 'Событие',
+        'livestream'    => 'Прямая трансляция',
+        'other'         => 'Другое',
+        'release'       => 'Обновление',
+        'vote'          => 'Голосование',
     ],
     'index'         => [
         'description'   => 'Последние обновления kanka.io',

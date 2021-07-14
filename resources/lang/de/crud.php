@@ -206,6 +206,7 @@ return [
         ],
         'title'                     => 'Filter',
     ],
+    'fix-this-issue'            => 'Beheben Sie dieses Problem',
     'forms'                     => [
         'actions'       => [
             'calendar'  => 'Füge Datum hinzu',
@@ -269,6 +270,10 @@ return [
         'success'       => 'Objekt \':name\' verschoben',
         'success_copy'  => 'Objekt \':name\' kopiert',
         'title'         => 'Verschiebe :name an einen anderen Ort',
+    ],
+    'navigation'                => [
+        'cancel'    => 'Abbrechen',
+        'or_cancel' => 'oder :cancel',
     ],
     'new_entity'                => [
         'error' => 'Bitte überprüfe deine Eingabe.',
@@ -338,6 +343,7 @@ return [
         'map'           => 'Wähle eine Karte',
         'note'          => 'wähle eine Notiz',
         'organisation'  => 'Wähle eine Organisation',
+        'quest'         => 'Wähle eine Quest',
         'race'          => 'Wähle eine Rasse',
         'tag'           => 'Wähle ein Tag',
         'timeline'      => 'Wähle einen Zeitstrahl',
@@ -366,7 +372,7 @@ return [
     'superboosted_campaigns'    => 'Supergeboostete Kampagne',
     'tabs'                      => [
         'abilities'     => 'Fähigkeiten',
-        'assets'        => 'Vermögenswerte',
+        'assets'        => 'Anhänge',
         'attributes'    => 'Attribute',
         'boost'         => 'Boost',
         'calendars'     => 'Kalender',

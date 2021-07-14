@@ -2,10 +2,11 @@
 
 return [
     'categories'    => [
-        'event'     => 'Udalosť',
-        'other'     => 'Iné',
-        'release'   => 'Verzia',
-        'vote'      => 'Komunitné hlasovanie',
+        'event'         => 'Udalosť',
+        'livestream'    => 'Livestream',
+        'other'         => 'Iné',
+        'release'       => 'Verzia',
+        'vote'          => 'Komunitné hlasovanie',
     ],
     'index'         => [
         'description'   => 'Posledné novinky o kanka.io',

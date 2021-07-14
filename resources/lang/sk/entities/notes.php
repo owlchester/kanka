@@ -29,6 +29,7 @@ return [
     'hint'          => 'Informácie, ktoré nepasujú do štandardných polí objektu alebo by mali byť súkromné, môžu byť pridané v podobe poznámok.',
     'hints'         => [
         'is_pinned' => 'Pripnuté poznámky objektov sú zobrazené pod textom objektu v primárnom zobrazení objektu. Kombinovať ich môžeš s pozíciou kvôli ich usporiadaniu.',
+        'reorder'   => 'Môžeš zmeniť poradie poznámok daného objektu kliknutím na ikonku :icon vedľa Príbehu v menu objektu.',
     ],
     'index'         => [
         'title' => 'Poznámky pre :name',
