@@ -346,6 +346,7 @@ return [
         'attributes'    => 'Attributs',
         'boost'         => 'Boost',
         'calendars'     => 'Calendriers',
+        'connections'   => 'Connexions',
         'default'       => 'Défaut',
         'events'        => 'Événements',
         'inventory'     => 'Inventaire',

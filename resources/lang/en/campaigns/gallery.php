@@ -6,7 +6,7 @@ return [
         'full'  => 'Image link',
         'save'  => 'Save',
     ],
-    'breadcrumb' => 'Gallery',
+    'breadcrumb'    => 'Gallery',
     'destroy'       => [
         'success'   => 'Image :name deleted.',
     ],

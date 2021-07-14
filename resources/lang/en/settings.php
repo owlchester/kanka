@@ -155,16 +155,16 @@ return [
         'subscription_status'   => 'Subscription Status',
     ],
     'patreon'       => [
-        'deprecated'        => 'Deprecated feature - if you wish to support Kanka, please do so with a :subscription. Patreon linking is still active for our Patrons who have linked their account before the move away from Patreon.',
-        'description'       => 'Syncing with Patreon',
-        'pledge'            => 'Pledge: :name',
-        'remove'            => [
+        'deprecated'    => 'Deprecated feature - if you wish to support Kanka, please do so with a :subscription. Patreon linking is still active for our Patrons who have linked their account before the move away from Patreon.',
+        'description'   => 'Syncing with Patreon',
+        'pledge'        => 'Pledge: :name',
+        'remove'        => [
             'button'    => 'Unlink your Patreon account',
             'success'   => 'Your Patreon account has been unlinked.',
             'text'      => 'Unlinking your Patreon account with Kanka will remove your bonuses, name on the hall of fame, campaign boosts, and other features linked to supporting Kanka. None of your boosted content will be lost (e.g. entity headers). By subscribing again, you will have access to all your previous data, including the ability to boost your previously boosted campaigns.',
             'title'     => 'Unlink your Patreon account with Kanka',
         ],
-        'title'             => 'Patreon',
+        'title'         => 'Patreon',
     ],
     'profile'       => [
         'actions'   => [

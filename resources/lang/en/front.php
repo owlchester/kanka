@@ -55,10 +55,10 @@ return [
         'helpers'       => [
             'more'  => 'Didn\'t find what you were looking for?',
         ],
-        'kb' => [
-            'title' => 'Need help using Kanka?',
-            'text' => 'Have a question about how to use features of Kanka? Our ever expanding knowledge base is the place to go.',
-            'button' => 'Find answers in our knowledge base',
+        'kb'            => [
+            'button'    => 'Find answers in our knowledge base',
+            'text'      => 'Have a question about how to use features of Kanka? Our ever expanding knowledge base is the place to go.',
+            'title'     => 'Need help using Kanka?',
         ],
         'title'         => 'FAQ',
     ],

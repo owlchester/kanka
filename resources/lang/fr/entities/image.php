@@ -15,6 +15,7 @@ return [
         'success'       => 'Point de focus mis à jour.',
         'title'         => 'Focus d\'image pour l\'entité :name',
         'unboosted'     => 'Définir un point de focus pour l\'image est réservé aux :boosted-campaigns.',
+        'warning'       => 'Définir le point de focus n\'est pas possible lorsque l\'image de l\'entité viens de la gallerie.',
     ],
     'replace'   => [
         'breadcrumb'    => 'Replacement d\'image',

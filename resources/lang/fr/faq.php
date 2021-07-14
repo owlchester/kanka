@@ -38,10 +38,7 @@ TEXT
         'answer'    => 'Kanka n\'a pas cette fonctionnalité. Par contre, si tu souhaites avoir plusieurs groupes dans le même monde, tu peux utiliser la même campagne et le système de permission pour contrôler qui peut voir quelles informations.',
         'question'  => 'Est-ce possible de synchroniser les données entre campagnes?',
     ],
-    'conversations'         => [
-        'answer'    => 'Des conversations peuvent être établies entre des Personnages ou entre les membres d\'une campagne. Si par exemple tu souhaites documenter une conversation importante entre des PNJs et les joueurs, tu peux le faire en utilisant ce module. Celui-ci peut aussi être utilisé pour des campagnes de type "play-by-post".',
-        'question'  => 'Que sont les Conversations?',
-    ],
+    'conversations'         => [],
     'custom'                => [
         'answer'    => 'Kanka a été créé avec un nombre d\'entités prédéfinies qui interagissent les unes avec les autres. Autoriser des types d\'entités personnalisées nécessiterait de complètement changer l\'application et d’aller à l’encontre de l\'objectif de simplifier l\'organisation. De plus, Kanka est flexible avec des Étiquettes qui peuvent représenter la plupart des scénarios et types d\'entités personnalisés.',
         'question'  => 'Puis-je crérer mes propres types d\'entités?',
@@ -115,10 +112,7 @@ TEXT
         'answer'    => 'Si tu préfères afficher les entités dans une vue imbriquée par défaut (par exemple, le bouton Vue Imbriquée dans la liste des lieux), tu peux le faire en accédant à tes options Profil et Mise en Page. Là, tu peux cocher l\'option Vue imbriquée par défaut. Ceci est uniquement pour ton compte et non pour tes campagnes.',
         'question'  => 'Puis-je définir les listes pour qu\'elles s\'affichent de manière imbriquée par défaut?',
     ],
-    'organise_play'         => [
-        'answer'    => 'Nous nous sommes associés avec :lfgm qui est une platforme pour organiser les sessions de jeux. Une campagns Kanka peut être synchronisée avec LFGM pour y afficher les prochaines sessions directement dans le tableau de bord de la campagne Kanka.',
-        'question'  => 'Comment organiser mes sessions avec mes joueurs?',
-    ],
+    'organise_play'         => [],
     'permissions'           => [
         'answer'    => 'Absolument, c\'est ce pourquoi nous avons créé Kanka! Vous pouvez inviter n’importe qui à votre campagne, et leur donner des rôles et des permissions. Nous avons créé un système extrêmement flexible (vous pouvez à la fois utiliser des options de permission et de restriction) pour couvrir toutes les situations possibles.',
         'question'  => 'Puis-je sélectionner les informations que mes joueurs peuvent voir?',
