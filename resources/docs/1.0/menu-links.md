@@ -2,11 +2,19 @@
 
 ---
 
-- [All Menu links](#all-menu-links)
-- [Single Menu link](#menu-link)
-- [Create a Menu link](#create-menu-link)
-- [Update a Menu link](#update-menu-link)
-- [Delete a Menu link](#delete-menu-link)
+- [Menu links](#menu-links)
+  - [All Menu links](#all-menu-links)
+    - [Results](#results)
+  - [Menu link](#menu-link)
+    - [Results](#results-1)
+  - [Create a Menu link](#create-a-menu-link)
+    - [Body](#body)
+    - [Results](#results-2)
+  - [Update a Menu link](#update-a-menu-link)
+    - [Body](#body-1)
+    - [Results](#results-3)
+  - [Delete a Menu link](#delete-a-menu-link)
+    - [Results](#results-4)
 
 <a name="all-menu-links"></a>
 ## All Menu links
@@ -38,7 +46,8 @@ You can get a list of all the menu links of a campaign by using the following en
            "target": null,
            "dashboard_id": null,
            "created_at": "2020-12-24T00:38:49.000000Z",
-           "updated_at": "2020-12-24T00:41:20.000000Z"
+           "updated_at": "2020-12-24T00:41:20.000000Z",
+           "options": {"is_nested": "1"}
         }
     ]
 }
@@ -71,7 +80,8 @@ To get the details of a single menu link, use the following endpoint.
         "target": null,
         "dashboard_id": null,
         "created_at": "2020-12-24T00:38:49.000000Z",
-        "updated_at": "2020-12-24T00:41:20.000000Z"
+        "updated_at": "2020-12-24T00:41:20.000000Z",
+        "options": {"is_nested": "1"}
     }
 
 }
@@ -102,6 +112,7 @@ To create a menu link, use the following endpoint.
 | `menu` | `string` | Menu options for the link |
 | `position` | `int` | Position of the link |
 | `is_private` | `boolean` | If the menu link is only visible to admin members of the campaign |
+| `options`| `object` | Key/Value pairs for optional parameters, currently allowed Keys : `is_nested:boolean` |
 
 ### Results
 

@@ -27,6 +27,7 @@ use Illuminate\Support\Str;
  * @property CampaignDashboard $dashboard
  * @property Entity $target
  * @property boolean $is_private
+ * @property array $optionsAllowedKeys
  */
 class MenuLink extends MiscModel
 {
@@ -52,7 +53,24 @@ class MenuLink extends MiscModel
         'random_entity_type',
         'icon',
         'dashboard_id',
+        'options',
     ];
+
+    /**
+     * The attributes that should be cast.
+     * @var array
+     */
+    protected $casts = [
+        'options' => 'array',
+    ];
+
+    /**
+     * Custom options array key filter
+     * Used in the Menu link observer
+     *
+     * @var array
+     */
+    public $optionsAllowedKeys = ['is_nested'];
 
     /**
      *
@@ -211,8 +229,9 @@ class MenuLink extends MiscModel
     protected function getIndexRoute()
     {
         $filters = $this->filters . '&_clean=true&_from=quicklink';
+        $nestedType = (!empty($this->options['is_nested']) && $this->options['is_nested'] ? 'tree' : 'index');
         try {
-            return route(Str::plural($this->type) . '.index', $filters);
+            return route(Str::plural($this->type) . ".$nestedType", $filters);
         }
         catch (\Exception $e) {
             return '';
