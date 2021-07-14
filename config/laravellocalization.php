@@ -59,6 +59,7 @@ return [
         //'fo'          => ['name' => 'Faroese',                'script' => 'Latn', 'native' => 'føroyskt', 'regional' => 'fo_FO'],
         //'gaa'         => ['name' => 'Ga',                     'script' => 'Latn', 'native' => 'Ga', 'regional' => ''],
         //'ga'          => ['name' => 'Irish',                  'script' => 'Latn', 'native' => 'Gaeilge', 'regional' => 'ga_IE'],
+        'gl'          => ['name' => 'Galician',                'script' => 'Latn', 'native' => 'Galego', 'regional' => 'gl_ES'],
         //'gv'          => ['name' => 'Manx',                   'script' => 'Latn', 'native' => 'Gaelg', 'regional' => 'gv_GB'],
         //'sm'          => ['name' => 'Samoan',                 'script' => 'Latn', 'native' => 'Gagana fa’a Sāmoa', 'regional' => ''],
         //'gl'          => ['name' => 'Galician',               'script' => 'Latn', 'native' => 'galego', 'regional' => 'gl_ES'],

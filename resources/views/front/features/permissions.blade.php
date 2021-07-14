@@ -9,7 +9,7 @@
             <div class="row h-100">
                 <div class="col-lg-7 my-auto">
                     <div class="header-content mx-auto">
-                        <h1 class="mb-5">{{ __('front/features/permissions.title') }}</h1>
+                        <h1 class="mb-3">{{ __('front/features/permissions.title') }}</h1>
                         <p class="mb-5">{{ __('front/features/permissions.description') }}</p>
                     </div>
                 </div>

@@ -2,6 +2,7 @@
     'title' => __('settings.layout.title'),
     'breadcrumbs' => false,
     'sidebar' => 'settings',
+    'noads' => true,
 ])
 
 @inject('pagination', App\Services\PaginationService)

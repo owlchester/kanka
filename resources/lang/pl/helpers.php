@@ -60,6 +60,10 @@ return [
         'private'       => 'Administratorzy mogą utajniać mapy. Dzięki temu zwykli uczestnicy mogą oglądać miejsca i nie widzieć ich map.',
         'title'         => 'Mapy miejsc',
     ],
+    'pins'              => [
+        'description'   => 'Do opisu historii elementu można przypinać relacje i cechy. By to zrobić, wejdź w edycję relacji albo cechy i zaznacz pole "przypięte".',
+        'title'         => 'Przypięcia',
+    ],
     'public'            => 'Zobacz tutorial na Youtube dotyczący kampanii publicznych.',
     'title'             => 'Pomoc',
     'widget-filters'    => [

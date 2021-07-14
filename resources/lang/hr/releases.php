@@ -2,10 +2,11 @@
 
 return [
     'categories'    => [
-        'event'     => 'Događaj',
-        'other'     => 'Ostalo',
-        'release'   => 'Izdanje',
-        'vote'      => 'Glas zajednice',
+        'event'         => 'Događaj',
+        'livestream'    => 'Prijenos uživo',
+        'other'         => 'Ostalo',
+        'release'       => 'Izdanje',
+        'vote'          => 'Glas zajednice',
     ],
     'index'         => [
         'description'   => 'Posljednja ažuriranja za kanka.io',

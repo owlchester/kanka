@@ -3,6 +3,7 @@
     'description' => __('settings.patreon.description'),
     'breadcrumbs' => false,
     'sidebar' => 'settings',
+    'noads' => true,
 ])
 
 @section('content')
@@ -12,13 +13,6 @@
             <h2 class="page-header with-border">
                 {{ __('settings.patreon.title') }}
             </h2>
-
-            <p>
-                {!! __('settings.patreon.benefits', [
-                    'patreon' => link_to(config('patreon.url'), 'Patreon', ['target' => '_blank']),
-                    'features' => link_to_route('front.features', __('settings.patreon.benefits_features'), '#paid-features', ['target' => '_blank'])
-                ]) !!}
-            </p>
         </div>
     </div>
 

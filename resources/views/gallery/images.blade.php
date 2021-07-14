@@ -6,8 +6,10 @@
         <li tabindex="0" data-folder="{{ route('campaign.gallery.index') }}">
             <div class="image-preview">
                 <div class="gallery-folder">
+                    <span class="text">
                     <i class="fa fa-arrow-left fa-2x"></i>
                     {{ __('crud.actions.back') }}
+                    </span>
                 </div>
             </div>
         </li>
@@ -15,8 +17,10 @@
         <li tabindex="0" data-folder="{{ route('campaign.gallery.index', ['folder_id' => $folder->folder_id]) }}">
             <div class="image-preview">
                 <div class="gallery-folder">
+                    <span class="text">
                     <i class="fa fa-arrow-left fa-2x"></i>
                     {{ $folder->imageFolder->name }}
+                    </span>
                 </div>
             </div>
         </li>

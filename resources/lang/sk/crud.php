@@ -206,6 +206,7 @@ return [
         ],
         'title'                     => 'Filter',
     ],
+    'fix-this-issue'            => 'Odstrániť tento problém',
     'forms'                     => [
         'actions'       => [
             'calendar'  => 'Doplniť dátum',
@@ -269,6 +270,10 @@ return [
         'success'       => 'Objekt :name premiestnený',
         'success_copy'  => 'Objekt :name skopírovaný',
         'title'         => 'Premiestniť :name na iné miesto',
+    ],
+    'navigation'                => [
+        'cancel'    => 'Zrušiť',
+        'or_cancel' => 'alebo :cancel',
     ],
     'new_entity'                => [
         'error' => 'Prosím, prekontroluj tvoje zadanie.',
@@ -338,6 +343,7 @@ return [
         'map'           => 'Vyber mapu',
         'note'          => 'Vyber poznámku',
         'organisation'  => 'Vyber organizáciu',
+        'quest'         => 'Vyber úlohu',
         'race'          => 'Vyber rasu',
         'tag'           => 'Vyber kategóriu',
         'timeline'      => 'Vyber časovú os',
@@ -382,7 +388,7 @@ return [
         'profile'       => 'Profil',
         'quests'        => 'Úlohy',
         'relations'     => 'Vzťahy',
-        'reminders'     => 'Pripomenutia',
+        'reminders'     => 'Pripomienky',
         'story'         => 'Príbeh',
         'timelines'     => 'Časové osi',
         'tooltip'       => 'Bublina',

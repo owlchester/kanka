@@ -29,6 +29,7 @@ return [
     'hint'          => 'Komentarze to informacje, które nie mieszczą się w zwykłych polach opisu elementu albo które powinny pozostać tajne.',
     'hints'         => [
         'is_pinned' => 'Przypięte komentarze zostają wyświetlone pod polem opisu w głównym widoku elementu. Używaj pozycji "Kolejność przypięcia" by ustalić porządek ich wyświetlania.',
+        'reorder'   => 'Możesz zmieniać kolejność komentarzy po kliknięciu na ikonę :icon obok pozycji "historia" w menu elementu',
     ],
     'index'         => [
         'title' => 'Komentarze do elementu :name',

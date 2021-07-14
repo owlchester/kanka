@@ -3,7 +3,8 @@
     'title' => __('settings.apps.title'),
     'description' => '',
     'breadcrumbs' => false,
-    'sidebar' => 'settings'
+    'sidebar' => 'settings',
+    'noads' => true,
 ])
 
 @section('content')

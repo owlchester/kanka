@@ -3,7 +3,7 @@
 return [
     'actions'   => [
         'file'  => 'Plik',
-        'link'  => 'Link',
+        'link'  => 'Odnośnik',
     ],
     'show'      => [
         'title' => 'Zasoby elementu :name',

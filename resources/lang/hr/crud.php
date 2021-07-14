@@ -172,7 +172,7 @@ return [
         'files'     => 'Prenesene datoteke',
         'hints'     => [
             'limit'         => 'Svaki entitet može imati maksimalno  :max datoteka prenesenih na njega.',
-            'limitations'   => 'Podržani formati: jpg, png, gif i pdf. Maksimalna veličina datoteke: :size',
+            'limitations'   => 'Podržani formati: :formats. Maksimalna veličina datoteke: :size',
         ],
         'title'     => 'Entitetske datoteke za :name',
     ],
@@ -203,6 +203,7 @@ return [
         ],
         'title'                     => 'Filteri',
     ],
+    'fix-this-issue'            => 'Riješi ovaj problem',
     'forms'                     => [
         'actions'       => [
             'calendar'  => 'Dodajte datum kalendara',
@@ -243,6 +244,10 @@ return [
     'linking_help'              => 'Kako mogu povezati s ostalim unosima?',
     'manage'                    => 'Upravljanje',
     'move'                      => [],
+    'navigation'                => [
+        'cancel'    => 'otkaži',
+        'or_cancel' => 'ili :cancel',
+    ],
     'new_entity'                => [
         'error' => 'Pregledaj svoje vrijednosti.',
         'fields'=> [
@@ -250,7 +255,6 @@ return [
         ],
         'title' => 'Novi entitet',
     ],
-    'or_cancel'                 => 'ili <a href=":url">otkaži</a>',
     'panels'                    => [
         'appearance'            => 'Izgled',
         'attribute_template'    => 'Predložak atributa',
@@ -310,6 +314,7 @@ return [
         'map'           => 'Izaberi kartu',
         'note'          => 'Odaberi bilješku',
         'organisation'  => 'Izaberi organizaciju',
+        'quest'         => 'Izaberi zadatak',
         'race'          => 'Izaberi rasu',
         'tag'           => 'Izaberi oznaku',
         'timeline'      => 'Odaberite kronologiju',

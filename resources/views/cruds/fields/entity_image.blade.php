@@ -31,8 +31,8 @@
         <div class="col-sm-2">
             @if (!empty($model->entity) && !empty($model->entity->image_uuid))
                 <div class="preview-v2">
-                    <div class="image" style="background-image: url('{{ $model->entity->image->getUrl(80, null, 'header_image') }}')" title="{{ $model->name }}">
-                    </div>
+                    <a href="{{ route('campaign.gallery.index', ['folder_id' => $model->entity->image->folder_id]) }}" class="image" style="background-image: url('{{ $model->entity->image->getUrl(80, null, 'header_image') }}')" title="{{ $model->name }}">
+                    </a>
                 </div>
             @endif
         </div>

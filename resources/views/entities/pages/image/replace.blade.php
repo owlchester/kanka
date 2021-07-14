@@ -36,8 +36,9 @@
                 'enctype' => 'multipart/form-data',
             ]) !!}
 
-
             @include('cruds.fields.image', ['imageRequired' => false, 'model' => $model])
+
+            @includeWhen($campaign->campaign()->boosted(), 'cruds.fields.entity_image')
 
             <input type="submit" class="btn btn-block btn-primary" value="{{ __('entities/image.actions.save-replace') }}" />
 

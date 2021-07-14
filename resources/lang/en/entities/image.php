@@ -5,7 +5,7 @@ return [
         'change_focus'  => 'Change focus point',
         'replace_image' => 'Replace image',
         'save-replace'  => 'Replace image',
-        'save_focus'    => 'Save focus',
+        'save_focus'    => 'Save focus point',
         'view'          => 'View image',
     ],
     'focus'     => [
@@ -15,6 +15,7 @@ return [
         'success'       => 'Image focus updated.',
         'title'         => 'Entity :name image focus',
         'unboosted'     => 'Setting an image focus point is reserverd to :boosted-campaigns.',
+        'warning'       => 'Setting the focus point is not available when the entity\'s image is set from the gallery.',
     ],
     'replace'   => [
         'breadcrumb'    => 'Image replacement',

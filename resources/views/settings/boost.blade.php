@@ -11,6 +11,7 @@
 ],
     'breadcrumbsDashboard' => false,
     'sidebar' => 'settings',
+    'noads' => true,
 ])
 
 @section('content')
