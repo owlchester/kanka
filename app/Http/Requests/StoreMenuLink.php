@@ -34,7 +34,6 @@ class StoreMenuLink extends FormRequest
             'filters' => 'nullable|string|max:191',
             'menu' => 'nullable|string|max:45',
             'position' => 'nullable|integer|min:1|max:99',
-            //'is_nested' => 'nullable|boolean'
         ];
     }
 }
