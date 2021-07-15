@@ -53,3 +53,13 @@
         </div>
     </div>
 @endsection
+
+@section('scripts')
+    <script src="/vendor/spectrum/spectrum.js" defer></script>
+    <script src="{{ mix('js/relations.js') }}" defer></script>
+@endsection
+
+@section('styles')
+    <link href="/vendor/spectrum/spectrum.css" rel="stylesheet">
+    <link href="{{ mix('css/relations.css') }}" rel="stylesheet">
+@endsection
