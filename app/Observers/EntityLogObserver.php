@@ -9,6 +9,12 @@ use App\Models\Entity;
 use App\Models\EntityLog;
 use Carbon\Carbon;
 
+/**
+ * Class EntityLogObserver
+ *
+ * Added as an observer to the Entity model
+ * @package App\Observers
+ */
 class EntityLogObserver
 {
     /**
@@ -31,11 +37,10 @@ class EntityLogObserver
      */
     public function updated(Entity $entity)
     {
-        // Don't log updates if just did one (typically when creating or restoring)
-        if ($entity->updated_at == $entity->created_at || !empty($entity->getOriginal('deleted_at'))) {
+        // Don't log updates if just did one (typically when creating, restoring or bulk editing)
+        if (!$entity->hasUpdateLog() || $entity->updated_at == $entity->created_at || !empty($entity->getOriginal('deleted_at'))) {
             return;
         }
-        //dd('not same');
 
         $log = new EntityLog();
         $log->entity_id = $entity->id;

@@ -33,10 +33,6 @@ TEXT
         'answer'    => 'Kanka does not have this feature. However, if you\'re trying to have multiple play groups in the same world consider using the same campaign and separating your groups through a combination of quests, tags, and permissions',
         'question'  => 'Can I sync entities across multiple campaigns?',
     ],
-    'conversations'         => [
-        'answer'    => 'Conversations can be set up as talks between Characters or between Campaign Members. If for example you wish to document an important talk between NPCs and the PCs, you can do so using this module. You can also use them for play-by-post campaigns.',
-        'question'  => 'What are Conversations?',
-    ],
     'custom'                => [
         'answer'    => 'Kanka comes with a set of predefined entity types that interact with each other. Allowing custom entity types would require rebuilding the app from scratch and defeat the purpose of a tool with predefined types to help out people worldbuild rather than figure out how to organise things. Furthermore, Kanka is flexible with Tags that can represent most custom entity type scenarios.',
         'question'  => 'Can I create custom entity types?',
@@ -100,10 +96,6 @@ TEXT
     'nested'                => [
         'answer'    => 'If you prefer viewing your entities in a nested view by default (in example the Nested View button on the list of locations), you can do so by going into your Profile and Layout options. There you can check the Nested View option. This is only for your account and not for your campaigns.',
         'question'  => 'Can I set the lists to be nested by default?',
-    ],
-    'organise_play'         => [
-        'answer'    => 'We\'ve partnered with :lfgm which allows you to organise your sessions with your group. You can sync your Kanka campaign with your LFGM campaign to show your next availabilities directly on the campaign dashboard.',
-        'question'  => 'How can I manage when I run my sessions?',
     ],
     'permissions'           => [
         'answer'    => 'Absolutely, this is why we built Kanka! You can invite all your players to your campaigns, and give them roles and permissions. We built the system to be extremely flexible (you can both use an opt-in and opt-out configuration) to cover as many needs and situations as possible.',

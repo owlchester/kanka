@@ -2,6 +2,7 @@
     'title' => __('settings.marketplace.title'),
     'breadcrumbs' => false,
     'sidebar' => 'settings',
+    'noads' => true,
 ])
 
 @inject('pagination', App\Services\PaginationService)

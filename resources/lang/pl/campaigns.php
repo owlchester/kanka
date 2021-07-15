@@ -94,6 +94,7 @@ TEXT
         'locale'                        => 'Język, w którym piszesz kampanię. Służy do tworzenia zawartości oraz filtrowania kampanii publicznych.',
         'name'                          => 'Twoja kampania lub świat mogą się nazywać jakkolwiek, o ile nazwa ma przynamniej 4 litery lub cyfry.',
         'public_campaign_filters'       => 'Pomóż innym graczom znaleźć twoją kampanię wśród innych dostępnych publicznie, podając następujące informacje.',
+        'public_no_visibility'          => 'Uwaga! Ta kampania jest publiczna, ale nie rola "publiczność" na razie niczego nie widzi. :fix',
         'related_visibility'            => 'Domyślna widoczność elementów tworzonych przy pomocy tego pola (notek, relacji, zdolności itd.)',
         'system'                        => 'Jeżeli kampania jest dostępna publicznie, system podany jest na stronie :link.',
         'systems'                       => 'By nie zarzucać wszystkich użytkowników mnóstwem opcji, Kanka udostępnia niektóre możliwości tylko dla konkretnych systemów RPG (np. blok statystyk potworów do D&D 5 ed.). Jeżeli dodasz tu wspierany w ten sposób system, uzyskasz dostęp do takich treści.',
@@ -124,6 +125,7 @@ TEXT
             'description'   => 'Zaproś znajomych do udziału w kampanii',
             'link'          => 'Odnośnik stworzony: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Wysłano zaproszenie.',
+            'success_link'  => 'Stworzono odnośnik :link',
             'title'         => 'Zaproś kogoś do udziału w kampanii',
         ],
         'destroy'               => [
@@ -131,6 +133,7 @@ TEXT
         ],
         'email'                 => [
             'link'      => '<a href=":link">Dołącz do :name\'s campaign</a>',
+            'link_text' => 'Dołącz do kampanii :name\'s',
             'subject'   => ':name zaprasza cię do udziału w kampanii \':campaign\' na platformie kanka.io! By przyjąć zaproszenie, użyj załączonego odnośnika.',
             'title'     => 'Zaproszenie od :name',
         ],

@@ -96,6 +96,7 @@ TEXT
         'locale'                        => 'Regionálne nastavenie, ktoré sa vzťahuje na tvoju kampaň. Používa sa na vytváranie obsahu a filtrovanie verejných kampaní.',
         'name'                          => 'Tvoja kampaň / svet môže mať ľubovoľné meno, pokiaľ sa skladá z min. 4 písmen alebo čísel.',
         'public_campaign_filters'       => 'Pomôž iným nájsť tvoju kampaň medzi ostatnými verejnými doplnením týchto informácií.',
+        'public_no_visibility'          => 'Hlavu hore! Tvoja kampaň je verejná, ale rola pre verejnosť nemá k ničomu prístup. :fix',
         'related_visibility'            => 'Štandardná hodnota viditeľnosti, keď vytváraš nový prvok s týmto poľom (poznámky objektov, vlastností, schopností, atď.)',
         'system'                        => 'Ak je tvoja kampaň verejne viditeľná, systém sa zobrazuje na stránke :link.',
         'systems'                       => 'Aby sme užívateľov nezahltili nespočetnými možnosťami, niektoré funkcionality Kanky sú prístupné len pre špecifické RPG systémy (napr. štatistický popis príšer pre D&D 5e). Priradením systému na tomto mieste aktivuješ dané funkcionality.',
@@ -126,6 +127,7 @@ TEXT
             'description'   => 'Pozvi priateľa do svojej kampane',
             'link'          => 'Link vytvorený: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Pozvánka zaslaná.',
+            'success_link'  => 'Link vytvorený: :link',
             'title'         => 'Pozvať niekoho k tvojej kampani',
         ],
         'destroy'               => [
@@ -133,6 +135,7 @@ TEXT
         ],
         'email'                 => [
             'link'      => '<a href=":link">Pridať sa do kampane od :name</a>',
+            'link_text' => 'Pridať sa do kampane :name',
             'subject'   => ':name ťa pozval/a, aby si sa pridal/a do jeho kampane :campaign na kanka.io! Pozvánku môžeš akceptovať kliknutím na nasledujúci link.',
             'title'     => 'Pozvánka od :name',
         ],
@@ -367,7 +370,7 @@ TEXT
         ],
         'tabs'          => [
             'achievements'      => 'Úspechy',
-            'applications'      => 'Aplikácie',
+            'applications'      => 'Prihlášky',
             'campaign'          => 'Kampaň',
             'default-images'    => 'Prednastavené obrázky',
             'export'            => 'Export',

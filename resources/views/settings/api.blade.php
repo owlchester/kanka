@@ -2,6 +2,7 @@
     'title' => trans('settings.api.title'),
     'breadcrumbs' => false,
     'sidebar' => 'settings',
+    'noads' => true,
 ])
 
 @section('content')

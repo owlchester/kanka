@@ -12,4 +12,7 @@ return [
         'success'       => 'Príspevky preskupené.',
         'title'         => 'Preskupenie príspevkov objektu :name',
     ],
+    'update'    => [
+        'title' => 'Aktualizovať záznam :entity',
+    ],
 ];

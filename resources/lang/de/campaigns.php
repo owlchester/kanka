@@ -96,6 +96,7 @@ TEXT
         'locale'                        => 'Die Sprache, in der deine Kampagne geschrieben ist. Dies wird genutzt, um Inhalte zu erstellen und öffentliche Kampagnen zu gruppieren.',
         'name'                          => 'Deine Kampagne/Welt kann einen beliebigen Namen haben, solange dieser mindestens 4 Buchstaben oder Zahlen enthält.',
         'public_campaign_filters'       => 'Helfen Sie anderen, die Kampagne unter anderen öffentlichen Kampagnen zu finden, indem Sie die folgenden Informationen bereitstellen.',
+        'public_no_visibility'          => 'Kopf hoch! Ihre Kampagne ist öffentlich, aber die öffentliche Rolle der Kampagne kann auf nichts zugreifen. :fix.',
         'related_visibility'            => 'Standardwert für die Sichtbarkeit beim Erstellen eines neuen Elements mit diesem Feld (Objektnotizen, Beziehungen, Fähigkeiten usw.)',
         'system'                        => 'Wenn deine Kampagne öffentlich einsehbar ist, dann wird das System in der :link Seite angezeigt.',
         'systems'                       => 'Um die Benutzer nicht mit Optionen zu überfordern, sind einige Funktionen von Kanka nur mit bestimmten Rollenspielsystemen (z.B. dem D&D 5e-Monster-Werteblock) verfügbar. Wenn wir hier unterstützte Systeme hinzufügen, werden diese Funktionen aktiviert.',
@@ -126,6 +127,7 @@ TEXT
             'description'   => 'Lade einen Freund zu deiner Kampagne ein',
             'link'          => 'Link erstellt: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Einladung verschickt.',
+            'success_link'  => 'Link :link erstellt',
             'title'         => 'Lade jemanden zu deiner Kampagne ein',
         ],
         'destroy'               => [
@@ -133,6 +135,7 @@ TEXT
         ],
         'email'                 => [
             'link'      => '<a href=":link">Trete :name\'s Kampagne bei</a>',
+            'link_text' => ':name´s Kampagne beigetreten',
             'subject'   => ':name hat dich eingeladen, seiner Kampagne \':campaign\' auf kanka.io beizutreten! Nutze den folgenden Link, um die Einladung anzunehmen.',
             'title'     => 'Einladung von :name',
         ],

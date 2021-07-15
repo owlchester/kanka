@@ -320,7 +320,7 @@ class AttributeService
             }
 
             $value = $values[$id] ?? '';
-            $type = $types[$id];
+            $type = $types[$id] ?? '';
             $isPrivate = !empty($privates[$id]);
             $isStar = !empty($stars[$id]);
 

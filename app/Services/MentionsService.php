@@ -202,12 +202,12 @@ class MentionsService
 
         // Attributes
         $text = preg_replace(
-            '`<a href="#" class="attribute" data-attribute="([^"]*)">(.*?)</a>`',
+            '`<a href="#" class="attribute attribute-mention" data-attribute="([^"]*)">(.*?)</a>`',
             '$1',
             $text
         );
         $text = preg_replace(
-            '`<a class="attribute" href="#" data-attribute="([^"]*)">(.*?)</a>`',
+            '`<a class="attribute attribute-mention" href="#" data-attribute="([^"]*)">(.*?)</a>`',
             '$1',
             $text
         );
@@ -352,6 +352,11 @@ class MentionsService
                 return $matches[0];
             }
 
+            // This was matched on an attribute
+            if ($data['type'] == 'icon') {
+                return $matches[0];
+            }
+
             /** @var Entity $entity */
             $entity = $this->entity($data['id']);
 
@@ -361,7 +366,7 @@ class MentionsService
             } else {
                 $name = $entity->name;
             }
-            return '<a href="#" class="mention invalid-mention" data-name="' . $name . '" data-mention="' . $matches[0] . '">' . $name . '</a>';
+            return '<a href="#" class="mention" data-name="' . $name . '" data-mention="' . $matches[0] . '">' . $name . '</a>';
         }, $this->text);
 
         // Extract links from the entry to attribute
@@ -507,7 +512,7 @@ class MentionsService
             if (empty($attribute)) {
                 $replace = '<i class="unknown-mention unknown-attribute">' . __('crud.history.unknown') . '</i>';
             } else {
-                $replace = '<span class="attribute" title="' . e($attribute->name) . '" data-toggle="tooltip">' . $attribute->mappedValue() . '</span>';
+                $replace = '<span class="attribute attribute-mention" title="' . e($attribute->name) . '" data-toggle="tooltip">' . $attribute->mappedValue() . '</span>';
             }
             return $replace;
         }, $this->text);

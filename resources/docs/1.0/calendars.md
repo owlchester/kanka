@@ -1,4 +1,4 @@
-# Calendars
+month_length# Calendars
 
 ---
 
@@ -237,7 +237,7 @@ To create a calendar, use the following endpoint.
 | `current_day` | `integer` | The current calendar day |
 | `tags` | `array` | Array of tag ids |
 | `month_name` | `array` (required, min 2) | Array of month names |
-| `month_length` | `array` | Array of month lengths |
+| `month_length` | `array` | (required, min 2) Array of month lengths |
 | `month_type` | `array` | Array of month types (standard or intercalary) |
 | `weekday` | `array` (required, min 2) | Array of weekday names |
 | `year_name` | `array` | Array of year names |

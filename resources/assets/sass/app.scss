@@ -682,9 +682,11 @@ div.mce-fullscreen {
     }
   }
 }
-.list-group-item-repeat {
-  padding-top: 0;
-  border: unset;
+.entity-sidebar-pins {
+  .list-group-item-repeat {
+    padding-top: 0;
+    border: unset;
+  }
 }
 
 .input-error {

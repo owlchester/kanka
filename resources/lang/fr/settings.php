@@ -155,25 +155,16 @@ return [
         'subscription_status'   => 'Status d\'abonnement',
     ],
     'patreon'       => [
-        'actions'           => [
-            'link'  => 'Lier le compte',
-            'view'  => 'Visiter Kanka sur Patreon',
-        ],
-        'benefits'          => 'Nous supporter sur :patreon active plein de :features pour toi et tes campagnes, et nous permet de dédier plus de temps à travailler sur Kanka.',
-        'benefits_features' => 'fonctionnalités sympas',
-        'deprecated'        => 'Fonction obsolète - si tu souhaites supporter Kanka, fais-le avec un abonnement. La liaison Patreon est toujours active pour nos Patrons qui ont lié leur compte avant le changement d\'abonnement.',
-        'description'       => 'Synchronisation avec Patreon',
-        'linked'            => 'Merci pour ton support sur Patreon! Ton compte est dorénavant lié.',
-        'pledge'            => 'Pledge: :name',
-        'remove'            => [
+        'deprecated'    => 'Fonction obsolète - si tu souhaites supporter Kanka, fais-le avec un abonnement. La liaison Patreon est toujours active pour nos Patrons qui ont lié leur compte avant le changement d\'abonnement.',
+        'description'   => 'Synchronisation avec Patreon',
+        'pledge'        => 'Pledge: :name',
+        'remove'        => [
             'button'    => 'Délier le compte Patreon',
             'success'   => 'Ton compte Patreon a été délié.',
             'text'      => 'Délier le compte Patreon de Kanka supprime les bonus, le nom du Hall of Fame, les boosters de campagne et d\'autres fonctionnalités liées au supporter de Kanka. Aucun contenu boosté ne sera perdu (par exemple les en-têtes d\'entité). Lors du réabonnement, toutes les données seront à nouveau visibles, y compris la possibilité de booster des campagnes précédemment boostées.',
             'title'     => 'Délier le compte Patreon de Kanka',
         ],
-        'success'           => 'Merci pour ton support sur Patreon!',
-        'title'             => 'Patreon',
-        'wrong_pledge'      => 'Ton pledge est inséré manuellement par nous, du coup ça peut prendre quelques jours pour être actualisé. Si ça prend longtemps, n\'hésite pas à nous contacter.',
+        'title'         => 'Patreon',
     ],
     'profile'       => [
         'actions'   => [

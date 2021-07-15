@@ -82,9 +82,11 @@ return [
             'dashboards'            => 'Rożne pulpity kampanii dla różnych ról jej uczestników',
             'description'           => 'Niektóre poziomy wsparcia zapewniają użytkownikom doładowania, których mogą używać w kampaniach. Doładowanie zapewnia następujące korzyści.',
             'entity_files'          => 'Zwiększona maksymalna liczba plików dołączonych do elementów kampanii (5 zamiast 3)',
+            'entity_files_v2'       => 'Maksymalna liczba plików elementu',
             'entity_links'          => 'Możliwość dodawania odnośników prowadzących na zewnątrz Kanki',
             'header_image'          => 'Obrazy w nagłówkach elementów',
             'images'                => 'Możliwość ustawienia własnych domyślnych ikon elementów',
+            'marketplace'           => 'Dostęp do :marketplace',
             'no_ads'                => 'Brak reklam w kampanii',
             'recovery'              => 'Odzyskiwanie usuniętych elementów do 30 dni',
             'relation-visualiser'   => 'Wizualizacja relacji między elementami',
@@ -92,6 +94,10 @@ return [
             'title'                 => 'Doładowane kampanie',
             'tooltip'               => 'Własne dymki elementów: zmieniaj tekst, dodawaj obrazy',
             'upload'                => 'Możliwość zamieszczania większych plików dla wszystkich uczestników',
+        ],
+        'boosts_v2'         => [
+            'description'   => 'Poziomy wsparcia zapewniają dostęp do doładowań, których można używać w kampaniach. Doładowanie i turbodoładowanie kampanii powoduje następujące korzyści.',
+            'title'         => 'Doładowana i turbodoładowana kampania',
         ],
         'calendars'         => [
             'description'   => 'Twórz własne kalendarze, mierzące upływ czasu kampanii.',

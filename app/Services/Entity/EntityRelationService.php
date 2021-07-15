@@ -804,7 +804,10 @@ class EntityRelationService
         }
 
         /** @var EntityMention[] $mentions */
-        $mentions = $this->entity->targetMentions()->with('entity')->whereNotNull('entity_id')->get();
+        $mentions = $this->entity->targetMentions()->with('entity')
+            ->has('entity')
+            ->whereNotNull('entity_id')
+            ->get();
         foreach ($mentions as $mention) {
             // Skip mentions to self
             if ($mention->entity_id == $this->entity->id) {

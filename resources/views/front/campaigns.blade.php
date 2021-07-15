@@ -19,7 +19,7 @@
             <div class="row h-100">
                 <div class="col-lg-9 my-auto">
                     <div class="header-content mx-auto">
-                        <h1 class="mb-5">{{ trans('front.campaigns.title') }}</h1>
+                        <h1 class="mb-3">{{ trans('front.campaigns.title') }}</h1>
                         <p class="mb-5">{{ trans('front.campaigns.description_full') }}</p>
                     </div>
                 </div>

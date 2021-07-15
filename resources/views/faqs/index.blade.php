@@ -1,6 +1,6 @@
 <?php use Illuminate\Support\Str ?>
 @extends('layouts.front', [
-    'title' => trans('front.menu.faq'),
+    'title' => __('front.menu.faq'),
     'menus' => [
         'faq',
     ],
@@ -18,8 +18,8 @@
             <div class="row h-100">
                 <div class="col-lg-7 my-auto">
                     <div class="header-content mx-auto">
-                        <h1 class="mb-5">{{ trans('front.faq.title') }}</h1>
-                        <p class="mb-5">{{ trans('front.faq.description') }}</p>
+                        <h1 class="mb-3">{{ __('front.faq.title') }}</h1>
+                        <p class="mb-5">{{ __('front.faq.description') }}</p>
                     </div>
                 </div>
             </div>
@@ -44,67 +44,22 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('faq.show', ['key' => 'custom', 'slug' => Str::slug(__('faq.custom.question'))]) }}">
-                                    {{ __('faq.custom.question') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('faq.show', ['key' => 'map', 'slug' => Str::slug(__('faq.map.question'))]) }}">
-                                    {{ __('faq.map.question') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('faq.show', ['key' => 'conversations', 'slug' => Str::slug(__('faq.conversations.question'))]) }}">
-                                    {{ __('faq.conversations.question') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('faq.show', ['key' => 'attribute-templates', 'slug' => Str::slug(__('faq.attribute-templates.question'))]) }}">
-                                    {{ __('faq.attribute-templates.question') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('faq.show', ['key' => 'backup', 'slug' => Str::slug(__('faq.backup.question'))]) }}">
-                                    {{ __('faq.backup.question') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('faq.show', ['key' => 'nested', 'slug' => Str::slug(__('faq.nested.question'))]) }}">
-                                    {{ __('faq.nested.question') }}
-                                </a>
-                            </li>
-                            <li>
                                 <a href="{{ route('faq.show', ['key' => 'account-deletion', 'slug' => Str::slug(__('faq.account-deletion.question'))]) }}">
                                     {{ __('faq.account-deletion.question') }}
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'help', 'slug' => Str::slug(__('faq.help.question'))]) }}">
+                                    {{ __('faq.help.question') }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('faq.show', ['key' => 'public-campaigns', 'slug' => Str::slug(__('faq.public-campaigns.question'))]) }}">
+                                    {{ __('faq.public-campaigns.question') }}
+                                </a>
+                            </li>
                         </ul>
 
-                    </div>
-                    <div class="col-md-4">
-                        <h2>{{ __('faq.sections.permissions') }}</h2>
-                        <ul>
-                            <li>
-                                <a href="{{ route('faq.show', ['key' => 'permissions', 'slug' => Str::slug(__('faq.permissions.question'))]) }}">
-                                    {{ __('faq.permissions.question') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('faq.show', ['key' => 'visibility', 'slug' => Str::slug(__('faq.visibility.question'))]) }}">
-                                    {{ __('faq.visibility.question') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('faq.show', ['key' => 'entity-notes', 'slug' => Str::slug(__('faq.entity-notes.question'))]) }}">
-                                    {{ __('faq.entity-notes.question') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('faq.show', ['key' => 'delete-campaign', 'slug' => Str::slug(__('faq.delete-campaign.question'))]) }}">
-                                    {{ __('faq.delete-campaign.question') }}
-                                </a>
-                            </li>
-                        </ul>
                     </div>
                     <div class="col-md-4">
                         <h2>{{ __('faq.sections.other') }}</h2>
@@ -130,35 +85,13 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('faq.show', ['key' => 'organise_play', 'slug' => Str::slug(__('faq.organise_play.question'))]) }}">
-                                    {{ __('faq.organise_play.question') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('faq.show', ['key' => 'renaming-modules', 'slug' => Str::slug(__('faq.renaming-modules.question'))]) }}">
-                                    {{ __('faq.renaming-modules.question') }}
+                                <a href="{{ route('faq.show', ['key' => 'discord', 'slug' => Str::slug(__('faq.discord.question'))]) }}">
+                                    {{ __('faq.discord.question') }}
                                 </a>
                             </li>
                         </ul>
                     </div>
-                </div>
-                <hr />
-                <div class="row">
-                    <div class="col-md-4">
-                        <h2>{{ __('faq.sections.worldbuilding') }}</h2>
-                        <ul>
-                            <li>
-                                <a href="{{ route('faq.show', ['key' => 'gods-and-religions', 'slug' => Str::slug(__('faq.gods-and-religions.question'))]) }}">
-                                    {{ __('faq.gods-and-religions.question') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('faq.show', ['key' => 'monsters', 'slug' => Str::slug(__('faq.monsters.question'))]) }}">
-                                    {{ __('faq.monsters.question') }}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+
                     <div class="col-md-4">
                         <h2>{{ __('faq.sections.pricing') }}</h2>
                         <ul>
@@ -179,43 +112,32 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-md-4">
-                        <h2>{{ __('faq.sections.community') }}</h2>
-                        <ul>
-                            <li>
-                                <a href="{{ route('faq.show', ['key' => 'help', 'slug' => Str::slug(__('faq.help.question'))]) }}">
-                                    {{ __('faq.help.question') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('faq.show', ['key' => 'public-campaigns', 'slug' => Str::slug(__('faq.public-campaigns.question'))]) }}">
-                                    {{ __('faq.public-campaigns.question') }}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('faq.show', ['key' => 'discord', 'slug' => Str::slug(__('faq.discord.question'))]) }}">
-                                    {{ __('faq.discord.question') }}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
 
                 <hr />
 
-                <h2>{{ __('front.faq.helpers.more') }}</h2>
-                <div class="row faq-more">
+                <h2 class="mt-5 text-center">{{ __('front.faq.kb.title') }}</h2>
+                <p class="text-center">{{ __('front.faq.kb.text') }}</p>
+                <div class="text-center">
+                    <a href="{{ route('front.faqs.index') }}" class="btn btn-light">
+                        {{ __('front.faq.kb.button') }}
+                    </a>
+                </div>
+
+
+                <h2 class="mt-5 text-center">{{ __('front.faq.helpers.more') }}</h2>
+                <div class="text-center faq-more">
                     <a href="{{ config('social.discord') }}" class="btn btn-light">
                         <i class="fab fa-discord"></i>
-                        {{ trans('front.help.discord') }}
+                        {{ __('front.help.discord') }}
                     </a>
                     <a href="{{ config('social.facebook') }}" class="btn btn-light">
                         <i class="fab fa-facebook"></i>
-                        {{ trans('front.help.facebook') }}
+                        {{ __('front.help.facebook') }}
                     </a>
                     <a href="mailto:hello@kanka.io" class="btn btn-light">
                         <i class="fa fa-envelope-open"></i>
-                        {{ trans('front.help.email') }}
+                        {{ __('front.help.email') }}
                     </a>
             </div>
         </div>

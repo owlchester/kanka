@@ -155,25 +155,16 @@ return [
         'subscription_status'   => 'Subscription Status',
     ],
     'patreon'       => [
-        'actions'           => [
-            'link'  => 'Link Account',
-            'view'  => 'Visit Kanka on Patreon',
-        ],
-        'benefits'          => 'Supporting us on :patreon unlocks all sorts of :features for you and your campaigns, and also helps us spend more time working on improving Kanka.',
-        'benefits_features' => 'amazing features',
-        'deprecated'        => 'Deprecated feature - if you wish to support Kanka, please do so with a :subscription. Patreon linking is still active for our Patrons who have linked their account before the move away from Patreon.',
-        'description'       => 'Syncing with Patreon',
-        'linked'            => 'Thank you for supporting Kanka on Patreon! Your account is linked.',
-        'pledge'            => 'Pledge: :name',
-        'remove'            => [
+        'deprecated'    => 'Deprecated feature - if you wish to support Kanka, please do so with a :subscription. Patreon linking is still active for our Patrons who have linked their account before the move away from Patreon.',
+        'description'   => 'Syncing with Patreon',
+        'pledge'        => 'Pledge: :name',
+        'remove'        => [
             'button'    => 'Unlink your Patreon account',
             'success'   => 'Your Patreon account has been unlinked.',
             'text'      => 'Unlinking your Patreon account with Kanka will remove your bonuses, name on the hall of fame, campaign boosts, and other features linked to supporting Kanka. None of your boosted content will be lost (e.g. entity headers). By subscribing again, you will have access to all your previous data, including the ability to boost your previously boosted campaigns.',
             'title'     => 'Unlink your Patreon account with Kanka',
         ],
-        'success'           => 'Thank you for supporting Kanka on Patreon!',
-        'title'             => 'Patreon',
-        'wrong_pledge'      => 'Your pledge level is set manually by us, so please allow up to a few days for us to properly set it. If it stays wrong for a while, please contact us.',
+        'title'         => 'Patreon',
     ],
     'profile'       => [
         'actions'   => [

@@ -80,13 +80,28 @@ class ImageController extends Controller
         $this->authorize('update', $entity->child);
 
         $oldImage = $entity->child->image;
+        $oldBoostedImage = $entity->image_uuid;
 
         $entity->child->update(
             []
         );
 
+        if ($entity->campaign->boosted(true)) {
+            if (request()->has('entity_image_uuid')) {
+                $entity->image_uuid = request()->get('entity_image_uuid');
+            } else {
+                $entity->image_uuid = null;
+            }
+            $entity->save();
+        }
+
+        $resetFocus = false;
+        if ($oldImage != $entity->child->image || $oldBoostedImage != $request->get('entity_image_uuid')) {
+            $resetFocus = true;
+        }
+
         // Changed the image, reset the focus
-        if ($oldImage != $entity->child->image) {
+        if ($resetFocus) {
             $entity->focus_x = null;
             $entity->focus_y = null;
             $entity->save();

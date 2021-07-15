@@ -66,6 +66,18 @@
                 </div>
                 <p class="help-block visible-xs visible-sm">{{ __('dashboard.widgets.recent.helpers.show_members') }}</p>
             </div>
+
+            <div class="col-sm-6">
+                {!! Form::hidden('config[relations]', 0) !!}
+                <div class="form-group checkbox">
+                    <label>
+                        {!! Form::checkbox('config[relations]', 1, (!empty($model) ? $model->conf('relations') : null), ['id' => 'config-relations']) !!}
+                        {{ __('dashboard.widgets.recent.show_relations') }}
+                        <i class="fa fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('dashboard.widgets.recent.helpers.show_relations') }}"></i>
+                    </label>
+                </div>
+                <p class="help-block visible-xs visible-sm">{{ __('dashboard.widgets.recent.helpers.show_relations') }}</p>
+            </div>
         </div>
     @else
         <p class="help-block">{!! __('dashboard.widgets.advanced_options_boosted', [
