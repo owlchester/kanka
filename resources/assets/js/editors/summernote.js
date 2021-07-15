@@ -249,7 +249,7 @@ function attributeContent(item)
     }
     return $('<a />', {
         href: '#',
-        class: 'attribute',
+        class: 'attribute attribute-mention',
         text: '{' + item.name + '}',
         'data-attribute': '{attribute:' + item.id + '}'
     })[0]

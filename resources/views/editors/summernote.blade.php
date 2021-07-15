@@ -1,4 +1,4 @@
-
+$
 @section('scripts')
     @parent
     <script src="/vendor/summernote/summernote.min.js?v={{ config('app.version') }}" defer></script>
