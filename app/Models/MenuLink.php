@@ -159,6 +159,7 @@ class MenuLink extends MiscModel
     {
         $parameters = [
             $this->target->entity_id,
+            'quick-link' => $this->id
         ];
 
         if (!empty($this->menu)) {
@@ -183,7 +184,7 @@ class MenuLink extends MiscModel
     public function getRoute()
     {
         if ($this->dashboard) {
-            return route('dashboard', ['dashboard' => $this->dashboard_id]);
+            return route('dashboard', ['dashboard' => $this->dashboard_id, 'quick-link' => $this->id]);
         }
         return !empty($this->entity_id) ? $this->getEntityRoute() : $this->getIndexRoute();
     }
@@ -228,7 +229,7 @@ class MenuLink extends MiscModel
      */
     protected function getIndexRoute()
     {
-        $filters = $this->filters . '&_clean=true&_from=quicklink';
+        $filters = $this->filters . '&_clean=true&_from=quicklink&quick-link=' . $this->id;
         $nestedType = (!empty($this->options['is_nested']) && $this->options['is_nested'] ? 'tree' : 'index');
         try {
             return route(Str::plural($this->type) . ".$nestedType", $filters);
