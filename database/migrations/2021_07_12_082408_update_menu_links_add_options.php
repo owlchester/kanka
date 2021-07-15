@@ -14,7 +14,7 @@ class UpdateMenuLinksAddOptions extends Migration
     public function up()
     {
         Schema::table('menu_links', function (Blueprint $table) {
-            $table->json('options')->nullable();
+            $table->text('options')->nullable();
         });
     }
 
