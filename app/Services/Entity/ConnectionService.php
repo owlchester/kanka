@@ -208,11 +208,11 @@ class ConnectionService
      */
     protected function loadLocation(): self
     {
-        if (!isset($this->entity->location) || empty($this->entity->location)) {
+        if (!isset($this->entity->child->location) || empty($this->entity->child->location)) {
             return $this;
         }
 
-        $entity = $this->entity->location->entity;
+        $entity = $this->entity->child->location->entity;
         $this->ids[] = $entity->id;
         $this->reasons[$entity->id][] = __('entities.location');
 
