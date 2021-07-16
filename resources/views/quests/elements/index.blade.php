@@ -1,11 +1,11 @@
 <?php /** @var \App\Models\QuestElement $element */?>
 @extends('layouts.app', [
-    'title' => trans('quests.elements.title', ['name' => $model->name]),
+    'title' => __('quests.elements.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [
         ['url' => Breadcrumb::index('quests'), 'label' => __('quests.index.title')],
         ['url' => route('quests.show', $model), 'label' => $model->name],
-        trans('quests.show.tabs.elements')
+        __('quests.show.tabs.elements')
     ],
     'mainTitle' => false,
     'miscModel' => $model,
@@ -13,26 +13,34 @@
 
 @inject('campaign', 'App\Services\CampaignService')
 
+
+@section('entity-header-actions')
+    @can('update', $model)
+        <div class="header-buttons">
+
+            <a href="{{ route('quests.quest_elements.create', ['quest' => $model->id]) }}" class="btn btn-sm btn-warning">
+                <i class="fa fa-plus"></i>
+                <span class="hidden-xs hidden-sm">{{ __('quests.show.actions.add_element') }}</span>
+            </a>
+        </div>
+    @endcan
+@endsection
+
+@include('entities.components.header', ['model' => $model])
+
 @section('content')
     @include('partials.errors')
-    <div class="row">
-        <div class="col-md-3">
+    <div class="row entity-grid">
+        <div class="col-md-2 entity-sidebar-submenu">
             @include('quests._menu', ['active' => 'elements', 'name' => 'quests'])
         </div>
-        <div class="col-md-9">
+        <div class="col-md-10 entity-main-block">
             <div class="row export-hidden">
                 <div class="col-md-6">
                     @include('cruds.datagrids.sorters.simple-sorter')
                 </div>
-                <div class="col-md-6 text-right">
-                    @can('update', $model)
-                        <a href="{{ route('quests.quest_elements.create', ['quest' => $model->id]) }}" class="btn btn-primary">
-                            <i class="fa fa-plus"></i> {{ __('quests.show.actions.add_element') }}
-                        </a>
-                    @endcan
-                </div>
             </div>
-            <div class="row margin-top">
+            <div class="row margin-top" id="quest-elements">
                 @foreach ($elements as $element)
                     <div class="col-md-6">
                         <div class="box box-widget widget-user-2 box-quest-element">
@@ -81,7 +89,7 @@
                 @endforeach
             </div>
 
-            {!! $elements->links() !!}
+            {!! $elements->fragment('quest-elements')->links() !!}
 
         </div>
     </div>
