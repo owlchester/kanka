@@ -27,21 +27,21 @@
         @endenv
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                <a href="#form-entry" title="{{ __('crud.panels.entry') }}" role="tab" data-toggle="tooltip" aria-controls="form-entry">
+                <a href="#form-entry" title="{{ __('crud.panels.entry') }}" role="tab" aria-controls="form-entry">
                     {{ __('crud.panels.entry') }}
                 </a>
             </li>
             @includeIf($name . '.form._tabs', ['source' => null])
             @if ($tabBoosted)
                 <li role="presentation" class="{{ (request()->get('tab') == 'boost' ? ' active' : '') }}">
-                    <a href="#form-boost" title="{{ __('crud.tabs.boost') }}" role="tab" data-toggle="tooltip" aria-controls="form-boost">
+                    <a href="#form-boost" title="{{ __('crud.tabs.boost') }}" role="tab" aria-controls="form-boost">
                         <i class="fa fa-rocket"></i> <span class="hidden-xs">{{ __('crud.tabs.boost') }}</span>
                     </a>
                 </li>
             @endif
             @if ($tabAttributes)
                 <li role="presentation"  class="{{ (request()->get('tab') == 'attributes' ? ' active' : '') }}">
-                    <a href="#form-attributes" title="{{ __('crud.tabs.attributes') }}" role="tab" data-toggle="tooltip" aria-controls="form-attributes">
+                    <a href="#form-attributes" title="{{ __('crud.tabs.attributes') }}" role="tab" aria-controls="form-attributes">
                         <span class="hidden-xs hidden-sm">{{ __('crud.tabs.attributes') }}</span>
                         <i class="visible-xs visible-sm fa fa-th-list" title="{{ __('crud.tabs.attributes') }}"></i>
                     </a>
@@ -49,7 +49,7 @@
             @endif
             @if ($tabPermissions)
             <li role="presentation"  class="{{ (request()->get('tab') == 'permission' ? ' active' : '') }}">
-                <a href="#form-permission" title="{{ __('crud.tabs.permissions') }}" role="tab" data-toggle="tooltip" aria-controls="form-permission">
+                <a href="#form-permission" title="{{ __('crud.tabs.permissions') }}" role="tab" aria-controls="form-permission">
                     <span class="hidden-xs hidden-sm">{{ __('crud.tabs.permissions') }}</span>
                     <i class="visible-xs visible-sm fa fa-cog" title="{{ __('crud.tabs.permissions') }}"></i>
                 </a>
