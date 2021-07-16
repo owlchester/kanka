@@ -13,13 +13,13 @@ $eras = $timeline->eras()->ordered($timeline->revert_order)->get();
 
     <div class="box box-widget" id="era{{ $era->id }}">
         <div class="box-header with-border">
-            <div class="box-title">
+            <h3 class="box-title">
 
                 <i class="fa fa-chevron-up timeline-toggle panel-toggable" id="era-items-{{ $era->id }}-show" data-short="era-items-{{ $era->id }}" data-toggle="collapse" data-target="#era-items-{{ $era->id }}"></i>
                 <i class="fa fa-chevron-down timeline-toggle panel-toggable" style="display: none;" id="era-items-{{ $era->id }}-hide" data-short="era-items-{{ $era->id }}" data-toggle="collapse" data-target="#era-items-{{ $era->id }}"></i>
 
                 {{ $era->name }} @if(!empty($era->abbreviation)) ({{ $era->abbreviation }}) @endif
-            </div>
+            </h3>
             <span>
                 @if (isset($era->start_year) && isset($era->end_year))
                     {{ $era->start_year }} &mdash; {{ $era->end_year }}
