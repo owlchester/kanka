@@ -101,7 +101,7 @@
       line-height: 20px;
     }
   }
-  .entity-type {
+  .entity-type, .entity-title {
     margin-top: 10px;
     display: none;
   }
@@ -112,7 +112,7 @@
 .entity-header.with-entity-header {
   padding-top: 50px;
   margin-bottom: 20px;
-  .entity-name {
+  .entity-name, .entity-title {
     text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
     color: white;
   }

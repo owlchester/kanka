@@ -180,6 +180,12 @@ if (auth()->check() && auth()->user()->isAdmin()) {
                 </div>
             </div>
 
+            @if ($model instanceof \App\Models\Character && !empty($model->title))
+                <div class="entity-title">
+                    {{ $model->title }}
+                </div>
+            @endif
+
             @if (!empty($model->type))
                 <div class="entity-type">
                     {{ $model->type }}
