@@ -39,7 +39,7 @@
 ]) }}">
     {{ __('helpers.attributes.link') }} <i class="fa fa-question-circle"></i>
 </a>
-<a href="#" class="btn btn-default pull-right" data-toggle="modal" data-target="#attributes-delete-all-confirm">
+<a href="#" class="btn btn-danger pull-right" data-toggle="modal" data-target="#attributes-delete-all-confirm">
     <i class="fa fa-trash"></i> <span class="hidden-xs">{{ __('entities/attributes.actions.remove_all') }}</span>
 </a>
 

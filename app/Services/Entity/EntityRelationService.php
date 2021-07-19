@@ -833,7 +833,7 @@ class EntityRelationService
      */
     protected function loadRelations(): bool
     {
-        return(bool) true;
+        return true;
     }
 
     /**
@@ -841,7 +841,7 @@ class EntityRelationService
      */
     protected function loadRelated(): bool
     {
-        return(bool) in_array($this->option, ['related', 'mentions']);
+        return in_array($this->option, ['related', 'mentions']);
     }
 
     /**
@@ -849,6 +849,6 @@ class EntityRelationService
      */
     protected function loadMentions(): bool
     {
-        return (bool) $this->option == 'mentions';
+        return $this->option == 'mentions';
     }
 }

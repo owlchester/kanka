@@ -4,7 +4,8 @@
         ['url' => route('campaigns.index'), 'label' => trans('campaigns.index.title')],
         trans('crud.create')
     ],
-    'skipBannerAd' => true
+    'skipBannerAd' => true,
+    'startUI' => $start
 ])
 
 @section('fullpage-form')

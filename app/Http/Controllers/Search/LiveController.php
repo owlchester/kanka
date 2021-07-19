@@ -32,6 +32,7 @@ class LiveController extends Controller
     {
         $term = trim($request->q);
         $type = trim($request->type);
+        $exclude = trim($request->exclude);
         $campaign = CampaignLocalization::getCampaign();
         $new = request()->has('new');
 
@@ -42,6 +43,7 @@ class LiveController extends Controller
                 ->campaign($campaign)
                 ->new($new)
                 ->full()
+                ->excludeIds([$exclude])
                 ->find()
         );
     }

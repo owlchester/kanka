@@ -20,7 +20,7 @@
         </div>
         <ul class="nav nav-tabs">
             <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                <a href="#form-entry" title="{{ trans('crud.panels.entry') }}" data-toggle="tooltip">
+                <a href="#form-entry" title="{{ trans('crud.panels.entry') }}">
                     {{ trans('crud.panels.entry') }}
                 </a>
             </li>
@@ -28,21 +28,21 @@
 
             @if ($tabBoosted)
                 <li class="{{ (request()->get('tab') == 'boost' ? ' active' : '') }}">
-                    <a href="#form-boost" title="{{ trans('crud.tabs.boost') }}" data-toggle="tooltip">
+                    <a href="#form-boost" title="{{ trans('crud.tabs.boost') }}">
                         <i class="fa fa-rocket"></i> <span class="hidden-xs">{{ __('crud.tabs.boost') }}</span>
                     </a>
                 </li>
             @endif
             @if ((!empty($source) || !empty(old('copy_source_id'))) && $tabCopy)
                 <li class="{{ (request()->get('tab') == 'copy' ? ' active' : '') }}">
-                    <a href="#form-copy" title="{{ trans('crud.forms.copy_options') }}" data-toggle="tooltip">
+                    <a href="#form-copy" title="{{ trans('crud.forms.copy_options') }}">
                         {{ trans('crud.forms.copy_options') }}
                     </a>
                 </li>
             @endif
             @if ($tabAttributes)
                 <li class="{{ (request()->get('tab') == 'attributes' ? ' active' : '') }}">
-                    <a href="#form-attributes" title="{{ trans('crud.tabs.attributes') }}" data-toggle="tooltip">
+                    <a href="#form-attributes" title="{{ trans('crud.tabs.attributes') }}">
                         <span class="hidden-xs hidden-sm">{{ trans('crud.tabs.attributes') }}</span>
                         <i class="visible-xs visible-sm fa fa-th-list" title="{{ trans('crud.tabs.attributes') }}"></i>
                     </a>
@@ -50,7 +50,7 @@
             @endif
             @if ($tabPermissions)
             <li class="{{ (request()->get('tab') == 'permission' ? ' active' : '') }}">
-                <a href="#form-permissions" title="{{ trans('crud.tabs.permissions') }}" data-toggle="tooltip">
+                <a href="#form-permissions" title="{{ trans('crud.tabs.permissions') }}">
                     <span class="hidden-xs hidden-sm">{{ trans('crud.tabs.permissions') }}</span>
                     <i class="visible-xs visible-sm fa fa-cog" title="{{ trans('crud.tabs.permissions') }}"></i>
                 </a>

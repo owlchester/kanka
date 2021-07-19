@@ -107,10 +107,15 @@ function registerEntityNameCheck() {
         }
         var entityCreatorDuplicateWarning = $('.duplicate-entity-warning');
         let currentEntityID = $(this).data('id');
+        let url = $(this).data('live') +
+            '?q=' + encodeURIComponent($(this).val()) +
+            '&type=' + $(this).data('type') +
+            '&exclude=' + $(this).data('id');
+
         entityCreatorDuplicateWarning.hide();
         // Check if an entity of the same type already exists, and warn when it does.
         $.ajax(
-            $(this).data('live') + '?q=' + $(this).val() + '&type=' + $(this).data('type')
+            url
         ).done(function (res) {
             if (res.length > 0) {
                 let entities = Object.keys(res)

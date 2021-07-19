@@ -233,8 +233,8 @@ class BulkService
             // We have to still update the entity object
             $realEntity = $entity->entity;
 
-            $realEntity->is_private = $model->is_private;
-            $realEntity->name = $model->name;
+            $realEntity->is_private = $entity->is_private;
+            $realEntity->name = $entity->name;
             $realEntity->save();
 
             $count++;
