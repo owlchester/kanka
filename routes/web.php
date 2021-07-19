@@ -255,6 +255,7 @@ Route::group([
 
         // User search
         Route::get('/users/search', 'CampaignUserController@search')->name('users.find');
+        Route::get('/roles/search', 'CampaignRoleController@search')->name('roles.find');
 
 
         Route::get('/default-images', 'Campaign\DefaultImageController@index')->name('campaign.default-images');

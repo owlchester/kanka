@@ -7,7 +7,8 @@
         $preset = $random->generateForeign(\App\Models\Location::class);
     } else {
         $preset = FormCopy::field('location')->select();
-    }?>
+    }
+    ?>
     <div class="form-group">
         {!! Form::foreignSelect(
             'location_id',

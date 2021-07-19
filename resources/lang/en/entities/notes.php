@@ -4,6 +4,7 @@ return [
     'actions'       => [
         'add'       => 'New Entity Note',
         'add_user'  => 'Add user',
+        'add_role'  => 'Add role',
     ],
     'create'        => [
         'description'   => 'Create a new Entity Note',

@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property int $entity_note_id
  * @property int $user_id
+ * @property int $role_id
  * @property int $permission
  * @property User $user
  * @property EntityNote $note
@@ -22,6 +23,7 @@ class EntityNotePermission extends Model
 {
     public $fillable = [
         'user_id',
+        'role_id',
         'entity_note_id',
         'permission'
     ];
@@ -32,6 +34,14 @@ class EntityNotePermission extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function role()
+    {
+        return $this->belongsTo(CampaignRole::class);
     }
 
     /**
@@ -51,5 +61,23 @@ class EntityNotePermission extends Model
             return __('crud.view');
         }
         return __('crud.update');
+    }
+
+    public function scopeOnlyUsers($query)
+    {
+        return $query->whereNotNull('user_id');
+    }
+
+    public function scopeOnlyRoles($query)
+    {
+        return $query->whereNotNull('role_id');
+    }
+
+    /**
+     * @return bool
+     */
+    public function isUser(): bool
+    {
+        return !empty($this->user_id);
     }
 }

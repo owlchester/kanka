@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Facades\CampaignLocalization;
+use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Facades\EntityPermission;
 use App\Models\Entity;
@@ -210,6 +211,10 @@ class MiscPolicy
 
     protected function checkEntityNotePermission(User $user, EntityNote $entityNote): bool
     {
-        return $entityNote->permissions->where('user_id', $user->id)->where('permission', 1)->count() == 1;
+        $roleIds = UserCache::roles()->pluck('id')->toArray();
+        return $entityNote->permissions->where('user_id', $user->id)->where('permission', 1)->count() == 1
+            ||
+            $entityNote->permissions->whereIn('role_id', $roleIds)->where('permission', 1)->count() == 1
+        ;
     }
 }
