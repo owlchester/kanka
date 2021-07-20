@@ -209,12 +209,18 @@ class MiscPolicy
         return EntityPermission::hasPermission($this->model, $action, $user, $entity, $campaign);
     }
 
+    /**
+     * @param User $user
+     * @param EntityNote $entityNote
+     * @return bool
+     */
     protected function checkEntityNotePermission(User $user, EntityNote $entityNote): bool
     {
         $roleIds = UserCache::roles()->pluck('id')->toArray();
-        return $entityNote->permissions->where('user_id', $user->id)->where('permission', 1)->count() == 1
+        $perms = $entityNote->permissions->where('permission', 1);
+        return $perms->where('user_id', $user->id)->count() == 1
             ||
-            $entityNote->permissions->whereIn('role_id', $roleIds)->where('permission', 1)->count() == 1
+            $perms->whereIn('role_id', $roleIds)->count() == 1
         ;
     }
 }

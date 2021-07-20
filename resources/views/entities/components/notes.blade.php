@@ -10,7 +10,7 @@ if (empty($entity)) {
 }
 $wrapper = false;
 if (!isset($pinnedNotes)) {
-    $pinnedNotes = $entity->notes()->ordered()->paginate(15);
+    $pinnedNotes = $entity->notes()->with('permissions')->ordered()->paginate(15);
     $wrapper = true;
 }
 @endphp
