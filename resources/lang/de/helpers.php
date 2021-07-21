@@ -53,7 +53,9 @@ return [
         'limitations'       => 'Bitte beachte, dass diese Abkürzungen aufgrund technischer Einschränkungen auf Android-Mobilgeräten nicht funktionieren.',
         'mention_helpers'   => 'Wenn Ihr Objektname ein Leerzeichen enthält, verwenden Sie :example anstelle von Leerzeichen. Wenn Sie nach einem Objekt mit genau diesem Namen suchen möchten, geben Sie Folgendes ein :exact.',
         'mentions'          => 'Verknüpfen Sie andere Objekte, indem Sie Folgendes eingeben :code und die ersten Zeichen eines Objekts, um danach zu suchen. Dies wird eingefügt :example im Texteditor. Um den Namen des angezeigten Objekts anzupassen, können Sie Folgendes eingeben: :example_name. Verwenden Sie zum Festlegen der Unterseite des Objekts :example_page. Verwenden Sie zum Festlegen der Registerkarte des Objekts :example_tab.',
+        'mentions_field'    => 'Sie können auch ein Feld aus dem Objekt anstelle seines Namens im Link mit :code anzeigen.',
         'months'            => 'Geben Sie :code ein, um eine Liste der Monate aus Ihrem Kalendern abzurufen.',
+        'options'           => 'Ein paar Optionen sind :options',
         'title'             => 'Andere Objekte verlinken',
     ],
     'map'               => [

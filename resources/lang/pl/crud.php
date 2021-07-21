@@ -371,6 +371,7 @@ return [
         'attributes'    => 'Cechy',
         'boost'         => 'Doładowanie',
         'calendars'     => 'Kalendarze',
+        'connections'   => 'Powiązania',
         'default'       => 'Domyślne',
         'events'        => 'Wydarzenia',
         'inventory'     => 'Wyposażenie',

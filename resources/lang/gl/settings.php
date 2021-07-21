@@ -155,25 +155,16 @@ return [
         'subscription_status'   => 'Estado da subscripción',
     ],
     'patreon'       => [
-        'actions'           => [
-            'link'  => 'Ligar conta',
-            'view'  => 'Visita a páxina de Kanka en Patreon',
-        ],
-        'benefits'          => 'Apoiarnos en :patreon proporciona todo tipo de :features para ti e as túas campañas, e permítenos dedicar máis tempo a mellorar Kanka.',
-        'benefits_features' => 'funcionalidades increíbeis',
-        'deprecated'        => 'Funcionalidade obsoleta - se desexas apoiar a Kanka, por favor, faino con unha subscripción. A ligazón de contas de Patreon aínda está activa para as persoas que ligaron a súa conta previamente a que deixásemos de usar Patreon.',
-        'description'       => 'Sincronizando con Patreon',
-        'linked'            => 'Grazas por apoiar a Kanka en Patreon! A túa conta está ligada.',
-        'pledge'            => 'Pledge :name',
-        'remove'            => [
+        'deprecated'    => 'Funcionalidade obsoleta - se desexas apoiar a Kanka, por favor, faino con unha subscripción. A ligazón de contas de Patreon aínda está activa para as persoas que ligaron a súa conta previamente a que deixásemos de usar Patreon.',
+        'description'   => 'Sincronizando con Patreon',
+        'pledge'        => 'Pledge :name',
+        'remove'        => [
             'button'    => 'Desligar a túa conta de Patreon',
             'success'   => 'A túa conta de Patreon foi desligada.',
             'text'      => 'Desligar a túa conta de Patreon eliminará as túas bonificacións, nome do salón da fama, potenciacións de campaña, e outras funcionalidades ligadas a apoiar a Kanka. Ningún do teu contido será eliminado. Subscribíndote de novo terás acceso a todos os teus datos previos, incluíndo a habilidade de potenciar as campañas que potenciaras previamente.',
             'title'     => 'Desliga a túa conta de Patreon',
         ],
-        'success'           => 'Grazas por apoiar a Kanka en Patreon!',
-        'title'             => 'Patreon',
-        'wrong_pledge'      => 'O teu nivel de "pledge" é establecido manualmente, así que podemos tardar uns días en establecelo correctamente. Se permanece errado por un tempo, contacta connosco.',
+        'title'         => 'Patreon',
     ],
     'profile'       => [
         'actions'   => [

@@ -15,6 +15,7 @@ return [
         'success'       => 'Stred záujmu aktualizovaný.',
         'title'         => 'Stred záujmu objektu :name',
         'unboosted'     => 'Nastavenie stredu záujmu na obrázku je rezervované pre :boosted_campaigns.',
+        'warning'       => 'Nastavenie stredu záujmu nie je možné, ak obrázok objektu pochádza z galérie.',
     ],
     'replace'   => [
         'breadcrumb'    => 'Výmena obrázku',

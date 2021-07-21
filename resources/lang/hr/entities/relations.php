@@ -1,6 +1,16 @@
 <?php
 
 return [
+    'actions'       => [
+        'mode-map'      => 'Alat za istraživanje odnosa',
+        'mode-table'    => 'Tablica odnosa i veza',
+    ],
+    'connections'   => [
+        'map_point'         => 'Točka karte',
+        'mention'           => 'Spomenuti',
+        'quest_element'     => 'Element zadatka',
+        'timeline_element'  => 'Element kronologije',
+    ],
     'create'        => [
         'success'   => 'Dodan odnos :target u :entity.',
         'title'     => 'Novi odnos za :name',
@@ -10,6 +20,7 @@ return [
     ],
     'fields'        => [
         'attitude'          => 'Stav',
+        'connection'        => 'Veza',
         'is_star'           => 'Prikačeno',
         'relation'          => 'Odnos',
         'target'            => 'Meta',
@@ -25,6 +36,15 @@ return [
         ],
         'target_relation'   => 'Opis odnosa na cilju. Ostavi prazno za korištenje teksta ovog odnosa.',
         'two_way'           => 'Ako odaberete kreiranje zrcalnog odnosa, isti odnos će se kreirati na meti. Međutim, ako ga uredite, zrcaljenje se neće ažurirati.',
+    ],
+    'options'       => [
+        'mentions'  => 'Odnosi + srodno + spomeni',
+        'related'   => 'Odnosi + srodno',
+        'relations' => 'Odnosi',
+        'show'      => 'Prikaži',
+    ],
+    'panels'        => [
+        'related'   => 'Srodno',
     ],
     'placeholders'  => [
         'attitude'  => '-100 do 100, gdje je 100 vrlo pozitivno.',

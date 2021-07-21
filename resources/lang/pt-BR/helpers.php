@@ -53,7 +53,9 @@ return [
         'limitations'       => 'Observe que devido a limitações técnicas, essas abreviações não funcionam em dispositivos móveis Android, a menos que use o novo editor Summernote. Você pode alterar seu editor em Configurações> Preferências de layout.',
         'mention_helpers'   => 'Se o nome da sua entidade tiver um espaço, use :example em vez de espaço. Se você deseja pesquisar uma entidade com exatamente esse nome, digite :exact.',
         'mentions'          => 'Conecte-se a outras entidades digitando :code e os primeiros caracteres de uma entidade para pesquisá-lo. Isso colocará :example no editor de texto. Para personalizar o nome da entidade exibida, você pode digitar :example_name. Para definir a subpágina da entidade, use :example_page. Para definir a guia da entidade, use :example_tab.',
+        'mentions_field'    => 'Você também pode exibir um campo da entidade em vez de seu nome no link com :code.',
         'months'            => 'Digite :code para obter uma lista de meses de seus calendários.',
+        'options'           => 'Algumas opções são :options.',
         'title'             => 'Criando um link para outras entidades',
     ],
     'map'               => [

@@ -12,4 +12,7 @@ return [
         'success'       => 'Entradas reordenadas.',
         'title'         => 'Reordenado das entradas de ":name"',
     ],
+    'update'    => [
+        'title' => 'Actualizar entrada de ":entity"',
+    ],
 ];

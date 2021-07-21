@@ -55,6 +55,11 @@ return [
         'helpers'       => [
             'more'  => 'Nisi pronašao/la što si tražio/la?',
         ],
+        'kb'            => [
+            'button'    => 'Pronađi odgovore u našoj bazi znanja',
+            'text'      => 'Imaš pitanje o tome kako koristiti funkcionalnosti Kanke? Najbolje je posjetiti našu stalno rastuću baza znanja.',
+            'title'     => 'Trebaš pomoć u korištenju Kanke?',
+        ],
         'title'         => 'Često postavljana pitanja',
     ],
     'features'      => [
@@ -257,6 +262,7 @@ return [
         'features'      => 'Funkcionalnosti',
         'help'          => 'Pomoć',
         'home'          => 'Početna stranica',
+        'kb'            => 'Baza znanja',
         'login'         => 'Prijava',
         'marketplace'   => 'Tržnica',
         'media'         => 'Mediji',

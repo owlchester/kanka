@@ -5,7 +5,7 @@ return [
         'add'                       => 'Pridať schopnosť',
         'import_from_race'          => 'Pridať rasové schopnosti',
         'import_from_race_mobile'   => 'Rasové schopnosti',
-        'reset'                     => 'Resetovať použitia schopností',
+        'reset'                     => 'Resetovať vyčerpania schopností',
     ],
     'create'    => [
         'success'           => 'Schopnosť :ability pridaná k :entity.',

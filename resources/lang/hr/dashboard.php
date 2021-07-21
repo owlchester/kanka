@@ -95,6 +95,7 @@ return [
     'widgets'           => [
         'actions'                   => [
             'advanced-options'  => 'Napredne opcije',
+            'delete-confirm'    => 'ovaj programčić',
         ],
         'advanced_options_boosted'  => ':boosted_campaigns imaju napredne opcije poput prikazivanja članova obitelji ili atributa entiteta na naslovnoj ploči.',
         'calendar'                  => [
@@ -143,9 +144,11 @@ return [
                 'full'              => 'Prikaži unos cijelog entiteta umjesto skraćenog pregleda.',
                 'show_attributes'   => 'Prikaži prikvačene atribute entiteta ispod unosa.',
                 'show_members'      => 'Ako je entitet obitelj ili organizacija, pokaži njezine članove ispod unosa.',
+                'show_relations'    => 'Prikaži entitetove prikvačene veze ispod unosa.',
             ],
             'show_attributes'   => 'Prikaži prikvačene atribute',
             'show_members'      => 'Prikaži članove',
+            'show_relations'    => 'Pokaži prikvačene odnose',
             'singular'          => 'Jedan',
             'tags'              => 'Filtrirajte popis nedavno izmijenjenih entiteta po navedenim oznakama.',
             'title'             => 'Nedavno izmijenjeno',

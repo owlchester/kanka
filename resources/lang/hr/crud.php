@@ -347,6 +347,7 @@ return [
         'attributes'    => 'Atributi',
         'boost'         => 'Pojačavanje',
         'calendars'     => 'Kalendari',
+        'connections'   => 'Veze',
         'default'       => 'Zadano',
         'events'        => 'Događaji',
         'inventory'     => 'Inventar',

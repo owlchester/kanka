@@ -376,6 +376,7 @@ return [
         'attributes'    => 'Attribute',
         'boost'         => 'Boost',
         'calendars'     => 'Kalender',
+        'connections'   => 'Beziehungen',
         'default'       => 'Standard',
         'events'        => 'Ereignisse',
         'inventory'     => 'Inventar',

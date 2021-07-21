@@ -55,6 +55,11 @@ return [
         'helpers'       => [
             'more'  => 'Nie ma tu tego, czego szukasz?',
         ],
+        'kb'            => [
+            'button'    => 'Poszukaj odpowiedzi w bazie wiedzy',
+            'text'      => 'Masz pytania dotyczące działania Kanki? Zajrzyj do naszej rosnącej bazy wiedzy.',
+            'title'     => 'Potrzebujesz pomocy?',
+        ],
         'title'         => 'FAQ',
     ],
     'features'      => [
@@ -262,6 +267,7 @@ return [
         'features'      => 'Funkcje',
         'help'          => 'Pomoc',
         'home'          => 'Ekran główny',
+        'kb'            => 'Baza wiedzy',
         'login'         => 'Logowanie',
         'marketplace'   => 'Targowisko',
         'media'         => 'Media',

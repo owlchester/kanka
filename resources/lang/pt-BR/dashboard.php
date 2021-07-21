@@ -107,6 +107,7 @@ return [
     'widgets'           => [
         'actions'                   => [
             'advanced-options'  => 'Opções avançadas',
+            'delete-confirm'    => 'esse widget',
         ],
         'advanced_options_boosted'  => ':boosted_campaigns têm opções avançadas, como mostrar membros de uma família ou atributos da entidade no dashboard.',
         'calendar'                  => [
@@ -155,9 +156,11 @@ return [
                 'full'              => 'Exibe a entrada da entidade inteira por padrão em vez de uma visualização.',
                 'show_attributes'   => 'Mostra os atributos fixados da entidade abaixo da entrada.',
                 'show_members'      => 'Se a entidade for uma família ou organização, mostra seus membros abaixo da entrada.',
+                'show_relations'    => 'Mostrar as relações fixadas da entidade abaixo da entrada.',
             ],
             'show_attributes'   => 'Mostrar atributos fixos',
             'show_members'      => 'Mostrar membros',
+            'show_relations'    => 'Mostrar relações fixadas',
             'singular'          => 'Singular',
             'tags'              => 'Filtre a lista de entidades modificadas recentemente em tags específicas.',
             'title'             => 'Modificado recentemente',

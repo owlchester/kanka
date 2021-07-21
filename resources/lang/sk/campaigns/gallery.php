@@ -6,6 +6,7 @@ return [
         'full'  => 'Link k obrázku',
         'save'  => 'Uložiť',
     ],
+    'breadcrumb'    => 'Galéria',
     'destroy'       => [
         'success'   => 'Obrázok :name zmazaný.',
     ],

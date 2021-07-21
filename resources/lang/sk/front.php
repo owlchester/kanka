@@ -55,6 +55,11 @@ return [
         'helpers'       => [
             'more'  => 'Nemôžeš nájsť, čo hľadáš?',
         ],
+        'kb'            => [
+            'button'    => 'Nájdi odpovede v našej vedomostnej databáze',
+            'text'      => 'Máš otázku o tom, ako používať funkcionality Kanky? Naša vedomostná databáza je miesto, ktoré hľadáš!',
+            'title'     => 'Potrebuješ pomoc pri používaní Kanky?',
+        ],
         'title'         => 'FAQ',
     ],
     'features'      => [
@@ -266,6 +271,7 @@ return [
         'features'      => 'Funkcie',
         'help'          => 'Pomocník',
         'home'          => 'Domov',
+        'kb'            => 'Vedomostná databáza',
         'login'         => 'Login',
         'marketplace'   => 'Trhovisko',
         'media'         => 'Médiá',

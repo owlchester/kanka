@@ -46,7 +46,7 @@ return [
         'filters'   => 'location_id=15&type=city',
         'menu'      => 'Podstránka (použi poslednú časť textu URL)',
         'name'      => 'Názov menu linku',
-        'tab'       => 'Záznam, Prepojenia, Poznámky',
+        'tab'       => 'Záznam, Vzťahy, Poznámky',
     ],
     'random_types'  => [
         'any'   => 'Hociktorý objekt',

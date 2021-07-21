@@ -1,6 +1,16 @@
 <?php
 
 return [
+    'actions'       => [
+        'mode-map'      => 'Tool zur Beziehungsdarstellung',
+        'mode-table'    => 'Tabelle der Beziehungen und Verbindungen',
+    ],
+    'connections'   => [
+        'map_point'         => 'Kartenpunkt',
+        'mention'           => 'Erwähnung',
+        'quest_element'     => 'Quest Elemente',
+        'timeline_element'  => 'Zeitstrahlelement',
+    ],
     'create'        => [
         'success'   => 'Beziehung für :name hinzugefügt.',
         'title'     => 'Beziehung erstellen',
@@ -10,6 +20,7 @@ return [
     ],
     'fields'        => [
         'attitude'          => 'Einstellung',
+        'connection'        => 'Verbindungen',
         'is_star'           => 'Fixiert',
         'relation'          => 'Beziehung',
         'target'            => 'Ziel',
@@ -25,6 +36,15 @@ return [
         ],
         'target_relation'   => 'Die Beziehungsbeschreibung des Ziels. Lassen Sie das Feld leer, um den Text dieser Beziehung zu verwenden.',
         'two_way'           => 'Wenn du eine gespiegelte Beziehung erstellst, wird die gleiche Beziehung auch auf dem Ziel erstellt. Wenn du diese später editierst, wird die gespiegelte Beziehung nicht aktualisiert.',
+    ],
+    'options'       => [
+        'mentions'  => 'Beziehungen + verbundene + erwähnt',
+        'related'   => 'Beziehungen + verbundene',
+        'relations' => 'Beziehungen',
+        'show'      => 'zeige',
+    ],
+    'panels'        => [
+        'related'   => 'verbunden',
     ],
     'placeholders'  => [
         'attitude'  => '-100 bis 100, 100 ist maximal positiv.',

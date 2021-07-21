@@ -15,6 +15,7 @@ return [
         'success'       => 'Bildfokus aktualisiert',
         'title'         => 'Objekt :Name des Bildfokus',
         'unboosted'     => 'Das Setzen eines Bildfokuspunktes ist :boosted-campaigns vorbehalten.',
+        'warning'       => 'Das Festlegen des Fokuspunkts ist nicht verfügbar, wenn das Bild des Objekts aus der Galerie festgelegt ist.',
     ],
     'replace'   => [
         'breadcrumb'    => 'Bildaustausch',

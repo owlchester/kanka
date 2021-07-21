@@ -203,6 +203,7 @@ return [
         ],
         'title'                     => 'Filtros',
     ],
+    'fix-this-issue'            => 'Arranxar este problema',
     'forms'                     => [
         'actions'       => [
             'calendar'  => 'Engadir unha data de calendario',
@@ -242,29 +243,10 @@ return [
     'legacy'                    => 'En desuso',
     'linking_help'              => 'Como ligar a outras entidades?',
     'manage'                    => 'Administrar',
-    'move'                      => [
-        'errors'        => [
-            'permission'        => 'Non tes permiso para crear entidades deste tipo na campaña seleccionada.',
-            'same_campaign'     => 'Debes seleccionar outra campaña á que mover a entidade.',
-            'unknown_campaign'  => 'Campaña descoñecida.',
-        ],
-        'fields'        => [
-            'campaign'  => 'Nova campaña',
-            'copy'      => 'Facer unha copia',
-            'target'    => 'Novo tipo',
-        ],
-        'hints'         => [
-            'campaign'  => 'Tamén podes intentar mover esta entidade a outra campaña.',
-            'copy'      => 'Selecciona esta opción se queres crear unha copia na nova campaña.',
-            'target'    => 'Ten en conta que algúns datos poden perderse ao mover un elemento dun tipo a outro.',
-        ],
-        'panels'        => [
-            'change'    => 'Cambiar tipo de entidade',
-            'move'      => 'Mover a outra campaña',
-        ],
-        'success'       => 'Entidade ":name" movida.',
-        'success_copy'  => 'Entidade ":name" copiada.',
-        'title'         => 'Mover ":name"',
+    'move'                      => [],
+    'navigation'                => [
+        'cancel'    => 'cancelar',
+        'or_cancel' => 'ou :cancel',
     ],
     'new_entity'                => [
         'error' => 'Por favor, revisa os valores introducidos.',
@@ -273,7 +255,6 @@ return [
         ],
         'title' => 'Nova entidade',
     ],
-    'or_cancel'                 => 'ou <a href=":url">cancelar</a>',
     'panels'                    => [
         'appearance'            => 'Aparencia',
         'attribute_template'    => 'Padrón de atributos',
@@ -333,6 +314,7 @@ return [
         'map'           => 'Escolle un mapa',
         'note'          => 'Escolle unha nota',
         'organisation'  => 'Escolle unha organización',
+        'quest'         => 'Escolle unha misión',
         'race'          => 'Escolle unha raza',
         'tag'           => 'Escolle unha etiqueta',
         'timeline'      => 'Escolle unha liña temporal',
@@ -365,6 +347,7 @@ return [
         'attributes'    => 'Atributos',
         'boost'         => 'Potenciar',
         'calendars'     => 'Calendarios',
+        'connections'   => 'Conexións',
         'default'       => 'Por defecto',
         'events'        => 'Eventos',
         'inventory'     => 'Inventario',

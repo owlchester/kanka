@@ -33,10 +33,7 @@ TEXT
         'answer'    => 'Kanka nema tu značajku. Međutim, ako pokušavaš imati više grupa za igru u istom svijetu, razmisli o upotrebi iste kampanje i razdvajanju grupa kombinacijom zadataka, oznaka i dopuštenja.',
         'question'  => 'Mogu li sinkronizirati entitete u više kampanja?',
     ],
-    'conversations'         => [
-        'answer'    => 'Razgovori se mogu postaviti kao razgovori između likova ili između članova kampanje. Ako na primjer želiš dokumentirati važan razgovor između likova igrača i likova s kojima upravlja voditelj kampanje, to možeš učiniti pomoću ovog modula. Možeš ih koristiti i za kampanje koje se igraju putem slanja poruka.',
-        'question'  => 'Što su razgovori?',
-    ],
+    'conversations'         => [],
     'custom'                => [
         'answer'    => 'Kanka dolazi s nizom unaprijed definiranih tipova entiteta koji međusobno djeluju. Dopuštanje proizvoljnih tipova entiteta zahtijeva rekonstrukciju aplikacije ispočetka i kosi se sa svrhom alata s unaprijed definiranim tipovima kako bi se ljudima pomoglo u izgradnji svijeta, a ne da se smišlja kako organizirati stvari. Nadalje, Kanka je fleksibilna s oznakama koje mogu predstavljati većinu proizvoljnih tipova entiteta.',
         'question'  => 'Mogu li stvoriti proizvoljne vrste entiteta?',
@@ -101,10 +98,7 @@ TEXT
         'answer'    => 'Ako više voliš svoje entitete gledati u ugnježđenom prikazu prema zadanim postavkama (na primjeru gumb Uneseni prikaz na popisu lokacija), to možeš učiniti tako da otvoriš opcije profila i izgleda. Tamo možeš provjeriti mogućnost ugniježđenog pogleda. To se odnosi samo na tvoj račun, a ne i za tvoje kampanje.',
         'question'  => 'Mogu li postaviti ugniježđene popise kao zadane?',
     ],
-    'organise_play'         => [
-        'answer'    => 'U partnerstvu smo s :lfgm koji omogućuje organiziranje sesija sa svojom grupom. Možeš sinkronizirati Kanka kampanju sa svojom LGFM kampanjom da bi svoju sljedeću dostupnost pokazali izravno na naslovnoj ploči kampanje.',
-        'question'  => 'Kako mogu upravljati kada vodim seanse?',
-    ],
+    'organise_play'         => [],
     'permissions'           => [
         'answer'    => 'Apsolutno, zato smo izgradili Kanku! Možete pozvati sve svoje igrače u svoje kampanje i dodijeliti im uloge i dopuštenja. Izgradili smo sustav da bude izuzetno fleksibilan (možete koristiti i konfiguraciju za prijavu i isključivanje) kako bismo pokrili što više potreba i situacija.',
         'question'  => 'Mogu li ograničiti podatke koje moji igrači vide u kampanji?',
