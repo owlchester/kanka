@@ -25,6 +25,10 @@ return [
         'entry'     => 'Entry',
         'name'      => 'Name',
     ],
+    'footer' => [
+        'created' => 'Created by :user on :date',
+        'updated' => 'Update by :user on :date',
+    ],
     'hint'          => 'Information that doesn\'t quite fit in the standard fields of an entity or that should be kept private can be added as Entity Notes.',
     'hints'         => [
         'reorder'   => 'You can reorder entity notes of an entity by clicking on the :icon icon next to story in entity\'s menu.',

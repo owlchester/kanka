@@ -53,6 +53,27 @@
   img {
     max-width: 100%;
   }
+
+  .entity-note-details {
+    margin-bottom: 5px;
+
+    .entity-note-detail-element:not(:last-child) {
+      &:after {
+        content: "|";
+      }
+    }
+  }
+
+  .entity-note-footer {
+    font-size: 12px;
+    //padding: 10px 0 10px 10px;
+
+    .entity-note-updated {
+      &:before {
+        content: "|";
+      }
+    }
+  }
 }
 .entity-note .box-header.with-border {
   display: flex;

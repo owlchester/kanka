@@ -1652,6 +1652,22 @@ summary {
   max-width: 100%;
 }
 
+.entity-notes .entity-note-details {
+  margin-bottom: 5px;
+}
+
+.entity-notes .entity-note-details .entity-note-detail-element:not(:last-child):after {
+  content: "|";
+}
+
+.entity-notes .entity-note-footer {
+  font-size: 12px;
+}
+
+.entity-notes .entity-note-footer .entity-note-updated:before {
+  content: "|";
+}
+
 .entity-note .box-header.with-border {
   display: flex;
 }
