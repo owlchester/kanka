@@ -119,6 +119,11 @@ if (auth()->check() && auth()->user()->isAdmin()) {
 
                                 @if ($model->entity)
                                     <li>
+                                        <a href="{{ route('entities.story.reorder', $model->entity->id) }}">
+                                            <i class="fa fa-list-ol"></i> {{ __('entities/story.reorder.icon_tooltip') }}
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}]" data-toggle="tooltip"
                                            data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}]" data-success="#copy-mention-success">
                                             <i class="fa fa-link"></i> {{ __('crud.actions.copy_mention') }}

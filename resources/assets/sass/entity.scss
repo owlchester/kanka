@@ -33,8 +33,10 @@
 .entity-menu {
   li {
     display: flex;
+    overflow: hidden;
     a {
       flex-grow: 1;
+      max-height: 53px;
     }
     a.icon {
       margin-left: auto;

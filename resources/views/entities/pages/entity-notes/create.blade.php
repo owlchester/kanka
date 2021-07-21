@@ -3,7 +3,8 @@
     'description' => '',
     'breadcrumbs' => [
         ['url' => route($parentRoute . '.index'), 'label' => trans($parentRoute . '.index.title')],
-        ['url' => route($parentRoute . '.show', $entity->child->id), 'label' => $entity->name]
+        ['url' => route($parentRoute . '.show', $entity->child->id), 'label' => $entity->name],
+        __('entities/notes.actions.add')
     ]
 ])
 @inject('campaign', 'App\Services\CampaignService')

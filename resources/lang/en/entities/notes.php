@@ -2,25 +2,25 @@
 
 return [
     'actions'       => [
-        'add'       => 'New Entity Note',
+        'add'       => 'New Post',
         'add_user'  => 'Add user',
         'add_role'  => 'Add role',
     ],
     'create'        => [
-        'description'   => 'Create a new Entity Note',
-        'success'       => 'Entity Note \':name\' added to :entity.',
-        'title'         => 'New Entity Note for :name',
+        'description'   => 'Create a new post',
+        'success'       => 'Post \':name\' added to :entity.',
+        'title'         => 'New post for :name',
     ],
     'destroy'       => [
-        'success'   => 'Entity Note \':name\' for :entity removed.',
+        'success'   => 'Post \':name\' for :entity removed.',
     ],
     'edit'          => [
-        'description'   => 'Update an existing entity note',
-        'success'       => 'Entity Note \':name\' for :entity updated.',
-        'title'         => 'Update entity note for :name',
+        'description'   => 'Update an existing post',
+        'success'       => 'Post \':name\' for :entity updated.',
+        'title'         => 'Update post for :name',
     ],
     'fields'        => [
-        'collapsed' => 'Collapse entity note by default',
+        'collapsed' => 'Collapse post by default',
         'creator'   => 'Creator',
         'entry'     => 'Entry',
         'name'      => 'Name',
@@ -29,18 +29,18 @@ return [
         'created' => 'Created by :user on :date',
         'updated' => 'Update by :user on :date',
     ],
-    'hint'          => 'Information that doesn\'t quite fit in the standard fields of an entity or that should be kept private can be added as Entity Notes.',
+    'hint'          => 'Information that doesn\'t quite fit in the standard fields of an entity or that should be kept private can be added as posts.',
     'hints'         => [
-        'reorder'   => 'You can reorder entity notes of an entity by clicking on the :icon icon next to story in entity\'s menu.',
+        'reorder'   => 'You can reorder posts of an entity by clicking on the :icon icon in entity\'s header.',
     ],
     'index'         => [
-        'title' => 'Entity Notes for :name',
+        'title' => 'Posts for :name',
     ],
     'placeholders'  => [
-        'name'  => 'Name of the entity note, observation or remark',
+        'name'  => 'Name of the post, observation or remark',
     ],
     'show'          => [
         'advanced'  => 'Advanced Permissions',
-        'title'     => 'Entity Note :name for :entity',
+        'title'     => 'Post :name for :entity',
     ],
 ];

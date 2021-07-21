@@ -1632,10 +1632,12 @@ summary {
 
 .entity-menu li {
   display: flex;
+  overflow: hidden;
 }
 
 .entity-menu li a {
   flex-grow: 1;
+  max-height: 53px;
 }
 
 .entity-menu li a.icon {

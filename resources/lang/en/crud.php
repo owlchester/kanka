@@ -17,7 +17,7 @@ return [
         'manage_links'      => 'Manage Links',
         'move'              => 'Move',
         'new'               => 'New',
-        'new_post'          => 'New entity note',
+        'new_post'          => 'New post',
         'next'              => 'Next',
         'reset'             => 'Reset',
         'transform'         => 'Transform',
