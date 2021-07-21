@@ -4,7 +4,7 @@ $assetCount = 0; ?>
 @extends('layouts.app', [
     'title' => __('entities/assets.show.title', ['name' => $entity->name]),
     'breadcrumbs' => [
-        ['url' => $entity->url('index'), 'label' => __($entity->pluralType() . '.index.title')],
+        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
         ['url' => $entity->url('show'), 'label' => $entity->name],
         __('crud.tabs.assets')
     ],

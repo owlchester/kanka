@@ -84,7 +84,9 @@ class RelationController extends Controller
         $ajax = request()->ajax();
 
         $relations = $connections = $connectionService = [];
-        if ($mode == 'table' || (empty($mode) && !$campaign->boosted())) {
+        $defaultToTable = !$campaign->boosted() || ($campaign->boosted() && $campaign->defaultToConnection());
+        if ($mode == 'table' || (empty($mode) && $defaultToTable)) {
+            $mode = 'table';
             $relations = $entity
                 ->relationships()
                 ->select('relations.*')

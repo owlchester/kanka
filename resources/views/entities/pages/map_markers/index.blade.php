@@ -7,7 +7,7 @@
     'title' => __('entities/map-points.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => $entity->url('index'), 'label' => __($entity->pluralType() . '.index.title')],
+        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
         ['url' => $entity->url('show'), 'label' => $entity->name],
         __('crud.tabs.map-points')
     ],

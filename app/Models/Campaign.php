@@ -330,6 +330,22 @@ class Campaign extends MiscModel
     /**
      * @return mixed
      */
+    public function defaultToNested(): bool
+    {
+        return (bool) Arr::get($this->ui_settings, 'nested', false);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function defaultToConnection(): bool
+    {
+        return (bool) Arr::get($this->ui_settings, 'connections', false);
+    }
+
+    /**
+     * @return mixed
+     */
     public function getHideMembersAttribute()
     {
         return Arr::get($this->ui_settings, 'hide_members', false);

@@ -3,7 +3,7 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('entities/profile.show.title', ['name' => $entity->name]),
     'breadcrumbs' => [
-        ['url' => $entity->url('index'), 'label' => __($entity->pluralType() . '.index.title')],
+        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
         ['url' => $entity->url('show'), 'label' => $entity->name],
         __('crud.tabs.profile')
     ],

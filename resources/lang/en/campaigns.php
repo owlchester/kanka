@@ -77,6 +77,8 @@ TEXT
         'tooltip_family'                => 'Disable family names from tooltips',
         'tooltip_image'                 => 'Show entity image in tooltips',
         'visibility'                    => 'Visibility',
+        'connections'                    => 'Show an entity\'s connection table by default (instead of relation explorer for boosted campaigns)',
+        'nested'                        => 'Default entity lists to nested when available',
     ],
     'following'                         => 'Following',
     'helpers'                           => [
@@ -389,6 +391,7 @@ TEXT
     ],
     'ui'                                => [
         'helper'    => 'Use these settings to change the way some elements will be displayed in the campaign.',
+        'other'     => 'Other',
     ],
     'visibilities'                      => [
         'private'   => 'Private',
