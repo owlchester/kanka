@@ -157,20 +157,20 @@ $defaultIndex = $currentCampaign->defaultToNested() || auth()->check() && auth()
             </ul>
         </section>
     </aside>
-    @if (Auth::check() && $currentCampaign->userIsMember())
+    @if (auth()->check() && $currentCampaign->userIsMember())
         <section class="sidebar-creator">
             <a href="#" data-url="{{ route('entity-creator.selection') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('entities.creator.title') }}">
                 <i class="fa fa-plus"></i> <span>{{ __('sidebar.new-entity') }}</span>
             </a>
         </section>
     @endif
-@elseif (Auth::check() && Auth::user()->hasCampaigns())
+@elseif (auth()->check() && auth()->user()->hasCampaigns())
     <aside class="main-sidebar">
         <section class="sidebar">
             <ul class="sidebar-menu tree" data-widget="tree">
-                @foreach (Auth::user()->campaigns as $campaign)
-                    <li class="section-campaign section-campaign-{{ $currentCampaign->id }}">
-                        <a href="{{ url(App::getLocale() . '/' . $currentCampaign->getMiddlewareLink()) }}"><i class="fa fa-globe"></i> <span>{!! $currentCampaign->name !!}</span></a>
+                @foreach (\App\Facades\UserCache::campaigns() as $userCampaign)
+                    <li class="section-campaign section-campaign-{{ $userCampaign->id }}">
+                        <a href="{{ url(App::getLocale() . '/' . $userCampaign->getMiddlewareLink()) }}"><i class="fa fa-globe"></i> <span>{!! $userCampaign->name !!}</span></a>
                     </li>
                 @endforeach
             </ul>
