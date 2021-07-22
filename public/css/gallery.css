@@ -24,26 +24,27 @@
   box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
   background: #eee;
   cursor: pointer;
+  height: calc(100px + 2.5rem);
 }
 
 .gallery ul li .image-preview .gallery-thumbnail {
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  height: 100px;
+  width: 100%;
   opacity: 1;
   transition: opacity 0.1s;
-  height: 100px;
 }
 
 .gallery ul li .image-preview .gallery-folder {
-  height: 100px;
-  overflow: hidden;
   text-align: center;
-  line-height: 100px;
+  line-height: calc(100px + 2.5rem);
 }
 
 .gallery ul li .image-preview .gallery-folder .text {
+  margin: 0 5px;
+  width: calc(100% - 10px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   display: inline-block;
   vertical-align: middle;
   line-height: normal;
@@ -51,6 +52,17 @@
 
 .gallery ul li .image-preview .gallery-folder .text i {
   display: block;
+}
+
+.gallery ul li .image-preview .thumbnail-text {
+  margin: 0 5px;
+  width: calc(100% - 10px);
+  height: 2.5rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+  line-height: 2.5rem;
 }
 
 .gallery ul li .image-preview:focus,

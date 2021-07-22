@@ -16,7 +16,7 @@
             </div>
         @else
             <div class="gallery-thumbnail cover-background"
-                style="background-image: url({{ Img::crop(100, 100)->url($image->path) }})">
+                style="background-image: url('{{ Img::crop(100, 100)->url($image->path) }}')">
             </div>
             <span class="thumbnail-text">
                 {{ $image->name }}
