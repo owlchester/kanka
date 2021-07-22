@@ -1,9 +1,9 @@
 @extends('layouts.app', [
-    'title' => trans('campaigns.roles.show.title', ['role' => $role->name, 'campaign' => $model->name]),
+    'title' => __('campaigns.roles.show.title', ['role' => $role->name, 'campaign' => $model->name]),
     'description' => '',
     'breadcrumbs' => [
         ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
-        ['url' => route('campaign_roles.index'), 'label' => trans('campaigns.show.tabs.roles')],
+        ['url' => route('campaign_roles.index'), 'label' => __('campaigns.show.tabs.roles')],
         $role->name,
     ],
     'mainTitle' => false,
@@ -18,14 +18,14 @@
         <div class="col-md-12 col-lg-3">
             <div class="box box-solid">
                 <div class="box-header with-border">
-                    <h3 class="box-title">{{ trans('campaigns.roles.members') }}</h3>
+                    <h3 class="box-title">{{ __('campaigns.roles.members') }}</h3>
                 </div>
 
                 <div class="box-body">
                     <table id="users" class="table table-hover">
                         <thead>
                         <tr>
-                            <th>{{ trans('campaigns.roles.users.fields.name') }}</th>
+                            <th>{{ __('campaigns.roles.users.fields.name') }}</th>
                             <th><br /></th>
                         </tr>
                         </thead>
@@ -42,7 +42,7 @@
                                     @can('removeUser', $role)
                                         <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ __('campaigns.roles.users.actions.remove', ['user' => $relation->user->name, 'role' => $role->name]) }}" data-reset="1"
                                         data-target="#delete-confirm" data-delete-target="campaign-role-member-{{ $relation->id }}"
-                                        title="{{ trans('crud.remove') }}">
+                                        title="{{ __('crud.remove') }}">
                                             <i class="fa fa-user-slash" aria-hidden="true"></i>
                                         </button>
                                         {!! Form::open([
@@ -64,7 +64,7 @@
                            data-toggle="ajax-modal" data-target="#entity-modal"
                            data-url="{{ route('campaign_roles.campaign_role_users.create', ['campaign_role' => $role]) }}">
                             <i class="fa fa-plus"></i>
-                            {{ trans('campaigns.roles.users.actions.add') }}
+                            {{ __('campaigns.roles.users.actions.add') }}
                         </a>
                     </div>
                     @endif
@@ -75,10 +75,16 @@
         <div class="col-md-12 col-lg-9">
             <div class="box box-solid">
                 <div class="box-header with-border">
-                    <h3 class="box-title">{{ trans('crud.permissions.title') }}</h3>
+                    <h3 class="box-title">{{ __('crud.permissions.title') }}</h3>
+
+                    <div class="box-tools">
+                        <button class="btn btn-sm btn-secondary" data-target="#permission-modal" data-toggle="modal">
+                            <i class="fa fa-question-circle"></i> {{ __('campaigns.roles.modals.details.button') }}
+                        </button>
+                    </div>
                 </div>
                 <div class="box-body">
-                    <p class="help-block">{{ trans('campaigns.roles.hints.role_permissions', ['name' => $role->name]) }}</p>
+                    <p class="help-block">{{ __('campaigns.roles.hints.role_permissions', ['name' => $role->name]) }}</p>
                     @if ($role->is_public)
                         <p class="help-block">{!! __('campaigns.roles.hints.public', ['more' => '']) !!}<br />
                             <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fas fa-external-link-alt"></i> {{ __('helpers.public') }}</a>
@@ -94,12 +100,86 @@
                 <div class="box-footer">
                     @can('permission', $role)
                         <div class="form-group">
-                            <button class="btn btn-success pull-right">{{ trans('crud.save') }}</button>
+                            <button class="btn btn-success pull-right">{{ __('crud.save') }}</button>
                         </div>
                         {{ Form::close() }}
                     @else
-                        <p>{{ trans('campaigns.roles.permissions.hint') }}</p>
+                        <p>{{ __('campaigns.roles.permissions.hint') }}</p>
                     @endif
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('modals')
+
+    <div class="modal fade" id="permission-modal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        {{ __('campaigns.roles.modals.details.title') }}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        {!! __('campaigns.roles.modals.details.entities') !!}
+                    </p>
+
+                    <ul>
+                        <li>
+                            <code>{{ __('campaigns.roles.permissions.actions.read') }}</code>:
+                            {{ __('campaigns.roles.permissions.helpers.read') }}
+                        </li>
+                        <li>
+                            <code>{{ __('campaigns.roles.permissions.actions.edit') }}</code>:
+                            {{ __('campaigns.roles.permissions.helpers.edit') }}
+                        </li>
+                        <li>
+                            <code>{{ __('campaigns.roles.permissions.actions.add') }}</code>:
+                            {{ __('campaigns.roles.permissions.helpers.add') }}
+                        </li>
+                        <li>
+                            <code>{{ __('campaigns.roles.permissions.actions.delete') }}</code>:
+                            {{ __('campaigns.roles.permissions.helpers.delete') }}
+                        </li>
+                        <li>
+                            <code>{{ __('campaigns.roles.permissions.actions.entity-note') }}</code>:
+                            {{ __('campaigns.roles.permissions.helpers.entity_note') }}
+                        </li>
+                        <li>
+                            <code>{{ __('campaigns.roles.permissions.actions.permission') }}</code>:
+                            {{ __('campaigns.roles.permissions.helpers.permission') }}
+                        </li>
+                    </ul>
+
+                    <p>
+                        {!! __('campaigns.roles.modals.details.campaign') !!}
+                    </p>
+
+
+                    <ul>
+                        <li>
+                            <code>{{ __('campaigns.roles.permissions.actions.manage') }}</code>:
+                            {{ __('campaigns.roles.permissions.helpers.manage') }}
+                        </li>
+                        <li>
+                            <code>{{ __('campaigns.roles.permissions.actions.dashboard') }}</code>:
+                            {{ __('campaigns.roles.permissions.helpers.dashboard') }}
+                        </li>
+                        <li>
+                            <code>{{ __('campaigns.roles.permissions.actions.members') }}</code>:
+                            {{ __('campaigns.roles.permissions.helpers.members') }}
+                        </li>
+                    </ul>
+
+                    <p>
+                        <a href="https://www.youtube.com/watch?v=ikNPzNgjYmg" target="_blank">
+                            {{ __('campaigns.roles.modals.details.more') }}
+                        </a>
+                    </p>
                 </div>
             </div>
         </div>
