@@ -2,21 +2,20 @@
 
 namespace App\Facades;
 
-use App\Models\Entity;
-use App\User;
+use App\Models\CampaignRole;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class UserPermission
+ * Class RolePermission
  * Used for the Entity object
  * @package App\Facades
  *
- * @method self|static user(User $user = null)
- * @method self|static action(string $action)
+ * @method self|static role(CampaignRole $role = null)
+ * @method array permissions()
  *
- * @see \App\Services\UserPermission
+ * @see \App\Services\RolePermission
  */
-class UserPermission extends Facade
+class RolePermission extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -25,6 +24,6 @@ class UserPermission extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'userpermission';
+        return 'rolepermission';
     }
 }

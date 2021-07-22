@@ -150,8 +150,10 @@ class CrudController extends Controller
 
         // Entity templates
         $templates = null;
-        if (auth()->check() && auth()->user()->isAdmin() && !empty($model->getEntityType())) {
-            $templates = Entity::templates($model->getEntityType())->get();
+        if (auth()->check() && !empty($model->getEntityType()) && auth()->user()->can('create', $model)) {
+            $templates = Entity::templates($model->getEntityType())
+                ->acl()
+                ->get();
         }
 
         $datagrid = !empty($this->datagrid) ? new $this->datagrid : null;

@@ -215,7 +215,8 @@ class UserPermission
     {
         // Loop through the permissions of the role to get any blanket _read permissions on entities
         /** @var CampaignPermission $permission */
-        foreach ($role->permissions as $permission) {
+        $permissions = \App\Facades\RolePermission::role($role)->permissions();
+        foreach ($permissions as $permission) {
             // Only test permissions who's action is being requested
             if ($permission->action() != $this->action) {
                 continue;

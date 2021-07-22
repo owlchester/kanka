@@ -215,6 +215,7 @@ return [
         App\Providers\EntityPermissionServiceProvider::class,
         App\Providers\MentionsServiceProvider::class,
         App\Providers\UserPermissionServiceProvider::class,
+        App\Providers\RolePermissionServiceProvider::class,
         App\Providers\BreadcrumbServiceProvider::class,
         App\Providers\CacheServiceProvider::class,
         App\Providers\ImgServiceProvider::class,
