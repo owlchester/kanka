@@ -39,7 +39,11 @@
                 </td>
                 <td class="hidden-xs">
                     @if (!$relation->is_admin)
+
+                    <a href="{{ route('campaign_roles.show', ['campaign_role' => $relation]) }}" title="{{ __('campaigns.roles.actions.permissions') }}">
                         {{ $relation->permissions->whereNull('entity_id')->count() }}
+                    </a>
+
                     @endif</td>
                 <td>
                     @if($relation->is_public && !$campaign->is_public && $relation->permissions->whereNull('entity_id')->count() > 0)
@@ -54,25 +58,47 @@
                 </td>
 
                 <td class="text-right">
-                    <a href="{{ route('campaign_roles.show', ['campaign_role' => $relation]) }}" class="btn btn-xs btn-default" title="{{ __('crud.manage') }}">
-                        <i class="fa fa-users" aria-hidden="true"></i>
-                    </a>
-                    @can('update', $relation)
-                        <a href="{{ route('campaign_roles.edit', ['campaign_role' => $relation]) }}" class="btn btn-xs btn-primary"
-                           title="{{ __('crud.edit') }}"
-                           data-toggle="ajax-modal" data-target="#entity-modal"
-                           data-url="{{ route('campaign_roles.edit', ['campaign_role' => $relation]) }}"
-                        >
-                            <i class="fa fa-edit" aria-hidden="true"></i>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" data-placement="right">
+                            <i class="fa fa-ellipsis-v"></i>
                         </a>
-                    @endcan
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            <li>
+                                <a href="{{ route('campaign_roles.show', ['campaign_role' => $relation]) }}" title="{{ __('crud.manage') }}">
+                                    <i class="fa fa-users" aria-hidden="true"></i> {{ __('campaigns.roles.actions.permissions') }}
+                                </a>
+                            </li>
+                            @can('update', $relation)
+                                <li>
+                                    <a href="{{ route('campaign_roles.edit', ['campaign_role' => $relation]) }}"
+                                       title="{{ __('crud.edit') }}"
+                                       data-toggle="ajax-modal" data-target="#entity-modal"
+                                       data-url="{{ route('campaign_roles.edit', ['campaign_role' => $relation]) }}"
+                                    >
+                                        <i class="fa fa-edit" aria-hidden="true"></i> {{ __('campaigns.roles.actions.rename') }}
+                                    </a>
+                                </li>
+                            @endcan
+
+                            @can('delete', $relation)
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#" class="text-red delete-confirm" title="{{ __('crud.remove') }}"
+                                            data-toggle="modal" data-name="{{ $relation->name }}"
+                                            data-target="#delete-confirm" data-delete-target="campaign-role-{{ $relation->id }}"
+                                    >
+                                        <i class="fa fa-trash" aria-hidden="true"></i> {{ __('crud.remove') }}
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </div>
+
+
+
+
+
                     @can('delete', $relation)
-                        <button class="btn btn-xs btn-danger delete-confirm" title="{{ __('crud.remove') }}"
-                                data-toggle="modal" data-name="{{ $relation->name }}"
-                                data-target="#delete-confirm" data-delete-target="campaign-role-{{ $relation->id }}"
-                        >
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                        </button>
                         {!! Form::open([
                             'method' => 'DELETE',
                             'route' => ['campaign_roles.destroy', 'campaign_role' => $relation],

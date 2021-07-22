@@ -236,6 +236,8 @@ TEXT
     'roles'                             => [
         'actions'       => [
             'add'   => 'Add a role',
+            'rename' => 'Rename role',
+            'permissions' => 'Manage permissions',
         ],
         'admin_role'    => 'admin role',
         'create'        => [
@@ -272,7 +274,7 @@ TEXT
                 'button' => 'Need help',
                 'title' => 'Permission details',
                 'entities' => 'Here is a quick recap of what members of this role get when a permission is set.',
-                'campaign' => 'The following campaign permissions allow the following.',
+                'campaign' => 'Campaign permissions allow the following.',
                 'more' => 'For more details, view our tutorial video on Youtube',
             ],
         ],
