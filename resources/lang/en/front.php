@@ -101,6 +101,7 @@ return [
         ],
         'boosts_v2'         => [
             'description'   => 'Our pledge levels give you access to boosters, which you can use to boost or superboost campaigns. Doing so unlocks the following benefits for a campaign.',
+            'description-count'       => 'Boosting a campaign uses :boost-count booster. Superboosting a campaign uses :superboost-count boosters.',
             'title'         => 'Boosted and Superboosted campaigns',
         ],
         'calendars'         => [

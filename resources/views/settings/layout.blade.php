@@ -11,11 +11,12 @@
     @include('partials.errors')
     {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['settings.layout']]) !!}
     <div class="box box-solid">
-        <div class="box-body">
-            <h2 class="page-header with-border">
+        <div class="box-header with-border">
+            <h3 class="box-title">
                 {{ __('settings.layout.title') }}
-            </h2>
-
+            </h3>
+        </div>
+        <div class="box-body">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -97,7 +98,8 @@
                     </div>
                 </div>
             </div>
-
+        </div>
+        <div class="box-footer">
             <button class="btn btn-primary">
                 {{ __('crud.save') }}
             </button>

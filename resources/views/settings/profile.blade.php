@@ -75,24 +75,42 @@
     {!! Form::close() !!}
 
     <div class="box box-solid">
-        <div class="box-body">
-            <h2 class="page-header with-border">
+        <div class="box-header with-border">
+            <h3 class="box-title">
                 {{ __('profiles.newsletter.title') }}
-            </h2>
-            <div class="form-group checkbox">
+            </h3>
+        </div>
+        <div class="box-body">
+            <p class="help-block">
+             {{ __('profiles.newsletter.helpers.header') }}
+            </p>
+            <div class="form-group checkbox margin-bottom">
                 <label>
                     {!! Form::checkbox('mail_newsletter', 1, $user->mail_newsletter) !!}
-                    {{ __('profiles.newsletter.settings.newsletter') }}</label>
+                    {{ __('profiles.newsletter.options.monthly') }}
+                </label>
+                <p class="help-block">
+                    {{ __('profiles.newsletter.helpers.monthly') }}
+                </p>
             </div>
-            <div class="form-group checkbox">
+            <div class="form-group checkbox margin-bottom">
                 <label>
                     {!! Form::checkbox('mail_vote', 1, $user->mail_vote) !!}
-                    {!! __('profiles.newsletter.settings.votes', ['vote' => link_to_route('community-votes.index', __('profiles.newsletter.links.community-vote'))]) !!}</label>
+                    {!! __('front/community-votes.title') !!}
+                </label>
+
+                <p class="help-block">
+                    {!! __('profiles.newsletter.helpers.community-vote', ['community-vote' => link_to_route('community-votes.index', __('profiles.newsletter.links.community-vote'))]) !!}
+                </p>
             </div>
             <div class="form-group checkbox">
                 <label>
                     {!! Form::checkbox('mail_release', 1, $user->mail_release) !!}
-                    {!! __('profiles.newsletter.settings.updates', ['news' => link_to_route('front.news', __('profiles.newsletter.links.updates'))]) !!}</label>
+                    {!! __('profiles.newsletter.options.release', ['news' => link_to_route('front.news', __('profiles.newsletter.links.updates'))]) !!}
+                </label>
+                <p class="help-block">
+                    {{ __('profiles.newsletter.helpers.release') }}
+                </p>
             </div>
 
             <input type="hidden" id="newsletter-api" value="{{ route('settings.newsletter-api') }}" />

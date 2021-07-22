@@ -26,6 +26,12 @@ return [
         'theme'                     => 'Theme',
     ],
     'newsletter'    => [
+        'helpers'    => [
+            'header' => 'Subscribe to the following email newsletters to be notified of what\'s going on with Kanka.',
+            'monthly' => 'Our monthly recap of what\'s going on and events related to Kanka.',
+            'release' => 'Get notified each time Kanka gets an update with an overview of what\'s changed.',
+            'community-vote' => 'Get notified each time there is a new :community-vote going on.',
+        ],
         'links'     => [
             'community-vote'    => 'Community Vote',
             'news'              => 'News',
@@ -33,9 +39,10 @@ return [
         ],
         'settings'  => [
             'news'          => 'News - be notified when there\'s :news.',
-            'newsletter'    => 'Newsletter - receive the Kanka newsletter.',
-            'updates'       => 'Updates - be notified when there is an update to Kanka.',
-            'votes'         => 'Community Votes - be notified as soon as a new :vote is available.',
+        ],
+        'options' => [
+            'monthly' => 'Kanka newsletter',
+            'release' => 'New release',
         ],
         'title'     => 'Newsletters',
     ],

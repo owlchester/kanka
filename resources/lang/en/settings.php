@@ -95,6 +95,13 @@ return [
             'description'   => 'Are you sure you want to stop boosting the campaign :tag?',
             'title'         => 'Unboosting a campaign',
         ],
+        'modals' => [
+            'more' => [
+                'title' => 'Getting more boosters',
+                'action' => 'More boosters?',
+                'body' => 'You can get more boosters by upgrading your subscription level, or by removing them from a campaign. Unboosting a campaign doesn\'t delete any of the boosted information, it only disables it until you boost that campaign again.',
+            ]
+        ]
     ],
     'countries'     => [
         'austria'       => 'Austria',

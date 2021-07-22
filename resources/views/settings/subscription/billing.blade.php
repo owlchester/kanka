@@ -12,8 +12,12 @@
 @section('content')
     @include('partials.errors')
     <div class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                {{ __('settings.subscription.billing.title') }}
+            </h3>
+        </div>
         <div class="box-body">
-            <h3 class="page-header with-border">{{ __('settings.subscription.billing.title') }}</h3>
             <p>
                 {!! __('settings.subscription.billing.helper', [
                     'stripe' => link_to('https://www.stripe.com', 'Stripe', ['target' => '_blank'])
@@ -34,11 +38,11 @@
 
                     {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['settings.billing.save']]) !!}
                     <div class="form-group">
-                        <label>{{ trans('settings.subscription.fields.currency') }}</label>
-                        {!! Form::select('currency', ['' => trans('settings.subscription.currencies.usd'), 'eur' => trans('settings.subscription.currencies.eur')], null, ['class' => 'form-control']) !!}
+                        <label>{{ __('settings.subscription.fields.currency') }}</label>
+                        {!! Form::select('currency', ['' => __('settings.subscription.currencies.usd'), 'eur' => __('settings.subscription.currencies.eur')], null, ['class' => 'form-control']) !!}
                     </div>
                     <button class="btn btn-primary margin-bottom">
-                        {{ trans('settings.subscription.actions.update_currency') }}
+                        {{ __('settings.subscription.actions.update_currency') }}
                     </button>
                     {!! Form::close() !!}
 

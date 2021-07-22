@@ -128,7 +128,9 @@
         <div class="col-lg-12 my-auto">
             <div class="header-content mx-auto">
                 <h1 class="mb-5">{{ __('front.features.boosts_v2.title') }}</h1>
-                <p class="mb-5">{{ __('front.features.boosts_v2.description') }}</p>
+                <p class="mb-5">{{ __('front.features.boosts_v2.description') }} {!! __('front.features.boosts_v2.description-count', [
+    'boost-count' => '<strong>1</strong>', 'superboost-count' => '<strong>3</strong>',
+]) !!}</p>
             </div>
         </div>
 
