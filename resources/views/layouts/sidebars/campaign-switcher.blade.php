@@ -44,11 +44,10 @@
         </ul>
     @endif
 
-    <div class="section">{{ auth()->user()->name }}</div>
-    <ul>
+    <ul class="switcher-user">
         <li class="switcher-profile">
             <a href="{{ route('settings.profile') }}">
-                {{ __('header.profile') }}
+                <i class="fa fa-user"></i> {{ __('header.profile') }}
             </a>
         </li>
     </ul>
