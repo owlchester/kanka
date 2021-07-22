@@ -68,7 +68,7 @@ trait EntityRelations
     {
         return $this->attributes()
             ->with('entity')
-            ->order('default_order')
+            ->ordered()
         ;
     }
 

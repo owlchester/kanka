@@ -54,7 +54,7 @@
                         @if (Auth::user()->advancedMentions)
                             return '{attribute:' + item.id + '}';
                         @else
-                            return '<a href="#" class="attribute" data-attribute="{attribute:' + item.id + '}">{' + item.name + '}</a>'
+                            return '<a href="#" class="attribute attribute-mention" data-attribute="{attribute:' + item.id + '}">{' + item.name + '}</a>'
                         @endif
                     }
                     else if (item.id) {

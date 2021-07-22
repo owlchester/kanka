@@ -18,7 +18,7 @@ class ProfileController extends Controller
         if (Auth::check()) {
             $this->authorize('view', $entity->child);
         } else {
-            $this->authorizeForGuest('read', $entity->child, $entity->child->getEntityType());
+            $this->authorizeEntityForGuest('read', $entity->child);
         }
 
         return view('entities.pages.profile.index')

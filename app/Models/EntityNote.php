@@ -22,10 +22,13 @@ use Illuminate\Support\Arr;
  * @property string $entry
  * @property string $visibility
  * @property integer $created_by
+ * @property integer $location_id
+ * @property string $marketplace_uuid
  * @property boolean $is_private
  * @property boolean $is_pinned
  * @property integer $position
  * @property Entity $entity
+ * @property Location $location
  * @property EntityMention[] $mentions
  * @property EntityNotePermission[] $permissions
  * @property [] $settings
@@ -48,6 +51,7 @@ class EntityNote extends Model
         'position',
         'visibility',
         'settings',
+        'location_id',
     ];
 
     /** @var string[]  */
@@ -87,6 +91,30 @@ class EntityNote extends Model
     public function entity()
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function location()
+    {
+        return $this->belongsTo('App\Models\Location', 'location_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function creator()
+    {
+        return $this->belongsTo('App\User', 'created_by');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function editor()
+    {
+        return $this->belongsTo('App\User', 'updated_by');
     }
 
     /**

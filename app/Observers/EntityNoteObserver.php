@@ -114,38 +114,67 @@ class EntityNoteObserver
             return false;
         }
 
-        $existing = $parsedUsers = [];
+        $existing = $parsed = [];
         foreach ($entityNote->permissions as $perm) {
-            $existing[$perm->user_id] = $perm;
+            $key = $perm->isUser() ? 'u_' : 'r_';
+            $existing[$key . $perm->user_id] = $perm;
         }
 
         $users = request()->post('perm_user', []);
-        $perms = request()->post('perm_perm', []);
+        $perms = request()->post('perm_user_perm', []);
 
         foreach ($users as $key => $user) {
-            if ($user == '$USERID$') {
+            if ($user == '$SELECTEDID$') {
                 continue;
             }
-            if (isset($existing[$user])) {
-                $perm = $existing[$user];
+
+            $existingKey = 'u_' . $user;
+            if (isset($existing[$existingKey])) {
+                $perm = $existing[$existingKey];
                 $perm->permission = $perms[$key];
                 $perm->save();
-                unset($existing[$user]);
-                $parsedUsers[] = $user;
+                unset($existing[$existingKey]);
+                $parsed[] = $existingKey;
             }
-            elseif (!in_array($user, $parsedUsers)) {
+            elseif (!in_array($existingKey, $parsed)) {
                 EntityNotePermission::create([
                     'entity_note_id' => $entityNote->id,
                     'user_id' => $user,
                     'permission' => $perms[$key]
                 ]);
-                $parsedUsers[] = $user;
+                $parsed[] = $existingKey;
+            }
+        }
+
+        $roles = request()->post('perm_role', []);
+        $perms = request()->post('perm_role_perm', []);
+
+        foreach ($roles as $key => $user) {
+            if ($user == '$SELECTEDID$') {
+                continue;
+            }
+
+            $existingKey = 'r_' . $user;
+            if (isset($existing[$existingKey])) {
+                $perm = $existing[$existingKey];
+                $perm->permission = $perms[$key];
+                $perm->save();
+                unset($existing[$existingKey]);
+                $parsed[] = $existingKey;
+            }
+            elseif (!in_array($existingKey, $parsed)) {
+                EntityNotePermission::create([
+                    'entity_note_id' => $entityNote->id,
+                    'role_id' => $user,
+                    'permission' => $perms[$key]
+                ]);
+                $parsed[] = $existingKey;
             }
         }
 
         // Cleanup permissions that are no longer used
-        foreach ($existing as $perm) {
-            $perm->delete();
+        foreach ($existing as $oldPermission) {
+            $oldPermission->delete();
         }
     }
 }

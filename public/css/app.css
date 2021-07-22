@@ -1493,7 +1493,8 @@ summary {
   line-height: 20px;
 }
 
-.entity-header .entity-type {
+.entity-header .entity-type,
+.entity-header .entity-title {
   margin-top: 10px;
   display: none;
 }
@@ -1503,7 +1504,8 @@ summary {
   margin-bottom: 20px;
 }
 
-.entity-header.with-entity-header .entity-name {
+.entity-header.with-entity-header .entity-name,
+.entity-header.with-entity-header .entity-title {
   text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
   color: white;
 }
@@ -1634,6 +1636,7 @@ summary {
 
 .entity-menu li a {
   flex-grow: 1;
+  max-height: 53px;
 }
 
 .entity-menu li a.icon {
@@ -1648,6 +1651,22 @@ summary {
 
 .entity-notes img {
   max-width: 100%;
+}
+
+.entity-notes .entity-note-details {
+  margin-bottom: 5px;
+}
+
+.entity-notes .entity-note-details .entity-note-detail-element:not(:last-child):after {
+  content: "|";
+}
+
+.entity-notes .entity-note-footer {
+  font-size: 12px;
+}
+
+.entity-notes .entity-note-footer .entity-note-updated:before {
+  content: "|";
 }
 
 .entity-note .box-header.with-border {

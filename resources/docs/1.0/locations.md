@@ -34,6 +34,7 @@ You can get a list of all the locations of a campaign by using the following end
             "image_thumb": "{url}",
             "has_custom_image": false,
             "is_private": true,
+            "location_id": null,
             "entity_id": 5,
             "tags": [],
             "created_at":  "2019-01-30T00:01:44.000000Z",
@@ -71,6 +72,7 @@ To get the details of a single location, use the following endpoint.
         "image_thumb": "{url}",
         "has_custom_image": false,
         "is_private": true,
+        "location_id": null,
         "entity_id": 5,
         "tags": [],
         "created_at":  "2019-01-30T00:01:44.000000Z",
@@ -132,6 +134,7 @@ To create a map point on a location, use the following endpoint. This feature is
 | `location_id` | `integer` | The location id (where this map point is located)|
 | `target_entity_id` | `string` (Required, unless `name` is specified) | Target Entity's `entity_id` |
 | `name` | `string` (Required, unless `target_entity_id` is specified) | Name of the map point |
+| `location_id` | `integer` | Location the entity note was written at |
 | `axis_x` | `integer` (Required) | X Axis of the Map Point |
 | `axis_y` | `integer` (Required) | Y Axis of the Map Point |
 | `colour` | `string` (Required) | `none`, `grey`, `red`, `blue`, `green`, `yellow`, `black` or `white` |

@@ -4,7 +4,7 @@
  * @var \App\Models\Campaign $campaign
  */
 $currentCampaign = CampaignLocalization::getCampaign();
-$defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'index';
+$defaultIndex = $currentCampaign->defaultToNested() || auth()->check() && auth()->user()->defaultNested ? 'tree' : 'index';
 ?>
 @if (!empty($currentCampaign))
     @php \App\Facades\Dashboard::campaign($currentCampaign); @endphp
@@ -51,25 +51,25 @@ $defaultIndex = auth()->check() && auth()->user()->defaultNested ? 'tree' : 'ind
                     @foreach ($currentCampaign->menuLinks()->with(['target'])->ordered()->get() as $menuLink)
                         <?php /** @var \App\Models\MenuLink $menuLink */ ?>
                         @if ($menuLink->dashboard && $currentCampaign->boosted() && $menuLink->isValidDashboard())
-                            <li class="subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }}">
+                            <li class="subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }} {{ $sidebar->activeMenuLink($menuLink) }}">
                                 <a href="{{ $menuLink->getRoute() }}">
                                     <i class="{{ $menuLink->icon() }}"></i> <span>{{ $menuLink->name }}</span>
                                 </a>
                             </li>
                         @elseif ($menuLink->target)
-                            <li class="subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }}">
+                            <li class="subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }} {{ $sidebar->activeMenuLink($menuLink) }}">
                                 <a href="{{ $menuLink->getRoute() }}">
                                     <i class="{{ $menuLink->icon() }}"></i> <span>{{ $menuLink->name }}</span>
                                 </a>
                             </li>
                         @elseif ($menuLink->type)
-                            <li class="subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }}">
+                            <li class="subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }} {{ $sidebar->activeMenuLink($menuLink) }}">
                                 <a href="{{ $menuLink->getRoute() }}">
                                     <i class="{{ $menuLink->icon() }}"></i> <span>{{ $menuLink->name }}</span>
                                 </a>
                             </li>
                         @elseif ($menuLink->isRandom())
-                            <li class="subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }}">
+                            <li class="subsection sidebar-quick-link sidebar-quick-link-{{ $menuLink->position }} {{ $sidebar->activeMenuLink($menuLink) }}">
                                 <a href="{{ route('menu_links.random', $menuLink) }}">
                                     <i class="{{ $menuLink->icon() }}"></i> <span>{{ $menuLink->name }}</span>
                                 </a>

@@ -76663,7 +76663,7 @@ $(document).ready(function () {
   /*$.each($('.datagrid-search'), function(index) {
       $(this).submit(function(event) {
           event.preventDefault();
-            window.location.href =
+           window.location.href =
       });
   });*/
 
@@ -77692,6 +77692,10 @@ function registerModalLoad() {
 }
 
 function registerEntityNameCheck() {
+  if (entityName.data('live-disabled')) {
+    return;
+  }
+
   entityName.focusout(function (e) {
     // Don't bother if the user didn't set any value
     if (!$(this).val()) {
@@ -77700,9 +77704,10 @@ function registerEntityNameCheck() {
 
     var entityCreatorDuplicateWarning = $('.duplicate-entity-warning');
     var currentEntityID = $(this).data('id');
+    var url = $(this).data('live') + '?q=' + encodeURIComponent($(this).val()) + '&type=' + $(this).data('type') + '&exclude=' + $(this).data('id');
     entityCreatorDuplicateWarning.hide(); // Check if an entity of the same type already exists, and warn when it does.
 
-    $.ajax($(this).data('live') + '?q=' + $(this).val() + '&type=' + $(this).data('type')).done(function (res) {
+    $.ajax(url).done(function (res) {
       if (res.length > 0) {
         var entities = Object.keys(res) // Filter out what isn't itself
         .filter(function (k) {
@@ -78291,33 +78296,33 @@ function registerPermissionToggler() {
 
 
 function registerEntityNotePerms() {
-  var btn = $('#entity-note-perm-add');
+  var btn = $('.entity-note-perm-add');
 
   if (btn.length === 0) {
     return;
   }
 
   registerEntityNoteDeleteEvents();
-  var user = $('select[name="user"]');
   var perm = $('select[name="permission"]');
   btn.on('click', function (ev) {
     ev.preventDefault();
-    console.log('user', user.val());
+    var type = $(this).data('type');
+    var selected = $('select[name="' + type + '"]');
 
-    if (!user.val()) {
+    if (!selected || !selected.val()) {
       return false;
     }
 
-    var username = $('select[name="user"]').find(':selected')[0];
-    console.log('username', username.text); // Add a block
+    var selectedName = selected.find(':selected')[0]; //console.log('selected name for ', type, selectedName.text);
+    // Add a block
 
-    var body = $('#entity-note-perm-template').clone().removeClass('hidden').removeAttr('id');
-    var html = body.html().replace(/\$USERID\$/g, user.val()).replace(/\$USERNAME\$/g, username.text);
+    var body = $('#entity-note-perm-' + type + '-template').clone().removeClass('hidden').removeAttr('id');
+    var html = body.html().replace(/\$SELECTEDID\$/g, selected.val()).replace(/\$SELECTEDNAME\$/g, selectedName.text);
     body.html(html).insertBefore($('#entity-note-perm-target'));
-    $('#entity-note-new-user').modal('toggle');
+    $('#entity-note-new-' + type).modal('toggle');
     registerEntityNoteDeleteEvents(); // Reset the value
 
-    user.val('').trigger('change');
+    selected.val('').trigger('change');
     return false;
   });
 }
@@ -79108,34 +79113,34 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/js/app.js */"./resources/assets/js/app.js");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/bootstrap.scss */"./resources/assets/sass/bootstrap.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/vendor.scss */"./resources/assets/sass/vendor.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/app.scss */"./resources/assets/sass/app.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/app-rtl.scss */"./resources/assets/sass/app-rtl.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/abilities.scss */"./resources/assets/sass/abilities.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/story.scss */"./resources/assets/sass/story.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/assets.scss */"./resources/assets/sass/assets.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/export.scss */"./resources/assets/sass/export.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/map.scss */"./resources/assets/sass/map.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/map-v2.scss */"./resources/assets/sass/map-v2.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/map-v3.scss */"./resources/assets/sass/map-v3.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/subscription.scss */"./resources/assets/sass/subscription.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/conversation.scss */"./resources/assets/sass/conversation.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/gallery.scss */"./resources/assets/sass/gallery.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/front.scss */"./resources/assets/sass/front.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/auth.scss */"./resources/assets/sass/auth.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/front-rtl.scss */"./resources/assets/sass/front-rtl.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/front/critical.scss */"./resources/assets/sass/front/critical.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/community-votes.scss */"./resources/assets/sass/community-votes.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/relations.scss */"./resources/assets/sass/relations.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/dashboard.scss */"./resources/assets/sass/dashboard.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/settings.scss */"./resources/assets/sass/settings.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/themes/future.scss */"./resources/assets/sass/themes/future.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/themes/dark.scss */"./resources/assets/sass/themes/dark.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/themes/midnight.scss */"./resources/assets/sass/themes/midnight.scss");
-__webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/tinymce.scss */"./resources/assets/sass/tinymce.scss");
-module.exports = __webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/sass/freyja/freyja.scss */"./resources/assets/sass/freyja/freyja.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/js/app.js */"./resources/assets/js/app.js");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/bootstrap.scss */"./resources/assets/sass/bootstrap.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/vendor.scss */"./resources/assets/sass/vendor.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/app-rtl.scss */"./resources/assets/sass/app-rtl.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/abilities.scss */"./resources/assets/sass/abilities.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/story.scss */"./resources/assets/sass/story.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/assets.scss */"./resources/assets/sass/assets.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/export.scss */"./resources/assets/sass/export.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/map.scss */"./resources/assets/sass/map.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/map-v2.scss */"./resources/assets/sass/map-v2.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/map-v3.scss */"./resources/assets/sass/map-v3.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/subscription.scss */"./resources/assets/sass/subscription.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/conversation.scss */"./resources/assets/sass/conversation.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/gallery.scss */"./resources/assets/sass/gallery.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/front.scss */"./resources/assets/sass/front.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/auth.scss */"./resources/assets/sass/auth.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/front-rtl.scss */"./resources/assets/sass/front-rtl.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/front/critical.scss */"./resources/assets/sass/front/critical.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/community-votes.scss */"./resources/assets/sass/community-votes.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/relations.scss */"./resources/assets/sass/relations.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/dashboard.scss */"./resources/assets/sass/dashboard.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/settings.scss */"./resources/assets/sass/settings.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/themes/future.scss */"./resources/assets/sass/themes/future.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/themes/dark.scss */"./resources/assets/sass/themes/dark.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/themes/midnight.scss */"./resources/assets/sass/themes/midnight.scss");
+__webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/tinymce.scss */"./resources/assets/sass/tinymce.scss");
+module.exports = __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/sass/freyja/freyja.scss */"./resources/assets/sass/freyja/freyja.scss");
 
 
 /***/ }),

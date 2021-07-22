@@ -100,6 +100,9 @@ function registerModalLoad() {
 }
 
 function registerEntityNameCheck() {
+    if (entityName.data('live-disabled')) {
+        return;
+    }
     entityName.focusout(function (e) {
         // Don't bother if the user didn't set any value
         if (!$(this).val()) {
@@ -107,10 +110,15 @@ function registerEntityNameCheck() {
         }
         var entityCreatorDuplicateWarning = $('.duplicate-entity-warning');
         let currentEntityID = $(this).data('id');
+        let url = $(this).data('live') +
+            '?q=' + encodeURIComponent($(this).val()) +
+            '&type=' + $(this).data('type') +
+            '&exclude=' + $(this).data('id');
+
         entityCreatorDuplicateWarning.hide();
         // Check if an entity of the same type already exists, and warn when it does.
         $.ajax(
-            $(this).data('live') + '?q=' + $(this).val() + '&type=' + $(this).data('type')
+            url
         ).done(function (res) {
             if (res.length > 0) {
                 let entities = Object.keys(res)
@@ -712,39 +720,39 @@ function registerPermissionToggler() {
  *
  */
 function registerEntityNotePerms() {
-    let btn = $('#entity-note-perm-add');
+    let btn = $('.entity-note-perm-add');
     if (btn.length === 0) {
         return;
     }
     registerEntityNoteDeleteEvents();
 
-    let user = $('select[name="user"]');
     let perm = $('select[name="permission"]');
 
     btn.on('click', function (ev) {
         ev.preventDefault();
-        console.log('user', user.val());
+        let type = $(this).data('type');
+        let selected = $('select[name="' + type + '"]');
 
-        if (!user.val()) {
+        if (!selected || !selected.val()) {
             return false;
         }
 
-        let username = $('select[name="user"]').find(':selected')[0];
-        console.log('username', username.text);
+        let selectedName = selected.find(':selected')[0];
+        //console.log('selected name for ', type, selectedName.text);
 
         // Add a block
-        let body = $('#entity-note-perm-template').clone().removeClass('hidden').removeAttr('id');
+        let body = $('#entity-note-perm-' + type + '-template').clone().removeClass('hidden').removeAttr('id');
         let html = body.html()
-            .replace(/\$USERID\$/g, user.val())
-            .replace(/\$USERNAME\$/g, username.text);
+            .replace(/\$SELECTEDID\$/g, selected.val())
+            .replace(/\$SELECTEDNAME\$/g, selectedName.text);
         body.html(html).insertBefore($('#entity-note-perm-target'));
 
-        $('#entity-note-new-user').modal('toggle');
+        $('#entity-note-new-' + type).modal('toggle');
 
         registerEntityNoteDeleteEvents();
 
         // Reset the value
-        user.val('').trigger('change');
+        selected.val('').trigger('change');
         return false;
     });
 }

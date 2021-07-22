@@ -2,7 +2,7 @@
     'title' => __('entities/attributes.template.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => route($parentRoute . '.index'), 'label' => __($parentRoute . '.index.title')],
+        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($parentRoute . '.index.title')],
         ['url' => route($parentRoute . '.show', $entity->child->id), 'label' => $entity->name],
         __('crud.tabs.attributes')
     ]

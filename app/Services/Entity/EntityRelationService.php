@@ -804,7 +804,10 @@ class EntityRelationService
         }
 
         /** @var EntityMention[] $mentions */
-        $mentions = $this->entity->targetMentions()->with('entity')->whereNotNull('entity_id')->get();
+        $mentions = $this->entity->targetMentions()->with('entity')
+            ->has('entity')
+            ->whereNotNull('entity_id')
+            ->get();
         foreach ($mentions as $mention) {
             // Skip mentions to self
             if ($mention->entity_id == $this->entity->id) {
@@ -830,7 +833,7 @@ class EntityRelationService
      */
     protected function loadRelations(): bool
     {
-        return(bool) true;
+        return true;
     }
 
     /**
@@ -838,7 +841,7 @@ class EntityRelationService
      */
     protected function loadRelated(): bool
     {
-        return(bool) in_array($this->option, ['related', 'mentions']);
+        return in_array($this->option, ['related', 'mentions']);
     }
 
     /**
@@ -846,6 +849,6 @@ class EntityRelationService
      */
     protected function loadMentions(): bool
     {
-        return (bool) $this->option == 'mentions';
+        return $this->option == 'mentions';
     }
 }

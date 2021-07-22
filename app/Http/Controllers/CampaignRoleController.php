@@ -178,4 +178,32 @@ class CampaignRoleController extends Controller
 
         return $this->show($adminRole);
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function search(Request $request)
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('members', $campaign);
+
+        $term = $request->get('q', null);
+        if (empty($term)) {
+            $members = $campaign->roles()->where('is_admin', 0)->where('is_public', 0)->orderBy('name', 'asc')->limit(5)->get();
+        } else {
+            $members = $campaign->roles()->where('is_admin', 0)->where('is_public', 0)->where('name', 'like', '%' . $term . '%')->limit(5)->get();
+        }
+
+        $results = [];
+        foreach ($members as $member) {
+            $results[] = [
+                'id' => $member->id,
+                'text' => $member->name
+            ];
+        }
+
+        return response()->json($results);
+    }
 }

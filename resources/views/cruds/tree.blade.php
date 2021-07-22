@@ -2,7 +2,7 @@
     'title' => trans($name . '.index.title', ['name' => CampaignLocalization::getCampaign()->name]),
     'description' => null,
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($name), 'label' => trans($name . '.index.title')],
+        ['url' => Breadcrumb::index($name), 'label' => __($name . '.index.title')],
     ],
     'canonical' => true,
     'bodyClass' => 'kanka-' . $name,

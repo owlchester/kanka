@@ -218,7 +218,7 @@ function resetSubformSubmitAnimation(form) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/js/ajax-subforms.js */"./resources/assets/js/ajax-subforms.js");
+module.exports = __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/js/ajax-subforms.js */"./resources/assets/js/ajax-subforms.js");
 
 
 /***/ })

@@ -3,7 +3,7 @@
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => __('entities/relations.show.title', ['name' => $entity->name]),
     'breadcrumbs' => [
-        ['url' => $entity->url('index'), 'label' => __($entity->pluralType() . '.index.title')],
+        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
         ['url' => $entity->url('show'), 'label' => $entity->name],
         __('crud.tabs.relations')
     ],
@@ -52,4 +52,14 @@
 
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="/vendor/spectrum/spectrum.js" defer></script>
+    <script src="{{ mix('js/relations.js') }}" defer></script>
+@endsection
+
+@section('styles')
+    <link href="/vendor/spectrum/spectrum.css" rel="stylesheet">
+    <link href="{{ mix('css/relations.css') }}" rel="stylesheet">
 @endsection

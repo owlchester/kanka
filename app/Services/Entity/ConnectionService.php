@@ -53,6 +53,7 @@ class ConnectionService
             $this->$entityHook();
         } else {
             $this->loadMapMarkers()
+                ->loadLocation()
                 ->loadTimelines()
                 ->loadQuests();
         }
@@ -128,7 +129,7 @@ class ConnectionService
     {
         $elements = $this->entity->child->maps()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
-            $entity = $sub->map->entity;
+            $entity = $sub->entity;
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities.map');
         }
@@ -198,6 +199,23 @@ class ConnectionService
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities.organisation');
         }
+        return $this;
+    }
+
+    /**
+     * Load the entity's location if it has one
+     * @return $this
+     */
+    protected function loadLocation(): self
+    {
+        if (!isset($this->entity->child->location) || empty($this->entity->child->location)) {
+            return $this;
+        }
+
+        $entity = $this->entity->child->location->entity;
+        $this->ids[] = $entity->id;
+        $this->reasons[$entity->id][] = __('entities.location');
+
         return $this;
     }
 }
