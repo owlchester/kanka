@@ -116,6 +116,13 @@ class SidebarService
         'patrons' => [
             'patrons',
         ],
+        'faq' => [
+            'faq',
+            'faqs',
+        ],
+        'faq-categories' => [
+            'faq-categories',
+        ],
         'cache' => [
             'cache',
         ],
