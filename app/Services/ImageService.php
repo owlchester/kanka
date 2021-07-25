@@ -59,7 +59,13 @@ class ImageService
                             '?'
                         )
                     ),
-                20);
+                20, '');
+
+                // Add back the extension if it's missing after trimming long names
+                $imageUrlExt = Str::afterLast($externalFile, '.');
+                if (!Str::endsWith($path, $imageUrlExt)) {
+                    $path = $path . '.' . strtolower($imageUrlExt);
+                }
 
                 // Check if file is too big
                 $copiedFileSize = ceil(filesize($tempImage) / 1000);
