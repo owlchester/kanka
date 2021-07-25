@@ -28,6 +28,8 @@ class StoreCommunityVote extends FormRequest
         return [
             'name' => 'required|max:191',
             'content' => 'required',
+            'excerpt' => 'required',
+            'options' => 'required',
         ];
     }
 }
