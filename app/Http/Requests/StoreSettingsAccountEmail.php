@@ -26,7 +26,7 @@ class StoreSettingsAccountEmail extends FormRequest
     {
         $user = Auth::user();
         $rules = [
-            'email' => 'required|unique:users,email,' . $user->id,
+            'email' => 'required|email|unique:users,email,' . $user->id,
         ];
 
         // Social media account, no password
