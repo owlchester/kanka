@@ -432,7 +432,7 @@ function debug(e) {//console.log('e', e);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/js/editors/summernote */"./resources/assets/js/editors/summernote.js");
+module.exports = __webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/js/editors/summernote */"./resources/assets/js/editors/summernote.js");
 
 
 /***/ })

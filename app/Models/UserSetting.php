@@ -18,6 +18,7 @@ use Illuminate\Support\Arr;
  * @property string $patreon_fullname
  * @property int $patreon_pledge
  * @property string $newEntityWorkflow
+ * @property string $campaignSwitcherOrderBy
  * @property int $pledge
  * @property string $marketplaceName
  */
@@ -126,6 +127,22 @@ trait UserSetting
     public function getDefaultNestedAttribute()
     {
         return Arr::get($this->settings, 'default_nested', null);
+    }
+
+    /**
+     * @param $value
+     */
+    public function setCampaignSwitcherOrderByAttribute($value)
+    {
+        $this->setSettingsOption('campaign_switcher_order_by', $value);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCampaignSwitcherOrderByAttribute()
+    {
+        return Arr::get($this->settings, 'campaign_switcher_order_by', null);
     }
 
     /**

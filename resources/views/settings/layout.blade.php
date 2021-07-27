@@ -98,7 +98,16 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{ __('profiles.settings.fields.campaign_switcher_order_by') }}</label>
+                            {!! Form::select('campaign_switcher_order_by', __('profiles.campaign_switcher_order_by'), auth()->user()->campaignSwitcherOrderBy, ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+            </div>
         </div>
+
         <div class="box-footer">
             <button class="btn btn-primary">
                 {{ __('crud.save') }}

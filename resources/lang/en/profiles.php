@@ -4,6 +4,14 @@ return [
     'avatar'        => [
         'success'   => 'Avatar updated.',
     ],
+    'campaign_switcher_order_by' => [
+        'alphabetical' => 'Alphabetically',
+        'r_alphabetical' => 'Alphabetically Reversed',
+        'date_joined' => 'Date Joined',
+        'r_date_joined' => 'Date Joined Reversed',
+        'date_created' => 'Date Created',
+        'r_date_created' => 'Date Created Reversed',
+    ],
     'description'   => 'Update your profile details',
     'edit'          => [
         'success'   => 'Profile updated',
@@ -70,6 +78,7 @@ return [
     'settings'      => [
         'fields'    => [
             'advanced_mentions'     => 'Advanced Mentions',
+            'campaign_switcher_order_by' => 'Campaign Switcher Sorting Order',
             'date_format'           => 'Date Formatting',
             'default_nested'        => 'Nested Views as Default',
             'editor'                => 'Text Editor',

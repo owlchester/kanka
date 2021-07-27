@@ -54,14 +54,7 @@ trait CampaignRelations
      */
     public function users()
     {
-        return $this->hasManyThrough(
-            User::class,
-            'App\Models\CampaignUser',
-            'campaign_id',
-            'id',
-            'id',
-            'user_id'
-        );
+        return $this->belongsToMany('App\User', 'campaign_user')->using('App\Models\CampaignUser');
     }
 
     /**

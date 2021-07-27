@@ -40,9 +40,10 @@ use Laravel\Passport\HasApiTokens;
  * @property int $referral_id
  * @property Collection $settings
  *
- * Virtual
+ * Virtual (from \App\Models\UserSetting)
  * @property bool $advancedMentions
  * @property bool $defaultNested
+ * @property string $campaignSwitcherOrderBy
  * @property string $patreon_fullname
  * @property string $patreon_email
  */

@@ -3,11 +3,13 @@
 
 namespace App\Services\Caches;
 
-
 use App\User;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * @property \App\User $user
+ */
 class UserCacheService extends BaseCache
 {
 
@@ -34,7 +36,32 @@ class UserCacheService extends BaseCache
             return $this->get($key);
         }
 
-        $data = $this->user->campaigns;
+        /** @var \Illuminate\Database\Query\Builder $query */
+        $query = $this->user->campaigns();
+        $data = [];
+
+        // order the campaigns array based on the user settings
+        switch($this->user->campaignSwitcherOrderBy){
+            case 'alphabetical':
+                $data = $query->orderBy('name', 'asc')->get();
+                break;
+            case 'r_alphabetical':
+                $data = $query->orderBy('name', 'desc')->get();
+                break;
+            case 'date_joined':
+                $data = $query->withPivot('updated_at')->orderBy('pivot_updated_at', 'asc')->get();
+                break;
+            case 'r_date_joined':
+                $data = $query->withPivot('updated_at')->orderBy('pivot_updated_at', 'desc')->get();
+                break;
+            case 'date_created':
+                $data = $query->orderBy('created_at', 'asc')->get();
+                break;
+            case 'r_date_created':
+                $data = $query->orderBy('created_at', 'desc')->get();
+                break;
+        }
+
         $this->forever($key, $data);
 
         return $data;
@@ -90,7 +117,30 @@ class UserCacheService extends BaseCache
             return $this->get($key);
         }
 
-        $data = $this->user->following()->public()->get();
+        /** @var \Illuminate\Database\Query\Builder $query */
+        $query = $data = $this->user->following()->public();
+        $data = [];
+
+        // order the campaigns array based on the user settings
+        switch($this->user->campaignSwitcherOrderBy){
+            case 'alphabetical':
+                $data = $query->orderBy('name', 'asc')->get();
+                break;
+            case 'r_alphabetical':
+                $data = $query->orderBy('name', 'desc')->get();
+                break;
+            case 'date_joined':
+            case 'r_date_joined':
+                //for ordering based on joined do nothing for now
+                $data = $query->get();
+                break;
+            case 'date_created':
+                $data = $query->orderBy('created_at', 'asc')->get();
+                break;
+            case 'r_date_created':
+                $data = $query->orderBy('created_at', 'desc')->get();
+                break;
+        }
         $this->forever($key, $data);
 
         return $data;

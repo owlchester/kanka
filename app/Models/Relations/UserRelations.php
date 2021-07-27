@@ -36,18 +36,11 @@ trait UserRelations
 
     /**
      * Get a list of campaigns the user is in
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function campaigns()
     {
-        return $this->hasManyThrough(
-            'App\Models\Campaign',
-            'App\Models\CampaignUser',
-            'user_id',
-            'id',
-            'id',
-            'campaign_id'
-        );
+        return $this->belongsToMany('App\Models\Campaign', 'campaign_user')->using('App\Models\CampaignUser');
     }
 
     /**
