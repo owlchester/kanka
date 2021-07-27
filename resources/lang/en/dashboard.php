@@ -122,6 +122,7 @@ return [
             'order'     => 'Ordering',
             'text'      => 'Text',
             'width'     => 'Width',
+            'optional-entity' => 'Link to entity',
         ],
         'orders'                    => [
             'name_asc'  => 'Name ascending',
@@ -161,7 +162,7 @@ return [
         ],
         'widths'                    => [
             '0' => 'Auto',
-            '12'=> 'Full (100%)',
+            '12' => 'Full (100%)',
             '3' => 'Tiny (25%)',
             '4' => 'Small (33%)',
             '6' => 'Half (50%)',
