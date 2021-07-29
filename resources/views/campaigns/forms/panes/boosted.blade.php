@@ -23,7 +23,7 @@ endforeach;
 
     <div class="form-group">
         <label>{{ __('campaigns.fields.css') }}</label>
-        {!! Form::textarea('css', null, ['class' => 'form-control', 'id' => 'css']) !!}
+        {!! Form::textarea('css', null, ['class' => 'form-control', 'id' => 'css', 'spellcheck' => 'false']) !!}
         <p class="help-block">{{ __('campaigns.helpers.css') }}</p>
     </div>
 

@@ -128,7 +128,7 @@ class EntityResource extends JsonResource
             'focus_y' => $misc->entity->focus_y,
 
             // Image
-            'image_full' => !empty($misc->image) ? $misc->getImageUrl(0) : $misc->entity->image->getImagePath(0),
+            'image_full' => !empty($misc->image) ? $misc->getImageUrl(0) : ($misc->entity->image ? $misc->entity->image->getImagePath(0) : null),
             'image_thumb' => $misc->getImageUrl(40),
             'has_custom_image' => !empty($misc->image) || !empty($galleryImage),
 
