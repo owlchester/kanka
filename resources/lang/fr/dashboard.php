@@ -123,6 +123,7 @@ return [
             'order'     => 'Ordre d\'affichage',
             'text'      => 'Texte',
             'width'     => 'Largeur',
+            'optional-entity' => 'Lié à une entité',
         ],
         'orders'                    => [
             'name_asc'  => 'Nom ascendant',
@@ -162,7 +163,7 @@ return [
         ],
         'widths'                    => [
             '0' => 'Automatique',
-            '12'=> 'Complet',
+            '12' => 'Complet',
             '3' => 'Minuscule (25%)',
             '4' => 'Petit',
             '6' => 'Moitié',
