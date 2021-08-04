@@ -41,7 +41,7 @@ class UserCacheService extends BaseCache
         $data = [];
 
         // order the campaigns array based on the user settings
-        switch($this->user->campaignSwitcherOrderBy){
+        switch ($this->user->campaignSwitcherOrderBy) {
             case 'alphabetical':
                 $data = $query->orderBy('name', 'asc')->get();
                 break;
@@ -59,6 +59,9 @@ class UserCacheService extends BaseCache
                 break;
             case 'r_date_created':
                 $data = $query->orderBy('created_at', 'desc')->get();
+                break;
+            default:
+                $data = $query->get();
                 break;
         }
 
@@ -122,7 +125,7 @@ class UserCacheService extends BaseCache
         $data = [];
 
         // order the campaigns array based on the user settings
-        switch($this->user->campaignSwitcherOrderBy){
+        switch ($this->user->campaignSwitcherOrderBy) {
             case 'alphabetical':
                 $data = $query->orderBy('name', 'asc')->get();
                 break;
@@ -130,15 +133,19 @@ class UserCacheService extends BaseCache
                 $data = $query->orderBy('name', 'desc')->get();
                 break;
             case 'date_joined':
+                $data = $query->withPivot('created_at')->orderBy('pivot_created_at', 'asc')->get();
+                break;
             case 'r_date_joined':
-                //for ordering based on joined do nothing for now
-                $data = $query->get();
+                $data = $query->withPivot('created_at')->orderBy('pivot_created_at', 'desc')->get();
                 break;
             case 'date_created':
                 $data = $query->orderBy('created_at', 'asc')->get();
                 break;
             case 'r_date_created':
                 $data = $query->orderBy('created_at', 'desc')->get();
+                break;
+            default:
+                $data = $query->get();
                 break;
         }
         $this->forever($key, $data);

@@ -6,6 +6,7 @@ use App\Models\Concerns\Paginatable;
 use App\Scopes\CampaignScope;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
  * Class CampaignFollower
@@ -16,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property User $user
  * @property Campaign $campaign
  */
-class CampaignFollower extends Model
+class CampaignFollower extends Pivot
 {
     use Paginatable;
 

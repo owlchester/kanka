@@ -48,14 +48,7 @@ trait UserRelations
      */
     public function following()
     {
-        return $this->hasManyThrough(
-            'App\Models\Campaign',
-            'App\Models\CampaignFollower',
-            'user_id',
-            'id',
-            'id',
-            'campaign_id'
-        );
+        return $this->belongsToMany('App\Models\Campaign', 'campaign_followers')->using('App\Models\CampaignFollower');
     }
 
     /**
