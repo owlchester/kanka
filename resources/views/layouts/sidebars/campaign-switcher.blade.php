@@ -1,7 +1,6 @@
 <section class="campaign-switcher collapse" id="campaign-switcher">
     <div class="section">
         <div>{{ __('sidebar.campaign_switcher.created_campaigns') }}</div>
-        <a href="{{ route('settings.layout') }}"><i class="fa fa-cog" aria-hidden="true"></i></a>
     </div>
 
     <ul class="switcher-campaigns">
