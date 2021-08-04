@@ -124,7 +124,12 @@ class CampaignDashboardWidgetController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('dashboard', $campaign);
 
-        $campaignDashboardWidget->update($request->all());
+        //get all request data
+        $input = $request->all();
+        //force entity_id to take null if not present in data
+        $input['entity_id'] = $request->input('entity_id');
+
+        $campaignDashboardWidget->update($input);
 
         return redirect()
             ->route('dashboard.setup', $campaignDashboardWidget->dashboard_id ? ['dashboard' => $campaignDashboardWidget->dashboard_id] : null)
