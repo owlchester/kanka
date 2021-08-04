@@ -4,7 +4,7 @@
  * @var \App\Models\Campaign $campaign
  */
 $currentCampaign = CampaignLocalization::getCampaign();
-$defaultIndex = $currentCampaign->defaultToNested() || auth()->check() && auth()->user()->defaultNested ? 'tree' : 'index';
+$defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || auth()->check() && auth()->user()->defaultNested ? 'tree' : 'index';
 ?>
 @if (!empty($currentCampaign))
     @php \App\Facades\Dashboard::campaign($currentCampaign); @endphp
