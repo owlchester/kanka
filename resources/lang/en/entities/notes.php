@@ -3,8 +3,8 @@
 return [
     'actions'       => [
         'add'       => 'New Post',
-        'add_user'  => 'Add user',
         'add_role'  => 'Add role',
+        'add_user'  => 'Add user',
     ],
     'create'        => [
         'description'   => 'Create a new post',
@@ -25,9 +25,9 @@ return [
         'entry'     => 'Entry',
         'name'      => 'Name',
     ],
-    'footer' => [
-        'created' => 'Created by :user on :date',
-        'updated' => 'Updated by :user on :date',
+    'footer'        => [
+        'created'   => 'Created by :user on :date',
+        'updated'   => 'Updated by :user on :date',
     ],
     'hint'          => 'Information that doesn\'t quite fit in the standard fields of an entity or that should be kept private can be added as posts.',
     'hints'         => [

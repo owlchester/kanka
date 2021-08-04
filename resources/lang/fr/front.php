@@ -100,8 +100,9 @@ return [
             'upload'                => 'Augmentation de la taille de fichier uploadé pour tous les membres',
         ],
         'boosts_v2'         => [
-            'description'   => 'Nous supporter donne accès à des boosters. Ceux-ci peuvent être utilisé pour booster ou superbooster les campagnes. Ceci débloque les avantages suivants:',
-            'title'         => 'Campagnes boostées et superboostées',
+            'description'       => 'Nous supporter donne accès à des boosters. Ceux-ci peuvent être utilisé pour booster ou superbooster les campagnes. Ceci débloque les avantages suivants:',
+            'description-count' => 'Booster une campagne utilise :boost-count booster. Superbooster une campagne utilise :superboost-count boosters.',
+            'title'             => 'Campagnes boostées et superboostées',
         ],
         'calendars'         => [
             'description'   => 'Créer des calendriers personnalisés pour organiser ta campagne.',

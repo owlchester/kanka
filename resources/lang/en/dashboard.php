@@ -117,12 +117,12 @@ return [
             'success'   => 'Widget removed from the dashboard.',
         ],
         'fields'                    => [
-            'dashboard' => 'Dashboard',
-            'name'      => 'Custom widget name',
-            'order'     => 'Ordering',
-            'text'      => 'Text',
-            'width'     => 'Width',
-            'optional-entity' => 'Link to entity',
+            'dashboard'         => 'Dashboard',
+            'name'              => 'Custom widget name',
+            'optional-entity'   => 'Link to entity',
+            'order'             => 'Ordering',
+            'text'              => 'Text',
+            'width'             => 'Width',
         ],
         'orders'                    => [
             'name_asc'  => 'Name ascending',
@@ -162,7 +162,7 @@ return [
         ],
         'widths'                    => [
             '0' => 'Auto',
-            '12' => 'Full (100%)',
+            '12'=> 'Full (100%)',
             '3' => 'Tiny (25%)',
             '4' => 'Small (33%)',
             '6' => 'Half (50%)',

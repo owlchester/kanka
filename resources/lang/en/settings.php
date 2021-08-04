@@ -85,6 +85,13 @@ return [
             'exhausted_boosts'      => 'You are out of boosts to give. Remove your boost from a campaign before giving it to another.',
             'exhausted_superboosts' => 'You are out of boosts. You need 3 boosters to superboost a campaign.',
         ],
+        'modals'            => [
+            'more'  => [
+                'action'    => 'More boosters?',
+                'body'      => 'You can get more boosters by upgrading your subscription level, or by removing them from a campaign. Unboosting a campaign doesn\'t delete any of the boosted information, it only disables it until you boost that campaign again.',
+                'title'     => 'Getting more boosters',
+            ],
+        ],
         'success'           => [
             'boost'         => 'Campaign :name boosted.',
             'delete'        => 'Removed your boost from :name.',
@@ -95,13 +102,6 @@ return [
             'description'   => 'Are you sure you want to stop boosting the campaign :tag?',
             'title'         => 'Unboosting a campaign',
         ],
-        'modals' => [
-            'more' => [
-                'title' => 'Getting more boosters',
-                'action' => 'More boosters?',
-                'body' => 'You can get more boosters by upgrading your subscription level, or by removing them from a campaign. Unboosting a campaign doesn\'t delete any of the boosted information, it only disables it until you boost that campaign again.',
-            ]
-        ]
     ],
     'countries'     => [
         'austria'       => 'Austria',

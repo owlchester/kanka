@@ -26,23 +26,23 @@ return [
         'theme'                     => 'Theme',
     ],
     'newsletter'    => [
-        'helpers'    => [
-            'header' => 'Subscribe to the following email newsletters to be notified of what\'s going on with Kanka.',
-            'monthly' => 'Our monthly recap of what\'s going on and events related to Kanka.',
-            'release' => 'Get notified each time Kanka gets an update with an overview of what\'s changed.',
-            'community-vote' => 'Get notified each time there is a new :community-vote going on.',
+        'helpers'   => [
+            'community-vote'    => 'Get notified each time there is a new :community-vote going on.',
+            'header'            => 'Subscribe to the following email newsletters to be notified of what\'s going on with Kanka.',
+            'monthly'           => 'Our monthly recap of what\'s going on and events related to Kanka.',
+            'release'           => 'Get notified each time Kanka gets an update with an overview of what\'s changed.',
         ],
         'links'     => [
             'community-vote'    => 'Community Vote',
             'news'              => 'News',
             'updates'           => 'Kanka updates',
         ],
-        'settings'  => [
-            'news'          => 'News - be notified when there\'s :news.',
+        'options'   => [
+            'monthly'   => 'Kanka newsletter',
+            'release'   => 'New release',
         ],
-        'options' => [
-            'monthly' => 'Kanka newsletter',
-            'release' => 'New release',
+        'settings'  => [
+            'news'  => 'News - be notified when there\'s :news.',
         ],
         'title'     => 'Newsletters',
     ],

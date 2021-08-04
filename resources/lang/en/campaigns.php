@@ -49,6 +49,7 @@ TEXT
     ],
     'fields'                            => [
         'boosted'                       => 'Boosted by',
+        'connections'                   => 'Show an entity\'s connection table by default (instead of relation explorer for boosted campaigns)',
         'css'                           => 'CSS',
         'description'                   => 'Description',
         'entity_count'                  => 'Entity Count',
@@ -63,6 +64,7 @@ TEXT
         'image'                         => 'Image',
         'locale'                        => 'Locale',
         'name'                          => 'Name',
+        'nested'                        => 'Default entity lists to nested when available',
         'open'                          => 'Open to applications',
         'public_campaign_filters'       => 'Public Campaign Filters',
         'related_visibility'            => 'Related Elements Visibility',
@@ -73,8 +75,6 @@ TEXT
         'tooltip_family'                => 'Disable family names from tooltips',
         'tooltip_image'                 => 'Show entity image in tooltips',
         'visibility'                    => 'Visibility',
-        'connections'                    => 'Show an entity\'s connection table by default (instead of relation explorer for boosted campaigns)',
-        'nested'                        => 'Default entity lists to nested when available',
     ],
     'following'                         => 'Following',
     'helpers'                           => [
@@ -235,9 +235,9 @@ TEXT
     ],
     'roles'                             => [
         'actions'       => [
-            'add'   => 'Add a role',
-            'rename' => 'Rename role',
-            'permissions' => 'Manage permissions',
+            'add'           => 'Add a role',
+            'permissions'   => 'Manage permissions',
+            'rename'        => 'Rename role',
         ],
         'admin_role'    => 'admin role',
         'create'        => [
@@ -269,13 +269,13 @@ TEXT
             'role_permissions'      => 'Enable the \':name\' role to do the following actions on all entities.',
         ],
         'members'       => 'Members',
-        'modals' => [
-            'details' => [
-                'button' => 'Need help',
-                'title' => 'Permission details',
-                'entities' => 'Here is a quick recap of what members of this role get when a permission is set.',
-                'campaign' => 'Campaign permissions allow the following.',
-                'more' => 'For more details, view our tutorial video on Youtube',
+        'modals'        => [
+            'details'   => [
+                'button'    => 'Need help',
+                'campaign'  => 'Campaign permissions allow the following.',
+                'entities'  => 'Here is a quick recap of what members of this role get when a permission is set.',
+                'more'      => 'For more details, view our tutorial video on Youtube',
+                'title'     => 'Permission details',
             ],
         ],
         'permissions'   => [
@@ -292,15 +292,15 @@ TEXT
                 'toggle'        => 'Change for all',
             ],
             'helpers'   => [
-                'add' => 'Allow creating entities of this type. They will automatically be allowed to view and edit entities they create if they don\'t have the view or edit permission.',
-                'read' => 'Allow viewing all entities of this type that aren\'t private.',
-                'edit' => 'Allow editing all entities of this type.',
-                'delete' => 'Allow removing all entities of this type.',
-                'permission' => 'Allow setting permissions on entities of this type they can edit.',
+                'add'           => 'Allow creating entities of this type. They will automatically be allowed to view and edit entities they create if they don\'t have the view or edit permission.',
+                'dashboard'     => 'Allow editing the dashboards and dashboard widgets.',
+                'delete'        => 'Allow removing all entities of this type.',
+                'edit'          => 'Allow editing all entities of this type.',
                 'entity_note'   => 'Allows adding and editing posts even if the member can\'t edit the entity.',
-                'members' => 'Allow inviting new members to the campaign.',
-                'manage' => 'Allow editing the campaign as an owner would, without allowing the user to delete the campaign.',
-                'dashboard' => 'Allow editing the dashboards and dashboard widgets.',
+                'manage'        => 'Allow editing the campaign as a campaign admin would, without allowing the membres to delete the campaign.',
+                'members'       => 'Allow inviting new members to the campaign.',
+                'permission'    => 'Allow setting permissions on entities of this type they can edit.',
+                'read'          => 'Allow viewing all entities of this type that aren\'t private.',
             ],
             'hint'      => 'This role automatically has access to everything.',
         ],

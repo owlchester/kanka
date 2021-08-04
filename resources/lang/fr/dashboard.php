@@ -118,11 +118,12 @@ return [
             'success'   => 'Widget retiré du tableau de bord.',
         ],
         'fields'                    => [
-            'dashboard' => 'Tableau de bord',
-            'name'      => 'Nom de widget personnalisé',
-            'order'     => 'Ordre d\'affichage',
-            'text'      => 'Texte',
-            'width'     => 'Largeur',
+            'dashboard'         => 'Tableau de bord',
+            'name'              => 'Nom de widget personnalisé',
+            'optional-entity'   => 'Liens vers une entité',
+            'order'             => 'Ordre d\'affichage',
+            'text'              => 'Texte',
+            'width'             => 'Largeur',
         ],
         'orders'                    => [
             'name_asc'  => 'Nom ascendant',
