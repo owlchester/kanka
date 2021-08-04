@@ -38,6 +38,7 @@
 
 
 @section('modals')
+    @parent
     @if(isset($model))
         {!! Form::open(['method' => 'DELETE', 'route' => ['admin.faq-categories.destroy', $model], 'style' => 'display:inline', 'id' => 'delete-form-vote-' . $model->id]) !!}
         {!! Form::close() !!}

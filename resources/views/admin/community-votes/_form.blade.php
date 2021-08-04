@@ -65,6 +65,7 @@
 
 
 @section('modals')
+    @parent
     @if(isset($model))
     {!! Form::open(['method' => 'DELETE', 'route' => ['admin.community-votes.destroy', $model], 'style' => 'display:inline', 'id' => 'delete-form-vote-' . $model->id]) !!}
     {!! Form::close() !!}
