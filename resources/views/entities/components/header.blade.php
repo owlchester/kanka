@@ -144,8 +144,8 @@ $superboosted = $campaign->campaign()->boosted();
                                     @endif
                                     <li class="divider"></li>
                                     <li>
-                                        <a href="{{ route('entities.export', $entity) }}">
-                                            <i class="fa fa-download" aria-hidden="true"></i> {{ __('crud.actions.export') }}
+                                        <a href="{{ route('entities.html-export', $entity) }}">
+                                            <i class="fa fa-print" aria-hidden="true"></i> {{ __('crud.actions.print') }}
                                         </a>
                                     </li>
                                     <li>

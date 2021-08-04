@@ -19,6 +19,7 @@ return [
         'new'               => 'New',
         'new_post'          => 'New post',
         'next'              => 'Next',
+        'print'             => 'Print',
         'reset'             => 'Reset',
         'transform'         => 'Transform',
     ],

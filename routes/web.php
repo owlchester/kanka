@@ -461,6 +461,7 @@ Route::group([
 
         // Export
         Route::get('/entities/export/{entity}', 'EntityController@export')->name('entities.export');
+        Route::get('/entities/{entity}/html-export', 'Entity\ExportController@html')->name('entities.html-export');
 
         Route::get('/entities/{entity}/template', 'EntityController@template')->name('entities.template');
 
