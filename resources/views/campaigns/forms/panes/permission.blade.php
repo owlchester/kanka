@@ -38,19 +38,6 @@ $visibilities = [
 
         <div class="col-md-6">
             <div class="form-group">
-                {!! Form::hidden('settings[entity_note_visibility]', 0) !!}
-                <label>{{ __('campaigns.fields.entity_note_visibility') }}</label>
-                <div class="checkbox">
-                    <label>{!! Form::checkbox('settings[entity_note_visibility]') !!}
-                        {{ __('campaigns.entity_note_visibility.pinned') }}
-                    </label>
-                </div>
-                <p class="help-block">{{ __('campaigns.helpers.entity_note_visibility') }}</p>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="form-group">
                 <label>{{ __('campaigns.fields.related_visibility') }}</label>
                     {!! Form::select('settings[default_visibility]', $visibilities, null, ['class' => 'form-control']) !!}
                 <p class="help-block">{{ __('campaigns.helpers.related_visibility') }}</p>
