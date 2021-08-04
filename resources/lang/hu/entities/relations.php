@@ -1,39 +1,66 @@
 <?php
 
 return [
+    'actions'       => [
+        'mode-map'      => 'Viszonyok felfedező eszköze',
+        'mode-table'    => 'Viszonyok és kapcsolatok táblázata',
+    ],
+    'connections'   => [
+        'map_point'         => 'Térképpont',
+        'mention'           => 'Említés',
+        'quest_element'     => 'Küldetéselem',
+        'timeline_element'  => 'Idővonalelem',
+    ],
     'create'        => [
-        'success'   => ':name új kapcsolatát létrehoztuk.',
-        'title'     => 'Kapcsolatok létrehozása',
+        'success'   => ':name új viszonyát létrehoztuk.',
+        'title'     => 'Új viszony létrehozása számára: :name',
     ],
     'destroy'       => [
-        'success'   => ':name kapcsolatát eltávolítottuk.',
+        'success'   => ':name viszonyát eltávolítottuk.',
     ],
     'fields'        => [
-        'attitude'  => 'Hozzáállás',
-        'is_star'   => 'Rögzítve',
-        'relation'  => 'Kapcsolat',
-        'target'    => 'Célpont',
-        'two_way'   => 'Tükörkapcsolat létrehozása',
+        'attitude'          => 'Hozzáállás',
+        'connection'        => 'Kapcsolat',
+        'is_star'           => 'Rögzítve',
+        'relation'          => 'Viszony',
+        'target'            => 'Célpont',
+        'target_relation'   => 'Célpont viszony',
+        'two_way'           => 'Tükörviszony létrehozása',
     ],
-    'helper'        => 'Állíts be kapcsolatot entitások között hozzáállás mértékét, és a kapcsolat láthatóságát is beállítva. A kapcsolatok ki is rögzíthetőek az entitás menüjére.',
+    'helper'        => 'Állíts be viszonyokat az entitások között a hozzáállás mértékével és a kapcsolat láthatóságát is beállítva. A viszonyok ki is tűzhetők az entitás menüjére.',
     'hints'         => [
-        'attitude'  => 'Ez az opcionális mező arra használható, hogy kiválaszd, hogy mely jellemző alapján legyenek csökkenő sorrendben rendezve a Kapcsolatok.',
-        'mirrored'  => [
-            'text'  => 'Tükörkapcsolatban van ezzel :link.',
-            'title' => 'Tükörkapcsolatban',
+        'attitude'          => 'Ez az opcionális mező arra használható, hogy kiválaszd, hogy mely jellemző alapján legyenek csökkenő sorrendben rendezve a viszonyok.',
+        'mirrored'          => [
+            'text'  => 'Tükörviszonyban van ezzel :link.',
+            'title' => 'Tükörviszonyban',
         ],
-        'two_way'   => 'Ha kiválasztod a tükörkapcsolat létrehozását, a célponton is létrejön ugyanez a kapcsolat - azonban ha az egyiket szerkeszted, a tükörképe nem fog frissülni.',
+        'target_relation'   => 'A viszony leírása a célpont szemszögéből. Hagyd üresen ehhez a szöveghez.',
+        'two_way'           => 'Ha kiválasztod a tükörviszony létrehozását, a célponton is létrejön ugyanez a viszony - azonban, ha az egyiket szerkeszted, a tükörképe nem fog frissülni.',
+    ],
+    'options'       => [
+        'mentions'  => 'Viszonyok + kapcsolódó + említett',
+        'related'   => 'Viszonyok + kapcsolódó',
+        'relations' => 'Viszonyok',
+        'show'      => 'Mutasd',
+    ],
+    'panels'        => [
+        'related'   => 'Kapcsolódó',
     ],
     'placeholders'  => [
-        'attitude'  => '-100 és 100 közé eső érték, ahol 100 nagyon pozitív kapcsolatot reprezentál.',
-        'relation'  => 'A kapcsolat jellege',
+        'attitude'  => '-100 és 100 közé eső érték, ahol 100 nagyon pozitív viszonyt mutat.',
+        'relation'  => 'Rivális, legjobb barát, testvér',
         'target'    => 'Válassz ki egy entitást!',
     ],
     'show'          => [
-        'title' => ':name kapcsolatai',
+        'title' => ':name viszonyai',
+    ],
+    'teaser'        => 'Erősítsd meg a kampányodat, hogy hozzáférj a viszonyfelfedezőhöz. Klikkelj, hogy többet megtudj a megerősített kampányokról.',
+    'types'         => [
+        'family_member'         => 'Családtag',
+        'organisation_member'   => 'Szervezeti tag',
     ],
     'update'        => [
-        'success'   => ':name kapcsolatát frissítettük.',
-        'title'     => 'Kapcsolatok módosítása',
+        'success'   => ':name viszonyát frissítettük.',
+        'title'     => 'Viszonyok módosítása',
     ],
 ];

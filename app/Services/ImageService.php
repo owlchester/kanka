@@ -52,14 +52,19 @@ class ImageService
 
                 $file = $tempImage;
                 // Clean up the file name because weird letters can confuse thumbor
-                $path = "$folder/" . uniqid() . "_" . Str::limit(
-                    Str::slug(
-                        Str::before(
-                            Str::before($externalFile, '%3F'),
-                            '?'
-                        )
-                    ),
-                20);
+                $cleanImageName = Str::slug(
+                    Str::before(
+                        Str::before($externalFile, '%3F'),
+                        '?'
+                    )
+                );
+                $path = "$folder/" . uniqid() . "_" . Str::limit($cleanImageName, 20, '');
+
+                // Add back the extension if it's missing after trimming long names
+                $imageUrlExt = '.' . Str::afterLast($cleanImageName, '.');
+                if (!Str::endsWith($path, $imageUrlExt)) {
+                    $path = $path . strtolower($imageUrlExt);
+                }
 
                 // Check if file is too big
                 $copiedFileSize = ceil(filesize($tempImage) / 1000);

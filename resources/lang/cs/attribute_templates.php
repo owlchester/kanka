@@ -2,46 +2,47 @@
 
 return [
     'attribute_templates'   => [
-        'title' => ':name šablony schopností',
+        'title' => ':name šablony atributů',
     ],
     'create'                => [
-        'description'   => 'Vytvořit novou šablonu schopbostí',
-        'success'       => 'Šablona schopbostí :name vytvořená.',
-        'title'         => 'Nová šablona schopností.',
+        'description'   => 'Vytvořit novou šablonu atributů',
+        'success'       => 'Šablona atributů :name vytvořena.',
+        'title'         => 'Nová šablona atributů.',
     ],
     'destroy'               => [
-        'success'   => 'Šablona schopnosti :name odstraněna.',
+        'success'   => 'Šablona atributů :name odstraněna.',
     ],
     'edit'                  => [
-        'description'   => 'Upravit šablonu schopnosti',
-        'success'       => 'Šablona schopnosti :name upravena.',
-        'title'         => 'Upravit šablonu schopnosti :name',
+        'description'   => 'Upravit šablonu atributů',
+        'success'       => 'Šablona atributů :name upravena.',
+        'title'         => 'Upravit šablonu atributů :name',
     ],
     'fields'                => [
-        'attribute_template'    => 'Nadřazená šablona schopbosti',
-        'attributes'            => 'Schopnosti',
-        'name'                  => 'Jméno',
+        'attribute_template'    => 'Nadřazená šablona atributů',
+        'attributes'            => 'Atributy',
+        'name'                  => 'Název',
     ],
     'hints'                 => [
-        'automatic'                 => 'Schoposti byli automaticky aplikované ze šablony schopnosti :link.',
-        'entity_type'               => 'Po aktivování bude v novém objektu tohoto typu automaticky aplikována tato šablona schopnosti.',
-        'parent_attribute_template' => 'Tato šablona schopnosti může být podřazená jiné šabloně schopbosti. Pokud bude aplikovaná tato šablona schopnosti, aplikují se zároveň s ní i všechny nadřazené šablony schopností.',
+        'automatic'                 => 'Atributy byly automaticky aplikované ze šablony atributů :link.',
+        'entity_type'               => 'Vybraný objekt automaticky získá tuto šablonu atributů.',
+        'parent_attribute_template' => 'Tato šablona atributů může být podřazena jiné šabloně atributů. Přiřazení této šablony atributů, zároveň aplikuje i všechny nadřazené šablony.',
     ],
     'index'                 => [
-        'add'           => 'Nová šablona schopbosti',
-        'description'   => 'Spravovat šablony schopbosti :name',
-        'header'        => 'Šablony schopnosti :name',
-        'title'         => 'Šablony schopnosti',
+        'add'           => 'Nová šablona atributů',
+        'description'   => 'Spravovat šablony atributů :name',
+        'header'        => 'Šablony atributů :name',
+        'title'         => 'Šablony atributů',
     ],
     'placeholders'          => [
-        'attribute_template'    => 'Vyber jednu ze šablon schopností',
-        'name'                  => 'Jméno šablony schopnosti',
+        'attribute_template'    => 'Vyber jednu ze šablon atributů',
+        'name'                  => 'Název šablony atributů',
     ],
     'show'                  => [
-        'description'   => 'Detailní náhled šablony schopbosti',
+        'description'   => 'Detailní náhled šablony atributů',
         'tabs'          => [
-            'attribute_templates'   => 'Šablony schopností',
-            'attributes'            => 'Schopnosti',
+            'attribute_templates'   => 'Šablony atributů',
+            'attributes'            => 'Atributy',
         ],
+        'title'         => 'Šablona atributů :name',
     ],
 ];

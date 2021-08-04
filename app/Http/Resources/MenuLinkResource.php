@@ -32,6 +32,7 @@ class MenuLinkResource extends EntityResource
             'dashboard_id' => $model->dashboard_id,
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at,
+            'options' => $model->options,
         ];
     }
 }

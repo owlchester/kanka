@@ -30,7 +30,7 @@
                         <div class="entity-name-img">{{ $relation->user->name }}</div>
                     </td>
                     <td>
-                        {{ $relation->user->rolesList($campaign->id) }}
+                        {!! $relation->user->rolesList($campaign->id) !!}
                         @can('update', $relation)
                             <i role="button" tabindex="0" class="fas fa-plus-circle cursor btn-user-roles" title="{{ __('campaigns.members.manage_roles') }}" data-content="
                             @foreach($roles as $role)

@@ -12,7 +12,7 @@
     @foreach ($models as $model)
         <tr>
             <td>
-                <a href="{{ $model->link }}">{{ $model->name }}</a><br />
+                <a href="{{ route('admin.app-releases.edit', $model) }}">{{ $model->name }}</a><br />
                 <p class="help-block">{{ $model->excerpt }}</p>
             </td>
             <td>

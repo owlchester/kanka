@@ -8,6 +8,7 @@ return [
         'add_text'          => 'Szöveg hozzáadása',
         'apply_template'    => 'Tulajdonságsablon alkalmazása',
         'manage'            => 'Kezelés',
+        'more'              => 'Több lehetőség',
         'remove_all'        => 'Összes törlése',
     ],
     'create'        => [
@@ -22,6 +23,9 @@ return [
         'description'   => 'Létező entitás frissítése',
         'success'       => ':entity :name tulajdonságát frissítettük.',
         'title'         => ':name tulajdonságnak frissítése',
+    ],
+    'errors'        => [
+        'loop'  => 'Végtelen hurok van ennek a tulajdonságnak a számításában!',
     ],
     'fields'        => [
         'attribute'             => 'Tulajdonság',
@@ -45,9 +49,20 @@ return [
         'attribute' => 'Hódítások száma, Kihívási érték, kezdeményezés, népesség',
         'block'     => 'Blokk megnevezése',
         'checkbox'  => 'Jelölőnégyzet megnevezése',
+        'icon'      => [
+            'class' => 'FontAwesome vagy RPG Awesome osztály: fas fa-users',
+            'name'  => 'Ikon neve',
+        ],
+        'random'    => [
+            'name'  => 'Tulajdonság neve',
+            'value' => '1-100-ig vagy értékek sora vesszővel elválasztva',
+        ],
         'section'   => 'Szakasz neve',
         'template'  => 'Válassz ki egy sablont!',
         'value'     => 'A tulajdonság értéke',
+    ],
+    'show'          => [
+        'title' => ':name tulajdonságai',
     ],
     'template'      => [
         'success'   => ':name tulajdonságsablont alkalmaztuk :entity entátáshoz.',
@@ -57,8 +72,13 @@ return [
         'attribute' => 'Tulajdonság',
         'block'     => 'Blokk',
         'checkbox'  => 'Jelölőnégyzet',
+        'icon'      => 'Ikon',
+        'random'    => 'Véletlen',
         'section'   => 'Szakasz',
         'text'      => 'Többsoros szöveg',
+    ],
+    'update'        => [
+        'success'   => ':entity tulajdonságait frissítettük',
     ],
     'visibility'    => [
         'entry'     => 'A tulajdonság megjelenik az entitás menüjén',

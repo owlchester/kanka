@@ -19,7 +19,7 @@ return [
         'title'         => 'Actualizar nota de entidade de ":name"',
     ],
     'fields'        => [
-        'collapsed' => 'Pechar nota de entidade fixada por defecto.',
+        'collapsed' => 'Nota de entidade colapsada por defecto.',
         'creator'   => 'Creada por',
         'entry'     => 'Entrada',
         'name'      => 'Nome',

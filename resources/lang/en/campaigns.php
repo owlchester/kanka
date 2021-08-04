@@ -26,9 +26,6 @@ TEXT
         'success'       => 'Campaign updated.',
         'title'         => 'Edit Campaign :campaign',
     ],
-    'entity_note_visibility'            => [
-        'pinned'    => 'Pin new entity notes',
-    ],
     'entity_personality_visibilities'   => [
         'private'   => 'New characters have their personality private by default.',
     ],
@@ -52,10 +49,10 @@ TEXT
     ],
     'fields'                            => [
         'boosted'                       => 'Boosted by',
+        'connections'                   => 'Show an entity\'s connection table by default (instead of relation explorer for boosted campaigns)',
         'css'                           => 'CSS',
         'description'                   => 'Description',
         'entity_count'                  => 'Entity Count',
-        'entity_note_visibility'        => 'Entity Notes Pinned',
         'entity_personality_visibility' => 'Character Personality Visibility',
         'entity_visibility'             => 'Entity Visibility',
         'entry'                         => 'Campaign description',
@@ -67,6 +64,7 @@ TEXT
         'image'                         => 'Image',
         'locale'                        => 'Locale',
         'name'                          => 'Name',
+        'nested'                        => 'Default entity lists to nested when available',
         'open'                          => 'Open to applications',
         'public_campaign_filters'       => 'Public Campaign Filters',
         'related_visibility'            => 'Related Elements Visibility',
@@ -84,7 +82,6 @@ TEXT
         'boosted'                       => 'Some features are unlocked because this campaign is being boosted. Find out more on the :settings page.',
         'css'                           => 'Write your own CSS that will be loaded into the pages of your campaign. Please note that any abuse of this feature can lead to a removal of your custom CSS. Repeated or grave offenses can lead to a removal of your campaign.',
         'dashboard'                     => 'Customise the way the campaign dashboard widget is displayed by filling out the following fields.',
-        'entity_note_visibility'        => 'When creating a new entity note, the "Pinned" option will automatically be selected.',
         'entity_personality_visibility' => 'When creating a new character, the "Personality Visible" option will automatically be unselected.',
         'entity_visibility'             => 'When creating a new entity, the "Private" option will automatically be selected.',
         'excerpt'                       => 'The contents of this field will be displayed on the dashboard in the campaign header widget, so write a few sentences introducing your world. If this field is empty, the first 1000 characters of the campaign\'s entry field will be used instead.',
@@ -95,7 +92,7 @@ TEXT
         'name'                          => 'Your campaign/world can have any name as long as it contains at least 4 letters or numbers.',
         'public_campaign_filters'       => 'Help others find the campaign among other public campaigns by providing the following information.',
         'public_no_visibility'          => 'Heads up! Your campaign is public, but the campaign\'s public role can\'t access anything. :fix.',
-        'related_visibility'            => 'Default Visibility value when creating a new element with this field (entity notes, relations, abilities, etc)',
+        'related_visibility'            => 'Default Visibility value when creating a new element with this field (posts, relations, abilities, etc)',
         'system'                        => 'If your campaign is publicly visible, the system is shown in the :link page.',
         'systems'                       => 'To avoid cluttering users with options, some features of Kanka are only available with specific RPG systems (ie the D&D 5e monster stat block). Adding supported systems here will enable those features.',
         'theme'                         => 'Force the theme for the campaign, overriding a user\'s preference.',
@@ -238,7 +235,9 @@ TEXT
     ],
     'roles'                             => [
         'actions'       => [
-            'add'   => 'Add a role',
+            'add'           => 'Add a role',
+            'permissions'   => 'Manage permissions',
+            'rename'        => 'Rename role',
         ],
         'admin_role'    => 'admin role',
         'create'        => [
@@ -270,13 +269,22 @@ TEXT
             'role_permissions'      => 'Enable the \':name\' role to do the following actions on all entities.',
         ],
         'members'       => 'Members',
+        'modals'        => [
+            'details'   => [
+                'button'    => 'Need help',
+                'campaign'  => 'Campaign permissions allow the following.',
+                'entities'  => 'Here is a quick recap of what members of this role get when a permission is set.',
+                'more'      => 'For more details, view our tutorial video on Youtube',
+                'title'     => 'Permission details',
+            ],
+        ],
         'permissions'   => [
             'actions'   => [
                 'add'           => 'Create',
                 'dashboard'     => 'Dashboard',
                 'delete'        => 'Delete',
                 'edit'          => 'Edit',
-                'entity-note'   => 'Entity Note',
+                'entity-note'   => 'Post',
                 'manage'        => 'Manage',
                 'members'       => 'Members',
                 'permission'    => 'Permissions',
@@ -284,7 +292,15 @@ TEXT
                 'toggle'        => 'Change for all',
             ],
             'helpers'   => [
-                'entity_note'   => 'This allows users who do not have Edit permissions for an Entity to add Entity Notes to it.',
+                'add'           => 'Allow creating entities of this type. They will automatically be allowed to view and edit entities they create if they don\'t have the view or edit permission.',
+                'dashboard'     => 'Allow editing the dashboards and dashboard widgets.',
+                'delete'        => 'Allow removing all entities of this type.',
+                'edit'          => 'Allow editing all entities of this type.',
+                'entity_note'   => 'Allows adding and editing posts even if the member can\'t edit the entity.',
+                'manage'        => 'Allow editing the campaign as a campaign admin would, without allowing the membres to delete the campaign.',
+                'members'       => 'Allow inviting new members to the campaign.',
+                'permission'    => 'Allow setting permissions on entities of this type they can edit.',
+                'read'          => 'Allow viewing all entities of this type that aren\'t private.',
             ],
             'hint'      => 'This role automatically has access to everything.',
         ],
@@ -389,6 +405,7 @@ TEXT
     ],
     'ui'                                => [
         'helper'    => 'Use these settings to change the way some elements will be displayed in the campaign.',
+        'other'     => 'Other',
     ],
     'visibilities'                      => [
         'private'   => 'Private',

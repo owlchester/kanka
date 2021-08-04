@@ -22,6 +22,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Exception;
+use Illuminate\Support\Str;
 
 /**
  * Class MiscModel
@@ -674,6 +675,28 @@ abstract class MiscModel extends Model
         }
 
         return $actions;
+    }
 
+    /**
+     * Generate the entity's body css classes
+     * @return string
+     */
+    public function bodyClasses(): string
+    {
+        $classes = [
+            'kanka-entity-' . $this->entity->id,
+            'kanka-entity-' . $this->getEntityType(),
+        ];
+
+        if (!empty($this->type)) {
+            $classes[] = 'kanka-type-' . Str::slug($this->type);
+        }
+
+        foreach ($this->entity->tags as $tag) {
+            $classes[] = 'kanka-tag-' . $tag->id;
+            $classes[] = 'kanka-tag-' . $tag->slug;
+        }
+
+        return (string) implode(' ', $classes);
     }
 }

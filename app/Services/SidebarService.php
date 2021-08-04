@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\MenuLink;
 use Illuminate\Support\Arr;
 
 class SidebarService
@@ -115,6 +116,13 @@ class SidebarService
         'patrons' => [
             'patrons',
         ],
+        'faq' => [
+            'faq',
+            'faqs',
+        ],
+        'faq-categories' => [
+            'faq-categories',
+        ],
         'cache' => [
             'cache',
         ],
@@ -126,10 +134,14 @@ class SidebarService
     /**
      * @param $menu
      */
-    public function active($menu = '', $class = 'active')
+    public function active($menu = '', $class = 'active'): string
     {
         if (empty($this->rules[$menu])) {
-            return null;
+            return '';
+        }
+
+        if (request()->has('quick-link')) {
+            return '';
         }
 
         foreach ($this->rules[$menu] as $rule) {
@@ -146,7 +158,21 @@ class SidebarService
             }
         }
 
-        return null;
+        return '';
+    }
+
+    /**
+     * @param MenuLink $menuLink
+     * @return string
+     */
+    public function activeMenuLink(MenuLink $menuLink): string
+    {
+        $request = request()->get('quick-link');
+        if (empty($request) || $request != $menuLink->id) {
+            return '';
+        }
+
+        return 'active';
     }
 
     /**

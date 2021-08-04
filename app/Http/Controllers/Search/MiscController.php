@@ -227,10 +227,14 @@ class MiscController extends Controller
         $modelClass = MapMarker::whereIn('map_id', $include);
 
         //Search text
-        if (Str::startsWith($term, '=')) {
-            $modelClass->where('name', ltrim($term, '='));
+        if (!empty($term)) {
+            if (Str::startsWith($term, '=')) {
+                $modelClass->where('name', ltrim($term, '='));
+            } else {
+                $modelClass->where('name2', 'like', "%$term%");
+            }
         } else {
-            $modelClass->where('name', 'like', "%$term%");
+            $modelClass->orderBy('updated_at', 'desc');
         }
 
         //execute query
@@ -239,10 +243,11 @@ class MiscController extends Controller
 
         //format results for frontend select
         $formatted = [];
+        /** @var MapMarker $model */
         foreach ($models as $model) {
             $format = [
                 'id' => $model->id,
-                'text' => $model->name
+                'text' => $model->markerTitle()
             ];
 
             $formatted[] = $format;

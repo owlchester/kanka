@@ -16,9 +16,7 @@ $first = true;
             @foreach ($permissions as $perm)
                 <div class="col-sm-2 text-center tooltip-wide">
                     <label>
-                        <span class="hidden-xs">{{ __('campaigns.roles.permissions.actions.' . $perm['action']) }}@if($perm['action'] == 'entity-note')
-                                <i class="fa fa-question-circle" data-placement="bottom" data-toggle="tooltip" title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}"></i>
-                            @endif<br /></span>
+                        <span class="hidden-xs">{{ __('campaigns.roles.permissions.actions.' . $perm['action']) }}<br /></span>
                         <input type="checkbox" class="permission-toggle" data-action="{{ $perm['action'] }}" title="{{ __('campaigns.roles.permissions.actions.' . $perm['action']) }}" />
 
                             <span class="visible-xs-inline">{{ __('campaigns.roles.permissions.actions.' . $perm['action']) }}</span>

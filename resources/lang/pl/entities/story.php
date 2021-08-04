@@ -13,6 +13,6 @@ return [
         'title'         => 'Zmiana kolejności komentarzy do elementu :name',
     ],
     'update'    => [
-        'title' => 'Aktualizacja elementu :name',
+        'title' => 'Aktualizacja elementu :entity',
     ],
 ];

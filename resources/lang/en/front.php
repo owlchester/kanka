@@ -100,8 +100,9 @@ return [
             'upload'                => 'Increased upload sizes for all members',
         ],
         'boosts_v2'         => [
-            'description'   => 'Our pledge levels give you access to boosters, which you can use to boost or superboost campaigns. Doing so unlocks the following benefits for a campaign.',
-            'title'         => 'Boosted and Superboosted campaigns',
+            'description'       => 'Our pledge levels give you access to boosters, which you can use to boost or superboost campaigns. Doing so unlocks the following benefits for a campaign.',
+            'description-count' => 'Boosting a campaign uses :boost-count booster. Superboosting a campaign uses :superboost-count boosters.',
+            'title'             => 'Boosted and Superboosted campaigns',
         ],
         'calendars'         => [
             'description'   => 'Create fully custom calendars with the weeks and months you want. Add seasons, weather, moons for flavour and knowing how the world is. Attach entities to the calendar as a reminder with control on how long they last, and how often they occur.',

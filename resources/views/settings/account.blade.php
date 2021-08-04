@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => trans('settings.account.title'),
+    'title' => __('settings.account.title'),
     'breadcrumbs' => false,
     'sidebar' => 'settings',
     'noads' => true,
@@ -7,96 +7,115 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="box box-solid">
-        <div class="box-body">
-
-            <h2 class="page-header with-border">
-                {{ trans('settings.account.email') }}
-            </h2>
+    <div class="row">
+        <div class="col-md-6">
             {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['settings.account.email']]) !!}
-            <div class="form-group required">
-                <label>{{ trans('profiles.fields.email') }}</label>
-                {!! Form::text('email', null, ['placeholder' => trans('profiles.placeholders.email'), 'class' => 'form-control']) !!}
-            </div>
-
-            @if (empty(auth()->user()->provider))
-                <div class="form-group">
-                    <label>{{ trans('profiles.fields.password') }}</label>
-                    {!! Form::password('password', ['placeholder' => trans('profiles.placeholders.password'), 'class' => 'form-control']) !!}
+            <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        {{ __('settings.account.email') }}
+                    </h3>
                 </div>
-            @endif
+                <div class="box-body">
+                    <div class="form-group required">
+                        <label>{{ __('profiles.fields.email') }}</label>
+                        {!! Form::text('email', null, ['placeholder' => __('profiles.placeholders.email'), 'class' => 'form-control']) !!}
+                    </div>
 
-            <button class="btn btn-primary margin-bottom">
-                {{ trans('settings.account.actions.update_email') }}
-            </button>
-            {!! Form::close() !!}
-
-            @if (empty(auth()->user()->provider))
-            <h2 class="page-header with-border">
-                {{ trans('settings.account.password') }}
-            </h2>
-
-            {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['settings.account.password']]) !!}
-            <div class="form-group">
-                <label>{{ trans('profiles.fields.password') }}</label>
-                {!! Form::password('password', ['placeholder' => trans('profiles.placeholders.password'), 'class' => 'form-control']) !!}
-            </div>
-            <div class="form-group">
-                <label>{{ trans('profiles.fields.new_password') }}</label>
-                {!! Form::password('password_new', ['placeholder' => trans('profiles.placeholders.new_password'), 'class' => 'form-control']) !!}
-            </div>
-            <div class="form-group">
-                <label>{{ trans('profiles.fields.new_password_confirmation') }}</label>
-                {!! Form::password('password_new_confirmation', ['placeholder' => trans('profiles.placeholders.new_password_confirmation'), 'class' => 'form-control']) !!}
-            </div>
-            <button class="btn btn-primary">
-                {{ trans('settings.account.actions.update_password') }}
-            </button>
-            {!! Form::close() !!}
-
-            @else
-                <h2 class="page-header with-border">
-                    {{ trans('settings.account.social.title') }}
-                </h2>
-
-                <p class="help">{{ __('settings.account.social.helper', ['provider' => ucfirst(auth()->user()->provider)]) }}</p>
-                {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['settings.account.social']]) !!}
-                <div class="form-group">
-                    <label>{{ trans('profiles.fields.new_password') }}</label>
-                    {!! Form::password('password_new', ['placeholder' => trans('profiles.placeholders.new_password'), 'class' => 'form-control']) !!}
+                    @if (empty(auth()->user()->provider))
+                        <div class="form-group">
+                            <label>{{ __('profiles.fields.password') }}</label>
+                            {!! Form::password('password', ['placeholder' => __('profiles.placeholders.password'), 'class' => 'form-control']) !!}
+                        </div>
+                    @endif
                 </div>
-                <button class="btn btn-primary margin-bottom">
-                    {{ trans('settings.account.actions.social') }}
-                </button>
+                <div class="box-footer">
+
+                    <button class="btn btn-primary">
+                        {{ __('settings.account.actions.update_email') }}
+                    </button>
+                </div>
+            </div>
+            {!! Form::close() !!}
+        </div>
+        <div class="col-md-6">
+            <div class="box box-solid">
+                @if (empty(auth()->user()->provider))
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        {{ __('settings.account.password') }}
+                    </h3>
+                </div>
+                {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['settings.account.password']]) !!}
+                <div class="box-body">
+                    <div class="form-group">
+                        <label>{{ __('profiles.fields.password') }}</label>
+                        {!! Form::password('password', ['placeholder' => __('profiles.placeholders.password'), 'class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        <label>{{ __('profiles.fields.new_password') }}</label>
+                        {!! Form::password('password_new', ['placeholder' => __('profiles.placeholders.new_password'), 'class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        <label>{{ __('profiles.fields.new_password_confirmation') }}</label>
+                        {!! Form::password('password_new_confirmation', ['placeholder' => __('profiles.placeholders.new_password_confirmation'), 'class' => 'form-control']) !!}
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button class="btn btn-primary">
+                        {{ __('settings.account.actions.update_password') }}
+                    </button>
+                </div>
                 {!! Form::close() !!}
-            @endif
+                @else
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        {{ __('settings.account.social.title') }}
+                    </h3>
+                </div>
+                {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['settings.account.social']]) !!}
 
+                <div class="box-body">
 
-            <p><br /></p>
+                    <p class="help">{{ __('settings.account.social.helper', ['provider' => ucfirst(auth()->user()->provider)]) }}</p>
+                    <div class="form-group">
+                        <label>{{ __('profiles.fields.new_password') }}</label>
+                        {!! Form::password('password_new', ['placeholder' => __('profiles.placeholders.new_password'), 'class' => 'form-control']) !!}
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button class="btn btn-primary">
+                        {{ __('settings.account.actions.social') }}
+                    </button>
+                </div>
+                {!! Form::close() !!}
+                @endif
+            </div>
         </div>
     </div>
 
     <div class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title text-red">
+                {{ __('profiles.sections.delete.title') }}
+            </h3>
+        </div>
         <div class="box-body">
-            <h2 class="page-header with-border text-red" id="account-deletion">
-                {{ trans('profiles.sections.delete.title') }}
-            </h2>
-
             <p class="alert alert-danger">{{ __('profiles.sections.delete.helper') }}</p>
             {!! Form::model(auth()->user(), ['method' => 'PATCH', 'id' => 'delete-confirm-form', 'route' => ['settings.account.destroy']]) !!}
 
             @if (empty(auth()->user()->provider))
                 <div class="form-group">
                     <label>{{ __('profiles.fields.password') }}</label>
-                    {!! Form::password('password', ['placeholder' => trans('profiles.placeholders.password'), 'class' => 'form-control']) !!}
+                    {!! Form::password('password', ['placeholder' => __('profiles.placeholders.password'), 'class' => 'form-control']) !!}
                 </div>
             @endif
             {!! Form::close() !!}
-            <div class="form-group">
-                <button class="btn btn-danger delete-confirm" data-text="{{ trans('profiles.sections.delete.warning') }}" data-toggle="modal" data-target="#delete-confirm">
-                    <i class="fa fa-trash" aria-hidden="true"></i> {{ trans('profiles.sections.delete.delete') }}
-                </button>
-            </div>
+        </div>
+        <div class="box-footer">
+            <button class="btn btn-danger delete-confirm" data-text="{{ __('profiles.sections.delete.warning') }}" data-toggle="modal" data-target="#delete-confirm">
+                <i class="fa fa-trash" aria-hidden="true"></i> {{ __('profiles.sections.delete.delete') }}
+            </button>
         </div>
     </div>
 @endsection

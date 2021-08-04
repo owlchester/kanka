@@ -4,6 +4,7 @@ return [
     'actions'       => [
         'create'    => 'Létrehozás',
         'delete'    => 'Törlés',
+        'restore'   => 'Visszaállítás',
         'update'    => 'Frissítés',
     ],
     'fields'        => [
@@ -14,4 +15,5 @@ return [
     'show'          => [
         'title' => ':name entitás előzményei',
     ],
+    'superboosted'  => 'A :superboosted-campaigns entitásairól a bejegyzéseket :amount napig megtarjuk.',
 ];

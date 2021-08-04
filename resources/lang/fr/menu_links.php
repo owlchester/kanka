@@ -16,6 +16,7 @@ return [
         'dashboard'     => 'Tableau de bord',
         'entity'        => 'Entité',
         'filters'       => 'Filtres',
+        'is_nested'     => 'Vue imbriquée',
         'menu'          => 'Menu',
         'name'          => 'Nom',
         'position'      => 'Position',

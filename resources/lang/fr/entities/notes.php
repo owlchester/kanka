@@ -3,6 +3,7 @@
 return [
     'actions'       => [
         'add'       => 'Ajouter une note',
+        'add_role'  => 'Ajouter un rôle',
         'add_user'  => 'Ajouter un membre',
     ],
     'create'        => [
@@ -23,6 +24,10 @@ return [
         'creator'   => 'Créé par',
         'entry'     => 'Entrée',
         'name'      => 'Nom',
+    ],
+    'footer'        => [
+        'created'   => 'Créé par :user au :date',
+        'updated'   => 'Modifié par :user au :date',
     ],
     'hint'          => 'Les informations qui n\'entrent pas vraiment dans les champs pré-définis ou qui doivent être privées peuvent être ajoutées en tant que Note.',
     'hints'         => [

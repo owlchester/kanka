@@ -385,7 +385,7 @@ return [
         'quests'        => 'Misje',
         'relations'     => 'Relacje',
         'reminders'     => 'Ważne daty',
-        'story'         => 'Historia',
+        'story'         => 'Podstawy',
         'timelines'     => 'Historie',
         'tooltip'       => 'Dymek',
     ],

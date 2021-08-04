@@ -10,11 +10,12 @@
 @section('content')
     @include('partials.errors')
     <div class="box box-solid">
-        <div class="box-body">
-            <h2 class="page-header with-border">
+        <div class="box-header with-border">
+            <h3 class="box-title">
                 {{ __('settings.apps.title') }}
-            </h2>
-
+            </h3>
+        </div>
+        <div class="box-body">
             <p class="help-block">
                 {!! __('settings.apps.benefits') !!}
             </p>

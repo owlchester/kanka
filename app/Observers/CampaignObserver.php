@@ -75,7 +75,7 @@ class CampaignObserver
         }
 
         // UI settings
-        $uiSettings = $campaign->ui_settings;
+        /*$uiSettings = $campaign->ui_settings;
         if (request()->has('tooltip_family')) {
             $uiSettings['tooltip_family'] = (bool) request()->get('tooltip_family');
         }
@@ -88,7 +88,7 @@ class CampaignObserver
         if (request()->has('hide_history')) {
             $uiSettings['hide_history'] = (bool) request()->get('hide_history');
         }
-        $campaign->ui_settings = $uiSettings;
+        $campaign->ui_settings = $uiSettings;*/
 
         // Handle image. Let's use a service for this.
         ImageService::handle($campaign, 'campaigns');

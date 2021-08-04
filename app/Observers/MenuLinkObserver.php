@@ -35,6 +35,9 @@ class MenuLinkObserver
             $model->filters = null;
         }
 
+        // Only allow certain keys in the options array
+        $model->options = array_intersect_key($model->options, array_flip($model->optionsAllowedKeys));
+
         // Is private hook for non-admin (who can't set is_private)
         if (!isset($model->is_private)) {
             $model->is_private = false;

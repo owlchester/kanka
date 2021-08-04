@@ -26,9 +26,7 @@ TEXT
         'success'       => 'Campagne modifiée.',
         'title'         => 'Modifier la campagne :campaign',
     ],
-    'entity_note_visibility'            => [
-        'pinned'    => 'Épingler les nouvelles notes d\'entité',
-    ],
+    'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
         'private'   => 'Les nouveaux personnages ont leur personnalité privée par défault.',
     ],
@@ -52,10 +50,10 @@ TEXT
     ],
     'fields'                            => [
         'boosted'                       => 'Boosté par',
+        'connections'                   => 'Afficher le tableau de connections d\'une entité par défaut (au lieu de l\'explorateur de relation pour les campagnes boostées)',
         'css'                           => 'CSS',
         'description'                   => 'Description',
         'entity_count'                  => 'Nombre d\'entités',
-        'entity_note_visibility'        => 'Note d\'entité épinglée',
         'entity_personality_visibility' => 'Visibilité des traits de personnages',
         'entity_visibility'             => 'Visibilité d\'entité',
         'entry'                         => 'Description de la campagne',
@@ -67,6 +65,7 @@ TEXT
         'image'                         => 'Image',
         'locale'                        => 'Langue',
         'name'                          => 'Nom',
+        'nested'                        => 'Afficher les listes d\'entités de manière imbriquée par défaut',
         'open'                          => 'Ouvert aux applications',
         'public_campaign_filters'       => 'Filtres pour les campagnes publiques',
         'related_visibility'            => 'Visibilité des éléments liés',
@@ -84,7 +83,6 @@ TEXT
         'boosted'                       => 'Cette campagne est boostée ce qui active certaines fonctionnalités. Plus de détails sur la page :settings.',
         'css'                           => 'Définir du code CSS pour la campagne qui sera chargé sur chaque page. Abuser de cette fonctionnalité peut mener à une suppression du CSS. Les abus répétés peuvent mener à une suppression de la campagne.',
         'dashboard'                     => 'Contrôler la manière dont l\'en-tête de campagne s\'affiche sur le tableau de bord.',
-        'entity_note_visibility'        => 'Lors de la création d\'une nouvelle note d\'entité, l\'option "épinglé" sera sélectionnée par défaut.',
         'entity_personality_visibility' => 'Lorsqu\'une nouvelle entité est créée, l\'option "Privé" sera automatiquement sélectionnée.',
         'entity_visibility'             => 'Lorsqu\'une nouvelle entité est créée, l\'option "Privé" sera automatiquement sélectionnée.',
         'excerpt'                       => 'Le contenu de ce champ sera affiché sur le tableau de bord dans le widget d\'en-tête de campagne. Si ce champ est vide, les 1000 premiers caractères de la description de la campagne seront utilisés à la place.',
@@ -238,7 +236,9 @@ TEXT
     ],
     'roles'                             => [
         'actions'       => [
-            'add'   => 'Ajouter un rôle',
+            'add'           => 'Ajouter un rôle',
+            'permissions'   => 'Gérer les permissions',
+            'rename'        => 'Renommer le rôle',
         ],
         'admin_role'    => 'rôle admin',
         'create'        => [
@@ -270,6 +270,15 @@ TEXT
             'role_permissions'      => 'Permettre au rôle \':name\' les actions suivantes sur toutes les entités.',
         ],
         'members'       => 'Membres',
+        'modals'        => [
+            'details'   => [
+                'button'    => 'Besoin d\'aide',
+                'campaign'  => 'Les permissions de campagne sont les suivants:',
+                'entities'  => 'Voici un petit récapitulatif de ce que les membres de ce rôle peuvent faire quand une permission est sélectionnée.',
+                'more'      => 'Pour plus d\'information, voir notre tutoriel sur Youtube',
+                'title'     => 'Détails de permission',
+            ],
+        ],
         'permissions'   => [
             'actions'   => [
                 'add'           => 'Créer',
@@ -284,7 +293,15 @@ TEXT
                 'toggle'        => 'Changer pour tous',
             ],
             'helpers'   => [
+                'add'           => 'Permettre de créer des entités de ce type. Un membre aura automatiquement le droit de voir et modifier les entités qu\'il crée si le rôle n\'a pas le droit de voir ou de modifier les entités de ce type.',
+                'dashboard'     => 'Permettre de modifier les tableaux de bords et les widgets du tableau de bord.',
+                'delete'        => 'Permettre la suppression des entités de ce type.',
+                'edit'          => 'Permettre la modifications des entités de ce type.',
                 'entity_note'   => 'Ceci permet aux utilisateurs qui n\'ont pas la permission de modifier une entité de pouvoir ajouter des Notes d\'Entités sur celle-ci.',
+                'manage'        => 'Permettre la gestion de la campagne tel qu\'un membre du rôle admin, sans permettre aux membres de supprimer la campagne.',
+                'members'       => 'Permettre l\'invitation de nouveaux membre à la campagne.',
+                'permission'    => 'Permettre la gestion des permissions d\'une entités de ce type qu\'ils peuvent modifier.',
+                'read'          => 'Permettre la lecture des entités de ce type qui ne sont pas privées.',
             ],
             'hint'      => 'Ce rôle a automatiquement accès à tout.',
         ],
@@ -389,6 +406,7 @@ TEXT
     ],
     'ui'                                => [
         'helper'    => 'Ces paramètres permettent de changer la manière dont s\'affichent certains éléments dans la campagne.',
+        'other'     => 'Autre',
     ],
     'visibilities'                      => [
         'private'   => 'Privée',

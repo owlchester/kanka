@@ -303,6 +303,10 @@ class FilterService
             $options['_from'] = 'quicklink';
         }
 
+        if ($quickLinkID = request()->get('quick-link')) {
+            $options['quick-link'] = (int) $quickLinkID;
+        }
+
 
         return $options;
     }

@@ -2,7 +2,18 @@
 
 return [
     'abilities'     => [
-        'title' => 'Schopnosti přiřazené :name',
+        'title' => 'Schopnosti, podřazené :name',
+    ],
+    'children'      => [
+        'actions'       => [
+            'add'   => 'Přidat schopnost k objektu',
+        ],
+        'create'        => [
+            'success'   => 'Schopnost :name přidána objektu.',
+            'title'     => 'Přidat objekt k :name',
+        ],
+        'description'   => 'Objekty s touto schopností',
+        'title'         => 'Objekty se schopností :name',
     ],
     'create'        => [
         'success'   => 'Schopnost :name vytvořena.',
@@ -15,31 +26,38 @@ return [
         'success'   => 'Schopnost :name upravena.',
         'title'     => 'Upravit schopnost :name',
     ],
+    'entities'      => [
+        'title' => 'Objekty se schopností :name',
+    ],
     'fields'        => [
-        'abilities' => 'Schopbosti',
-        'ability'   => 'Schopnost',
-        'charges'   => 'Nabití',
-        'name'      => 'Jméno',
-        'type'      => 'Druh',
+        'abilities' => 'Schopnosti',
+        'ability'   => 'Nadřazená schopnost',
+        'charges'   => 'Počet použití',
+        'name'      => 'Název',
+        'type'      => 'Typ',
     ],
     'helpers'       => [
-        'descendants'   => 'Tento seznam obsahuje všechny schopnosti, které jsou pod touto schopbostí a nejen ty, které jsou přířazené přímo k ní.',
-        'nested'        => 'Ve vnořeném zobrazení můžeš zobrazit své schopbosti podle nadřazených schopností. Schopnosti bez nadřazené schopnosti se zobrazí standartním způsobem. Schopnosti s podraženými schopbostmi je možné rozkliknout, dokud nebudou existovat žádné další podřazené schopnosti.',
+        'descendants'   => 'Seznam všech objektů, které jsou podřazeny tomuto objektu v libovolné hloubce. Nejen těch, které spadají přímo pod tento objekt.',
+        'nested'        => 'Vnořené zobrazení ukazuje všechny objekty nezávisle na jejich souvislosti (podřazenost, nadřazenost) s jinými objekty.',
+        'nested_parent' => 'Seznam schopností nadřazeného objektu :parent',
+        'nested_without'=> 'Seznam všech schopností bez nadřazené schopnosti (jsou na vrcholu stromu schopností). Klepnutím na řádek se zobrazí podřazené schopnosti.',
     ],
     'index'         => [
         'add'           => 'Nová schopnost',
-        'description'   => 'Vytvoř síly, kouzla, schopnosti a další pro své objekty.',
-        'header'        => 'Schopnost',
+        'description'   => 'Vytvoří dovednosti, kouzla, schopnosti nebo další parametry objektů.',
+        'header'        => 'Schopnosti objektu :name',
         'title'         => 'Schopnosti',
     ],
     'placeholders'  => [
-        'charges'   => 'Počet nabití. Propoj schopnosti s {Úroveň}*{CHA}',
+        'charges'   => 'Počet použití. Vychází ze schopností {Úroveň}*{CHA}',
         'name'      => 'Ohnivá koule, Ve střehu, Zákeřný úder',
         'type'      => 'Kouzlo, schopnost, útok',
     ],
     'show'          => [
         'tabs'  => [
             'abilities' => 'Schopnosti',
+            'entities'  => 'Objekty',
         ],
+        'title' => 'Schopnost :name',
     ],
 ];

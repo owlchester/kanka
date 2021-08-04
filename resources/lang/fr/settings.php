@@ -85,6 +85,13 @@ return [
             'exhausted_boosts'      => 'Tu n\'as plus de boost disponnible. Retire un boost d\'une campagne avant de pouvoir l\'attribuer à une autre.',
             'exhausted_superboosts' => 'Tu n\'as plus de boosts. Tu as besoin de 3 boosts pour superbooster une campagne.',
         ],
+        'modals'            => [
+            'more'  => [
+                'action'    => 'Plus de boosters?',
+                'body'      => 'Tu peux recevoir plus de booster en changeant ton abonnement à Kanka, ou en les retirant d\'une campagne boostée. Débooster une campagne ne supprime pas les informations, mais les caches jusqu\'à ce que la campagne est à nouveau boostée.',
+                'title'     => 'Avoir plus de boosters',
+            ],
+        ],
         'success'           => [
             'boost'         => 'La campagne :name est boostée.',
             'delete'        => 'Boost retiré de :name.',

@@ -381,4 +381,28 @@ class Entity extends Model
     {
         return $this->links->count() > 0;
     }
+
+    /**
+     * @param bool $superboosted
+     * @return string
+     */
+    public function getHeaderUrl(bool $superboosted = false): string
+    {
+        if (!empty($this->header_image)) {
+            return $this->getImageUrl(0, 0, 'header_image');
+
+        }
+
+        if (!$superboosted) {
+            return '';
+        }
+
+        if (empty($this->header)) {
+            return '';
+        }
+
+        return Img::resetCrop()
+            ->crop(0, 0)
+            ->url($this->header->path);
+    }
 }

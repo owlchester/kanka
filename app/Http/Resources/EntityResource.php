@@ -114,6 +114,10 @@ class EntityResource extends JsonResource
         /** @var MiscModel $misc */
         $misc = $this->resource;
 
+        $galleryImage = $misc->entity->image;
+        $campaign = CampaignLocalization::getCampaign();
+        $superboosted = $campaign->boosted(true);
+
         $merged = [
             'id' => $misc->id,
             'name' => $misc->name,
@@ -123,9 +127,14 @@ class EntityResource extends JsonResource
             'focus_x' => $misc->entity->focus_x,
             'focus_y' => $misc->entity->focus_y,
 
-            'image_full' => $misc->getImageUrl(0),
+            // Image
+            'image_full' => !empty($misc->image) ? $misc->getImageUrl(0) : ($misc->entity->image ? $misc->entity->image->getImagePath(0) : null),
             'image_thumb' => $misc->getImageUrl(40),
-            'has_custom_image' => !empty($misc->image),
+            'has_custom_image' => !empty($misc->image) || !empty($galleryImage),
+
+            // Header
+            'header_full' => $misc->entity->getHeaderUrl($superboosted),
+            'has_custom_header' => $misc->entity->hasHeaderImage($superboosted),
 
             'is_private' => (bool) $this->is_private,
             'is_template' => (bool) $this->entity->is_template,

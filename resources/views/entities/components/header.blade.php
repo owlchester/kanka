@@ -39,9 +39,11 @@ if (auth()->check() && auth()->user()->isAdmin()) {
     $buttonsClass ++;
 }
 
+$superboosted = $campaign->campaign()->boosted();
+
 ?>
 @section('entity-header')
-    <div class="row entity-header @if($campaign->campaign()->boosted() && $entity->hasHeaderImage($campaign->campaign()->boosted(true))) with-entity-header" style="background-image: url('{{ !empty($entity->header_image) ? $entity->getImageUrl(0, 0, 'header_image') : ($campaign->campaign()->boosted(true) && !empty($entity->header) ? Img::crop(0, 0)->url($entity->header->path) : null)}}');@endif">
+    <div class="row entity-header @if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) with-entity-header" style="background-image: url('{{ $entity->getHeaderUrl($superboosted) }}');@endif">
 
         @if ($imageUrl)
         <div class="col-md-2 entity-image-col">
@@ -118,6 +120,11 @@ if (auth()->check() && auth()->user()->isAdmin()) {
                                 @endcan
 
                                 @if ($model->entity)
+                                    <li>
+                                        <a href="{{ route('entities.story.reorder', $model->entity->id) }}">
+                                            <i class="fa fa-list-ol"></i> {{ __('entities/story.reorder.icon_tooltip') }}
+                                        </a>
+                                    </li>
                                     <li>
                                         <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}]" data-toggle="tooltip"
                                            data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}]" data-success="#copy-mention-success">

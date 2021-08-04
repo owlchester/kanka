@@ -23,7 +23,7 @@ endforeach;
 
     <div class="form-group">
         <label>{{ __('campaigns.fields.css') }}</label>
-        {!! Form::textarea('css', null, ['class' => 'form-control', 'id' => 'css']) !!}
+        {!! Form::textarea('css', null, ['class' => 'form-control', 'id' => 'css', 'spellcheck' => 'false']) !!}
         <p class="help-block">{{ __('campaigns.helpers.css') }}</p>
     </div>
 
@@ -31,8 +31,8 @@ endforeach;
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group">
-                {!! Form::hidden('hide_members', 0) !!}
-                <label>{!! Form::checkbox('hide_members', 1) !!}
+                {!! Form::hidden('ui_settings[hide_members]', 0) !!}
+                <label>{!! Form::checkbox('ui_settings[hide_members]', 1) !!}
                     {{ __('campaigns.fields.hide_members') }}
                 </label>
                 <p class="help-block">{{ __('campaigns.helpers.hide_members') }}</p>
@@ -40,8 +40,8 @@ endforeach;
         </div>
         <div class="col-sm-6">
             <div class="form-group">
-                {!! Form::hidden('hide_history', 0) !!}
-                <label>{!! Form::checkbox('hide_history', 1) !!}
+                {!! Form::hidden('ui_settings[hide_history]', 0) !!}
+                <label>{!! Form::checkbox('ui_settings[hide_history]', 1) !!}
                     {{ __('campaigns.fields.hide_history') }}
                 </label>
                 <p class="help-block">{{ __('campaigns.helpers.hide_history') }}</p>

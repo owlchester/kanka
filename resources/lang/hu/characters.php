@@ -38,6 +38,7 @@ return [
         'location'                  => 'Helyszín',
         'name'                      => 'Név',
         'physical'                  => 'Fizikum',
+        'pronouns'                  => 'Névmások',
         'race'                      => 'Faj',
         'relation'                  => 'Kapcsolat',
         'sex'                       => 'Nem',
@@ -53,6 +54,8 @@ return [
         'hide_personality'          => 'Ez a fület el lehet rejteni a nem "Admin" felhasználók elől, ha kikapcsoljuk a "Látható személyiség" opciót, amikor szerkesztjük ezt a karaktert.',
         'is_dead'                   => 'Ez a karakter halott.',
         'is_personality_visible'    => 'A teljes személyiség szekciót elrejtheted a nem "Admin" felhasználók elől.',
+        'personality_not_visible'   => 'Ennek a karakternek a személyes jellemzőit jelenleg csak az Admin láthatja.',
+        'personality_visible'       => 'Ennek a karakternek a személyes jellemzőit mindenki láthatja.',
     ],
     'index'         => [
         'actions'       => [
@@ -115,6 +118,7 @@ return [
         'personality_entry' => 'Részletek',
         'personality_name'  => 'Célok, viselkedés, félelmek, kötelékek',
         'physical'          => 'Fizikum',
+        'pronouns'          => 'Ő (férfi) , Ő (nő), Ők',
         'race'              => 'Faj',
         'sex'               => 'Nem',
         'title'             => 'Titulus',

@@ -328,7 +328,8 @@ class EntityPermission
         /** @var CampaignRole $role */
         foreach ($this->roles as $role) {
             /** @var CampaignPermission $permission */
-            foreach ($role->permissions as $permission) {
+            $permissions = \App\Facades\RolePermission::role($role)->permissions();
+            foreach ($permissions as $permission) {
                 $this->cached[$permission->key] = $permission->access;
                 if (!empty($permission->entity_id)) {
                     $this->cachedEntityIds[$permission->type()][$permission->entityId()][$permission->action()] = (bool) $permission->access;

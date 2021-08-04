@@ -14,8 +14,12 @@
 @section('content')
     @include('partials.errors')
     <div class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                {{ __('settings.subscription.manage_subscription') }}
+            </h3>
+        </div>
         <div class="box-body">
-            <h3 class="page-header with-border">{{ __('settings.subscription.manage_subscription') }}</h3>
             <p>
                 {!! __('settings.subscription.benefits', [
                     'features' => link_to_route('front.features', __('settings.patreon.benefits_features'), '#paid-features', ['target' => '_blank']),
@@ -28,8 +32,12 @@
     <div class="row">
         <div class="col-md-6">
             <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        {{ __('settings.subscription.sub_status') }}
+                    </h3>
+                </div>
                 <div class="box-body">
-                    <h3 class="page-header with-border">{{ __('settings.subscription.sub_status') }}</h3>
                     <dl class="dl-horizontal">
                     @if ($user->hasPatreonSync())
                             <dt>{{ __('settings.subscription.fields.plan') }}</dt>
@@ -90,8 +98,12 @@
         </div>
         <div class="col-md-6">
             <div class="box box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        {{ __('settings.invoices.title') }}
+                    </h3>
+                </div>
                 <div class="box-body">
-                    <h3 class="page-header with-border">{{ __('settings.invoices.title') }}</h3>
                     @if (!empty($invoices))
                         <dl class="dl-horizontal">
                         @foreach ($invoices as $invoice)
@@ -115,12 +127,18 @@
     </div>
 
     <div class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">
+                {{ __('settings.subscription.tiers') }}
+            </h3>
+            <div class="box-tools">
+                <button class="btn btn-secondary btn-sm" data-toggle="modal"
+                        data-target="#change-information">
+                    <i class="fas fa-question-circle" aria-hidden="true"></i> {{ __('settings.subscription.upgrade_downgrade.button') }}
+                </button>
+            </div>
+        </div>
         <div class="box-body">
-            <button class="btn btn-secondary btn-sm pull-right" data-toggle="modal"
-                    data-target="#change-information">
-                <i class="fas fa-question-circle" aria-hidden="true"></i> {{ __('settings.subscription.upgrade_downgrade.button') }}
-            </button>
-            <h3 class="page-header with-border">{{ __('settings.subscription.tiers') }}</h3>
             <table class="table table-bordered tiers">
                 <thead>
                 <tr>
@@ -309,36 +327,36 @@
     <div class="modal fade" id="change-information" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">{{ trans('settings.subscription.upgrade_downgrade.button') }}</h4>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ __('settings.subscription.upgrade_downgrade.button') }}</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>{{ __('settings.subscription.upgrade_downgrade.upgrade.title') }}</h4>
+                    <ul>
+                        @foreach(__('settings.subscription.upgrade_downgrade.upgrade.bullets') as $key => $text)
+                            <li>{{ $text }}</li>
+                        @endforeach
+                    </ul>
+
+                    <hr />
+
+                    <h4>{{ __('settings.subscription.upgrade_downgrade.downgrade.title') }}</h4>
+                    <ul>
+                        @foreach(__('settings.subscription.upgrade_downgrade.downgrade.bullets') as $key => $text)
+                            <li>{{ $text }}</li>
+                        @endforeach
+                    </ul>
+
+                    <hr />
+                    <h4>{{ __('settings.subscription.upgrade_downgrade.cancel.title') }}</h4>
+                    <ul>
+                        <li>{{ __('settings.subscription.upgrade_downgrade.cancel.bullets.kobold') }}</li>
+                        <li>{{ __('settings.subscription.upgrade_downgrade.cancel.bullets.bonuses') }}</li>
+                        <li>{{ __('settings.subscription.upgrade_downgrade.cancel.bullets.boosts') }}</li>
+                    </ul>
+                </div>
             </div>
-            <div class="modal-body">
-                <h4>{{ __('settings.subscription.upgrade_downgrade.upgrade.title') }}</h4>
-                <ul>
-                    @foreach(__('settings.subscription.upgrade_downgrade.upgrade.bullets') as $key => $text)
-                        <li>{{ $text }}</li>
-                    @endforeach
-                </ul>
-
-                <hr />
-
-                <h4>{{ __('settings.subscription.upgrade_downgrade.downgrade.title') }}</h4>
-                <ul>
-                    @foreach(__('settings.subscription.upgrade_downgrade.downgrade.bullets') as $key => $text)
-                        <li>{{ $text }}</li>
-                    @endforeach
-                </ul>
-
-                <hr />
-                <h4>{{ __('settings.subscription.upgrade_downgrade.cancel.title') }}</h4>
-                <ul>
-                    <li>{{ __('settings.subscription.upgrade_downgrade.cancel.bullets.kobold') }}</li>
-                    <li>{{ __('settings.subscription.upgrade_downgrade.cancel.bullets.bonuses') }}</li>
-                    <li>{{ __('settings.subscription.upgrade_downgrade.cancel.bullets.boosts') }}</li>
-                </ul>
-            </div>
-        </div>
         </div>
     </div>
 
@@ -346,18 +364,18 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">{{ trans('settings.subscription.currency.title') }}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ __('settings.subscription.currency.title') }}</h4>
                 </div>
                 <div class="modal-body">
                     {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['settings.billing.save']]) !!}
                     <div class="form-group">
-                        <label>{{ trans('settings.subscription.fields.currency') }}</label>
-                        {!! Form::select('currency', ['' => trans('settings.subscription.currencies.usd'), 'eur' => trans('settings.subscription.currencies.eur')], null, ['class' => 'form-control']) !!}
+                        <label>{{ __('settings.subscription.fields.currency') }}</label>
+                        {!! Form::select('currency', ['' => __('settings.subscription.currencies.usd'), 'eur' => __('settings.subscription.currencies.eur')], null, ['class' => 'form-control']) !!}
                     </div>
 
                     <button class="btn btn-primary margin-bottom">
-                        {{ trans('settings.subscription.actions.update_currency') }}
+                        {{ __('settings.subscription.actions.update_currency') }}
                     </button>
                     <input type="hidden" name="from" value="{{ 'settings.subscription' }}" />
                     {!! Form::close() !!}

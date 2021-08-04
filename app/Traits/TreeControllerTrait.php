@@ -31,14 +31,19 @@ trait TreeControllerTrait
         $filterService = $this->filterService;
         $filter = !empty($this->filter) ? new $this->filter : null;
 
-        // Entity templates
-        $templates = auth()->check() && auth()->user()->isAdmin() ? Entity::templates($model->getEntityType())->get() : null;
-
         $actions = [[
             'route' => route($this->route . '.index'),
             'class' => 'default',
             'label' => '<i class="fa fa-list"></i> ' . trans($this->view . '.index.title')
         ]];
+
+        // Entity templates
+        $templates = null;
+        if (auth()->check() && !empty($model->getEntityType()) && auth()->user()->can('create', $model)) {
+            $templates = Entity::templates($model->getEntityType())
+                ->acl()
+                ->get();
+        }
 
         $base = $model
             ->distinct()

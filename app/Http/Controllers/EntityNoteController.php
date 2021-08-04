@@ -74,15 +74,13 @@ class EntityNoteController extends Controller
         $name = $entity->pluralType() . '.notes' . $this->view;
         $route = 'entities.' . $this->route;
         $parentRoute = $entity->pluralType();
-        $ajax = request()->ajax();
 
-        return view('cruds.notes.' . ($ajax ? '_' : null) . 'create', compact(
+        return view('entities.pages.entity-notes.create', compact(
             'entityNote',
             'name',
             'route',
             'entity',
             'parentRoute',
-            'ajax'
         ));
     }
 
@@ -162,16 +160,14 @@ class EntityNoteController extends Controller
         $route = 'entities.' . $this->route;
         $parentRoute = $entity->pluralType();
         $model = $entityNote;
-        $ajax = request()->ajax();
         $from = request()->get('from');
 
-        return view('cruds.notes.edit', compact(
+        return view('entities.pages.entity-notes.edit', compact(
             'entity',
             'model',
             'name',
             'route',
             'parentRoute',
-            'ajax',
             'from'
         ));
     }

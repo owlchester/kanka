@@ -167,13 +167,22 @@ class User extends \TCG\Voyager\Models\User
      * @param null $campaignId
      * @return mixed
      */
-    public function rolesList($campaignId = null)
+    public function rolesList($campaignId = null): string
     {
         if (empty($campaignId) && !empty($this->campaign)) {
             $campaignId = $this->campaign->id;
         }
         $roles = $this->campaignRoles->where('campaign_id', $campaignId);
-        return $roles->implode('name', ', ');
+
+        $roleLinks = [];
+        foreach($roles as $role) {
+            if (auth()->user()->isAdmin()) {
+                $roleLinks[] = link_to_route('campaign_roles.show', $role->name, $role->id);
+            } else {
+                $roleLinks[] = $role->name;
+            }
+        }
+        return (string) implode(', ', $roleLinks);
     }
 
     public function hasCampaignRole(int $roleId)

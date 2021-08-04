@@ -79,6 +79,12 @@
                 <h3 class="box-title">
                     {{ __('settings.boost.available_boosts', ['max' => auth()->user()->maxBoosts(), 'amount' => auth()->user()->availableBoosts()]) }}
                 </h3>
+                <div class="box-tools">
+                    <button class="btn btn-secondary btn-sm" data-toggle="modal"
+                            data-target="#more-boosters">
+                        <i class="fa fa-question-circle"></i> {{ __('settings.boost.modals.more.action') }}
+                    </button>
+                </div>
             </div>
             <div class="box-body">
             @if ($campaign)
@@ -213,6 +219,21 @@
                     <button type="button" class="btn btn-danger delete-confirm-submit">
                         {{ __('settings.boost.buttons.unboost') }}
                     </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="more-boosters" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ __('settings.boost.modals.more.title') }}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{!! __('settings.boost.modals.more.body') !!}</p>
                 </div>
             </div>
         </div>

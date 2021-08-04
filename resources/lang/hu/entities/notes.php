@@ -2,7 +2,8 @@
 
 return [
     'actions'       => [
-        'add'   => 'Jegyzet hozzáadása',
+        'add'       => 'Jegyzet hozzáadása',
+        'add_user'  => 'Felhasználó hozzáadása',
     ],
     'create'        => [
         'description'   => 'Új jegyzet létrehozása',
@@ -18,11 +19,15 @@ return [
         'title'         => 'Jegyzet frissítése :name számára',
     ],
     'fields'        => [
+        'collapsed' => 'Entitás megjegyzés összecsukása alapértelmezettre',
         'creator'   => 'Létrehozó',
         'entry'     => 'Bejegyzés',
         'name'      => 'Név',
     ],
     'hint'          => 'Olyan információkat, amelyek nem passzolnak bele a sztenderd mezőkbe, vagy amit privátként szeretnél megjeleníteni, jegyzetként lehet létrehozni.',
+    'hints'         => [
+        'reorder'   => 'Átrendezheted egy entitás megjegyzéseit az :icon ikonra kattintva az entitás menüjében.',
+    ],
     'index'         => [
         'title' => 'Jegyzetek :name számára',
     ],
@@ -30,6 +35,7 @@ return [
         'name'  => 'A jegyzet megnevezése.',
     ],
     'show'          => [
-        'title' => ':name jegyzet :entity számára',
+        'advanced'  => 'Bővebb engedélyek',
+        'title'     => ':name jegyzet :entity számára',
     ],
 ];
