@@ -1,6 +1,16 @@
 <?php
 
 return [
+    'actions'       => [
+        'mode-map'      => 'Ferramenta de exploração das relações',
+        'mode-table'    => 'Tabela de relações e conexões',
+    ],
+    'connections'   => [
+        'map_point'         => 'Ponto do mapa',
+        'mention'           => 'Menção',
+        'quest_element'     => 'Elemento da missão',
+        'timeline_element'  => 'Elemento da linha do tempo',
+    ],
     'create'        => [
         'success'   => 'Relação adicionada para :name.',
         'title'     => 'Criar relações',
@@ -10,6 +20,7 @@ return [
     ],
     'fields'        => [
         'attitude'          => 'Atitude',
+        'connection'        => 'Conexão',
         'is_star'           => 'Fixado',
         'relation'          => 'Relação',
         'target'            => 'Alvo',
@@ -25,6 +36,15 @@ return [
         ],
         'target_relation'   => 'A descrição da relação do alvo. Deixe em branco para usar esse texto da relação.',
         'two_way'           => 'Se você selecionar para criar relação mútua, a mesma relação será criada no alvo. Entretanto, se você editar uma, a outra não será atualizada.',
+    ],
+    'options'       => [
+        'mentions'  => 'Relações + relacionados + menções',
+        'related'   => 'Relações + relacionados',
+        'relations' => 'Relações',
+        'show'      => 'Mostrar',
+    ],
+    'panels'        => [
+        'related'   => 'Relacionados',
     ],
     'placeholders'  => [
         'attitude'  => 'De -100 a100, com 100 sendo muito positiva',

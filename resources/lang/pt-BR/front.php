@@ -55,6 +55,11 @@ return [
         'helpers'       => [
             'more'  => 'Não encontrou o que estava procurando?',
         ],
+        'kb'            => [
+            'button'    => 'Encontre respostas em nossa base de conhecimento',
+            'text'      => 'Tem uma pergunta sobre como usar os recursos do Kanka? Nossa base de conhecimento em constante expansão é o lugar certo.',
+            'title'     => 'Precisa de ajuda para usar o Kanka?',
+        ],
         'title'         => 'FAQ',
     ],
     'features'      => [
@@ -266,6 +271,7 @@ return [
         'features'      => 'Recursos',
         'help'          => 'Ajuda',
         'home'          => 'Início',
+        'kb'            => 'Base de conhecimento',
         'login'         => 'Login',
         'marketplace'   => 'Mercado',
         'media'         => 'Mídia',

@@ -38,6 +38,7 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Esta lista contén todas as habilidades descendentes desta habilidade, non só as que están no nivel directamente inferior.',
+        'nested'        => 'En árbore',
         'nested_parent' => 'Mostrando as habilidades de ":parent".',
         'nested_without'=> 'Mostrando todas as habilidades que non teñen unha habilidade nai. Fai clic nunha fila para ver as súas descendentes.',
     ],

@@ -52,7 +52,9 @@ return [
         'limitations'       => 'Ten en conta que, debido a limitacións técnicas, estes atallos non funcionan en dispositivos móbiles Android, a menos que se esté usando o novo editor Summernote. Podes cambiar o teu editor nas opcións de Deseño.',
         'mention_helpers'   => 'Se o nome da túa entidade contén un espazo, usa :example no lugar do espazo. Se queres buscar unha entidade con exactamente ese nome, escrebe :exact.',
         'mentions'          => 'Crea ligazóns a outras entidades escrebendo :code e os primeiros caracteres dunha entidade para buscala. Isto insertará :example no editor de texto. Para personalizar o nome co que se mostra a ligazón á entidade, podes escreber :example_name. Para establecer a subpáxina da entidade á que estás ligando, usa :example_page. Para establecer a lapela, usa :example_tab.',
+        'mentions_field'    => 'Tamén podes mostrar un campo da entidade en lugar do seu nome na ligazón con :code.',
         'months'            => 'Escrebe :code para obter unha lista dos meses dos teus calendarios.',
+        'options'           => 'Algunhas opcións son :options.',
         'title'             => 'Crear ligazóns a outras entidades e atallos.',
     ],
     'map'               => [

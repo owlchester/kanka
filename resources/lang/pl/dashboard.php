@@ -95,6 +95,7 @@ return [
     'widgets'           => [
         'actions'                   => [
             'advanced-options'  => 'Opcje zaawansowane',
+            'delete-confirm'    => 'ten widżet',
         ],
         'advanced_options_boosted'  => ':boosted_campaigns posiadają zaawansowane opcje widżetów, pozwalające wyświetlać na pulpicie cechy albo członków rodzin.',
         'calendar'                  => [
@@ -143,9 +144,11 @@ return [
                 'full'              => 'Zamiast skrótu elementu domyślnie wyświetla jego cały opis.',
                 'show_attributes'   => 'Wyświetla cechy elementu pod jego opisem.',
                 'show_members'      => 'Jeżeli element jest rodziną albo organizacją, wyświetla jej członków pod opisem.',
+                'show_relations'    => 'Wyświetla przypięte relacje pod opisem elementu',
             ],
             'show_attributes'   => 'Pokaż cechy',
             'show_members'      => 'Pokaż członków',
+            'show_relations'    => 'Pokaż przypięte relacje',
             'singular'          => 'Pojedynczy',
             'tags'              => 'Filtruj listę niedawno zmienianych elementów według konkretnych etykiet.',
             'title'             => 'Ostatnie zmiany',

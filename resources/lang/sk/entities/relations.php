@@ -1,6 +1,16 @@
 <?php
 
 return [
+    'actions'       => [
+        'mode-map'      => 'Nástroj zobrazenia vzťahov',
+        'mode-table'    => 'Tabuľka vzťahov a prepojení',
+    ],
+    'connections'   => [
+        'map_point'         => 'Bod na mape',
+        'mention'           => 'Referencia',
+        'quest_element'     => 'Prvok úlohy',
+        'timeline_element'  => 'Prvok časovej osy',
+    ],
     'create'        => [
         'success'   => 'Vzťah pre :name pridaný.',
         'title'     => 'Vytvoriť vzťah',
@@ -10,6 +20,7 @@ return [
     ],
     'fields'        => [
         'attitude'          => 'Postoj',
+        'connection'        => 'Prepojenie',
         'is_star'           => 'Pripnutý',
         'relation'          => 'Vzťah',
         'target'            => 'Cieľ',
@@ -25,6 +36,15 @@ return [
         ],
         'target_relation'   => 'Popis vzťahu u cieľa. Ponechaj prázdne, ak sa má použiť text tohto vzťahu.',
         'two_way'           => 'Keď vytvoríš zrkadlenie vzťahu, vytvorí sa rovnaký vzťah aj u cieľového objektu. Ak bude neskôr upravovaný, zrkadlený vzťah nebude zmenami dotknutý.',
+    ],
+    'options'       => [
+        'mentions'  => 'Vzťahy + Prepojené + Referencie',
+        'related'   => 'Vzťahy + Prepojené',
+        'relations' => 'Vzťahy',
+        'show'      => 'Zobraziť',
+    ],
+    'panels'        => [
+        'related'   => 'Prepojené',
     ],
     'placeholders'  => [
         'attitude'  => '-100 až 100, kde 100 je max. pozitívny',

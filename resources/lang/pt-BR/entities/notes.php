@@ -29,6 +29,7 @@ return [
     'hint'          => 'As informações que não se enquadram nos campos padrão de uma entidade ou que devem ser mantidas em sigilo podem ser adicionadas como notas da entidade.',
     'hints'         => [
         'is_pinned' => 'As notas da entidade fixadas são exibidas abaixo do texto da entidade na visualização primária da entidade. Combine com o campo de posição para controlar em que ordem as notas da entidade fixadas aparecem.',
+        'reorder'   => 'Você pode reordenar as notas da entidade de uma entidade clicando no ícone :icon ao lado da história no menu da entidade.',
     ],
     'index'         => [
         'title' => 'Notas de :name',

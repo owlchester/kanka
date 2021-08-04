@@ -6,6 +6,7 @@ return [
         'full'  => 'Poveznica slike',
         'save'  => 'Spremi',
     ],
+    'breadcrumb'    => 'Galerija',
     'destroy'       => [
         'success'   => 'Obrisana slika :name.',
     ],

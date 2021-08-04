@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'account-deletion'      => [
+        'account_settings'  => 'Felhasználói fiók beállításai',
+        'answer'            => 'A fiókod törléséhez menj az :account oldalra, és görgess le a fiók törlése szekcióhoz. Ez törölni fogja a felhasználói fiókodat, és minden kampányt, amiben te vagy az egyetlen tag.',
+        'question'          => 'Hogyan tudom törölni a felhasználói fiókomat?',
+    ],
     'app_backup'            => [
         'answer'    => 'Napi két biztonsági mentést hajtunk végre az adatvesztés elkerülése érdekében. A saját kampányunkat is a szerveren tároljuk, így semmilyen kockázatot nem akarunk vállalni.',
         'question'  => 'Milyen gyakran történik biztonsági mentés a Kankáról?',
@@ -30,7 +35,7 @@ TEXT
     ],
     'conversations'         => [
         'answer'    => 'A Beszélgetések modulban párbeszéd bejegyzéseket jegyezhetsz fel Karakterek vagy a kampány Tagjai között. Amennyiben szeretnél egy fontos beszélgetést rögzíteni NJK-k, és JK-k között, akkor használd ezt a modult. Szükség esetén akár "Fórumos szerepjátékra" is használhatod a funkciót, ahol a mesélő és játékosok csak írásban játszanak.',
-        'question'  => 'Mi a Beszélgetések?',
+        'question'  => 'Mik azok a Beszélgetések?',
     ],
     'custom'                => [
         'answer'    => <<<'TEXT'
@@ -43,6 +48,10 @@ TEXT
     'delete-campaign'       => [
         'answer'    => 'Navigálj a kampány főoldalára, majd kattints a "Kampány" gombra a baloldali menüsoron. Egy "Eltávolítás" gomb jelenik meg amennyiben te vagy az egyetlen tagja az adott kampánynak. A kampány törlése végleges, amely a kampány minden tárolt adatát is törli, beleértve a képeket is!',
         'question'  => 'Hogyan tudom törölni a kampányomat?',
+    ],
+    'discord'               => [
+        'answer'    => 'Hogy összekösd a Kanka-fiókodat a :discord fiókkal, először klikkelj az avatárodra az alkalmazás jobb-felső sarkában, és klikkelj a profil gombra. Onnan navigálj az :apps aloldalra, és klikkelj a Connect gombra.',
+        'question'  => 'Hogyan tudom összekötni a Kanka-fiókomat a Discord-fiókommal?',
     ],
     'early-access'          => [
         'answer'    => 'A korai hozzáférés egyfajta jutalom a fantasztikus előfizetőink számára, amellyel egy exkluzív, 30 napos periódust nyújtunk számukra, amely alatt kipróbálhatják a legújabb modulokat, még a nagyközönség előtt.',
@@ -122,6 +131,10 @@ TEXT
         'answer'    => 'Böngészd a :public-campaigns oldalt ötletekért, hogy mások hogyan használják a Kankát a kampányukhoz.',
         'question'  => 'Hogyan használják a Kankát mások?',
     ],
+    'renaming-modules'      => [
+        'answer'    => 'Alapvetően a Kanka ezt nem engedi. Ennek fő oka a nyelvtani helyesség és a felhasználói élmény az olyan nyelveknél, ahol különböző nemű szavak vannak. Azonban a megerősített kampányokban megváltoztathatod a modulok nevét Egyéni (Custom) CSS-t használva.',
+        'question'  => 'Átnevezhetem a modulokat? Például a Családokat Klánokra, vagy a Szervezeteket Frakciókra?',
+    ],
     'sections'              => [
         'community'     => 'Közösség',
         'general'       => 'Általános',
@@ -134,6 +147,10 @@ TEXT
         'return'    => 'Vissza a GYIK-hez',
         'timestamp' => 'Utolsó frissítés: :date',
         'title'     => 'GYIK :name',
+    ],
+    'unboost'               => [
+        'answer'    => 'Ha megszűnik egy kampány megerősítése, nem törlődnek az adatok, amit a megerősítés alatt hoztatok létre, csak nem lesznek láthatók. Ha újra megerősíted a kampányt, az információk és lehetőségek újra a rendelkezésetekre állnak ugyanazzal a beállításokkal, mint a megerősítés visszavonása előtt.',
+        'question'  => 'Mi történik, ha egy kampány többé nem megerősített?',
     ],
     'user-switch'           => [
         'answer'    => 'A jogosultságok trükkösek tudnak lenni, főleg a nagy kampányok esetén. Kampány adminként felkeresheted a kampány Tagjainak felületét, és rákattinthatsz a "Váltás" gombra, amelyek minden nem-admin szerepű felhasználó mellett megjelenik. Ekkor, annak a felhasználónak a nevében jelentkezel be, és úgy látod a kampányod részeit, ahogy az a felhasználó látná. Ez a legegyszerűbb módja a felhasználói jogosultságok ellenőrzésének.',

@@ -121,6 +121,7 @@ TEXT
     'widgets'           => [
         'actions'                   => [
             'advanced-options'  => 'Erweiterte Optionen',
+            'delete-confirm'    => 'dieses Widget',
         ],
         'advanced_options_boosted'  => ':boosted_campaigns verfügt über erweiterte Optionen wie das Anzeigen von Mitgliedern einer Familie oder der Attribute der Objekt im Dashboard.',
         'calendar'                  => [
@@ -169,9 +170,11 @@ TEXT
                 'full'              => 'Zeigen Sie standardmäßig den Eintrag des gesamten Objektes anstelle einer Vorschau an.',
                 'show_attributes'   => 'Zeigen Sie die Attribute der Objekte unter dem Eintrag an.',
                 'show_members'      => 'Wenn es sich bei dem Objekt um eine Familie oder Organisation handelt, zeigen Sie ihre Mitglieder unter dem Eintrag an.',
+                'show_relations'    => 'Zeigen Sie die angehefteten Beziehungen des Objekts unter dem Eintrag an.',
             ],
             'show_attributes'   => 'Zeige Attribute',
             'show_members'      => 'Zeige Mitglieder',
+            'show_relations'    => 'Zeige angepinnte Beziehungen',
             'singular'          => 'Einzelnes Objekt',
             'tags'              => 'Filtern Sie die Liste der zuletzt geänderten Objekte nach bestimmten Tags.',
             'title'             => 'Vor kurzem aktualisiert',

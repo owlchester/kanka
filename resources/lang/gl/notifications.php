@@ -11,7 +11,7 @@ return [
         'boost'         => [
             'add'           => 'A campaña ":campaign" está potenciada por :user.',
             'remove'        => ':user xa non está potenciando a campaña ":campaign".',
-            'superboost'    => 'A campaña ":capaign" está superpotenciada por :user.',
+            'superboost'    => 'A campaña ":campaign" está agora sendo superpotenciada por :user.',
         ],
         'export'        => 'A exportación da campaña está dispoñíbel. A ligazón estará dispoñíbel durante :time minutos.',
         'export_error'  => 'Ocorreu un erro mentres se exportaba a túa campaña. Por favor, contacta connosco se o problema persiste.',

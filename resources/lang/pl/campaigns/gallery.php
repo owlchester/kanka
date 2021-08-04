@@ -6,6 +6,7 @@ return [
         'full'  => 'Odnośnik do obrazu',
         'save'  => 'Zapisz',
     ],
+    'breadcrumb'    => 'Galeria',
     'destroy'       => [
         'success'   => 'Usunięto obraz :name',
     ],

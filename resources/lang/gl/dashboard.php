@@ -95,6 +95,7 @@ return [
     'widgets'           => [
         'actions'                   => [
             'advanced-options'  => 'Opcións avanzadas',
+            'delete-confirm'    => 'este complemento',
         ],
         'advanced_options_boosted'  => 'As :boosted_campaigns teñen opcións avanzadas, como mostrar as integrantes dunha familia ou os atributos dunha entidade no taboleiro de campaña.',
         'calendar'                  => [
@@ -143,9 +144,11 @@ return [
                 'full'              => 'Mostra a entidade completa por defecto en vez dunha previsualización.',
                 'show_attributes'   => 'Mostra os atributos fixados da entidade baixo a entrada.',
                 'show_members'      => 'Se a entidade é unha familia ou unha organización, mostra as súas integrantes baixo a entrada.',
+                'show_relations'    => 'Mostra as relacións fixadas da entidade baixo a súa entrada.',
             ],
             'show_attributes'   => 'Mostrar atributos fixados',
             'show_members'      => 'Mostrar integrantes',
+            'show_relations'    => 'Mostrar relacións fixadas',
             'singular'          => 'Singular',
             'tags'              => 'Filtra a lista de entidades modificadas recentemente con etiquetas específicas.',
             'title'             => 'Modificadas recentemente',

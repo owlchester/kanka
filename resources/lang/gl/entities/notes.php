@@ -19,16 +19,14 @@ return [
         'title'         => 'Actualizar nota de entidade de ":name"',
     ],
     'fields'        => [
-        'collapsed' => 'Pechar nota de entidade fixada por defecto.',
+        'collapsed' => 'Nota de entidade colapsada por defecto.',
         'creator'   => 'Creada por',
         'entry'     => 'Entrada',
-        'is_pinned' => 'Fixada',
         'name'      => 'Nome',
-        'position'  => 'Posición fixada',
     ],
     'hint'          => 'Aquí podes poñer información que non encaixe nos campos estándar dunha entidade, ou que queras manter privada.',
     'hints'         => [
-        'is_pinned' => 'As notas de entidade fixadas son mostradas debaixo do texto da entidade na súa vista principal. Usa o campo Posición para controlar a orde na que aparecen as notas fixadas.',
+        'reorder'   => 'Podes reordenar as notas dunha entidade facendo clic na icona :icon ao lado de Historia no menú da entidade.',
     ],
     'index'         => [
         'title' => 'Notas de entidade de ":name"',

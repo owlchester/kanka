@@ -1,6 +1,16 @@
 <?php
 
 return [
+    'actions'       => [
+        'mode-map'      => 'Explorador de relacións',
+        'mode-table'    => 'Táboa de relacións e conexións',
+    ],
+    'connections'   => [
+        'map_point'         => 'Punto de mapa',
+        'mention'           => 'Mención',
+        'quest_element'     => 'Elemento de misión',
+        'timeline_element'  => 'Elemento de liña temporal',
+    ],
     'create'        => [
         'success'   => 'Relación ":target" engadida a :entity.',
         'title'     => 'Nova relación para :name',
@@ -10,6 +20,7 @@ return [
     ],
     'fields'        => [
         'attitude'          => 'Actitude',
+        'connection'        => 'Conexión',
         'is_star'           => 'Fixada',
         'relation'          => 'Relación',
         'target'            => 'Obxectivo',
@@ -25,6 +36,15 @@ return [
         ],
         'target_relation'   => 'A descrición da relación no obxectivo. Déixaa en branco para que use a mesma.',
         'two_way'           => 'Ao reflectir unha relación, a mesma relación será creada na entidade obxectivo. Unha vez creada, podes editalas sen que unha sexa afectada pola outra.',
+    ],
+    'options'       => [
+        'mentions'  => 'Relacións + relacionadas + mencións',
+        'related'   => 'Relacións + relacionadas',
+        'relations' => 'Relacións',
+        'show'      => 'Mostrar',
+    ],
+    'panels'        => [
+        'related'   => 'Relacionadas',
     ],
     'placeholders'  => [
         'attitude'  => 'De -100 a 100, sendo 100 moi positiva',

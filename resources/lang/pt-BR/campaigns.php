@@ -96,6 +96,7 @@ TEXT
         'locale'                        => 'O idioma em que sua campanha está escrita. É usado para gerar conteúdo e agrupar campanhas públicas.',
         'name'                          => 'Sua campanha/mundo pode ter qualquer nome, desde que contenha pelo menos 4 letras ou números.',
         'public_campaign_filters'       => 'Ajude outras pessoas a encontrar a campanha entre outras campanhas públicas, fornecendo as seguintes informações.',
+        'public_no_visibility'          => 'Atenção! Sua campanha é pública, mas a função pública da campanha não pode acessar nada. :fix.',
         'related_visibility'            => 'Visibilidade padrão ao criar um novo elemento com este campo (notas de entidade, relações, habilidades, etc)',
         'system'                        => 'Se a sua campanha estiver publicamente visível, o sistema será mostrado na página :link.',
         'systems'                       => 'Para evitar sobrecarregar os usuários com opções, alguns recursos do Kanka estão disponíveis apenas com sistemas de RPG específicos (ou seja, o bloco de estatísticas do monstro D&D 5e). Adicionar sistemas suportados aqui habilitará esses recursos.',
@@ -126,6 +127,7 @@ TEXT
             'description'   => 'Convide um amigo para a sua campanha',
             'link'          => 'Link criado: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Convite enviado.',
+            'success_link'  => 'Link criado :link',
             'title'         => 'Convide alguém para sua campanha',
         ],
         'destroy'               => [
@@ -133,6 +135,7 @@ TEXT
         ],
         'email'                 => [
             'link'      => '<a href=":link">Juntar-se a campanha de :name\'s </a>',
+            'link_text' => 'Entrar na campanha :name',
             'subject'   => ':name convidou você para juntar-se a sua campanha \':campaign\' no kanka.io! Use o link a seguir para aceitar o seu convite.',
             'title'     => 'Convite de :name',
         ],

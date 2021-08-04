@@ -347,6 +347,7 @@ return [
         'attributes'    => 'Атрибуты',
         'boost'         => 'Усиление',
         'calendars'     => 'Календари',
+        'connections'   => 'Связи',
         'default'       => 'По умолчанию',
         'events'        => 'События',
         'inventory'     => 'Инвентарь',

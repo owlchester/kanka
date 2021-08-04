@@ -52,7 +52,9 @@ return [
         'limitations'       => 'Pamiętaj że ze względu na ograniczenia techniczne takie skróty nie działają na urządzeniach mobilnych jeżeli nie używasz edytora Summernote. Możesz zmienić edytor wchodząc w Ustawienia > Układ.',
         'mention_helpers'   => 'Jeżeli w nazwie elementu jest spacja, zamiast niej użyj :example. Jeśli szukasz elementu o dokładnie takiej nazwie, wpisz :exact.',
         'mentions'          => 'Możesz tworzyć odnośniki do innych elementów wpisując :code i pierwsze kilka znaków nazwy, by je wyszukać. To umieści :example w edytorze. By zmienić wyświetlaną nazwę, wpisz :example_name. Jeżeli odnośnik ma prowadzić na podstronę elementu, użyj :example_page, jeżeli chcesz zalinkować zakładkę, użyj example :tab.',
+        'mentions_field'    => 'Możesz wyświetlić w odnośniki pole z opisu elementu zamiast jego nazwy, używając :code.',
         'months'            => 'Wpisz :code by dodać numer miesiąca z kalnedarza.',
+        'options'           => 'Niektóre opcje: :options.',
         'title'             => 'Tworzenie odnośników i skrótów',
     ],
     'map'               => [

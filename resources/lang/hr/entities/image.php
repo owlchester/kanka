@@ -15,6 +15,7 @@ return [
         'success'       => 'Fokus slike ažuriran.',
         'title'         => 'Fokus slike entiteta :name',
         'unboosted'     => 'Postavljanje točke fokusa slike je rezervirano za :boosted-campaigns.',
+        'warning'       => 'Postavljanje točke fokusa nije dostupno kad je slika entiteta postavljena iz galerije.',
     ],
     'replace'   => [
         'breadcrumb'    => 'Zamjena slike',

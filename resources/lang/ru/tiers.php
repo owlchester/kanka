@@ -5,7 +5,7 @@ return [
     'features'  => [
         'api_requests'      => ':amount API запросов в минуту',
         'boosters'          => 'усилителей кампаний',
-        'community_vote'    => 'Голосование',
+        'community_vote'    => 'Голосования',
         'discord'           => 'Роли в Discord',
         'feature_influence' => 'Влияние на новые функции',
         'file_size'         => 'Загрузка файлов размером до :size',
@@ -14,7 +14,7 @@ return [
         'nice_image'        => 'Иконки объектов по умолчанию',
         'no_ads'            => 'Отсутствие рекламы',
         'pagination'        => 'До :amount результатов на странице',
-        'vote_influence'    => 'Влияние в голосованиях',
+        'vote_influence'    => 'Приоритет в голосованиях',
     ],
     'pricing'   => ':currency :amount/месяц',
 ];

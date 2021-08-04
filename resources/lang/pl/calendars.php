@@ -18,6 +18,18 @@ return [
     'checkboxes'    => [
         'is_recurring'  => 'Coroczne',
     ],
+    'colours'       => [
+        'black'     => 'Czarny',
+        'blue'      => 'Niebieski',
+        'default'   => 'Domyślny',
+        'green'     => 'Zielony',
+        'maroon'    => 'Fuksja',
+        'navy'      => 'Granatowy',
+        'orange'    => 'Pomarańczowy',
+        'purple'    => 'Fioletowy',
+        'red'       => 'Czerwony',
+        'teal'      => 'Morski',
+    ],
     'create'        => [
         'description'   => 'Stwórz nowy kalendarz',
         'success'       => 'Stworzono kalendarz :name.',

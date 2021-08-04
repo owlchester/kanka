@@ -206,6 +206,7 @@ return [
         ],
         'title'                     => 'Filtros',
     ],
+    'fix-this-issue'            => 'Corrija este problema',
     'forms'                     => [
         'actions'       => [
             'calendar'  => 'Adicionar uma data no calendário',
@@ -270,6 +271,10 @@ return [
         'success_copy'  => 'Entidade :name copiada',
         'title'         => 'Mover :name para outro lugar',
     ],
+    'navigation'                => [
+        'cancel'    => 'Cancelar',
+        'or_cancel' => 'ou :cancel',
+    ],
     'new_entity'                => [
         'error' => 'Por favor cheque seus valores',
         'fields'=> [
@@ -332,18 +337,19 @@ return [
         'gallery_image' => 'Escolha uma imagem da galeria da campanha',
         'image_url'     => 'Você também pode dar upload de uma imagem por uma URL',
         'item'          => 'Escolha um item',
-        'journal'       => 'Escolha um Jornal',
+        'journal'       => 'Escolha um jornal',
         'location'      => 'Escolha um local',
         'map'           => 'Escolha um mapa',
         'note'          => 'Escolha uma nota',
         'organisation'  => 'Escolha uma organização',
+        'quest'         => 'Escolha uma missão',
         'race'          => 'Escolha uma raça',
         'tag'           => 'Escolha uma tag',
         'timeline'      => 'Escolha uma linha do tempo',
     ],
     'relations'                 => [
         'actions'   => [
-            'add'   => 'Adicionar uma relação',
+            'add'   => 'Nova relação',
         ],
         'fields'    => [
             'location'  => 'Local',
@@ -369,6 +375,7 @@ return [
         'attributes'    => 'Atributos',
         'boost'         => 'Impulso',
         'calendars'     => 'Calendários',
+        'connections'   => 'Conexões',
         'default'       => 'Padrão',
         'events'        => 'Eventos',
         'inventory'     => 'Inventário',

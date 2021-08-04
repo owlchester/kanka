@@ -376,6 +376,7 @@ return [
         'attributes'    => 'Atribúty',
         'boost'         => 'Boost',
         'calendars'     => 'Kalendáre',
+        'connections'   => 'Vzťahy',
         'default'       => 'Štandardný',
         'events'        => 'Udalosti',
         'inventory'     => 'Inventár',

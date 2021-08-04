@@ -15,6 +15,7 @@ return [
         'title'         => ':name beszélgetés',
     ],
     'fields'        => [
+        'is_closed'     => 'Lezárva',
         'messages'      => 'Üzenetek',
         'name'          => 'Megnevezés',
         'participants'  => 'Résztvevők',
@@ -57,6 +58,7 @@ return [
     ],
     'show'          => [
         'description'   => 'Egy beszélgetés részletes megjelenítése',
+        'is_closed'     => 'A beszélgetést lezártuk.',
         'title'         => ':name beszélgetés',
     ],
     'tabs'          => [

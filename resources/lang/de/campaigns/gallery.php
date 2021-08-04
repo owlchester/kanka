@@ -6,6 +6,7 @@ return [
         'full'  => 'Bild link',
         'save'  => 'Speichern',
     ],
+    'breadcrumb'    => 'Gallerie',
     'destroy'       => [
         'success'   => 'Bild :name gelöscht',
     ],

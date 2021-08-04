@@ -6,7 +6,9 @@ return [
         'add_intercalary'   => 'Naptárközi napok hozzáadása',
         'add_month'         => 'Hónap hozzáadása',
         'add_moon'          => 'Hold hozzáadása',
+        'add_reminder'      => 'Adj hozzá egy emlékeztetőt',
         'add_season'        => 'Évszak hozzáadása',
+        'add_weather'       => 'Állítsd be az időjáráshatást',
         'add_week'          => 'Elnevezett hét hozzáadása',
         'add_weekday'       => 'Hétköznap hozzáadása',
         'add_year'          => 'Egy év nevének hozzáadása',
@@ -109,9 +111,12 @@ return [
     'helpers'       => [
         'month_type'    => 'A naptárközi hónapok nem számolják a hét napjait, de a holdfázisokat és az évszakokat igen.',
         'nested'        => 'Elsőként azon naptárak megjelenítése, amelynek nincs szülő naptárja. Kattints egy naptárra, hogy az al-naptárjait böngészhesd!',
+        'nested_parent' => ':parent naptárainak kijelzése',
+        'nested_without'=> 'Minden olyan naptár megmutatása, amelynek nincs szülő naptára. Klikkelj egy sorra, hogy lást a gyermeknaptárakat.',
         'start_offset'  => 'Alapértelmezés szerint a naptár a 0-ik év első hétköznapjával kezdődik. Ezen mező értékének megváltoztatásával beállítható, hogy a naptár első napja hova essen.',
     ],
     'hints'         => [
+        'event_length'      => 'Mennyi ideig tart az esemény. Egy esemény nem lehet hosszabb két hónapnál.',
         'intercalary'       => 'Napok, melyek a standard hónapokon és heteken kívül esnek. Nincsenek hatással a hét napjaira, de a holdfázisokra igen.',
         'is_incrementing'   => 'A dinamikusan haladó naptár aktuális napja automatikusan a következő napra lép előre minden UTC 00:00 időpontban.',
         'is_recurring'      => 'Ismétlődővé tehetsz egy eseményt, ami minden évben ugyanakkor jelenik meg.',
@@ -146,8 +151,14 @@ return [
     'options'       => [
         'events'    => [
             'recurring_periodicity' => [
-                'month' => 'Havi',
-                'year'  => 'Évi',
+                'fullmoon'      => 'Telihold',
+                'fullmoon_name' => ':moon telihold',
+                'month'         => 'Havi',
+                'newmoon'       => 'Újhold',
+                'newmoon_name'  => ':moon újhold',
+                'none'          => 'Semmi',
+                'unnamed_moon'  => ':number hold',
+                'year'          => 'Évi',
             ],
         ],
         'resets'    => [
@@ -224,5 +235,9 @@ return [
             'weather'       => 'Időjárás',
         ],
         'title'             => ':name naptár',
+    ],
+    'sorters'       => [
+        'after' => 'Ma és utána',
+        'before'=> 'Ma és előtte',
     ],
 ];

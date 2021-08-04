@@ -50,6 +50,7 @@ return [
         'age'   => 'Możesz też połączyć ten element z kalendarzem kampanii, by automatycznie obliczyć wiek. :more',
     ],
     'hints'         => [
+        'hide_personality'          => 'Ukryj osobowość',
         'is_dead'                   => 'Ta postać jest martwa',
         'is_personality_visible'    => 'Odznacz by ukryć cały opis osobowości przed użytkownikami niebędących administratorami.',
         'personality_not_visible'   => 'Opis osobowości widoczny wyłącznie dla administratorów.',

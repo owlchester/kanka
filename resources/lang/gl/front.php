@@ -2,8 +2,8 @@
 
 return [
     'about'         => [
-        'description'   => 'Kanka naceu do desexo dun apasionado xogador de rol que quixo crear e administrar un mundo para os seus xogadores. Despois de probar unhas cantas opcións dispoñíbeis e concluir que ningunha delas encaixaba co que quería, comezou o desenvolvemento de Kanka no outono de 2017.',
-        'title'         => 'Sobre',
+        'description'   => 'Kanka naceu do desexo dun apaixonado xogador de rol que quixo crear e administrar un mundo para os seus xogadores. Despois de probar unhas cantas opcións dispoñíbeis e concluír que ningunha delas encaixaba co que quería, comezou o desenvolvemento de Kanka no outono de 2017.',
+        'title'         => 'Sobre nós',
     ],
     'campaigns'     => [
         'description_full'  => 'Moitas das campañas en Kanka son públicas para que todas as poidan ver. Esta páxina contén unha lista de todas as campañas públicas, así como algunas campañas destacadas da comunidade.',
@@ -250,7 +250,7 @@ return [
         'title'         => 'Media',
     ],
     'menu'          => [
-        'about'         => 'Sobre',
+        'about'         => 'Sobre nós',
         'api'           => 'API',
         'campaigns'     => 'Campañas públicas',
         'community'     => 'Comunidade',

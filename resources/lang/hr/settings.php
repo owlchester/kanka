@@ -155,25 +155,16 @@ return [
         'subscription_status'   => 'Status pretplate',
     ],
     'patreon'       => [
-        'actions'           => [
-            'link'  => 'Poveži račun',
-            'view'  => 'Posjeti Kanku na Patreonu',
-        ],
-        'benefits'          => 'Podržavajući nas na :patreon otključavaš svakakve :features za tebe i tvoje kampanje, a pomažeš nam i da provedemo više vremena radeći na poboljšanju Kanke.',
-        'benefits_features' => 'nevjerojatne funkcionalnosti',
-        'deprecated'        => 'Zastarjela značajka - ako želite podržati Kanku, učinite to putem :subscription. Patreon povezivanje je i dalje aktivno za one koji su povezali svoj račun prije našeg odlaska iz Patreona.',
-        'description'       => 'Sinkroniziranje s Patreonom',
-        'linked'            => 'Hvala ti što podržavaš Kanku na Patreonu! Tvoj račun je povezan.',
-        'pledge'            => 'Zalog: :name',
-        'remove'            => [
+        'deprecated'    => 'Zastarjela značajka - ako želite podržati Kanku, učinite to putem :subscription. Patreon povezivanje je i dalje aktivno za one koji su povezali svoj račun prije našeg odlaska iz Patreona.',
+        'description'   => 'Sinkroniziranje s Patreonom',
+        'pledge'        => 'Zalog: :name',
+        'remove'        => [
             'button'    => 'Prekini vezu s Patreon računom',
             'success'   => 'Uklonjena je poveznica na tvoj Patreon račun.',
             'text'      => 'Ako prekineš vezu tvog računa s Patreonom, Kanka će ukloniti tvoje bonuse, ime u kući slavnih, pojačanja kampanje, te druge značajke povezane s podrškom Kanke. Nijedan tvoj pojačani sadržaj neće biti izgubljen (npr. zaglavlja entiteta). Ako se ponovo pretplatiš, imat ćeš pristup svim svojim prethodnim podacima, uključujući mogućnost pojačanja prijašnjih pojačanih kampanja.',
             'title'     => 'Prekini vezu Patreon računa s Kankom',
         ],
-        'success'           => 'Hvala što podržavaš Kanku u Patreonu!',
-        'title'             => 'Patreon',
-        'wrong_pledge'      => 'Razinu tvog zaloga smo postavili ručno pa nam dopusti do nekoliko dana da je pravilno postavimo. Ako neko vrijeme ostane krivo, obrati nam se.',
+        'title'         => 'Patreon',
     ],
     'profile'       => [
         'actions'   => [

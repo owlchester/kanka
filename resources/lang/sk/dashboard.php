@@ -121,6 +121,7 @@ TEXT
     'widgets'           => [
         'actions'                   => [
             'advanced-options'  => 'Rozšírené možnosti',
+            'delete-confirm'    => 'tento widget',
         ],
         'advanced_options_boosted'  => ':boosted_campaigns majú rozšírené možnosti ako zobrazovanie členov rodov alebo atribútov objektu na nástenke.',
         'calendar'                  => [
@@ -169,9 +170,11 @@ TEXT
                 'full'              => 'Zobraziť celý zápis objektu namiesto jeho náhľadu.',
                 'show_attributes'   => 'Zobrazí pripnuté atribúty objektu pod záznamom.',
                 'show_members'      => 'Ak je objekt rod alebo organizácia, pod záznamom sa zobrazia členovia.',
+                'show_relations'    => 'Zobrazí pripnuté vzťahy objektu pod záznamom.',
             ],
             'show_attributes'   => 'Zobraziť pripnuté atribúty',
             'show_members'      => 'Zobraziť členov',
+            'show_relations'    => 'Zobraziť pripnuté vzťahy',
             'singular'          => 'Jednotlivý objekt',
             'tags'              => 'Filtrovať zoznam nedávno upravených objektov podľa určitých tagov.',
             'title'             => 'Nedávno upravené',
