@@ -1,4 +1,4 @@
-
+@inject('attributeService', 'App\Services\AttributeService')
 <?php
 /**
  * @var \App\Services\AttributeService $attributeService

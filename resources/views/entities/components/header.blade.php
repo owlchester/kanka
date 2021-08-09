@@ -49,7 +49,12 @@ $superboosted = $campaign->campaign()->boosted();
         <div class="col-md-2 entity-image-col">
 
             @can('update', $model)
+                @if(isset($printing) && $printing)
+                    <img src="{{ $imagePath }}" class="entity-print-image" alt="{{ $model->name }}"/>
+                @endif
+
                 <div class="entity-image dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="background-image: url('{{ $imagePath }}');"></div>
+
 
                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
                     <li>

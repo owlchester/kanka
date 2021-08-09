@@ -1,0 +1,123 @@
+/**
+ * SASS file for all that is print related.
+ * This file contains all the stuff to hide when printing
+ */
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+  }
+
+  .main-footer {
+    display: none !important;
+  }
+
+  .btn {
+    display: none !important;
+  }
+
+  .tab-pane {
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  #permissions,
+  #map {
+    display: none !important;
+  }
+
+  a[href]:after {
+    content: none !important;
+  }
+
+  .fa.fa-chevron-up,
+  .fa.fa-chevron-down {
+    display: none;
+  }
+
+  .entity-image {
+    -webkit-print-color-adjust: exact;
+  }
+
+  .entity-header .entity-image-col {
+    max-width: 16%;
+  }
+
+  .hidden-xs,
+  .hidden-sm {
+    display: inline-block !important;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  .dl-horizontal dt {
+    float: left;
+    width: 160px;
+  }
+
+  .dl-horizontal dd {
+    margin-left: 180px;
+  }
+}
+
+.content-wrapper {
+  margin-left: 0;
+  background-color: white;
+}
+
+.content-wrapper .content-header {
+  padding-top: 0;
+}
+
+.content-wrapper .content {
+  padding-top: 0;
+}
+
+.entity-grid .entity-sidebar-submenu {
+  display: none;
+}
+
+.entity-grid .entity-story-block {
+  width: 80%;
+  float: left;
+}
+
+.entity-grid .entity-sidebar-pins {
+  width: 20%;
+  float: left;
+}
+
+.entity-grid .btn {
+  display: none;
+}
+
+.entity-grid .entity-modification-history,
+.entity-grid .entity-mentions-box {
+  display: none;
+}
+
+.entity-abilities-helper {
+  display: none;
+}
+
+.entity-header .entity-image-col .entity-image {
+  display: none;
+}
+
+.entity-header .fa-cog {
+  display: none;
+}
+
+.btn-print {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+}
+

@@ -63,6 +63,10 @@ class ExportController extends Controller
         }
 
         return view('entities.pages.export.html-export')
-            ->with('entity', $entity);
+            ->with('entity', $entity)
+            ->with('model', $entity->child)
+            ->with('name', $entity->pluralType())
+            ->with('printing', true)
+        ;
     }
 }
