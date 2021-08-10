@@ -85,7 +85,7 @@ class Handler extends ExceptionHandler
     {
         return $request->is('api/*')
             ? response()->json([
-                'message' => 'Unauthenticated (missing the authorization token in the request headers).',
+                'message' => 'Unauthenticated (missing the authorization token in the request headers, or the token is invalid).',
                 'documentation' => 'https://kanka.io/en/docs/1.0/setup#authentication'
             ], 401)
             : redirect()->guest(route('login'));
