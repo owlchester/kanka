@@ -24,7 +24,7 @@ if (!empty($oldCalendarID)) {
 
     <div class="entity-calendar-form" style="<?=((!isset($model) || !$model->hasCalendar()) && empty($oldCalendarID) ? "display: none" : null)?>">
         @if (count($calendars) == 1)
-            {!! Form::hidden('calendar_id', isset($model) && $model->hasCalendar() ? $model->calendar->id : null, ['id' => 'calendar_id']) !!}
+            {!! Form::hidden('calendar_id', isset($model) && $model->hasCalendar() ? $model->calendar->id : FormCopy::field('calendar_id')->string(), ['id' => 'calendar_id']) !!}
         @else
             <div class="form-group entity-calendar-selector">
                 {!! Form::select2(
@@ -88,7 +88,7 @@ if (!empty($oldCalendarID)) {
         </div>
     </div>
 
-    <a href="#" id="entity-calendar-form-cancel" class="pull-right" style="@if (isset($model) && $model->hasCalendar() && $onlyOneCalendar) @else display:none @endif">
+    <a href="#" id="entity-calendar-form-cancel" class="pull-right" style="@if (((isset($model) && $model->hasCalendar()) || empty($model))) && $onlyOneCalendar) @else display:none @endif">
         {{ __('crud.remove') }}
     </a>
 </div>
