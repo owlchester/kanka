@@ -202,6 +202,10 @@ window.initSummernote = function () {
         return attributeContent(item);
       }
     }]
+  }); // When changing the codeview, save the html to the real body
+
+  $('#entry').on('summernote.change.codeview', function (we, contents, $editable) {
+    $('#entry').val(contents);
   });
 };
 /**

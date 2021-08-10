@@ -76674,6 +76674,7 @@ $(document).ready(function () {
   initEntityNoteToggle();
   initDynamicDelete();
   initImageRemoval();
+  initSummernoteFixes();
   /**
    * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
    */
@@ -77046,7 +77047,9 @@ function initEntityNoteToggle() {
     $('#' + id + "-show").toggle();
     $('#' + id + "-hide").toggle();
   });
-} // Helpers are injected directly in the window functions.
+}
+
+function initSummernoteFixes() {} // Helpers are injected directly in the window functions.
 
 
 __webpack_require__(/*! ./helpers.js */ "./resources/assets/js/helpers.js");
