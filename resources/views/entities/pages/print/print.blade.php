@@ -16,7 +16,6 @@
 
 
 
-@include('entities.components.header', ['model' => $model])
 
 
 @section('content')
@@ -25,6 +24,7 @@
         <i class="fas fa-print"></i> {{ __('crud.actions.print') }}
     </button>
 
+    @include('entities.components.header', ['model' => $model])
     @include($name . '.show')
     @includeIf('entities.pages.profile._' . $entity->type)
     @includeIf($name . '._print')
