@@ -50,7 +50,7 @@ TEXT
         'question'  => 'What is Early Access?',
     ],
     'entity-notes'          => [
-        'answer'    => 'All entities have an \'Entity Notes\' tab that are little snippets of text that can be set to only visible by you (great when co-dming), only for members of the admin role, or visible to all. You can also give your players permission to create and edit entity notes on entities without having to allow them editing a whole entity.',
+        'answer'    => 'All entities have Posts that are little snippets of text that can be set to only visible by you (great when co-dming), only for members of the admin role, or visible to all. You can also give your players permission to create and edit posts on entities without having to allow them editing a whole entity.',
         'question'  => 'How does Kanka handle partially hidden information?',
     ],
     'fields'                => [
