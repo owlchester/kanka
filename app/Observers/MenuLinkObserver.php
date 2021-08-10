@@ -14,6 +14,10 @@ class MenuLinkObserver
      */
     public function saving(MiscModel $model)
     {
+        if (!$model->savingObserver) {
+            return;
+        }
+
         $model->campaign_id = CampaignLocalization::getCampaign()->id;
         //$model->icon = $this->purify($model->icon);
         $model->tab = strtolower(trim($model->tab, '#'));
@@ -36,7 +40,10 @@ class MenuLinkObserver
         }
 
         // Only allow certain keys in the options array
-        $model->options = array_intersect_key($model->options, array_flip($model->optionsAllowedKeys));
+        $options = $model->options;
+        if (!empty($options)) {
+            $model->options = array_intersect_key($model->options, array_flip($model->optionsAllowedKeys));
+        }
 
         // Is private hook for non-admin (who can't set is_private)
         if (!isset($model->is_private)) {
