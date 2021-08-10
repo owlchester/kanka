@@ -10,7 +10,7 @@
 
 
 @section('fullpage-form')
-    {!! Form::open(['route' => ['entities.entity_notes.store', $entity->id], 'method'=>'POST', 'data-shortcut' => '1', 'id' => 'entity-form', 'class' => 'entity-note-form']) !!}
+    {!! Form::open(['route' => ['entities.entity_notes.store', $entity->id], 'method'=>'POST', 'data-shortcut' => '1', 'id' => 'entity-form', 'class' => 'entity-form entity-note-form']) !!}
 @endsection
 
 @section('content')
