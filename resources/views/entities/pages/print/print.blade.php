@@ -26,9 +26,9 @@
     </button>
 
     @include($name . '.show')
-    @includeIf('entities.pages.profile._' . $name)
+    @includeIf('entities.pages.profile._' . $entity->type)
     @includeIf($name . '._print')
-    @includeWhen($entity->abilities->count() > 0, 'entities.pages.abilities._abilities')
+    @includeWhen($entity->abilities->count() > 0, 'entities.pages.print._abilities')
     @includeWhen($entity->inventories->count() > 0, 'entities.pages.inventory._inventory', [
     'inventory' =>
             $entity->inventories()
@@ -39,18 +39,8 @@
                 return !empty($model->position) ? $model->position : 'zzzz' . $model->itemName();
             })
 ])
-    @includeWhen($entity->relationships->count() > 0, 'entities.pages.relations._table', [
-    'relations' => $entity
-        ->allRelationships()
-        ->get(),
-     'mode' => 'table'
-])
-    @includeWhen($entity->attributes->count() > 0, 'entities.pages.attributes.render', [
-    'attributes' => $entity
-        ->allRelationships()
-        ->get(),
-     'mode' => 'table'
-])
+    @includeWhen($entity->relationships->count() > 0, 'entities.pages.print._relations')
+    @includeWhen($entity->attributes->count() > 0, 'entities.pages.print._attributes')
 
 @endsection
 
@@ -59,9 +49,4 @@
 @section('styles')
     @parent
     <link href="{{ mix('css/abilities.css') }}" rel="stylesheet">
-@endsection
-
-@section('scripts')
-    @parent
-    <script src="{{ mix('js/abilities.js') }}" defer></script>
 @endsection

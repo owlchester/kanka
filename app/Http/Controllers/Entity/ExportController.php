@@ -62,7 +62,7 @@ class ExportController extends Controller
             $this->authorizeEntityForGuest('read', $entity->child);
         }
 
-        return view('entities.pages.export.html-export')
+        return view('entities.pages.print.print')
             ->with('entity', $entity)
             ->with('model', $entity->child)
             ->with('name', $entity->pluralType())

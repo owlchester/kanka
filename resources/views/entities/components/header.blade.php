@@ -42,7 +42,9 @@ if (auth()->check() && auth()->user()->isAdmin()) {
 $superboosted = $campaign->campaign()->boosted();
 
 ?>
+@if(!isset($printing))
 @section('entity-header')
+@endif
     <div class="row entity-header @if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) with-entity-header" style="background-image: url('{{ $entity->getHeaderUrl($superboosted) }}');@endif">
 
         @if ($imageUrl)
@@ -220,4 +222,8 @@ $superboosted = $campaign->campaign()->boosted();
             @yield('entity-header-actions')
         </div>
     </div>
+
+
+@if(!isset($printing))
 @endsection
+@endif

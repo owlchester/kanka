@@ -120,8 +120,14 @@
 }
 
 
+.btn-primary, .btn-xs, .btn-secondary, .btn-warning {
+  display: none;
+}
 .btn-print {
   position: fixed;
   top: 15px;
   right: 15px;
+  z-index: 2;
 }
+
+.pagebreak { page-break-before: always; }
