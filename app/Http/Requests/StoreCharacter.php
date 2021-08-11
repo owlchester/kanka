@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCharacter extends FormRequest
 {
+    use ApiRequest;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,7 +26,7 @@ class StoreCharacter extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'name' => 'required|max:191',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
@@ -36,5 +39,7 @@ class StoreCharacter extends FormRequest
             'title' => 'nullable|max:191',
             'template_id' => 'nullable',
         ];
+
+        return $this->clean($rules);
     }
 }

@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreEntityLink extends FormRequest
 {
+    use ApiRequest;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,12 +26,12 @@ class StoreEntityLink extends FormRequest
      */
     public function rules()
     {
-        return [
+        return $this->clean([
             'name' => 'required|string|max:45',
             'url' => 'required|string|url',
             'icon' => 'nullable|string|max:45',
             'position' => 'nullable|integer',
             'visibility' => 'string',
-        ];
+        ]);
     }
 }

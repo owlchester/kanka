@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreOrganisationMember extends FormRequest
 {
+    use ApiRequest;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,11 +26,11 @@ class StoreOrganisationMember extends FormRequest
      */
     public function rules()
     {
-        return [
+        return $this->clean([
             'organisation_id' => 'required|exists:organisations,id',
             'character_id' => 'required|exists:characters,id',
             'role' => 'nullable',
             'is_private' => 'nullable',
-        ];
+        ]);
     }
 }

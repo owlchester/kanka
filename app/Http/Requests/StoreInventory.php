@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreInventory extends FormRequest
 {
+    use ApiRequest;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,7 +26,7 @@ class StoreInventory extends FormRequest
      */
     public function rules()
     {
-        return [
+        return $this->clean([
             'entity_id' => 'required|exists:entities,id',
             'item_id' => 'nullable|required_without:name|exists:items,id',
             'name' => 'nullable|string|required_without:item_id',
@@ -32,6 +35,6 @@ class StoreInventory extends FormRequest
             'description' => 'nullable|string|max:191',
             'visibility' => 'string',
             'is_equipped' => 'boolean',
-        ];
+        ]);
     }
 }

@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreFamily extends FormRequest
 {
+    use ApiRequest;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,8 +27,8 @@ class StoreFamily extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required',
-            'type' => 'nullable:max:191',
+            'name' => 'required|max:191',
+            'type' => 'nullable|max:191',
             'location_id' => 'nullable|integer|exists:locations,id',
             'family_id' => 'nullable|exists:families,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
@@ -38,6 +41,6 @@ class StoreFamily extends FormRequest
             $rules['family_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:families,id';
         }
 
-        return $rules;
+        return $this->clean($rules);
     }
 }

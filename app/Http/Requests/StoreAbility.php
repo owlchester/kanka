@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreAbility extends FormRequest
 {
+    use ApiRequest;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,7 +27,7 @@ class StoreAbility extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required',
+            'name' => 'required|max:191',
             'type' => 'nullable:max:191',
             'ability_id' => 'nullable|integer|exists:abilities,id',
             'charges' => 'nullable|max:120',
@@ -38,6 +41,6 @@ class StoreAbility extends FormRequest
             $rules['ability_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:abilities,id';
         }
 
-        return $rules;
+        return $this->clean($rules);
     }
 }

@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreMap extends FormRequest
 {
+    use ApiRequest;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,7 +27,7 @@ class StoreMap extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required',
+            'name' => 'required|max:191',
             'type' => 'nullable|max:191',
             'map_id' => 'nullable|integer|exists:maps,id',
             'location_id' => 'nullable|integer|exists:locations,id',
@@ -40,6 +43,6 @@ class StoreMap extends FormRequest
             $rules['map_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:maps,id';
         }
 
-        return $rules;
+        return $this->clean($rules);
     }
 }

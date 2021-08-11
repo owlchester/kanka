@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreRelation extends FormRequest
 {
+    use ApiRequest;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,7 +26,7 @@ class StoreRelation extends FormRequest
      */
     public function rules()
     {
-        return [
+        return $this->clean([
             'owner_id' => 'required|exists:entities,id',
             'target_id' => 'required|exists:entities,id|different:owner_id',
             'relation' => 'required|max:255',
@@ -31,6 +34,6 @@ class StoreRelation extends FormRequest
             'attitude' => 'min:-100|max:100',
             'colour' => 'nullable|max:7',
             'is_star' => 'boolean'
-        ];
+        ]);
     }
 }

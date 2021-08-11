@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreRace extends FormRequest
 {
+    use ApiRequest;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,7 +27,8 @@ class StoreRace extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required',
+            'name' => 'required|max:191',
+            'type' => 'string|max:191',
             'race_id' => 'nullable|integer|exists:races,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
@@ -36,6 +40,6 @@ class StoreRace extends FormRequest
             $rules['race_id'] = 'nullable|integer|not_in:' . ((int) $self) . '|exists:races,id';
         }
 
-        return $rules;
+        return $this->clean($rules);
     }
 }
