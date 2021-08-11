@@ -187,6 +187,10 @@ table {
     max-width: 100%;
   }
 }
+// Avoid floating images in summernote to be too large
+.note-editable img {
+  max-width: 100%;
+}
 
 .clear {
   clear: both;
