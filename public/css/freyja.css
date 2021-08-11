@@ -189,6 +189,17 @@ section.sidebar-campaign .campaign-block .campaign-head .campaign-updated {
   color: #757575;
   padding: 12px 16px 4px 16px;
   font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+}
+
+.campaign-switcher .section .fa-cog {
+  color: #757575;
+  transition: all 0.3s ease;
+}
+
+.campaign-switcher .section .fa-cog:hover {
+  color: #999;
 }
 
 .campaign-switcher ul {

@@ -152,7 +152,7 @@ function initImageFocus() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/jay/Documents/GitHub/miscellany/resources/assets/js/story */"./resources/assets/js/story.js");
+module.exports = __webpack_require__(/*! /mnt/c/Users/yanni/Desktop/kanka/miscellany/resources/assets/js/story */"./resources/assets/js/story.js");
 
 
 /***/ })
