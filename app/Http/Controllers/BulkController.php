@@ -68,6 +68,12 @@ class BulkController extends Controller
                 return $pdf
                     ->loadView('cruds.export', compact('entityType', 'entities', 'name'))
                     ->download('kanka ' . $entity . ' export.pdf');
+            } elseif ($action === 'print') {
+                $entities = $this->bulkService->export();
+                return view('entities.pages.print.print-bulk')
+                    ->with('entities', $entities)
+                    ->with('printing', true)
+                    ;
             } elseif ($action === 'permissions') {
                 $models = explode(',', $request->get('models'));
                 $count = $this

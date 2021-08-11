@@ -88,12 +88,7 @@ class RelationController extends Controller
         if ($mode == 'table' || (empty($mode) && $defaultToTable)) {
             $mode = 'table';
             $relations = $entity
-                ->relationships()
-                ->select('relations.*')
-                ->with('target')
-                ->has('target')
-                ->leftJoin('entities as t', 't.id', '=', 'relations.target_id')
-                ->acl()
+                ->allRelationships()
                 ->simpleSort($datagridSorter)
                 ->paginate();
 

@@ -42,6 +42,13 @@ class MenuLinkController extends CrudController
         $this->filters = [
             'name',
         ];
+
+        $this->indexActions[] = [
+            'label' => '<i class="fas fa-arrows-alt-v"></i> <span class="hidden-xs">' . __('timelines.actions.reorder') . '</span>',
+            'route' => route('quick-links.reorder'),
+            'class' => 'default',
+            'policy' => 'browse'
+        ];
     }
 
     /**

@@ -48,7 +48,7 @@
 
         <div class="col-md-10 entity-main-block">
             @includeWhen($mode == 'map' || (empty($mode) && $campaign->campaign()->boosted()), 'entities.pages.relations._map')
-            @includeWhen($mode == 'table' || (empty($mode) && !$campaign->campaign()->boosted()), 'entities.pages.relations._table')
+            @includeWhen($mode == 'table' || (empty($mode) && !$campaign->campaign()->boosted()), 'entities.pages.relations._relations')
 
         </div>
     </div>

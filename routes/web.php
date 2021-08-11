@@ -258,15 +258,25 @@ Route::group([
         Route::get('/roles/search', 'CampaignRoleController@search')->name('roles.find');
 
 
-        Route::get('/default-images', 'Campaign\DefaultImageController@index')->name('campaign.default-images');
-        Route::get('/default-images/create', 'Campaign\DefaultImageController@create')->name('campaign.default-images.create');
-        Route::post('/default-images/create', 'Campaign\DefaultImageController@store')->name('campaign.default-images.store');
-        Route::delete('/default-images', 'Campaign\DefaultImageController@destroy')->name('campaign.default-images');
+        Route::get('/default-images', 'Campaign\DefaultImageController@index')
+            ->name('campaign.default-images');
+        Route::get('/default-images/create', 'Campaign\DefaultImageController@create')
+            ->name('campaign.default-images.create');
+        Route::post('/default-images/create', 'Campaign\DefaultImageController@store')
+            ->name('campaign.default-images.store');
+        Route::delete('/default-images', 'Campaign\DefaultImageController@destroy')
+            ->name('campaign.default-images');
 
-        Route::post('/gallery/folder', 'Campaign\GalleryController@folder')->name('campaign.gallery.folder');
+        Route::post('/gallery/folder', 'Campaign\GalleryController@folder')
+            ->name('campaign.gallery.folder');
 
-        Route::get('/menu_links/{menu_link}/random', 'MenuLinkController@random')->name('menu_links.random');
+        Route::get('/menu_links/{menu_link}/random', 'MenuLinkController@random')
+            ->name('menu_links.random');
 
+        Route::get('/quick-links/reorder', [\App\Http\Controllers\QuickLinkController::class, 'reorder'])
+            ->name('quick-links.reorder');
+        Route::post('/quick-links/reorder', [\App\Http\Controllers\QuickLinkController::class, 'save'])
+            ->name('quick-links.reorder-save');
 
         // Entity Abilities API
         Route::get('/entities/{entity}/abilities', 'Entity\AbilityController@index')->name('entities.abilities');
@@ -461,6 +471,7 @@ Route::group([
 
         // Export
         Route::get('/entities/export/{entity}', 'EntityController@export')->name('entities.export');
+        Route::get('/entities/{entity}/html-export', 'Entity\ExportController@html')->name('entities.html-export');
 
         Route::get('/entities/{entity}/template', 'EntityController@template')->name('entities.template');
 

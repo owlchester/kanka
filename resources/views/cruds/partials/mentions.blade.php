@@ -4,7 +4,7 @@ $mentionCount = $model->entity->targetMentions()->entity()->has('entity')->entit
     $model->entity->targetMentions()->campaign()->count();
 ?>
 @if ($mentionCount > 0)
-    <div class="box box-solid">
+    <div class="box box-solid entity-mentions-box">
         <div class="box-header with-border">
             <h3 class="box-title">{{ __('entities/mentions.title') }}</h3>
         </div>

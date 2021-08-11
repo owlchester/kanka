@@ -12,6 +12,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class EntityResource extends JsonResource
 {
+    use ApiSync;
+
     /** @var bool If the entity should come with related objects */
     public $withRelated = false;
 
@@ -173,24 +175,5 @@ class EntityResource extends JsonResource
         $final = array_merge($merged, $prepared);
         //ksort($final);
         return $final;
-    }
-
-
-    /**
-     * Create new anonymous resource collection.
-     *
-     * @param  mixed  $resource
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
-     */
-    public static function collection($resource)
-    {
-        $additional = [
-            'sync' => Carbon::now(),
-        ];
-        if (config('app.debug')) {
-            $additional['queries'] = new ApiService();
-        }
-        return parent::collection($resource)
-            ->additional($additional);
     }
 }

@@ -183,7 +183,7 @@ return [
             'title'         => 'RPG Campaign Management',
         ],
         'secrets'           => [
-            'description'   => 'Every entity can have several secrets attached to them in the form of entity notes. These can have permissions to control who sees them, and can be pinned to the entity\'s main view to quickly access them at a glance.',
+            'description'   => 'Every entity can have several secrets attached to them in the form of posts. These can have permissions to control who sees them, and are visible on the entity\'s main view to quickly access them at a glance.',
             'title'         => 'Manage Secrets',
         ],
         'superboosts'       => [

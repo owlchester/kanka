@@ -1,4 +1,10 @@
 <li class="{{ $sidebar->open('menu_links') }} sidebar-section sidebar-quick-links">
+    @if(auth()->check() && auth()->user()->isAdmin())
+        <a href="{{ route('menu_links.index') }}">
+            <i class="fa fa-star"></i>
+            <span>{{ __('entities.menu_links') }}</span>
+        </a>
+    @else
     <div class="sidebar-text">
         <i class="fa fa-star"></i>
         <span>{{ __('entities.menu_links') }}</span>
@@ -9,6 +15,7 @@
             </a>
         @endif
     </div>
+    @endif
 </li>
 @foreach ($currentCampaign->menuLinks()->with(['target'])->ordered()->get() as $menuLink)
     <?php /** @var \App\Models\MenuLink $menuLink */ ?>

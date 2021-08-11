@@ -2,6 +2,8 @@
 
 namespace App\Renderers;
 
+use Illuminate\Support\Str;
+
 class DateRenderer
 {
     /**
@@ -18,6 +20,10 @@ class DateRenderer
         }
 
         $original = explode('-', $date);
+        if (Str::startsWith($date, '-')) {
+            $original = explode('-', ltrim($date, '-'));
+            $original[0] = '-' . $original[0];
+        }
 
         $this->delimiter = $this->format[1];
 

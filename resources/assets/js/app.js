@@ -137,6 +137,7 @@ $(document).ready(function() {
     initEntityNoteToggle();
     initDynamicDelete();
     initImageRemoval();
+    initSummernoteFixes();
 
     /**
      * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
@@ -517,6 +518,10 @@ function initEntityNoteToggle() {
         $('#' + id + "-show").toggle();
         $('#' + id + "-hide").toggle();
     });
+}
+
+function initSummernoteFixes() {
+
 }
 
 // Helpers are injected directly in the window functions.

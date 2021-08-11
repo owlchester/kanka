@@ -70,6 +70,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/themes/midnight.scss', 'public/css')
     .sass('resources/assets/sass/tinymce.scss', 'public/css')
     .sass('resources/assets/sass/freyja/freyja.scss', 'public/css')
+    .sass('resources/assets/sass/print.scss', 'public/css')
     .brotli({
         enabled: mix.inProduction(),
         asset: '[path].br[query]',

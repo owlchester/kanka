@@ -1251,31 +1251,6 @@ summary {
   top: 0;
 }
 
-/**
- * SASS file for all that is print related.
- * This file contains all the stuff to hide when printing
- */
-
-@media print {
-  .main-footer {
-    display: none !important;
-  }
-
-  .btn {
-    display: none !important;
-  }
-
-  .tab-pane {
-    display: block !important;
-    visibility: visible !important;
-  }
-
-  #permissions,
-  #map {
-    display: none !important;
-  }
-}
-
 @media (max-width: 787px) {
   .nav-stacked > li {
     display: block;

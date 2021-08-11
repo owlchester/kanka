@@ -49,6 +49,6 @@ if (!isset($datagrid) || $datagrid->bulkCopyToCampaign) {
         </a>
     @endcan
 
-        {!! Form::button('<i class="fa fa-download"></i> ' . __('crud.export'), ['type' => 'submit', 'name' => 'datagrid-action', 'value' => 'export', 'class' => 'btn btn-primary', 'id' => 'datagrids-bulk-actions-export', 'disabled'=>'disabled']) !!}
+        {!! Form::button('<i class="fa fa-print"></i> ' . __('crud.actions.print'), ['type' => 'submit', 'name' => 'datagrid-action', 'value' => 'print', 'class' => 'btn btn-primary', 'id' => 'datagrids-bulk-actions-print', 'disabled'=>'disabled']) !!}
 </div>
 

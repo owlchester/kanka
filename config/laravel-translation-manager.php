@@ -16,6 +16,7 @@ return array(
      */
     'locales' => [
         'ca',
+        'cs',
         'en',
         'en-US',
         'de',
@@ -32,7 +33,6 @@ return array(
         'pl',
         'el',
         'tr',
-        'cz',
         'gl',
         'nb',
         'sv',
