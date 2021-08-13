@@ -78357,7 +78357,7 @@ function initSpectrum() {
 
 
 function registerStoryActions() {
-  var posts = $('.entity-note-body');
+  var posts = $('.entity-notes .entity-content');
   $('.btn-post-collapse').unbind('click').click(function (e) {
     posts.each(function (i) {
       if ($(this).hasClass('in')) {
