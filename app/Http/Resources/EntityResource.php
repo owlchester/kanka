@@ -81,14 +81,18 @@ class EntityResource extends JsonResource
         }
 
         if (request()->get('related', false) || request()->get('image', false)) {
-            $campaign = CampaignLocalization::getCampaign();
-            $image = $campaign->boosted(true) && !empty($entity->image);
-            $data['child'] = [
-                'image' => $image ? $entity->image->path : $entity->child->image,
-                'image_full' => $image ? Img::resetCrop()->url($entity->image->path) : $entity->avatar(),
-                'image_thumb' => $image ? Img::crop(40, 40)->url($entity->image->path) : $entity->avatar(true),
-                'has_custom_image' => $image || !empty($entity->child->image)
-            ];
+            if (!$entity->child) {
+                $data['child'] = 'Invalid child, please contact Jay on Discord with the following: EntityResource for #' . $entity->id;
+            } else {
+                $campaign = CampaignLocalization::getCampaign();
+                $image = $campaign->boosted(true) && !empty($entity->image);
+                $data['child'] = [
+                    'image' => $image ? $entity->image->path : $entity->child->image,
+                    'image_full' => $image ? Img::resetCrop()->url($entity->image->path) : $entity->avatar(),
+                    'image_thumb' => $image ? Img::crop(40, 40)->url($entity->image->path) : $entity->avatar(true),
+                    'has_custom_image' => $image || !empty($entity->child->image)
+                ];
+            }
         }
 
         // Get the actual model
