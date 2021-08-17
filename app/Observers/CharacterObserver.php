@@ -77,7 +77,7 @@ class CharacterObserver extends MiscObserver
     {
         // If the organisations array isn't provided, skip this feature. The crud interface will always provide one,
         // and the api calls will provide one if necessary.
-        if (!request()->has('organisations')) {
+        if (!request()->has('character_save_organisations')) {
             return;
         }
 
