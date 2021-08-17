@@ -147,12 +147,13 @@ class CampaignController extends Controller
     }
 
     /**
-     * @param Campaign $campaign
+     * Leave a campaign
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function leave(Campaign $campaign)
+    public function leave()
     {
+        $campaign = CampaignLocalization::getCampaign();
         $this->authorize('leave', $campaign);
 
         try {
