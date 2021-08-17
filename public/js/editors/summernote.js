@@ -108,7 +108,6 @@ $(document).ready(function () {
 
 window.initSummernote = function () {
   var $summernote = $('.html-editor').summernote({
-    bob: debug($(this)),
     height: '300px',
     lang: editorLang(summernoteConfig.data('locale')),
     toolbar: [['style', ['style']], ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']], ['color', ['color']], ['para', ['ul', 'ol', 'kanka-indent', 'kanka-outdent', 'paragraph']], ['table', ['table', 'spoiler', 'tableofcontent']], ['insert', ['link', 'picture', 'video', 'embed', 'hr']], //['dir', ['ltr', 'rtl']],
@@ -122,6 +121,9 @@ window.initSummernote = function () {
       },
       onChange: function onChange() {
         window.entityFormHasUnsavedChanges = true;
+      },
+      onChangeCodeview: function onChangeCodeview(contents, $editable) {
+        $summernote.summernote('code', contents);
       }
       /*onBlur: function() {
           console.log('blury');
@@ -202,10 +204,6 @@ window.initSummernote = function () {
         return attributeContent(item);
       }
     }]
-  }); // When changing the codeview, save the html to the real body
-
-  $('#entry').on('summernote.change.codeview', function (we, contents, $editable) {
-    $('#entry').val(contents);
   });
 };
 /**
@@ -422,9 +420,6 @@ function buildErrors(data) {
   }
 
   return errors;
-}
-
-function debug(e) {//console.log('e', e);
 }
 
 /***/ }),
