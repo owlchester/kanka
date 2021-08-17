@@ -134,8 +134,8 @@ To create a map, use the following endpoint.
 | `map_id` | `integer` | The parent map |
 | `location_id` | `integer` | The related location id |
 | `center_marker_id` | `integer` | The map marker the map will center on page load |
-| `center_x` | `integer` | The custom longitude on page load |
-| `center_y` | `integer` | The custom latitude on page load |
+| `center_x` | `float` | The custom longitude on page load |
+| `center_y` | `float` | The custom latitude on page load |
 | `tags` | `array` | Array of tag ids |
 | `is_private` | `boolean` | If the map is only visible to `admin` members of the campaign |
 | `image` | `stream` (Required without `image_url`) | Stream to file uploaded to the map |
