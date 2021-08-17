@@ -26,8 +26,8 @@ use Kalnoy\Nestedset\NodeTrait;
  * @property int $min_zoom
  * @property int $max_zoom
  * @property int $initial_zoom
- * @property int $center_x
- * @property int $center_y
+ * @property float $center_x
+ * @property float $center_y
  * @property int $center_marker_id
  * @property Map $map
  * @property Map[] $maps
