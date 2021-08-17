@@ -65,7 +65,7 @@ class TransformController extends Controller
                 ->transform($entity, $request->get('target'));
 
             return redirect()
-                ->route($entity->pluralType() . '.index')
+                ->to($entity->url())
                 ->with('success', __('entities/transform.success', ['name' => $entity->name]));
         }
         catch (TranslatableException $ex) {
