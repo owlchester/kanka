@@ -62,6 +62,9 @@
                                 <p>{!! $element->entry() !!}</p>
                             </div>
                             <div class="box-footer text-right">
+                                <div class="float-left">
+                                @include('cruds.partials.visibility', ['model' => $element])
+                                </div>
                                 @can('update', $model)
                                     <a href="{{ route('quests.quest_elements.edit', [$model, $element]) }}" class="btn btn-xs btn-primary">
                                         <i class="fa fa-edit" title="{{ __('crud.edit') }}"></i>

@@ -24,4 +24,12 @@ class QuestElementObserver
             $questElement->visibility = 'all';
         }
     }
+
+    /**
+     * @param QuestElement $questElement
+     */
+    public function creating(QuestElement $questElement)
+    {
+        $questElement->created_by = auth()->user()->id;
+    }
 }
