@@ -1,26 +1,26 @@
 <?php
 
 return [
-    'avatar'        => [
+    'avatar'                        => [
         'success'   => 'Avatar updated.',
     ],
-    'campaign_switcher_order_by' => [
-        'alphabetical' => 'Alphabetically',
-        'r_alphabetical' => 'Alphabetically Reversed',
-        'date_joined' => 'Date Joined',
-        'r_date_joined' => 'Date Joined Reversed',
-        'date_created' => 'Date Created',
-        'r_date_created' => 'Date Created Reversed',
+    'campaign_switcher_order_by'    => [
+        'alphabetical'      => 'Alphabetically',
+        'date_created'      => 'Date Created',
+        'date_joined'       => 'Date Joined',
+        'r_alphabetical'    => 'Alphabetically Reversed',
+        'r_date_created'    => 'Date Created Reversed',
+        'r_date_joined'     => 'Date Joined Reversed',
     ],
-    'description'   => 'Update your profile details',
-    'edit'          => [
+    'description'                   => 'Update your profile details',
+    'edit'                          => [
         'success'   => 'Profile updated',
     ],
-    'editors'       => [
+    'editors'                       => [
         'legacy'        => 'Legacy (TinyMCE 4)',
         'summernote'    => 'Summernote',
     ],
-    'fields'        => [
+    'fields'                        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'Email',
         'hide_subscription'         => 'Hide my name from the :hall_of_fame.',
@@ -33,7 +33,7 @@ return [
         'settings'                  => 'Settings',
         'theme'                     => 'Theme',
     ],
-    'newsletter'    => [
+    'newsletter'                    => [
         'helpers'   => [
             'community-vote'    => 'Get notified each time there is a new :community-vote going on.',
             'header'            => 'Subscribe to the following email newsletters to be notified of what\'s going on with Kanka.',
@@ -54,17 +54,17 @@ return [
         ],
         'title'     => 'Newsletters',
     ],
-    'password'      => [
+    'password'                      => [
         'success'   => 'Password updated',
     ],
-    'placeholders'  => [
+    'placeholders'                  => [
         'email'                     => 'Your email address',
         'name'                      => 'Your name as displayed',
         'new_password'              => 'Your new password',
         'new_password_confirmation' => 'Confirm your new password',
         'password'                  => 'Provide your current password for any changes',
     ],
-    'sections'      => [
+    'sections'                      => [
         'delete'    => [
             'delete'    => 'Delete my account',
             'helper'    => 'Deleting your account will also delete any campaign you are the only member of. This action is permanent and can\'t be undone.',
@@ -75,15 +75,15 @@ return [
             'title' => 'Change your password',
         ],
     ],
-    'settings'      => [
+    'settings'                      => [
         'fields'    => [
-            'advanced_mentions'     => 'Advanced Mentions',
-            'campaign_switcher_order_by' => 'Campaign Switcher Sorting Order',
-            'date_format'           => 'Date Formatting',
-            'default_nested'        => 'Nested Views as Default',
-            'editor'                => 'Text Editor',
-            'new_entity_workflow'   => 'New Entity Workflow',
-            'pagination'            => 'Pagination (elements per page)',
+            'advanced_mentions'             => 'Advanced Mentions',
+            'campaign_switcher_order_by'    => 'Campaign Switcher Sorting Order',
+            'date_format'                   => 'Date Formatting',
+            'default_nested'                => 'Nested Views as Default',
+            'editor'                        => 'Text Editor',
+            'new_entity_workflow'           => 'New Entity Workflow',
+            'pagination'                    => 'Pagination (elements per page)',
         ],
         'helpers'   => [
             'editor_v2' => 'Using the legacy text editor (TinyMCE) will not support mentions on mobile devices, and not have support for some features like the campaign gallery.',
@@ -95,7 +95,7 @@ return [
         ],
         'success'   => 'Settings changed.',
     ],
-    'theme'         => [
+    'theme'                         => [
         'success'   => 'Theme changed.',
         'themes'    => [
             'dark'      => 'Dark',
@@ -104,8 +104,8 @@ return [
             'midnight'  => 'Midnight Blue',
         ],
     ],
-    'title'         => 'Update your profile',
-    'workflows'     => [
+    'title'                         => 'Update your profile',
+    'workflows'                     => [
         'created'   => 'Go to created entity',
         'default'   => 'List of entities',
     ],

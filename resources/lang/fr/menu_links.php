@@ -48,6 +48,10 @@ return [
     'random_types'  => [
         'any'   => 'Toutes les entités',
     ],
+    'reorder'       => [
+        'success'   => 'Liens de menu réorganisés.',
+        'title'     => 'Réorganiser les liens de menu',
+    ],
     'show'          => [
         'tabs'  => [
             'information'   => 'Information',

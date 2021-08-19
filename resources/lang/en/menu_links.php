@@ -48,9 +48,9 @@ return [
     'random_types'  => [
         'any'   => 'Any entity',
     ],
-    'reorder' => [
-        'success' => 'Quick links reordered.',
-        'title' => 'Reorder quick links',
+    'reorder'       => [
+        'success'   => 'Quick links reordered.',
+        'title'     => 'Reorder quick links',
     ],
     'show'          => [
         'tabs'  => [

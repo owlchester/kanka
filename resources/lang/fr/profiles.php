@@ -1,18 +1,26 @@
 <?php
 
 return [
-    'avatar'        => [
+    'avatar'                        => [
         'success'   => 'Photo de profil modifiée.',
     ],
-    'description'   => 'Modification du profil',
-    'edit'          => [
+    'campaign_switcher_order_by'    => [
+        'alphabetical'      => 'Alphabétiquement',
+        'date_created'      => 'Date créée',
+        'date_joined'       => 'Date d\'adhésion',
+        'r_alphabetical'    => 'Alphabétiquement inverse',
+        'r_date_created'    => 'Date créée inverse',
+        'r_date_joined'     => 'Date d\'adhésion inverse',
+    ],
+    'description'                   => 'Modification du profil',
+    'edit'                          => [
         'success'   => 'Profil modifié',
     ],
-    'editors'       => [
+    'editors'                       => [
         'legacy'        => 'Ancien (TinyMCE 4)',
         'summernote'    => 'Summernote',
     ],
-    'fields'        => [
+    'fields'                        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'Email',
         'hide_subscription'         => 'Cacher mon nom du :hall_of_fame.',
@@ -25,7 +33,7 @@ return [
         'settings'                  => 'Paramètres',
         'theme'                     => 'Thème',
     ],
-    'newsletter'    => [
+    'newsletter'                    => [
         'helpers'   => [
             'community-vote'    => 'Être notifié à chaque fois qu\'un :community-vote commence.',
             'header'            => 'Souscrire aux newsletters par email pour être notifié des changements dans Kanka.',
@@ -46,17 +54,17 @@ return [
         ],
         'title'     => 'Newsletter',
     ],
-    'password'      => [
+    'password'                      => [
         'success'   => 'Mot de passe modifié.',
     ],
-    'placeholders'  => [
+    'placeholders'                  => [
         'email'                     => 'Adresse email',
         'name'                      => 'Nom tel qu\'affiché',
         'new_password'              => 'Nouveau mot de passe',
         'new_password_confirmation' => 'Confirmation du nouveau mot de passe',
         'password'                  => 'Saisie du mot de passe actuel',
     ],
-    'sections'      => [
+    'sections'                      => [
         'delete'    => [
             'delete'    => 'Supprimer mon compte',
             'helper'    => 'Supprimer ton compte supprimera aussi toutes les campagnes où tu es le seul membre. Ceci est permanent et ne peut pas être défait.',
@@ -67,14 +75,15 @@ return [
             'title' => 'Modification du mot de passe',
         ],
     ],
-    'settings'      => [
+    'settings'                      => [
         'fields'    => [
-            'advanced_mentions'     => 'Mentions Avancées',
-            'date_format'           => 'Format de date',
-            'default_nested'        => 'Vue imbriquée par défaut',
-            'editor'                => 'Editeur de texte',
-            'new_entity_workflow'   => 'Workflow de nouvelle entité',
-            'pagination'            => 'Pagination (éléments par page)',
+            'advanced_mentions'             => 'Mentions Avancées',
+            'campaign_switcher_order_by'    => 'Ordre du sélecteur de campagne',
+            'date_format'                   => 'Format de date',
+            'default_nested'                => 'Vue imbriquée par défaut',
+            'editor'                        => 'Editeur de texte',
+            'new_entity_workflow'           => 'Workflow de nouvelle entité',
+            'pagination'                    => 'Pagination (éléments par page)',
         ],
         'helpers'   => [
             'editor_v2' => 'L\'ancien éditeur de text (TinyMCE) ne supporte pas les mentions sur mobile, ni certaines fonctionnalités tel que la galerie de campagne.',
@@ -86,7 +95,7 @@ return [
         ],
         'success'   => 'Paramètres modifiés.',
     ],
-    'theme'         => [
+    'theme'                         => [
         'success'   => 'Thème modifié.',
         'themes'    => [
             'dark'      => 'Sombre',
@@ -95,8 +104,8 @@ return [
             'midnight'  => 'Bleu Minuit',
         ],
     ],
-    'title'         => 'Profil',
-    'workflows'     => [
+    'title'                         => 'Profil',
+    'workflows'                     => [
         'created'   => 'Afficher l\'entité créée',
         'default'   => 'Liste des entités',
     ],
