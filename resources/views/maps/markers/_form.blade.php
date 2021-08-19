@@ -189,7 +189,7 @@ $sizeOptions = [
             {!! Form::number('opacity', (!empty($source) ? $source->opacity : (isset($model) ? $model->opacity : 100)), ['class' => 'form-control', 'maxlength' => 3, 'step' => 10, 'max' => 100, 'min' => 0] ) !!}
         </div>
     </div>
-    <div class="col-sm-6" id="map-marker-bg-colour" @if(isset($model) && $model->isLabel()) style="display: none;"@endif>
+    <div class="col-sm-6" id="map-marker-bg-colour" @if((isset($model) && $model->isLabel()) || (isset($source) && $source->isLabel())) style="display: none;"@endif>
         <div class="form-group">
             <label>{{ __('locations.map.points.fields.colour') }}</label><br />
             {!! Form::text('colour', \App\Facades\FormCopy::field('colour')->string(), ['class' => 'form-control spectrum', 'maxlength' => 6] ) !!}
