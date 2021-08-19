@@ -142,7 +142,7 @@ trait UserSetting
      */
     public function getCampaignSwitcherOrderByAttribute()
     {
-        return Arr::get($this->settings, 'campaign_switcher_order_by', 'date_created');
+        return Arr::get($this->settings, 'campaign_switcher_order_by', null);
     }
 
     /**

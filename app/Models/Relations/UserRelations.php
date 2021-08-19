@@ -40,7 +40,8 @@ trait UserRelations
      */
     public function campaigns()
     {
-        return $this->belongsToMany('App\Models\Campaign', 'campaign_user')->using('App\Models\CampaignUser');
+        return $this->belongsToMany('App\Models\Campaign', 'campaign_user')
+            ->using('App\Models\CampaignUser');
     }
 
     /**
@@ -48,7 +49,8 @@ trait UserRelations
      */
     public function following()
     {
-        return $this->belongsToMany('App\Models\Campaign', 'campaign_followers')->using('App\Models\CampaignFollower');
+        return $this->belongsToMany('App\Models\Campaign', 'campaign_followers')
+            ->using('App\Models\CampaignFollower');
     }
 
     /**

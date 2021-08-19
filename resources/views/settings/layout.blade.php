@@ -53,6 +53,7 @@
                     <div class="form-group">
                         <label>{{ __('profiles.settings.fields.campaign_switcher_order_by') }}</label>
     {!! Form::select('campaign_switcher_order_by', [
+        null => __('profiles.campaign_switcher_order_by.default'),
         'alphabetical' => __('profiles.campaign_switcher_order_by.alphabetical'),
         'date_created' => __('profiles.campaign_switcher_order_by.date_created'),
         'date_joined' => __('profiles.campaign_switcher_order_by.date_joined'),

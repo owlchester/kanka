@@ -8,6 +8,7 @@ return [
         'alphabetical'      => 'Alphabetically',
         'date_created'      => 'Date Created',
         'date_joined'       => 'Date Joined',
+        'default'           => 'Default',
         'r_alphabetical'    => 'Alphabetically Reversed',
         'r_date_created'    => 'Date Created Reversed',
         'r_date_joined'     => 'Date Joined Reversed',
