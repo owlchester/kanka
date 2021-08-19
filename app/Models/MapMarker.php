@@ -143,6 +143,14 @@ class MapMarker extends Model
         return ($this->size_id * 20) + 20;
     }
 
+    /**
+     * @return bool
+     */
+    public function isLabel(): bool
+    {
+        return $this->shape_id == self::SHAPE_LABEL;
+    }
+
     public function marker(): string
     {
         if ($this->shape_id == MapMarker::SHAPE_CIRCLE) {

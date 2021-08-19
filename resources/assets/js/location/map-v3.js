@@ -22,15 +22,19 @@ $(document).ready(function() {
 
     $('a[href="#marker-pin"]').click(function (e) {
         $('input[name="shape_id"]').val(1);
+        $('#map-marker-bg-colour').show();
     });
     $('a[href="#marker-label"]').click(function (e) {
         $('input[name="shape_id"]').val(2);
+        $('#map-marker-bg-colour').hide();
     });
     $('a[href="#marker-circle"]').click(function (e) {
         $('input[name="shape_id"]').val(3);
+        $('#map-marker-bg-colour').show();
     });
     $('a[href="#marker-poly"]').click(function (e) {
         $('input[name="shape_id"]').val(5);
+        $('#map-marker-bg-colour').show();
     });
     $('a[href="#form-markers"]').click(function (e) {
         window.map.invalidateSize();
