@@ -13,7 +13,7 @@
         @endcan
 
         @can('leave', $campaign)
-            <button data-url="{{ route('campaigns.leave') }}" class="btn btn-warning btn-block click-confirm" data-toggle="modal" data-target="#click-confirm" data-message="{{ __('campaigns.leave.confirm', ['name' => $campaign->name]) }}">
+            <button data-url="{{ route('campaigns.leave') }}" class="btn btn-warning btn-block click-confirm" data-toggle="modal" data-target="#click-confirm" data-message="{!! __('campaigns.leave.confirm', ['name' => $campaign->name]) !!}">
                 <i class="fa fa-sign-out-alt" aria-hidden="true"></i> {{ trans('campaigns.show.actions.leave') }}
             </button>
         @endcan

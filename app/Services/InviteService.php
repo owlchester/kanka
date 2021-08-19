@@ -82,7 +82,7 @@ class InviteService
 
         if (empty($role)) {
             $role = new CampaignUser([
-                'user_id' => Auth::user()->id,
+                'user_id' => auth()->user()->id,
                 'campaign_id' => $invite->campaign_id,
                 'role' => 'viewer'
             ]);
@@ -118,7 +118,7 @@ class InviteService
         if ($invite->campaign->isFollowing()) {
             $this->campaignFollowService->remove(
                 $invite->campaign,
-                Auth::user()
+                auth()->user()
             );
         }
 
@@ -129,8 +129,8 @@ class InviteService
                 'user',
                 'green',
                 [
-                    'user' => e(Auth::user()->name),
-                    'campaign' => e($invite->campaign->name)
+                    'user' => auth()->user()->name,
+                    'campaign' => $invite->campaign->name
                 ]
             ));
         }

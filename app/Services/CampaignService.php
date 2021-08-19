@@ -68,7 +68,7 @@ class CampaignService
     public static function switchCampaign(Campaign $campaign)
     {
         Session::put('campaign_id', $campaign->id);
-        $user = Auth::user();
+        $user = auth()->user();
         $user->last_campaign_id = $campaign->id;
         $user->save();
     }
@@ -81,12 +81,12 @@ class CampaignService
     public function leave(Campaign $campaign)
     {
         $member = CampaignUser::where('campaign_id', $campaign->id)
-            ->where('user_id', Auth::user()->id)
+            ->where('user_id', auth()->user()->id)
             ->first();
         if (empty($member)) {
             // Shouldn't be able to leave a campaign they aren't a part of...?
             // Switch to the next available campaign?
-            $member = CampaignUser::where('user_id', Auth::user()->id)->first();
+            $member = CampaignUser::where('user_id', auth()->user()->id)->first();
             if ($member) {
                 // Just switch to the first one available.
                 self::switchCampaign($member->campaign_id);
@@ -95,12 +95,12 @@ class CampaignService
                 Session::forget('campaign_id');
             }
 
-            throw new Exception(trans('campaigns.leave.error'));
+            throw new Exception(__('campaigns.leave.error'));
         }
         // Delete user from roles
         foreach ($campaign->roles as $role) {
             foreach ($role->users as $user) {
-                if ($user->user_id == Auth::user()->id) {
+                if ($user->user_id == auth()->user()->id) {
                     $user->delete();
                 }
             }
@@ -116,8 +116,9 @@ class CampaignService
             'user',
             'yellow',
             [
-                'user' => e(Auth::user()->name),
-                'campaign' => $campaign->name
+                'user' => auth()->user()->name,
+                'campaign' => $campaign->name,
+                'link' => route('dashboard')
             ]
         );
 
@@ -133,7 +134,7 @@ class CampaignService
      */
     public static function switchToLast($userParam = null)
     {
-        $user = $userParam?:Auth::user();
+        $user = $userParam?:auth()->user();
         if (!$user) {
             return;
         }
@@ -149,7 +150,7 @@ class CampaignService
     public static function switchToNext()
     {
         // Switch to the next available campaign?
-        $member = CampaignUser::where('user_id', Auth::user()->id)->first();
+        $member = CampaignUser::where('user_id', auth()->user()->id)->first();
         if ($member) {
             // Just switch to the first one available.
             self::switchCampaign($member->campaign);
@@ -167,7 +168,7 @@ class CampaignService
     public static function isUserPartOfCurrentCampaign()
     {
         $member = CampaignUser::where('campaign_id', Session::get('campaign_id'))
-            ->where('user_id', Auth::user()->id)
+            ->where('user_id', auth()->user()->id)
             ->first();
         return !empty($member);
     }

@@ -6,7 +6,7 @@ return [
     'member_since'      => 'Joined :date',
     'notifications'     => [
         'header'    => 'Notifications',
-        'read_all'  => 'Read All',
+        'read_all'  => 'See all',
     ],
     'profile'           => 'Profile',
     'toggle_navigation' => 'Toggle navigation',

@@ -29,7 +29,7 @@
                                     {!! __('notifications.' . $notification->data['key'], $notification->data['params']) !!}
                                 @endif
                             @else
-                                <p>{!! trans('notifications.' . $notification->data['key'] . '.body')!!}</p>
+                                <p>{!! __('notifications.' . $notification->data['key'] . '.body')!!}</p>
                             @endif
                         </td>
                     </tr>

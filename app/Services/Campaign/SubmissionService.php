@@ -79,7 +79,15 @@ class SubmissionService
         // Notify the admins of a new application
         // Notify all admins
         foreach ($this->campaign->admins() as $user) {
-            $user->notify(new Header('campaign.application.new', 'door-open', 'yellow', ['campaign' => $this->campaign->name]));
+            $user->notify(new Header(
+                'campaign.application.new',
+                'door-open',
+                'yellow',
+                [
+                    'link' => route('campaign_submissions.index'),
+                    'campaign' => $this->campaign->name
+                ]
+            ));
         }
 
         return $this;
@@ -108,7 +116,16 @@ class SubmissionService
         $this->submission
             ->user
             ->notify(
-                new Header('campaign.application.approved', 'user', 'green', ['campaign' => $this->campaign->name]));
+                new Header(
+                    'campaign.application.approved',
+                    'user',
+                    'green',
+                    [
+                        'campaign' => $this->campaign->name,
+                        'link' => route('dashboard'),
+                    ]
+                )
+            );
 
 
         // Update the campaign members cache when a user was added
