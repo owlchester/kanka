@@ -36,7 +36,7 @@
         "predis/predis": "^1.1",
         "richan-fongdasen/eloquent-blameable": "^1.4",
         "semantictouch/laravel-translation-manager": "^7.0",
-        "sentry/sentry-laravel": "^2.7",
+        "sentry/sentry-laravel": "^2.8",
         "sergej-kurakin/diceroller": "^2.0",
         "spatie/laravel-backup": "^6.16",
         "spatie/laravel-feed": "^2.6",
