@@ -86,6 +86,11 @@
   }
 }
 
+body, #app.wrapper {
+  background: unset;
+  background-image: unset;
+}
+
 .content-wrapper {
   margin-left: 0;
   background-color: white;

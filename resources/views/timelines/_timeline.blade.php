@@ -133,7 +133,7 @@ $eras = $timeline->eras()->ordered($timeline->revert_order)->get();
 
 
 
-@if(!isset($exporting) && auth()->check())
+@if(!isset($printing) && auth()->check())
     @can('update', $timeline)
         @include('editors.editor')
 

@@ -36,7 +36,6 @@ $campaign = CampaignLocalization::getCampaign(); ?>
 @if(app()->getLocale() == 'he')
     <link href="{{ mix('css/app-rtl.css') }}" rel="stylesheet">
 @endif
-    <link href="{{ mix('css/print.css') }}" rel="stylesheet">
 @yield('styles')
 
 @if (request()->has('_theme') && in_array(request()->get('_theme'), ['dark', 'midnight', 'future', 'base']))
@@ -59,6 +58,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
 @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->css))
     <link href="{{ route('campaign.css', ['ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">
 @endif
+    <link href="{{ mix('css/print.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
