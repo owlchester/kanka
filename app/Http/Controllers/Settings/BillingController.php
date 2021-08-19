@@ -17,7 +17,7 @@ class BillingController extends Controller
      */
     public function __construct(SubscriptionService $service)
     {
-        $this->middleware(['auth', 'identity', 'shadow']);
+        $this->middleware(['auth', 'identity']);
         $this->subscription = $service;
     }
 

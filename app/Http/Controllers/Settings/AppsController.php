@@ -13,7 +13,7 @@ class AppsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'identity', 'shadow']);
+        $this->middleware(['auth', 'identity']);
     }
 
     /**

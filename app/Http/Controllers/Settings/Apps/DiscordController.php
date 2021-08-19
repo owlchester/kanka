@@ -23,7 +23,7 @@ class DiscordController extends Controller
 
     public function __construct(DiscordService $discord)
     {
-        $this->middleware(['auth', 'identity', 'shadow']);
+        $this->middleware(['auth', 'identity']);
         $this->discord = $discord;
     }
 
