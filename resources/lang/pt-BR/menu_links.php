@@ -16,6 +16,7 @@ return [
         'dashboard'     => 'Dashboard',
         'entity'        => 'Entidade',
         'filters'       => 'Filtros',
+        'is_nested'     => 'Aninhado',
         'menu'          => 'Menu',
         'name'          => 'Nome',
         'position'      => 'Posição',

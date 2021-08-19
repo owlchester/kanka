@@ -2,7 +2,7 @@
 
 return [
     'actions'       => [
-        'add_appearance'    => 'Дополнить внешность',
+        'add_appearance'    => 'Дополнить внешнее качество',
         'add_organisation'  => 'Добавить организацию',
         'add_personality'   => 'Добавить личное качество',
     ],
@@ -113,7 +113,7 @@ return [
         'image'             => 'Изображение',
         'location'          => 'Выберите локацию',
         'name'              => 'Полное имя',
-        'personality_entry' => 'Подробности',
+        'personality_entry' => 'Описание',
         'personality_name'  => 'Тип  (цели, поведение, страхи, принципы)',
         'physical'          => 'Физиология',
         'pronouns'          => 'Он, она, оно',

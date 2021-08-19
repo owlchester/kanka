@@ -3,6 +3,7 @@
 return [
     'actions'       => [
         'add'       => 'Nova Nota de entidade',
+        'add_role'  => 'Adicionar função',
         'add_user'  => 'Adicionar usuário',
     ],
     'create'        => [
@@ -25,6 +26,10 @@ return [
         'is_pinned' => 'Fixado',
         'name'      => 'Nome',
         'position'  => 'Posição fixada',
+    ],
+    'footer'        => [
+        'created'   => 'Criado pelo :user em :date',
+        'updated'   => 'Atualizado pelo :user em :date',
     ],
     'hint'          => 'As informações que não se enquadram nos campos padrão de uma entidade ou que devem ser mantidas em sigilo podem ser adicionadas como notas da entidade.',
     'hints'         => [

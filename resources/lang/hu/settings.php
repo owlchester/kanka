@@ -24,6 +24,7 @@ return [
         'description'           => 'API beállítások frissítése',
         'experimental'          => 'Üdvözlünk a Kanka APIkban! Ezek a funkciók még kísérleti állapotban vannak, de elég stabilak kell, hogy legyenek ahhoz, hogy elkezdhess kommunikálni a Kanka APIval. Hozz létre egy Személyes Hozzáférés Tokent, amit az api hívásaidban használhatsz, vagy használd a Kliens Tokent, ha azt szeretnéd, hogy az alkalmazásod hozzáférjen a felhasználó adataihoz.',
         'help'                  => 'A Kanka rövidesen egy teljes REST API-t fog biztosítani, hogy harmadik féltől származó alkalmazások tudjanak csatlakozni hozzá. Az API kulcsok kezelésének részleteiről rövidesen itt olvashatsz.',
+        'helper'                => 'Üdvözlünk a Kankai API-ban. Hozz létre egy Személyes Hozzáférés Tokent, amit az API-kéréseidben használhatsz az információgyűjtésre azokról a kampányokról, amelyekben részt veszel.',
         'link'                  => 'Olvasd el az API dokumentációt',
         'request_permission'    => 'Jelenleg is dolgozunk egy REST API-n amivel harmadik féltől származó alkalmazások is csatlakozhatnak a Kankához, azonban amíg az utolsó simításokat végezzük rajta, addig korlátozzuk a hozzáférések számát. Ha szeretnél hozzáférni az APIhoz és király alkalmazásokat fejleszteni, amelyek a Kankával kommunikálnak, kérjük, hogy lépj kapcsolatba velünk, és elküldünk minden információt, amire szükséged lehet.',
         'title'                 => 'API',
@@ -48,30 +49,66 @@ return [
         'title'     => 'App Integráció',
     ],
     'boost'         => [
-        'benefits'      => [
-            'first'     => 'Hogy biztosítsuk a Kanka folyamatos fejlődését, bizonyos funkciók az adott kampány boost-olása után válnak elérhetővé. A boost-olás lehetőségégének megszerzése :patreon-on keresztül történik. Egy kampányt akárki boost-olhatja is, ha van joga megtekinteni azt, így nem minden esetben a Mesélőnek kell állnia a cehhet. Egy kampány addig marad boost-olva, amíg egy felhasználó fenntartja rajta a boost-ját, valamint a támogatását is :patreon-on keresztül. Ha egy kampány boost-olása megszűnik, az adatok nem vesznek el, csupán eltűnnek szem elől, amíg ismét nem kerül boost-olásra.',
-            'header'    => 'Entitás fejléc képek.',
-            'images'    => 'Egyedi alapérzelmezett entitás képek.',
-            'more'      => 'Tudj meg többet a funkciókról.',
-            'second'    => 'Egy kampány Boost-olása az alábbi előnyöket biztosítja:',
-            'theme'     => 'Kampány-szintű téma, és egyedi megjelenítési stílus.',
-            'third'     => 'A kampány boost-olásához keresd fel a kampány oldalát, kattints a ":boost_button" gombra, amely a ":edit_button" felett helyezkedik el.',
-            'tooltip'   => 'Egyedi entitás tooltip-ek.',
-            'upload'    => 'Megnövelt fájlfeltöltési korlát az összes Tag számára.',
+        'available_boosts'  => 'Elérhető megerősítések: :amount / :max',
+        'benefits'          => [
+            'campaign_gallery'  => 'A feltöltött képek kampánygalériája, amelyket újrahasznosíthatsz a kampány során.',
+            'entity_files'      => 'Entitásonként 10 állományt tölthetsz fel.',
+            'entity_logs'       => 'Részletes napló arról, hogy mi változott az entitáson minden frissítés során.',
+            'first'             => 'Hogy biztosítsuk a Kanka folyamatos fejlődését, bizonyos funkciók az adott kampány boost-olása után válnak elérhetővé. A boost-olás lehetőségégének megszerzése :patreon-on keresztül történik. Egy kampányt akárki boost-olhatja is, ha van joga megtekinteni azt, így nem minden esetben a Mesélőnek kell állnia a cehhet. Egy kampány addig marad boost-olva, amíg egy felhasználó fenntartja rajta a boost-ját, valamint a támogatását is :patreon-on keresztül. Ha egy kampány boost-olása megszűnik, az adatok nem vesznek el, csupán eltűnnek szem elől, amíg ismét nem kerül boost-olásra.',
+            'header'            => 'Entitás fejléc képek.',
+            'headers'           => [
+                'boosted'       => 'Megerősített kampány előnyei',
+                'superboosted'  => 'Szupererősített kampányok előnyei',
+            ],
+            'helpers'           => [
+                'boosted'       => 'Egy kampány megerősítése egy megerősítőt használ fel.',
+                'superboosted'  => 'Egy kampány szupererősítése három megerősítőt használ fel.',
+            ],
+            'images'            => 'Egyedi alapérzelmezett entitás képek.',
+            'more'              => [
+                'boosted'       => 'Minden megerősített kampány lehetőség',
+                'superboosted'  => 'Minden szupererősített kampány lehetőség',
+            ],
+            'recovery'          => 'A törölt entitások visszaállításának lehetősége :amount napon belül.',
+            'second'            => 'Egy kampány Boost-olása az alábbi előnyöket biztosítja:',
+            'superboost'        => 'A szupererősített kampányok 3 megerősítést használnak el, és újabb lehetőségeket adnak a megerősített kampányok lehetőségein felül.',
+            'theme'             => 'Kampány-szintű téma, és egyedi megjelenítési stílus.',
+            'third'             => 'A kampány boost-olásához keresd fel a kampány oldalát, kattints a ":boost_button" gombra, amely a ":edit_button" felett helyezkedik el.',
+            'tooltip'           => 'Egyedi entitás tooltip-ek.',
+            'upload'            => 'Megnövelt fájlfeltöltési korlát az összes Tag számára.',
         ],
-        'buttons'       => [
-            'boost' => 'Boost',
+        'buttons'           => [
+            'boost'         => 'Boost',
+            'superboost'    => 'Szupererősített',
+            'tooltips'      => [
+                'boost'         => 'Egy kampány megerősítése :amount megerősítés felhasználásával',
+                'superboost'    => 'Egy kampány szupererősítése :amount megerősítés felhasználásával',
+            ],
+            'unboost'       => 'Megerősítés visszavonása',
         ],
-        'campaigns'     => 'Boost-olt kapányok száma: :count / :max',
-        'exceptions'    => [
-            'already_boosted'   => ':name kampány már boost-olva van.',
-            'exhausted_boosts'  => 'Elfogytak a kiosztható Boost-jaid. Vond vissza egy boost-od valamelyik kampányról, mielőtt egy újnak adnál egyet.',
+        'campaigns'         => 'Boost-olt kapányok száma: :count / :max',
+        'exceptions'        => [
+            'already_boosted'       => ':name kampány már boost-olva van.',
+            'exhausted_boosts'      => 'Elfogytak a kiosztható Boost-jaid. Vond vissza egy boost-od valamelyik kampányról, mielőtt egy újnak adnál egyet.',
+            'exhausted_superboosts' => 'Nincs megerősítésed. 3 megerősítés szükséges a kampány szupererősítéséhez.',
         ],
-        'success'       => [
-            'boost' => ':name kampány boost-olva lett.',
-            'delete'=> 'Boost visszavonva innen: :name',
+        'modals'            => [
+            'more'  => [
+                'action'    => 'Több megerősítést szeretnél?',
+                'body'      => 'Több megerősítést kaphatsz a feliratkozási szinten emelésével vagy egy kampányról való levételével. Egy kampány megerősítésének visszavonása nem törli a plusz információkat, csak nem lesznek azok elérhetőek addig, amíg újra meg nem erősíted a kampányt.',
+                'title'     => 'Több megerősítés szerzése',
+            ],
         ],
-        'title'         => 'Boost',
+        'success'           => [
+            'boost'         => ':name kampány boost-olva lett.',
+            'delete'        => 'Boost visszavonva innen: :name',
+            'superboost'    => ':name kampányt szupererősítettük.',
+        ],
+        'title'             => 'Boost',
+        'unboost'           => [
+            'description'   => 'Biztos, hogy megszünteted a :tag kampány megerősítését?',
+            'title'         => 'Kampány megerősítésének visszavonása',
+        ],
     ],
     'countries'     => [
         'austria'       => 'Ausztria',
@@ -106,6 +143,14 @@ return [
         'success'       => 'Az elrendezési beállításokat frissítettük.',
         'title'         => 'Elrendezés',
     ],
+    'marketplace'   => [
+        'fields'    => [
+            'name'  => 'Piactér neve',
+        ],
+        'helper'    => 'Alapértelmezetten a felhasználói nevedet mutatja a :marketplace. Felülírhatod ezt ezzel a mezővel.',
+        'title'     => 'Piactér beállításai',
+        'update'    => 'Piactér beállításait elmentettük.',
+    ],
     'menu'          => [
         'account'               => 'Fiók',
         'api'                   => 'API',
@@ -114,11 +159,13 @@ return [
         'boost'                 => 'Boost',
         'invoices'              => 'Számlák',
         'layout'                => 'Elrendezés',
+        'marketplace'           => 'Piactér',
         'other'                 => 'Egyéb',
         'patreon'               => 'Patreon',
         'payment_options'       => 'Fizetési lehetőségek',
         'personal_settings'     => 'Személyes beállítások',
         'profile'               => 'Profil',
+        'settings'              => 'Beállítások',
         'subscription'          => 'Előfizetés',
         'subscription_status'   => 'Előfizetés állapota',
     ],
@@ -252,6 +299,14 @@ return [
         'trial_period'          => 'Az éves előfizetésekre 14 napos visszamondási jog él. Vedd fel velünk a kapcsolatot a következő címen: :email amennyiben szeretnéd lemondani az éves előfizetésed, és az összeg visszatérítését kérvényezni.',
         'upgrade_downgrade'     => [
             'button'    => 'Magasabb, vagy Alacsonyabb szintre váltás információi',
+            'cancel'    => [
+                'bullets'   => [
+                    'bonuses'   => 'A bónuszaid érvényben maradnak a fizetési periódusod végéig.',
+                    'boosts'    => 'Ugyanaz történt a megerősített kampányaiddal is. A megerősített lehetőségek láthatatlanná válnak, de nem töröljük, ha a kampány a továbbiakban nem megerősített.',
+                    'kobold'    => 'Az előfizetésed megszüntetéséhez válaszd a Kobold szintet.',
+                ],
+                'title'     => 'Amikor megszünteted az előfizetésedet',
+            ],
             'downgrade' => [
                 'bullets'   => [
                     'end'   => 'Az aktuális szintednek megfelelő előnyök a jelenlegi számlázási ciklusod végéig érvényben maradnak, amelyet követően az alacsonyabb szintű előfizetés lép érvénybe.',

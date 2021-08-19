@@ -117,11 +117,12 @@ return [
             'success'   => 'Complemento eliminado do taboleiro.',
         ],
         'fields'                    => [
-            'dashboard' => 'Taboleiro',
-            'name'      => 'Nome personalizado',
-            'order'     => 'Orde',
-            'text'      => 'Texto',
-            'width'     => 'Anchura',
+            'dashboard'         => 'Taboleiro',
+            'name'              => 'Nome personalizado',
+            'optional-entity'   => 'Ligazón a entidade',
+            'order'             => 'Orde',
+            'text'              => 'Texto',
+            'width'             => 'Anchura',
         ],
         'orders'                    => [
             'name_asc'  => 'Nome (ascendente)',

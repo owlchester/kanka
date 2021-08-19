@@ -3,6 +3,7 @@
 return [
     'actions'       => [
         'add'       => 'Nová Poznámka',
+        'add_role'  => 'Pridať rolu',
         'add_user'  => 'Pridať užívateľa',
     ],
     'create'        => [
@@ -25,6 +26,10 @@ return [
         'is_pinned' => 'Pripnutá',
         'name'      => 'Názov',
         'position'  => 'Pozícia pripnutia',
+    ],
+    'footer'        => [
+        'created'   => 'Vytvorené :user dňa :date',
+        'updated'   => 'Aktualizované :used dňa :date',
     ],
     'hint'          => 'Informácie, ktoré nepasujú do štandardných polí objektu alebo by mali byť súkromné, môžu byť pridané v podobe poznámok.',
     'hints'         => [

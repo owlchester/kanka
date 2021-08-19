@@ -3,6 +3,7 @@
 return [
     'actions'       => [
         'add'       => 'Nowy komentarz',
+        'add_role'  => 'Dodaj rolę',
         'add_user'  => 'Dodaj użytkownika',
     ],
     'create'        => [
@@ -25,6 +26,10 @@ return [
         'is_pinned' => 'Przypięta',
         'name'      => 'Nazwa',
         'position'  => 'Kolejność przypięcia',
+    ],
+    'footer'        => [
+        'created'   => 'Stworzony przez :user dnia :date',
+        'updated'   => 'Zmieniony przez :user dnia :date',
     ],
     'hint'          => 'Komentarze to informacje, które nie mieszczą się w zwykłych polach opisu elementu albo które powinny pozostać tajne.',
     'hints'         => [

@@ -16,6 +16,7 @@ return [
         'dashboard'     => 'Pulpit',
         'entity'        => 'Element',
         'filters'       => 'Filtry',
+        'is_nested'     => 'Hierarchia',
         'menu'          => 'Menu',
         'name'          => 'Nazwa',
         'position'      => 'Kolejność',

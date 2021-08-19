@@ -26,7 +26,7 @@ return [
     ],
     'fields'        => [
         'characters'    => 'Персонажи',
-        'children'      => 'Объекты',
+        'children'      => 'Потомки',
         'name'          => 'Название',
         'tag'           => 'Родительский тэг',
         'tags'          => 'Подтэги',
@@ -58,7 +58,7 @@ return [
     'show'          => [
         'description'   => 'Детальный вид тэга',
         'tabs'          => [
-            'children'      => 'Объекты',
+            'children'      => 'Потомки',
             'information'   => 'Информация',
             'tags'          => 'Тэги',
         ],

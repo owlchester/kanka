@@ -26,6 +26,8 @@ return [
     'helpers'       => [
         'descendants'   => 'Ez a lista a szervezet összes leszármazott szervezetét tartalmazza, nem csak a közvetlen alszervezeit.',
         'nested'        => 'Hierarchikus nézetben a szervezeteidet alá-fölérendeltségi viszonyukban tekintheted meg. A legfelső szinten azokat a szervezeteket láthatod, amiknek nincs szülőszervezete, rájuk kattintva pedig megtekintheted alszervezeteiket. Amennyiben az egyes alszervezeteknek saját alszervezeteik vannak, azokra kattintva őket is megtekintheted.',
+        'nested_parent' => ':parent szervezeteinek mutatása.',
+        'nested_without'=> 'Mutass meg minden szervezetet, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekszervezeteit.',
     ],
     'index'         => [
         'add'           => 'Új szervezet',
@@ -55,7 +57,8 @@ return [
             'role'          => 'Szerep',
         ],
         'helpers'       => [
-            'members'   => 'Az alábbi listában azok a karakterek szerepelnek, akik vagy tagjai ennek a szervezetnek, vagy tagjai ezen szervezet valamelyik leszármazott szervezetének. Lehetőség van csak a közvetlen tagokra is szűrni.',
+            'all_members'   => 'Minden karakter, ami tagja ennek a szervezetnek és alszervezeteinek.',
+            'members'       => 'Az alábbi listában azok a karakterek szerepelnek, akik vagy tagjai ennek a szervezetnek, vagy tagjai ezen szervezet valamelyik leszármazott szervezetének. Lehetőség van csak a közvetlen tagokra is szűrni.',
         ],
         'placeholders'  => [
             'character' => 'Válassz ki egy karaktert',

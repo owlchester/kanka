@@ -3,6 +3,7 @@
 return [
     'actions'       => [
         'add'       => 'Notiz hinzufügen',
+        'add_role'  => 'Rolle hinzufügen',
         'add_user'  => 'Benutzer hinzufügen',
     ],
     'create'        => [
@@ -25,6 +26,10 @@ return [
         'is_pinned' => 'gepinnt',
         'name'      => 'Name',
         'position'  => 'gepinnte Position',
+    ],
+    'footer'        => [
+        'created'   => 'Erstellt von :user am :date',
+        'updated'   => 'Aktualisiert von :user am :date',
     ],
     'hint'          => 'Informationen, die nicht ganz in die Standardfelder eines Objektes passen oder privat bleiben sollen, können als Notiz hinzugefügt werden.',
     'hints'         => [

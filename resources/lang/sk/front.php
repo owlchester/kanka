@@ -101,8 +101,9 @@ return [
             'upload'                => 'Navýšenie veľkosti uploadu pre všetkých členov',
         ],
         'boosts_v2'         => [
-            'description'   => 'Naše úrovne podpory ti dajú prístup k boostom, ktoré môžeš použiť na boostnutie alebo superboostnutie kampaní. Ak tak spravíš, odomknú sa v kampani nasledujúce výhody.',
-            'title'         => 'Boostnuté a Superboostnuté kampane',
+            'description'       => 'Naše úrovne podpory ti dajú prístup k boostom, ktoré môžeš použiť na boostnutie alebo superboostnutie kampaní. Ak tak spravíš, odomknú sa v kampani nasledujúce výhody.',
+            'description-count' => 'Boostnutie kampane použije :boost-count boost. Superboostnutie kampane použije :superboost-count boosty.',
+            'title'             => 'Boostnuté a Superboostnuté kampane',
         ],
         'calendars'         => [
             'description'   => 'Vytvor vlastné kalendáre a organizuj pomocou nich tvoju kampaň.',

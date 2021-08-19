@@ -43,6 +43,8 @@ return [
         'map_deprecated'    => 'A térképek mostantól saját modullal rendelkeznek! Ez a funkció jelenleg a :boosted kampányok számára érhető el korai hozzáférésben. A jelenlegi felület nem lesz elérhető a jövőben, amint az új modul átveszi a helyét, de a régi térképek továbbra is megmaradnak szerkeszthetőnek.',
         'map_deprecated_2'  => 'A Térképek már saját modullal rendelkeznek! A már meglévő, régi helyszín térképek továbbra is szerkeszthetőek maradnak, de minden új térkép már az Új Térkép modulba fognak kerülni.',
         'nested'            => 'Hierarchikus nézetben a helyszíneidet alá-fölérendeltségi viszonyukban tekintheted meg. Alapesetben a szülő helyszín nélküli helyszínek látszanak, rájuk kattintva megtekintheted azok alhelyszíneit.',
+        'nested_parent'     => ':parent helyszíneinek mutatása',
+        'nested_without'    => 'Minden olyan helyszín mutatása, amelynek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekhelyszíneit.',
         'organisations'     => 'Megtekintheted az összes Szervezetet ezen a helyszínen, és ezek leszármazott helyszíneit, vagy csak azokat, amelyek közvetlenül itt találhatóak.',
     ],
     'hints'         => [
@@ -181,6 +183,7 @@ return [
                 'square'    => 'Négyzet',
             ],
             'sizes'         => [
+                'custom'    => 'Egyéni',
                 'huge'      => 'Hatalmas',
                 'large'     => 'Nagy',
                 'small'     => 'Kicsi',

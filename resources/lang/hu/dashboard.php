@@ -142,11 +142,12 @@ TEXT
             'success'   => 'Eltávolítottuk a widget-et a főoldalról.',
         ],
         'fields'                    => [
-            'dashboard' => 'Főoldal',
-            'name'      => 'Egyéni widget név',
-            'order'     => 'Rendezés',
-            'text'      => 'Szöveg',
-            'width'     => 'Szélesség',
+            'dashboard'         => 'Főoldal',
+            'name'              => 'Egyéni widget név',
+            'optional-entity'   => 'Link az entitáshoz',
+            'order'             => 'Rendezés',
+            'text'              => 'Szöveg',
+            'width'             => 'Szélesség',
         ],
         'orders'                    => [
             'name_asc'  => 'Növekvő nevek',

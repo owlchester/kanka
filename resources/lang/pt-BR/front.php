@@ -101,8 +101,9 @@ return [
             'upload'                => 'Tamanhos de upload maiores para todos os membros',
         ],
         'boosts_v2'         => [
-            'description'   => 'Nossos níveis pagos oferecem acesso a impulsões, que você pode usar para impulsionar ou superimpulsionar campanhas. Isso desbloqueia os seguintes benefícios para uma campanha.',
-            'title'         => 'Campanhas Impulsionadas e Super Impulsionadas',
+            'description'       => 'Nossos níveis pagos oferecem acesso a impulsões, que você pode usar para impulsionar ou superimpulsionar campanhas. Isso desbloqueia os seguintes benefícios para uma campanha.',
+            'description-count' => 'Impulsionar uma campanha usa :boost-count impulsionamentos. Superimpulsionar uma campanha usa :superboost-count impulsionamentos.',
+            'title'             => 'Campanhas Impulsionadas e Super Impulsionadas',
         ],
         'calendars'         => [
             'description'   => 'Crie calendários personalizados e organize sua campanha em torno deles.',

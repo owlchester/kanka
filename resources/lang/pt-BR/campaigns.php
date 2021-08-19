@@ -54,6 +54,7 @@ TEXT
     ],
     'fields'                            => [
         'boosted'                       => 'Impulsionada por',
+        'connections'                   => 'Mostra a tabela de conexão de uma entidade por padrão (em vez do explorador de relação para campanhas impulsionadas)',
         'css'                           => 'CSS',
         'description'                   => 'Descrição',
         'entity_count'                  => 'Número de entidades',
@@ -69,6 +70,7 @@ TEXT
         'image'                         => 'Imagem',
         'locale'                        => 'Local',
         'name'                          => 'Nome',
+        'nested'                        => 'Listas de entidades padrão para aninhadas quando disponíveis',
         'open'                          => 'Aberta a inscrições',
         'public_campaign_filters'       => 'Filtros de Campanhas públicas',
         'related_visibility'            => 'Visibilidade dos elementos relacionados',
@@ -243,7 +245,9 @@ TEXT
     ],
     'roles'                             => [
         'actions'       => [
-            'add'   => 'Adicione um cargo',
+            'add'           => 'Adicione um cargo',
+            'permissions'   => 'Gerenciar permissões',
+            'rename'        => 'Renomear função',
         ],
         'admin_role'    => 'Cargo de Administrador',
         'create'        => [
@@ -275,6 +279,15 @@ TEXT
             'role_permissions'      => 'Habilitar o cargo \':name\' a fazer as seguintes ações em todas as entidades.',
         ],
         'members'       => 'Membros',
+        'modals'        => [
+            'details'   => [
+                'button'    => 'Preciso de ajuda',
+                'campaign'  => 'As permissões da campanha permitem o seguinte:',
+                'entities'  => 'Aqui está uma rápida recapitulação do que os membros dessa função obtêm quando uma permissão é definida.',
+                'more'      => 'Para mais detalhes, veja nosso vídeo tutorial no Youtube',
+                'title'     => 'Detalhes da permissão',
+            ],
+        ],
         'permissions'   => [
             'actions'   => [
                 'add'           => 'Criar',
@@ -289,7 +302,15 @@ TEXT
                 'toggle'        => 'Mudar para todos',
             ],
             'helpers'   => [
+                'add'           => 'Permitir a criação de entidades deste tipo. Eles terão permissão automática para visualizar e editar as entidades que criarem, se não tiverem permissão para visualizar ou editar.',
+                'dashboard'     => 'Permitir editar os dashboards e os widgets dos dashboards.',
+                'delete'        => 'Permitir remover todas as entidades desse tipo.',
+                'edit'          => 'Permitir editar todas as entidades desse tipo.',
                 'entity_note'   => 'Isso permite que usuários que não têm permissões de edição em uma entidade adicionem notas de entidade a ela.',
+                'manage'        => 'Permitir a edição da campanha como um administrador de campanha faria, sem permitir que os membros excluam a campanha.',
+                'members'       => 'Permitir convidar novos membros para a campanha.',
+                'permission'    => 'Permitir a configuração de permissões em entidades desse tipo que eles podem editar.',
+                'read'          => 'Permitir a visualização de todas as entidades deste tipo que não sejam privadas.',
             ],
             'hint'      => 'Esse cargo tem automaticamente acesso a tudo.',
         ],
@@ -395,6 +416,7 @@ TEXT
     ],
     'ui'                                => [
         'helper'    => 'Use essas configurações para alterar a forma como alguns elementos serão exibidos na campanha.',
+        'other'     => 'Outro',
     ],
     'visibilities'                      => [
         'private'   => 'Privado',

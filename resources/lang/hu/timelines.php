@@ -24,10 +24,16 @@ return [
         'eras'          => 'Korszakok',
         'name'          => 'Név',
         'reverse_order' => 'Fordított korszak sorrend',
+        'timeline'      => 'Szülőidővonal',
+        'timelines'     => 'Idővonalak',
         'type'          => 'Típus',
     ],
     'helpers'       => [
-        'reverse_order' => 'Pipáld ki, hogy a korszakok fordított időrendi sorrendben jelenjenek meg. (A legrégebbi korszak legelőször.)',
+        'nested_parent'     => ':parent idővonalainak megmutatása',
+        'nested_without'    => 'Minden idővonal megmutatása, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekidővonalait.',
+        'reorder'           => 'Fogd és vidd az elemeket az átrendezésükhöz.',
+        'reorder_tooltip'   => 'Klikkelj a fodg és vidd manuális sorbarendezés eléréséhez.',
+        'reverse_order'     => 'Pipáld ki, hogy a korszakok fordított időrendi sorrendben jelenjenek meg. (A legrégebbi korszak legelőször.)',
     ],
     'index'         => [
         'add'   => 'Új idővonal',
@@ -39,5 +45,8 @@ return [
     ],
     'show'          => [
         'title' => ':name idővonal',
+    ],
+    'timelines'     => [
+        'title' => ':name idővonal idővonalai',
     ],
 ];

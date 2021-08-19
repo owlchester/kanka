@@ -90,6 +90,13 @@ return [
             'exhausted_boosts'      => 'Nemáš už žiadne boosty na rozdávanie. Odstráň najprv boost od existujúcej kampane pred priradením inej.',
             'exhausted_superboosts' => 'Došli ti boosty. Na superboostnutie kampane potrebuješ 3 boosty.',
         ],
+        'modals'            => [
+            'more'  => [
+                'action'    => 'Viac boostov?',
+                'body'      => 'Viac boostov môžeš získať navýšením tvojej úrovne predplatného, alebo odstránením z kampane. Zrušenie boostnutia kampane nezmaže žiadne boostnuté informácie, iba ich deaktivuje, dokiaľ ju opäť neboostneš.',
+                'title'     => 'Získať viac boostov',
+            ],
+        ],
         'success'           => [
             'boost'         => 'Kampaň :name boostnutá',
             'delete'        => 'Boost z kampane :name odstránený.',

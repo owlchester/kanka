@@ -101,8 +101,9 @@ return [
             'upload'                => 'Możliwość zamieszczania większych plików dla wszystkich uczestników',
         ],
         'boosts_v2'         => [
-            'description'   => 'Poziomy wsparcia zapewniają dostęp do doładowań, których można używać w kampaniach. Doładowanie i turbodoładowanie kampanii powoduje następujące korzyści.',
-            'title'         => 'Doładowana i turbodoładowana kampania',
+            'description'       => 'Poziomy wsparcia zapewniają dostęp do doładowań, których można używać w kampaniach. Doładowanie i turbodoładowanie kampanii powoduje następujące korzyści.',
+            'description-count' => 'Doładowanie kampanii zużywa :boost-count doładowanie. Turbodoładowanie kampanii zużywa :superboost-count doładowania.',
+            'title'             => 'Doładowana i turbodoładowana kampania',
         ],
         'calendars'         => [
             'description'   => 'Twórz własne kalendarze, mierzące upływ czasu kampanii.',

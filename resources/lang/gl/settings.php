@@ -85,6 +85,13 @@ return [
             'exhausted_boosts'      => 'Non che quedan potenciadores. Elimina o teu potenciador dunha campaña antes de darllo a outra.',
             'exhausted_superboosts' => 'Non che quedan potenciadores. Precisas 3 potenciadores para superpotenciar unha campaña.',
         ],
+        'modals'            => [
+            'more'  => [
+                'action'    => 'Máis potenciadores?',
+                'body'      => 'Podes obter máis potenciadores aumentando o teu nivel de subscripción, ou despotenciando unha campaña. Despotenciar unha campaña non elimina ningún dato, só os deshabilita ata que a volvas potenciar.',
+                'title'     => 'Conseguir máis potenciadores',
+            ],
+        ],
         'success'           => [
             'boost'         => 'Campaña ":name" potenciada.',
             'delete'        => 'Quitouse o teu potenciador de ":name".',

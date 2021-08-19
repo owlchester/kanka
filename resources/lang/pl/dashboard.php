@@ -117,11 +117,12 @@ return [
             'success'   => 'Usunięto widżet z pulpitu.',
         ],
         'fields'                    => [
-            'dashboard' => 'Pulpit',
-            'name'      => 'Własna nazwa widżetu',
-            'order'     => 'Kolejność',
-            'text'      => 'Tekst',
-            'width'     => 'Szerokość',
+            'dashboard'         => 'Pulpit',
+            'name'              => 'Własna nazwa widżetu',
+            'optional-entity'   => 'Odnośnik do elementu',
+            'order'             => 'Kolejność',
+            'text'              => 'Tekst',
+            'width'             => 'Szerokość',
         ],
         'orders'                    => [
             'name_asc'  => 'Nazwa rosnąco',

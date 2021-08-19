@@ -143,11 +143,12 @@ TEXT
             'success'   => 'Widget bol odstránený z nástenky.',
         ],
         'fields'                    => [
-            'dashboard' => 'Nástenka',
-            'name'      => 'Vlastný názov widgetu',
-            'order'     => 'Zoradenie',
-            'text'      => 'Text',
-            'width'     => 'Šírka',
+            'dashboard'         => 'Nástenka',
+            'name'              => 'Vlastný názov widgetu',
+            'optional-entity'   => 'Link k objektu',
+            'order'             => 'Zoradenie',
+            'text'              => 'Text',
+            'width'             => 'Šírka',
         ],
         'orders'                    => [
             'name_asc'  => 'Názov vzostupne',

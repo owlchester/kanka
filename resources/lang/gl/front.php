@@ -55,6 +55,11 @@ return [
         'helpers'       => [
             'more'  => 'Non atopas o que buscas?',
         ],
+        'kb'            => [
+            'button'    => 'Atopa respostas na nosa base de coñecemento',
+            'text'      => 'Tes unha pregunta sobre como usar unha das funcionalidades de Kanka? A nosa crecente base de coñecemento é o lugar ao que acudir.',
+            'title'     => 'Precisas axuda usando Kanka?',
+        ],
         'title'         => 'Preguntas Frecuentes',
     ],
     'features'      => [
@@ -81,7 +86,6 @@ return [
             'css'                   => 'CSS personalizado da campaña',
             'dashboards'            => 'Establecer taboleiros personalizados para os roles da campaña',
             'description'           => 'Certos niveis de mecenazgo otorgan potenciadores que poden ser usados para potenciar campañas. Estes potenciadores otorgan os seguintes beneficios.',
-            'entity_files'          => 'Aumento do número máximo de arquivos subido por entidade (ata 5 en lugar de 3)',
             'entity_files_v2'       => 'Número máximo de arquivos subidos por entidade',
             'entity_links'          => 'Pon ligazóns a recursos e páxinas externas nas entidades',
             'header_image'          => 'Imaxe de cabeceira nas entidades',
@@ -96,8 +100,9 @@ return [
             'upload'                => 'Tamaño de arquivos subidos ampliado para todas as membras',
         ],
         'boosts_v2'         => [
-            'description'   => 'Os nosos niveis de pagamento danche acceso a potenciadores, os cales podes usar para potenciar ou superpotenciar campañas. Facelo desbloquea os seguintes beneficios para unha campaña.',
-            'title'         => 'Campañas potenciadas e superpotenciadas',
+            'description'       => 'Os nosos niveis de pagamento danche acceso a potenciadores, os cales podes usar para potenciar ou superpotenciar campañas. Facelo desbloquea os seguintes beneficios para unha campaña.',
+            'description-count' => 'Potenciar unha campaña usa :boost-count potenciador. Superpotenciar unha campaña usa :superboost-count potenciadores.',
+            'title'             => 'Campañas potenciadas e superpotenciadas',
         ],
         'calendars'         => [
             'description'   => 'Crea calendarios personalizados e organiza as túas campañas en torno a eles.',
@@ -124,7 +129,7 @@ return [
         ],
         'landscape'         => 'Cambia o teu dispositivo a modo apaisado para mostrar a lista de funcionalidades.',
         'layers'            => [
-            'description'   => 'Monitoriza personaxes, as súas familias, localizacións, e moito máis en calqueira momento.',
+            'description'   => 'Poboa o teu mundo con personaxes. Define a súa lealdade usando familias e organizacións. Constrúe os teus planetas, continentes, reinos e tabernas cos lugares en árbore.',
             'title'         => 'Personaxes, Familias, Lugares',
         ],
         'learn_more'        => 'Lista completa de funcionalidades de Kanka',
@@ -182,13 +187,11 @@ return [
             'title'         => 'Xestionar segredos',
         ],
         'superboosts'       => [
-            'boosted'       => 'Superpotenciada',
-            'description'   => 'Usar tres potenciadores de campaña nunha soa campaña farana superpotenciada, desbloqueando as seguintes funcionalidades.',
-            'files'         => 'Ata 10 arquivos subidos en cada entidade',
-            'gallery'       => 'Galería de campaña e integración co editor de texto Summernote',
-            'logs'          => 'Historial de cambios completo en entidades (ata 30 días)',
-            'stats'         => 'Páxina de logros da campaña',
-            'title'         => 'Campañas superpotenciadas',
+            'boosted'   => 'Superpotenciada',
+            'gallery'   => 'Galería de campaña e integración co editor de texto Summernote',
+            'logs'      => 'Historial de cambios completo en entidades (ata 30 días)',
+            'stats'     => 'Páxina de logros da campaña',
+            'title'     => 'Campañas superpotenciadas',
         ],
         'timelines'         => [
             'description'   => 'Representa visualmente as liñas temporais dos teus mundos, imperios, familias nobres, ou incluso dunha personaxe.',

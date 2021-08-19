@@ -26,10 +26,20 @@ return [
         'theme'                     => 'Téma',
     ],
     'newsletter'    => [
+        'helpers'   => [
+            'community-vote'    => 'Obdrž oznámenie stále, keď sa spustí nové :community-vote.',
+            'header'            => 'Prihlás sa na odoberanie e-mailových newsletterov, nech vieš, čo sa s Kankou deje.',
+            'monthly'           => 'Naše mesačné zhrnutie o tom, čo je nové okolo Kanky.',
+            'release'           => 'Obdrž oznámenie stále, keď Kanku aktualizujeme na novú verziu, inkl. čo sa zmenilo.',
+        ],
         'links'     => [
             'community-vote'    => 'Komunitné hlasovanie',
             'news'              => 'Novinky',
             'updates'           => 'Aktualizácie Kanky',
+        ],
+        'options'   => [
+            'monthly'   => 'Kanka newsletter',
+            'release'   => 'Nová verzia',
         ],
         'settings'  => [
             'news'          => 'Novinky - oznámenie pri publikovaní nových :news.',

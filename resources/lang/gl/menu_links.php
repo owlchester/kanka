@@ -16,6 +16,7 @@ return [
         'dashboard'     => 'Taboleiro',
         'entity'        => 'Entidade',
         'filters'       => 'Filtros',
+        'is_nested'     => 'En árbore',
         'menu'          => 'Menú',
         'name'          => 'Nome',
         'position'      => 'Posición',

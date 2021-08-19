@@ -3,6 +3,7 @@
 return [
     'actions'       => [
         'add'       => 'Jegyzet hozzáadása',
+        'add_role'  => 'Új szerep hozzáadása',
         'add_user'  => 'Felhasználó hozzáadása',
     ],
     'create'        => [
@@ -23,6 +24,10 @@ return [
         'creator'   => 'Létrehozó',
         'entry'     => 'Bejegyzés',
         'name'      => 'Név',
+    ],
+    'footer'        => [
+        'created'   => ':user hozta létre ekkor: :date',
+        'updated'   => ':user frissítette ekkor: :date',
     ],
     'hint'          => 'Olyan információkat, amelyek nem passzolnak bele a sztenderd mezőkbe, vagy amit privátként szeretnél megjeleníteni, jegyzetként lehet létrehozni.',
     'hints'         => [

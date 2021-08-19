@@ -34,9 +34,28 @@ return [
         'success'       => '\':name\' küldetést frissítettük.',
         'title'         => ':name küldetés szerkesztése',
     ],
+    'elements'      => [
+        'create'    => [
+            'success'   => ':entity entitást hozzáadtuk a küldetéshez.',
+            'title'     => ':name új eleme',
+        ],
+        'destroy'   => [
+            'success'   => ':entity küldetéselemét eltávolítottuk.',
+        ],
+        'edit'      => [
+            'success'   => ':entity küldetéselemét frissítettük.',
+            'title'     => ':name küldetéselemének firssítése',
+        ],
+        'fields'    => [
+            'description'   => 'Leírás',
+            'quest'         => 'Küldetés',
+        ],
+        'title'     => ':name küldetés elemei',
+    ],
     'fields'        => [
         'character'     => 'Küldetésadó',
         'characters'    => 'Karakterek',
+        'copy_elements' => 'A küldetéshez tartozó elemek másolása',
         'date'          => 'Dátum',
         'description'   => 'Leírás',
         'image'         => 'Kép',
@@ -51,7 +70,9 @@ return [
         'type'          => 'Típus',
     ],
     'helpers'       => [
-        'nested'    => 'Hierarchikus nézetben a küldetéseidet alá-fölérendeltségi viszonyukban tekintheted meg. A legfelső szinten azokat a küldetéseket láthatod, amiknek nincs főküldetése, rájuk kattintva pedig megtekintheted alküldetéseiket. Amennyiben az egyes alküldetéseknek saját alküldetéseik vannak, azokra kattintva őket is megtekintheted.',
+        'nested'        => 'Hierarchikus nézetben a küldetéseidet alá-fölérendeltségi viszonyukban tekintheted meg. A legfelső szinten azokat a küldetéseket láthatod, amiknek nincs főküldetése, rájuk kattintva pedig megtekintheted alküldetéseiket. Amennyiben az egyes alküldetéseknek saját alküldetéseik vannak, azokra kattintva őket is megtekintheted.',
+        'nested_parent' => ':parent küldetéseinek mutatása',
+        'nested_without'=> 'Minden küldetést megmutat, aminek nincs szülője. Klikkelj egy sorra, hogy lásd a gyermekküldetéseit.',
     ],
     'hints'         => [
         'quests'    => 'A főküldetés és az alküldetések mezők használatával összefüggő küldetések hálóját építheted fel.',
@@ -132,6 +153,7 @@ return [
     'show'          => [
         'actions'       => [
             'add_character'     => 'Karakter hozzáadása',
+            'add_element'       => 'Elem hozzáadása',
             'add_item'          => 'Tárgy hozzáadása',
             'add_location'      => 'Helyszín hozzáadása',
             'add_organisation'  => 'Szervezet hozzáadása',
@@ -139,6 +161,7 @@ return [
         'description'   => 'A küldetés részletes nézete',
         'tabs'          => [
             'characters'    => 'Karakterek',
+            'elements'      => 'Elemek',
             'information'   => 'Információ',
             'items'         => 'Tárgyak',
             'locations'     => 'Helyszínek',

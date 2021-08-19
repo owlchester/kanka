@@ -101,8 +101,9 @@ return [
             'upload'                => 'Erhöhte Upload-Größen für alle Mitglieder',
         ],
         'boosts_v2'         => [
-            'description'   => 'Unsere Pledge-Level geben dir Zugang zu Boostern, mit denen du Kampagnen boosten oder superboosten kannst. Dadurch werden die folgenden Vorteile für eine Kampagne freigeschaltet.',
-            'title'         => 'Boosted und Superboosted Kampagnen',
+            'description'       => 'Unsere Pledge-Level geben dir Zugang zu Boostern, mit denen du Kampagnen boosten oder superboosten kannst. Dadurch werden die folgenden Vorteile für eine Kampagne freigeschaltet.',
+            'description-count' => 'Das Boosten einer Kampagne verwendet :boost-count Booster. Beim Superboosten einer Kampagne werden :superboost-count Booster verwendet.',
+            'title'             => 'Boosted und Superboosted Kampagnen',
         ],
         'calendars'         => [
             'description'   => 'Erstelle eigene Kalender und organisiere deine Kampagne damit.',

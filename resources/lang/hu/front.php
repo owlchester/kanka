@@ -101,8 +101,9 @@ return [
             'upload'                => 'Megnövelt fájlfeltöltési korlát az összes Tag számára.',
         ],
         'boosts_v2'         => [
-            'description'   => 'A támogatói szintünk hozzáférést ad a megerősítőkhöz, amelyek segítségével meg tudod erősíteni vagy szupererősíteni a kampányokat. Ezzel a következő előnyöket kapod a kampányhoz.',
-            'title'         => 'Megerősített és szupererősített kampányok',
+            'description'       => 'A támogatói szintünk hozzáférést ad a megerősítőkhöz, amelyek segítségével meg tudod erősíteni vagy szupererősíteni a kampányokat. Ezzel a következő előnyöket kapod a kampányhoz.',
+            'description-count' => 'Egy kampány megerősítéséhez :boost-count megerősítőt használunk. A szupererősített kampányokhoz :superboost-count megerősítőket használunk.',
+            'title'             => 'Megerősített és szupererősített kampányok',
         ],
         'calendars'         => [
             'description'   => 'Készíts egyedi naptárakat, és szervezd köréjük a kampányodat',

@@ -54,6 +54,7 @@ TEXT
     ],
     'fields'                            => [
         'boosted'                       => 'Boost od',
+        'connections'                   => 'Zobraziť tabuľku vzťahov objektu štandardne (namiesto sieťovej vizualizácie pre boostnuté kampane)',
         'css'                           => 'CSS',
         'description'                   => 'Popis',
         'entity_count'                  => 'Počet objektov',
@@ -69,6 +70,7 @@ TEXT
         'image'                         => 'Obrázok',
         'locale'                        => 'Jazyk',
         'name'                          => 'Názov',
+        'nested'                        => 'Vnorené zobrazenie zoznamov objektov, ak možné',
         'open'                          => 'Otvorená pre prihlášky',
         'public_campaign_filters'       => 'Filter verejných kampaní',
         'related_visibility'            => 'Viditeľnosť príbuzných prvkov',
@@ -243,7 +245,9 @@ TEXT
     ],
     'roles'                             => [
         'actions'       => [
-            'add'   => 'Pridať rolu',
+            'add'           => 'Pridať rolu',
+            'permissions'   => 'Spravovať oprávnenia',
+            'rename'        => 'Premenovať rolu',
         ],
         'admin_role'    => 'Rola administrátora',
         'create'        => [
@@ -275,6 +279,15 @@ TEXT
             'role_permissions'      => 'Umožniť role :name nasledujúce akcie pre všetky objekty.',
         ],
         'members'       => 'Členovia',
+        'modals'        => [
+            'details'   => [
+                'button'    => 'Potrebujem pomoc',
+                'campaign'  => 'Oprávnenia kampane umožňujú nasledovné.',
+                'entities'  => 'Rýchle info o tom, čo obdržia členovia tejto role, ak dostanú dané oprávnenie.',
+                'more'      => 'Viac informácií nájdeš v našom videonávode na YouTube',
+                'title'     => 'Detaily oprávnenia',
+            ],
+        ],
         'permissions'   => [
             'actions'   => [
                 'add'           => 'Vytvoriť',
@@ -289,7 +302,15 @@ TEXT
                 'toggle'        => 'Zmeniť u všetkých',
             ],
             'helpers'   => [
-                'entity_note'   => 'Toto dovolí užívateľom, ktorí nemajú oprávnenia k úpravám, aby mali možnosť pridať Poznámky k objektu.',
+                'add'           => 'Povolí vytváranie objektov tohto typu. Automaticky budú mať povolené zobraziť a upravovať objekty, ktoré vytvoria, ak nemajú oprávnenie pre zobrazenie a editáciu.',
+                'dashboard'     => 'Povolí úpravy násteniek a nástenkových widgetov.',
+                'delete'        => 'Povolí odstránenia všetkých objektov tohto typu.',
+                'edit'          => 'Povolí úpravy všetkých objektov tohto typu.',
+                'entity_note'   => 'Povolí pridať a upravovať poznámky objektov, aj keď užívateľ nemôže editovať daný objekt.',
+                'manage'        => 'Povolí úpravu kampane ako ju má admin kampane, no bez možnosti zmazať kampaň.',
+                'members'       => 'Povolí zasielať pozvánky pre nových členov do kampane.',
+                'permission'    => 'Povolí nastaviť oprávnenia na objektoch typu, ktoré môže upravovať.',
+                'read'          => 'Povolí zobrazenie všetkých objektov tohto typu, ktoré nie sú súkromné.',
             ],
             'hint'      => 'Táto rola má automaticky prístup ku všetkému.',
         ],
@@ -394,6 +415,7 @@ TEXT
     ],
     'ui'                                => [
         'helper'    => 'Použi tieto nastavenia na zmenu zobrazenia určitých prvkov v kampani.',
+        'other'     => 'Ostatné',
     ],
     'visibilities'                      => [
         'private'   => 'Súkromný',

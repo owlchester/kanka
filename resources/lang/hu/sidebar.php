@@ -22,6 +22,7 @@ return [
     'entity-creator'        => 'Gyorsgenerátor',
     'events'                => 'Események',
     'families'              => 'Családok',
+    'gallery'               => 'Galéria',
     'items'                 => 'Tárgyak',
     'journals'              => 'Naplóbejegyzések',
     'locations'             => 'Helyszínek',

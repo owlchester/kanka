@@ -54,6 +54,7 @@ TEXT
     ],
     'fields'                            => [
         'boosted'                       => 'geboosted durch',
+        'connections'                   => 'Verbindungstabelle eines Objekts standardmäßig anzeigen (anstelle des Beziehungs-Explorers für verstärkte Kampagnen)',
         'css'                           => 'CSS',
         'description'                   => 'Beschreibung',
         'entity_count'                  => 'Objekt Zähler',
@@ -69,6 +70,7 @@ TEXT
         'image'                         => 'Bild',
         'locale'                        => 'Sprache',
         'name'                          => 'Name',
+        'nested'                        => 'Standardmäßig verschachtelte Objektslisten, wenn verfügbar',
         'open'                          => 'Offen für Bewerbungen',
         'public_campaign_filters'       => 'Öffentliche Kampagnenfilter',
         'related_visibility'            => 'Verwandte Elemente Sichtbarkeit',
@@ -247,7 +249,9 @@ TEXT
     ],
     'roles'                             => [
         'actions'       => [
-            'add'   => 'Rolle hinzufügen',
+            'add'           => 'Rolle hinzufügen',
+            'permissions'   => 'Berechtigungen verwalten',
+            'rename'        => 'Rolle umbenennen',
         ],
         'admin_role'    => 'Administratorenrolle',
         'create'        => [
@@ -279,6 +283,15 @@ TEXT
             'role_permissions'      => 'Erlaube der Rolle \':name\' die folgenden Aktionen auf allen Objekten.',
         ],
         'members'       => 'Mitglieder',
+        'modals'        => [
+            'details'   => [
+                'button'    => 'benötige Hilfe',
+                'campaign'  => 'Kampagnenberechtigungen erlauben Folgendes.',
+                'entities'  => 'Hier ist eine kurze Zusammenfassung, was Mitglieder dieser Rolle erhalten, wenn eine Berechtigung festgelegt wird.',
+                'more'      => 'Weitere Informationen finden Sie in unserem Tutorial-Video auf Youtube',
+                'title'     => 'Berechtigungsdetails',
+            ],
+        ],
         'permissions'   => [
             'actions'   => [
                 'add'           => 'Erstellen',
@@ -293,7 +306,15 @@ TEXT
                 'toggle'        => 'Alles ändern',
             ],
             'helpers'   => [
+                'add'           => 'Erstellen von Objekten dieses Typs zulassen. Sie werden automatisch berechtigt, von ihnen erstellte Objekte anzuzeigen und zu bearbeiten, wenn sie nicht über die Berechtigung zum Anzeigen oder Bearbeiten verfügen.',
+                'dashboard'     => 'Erlauben Sie die Bearbeitung der Dashboards und Dashboard-Widgets.',
+                'delete'        => 'Erlauben Sie das Entfernen aller Objekte dieses Typs.',
+                'edit'          => 'Bearbeitung aller Objekte dieses Typs zulassen.',
                 'entity_note'   => 'Auf diese Weise können Benutzer ohne Bearbeitungsberechtigung für ein Objekt Objektsnotizen hinzufügen.',
+                'manage'        => 'Erlauben Sie die Bearbeitung der Kampagne wie ein Kampagnenadministrator, ohne dass die Mitglieder die Kampagne löschen können.',
+                'members'       => 'Erlauben Sie, neue Mitglieder zur Kampagne einzuladen.',
+                'permission'    => 'Erlaube Einstellungsberechtigungen für Objekte dieses Typs, die sie bearbeiten können.',
+                'read'          => 'Erlauben Sie die Anzeige aller Objekte dieses Typs, die nicht privat sind.',
             ],
             'hint'      => 'Diese Rolle hat automatisch Zugriff auf alles.',
         ],
@@ -398,6 +419,7 @@ TEXT
     ],
     'ui'                                => [
         'helper'    => 'Verwenden Sie diese Einstellungen, um die Art und Weise zu ändern, in der einige Elemente in der Kampagne angezeigt werden.',
+        'other'     => 'Andere',
     ],
     'visibilities'                      => [
         'private'   => 'Privat',

@@ -26,10 +26,20 @@ return [
         'theme'                     => 'Theme',
     ],
     'newsletter'    => [
+        'helpers'   => [
+            'community-vote'    => 'Werde jedes Mal benachrichtigt, wenn es einen neuen :community-vote gibt.',
+            'header'            => 'Abonnieren Sie die folgenden E-Mail-Newsletter, um über Kanka informiert zu werden.',
+            'monthly'           => 'Unsere monatliche Zusammenfassung der Ereignisse rund um Kanka.',
+            'release'           => 'Werde jedes Mal mit einer Übersicht benachrichtigt, wenn Kanka ein Update erhält.',
+        ],
         'links'     => [
             'community-vote'    => 'Community Votes',
             'news'              => 'News',
             'updates'           => 'Kanka updates',
+        ],
+        'options'   => [
+            'monthly'   => 'Kanka Newsletter',
+            'release'   => 'Neuerscheinung',
         ],
         'settings'  => [
             'news'          => 'Nachrichten - benachrichtigt werden, wenn es :news gibt.',

@@ -18,6 +18,7 @@ return [
     ],
     'fields'        => [
         'position'  => 'Elhelyezkedés',
+        'type'      => 'Réteg típusa',
     ],
     'helper'        => [
         'amount'            => 'Legfeljebb :amount db réteget rendelhetsz egy térképhez, amelyek között váltogatva más-más kép jelenik meg a térképjelzők alatt.',
@@ -26,5 +27,15 @@ return [
     'placeholders'  => [
         'name'      => 'Pince, 2-ik emelet, Hajóroncs',
         'position'  => 'Opcionális mező annak meghatározására, hogy az egyes rétegek milyen sorrendben jelenjenek meg.',
+    ],
+    'short_types'   => [
+        'overlay'       => 'Átfedés',
+        'overlay_shown' => 'Átfedés (automata megmutatás)',
+        'standard'      => 'Sztenderd',
+    ],
+    'types'         => [
+        'overlay'       => 'Átfedés (az aktív réteg felett jelenik meg)',
+        'overlay_shown' => 'Átfedés az alapértelmezettek szerint',
+        'standard'      => 'Sztenderd réteg (váltás a rétegek között)',
     ],
 ];

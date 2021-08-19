@@ -151,7 +151,7 @@ return [
         'name'                  => 'Nazwa',
         'organisation'          => 'Organizacja',
         'position'              => 'Kolejność',
-        'privacy'               => 'Prywatność',
+        'privacy'               => 'Tajność',
         'race'                  => 'Rasa',
         'tag'                   => 'Etykieta',
         'tags'                  => 'Etykiety',

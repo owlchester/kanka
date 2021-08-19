@@ -91,6 +91,13 @@ return [
             'exhausted_boosts'      => 'Sie haben keine Boosts mehr zu geben. Entfernen Sie Ihren Boost aus einer Kampagne, bevor Sie ihn einer anderen geben.',
             'exhausted_superboosts' => 'Sie haben keine Boosts mehr. Sie benötigen 3 Booster, um eine Kampagne zu verbessern.',
         ],
+        'modals'            => [
+            'more'  => [
+                'action'    => 'mehr booster?',
+                'body'      => 'Sie können mehr Booster erhalten, indem Sie Ihre Abonnementstufe erhöhen oder sie aus einer Kampagne entfernen. Das Aufheben des Boostens einer Kampagne löscht keine der boosten Informationen, sondern deaktiviert sie nur, bis Sie diese Kampagne erneut boosten.',
+                'title'     => 'mehr booster erhalten',
+            ],
+        ],
         'success'           => [
             'boost'         => 'Kampagne :name geboostet',
             'delete'        => 'Entferne den boost von :name',

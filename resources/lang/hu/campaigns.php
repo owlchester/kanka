@@ -54,6 +54,7 @@ TEXT
     ],
     'fields'                            => [
         'boosted'                       => 'A kampány megerősítője',
+        'connections'                   => 'Mutasd meg egy entitás kapcsolati tábláját az alapértelmezettek szerint (a megerősített kampányok viszonyfelfedezője helyett)',
         'css'                           => 'CSS',
         'description'                   => 'Leírás',
         'entity_count'                  => 'Entitások száma',
@@ -69,6 +70,7 @@ TEXT
         'image'                         => 'Kép',
         'locale'                        => 'Nyelv',
         'name'                          => 'Név',
+        'nested'                        => 'Az alapértelmezett entitás lista összevonása, ha elérhető',
         'open'                          => 'Megnyitás az alkalmazások számára',
         'public_campaign_filters'       => 'Publikus kampány szűrők',
         'related_visibility'            => 'Kapcsolódó elemek láthatósága',
@@ -243,7 +245,9 @@ TEXT
     ],
     'roles'                             => [
         'actions'       => [
-            'add'   => 'Szerep hozzáadása',
+            'add'           => 'Szerep hozzáadása',
+            'permissions'   => 'Engedélyek kezelése',
+            'rename'        => 'Szerep átnevezése',
         ],
         'admin_role'    => 'admin szerep',
         'create'        => [
@@ -275,6 +279,15 @@ TEXT
             'role_permissions'      => ':name szerep számára engedélyezni az alábbi tevékenységeket minden etnitás esetében.',
         ],
         'members'       => 'Tagok',
+        'modals'        => [
+            'details'   => [
+                'button'    => 'Segítség',
+                'campaign'  => 'A kapmányengedélyek az alábbiakat hagyják.',
+                'entities'  => 'Ez egy gyors összefoglaló, hogy a szerep tagjai mit kapnak, amikor egy engedélyt beállítunk.',
+                'more'      => 'Részletekért nézd meg az oktatóvideónkat a Youtube-on.',
+                'title'     => 'Engedély részletei',
+            ],
+        ],
         'permissions'   => [
             'actions'   => [
                 'add'           => 'Létrehozás',
@@ -289,7 +302,15 @@ TEXT
                 'toggle'        => 'Váltás mindnél',
             ],
             'helpers'   => [
+                'add'           => 'Engedi, hogy ilyen típusú entitást hozzanak létre. Automatikusan megnézhetik és szerkeszthetik az általuk létrehozott entitást, ha nincs engedélyük a megnézésre és szerkesztésre.',
+                'dashboard'     => 'Szerkeszthetik a főoldalakat és a főoldal widgeteket.',
+                'delete'        => 'Eltávolíthatnak minden entitást ebből a típusból.',
+                'edit'          => 'Ennek az entitástípusnak minden entitását szerkeszthetik.',
                 'entity_note'   => 'Ez lehetővé teszi Entitás jegyzetek hozzáadását olyan felhasználók számára is, akiknek nincs szerkesztési joguk az adott Entitásra.',
+                'manage'        => 'Szerkeszthetik a kampányt, mint az admin, de persze nem törölhetik azt.',
+                'members'       => 'Meghívhatnak tagokat a kampányba.',
+                'permission'    => 'Állítgathatják az engedélyeit az ilyen típusú entitásokból azokét, amit szerkeszthetnek.',
+                'read'          => 'Megnézhetik mindegyik entitást ebből a típusból, ami nem privát.',
             ],
             'hint'      => 'Ez a szerep automatikusan hozzáférst biztosít mindenhez.',
         ],
@@ -394,6 +415,7 @@ TEXT
     ],
     'ui'                                => [
         'helper'    => 'Használd ezeket a beállításokat, hogy meg meghatározd, hogy bizonyos elemek hogyan jelenjenek meg a kampányodban.',
+        'other'     => 'Egyéb',
     ],
     'visibilities'                      => [
         'private'   => 'Privát',

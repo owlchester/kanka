@@ -3,6 +3,10 @@
 return [
     'characters'    => [
         'description'   => 'Ehhez a fajhoz tartozó karakterek.',
+        'helpers'       => [
+            'all_characters'    => 'Minden, az adott fajhoz és alfajaihoz tartozó karakter megmutatása',
+            'characters'        => 'Minden karaktert megmutat, ami közvetlenük ehhez a fajhoz kapcsolódik.',
+        ],
         'title'         => ':name fajú karakterek',
     ],
     'create'        => [
@@ -25,7 +29,9 @@ return [
         'type'          => 'Típus',
     ],
     'helpers'       => [
-        'nested'    => 'Hierarchikus nézetben a fajaidat alá-fölérendeltségi rendszerben láthatod. Alapértelemzetten azok a fajok látszanak, melyek nem alfajai egy másiknak sem. Egy fajra kattintva láthatod annak alfajait, melyek, amennyiben vannak saját alfajaik is, szintén kattinthatóak lesznek.',
+        'nested'        => 'Hierarchikus nézetben a fajaidat alá-fölérendeltségi rendszerben láthatod. Alapértelemzetten azok a fajok látszanak, melyek nem alfajai egy másiknak sem. Egy fajra kattintva láthatod annak alfajait, melyek, amennyiben vannak saját alfajaik is, szintén kattinthatóak lesznek.',
+        'nested_parent' => ':parent fajainak megmutatása.',
+        'nested_without'=> 'Megmutat minden fajt, aminek nincs szülője. Klikkelj egy sorra, hogy megnézd a gyermekfajait.',
     ],
     'index'         => [
         'add'           => 'Új faj',

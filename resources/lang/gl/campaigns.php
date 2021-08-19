@@ -52,6 +52,7 @@ TEXT
     ],
     'fields'                            => [
         'boosted'                       => 'Potenciada por',
+        'connections'                   => 'Mostra a táboa de conexións dunha entidade por defecto (no lugar de mostar o explorador, en campañas potenciadas)',
         'css'                           => 'CSS',
         'description'                   => 'Descrición',
         'entity_count'                  => 'Número de entidades',
@@ -67,6 +68,7 @@ TEXT
         'image'                         => 'Imaxe',
         'locale'                        => 'Lingua',
         'name'                          => 'Nome',
+        'nested'                        => 'Mostrar as listaxes de entidades en árbore, cando sexa posíbel',
         'open'                          => 'Aberta a solicitudes',
         'public_campaign_filters'       => 'Filtros de campañas públicas',
         'related_visibility'            => 'Visibilidade de elementos relacionados',
@@ -95,7 +97,7 @@ TEXT
         'name'                          => 'A túa campaña ou mundo pode ter calquer nome sempre que conteña polo menos catro letras ou números.',
         'public_campaign_filters'       => 'Axuda a outras persoas a atopar a campaña entre outras campañas públicas proporcionando a seguinte información.',
         'public_no_visibility'          => 'Coidado! A túa campaña é pública, pero o rol Público da campaña non pode acceder nada. :fix.',
-        'related_visibility'            => 'A visibilidade por defecto ao crear un elemento con este campo (notas de entidade, relacións, habilidades, etc.)',
+        'related_visibility'            => 'A visibilidade por defecto ao crear un elemento con este campo (entradas, relacións, habilidades, etc.)',
         'system'                        => 'Se a túa campaña é públicamente visíbel, o sistema é mostrado na páxina de :link.',
         'systems'                       => 'Para evitar unha sobrecarga de opcións, algunhas funcións de Kanka só están dispoñibles para sistemas RPG específicos (por exemplo, o bloque de estadísticas de monstros para D&D 5e). Engadir sistemas soportados aquí habilitará as súas funcións.',
         'theme'                         => 'Forza o tema da campaña, invalidando a preferencia da persoa usuaria.',
@@ -238,7 +240,9 @@ TEXT
     ],
     'roles'                             => [
         'actions'       => [
-            'add'   => 'Engadir un rol',
+            'add'           => 'Engadir un rol',
+            'permissions'   => 'Xestionar permisos',
+            'rename'        => 'Renomear rol',
         ],
         'admin_role'    => 'rol de administración',
         'create'        => [
@@ -270,13 +274,22 @@ TEXT
             'role_permissions'      => 'Activa o rol ":name" para que poida facer as seguintes accións en todas as entidades.',
         ],
         'members'       => 'Integrantes',
+        'modals'        => [
+            'details'   => [
+                'button'    => 'Axuda',
+                'campaign'  => 'Os permisos de campaña permiten o seguinte.',
+                'entities'  => 'Este é un resumo do que poden facer as integrantes deste rol cando un permiso é establecido.',
+                'more'      => 'Para máis detalles, mira o noso vídeo tutorial en Youtube',
+                'title'     => 'Detalles do permiso',
+            ],
+        ],
         'permissions'   => [
             'actions'   => [
                 'add'           => 'Crear',
                 'dashboard'     => 'Taboleiro',
                 'delete'        => 'Eliminar',
                 'edit'          => 'Editar',
-                'entity-note'   => 'Nota de entidade',
+                'entity-note'   => 'Entrada',
                 'manage'        => 'Configurar',
                 'members'       => 'Integrantes',
                 'permission'    => 'Permisos',
@@ -284,7 +297,15 @@ TEXT
                 'toggle'        => 'Cambiar para todos',
             ],
             'helpers'   => [
-                'entity_note'   => 'Isto permite que persoas que non teñen permisos de edición nunha entidade poidan engadirlle notas de entidade.',
+                'add'           => 'Permite crear entidades deste tipo. Poderán ver e editar entidades que creen se non teñen permisos para ver ou editar.',
+                'dashboard'     => 'Permite editar os taboleiros e os seus complementos.',
+                'delete'        => 'Permite eliminar todas as entidades deste tipo.',
+                'edit'          => 'Permite editar todas as entidades deste tipo.',
+                'entity_note'   => 'Isto permite que persoas que non teñen permisos de edición nunha entidade poidan engadirlle entradas.',
+                'manage'        => 'Permite editar a campaña da mosma forma que pode a administración, pero sen permitir eliminala.',
+                'members'       => 'Permite convidar novas integrantes á campaña.',
+                'permission'    => 'Permite establecer permisos en entidades deste tipo que poidan editar.',
+                'read'          => 'Permite ver todas as entidades deste tipo que non sexan privadas.',
             ],
             'hint'      => 'Este rol ten automáticamente acceso a todo.',
         ],
@@ -389,6 +410,7 @@ TEXT
     ],
     'ui'                                => [
         'helper'    => 'Usa estas opcións para cambiar a maneira na que algúns elementos son mostrados na campaña.',
+        'other'     => 'Miscelánea',
     ],
     'visibilities'                      => [
         'private'   => 'Privada',

@@ -54,6 +54,7 @@ TEXT
     ],
     'fields'                            => [
         'boosted'                       => 'Doładowanie przez',
+        'connections'                   => 'Pokazuj domyślnie tabelę powiązań tego elementu (zamiast grafu relacji w kampaniach doładowanych)',
         'css'                           => 'CSS',
         'description'                   => 'Opis',
         'entity_count'                  => 'Liczba elementów',
@@ -69,6 +70,7 @@ TEXT
         'image'                         => 'Obraz',
         'locale'                        => 'Język kampanii',
         'name'                          => 'Nazwa',
+        'nested'                        => 'Domyślnie pokazuj listy elementów w widoku hierarchii (jeżeli jest dostępny)',
         'open'                          => 'Otwarta na zgłoszenia',
         'public_campaign_filters'       => 'Filtry kampanii publicznych',
         'related_visibility'            => 'Widoczność tworzonych elementów',
@@ -243,7 +245,9 @@ TEXT
     ],
     'roles'                             => [
         'actions'       => [
-            'add'   => 'Dodaj rolę',
+            'add'           => 'Dodaj rolę',
+            'permissions'   => 'Zarządzaj uprawnieniami',
+            'rename'        => 'Zmień nazwę',
         ],
         'admin_role'    => 'administrator',
         'create'        => [
@@ -275,13 +279,22 @@ TEXT
             'role_permissions'      => 'Zezwól roli :name na następujące działania na elementach',
         ],
         'members'       => 'Uczestnicy',
+        'modals'        => [
+            'details'   => [
+                'button'    => 'Pomoc',
+                'campaign'  => 'Uprawnienia w kampanii umożliwiają, co następuje.',
+                'entities'  => 'Oto krótkie zestawienie uprawnień, które mogą otrzymać użytkownicy w danej roli.',
+                'more'      => 'Dalsze instrukcje znajdziesz w filmie instruktażowym na YouTube',
+                'title'     => 'Szczegóły uprawnień',
+            ],
+        ],
         'permissions'   => [
             'actions'   => [
                 'add'           => 'Tworzenie',
                 'dashboard'     => 'Pulpit',
                 'delete'        => 'Usuwanie',
                 'edit'          => 'Edytowanie',
-                'entity-note'   => 'Komentuj',
+                'entity-note'   => 'Komentowanie',
                 'manage'        => 'Zarządzaj',
                 'members'       => 'Uczestnicy',
                 'permission'    => 'Uprawnienia',
@@ -289,7 +302,15 @@ TEXT
                 'toggle'        => 'Zmień dla wszystkich',
             ],
             'helpers'   => [
+                'add'           => 'Pozwala tworzyć elementy danego rodzaju. Automatycznie umożliwia również oglądanie i edycję stworzonych elementów, nawet jeżeli rola nie posiada do tego uprawnień.',
+                'dashboard'     => 'Pozwala edytować pulpity i ich widżety.',
+                'delete'        => 'Pozwala usuwać elementy danego rodzaju.',
+                'edit'          => 'Pozwala modyfikować elementy danego rodzaju.',
                 'entity_note'   => 'Pozwala uczestnikom nie posiadającym praw edycji dodawać komentarze do elementów kampanii.',
+                'manage'        => 'Pozwala edytować kampanię jakby uczestnik był administratorem, ale nie daje uprawnień by ją usunąć.',
+                'members'       => 'Pozwala zapraszać nowych uczestników kampanii.',
+                'permission'    => 'Pozwala zarządzać uprawnieniami tych elementów danego typu, które uczestnik może też edytować.',
+                'read'          => 'Pozwala widzieć wszystkie elementy danego typu, które nie są tajne.',
             ],
             'hint'      => 'Ta rola ma automatyczny dostęp do wszystkiego.',
         ],
@@ -394,6 +415,7 @@ TEXT
     ],
     'ui'                                => [
         'helper'    => 'Użyj tych ustawień by zmienić zachowanie niektórych elementów kampanii.',
+        'other'     => 'Inne',
     ],
     'visibilities'                      => [
         'private'   => 'Prywatna',

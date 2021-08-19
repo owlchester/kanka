@@ -129,11 +129,12 @@ return [
             'success'   => 'Widget removido so dashboard',
         ],
         'fields'                    => [
-            'dashboard' => 'Dashboard',
-            'name'      => 'Nome do widget personalizado',
-            'order'     => 'Ordenação',
-            'text'      => 'Texto',
-            'width'     => 'Largura',
+            'dashboard'         => 'Dashboard',
+            'name'              => 'Nome do widget personalizado',
+            'optional-entity'   => 'Link para entidade',
+            'order'             => 'Ordenação',
+            'text'              => 'Texto',
+            'width'             => 'Largura',
         ],
         'orders'                    => [
             'name_asc'  => 'Nome Ascendente',

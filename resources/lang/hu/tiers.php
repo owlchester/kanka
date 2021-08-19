@@ -12,6 +12,7 @@ return [
         'hall_of_fame'      => 'Dicsőségcsarnok',
         'map_size'          => ':size méretű Térkép feltöltés',
         'nice_image'        => 'Alapértelmezett entitás képek',
+        'no_ads'            => 'Nincsenek reklámok',
         'pagination'        => 'Maximum :amount entitás megjelenítése oldalanként',
         'vote_influence'    => 'Közösségi szavazásban való résztvétel',
     ],

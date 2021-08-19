@@ -2,40 +2,45 @@
 
 return [
     'actions'       => [
-        'add'       => 'Nova nota de entidade',
+        'add'       => 'Nova entrada',
+        'add_role'  => 'Engadir rol',
         'add_user'  => 'Engadir integrante',
     ],
     'create'        => [
-        'description'   => 'Crear unha nova nota de entidade',
-        'success'       => 'Nota de entidade ":name" engadida a ":entity".',
-        'title'         => 'Nova nota de entidade en ":name"',
+        'description'   => 'Crear unha nova entrada',
+        'success'       => 'Entrada ":name" engadida a ":entity".',
+        'title'         => 'Nova entrada en ":name"',
     ],
     'destroy'       => [
-        'success'   => 'Nota de entidade ":name" de ":entity" eliminada.',
+        'success'   => 'Entrada ":name" de ":entity" eliminada.',
     ],
     'edit'          => [
-        'description'   => 'Actualizar unha nota de entidade existente.',
-        'success'       => 'Nota de entidade ":name" de ":entidade" actualizada.',
-        'title'         => 'Actualizar nota de entidade de ":name"',
+        'description'   => 'Actualizar unha entrada existente.',
+        'success'       => 'Entrada ":name" de ":entidade" actualizada.',
+        'title'         => 'Actualizar entrada de ":name"',
     ],
     'fields'        => [
-        'collapsed' => 'Nota de entidade colapsada por defecto.',
+        'collapsed' => 'Entrada colapsada por defecto.',
         'creator'   => 'Creada por',
-        'entry'     => 'Entrada',
+        'entry'     => 'Entrada principal',
         'name'      => 'Nome',
+    ],
+    'footer'        => [
+        'created'   => 'Creada por :user o :date',
+        'updated'   => 'Actualizada por :user o :date',
     ],
     'hint'          => 'Aquí podes poñer información que non encaixe nos campos estándar dunha entidade, ou que queras manter privada.',
     'hints'         => [
-        'reorder'   => 'Podes reordenar as notas dunha entidade facendo clic na icona :icon ao lado de Historia no menú da entidade.',
+        'reorder'   => 'Podes reordenar as entradas dunha entidade facendo clic na icona :icon ao lado de Historia no menú da entidade.',
     ],
     'index'         => [
-        'title' => 'Notas de entidade de ":name"',
+        'title' => 'Entradas de ":name"',
     ],
     'placeholders'  => [
-        'name'  => 'Nome da nota de entidade, observación ou comentario.',
+        'name'  => 'Nome da entrada, observación ou comentario.',
     ],
     'show'          => [
         'advanced'  => 'Permisos avanzados',
-        'title'     => 'Nota de entidade ":name" de ":entity"',
+        'title'     => 'Entrada ":name" de ":entity"',
     ],
 ];

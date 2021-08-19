@@ -18,6 +18,7 @@ return [
         'dashboard'     => 'Dashboard',
         'entity'        => 'Objekt',
         'filters'       => 'Filter',
+        'is_nested'     => 'verschachtelt',
         'menu'          => 'Menü',
         'name'          => 'Name',
         'position'      => 'Position',

@@ -2,6 +2,12 @@
 
 return [
     'campaign'          => [
+        'application'   => [
+            'approved'  => 'A :campaign kampányhoz való kérelmedet elfogadták.',
+            'new'       => ':campaign kampányhoz új kérelem',
+            'rejected'  => 'A :campaign kampányhoz való kérelmedet elutasították. Az okok: :reason',
+        ],
+        'asset_export'  => 'A kampány exportja elérhető. A link :time percig él.',
         'boost'         => [
             'add'           => 'A(z) :campaign kampány boost-olva lett :user által.',
             'remove'        => ':user nem boost-olja már tovább a(z) :campaign kampányt.',
@@ -11,6 +17,9 @@ return [
         'export_error'  => 'Hiba történt a kampány exportálása során. Kérlek vedd fel velünk a kapcsolatot, ha a probléma továbbra is fennállna!',
         'join'          => ':user csatlakozott a :campaign kampányhoz.',
         'leave'         => ':user elhagyta a :campaign kampányt.',
+        'plugin'        => [
+            'deleted'   => 'A :plugin beépülőt törölték a piactérről és eltávolítottuk a :campaign kampányodból.',
+        ],
         'role'          => [
             'add'       => 'Megkaptad a :role szerepet a :campaign kampányban.',
             'remove'    => 'Elvesztetted a :role szerepet a :campaign kampányban.',

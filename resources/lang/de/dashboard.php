@@ -143,11 +143,12 @@ TEXT
             'success'   => 'Widget vom Dashboard entfernt.',
         ],
         'fields'                    => [
-            'dashboard' => 'Dashboard',
-            'name'      => 'Benutzerdefinierter Widget-Name',
-            'order'     => 'Bestellung',
-            'text'      => 'Text',
-            'width'     => 'Breite',
+            'dashboard'         => 'Dashboard',
+            'name'              => 'Benutzerdefinierter Widget-Name',
+            'optional-entity'   => 'Link zum Objekt',
+            'order'             => 'Bestellung',
+            'text'              => 'Text',
+            'width'             => 'Breite',
         ],
         'orders'                    => [
             'name_asc'  => 'Name aufsteigend',

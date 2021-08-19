@@ -4,7 +4,7 @@ return [
     'current'   => 'A túa subscripción actual',
     'features'  => [
         'api_requests'      => ':amount solicitudes API / minuto',
-        'boosters'          => 'Potenciacións de campaña',
+        'boosters'          => 'Potenciadores de campaña',
         'community_vote'    => 'Votacións da comunidade',
         'discord'           => 'Roles de Discord',
         'feature_influence' => 'Influencia sobre novas funcionalidades',

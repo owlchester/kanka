@@ -5,6 +5,9 @@ return [
         'success'   => 'Elem hozzáadva az idővonalhoz.',
         'title'     => 'Új idővonal elem',
     ],
+    'delete'        => [
+        'success'   => ':name elemet eltávolítottuk.',
+    ],
     'edit'          => [
         'success'   => 'Elem frissítve',
         'title'     => 'Idővonal elem szerkesztése',

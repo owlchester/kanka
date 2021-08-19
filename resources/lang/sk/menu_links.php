@@ -18,6 +18,7 @@ return [
         'dashboard'     => 'Nástenka',
         'entity'        => 'Objekt',
         'filters'       => 'Filtre',
+        'is_nested'     => 'Vnorené',
         'menu'          => 'Menu',
         'name'          => 'Názov',
         'position'      => 'Pozícia',

@@ -89,6 +89,13 @@ return [
             'exhausted_boosts'      => 'Você está sem impulsos para dar. Remova o impulso de uma campanha antes de dar a outra.',
             'exhausted_superboosts' => 'Você está sem impulsionamentos. Você precisa de 3 impulsos para tornar uma campanha Super Impulsionada.',
         ],
+        'modals'            => [
+            'more'  => [
+                'action'    => 'Mais impulsionamentos?',
+                'body'      => 'Você pode obter mais impulsionamentos atualizando seu nível de assinatura ou removendo-os de uma campanha. O desbloqueio de uma campanha não exclui nenhuma das informações impulsionadas, apenas a desativa até que você impulsione essa campanha novamente.',
+                'title'     => 'Obtendo mais impulsionamentos',
+            ],
+        ],
         'success'           => [
             'boost'         => 'Campanha :name impulsionada',
             'delete'        => 'Seu impulsionamento foi removido de :name',
