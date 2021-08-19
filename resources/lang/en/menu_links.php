@@ -17,7 +17,7 @@ return [
         'entity'        => 'Entity',
         'filters'       => 'Filters',
         'is_nested'     => 'Nested',
-        'menu'          => 'Menu',
+        'menu'          => 'Subpage',
         'name'          => 'Name',
         'position'      => 'Position',
         'random'        => 'Random',
@@ -28,7 +28,7 @@ return [
     ],
     'helpers'       => [
         'dashboard' => 'Have the quick link target one of the campaign\'s custom dashboards.',
-        'entity'    => 'Set up this quick link to go directly to an entity. The :tab field controls which of the tabs is focused. The :menu field controls which subpage of the entity is opened.',
+        'entity'    => 'Set up this quick link to go directly to an entity. The :menu field controls which subpage of the entity is opened.',
         'position'  => 'Use this field to control in which ascending order the links appear in the menu.',
         'random'    => 'Use this field to have a quick link pointing to a random entity. You can filter the link to only go to a specific entity type.',
         'selector'  => 'Configure where this quick link goes when a user clicks on it in the sidebar.',
@@ -43,7 +43,7 @@ return [
         'filters'   => 'location_id=15&type=city',
         'menu'      => 'Menu subpage (use the last text of the url)',
         'name'      => 'Name of the quick link',
-        'tab'       => 'entry, relations, notes',
+        'tab'       => '(deprecated)',
     ],
     'random_types'  => [
         'any'   => 'Any entity',

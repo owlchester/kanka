@@ -44,6 +44,7 @@ $permissions = [
 
             <div class="row">
                 <div class="col-md-6">
+                    <input type="hidden" name="location_id" value="" />
                     @include('cruds.fields.location', ['from' => null])
                 </div>
                 <div class="col-md-6">

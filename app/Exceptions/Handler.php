@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Foundation\Http\Exceptions\MaintenanceModeException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 use Http\Client\Exception\HttpException;
@@ -68,8 +69,15 @@ class Handler extends ExceptionHandler
                 ->withErrors(trans('redirects.session_timeout'));
         }
 
-        if ($exception instanceof HttpException && $exception->getStatusCode() == 403 && auth()->guest()) {
+        elseif ($exception instanceof HttpException && $exception->getStatusCode() == 403 && auth()->guest()) {
             session()->put('login_redirect', $request->getRequestUri());
+        }
+
+        elseif ($exception instanceof MaintenanceModeException) {
+            return response()->view('errors.maintenance', [
+                'message' => $exception->getMessage(),
+                'retry' => $exception->retryAfter
+            ], 500);
         }
 
         return parent::render($request, $exception);

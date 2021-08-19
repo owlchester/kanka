@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-@include('layouts._tracking', ['noads' => true])
+    @include('layouts._tracking', ['noads' => true])
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,7 +11,7 @@
     <meta property="og:title" content="{{ $title ?? __('front.meta.title') }} - {{ config('app.name') }}" />
     <meta property="og:site_name" content="{{ config('app.site_name') }}" />
 
-    <title>{{ $error }} - {{ config('app.name', 'Kanka') }}</title>
+    <title>{{ __('errors.503.title') }} - {{ config('app.name', 'Kanka') }}</title>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -47,19 +47,11 @@
         <div class="row h-100">
             <div class="col-lg-7 my-auto">
                 <div class="header-content mx-auto">
-                    <h1 class="mb-5" id="{{ $error }}">{{ __('errors.' . $error . '.title') }}</h1>
-                    @if (is_array(__('errors.' . $error . '.body')))
-                        @foreach (__('errors.' . $error . '.body') as $text)
-                            <p class="mb-5">{{ $text }}</p>
-                        @endforeach
+                    <h1 class="mb-5" id="maintenance">{{ __('errors.503.title') }}</h1>
 
-                        @if($error == 503)
-{{--                                <p class="text-warning">This downtime will last until roughly 09:00 AM UTC as we fix some issues with the servers.</p>--}}
-                        @endif
-                    @else
-                    <p class="mb-5">{{ __('errors.' . $error . '.body') }}</p>
-                    @endif
 
+                    <p class="mb-5">{{ __('errors.503.body.1') }}</p>
+                    <p class="mb-5">{{ __('errors.503.body.2') }}</p>
 
                     <p>{!! __('errors.footer', ['discord' => link_to(config('social.discord'), 'Discord')]) !!}</p>
 
@@ -71,14 +63,14 @@
                     <p>
                         <a href="/login" class="btn btn-outline btn-xl">{{ __('front.menu.login') }}</a>
                     </p>@if(config('auth.register_enabled'))
-                    <p>
-                        <a href="/register" class="btn btn-outline btn-xl">{{ __('front.menu.register') }}</a>
-                    </p>@endif
+                        <p>
+                            <a href="/register" class="btn btn-outline btn-xl">{{ __('front.menu.register') }}</a>
+                        </p>@endif
                 @endif
 
-                    <p>
-                        <a href="/" class="btn btn-outline btn-xl">{{ __('front.menu.home') }}</a>
-                    </p>
+                <p>
+                    <a href="/" class="btn btn-outline btn-xl">{{ __('front.menu.home') }}</a>
+                </p>
             </div>
         </div>
     </div>
@@ -111,7 +103,7 @@
         addStylesNode.parentElement.removeChild(addStylesNode);
     };
     var raf = requestAnimationFrame || mozRequestAnimationFrame ||
-        webkitRequestAnimationFrame || msRequestAnimationFrame;
+            webkitRequestAnimationFrame || msRequestAnimationFrame;
     if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
     else window.addEventListener('load', loadDeferredStyles);
 </script>

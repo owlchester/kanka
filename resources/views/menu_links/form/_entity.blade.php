@@ -43,7 +43,7 @@ $menus = [
         //'characters' => __('locations.show.tabs.characters') . ' (' . __('entities.locations') . ')',
         //'items' => __('locations.show.tabs.items') . ' (' . __('entities.locations') . ')',
         'inventory' => __('crud.tabs.inventory'),
-        'relations' => __('crud.tabs.relations'),
+        'relations' => __('crud.tabs.connections'),
 ];
 asort($menus);
 $menus = array_merge(['' => ''], $menus);
@@ -65,7 +65,7 @@ $menus = array_merge(['' => ''], $menus);
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6" style="display:none">
         <div class="form-group">
             <label>{{ trans('menu_links.fields.tab') }}</label>
             {!! Form::select('tab', $tabs, null, ['class' => 'form-control']) !!}

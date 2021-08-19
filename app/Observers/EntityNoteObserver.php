@@ -47,15 +47,13 @@ class EntityNoteObserver
             $entityNote->is_private = false;
         }
 
-        if ($entityNote->is_pinned) {
-            if (empty($entityNote->position)) {
-                $last = $entityNote->entity->notes()
-                    ->where('is_pinned', true)
-                    ->where('id', '!=', $entityNote->id)
-                    ->orderBy('position', 'desc')
-                    ->first();
-                $entityNote->position = $last ? ($last->position + 1) : 1;
-            }
+        if (empty($entityNote->position)) {
+            $last = $entityNote->entity->notes()
+                ->where('is_pinned', true)
+                ->where('id', '!=', $entityNote->id)
+                ->orderBy('position', 'desc')
+                ->first();
+            $entityNote->position = $last ? ($last->position + 1) : 1;
         }
 
         $settings = $entityNote->settings;

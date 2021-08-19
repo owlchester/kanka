@@ -16,7 +16,6 @@
 
 
 @section('entity-header-actions')
-    @can('relation', [$entity->child, 'add'])
         <div class="header-buttons">
             <div class="btn-group">
                 <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'table']) }}" class="btn btn-sm btn-default" data-toggle="tooltip" title="{{ __('entities/relations.actions.mode-table') }}">
@@ -27,14 +26,15 @@
                 </a>
             </div>
 
+            @can('relation', [$entity->child, 'add'])
             <a href="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}" class="btn btn-sm btn-warning" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.relations.create', [$entity, 'mode' => $mode]) }}">
                 <i class="fa fa-plus"></i>
                 <span class="hidden-xs hidden-sm">
                     {{ __('crud.relations.actions.add') }}
                 </span>
             </a>
+            @endcan
         </div>
-    @endcan
 @endsection
 
 @include('entities.components.header', ['model' => $entity->child, 'entity' => $entity])
