@@ -30,7 +30,7 @@
                         @if($campaign->isPublic() && $campaign->publicHasNoVisibility())
                             <div class="alert alert-warning">
                                 <p>{!! __('campaigns.helpers.public_no_visibility', [
-    'fix' => link_to_route('campaigns.campaign_roles.public', __('crud.fix-this-issue'), $campaign)
+    'fix' => link_to_route('campaigns.campaign_roles.public', __('crud.fix-this-issue'))
 ]) !!}</p>
                             </div>
                         @endif

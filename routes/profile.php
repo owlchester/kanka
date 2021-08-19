@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 Route::get('/settings', 'Settings\ProfileController@index')->name('settings');
 Route::get('/settings/profile', 'Settings\ProfileController@index')->name('settings.profile');

@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreLocation extends FormRequest
 {
+    use ApiRequest;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -25,7 +28,7 @@ class StoreLocation extends FormRequest
     {
         $rules = [
             'name' => 'required|max:191',
-            'type' => 'max:45',
+            'type' => 'max:191',
             'parent_location_id', 'nullable|integer|exists:locations,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
@@ -39,6 +42,6 @@ class StoreLocation extends FormRequest
             $rules['parent_location_id'] = 'integer|not_in:' . ((int) $self) . '|exists:locations,id';
         }
 
-        return $rules;
+        return $this->clean($rules);
     }
 }

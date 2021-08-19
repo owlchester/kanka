@@ -32,9 +32,16 @@ class LayoutController extends Controller
      */
     public function update(StoreSettingsLayout $request)
     {
-        Auth::user()
-            ->saveSettings($request->only(['editor', 'default_nested', 'advanced_mentions', 'new_entity_workflow']))
+        /** @var \App\User $user */
+        $user = Auth::user();
+        $user->saveSettings($request->only(['editor', 'default_nested', 'advanced_mentions', 'new_entity_workflow', 'campaign_switcher_order_by']))
             ->update($request->only(['theme', 'default_pagination', 'date_format']));
+
+        //refresh user campaigns in cache if order by has changed
+        if ($request->has('campaign_switcher_order_by')) {
+            \App\Facades\UserCache::clearCampaigns();
+            \App\Facades\UserCache::clearFollows();
+        }
 
         return redirect()
             ->route('settings.layout')

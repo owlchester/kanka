@@ -85,3 +85,5 @@ $isAdmin = Auth::user()->isAdmin();
     </div>
     <hr class="visible-xs" />
 </div>
+
+{!! Form::hidden('character_save_organisations', 1) !!}

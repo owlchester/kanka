@@ -4,10 +4,13 @@
 namespace App\Http\Requests;
 
 
+use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTimelineElement extends FormRequest
 {
+    use ApiRequest;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -37,7 +40,7 @@ class StoreTimelineElement extends FormRequest
             'icon' => 'nullable|string',
         ];
 
-        return $rules;
+        return $this->clean($rules);
     }
 
 }

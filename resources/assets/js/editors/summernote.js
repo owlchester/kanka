@@ -14,7 +14,6 @@ $(document).ready(function () {
 window.initSummernote = function() {
 
     var $summernote = $('.html-editor').summernote({
-        bob: debug($(this)),
         height: '300px',
         lang: editorLang(summernoteConfig.data('locale')),
         toolbar: [
@@ -41,6 +40,9 @@ window.initSummernote = function() {
             },
             onChange: function() {
                 window.entityFormHasUnsavedChanges = true;
+            },
+            onChangeCodeview: function(contents, $editable) {
+                $summernote.summernote('code', contents);
             },
             /*onBlur: function() {
                 console.log('blury');
@@ -329,8 +331,4 @@ function buildErrors(data) {
         errors += data[key] + "\n";
     }
     return errors;
-}
-
-function debug(e) {
-    //console.log('e', e);
 }

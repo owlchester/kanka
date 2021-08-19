@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTimeline extends FormRequest
 {
+    use ApiRequest;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,7 +27,7 @@ class StoreTimeline extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required',
+            'name' => 'required|max:191',
             'type' => 'nullable|max:191',
             'timeline_id', 'nullable|integer|exists:timelines,id',
             'calendar_id' => 'nullable|integer|exists:calendars,id',
@@ -34,6 +37,6 @@ class StoreTimeline extends FormRequest
             'revert_order' => 'nullable',
         ];
 
-        return $rules;
+        return $this->clean($rules);
     }
 }

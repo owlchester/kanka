@@ -4,10 +4,13 @@
 namespace App\Http\Requests;
 
 
+use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreMapLayer extends FormRequest
 {
+    use ApiRequest;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -26,7 +29,7 @@ class StoreMapLayer extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required',
+            'name' => 'required|max:191',
             'entry' => 'nullable',
             'visibility' => 'string',
             'image' => 'required_without:image_url|mimes:jpeg,png,jpg,gif,webp,svg|max:' . auth()->user()->maxUploadSize(false, 'map'),
@@ -42,7 +45,7 @@ class StoreMapLayer extends FormRequest
             $rules['image_url'] = 'nullable|url|active_url';
         }
 
-        return $rules;
+        return $this->clean($rules);
     }
 
 }

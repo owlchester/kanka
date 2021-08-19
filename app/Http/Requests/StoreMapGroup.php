@@ -4,10 +4,13 @@
 namespace App\Http\Requests;
 
 
+use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreMapGroup extends FormRequest
 {
+    use ApiRequest;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -26,12 +29,12 @@ class StoreMapGroup extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required',
+            'name' => 'required|max:191',
             'visibility' => 'string',
             'position' => 'nullable|string|max:3',
         ];
 
-        return $rules;
+        return $this->clean($rules);
     }
 
 }

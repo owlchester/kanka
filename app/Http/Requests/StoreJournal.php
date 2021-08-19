@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreJournal extends FormRequest
 {
+    use ApiRequest;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -24,7 +27,7 @@ class StoreJournal extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required',
+            'name' => 'required|max:191',
             'date' => 'nullable|date',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'character_id' => 'nullable|exists:characters,id',
@@ -46,6 +49,6 @@ class StoreJournal extends FormRequest
             $rules['journal_id'] = 'integer|not_in:' . ((int) $self) . '|exists:journals,id';
         }
 
-        return $rules;
+        return $this->clean($rules);
     }
 }

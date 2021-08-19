@@ -25,9 +25,6 @@ if (isset($model)) {
         @include('cruds.fields.name', ['trans' => 'menu_links'])
     </div>
     <div class="col-md-6">
-        @include('cruds.fields.position', ['trans' => 'menu_links'])
-    </div>
-    <div class="col-md-6">
 
         <div class="form-group">
             <label class="control-label">{{ __('entities/links.fields.icon') }}</label>

@@ -4,10 +4,13 @@
 namespace App\Http\Requests;
 
 
+use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTimelineEra extends FormRequest
 {
+    use ApiRequest;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -32,7 +35,7 @@ class StoreTimelineEra extends FormRequest
             'end_date' => 'nullable|integer',
         ];
 
-        return $rules;
+        return $this->clean($rules);
     }
 
 }

@@ -28,6 +28,8 @@ use Illuminate\Support\Str;
  * @property Entity $target
  * @property boolean $is_private
  * @property array $optionsAllowedKeys
+ *
+ * @method self ordered()
  */
 class MenuLink extends MiscModel
 {

@@ -46,6 +46,27 @@ class ExportController extends Controller
         }
 
         return $this->service->entity($entity)->json();
+    }
 
+    /**
+     * @param Entity $entity
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function html(Entity $entity)
+    {
+        // Policies will always fail if they can't resolve the user.
+        if (Auth::check()) {
+            $this->authorize('view', $entity->child);
+        } else {
+            $this->authorizeEntityForGuest('read', $entity->child);
+        }
+
+        return view('entities.pages.print.print')
+            ->with('entity', $entity)
+            ->with('model', $entity->child)
+            ->with('name', $entity->pluralType())
+            ->with('printing', true)
+        ;
     }
 }

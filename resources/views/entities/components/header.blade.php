@@ -42,14 +42,21 @@ if (auth()->check() && auth()->user()->isAdmin()) {
 $superboosted = $campaign->campaign()->boosted();
 
 ?>
+@if(!isset($printing))
 @section('entity-header')
+@endif
     <div class="row entity-header @if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) with-entity-header" style="background-image: url('{{ $entity->getHeaderUrl($superboosted) }}');@endif">
 
         @if ($imageUrl)
         <div class="col-md-2 entity-image-col">
 
             @can('update', $model)
+                @if(isset($printing) && $printing)
+                    <img src="{{ $imagePath }}" class="entity-print-image" alt="{{ $model->name }}"/>
+                @endif
+
                 <div class="entity-image dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="background-image: url('{{ $imagePath }}');"></div>
+
 
                 <ul class="dropdown-menu dropdown-menu-right" role="menu">
                     <li>
@@ -144,8 +151,8 @@ $superboosted = $campaign->campaign()->boosted();
                                     @endif
                                     <li class="divider"></li>
                                     <li>
-                                        <a href="{{ route('entities.export', $entity) }}">
-                                            <i class="fa fa-download" aria-hidden="true"></i> {{ __('crud.actions.export') }}
+                                        <a href="{{ route('entities.html-export', $entity) }}">
+                                            <i class="fa fa-print" aria-hidden="true"></i> {{ __('crud.actions.print') }}
                                         </a>
                                     </li>
                                     <li>
@@ -215,4 +222,8 @@ $superboosted = $campaign->campaign()->boosted();
             @yield('entity-header-actions')
         </div>
     </div>
+
+
+@if(!isset($printing))
 @endsection
+@endif

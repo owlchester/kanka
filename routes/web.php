@@ -258,15 +258,25 @@ Route::group([
         Route::get('/roles/search', 'CampaignRoleController@search')->name('roles.find');
 
 
-        Route::get('/default-images', 'Campaign\DefaultImageController@index')->name('campaign.default-images');
-        Route::get('/default-images/create', 'Campaign\DefaultImageController@create')->name('campaign.default-images.create');
-        Route::post('/default-images/create', 'Campaign\DefaultImageController@store')->name('campaign.default-images.store');
-        Route::delete('/default-images', 'Campaign\DefaultImageController@destroy')->name('campaign.default-images');
+        Route::get('/default-images', 'Campaign\DefaultImageController@index')
+            ->name('campaign.default-images');
+        Route::get('/default-images/create', 'Campaign\DefaultImageController@create')
+            ->name('campaign.default-images.create');
+        Route::post('/default-images/create', 'Campaign\DefaultImageController@store')
+            ->name('campaign.default-images.store');
+        Route::delete('/default-images', 'Campaign\DefaultImageController@destroy')
+            ->name('campaign.default-images');
 
-        Route::post('/gallery/folder', 'Campaign\GalleryController@folder')->name('campaign.gallery.folder');
+        Route::post('/gallery/folder', 'Campaign\GalleryController@folder')
+            ->name('campaign.gallery.folder');
 
-        Route::get('/menu_links/{menu_link}/random', 'MenuLinkController@random')->name('menu_links.random');
+        Route::get('/menu_links/{menu_link}/random', 'MenuLinkController@random')
+            ->name('menu_links.random');
 
+        Route::get('/quick-links/reorder', [\App\Http\Controllers\QuickLinkController::class, 'reorder'])
+            ->name('quick-links.reorder');
+        Route::post('/quick-links/reorder', [\App\Http\Controllers\QuickLinkController::class, 'save'])
+            ->name('quick-links.reorder-save');
 
         // Entity Abilities API
         Route::get('/entities/{entity}/abilities', 'Entity\AbilityController@index')->name('entities.abilities');
@@ -347,15 +357,16 @@ Route::group([
 
             'images' => 'Campaign\GalleryController',
         ]);
-        Route::get('/campaigns/{campaign}/leave', 'CampaignController@leave')->name('campaigns.leave');
-        Route::post('/campaigns/{campaign}/campaign_settings', 'CampaignSettingController@save')->name('campaigns.settings.save');
+        Route::get('/leave-campaign', 'CampaignController@leave')->name('campaigns.leave');
+
+        Route::post('campaign-ssettings', 'CampaignSettingController@save')->name('campaigns.settings.save');
 
         Route::get('/campaigns/{campaign}/dashboard-header/{campaignDashboardWidget?}', 'Campaign\DashboardHeaderController@edit')->name('campaigns.dashboard-header.edit');
         Route::patch('/campaigns/{campaign}/dashboard-header', 'Campaign\DashboardHeaderController@update')->name('campaigns.dashboard-header.update');
 
         // Helper links
-        Route::get('/campaign/{campaign}/campaign_roles/admin', 'CampaignRoleController@admin')->name('campaigns.campaign_roles.admin');
-        Route::get('/campaign/{campaign}/campaign_roles/public', 'CampaignRoleController@public')->name('campaigns.campaign_roles.public');
+        Route::get('/campaign-roles/admin', 'CampaignRoleController@admin')->name('campaigns.campaign_roles.admin');
+        Route::get('/campaign-roles/public', 'CampaignRoleController@public')->name('campaigns.campaign_roles.public');
 
         // Marketplace plugin route
         if(config('marketplace.enabled')) {
@@ -461,6 +472,7 @@ Route::group([
 
         // Export
         Route::get('/entities/export/{entity}', 'EntityController@export')->name('entities.export');
+        Route::get('/entities/{entity}/html-export', 'Entity\ExportController@html')->name('entities.html-export');
 
         Route::get('/entities/{entity}/template', 'EntityController@template')->name('entities.template');
 
@@ -475,10 +487,10 @@ Route::group([
 
         // The campaign management sub pages
         Route::get('/campaign', 'CampaignController@index')->name('campaign');
-        Route::get('/campaign/settings', 'CampaignSettingController@index')->name('campaign_settings');
-        Route::post('/campaign/settings', 'CampaignSettingController@save')->name('campaign_settings.save');
-        Route::get('/campaign/export', 'Campaign\ExportController@index')->name('campaign_export');
-        Route::post('/campaign/export', 'Campaign\ExportController@export')->name('campaign_export.save');
+        Route::get('/campaign-settings', 'CampaignSettingController@index')->name('campaign_settings');
+        Route::post('/campaign-settings', 'CampaignSettingController@save')->name('campaign_settings.save');
+        Route::get('/campaign-export', 'Campaign\ExportController@index')->name('campaign_export');
+        Route::post('/campaign-export', 'Campaign\ExportController@export')->name('campaign_export.save');
         Route::get('/campaign.styles', 'CampaignController@css')->name('campaign.css');
         Route::get('/campaign_plugin.styles', 'Campaign\CampaignPluginController@css')->name('campaign_plugins.css');
 

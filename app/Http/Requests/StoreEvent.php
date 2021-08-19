@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreEvent extends FormRequest
 {
+    use ApiRequest;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,8 +26,8 @@ class StoreEvent extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required',
+        return $this->clean([
+            'name' => 'required|max:191',
             'location_id', 'nullable|integer|exists:locations,id',
             'event_id', 'nullable|integer|exists:events,id',
             'type' => 'max:191',
@@ -32,6 +35,6 @@ class StoreEvent extends FormRequest
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable',
-        ];
+        ]);
     }
 }

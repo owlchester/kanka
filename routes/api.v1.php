@@ -77,6 +77,7 @@ Route::post('campaigns/{campaign}/entities/templates/{entity}/switch', 'EntityTe
 
 Route::get('campaigns/{campaign}/entities', 'EntityApiController@index');
 Route::get('campaigns/{campaign}/entities/{entity}', 'EntityApiController@show');
+Route::get('campaigns/{campaign}/entities/{entity}/mentions', 'EntityMentionApiController@index');
 
 
 //Route::get('campaigns/{campaign}/settings', 'CampaignSettingApiController@index');

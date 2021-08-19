@@ -12,6 +12,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class EntityResource extends JsonResource
 {
+    use ApiSync;
+
     /** @var bool If the entity should come with related objects */
     public $withRelated = false;
 
@@ -79,14 +81,18 @@ class EntityResource extends JsonResource
         }
 
         if (request()->get('related', false) || request()->get('image', false)) {
-            $campaign = CampaignLocalization::getCampaign();
-            $image = $campaign->boosted(true) && !empty($entity->image);
-            $data['child'] = [
-                'image' => $image ? $entity->image->path : $entity->child->image,
-                'image_full' => $image ? Img::resetCrop()->url($entity->image->path) : $entity->avatar(),
-                'image_thumb' => $image ? Img::crop(40, 40)->url($entity->image->path) : $entity->avatar(true),
-                'has_custom_image' => $image || !empty($entity->child->image)
-            ];
+            if (!$entity->child) {
+                $data['child'] = 'Invalid child, please contact Jay on Discord with the following: EntityResource for #' . $entity->id;
+            } else {
+                $campaign = CampaignLocalization::getCampaign();
+                $image = $campaign->boosted(true) && !empty($entity->image);
+                $data['child'] = [
+                    'image' => $image ? $entity->image->path : $entity->child->image,
+                    'image_full' => $image ? Img::resetCrop()->url($entity->image->path) : $entity->avatar(),
+                    'image_thumb' => $image ? Img::crop(40, 40)->url($entity->image->path) : $entity->avatar(true),
+                    'has_custom_image' => $image || !empty($entity->child->image)
+                ];
+            }
         }
 
         // Get the actual model
@@ -173,24 +179,5 @@ class EntityResource extends JsonResource
         $final = array_merge($merged, $prepared);
         //ksort($final);
         return $final;
-    }
-
-
-    /**
-     * Create new anonymous resource collection.
-     *
-     * @param  mixed  $resource
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
-     */
-    public static function collection($resource)
-    {
-        $additional = [
-            'sync' => Carbon::now(),
-        ];
-        if (config('app.debug')) {
-            $additional['queries'] = new ApiService();
-        }
-        return parent::collection($resource)
-            ->additional($additional);
     }
 }

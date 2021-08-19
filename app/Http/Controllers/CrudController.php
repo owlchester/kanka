@@ -9,6 +9,7 @@ use App\Facades\FormCopy;
 use App\Http\Resources\AttributeResource;
 use App\Models\Entity;
 use App\Models\AttributeTemplate;
+use App\Models\MenuLink;
 use App\Models\MiscModel;
 use App\Services\FilterService;
 use App\Traits\BulkControllerTrait;
@@ -341,7 +342,7 @@ class CrudController extends Controller
         $ajax = request()->ajax();
 
         // Fix for models without an entity
-        if (empty($model->entity)) {
+        if (empty($model->entity) && !($model instanceof MenuLink)) {
             $model->save();
             $model->load('entity');
         }

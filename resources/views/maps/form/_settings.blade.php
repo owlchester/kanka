@@ -129,20 +129,6 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>{{ trans('maps.fields.center_x') }}</label>
-                            {!! Form::number(
-                            'center_x',
-                            FormCopy::field('center_x')->string(),
-                            [
-                            'placeholder' => __('maps.placeholders.center_x'),
-                            'class' => 'form-control',
-                            'min' => 0,
-                            ]
-                            ) !!}
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
                             <label>{{ trans('maps.fields.center_y') }}</label>
                             {!! Form::number(
                             'center_y',
@@ -151,6 +137,22 @@
                             'placeholder' => __('maps.placeholders.center_y'),
                             'class' => 'form-control',
                             'min' => 0,
+                            'step' => 0.001
+                            ]
+                            ) !!}
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>{{ trans('maps.fields.center_x') }}</label>
+                            {!! Form::number(
+                            'center_x',
+                            FormCopy::field('center_x')->string(),
+                            [
+                            'placeholder' => __('maps.placeholders.center_x'),
+                            'class' => 'form-control',
+                            'min' => 0,
+                            'step' => 0.001
                             ]
                             ) !!}
                         </div>

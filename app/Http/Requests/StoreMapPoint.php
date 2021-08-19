@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreMapPoint extends FormRequest
 {
+    use ApiRequest;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,7 +26,7 @@ class StoreMapPoint extends FormRequest
      */
     public function rules()
     {
-        return [
+        return $this->clean([
             'target_entity_id' => 'integer|exists:entities,id|required_without_all:name',
             'name' => 'nullable|string|required_without_all:target_entity_id',
             'axis_x' => 'required|integer',
@@ -32,6 +35,6 @@ class StoreMapPoint extends FormRequest
             'size' => 'required',
             'shape' => 'required',
             'icon' => 'required',
-        ];
+        ]);
     }
 }

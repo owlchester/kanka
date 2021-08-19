@@ -5,11 +5,13 @@ namespace App\Http\Requests;
 
 
 use App\Http\Resources\ApiExclusion;
+use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreMapMarker extends FormRequest
 {
-    use ApiExclusion;
+    use ApiRequest;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -50,13 +52,8 @@ class StoreMapMarker extends FormRequest
             'marker_size' => 'nullable|integer|min:10',
         ];
 
-        // Updating through the API? Make it easier
-        $self = request()->segment(7);
-//        if (!empty($self)) {
-//            $rules = $this->excludeForApi(['name', 'longitude', 'latitude', 'entity_id', 'shape_id', 'icon'], $rules);
-//        }
 
-        return $rules;
+        return $this->clean($rules);
     }
 
 }
