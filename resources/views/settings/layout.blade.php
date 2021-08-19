@@ -49,6 +49,19 @@
                         ], null, ['class' => 'form-control']) !!}
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{ __('profiles.settings.fields.campaign_switcher_order_by') }}</label>
+    {!! Form::select('campaign_switcher_order_by', [
+        'alphabetical' => __('profiles.campaign_switcher_order_by.alphabetical'),
+        'date_created' => __('profiles.campaign_switcher_order_by.date_created'),
+        'date_joined' => __('profiles.campaign_switcher_order_by.date_joined'),
+        'r_alphabetical' => __('profiles.campaign_switcher_order_by.r_alphabetical'),
+        'r_date_created' => __('profiles.campaign_switcher_order_by.r_date_created'),
+        'r_date_joined' => __('profiles.campaign_switcher_order_by.r_date_joined'),
+    ], auth()->user()->campaignSwitcherOrderBy, ['class' => 'form-control']) !!}
+                    </div>
+                </div>
             </div>
 
             <div class="row">
@@ -95,14 +108,6 @@
                             {{ __('profiles.settings.fields.advanced_mentions') }}
                         </label>
                         <p class="help-block">{{ __('profiles.settings.hints.advanced_mentions') }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>{{ __('profiles.settings.fields.campaign_switcher_order_by') }}</label>
-                            {!! Form::select('campaign_switcher_order_by', __('profiles.campaign_switcher_order_by'), auth()->user()->campaignSwitcherOrderBy, ['class' => 'form-control']) !!}
                     </div>
                 </div>
             </div>
