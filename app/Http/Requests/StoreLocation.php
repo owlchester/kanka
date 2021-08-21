@@ -28,7 +28,7 @@ class StoreLocation extends FormRequest
     {
         $rules = [
             'name' => 'required|max:191',
-            'type' => 'max:191',
+            'type' => 'nullable|max:191',
             'parent_location_id', 'nullable|integer|exists:locations,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',
