@@ -16,4 +16,4 @@
     </div>
 </div>
 
-@includeWhen($campaign->campaign()->boosted() && $model->entity->hasLinks(), 'entities.components.links')
+@includeWhen(!isset($printing) && $campaign->campaign()->boosted() && $model->entity->hasLinks(), 'entities.components.links')
