@@ -188,6 +188,7 @@ return [
             'update_currency'   => 'Save prefered currency',
         ],
         'benefits'              => 'By supporting us, you can unlock some new :features and help us invest more time into improving Kanka. No credit card information is stored or transits through our servers. We use :stripe to handle all billing.',
+        'benefits_features' => 'amazing features',
         'billing'               => [
             'helper'    => 'Your billing information is processed and stored safely through :stripe. This payment method is used for all of your subscriptions.',
             'saved'     => 'Saved payment method',
