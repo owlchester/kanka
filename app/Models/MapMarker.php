@@ -480,6 +480,7 @@ class MapMarker extends Model
     public function hasEntry(): bool
     {
         // If all that's in the entry is two \n, then there is no real content
-        return strlen($this->entry) > 2;
+        $stripped = trim(preg_replace('/\s\s+/', ' ', $this->entry));
+        return !empty($stripped);
     }
 }

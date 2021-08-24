@@ -1,4 +1,5 @@
 <?php
+/** @var \App\Models\MapMarker $model */
 
 $iconOptions = [
     1 => __('maps/markers.icons.marker'),
@@ -171,10 +172,10 @@ $sizeOptions = [
 </div>
 
 <div class="row">
-    <div class="col-sm-12 margin-bottom" style="{{ (isset($model) && !empty($model->entry) ? 'display: none' : '') }}">
+    <div class="col-sm-12 margin-bottom" style="{{ (isset($model) && $model->hasEntry() ? 'display: none' : '') }}">
         <a href="#" class="map-marker-entry-click">{{ __('maps/markers.actions.entry') }}</a>
     </div>
-    <div class="col-sm-12 map-marker-entry-entry" style="{{ (!isset($model) || empty($model->entry) ? 'display: none' : '') }}">
+    <div class="col-sm-12 map-marker-entry-entry" style="{{ (!isset($model) || !$model->hasEntry() ? 'display: none' : '') }}">
         <div class="form-group">
             <label>{{ __('crud.fields.entry') }}</label>
             {!! Form::textarea('entry', \App\Facades\FormCopy::field('entry')->string(), ['class' => 'form-control html-editor', 'id' => 'marker-entry', 'name' => 'entry']) !!}

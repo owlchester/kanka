@@ -38,6 +38,7 @@ $(document).ready(function() {
 
     initMapExplore();
     initMapForms();
+    initMapEntryClick();
 
 
     // Limit the size of custom svg icons to not overblow the marker size
@@ -98,7 +99,6 @@ function initMapExplore()
     }
 
     initLegend();
-    initMapEntryClick();
 }
 
 /**
@@ -137,7 +137,6 @@ function initMapForms()
     });
 
     initLegend();
-    initMapEntryClick();
 }
 
 function showSidebar()
