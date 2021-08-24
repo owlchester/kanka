@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreAttribute extends FormRequest
 {
+    use ApiRequest;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,12 +26,12 @@ class StoreAttribute extends FormRequest
      */
     public function rules()
     {
-        return [
+        return $this->clean([
             'entity_id' => 'required|exists:entities,id',
             'name' => 'required|max:191',
             'value' => 'nullable|string',
             'type' => 'nullable|string',
             'api_key' => 'nullable|string|max:20'
-        ];
+        ]);
     }
 }
