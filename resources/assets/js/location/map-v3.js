@@ -18,34 +18,9 @@ $(document).ready(function() {
         deleteConfirm();
     });
 
-    // Event fired when clicking on an existing map point
-
-    $('a[href="#marker-pin"]').click(function (e) {
-        $('input[name="shape_id"]').val(1);
-    });
-    $('a[href="#marker-label"]').click(function (e) {
-        $('input[name="shape_id"]').val(2);
-    });
-    $('a[href="#marker-circle"]').click(function (e) {
-        $('input[name="shape_id"]').val(3);
-    });
-    $('a[href="#marker-poly"]').click(function (e) {
-        $('input[name="shape_id"]').val(5);
-    });
-    $('a[href="#form-markers"]').click(function (e) {
-        window.map.invalidateSize();
-    });
-
     initMapExplore();
     initMapForms();
     initMapEntryClick();
-
-
-    // Limit the size of custom svg icons to not overblow the marker size
-    // $('.map .custom-icon svg').each(function (e) {
-    //     $(this).attr("height", 32).attr("width", 32).css('margin-top', '4px');
-    // });
-
 });
 
 /**
@@ -107,6 +82,33 @@ function initMapExplore()
  */
 function initMapForms()
 {
+    // Event fired when clicking on an existing map point
+
+    $('a[href="#marker-pin"]').click(function (e) {
+        $('input[name="shape_id"]').val(1);
+    });
+    $('a[href="#marker-label"]').click(function (e) {
+        $('input[name="shape_id"]').val(2);
+    });
+    $('a[href="#marker-circle"]').click(function (e) {
+        $('input[name="shape_id"]').val(3);
+    });
+    $('a[href="#marker-poly"]').click(function (e) {
+        $('input[name="shape_id"]').val(5);
+    });
+    $('a[href="#form-markers"]').click(function (e) {
+        window.map.invalidateSize();
+    });
+    $('select[name="size_id"]').change(function (e) {
+        if (this.value == 6) {
+            $('.map-marker-circle-helper').hide();
+            $('.map-marker-circle-radius').show();
+        } else {
+            $('.map-marker-circle-radius').hide();
+            $('.map-marker-circle-helper').show();
+        }
+    });
+
     //console.info('mapsv3', 'initMapForms');
     let layerForm = $('#map-layer-form');
     let markerForm = $('#map-marker-form');
@@ -124,16 +126,6 @@ function initMapForms()
     });
     groupForm.unbind('submit').on('submit', function() {
         window.entityFormHasUnsavedChanges = false;
-    });
-
-    $('select[name="size_id"]').change(function (e) {
-        if (this.value == 6) {
-            $('.map-marker-circle-helper').hide();
-            $('.map-marker-circle-radius').show();
-        } else {
-            $('.map-marker-circle-radius').hide();
-            $('.map-marker-circle-helper').show();
-        }
     });
 
     initLegend();
