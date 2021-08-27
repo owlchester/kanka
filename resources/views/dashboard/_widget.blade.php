@@ -45,8 +45,8 @@ if ($widget->entity) {
                 @endif
             @elseif (!empty($widget->conf('text')))
                 <span class="custom-name" title="{{ __('dashboard.widgets.fields.name') }}">
-                                    <i class="fas fa-paragraph"></i> {{ $widget->conf('text') }}
-                                </span>
+                    <i class="fas fa-paragraph"></i> {{ $widget->conf('text') }}
+                </span>
             @endif
 
 

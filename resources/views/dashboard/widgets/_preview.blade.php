@@ -7,6 +7,7 @@ $model = $widget->entity->child;
 $entity = $widget->entity;
 
 $specificPreview = 'dashboard.widgets.previews.' . $entity->type;
+$customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name, $widget->conf('text')) : null;
 
 \App\Facades\Dashboard::add($entity);
 ?>
@@ -38,7 +39,7 @@ $specificPreview = 'dashboard.widgets.previews.' . $entity->type;
                     <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                 @endif
                 @if (!empty($widget->conf('text')))
-                    {{ $widget->conf('text') }}
+                    {{ $customName }}
                 @else
                     {{ $widget->entity->name }}
                 @endif
