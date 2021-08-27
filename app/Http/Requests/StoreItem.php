@@ -28,7 +28,7 @@ class StoreItem extends FormRequest
     {
         return $this->clean([
             'name' => 'required|max:191',
-            'type' => 'max:191',
+            'type' => 'nullable|max:191',
             'location_id', 'nullable|integer|exists:locations,id',
             'character_id', 'nullable|integer|exists:character,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),

@@ -37,7 +37,12 @@ class LocaleChange
                     $user->save();
                 }
                 // Redirect to the user's normal locale
-                return redirect()->to(LaravelLocalization::getLocalizedURL($user->locale));
+                $targetUrl = LaravelLocalization::getLocalizedURL($user->locale);
+                // Because the request comes from the frontend machines and the https is stripped,
+                if (config('app.force_https') && !Str::startsWith('https', $targetUrl)) {
+                    $targetUrl = Str::replaceFirst('http://', 'https://', $targetUrl);
+                }
+                return redirect()->to($targetUrl);
             }
         }
 

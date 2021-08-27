@@ -28,7 +28,7 @@ class StoreConversation extends FormRequest
     {
         $rules = [
             'name' => 'required|max:191',
-            'type' => 'max:45',
+            'type' => 'nullable|max:45',
             'target' => 'required|max:191',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . auth()->user()->maxUploadSize(),
             'image_url' => 'nullable|url|active_url',

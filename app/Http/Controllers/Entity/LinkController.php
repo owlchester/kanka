@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class LinkController extends Controller
 {
@@ -150,7 +151,8 @@ class LinkController extends Controller
 
     /**
      * @param Entity $entity
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param EntityLink $entityLink
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function go(Entity $entity, EntityLink $entityLink)
@@ -164,6 +166,11 @@ class LinkController extends Controller
 
         if ($entityLink->entity_id !== $entity->id) {
             abort(404);
+        }
+
+        // If the link goes to the same domain, just go.
+        if (Str::startsWith($entityLink->url, config('app.url')) && !Str::contains($entityLink->url, 'entity_links/')) {
+            return redirect()->to($entityLink->url);
         }
 
         return view('entities.pages.links.go', compact(

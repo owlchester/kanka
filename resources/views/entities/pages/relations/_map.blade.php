@@ -34,6 +34,7 @@ $options = [
         </div>
     </div>
 </div>
+{!! Form::hidden('mode', 'map') !!}
 {!! Form::close() !!}
 
 <div class="box box-solid box-entity-relations box-entity-relations-explorer">

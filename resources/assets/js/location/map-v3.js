@@ -42,13 +42,7 @@ $(document).ready(function() {
 
     initMapExplore();
     initMapForms();
-
-
-    // Limit the size of custom svg icons to not overblow the marker size
-    // $('.map .custom-icon svg').each(function (e) {
-    //     $(this).attr("height", 32).attr("width", 32).css('margin-top', '4px');
-    // });
-
+    initMapEntryClick();
 });
 
 /**
@@ -102,7 +96,6 @@ function initMapExplore()
     }
 
     initLegend();
-    initMapEntryClick();
 }
 
 /**
@@ -130,18 +123,7 @@ function initMapForms()
         window.entityFormHasUnsavedChanges = false;
     });
 
-    $('select[name="size_id"]').change(function (e) {
-        if (this.value == 6) {
-            $('.map-marker-circle-helper').hide();
-            $('.map-marker-circle-radius').show();
-        } else {
-            $('.map-marker-circle-radius').hide();
-            $('.map-marker-circle-helper').show();
-        }
-    });
-
     initLegend();
-    initMapEntryClick();
 }
 
 function showSidebar()
