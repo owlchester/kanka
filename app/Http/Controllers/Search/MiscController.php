@@ -231,7 +231,7 @@ class MiscController extends Controller
             if (Str::startsWith($term, '=')) {
                 $modelClass->where('name', ltrim($term, '='));
             } else {
-                $modelClass->where('name2', 'like', "%$term%");
+                $modelClass->where('name', 'like', "%$term%");
             }
         } else {
             $modelClass->orderBy('updated_at', 'desc');
