@@ -204,7 +204,7 @@ class Entity extends Model
                 $text = strip_tags($text);
             }
             if ($this->campaign->tooltip_image) {
-                $avatar = "<div class=\"entity-image\" style=\"background-image: url('" . $this->child->withEntity($this)->getImageUrl(60) . "');\"></div>";
+                $avatar = $this->child->withEntity($this)->getImageUrl(60);
             }
         }
 
@@ -226,14 +226,15 @@ class Entity extends Model
             $text = Str::limit($text, 500);
         }
 
-        $name = '<span class="entity-name">' . $this->child->tooltipName() . '</span>';
+        $name = $this->child->tooltipName();
         $subtitle = $this->child->tooltipSubtitle();
-        if (!empty($subtitle)) {
-            $subtitle = "<span class='entity-subtitle'>$subtitle</span>";
-        }
         $text = $this->child->tooltipAddTags($text, $this->tags);
 
-        return "<div class='entity-tooltip-avatar'>$avatar<div class='entity-names'>" . $name . $subtitle . '</div></div>' . $text;
+        return view('entities.components.tooltip')
+            ->with(compact('avatar', 'name', 'subtitle', 'text'))
+            ->render();
+
+        //return "<div class='entity-tooltip-avatar'>$avatar<div class='entity-names'>" . $name . $subtitle . '</div></div>' . $text;
     }
 
     /**
