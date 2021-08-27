@@ -27,7 +27,7 @@
             @foreach ($r as $entity)
                 <tr>
                     <td>
-                        <a class="entity-image" style="background-image: url('{{ $entity->getImageUrl(40) }}');" title="{{ $entity->name }}" href="{{ $entity->url('show') }}"></a>
+                        <a class="entity-image" style="background-image: url('{{ $entity->avatar(true) }}');" title="{{ $entity->name }}" href="{{ $entity->url('show') }}"></a>
                     </td>
                     <td>
                         {!! $entity->tooltipedLink() !!}
