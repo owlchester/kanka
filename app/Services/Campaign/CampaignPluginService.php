@@ -10,6 +10,7 @@ use App\Models\Campaign;
 use App\Models\CampaignPlugin;
 use App\Models\CharacterTrait;
 use App\Models\Entity;
+use App\Models\EntityNote;
 use App\Models\EntityTag;
 use App\Models\MiscModel;
 use App\Models\OrganisationMember;
@@ -52,6 +53,9 @@ class CampaignPluginService
 
     /** @var array */
     protected $loadedRelations = [];
+
+    /** @var array */
+    protected $loadedPosts = [];
 
     /** @var null|Collection */
     protected $importedEntities = null;
@@ -279,8 +283,8 @@ class CampaignPluginService
 
         // Relations
         if (!empty($pluginEntity->related)) {
+            $this->loadRelations($model);
             foreach ($pluginEntity->related as $type => $fields) {
-                $this->loadRelations($model);
                 foreach ($fields as $uuid => $data) {
                     if ($type == 'relation') {
                         $this->saveRelation($data, $uuid, $entityId);
@@ -294,6 +298,8 @@ class CampaignPluginService
                 }
             }
         }
+
+        $this->importPosts($pluginEntity, $entityId);
     }
 
     /**
@@ -518,6 +524,22 @@ class CampaignPluginService
     }
 
     /**
+     * @param int $entityId
+     */
+    protected function loadPosts(int $entityId)
+    {
+        $this->loadedPosts = [];
+        $posts = EntityNote::where('entity_id', $entityId)
+            ->whereNotNull('marketplace_uuid')
+            ->get();
+
+        /** @var EntityNote $post */
+        foreach ($posts as $post) {
+            $this->loadedPosts[$post->marketplace_uuid] = $post;
+        }
+    }
+
+    /**
      * @param string $text
      * @return string
      */
@@ -550,5 +572,32 @@ class CampaignPluginService
     public function updated(): string
     {
         return (string) implode(', ', $this->updated);
+    }
+
+    /**
+     * @param PluginVersionEntity $entity
+     * @param int $entityId
+     */
+    protected function importPosts(PluginVersionEntity $entity, int $entityId)
+    {
+        if (empty($entity->posts)) {
+            return;
+        }
+
+        $this->loadPosts($entityId);
+
+        foreach ($entity->posts as $uuid => $data) {
+            $post = $this->loadedPosts[$uuid] ?? null;
+            if (empty($post)) {
+                $post = new EntityNote();
+                $post->entity_id = $entityId;
+                $post->marketplace_uuid = $uuid;
+            }
+
+            $post->name = Arr::get($data, 'name');
+            $post->entry = $this->mentions(Arr::get($data, 'entry'));
+            $post->visibility = Arr::get($data, 'visibility');
+            $post->save();
+        }
     }
 }

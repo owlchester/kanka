@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $entry
  * @property array $fields
  * @property array $related
+ * @property array $posts
  * @property string $uuid
  *
  * @property EntityType $type
@@ -27,6 +28,7 @@ class PluginVersionEntity extends Model
     public $casts = [
         'fields' => 'array',
         'related' => 'array',
+        'posts' => 'array',
     ];
 
     public function version()
