@@ -5,7 +5,7 @@
         </div>
     @endif
     <div class="entity-names">
-        <span class="entity-name">{!! $name !!}</div>
+        <span class="entity-name">{!! $name !!}</span>
         @if($subtitle)
             <span class="entity-subtitle">{!! $subtitle !!}</span>
         @endif
