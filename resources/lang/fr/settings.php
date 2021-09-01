@@ -187,7 +187,8 @@ return [
             'subscribe'         => 'Abonner',
             'update_currency'   => 'Changer la devise',
         ],
-        'benefits'              => 'En nous soutenant, tu peux débloquer de nouvelles fonctionnalités et nous aider à investir plus de temps dans l\'amélioration de Kanka. Aucune information concernant ta carte de crédit n\'est stockée ou ne transite par nos serveurs. Nous utilisons :stripe pour gérer toutes les factures.',
+        'benefits'              => 'En nous soutenant, tu peux débloquer de nouvelles :features et nous aider à investir plus de temps dans l\'amélioration de Kanka. Aucune information concernant ta carte de crédit n\'est stockée ou ne transite par nos serveurs. Nous utilisons :stripe pour gérer toutes les factures.',
+        'benefits_features'     => 'fonctionnalités',
         'billing'               => [
             'helper'    => 'Les informations de paiement sont gérées et sauvegardées de manière sécurisée à travers :stripe. Cette méthode de paiement sera utilisée pour tous les abonnements.',
             'saved'     => 'Méthode de paiement',

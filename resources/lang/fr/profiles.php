@@ -8,6 +8,7 @@ return [
         'alphabetical'      => 'Alphabétiquement',
         'date_created'      => 'Date créée',
         'date_joined'       => 'Date d\'adhésion',
+        'default'           => 'Défaut',
         'r_alphabetical'    => 'Alphabétiquement inverse',
         'r_date_created'    => 'Date créée inverse',
         'r_date_joined'     => 'Date d\'adhésion inverse',

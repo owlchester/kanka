@@ -163,11 +163,12 @@ return [
         ],
         'widths'                    => [
             '0' => 'Automatique',
-            '12'=> 'Complet',
+            '12'=> 'Complet (100%)',
             '3' => 'Minuscule (25%)',
-            '4' => 'Petit',
-            '6' => 'Moitié',
-            '8' => 'Large (66%)',
+            '4' => 'Petit (33%)',
+            '6' => 'Moitié (50%)',
+            '8' => 'Grand (66%)',
+            '9' => 'Large (75%)',
         ],
     ],
 ];
