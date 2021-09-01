@@ -7,7 +7,7 @@ return [
         'show'          => 'Mostrar resultados',
         'vote'          => 'Votar',
     ],
-    'description'   => 'As usuarias que apoian a Kanka axundan a moldar a evolución da aplicación participando en votacións da comunidade frecuentes.',
+    'description'   => 'As usuarias que apoian a Kanka axudan a moldar a evolución da aplicación participando en votacións da comunidade frecuentes.',
     'index'         => [
         'past'      => 'Votacións da comunidade pechadas',
         'voting'    => 'Votacións da comunidade activas',
@@ -20,7 +20,7 @@ return [
         'title'         => 'Votación da Comunidade - :name',
         'vote_count'    => '{1} :number participantes votaron.|[2,*] :number participantes votaron.',
         'voted_lasted'  => 'A votación durou dende as :from GMT ata as :until GMT.',
-        'voting_until'  => 'A votación está aberta ata as :until GMT.',
+        'voting_until'  => 'A votación está aberta ata :until GMT.',
     ],
     'title'         => 'Votacións da Comunidade',
 ];

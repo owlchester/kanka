@@ -49,7 +49,7 @@ return [
         'title'         => 'Schopnosti',
     ],
     'placeholders'  => [
-        'charges'   => 'Počet použití. Vychází ze schopností {Úroveň}*{CHA}',
+        'charges'   => 'Počet použití. Odkaz na atributy pomocí {Úroveň}*{CHA}',
         'name'      => 'Ohnivá koule, Ve střehu, Zákeřný úder',
         'type'      => 'Kouzlo, schopnost, útok',
     ],

@@ -52,6 +52,10 @@ return [
     'random_types'  => [
         'any'   => 'jedes Objekt',
     ],
+    'reorder'       => [
+        'success'   => 'Menü Links neu geordnet.',
+        'title'     => 'Menü Links neu anordnen',
+    ],
     'show'          => [
         'description'   => 'Eine detaillierte Ansicht eines Menü Links',
         'tabs'          => [

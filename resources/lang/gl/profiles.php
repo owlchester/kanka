@@ -1,18 +1,26 @@
 <?php
 
 return [
-    'avatar'        => [
+    'avatar'                        => [
         'success'   => 'Avatar actualizado.',
     ],
-    'description'   => 'Actualiza os detalles do teu perfil',
-    'edit'          => [
+    'campaign_switcher_order_by'    => [
+        'alphabetical'      => 'Alfabeticamente',
+        'date_created'      => 'Data de creación',
+        'date_joined'       => 'Data na que te uniches',
+        'r_alphabetical'    => 'Alfabeticamente inversa',
+        'r_date_created'    => 'Data de creación inversa',
+        'r_date_joined'     => 'Data na que te uniches inversa',
+    ],
+    'description'                   => 'Actualiza os detalles do teu perfil',
+    'edit'                          => [
         'success'   => 'Perfil actualizado',
     ],
-    'editors'       => [
+    'editors'                       => [
         'legacy'        => 'Obsoleto (TinyMCE 4)',
         'summernote'    => 'Summernote',
     ],
-    'fields'        => [
+    'fields'                        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'Correo electrónico',
         'hide_subscription'         => 'Ocultar o meu nome no :hall_of_fame.',
@@ -25,7 +33,7 @@ return [
         'settings'                  => 'Configuración',
         'theme'                     => 'Tema',
     ],
-    'newsletter'    => [
+    'newsletter'                    => [
         'helpers'   => [
             'community-vote'    => 'Recibe unha notificación cada vez que haxa unha nova :community-vote.',
             'header'            => 'Subscríbete aos seguintes boletíns de información para recibir notificacións do que está pasando en Kanka.',
@@ -46,17 +54,17 @@ return [
         ],
         'title'     => 'Boletíns de información',
     ],
-    'password'      => [
+    'password'                      => [
         'success'   => 'Contrasinal actualizado',
     ],
-    'placeholders'  => [
+    'placeholders'                  => [
         'email'                     => 'O teu enderezo de correo electrónico',
         'name'                      => 'O nome que será mostrado',
         'new_password'              => 'O teu novo contrasinal',
         'new_password_confirmation' => 'Confirma o teu novo contrasinal',
         'password'                  => 'Escrebe o teu contrasinal actual para aplicar calquer cambio',
     ],
-    'sections'      => [
+    'sections'                      => [
         'delete'    => [
             'delete'    => 'Eliminar a miña conta',
             'helper'    => 'Eliminar a túa conta eliminará tamén calquera campaña na que non haxa máis integrantes ca ti. Esta acción é permanente e non pode desfacerse.',
@@ -67,14 +75,15 @@ return [
             'title' => 'Cambia o teu contrasinal',
         ],
     ],
-    'settings'      => [
+    'settings'                      => [
         'fields'    => [
-            'advanced_mentions'     => 'Mencións avanzadas',
-            'date_format'           => 'Formato da data',
-            'default_nested'        => 'Vista en árbore por defecto',
-            'editor'                => 'Editor de texto',
-            'new_entity_workflow'   => 'Novo fluxo de creación de entidades',
-            'pagination'            => 'Paxinación (elementos por páxina)',
+            'advanced_mentions'             => 'Mencións avanzadas',
+            'campaign_switcher_order_by'    => 'Orde das campañas no menú',
+            'date_format'                   => 'Formato da data',
+            'default_nested'                => 'Vista en árbore por defecto',
+            'editor'                        => 'Editor de texto',
+            'new_entity_workflow'           => 'Novo fluxo de creación de entidades',
+            'pagination'                    => 'Paxinación (elementos por páxina)',
         ],
         'helpers'   => [
             'editor_v2' => 'O editor de texto obsoleto (TinyMCE) non soporta mencións en dispositivos móbeis nin algunhas funcionalidades como a galería de campaña.',
@@ -86,7 +95,7 @@ return [
         ],
         'success'   => 'Configuración cambiada.',
     ],
-    'theme'         => [
+    'theme'                         => [
         'success'   => 'Tema cambiado.',
         'themes'    => [
             'dark'      => 'Escuro',
@@ -95,8 +104,8 @@ return [
             'midnight'  => 'Azul medianoite',
         ],
     ],
-    'title'         => 'Actualiza o teu perfil',
-    'workflows'     => [
+    'title'                         => 'Actualiza o teu perfil',
+    'workflows'                     => [
         'created'   => 'Ir á entidade recén creada',
         'default'   => 'Lista de entidades',
     ],

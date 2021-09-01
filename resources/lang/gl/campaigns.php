@@ -26,9 +26,7 @@ TEXT
         'success'       => 'Campaña actualizada.',
         'title'         => 'Editar a campaña ":campaign"',
     ],
-    'entity_note_visibility'            => [
-        'pinned'    => 'Fixar novas notas de entidade',
-    ],
+    'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
         'private'   => 'As personaxes novas teñen a súa personalidade privada por defecto.',
     ],
@@ -56,7 +54,6 @@ TEXT
         'css'                           => 'CSS',
         'description'                   => 'Descrición',
         'entity_count'                  => 'Número de entidades',
-        'entity_note_visibility'        => 'Notas de entidade fixadas',
         'entity_personality_visibility' => 'Visibilidade da personalidade da personaxe',
         'entity_visibility'             => 'Visibilidade da entidade',
         'entry'                         => 'Descrición da campaña',
@@ -86,7 +83,6 @@ TEXT
         'boosted'                       => 'Algunhas funcións están desbloqueadas porque esta campaña está potenciada. Máis información na páxina de :settings.',
         'css'                           => 'Escrebe o teu propio CSS para as páxinas da túa campaña. Ten en conta que calquer abuso desta ferramenta pode levar á eliminación do teu CSS personalizado. Ofensas repetidas ou graves poden levar á eliminación da túa campaña.',
         'dashboard'                     => 'Personaliza a forma na que se mostra o taboleiro da campaña completando os seguintes campos.',
-        'entity_note_visibility'        => 'Ao crear unha nova nota de entidade, a opción "Fixada" estará seleccionada automáticamente.',
         'entity_personality_visibility' => 'Ao crear unha nova personaxe, a opción "Personalidade visíbel" estará automáticamente deseleccionada.',
         'entity_visibility'             => 'Ao crear unha nova entidade, a opción "Privada" estará automáticamente seleccionada.',
         'excerpt'                       => 'O limiar da campaña mostrarase no taboleiro principal. Escrebe unhas poucas liñas introducindo o teu mundo. Se este campo está baleiro, os primeiros 1000 caracteres da descrición da campaña serán usados.',

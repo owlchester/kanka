@@ -20,6 +20,7 @@ return [
         'new'               => 'Neu',
         'new_post'          => 'Neue Objektnotiz',
         'next'              => 'Weiter',
+        'print'             => 'Drucken',
         'private'           => 'Privat',
         'public'            => 'Öffentlich',
         'reset'             => 'Zurücksetzen',

@@ -48,6 +48,10 @@ return [
     'random_types'  => [
         'any'   => 'Calquera entidade',
     ],
+    'reorder'       => [
+        'success'   => 'Accesos directos reordenados.',
+        'title'     => 'Reordenar accesos directos',
+    ],
     'show'          => [
         'tabs'  => [
             'information'   => 'Información',

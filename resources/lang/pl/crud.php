@@ -19,6 +19,7 @@ return [
         'new'               => 'Nowe',
         'new_post'          => 'Nowy komentarz',
         'next'              => 'Następne',
+        'print'             => 'Drukuj',
         'reset'             => 'Reset',
         'transform'         => 'Przekształć',
     ],

@@ -1,18 +1,26 @@
 <?php
 
 return [
-    'avatar'        => [
+    'avatar'                        => [
         'success'   => 'Avatar aktualisiert.',
     ],
-    'description'   => 'Aktualisiere deine Profildetails',
-    'edit'          => [
+    'campaign_switcher_order_by'    => [
+        'alphabetical'      => 'Alphabetisch',
+        'date_created'      => 'Erstellungsdatum',
+        'date_joined'       => 'Beitrittsdatum',
+        'r_alphabetical'    => 'umgekehrt Alphabetisch',
+        'r_date_created'    => 'umgekehrt Erstellungsdatum',
+        'r_date_joined'     => 'umgekehrt Beitrittsdatum',
+    ],
+    'description'                   => 'Aktualisiere deine Profildetails',
+    'edit'                          => [
         'success'   => 'Profil aktualisert',
     ],
-    'editors'       => [
+    'editors'                       => [
         'legacy'        => 'Legacy (TinyMCE 4)',
         'summernote'    => 'Summernote',
     ],
-    'fields'        => [
+    'fields'                        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'Email',
         'hide_subscription'         => 'Verstecke meinen Namen in der :hall_of_fame',
@@ -25,7 +33,7 @@ return [
         'settings'                  => 'Einstellungen',
         'theme'                     => 'Theme',
     ],
-    'newsletter'    => [
+    'newsletter'                    => [
         'helpers'   => [
             'community-vote'    => 'Werde jedes Mal benachrichtigt, wenn es einen neuen :community-vote gibt.',
             'header'            => 'Abonnieren Sie die folgenden E-Mail-Newsletter, um über Kanka informiert zu werden.',
@@ -49,17 +57,17 @@ return [
         ],
         'title'     => 'Newsletter',
     ],
-    'password'      => [
+    'password'                      => [
         'success'   => 'Passwort aktualisiert',
     ],
-    'placeholders'  => [
+    'placeholders'                  => [
         'email'                     => 'Deine Email Adresse',
         'name'                      => 'Dein Name, wie er dargestellt wird',
         'new_password'              => 'Dein neues Passwort',
         'new_password_confirmation' => 'Bestätige dein neues Passwort',
         'password'                  => 'Gib dein aktuelles Passwort für Änderungen ein',
     ],
-    'sections'      => [
+    'sections'                      => [
         'delete'    => [
             'delete'    => 'Lösche meinen Account',
             'helper'    => 'Durch das Löschen Ihres Kontos werden auch alle Kampagnen gelöscht, bei denen Sie das einzige Mitglied sind. Diese Aktion ist permanent und kann nicht rückgängig gemacht werden.',
@@ -70,14 +78,15 @@ return [
             'title' => 'Ändere dein Passwort',
         ],
     ],
-    'settings'      => [
+    'settings'                      => [
         'fields'    => [
-            'advanced_mentions'     => 'Fortgeschrittene Erwähnungen',
-            'date_format'           => 'Datenformatierung',
-            'default_nested'        => 'Verschachtelte Ansicht als Standard',
-            'editor'                => 'Texteditor',
-            'new_entity_workflow'   => 'Neuer Objektworkflow',
-            'pagination'            => 'Seitennummerierung (Objekte pro Seite)',
+            'advanced_mentions'             => 'Fortgeschrittene Erwähnungen',
+            'campaign_switcher_order_by'    => 'Sortierreihenfolge für Kampagnenwechsler',
+            'date_format'                   => 'Datenformatierung',
+            'default_nested'                => 'Verschachtelte Ansicht als Standard',
+            'editor'                        => 'Texteditor',
+            'new_entity_workflow'           => 'Neuer Objektworkflow',
+            'pagination'                    => 'Seitennummerierung (Objekte pro Seite)',
         ],
         'helpers'   => [
             'editor'    => 'Der Standardeditor (TinyMCE 4) ist veraltet, funktioniert aber immer noch gut auf dem Desktop, nicht aber auf Mobilengeräten. Summernote ist ein neuerer Editor, der auf allen Geräten funktioniert, aber wir befinden uns noch in der Testphase.',
@@ -90,7 +99,7 @@ return [
         ],
         'success'   => 'Einstellungen geändert.',
     ],
-    'theme'         => [
+    'theme'                         => [
         'success'   => 'Theme geändert.',
         'themes'    => [
             'dark'      => 'Dunkel',
@@ -99,8 +108,8 @@ return [
             'midnight'  => 'Mitternacht Blau',
         ],
     ],
-    'title'         => 'Aktualisiere dein Profil',
-    'workflows'     => [
+    'title'                         => 'Aktualisiere dein Profil',
+    'workflows'                     => [
         'created'   => 'Gehe zum erstellten Objekt',
         'default'   => 'Liste der Objekte',
     ],

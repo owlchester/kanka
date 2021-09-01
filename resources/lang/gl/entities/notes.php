@@ -16,7 +16,7 @@ return [
     ],
     'edit'          => [
         'description'   => 'Actualizar unha entrada existente.',
-        'success'       => 'Entrada ":name" de ":entidade" actualizada.',
+        'success'       => 'Entrada ":name" de ":entity" actualizada.',
         'title'         => 'Actualizar entrada de ":name"',
     ],
     'fields'        => [

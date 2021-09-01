@@ -17,8 +17,8 @@ TEXT
         'title'                 => 'Vytvořit nové tažení',
     ],
     'destroy'                           => [
-        'action'    => 'Odstratnit tažení',
-        'helper'    => 'Tažení lze odstranit pouze, pokud zůstáváš jeho jediným členem.',
+        'action'    => 'Odstranit tažení',
+        'helper'    => 'Tažení lze odstranit pouze pokud zůstáváš jeho jediným členem.',
         'success'   => 'Tažení odstraněno',
     ],
     'edit'                              => [

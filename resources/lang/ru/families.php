@@ -55,7 +55,7 @@ return [
     'show'          => [
         'description'   => 'Детальный вид семьи',
         'tabs'          => [
-            'all_members'   => 'Все члены семьи',
+            'all_members'   => 'Все члены',
             'families'      => 'Семьи',
             'members'       => 'Члены',
             'relation'      => 'Связи',

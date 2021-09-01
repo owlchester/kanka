@@ -1,18 +1,26 @@
 <?php
 
 return [
-    'avatar'        => [
+    'avatar'                        => [
         'success'   => 'Zmieniono awatar.',
     ],
-    'description'   => 'Aktualizuj szczegóły profilu',
-    'edit'          => [
+    'campaign_switcher_order_by'    => [
+        'alphabetical'      => 'Kolejność alfabetyczna',
+        'date_created'      => 'Data stworzenia',
+        'date_joined'       => 'Data dołączenia',
+        'r_alphabetical'    => 'Odwrócona kolejność alfabetyczna',
+        'r_date_created'    => 'Odwrócona data stworzenia',
+        'r_date_joined'     => 'Odwócona data dołączenia',
+    ],
+    'description'                   => 'Aktualizuj szczegóły profilu',
+    'edit'                          => [
         'success'   => 'Zmieniono profil',
     ],
-    'editors'       => [
+    'editors'                       => [
         'legacy'        => 'Legacy (TinyMCE 4)',
         'summernote'    => 'Summernote',
     ],
-    'fields'        => [
+    'fields'                        => [
         'avatar'                    => 'Awatar',
         'email'                     => 'Email',
         'hide_subscription'         => 'Ukryj moje imię na stronie :hall_of_fame.',
@@ -25,7 +33,7 @@ return [
         'settings'                  => 'Ustawienia',
         'theme'                     => 'Motyw',
     ],
-    'newsletter'    => [
+    'newsletter'                    => [
         'helpers'   => [
             'community-vote'    => 'Otrzymuj powiadomie, kiedy rozpoczyna się nowe :community-vote.',
             'header'            => 'Zasubskrybuj następujące powiadomienia e-mailem, by być na bieżąco z Kanką.',
@@ -49,17 +57,17 @@ return [
         ],
         'title'     => 'Newslettery',
     ],
-    'password'      => [
+    'password'                      => [
         'success'   => 'Zmieniono hasło',
     ],
-    'placeholders'  => [
+    'placeholders'                  => [
         'email'                     => 'Twój adres email',
         'name'                      => 'Nazwa, która będzie wyświetlana',
         'new_password'              => 'Twoje nowe hasło',
         'new_password_confirmation' => 'Potwierdź nowe hasło',
         'password'                  => 'Potwierdź zmianę wpisując hasło',
     ],
-    'sections'      => [
+    'sections'                      => [
         'delete'    => [
             'delete'    => 'Usuń konto',
             'helper'    => 'Usunięcie konta spowoduje również usunięcie wszystkich kampanii, których jesteś jednym członkiem. To działanie nieodwracalne, którego nie można cofnąć.',
@@ -70,14 +78,15 @@ return [
             'title' => 'Zmiana hasła',
         ],
     ],
-    'settings'      => [
+    'settings'                      => [
         'fields'    => [
-            'advanced_mentions'     => 'Zaawansowane wzmianki',
-            'date_format'           => 'Format daty',
-            'default_nested'        => 'Domyślny widok hierarchii',
-            'editor'                => 'Edytor tekstu',
-            'new_entity_workflow'   => 'Tworzenie elementów',
-            'pagination'            => 'Elementy na stronie',
+            'advanced_mentions'             => 'Zaawansowane wzmianki',
+            'campaign_switcher_order_by'    => 'Kolejność wyświetlania kampanii',
+            'date_format'                   => 'Format daty',
+            'default_nested'                => 'Domyślny widok hierarchii',
+            'editor'                        => 'Edytor tekstu',
+            'new_entity_workflow'           => 'Tworzenie elementów',
+            'pagination'                    => 'Elementy na stronie',
         ],
         'helpers'   => [
             'editor_v2' => 'Jeżeli używasz poprzedniego edytora tekstu (TinyMCE) nie będziesz mieć dostępu do powiadomień na urządzeniach mobilnych oraz niektórych funkcji, na przykład galerii kampanii.',
@@ -89,7 +98,7 @@ return [
         ],
         'success'   => 'Zmieniono ustawienia.',
     ],
-    'theme'         => [
+    'theme'                         => [
         'success'   => 'Zmieniono motyw.',
         'themes'    => [
             'dark'      => 'Ciemny',
@@ -98,8 +107,8 @@ return [
             'midnight'  => 'Granatowy',
         ],
     ],
-    'title'         => 'Aktualizuj profil',
-    'workflows'     => [
+    'title'                         => 'Aktualizuj profil',
+    'workflows'                     => [
         'created'   => 'Stworzony element',
         'default'   => 'Lista elementów',
     ],

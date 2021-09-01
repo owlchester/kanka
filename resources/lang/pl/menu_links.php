@@ -48,6 +48,10 @@ return [
     'random_types'  => [
         'any'   => 'Dowolny element',
     ],
+    'reorder'       => [
+        'success'   => 'Zmieniono kolejność skrótów.',
+        'title'     => 'Zmiana kolejności skrótów',
+    ],
     'show'          => [
         'tabs'  => [
             'information'   => 'Informacje',
