@@ -11,8 +11,8 @@ trait Orderable
      * Default ordering
      * @var string
      */
-    protected $defaultOrderField = 'name';
-    protected $defaultOrderDirection = 'asc';
+    //protected $defaultOrderField = 'name';
+    //protected $defaultOrderDirection = 'asc';
 
     /**
      * @param $query
@@ -22,8 +22,9 @@ trait Orderable
     public function scopeOrder(Builder $query, $data)
     {
         // Default
-        $field = $this->defaultOrderField;
-        $direction = $this->defaultOrderDirection;
+        $field = $this->defaultOrderField ?: 'name';
+        $direction = $this->defaultOrderDirection ?: 'asc';
+
         if (!empty($data) && auth()->check()) {
             foreach ($data as $key => $value) {
                 $field = $key;

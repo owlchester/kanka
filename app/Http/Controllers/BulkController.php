@@ -58,8 +58,10 @@ class BulkController extends Controller
             if ($action === 'delete') {
                 $models = explode(',', $request->get('models'));
                 $count = $this->bulkService->entities($models)->delete();
-                return redirect()->route($entity . '.' . $subroute, $routeParams)
-                    ->with('success', trans_choice('crud.destroy_many.success', $count, ['count' => $count]));
+                $key = $entity === 'relations' ? 'entities/relations.bulk.delete' : 'crud.destroy_many.success';
+                return redirect()
+                    ->route($entity . '.' . $subroute, $routeParams)
+                    ->with('success', trans_choice($key, $count, ['count' => $count]));
             } elseif ($action === 'export') {
                 $pdf = \App::make('dompdf.wrapper');
                 $entities = $this->bulkService->export();
@@ -105,6 +107,8 @@ class BulkController extends Controller
             } elseif ($action === 'batch') {
                 $entityClass = $this->entityService->getClass($entity);
                 $entityObj = new $entityClass;
+                $key = $entity === 'relations' ? 'entities/relations.bulk.update' : 'crud.bulk.success.editing';
+
                 $count = $this
                     ->bulkService
                     ->entities(explode(',', $request->get('models')))

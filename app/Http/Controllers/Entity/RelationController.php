@@ -232,7 +232,7 @@ class RelationController extends Controller
         }
         return redirect()
             ->route('entities.relations.index', $redirect)
-            ->with('success', trans('entities/relations' . '.update.success', [
+            ->with('success', __('entities/relations' . '.update.success', [
                 'target' => $relation->target->name,
                 'entity' => $entity->name
             ]));

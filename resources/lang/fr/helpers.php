@@ -49,7 +49,7 @@ return [
             'title' => 'Mise en page',
         ],
         'friendly_mentions' => 'Lier vers d\'autres entités avec :code et les premiers caractères d\'une entité pour la rechercher. Cela injectera :example dans l\'editeur de texte et affichera un lien vers l\'entité lors de la lecture.',
-        'limitations'       => 'Malheureusement, à cause de limitation technique, ces raccourcis ne sont pas disponnibles sur Android.',
+        'limitations'       => 'Malheureusement, à cause de limitation technique, ces raccourcis ne sont pas disponibles sur Android.',
         'mention_helpers'   => 'Si le nom de l\'entité contient des espaces, utiliser :example à la place d\'espace. :exact peut être utilisé pour chercher des entités avec exactement ce nom.',
         'mentions'          => 'Créer des liens vers d\'autres entités en saisissant :code suivi du nom d\'une entité pour la chercher. Cela injectera :example dans l\'editeur. Le nom affiché peut être contrôlé avec :example_name. Le lien vers une sous-page peut être contrôlé avec :example_page. Le lien vers un onglet peut être contrôlé avec :example_tab.',
         'mentions_field'    => 'Il est aussi possible d\'afficher un champ de l\'entité au lieu du nom avec :code.',

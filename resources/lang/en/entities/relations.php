@@ -5,6 +5,10 @@ return [
         'mode-map'      => 'Relation exploration tool',
         'mode-table'    => 'Table of relations and connections',
     ],
+    'bulk' => [
+        'delete' => 'Deleted :count relation.|Deleted :count relations.',
+        'update' => 'Updated :count relation.|Updated :count relations.',
+    ],
     'connections'   => [
         'map_point'         => 'Map point',
         'mention'           => 'Mention',
@@ -14,6 +18,7 @@ return [
     'create'        => [
         'success'   => 'Relation :target added to :entity.',
         'title'     => 'New relation for :name',
+        'new_title' => 'New relation',
     ],
     'destroy'       => [
         'success'   => 'Relation :target removed for :entity.',
@@ -23,6 +28,7 @@ return [
         'connection'        => 'Connection',
         'is_star'           => 'Pinned',
         'relation'          => 'Relation',
+        'owner'             => 'Owner',
         'target'            => 'Target',
         'target_relation'   => 'Target Relation',
         'two_way'           => 'Create mirror relation',
@@ -36,6 +42,10 @@ return [
         ],
         'target_relation'   => 'The relation description on the target. Leave blank to use this relation\'s text.',
         'two_way'           => 'If you select to create a mirror relation, the same relation will be created on the target. However, if you edit one, the mirror won\'t be updated.',
+    ],
+    'index'         => [
+        'title' => 'Relations',
+        'add' => 'New relation',
     ],
     'options'       => [
         'mentions'  => 'Relations + related + mentions',

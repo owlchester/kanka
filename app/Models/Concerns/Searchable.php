@@ -29,4 +29,9 @@ trait Searchable
             }
         });
     }
+
+    public function hasSearchableFields(): bool
+    {
+        return !empty($this->searchableColumns);
+    }
 }

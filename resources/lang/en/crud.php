@@ -98,7 +98,7 @@ return [
         'title'             => 'Removal confirmation',
     ],
     'destroy_many'              => [
-        'success'   => 'Deleted :count entity|Deleted :count entities.',
+        'success'   => 'Deleted :count entity.|Deleted :count entities.',
     ],
     'edit'                      => 'Edit',
     'errors'                    => [

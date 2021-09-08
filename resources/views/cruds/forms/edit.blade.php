@@ -1,7 +1,7 @@
 <?php
 /** @var \App\Models\MiscModel $model */
 ?>
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __($name . '.edit.title', ['name' => $model->name]),
     'breadcrumbs' => [
         ['url' => Breadcrumb::index($name), 'label' => __($name . '.index.title')],
