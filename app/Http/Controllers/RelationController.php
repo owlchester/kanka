@@ -127,6 +127,21 @@ class RelationController extends CrudController
         }
     }
 
+    /**
+     * @param Relation $relation
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function show(Relation $relation)
+    {
+        return redirect()
+            ->route('relations.index');
+    }
+
+    /**
+     * @param Relation $relation
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function edit(Relation $relation)
     {
         $campaign = CampaignLocalization::getCampaign();
@@ -149,6 +164,12 @@ class RelationController extends CrudController
         return view('entities.pages.relations.full-form.update', $params);
     }
 
+    /**
+     * @param StoreRelation $request
+     * @param Relation $relation
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
     public function update(StoreRelation $request, Relation $relation)
     {
         $campaign = CampaignLocalization::getCampaign();
