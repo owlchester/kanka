@@ -33,7 +33,7 @@ class RelationPolicy
      */
     public function create(User $user)
     {
-        return $user->member();
+        return $user->isAdmin();
     }
 
     /**
@@ -45,8 +45,7 @@ class RelationPolicy
      */
     public function update(User $user, Relation $relation)
     {
-        return $user->campaign->id == $relation->owner->child->campaign_id &&
-            ($user->member());
+        return $user->isAdmin();
     }
 
     /**
@@ -58,7 +57,6 @@ class RelationPolicy
      */
     public function delete(User $user, Relation $relation)
     {
-        return $user->campaign->id == $relation->owner->child->campaign_id &&
-            ($user->member());
+        return $user->isAdmin();
     }
 }

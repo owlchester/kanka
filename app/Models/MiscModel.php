@@ -641,7 +641,7 @@ abstract class MiscModel extends Model
         if (!isset($this->hasRelations)) {
             $actions[] = '<li>
                 <a href="' . route('entities.relations.index', $this->entity) . '" class="dropdown-item">
-                    <i class="fa fa-users" aria-hidden="true"></i> ' . __('crud.tabs.mentions') . '
+                    <i class="fa fa-users" aria-hidden="true"></i> ' . __('crud.tabs.connections') . '
                 </a>
             </li>';
 

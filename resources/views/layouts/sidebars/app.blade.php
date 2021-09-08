@@ -146,6 +146,11 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
                         <a href="{{ route('dice_rolls.index') }}"><i class="ra ra-dice-five"></i> <span>{{ __('sidebar.dice_rolls') }}</span></a>
                     </li>
                 @endif
+                @can('relations', $currentCampaign)
+                    <li class="{{ $sidebar->active('relations') }} subsection section-relations">
+                        <a href="{{ route('relations.index') }}"><i class="fas fa-people-arrows"></i> <span>{{ __('sidebar.relations') }}</span></a>
+                    </li>
+                @endcan
                 @can('gallery', $currentCampaign)
                     <li class="{{ $sidebar->active('gallery') }} subsection section-gallery">
                         <a href="{{ route('campaign.gallery.index') }}"><i class="fas fa-images"></i> <span>{{ __('sidebar.gallery') }}</span></a>

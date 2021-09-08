@@ -140,6 +140,7 @@ class CrudController extends Controller
         $model = new $this->model;
         $this->filterService->make($this->view, request()->all(), $model);
         $name = $this->view;
+        $langKey = $this->langKey ?? $name;
         $actions = $this->indexActions;
         $filters = $this->filters;
         $filter = !empty($this->filter) ? new $this->filter : null;
@@ -204,7 +205,8 @@ class CrudController extends Controller
             'bulk',
             'bulkTemplates',
             'datagrid',
-            'templates'
+            'templates',
+            'langKey'
         ));
     }
 
@@ -276,7 +278,8 @@ class CrudController extends Controller
                 $new->entity->crudSaved();
             }
 
-            $success = __($this->view . '.create.success', [
+            $langKey = $this->langKey ?? $this->view;
+            $success = __($langKey . '.create.success', [
                 'name' => link_to_route(
                     $this->view . '.show',
                     e($new->name),
@@ -320,7 +323,10 @@ class CrudController extends Controller
             return response()->redirectTo($route);
         } catch (LogicException $exception) {
             $error =  str_replace(' ', '_', strtolower($exception->getMessage()));
-            return redirect()->back()->withInput()->with('error', __('crud.errors.' . $error));
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('error', __('crud.errors.' . $error));
         }
     }
 

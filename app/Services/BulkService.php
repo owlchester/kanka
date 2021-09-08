@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Datagrids\Bulks\Bulk;
 use App\Exceptions\TranslatableException;
+use App\Models\Relation;
 use App\Models\Tag;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -202,6 +203,10 @@ class BulkService
         unset($filledFields['tags']);
         $tagIds = Arr::get($fields, 'tags', []);
 
+        if ($this->entityName === 'relations') {
+            return $this->updateRelations($filledFields);
+        }
+
         // Todo: move model fetch above to actually use with()
         foreach ($this->ids as $id) {
             /** @var MiscModel $entity */
@@ -313,5 +318,27 @@ class BulkService
         }
 
         return $model;
+    }
+
+    /**
+     * @param array $filledFields
+     * @return int
+     */
+    protected function updateRelations(array $filledFields)
+    {
+        $relations = Relation::whereIn('id', $this->ids)->get();
+        $count = 0;
+        foreach ($relations as $relation) {
+            if (!Auth::user()->can('update', $relation)) {
+                // Can't update this? Technically not possible since bulk editing is only available
+                // for admins, but better safe than sorry
+                continue;
+            }
+
+            $relation->update($filledFields);
+            $count++;
+        }
+
+        return $count;
     }
 }

@@ -294,7 +294,7 @@ class DatagridRenderer
         foreach ($this->columns as $column) {
             $html .= $this->renderColumn($column, $model);
         }
-        $html .= $this->renderActionRow($model);
+        $html .= $model instanceof MiscModel ? $this->renderEntityActionRow($model) : $this->renderActionRow($model);
 
         return $html . '</tr>';
     }
@@ -436,22 +436,8 @@ class DatagridRenderer
      * @param MiscModel $model
      * @return string
      */
-    private function renderActionRow(MiscModel $model)
+    private function renderEntityActionRow(MiscModel $model)
     {
-        $content = '
-        <a href="' . route($this->getOption('baseRoute') . '.show', [$model]) .
-            '" title="' . trans('crud.view') . '">
-            <i class="fa fa-eye" aria-hidden="true"></i>
-        </a>';
-
-        if ($this->user && $this->user->can('update', $model)) {
-            $content .= ' <a href="'
-                . route($this->getOption('baseRoute') . '.edit', [$model])
-                . '" title="' . trans('crud.edit') . '">
-                <i class="fa fa-edit" aria-hidden="true"></i>
-            </a>';
-        }
-
         $content = '';
         $actions = $model->datagridActions($this->getCampaign());
         if (!empty($actions)) {
@@ -470,6 +456,19 @@ class DatagridRenderer
 
 
         return '<td class="text-center table-actions">' . $content . '</td>';
+    }
+
+    private function renderActionRow($model)
+    {
+        $actions = '';
+        if ($this->user && $this->user->can('update', $model)) {
+            $actions .= ' <a href="'
+                . route($this->getOption('baseRoute') . '.edit', [$model])
+                . '" title="' . trans('crud.edit') . '">
+                <i class="fa fa-edit" aria-hidden="true"></i>
+            </a>';
+        }
+        return '<td class="text-center table-actions">' . $actions . '</td>';
     }
 
     /**

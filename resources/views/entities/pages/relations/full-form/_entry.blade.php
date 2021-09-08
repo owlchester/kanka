@@ -1,19 +1,14 @@
 {{ csrf_field() }}
-<div class="form-group required">
-    {!! Form::select2(
-        'target_id',
-        (!empty($relation) && $relation->target ? $relation->target : null),
-        App\Models\Entity::class,
-        false,
-        'entities/relations.fields.target',
-        'search.entities-with-relations',
-        'entities/relations.placeholders.target'
-    ) !!}
+
+<div class="row">
+    <div class="col-md-6">
+        @include('cruds.fields.owner', ['owner' => !empty($relation) ? $relation->owner : null])
+    </div>
+    <div class="col-md-6">
+        @include('cruds.fields.target', ['target' => !empty($relation) ? $relation->target : null])
+    </div>
 </div>
-<div class="form-group required">
-    <label>{{ __('entities/relations.fields.relation') }}</label>
-    {!! Form::text('relation', null, ['placeholder' => __('entities/relations.placeholders.relation'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-</div>
+@include('cruds.fields.relation')
 
 <div class="row">
     <div class="col-sm-4">
@@ -51,15 +46,7 @@
     </div>
 @endif
 
-<div class="form-group">
-    {!! Form::hidden('is_star', 0) !!}
-    <label>
-        {!! Form::checkbox('is_star', 1, !empty($relation) ? $relation->is_star : 0) !!}
-        {{ __('crud.fields.is_star') }}
-        <i class="fa fa-question-circle hidden-xs hidden-sm" title="{{ __('crud.hints.is_star') }}" data-toggle="tooltip"></i>
-    </label>
-    <p class="help-block visible-xs visible-sm">{{ __('crud.hints.is_star') }}</p>
-</div>
+@include('cruds.fields.pinned')
 
 @if (!empty($relation) && !empty($relation->mirrored()))
     <div class="callout callout-info">

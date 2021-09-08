@@ -1,8 +1,8 @@
 @extends('layouts.app', [
-    'title' => trans($name . '.index.title', ['name' => CampaignLocalization::getCampaign()->name]),
+    'title' => __($langKey . '.index.title', ['name' => CampaignLocalization::getCampaign()->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($name), 'label' => trans($name . '.index.title')],
+        ['url' => Breadcrumb::index($name), 'label' => __($langKey . '.index.title')],
     ],
     'canonical' => true,
     'bodyClass' => 'kanka-' . $name,
@@ -13,14 +13,14 @@
 @section('content')
     <div class="row margin-bottom">
         <div class="col-md-12">
-            @include('layouts.datagrid.search', ['route' => route($name . '.index')])
+            @includeWhen($model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => route($route . '.index')])
 
             @can('create', $model)
                 <div class="btn-group pull-right">
-                    <a href="{{ route($name . '.create') }}" class="btn btn-primary">
-                        <i class="fa fa-plus"></i> <span class="hidden-xs hidden-sm">{{ trans($name . '.index.add') }}</span>
+                    <a href="{{ route($route . '.create') }}" class="btn btn-primary">
+                        <i class="fa fa-plus"></i> <span class="hidden-xs hidden-sm">{{ __($langKey . '.index.add') }}</span>
                     </a>
-                    @if($name != 'menu_links')
+                    @if(!in_array($name, ['menu_links', 'relations']))
                         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                             <span class="caret"></span>
                         </button>
@@ -28,7 +28,7 @@
                             @if (!empty($templates) && !$templates->isEmpty())
                             @foreach ($templates as $entityTemplate)
                             <li>
-                                <a href="{{ route($name . '.create', ['copy' => $entityTemplate->entity_id, 'template' => true]) }}">
+                                <a href="{{ route($route . '.create', ['copy' => $entityTemplate->entity_id, 'template' => true]) }}">
                                     <i class="fa fa-star-o"></i> {{ $entityTemplate->name  }}</span>
                                 </a>
                             </li>
@@ -54,7 +54,7 @@
 
             @if (!empty($nestedView) && $nestedView)
                 <a href="{{ route($route . '.tree') }}" class="btn pull-right btn-default margin-r-5">
-                    <i class="fa fa-tree"></i> {{ trans('crud.actions.explore_view') }}
+                    <i class="fa fa-tree"></i> {{ __('crud.actions.explore_view') }}
                 </a>
             @endif
         </div>

@@ -1,8 +1,8 @@
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
-    'title' => trans($name . '.create.title'),
+    'title' => __($name . '.create.title'),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($name), 'label' => trans($name . '.index.title')],
-        trans('crud.create'),
+        ['url' => Breadcrumb::index($name), 'label' => __($name . '.index.title')],
+        __('crud.create'),
     ]
 ])
 @inject('campaign', 'App\Services\CampaignService')
@@ -20,39 +20,39 @@
         </div>
         <ul class="nav nav-tabs">
             <li class="{{ (request()->get('tab') == null ? ' active' : '') }}">
-                <a href="#form-entry" title="{{ trans('crud.panels.entry') }}">
-                    {{ trans('crud.panels.entry') }}
+                <a href="#form-entry" title="{{ __('crud.panels.entry') }}">
+                    {{ __('crud.panels.entry') }}
                 </a>
             </li>
             @includeIf($name . '.form._tabs', ['source' => $source])
 
             @if ($tabBoosted)
                 <li class="{{ (request()->get('tab') == 'boost' ? ' active' : '') }}">
-                    <a href="#form-boost" title="{{ trans('crud.tabs.boost') }}">
+                    <a href="#form-boost" title="{{ __('crud.tabs.boost') }}">
                         <i class="fa fa-rocket"></i> <span class="hidden-xs">{{ __('crud.tabs.boost') }}</span>
                     </a>
                 </li>
             @endif
             @if ((!empty($source) || !empty(old('copy_source_id'))) && $tabCopy)
                 <li class="{{ (request()->get('tab') == 'copy' ? ' active' : '') }}">
-                    <a href="#form-copy" title="{{ trans('crud.forms.copy_options') }}">
-                        {{ trans('crud.forms.copy_options') }}
+                    <a href="#form-copy" title="{{ __('crud.forms.copy_options') }}">
+                        {{ __('crud.forms.copy_options') }}
                     </a>
                 </li>
             @endif
             @if ($tabAttributes)
                 <li class="{{ (request()->get('tab') == 'attributes' ? ' active' : '') }}">
-                    <a href="#form-attributes" title="{{ trans('crud.tabs.attributes') }}">
-                        <span class="hidden-xs hidden-sm">{{ trans('crud.tabs.attributes') }}</span>
-                        <i class="visible-xs visible-sm fa fa-th-list" title="{{ trans('crud.tabs.attributes') }}"></i>
+                    <a href="#form-attributes" title="{{ __('crud.tabs.attributes') }}">
+                        <span class="hidden-xs hidden-sm">{{ __('crud.tabs.attributes') }}</span>
+                        <i class="visible-xs visible-sm fa fa-th-list" title="{{ __('crud.tabs.attributes') }}"></i>
                     </a>
                 </li>
             @endif
             @if ($tabPermissions)
             <li class="{{ (request()->get('tab') == 'permission' ? ' active' : '') }}">
-                <a href="#form-permissions" title="{{ trans('crud.tabs.permissions') }}">
-                    <span class="hidden-xs hidden-sm">{{ trans('crud.tabs.permissions') }}</span>
-                    <i class="visible-xs visible-sm fa fa-cog" title="{{ trans('crud.tabs.permissions') }}"></i>
+                <a href="#form-permissions" title="{{ __('crud.tabs.permissions') }}">
+                    <span class="hidden-xs hidden-sm">{{ __('crud.tabs.permissions') }}</span>
+                    <i class="visible-xs visible-sm fa fa-cog" title="{{ __('crud.tabs.permissions') }}"></i>
                 </a>
             </li>
             @endif

@@ -18,7 +18,7 @@ return [
         'move'              => 'Déplacer',
         'new'               => 'Nouveau',
         'new_post'          => 'Nouvelle entrée',
-        'next'              => 'Prochain',
+        'next'              => 'Suivant',
         'print'             => 'Imprimer',
         'reset'             => 'Réinitialiser',
         'transform'         => 'Transformer',

@@ -4,8 +4,12 @@ namespace App\Models;
 
 use App\Facades\UserPermission;
 use App\Models\Concerns\Blameable;
+use App\Models\Concerns\Filterable;
+use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
+use App\Models\Concerns\Searchable;
 use App\Models\Concerns\SimpleSortableTrait;
+use App\Models\Concerns\Sortable;
 use App\Models\Scopes\Starred;
 use App\Traits\OrderableTrait;
 use App\Traits\VisibilityTrait;
@@ -28,8 +32,8 @@ use Exception;
  * @property string $marketplace_uuid
  *
  * @property Relation $mirror
- * @property Relation $target
- * @property Relation $owner
+ * @property Entity $target
+ * @property Entity $owner
  */
 class Relation extends Model
 {
@@ -37,7 +41,12 @@ class Relation extends Model
     /**
      * Traits
      */
-    use VisibilityTrait, Starred, Paginatable, Blameable, SimpleSortableTrait;
+    use VisibilityTrait, Starred, Paginatable, Blameable, SimpleSortableTrait,
+        Filterable,
+        Sortable,
+        Searchable,
+        Orderable
+    ;
 
     /**
      * @var array
@@ -55,13 +64,37 @@ class Relation extends Model
     ];
 
     /**
+     * Fields that can be sorted on
+     * @var array
+     */
+    public $sortableColumns = [
+        'owner_id',
+        'target_id',
+        'relation',
+        'attitude',
+        'is_star',
+    ];
+
+    public $filterableColumns = [
+        'name',
+        'attitude',
+        'relation',
+        'owner_id',
+        'target_id',
+        'is_star',
+        'is_mirrored',
+    ];
+
+    public $defaultOrderField = 'relation';
+
+    /**
      * @param $query
      * @param int $star
      * @return mixed
      */
-    public function scopeOrdered($query, $order = 'desc')
+    public function scopeOrdered($query, $order = 'asc')
     {
-        return $query->orderBy('attitude', $order)->orderBy('relation');
+        return $query->orderBy('relation', $order)->orderBy('attitude', 'asc');
     }
 
     /**
@@ -150,6 +183,19 @@ class Relation extends Model
     }
 
     /**
+     * Performance with for datagrids
+     * @param $query
+     * @return mixed
+     */
+    public function scopePreparedWith($query)
+    {
+        return $query->with([
+            'owner',
+            'target',
+        ]);
+    }
+
+    /**
      * When setting the colour, remove the '#' from the db
      * @param $colour
      */
@@ -168,5 +214,18 @@ class Relation extends Model
             return '';
         }
         return '#' . $this->attributes['colour'];
+    }
+
+    public function getEntityType()
+    {
+        return 'relation';
+    }
+
+    /**
+     * Faker event
+     */
+    public function crudSaved()
+    {
+        return $this;
     }
 }
