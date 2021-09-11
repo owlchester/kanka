@@ -189,10 +189,14 @@ class Relation extends Model
      */
     public function scopePreparedWith($query)
     {
-        return $query->with([
-            'owner',
-            'target',
-        ]);
+        return $query
+            ->with([
+                'owner',
+                'target',
+            ])
+            ->has('owner')
+            ->has('target')
+        ;
     }
 
     /**
