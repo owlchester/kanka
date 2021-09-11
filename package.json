@@ -43,6 +43,7 @@
     "simple-line-icons": "^2.4.1",
     "startbootstrap-new-age": "^3.3.7",
     "tailwindcss": "^1.1.2",
+    "tributejs": "^5.1.3",
     "uiv": "^0.34.1",
     "vue-i18n": "^8.15.0"
   }

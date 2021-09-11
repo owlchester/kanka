@@ -105,6 +105,12 @@
   }
 }
 
+body,
+#app.wrapper {
+  background: unset;
+  background-image: unset;
+}
+
 .content-wrapper {
   margin-left: 0;
   background-color: white;
@@ -123,13 +129,15 @@
 }
 
 .entity-grid .entity-story-block {
-  width: 80%;
-  float: left;
+  width: 100%;
 }
 
 .entity-grid .entity-sidebar-pins {
-  width: 20%;
-  float: left;
+  display: none;
+}
+
+.entity-grid .entity-sidebar-pins .fa-question-circle {
+  display: none;
 }
 
 .entity-grid .btn {
