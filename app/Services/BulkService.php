@@ -334,6 +334,10 @@ class BulkService
                 // for admins, but better safe than sorry
                 continue;
             }
+            // Same owner and target? no bueno
+            if ($relation->owner_id == Arr::get($filledFields, 'target_id') || ($relation->target_id == Arr::get($filledFields, 'owner_id'))) {
+                continue;
+            }
 
             $relation->update($filledFields);
             $count++;

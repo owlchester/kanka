@@ -13,6 +13,7 @@ class RelationBulk extends Bulk
         'attitude',
         'colour_picker',
         'pinned_choice',
+        'visibility',
     ];
     protected $mappings = [
         'colour',

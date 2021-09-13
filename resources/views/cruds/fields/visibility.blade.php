@@ -3,7 +3,12 @@
  * @var \App\Models\Entity $entity
  * @var \App\Models\EntityNote $model
  */
-$options = ['all' => __('crud.visibilities.all')];
+$options = [];
+if (isset($bulk)) {
+    $options[''] = '';
+}
+
+$options['all'] = __('crud.visibilities.all');
 
 if (auth()->user()->isAdmin()) {
     $options['admin'] = __('crud.visibilities.admin');
