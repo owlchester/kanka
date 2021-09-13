@@ -24,6 +24,17 @@
             }
         ],
         [
+            'field' => 'relation',
+            'label' => __('entities/relations.fields.relation'),
+            'render' => function($model) {
+                $colour = null;
+                if (!empty($model->colour)) {
+                    $colour = '<div class="label-tag-bubble" style="background-color: ' . $model->colour . '; "></div> ';
+                }
+                return $colour . $model->relation;
+            }
+        ],
+        [
             'field' => 'mirror_id',
             'label' => '<i class="fas fa-sync-alt" title="' . __('entities/relations.hints.mirrored.title') . '"></i>',
             'render' => function ($model) {
@@ -36,10 +47,6 @@
             'render' => function ($model) {
                 return $model->is_star ? '<i class="fas fa-star"></i>' : null;
             }
-        ],
-        [
-            'field' => 'relation',
-            'label' => __('entities/relations.fields.relation'),
         ],
         [
             'field' => 'attitude',
