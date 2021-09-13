@@ -30,7 +30,7 @@ if (isset($single) && $single) {
 @endforeach
 
     var baseMaps{{ $map->id }} = {
-@foreach ($map->layers->where('type_id', '<', 1)->whereNotNull('image') as $layer)
+@foreach ($map->layers->where('type_id', '<', 1)->whereNotNull('image')->sortBy('position') as $layer)
         "{{ $layer->name }}": layer{{ $layer->id }},
 @endforeach
         "{{ __('maps/layers.base') }}": baseLayer{{ $map->id }}
@@ -43,10 +43,10 @@ if (isset($single) && $single) {
 @endforeach
 
     var overlayMaps{{ $map->id }} = {
-@foreach($map->layers->where('type_id', '>', 0)->whereNotNull('image') as $layer)
-        "{{ $layer->name }}": layer{{ $layer->id }},
+@foreach($map->layers->where('type_id', '>', 0)->whereNotNull('image')->sortBy('position') as $layer)
+        "{{ $layer->name }} ({{ $layer->position }})": layer{{ $layer->id }},
 @endforeach
-@foreach($map->groups as $group)
+@foreach($map->groups->sortBy('position') as $group)
         "{{ $group->name }}": group{{ $group->id }},
 @endforeach
     }
