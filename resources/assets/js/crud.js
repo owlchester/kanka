@@ -13,7 +13,7 @@ var characterAddOrganisation, characterTemplateOrganisation, characterOrganisati
 
 var filtersActionsShow, filtersActionHide;
 
-var ajaxModalTarget;
+var ajaxModalTarget, ajaxModal;
 var entityFormHasUnsavedChanges = false;
 
 // Entity Calendar
@@ -50,13 +50,20 @@ $(document).ready(function () {
     $.each($('[data-toggle="ajax-modal"]'), function () {
         $(this).click(function (e) {
             e.preventDefault();
-            ajaxModalTarget = $(this).attr('data-target');
+            ajaxModal = $(this);
             $.ajax({
                 url: $(this).attr('data-url')
             }).done(function (result, textStatus, xhr) {
                 if (result) {
-                    $(ajaxModalTarget).find('.modal-content').html(result);
-                    $(ajaxModalTarget).modal();
+                    let params= {};
+                    let target = $(ajaxModal).attr('data-target');
+                    let backdrop = $(ajaxModal).attr('data-backdrop');
+                    if (backdrop) {
+                        params.backdrop = backdrop;
+                    }
+
+                    $(target).find('.modal-content').html(result);
+                    $(target).modal(params);
                 }
             }).fail(function (result, textStatus, xhr) {
                 //console.log('modal ajax error', result);

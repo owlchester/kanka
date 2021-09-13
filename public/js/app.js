@@ -77625,7 +77625,7 @@ var characterSortPersonality, characterSortAppearance;
 var entityFormActions;
 var characterAddOrganisation, characterTemplateOrganisation, characterOrganisations;
 var filtersActionsShow, filtersActionHide;
-var ajaxModalTarget;
+var ajaxModalTarget, ajaxModal;
 var entityFormHasUnsavedChanges = false; // Entity Calendar
 
 var entityCalendarAdd, entityCalendarForm, entityCalendarField;
@@ -77661,13 +77661,21 @@ $(document).ready(function () {
   $.each($('[data-toggle="ajax-modal"]'), function () {
     $(this).click(function (e) {
       e.preventDefault();
-      ajaxModalTarget = $(this).attr('data-target');
+      ajaxModal = $(this);
       $.ajax({
         url: $(this).attr('data-url')
       }).done(function (result, textStatus, xhr) {
         if (result) {
-          $(ajaxModalTarget).find('.modal-content').html(result);
-          $(ajaxModalTarget).modal();
+          var params = {};
+          var target = $(ajaxModal).attr('data-target');
+          var backdrop = $(ajaxModal).attr('data-backdrop');
+
+          if (backdrop) {
+            params.backdrop = backdrop;
+          }
+
+          $(target).find('.modal-content').html(result);
+          $(target).modal(params);
         }
       }).fail(function (result, textStatus, xhr) {//console.log('modal ajax error', result);
       });
@@ -78490,28 +78498,6 @@ function entityTooltip() {
   cachedTooltips[id] = title;
   return title;
 }
-
-window.crudInitAjaxModal = function () {
-  $.each($('[data-toggle="ajax-modal"]'), function () {
-    $(this).click(function (e) {
-      $(this).unbind('click');
-      e.preventDefault();
-      var ajaxModalTarget = $(this).attr('data-target');
-      $.ajax({
-        url: $(this).attr('data-url')
-      }).done(function (result, textStatus, xhr) {
-        if (result) {
-          $(ajaxModalTarget).find('.modal-content').html(result);
-          $(ajaxModalTarget).modal(); // Reset select2
-
-          window.initSelect2();
-        }
-      }).fail(function (result, textStatus, xhr) {//console.log('modal ajax error', result);
-      });
-      return false;
-    });
-  });
-};
 
 window.ajaxTooltip = function () {
   // New tooltips with ajax call

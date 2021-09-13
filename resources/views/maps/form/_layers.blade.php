@@ -42,6 +42,7 @@
                    title="{{ __('crud.edit') }}"
                    data-toggle="ajax-modal" data-target="#entity-modal"
                    data-url="{{ route('maps.map_layers.edit', [$model, $layer]) }}"
+                   data-backdrop="static"
                 >
                     <i class="fa fa-pencil"></i>
                 </a>
@@ -64,8 +65,9 @@
 
     @if ($layers->count() < $campaign->campaign()->maxMapLayers())
     <a href="{{ route('maps.map_layers.create', ['map' => $model]) }}" class="btn btn-primary btn-sm"
-       data-toggle="ajax-modal" data-target="#entity-modal"
+       data-toggle="ajax-modal" data-target="#large-modal"
        data-url="{{ route('maps.map_layers.create', ['map' => $model]) }}"
+       data-backdrop="static"
     >
         <i class="fas fa-plus"></i> {{ __('maps/layers.actions.add') }}
     </a>
