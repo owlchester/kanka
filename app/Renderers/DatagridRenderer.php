@@ -9,6 +9,7 @@ use App\Models\MiscModel;
 use App\Services\FilterService;
 use Collective\Html\FormFacade;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Collective\Html\FormFacade as Form;
 
@@ -176,7 +177,7 @@ class DatagridRenderer
             }
         } else {
             // Now the 'fun' starts
-            $class .= '  hidden-xs hidden-sm';
+            $class .= Arr::get($column, 'class', '  hidden-xs hidden-sm');
             if (!empty($column['label'])) {
                 $label = $column['label'];
 
@@ -393,7 +394,7 @@ class DatagridRenderer
         } elseif (!empty($column['render'])) {
             // If it's not a type, do we have a renderer?
             $content = $column['render']($model, $column);
-            $class = 'hidden-xs hidden-sm';
+            $class = Arr::get($column, 'class', 'hidden-xs hidden-sm');
         } elseif (!empty($column['field'])) {
             // A field was given? This could be when a field needs another label than anticipated.
             $content = $model->{$column['field']};
