@@ -6,8 +6,11 @@ return [
         'mode-table'    => 'Table of relations and connections',
     ],
     'bulk' => [
+        'success' => [
+            'editing'           => '{1} :count relation was updated.|[2,*] :count relation were updated.',
+            'editing_partial'   => '{1} :count/:total relation was updated.|[2,*] :count/:total relation were updated.',
+        ],
         'delete' => 'Deleted :count relation.|Deleted :count relations.',
-        'update' => 'Updated :count relation.|Updated :count relations.',
     ],
     'connections'   => [
         'map_point'         => 'Map point',

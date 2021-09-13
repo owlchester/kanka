@@ -25,15 +25,14 @@ class BulkService
      */
     protected $permissionService;
 
-    /**
-     * @var string
-     */
+    /** @var string Entity name */
     protected $entityName;
 
-    /**
-     * @var array
-     */
+    /** @var array Ids of entities */
     protected $ids;
+
+    /** @var int Total entities submitted for update */
+    protected $total = 0;
 
     /**
      * BulkService constructor.
@@ -64,6 +63,15 @@ class BulkService
     {
         $this->ids = $ids;
         return $this;
+    }
+
+    /**
+     * Total updated entities submitted (can be different from the total that was updated)
+     * @return int
+     */
+    public function total(): int
+    {
+        return $this->total;
     }
 
     /**
@@ -214,6 +222,7 @@ class BulkService
             if (!Auth::user()->can('update', $entity)) {
                 // Can't update this? Technically not possible since bulk editing is only available
                 // for admins, but better safe than sorry
+                $this->total++;
                 continue;
             }
             $entity->savingObserver = false;
@@ -329,6 +338,7 @@ class BulkService
         $relations = Relation::whereIn('id', $this->ids)->get();
         $count = 0;
         foreach ($relations as $relation) {
+            $this->total++;
             if (!Auth::user()->can('update', $relation)) {
                 // Can't update this? Technically not possible since bulk editing is only available
                 // for admins, but better safe than sorry

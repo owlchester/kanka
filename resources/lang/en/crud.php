@@ -65,6 +65,7 @@ return [
         'success'       => [
             'copy_to_campaign'  => '{1} :count entity copied to :campaign.|[2,*] :count entities copied to :campaign.',
             'editing'           => '{1} :count entity was updated.|[2,*] :count entities were updated.',
+            'editing_partial'   => '{1} :count/:total entity was updated.|[2,*] :count/:total entities were updated.',
             'permissions'       => '{1} Permissions changed for :count entity.|[2,*] Permissions changed for :count entities.',
             'private'           => '{1} :count entity is now private.|[2,*] :count entities are now private.',
             'public'            => '{1} :count entity is now visible.|[2,*] :count entities are now visible.',

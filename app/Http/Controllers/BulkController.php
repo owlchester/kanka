@@ -107,15 +107,21 @@ class BulkController extends Controller
             } elseif ($action === 'batch') {
                 $entityClass = $this->entityService->getClass($entity);
                 $entityObj = new $entityClass;
-                $key = $entity === 'relations' ? 'entities/relations.bulk.update' : 'crud.bulk.success.editing';
+                $langFile = $entity === 'relations' ? 'entities/relations.bulk.success.' : 'crud.bulk.success.';
 
                 $count = $this
                     ->bulkService
                     ->entities(explode(',', $request->get('models')))
                     ->editing($request->all(), $this->bulkModel($entityObj));
+                $total = $this->bulkService->total();
+
+                $key = 'editing';
+                if ($count != $total) {
+                    $key = 'editing_partial';
+                }
                 return redirect()
                     ->route($entity . '.' . $subroute, $routeParams)
-                    ->with('success', trans_choice('crud.bulk.success.editing', $count, ['count' => $count]));
+                    ->with('success', trans_choice($langFile . $key, $count, ['count' => $count, 'total' => $total]));
             }
         } catch (\Exception $e) {
             return redirect()
