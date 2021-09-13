@@ -42,7 +42,7 @@ window.initSummernote = function() {
                 window.entityFormHasUnsavedChanges = true;
             },
             onChangeCodeview: function(contents, $editable) {
-                $summernote.summernote('code', contents);
+                $(this).summernote('code', contents);
             },
             /*onBlur: function() {
                 console.log('blury');

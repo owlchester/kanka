@@ -209,7 +209,8 @@ __webpack_require__.r(__webpack_exports__);
 function dynamicMentions() {
   var remoteUrl;
   var fields;
-  var SELECTOR = '.kanka-mentions:not(.kanka-mentions-tribute)';
+  var SELECTOR = '.kanka-mentions'; //:not(.kanka-mentions-tribute)';
+
   fields = $(SELECTOR);
 
   if (fields.length === 0) {
