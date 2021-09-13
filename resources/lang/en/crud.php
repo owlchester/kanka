@@ -117,6 +117,7 @@ return [
         'calendar'              => 'Calendar',
         'calendar_date'         => 'Calendar Date',
         'character'             => 'Character',
+        'child'                 => 'Child',
         'closed'                => 'Closed',
         'colour'                => 'Colour',
         'copy_abilities'        => 'Copy Abilities',

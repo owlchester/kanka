@@ -89,6 +89,16 @@ class ConnectionService
         ;
     }
 
+    protected function initMap()
+    {
+        $this->loadMapMarkers()
+            ->loadMaps()
+            ->loadParentMaps()
+            ->loadLocation()
+            ->loadTimelines()
+            ->loadQuests();
+    }
+
     /**
      * @return $this
      */
@@ -132,6 +142,17 @@ class ConnectionService
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities.map');
+        }
+        return $this;
+    }
+
+    protected function loadParentMaps(): self
+    {
+        $elements = $this->entity->child->map()->with(['entity'])->has('entity')->get();
+        foreach ($elements as $sub) {
+            $entity = $sub->entity;
+            $this->ids[] = $entity->id;
+            $this->reasons[$entity->id][] = __('maps.fields.map');
         }
         return $this;
     }

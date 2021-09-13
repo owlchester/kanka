@@ -143,6 +143,9 @@ class EntityRelationService
                 isset($this->entities[$relation['target']])
             ) {
                 $relations[] = $relation;
+            } else {
+                dump($relation);
+                dd('wut');
             }
         }
 
@@ -491,6 +494,25 @@ class EntityRelationService
         return $this;
     }
 
+    protected function initMap(): self
+    {
+        $this->addEntity($this->entity)
+            ->withEntity();
+
+        if ($this->loadRelations()) {
+            $this->addRelations($this->entity);
+        }
+
+        if ($this->loadRelated()) {
+            $this->addParent()
+                ->addLocation()
+                ->addQuests()
+                ->addMaps();
+        }
+
+        return $this;
+    }
+
     protected function addOrganisationMembers(Entity $entity): self
     {
         /** @var Organisation $organisation */
@@ -666,6 +688,36 @@ class EntityRelationService
             'type' => 'entity-parent',
             'shape' => 'triangle',
         ];
+
+        $this->addChildren($relationName);
+
+        return $this;
+    }
+
+    /**
+     * Assuming the entity has a parent field, it probably has children too
+     * @return $this
+     */
+    protected function addChildren(string $parent): self
+    {
+        /** @var Map $related */
+        $children = Str::plural($parent);
+        if (!method_exists($this->entity->child, $children)) {
+            return $this;
+        }
+
+        foreach ($this->entity->child->$children()->with(['entity'])->has('entity')->get() as $related) {
+            $this->addEntity($related->entity);
+            $this->relations[] = [
+                'target' => $this->entity->id,
+                'source' => $related->entity->id,
+                'text' => __('crud.fields.child'),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'entity-child',
+                'shape' => 'triangle',
+            ];
+        }
         return $this;
     }
 
@@ -725,7 +777,7 @@ class EntityRelationService
                 'text' => __('crud.tabs.map-points'),
                 'colour' => '#ccc',
                 'attitude' => null,
-                'type' => 'entity-quest-element',
+                'type' => 'entity-map-marker',
                 'shape' => 'none',
             ];
         }
