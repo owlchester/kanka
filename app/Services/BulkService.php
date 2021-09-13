@@ -219,10 +219,10 @@ class BulkService
         foreach ($this->ids as $id) {
             /** @var MiscModel $entity */
             $entity = $model->with('entity', 'entity.tags')->findOrFail($id);
+            $this->total++;
             if (!Auth::user()->can('update', $entity)) {
                 // Can't update this? Technically not possible since bulk editing is only available
                 // for admins, but better safe than sorry
-                $this->total++;
                 continue;
             }
             $entity->savingObserver = false;
