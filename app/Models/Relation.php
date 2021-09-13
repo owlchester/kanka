@@ -73,6 +73,7 @@ class Relation extends Model
         'relation',
         'attitude',
         'is_star',
+        'mirror_id',
     ];
 
     public $filterableColumns = [
