@@ -19,7 +19,7 @@ $r = $model->descendants()
 
         <div class="row export-hidden">
             <div class="col-md-6">
-                @include('cruds.datagrids.sorters.simple-sorter')
+                @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#ability-abilities'])
             </div>
             <div class="col-md-6 text-right">
                 @if (request()->has('ability_id'))

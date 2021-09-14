@@ -1,4 +1,4 @@
-<div class="box box-solid">
+<div class="box box-solid" id="race-races">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ trans('races.show.tabs.races') }}
@@ -7,7 +7,7 @@
         <?php  $r = $model->races()->simpleSort($datagridSorter)->with(['characters'])->paginate(); ?>
         <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('races.show.tabs.races') }}</p>
 
-        @include('cruds.datagrids.sorters.simple-sorter')
+        @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#race-races'])
 
         <table id="races" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
@@ -41,6 +41,6 @@
             </tbody>
         </table>
 
-        {{ $r->links() }}
+        {{ $r->fragment('race-races')->links() }}
     </div>
 </div>

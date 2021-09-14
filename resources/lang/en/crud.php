@@ -189,6 +189,16 @@ return [
         'direct'                    => 'Filter to direct descendants',
         'filtered'                  => 'Showing :count of :total :entity.',
         'hide'                      => 'Hide Filters',
+        'lists'                     => [
+            'desktop' => [
+                'all' => 'Show all descendants (:count)',
+                'filtered' => 'Show direct descendants (:count)',
+            ],
+            'mobile' => [
+                'all' => 'Show all (:count)',
+                'filtered' => 'Show direct (:count)',
+            ],
+        ],
         'mobile'                    => [
             'clear' => 'Clear',
             'copy'  => 'Clipboard',

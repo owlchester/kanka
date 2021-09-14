@@ -1,14 +1,14 @@
 <?php /** @var \App\Models\Character $model */?>
-<div class="box box-solid">
+<div class="box box-solid" id="character-items">
     <div class="box-body">
         <h2 class="page-header">
             {{ trans('characters.show.tabs.items') }}
         </h2>
 
-        @include('cruds.datagrids.sorters.simple-sorter')
+        @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#character-items'])
 
         <?php  $r = $model->items()->simpleSort($datagridSorter)->with(['location', 'entity', 'entity.tags'])->paginate(); ?>
-        <table id="character-items" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+        <table id="character-items-table" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ trans('items.fields.name') }}</th>
@@ -44,6 +44,6 @@
             </tbody>
         </table>
 
-        {{ $r->links() }}
+        {{ $r->fragment('character-items')->links() }}
     </div>
 </div>

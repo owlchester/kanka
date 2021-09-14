@@ -1,4 +1,4 @@
-<div class="box box-solid">
+<div class="box box-solid" id="character-organisations">
     <div class="box-body">
         <h2 class="page-header ">
             {{ trans('characters.show.tabs.organisations') }}
@@ -8,7 +8,7 @@
 
         <div class="row hidden-export">
             <div class="col-md-6">
-                @include('cruds.datagrids.sorters.simple-sorter')
+                @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#character-organisations'])
             </div>
             <div class="col-md-6 text-right">
                 @can('organisation', [$model, 'add'])
@@ -20,7 +20,7 @@
                 @endcan
             </div>
         </div>
-        <table id="character-organisations" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+        <table id="character-organisations-table" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ trans('organisations.fields.name') }}</th>
@@ -74,6 +74,6 @@
             </tbody>
         </table>
 
-        {{ $r->links() }}
+        {{ $r->fragment('character-organisations')->links() }}
     </div>
 </div>

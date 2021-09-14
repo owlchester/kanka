@@ -1,4 +1,4 @@
-<div class="box box-solid">
+<div class="box box-solid" id="event-events">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ trans('events.fields.events') }}
@@ -7,9 +7,9 @@
         <?php  $r = $model->descendants()->with('entity')->simpleSort($datagridSorter)->paginate(); ?>
         <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('events.show.tabs.events') }}</p>
 
-        @include('cruds.datagrids.sorters.simple-sorter')
+        @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#event-events'])
 
-        <table id="events" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+        <table id="events-table" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ __('events.fields.name') }}</th>
@@ -45,6 +45,6 @@
             </tbody>
         </table>
 
-        {{ $r->links() }}
+        {{ $r->fragment('event-events')->links() }}
     </div>
 </div>

@@ -24,7 +24,7 @@
             @include($entity->pluralType() . '._menu', ['active' => 'timelines', 'model' => $entity->child, 'name' => $entity->pluralType()])
         </div>
         <div class="col-md-10">
-            <div class="box box-solid box-entity-timelines">
+            <div class="box box-solid box-entity-timelines" id="entity-timelines">
                 <div class="box-body">
                     <h2 class="page-header with-border">
                         {{ __('crud.tabs.timelines') }}
@@ -34,7 +34,7 @@
                         {{ __('entities/timelines.helper') }}
                     </p>
 
-                        @include('cruds.datagrids.sorters.simple-sorter')
+                        @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#entity-timelines'])
 
 
                     <table id="entity_timelines" class="table table-hover {{ ($timelines->count() === 0 ? 'export-hidden' : '') }}">
@@ -95,7 +95,7 @@
                         </tbody>
                     </table>
 
-                    {{ $timelines->links() }}
+                    {{ $timelines->fragment('entity-timelines')->links() }}
                 </div>
             </div>
         </div>

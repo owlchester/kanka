@@ -1,4 +1,4 @@
-<table id="character-quests" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+<table id="character-quests-table" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
     <thead>
         <tr>
             <th class="avatar"><br /></th>
@@ -53,4 +53,4 @@
     </tbody>
 </table>
 
-{{ $r->links() }}
+{{ $r->fragment('character-quests')->links() }}

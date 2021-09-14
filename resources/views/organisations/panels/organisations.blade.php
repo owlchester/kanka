@@ -3,25 +3,24 @@
  * @var \App\Models\Organisation $model
  * @var \App\Models\Organisation $r
  */
-?><div class="box box-solid">
+?><div class="box box-solid" id="organisation-suborganisations">
     <div class="box-body">
         <h2 class="page-header with-border">
-            {{ trans('organisations.show.tabs.organisations') }}
+            {{ __('organisations.show.tabs.organisations') }}
         </h2>
 
-        <p class="help-block">{{ trans('organisations.helpers.descendants') }}</p>
+        <p class="help-block">{{ __('organisations.helpers.descendants') }}</p>
 
-        @include('cruds.datagrids.sorters.simple-sorter')
+        @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#organisation-suborganisations'])
 
     <?php $r = $model->descendants()->with('parent')->simpleSort($datagridSorter)->paginate(); ?>
-        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('organisations.show.tabs.organisations') }}</p>
+        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ __('organisations.show.tabs.organisations') }}</p>
         <table id="organisations" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>
-                <th>{{ trans('organisations.fields.name') }}</th>
-                <th>{{ trans('organisations.fields.type') }}</th>
-                <th>{{ trans('crud.fields.organisation') }}</th>
-                <th>&nbsp;</th>
+                <th>{{ __('organisations.fields.name') }}</th>
+                <th>{{ __('organisations.fields.type') }}</th>
+                <th>{{ __('crud.fields.organisation') }}</th>
             </tr>
             @foreach ($r as $model)
                 <tr>
@@ -44,6 +43,6 @@
             </tbody>
         </table>
 
-        {{ $r->links() }}
+        {{ $r->fragment('organisation-suborganisations')->links() }}
     </div>
 </div>

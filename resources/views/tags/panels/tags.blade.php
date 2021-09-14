@@ -16,7 +16,7 @@ if (request()->has('tag_id')) {
 
         <div class="row export-hidden">
             <div class="col-md-6">
-                @include('cruds.datagrids.sorters.simple-sorter')
+                @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#tag-tags'])
             </div>
             <div class="col-md-6 text-right">
                 @if (request()->has('tag_id'))

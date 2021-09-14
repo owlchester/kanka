@@ -36,7 +36,7 @@ $datagridSorter->request(request()->all());
         </p>
 
         <div class="export-hidden">
-            @include('cruds.datagrids.sorters.simple-sorter')
+            @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#race-characters'])
         </div>
 
         <table id="characters" class="table table-hover">
