@@ -674,7 +674,7 @@ section.features .feature-item i {
 
 @media (min-width: 768px) {
   .pricing .card-body ul {
-    min-height: 350px;
+    min-height: 360px;
   }
 }
 
