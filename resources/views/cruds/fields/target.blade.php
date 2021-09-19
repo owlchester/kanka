@@ -3,13 +3,17 @@ $required = !isset($bulk);
 @endphp
 
 <div class="form-group @if($required) required @endif">
-    {!! Form::select2(
+
+    {!! Form::foreignSelect(
         'target_id',
-        !empty($target) ? $target : null,
-        App\Models\Entity::class,
-        false,
-        'entities/relations.fields.target',
-        'search.entities-with-relations',
-        'crud.placeholders.entity'
+        [
+            'preset' => !empty($target) ? $target : null,
+            'class' => App\Models\Entity::class,
+            'enableNew' => false,
+            'labelKey' => 'entities/relations.fields.target',
+            'searchRouteName' => 'search.entities-with-relations',
+            'placeholderKey' => 'crud.placeholders.entity',
+            'allowClear' => false,
+        ]
     ) !!}
 </div>

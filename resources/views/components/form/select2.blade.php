@@ -64,7 +64,7 @@ $fieldUniqIdentifier = $fieldId . '_' . uniqid();
         'style' => 'width: 100%',
         'data-url' => route($searchRouteName, $searchParams),
         'data-placeholder' => __($placeholderKey),
-        'data-language' => LaravelLocalization::getCurrentLocale()
+        'data-language' => LaravelLocalization::getCurrentLocale(),
     ]
 ) !!}
 

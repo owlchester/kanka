@@ -13,6 +13,7 @@ $searchParams = \Illuminate\Support\Arr::get($options, 'searchParams');
 $searchRouteName = \Illuminate\Support\Arr::get($options, 'searchRouteName');
 $placeholderKey = \Illuminate\Support\Arr::get($options, 'placeholderKey');
 $from = \Illuminate\Support\Arr::get($options, 'from');
+$allowClear = \Illuminate\Support\Arr::get($options, 'allowClear', true);
 
 // Try to load what was sent with the form first, in case there was a form validation error
 $previous = old($fieldId);
@@ -65,7 +66,7 @@ if (!empty($from)) {
 
 $fieldUniqIdentifier = $fieldId . '_' . uniqid();
 ?>
-<label>{{ trans($labelKey) }}</label>
+<label>{{ __($labelKey) }}</label>
 @if ($allowNew)
     <div class="input-group input-group-sm">
 @endif
@@ -78,8 +79,9 @@ $fieldUniqIdentifier = $fieldId . '_' . uniqid();
         'class' => 'form-control select2',
         'style' => 'width: 100%',
         'data-url' => route($searchRouteName, $searchParams),
-        'data-placeholder' => trans($placeholderKey),
-        'data-language' => LaravelLocalization::getCurrentLocale()
+        'data-placeholder' => __($placeholderKey),
+        'data-language' => LaravelLocalization::getCurrentLocale(),
+        'data-allow-clear' => $allowClear ? 'true' : 'false'
     ]
 ) !!}
 
