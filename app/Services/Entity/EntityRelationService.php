@@ -120,7 +120,7 @@ class EntityRelationService
                 $this->addParent()
                     ->addLocation()
                     ->addQuests()
-                    ->addMaps();
+                    ->addMapMarkers();
             }
         }
 
@@ -347,7 +347,7 @@ class EntityRelationService
                 ->addParent()
                 ->addLocation()
                 ->addQuests()
-                ->addMaps();
+                ->addMapMarkers();
         }
         return $this;
     }
@@ -426,7 +426,7 @@ class EntityRelationService
                 ->addLocation()
                 ->addDiceRolls()
                 ->addConversations()
-                ->addMaps()
+                ->addMapMarkers()
                 ->addQuests();
         }
 
@@ -456,8 +456,8 @@ class EntityRelationService
                 ->addOrganisations()
                 ->addParent()
                 ->addQuests()
+                ->addMapMarkers()
                 ->addMaps()
-                ->addMap()
             ;
         }
 
@@ -487,7 +487,7 @@ class EntityRelationService
                 ->addOrganisations()
                 ->addLocation()
                 ->addQuests()
-                ->addMaps()
+                ->addMapMarkers()
             ;
         }
 
@@ -507,6 +507,7 @@ class EntityRelationService
             $this->addParent()
                 ->addLocation()
                 ->addQuests()
+                ->addMapMarkers()
                 ->addMaps();
         }
 
@@ -673,6 +674,7 @@ class EntityRelationService
         $relationName = $this->entity->entityType();
         $parent = $this->entity->child->$relationName;
         if (empty($parent)) {
+            $this->addChildren($relationName);
             return $this;
         }
 
@@ -766,7 +768,7 @@ class EntityRelationService
     /**
      * @return $this
      */
-    protected function addMaps(): self
+    protected function addMapMarkers(): self
     {
         /** @var MapMarker $related */
         foreach ($this->entity->mapMarkers()->with(['map', 'map.entity'])->has('map')->get() as $related) {
@@ -787,10 +789,10 @@ class EntityRelationService
     /**
      * @return $this
      */
-    protected function addMap(): self
+    protected function addMaps(): self
     {
         /** @var Map $related */
-        foreach ($this->entity->map()->with(['entity'])->has('entity')->get() as $related) {
+        foreach ($this->entity->child->maps()->with(['entity'])->has('entity')->get() as $related) {
             $this->addEntity($related->entity);
             $this->relations[] = [
                 'source' => $this->entity->id,
