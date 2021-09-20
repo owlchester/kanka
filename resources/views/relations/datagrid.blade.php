@@ -52,6 +52,9 @@
             'field' => 'attitude',
             'label' => __('entities/relations.fields.attitude'),
         ],
+        [
+            'type' => 'is_private',
+        ],
     ],
     // Data
     $models,

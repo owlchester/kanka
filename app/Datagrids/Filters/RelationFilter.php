@@ -32,6 +32,7 @@ class RelationFilter extends DatagridFilter
             ->add('relation')
             ->add('attitude')
             ->add('is_star')
+            ->isPrivate()
         ;
     }
 }
