@@ -15,6 +15,8 @@
     </div>
 </div>
 
+@include('dashboard.widgets.forms._related')
+
 <div class="row">
     @includeWhen(!empty($dashboards), 'dashboard.widgets.forms._dashboard')
 </div>
