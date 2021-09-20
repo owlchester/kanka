@@ -138,7 +138,6 @@ To create a map, use the following endpoint.
 | `center_y` | `float` | The custom latitude on page load |
 | `tags` | `array` | Array of tag ids |
 | `is_private` | `boolean` | If the map is only visible to `admin` members of the campaign |
-| `image` | `stream` (Required without `image_url`) | Stream to file uploaded to the map |
 | `image_url` | `string` (Required) without `image`) | URL to a picture to be used for the map |
 
 ### Results

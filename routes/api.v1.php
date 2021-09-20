@@ -67,6 +67,8 @@ Route::apiResources([
     'campaigns.images' => 'CampaignImageApiController',
 ]);
 
+Route::post('campaigns/{campaign}/entities/{entity}/image', 'EntityImageApiController@put');
+Route::delete('campaigns/{campaign}/entities/{entity}/image', 'EntityImageApiController@delete');
 Route::get('campaigns/{campaign}/users', 'CampaignUserApiController@index');
 Route::get('campaigns/{campaign}/relations', 'RelationApiController@index');
 Route::get('campaigns/{campaign}/search/{query}', 'SearchApiController@index');

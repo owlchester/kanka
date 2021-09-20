@@ -101,7 +101,6 @@ To create a race, use the following endpoint.
 | `race_id` | `string` | Parent race of the race |
 | `tags` | `array` | Array of tag ids |
 | `is_private` | `boolean` | If the race is only visible to `admin` members of the campaign |
-| `image` | `stream` | Stream to file uploaded to the race |
 | `image_url` | `string` | URL to a picture to be used for the race |
 
 ### Results

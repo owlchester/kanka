@@ -110,7 +110,6 @@ To create a tag, use the following endpoint.
 | `colour` | `string` | The tag's colour |
 | `tag_id` | `integer` | The parent tag |
 | `is_private` | `boolean` | If the tag is only visible to `admin` members of the campaign |
-| `image` | `stream` | Stream to file uploaded to the tag |
 | `image_url` | `string` | URL to a picture to be used for the tag |
 
 ### Results

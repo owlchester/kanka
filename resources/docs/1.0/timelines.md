@@ -150,7 +150,6 @@ To create a timeline, use the following endpoint.
 | `revert_order` | `boolean` | Revert era rendering order (older first) |
 | `tags` | `array` | Array of tag ids |
 | `is_private` | `boolean` | If the timeline is only visible to `admin` members of the campaign |
-| `image` | `stream` | Stream to file uploaded to the timeline |
 | `image_url` | `string` | URL to a picture to be used for the timeline |
 
 ### Results

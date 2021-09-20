@@ -196,7 +196,6 @@ To create a conversation, use the following endpoint.
 | `tags` | `array` | Array of tag ids |
 | `is_closed` | `boolean` | If the conversation is closed |
 | `is_private` | `boolean` | If the conversation is only visible to `admin` members of the campaign |
-| `image` | `stream` | Stream to file uploaded to the conversation |
 | `image_url` | `string` | URL to a picture to be used for the conversation |
 
 ### Results

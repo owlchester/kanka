@@ -138,7 +138,6 @@ To create a quest, use the following endpoint.
 | `character_id` | `integer` | The quest's character (quest giver) |
 | `tags` | `array` | Array of tag ids |
 | `is_private` | `boolean` | If the quest is only visible to `admin` members of the campaign |
-| `image` | `stream` | Stream to file uploaded to the quest |
 | `image_url` | `string` | URL to a picture to be used for the quest |
 
 ### Results

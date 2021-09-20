@@ -166,9 +166,7 @@ To create a location, use the following endpoint.
 | `parent_location_id` | `integer` | The parent location id (where this location is located)|
 | `tags` | `array` | Array of tag ids |
 | `is_private` | `boolean` | If the location is only visible to `admin` members of the campaign |
-| `image` | `stream` | Stream to file uploaded to the location |
 | `image_url` | `string` | URL to a picture to be used for the location |
-| `map` | `stream` | Stream to file uploaded as the location's map |
 | `map_url` | `string` | URL to a picture to be used for the location's map |
 | `is_map_private` | `boolean` | If the location's map is only visible to `admin` members of the campaign |
 

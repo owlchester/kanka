@@ -104,7 +104,6 @@ To create a journal, use the following endpoint.
 | `character_id` | `string` | The "author" of the journal |
 | `tags` | `array` | Array of tag ids |
 | `is_private` | `boolean` | If the journal is only visible to `admin` members of the campaign |
-| `image` | `stream` | Stream to file uploaded to the journal |
 | `image_url` | `string` | URL to a picture to be used for the journal |
 
 ### Results
