@@ -13,7 +13,7 @@ $entity = \App\Models\Entity::
         ->whereNotIn('type', ['attribute_template', 'conversation', 'tag'])
         ->type($entityType)
         ->acl()
-        ->with(['updater', 'image'])
+        ->with(['image'])
         ->whereNotIn('entities.id', \App\Facades\Dashboard::excluding())
         ->inRandomOrder()
         ->first();
