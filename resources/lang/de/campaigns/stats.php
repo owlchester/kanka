@@ -19,7 +19,7 @@ return [
         'dead'      => 'Töte :target Charakter',
         'families'  => 'Erstelle :target Familie',
         'locations' => 'Erstelle :target Ort',
-        'races'     => 'Erstelle :target Rasse',
+        'races'     => 'Erstelle :target Spezies',
     ],
     'title'         => 'Kampagne :campaign Erfolge',
     'titles'        => [

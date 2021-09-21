@@ -27,7 +27,7 @@ return [
         'new_account'           => 'Zarejestruj nowe konto',
         'or'                    => 'LUB',
         'password_forgotten'    => 'Nie pamiętasz hasła?',
-        'remember_me'           => 'Przypomnij',
+        'remember_me'           => 'Zapamiętaj',
         'submit'                => 'Zaloguj',
         'title'                 => 'Logowanie',
     ],

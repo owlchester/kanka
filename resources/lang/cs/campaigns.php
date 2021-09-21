@@ -273,7 +273,7 @@ TEXT
         ],
         'helper'        => [
             '1' => 'Tažení může mít libovolný počet rolí. Role "Správce" automaticky získává přístup ke všem objektům tažení. Všechny ostatní role mohou definovat samostatná oprávnění k jednotlivých objektům tažení (postavy, místa, atd.)',
-            '2' => 'Detailně nastavit přístupová oprávnění k objektům lze na záložce "Oprávnění" daného objektu. Tato karta se ukazuje u tažení s více rolemi nebo členy.',
+            '2' => 'Detailně nastavit přístupová oprávnění k objektům lze na kartě "Oprávnění" daného objektu. Tato karta se ukazuje u tažení s více rolemi nebo členy.',
             '3' => 'Řídit oprávnění lze buď na vylučovacím základu, kde se rolím přidělí přístup ke všem objektům a vybrané objekty se pak označí za "Soukromé". Nebo se pomocí rolí omezí přístupová práva k objektům a každý objekt lze pak zviditelnit samostatně.',
         ],
         'hints'         => [
