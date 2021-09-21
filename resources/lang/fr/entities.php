@@ -56,6 +56,8 @@ return [
     'quests'                => 'Quêtes',
     'race'                  => 'Race',
     'races'                 => 'Races',
+    'relation'              => 'Relation',
+    'relations'             => 'Relations',
     'tag'                   => 'Etiquette',
     'tags'                  => 'Etiquettes',
     'timeline'              => 'Chronologie',

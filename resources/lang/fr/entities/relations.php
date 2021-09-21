@@ -5,6 +5,13 @@ return [
         'mode-map'      => 'Outil de visualisation des relations',
         'mode-table'    => 'Table des relations et connexions',
     ],
+    'bulk'          => [
+        'delete'    => '{1} :count relation supprimée.|[2,*] :count relations supprimées.',
+        'success'   => [
+            'editing'           => '{1} :count relation modifiée.|[2,*] :count relations modifiées.',
+            'editing_partial'   => '{1} :count/:total relation modifiée.|[2,*] :count/:total relations modifiées.',
+        ],
+    ],
     'connections'   => [
         'map_point'         => 'Point de carte',
         'mention'           => 'Mention',
@@ -12,6 +19,7 @@ return [
         'timeline_element'  => 'Élément de timeline',
     ],
     'create'        => [
+        'new_title' => 'Nouvelle relation',
         'success'   => 'Relation :target ajoutée pour :entity.',
         'title'     => 'Nouvelle relation pour :name',
     ],
@@ -22,6 +30,7 @@ return [
         'attitude'          => 'Attitude',
         'connection'        => 'Connexion',
         'is_star'           => 'Epinglé',
+        'owner'             => 'Source',
         'relation'          => 'Relation',
         'target'            => 'Cible',
         'target_relation'   => 'Relation de la cible',
@@ -36,6 +45,10 @@ return [
         ],
         'target_relation'   => 'La description de la relation sur la cible. Laisser vide pour utiliser la même relation pour la cible.',
         'two_way'           => 'Sélectionne pour créer une copie de la relation sur la cible.',
+    ],
+    'index'         => [
+        'add'   => 'Nouvelle relation',
+        'title' => 'Relations',
     ],
     'options'       => [
         'mentions'  => 'Relations + liés + mentions',
