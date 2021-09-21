@@ -95,7 +95,7 @@ TEXT
         'question'  => 'Gibt es eine mobile App? Ist etwas in der Richtung geplant?',
     ],
     'monsters'              => [
-        'answer'    => 'Wir empfehlen die Verwendung des Rassen-Moduls für Völker, Spezien, Monster und alles Lebende, das kein Charakter ist.',
+        'answer'    => 'Wir empfehlen die Verwendung des Spezies-Moduls für Völker, Spezies, Monster und alles Lebende, das kein Charakter ist.',
         'question'  => 'Wo kann man Monster erstellen?',
     ],
     'multiworld'            => [

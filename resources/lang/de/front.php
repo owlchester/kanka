@@ -120,7 +120,7 @@ return [
         'description'       => 'Hier sind einige Dinge, die du an unserer App lieben wirst!',
         'description_full'  => 'Hier einige unserer besten und beliebtesten Features.',
         'flora'             => [
-            'description'   => 'Verfolgen Sie die lebende Welt der Kreaturen mit unserem Rassen-Modul und bauen Sie mit unseren verschachtelten Notizen ein komplexes Ökosystem auf.',
+            'description'   => 'Verfolgen Sie die lebende Welt der Kreaturen mit unserem Spezies-Modul und bauen Sie mit unseren verschachtelten Notizen ein komplexes Ökosystem auf.',
             'title'         => 'Flora & Fauna',
         ],
         'free'              => [
@@ -198,7 +198,7 @@ return [
             'gallery'       => 'Kampagnengalerie und Integrationen mit dem Summernote-Texteditor',
             'logs'          => 'Vollständige Änderungsprotokolle für Objekte (bis zu 30 Tage)',
             'stats'         => 'Seite mit den Kampagnenerfolgen',
-            'title'         => 'Supergeboostete Kampagne',
+            'title'         => 'Superboost Kampagne',
         ],
         'timelines'         => [
             'description'   => 'Stellen Sie visuell die Zeitstrahlen Ihrer Welten, Reiche, Adelsfamilien oder sogar eines einzelnen Charakters dar.',
@@ -280,7 +280,7 @@ return [
         'newsletter'    => 'Newsletter',
         'other'         => 'Andere',
         'pricing'       => 'Preisgestaltung',
-        'privacy'       => 'Datenschutz-Bestimmung',
+        'privacy'       => 'Datenschutzbestimmung',
         'register'      => 'Registrieren',
         'releases'      => 'Versionen',
         'roadmap'       => 'Roadmap',
@@ -322,7 +322,7 @@ return [
     ],
     'privacy'       => [
         'description'   => 'Datum des Inkrafttretens: :date',
-        'title'         => 'Datenschutz-Bestimmung',
+        'title'         => 'Datenschutzbestimmung',
     ],
     'release'       => [
         'description'   => 'Kanka wächst und verändert sich ständig und wir wollen der Welt zeigen, welche tollen Dinge wir hinzufügen.',

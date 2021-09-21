@@ -8,6 +8,7 @@ return [
         'alphabetical'      => 'Kolejność alfabetyczna',
         'date_created'      => 'Data stworzenia',
         'date_joined'       => 'Data dołączenia',
+        'default'           => 'Domyślna',
         'r_alphabetical'    => 'Odwrócona kolejność alfabetyczna',
         'r_date_created'    => 'Odwrócona data stworzenia',
         'r_date_joined'     => 'Odwócona data dołączenia',

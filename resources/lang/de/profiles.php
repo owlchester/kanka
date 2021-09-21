@@ -8,6 +8,7 @@ return [
         'alphabetical'      => 'Alphabetisch',
         'date_created'      => 'Erstellungsdatum',
         'date_joined'       => 'Beitrittsdatum',
+        'default'           => 'Standard',
         'r_alphabetical'    => 'umgekehrt Alphabetisch',
         'r_date_created'    => 'umgekehrt Erstellungsdatum',
         'r_date_joined'     => 'umgekehrt Beitrittsdatum',

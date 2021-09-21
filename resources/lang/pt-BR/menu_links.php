@@ -48,6 +48,10 @@ return [
     'random_types'  => [
         'any'   => 'Qualquer entidade',
     ],
+    'reorder'       => [
+        'success'   => 'Links rápidos reordenados.',
+        'title'     => 'Reordenar links rápidos',
+    ],
     'show'          => [
         'tabs'  => [
             'information'   => 'Informação',

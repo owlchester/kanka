@@ -8,6 +8,7 @@ return [
         'alphabetical'      => 'Alfabeticamente',
         'date_created'      => 'Data de creación',
         'date_joined'       => 'Data na que te uniches',
+        'default'           => 'Por defecto',
         'r_alphabetical'    => 'Alfabeticamente inversa',
         'r_date_created'    => 'Data de creación inversa',
         'r_date_joined'     => 'Data na que te uniches inversa',

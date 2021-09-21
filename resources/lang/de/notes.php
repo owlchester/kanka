@@ -39,7 +39,7 @@ return [
     'placeholders'  => [
         'name'  => 'Name der Notiz',
         'note'  => 'Wähle eine übergeordnete Notiz',
-        'type'  => 'Religion, Rasse, Politisches System',
+        'type'  => 'Religion, Spezies, Politisches System',
     ],
     'show'          => [
         'description'   => 'Eine detaillierte Ansicht einer Notiz',

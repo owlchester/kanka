@@ -188,6 +188,7 @@ return [
             'update_currency'   => 'Gardar moeda preferida',
         ],
         'benefits'              => 'Apoiándonos podes desbloquear algunhas :features e axudarnos a dedicar máis tempo a mellorar Kanka. Non gardamos ningunha información de cartóns de crédito, usamos :stripe para xestionar os pagamentos.',
+        'benefits_features'     => 'incríbeis funcionalidades',
         'billing'               => [
             'helper'    => 'A túa información de pagamento é procesada e almacenada de forma segura a través de :stripe. O teu método de pagamento é usado para todas as túas subscripcións.',
             'saved'     => 'Método de pagamento gardado',

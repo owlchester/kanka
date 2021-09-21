@@ -3,8 +3,8 @@
 return [
     'actions'   => [
         'add'                       => 'Füge eine Fähigkeit hinzu',
-        'import_from_race'          => 'Rassenfähigkeit hinzufügen',
-        'import_from_race_mobile'   => 'Rassenfähigkeiten',
+        'import_from_race'          => 'Speziesfähigkeit hinzufügen',
+        'import_from_race_mobile'   => 'Speziesfähigkeiten',
         'reset'                     => 'Fähigkeit zurücksetzen',
     ],
     'create'    => [
@@ -21,7 +21,7 @@ return [
     ],
     'import'    => [
         'errors'    => [
-            'no_race'       => 'Der Charakter hat keine Rasse',
+            'no_race'       => 'Der Charakter hat keine Spezies',
             'not_character' => 'Das Objekt ist kein Charakter',
         ],
         'success'   => '{1} :count Fähigkeit importiert. | [2, *] :count Fähigkeiten importieren.',

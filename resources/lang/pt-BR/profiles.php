@@ -1,18 +1,27 @@
 <?php
 
 return [
-    'avatar'        => [
+    'avatar'                        => [
         'success'   => 'Avatar atualizado',
     ],
-    'description'   => 'Atualize os detalhes da sua conta',
-    'edit'          => [
+    'campaign_switcher_order_by'    => [
+        'alphabetical'      => 'Alfabeticamente',
+        'date_created'      => 'Data de Criação',
+        'date_joined'       => 'Data em que Entrou',
+        'default'           => 'Padrão',
+        'r_alphabetical'    => 'Alfabeticamente Invertido',
+        'r_date_created'    => 'Data de Criação Invertida',
+        'r_date_joined'     => 'Data em que Entrou Invertido',
+    ],
+    'description'                   => 'Atualize os detalhes da sua conta',
+    'edit'                          => [
         'success'   => 'Perfil atualizado',
     ],
-    'editors'       => [
+    'editors'                       => [
         'legacy'        => 'Legado (TinyMCE 4)',
         'summernote'    => 'Summernote',
     ],
-    'fields'        => [
+    'fields'                        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'Email',
         'hide_subscription'         => 'Esconder meu nome do :hall_of_fame.',
@@ -25,7 +34,7 @@ return [
         'settings'                  => 'Configurações',
         'theme'                     => 'Tema',
     ],
-    'newsletter'    => [
+    'newsletter'                    => [
         'helpers'   => [
             'community-vote'    => 'Seja notificado sempre que houver um novo :community-vote em andamento.',
             'header'            => 'Assine os seguintes boletins informativos por e-mail para ser notificado sobre o que está acontecendo com Kanka.',
@@ -49,17 +58,17 @@ return [
         ],
         'title'     => 'Boletim de Notícias',
     ],
-    'password'      => [
+    'password'                      => [
         'success'   => 'Senha atualizada',
     ],
-    'placeholders'  => [
+    'placeholders'                  => [
         'email'                     => 'Seu endereço de email',
         'name'                      => 'Seu nome como exibido',
         'new_password'              => 'Sua nova senha',
         'new_password_confirmation' => 'Confirme sua nova senha',
         'password'                  => 'Forneça sua senha atual para qualquer mudança',
     ],
-    'sections'      => [
+    'sections'                      => [
         'delete'    => [
             'delete'    => 'Deletar minha conta',
             'helper'    => 'Deletar sua conta também deletará quaisquer campanhas que você é o único membro dela. Essa ação é permanente e não pode ser desfeita.',
@@ -70,14 +79,15 @@ return [
             'title' => 'Alterar sua senha',
         ],
     ],
-    'settings'      => [
+    'settings'                      => [
         'fields'    => [
-            'advanced_mentions'     => 'Menções Avançadas',
-            'date_format'           => 'Formato da Data',
-            'default_nested'        => 'Visão Aninhada como padrão',
-            'editor'                => 'Editor de texto',
-            'new_entity_workflow'   => 'Novo fluxo de trabalho da entidade',
-            'pagination'            => 'Paginação (elementos por página)',
+            'advanced_mentions'             => 'Menções Avançadas',
+            'campaign_switcher_order_by'    => 'Ordem de Classificação do Alternador de Campanha',
+            'date_format'                   => 'Formato da Data',
+            'default_nested'                => 'Visão Aninhada como padrão',
+            'editor'                        => 'Editor de texto',
+            'new_entity_workflow'           => 'Novo fluxo de trabalho da entidade',
+            'pagination'                    => 'Paginação (elementos por página)',
         ],
         'helpers'   => [
             'editor'    => <<<'TEXT'
@@ -94,7 +104,7 @@ TEXT
         ],
         'success'   => 'Configurações alteradas com sucesso.',
     ],
-    'theme'         => [
+    'theme'                         => [
         'success'   => 'Tema alterado com sucesso.',
         'themes'    => [
             'dark'      => 'Escuro',
@@ -103,8 +113,8 @@ TEXT
             'midnight'  => 'Azul Meia-Noite',
         ],
     ],
-    'title'         => 'Atualizar seu perfil',
-    'workflows'     => [
+    'title'                         => 'Atualizar seu perfil',
+    'workflows'                     => [
         'created'   => 'Ir para entidade recém-criada',
         'default'   => 'Lista de entidades',
     ],

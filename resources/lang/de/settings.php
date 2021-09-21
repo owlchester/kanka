@@ -51,30 +51,30 @@ return [
         'available_boosts'  => 'Verfügbare Boosts : :amount / :max',
         'benefits'          => [
             'campaign_gallery'  => 'Eine Kampagnengalerie zum Hochladen von Bildern, die Sie während der Kampagne wiederverwenden können.',
-            'entity_files'      => 'Laden Sie bis zu 10 Dateien pro Objekt hoch.',
-            'entity_logs'       => 'Vollständige Objektprotokolle der Änderungen an einem Objekt bei jeder Aktualisierung.',
-            'first'             => 'Um weitere Fortschritte bei Kanka zu erzielen, werden einige Kampagnenfunktionen durch Boosten einer Kampagne freigeschaltet. Boosts werden durch Abonnements freigeschaltet. Jeder, der eine Kampagne anzeigen kann, kann sie verbessern, sodass der DM nicht immer die Rechnung bezahlen muss. Eine Kampagne bleibt verstärkt, solange ein Benutzer die Kampagne verstärkt und Kanka weiterhin unterstützt. Wenn eine Kampagne nicht mehr verstärkt wird, gehen keine Daten verloren, sondern werden nur ausgeblendet, bis die Kampagne erneut erhöht wird.',
-            'header'            => 'Objekt Header Bilder.',
+            'entity_files'      => 'Lade bis zu 10 Dateien pro Objekt hoch.',
+            'entity_logs'       => 'Vollständige Änderungsprotokolle bei jeder Aktualisierung von Objekten.',
+            'first'             => 'Um eine stetige Weiterentwicklung von Kanka zu sicherzustellen, werden einige Funktionen von Kampagnen durch Boosts freigeschaltet. Boosts werden durch Abonnements erworben. Damit der Spielleiter nicht immer die Rechnung bezahlen muss, kann jeder, für den die Kampagne sichtbar ist, ihr einen Boost geben. Der Boost einer Kampagne bleibt erhalten, solange ein Nutzer ihr einen Boost verleiht und Kanka weiterhin unterstützt. Falls eine Kampagne keinen Boost mehr hat, gehen keine Daten verloren, sondern werden nur ausgeblendet, bis die Kampagne erneut einen Boost bekommt.',
+            'header'            => 'Bilder für Objekt-Header',
             'headers'           => [
-                'boosted'       => 'geboostete Kampagnenvorteile',
-                'superboosted'  => 'supergeboostete Kampagnenvorteile',
+                'boosted'       => 'Boost Kampagnenvorteile',
+                'superboosted'  => 'Supergeboostete Kampagnenvorteile',
             ],
             'helpers'           => [
-                'boosted'       => 'Durch das Boosten einer Kampagne wird der Kampagne ein einzelner Booster zugewiesen.',
-                'superboosted'  => 'Durch das Superboosten einer Kampagne werden der Kampagne drei Booster zugewiesen.',
+                'boosted'       => 'Durch den Boost einer Kampagne wird der Kampagne ein einzelner Booster zugewiesen.',
+                'superboosted'  => 'Durch den Superboost einer Kampagne werden der Kampagne drei Booster zugewiesen.',
             ],
-            'images'            => 'Benutzerdefinitierte Standardobjektbilder.',
+            'images'            => 'Benutzerdefinierte Standardobjektbilder.',
             'more'              => [
-                'boosted'       => 'Alle geboosteten Kampagnenfunktionen',
-                'superboosted'  => 'Alle superboosted Kampagnenfunktionen',
+                'boosted'       => 'Alle Boost Kampagnenfunktionen',
+                'superboosted'  => 'Alle Superboost Kampagnenfunktionen',
             ],
             'recovery'          => 'Gelöschte Objekte für bis zu :amount Tage wiederherstellen.',
             'second'            => 'Das Boosten einer Kampagne bietet die folgenden Vorteile:',
             'superboost'        => 'Beim Superboosting einer Kampagne werden 3 Ihrer Boosts verwendet und zusätzliche Funktionen für Boosted-Kampagnen freigeschaltet.',
             'theme'             => 'Leitmotiv auf Kampagnenebene und benutzerdefiniertes Design.',
             'third'             => 'Um eine Kampagne zu boosten, rufen Sie die Seite der Kampagne auf und klicken Sie auf die Schaltfläche ":boost_button" über der Schaltfläche ":edit_button".',
-            'tooltip'           => 'Benutzerdefinierte Kurzinfo für Objekt.',
-            'upload'            => 'Erhöhte Upload-Größe für jedes Mitglied in der Kampagne.',
+            'tooltip'           => 'Benutzerdefinierte Kurzinfo für Objekte',
+            'upload'            => 'Erhöhte Upload-Größe für jedes Mitglied der Kampagne.',
         ],
         'buttons'           => [
             'boost'         => 'Boost',
@@ -89,7 +89,7 @@ return [
         'exceptions'        => [
             'already_boosted'       => 'Kampagne :name ist bereits geboostet',
             'exhausted_boosts'      => 'Sie haben keine Boosts mehr zu geben. Entfernen Sie Ihren Boost aus einer Kampagne, bevor Sie ihn einer anderen geben.',
-            'exhausted_superboosts' => 'Sie haben keine Boosts mehr. Sie benötigen 3 Booster, um eine Kampagne zu verbessern.',
+            'exhausted_superboosts' => 'Sie haben keine Boosts mehr. Sie benötigen 3 Booster, um eine Kampagne zu boosten.',
         ],
         'modals'            => [
             'more'  => [
@@ -188,7 +188,7 @@ return [
         'remove'            => [
             'button'    => 'Trennen Sie die Verknüpfung Ihres Patreon-Kontos',
             'success'   => 'Ihr Patreon-Konto wurde getrennt.',
-            'text'      => 'Wenn Sie die Verknüpfung Ihres Patreon-Kontos mit Kanka aufheben, werden Ihre Boni, Ihr Name in der Hall of Fame, Kampagnen-Boosts und andere Funktionen im Zusammenhang mit der Unterstützung von Kanka entfernt. Keiner Ihrer verstärkten Inhalte geht verloren (z. B. Objekt header). Wenn Sie sich erneut anmelden, haben Sie Zugriff auf alle Ihre vorherigen Daten, einschließlich der Möglichkeit, Ihre zuvor verstärkten Kampagnen zu verbessern.',
+            'text'      => 'Wenn Sie die Verknüpfung Ihres Patreon-Kontos mit Kanka aufheben, werden Ihre Boni, Ihr Name in der Hall of Fame, Kampagnen-Boosts und andere Funktionen im Zusammenhang mit der Unterstützung von Kanka entfernt. Keiner Ihrer verstärkten Inhalte geht verloren (z. B. Objekt header). Wenn Sie sich erneut anmelden, haben Sie Zugriff auf alle Ihre vorherigen Daten, einschließlich der Möglichkeit, Ihre zuvor verstärkten Kampagnen zu boosten.',
             'title'     => 'Trennen Sie Ihr Patreon-Konto von Kanka',
         ],
         'success'           => 'Danke, dass du Kanka auf Patreon unterstützt.',
@@ -211,6 +211,7 @@ return [
             'update_currency'   => 'Speichern Sie die bevorzugte Währung',
         ],
         'benefits'              => 'Wenn Sie uns unterstützen, können Sie einige neue :features freischalten und uns helfen  mehr Zeit in die Verbesserung von Kanka zu investieren. Es werden keine Kreditkarteninformationen gespeichert oder über unsere Server übertragen. Wir verwenden :stripe, um alle Abrechnungen abzuwickeln.',
+        'benefits_features'     => 'tolle Funktionen',
         'billing'               => [
             'helper'    => 'Ihre Zahlungsinformationen werden sicher verarbeitet und gespeichert durch :stripe. Diese Zahlungsmethode wird für alle Ihre Abonnements verwendet.',
             'saved'     => 'Gespeicherte Zahlungsmethode',
