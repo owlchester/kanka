@@ -1,5 +1,5 @@
 <?php /** @var \App\Models\Family $model */?>
-<div class="box box-solid">
+<div class="box box-solid" id="family-members">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ __('families.show.tabs.members') }}
@@ -7,7 +7,7 @@
 
         <p class="help-block">{{ __('families.members.helpers.direct_members') }}</p>
 
-        @include('cruds.datagrids.sorters.simple-sorter')
+        @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#family-members'])
 
         <table id="family-characters" class="table table-hover margin-top">
             <thead><tr>
@@ -53,6 +53,6 @@
             </tbody>
         </table>
 
-        {{ $r->links() }}
+        {{ $r->fragment('family-members')->links() }}
     </div>
 </div>

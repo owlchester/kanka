@@ -113,7 +113,6 @@ To create a family, use the following endpoint.
 | `family_id` | `integer` | The parent family id |
 | `tags` | `array` | Array of tag ids |
 | `is_private` | `boolean` | If the family is only visible to `admin` members of the campaign |
-| `image` | `stream` | Stream to file uploaded to the family |
 | `image_url` | `string` | URL to a picture to be used for the family |
 
 ### Results

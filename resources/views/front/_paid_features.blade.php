@@ -48,7 +48,32 @@
                 <td><i class="fa fa-infinity" title="{{ __('front.features.unlimited') }}"></i></td>
             </tr>
             <tr>
+                <td class="text">
+                    <a href="#boost">
+                    {{ __('front.features.patreon.boosts') }}
+                    </a>
+                </td>
+                <td></td>
+                <td>3</td>
+                <td>6</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td class="text">{{ __('front.features.patreon.no_ads') }}</td>
+                <td></td>
+                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa fa-check-circle"></i></td>
+            </tr>
+            <tr>
                 <td class="text">{{ __('front.features.patreon.discord') }}</td>
+                <td></td>
+                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa fa-check-circle"></i></td>
+            </tr>
+            <tr>
+                <td class="text">{{ __('front.features.patreon.monthly_vote') }}</td>
                 <td></td>
                 <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
@@ -63,13 +88,6 @@
             </tr>
             <tr>
                 <td class="text">{!! __('front.features.patreon.hall_of_fame', ['link' => link_to_route('front.hall-of-fame', __('front/hall-of-fame.title'))]) !!}</td>
-                <td></td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
-            </tr>
-            <tr>
-                <td class="text">{{ __('front.features.patreon.no_ads') }}</td>
                 <td></td>
                 <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
@@ -95,13 +113,6 @@
                 <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
-            </tr>
-            <tr>
-                <td class="text">{{ __('front.features.patreon.boosts') }}</td>
-                <td></td>
-                <td>3</td>
-                <td>6</td>
-                <td>10</td>
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.patreon.curation') }}</td>
@@ -130,7 +141,8 @@
                 <h1 class="mb-5">{{ __('front.features.boosts_v2.title') }}</h1>
                 <p class="mb-5">{{ __('front.features.boosts_v2.description') }} {!! __('front.features.boosts_v2.description-count', [
     'boost-count' => '<strong>1</strong>', 'superboost-count' => '<strong>3</strong>',
-]) !!}</p>
+]) !!} {{ __('front.features.boosts_v2.moving') }}
+                </p>
             </div>
         </div>
 

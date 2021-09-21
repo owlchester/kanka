@@ -203,15 +203,17 @@ class CampaignDashboardWidget extends Model
      */
     public function showAttributes(): bool
     {
-        if (!in_array($this->widget, [self::WIDGET_PREVIEW, self::WIDGET_RECENT])) {
+        if ($this->conf('attributes') != '1') {
             return false;
         }
+        if (!in_array($this->widget, [self::WIDGET_PREVIEW, self::WIDGET_RECENT, self::WIDGET_RANDOM])) {
+            return false;
+        }
+        if ($this->widget == self::WIDGET_RECENT) {
+            return true;
+        }
 
-        return $this->conf('attributes') == '1' && (
-            ($this->widget == self::WIDGET_PREVIEW && !empty($this->entity))
-            ||
-            ($this->widget == self::WIDGET_RECENT)
-        );
+        return !empty($this->entity);
     }
 
     /**
@@ -219,15 +221,17 @@ class CampaignDashboardWidget extends Model
      */
     public function showRelations(): bool
     {
-        if (!in_array($this->widget, [self::WIDGET_PREVIEW, self::WIDGET_RECENT])) {
+        if ($this->conf('relations') != '1') {
             return false;
         }
+        if (!in_array($this->widget, [self::WIDGET_PREVIEW, self::WIDGET_RECENT, self::WIDGET_RANDOM])) {
+            return false;
+        }
+        if ($this->widget == self::WIDGET_RECENT) {
+            return true;
+        }
 
-        return $this->conf('relations') == '1' && (
-            ($this->widget == self::WIDGET_PREVIEW && !empty($this->entity))
-            ||
-            ($this->widget == self::WIDGET_RECENT)
-        );
+        return !empty($this->entity);
     }
 
     /*
@@ -237,7 +241,10 @@ class CampaignDashboardWidget extends Model
      */
     public function showMembers(Entity $entity = null): bool
     {
-        if (!in_array($this->widget, [self::WIDGET_PREVIEW, self::WIDGET_RECENT]) || $this->conf('members') !== '1') {
+        if ($this->conf('members') !== '1') {
+            return false;
+        }
+        if (!in_array($this->widget, [self::WIDGET_PREVIEW, self::WIDGET_RECENT, self::WIDGET_RANDOM])) {
             return false;
         }
         $types = [
@@ -338,5 +345,16 @@ class CampaignDashboardWidget extends Model
             //Log::error('Widget error:' . $e->getMessage());
             return [];
         }
+    }
+
+    /**
+     * A way to set the entity, typically for the random widget
+     * @param Entity $entity
+     * @return $this
+     */
+    public function setEntity(Entity $entity): self
+    {
+        $this->entity = $entity;
+        return $this;
     }
 }

@@ -36,8 +36,9 @@
             <td class="text-right">
                 <a href="{{ route('timelines.timeline_eras.edit', [$model, $era]) }}" class="btn btn-primary btn-xs"
                    title="{{ __('crud.edit') }}"
-                   data-toggle="ajax-modal" data-target="#entity-modal"
+                   data-toggle="ajax-modal" data-target="#large-modal"
                    data-url="{{ route('timelines.timeline_eras.edit', [$model, $era]) }}"
+                   data-backdrop="static"
                 >
                     <i class="fa fa-pencil"></i>
                 </a>
@@ -59,8 +60,9 @@
     </div>
 
     <a href="{{ route('timelines.timeline_eras.create', ['timeline' => $model]) }}" class="btn btn-primary btn-sm"
-       data-toggle="ajax-modal" data-target="#entity-modal"
+       data-toggle="ajax-modal" data-target="#large-modal"
        data-url="{{ route('timelines.timeline_eras.create', ['timeline' => $model]) }}"
+       data-backdrop="static"
     >
         <i class="fas fa-plus"></i> {{ __('timelines/eras.actions.add') }}
     </a>

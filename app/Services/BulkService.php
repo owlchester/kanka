@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Datagrids\Bulks\Bulk;
 use App\Exceptions\TranslatableException;
+use App\Models\Relation;
 use App\Models\Tag;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -24,15 +25,14 @@ class BulkService
      */
     protected $permissionService;
 
-    /**
-     * @var string
-     */
+    /** @var string Entity name */
     protected $entityName;
 
-    /**
-     * @var array
-     */
+    /** @var array Ids of entities */
     protected $ids;
+
+    /** @var int Total entities submitted for update */
+    protected $total = 0;
 
     /**
      * BulkService constructor.
@@ -63,6 +63,15 @@ class BulkService
     {
         $this->ids = $ids;
         return $this;
+    }
+
+    /**
+     * Total updated entities submitted (can be different from the total that was updated)
+     * @return int
+     */
+    public function total(): int
+    {
+        return $this->total;
     }
 
     /**
@@ -202,10 +211,15 @@ class BulkService
         unset($filledFields['tags']);
         $tagIds = Arr::get($fields, 'tags', []);
 
+        if ($this->entityName === 'relations') {
+            return $this->updateRelations($filledFields);
+        }
+
         // Todo: move model fetch above to actually use with()
         foreach ($this->ids as $id) {
             /** @var MiscModel $entity */
             $entity = $model->with('entity', 'entity.tags')->findOrFail($id);
+            $this->total++;
             if (!Auth::user()->can('update', $entity)) {
                 // Can't update this? Technically not possible since bulk editing is only available
                 // for admins, but better safe than sorry
@@ -313,5 +327,32 @@ class BulkService
         }
 
         return $model;
+    }
+
+    /**
+     * @param array $filledFields
+     * @return int
+     */
+    protected function updateRelations(array $filledFields)
+    {
+        $relations = Relation::whereIn('id', $this->ids)->get();
+        $count = 0;
+        foreach ($relations as $relation) {
+            $this->total++;
+            if (!Auth::user()->can('update', $relation)) {
+                // Can't update this? Technically not possible since bulk editing is only available
+                // for admins, but better safe than sorry
+                continue;
+            }
+            // Same owner and target? no bueno
+            if ($relation->owner_id == Arr::get($filledFields, 'target_id') || ($relation->target_id == Arr::get($filledFields, 'owner_id'))) {
+                continue;
+            }
+
+            $relation->update($filledFields);
+            $count++;
+        }
+
+        return $count;
     }
 }

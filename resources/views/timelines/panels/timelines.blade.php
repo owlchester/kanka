@@ -1,4 +1,4 @@
-<div class="box box-solid">
+<div class="box box-solid" id="timeline-timelines">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ trans('timelines.fields.timelines') }}
@@ -7,7 +7,7 @@
         <?php  $r = $model->descendants()->with('entity')->simpleSort($datagridSorter)->paginate(); ?>
         <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('timelines.show.tabs.timelines') }}</p>
 
-        @include('cruds.datagrids.sorters.simple-sorter')
+        @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#timeline-timelines'])
 
         <table id="timelines" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
@@ -43,6 +43,6 @@
             </tbody>
         </table>
 
-        {{ $r->links() }}
+        {{ $r->fragment('timeline-timelines')->links() }}
     </div>
 </div>

@@ -1,4 +1,4 @@
-<div class="box box-solid">
+<div class="box box-solid" id="family-families">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ trans('families.show.tabs.families') }}
@@ -6,7 +6,7 @@
 
         <p class="help-block">{{ trans('families.helpers.descendants') }}</p>
 
-        @include('cruds.datagrids.sorters.simple-sorter')
+        @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#family-families'])
 
         <?php $r = $model->descendants()->simpleSort($datagridSorter)->with('parent')->paginate(); ?>
         <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('families.show.tabs.families') }}</p>
@@ -44,6 +44,6 @@
             </tbody>
         </table>
 
-        {{ $r->links() }}
+        {{ $r->fragment('family-families')->links() }}
     </div>
 </div>

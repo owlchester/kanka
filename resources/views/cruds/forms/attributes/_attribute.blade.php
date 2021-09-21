@@ -12,10 +12,10 @@ $id = isset($resetAttributeId) ? -$attribute->id : $attribute->id;
                 </span>
                 @if($attribute->name == '_layout')
 
-                    {!! Form::text('attr_name[' . $id . ']', $attribute->name, ['placeholder' => trans('entities/attributes.placeholders.attribute'), 'class' => 'form-control', 'maxlength' => 191, 'disabled' => 'disabled']) !!}
+                    {!! Form::text('attr_name[' . $id . ']', $attribute->name, ['placeholder' => __('entities/attributes.placeholders.attribute'), 'class' => 'form-control', 'maxlength' => 191, 'disabled' => 'disabled']) !!}
                     {!! Form::hidden('attr_name[' . $id . ']', $attribute->name) !!}
                 @else
-                {!! Form::text('attr_name[' . $id . ']', $attribute->name, ['placeholder' => trans('entities/attributes.placeholders.attribute'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                {!! Form::text('attr_name[' . $id . ']', $attribute->name, ['placeholder' => __('entities/attributes.placeholders.attribute'), 'class' => 'form-control', 'maxlength' => 191]) !!}
                 @endif
             </div>
         </div>
@@ -26,14 +26,14 @@ $id = isset($resetAttributeId) ? -$attribute->id : $attribute->id;
             @elseif ($attribute->isBlock())
                 {!! Form::hidden('attr_value[' . $id . ']', $attribute->value) !!}
             @elseif ($attribute->isText())
-                {!! Form::textarea('attr_value[' . $id . ']', $attribute->value, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control', 'rows' => 4]) !!}
+                {!! Form::textarea('attr_value[' . $id . ']', $attribute->value, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions', 'rows' => 4, 'data-remote' => route('search.live')]) !!}
             @elseif ($attribute->isSection())
                 {!! Form::hidden('attr_value[' . $id . ']', $attribute->value) !!}
             @elseif($attribute->name == '_layout')
                 {!! Form::hidden('attr_value[' . $id . ']', $attribute->value) !!}
                 {{ $attribute->value }}
             @else
-                {!! Form::text('attr_value[' . $id . ']', $attribute->value, ['placeholder' => trans('entities/attributes.placeholders.value'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+                {!! Form::text('attr_value[' . $id . ']', $attribute->value, ['placeholder' => __('entities/attributes.placeholders.value'), 'class' => 'form-control kanka-mentions', 'maxlength' => 191, 'data-remote' => route('search.live')]) !!}
             @endif
         </div>
         <div class="col-xs-5 col-sm-4 col-md-3 col-lg-2">

@@ -37,7 +37,7 @@
         <div class="col-md-10 entity-main-block">
             <div class="row export-hidden">
                 <div class="col-md-6">
-                    @include('cruds.datagrids.sorters.simple-sorter')
+                    @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#entity-main-block'])
                 </div>
             </div>
             <div class="row margin-top" id="quest-elements">

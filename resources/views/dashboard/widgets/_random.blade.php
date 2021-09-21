@@ -26,6 +26,7 @@ $model = $entity->child;
 
 $specificPreview = 'dashboard.widgets.previews.' . $entity->type;
 $customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name, $widget->conf('text')) : null;
+$widget->setEntity($entity);
 ?>
 @if(view()->exists($specificPreview))
     @include($specificPreview, ['entity' => $entity, 'customName' => $customName])
@@ -49,9 +50,17 @@ $customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name
     <div class="panel-body">
         @if ($widget->conf('full') === '1')
             {!! $model->entry() !!}
+
+            @include('dashboard.widgets.previews._members')
+            @include('dashboard.widgets.previews._relations')
+            @include('dashboard.widgets.previews._attributes')
         @else
         <div class="pinned-entity preview" data-toggle="preview" id="widget-preview-body-{{ $widget->id }}">
             {!! $model->entry() !!}
+
+            @include('dashboard.widgets.previews._members')
+            @include('dashboard.widgets.previews._relations')
+            @include('dashboard.widgets.previews._attributes')
         </div>
         <a href="#" class="preview-switch hidden"
            id="widget-preview-switch-{{ $widget->id }}" data-widget="{{ $widget->id }}">

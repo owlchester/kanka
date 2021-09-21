@@ -18,7 +18,7 @@ return [
         'image'         => 'Obraz',
         'is_pinned'     => 'Przypięta',
         'name'          => 'Nazwa',
-        'note'          => 'Notatna źródłowa',
+        'note'          => 'Notatka źródłowa',
         'notes'         => 'Notatki pochodne',
         'type'          => 'Rodzaj',
     ],

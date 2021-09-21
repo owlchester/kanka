@@ -5,6 +5,13 @@ return [
         'mode-map'      => 'Relation exploration tool',
         'mode-table'    => 'Table of relations and connections',
     ],
+    'bulk'          => [
+        'delete'    => '{1} Deleted :count relation.|[2,*] Deleted :count relations.',
+        'success'   => [
+            'editing'           => '{1} :count relation was updated.|[2,*] :count relation were updated.',
+            'editing_partial'   => '{1} :count/:total relation was updated.|[2,*] :count/:total relation were updated.',
+        ],
+    ],
     'connections'   => [
         'map_point'         => 'Map point',
         'mention'           => 'Mention',
@@ -12,6 +19,7 @@ return [
         'timeline_element'  => 'Timeline element',
     ],
     'create'        => [
+        'new_title' => 'New relation',
         'success'   => 'Relation :target added to :entity.',
         'title'     => 'New relation for :name',
     ],
@@ -22,6 +30,7 @@ return [
         'attitude'          => 'Attitude',
         'connection'        => 'Connection',
         'is_star'           => 'Pinned',
+        'owner'             => 'Source',
         'relation'          => 'Relation',
         'target'            => 'Target',
         'target_relation'   => 'Target Relation',
@@ -36,6 +45,10 @@ return [
         ],
         'target_relation'   => 'The relation description on the target. Leave blank to use this relation\'s text.',
         'two_way'           => 'If you select to create a mirror relation, the same relation will be created on the target. However, if you edit one, the mirror won\'t be updated.',
+    ],
+    'index'         => [
+        'add'   => 'New relation',
+        'title' => 'Relations',
     ],
     'options'       => [
         'mentions'  => 'Relations + related + mentions',

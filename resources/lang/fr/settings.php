@@ -82,7 +82,7 @@ return [
         'campaigns'         => 'Campagnes boostées :count / :max',
         'exceptions'        => [
             'already_boosted'       => 'La campagne :name est déjà boostée.',
-            'exhausted_boosts'      => 'Tu n\'as plus de boost disponnible. Retire un boost d\'une campagne avant de pouvoir l\'attribuer à une autre.',
+            'exhausted_boosts'      => 'Tu n\'as plus de boost disponible. Retire un boost d\'une campagne avant de pouvoir l\'attribuer à une autre.',
             'exhausted_superboosts' => 'Tu n\'as plus de boosts. Tu as besoin de 3 boosts pour superbooster une campagne.',
         ],
         'modals'            => [

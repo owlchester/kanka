@@ -62,7 +62,7 @@
                         <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.discord') }}
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.default_image') }}
+                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.no_ads') }}
                     </li>
 
 {{--                    <li class="text-muted">--}}
@@ -104,7 +104,7 @@
                         <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.discord') }}
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.default_image') }}
+                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.no_ads') }}
                     </li>
 
 {{--                    <li class="text-muted">--}}
@@ -145,7 +145,7 @@
                         <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.discord') }}
                     </li>
                     <li>
-                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.default_image') }}
+                        <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.no_ads') }}
                     </li>
                     <li>
                         <span class="fa-li"><i class="fas fa-check"></i></span> {{ __('front.features.patreon.curation') }}

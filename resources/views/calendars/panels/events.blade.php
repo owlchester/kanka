@@ -2,14 +2,14 @@
 /** @var \App\Models\Calendar $model */
 /** @var \App\Models\EntityEvent $event */
 ?>
-<div class="box box-solid">
+<div class="box box-solid" id="calendar-events">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ trans('calendars.show.tabs.events') }}
         </h2>
 
 
-        @include('cruds.datagrids.sorters.simple-sorter')
+        @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#calendar-events'])
 
         <?php  $r = $model->calendarEvents()->with('entity', 'calendar')->entityAcl()->simpleSort($datagridSorter)->paginate(); ?>
         <table id="calendar-events" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
@@ -70,6 +70,6 @@
             </tbody>
         </table>
 
-        {{ $r->links() }}
+        {{ $r->fragment('calendar-events')->links() }}
     </div>
 </div>

@@ -20,6 +20,7 @@ return [
         'new'               => 'Novo',
         'new_post'          => 'Nova nota de entidade',
         'next'              => 'Próximo',
+        'print'             => 'Imprimir',
         'private'           => 'Privado',
         'public'            => 'Público',
         'reset'             => 'Redefinir',

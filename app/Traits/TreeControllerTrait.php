@@ -30,6 +30,7 @@ trait TreeControllerTrait
         $filters = $this->filters;
         $filterService = $this->filterService;
         $filter = !empty($this->filter) ? new $this->filter : null;
+        $langKey = $this->langKey ?? $name;
 
         $actions = [[
             'route' => route($this->route . '.index'),
@@ -109,6 +110,7 @@ trait TreeControllerTrait
         return view('cruds.tree', compact(
             'models',
             'name',
+            'langKey',
             'model',
             'actions',
             'filters',

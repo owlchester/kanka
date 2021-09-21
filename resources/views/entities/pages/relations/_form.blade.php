@@ -17,17 +17,10 @@
 
 <div class="row">
     <div class="col-sm-4">
-        <div class="form-group">
-            <label>{{ trans('crud.fields.colour') }}</label><br />
-            {!! Form::text('colour', null, ['class' => 'form-control spectrum', 'maxlength' => 7] ) !!}
-        </div>
+        @include('cruds.fields.colour_picker')
     </div>
     <div class="col-sm-8">
-        <div class="form-group">
-            <label>{{ __('entities/relations.fields.attitude') }}</label>
-            {!! Form::number('attitude', null, ['placeholder' => __('entities/relations.placeholders.attitude'), 'class' => 'form-control', 'min' => -100, 'max' => 100]) !!}
-            <p class="help-block">{{ __('entities/relations.hints.attitude') }}</p>
-        </div>
+        @include('cruds.fields.attitude')
     </div>
 </div>
 
@@ -40,15 +33,19 @@
                 <label>
                     {!! Form::checkbox('two_way') !!}
                     {{ __('entities/relations.fields.two_way') }}
+                    <i class="fa fa-question-circle hidden-xs hidden-sm" title="{{ __('entities/relations.hints.two_way') }}" data-toggle="tooltip"></i>
                 </label>
-                <p class="help-block">{{ __('entities/relations.hints.two_way') }}</p>
+                <p class="help-block visible-xs visible-sm">{{ __('entities/relations.hints.two_way') }}</p>
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group" style="display:none" id="two-way-relation">
-                <label>{!! __('entities/relations.fields.target_relation') !!}</label>
+                <label>
+                    {!! __('entities/relations.fields.target_relation') !!}
+                    <i class="fa fa-question-circle hidden-xs hidden-sm" title="{{ __('entities/relations.hints.target_relation') }}" data-toggle="tooltip"></i>
+                </label>
                 {!! Form::text('target_relation', null, ['class' => 'form-control', 'maxlength' => 191]) !!}
-                <p class="help-block">{{ __('entities/relations.hints.target_relation') }}</p>
+                <p class="help-block visible-xs visible-sm">{{ __('entities/relations.hints.target_relation') }}</p>
             </div>
         </div>
     </div>
@@ -56,10 +53,12 @@
 
 <div class="form-group">
     {!! Form::hidden('is_star', 0) !!}
-    <label>{!! Form::checkbox('is_star', 1, !empty($relation) ? $relation->is_star : 0) !!}
-        {{ trans('crud.fields.is_star') }}
+    <label>
+        {!! Form::checkbox('is_star', 1, !empty($relation) ? $relation->is_star : 0) !!}
+        {{ __('crud.fields.is_star') }}
+        <i class="fa fa-question-circle hidden-xs hidden-sm" title="{{ __('crud.hints.is_star') }}" data-toggle="tooltip"></i>
     </label>
-    <p class="help-block">{{ trans('crud.hints.is_star') }}</p>
+    <p class="help-block visible-xs visible-sm">{{ __('crud.hints.is_star') }}</p>
 </div>
 
 @if (!empty($relation) && !empty($relation->mirrored()))

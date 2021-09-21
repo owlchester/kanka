@@ -61,7 +61,7 @@ To get the details of a single ability, use the following endpoint.
 ### Results
 ```json
 {
-    "data": 
+    "data":
     {
         "id": 1,
         "name": "Fireball",
@@ -106,7 +106,6 @@ To create a ability, use the following endpoint.
 | `charges` | `string` | How many charges the ability has |
 | `tags` | `array` | Array of tag ids |
 | `is_private` | `boolean` | If the ability is only visible to `admin` members of the campaign |
-| `image` | `stream` | Stream to file uploaded to the ability |
 | `image_url` | `string` | URL to a picture to be used for the ability |
 
 ### Results

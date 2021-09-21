@@ -18,7 +18,7 @@ return [
         'move'              => 'Déplacer',
         'new'               => 'Nouveau',
         'new_post'          => 'Nouvelle entrée',
-        'next'              => 'Prochain',
+        'next'              => 'Suivant',
         'print'             => 'Imprimer',
         'reset'             => 'Réinitialiser',
         'transform'         => 'Transformer',
@@ -64,7 +64,8 @@ return [
         ],
         'success'       => [
             'copy_to_campaign'  => '{1} :count entité copiée à :campaign.|[2,*] :count entités copiées à :campaign.',
-            'editing'           => ':count entité modifiée.|:count entités modifiées.',
+            'editing'           => '{1} :count entité modifiée.|[2,*]:count entités modifiées.',
+            'editing_partial'   => '{1} :count/:total entité modifiée.|[2,*]:count/:total entités modifiées.',
             'permissions'       => 'Permissions changées pour :count entité. |Permissions changées pour :count entités.',
             'private'           => ':count entité est maintenant privée.|:count entités sont maintenant privées.',
             'public'            => ':count entité est maintenant visible.|:count entités sont maintenant visibles.',
@@ -117,6 +118,7 @@ return [
         'calendar'              => 'Calendrier',
         'calendar_date'         => 'Date calendrier',
         'character'             => 'Personnage',
+        'child'                 => 'Enfant',
         'closed'                => 'Fermée',
         'colour'                => 'Couleur',
         'copy_abilities'        => 'Copier les pouvoirs',
@@ -187,6 +189,16 @@ return [
         'direct'                    => 'Afficher seulement les descendants directs',
         'filtered'                  => 'Affichant :count de :total :entity.',
         'hide'                      => 'Cacher les filtres',
+        'lists'                     => [
+            'desktop'   => [
+                'all'       => 'Afficher tous les descendants (:count)',
+                'filtered'  => 'Afficher les descendants directs (:count)',
+            ],
+            'mobile'    => [
+                'all'       => 'Afficher tous (:count)',
+                'filtered'  => 'Afficher directs (:count)',
+            ],
+        ],
         'mobile'                    => [
             'clear' => 'Effacer',
             'copy'  => 'Presse-papier',

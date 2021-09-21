@@ -136,7 +136,6 @@ To create an organisation, use the following endpoint.
 | `location_id` | `integer` | The organisation's location |
 | `tags` | `array` | Array of tag ids |
 | `is_private` | `boolean` | If the organisation is only visible to `admin` members of the campaign |
-| `image` | `stream` | Stream to file uploaded to the organisation |
 | `image_url` | `string` | URL to a picture to be used for the organisation |
 
 ### Results

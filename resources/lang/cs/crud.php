@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'actions'           => [
+    'actions'                   => [
         'actions'           => 'Akce',
         'apply'             => 'Použít',
         'back'              => 'Zpět',
@@ -23,14 +23,14 @@ return [
         'reset'             => 'Vrátit výchozí hodnoty',
         'transform'         => 'Změnit',
     ],
-    'add'               => 'Přidat',
-    'alerts'            => [
+    'add'                       => 'Přidat',
+    'alerts'                    => [
         'copy_attribute'    => 'Odkaz na atribut uložen do schránky.',
         'copy_mention'      => 'Odkaz pokročilého typu uložen do schránky.',
     ],
-    'boosted'           => 'Zvýhodněné (boosted)',
-    'boosted_campaigns' => 'Zvýhodněná (boosted) tažení',
-    'bulk'              => [
+    'boosted'                   => 'Zvýhodněné (boosted)',
+    'boosted_campaigns'         => 'Zvýhodněná (boosted) tažení',
+    'bulk'                      => [
         'actions'       => [
             'edit'  => 'Hromadná úprava nebo označení štítky',
         ],
@@ -71,47 +71,47 @@ return [
             'templates'         => '{1} Šablona použita na :count objekt.|[2,4] Šablona použita na :count objekty.|[5,*] Šablona použita na :count objektů.',
         ],
     ],
-    'bulk_templates'    => [
+    'bulk_templates'            => [
         'bulk_title'    => 'Použít šablonu na více objektů',
     ],
-    'cancel'            => 'Zrušit',
-    'click_modal'       => [
+    'cancel'                    => 'Zrušit',
+    'click_modal'               => [
         'close'     => 'Zavřít',
         'confirm'   => 'Potvrdit',
         'title'     => 'Potvrdit akci',
     ],
-    'copy_to_campaign'  => [
+    'copy_to_campaign'          => [
         'bulk_title'    => 'Kopírovat objekty do jiného tažení',
         'panel'         => 'Kopírovat',
         'title'         => 'Kopírovat ":name" do jiného tažení',
     ],
-    'create'            => 'Vytvořit',
-    'datagrid'          => [
+    'create'                    => 'Vytvořit',
+    'datagrid'                  => [
         'empty' => 'Zatím zde nic není.',
     ],
-    'delete_modal'      => [
+    'delete_modal'              => [
         'close'             => 'Zavřít',
         'delete'            => 'Odstranit',
         'description'       => 'Opravdu chceš odstranit štítek :tag?',
         'description_final' => 'Opravdu chceš odstranit štítek :tag? Tuto akci nelze vrátit.',
-        'mirrored'          => 'Odstranit zrcadlenou souvislost.',
+        'mirrored'          => 'Odstranit oboustranný vztah.',
         'title'             => 'Potvrdit odstranění',
     ],
-    'destroy_many'      => [
+    'destroy_many'              => [
         'success'   => '{1} Smazán :count objekt.|[2,4] Smazány :count objekty.|[5,*] Smazáno :count objektů.',
     ],
-    'edit'              => 'Upravit',
-    'errors'            => [
+    'edit'                      => 'Upravit',
+    'errors'                    => [
         'boosted'                       => 'Tato funkce je dostupná pouze pro zvýhodněná ("boosted") tažení.',
         'boosted_campaigns'             => 'Tato funkce je dostupná pouze pro zvýhodněná ("boosted")',
         'node_must_not_be_a_descendant' => 'Neplatný objekt (štítek, nadřazená lokace): Objekt nemůže být podřazen sám sobě.',
         'unavailable_feature'           => 'Nedostupná funkce',
     ],
-    'events'            => [
+    'events'                    => [
         'hint'  => 'Zde se zobrazují všechny kalendáře, které obsahují některou událost objektu, přidanou pomocí funkce: "Přidat událost do kalendáře".',
     ],
-    'export'            => 'Exportovat',
-    'fields'            => [
+    'export'                    => 'Exportovat',
+    'fields'                    => [
         'ability'               => 'Schopnost',
         'attribute_template'    => 'Šablona atributů',
         'calendar'              => 'Kalendář',
@@ -161,7 +161,7 @@ return [
         'type'                  => 'Typ',
         'visibility'            => 'Viditelnost',
     ],
-    'files'             => [
+    'files'                     => [
         'actions'   => [
             'drop'      => 'Přidej soubor klepnutím a výběrem nebo přetažením',
             'manage'    => 'Spravovat soubory objektu',
@@ -177,8 +177,8 @@ return [
         ],
         'title'     => 'Soubory objektu :name',
     ],
-    'filter'            => 'Filtr',
-    'filters'           => [
+    'filter'                    => 'Filtr',
+    'filters'                   => [
         'all'                       => 'Pouze podřízené objekty',
         'clear'                     => 'Zrušit filtry',
         'copy_helper'               => 'Definici filtrů uloženou ve schránce lze použít jako hodnotu filtrů na součástech nástěnky a v záložkách.',
@@ -204,18 +204,18 @@ return [
         ],
         'title'                     => 'Filtry',
     ],
-    'fix-this-issue'    => 'Opravit problém',
-    'forms'             => [
+    'fix-this-issue'            => 'Opravit problém',
+    'forms'                     => [
         'actions'       => [
             'calendar'  => 'Přidat kalendářní datum',
         ],
         'copy_options'  => 'Zkopírovat nastavení',
     ],
-    'helpers'           => [
+    'helpers'                   => [
         'copy_options'  => 'Zkopírovat vybrané související prvky do nového objektu.',
     ],
-    'hidden'            => 'Skrytý',
-    'hints'             => [
+    'hidden'                    => 'Skrytý',
+    'hints'                     => [
         'attribute_template'    => 'Vybraná šablona atributů se použije při uložení objektu.',
         'calendar_date'         => 'Přítomnost datumu události umožňuje snadné filtrování seznamů a také udržiuje událost ve vybraném kalendáři.',
         'gallery_header'        => 'Pokud objekt nemá vlastní záhlaví, zobrazí se místo něj obrázek z galerie tažení.',
@@ -228,7 +228,7 @@ return [
         'tooltip'               => 'Nahradí automaticky generované informační bubliny následujícím obsahem. Případný HTML kód bude odebrán. Je ale možné použít pokročilý typ odkazů na objekty.',
         'visibility'            => 'Nastavení viditelnosti pouze pro "správce" znamená, že pouze členové role "Správce" si jej budou moci zobrazit. Při nastavení viditelnosti na "Vlastník" bude objekt viditelný jen pro tebe.',
     ],
-    'history'           => [
+    'history'                   => [
         'created'       => 'Vytvořeno uživatelem <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
         'created_date'  => 'Vytvořeno dne <span data-toggle="tooltip" title=":realdate">:date</span>',
         'unknown'       => 'Neznámé',
@@ -236,26 +236,26 @@ return [
         'updated_date'  => 'Naposledy upraveno dne <span data-toggle="tooltip" title=":realdate">:date</span>',
         'view'          => 'Zobrazit protokol objektu',
     ],
-    'image'             => [
+    'image'                     => [
         'error' => 'Nepovedlo se nám získat zadaný obrázek. Daná stránka neumožňuje stahování obrázků (což je běžné např. pro Squarespace nebo DeviantArt) nebo daný odkaz již není platný. Zvolený obrázek také nesmí být větší, než :size.',
     ],
-    'is_not_private'    => 'Tento objekt není nastaven jako soukromý.',
-    'is_private'        => 'Tento objekt je soukromý a je viditelný pouze pro členy role "Správce".',
-    'legacy'            => 'Dědictví',
-    'linking_help'      => 'Jak lze připojit jiné objekty?',
-    'manage'            => 'Spravovat',
-    'navigation'        => [
+    'is_not_private'            => 'Tento objekt není nastaven jako soukromý.',
+    'is_private'                => 'Tento objekt je soukromý a je viditelný pouze pro členy role "Správce".',
+    'legacy'                    => 'Dědictví',
+    'linking_help'              => 'Jak lze připojit jiné objekty?',
+    'manage'                    => 'Spravovat',
+    'navigation'                => [
         'cancel'    => 'Zrušit',
         'or_cancel' => 'nebo :cancel',
     ],
-    'new_entity'        => [
+    'new_entity'                => [
         'error' => 'Zkontroluj zadané hodnoty, prosím.',
         'fields'=> [
             'name'  => 'Název',
         ],
         'title' => 'Nový objekt',
     ],
-    'panels'            => [
+    'panels'                    => [
         'appearance'            => 'Vzhled',
         'attribute_template'    => 'Šablona objektů',
         'calendar_date'         => 'Kalendářní datum',
@@ -264,7 +264,7 @@ return [
         'move'                  => 'Přesunout',
         'system'                => 'Systém',
     ],
-    'permissions'       => [
+    'permissions'               => [
         'action'            => 'Akce',
         'actions'           => [
             'bulk'          => [
@@ -299,7 +299,7 @@ return [
         'title'             => 'Oprávnění',
         'too_many_members'  => 'Tažení má již příliš mnoho členů (více jak 10) pro toto zobrazení. Podrobné zobrazení oprávnění se ukáže klepnutím na tlačítko Oprávnění na stránce objektu.',
     ],
-    'placeholders'      => [
+    'placeholders'              => [
         'ability'       => 'Vybrat schopnost',
         'calendar'      => 'Vybrat kalendář',
         'character'     => 'Vybrat postavu',
@@ -319,15 +319,62 @@ return [
         'tag'           => 'Vybrat štítek',
         'timeline'      => 'Vybrat časovou osu',
     ],
-    'relations'         => [
+    'relations'                 => [
         'actions'   => [
-            'add'   => 'Nová souvislost',
+            'add'   => 'Přidat vztah',
         ],
         'fields'    => [
             'location'  => 'Místo',
             'name'      => 'Název',
-            'relation'  => 'Souvislost',
+            'relation'  => 'Vztah',
         ],
-        'hint'      => 'Je možné vytvářet souvislosti / vztahy (???) mezi objekty a tím propojovat / udržovat (???) související informace .',
+        'hint'      => 'Vztahy mezi objekty se používají k propojení různých souvisejících objektů.',
+    ],
+    'remove'                    => 'Odstranit',
+    'rename'                    => 'Přejmenovat',
+    'save'                      => 'Uložit',
+    'save_and_close'            => 'Uložit a zavřít',
+    'save_and_copy'             => 'Uložit a vytvořit kopii',
+    'save_and_new'              => 'Uložit a vytvořit nový',
+    'save_and_update'           => 'Uložit a pokračovat',
+    'save_and_view'             => 'Uložit a zobrazit',
+    'search'                    => 'Hledat',
+    'select'                    => 'Vybrat',
+    'superboosted_campaigns'    => 'Super-zvýhodněná (superboosted) tažení',
+    'tabs'                      => [
+        'abilities'     => 'Schopnosti',
+        'assets'        => 'Aktiva',
+        'attributes'    => 'Atributy',
+        'boost'         => 'Zvýhodnit (boost)',
+        'calendars'     => 'Kalendáře',
+        'connections'   => 'Souvislosti',
+        'default'       => 'Výchozí',
+        'events'        => 'Události',
+        'inventory'     => 'Inventář',
+        'links'         => 'Odkazy',
+        'map-points'    => 'Značky na mapě',
+        'mentions'      => 'Odkazy',
+        'menu'          => 'Nabídka',
+        'notes'         => 'Poznámky objektů',
+        'permissions'   => 'Oprávnění',
+        'profile'       => 'Profil',
+        'quests'        => 'Dobrodružství',
+        'relations'     => 'Vztahy',
+        'reminders'     => 'Připomínky',
+        'story'         => 'Příběh',
+        'timelines'     => 'Časové osy',
+        'tooltip'       => 'Informační bublina',
+    ],
+    'update'                    => 'Aktualizovat',
+    'users'                     => [
+        'unknown'   => 'Neznámý',
+    ],
+    'view'                      => 'Zobrazit',
+    'visibilities'              => [
+        'admin'         => 'Správce',
+        'admin-self'    => 'Vlastník a Správce',
+        'all'           => 'Všichni',
+        'members'       => 'Členové',
+        'self'          => 'Vlastník',
     ],
 ];

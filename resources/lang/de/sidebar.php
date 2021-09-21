@@ -34,7 +34,7 @@ return [
     'other'                 => 'Anderes',
     'patreon'               => 'Patreon',
     'quests'                => 'Quests',
-    'races'                 => 'Rassen',
+    'races'                 => 'Spezies',
     'releases'              => 'Versionshinweise',
     'search'                => 'Suche...',
     'support'               => 'Support / Community',

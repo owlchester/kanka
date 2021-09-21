@@ -167,6 +167,7 @@ return [
             '4' => 'Un tercio (33%)',
             '6' => 'Metade (50%)',
             '8' => 'Dous tercios (66%)',
+            '9' => 'Tres cuartos (75%)',
         ],
     ],
 ];

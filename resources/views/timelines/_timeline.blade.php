@@ -107,7 +107,8 @@ $eras = $timeline->eras()->ordered($timeline->revert_order)->get();
         <div class="text-center margin-bottom">
                 <a href="{{ route('timelines.timeline_elements.create', [$model, 'era_id' => $era, 'position' => $position]) }}" class="btn btn-primary"
                     title="{{ __('crud.create') }}"
-                    data-toggle="ajax-modal" data-target="#entity-modal"
+                    data-toggle="ajax-modal" data-target="#large-modal"
+                   data-backdrop="static"
                     data-url="{{ route('timelines.timeline_elements.create', [$model, 'era_id' => $era, 'position' => $position]) }}"
                 >
                     <i class="fa fa-plus"></i>

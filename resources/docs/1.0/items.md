@@ -110,7 +110,6 @@ To create a item, use the following endpoint.
 | `size` | `string` | The item's size |
 | `tags` | `array` | Array of tag ids |
 | `is_private` | `boolean` | If the item is only visible to `admin` members of the campaign |
-| `image` | `stream` | Stream to file uploaded to the item |
 | `image_url` | `string` | URL to a picture to be used for the item |
 
 ### Results

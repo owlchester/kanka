@@ -91,6 +91,9 @@ class SidebarService
         'abilities' => [
             'abilities',
         ],
+        'relations' => [
+            'relations',
+        ],
     ];
 
     /**

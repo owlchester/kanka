@@ -11,4 +11,7 @@ abstract class Datagrid
 
     /** @var bool */
     public $bulkCopyToCampaign = true;
+
+    /** @var bool */
+    public $bulkPrint = true;
 }

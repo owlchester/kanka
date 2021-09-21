@@ -13,7 +13,10 @@
 
         <div class="row row-sorting">
             <div class="col-md-6">
-                @include('cruds.datagrids.sorters.simple-sorter', ['filter' => !empty($mode) ? '?mode=' . $mode : null, 'target' => '#entity-relations-table'])
+                @include('cruds.datagrids.sorters.simple-sorter', [
+    'filter' => !empty($mode) ? '?mode=' . $mode : null,
+    'target' => '#entity-relations-table'
+    ])
             </div>
             <div class="col-md-6 text-right">
 

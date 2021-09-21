@@ -372,10 +372,10 @@ TEXT
             'locations'     => 'Planeten, Ebenen, Kontinente, Flüsse, Staaten, Siedlungen, Tempel, Tavernen.',
             'maps'          => 'Laden Sie Karten mit Ebenen und Markierungen hoch, die auf andere Objekte in der Kampagne verweisen.',
             'menu_links'    => 'Selbsterstellte Menü Links in der Seitenleiste.',
-            'notes'         => 'Sagen, Religionen, Geschichte, Magie, Rassen.',
+            'notes'         => 'Sagen, Religionen, Geschichte, Magie, Spezies.',
             'organisations' => 'Kulte, Militäreinheiten, Fraktionen, Gilden.',
             'quests'        => 'Um Aufgaben mit Charakteren und Ort zu verfolgen.',
-            'races'         => 'Wenn deine Kampagne mehr als eine Rasse hat, hier kannst du den Überblick behalten.',
+            'races'         => 'Wenn deine Kampagne mehr als eine Spezies hat, hier kannst du den Überblick behalten.',
             'tags'          => 'Jedes Objekt kann eine Kategorie habe. Kategorien können zu anderen Kategorien gehören und Objekte können nach Kategorie gefiltert werden.',
             'timelines'     => 'Stellen Sie die Geschichte Ihrer Welt mit Zeitstrahlen dar.',
         ],
@@ -383,7 +383,7 @@ TEXT
     ],
     'show'                              => [
         'actions'       => [
-            'boost' => 'Geboostete Kampagne',
+            'boost' => 'Boost Kampagne',
             'edit'  => 'Kampagne editieren',
             'leave' => 'Kampagne verlassen',
         ],

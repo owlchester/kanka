@@ -9,6 +9,7 @@ use App\Models\MiscModel;
 use App\Services\FilterService;
 use Collective\Html\FormFacade;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Collective\Html\FormFacade as Form;
 
@@ -176,7 +177,7 @@ class DatagridRenderer
             }
         } else {
             // Now the 'fun' starts
-            $class .= '  hidden-xs hidden-sm';
+            $class .= Arr::get($column, 'class', '  hidden-xs hidden-sm');
             if (!empty($column['label'])) {
                 $label = $column['label'];
 
@@ -294,7 +295,7 @@ class DatagridRenderer
         foreach ($this->columns as $column) {
             $html .= $this->renderColumn($column, $model);
         }
-        $html .= $this->renderActionRow($model);
+        $html .= $model instanceof MiscModel ? $this->renderEntityActionRow($model) : $this->renderActionRow($model);
 
         return $html . '</tr>';
     }
@@ -393,7 +394,7 @@ class DatagridRenderer
         } elseif (!empty($column['render'])) {
             // If it's not a type, do we have a renderer?
             $content = $column['render']($model, $column);
-            $class = 'hidden-xs hidden-sm';
+            $class = Arr::get($column, 'class', 'hidden-xs hidden-sm');
         } elseif (!empty($column['field'])) {
             // A field was given? This could be when a field needs another label than anticipated.
             $content = $model->{$column['field']};
@@ -436,22 +437,8 @@ class DatagridRenderer
      * @param MiscModel $model
      * @return string
      */
-    private function renderActionRow(MiscModel $model)
+    private function renderEntityActionRow(MiscModel $model)
     {
-        $content = '
-        <a href="' . route($this->getOption('baseRoute') . '.show', [$model]) .
-            '" title="' . trans('crud.view') . '">
-            <i class="fa fa-eye" aria-hidden="true"></i>
-        </a>';
-
-        if ($this->user && $this->user->can('update', $model)) {
-            $content .= ' <a href="'
-                . route($this->getOption('baseRoute') . '.edit', [$model])
-                . '" title="' . trans('crud.edit') . '">
-                <i class="fa fa-edit" aria-hidden="true"></i>
-            </a>';
-        }
-
         $content = '';
         $actions = $model->datagridActions($this->getCampaign());
         if (!empty($actions)) {
@@ -470,6 +457,19 @@ class DatagridRenderer
 
 
         return '<td class="text-center table-actions">' . $content . '</td>';
+    }
+
+    private function renderActionRow($model)
+    {
+        $actions = '';
+        if ($this->user && $this->user->can('update', $model)) {
+            $actions .= ' <a href="'
+                . route($this->getOption('baseRoute') . '.edit', [$model])
+                . '" title="' . trans('crud.edit') . '">
+                <i class="fa fa-edit" aria-hidden="true"></i>
+            </a>';
+        }
+        return '<td class="text-center table-actions">' . $actions . '</td>';
     }
 
     /**

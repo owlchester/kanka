@@ -10,12 +10,15 @@ use App\Models\EntityNote;
 use App\Models\Event;
 use App\Models\Family;
 use App\Models\Item;
+use App\Models\Journal;
 use App\Models\Location;
 use App\Models\MiscModel;
 use App\Models\Note;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
+use App\Models\Quest;
 use App\Models\Race;
+use App\Models\Tag;
 use App\Models\Timeline;
 use App\Models\TimelineEra;
 use Illuminate\Support\Arr;
@@ -61,6 +64,7 @@ class EntityService
             'attribute_templates' => 'App\Models\AttributeTemplate',
             'dice_rolls' => 'App\Models\DiceRoll',
             'menu_links' => 'App\Models\MenuLink',
+            'relations' => 'App\Models\Relation',
         ];
     }
 
@@ -550,6 +554,9 @@ class EntityService
             'family' => Family::class,
             'organisation' => Organisation::class,
             'event' => Event::class,
+            'journal' => Journal::class,
+            'quest' => Quest::class,
+            'tag' => Tag::class,
         ];
         $entities = [];
         foreach ($newTypes as $type => $class) {

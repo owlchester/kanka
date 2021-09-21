@@ -120,7 +120,7 @@ class EntityRelationService
                 $this->addParent()
                     ->addLocation()
                     ->addQuests()
-                    ->addMaps();
+                    ->addMapMarkers();
             }
         }
 
@@ -143,6 +143,9 @@ class EntityRelationService
                 isset($this->entities[$relation['target']])
             ) {
                 $relations[] = $relation;
+            } else {
+                dump($relation);
+                dd('wut');
             }
         }
 
@@ -344,7 +347,7 @@ class EntityRelationService
                 ->addParent()
                 ->addLocation()
                 ->addQuests()
-                ->addMaps();
+                ->addMapMarkers();
         }
         return $this;
     }
@@ -423,7 +426,7 @@ class EntityRelationService
                 ->addLocation()
                 ->addDiceRolls()
                 ->addConversations()
-                ->addMaps()
+                ->addMapMarkers()
                 ->addQuests();
         }
 
@@ -453,8 +456,8 @@ class EntityRelationService
                 ->addOrganisations()
                 ->addParent()
                 ->addQuests()
+                ->addMapMarkers()
                 ->addMaps()
-                ->addMap()
             ;
         }
 
@@ -484,8 +487,28 @@ class EntityRelationService
                 ->addOrganisations()
                 ->addLocation()
                 ->addQuests()
-                ->addMaps()
+                ->addMapMarkers()
             ;
+        }
+
+        return $this;
+    }
+
+    protected function initMap(): self
+    {
+        $this->addEntity($this->entity)
+            ->withEntity();
+
+        if ($this->loadRelations()) {
+            $this->addRelations($this->entity);
+        }
+
+        if ($this->loadRelated()) {
+            $this->addParent()
+                ->addLocation()
+                ->addQuests()
+                ->addMapMarkers()
+                ->addMaps();
         }
 
         return $this;
@@ -651,6 +674,7 @@ class EntityRelationService
         $relationName = $this->entity->entityType();
         $parent = $this->entity->child->$relationName;
         if (empty($parent)) {
+            $this->addChildren($relationName);
             return $this;
         }
 
@@ -666,6 +690,36 @@ class EntityRelationService
             'type' => 'entity-parent',
             'shape' => 'triangle',
         ];
+
+        $this->addChildren($relationName);
+
+        return $this;
+    }
+
+    /**
+     * Assuming the entity has a parent field, it probably has children too
+     * @return $this
+     */
+    protected function addChildren(string $parent): self
+    {
+        /** @var Map $related */
+        $children = Str::plural($parent);
+        if (!method_exists($this->entity->child, $children)) {
+            return $this;
+        }
+
+        foreach ($this->entity->child->$children()->with(['entity'])->has('entity')->get() as $related) {
+            $this->addEntity($related->entity);
+            $this->relations[] = [
+                'target' => $this->entity->id,
+                'source' => $related->entity->id,
+                'text' => __('crud.fields.child'),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'entity-child',
+                'shape' => 'triangle',
+            ];
+        }
         return $this;
     }
 
@@ -714,7 +768,7 @@ class EntityRelationService
     /**
      * @return $this
      */
-    protected function addMaps(): self
+    protected function addMapMarkers(): self
     {
         /** @var MapMarker $related */
         foreach ($this->entity->mapMarkers()->with(['map', 'map.entity'])->has('map')->get() as $related) {
@@ -725,7 +779,7 @@ class EntityRelationService
                 'text' => __('crud.tabs.map-points'),
                 'colour' => '#ccc',
                 'attitude' => null,
-                'type' => 'entity-quest-element',
+                'type' => 'entity-map-marker',
                 'shape' => 'none',
             ];
         }
@@ -735,10 +789,10 @@ class EntityRelationService
     /**
      * @return $this
      */
-    protected function addMap(): self
+    protected function addMaps(): self
     {
         /** @var Map $related */
-        foreach ($this->entity->map()->with(['entity'])->has('entity')->get() as $related) {
+        foreach ($this->entity->child->maps()->with(['entity'])->has('entity')->get() as $related) {
             $this->addEntity($related->entity);
             $this->relations[] = [
                 'source' => $this->entity->id,

@@ -39,7 +39,7 @@ $r = $r->with(['race', 'location'])->simpleSort($datagridSorter)->orderBy('name'
     <div class="box-body">
         <p class="help-block">{{ __('families.members.helpers.direct_members') }}</p>
 
-        @include('cruds.datagrids.sorters.simple-sorter')
+        @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#family-members'])
 
         <table id="family-characters" class="table table-hover margin-top">
             <thead><tr>

@@ -60,32 +60,7 @@ function entityTooltip() {
 
 }
 
-window.crudInitAjaxModal = function() {
-    $.each($('[data-toggle="ajax-modal"]'), function () {
-        $(this).click(function (e) {
-            $(this).unbind('click');
-            e.preventDefault();
-            var ajaxModalTarget = $(this).attr('data-target');
-            $.ajax({
-                url: $(this).attr('data-url')
-            }).done(function (result, textStatus, xhr) {
-                if (result) {
-                    $(ajaxModalTarget).find('.modal-content').html(result);
-                    $(ajaxModalTarget).modal();
-
-                    // Reset select2
-                    window.initSelect2();
-                }
-            }).fail(function (result, textStatus, xhr) {
-                //console.log('modal ajax error', result);
-            });
-            return false;
-        });
-    });
-};
-
 window.ajaxTooltip = function() {
-
     // New tooltips with ajax call
     // $('[data-toggle="tooltip-ajax"]').on('mouseenter', function(e) {
     //     var self = $(this);

@@ -3,12 +3,19 @@
  * @var \App\Services\CampaignService $campaign
  */
 ?>
-@if ($model->map)
+@if ($model->map || $model->location)
     <div class="entity-header-sub pull-left">
-        <i class="fas fa-map" title="{{ __('crud.fields.map') }}"></i>
+        @if ($model->map)
+            <span  class="margin-r-5">
+                <i class="fas fa-map" title="{{ __('crud.fields.map') }}"></i>
+                {!! $model->map->tooltipedLink() !!}
+            </span>
+        @endif
 
-
-        {!! $model->map->tooltipedLink() !!}
-
+        @if ($model->location)
+            <i class="ra ra-tower" title="{{ __('crud.fields.location') }}"></i>
+            {!! $model->location->tooltipedLink() !!}
+        @endif
     </div>
 @endif
+

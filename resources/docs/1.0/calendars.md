@@ -254,7 +254,6 @@ To create a calendar, use the following endpoint.
 | `leap_year_start` | `integer` | The year from which the leap days start occurring  |
 | `tags` | `array` | Array of tag ids |
 | `is_private` | `boolean` | If the calendar is only visible to `admin` members of the campaign |
-| `image` | `stream` | Stream to file uploaded to the calendar |
 | `image_url` | `string` | URL to a picture to be used for the calendar |
 
 ### Results

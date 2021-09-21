@@ -102,6 +102,7 @@ return [
         'boosts_v2'         => [
             'description'       => 'Nous supporter donne accès à des boosters. Ceux-ci peuvent être utilisé pour booster ou superbooster les campagnes. Ceci débloque les avantages suivants:',
             'description-count' => 'Booster une campagne utilise :boost-count booster. Superbooster une campagne utilise :superboost-count boosters.',
+            'moving'            => 'Les boosts peuvent être déplacés autour des campagnes. Par exemple, si une campagne est terminée, elle peut être déboostée pour pouvoir booster ou superbooster une autre campagne à la place. Le déboostage d\'une campagne ne supprime aucune donnée liée aux fonctionnalités boostées, mais les masque simplement jusqu\'à ce que la campagne soit à nouveau boostée.',
             'title'             => 'Campagnes boostées et superboostées',
         ],
         'calendars'         => [
@@ -270,6 +271,7 @@ return [
         'news'          => 'Nouvelles',
         'newsletter'    => 'Newsletter',
         'other'         => 'Autre',
+        'overview'      => 'Aperçu des fonctionnalités',
         'pricing'       => 'Prix',
         'privacy'       => 'Politique de confidentialité',
         'register'      => 'Inscription',

@@ -198,6 +198,7 @@ return [
             'update_currency'   => 'Zapisz preferowaną walutę',
         ],
         'benefits'              => 'Wspierając nas pomagasz w tworzeniu :features i pozwalasz nam spędzać więcej czasu na ulepszaniu Kanki. Żadne informacje dotyczące kart kredytowych nie są przechowywane ani przetwarzane na naszych serwerach. Płatności obsługuje serwis :stripe.',
+        'benefits_features'     => 'świetnych funkcjonalności',
         'billing'               => [
             'helper'    => 'Informacje o płatnościach bezpiecznie przetwarza i przechowuje :stripe. To metoda płatności stosowana we wszystkich subskrypcjach.',
             'saved'     => 'Zapisz metodę płatności',

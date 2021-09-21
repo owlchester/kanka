@@ -32,6 +32,7 @@ return [
     'other'                 => 'Autre',
     'quests'                => 'Quêtes',
     'races'                 => 'Races',
+    'relations'             => 'Relations',
     'search'                => 'Recherche...',
     'tags'                  => 'Étiquettes',
     'timelines'             => 'Chronologies',

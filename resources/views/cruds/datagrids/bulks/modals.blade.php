@@ -1,5 +1,5 @@
 @if (!auth()->guest())
-@include('cruds.datagrids.bulks.modals.permissions')
-@include('cruds.datagrids.bulks.modals.batch')
+@includeWhen(!isset($noBulkPermissions), 'cruds.datagrids.bulks.modals.permissions')
+@includeWhen(isset($bulk), 'cruds.datagrids.bulks.modals.batch')
 @include('cruds.datagrids.bulks.modals.delete')
 @endif

@@ -1,12 +1,11 @@
 <?php /** @var \App\Models\Character $model */?>
-<div class="box box-solid">
+<div class="box box-solid" id="character-quests">
     <div class="box-body">
         <h2 class="page-header ">
-            {{ trans('characters.show.tabs.quests') }}
+            {{ __('characters.show.tabs.quests') }}
         </h2>
 
-
-        @include('cruds.datagrids.sorters.simple-sorter')
+        @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#character-quests'])
 
         <?php  $r = $model->questGiver()->with(['characters', 'locations', 'quests'])->paginate(); ?>
         @if ($r->count() > 0)

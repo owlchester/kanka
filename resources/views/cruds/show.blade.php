@@ -8,8 +8,7 @@ $headerImage = true;
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => __($name . '.show.title', ['name' => $model->name]),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($name), 'label' => __($name . '.index.title')],
-        $model->name,
+        ['url' => Breadcrumb::index($name), 'label' => __($name . '.index.title')]
     ],
     'miscModel' => $model,
     'canonical' => true,

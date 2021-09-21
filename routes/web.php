@@ -334,6 +334,7 @@ Route::group([
             'sections' => 'SectionController',
             'campaign_invites' => 'CampaignInviteController',
             'races' => 'RaceController',
+            'relations' => 'RelationController',
 
             // Entities
             //'entities.attributes' => 'AttributeController',

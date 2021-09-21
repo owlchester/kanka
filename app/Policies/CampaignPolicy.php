@@ -252,6 +252,16 @@ class CampaignPolicy
     }
 
     /**
+     * @param User|null $user
+     * @param Campaign $campaign
+     * @return bool
+     */
+    public function relations(?User $user, Campaign $campaign): bool
+    {
+        return $user && UserCache::user($user)->admin() && $campaign->boosted();
+    }
+
+    /**
      * @param string $action
      * @param User $user
      * @param Entity|null $entity

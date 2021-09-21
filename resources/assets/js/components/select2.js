@@ -2,10 +2,11 @@ export default function select2() {
     if ($('select.select2').length > 0) {
         $.each($('select.select2'), function (index) {
             // Check it isn't the select2-icon
+            let allowClear = $(this).data('allow-clear');
             $(this).select2({
                 //data: newOptions,
                 placeholder: $(this).data('placeholder'),
-                allowClear: true,
+                allowClear: allowClear || true,
                 tags: $(this).is('[data-tags]'),
                 language: $(this).data('language'),
                 minimumInputLength: 0,

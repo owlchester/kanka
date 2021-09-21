@@ -8,7 +8,7 @@ if (request()->has('location_id')) {
     $filters['location_id'] = request()->get('location_id');
 }
 ?>
-<div class="box box-solid">
+<div class="box box-solid" id="location-families">
     <div class="box-body">
         <h2 class="page-header with-border">
             {{ __('locations.show.tabs.families') }}
@@ -22,7 +22,7 @@ if (request()->has('location_id')) {
 
         <div class="row export-hidden">
             <div class="col-md-6">
-                @include('cruds.datagrids.sorters.simple-sorter')
+                @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#location-families'])
             </div>
             <div class="col-md-6 text-right">
 
@@ -82,6 +82,6 @@ if (request()->has('location_id')) {
             </tbody>
         </table>
 
-        {{ $r->links() }}
+        {{ $r->fragment('location-families')->links() }}
     </div>
 </div>

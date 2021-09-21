@@ -37,7 +37,7 @@ $r = $r->acl()
 
         <div class="row export-hidden">
             <div class="col-md-6">
-                @include('cruds.datagrids.sorters.simple-sorter')
+                @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#tag-children'])
             </div>
             <div class="col-md-6 text-right">
                 @if (!$allMembers)

@@ -11,6 +11,8 @@ if (!request()->has('all_members')) {
 }
 $datagridSorter = new \App\Datagrids\Sorters\OrganisationCharacterSorter();
 $datagridSorter->request(request()->all());
+
+$filterCount = !$allMembers ? $model->allMembers()->has('character')->count() : $model->members()->has('character')->count();
 ?>
 <div class="box box-solid" id="organisation-members">
     <div class="box-header with-border">
@@ -19,13 +21,33 @@ $datagridSorter->request(request()->all());
         <div class="box-tools pull-right">
             @if (!$allMembers)
                 <a href="{{ route('organisations.show', [$model, 'all_members' => true, '#organisation-members']) }}" class="btn btn-default btn-sm">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allMembers()->has('character')->count() }})
+                    <i class="fa fa-filter"></i>
+                    <span class="hidden-xs hidden-sm">
+                        {{ __('crud.filters.lists.desktop.all', ['count' => $filterCount]) }}
+                    </span>
+                    <span class="visible-xs-inline visible-sm-inline">
+                        {{ __('crud.filters.lists.mobile.all', ['count' => $filterCount]) }}
+                    </span>
                 </a>
             @else
                 <a href="{{ route('organisations.show', [$model, '#organisation-members']) }}" class="btn btn-default btn-sm">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->members()->has('character')->count() }})
+                    <i class="fa fa-filter"></i>
+
+                    <span class="hidden-xs hidden-sm">
+                        {{ __('crud.filters.lists.desktop.filtered', ['count' => $filterCount]) }}
+                    </span>
+                    <span class="visible-xs-inline visible-sm-inline">
+                        {{ __('crud.filters.lists.mobile.filtered', ['count' => $filterCount]) }}
+                    </span>
                 </a>
             @endif
+
+                @can('member', $model)
+                    <a href="{{ route('organisations.organisation_members.create', ['organisation' => $model->id]) }}" class="btn btn-primary btn-sm"
+                       data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('organisations.organisation_members.create', $model->id) }}">
+                        <i class="fa fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('organisations.members.actions.add') }}</span>
+                    </a>
+                @endcan
         </div>
     </div>
     <div class="box-body">
@@ -34,7 +56,7 @@ $datagridSorter->request(request()->all());
         </p>
 
         <div class="export-hidden">
-            @include('cruds.datagrids.sorters.simple-sorter')
+            @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#organisation-members'])
         </div>
 
         <table id="organisation-characters" class="table table-hover">
@@ -49,15 +71,10 @@ $datagridSorter->request(request()->all());
                 @if ($campaign->enabled('races'))
                 <th class="hidden-sm hidden-xs">{{ __('characters.fields.race') }}</th>
                 @endif
-                <th>{{ __('characters.fields.is_dead') }}</th>
+                <th><i class="ra ra-skull" title="{{ __('characters.fields.is_dead') }}"></i></th>
                 <th></th>
                 <th class="text-right">
-                    @can('member', $model)
-                        <a href="{{ route('organisations.organisation_members.create', ['organisation' => $model->id]) }}" class="btn btn-primary btn-sm"
-                           data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('organisations.organisation_members.create', $model->id) }}">
-                            <i class="fa fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('organisations.members.actions.add') }}</span>
-                        </a>
-                    @endcan
+
                 </th>
             </tr>
             <?php $r = $model->allMembers()

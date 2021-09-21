@@ -4,6 +4,8 @@
  */
 var attribute_id_count = -1000;
 
+import dynamicMentions from "./mention";
+
 $(document).ready(function() {
     if($('#add_attribute_target').length > 0) {
         initAttributeUI();
@@ -28,6 +30,7 @@ function initAttributeUI()
         let html = body.html().replace(/\$TMP_ID\$/g, attribute_id_count);
         body.html(html).insertBefore(target);
         initAttributeHandlers();
+        dynamicMentions();
 
         return false;
     });

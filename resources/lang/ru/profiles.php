@@ -8,6 +8,7 @@ return [
         'alphabetical'      => 'По алфавиту',
         'date_created'      => 'По дате создания',
         'date_joined'       => 'По дате вступления',
+        'default'           => 'Обычный',
         'r_alphabetical'    => 'По алфавиту (обратный)',
         'r_date_created'    => 'По дате создания (обратный)',
         'r_date_joined'     => 'По дате вступления (обратный)',

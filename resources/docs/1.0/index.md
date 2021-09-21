@@ -45,6 +45,7 @@
     - [Inventory](/docs/{{version}}/entity-inventory)
     - [Entity Abilities](/docs/{{version}}/entity-abilities)
     - [Entity Links](/docs/{{version}}/entity-links)
+    - [Entity Image](/docs/{{version}}/entity-image)
 
 - ## Search
     - [Search](/docs/{{version}}/search)

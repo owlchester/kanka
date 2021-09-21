@@ -3,10 +3,12 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+
 require('./bootstrap');
 
 import select2 from './components/select2.js';
 import deleteConfirm from './components/delete-confirm.js';
+import dynamicMentions from "./mention";
 
 $(document).ready(function() {
 
@@ -131,6 +133,7 @@ $(document).ready(function() {
     });*/
 
     deleteConfirm();
+    dynamicMentions();
     initTogglePasswordFields();
     initAjaxPagination();
     initTimelineToggle();
@@ -526,7 +529,6 @@ function initSummernoteFixes() {
 
 // Helpers are injected directly in the window functions.
 require('./helpers.js');
-
 require('./keyboard.js');
 require('./crud.js');
 require('./calendar.js');

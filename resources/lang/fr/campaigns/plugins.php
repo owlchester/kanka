@@ -8,7 +8,7 @@ return [
         'import'            => 'Importer',
         'remove'            => 'Retirer le plugin',
         'update'            => 'Mettre à jour le plugin',
-        'update_available'  => 'Mise-à-jour disponnible!',
+        'update_available'  => 'Mise à jour disponible!',
     ],
     'destroy'       => [
         'success'   => 'Le plugin :plugin a été retiré.',
@@ -36,8 +36,8 @@ return [
     ],
     'info'          => [
         'helper'        => 'Dès qu\'un plugin a une nouvelle version, tu peux mettre à jour le plugin à la version la plus récente.',
-        'title'         => 'Mise-à-jours du plugin :plugin',
-        'updates'       => 'Mise-à-jours',
+        'title'         => 'Mises à jour du plugin :plugin',
+        'updates'       => 'Mises à jour',
         'your_version'  => 'Ta version',
     ],
     'status'        => [
