@@ -25,7 +25,14 @@ To upload an entity's image to Kanka.
 | :- |   :-   |  :-  |
 | `image` | `stream` | Stream to file uploaded to the timeline |
 
+### Example
 
+```
+curl --location --request POST 'https://kanka.io/api/1.0/campaigns/{campaign.id}/entities/{entity.id}/image' \
+--header 'accept: application/json' \
+--header 'Authorization: Bearer {bearer-token}' \
+--form 'image=@"/Users/kanka/Pics/Releases/1_2.png"'
+```
 
 ### Results
 
