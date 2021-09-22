@@ -144,8 +144,8 @@ class EntityRelationService
             ) {
                 $relations[] = $relation;
             } else {
-                dump($relation);
-                dd('wut');
+                //dump($relation);
+                //dd('wut');
             }
         }
 
