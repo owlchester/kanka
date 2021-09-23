@@ -23,6 +23,10 @@ trait ApiSync
         if (config('app.debug')) {
             $additional['queries'] = new ApiService();
         }
+
+        // Make sure we have the app's url for pagination, otherwise on prod it will skip the https scheme
+        $resource->setPath(config('app.url'));
+
         return parent::collection($resource)
             ->additional($additional);
     }
