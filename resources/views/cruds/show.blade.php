@@ -7,9 +7,7 @@ $headerImage = true;
 
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => __($name . '.show.title', ['name' => $model->name]),
-    'breadcrumbs' => [
-        ['url' => Breadcrumb::index($name), 'label' => __($name . '.index.title')]
-    ],
+    'breadcrumbs' => false,
     'miscModel' => $model,
     'canonical' => true,
     'mainTitle' => false,
@@ -46,7 +44,13 @@ $headerImage = true;
     </div>
 @endsection
 
-@include('entities.components.header', ['model' => $model])
+@include('entities.components.header', [
+    'model' => $model,
+    'breadcrumb' => [
+        ['url' => Breadcrumb::index($name), 'label' => __($name . '.index.title')],
+        null
+    ]
+])
 
 
 @section('content')

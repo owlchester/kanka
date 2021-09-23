@@ -1423,6 +1423,29 @@ summary {
   padding-top: 12px;
 }
 
+.entity-header .entity-breadcrumb {
+  margin-bottom: 10px;
+  font-size: 12px;
+  float: none;
+  top: 0;
+  padding: 0;
+  display: block;
+}
+
+.entity-header .entity-breadcrumb li {
+  display: inline-block;
+}
+
+.entity-header .entity-breadcrumb li a {
+  text-decoration: none;
+}
+
+.entity-header .entity-breadcrumb li + li:before {
+  content: ">\A0";
+  padding: 0 5px;
+  color: #ccc;
+}
+
 .entity-header .entity-name-header {
   display: flex;
 }

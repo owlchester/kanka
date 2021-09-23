@@ -3,11 +3,7 @@
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => __('entities/attributes.show.title', ['name' => $entity->name]),
     'description' => '',
-    'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => trans($entity->pluralType() . '.index.title')],
-        ['url' => $entity->url('show'), 'label' => $entity->name],
-        __('crud.tabs.attributes')
-    ],
+    'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-attributes'
@@ -29,7 +25,14 @@
     @endcan
 @endsection
 
-@include('entities.components.header', ['model' => $entity->child, 'entity' => $entity])
+@include('entities.components.header', [
+    'model' => $entity->child,
+    'entity' => $entity,
+    'breadcrumb' => [
+        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
+        __('crud.tabs.attributes')
+    ]
+])
 
 
 @section('content')
@@ -40,11 +43,6 @@
         </div>
         <div class="col-md-10 entity-main-block">
             <div class="box box-solid box-entity-attributes">
-                <div class="box-header with-border">
-                    <h3 class="box-title">
-                        {{ __('crud.tabs.attributes') }}
-                    </h3>
-                </div>
                 <div class="box-body">
                     @include('entities.pages.attributes.render')
                 </div>

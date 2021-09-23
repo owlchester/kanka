@@ -53,6 +53,27 @@
     }
   }
 
+  .entity-breadcrumb {
+    margin-bottom: 10px;
+    font-size: 12px;
+    float: none;
+    top: 0;
+    padding: 0;
+    display: block;
+
+    li {
+      display: inline-block;
+      a {
+        text-decoration: none;
+      }
+    }
+    li+li:before {
+      content: ">\A0";
+      padding: 0 5px;
+      color: #ccc;
+    }
+  }
+
   .entity-name-header {
     display: flex;
     //align-items: center;

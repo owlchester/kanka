@@ -45,6 +45,9 @@ return [
     ],
     'show'          => [
         'title' => 'Timeline :name',
+        'tabs' => [
+            'timelines' => 'Timelines',
+        ]
     ],
     'timelines'     => [
         'title' => 'Timeline :name Timelines',

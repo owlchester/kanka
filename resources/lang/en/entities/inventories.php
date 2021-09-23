@@ -25,7 +25,7 @@ return [
         'position'      => 'Equipped, Backpack, Storage, Bank',
     ],
     'show'          => [
-        'helper'    => 'Entities can have items attached to them to create an inventory.',
+        'helper'    => 'To create this entity\'s inventory, start by adding an item to it.',
         'title'     => 'Entity :name Inventory',
         'unsorted'  => 'Unsorted',
     ],

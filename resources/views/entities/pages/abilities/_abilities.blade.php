@@ -1,13 +1,8 @@
 <div class="box box-solid entity-abilities-box">
     <div class="box-body">
-        <h2 class="page-header with-border">
-            {{ __('crud.tabs.abilities') }}
-        </h2>
-
         <p class="help-block entity-abilities-helper">
             {{ __('entities/abilities.show.helper') }}
         </p>
-
     </div>
 </div>
 

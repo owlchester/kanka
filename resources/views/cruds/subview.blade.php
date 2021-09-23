@@ -7,6 +7,12 @@
 
 @inject('campaign', 'App\Services\CampaignService')
 
-@include('entities.components.header', ['model' => $model])
+@include('entities.components.header', [
+    'model' => $model,
+    'breadcrumb' => [
+        ['url' => Breadcrumb::index($model->entity->pluralType()), 'label' => __($model->entity->pluralType() . '.index.title')],
+        __($model->entity->pluralType() . '.show.tabs.' . $view)
+    ]
+])
 
 @include($fullview)

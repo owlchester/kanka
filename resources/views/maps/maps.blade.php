@@ -1,11 +1,7 @@
 @extends('layouts.app', [
     'title' => trans('maps.maps.title', ['name' => $model->name]),
     'description' => '',
-    'breadcrumbs' => [
-        ['url' => Breadcrumb::index('maps'), 'label' => __('maps.index.title')],
-        ['url' => route('maps.show', $model), 'label' => $model->name],
-        trans('maps.show.tabs.maps')
-    ],
+    'breadcrumbs' => false,
     'mainTitle' => false,
 ])
 

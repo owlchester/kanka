@@ -1,10 +1,6 @@
 <?php /** @var \App\Models\Entity $entity */?>
 <div class="box box-solid" id="ability-entities">
     <div class="box-body">
-        <h2 class="page-header with-border">
-            {{ __('abilities.show.tabs.entities') }}
-        </h2>
-
         <p class="help-block">{{ __('abilities.helpers.descendants') }}</p>
 
         <div class="row export-hidden">

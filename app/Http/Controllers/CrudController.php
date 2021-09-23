@@ -544,7 +544,8 @@ class CrudController extends Controller
             'name',
             'datagridSorter',
             'data',
-            'markers'
+            'markers',
+            'view'
         ));
     }
 

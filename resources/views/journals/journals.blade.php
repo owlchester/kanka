@@ -1,11 +1,7 @@
 @extends('layouts.app', [
     'title' => trans('journals.journals.title', ['name' => $model->name]),
     'description' => trans('journals.journals.description'),
-    'breadcrumbs' => [
-        ['url' => Breadcrumb::index('journals'), 'label' => __('journals.index.title')],
-        ['url' => route('journals.show', $model), 'label' => $model->name],
-        trans('journals.show.tabs.journals')
-    ],
+    'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $model,
 ])

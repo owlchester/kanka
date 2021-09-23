@@ -9,9 +9,12 @@ $r = $entity
         ->order(request()->get('order'), 'events/date')
         ->paginate();
 ?>
+
+@if ($r->count() === 0)
 <p class="help-block">
     {{ __('crud.events.hint') }}
 </p>
+@endif
 
 <table id="entity-event-list" class="table table-hover">
     <thead>

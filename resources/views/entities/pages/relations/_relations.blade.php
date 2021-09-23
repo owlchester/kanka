@@ -2,10 +2,12 @@
  * @var \App\Models\Relation $relation
  */?>
 <div class="box box-solid box-entity-relations box-entity-relations-table" id="entity-relations-table">
-    <div class="box-body">
-        <h2 class="page-header with-border">
+    <div class="box-header with-border">
+        <h2 class="box-title">
             {{ __('crud.tabs.relations') }}
         </h2>
+    </div>
+    <div class="box-body">
 
         <p class="help-block export-hidden">
             {{ __('entities/relations.helper') }}

@@ -2,11 +2,7 @@
 @extends('layouts.app', [
     'title' => __('quests.elements.title', ['name' => $model->name]),
     'description' => '',
-    'breadcrumbs' => [
-        ['url' => Breadcrumb::index('quests'), 'label' => __('quests.index.title')],
-        ['url' => route('quests.show', $model), 'label' => $model->name],
-        __('quests.show.tabs.elements')
-    ],
+    'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $model,
 ])
@@ -26,7 +22,13 @@
     @endcan
 @endsection
 
-@include('entities.components.header', ['model' => $model])
+@include('entities.components.header', [
+    'model' => $model,
+    'breadcrumb' => [
+        ['url' => Breadcrumb::index('quests'), 'label' => __('quests.index.title')],
+        __('quests.show.tabs.elements')
+    ]
+])
 
 @section('content')
     @include('partials.errors')

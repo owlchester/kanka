@@ -1,11 +1,7 @@
 @extends('layouts.app', [
     'title' => __('events.events.title', ['name' => $model->name]),
     'description' => __('events.events.description'),
-    'breadcrumbs' => [
-        ['url' => Breadcrumb::index('events'), 'label' => __('events.index.title')],
-        ['url' => route('events.show', $model), 'label' => $model->name],
-        __('events.fields.events')
-    ],
+    'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $model,
 ])

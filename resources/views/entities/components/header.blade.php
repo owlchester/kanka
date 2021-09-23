@@ -5,7 +5,6 @@
  * @var \App\Models\Tag $tag
  */
 
-
 if ($model instanceof \App\Models\MenuLink) {
     ?>
     @include('entities.components.menu_link_header')
@@ -83,6 +82,21 @@ $superboosted = $campaign->campaign()->boosted();
         @endif
         <div class="col-md-{{ ($imageUrl) ? 10 : 12 }} entity-header-col">
             <div class="entity-texts">
+                @if (!empty($breadcrumb))
+                    <ol class="entity-breadcrumb">
+                        @foreach ($breadcrumb as $bcdata)
+                            <li>
+                            @if (is_array($bcdata))
+                            <a href="{{ $bcdata['url'] }}" title="{{ $bcdata['label'] }}">
+                                {{ $bcdata['label'] }}
+                            </a>
+                            @elseif(!empty($bcdata))
+                                {{ $bcdata }}
+                            @endif
+                            </li>
+                        @endforeach
+                    </ol>
+                @endif
                 <div class="entity-name-header">
                     <h1 class="entity-name">
                         {{ $model->name }}
