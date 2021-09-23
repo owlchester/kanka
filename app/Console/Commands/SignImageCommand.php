@@ -58,6 +58,8 @@ class SignImageCommand extends Command
         }
 
         $this->info("Url: " . $url);
+
+        return 0;
     }
 }
 

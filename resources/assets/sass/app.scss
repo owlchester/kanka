@@ -96,6 +96,14 @@ img.profile-user-img {
     }
   }
 }
+.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a {
+  overflow: auto;
+  white-space: unset;
+}
+.navbar-nav > .notifications-menu > .dropdown-menu {
+  width: 360px;
+}
+
 .disabledLink{
   cursor: not-allowed;
 }
@@ -1121,7 +1129,7 @@ summary { display: list-item; }
   }
 }
 
-@media(min-width: 787px) {
+@media (min-width: 768px) {
   footer {
     .footer-socials {
       .email, .socials, .language-switcher {

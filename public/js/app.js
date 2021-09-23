@@ -78664,16 +78664,24 @@ function dynamicMentions() {
  */
 var notificationList,
     notificationCount,
+    userID,
     notificationRefreshTimeout = 60 * 1000;
 $(document).ready(function () {
-  // If we are on the notification page, just clear everything
-  if ($('#notification-clear').length === 1) {
-    localStorage.setItem('notification-count', 0);
-    localStorage.setItem('last_notification', new Date().getTime());
-  }
-
+  // Setup
   notificationList = $('#header-notification-list');
   notificationCount = $('#header-notification-count');
+  var menu = $('.notifications-menu');
+
+  if (menu) {
+    userID = menu.data('user-id');
+  } else {
+    userID = 0;
+  } // If we are on the notification page, just clear everything
+
+
+  if ($('#notification-clear').length === 1) {
+    refreshNotifications();
+  }
 
   if (notificationList.length === 1) {
     // Every thirty seconds, we check if the storage was changed.
@@ -78684,17 +78692,16 @@ $(document).ready(function () {
 
 function updateNotificationUI() {
   // Only do an ajax call if we haven't done one in a while by looking at the local storage
-  var last = localStorage.getItem('last_notification');
+  var last = localStorage.getItem('last_notification-' + userID);
   var now = new Date().getTime();
   var delay = now - 60 * 5000;
 
   if (!last || last < delay) {
-    localStorage.setItem('last_notification', now);
     refreshNotifications();
   } else {
     // If we have up to date info, show it
-    var count = localStorage.getItem('notification-count');
-    var body = localStorage.getItem('notification-body');
+    var count = localStorage.getItem('notification-count-' + userID);
+    var body = localStorage.getItem('notification-body-' + userID);
     notificationList.html(body);
 
     if (count > 0) {
@@ -78711,18 +78718,24 @@ function updateNotificationUI() {
  */
 
 
-function refreshNotifications(url) {
-  url = url || notificationList.data('url');
+function refreshNotifications() {
+  var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+  if (!url) {
+    url = notificationList.data('url');
+  }
+
+  var now = new Date().getTime();
+  localStorage.setItem('last_notification-' + userID, now);
   $.ajax(url).done(function (result) {
-    localStorage.setItem('notification-body', result.body);
-    localStorage.setItem('notification-count', result.count);
+    localStorage.setItem('notification-body-' + userID, result.body);
+    localStorage.setItem('notification-count-' + userID, result.count);
     updateNotificationUI();
   });
 }
 
 function handleReadAll() {
   $('#header-notification-mark-all-as-read').click(function (e) {
-    console.log('read all');
     refreshNotifications($(this).data('url'));
   });
 }

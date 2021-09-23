@@ -148,7 +148,7 @@
   height: auto;
 }
 
-@media (min-width: 767px) {
+@media (min-width: 768px) {
   #map-body .main-sidebar {
     width: 430px;
   }

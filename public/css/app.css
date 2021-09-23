@@ -81,6 +81,15 @@ img.profile-user-img {
   padding: 3px 5px;
 }
 
+.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a {
+  overflow: auto;
+  white-space: unset;
+}
+
+.navbar-nav > .notifications-menu > .dropdown-menu {
+  width: 360px;
+}
+
 .disabledLink {
   cursor: not-allowed;
 }
@@ -1113,7 +1122,7 @@ summary {
   margin: 0;
 }
 
-@media (min-width: 787px) {
+@media (min-width: 768px) {
   footer .footer-socials .email,
   footer .footer-socials .socials,
   footer .footer-socials .language-switcher {
@@ -1264,7 +1273,7 @@ summary {
   top: 0;
 }
 
-@media (max-width: 787px) {
+@media (max-width: 767px) {
   .nav-stacked > li {
     display: block;
     width: auto;
@@ -1375,6 +1384,10 @@ summary {
 
   .dl-force-mobile dd {
     margin-left: 140px;
+  }
+
+  .navbar-nav > .notifications-menu > .dropdown-menu {
+    width: 90%;
   }
 }
 
@@ -1578,7 +1591,7 @@ summary {
   word-break: break-all;
 }
 
-@media (max-width: 787px) {
+@media (max-width: 767px) {
   .entity-header {
     display: block;
   }

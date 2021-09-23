@@ -1,4 +1,4 @@
-@media (max-width: 787px) {
+@media (max-width: 767px) {
   // Menu nav points to show next to one another on mobile
   .nav-stacked > li {
     display: block;
@@ -9,6 +9,7 @@
     .footer {
       background: transparent;
       padding: 3px;
+
       .email {
         margin: 10px 0;
       }
@@ -25,11 +26,13 @@
         margin-right: 4px;
       }
     }
+
     .campaign-menu {
       .dropdown-menu {
         width: 90%;
         box-shadow: $box-shadow;
       }
+
       a.campaign-selector {
         -webkit-filter: unset;
         filter: unset;
@@ -38,7 +41,7 @@
   }
 
   .main-sidebar {
-     padding-top: 50px;
+    padding-top: 50px;
   }
 
   .content-header {
@@ -91,11 +94,13 @@
       width: 100%;
       overflow-x: auto;
       -ms-overflow-style: none; /*// IE 10+*/
-      overflow: -moz-scrollbars-none;/*// Firefox*/
+      overflow: -moz-scrollbars-none; /*// Firefox*/
     }
+
     .form-group {
       margin-bottom: 0;
     }
+
     .nav-tabs::-webkit-scrollbar {
       display: none; /*Safari and Chrome*/
     }
@@ -111,8 +116,13 @@
       text-overflow: ellipsis;
       white-space: nowrap;
     }
+
     dd {
       margin-left: 140px;
     }
+  }
+
+  .navbar-nav > .notifications-menu > .dropdown-menu {
+    width: 90%;
   }
 }

@@ -10,9 +10,8 @@ $currentCampaign = CampaignLocalization::getCampaign();
 {{--        </a>--}}
 {{--    @endif--}}
 
-    <!-- Header Navbar -->
     <nav class="navbar navbar-static-top">
-        @if ((Auth::check() && Auth::user()->hasCampaigns()) || !Auth::check())
+        @if ((auth()->check() && auth()->user()->hasCampaigns()) || !auth()->check())
             <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                 <span class="sr-only">{{ __('header.toggle_navigation') }}</span>
             </a>
@@ -41,7 +40,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
                 @endif
                 <!-- Only logged in users can have this dropdown, Also only show this if the user has campaigns -->
                 @if (auth()->check() && !\App\Facades\Identity::isImpersonating())
-                    <li class="dropdown notifications-menu">
+                    <li class="dropdown notifications-menu" data-user-id="{{ auth()->user()->id }}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                             <i class="far fa-bell"></i>
                             <span id="header-notification-count" class="label label-warning" style="display:none"></span>
@@ -64,32 +63,32 @@ $currentCampaign = CampaignLocalization::getCampaign();
                         </ul>
                     </li>
                 @endif
-                @if(!Auth::check())
+                @guest
                     <li class="messages-menu">
                         <a href="{{ route('login') }}">{{ __('front.menu.login') }}</a>
                     </li>@if(config('auth.register_enabled'))
                     <li class="messages-menu hidden-xs">
                         <a href="{{ route('register') }}">{{ __('front.menu.register') }}</a>
                     </li>@endif
-                @endif
+                @endguest
 
-                @if (Auth::check())
+                @auth()
                 <li class="dropdown user user-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" name="list-user-profile-actions" title="{{ Auth::user()->name }}">
-                        <img src="{{ Auth::user()->getAvatarUrl() }}" class="user-image" alt="{{ __('header.avatar') }}"/>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" name="list-user-profile-actions" title="{{ auth()->user()->name }}">
+                        <img src="{{ auth()->user()->getAvatarUrl() }}" class="user-image" alt="{{ __('header.avatar') }}"/>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
                             <a href="{{ route('settings.profile') }}">
-                                <img src="{{ Auth::user()->getAvatarUrl(100) }}" class="img-circle" alt="{{ __('header.avatar') }}" />
+                                <img src="{{ auth()->user()->getAvatarUrl(100) }}" class="img-circle" alt="{{ __('header.avatar') }}" />
                             </a>
                             <p>
-                                {{ Auth::user()->name }}
-                                <small title="{{ auth()->user()->created_at }}">{{ __('header.member_since', ['date' => Auth::user()->created_at->diffForHumans()]) }}</small>
+                                {{ auth()->user()->name }}
+                                <small title="{{ auth()->user()->created_at }}">{{ __('header.member_since', ['date' => auth()->user()->created_at->diffForHumans()]) }}</small>
                             </p>
                         </li>
                         <li class="user-footer">
-                            @if (Auth::user()->hasCampaigns())
+                            @if (auth()->user()->hasCampaigns())
                             <div class="pull-left">
                                 <a href="{{ route('settings.profile') }}" class="btn btn-default btn-flat"> {{ __('header.profile') }}</a>
                             </div>
@@ -112,7 +111,7 @@ $currentCampaign = CampaignLocalization::getCampaign();
                         </li>
                     </ul>
                 </li>
-                @endif
+                @endauth
             </ul>
         </div>
     </nav>
