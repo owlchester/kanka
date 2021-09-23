@@ -76,6 +76,11 @@ img.profile-user-img {
   width: 90px;
 }
 
+.navbar-nav .dropdown-menu > .notification-footer a {
+  display: inline-block;
+  padding: 3px 5px;
+}
+
 .disabledLink {
   cursor: not-allowed;
 }
@@ -1102,6 +1107,10 @@ summary {
 
 .user-role-update .btn {
   margin-bottom: 5px;
+}
+
+.box-footer .pagination {
+  margin: 0;
 }
 
 @media (min-width: 787px) {

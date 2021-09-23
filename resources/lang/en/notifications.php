@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'clear' => [
+        'action'    => 'Clear all',
+        'confirm'   => 'Are you sure you want to remove all notifications? This action can\'t be undone.',
+        'success'   => 'Notifications removed.',
+    ],
     'campaign'          => [
         'application'   => [
             'approved'  => 'Your application to the :campaign campaign has been approved.',
@@ -26,11 +31,11 @@ return [
         ],
     ],
     'header'            => 'You have :count notifications',
+    'unread'            => 'New notification',
     'index'             => [
-        'description'   => 'Your latest notifications.',
         'title'         => 'Notifications',
     ],
-    'no_notifications'  => 'There are currently no notifications.',
+    'no_notifications'  => 'Notifications will appear here once you have some.',
     'subscriptions'     => [
         'charge_fail'   => 'An error occurred while processing your payment. Please wait a moment while we try again. If nothing changes, please contact us.',
         'deleted'       => 'Your subscription to Kanka was cancelled after too many failed attempts to charge your card. Please go to your Subscription settings and try updating your payment details.',

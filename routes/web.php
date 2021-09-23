@@ -502,9 +502,9 @@ Route::group([
     });
 
     // Notification
-    Route::get('/notifications/delete/{id}', 'NotificationController@delete')->name('notifications.delete');
     Route::get('/notifications', 'NotificationController@index')->name('notifications');
     Route::get('/notifications/refresh', 'NotificationController@refresh')->name('notifications.refresh');
+    Route::post('/notifications/clear-all', 'NotificationController@clearAll')->name('notifications.clear-all');
 
     // Third party hooks
     Route::get('/lfgm-hooks/sync/{uuid}', 'LFGM\HookController@sync')->name('lfgm.sync');

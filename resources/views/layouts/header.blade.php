@@ -47,13 +47,19 @@ $currentCampaign = CampaignLocalization::getCampaign();
                             <span id="header-notification-count" class="label label-warning" style="display:none"></span>
                         </a>
                         <ul class="dropdown-menu">
+                            <li class="notification-footer">
+                                <a href="{{ route('notifications') }}">
+                                    {{ __('header.notifications.read_all') }}
+                                </a>
+
+                                <a href="#" class="pull-right" id="header-notification-mark-all-as-read" data-url="{{ route('notifications.refresh', 'read-all') }}">
+                                    {{ __('header.notifications.mark_read') }}
+                                </a>
+                            </li>
                             <li>
                                 <ul class="menu" id="header-notification-list" data-url="{{ route('notifications.refresh') }}">
                                     <li class="text-center"><i class="fa fa-spin fa-spinner"></i></li>
                                 </ul>
-                            </li>
-                            <li class="footer">
-                                <a href="{{ route('notifications') }}">{{ __('header.notifications.read_all') }}</a>
                             </li>
                         </ul>
                     </li>

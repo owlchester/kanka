@@ -78670,7 +78670,6 @@ $(document).ready(function () {
   if ($('#notification-clear').length === 1) {
     localStorage.setItem('notification-count', 0);
     localStorage.setItem('last_notification', new Date().getTime());
-    console.log('clear');
   }
 
   notificationList = $('#header-notification-list');
@@ -78679,6 +78678,7 @@ $(document).ready(function () {
   if (notificationList.length === 1) {
     // Every thirty seconds, we check if the storage was changed.
     updateNotificationUI();
+    handleReadAll();
   }
 });
 
@@ -78711,11 +78711,19 @@ function updateNotificationUI() {
  */
 
 
-function refreshNotifications() {
-  $.ajax(notificationList.data('url')).done(function (result) {
+function refreshNotifications(url) {
+  url = url || notificationList.data('url');
+  $.ajax(url).done(function (result) {
     localStorage.setItem('notification-body', result.body);
     localStorage.setItem('notification-count', result.count);
     updateNotificationUI();
+  });
+}
+
+function handleReadAll() {
+  $('#header-notification-mark-all-as-read').click(function (e) {
+    console.log('read all');
+    refreshNotifications($(this).data('url'));
   });
 }
 
