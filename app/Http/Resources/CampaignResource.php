@@ -7,6 +7,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class CampaignResource extends JsonResource
 {
+    use ApiSync;
+
     /**
      * @var bool
      */

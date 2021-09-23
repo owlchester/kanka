@@ -6,6 +6,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class EntityChild extends JsonResource
 {
+    use ApiSync;
+
     /**
      * Transform the resource into an array.
      *
