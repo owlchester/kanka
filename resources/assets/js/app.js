@@ -479,14 +479,21 @@ function initSidebar() {
     }
 
     let down = $('.sidebar-campaign .campaign-head .campaign-name .fa-caret-down');
+    let dropdown = $('#campaign-switcher');
+    let backdrop = $('.campaign-switcher-backdrop');
 
     toggler.on('click', function(e) {
         e.preventDefault();
-        if (down.hasClass('flipped')) {
-            down.removeClass('flipped');
-        } else {
-            down.addClass('flipped');
-        }
+        dropdown.collapse('toggle');
+        backdrop.show();
+        down.addClass('flipped');
+    });
+
+    backdrop.click(function (e) {
+        e.preventDefault();
+        backdrop.hide();
+        dropdown.collapse('hide');
+        down.removeClass('flipped');
     });
 }
 

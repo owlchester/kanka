@@ -54,3 +54,4 @@
         </li>
     </ul>
 </section>
+<div class="campaign-switcher-backdrop" style="display:none;"></div>
