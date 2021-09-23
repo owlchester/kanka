@@ -108,9 +108,6 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link @if(!empty($active) && $active == 'features') nav-active @endif" href="{{ route("front.features") }}">{{ __('front.menu.features') }}</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link @if(!empty($active) && $active == 'pricing') nav-active @endif" href="{{ route("front.pricing") }}">{{ __('front.menu.pricing') }}</a>
                 </li>
                 <li class="nav-item">
