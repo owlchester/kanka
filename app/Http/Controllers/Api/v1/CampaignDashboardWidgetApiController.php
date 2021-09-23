@@ -69,7 +69,7 @@ class CampaignDashboardWidgetApiController extends ApiController
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(Request $request, Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
+    public function destroy(Request $request, Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
         $this->authorize('update', $campaign);
         $campaignDashboardWidget->delete();
