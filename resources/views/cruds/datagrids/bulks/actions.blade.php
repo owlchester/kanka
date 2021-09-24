@@ -16,6 +16,13 @@ if (!isset($datagrid) || $datagrid->bulkPermissions) {
                 </a>
             </li>';
 }
+if (!isset($datagrid) || $datagrid->bulkTransform) {
+   $dropdownActions[] = '<li class="dropdown-item">
+                <a href="#" class="bulk-copy-campaign" id="datagrids-bulk-actions-transform" data-toggle="ajax-modal" data-target="#bulk-transform.modal" data-url="' .  route('bulk.modal', ['view' => 'transform', 'type' => $name]) . '">
+                    <i class="fa fa-exchange-alt"></i> ' .  __('crud.actions.transform') . '
+                </a>
+            </li>';
+}
 if (!isset($datagrid) || $datagrid->bulkCopyToCampaign) {
    $dropdownActions[] = '<li class="dropdown-item">
                 <a href="#" class="bulk-copy-campaign" id="datagrids-bulk-actions-copy-campaign" data-toggle="ajax-modal" data-target="#bulk-permissions.modal" data-url="' .  route('bulk.modal', ['view' => 'copy_campaign', 'type' => $name]) . '">

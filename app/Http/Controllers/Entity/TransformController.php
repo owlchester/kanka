@@ -39,7 +39,7 @@ class TransformController extends Controller
         $this->authorize('move', $entity->child);
 
         $entities = $this->service
-            ->labelledEntities(true, [$entity->pluralType(), 'menu_links'], true);
+            ->labelledEntities(true, [$entity->pluralType(), 'menu_links', 'relations'], true);
 
         $entities[''] = __('entities/transform.fields.select_one');
 

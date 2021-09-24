@@ -144,6 +144,9 @@ function registerBulkActions() {
   $('#datagrids-bulk-actions-templates').on('click', function () {
     setBulkModels('#datagrid-bulk-permission-models');
   });
+  $('#datagrids-bulk-actions-transform').on('click', function () {
+    setBulkModels('#datagrid-bulk-transform-models');
+  });
 }
 /**
  * Set the datagrid bulk models
