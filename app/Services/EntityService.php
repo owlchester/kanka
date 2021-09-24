@@ -163,14 +163,16 @@ class EntityService
     }
 
     /**
+     * Transform an entity into another type
      * @param Entity $entity
-     * @param $entityType
+     * @param string $entityType
+     * @param MiscModel|null $misc
      * @return Entity
      * @throws \Exception
      */
-    public function transform(Entity $entity, $entityType): Entity
+    public function transform(Entity $entity, string $entityType, MiscModel $misc = null): Entity
     {
-        return $this->moveType($entity, $entityType);
+        return $this->moveType($entity, $entityType, $misc);
     }
 
     /**
@@ -235,7 +237,7 @@ class EntityService
 
             // Finally, we can change and save the child. Should be all good. But tell the app not to create the entity to
             // avoid silly duplicates and new entities.
-            define('MISCELLANY_SKIP_ENTITY_CREATION', true);
+            $child->savingObserver = false;
 
             // Update child second. We do this otherwise we'll have an old entity and a new one
             $child->campaign_id = $campaign->id; // Technically don't need this since it's in MiscObserver::saving()
@@ -349,7 +351,7 @@ class EntityService
      * @return Entity
      * @throws \Exception
      */
-    protected function moveType(Entity $entity, $target)
+    protected function moveType(Entity $entity, $target, MiscModel $misc = null)
     {
         // Create new model
         if (!isset($this->entities[$target])) {
@@ -360,7 +362,12 @@ class EntityService
          */
         $new = new $this->entities[$target]();
         $newAttributes = $new->getAttributes();
-        $old = $entity->child;
+        $old = null;
+        if (!empty($misc)) {
+            $old = $misc;
+        } else {
+            $old = $entity->child;
+        }
 
         // Move attributes
         $oldAttributes = $old->getAttributes();
@@ -391,7 +398,6 @@ class EntityService
         }
 
         // Finally, we can save. Should be all good. But tell the app not to create the entity
-        define('MISCELLANY_SKIP_ENTITY_CREATION', true);
         $new->savingObserver = false;
         $new->save();
 

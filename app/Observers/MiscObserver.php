@@ -48,8 +48,7 @@ abstract class MiscObserver
 
         // If we're from the "move" service, we can skip this part.
         // Or if we are deleting, we don't want to re-do the whole set foreign ids to null
-        if (defined('MISCELLANY_SKIP_ENTITY_CREATION') ||
-            request()->isMethod('delete') === true ||
+        if (request()->isMethod('delete') === true ||
             $model->savingObserver === false) {
             return;
         }
