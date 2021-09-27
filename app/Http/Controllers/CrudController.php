@@ -11,6 +11,7 @@ use App\Models\Entity;
 use App\Models\AttributeTemplate;
 use App\Models\MenuLink;
 use App\Models\MiscModel;
+use App\Services\Entity\MultiEditingService;
 use App\Services\FilterService;
 use App\Traits\BulkControllerTrait;
 use App\Traits\GuestAuthTrait;
@@ -370,6 +371,17 @@ class CrudController extends Controller
         $this->authorize('update', $model);
 
         $campaign = CampaignLocalization::getCampaign();
+        $editingUsers = null;
+
+        /** @var MultiEditingService $editingService */
+        if ($campaign->hasEditingWarning()) {
+            $editingService = app()->make(MultiEditingService::class);
+            $editingUsers = $editingService->entity($model->entity)->user(auth()->user())->users();
+            // If no one is editing the entity, we are now editing it
+            if (empty($editingUsers)) {
+                $editingService->edit();
+            }
+        }
 
         $params = [
             'model' => $model,
@@ -381,6 +393,7 @@ class CrudController extends Controller
             'tabCopy' => $this->tabCopy,
             'entityType' => $model->getEntityType(),
             'horizontalForm' => $this->horizontalForm,
+            'editingUsers' => $editingUsers
         ];
 
         return view('cruds.forms.edit', $params);
@@ -421,6 +434,13 @@ class CrudController extends Controller
                     $model
                 )
             ]);
+
+
+            /** @var MultiEditingService $editingService */
+            $editingService = app()->make(MultiEditingService::class);
+            $editingService->entity($model->entity)
+                ->user(auth()->user())
+                ->finish();
             session()->flash('success_raw', $success);
 
             $route = route($this->route . '.show', $model->id);

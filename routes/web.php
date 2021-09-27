@@ -234,6 +234,9 @@ Route::group([
 
         Route::get('/entities/{entity}/relations_map', 'Entity\RelationController@map')->name('entities.relations_map');
 
+        Route::post('/entities/{entity}/confirm-editing', 'Entity\EditingController@confirm')->name('entities.confirm-editing');
+        Route::post('/entities/{entity}/keep-alive', 'Entity\EditingController@keepAlive')->name('entities.keep-alive');
+
         // Permission save
         Route::post('/campaign_roles/{campaign_role}/savePermissions', 'CampaignRoleController@savePermissions')->name('campaign_roles.savePermissions');
 

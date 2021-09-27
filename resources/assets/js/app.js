@@ -10,6 +10,8 @@ import select2 from './components/select2.js';
 import deleteConfirm from './components/delete-confirm.js';
 import dynamicMentions from "./mention";
 
+require('./tags.js');
+
 $(document).ready(function() {
 
     // Inject the isMobile variable into the window. We don't want ALL of the javascript
@@ -153,7 +155,7 @@ $(document).ready(function() {
         initCheckboxSwitch();
         initAjaxPagination();
         initTooltips();
-        initCategories();
+        window.initCategories();
         initSpectrum();
         initDynamicDelete();
         initImageRemoval();
@@ -540,5 +542,4 @@ require('./keyboard.js');
 require('./crud.js');
 require('./calendar.js');
 require('./search.js');
-require('./tags.js');
 require('./notification');

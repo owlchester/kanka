@@ -8,6 +8,8 @@ use App\Models\Campaign;
 use App\Models\CampaignBoost;
 use App\Models\CampaignRole;
 use App\Models\CampaignSubmission;
+use App\Models\Entity;
+use App\Models\EntityUser;
 use App\Models\Referral;
 use App\Models\UserApp;
 
@@ -22,6 +24,7 @@ use App\Models\UserApp;
  * @property Campaign $lastCampaign
  * @property Referral $referrer
  * @property CampaignSubmission[] $submissions
+ * @property Entity[] $entities
  */
 trait UserRelations
 {
@@ -125,5 +128,14 @@ trait UserRelations
     public function submissions()
     {
         return $this->hasMany('App\Models\CampaignSubmission');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function entities()
+    {
+        return $this->belongsToMany(Entity::class)
+            ->using(EntityUser::class);
     }
 }

@@ -13,7 +13,7 @@ var characterAddOrganisation, characterTemplateOrganisation, characterOrganisati
 
 var filtersActionsShow, filtersActionHide;
 
-var ajaxModalTarget, ajaxModal;
+var ajaxModalTarget, ajaxModal, multiEditingModal;
 var entityFormHasUnsavedChanges = false;
 
 // Entity Calendar
@@ -27,6 +27,11 @@ var entityName;
 var toggablePanels;
 
 var validEntityForm = false, validRelationForm = false;
+
+// Keep alive when editing
+var keepAliveTimer = 300 * 1000; // 5 minutes
+var keepAliveUrl;
+var keepAliveEnabled = true;
 
 $(document).ready(function () {
 
@@ -94,6 +99,8 @@ $(document).ready(function () {
     registerEntityNotePerms();
     registerStoryActions();
     registerStoryLoadMore();
+    registerEditWarning();
+    registerEditKeepAlive();
 });
 
 /**
@@ -842,5 +849,93 @@ function registerStoryLoadMore() {
         });
 
         return false;
+    });
+}
+
+/**
+ *
+ */
+function registerEditWarning() {
+    multiEditingModal = $('#entity-edit-warning');
+    if (multiEditingModal.length === 0) {
+        return;
+    }
+
+    // Don't enable keep alive until the user has confirmed
+    keepAliveEnabled = false;
+    multiEditingModal.modal({
+        backdrop: false
+    });
+
+    // Handle clicks
+    $('#entity-edit-warning-ignore').click(function (e) {
+        e.preventDefault();
+        confirmEditWarningModal();
+        keepAliveEnabled = true;
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            url: $(this).data('url'),
+            type: 'POST',
+            context: this
+        }).done(function (result, textStatus, xhr) {
+            multiEditingModal.modal('hide');
+        });
+    });
+
+    $('#entity-edit-warning-back').click(function (e) {
+        e.preventDefault();
+        confirmEditWarningModal();
+        window.location.href = $(this).data('url');
+    });
+}
+
+function confirmEditWarningModal() {
+    multiEditingModal.find('.modal-body').html('<div class="text-center"><i class="fa fa-spinner fa-spin fa-2x"></i></div>')
+    multiEditingModal.find('.modal-footer').hide();
+}
+
+/**
+ * Set up the keep alive pulse configuration
+ */
+function registerEditKeepAlive() {
+    let field = $('#editing-keep-alive');
+    if (field.length === 0) {
+        return;
+    }
+    keepAliveUrl = field.data('url');
+
+    console.log('keeping alive set up');
+
+    setTimeout(keepAlivePulse, keepAliveTimer);
+}
+
+/**
+ * Send a pulse to the backend that the user is still editing the entity
+ */
+function keepAlivePulse() {
+    if (!keepAliveEnabled) {
+        setTimeout(keepAlivePulse, keepAliveTimer);
+        return;
+    }
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        url: keepAliveUrl,
+        type: 'POST'
+    })
+    .done(function(result) {
+        console.log('kept alive');
+        setTimeout(keepAlivePulse, keepAliveTimer);
     });
 }
