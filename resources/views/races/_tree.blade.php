@@ -14,7 +14,7 @@
         // Name
         'name',
         'type',
-        [
+        /*[
             'label' => trans('characters.fields.race'),
             'field' => 'race.name',
             'visible' => $campaign->enabled('races'),
@@ -23,7 +23,7 @@
                     return $model->race->tooltipedLink();
                 }
             }
-        ],
+        ],*/
         [
             'label' => trans('races.fields.races'),
             'render' => function($model) {

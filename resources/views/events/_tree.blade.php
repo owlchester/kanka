@@ -15,7 +15,7 @@
         'name',
         'type',
         'date',
-        [
+        /*[
             'label' => trans('events.fields.event'),
             'field' => 'event.name',
             'render' => function($model) {
@@ -23,7 +23,7 @@
                     return $model->event->entity->tooltipedLink();
                 }
             }
-        ],
+        ],*/
         [
             'type' => 'location',
             'visible' => $campaign->enabled('locations'),

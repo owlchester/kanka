@@ -14,7 +14,7 @@
         // Name
         'name',
         'type',
-        [
+        /*[
             'label' => trans('timelines.fields.timeline'),
             'field' => 'timeline.name',
             'render' => function($model) {
@@ -22,7 +22,7 @@
                     return $model->timeline->entity->tooltipedLink();
                 }
             }
-        ],
+        ],*/
         [
             'label' => trans('timelines.fields.timelines'),
             'render' => function($model) {

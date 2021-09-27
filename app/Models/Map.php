@@ -72,7 +72,7 @@ class Map extends MiscModel
         'initial_zoom',
         'center_x',
         'center_y',
-        'center_marker_id'
+        'center_marker_id',
     ];
 
     /**

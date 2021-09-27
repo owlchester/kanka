@@ -15,7 +15,7 @@
         // Name
         'name',
         'type',
-        [
+        /*[
             'label' => __('locations.fields.location'),
             'render' => function($model) {
                 if ($model->parentLocation) {
@@ -24,7 +24,7 @@
             },
             'field' => 'parentLocation.name',
             'disableSort' => true,
-        ],
+        ],*/
         [
             'label' => __('locations.fields.locations'),
             'render' => function($model) {
