@@ -18,10 +18,10 @@ return [
         'is_equipped'   => 'Equipped',
         'name'          => 'Name',
         'position'      => 'Position',
-        'copy_entity_entry' => 'Copy entity entry',
+        'copy_entity_entry' => 'Copy item entry',
     ],
     'helpers' => [
-        'copy_entity_entry' => 'Copy the entry\'s entry as this item\'s description.',
+        'copy_entity_entry' => 'Display the item\'s entry instead of the custom description.',
     ],
     'placeholders'  => [
         'amount'        => 'Any amount',
