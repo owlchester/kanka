@@ -697,6 +697,14 @@ abstract class MiscModel extends Model
             $classes[] = 'kanka-tag-' . $tag->slug;
         }
 
+        // Specific entity flags
+        if ($this instanceof Character and $this->is_dead) {
+            $classes[] = 'character-dead';
+        }
+        elseif ($this instanceof Quest and $this->is_completed) {
+            $classes[] = 'quest-completed';
+        }
+
         return (string) implode(' ', $classes);
     }
 }
