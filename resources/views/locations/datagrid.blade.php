@@ -13,7 +13,7 @@
         'name',
         'type',
         [
-            'label' => trans('crud.fields.location'),
+            'label' => __('locations.fields.location'),
             'field' => 'parentLocation.name',
             'render' => function($model) {
                 if ($model->parentLocation) {
@@ -22,7 +22,7 @@
             }
         ],
         [
-            'label' => trans('locations.fields.characters'),
+            'label' => __('locations.fields.characters'),
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 $total = $model->characters->count();
@@ -34,7 +34,7 @@
             'disableSort' => true,
         ],
         [
-            'label' => trans('locations.fields.map'),
+            'label' => __('locations.fields.map'),
             'field' => 'map',
             'render' => function($model) {
                 if (!empty($model->map) && (!$model->is_map_private || auth()->check() && auth()->user()->can('map', $model))) {
