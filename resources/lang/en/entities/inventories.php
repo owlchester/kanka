@@ -12,11 +12,16 @@ return [
         'success'   => 'Item :item removed from :entity.',
     ],
     'fields'        => [
-        'amount'        => 'Amount',
+        'amount'        => 'Quantity',
+        'qty'           => 'QTY',
         'description'   => 'Description',
         'is_equipped'   => 'Equipped',
         'name'          => 'Name',
         'position'      => 'Position',
+        'copy_entity_entry' => 'Copy entity entry',
+    ],
+    'helpers' => [
+        'copy_entity_entry' => 'Copy the entry\'s entry as this item\'s description.',
     ],
     'placeholders'  => [
         'amount'        => 'Any amount',

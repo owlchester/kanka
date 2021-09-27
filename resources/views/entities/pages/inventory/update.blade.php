@@ -9,29 +9,30 @@
 ])
 
 @section('content')
-    <div class="panel panel-default">
+    {!! Form::model($inventory, ['route' => ['entities.inventories.update', $entity->id, $inventory], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
+
+    <div class="box box-solid">
         @if ($ajax)
-            <div class="panel-heading">
-                <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                <h4>
+            <div class="box-header with-border">
+                <h3 class="box-title with-border">
                     {{ __('entities/inventories.update.title', ['name' => $entity->name]) }}
-                </h4>
+                </h3>
+                <div class="box-tools pull-right">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                </div>
             </div>
         @endif
-        <div class="panel-body">
+        <div class="box-body">
             @include('partials.errors')
-
-            {!! Form::model($inventory, ['route' => ['entities.inventories.update', $entity->id, $inventory], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
             @include('entities.pages.inventory._form')
-
-            {!! Form::hidden('entity_id', $entity->id) !!}
-
-            <div class="form-group">
-                <button class="btn btn-success">{{ trans('crud.save') }}</button>
-                @includeWhen(!request()->ajax(), 'partials.or_cancel')
-            </div>
-
-            {!! Form::close() !!}
+        </div>
+        <div class="box-footer @if($ajax) text-right @endif">
+            <button class="btn btn-success">{{ trans('crud.save') }}</button>
+            @includeWhen(!request()->ajax(), 'partials.or_cancel')
         </div>
     </div>
+
+    {!! Form::hidden('entity_id', $entity->id) !!}
+    {!! Form::close() !!}
 @endsection
