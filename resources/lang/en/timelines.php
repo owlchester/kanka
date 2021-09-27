@@ -20,7 +20,8 @@ return [
         'title'     => 'Edit Timeline :name',
     ],
     'fields'        => [
-        'copy_eras'     => 'Copy eras',
+        'copy_eras'     => 'Copy Eras',
+        'copy_elements' => 'Copy Elements',
         'eras'          => 'Eras',
         'name'          => 'Name',
         'reverse_order' => 'Reverse era order',
