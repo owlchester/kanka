@@ -38,16 +38,6 @@
 
 @if (!auth()->guest() and $campaign->userIsMember())
     <div class="box box-solid entity-submenu">
-        <div class="box-header with-border">
-            <h4 class="box-title">
-                <span class="hidden-xs">{{ __('campaigns.show.menus.overview') }}</span>
-                <span class="visible-xs">{{ __('crud.tabs.menu') }}</span>
-            </h4>
-            <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse" ><i class="fa fa-minus"></i>
-                </button>
-            </div>
-        </div>
         <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">
                 <li class="@if(empty($active))active @endif">
@@ -78,41 +68,45 @@
                         </li>
                     @endif
                 @endcan
+            </ul>
+        </div>
+    </div>
 
-                <li class="nav-section">
-                    {{ __('campaigns.show.menus.user_management') }}
-                </li>
-
-                @can('members', $campaign)
-                <li class="@if(!empty($active) && $active == 'users')active @endif">
-                    <a href="{{ route('campaign_users.index') }}">
-                        {{ __('campaigns.show.tabs.members') }}
-                    </a>
-                </li>
-                @endcan
-                @can('submissions', $campaign)
-                <li class="@if(!empty($active) && $active == 'submissions')active @endif">
-                    <a href="{{ route('campaign_submissions.index') }}">
-                        {{ __('campaigns.show.tabs.applications') }}
-                        @if ($campaign->submissions()->count() > 0) <span class="label label-default pull-right">
+    <div class="box box-solid entity-submenu">
+        <div class="box-body no-padding">
+            <ul class="nav nav-pills nav-stacked">
+    @can('members', $campaign)
+        <li class="@if(!empty($active) && $active == 'users')active @endif">
+            <a href="{{ route('campaign_users.index') }}">
+                {{ __('campaigns.show.tabs.members') }}
+            </a>
+        </li>
+    @endcan
+    @can('submissions', $campaign)
+        <li class="@if(!empty($active) && $active == 'submissions')active @endif">
+            <a href="{{ route('campaign_submissions.index') }}">
+                {{ __('campaigns.show.tabs.applications') }}
+                @if ($campaign->submissions()->count() > 0) <span class="label label-default pull-right">
                             {{ $campaign->submissions()->count() }}
                         </span>@endif
-                    </a>
-                </li>
-                @endcan
-                @can('roles', $campaign)
-                <li class="@if(!empty($active) && $active == 'roles')active @endif">
-                    <a href="{{ route('campaign_roles.index') }}">
-                        {{ __('campaigns.show.tabs.roles') }}
-                    </a>
-                </li>
-                @endcan
+            </a>
+        </li>
+    @endcan
+    @can('roles', $campaign)
+        <li class="@if(!empty($active) && $active == 'roles')active @endif">
+            <a href="{{ route('campaign_roles.index') }}">
+                {{ __('campaigns.show.tabs.roles') }}
+            </a>
+        </li>
+    @endcan
+            </ul>
+        </div>
+    </div>
 
-
-                @can('update', $campaign)
-                <li class="nav-section">
-                    {{ __('campaigns.show.menus.configuration') }}
-                </li>
+    @can('update', $campaign)
+    <div class="box box-solid entity-submenu">
+        <div class="box-body no-padding">
+            <ul class="nav nav-pills nav-stacked">
                 <li class="@if(!empty($active) && $active == 'settings')active @endif">
                     <a href="{{ route('campaign_settings') }}">
                         {{ __('campaigns.show.tabs.settings') }}
@@ -130,8 +124,8 @@
                         {{ __('campaigns.show.tabs.default-images') }}
                     </a>
                 </li>
-                @endcan
             </ul>
         </div>
     </div>
+    @endcan
 @endif
