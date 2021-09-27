@@ -90,6 +90,10 @@ return [
             'recent'        => 'Recently modified',
             'unmentioned'   => 'Unmentioned entities',
         ],
+        'tutorial' => [
+            'text' => 'Need help setting up your campaign dashboard? Read :blog for some help and inspiration.',
+            'blog' => 'our tutorial',
+        ],
     ],
     'title'             => 'Dashboard',
     'widgets'           => [
