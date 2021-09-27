@@ -34,19 +34,17 @@ class StartController extends Controller
      */
     public function index(Request $request)
     {
+        $campaign = new Campaign();
+        $this->authorize('create', $campaign);
+
         // A user with campaigns doesn't need this process.
-        if (Auth::user()->campaigns->count() > 0) {
-            // Take the first campaign
-            $campaign = Auth::user()->campaigns()->first();
-            return redirect()->to(CampaignLocalization::getUrl($campaign->id));
-        }
         $new = session()->has('user_registered');
         if ($new) {
             session()->remove('user_registered');
         }
         return view($this->view . '.create', [
-            'start' => true,
-            'tracking_new' => $new
+            'start' => auth()->user()->campaigns->count() === 0,
+            'tracking_new' => $new,
         ]);
     }
 

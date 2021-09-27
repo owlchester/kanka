@@ -53,6 +53,7 @@ Route::group([
 
     Route::get('/start', 'StartController@index')->name('start');
     Route::post('/start', 'StartController@store')->name('start');
+    Route::post('/create-campaign', 'CampaignController@store')->name('create-campaign');
 
     // Invitation's campaign comes from the token.
     Route::get('/invitation/join/{token}', 'InvitationController@join')->name('campaigns.join');
@@ -382,7 +383,6 @@ Route::group([
             Route::get('/plugins/{plugin}/import', 'Campaign\CampaignPluginController@import')->name('campaign_plugins.import');
             Route::get('/plugins/{plugin}/update', 'Campaign\CampaignPluginController@updateInfo')->name('campaign_plugins.update-info');
             Route::post('/plugins/{plugin}/update', 'Campaign\CampaignPluginController@update')->name('campaign_plugins.update');
-
         }
 
         Route::post('/timelines/{timeline}/timeline-era/{timeline_era}/reorder', 'Timelines\TimelineEraController@reorder')->name('timelines.reorder');
@@ -437,24 +437,13 @@ Route::group([
         Route::post('/dashboard/widgets/calendar/{campaignDashboardWidget}/add', [\App\Http\Controllers\Widgets\CalendarWidgetController::class, 'add'])->name('dashboard.calendar.add');
         Route::post('/dashboard/widgets/calendar/{campaignDashboardWidget}/sub', [\App\Http\Controllers\Widgets\CalendarWidgetController::class, 'sub'])->name('dashboard.calendar.sub');
 
-        // Dashboard Widget Forms
-
-        // Entity Files
-//        Route::get('/entities/{entity}/entity_files', 'EntityFileController@index')->name('entities.entity_files.index');
-//        Route::post('/entities/{entity}/entity_files', 'EntityFileController@store')->name('entities.entity_files.store');
-//        Route::get('/entities/{entity}/entity_files/{entity_file}', 'EntityFileController@destroy')->name('entities.entity_files.destroy');
-//        Route::post('/entities/{entity}/entity_files/{entity_file}/rename', 'EntityFileController@rename')->name('entities.entity_files.rename');
-
         // Move
-        //Route::get('/entities/move/{entity}', 'EntityController@move')->name('entities.move');
-        //Route::post('/entities/move/{entity}', 'EntityController@post')->name('entities.move');
         Route::get('/entities/{entity}/move', 'Entity\MoveController@index')->name('entities.move');
         Route::post('/entities/{entity}/move', 'Entity\MoveController@move')->name('entities.move');
 
         // Transform
         Route::get('/entities/{entity}/transform', 'Entity\TransformController@index')->name('entities.transform');
         Route::post('/entities/{entity}/transform', 'Entity\TransformController@transform')->name('entities.transform');
-
 
         Route::get('/entities/{entity}/tooltip', 'EntityTooltipController@show')->name('entities.tooltip');
         Route::get('/entities/{entity}/assets', 'Entity\AssetController@index')->name('entities.assets');
@@ -509,10 +498,6 @@ Route::group([
     Route::get('/notifications', 'NotificationController@index')->name('notifications');
     Route::get('/notifications/refresh', 'NotificationController@refresh')->name('notifications.refresh');
     Route::post('/notifications/clear-all', 'NotificationController@clearAll')->name('notifications.clear-all');
-
-    // Third party hooks
-    Route::get('/lfgm-hooks/sync/{uuid}', 'LFGM\HookController@sync')->name('lfgm.sync');
-    Route::post('/lfgm-hooks/sync/{uuid}', 'LFGM\HookController@saveSync')->name('lfgm.syncSave');
 
     // 3rd party
     Route::group(['middleware' => ['auth', 'translator'], 'prefix' => 'translations'], function () {

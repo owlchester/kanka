@@ -76,7 +76,7 @@ class CampaignController extends Controller
      */
     public function store(StoreCampaign $request)
     {
-        $campaign = CampaignLocalization::getCampaign();
+        $campaign = new Campaign();
         $this->authorize('create', $campaign);
 
         $first = !Auth::user()->hasCampaigns();

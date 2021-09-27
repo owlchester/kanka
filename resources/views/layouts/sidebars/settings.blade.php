@@ -8,11 +8,10 @@
                     <i class="fa fa-caret-down pull-right"></i>
                     {{ Auth::user()->name }}
                 </div>
-
             </div>
         </div>
     </section>
-    @include('layouts.sidebars.campaign-switcher', ['newCampaign' => false])
+    @include('layouts.sidebars.campaign-switcher', ['fromSettings' => true])
     <section class="sidebar" style="height: auto">
         <ul class="sidebar-menu tree" data-widget="tree">
             <li class="{{ $sidebar->settings('profile') }}">

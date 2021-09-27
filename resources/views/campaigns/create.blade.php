@@ -1,16 +1,13 @@
 @extends('layouts.app', [
-    'title' => trans('campaigns.create.title'),
-    'breadcrumbs' => $start ? false : [
-        ['url' => route('campaigns.index'), 'label' => trans('campaigns.index.title')],
-        trans('crud.create')
-    ],
+    'title' => __('campaigns.create.title'),
+    'breadcrumbs' => false,
     'skipBannerAd' => true,
     'startUI' => $start
 ])
 
 @section('fullpage-form')
     {!! Form::open([
-        'route' => ($start ? 'start' : 'campaigns.store'),
+        'route' => ($start ? 'start' : 'create-campaign'),
         'enctype' => 'multipart/form-data',
         'method' => 'POST',
         'data-shortcut' => '1',
