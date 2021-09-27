@@ -53,6 +53,7 @@ class DiceRollResultController extends CrudController
         $actions = $this->indexActions;
         $filters = $this->filters;
         $filterService = $this->filterService;
+        $langKey = $name;
 
         $base = $model
             ->search(request()->get('search'))
@@ -75,7 +76,8 @@ class DiceRollResultController extends CrudController
             'filters',
             'filterService',
             'filteredCount',
-            'unfilteredCount'
+            'unfilteredCount',
+            'langKey'
         ));
     }
 
