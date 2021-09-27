@@ -1,10 +1,10 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => trans('entities/inventories.create.title', ['name' => $entity->name]),
+    'title' => __('entities/inventories.create.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => $entity->url('index'), 'label' => trans($entity->pluralType() . '.index.title')],
+        ['url' => $entity->url('index'), 'label' => __($entity->pluralType() . '.index.title')],
         ['url' => $entity->url('show'), 'label' => $entity->name],
-        ['url' => route('entities.inventory', $entity->id), 'label' => trans('crud.tabs.inventory')],
+        ['url' => route('entities.inventory', $entity->id), 'label' => __('crud.tabs.inventory')],
     ]
 ])
 
@@ -18,7 +18,7 @@
                 </h3>
 
                 <div class="box-tools">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
                 </div>
         </div>
         @endif
