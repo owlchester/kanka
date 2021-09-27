@@ -1,33 +1,50 @@
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
         <div class="form-group required">
-            <label>{{ trans('crud.fields.name') }}</label>
-            {!! Form::text('name', null, ['placeholder' => trans('timelines/eras.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+            <label>{{ __('crud.fields.name') }}</label>
+            {!! Form::text('name', null, ['placeholder' => __('timelines/eras.placeholders.name'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
-
+    </div>
+    <div class="col-md-6">
         <div class="form-group">
-            <label>{{ trans('timelines/eras.fields.abbreviation') }}</label>
-            {!! Form::text('abbreviation', null, ['placeholder' => trans('timelines/eras.placeholders.abbreviation'), 'class' => 'form-control', 'maxlength' => 191]) !!}
-        </div>
-
-
-        <div class="form-group">
-            <label>{{ trans('crud.fields.entry') }}</label>
-            {!! Form::textarea('entry', null, ['class' => 'form-control html-editor', 'id' => 'era-entry', 'name' => 'entry']) !!}
-        </div>
-
-        <div class="form-group">
-            <label>{{ trans('timelines/eras.fields.start_year') }}</label>
-            {!! Form::number('start_year', null, ['placeholder' => trans('timelines/eras.placeholders.start_year'), 'class' => 'form-control', 'maxlength' => 8]) !!}
-        </div>
-
-        <div class="form-group">
-            <label>{{ trans('timelines/eras.fields.end_year') }}</label>
-            {!! Form::number('end_year', null, ['placeholder' => trans('timelines/eras.placeholders.end_year'), 'class' => 'form-control', 'maxlength' => 8]) !!}
+            <label>{{ __('timelines/eras.fields.abbreviation') }}</label>
+            {!! Form::text('abbreviation', null, ['placeholder' => __('timelines/eras.placeholders.abbreviation'), 'class' => 'form-control', 'maxlength' => 191]) !!}
         </div>
     </div>
 </div>
+
+
+<div class="form-group">
+    <label>{{ __('crud.fields.entry') }}</label>
+    {!! Form::textarea('entry', null, ['class' => 'form-control html-editor', 'id' => 'era-entry', 'name' => 'entry']) !!}
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+
+        <div class="form-group">
+            <label>{{ __('timelines/eras.fields.start_year') }}</label>
+            {!! Form::number('start_year', null, ['placeholder' => __('timelines/eras.placeholders.start_year'), 'class' => 'form-control', 'maxlength' => 8]) !!}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>{{ __('timelines/eras.fields.end_year') }}</label>
+            {!! Form::number('end_year', null, ['placeholder' => __('timelines/eras.placeholders.end_year'), 'class' => 'form-control', 'maxlength' => 8]) !!}
+        </div>
+    </div>
+</div>
+
+<div class="form-group checkbox">
+    <label>
+        {!! Form::hidden('is_collapsed') !!}
+        {!! Form::checkbox('is_collapsed') !!}
+        {{ __('timelines/eras.fields.is_collapsed') }}
+    </label>
+    <p class="help-block">{{ __('timelines/eras.helpers.is_collapsed') }}</p>
+</div>
+
 
 
 @include('editors.editor')
