@@ -7,7 +7,7 @@
 
 @section('fullpage-form')
     {!! Form::open([
-        'route' => ($start ? 'start' : 'create-campaign'),
+        'route' => 'create-campaign',
         'enctype' => 'multipart/form-data',
         'method' => 'POST',
         'data-shortcut' => '1',

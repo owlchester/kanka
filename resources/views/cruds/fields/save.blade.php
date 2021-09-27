@@ -20,11 +20,13 @@
                         {{ trans('crud.save_and_update') }}
                         <span class="shortcut hidden-xs">CTRL+SHIFT+S</span>
                 </a></li>
-                @if (empty($model))
-                <li><a href="#" class="form-submit-actions" data-action="submit-view">{{ trans('crud.save_and_view') }}</a></li>
-                @else
-                <li><a href="#" class="form-submit-actions" data-action="submit-close">{{ trans('crud.save_and_close') }}</a></li>
-                <li><a href="#" class="form-submit-actions" data-action="submit-copy">{{ trans('crud.save_and_copy') }}</a></li>
+                @if(!isset($disableCopy))
+                    @if (empty($model))
+                    <li><a href="#" class="form-submit-actions" data-action="submit-view">{{ trans('crud.save_and_view') }}</a></li>
+                    @else
+                    <li><a href="#" class="form-submit-actions" data-action="submit-close">{{ trans('crud.save_and_close') }}</a></li>
+                    <li><a href="#" class="form-submit-actions" data-action="submit-copy">{{ trans('crud.save_and_copy') }}</a></li>
+                    @endif
                 @endif
             </ul>
         </div>

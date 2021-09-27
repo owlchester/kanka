@@ -79,15 +79,28 @@ class CampaignController extends Controller
         $campaign = new Campaign();
         $this->authorize('create', $campaign);
 
+
         $first = !Auth::user()->hasCampaigns();
         $campaign = Campaign::create($request->all());
-        if ($first) {
+
+        if ($request->has('submit-update')) {
+            return redirect()
+                ->to(app()->getLocale() . '/campaign/' . $campaign->id . '/campaigns/' . $campaign->id . '/edit')
+                ->with('success', __($this->view . '.create.success'));
+        }
+        elseif ($request->has('submit-new')) {
+            return redirect()
+                ->route('start')
+                ->with('success', __($this->view . '.create.success'));
+        }
+        elseif ($first) {
             $user = auth()->user();
             $user->welcome_campaign_id = $campaign->id;
             $user->save();
             return redirect()->route('home');
         }
-        return redirect()->route('home')->with('success', trans($this->view . '.create.success'));
+
+        return redirect()->route('home')->with('success', __($this->view . '.create.success'));
     }
 
     /**
@@ -127,8 +140,19 @@ class CampaignController extends Controller
 
         $campaign->update($request->all());
 
+        if ($request->has('submit-update')) {
+            return redirect()
+                ->route('campaigns.edit', $campaign)
+                ->with('success', __($this->view . '.edit.success'));
+        }
+        if ($request->has('submit-new')) {
+            return redirect()
+                ->route('start')
+                ->with('success', __($this->view . '.edit.success'));
+        }
+
         return redirect()->route('campaign')
-            ->with('success', trans($this->view . '.edit.success'));
+            ->with('success', __($this->view . '.edit.success'));
     }
 
     /**
