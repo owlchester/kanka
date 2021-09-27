@@ -21,7 +21,7 @@
 
         @can('roles', $campaign)
             @can('delete', $campaign)
-            <button class="btn btn-block btn-danger delete-confirm" data-name="{{ $campaign->name }}" data-toggle="modal" data-target="#delete-confirm" data-delete-target="delete-campaign-confirm-form">
+            <button class="btn btn-block btn-danger delete-confirm" data-name="{!! $campaign->name !!}" data-toggle="modal" data-target="#delete-confirm" data-delete-target="delete-campaign-confirm-form">
                 <i class="fa fa-trash" aria-hidden="true"></i> {{ __('campaigns.destroy.action') }}
             </button>
             {!! Form::open(['method' => 'DELETE', 'route' => ['campaigns.destroy', $campaign->id], 'style' => 'display:inline', 'id' => 'delete-campaign-confirm-form']) !!}
@@ -122,6 +122,11 @@
                 <li class="@if(!empty($active) && $active == 'default-images')active @endif">
                     <a href="{{ route('campaign.default-images') }}">
                         {{ __('campaigns.show.tabs.default-images') }}
+                    </a>
+                </li>
+                <li class="@if(!empty($active) && $active == 'styles')active @endif">
+                    <a href="{{ route('campaign_styles.index') }}">
+                        {{ __('campaigns.show.tabs.styles') }}
                     </a>
                 </li>
             </ul>

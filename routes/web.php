@@ -354,6 +354,7 @@ Route::group([
             // Permission manager
             'campaign_roles' => 'CampaignRoleController',
             'campaign_roles.campaign_role_users' => 'CampaignRoleUserController',
+            'campaign_styles' => 'Campaign\StyleController',
             //'campaigns.campaign_roles.campaign_permissions' => 'CampaignPermissions',
 
             'campaign_dashboards' => 'Campaign\CampaignDashboardController',

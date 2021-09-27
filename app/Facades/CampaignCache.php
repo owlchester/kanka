@@ -31,6 +31,9 @@ use Illuminate\Support\Facades\Facade;
  * @method static array systems();
  * @method static self|CampaignCacheService clearTheme();
  * @method static string themes();
+ * @method static self|CampaignCacheService clearStyles();
+ * @method static string styles();
+ * @method static int stylesTimestamp();
  *
  * @method static array dashboards();
  * @method static self|CampaignCacheService clearDashboards();

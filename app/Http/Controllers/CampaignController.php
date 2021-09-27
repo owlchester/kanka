@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Http\Requests\StoreCampaign;
@@ -172,13 +173,13 @@ class CampaignController extends Controller
     {
         $campaign = CampaignLocalization::getCampaign();
         $css = null;
-        if ($campaign->boosted() && !empty($campaign->css)) {
-            $css = $campaign->css;
+        if ($campaign->boosted()) {
+            $css = CampaignCache::styles();
         }
 
         $response = \Illuminate\Support\Facades\Response::make($css);
         $response->header('Content-Type', 'text/css');
-        $response->header('Expires', Carbon::now()->addMonth(1)->toDateTimeString());
+        $response->header('Expires', Carbon::now()->addMonth()->toDateTimeString());
         $month = 2592000;
         $response->header('Cache-Control', 'public, max_age=' . $month);
 

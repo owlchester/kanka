@@ -218,7 +218,7 @@ class CampaignCacheService extends BaseCache
     }
 
     /**
-     * List of themes the campaign has acticated
+     * List of themes the campaign has activated
      * @return PluginVersion|mixed|null
      */
     public function themes(): string
@@ -248,6 +248,52 @@ class CampaignCacheService extends BaseCache
 
         $this->forever($key, $theme);
         return (string) $theme;
+    }
+
+    /**
+     * Build campaign styles
+     * @return string
+     */
+    public function styles(): string
+    {
+        $key = $this->stylesKey();
+        if ($this->has($key)) {
+            return (string) $this->get($key);
+        }
+
+        $css = "/**\n * Campaign Styles for #" . $this->campaign->id . "\n */\n\n";
+        foreach ($this->campaign->styles()->enabled()->get() as $style) {
+            $css .= "/** Style " . $style->name . "#" . $style->id . " */\n" . $style->content . "\n";
+        }
+
+        $this->forever($key, $css);
+        return (string) $css;
+    }
+
+    public function stylesTimestamp(): int
+    {
+        $key = $this->stylesTsKey();
+        if ($this->has($key)) {
+            return (int) $this->get($key);
+        }
+
+        $ts = time();
+        $this->forever($key, $ts);
+        return (int) $ts;
+    }
+
+    /**
+     * @return $this
+     */
+    public function clearStyles(): self
+    {
+        $this->forget(
+            $this->stylesKey()
+        );
+        $this->forget(
+            $this->stylesTsKey()
+        );
+        return $this;
     }
 
     /**
@@ -341,6 +387,24 @@ class CampaignCacheService extends BaseCache
     protected function themeKey(): string
     {
         return 'campaign_' . $this->campaign->id . '_theme';
+    }
+
+    /**
+     * Campaign styles cache key
+     * @return string
+     */
+    protected function stylesKey(): string
+    {
+        return 'campaign_' . $this->campaign->id . '_styles';
+    }
+
+    /**
+     * Campaign styles timestamp cache key
+     * @return string
+     */
+    protected function stylesTsKey(): string
+    {
+        return 'campaign_' . $this->campaign->id . '_styles_ts';
     }
 
     /**

@@ -13,34 +13,33 @@ $visibilities = [
         <div class="col-md-6">
             <div class="form-group">
                 {!! Form::hidden('entity_visibility', 0) !!}
-                <label>{{ __('campaigns.fields.entity_visibility') }}</label>
                 <div class="checkbox">
-                    <label>{!! Form::checkbox('entity_visibility') !!}
-                        {{ __('campaigns.entity_visibilities.private') }}
+                    <label>
+                        {!! Form::checkbox('entity_visibility') !!}
+                        {{ __('campaigns.options.entity_visibility') }}
                     </label>
                 </div>
-                <p class="help-block">{{ __('campaigns.helpers.entity_visibility') }}</p>
             </div>
-        </div>
 
-        <div class="col-md-6">
             <div class="form-group">
                 {!! Form::hidden('entity_personality_visibility', 0) !!}
-                <label>{{ __('campaigns.fields.entity_personality_visibility') }}</label>
                 <div class="checkbox">
-                    <label>{!! Form::checkbox('entity_personality_visibility') !!}
-                        {{ __('campaigns.entity_personality_visibilities.private') }}
+                    <label>
+                        {!! Form::checkbox('entity_personality_visibility') !!}
+                        {{ __('campaigns.options.entity_personality_visibility') }}
                     </label>
                 </div>
-                <p class="help-block">{{ __('campaigns.helpers.entity_personality_visibility') }}</p>
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="form-group">
-                <label>{{ __('campaigns.fields.related_visibility') }}</label>
+                <label>
+                    {{ __('campaigns.fields.related_visibility') }}
+                    <i class="fas fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('campaigns.helpers.related_visibility') }}"></i>
+                </label>
                     {!! Form::select('settings[default_visibility]', $visibilities, null, ['class' => 'form-control']) !!}
-                <p class="help-block">{{ __('campaigns.helpers.related_visibility') }}</p>
+                <p class="help-block visible-xs visible-sm">{{ __('campaigns.helpers.related_visibility') }}</p>
             </div>
         </div>
     </div>

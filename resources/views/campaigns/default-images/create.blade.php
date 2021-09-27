@@ -1,7 +1,6 @@
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
     'title' => trans('campaigns/default-images.create.title', ['name' => $campaign->name]),
     'breadcrumbs' => [
-        ['url' => route('campaign'), 'label' => $campaign->name],
         ['url' => route('campaign.default-images'), 'label' => trans('campaigns/default-images.index.title')]
     ]
 ])
