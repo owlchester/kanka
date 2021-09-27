@@ -24,6 +24,11 @@ class CampaignSuperBoosted
         }
 
         if (!$campaign->boosted(true)) {
+            if ($request->is('api/*')) {
+                return response()->json([
+                    'error' => 'This feature is reserved to superboosted campaigns.'
+                ]);
+            }
             return redirect()->route('dashboard')->withErrors(__('campaigns.errors.superboosted'));
         }
 

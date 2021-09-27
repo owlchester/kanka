@@ -24,6 +24,14 @@ class CampaignStyleObserver
     /**
      * @param CampaignStyle $campaignStyle
      */
+    public function creating(CampaignStyle $campaignStyle)
+    {
+        $campaignStyle->created_by = auth()->user()->id;
+    }
+
+    /**
+     * @param CampaignStyle $campaignStyle
+     */
     public function saved(CampaignStyle $campaignStyle)
     {
         CampaignCache::clearTheme();

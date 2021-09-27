@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCampaignStyle extends FormRequest
 {
+    use ApiRequest;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,10 +26,10 @@ class StoreCampaignStyle extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required',
-            'content' => 'nullable|string',
+        return $this->clean([
+            'name' => 'required|string|max:45',
+            'content' => 'required|string',
             'is_enabled' => 'nullable'
-        ];
+        ]);
     }
 }

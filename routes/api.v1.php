@@ -63,6 +63,7 @@ Route::apiResources([
     'campaigns.entities.entity_links' => 'EntityLinkApiController',
 
     'campaigns.campaign_dashboard_widgets' => 'CampaignDashboardWidgetApiController',
+    'campaigns.campaign_styles' => 'CampaignStyleApiController',
 
     'campaigns.images' => 'CampaignImageApiController',
 ]);

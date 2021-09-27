@@ -24,6 +24,11 @@ class CampaignBoosted
         }
 
         if (!$campaign->boosted()) {
+            if ($request->is('api/*')) {
+                return response()->json([
+                    'error' => 'This feature is reserved to boosted campaigns.'
+                ]);
+            }
             return redirect()->route('dashboard')->withErrors(__('crud.errors.boosted'));
         }
 

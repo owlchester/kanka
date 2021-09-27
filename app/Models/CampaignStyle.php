@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Builder;
  * Class CampaignStyle
  * @package App\Models
  *
+ * @property int $id
  * @property int $campaign_id
  * @property int $created_by
  * @property string $name
