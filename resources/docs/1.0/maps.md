@@ -71,7 +71,7 @@ You can get a list of all the maps of a campaign by using the following endpoint
 <a name="filters"></a>
 ## Filters
 
-The list of returned maps can be filters. The available filters are available here: <a href="/en/helpers/api-filters?type=map" target="_blank">API filters</a>.
+The list of returned maps can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=map" target="_blank">API filters</a>.
 
 
 <a name="map"></a>

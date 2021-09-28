@@ -52,7 +52,7 @@ You can get a list of all the abilities of a campaign by using the following end
 <a name="filters"></a>
 ## Filters
 
-The list of returned abilities can be filters. The available filters are available here: <a href="/en/helpers/api-filters?type=ability" target="_blank">API filters</a>.
+The list of returned abilities can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=ability" target="_blank">API filters</a>.
 
 
 <a name="ability"></a>

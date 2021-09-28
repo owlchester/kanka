@@ -51,7 +51,7 @@ You can get a list of all the notes of a campaign by using the following endpoin
 <a name="filters"></a>
 ## Filters
 
-The list of returned notes can be filters. The available filters are available here: <a href="/en/helpers/api-filters?type=note" target="_blank">API filters</a>.
+The list of returned notes can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=note" target="_blank">API filters</a>.
 
 
 <a name="note"></a>

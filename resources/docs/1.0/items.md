@@ -53,7 +53,7 @@ You can get a list of all the items of a campaign by using the following endpoin
 <a name="filters"></a>
 ## Filters
 
-The list of returned items can be filters. The available filters are available here: <a href="/en/helpers/api-filters?type=item" target="_blank">API filters</a>.
+The list of returned items can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=item" target="_blank">API filters</a>.
 
 <a name="item"></a>
 ## Item

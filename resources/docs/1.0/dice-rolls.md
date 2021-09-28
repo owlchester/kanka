@@ -55,7 +55,7 @@ You can get a list of all the dice-rolls of a campaign by using the following en
 <a name="filters"></a>
 ## Filters
 
-The list of returned dice rolls can be filters. The available filters are available here: <a href="/en/helpers/api-filters?type=dice_roll" target="_blank">API filters</a>.
+The list of returned dice rolls can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=dice_roll" target="_blank">API filters</a>.
 
 
 <a name="dice-roll"></a>

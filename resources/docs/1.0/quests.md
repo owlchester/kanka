@@ -54,7 +54,7 @@ You can get a list of all the quests of a campaign by using the following endpoi
 <a name="filters"></a>
 ## Filters
 
-The list of returned quests can be filters. The available filters are available here: <a href="/en/helpers/api-filters?type=quest" target="_blank">API filters</a>.
+The list of returned quests can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=quest" target="_blank">API filters</a>.
 
 
 <a name="quest"></a>

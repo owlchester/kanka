@@ -125,7 +125,7 @@ You can get a list of all the calendars of a campaign by using the following end
 <a name="filters"></a>
 ## Filters
 
-The list of returned calendars can be filters. The available filters are available here: <a href="/en/helpers/api-filters?type=calendar" target="_blank">API filters</a>.
+The list of returned calendars can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=calendar" target="_blank">API filters</a>.
 
 <a name="calendar"></a>
 ## Calendar

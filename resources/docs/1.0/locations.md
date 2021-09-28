@@ -54,7 +54,7 @@ You can get a list of all the locations of a campaign by using the following end
 <a name="filters"></a>
 ## Filters
 
-The list of returned locations can be filters. The available filters are available here: <a href="/en/helpers/api-filters?type=location" target="_blank">API filters</a>.
+The list of returned locations can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=location" target="_blank">API filters</a>.
 
 
 <a name="location"></a>

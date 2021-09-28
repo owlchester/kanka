@@ -51,7 +51,7 @@ You can get a list of all the events of a campaign by using the following endpoi
 <a name="filters"></a>
 ## Filters
 
-The list of returned events can be filters. The available filters are available here: <a href="/en/helpers/api-filters?type=event" target="_blank">API filters</a>.
+The list of returned events can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=event" target="_blank">API filters</a>.
 
 <a name="event"></a>
 ## Event
