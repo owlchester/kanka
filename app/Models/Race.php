@@ -56,15 +56,7 @@ class Race extends MiscModel
      * @var array
      */
     protected $filterableColumns = [
-        'name',
-        'type',
         'race_id',
-        'tag_id',
-        'is_private',
-        'tags',
-        'has_image',
-        'has_entity_notes',
-        'has_entity_files',
     ];
 
     protected $sortableColumns = [

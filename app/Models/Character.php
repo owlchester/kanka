@@ -18,6 +18,9 @@ use Stevebauman\Purify\Facades\Purify;
  * @property string $sex
  * @property string $pronouns
  * @property bool $is_dead
+ * @property bool $is_personality_visible
+ * @property int $family_id
+ * @property int $race_id
  * @property Family $family
  * @property Location $location
  * @property Race $race
@@ -55,23 +58,16 @@ class Character extends MiscModel
      * @var array
      */
     protected $filterableColumns = [
-        'name',
         'title',
         'age',
         'sex',
         'pronouns',
         'location_id',
         'family_id',
-        'type',
         'is_dead',
-        'is_private',
-        'tag_id',
         'race_id',
-        'tags',
+        'name',
         'organisation_member',
-        'has_image',
-        'has_entity_notes',
-        'has_entity_files',
     ];
 
     /**

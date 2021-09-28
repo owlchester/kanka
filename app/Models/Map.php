@@ -86,15 +86,8 @@ class Map extends MiscModel
      * @var array
      */
     protected $filterableColumns = [
-        'name',
-        'type',
         'map_id',
         'location_id',
-        'is_private',
-        'tags',
-        'has_image',
-        'has_entity_notes',
-        'has_entity_files',
     ];
 
     /**

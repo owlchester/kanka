@@ -73,17 +73,9 @@ class Journal extends MiscModel
      * @var array
      */
     protected $filterableColumns = [
-        'name',
-        'type',
         'date',
         'character_id',
         'location_id',
-        'tag_id',
-        'is_private',
-        'tags',
-        'has_image',
-        'has_entity_notes',
-        'has_entity_files',
         'journal_id',
     ];
 

@@ -89,7 +89,7 @@ class Entity extends Model
      * @var array
      */
     protected $searchableColumns = [
-        'name'
+        'name',
     ];
 
     /**

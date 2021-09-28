@@ -5,6 +5,10 @@ return [
         'description'   => 'You can link a Character to a calendar of the campaign by viewing a Character and going to the reminders subpage. From there, add a new reminder and set the type to Birth or Death to automatically calculate the character\'s age. If both birth and death are present, both dates will be shown as well as the age at death. If only the birth is set, the date and the current age will be shown. If only the death is set, the date and the years since death will be shown.',
         'title'         => 'Character Age and Death',
     ],
+    'api-filters'       => [
+        'title' => 'API Filters',
+        'description' => 'The following filters are available for the :name API endpoint.',
+    ],
     'attributes'        => [
         'con'               => 'Con',
         'description'       => 'Use attributes to represent values attached to an entity that aren\'t text. You can reference entities in attributes using the advanced mentions syntax :mention. You can also reference other attributes by using the :attribute syntax.',

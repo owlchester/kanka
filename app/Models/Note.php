@@ -49,15 +49,7 @@ class Note extends MiscModel
      * @var array
      */
     protected $filterableColumns = [
-        'name',
-        'type',
-        'tag_id',
-        'is_private',
-        'tags',
-        'has_image',
         'note_id',
-        'has_entity_notes',
-        'has_entity_files',
     ];
 
     /**

@@ -55,14 +55,7 @@ class Tag extends MiscModel
      * @var array
      */
     protected $filterableColumns = [
-        'name',
-        'type',
-        'tag_id',
-        'is_private',
         'colour',
-        'has_image',
-        'has_entity_notes',
-        'has_entity_files',
     ];
 
     /**

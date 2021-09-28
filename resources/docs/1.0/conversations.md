@@ -5,6 +5,7 @@
 - [Conversations](#conversations)
   - [All Conversations](#all-conversations)
     - [Results](#results)
+    - [Filters](#filters)
   - [Conversation](#conversation)
     - [Results](#results-1)
   - [Conversation Participants](#conversation-participants)
@@ -60,6 +61,10 @@ You can get a list of all the conversations of a campaign by using the following
 }
 ```
 
+<a name="filters"></a>
+## Filters
+
+The list of returned conversations can be filters. The available filters are available here: <a href="/en/helpers/api-filters?type=conversation" target="_blank">API filters</a>.
 
 <a name="conversation"></a>
 ## Conversation

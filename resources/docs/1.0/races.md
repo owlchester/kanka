@@ -3,6 +3,7 @@
 ---
 
 - [All Races](#all-races)
+- [Filters](#filters)
 - [Single Race](#race)
 - [Create a Race](#create-race)
 - [Update a Race](#update-race)
@@ -45,6 +46,11 @@ You can get a list of all the races of a campaign by using the following endpoin
     ]
 }
 ```
+
+<a name="filters"></a>
+## Filters
+
+The list of returned races can be filters. The available filters are available here: <a href="/en/helpers/api-filters?type=race" target="_blank">API filters</a>.
 
 
 <a name="race"></a>

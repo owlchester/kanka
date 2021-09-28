@@ -19,6 +19,7 @@ class ConversationApiController extends ApiController
         $this->authorize('access', $campaign);
         return Resource::collection($campaign
             ->conversations()
+            ->filter(request()->all())
             ->with(['messages', 'participants'])
             ->lastSync(request()->get('lastSync'))
             ->paginate());

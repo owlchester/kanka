@@ -19,6 +19,7 @@ class CalendarApiController extends ApiController
         $this->authorize('access', $campaign);
         return Resource::collection($campaign
             ->calendars()
+            ->filter(request()->all())
             ->with([
                 'entity',
                 'entity.tags',

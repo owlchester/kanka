@@ -3,6 +3,7 @@
 ---
 
 - [All Tags](#all-tags)
+- [Filters](#filters)
 - [Single Tag](#tag)
 - [Create a Tag](#create-tag)
 - [Update a Tag](#update-tag)
@@ -50,6 +51,11 @@ You can get a list of all the tags of a campaign by using the following endpoint
     ]
 }
 ```
+
+<a name="filters"></a>
+## Filters
+
+The list of returned tags can be filters. The available filters are available here: <a href="/en/helpers/api-filters?type=tag" target="_blank">API filters</a>.
 
 
 <a name="tag"></a>

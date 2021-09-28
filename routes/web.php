@@ -47,6 +47,7 @@ Route::group([
     Route::get('/helper/entity-templates', 'HelperController@entityTemplates')->name('helpers.entity-templates');
     Route::get('/helper/widget-filters', 'HelperController@widgetFilters')->name('helpers.widget-filters');
     Route::get('/helper/pins', 'HelperController@pins')->name('helpers.pins');
+    Route::get('/helpers/api-filters', 'HelperController@apiFilters')->name('helpers.api-filters');
 
     // OAuth Routes
     Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider')->name('auth.provider');

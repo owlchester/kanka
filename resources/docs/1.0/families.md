@@ -3,6 +3,7 @@
 ---
 
 - [All Families](#all-families)
+- [Filters](#filters)
 - [Single Family](#family)
 - [Create a Family](#create-family)
 - [Update a Family](#update-family)
@@ -49,6 +50,11 @@ You can get a list of all the families of a campaign by using the following endp
     ]
 }
 ```
+
+<a name="filters"></a>
+## Filters
+
+The list of returned families can be filters. The available filters are available here: <a href="/en/helpers/api-filters?type=family" target="_blank">API filters</a>.
 
 
 <a name="family"></a>

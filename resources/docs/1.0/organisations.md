@@ -3,6 +3,7 @@
 ---
 
 - [All Organisations](#all-organisations)
+- [Filters](#filters)
 - [Single Organisation](#organisation)
 - [Organisation Members](#organisation-members)
 - [Create an organisation](#create-organisation)
@@ -48,6 +49,11 @@ You can get a list of all the organisations of a campaign by using the following
     ]
 }
 ```
+
+<a name="filters"></a>
+## Filters
+
+The list of returned organisations can be filters. The available filters are available here: <a href="/en/helpers/api-filters?type=organisation" target="_blank">API filters</a>.
 
 
 <a name="organisation"></a>

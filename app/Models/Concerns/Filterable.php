@@ -9,15 +9,33 @@ use Illuminate\Support\Str;
 trait Filterable
 {
     /**
+     * Get all available filterable columns of the entity. Merge the custom
+     * with the default ones (if not overwritten)
      * @return array
      */
     public function getFilterableColumns(): array
     {
+        $custom = [];
         if (isset($this->filterableColumns)) {
-            return $this->filterableColumns;
+            $custom = $this->filterableColumns;
         }
 
-        return [];
+        $default = [
+            'name',
+            'type',
+            'is_private',
+            'tag_id',
+            'tags',
+            'has_image',
+            'has_entity_notes',
+            'has_entity_files',
+            'created_by',
+            'updated_by',
+        ];
+        if (isset($this->defaultFilterableColumns)) {
+            $default = $this->defaultFilterableColumns;
+        }
+        return array_unique(array_merge($custom, $default));
     }
 
     /**
@@ -146,6 +164,9 @@ trait Filterable
                         } else {
                             $query->whereNull('entity_files.id');
                         }
+                    } elseif (in_array($key, ['created_by', 'updated_by'])) {
+                        $query = $this->joinEntity($query);
+                        $query->where('e.' . $key, (int) $value);
                     } elseif ($operator == 'IS NULL') {
                         $query->where(function ($sub) use ($key) {
                             $sub->whereNull($this->getTable() . '.' . $key)

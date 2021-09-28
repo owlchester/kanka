@@ -5,6 +5,7 @@
 - [Characters](#characters)
   - [All Characters](#all-characters)
     - [Results](#results)
+    - [Filters](#filters)
   - [Character](#character)
     - [Results](#results-1)
   - [Create a Character](#create-a-character)
@@ -71,6 +72,11 @@ You can get a list of all the characters of a campaign by using the following en
     ]
 }
 ```
+
+<a name="filters"></a>
+## Filters
+
+The list of returned characters can be filters. The available filters are available here: <a href="/en/helpers/api-filters?type=character" target="_blank">API filters</a>.
 
 
 <a name="character"></a>

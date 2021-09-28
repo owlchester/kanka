@@ -64,15 +64,7 @@ class Location extends MiscModel
      * @var array
      */
     protected $filterableColumns = [
-        'name',
-        'type',
         'parent_location_id',
-        'tag_id',
-        'is_private',
-        'tags',
-        'has_image',
-        'has_entity_notes',
-        'has_entity_files',
     ];
 
     /**

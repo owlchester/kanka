@@ -51,15 +51,8 @@ class Timeline extends MiscModel
      * @var array
      */
     protected $filterableColumns = [
-        'name',
-        'type',
         'calendar_id',
         'timeline_id',
-        'is_private',
-        'tags',
-        'has_image',
-        'has_entity_notes',
-        'has_entity_files',
     ];
 
     /**

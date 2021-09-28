@@ -54,14 +54,7 @@ class Ability extends MiscModel
      * @var array
      */
     protected $filterableColumns = [
-        'name',
-        'type',
         'ability_id',
-        'is_private',
-        'has_image',
-        'has_entity_notes',
-        'has_entity_files',
-        'tags',
     ];
 
     /**

@@ -48,16 +48,8 @@ class Event extends MiscModel
      * @var array
      */
     protected $filterableColumns = [
-        'name',
-        'type',
         'date',
         'location_id',
-        'tag_id',
-        'is_private',
-        'tags',
-        'has_image',
-        'has_entity_notes',
-        'has_entity_files',
         'event_id',
     ];
 
