@@ -34,18 +34,18 @@
                       {{ ability.name }}
                     </a>
                 </span>
-
-                <div class="pull-right">
-                  <a role="button"
-                    v-on:click="updateAbility(ability)"
-                    v-if="this.canDelete"
-                    class="margin-r-5">
-                    <i class="fa fa-pencil"></i> {{ $t('crud.update') }}
-                  </a>
-                  <a role="button" v-on:click="deleteAbility(ability)" v-if="this.canDelete">
-                    <i class="fa fa-trash"></i> {{ $t('crud.remove') }}
-                  </a>
-                </div>
+              <div class="box-tools">
+                <a role="button"
+                   v-on:click="updateAbility(ability)"
+                   v-if="this.canDelete"
+                   class="btn btn-box-tool"
+                  v-bind:title="$t('crud.update')">
+                  <i class="fa fa-pencil"></i>
+                </a>
+                <a class="btn btn-box-tool" role="button" v-on:click="deleteAbility(ability)" v-if="this.canDelete" v-bind:title="$t('crud.remove')">
+                  <i class="fa fa-trash"></i>
+                </a>
+              </div>
             </div>
             <div class="box-body">
                 <span class="help-block">{{ ability.type }}</span>

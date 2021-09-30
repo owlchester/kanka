@@ -8404,25 +8404,20 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "pull-right" }, [
+        _c("div", { staticClass: "box-tools" }, [
           this.canDelete
             ? _c(
                 "a",
                 {
-                  staticClass: "margin-r-5",
-                  attrs: { role: "button" },
+                  staticClass: "btn btn-box-tool",
+                  attrs: { role: "button", title: _vm.$t("crud.update") },
                   on: {
                     click: function($event) {
                       return _vm.updateAbility(_vm.ability)
                     }
                   }
                 },
-                [
-                  _c("i", { staticClass: "fa fa-pencil" }),
-                  _vm._v(
-                    " " + _vm._s(_vm.$t("crud.update")) + "\n              "
-                  )
-                ]
+                [_c("i", { staticClass: "fa fa-pencil" })]
               )
             : _vm._e(),
           _vm._v(" "),
@@ -8430,19 +8425,15 @@ var render = function() {
             ? _c(
                 "a",
                 {
-                  attrs: { role: "button" },
+                  staticClass: "btn btn-box-tool",
+                  attrs: { role: "button", title: _vm.$t("crud.remove") },
                   on: {
                     click: function($event) {
                       return _vm.deleteAbility(_vm.ability)
                     }
                   }
                 },
-                [
-                  _c("i", { staticClass: "fa fa-trash" }),
-                  _vm._v(
-                    " " + _vm._s(_vm.$t("crud.remove")) + "\n              "
-                  )
-                ]
+                [_c("i", { staticClass: "fa fa-trash" })]
               )
             : _vm._e()
         ])

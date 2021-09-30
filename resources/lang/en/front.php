@@ -110,11 +110,9 @@ return [
             'title'         => 'Calendars',
         ],
         'collaborative'     => [
-            'description'   => 'Not alone? We\'ve got you covered! You can invite your friends and co-dungeon master to help you build your campaign!',
             'title'         => 'Collaborative',
         ],
         'dashboards'        => [
-            'description'   => 'Control the information visible to your players when they open Kanka.',
             'title'         => 'Dashboards',
         ],
         'description'       => 'With our @mentions, our tags, and our in-depth permissions system, Kanka makes it easy to keep track of your world or campaign. This includes Characters and their relations, Locations and their history, Quests and their objectives, Timelines and their eras, and Calendars with both events and weather effects. Best of all, Kanka’s users have a say in which new features are developed through regular Community Votes.',
@@ -125,7 +123,7 @@ return [
         ],
         'free'              => [
             'bonuses'       => 'bonuses for our subscribers',
-            'description'   => 'All core features of Kanka are absolutely free, with :bonuses.',
+            'description'   => '',
             'title'         => 'Free to Use',
         ],
         'landscape'         => 'Please switch your device to landscape mode to display the list of features.',
@@ -200,11 +198,9 @@ return [
         'title'             => 'Powerful features with incredible flexibility',
         'unlimited'         => 'Unlimited',
         'updates'           => [
-            'description'   => 'Kanka goes through frequent community driven updates, with new features added every month. We go into details about these updates on our :discord.',
             'title'         => 'Frequent Community Driven Updates',
         ],
         'worldbuilding'     => [
-            'description'   => 'With modules covering everything from from Maps to Timelines, and Calendars to Events, Kanka makes it easy to organize complex worlds.',
             'title'         => 'Worldbuilding',
         ],
     ],
