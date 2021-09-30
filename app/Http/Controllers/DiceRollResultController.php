@@ -2,16 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Datagrids\DiceRollDatagrid;
 use App\Datagrids\NoneDatagrid;
-use App\Models\Character;
-use App\Models\DiceRoll;
-use App\Http\Requests\StoreDiceRoll;
 use App\Models\DiceRollResult;
-use App\Services\RandomDiceRollService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class DiceRollResultController extends CrudController
 {

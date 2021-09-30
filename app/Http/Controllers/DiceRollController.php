@@ -8,11 +8,7 @@ use App\Models\Character;
 use App\Models\DiceRoll;
 use App\Http\Requests\StoreDiceRoll;
 use App\Models\DiceRollResult;
-use App\Models\Tag;
-use App\Services\RandomDiceRollService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class DiceRollController extends CrudController
 {
