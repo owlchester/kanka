@@ -406,6 +406,7 @@
         </div>
     </section>
 
+    @if(config('auth.register_enabled'))
     <section class="p-5" id="call-to-action">
         <div class="container">
             <div class="text-center">
@@ -415,4 +416,5 @@
             </div>
         </div>
     </section>
+    @endif
 @endsection
