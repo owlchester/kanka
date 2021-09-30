@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\DiceRollDatagrid;
 use App\Datagrids\Filters\DiceRollFilter;
 use App\Models\Character;
 use App\Models\DiceRoll;
@@ -26,6 +27,9 @@ class DiceRollController extends CrudController
 
     /** @var string Filter */
     protected $filter = DiceRollFilter::class;
+
+    /** @var string  */
+    protected $datagrid = DiceRollDatagrid::class;
 
     /**
      * SectionController constructor.

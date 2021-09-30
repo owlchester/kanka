@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Datagrids\DiceRollDatagrid;
+use App\Datagrids\NoneDatagrid;
 use App\Models\Character;
 use App\Models\DiceRoll;
 use App\Http\Requests\StoreDiceRoll;
@@ -50,9 +52,11 @@ class DiceRollResultController extends CrudController
         $model = new $this->model;
         $this->filterService->make($this->view, request()->all(), $model);
         $name = $this->view;
+        $langKey = $name;
         $actions = $this->indexActions;
         $filters = $this->filters;
         $filterService = $this->filterService;
+        $datagrid = new NoneDatagrid();
 
         $base = $model
             ->search(request()->get('search'))
@@ -75,7 +79,9 @@ class DiceRollResultController extends CrudController
             'filters',
             'filterService',
             'filteredCount',
-            'unfilteredCount'
+            'unfilteredCount',
+            'langKey',
+            'datagrid'
         ));
     }
 

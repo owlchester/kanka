@@ -4,9 +4,10 @@
 namespace App\Datagrids;
 
 
-class MenuLinkDatagrid extends Datagrid
+class NoneDatagrid extends Datagrid
 {
-    public $bulkPermissions = false;
     public $bulkCopyToCampaign = false;
     public $bulkTransform = false;
+    public $bulkPermissions = false;
+    public $bulkPrint = false;
 }

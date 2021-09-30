@@ -31,6 +31,13 @@ class CampaignController extends AdminCrudController
         parent::__construct();
     }
 
+    public function show(Campaign $campaign)
+    {
+        $with = [
+        ];
+        return $this->crudShow($campaign, $with);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

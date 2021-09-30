@@ -34,8 +34,9 @@ if (!isset($datagrid) || $datagrid->bulkCopyToCampaign) {
 @endphp
 
 <div class="datagrid-bulk-actions">
-@if (Auth::user()->isAdmin())
+@if (auth()->user()->isAdmin())
     <div class="btn-group">
+        @if (!isset($datagrid) || !$datagrid instanceof \App\Datagrids\NoneDatagrid)
         <a href="#" class="btn btn-default bulk-edit disabled" data-toggle="modal" data-target="#bulk-edit.modal" id="datagrids-bulk-actions-batch" >
             <i class="fa fa-edit"></i> {{ __('crud.bulk.actions.edit') }}
         </a>
@@ -47,6 +48,7 @@ if (!isset($datagrid) || $datagrid->bulkCopyToCampaign) {
         <ul class="dropdown-menu" role="menu">
             {!! implode("\n", $dropdownActions) !!}
         </ul>
+        @endif
     @endif
     </div>
     @endif
