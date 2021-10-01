@@ -79,6 +79,7 @@ class CommunityEventController extends AdminCrudController
             'event' => $communityEvent,
             'entries' => $communityEvent->entries()->orderBy('rank', 'DESC')
                 ->with('user', 'user.apps')
+                ->has('user')
                 ->paginate(50)]
         );
     }
