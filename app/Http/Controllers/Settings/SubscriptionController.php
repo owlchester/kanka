@@ -102,6 +102,7 @@ class SubscriptionController extends Controller
             $this->subscription->user($request->user())
                 ->tier($request->get('tier'))
                 ->period($request->get('period'))
+                ->coupon($request->get('coupon'))
                 ->change($request->all())
                 ->finish();
 

@@ -191,6 +191,22 @@ function initConfirmListener() {
     button.addClass('disabled').html('<i class="fa fa-spin fa-spinner"></i>');
     return true;
   });
+  $('#coupon-check').change(function (e) {
+    var coupon = $(this).val();
+    var url = $(this).data('url');
+    $.ajax(url + '?coupon=' + coupon).done(function (result) {
+      if (!result.valid) {
+        $('#coupon-success').hide();
+        $('#coupon-invalid').show();
+        $('#coupon').val('');
+        return;
+      }
+
+      $('#coupon-invalid').hide();
+      $('#coupon-success').html(result.discount).show();
+      $('#coupon').val(result.coupon);
+    });
+  });
 }
 
 /***/ }),

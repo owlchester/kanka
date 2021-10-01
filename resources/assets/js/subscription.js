@@ -104,4 +104,25 @@ function initConfirmListener()
 
         return true;
     });
+
+    $('#coupon-check').change(function (e) {
+        let coupon = $(this).val();
+        let url = $(this).data('url');
+
+        $.ajax(
+            url + '?coupon=' + coupon
+        ).done(function (result) {
+            if (!result.valid) {
+                $('#coupon-success').hide();
+                $('#coupon-invalid').show();
+                $('#coupon').val('');
+                return;
+            }
+
+            $('#coupon-invalid').hide();
+            $('#coupon-success').html(result.discount).show();
+            $('#coupon').val(result.coupon);
+        });
+
+    });
 }

@@ -212,6 +212,11 @@ return [
         'currency'              => [
             'title' => 'Change your preferred billing currency',
         ],
+        'coupon' => [
+            'invalid' => 'Invalid promotional code.',
+            'label' => 'Promotional code',
+            'percent_off' => 'We will discount your first yearly subscription by :percent%!',
+        ],
         'errors'                => [
             'callback'      => 'Our payment provider reported an error. Please try again or contact us if the problem persists.',
             'subscribed'    => 'Couldn\'t process your subscription. Stripe provided the following hint.',

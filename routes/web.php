@@ -534,6 +534,8 @@ Route::group(['prefix' => 'subscription-api'], function () {
     Route::post('payments', 'Settings\SubscriptionApiController@paymentMethods');
     Route::get('payment-methods', 'Settings\SubscriptionApiController@getPaymentMethods');
     Route::post('remove-payment', 'Settings\SubscriptionApiController@removePaymentMethod');
+    Route::get('check-coupon', 'Settings\SubscriptionApiController@checkCoupon')
+        ->name('subscription.check-coupon');
 });
 
 Route::group(['prefix' => 'admin'], function () {

@@ -56,6 +56,9 @@ class SubscriptionService
     /** @var bool if the user has cancelled */
     protected $cancelled = false;
 
+    /** @var null|string applied coupon */
+    protected $coupon = null;
+
     /**
      * @param User $user
      * @return $this
@@ -113,6 +116,14 @@ class SubscriptionService
         return $this;
     }
 
+    public function coupon($coupon): self
+    {
+        if ($this->period === 'yearly' && !empty($coupon)) {
+            $this->coupon = $coupon;
+        }
+        return $this;
+    }
+
     /**
      * Change plans
      *
@@ -160,6 +171,7 @@ class SubscriptionService
     {
         if (!$this->user->subscribed('kanka')) {
             $this->user->newSubscription('kanka', $planID)
+                ->withCoupon($this->coupon)
                 ->create($paymentID);
         } else {
             // If going down from elemental to owlbear, keep it as is until the current billing period
