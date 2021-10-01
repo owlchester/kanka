@@ -34,7 +34,11 @@
             @endif
         </td>
         <td>
+            @if ($entry->user)
             {{ $entry->user->name }}
+            @else
+            <i>{{ __('crud.users.unknown') }}</i>
+            @endif
         </td>
         <td>
             <a href="{{ $entry->link }}" class="btn btn-secondary" target="_blank">

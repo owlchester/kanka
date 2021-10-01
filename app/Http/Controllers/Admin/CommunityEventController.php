@@ -75,7 +75,12 @@ class CommunityEventController extends AdminCrudController
      */
     public function show(CommunityEvent $communityEvent)
     {
-        return view('admin.community-events.show', ['event' => $communityEvent, 'entries' => $communityEvent->entries()->orderBy('rank', 'DESC')->with('user', 'user.apps')->paginate(50)]);
+        return view('admin.community-events.show', [
+            'event' => $communityEvent,
+            'entries' => $communityEvent->entries()->orderBy('rank', 'DESC')
+                ->with('user', 'user.apps')
+                ->paginate(50)]
+        );
     }
 
     /**
