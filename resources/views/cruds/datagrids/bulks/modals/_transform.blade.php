@@ -1,7 +1,7 @@
 
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title" id="clickModalLabel">{{ __('crud.copy_to_campaign.bulk_title') }}</h4>
+    <h4 class="modal-title" id="clickModalLabel">{{ __('entities/transform.panel.bulk_title') }}</h4>
 </div>
 <div class="modal-body">
     <p class="help-block">
