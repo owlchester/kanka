@@ -18,7 +18,7 @@ return [
         'is_equipped'   => 'Equipped',
         'name'          => 'Name',
         'position'      => 'Position',
-        'copy_entity_entry' => 'Copy item entry',
+        'copy_entity_entry' => 'Use item entry',
     ],
     'helpers' => [
         'copy_entity_entry' => 'Display the item\'s entry instead of the custom description.',

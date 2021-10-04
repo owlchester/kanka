@@ -361,7 +361,6 @@ class EntityService
          * @var $new MiscModel
          */
         $new = new $this->entities[$target]();
-        $newAttributes = $new->getAttributes();
         $old = null;
         if (!empty($misc)) {
             $old = $misc;
@@ -399,6 +398,7 @@ class EntityService
 
         // Finally, we can save. Should be all good. But tell the app not to create the entity
         $new->savingObserver = false;
+        $new->forceSavedObserver = false;
         $new->save();
 
         // If switching from an organisation to a family, we need to move the members?
@@ -426,8 +426,8 @@ class EntityService
             // Remove members when they aren't characters
             if (isset($old->members)) {
                 foreach ($old->members as $member) {
-                    // We make sure this isn't a character, because a family has members which are directly characters
-                    // while orgs have members which are an in between entity.
+                    // We make sure this isn't a character, because a family has members which are
+                    // directly characters while orgs have members which are an in between entity.
                     if (!$member instanceof Character) {
                         $member->delete();
                     }
@@ -446,8 +446,11 @@ class EntityService
         $entity->entity_id = $new->id;
         $entity->save();
 
-        // Delete old, this will take care of pictures and stuff
-        $old->delete();
+        // Delete old, this will take care of pictures and stuff. We detach the
+        // entity to avoid the softDelete affecting it and causing duplicate
+        // entities in the db. ForceDelete the MiscModel for img cleanup.
+        $old->entity = null;
+        $old->forceDelete();
 
         return $entity;
     }
