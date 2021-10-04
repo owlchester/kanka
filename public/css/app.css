@@ -1555,6 +1555,14 @@ summary {
   margin-right: 10px;
 }
 
+.entity-header.with-entity-header .entity-breadcrumb {
+  color: white;
+}
+
+.entity-header.with-entity-header .entity-breadcrumb a {
+  color: white;
+}
+
 .entity-links {
   margin: 5px 0;
 }
