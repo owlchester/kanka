@@ -6,8 +6,7 @@
 
     <div class="col-md-8 entity-story-block">
 
-        @include('entities.components.entry')
-        @include('entities.components.notes')
+        @include('entities.components.notes', ['withEntry' => true])
 
         @include('cruds.partials.mentions')
         @include('cruds.boxes.history')

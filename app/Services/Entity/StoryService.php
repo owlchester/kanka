@@ -34,7 +34,11 @@ class StoryService
             return false;
         }
 
-        $position = 1;
+        $position = 0;
+        $types = $request->get('entity_types');
+        $storyPosition = array_search('story', $types);
+        $position -= $storyPosition;
+
         foreach ($ids as $id) {
             /** @var EntityNote $story */
             $story = $this->entity->notes->where('id', $id)->first();
