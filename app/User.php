@@ -402,7 +402,7 @@ class User extends \TCG\Voyager\Models\User
 
         // Campaigns that are boosted don't either
         $campaign = CampaignLocalization::getCampaign(false);
-        if (!empty($campaign) && $campaign->boosted()) {
+        if (empty($campaign) || $campaign->boosted()) {
             return false;
         }
 

@@ -6,6 +6,10 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', '{{ config('tracking.ga') }}');
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'analytics_storage': 'denied'
+        });
 @if (!empty(config('tracking.ga_convo')))
         gtag('config', '{{ config('tracking.ga_convo') }}');
 @endif
@@ -45,12 +49,17 @@
 @endif
 
 @if (!empty($tracking_new))
+    <!-- New account confirmation -->
     <script>
+        @if (!empty(config('tracking.fb')))
         fbq('track', 'CompleteRegistration', {
             value: 1,
             currency: 'USD',
         });
+        @endif
+        @if (!empty(config('tracking.reddit')))
         rdt('track', 'SignUp');
+        @endif
     </script>
 @endif
 @if (!empty(config('tracking.reddit')))
