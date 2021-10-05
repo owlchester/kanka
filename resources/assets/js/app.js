@@ -160,9 +160,6 @@ $(document).ready(function() {
         initDynamicDelete();
         initImageRemoval();
         deleteConfirm();
-
-        // Handle when opening the entity-creator ui
-        entityCreatorUI();
     });
 });
 
@@ -295,90 +292,6 @@ function initImageRemoval() {
             e.preventDefault();
             $('input[name=' + $(this).data('target') + ']')[0].value = 1;
             $(this).parent().parent().hide();
-        });
-    });
-}
-
-/**
- * Quick Entity Creator UI
- */
-function entityCreatorUI() {
-    $('[data-toggle="entity-creator"]').on('click', function(e) {
-        e.preventDefault();
-
-        var entityCreatorSelection = $('#entity-creator-selection');
-        var entityCreatorLoader = $('.entity-creator-loader');
-        var entityCreatorFormPanel = $('.entity-creator-form-panel');
-
-        entityCreatorSelection.addClass('hidden');
-        entityCreatorLoader.removeClass('hidden');
-
-        $.ajax($(this).data('url')).done(function (data) {
-            entityCreatorLoader.addClass('hidden');
-            entityCreatorFormPanel.html(data).removeClass('hidden');
-            initSelect2();
-            initEntityCreatorDuplicateName();
-            window.initCategories();
-
-            // Back button
-            $('#entity-creator-back').on('click', function(e) {
-                entityCreatorFormPanel.html('').addClass('hidden');
-                entityCreatorSelection.removeClass('hidden');
-                $('#entity-creator-form').hide();
-            });
-
-            $('#entity-creator-form').on('submit', function(e) {
-                e.preventDefault();
-
-                // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
-                $.post({
-                    url: $(this).attr('action'),
-                    data: $(this).serialize(),
-                    context: this
-                }).done(function (result, textStatus, xhr) {
-                    // New entity was created, let's follow that redirect
-                    //console.log(result);
-
-                    entityCreatorFormPanel.html('').addClass('hidden');
-                    entityCreatorSelection.removeClass('hidden');
-                    $('#entity-creator-form').hide();
-                    $('.entity-creator-success').html(result.message).show();
-
-                }).fail(function (data) {
-                    $('.entity-creator-error').show();
-                });
-            });
-        });
-
-        return false;
-    });
-}
-
-function initEntityCreatorDuplicateName() {
-    $('#entity-creator-form input[name="name"]').focusout(function(e) {
-        // Don't bother if the user didn't set any value
-        if (!$(this).val()) {
-            return;
-        }
-        var entityCreatorDuplicateWarning = $('#entity-creator-form .duplicate-entity-warning');
-        entityCreatorDuplicateWarning.hide();
-        // Check if an entity of the same type already exists, and warn when it does.
-        $.ajax(
-            $(this).data('live') + '?q=' + $(this).val() + '&type=' + $(this).data('type')
-        ).done(function (res) {
-            if (res.length > 0) {
-                let entities = Object.keys(res).map(function (k) { return '<a href="' + res[k].url + '">' + res[k].name + '</a>'}).join(', ');
-                $('#entity-creator-form #duplicate-entities').html(entities);
-                entityCreatorDuplicateWarning.fadeIn();
-            } else {
-                entityCreatorDuplicateWarning.hide();
-            }
         });
     });
 }
@@ -543,3 +456,4 @@ require('./crud.js');
 require('./calendar.js');
 require('./search.js');
 require('./notification');
+require('./quick-creator');

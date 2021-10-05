@@ -76709,9 +76709,7 @@ $(document).ready(function () {
     initSpectrum();
     initDynamicDelete();
     initImageRemoval();
-    Object(_components_delete_confirm_js__WEBPACK_IMPORTED_MODULE_1__["default"])(); // Handle when opening the entity-creator ui
-
-    entityCreatorUI();
+    Object(_components_delete_confirm_js__WEBPACK_IMPORTED_MODULE_1__["default"])();
   });
 });
 /**
@@ -76845,82 +76843,6 @@ function initImageRemoval() {
       e.preventDefault();
       $('input[name=' + $(this).data('target') + ']')[0].value = 1;
       $(this).parent().parent().hide();
-    });
-  });
-}
-/**
- * Quick Entity Creator UI
- */
-
-
-function entityCreatorUI() {
-  $('[data-toggle="entity-creator"]').on('click', function (e) {
-    e.preventDefault();
-    var entityCreatorSelection = $('#entity-creator-selection');
-    var entityCreatorLoader = $('.entity-creator-loader');
-    var entityCreatorFormPanel = $('.entity-creator-form-panel');
-    entityCreatorSelection.addClass('hidden');
-    entityCreatorLoader.removeClass('hidden');
-    $.ajax($(this).data('url')).done(function (data) {
-      entityCreatorLoader.addClass('hidden');
-      entityCreatorFormPanel.html(data).removeClass('hidden');
-      initSelect2();
-      initEntityCreatorDuplicateName();
-      window.initCategories(); // Back button
-
-      $('#entity-creator-back').on('click', function (e) {
-        entityCreatorFormPanel.html('').addClass('hidden');
-        entityCreatorSelection.removeClass('hidden');
-        $('#entity-creator-form').hide();
-      });
-      $('#entity-creator-form').on('submit', function (e) {
-        e.preventDefault(); // Allow ajax requests to use the X_CSRF_TOKEN for deletes
-
-        $.ajaxSetup({
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-        });
-        $.post({
-          url: $(this).attr('action'),
-          data: $(this).serialize(),
-          context: this
-        }).done(function (result, textStatus, xhr) {
-          // New entity was created, let's follow that redirect
-          //console.log(result);
-          entityCreatorFormPanel.html('').addClass('hidden');
-          entityCreatorSelection.removeClass('hidden');
-          $('#entity-creator-form').hide();
-          $('.entity-creator-success').html(result.message).show();
-        }).fail(function (data) {
-          $('.entity-creator-error').show();
-        });
-      });
-    });
-    return false;
-  });
-}
-
-function initEntityCreatorDuplicateName() {
-  $('#entity-creator-form input[name="name"]').focusout(function (e) {
-    // Don't bother if the user didn't set any value
-    if (!$(this).val()) {
-      return;
-    }
-
-    var entityCreatorDuplicateWarning = $('#entity-creator-form .duplicate-entity-warning');
-    entityCreatorDuplicateWarning.hide(); // Check if an entity of the same type already exists, and warn when it does.
-
-    $.ajax($(this).data('live') + '?q=' + $(this).val() + '&type=' + $(this).data('type')).done(function (res) {
-      if (res.length > 0) {
-        var entities = Object.keys(res).map(function (k) {
-          return '<a href="' + res[k].url + '">' + res[k].name + '</a>';
-        }).join(', ');
-        $('#entity-creator-form #duplicate-entities').html(entities);
-        entityCreatorDuplicateWarning.fadeIn();
-      } else {
-        entityCreatorDuplicateWarning.hide();
-      }
     });
   });
 }
@@ -77087,6 +77009,8 @@ __webpack_require__(/*! ./calendar.js */ "./resources/assets/js/calendar.js");
 __webpack_require__(/*! ./search.js */ "./resources/assets/js/search.js");
 
 __webpack_require__(/*! ./notification */ "./resources/assets/js/notification.js");
+
+__webpack_require__(/*! ./quick-creator */ "./resources/assets/js/quick-creator.js");
 
 /***/ }),
 
@@ -77470,6 +77394,43 @@ function resetReminderAnimation() {
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/ajax-modal.js":
+/*!******************************************************!*\
+  !*** ./resources/assets/js/components/ajax-modal.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ajaxModal; });
+function ajaxModal() {
+  $('[data-toggle="ajax-modal"]').unbind('click').click(function (e) {
+    e.preventDefault();
+    ajaxModal = $(this);
+    $.ajax({
+      url: $(this).data('url')
+    }).done(function (result, textStatus, xhr) {
+      if (result) {
+        var params = {};
+        var target = $(ajaxModal).data('target');
+        var backdrop = $(ajaxModal).data('backdrop');
+
+        if (backdrop) {
+          params.backdrop = backdrop;
+        }
+
+        $(target).find('.modal-content').html(result);
+        $(target).modal(params);
+      }
+    }).fail(function (result, textStatus, xhr) {//console.log('modal ajax error', result);
+    });
+    return false;
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/delete-confirm.js":
 /*!**********************************************************!*\
   !*** ./resources/assets/js/components/delete-confirm.js ***!
@@ -77621,9 +77582,11 @@ function select2() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_select2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/select2.js */ "./resources/assets/js/components/select2.js");
+/* harmony import */ var _components_ajax_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/ajax-modal */ "./resources/assets/js/components/ajax-modal.js");
 /**
  * Crud
  */
+
  // Character
 
 var characterAddPersonality, characterTemplatePersonality;
@@ -77631,14 +77594,12 @@ var characterAddAppearance, characterTemplateAppearance;
 var characterSortPersonality, characterSortAppearance;
 var entityFormActions;
 var characterAddOrganisation, characterTemplateOrganisation, characterOrganisations;
-var filtersActionsShow, filtersActionHide;
-var ajaxModalTarget, ajaxModal, multiEditingModal;
-var entityFormHasUnsavedChanges = false; // Entity Calendar
+var multiEditingModal; // Entity Calendar
 
 var entityCalendarAdd, entityCalendarForm, entityCalendarField;
 var entityCalendarMonthField, entityCalendarYearField, entityCalendarDayField;
 var entityCalendarCancel, entityCalendarLoading, entityCalendarSubForm;
-var entityCalendarModalField, entityCalendarModalForm;
+var entityCalendarModalForm;
 var entityName;
 var toggablePanels;
 var validEntityForm = false,
@@ -77670,30 +77631,7 @@ $(document).ready(function () {
     initCharacterOrganisation();
   }
 
-  $.each($('[data-toggle="ajax-modal"]'), function () {
-    $(this).click(function (e) {
-      e.preventDefault();
-      ajaxModal = $(this);
-      $.ajax({
-        url: $(this).attr('data-url')
-      }).done(function (result, textStatus, xhr) {
-        if (result) {
-          var params = {};
-          var target = $(ajaxModal).attr('data-target');
-          var backdrop = $(ajaxModal).attr('data-backdrop');
-
-          if (backdrop) {
-            params.backdrop = backdrop;
-          }
-
-          $(target).find('.modal-content').html(result);
-          $(target).modal(params);
-        }
-      }).fail(function (result, textStatus, xhr) {//console.log('modal ajax error', result);
-      });
-      return false;
-    });
-  });
+  Object(_components_ajax_modal__WEBPACK_IMPORTED_MODULE_1__["default"])();
   entityFormActions = $('.form-submit-actions');
 
   if (entityFormActions.length > 0) {
@@ -78832,6 +78770,136 @@ function handleReadAll() {
   $('#header-notification-mark-all-as-read').click(function (e) {
     refreshNotifications($(this).data('url'));
   });
+}
+
+/***/ }),
+
+/***/ "./resources/assets/js/quick-creator.js":
+/*!**********************************************!*\
+  !*** ./resources/assets/js/quick-creator.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var quickCreatorModalID = '#entity-modal';
+var quickCreatorSubmitBtn;
+$(document).ready(function (e) {
+  $(document).on('shown.bs.modal shown.bs.popover', function () {
+    quickCreatorUI();
+  });
+});
+/**
+ * Quick Entity Creator UI
+ */
+
+function quickCreatorUI() {
+  $('[data-toggle="entity-creator"]').unbind('click').click(function (e) {
+    e.preventDefault();
+    quickCreatorLoadingModal(); //entityCreatorSelection.addClass('hidden');
+    //entityCreatorLoader.removeClass('hidden');
+
+    $.ajax({
+      url: $(this).data('url')
+    }).done(function (data) {
+      $(quickCreatorModalID).find('.modal-content').html(data);
+      quickCreatorSubmitBtn = $('#quick-creator-submit-btn');
+      initSelect2();
+      quickCreatorDuplicateName();
+      window.initCategories(); // Back button
+
+      $('#entity-creator-back').click(function (e) {
+        e.preventDefault();
+        quickCreatorLoadingModal();
+        $.ajax({
+          url: $(this).data('url'),
+          context: this
+        }).done(function (result) {
+          var target = $(this).data('target');
+          $(target).find('.modal-content').html(result);
+          quickCreatorUI();
+        });
+      });
+      $('#entity-creator-form').submit(function (e) {
+        e.preventDefault();
+        quickCreatorSubmitBtn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i>'); // Allow ajax requests to use the X_CSRF_TOKEN for deletes
+
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
+        $.post({
+          url: $(this).attr('action'),
+          data: $(this).serialize(),
+          context: this
+        }).done(function (result, textStatus, xhr) {
+          // New entity was created, let's follow that redirect
+          //console.log(result);
+          $(quickCreatorModalID).find('.modal-content').html(result);
+          quickCreatorUI();
+        }).fail(function (err) {
+          var errors = err.responseJSON.errors;
+          var errorKeys = Object.keys(errors);
+          var foundAllErrors = true;
+          errorKeys.forEach(function (i) {
+            var errorSelector = $('#entity-creator-form input[name="' + i + '"]');
+
+            if (errorSelector.length > 0) {
+              errorSelector.addClass('input-error').parent().append('<div class="text-danger">' + errors[i][0] + '</div>');
+            } else {
+              foundAllErrors = false;
+            }
+          });
+          var firstItem = Object.keys(errors)[0];
+          var firstItemDom = $('#entity-creator-form input[name="' + firstItem + '"]');
+          console.log('firstItem', firstItemDom); // If we can actually find the first element, switch to it and the correct tab.
+
+          if (firstItemDom[0]) {
+            firstItemDom[0].scrollIntoView({
+              behavior: 'smooth'
+            }); // Switch tabs/pane
+
+            $('.tab-content .active').removeClass('active');
+            $('.nav-tabs li.active').removeClass('active');
+            var firstPane = $('[name="' + firstItem + '"').closest('.tab-pane');
+            firstPane.addClass('active');
+            $('a[href="#' + firstPane.attr('id') + '"]').closest('li').addClass('active');
+          }
+
+          quickCreatorSubmitBtn.prop('disabled', false).html(quickCreatorSubmitBtn.data('text'));
+        });
+      });
+    });
+    return false;
+  });
+}
+
+function quickCreatorDuplicateName() {
+  $('#entity-creator-form input[name="name"]').focusout(function (e) {
+    // Don't bother if the user didn't set any value
+    if (!$(this).val()) {
+      return;
+    }
+
+    var entityCreatorDuplicateWarning = $('#entity-creator-form .duplicate-entity-warning');
+    entityCreatorDuplicateWarning.hide(); // Check if an entity of the same type already exists, and warn when it does.
+
+    $.ajax($(this).data('live') + '?q=' + $(this).val() + '&type=' + $(this).data('type')).done(function (res) {
+      if (res.length > 0) {
+        var entities = Object.keys(res).map(function (k) {
+          return '<a href="' + res[k].url + '">' + res[k].name + '</a>';
+        }).join(', ');
+        $('#entity-creator-form #duplicate-entities').html(entities);
+        entityCreatorDuplicateWarning.fadeIn();
+      } else {
+        entityCreatorDuplicateWarning.hide();
+      }
+    });
+  });
+}
+
+function quickCreatorLoadingModal() {
+  $(quickCreatorModalID).find('.modal-content').html('<div class="modal-body">' + '<div class="text-center">' + '<i class="fa fa-spinner fa-spin fa-2x"></i>' + '</div>' + '</div>');
 }
 
 /***/ }),

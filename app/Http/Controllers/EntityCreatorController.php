@@ -87,9 +87,12 @@ class EntityCreatorController extends Controller
         $new->crudSaved();
         $new->entity->crudSaved();
 
-        return response()->json([
-            'success' => true,
-            'message' => __('entities.creator.success', ['link' => link_to($new->getLink(), e($new->name))])
+        // Content for the selector
+        $entities = $this->availableEntities();
+
+        return view('entities.creator.selection', [
+            'entities' => $entities,
+            'new' => __('entities.creator.success', ['link' => link_to($new->getLink(), e($new->name))])
         ]);
     }
 

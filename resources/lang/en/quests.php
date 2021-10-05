@@ -16,19 +16,21 @@ return [
     ],
     'elements'      => [
         'create'    => [
-            'success'   => 'Entity :entity added to the quest.',
+            'success'   => 'Element :entity added to the quest.',
             'title'     => 'New element for :name',
         ],
         'destroy'   => [
-            'success'   => 'Quest element :entity removed.',
+            'success'   => 'Element :entity removed.',
         ],
         'edit'      => [
-            'success'   => 'Quest element :entity updated.',
-            'title'     => 'Update quest element for :name',
+            'success'   => 'Element :entity updated.',
+            'title'     => 'Update element for :name',
         ],
         'fields'    => [
             'description'   => 'Description',
             'quest'         => 'Quest',
+            'name'          => 'Name',
+            'entity_or_name' => 'Either select either an entity of the campaign, or give a name for this element.',
         ],
         'title'     => 'Quest :name Elements',
     ],

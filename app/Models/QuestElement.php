@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class QuestCharacter
  * @package App\Models
  * @property integer $entity_id
+ * @property string $name
  * @property integer $quest_id
  * @property string $description
  * @property string $role
@@ -33,6 +34,7 @@ class QuestElement extends Model
      */
     protected $fillable = [
         'quest_id',
+        'name',
         'entity_id',
         'description',
         'role',
@@ -116,5 +118,14 @@ class QuestElement extends Model
         }
 
         return $this->colour == 'grey' ? 'bg-gray' : 'bg-' . $this->colour;
+    }
+
+    public function name(): string
+    {
+        if ($this->entity) {
+            return $this->entity->name;
+        }
+
+        return (string) $this->name;
     }
 }
