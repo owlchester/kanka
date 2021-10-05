@@ -3,23 +3,29 @@
 
 namespace App\Http\Controllers\Settings;
 
+use App\Services\Subscription\CouponService;
 use App\Services\SubscriptionService;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Stripe\Coupon;
-use Stripe\PromotionCode;
-use Stripe\Stripe;
 
 class SubscriptionApiController extends Controller
 {
     /** @var SubscriptionService */
     protected $service;
 
-    public function __construct(SubscriptionService $service)
+    /** @var CouponService */
+    protected $couponService;
+
+    /**
+     * SubscriptionApiController constructor.
+     * @param SubscriptionService $service
+     */
+    public function __construct(SubscriptionService $service, CouponService $couponService)
     {
         $this->middleware(['auth', 'identity']);
         $this->service = $service;
+        $this->couponService = $couponService;
     }
 
     /**
@@ -102,45 +108,20 @@ class SubscriptionApiController extends Controller
         return response()->json(null, 204);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function checkCoupon(Request $request)
     {
         /** @var User $user */
         $user = $request->user();
         $coupon = $request->get('coupon');
 
-        try {
-            Stripe::setApiKey(config('cashier.secret'));
-
-            // We have to look at all codes with this coupon this way, because the retrieve method
-            // expects a stripe_id
-            $promos = PromotionCode::all(['code' => $coupon]);
-            if (!$promos->count() === 1) {
-                return response()->json([
-                    'valid' => false,
-                ]);
-            }
-
-            /** @var PromotionCode $promo */
-            $promo = $promos->first();
-            if (!$promo->active) {
-                return response()->json([
-                    'valid' => false,
-                ]);
-            }
-
-            // We have a valid coupon
-            return response()->json([
-                'valid' => $promo->active,
-                'promotion' => $promo->id,
-                'coupon' => $promo->coupon->id,
-                'discount' => __('settings.subscription.coupon.percent_off', ['percent' => $promo->coupon->percent_off]),
-            ]);
-
-        } catch(\Exception $e) {
-            dd($e->getMessage());
-            return response()->json([
-                'valid' => false,
-            ]);
-        }
+        return response()->json(
+            $this->couponService
+                ->code($coupon)
+                ->check()
+        );
     }
 }
