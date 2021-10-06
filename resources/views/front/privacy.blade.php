@@ -8,9 +8,6 @@
 @section('og')
     <meta property="og:description" content="{{ __('front.privacy.description', ['date' => (new \Carbon\Carbon('2020-04-24'))->toFormattedDateString()]) }}" />
     <meta property="og:url" content="{{ route('front.privacy') }}" />
-    <meta property="og:type" content="website" />
-    <meta property="fb:app_id" content="{{ config('services.facebook.client_id') }}" />
-    <meta property="og:image" content="https://kanka-app-assets.s3.amazonaws.com/images/logos/logo-blue-white.png" />
 
 @endsection
 

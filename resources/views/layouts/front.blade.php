@@ -9,8 +9,12 @@
 
     <meta property="og:title" content="{{ $title ?? __('front.meta.title') }}@if (!isset($skipEnding)) - {{ config('app.name') }} @endif">
     <meta property="og:site_name" content="{{ config('app.site_name') }}">
+    <meta property="og:type" content="website" />
+@if(config('services.facebook.client_id'))  <meta property="fb:app_id" content="{{ config('services.facebook.client_id') }}" />@endif
+    <meta property="og:image" content="https://kanka-app-assets.s3.amazonaws.com/images/logos/logo-blue-white.png" />
+
 @yield('og')
-    <title>{{ $title ?? __('front.meta.title') }} @if (!isset($skipEnding)) - {{ config('app.name', 'Kanka') }}@endif</title>
+    <title>{{ $title ?? __('front.meta.title') }}@if (!isset($skipEnding)) - {{ config('app.name', 'Kanka') }}@endif</title>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
