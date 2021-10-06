@@ -2,6 +2,13 @@
     'metaDescription' => __('front.home.seo.meta-description'),
     'skipEnding' => true,
 ])
+
+
+@section('og')
+    <meta property="og:description" content="{{ __('front.home.seo.meta-description') }}" />
+    <meta property="og:url" content="{{ route('home') }}" />
+@endsection
+
 @section('content')
     @include('front.master')
 
