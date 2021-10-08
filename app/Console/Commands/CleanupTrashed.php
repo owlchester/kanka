@@ -58,17 +58,15 @@ class CleanupTrashed extends Command
         $firstType = Arr::first($typeList);
         $firstTypeTable = Str::plural($firstType);
 
-        $miscCount = $entityCount = $endMiscCount = $endEntityCount = 0;
-
-
         $this->info('Looking for deleted entities (' . $types . ') where deleted_at <= ' . $delay);
 
+        // Stats stuff for developing
+        $entityCount = $endEntityCount = 0;
         if ($firstType !== 'all') {
             $res = DB::table($firstTypeTable)
                 ->select(DB::raw('count(*) as tot'))
                 ->get();
-            $miscCount = $res[0]->tot;
-            $this->info('Total ' . $firstTypeTable . ' ' . number_format($miscCount, 0, '.', '\''));
+            $this->info('Total ' . $firstTypeTable . ' ' . number_format($res[0]->tot, 0, '.', '\''));
             $res = DB::table('entities')
                 ->select(DB::raw('count(*) as tot'))
                 ->where('type', $firstType)
@@ -78,40 +76,41 @@ class CleanupTrashed extends Command
         }
 
         // Dump each time a query is made
-        /*DB::listen(function($query) {
-            dump(Str::replaceArray('?', $query->bindings, $query->sql));
-        });*/
+        DB::listen(function($query) {
+            //if (Str::startsWith($query->sql, "select * from `entities` where `type` in")) {
+            //    dump(Str::replaceArray('?', $query->bindings, $query->sql));
+            //}
+        });
 
-            Entity::
-            inTypes($typeList)
+        DB::beginTransaction();
+        try {
+            Entity::inTypes($typeList)
                 ->onlyTrashed()
                 ->where('deleted_at', '<=', $delay)
                 ->allCampaigns()
-                ->chunk(100, function ($entities) {
-
-                    DB::beginTransaction();
-
-                    try {
-                        foreach ($entities as $entity) {
-                            $this->service->trash($entity);
-                        }
-                        DB::commit();
-                        $this->info('Chunk deleted ' . count($entities) . ' entities.');
-                    } catch (\Exception $e) {
-                        $this->error($e->getMessage());
-                        DB::rollBack();
+                // chunkById allows us to safely delete elements in a chunk
+                // see https://stackoverflow.com/questions/32700537/eloquent-chunk-missing-half-the-results
+                ->chunkById(1000, function ($entities) {
+                    $this->info('Chunk deleting ' . count($entities) . ' entities.');
+                    foreach ($entities as $entity) {
+                        $this->service->trash($entity);
                     }
                 });
+            DB::commit();
+        } catch (\Exception $e) {
+            $this->error($e->getMessage());
+            DB::rollBack();
+        }
 
         $this->info('');
         $this->info('Deleted ' . $this->service->count() . ' trashed entities.');
 
+        // Stats checkup for developing
         if ($firstType !== 'all') {
             $res = DB::table($firstTypeTable)
                 ->select(DB::raw('count(*) as tot'))
                 ->get();
-            $endMiscCount = $res[0]->tot;
-            $this->info('Total ' . $firstTypeTable . ' ' . number_format($endMiscCount, 0, '.', '\''));
+            $this->info('Total ' . $firstTypeTable . ' ' . number_format($res[0]->tot, 0, '.', '\''));
             $res = DB::table('entities')
                 ->select(DB::raw('count(*) as tot'))
                 ->where('type', $firstType)
@@ -119,11 +118,9 @@ class CleanupTrashed extends Command
             $endEntityCount = $res[0]->tot;
             $this->info('Total entities ' . number_format($endEntityCount, 0, '.', '\''));
 
-            if ($miscCount - $this->service->count() !== $endMiscCount) {
-                $this->error('Misc count mismatch');
-            }
             if ($entityCount - $this->service->count() !== $endEntityCount) {
-                $this->error('Misc count mismatch');
+                $this->error('Entity count mismatch ' . $entityCount . ' - ' . $this->service->count() . ' != ' . $endEntityCount);
+
             }
         }
 
@@ -133,14 +130,15 @@ class CleanupTrashed extends Command
 
 
 /**
- * Ability
- * AttrTemp
- * Event
+ * All x
+ * Ability x
+ * AttrTemp (by all)
+ * Event x
  * Family x
- * Journal
+ * Journal x
  * Location x
  * Map x
- * Note
- * Organisation
- * Timeline
+ * Note x
+ * Organisation x
+ * Timeline x
  */

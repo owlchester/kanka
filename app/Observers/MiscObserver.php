@@ -287,6 +287,9 @@ abstract class MiscObserver
      */
     protected function cleanupTree(MiscModel $model, string $field = 'parent_id')
     {
+        // Warning: we probably don't need this anymore, since we've removed the deleted() listened
+        // in the Nested trait.
+
         // We need to refresh our foreign relations to avoid deleting our children nodes again
         $model->refresh();
 
