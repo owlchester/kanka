@@ -41,6 +41,7 @@
     "sass-loader": "^8.0.0",
     "select2": "^4.0.8",
     "simple-line-icons": "^2.4.1",
+    "spectrum-colorpicker": "^1.8.1",
     "startbootstrap-new-age": "^3.3.7",
     "tailwindcss": "^1.1.2",
     "tributejs": "^5.1.3",

@@ -82,7 +82,6 @@ __('maps/markers.edit.title', ['name' => $model->name])
         crossorigin=""></script>
     <script src="{{ mix('js/ajax-subforms.js') }}" defer></script>
     <script src="{{ mix('js/location/map-v3.js') }}" defer></script>
-    <script src="/vendor/spectrum/spectrum.js" defer></script>
 
     @include('maps._setup', ['single' => true])
     <script type="text/javascript">
@@ -116,8 +115,6 @@ __('maps/markers.edit.title', ['name' => $model->name])
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
         crossorigin="" />
     <link href="{{ mix('css/map-v3.css') }}" rel="stylesheet">
-    <link href="/vendor/spectrum/spectrum.css" rel="stylesheet">
-
 
     <style>
         .marker-{{ $model->id }} {

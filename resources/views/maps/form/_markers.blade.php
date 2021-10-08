@@ -31,7 +31,6 @@
             crossorigin=""></script>
         <script src="{{ mix('js/ajax-subforms.js') }}" defer></script>
         <script src="{{ mix('js/location/map-v3.js') }}" defer></script>
-        <script src="/vendor/spectrum/spectrum.js" defer></script>
 
         <script type="text/javascript">
             var labelShapeIcon = new L.Icon({
@@ -85,7 +84,6 @@
             integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
             crossorigin="" />
         <link href="{{ mix('css/map-v3.css') }}" rel="stylesheet">
-        <link href="/vendor/spectrum/spectrum.css" rel="stylesheet">
 
         <style>
             @foreach ($model->markers as $marker)
