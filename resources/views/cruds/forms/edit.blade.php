@@ -19,12 +19,9 @@
     @include('cruds.forms._errors')
 
     <div class="nav-tabs-custom">
-        @env('shadow')
-        @else
-            <div class="pull-right">
-                @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
-            </div>
-        @endenv
+        <div class="pull-right">
+            @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
+        </div>
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="{{ (request()->get('tab') == null ? ' active' : '') }}">
                 <a href="#form-entry" title="{{ __('crud.panels.entry') }}" role="tab" aria-controls="form-entry">
