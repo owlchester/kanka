@@ -317,7 +317,9 @@ class CrudController extends Controller
             }
 
             $subroute = 'index';
-            if (auth()->user()->defaultNested and \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
+            $campaign = CampaignLocalization::getCampaign();
+            $defaultNested = auth()->user()->defaultNested || $campaign->defaultToNested();
+            if ($defaultNested && \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
                 $subroute = 'tree';
             }
             $route = route($this->route . '.' . $subroute);
@@ -450,7 +452,9 @@ class CrudController extends Controller
                 $route = route($this->route . '.edit', $model->id);
             } elseif ($request->has('submit-close')) {
                 $subroute = 'index';
-                if (auth()->user()->defaultNested and \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
+                $campaign = CampaignLocalization::getCampaign();
+                $defaultNested = auth()->user()->defaultNested || $campaign->defaultToNested();
+                if ($defaultNested && \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
                     $subroute = 'tree';
                 }
                 $route = route($this->route . '.' . $subroute);
@@ -478,7 +482,9 @@ class CrudController extends Controller
         $model->delete();
 
         $subroute = 'index';
-        if (auth()->user()->defaultNested and \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
+        $campaign = CampaignLocalization::getCampaign();
+        $defaultNested = auth()->user()->defaultNested || $campaign->defaultToNested();
+        if ($defaultNested && \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
             $subroute = 'tree';
         }
 
