@@ -37,7 +37,8 @@ class StoreQuest extends FormRequest
             'template_id' => 'nullable',
         ];
 
-        if (request()->has('calendar_id') && request()->post('calendar_id') !== null) {
+        // If the calendar is present and not null, but we aren't "skipping" it (editing but without permission)
+        if (request()->has('calendar_id') && request()->post('calendar_id') !== null && !request()->has('calendar_skip')) {
             $rules['calendar_day'] = 'required_with:calendar_id|min:1';
             $rules['calendar_year'] = 'required_with:calendar_id';
 
