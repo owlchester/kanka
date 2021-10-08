@@ -42,8 +42,7 @@ class MapObserver extends MiscObserver
             $sub->save();
         }
 
-        // We need to refresh our foreign relations to avoid deleting our children nodes again
-        $model->refresh();
+        $this->cleanupTree($model, 'map_id');
     }
 
     /**

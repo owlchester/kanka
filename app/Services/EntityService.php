@@ -450,6 +450,8 @@ class EntityService
         // entity to avoid the softDelete affecting it and causing duplicate
         // entities in the db. ForceDelete the MiscModel for img cleanup.
         $old->entity = null;
+
+        // Actually, don't force delete until the tree bug isn't fixed. This could cause deeper issues by deleting entities.
         $old->forceDelete();
 
         return $entity;

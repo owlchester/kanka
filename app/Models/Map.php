@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\Nested;
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
@@ -11,7 +12,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Kalnoy\Nestedset\NodeTrait;
 
 /**
  * Class Ability
@@ -43,7 +43,7 @@ class Map extends MiscModel
     use CampaignTrait,
         VisibleTrait,
         ExportableTrait,
-        NodeTrait,
+        Nested,
         SimpleSortableTrait,
         SoftDeletes;
 

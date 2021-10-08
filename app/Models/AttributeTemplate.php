@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Nested;
 use App\Traits\CampaignTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Kalnoy\Nestedset\NodeTrait;
 
 /**
  * Class AttributeTemplate
@@ -13,12 +13,14 @@ use Kalnoy\Nestedset\NodeTrait;
  *
  * @property integer $attribute_template_id
  * @property integer $entity_type_id
+ * @property AttributeTemplate $attributeTemplate
+ * @property AttributeTemplate[] $attributeTemplates
  */
 class AttributeTemplate extends MiscModel
 {
     use CampaignTrait,
         VisibleTrait,
-        NodeTrait,
+        Nested,
         SoftDeletes;
 
     /**

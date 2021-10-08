@@ -15,6 +15,7 @@ use Illuminate\Support\Str;
  * @method static self|Builder unmentioned()
  * @method static self type(string $type)
  * @method static self|Builder inTags(array $tags)
+ * @method static self|Builder inTypes(array $types)
  * @method static self|Builder templates(string $entityType)
  * @method static self|Builder apiFilter(array $requests)
  */
@@ -178,5 +179,23 @@ trait EntityScopes
             return $query;
         }
         return $query->where('updated_at', '>', $lastSync);
+    }
+
+    /**
+     * @param Builder $query
+     * @param array|null $types
+     * @return Builder
+     */
+    public function scopeInTypes(Builder $query, array $types = null)
+    {
+        if (empty($types) || !is_array($types)) {
+            return $query;
+        }
+
+        if ($types[0] == 'all') {
+            return $query;
+        }
+
+        return $query->whereIn('type', $types);
     }
 }

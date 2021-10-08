@@ -20,7 +20,8 @@ class FamilyObserver extends MiscObserver
     }
 
     /**
-     * Save the family members
+     * Save family members
+     * @param Family $family
      */
     protected function saveMembers(Family $family)
     {
@@ -63,5 +64,22 @@ class FamilyObserver extends MiscObserver
             $k->saveObserver = false;
             $k->save();
         }
+    }
+
+    /**
+     * @param $family
+     */
+    public function deleting(MiscModel $family)
+    {
+        /**
+         * We need to do this ourselves and not let mysql to it (set null), because the nested wants to delete
+         * all descendants when deleting the parent (soft delete)
+         */
+        foreach ($family->families as $sub) {
+            $sub->family_id = null;
+            $sub->save();
+        }
+
+        $this->cleanupTree($family, 'family_id');
     }
 }

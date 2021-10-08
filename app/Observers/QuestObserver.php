@@ -27,6 +27,9 @@ class QuestObserver extends MiscObserver
         $model->refresh();
     }
 
+    /**
+     * @param MiscModel $model
+     */
     public function created(MiscModel $model)
     {
         parent::created($model);

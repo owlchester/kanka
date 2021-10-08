@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Nested;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
-use Kalnoy\Nestedset\NodeTrait;
 
 /**
  * Class Note
@@ -21,7 +21,7 @@ class Note extends MiscModel
 {
     use CampaignTrait,
         VisibleTrait,
-        NodeTrait,
+        Nested,
         ExportableTrait,
         SoftDeletes;
 

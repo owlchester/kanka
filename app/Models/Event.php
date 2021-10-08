@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Nested;
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Kalnoy\Nestedset\NodeTrait;
 
 /**
  * Class Event
@@ -24,7 +24,7 @@ class Event extends MiscModel
         VisibleTrait,
         ExportableTrait,
         SoftDeletes,
-        NodeTrait,
+        Nested,
         SimpleSortableTrait;
 
     /**

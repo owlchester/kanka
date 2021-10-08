@@ -21,7 +21,6 @@ class AttributeTemplateObserver extends MiscObserver
             $sub->save();
         }
 
-        // We need to refresh our foreign relations to avoid deleting our children nodes again
-        $attributeTemplate->refresh();
+        $this->cleanupTree($attributeTemplate, 'attribute_template_id');
     }
 }

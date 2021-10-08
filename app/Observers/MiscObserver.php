@@ -279,6 +279,31 @@ abstract class MiscObserver
         catch (\Exception $e) {
             return '';
         }
+    }
 
+    /**
+     * @param MiscModel $model
+     * @param string $field
+     */
+    protected function cleanupTree(MiscModel $model, string $field = 'parent_id')
+    {
+        // We need to refresh our foreign relations to avoid deleting our children nodes again
+        $model->refresh();
+
+        // Check that we have no descendants anymore.
+        if ($model->descendants()->count() === 0) {
+            return;
+        }
+
+        foreach ($model->descendants as $sub) {
+            if (!empty($sub->$field)) {
+                continue;
+            }
+
+            // Got a descendant with the parent id null. Let's get them out of the tree
+            $sub->{$sub->getLftName()} = null;
+            $sub->{$sub->getRgtName()} = null;
+            $sub->save();
+        }
     }
 }
