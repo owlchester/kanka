@@ -376,7 +376,7 @@ class CrudController extends Controller
         $editingUsers = null;
 
         /** @var MultiEditingService $editingService */
-        if ($campaign->hasEditingWarning()) {
+        if ($campaign->hasEditingWarning() && $model->entity) {
             $editingService = app()->make(MultiEditingService::class);
             $editingUsers = $editingService->entity($model->entity)->user(auth()->user())->users();
             // If no one is editing the entity, we are now editing it

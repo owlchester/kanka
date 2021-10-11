@@ -13,6 +13,7 @@
     'button' => '<code>' . __('campaigns.members.actions.switch') . '</code>']) !!}
         </p>
 
+        <div class="table-responsive">
         <table id="campaign-members" class="table table-hover table-striped">
             <tbody><tr>
                 <th>{{ __('campaigns.members.fields.name') }}</th>
@@ -85,7 +86,9 @@
                     </td>
                 </tr>
             @endforeach
-            </tbody></table>
+            </tbody>
+        </table>
+        </div>
 
         {{ $r->links() }}
     </div>
