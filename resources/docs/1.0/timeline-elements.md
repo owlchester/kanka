@@ -107,7 +107,7 @@ To create a timeline element, use the following endpoint.
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
 | `name` | `string` (Required if no entity) | Name of the element |
-| `entity_id` | `integer` (Required if no entity) | Entity ID |
+| `entity_id` | `integer` (Required if no name) | Entity ID |
 | `timeline_id` | `integer` (Required) | Timeline ID |
 | `era_id` | `integer` (Required) | Timeline Era ID |
 | `entry` | `string` | Entry of the element |

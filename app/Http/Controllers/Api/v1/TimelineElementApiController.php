@@ -19,7 +19,7 @@ class TimelineElementApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $timeline);
-        return Resource::collection($timeline->layers()->paginate());
+        return Resource::collection($timeline->elements()->paginate());
     }
 
     /**
