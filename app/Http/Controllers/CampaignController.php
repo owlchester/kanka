@@ -11,6 +11,7 @@ use App\Services\EntityService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -79,9 +80,13 @@ class CampaignController extends Controller
         $campaign = new Campaign();
         $this->authorize('create', $campaign);
 
-
         $first = !Auth::user()->hasCampaigns();
-        $campaign = Campaign::create($request->all());
+        $data = $request->all();
+
+        $data['entry'] = Arr::get($data, 'entry');
+        $data['excerpt'] = Arr::get($data, 'excerpt');
+
+        $campaign = Campaign::create($data);
 
         if ($request->has('submit-update')) {
             return redirect()
@@ -97,10 +102,11 @@ class CampaignController extends Controller
             $user = auth()->user();
             $user->welcome_campaign_id = $campaign->id;
             $user->save();
-            return redirect()->route('home');
+            return redirect()->to(app()->getLocale() . '/' . $campaign->getMiddlewareLink());
         }
 
-        return redirect()->route('home')->with('success', __($this->view . '.create.success'));
+        return redirect()->to(app()->getLocale() . '/' . $campaign->getMiddlewareLink())
+            ->with('success', __($this->view . '.create.success'));
     }
 
     /**
