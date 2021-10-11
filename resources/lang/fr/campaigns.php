@@ -102,7 +102,7 @@ TEXT
                 'title' => 'Nouvelle Campagne',
             ],
         ],
-        'title'     => 'Campagnes',
+        'title'     => 'Campagne',
     ],
     'invites'                           => [
         'actions'               => [

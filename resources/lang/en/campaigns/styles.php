@@ -26,4 +26,5 @@ return [
         'success'   => 'Style :name updated.',
         'title'     => 'Update style',
     ],
+    'title' => 'Campaign Theming',
 ];
