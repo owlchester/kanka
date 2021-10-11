@@ -6,8 +6,8 @@ return [
         'title'         => 'Character Age and Death',
     ],
     'api-filters'       => [
-        'title' => 'API Filters',
-        'description' => 'The following filters are available for the :name API endpoint.',
+        'description'   => 'The following filters are available for the :name API endpoint.',
+        'title'         => 'API Filters',
     ],
     'attributes'        => [
         'con'               => 'Con',

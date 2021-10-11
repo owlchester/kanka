@@ -20,6 +20,7 @@ return [
     ],
     'helpers'       => [
         'delete_all'    => 'Es-tu certain de vouloir supprimer tous les attributs de cette entité?',
+        'setup'         => 'Tu peux représenter des valeurs comme les points de vie ou l\'intelligence d\'une entité avec les attributs. Ajoutes des attributs manuellement en cliquant le bouton :manage, ou applique ceux d\'un modèle d\'attributs.',
     ],
     'hints'         => [
         'is_private'    => 'Tous les attributs d\'une entité peuvent être cachés des membres non-admin.',

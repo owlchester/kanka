@@ -81,6 +81,10 @@ return [
             'edit'              => 'Edit a widget',
         ],
         'title'     => 'Campaign Dashboard Setup',
+        'tutorial'  => [
+            'blog'  => 'our tutorial',
+            'text'  => 'Need help setting up your campaign dashboard? Read :blog for some help and inspiration.',
+        ],
         'widgets'   => [
             'calendar'      => 'Calendar',
             'campaign'      => 'Campaign header',
@@ -89,10 +93,6 @@ return [
             'random'        => 'Random entity',
             'recent'        => 'Recently modified',
             'unmentioned'   => 'Unmentioned entities',
-        ],
-        'tutorial' => [
-            'text' => 'Need help setting up your campaign dashboard? Read :blog for some help and inspiration.',
-            'blog' => 'our tutorial',
         ],
     ],
     'title'             => 'Dashboard',

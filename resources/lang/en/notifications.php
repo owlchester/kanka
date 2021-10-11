@@ -1,11 +1,6 @@
 <?php
 
 return [
-    'clear' => [
-        'action'    => 'Clear all',
-        'confirm'   => 'Are you sure you want to remove all notifications? This action can\'t be undone.',
-        'success'   => 'Notifications removed.',
-    ],
     'campaign'          => [
         'application'   => [
             'approved'  => 'Your application to the :campaign campaign has been approved.',
@@ -30,10 +25,14 @@ return [
             'remove'    => 'You have been removed from the :role role in the :campaign campaign.',
         ],
     ],
+    'clear'             => [
+        'action'    => 'Clear all',
+        'confirm'   => 'Are you sure you want to remove all notifications? This action can\'t be undone.',
+        'success'   => 'Notifications removed.',
+    ],
     'header'            => 'You have :count notifications',
-    'unread'            => 'New notification',
     'index'             => [
-        'title'         => 'Notifications',
+        'title' => 'Notifications',
     ],
     'no_notifications'  => 'Notifications will appear here once you have some.',
     'subscriptions'     => [
@@ -43,4 +42,5 @@ return [
         'failed'        => 'We couldn\'t charge your payment details. Please update them in your Payment Method settings.',
         'started'       => 'Your subscription to Kanka has started.',
     ],
+    'unread'            => 'New notification',
 ];

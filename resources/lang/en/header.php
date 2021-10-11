@@ -6,8 +6,8 @@ return [
     'member_since'      => 'Joined :date',
     'notifications'     => [
         'header'    => 'Notifications',
+        'mark_read' => 'Mark all as read',
         'read_all'  => 'View all',
-        'mark_read' => 'Mark all as read'
     ],
     'profile'           => 'Profile',
     'toggle_navigation' => 'Toggle navigation',

@@ -20,7 +20,7 @@ return [
     ],
     'helpers'       => [
         'delete_all'    => 'Are you sure you want to delete all of this entity\'s attributes?',
-        'setup'         => 'You can represent elements like HP or intelligence of an entity with attributes. Add attributes manually by clicking on the :manage button, or apply those from an attribute template.'
+        'setup'         => 'You can represent elements like HP or intelligence of an entity with attributes. Add attributes manually by clicking on the :manage button, or apply those from an attribute template.',
     ],
     'hints'         => [
         'is_private'    => 'You can hide all the attributes of an entity for all members outside of the admin role by making it private.',

@@ -81,6 +81,10 @@ return [
             'edit'              => 'Modifier un widget',
         ],
         'title'     => 'Configuration du tableau de bord de campagne',
+        'tutorial'  => [
+            'blog'  => 'notre tutoriel',
+            'text'  => 'Besoin d\'aide avec la mise en place du tableau de bord de la campagne? Tu peux lire :blog pour de l\'aide et inspiration.',
+        ],
         'widgets'   => [
             'calendar'      => 'Calendrier',
             'campaign'      => 'Entête de campagne',

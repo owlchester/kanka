@@ -18,11 +18,13 @@ return [
     'fields'        => [
         'abbreviation'  => 'Abbreviation',
         'end_year'      => 'Année de fin',
+        'is_collapsed'  => 'Réduit',
         'start_year'    => 'Année de début',
     ],
     'helpers'       => [
-        'eras'      => 'La chronologie a besoin d\'être créée avant de pouvoir ajouter des ères.',
-        'primary'   => 'Séparer la chronologie en plusieurs ères. Une chronologie a besoin au moins d\'une ère pour fonctionner correctement.',
+        'eras'          => 'La chronologie a besoin d\'être créée avant de pouvoir ajouter des ères.',
+        'is_collapsed'  => 'L\'ère est réduite (minimisée) par défaut.',
+        'primary'       => 'Séparer la chronologie en plusieurs ères. Une chronologie a besoin au moins d\'une ère pour fonctionner correctement.',
     ],
     'placeholders'  => [
         'abbreviation'  => 'AD, BC, BCE',

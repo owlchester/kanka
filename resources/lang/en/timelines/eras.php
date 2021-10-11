@@ -18,13 +18,13 @@ return [
     'fields'        => [
         'abbreviation'  => 'Abbreviation',
         'end_year'      => 'End Year',
-        'start_year'    => 'Start Year',
         'is_collapsed'  => 'Collapsed',
+        'start_year'    => 'Start Year',
     ],
     'helpers'       => [
-        'eras'      => 'The timeline needs to be created before eras can be added to it.',
-        'primary'   => 'Separate your timeline into eras. A timeline needs at least one era to properly work.',
-        'is_collapsed' => 'Era is collapsed (minimised) by default.',
+        'eras'          => 'The timeline needs to be created before eras can be added to it.',
+        'is_collapsed'  => 'Era is collapsed (minimised) by default.',
+        'primary'       => 'Separate your timeline into eras. A timeline needs at least one era to properly work.',
     ],
     'placeholders'  => [
         'abbreviation'  => 'AD, BC, BCE',

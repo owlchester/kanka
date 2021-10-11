@@ -157,6 +157,7 @@ return array(
         'pagination',
         'passwords',
         'voyager',
+        'admin.cache',
         'admin.community-events',
         'admin.community-votes',
         'admin.home',

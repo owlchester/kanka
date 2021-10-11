@@ -20,8 +20,8 @@ return [
         'title'     => 'Edit Timeline :name',
     ],
     'fields'        => [
-        'copy_eras'     => 'Copy Eras',
         'copy_elements' => 'Copy Elements',
+        'copy_eras'     => 'Copy Eras',
         'eras'          => 'Eras',
         'name'          => 'Name',
         'reverse_order' => 'Reverse era order',
@@ -45,10 +45,10 @@ return [
         'type'  => 'Primary, World chronicle, Kingdom legacy',
     ],
     'show'          => [
-        'title' => 'Timeline :name',
-        'tabs' => [
+        'tabs'  => [
             'timelines' => 'Timelines',
-        ]
+        ],
+        'title' => 'Timeline :name',
     ],
     'timelines'     => [
         'title' => 'Timeline :name Timelines',

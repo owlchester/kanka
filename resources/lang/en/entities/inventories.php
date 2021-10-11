@@ -12,15 +12,15 @@ return [
         'success'   => 'Item :item removed from :entity.',
     ],
     'fields'        => [
-        'amount'        => 'Quantity',
-        'qty'           => 'QTY',
-        'description'   => 'Description',
-        'is_equipped'   => 'Equipped',
-        'name'          => 'Name',
-        'position'      => 'Position',
+        'amount'            => 'Quantity',
         'copy_entity_entry' => 'Use item entry',
+        'description'       => 'Description',
+        'is_equipped'       => 'Equipped',
+        'name'              => 'Name',
+        'position'          => 'Position',
+        'qty'               => 'QTY',
     ],
-    'helpers' => [
+    'helpers'       => [
         'copy_entity_entry' => 'Display the item\'s entry instead of the custom description.',
     ],
     'placeholders'  => [

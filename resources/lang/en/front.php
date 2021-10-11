@@ -110,10 +110,10 @@ return [
             'title'         => 'Calendars',
         ],
         'collaborative'     => [
-            'title'         => 'Collaborative',
+            'title' => 'Collaborative',
         ],
         'dashboards'        => [
-            'title'         => 'Dashboards',
+            'title' => 'Dashboards',
         ],
         'description'       => 'With our @mentions, our tags, and our in-depth permissions system, Kanka makes it easy to keep track of your world or campaign. This includes Characters and their relations, Locations and their history, Quests and their objectives, Timelines and their eras, and Calendars with both events and weather effects. Best of all, Kanka’s users have a say in which new features are developed through regular Community Votes.',
         'description_full'  => 'Kanka is constantly being updated with new features and improvements, but here are some of the most important ones we think you’ll love.',
@@ -122,9 +122,8 @@ return [
             'title'         => 'Flora & Fauna',
         ],
         'free'              => [
-            'bonuses'       => 'bonuses for our subscribers',
-            'description'   => '',
-            'title'         => 'Free to Use',
+            'bonuses'   => 'bonuses for our subscribers',
+            'title'     => 'Free to Use',
         ],
         'landscape'         => 'Please switch your device to landscape mode to display the list of features.',
         'layers'            => [
@@ -198,10 +197,10 @@ return [
         'title'             => 'Powerful features with incredible flexibility',
         'unlimited'         => 'Unlimited',
         'updates'           => [
-            'title'         => 'Frequent Community Driven Updates',
+            'title' => 'Frequent Community Driven Updates',
         ],
         'worldbuilding'     => [
-            'title'         => 'Worldbuilding',
+            'title' => 'Worldbuilding',
         ],
     ],
     'first_block'   => [
