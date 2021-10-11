@@ -44,9 +44,13 @@ class MigrateThemes extends Command
         Campaign::whereNotNull('css')->chunk(500, function ($campaigns) {
             /** @var Campaign $campaign */
             foreach ($campaigns as $campaign) {
+                $css = $campaign->css;
+                if (empty($css)) {
+                    continue;
+                }
                 $style = new CampaignStyle();
                 $style->campaign_id = $campaign->id;
-                $style->content = $campaign->css;
+                $style->content = $css;
                 $style->is_enabled = true;
                 $style->name = 'Campaign style';
                 $style->save();
