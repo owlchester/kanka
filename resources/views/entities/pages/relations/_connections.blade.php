@@ -4,11 +4,12 @@
  */
 ?>
 <div class="box box-solid box-entity-connections" id="entity-related">
-    <div class="box-body">
-        <h2 class="page-header with-border">
+    <div class="box-header with-border">
+        <h2 class="box-title">
             {{ __('entities/relations.panels.related') }}
         </h2>
-
+    </div>
+    <div class="box-body">
         <table class="table table-hover">
             <thead>
             <tr>

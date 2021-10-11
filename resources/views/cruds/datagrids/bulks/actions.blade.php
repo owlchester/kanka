@@ -16,6 +16,13 @@ if (!isset($datagrid) || $datagrid->bulkPermissions) {
                 </a>
             </li>';
 }
+if (!isset($datagrid) || $datagrid->bulkTransform) {
+   $dropdownActions[] = '<li class="dropdown-item">
+                <a href="#" class="bulk-copy-campaign" id="datagrids-bulk-actions-transform" data-toggle="ajax-modal" data-target="#bulk-transform.modal" data-url="' .  route('bulk.modal', ['view' => 'transform', 'type' => $name]) . '">
+                    <i class="fa fa-exchange-alt"></i> ' .  __('crud.actions.transform') . '
+                </a>
+            </li>';
+}
 if (!isset($datagrid) || $datagrid->bulkCopyToCampaign) {
    $dropdownActions[] = '<li class="dropdown-item">
                 <a href="#" class="bulk-copy-campaign" id="datagrids-bulk-actions-copy-campaign" data-toggle="ajax-modal" data-target="#bulk-permissions.modal" data-url="' .  route('bulk.modal', ['view' => 'copy_campaign', 'type' => $name]) . '">
@@ -27,8 +34,9 @@ if (!isset($datagrid) || $datagrid->bulkCopyToCampaign) {
 @endphp
 
 <div class="datagrid-bulk-actions">
-@if (Auth::user()->isAdmin())
+@if (auth()->user()->isAdmin())
     <div class="btn-group">
+        @if (!isset($datagrid) || !$datagrid instanceof \App\Datagrids\NoneDatagrid)
         <a href="#" class="btn btn-default bulk-edit disabled" data-toggle="modal" data-target="#bulk-edit.modal" id="datagrids-bulk-actions-batch" >
             <i class="fa fa-edit"></i> {{ __('crud.bulk.actions.edit') }}
         </a>
@@ -40,6 +48,7 @@ if (!isset($datagrid) || $datagrid->bulkCopyToCampaign) {
         <ul class="dropdown-menu" role="menu">
             {!! implode("\n", $dropdownActions) !!}
         </ul>
+        @endif
     @endif
     </div>
     @endif

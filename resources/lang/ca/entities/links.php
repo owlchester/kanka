@@ -32,6 +32,10 @@ return [
         'helper'    => 'Les campanyes millorades poden afegir enllaços a les entitats que dirigeixen a webs externes.',
         'title'     => 'Enllaços de :name',
     ],
+    'unboosted'     => [
+        'text'  => 'Només les :boosted-campaigns poden afegir enllaços externs a les entitats.',
+        'title' => 'Funcionalitat de campanya millorada',
+    ],
     'update'        => [
         'success'   => 'S\'ha actualitzat l\'enllaç :name de :entity.',
         'title'     => 'Actualitza l\'enllaç de :name',

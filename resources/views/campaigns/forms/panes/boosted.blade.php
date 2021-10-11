@@ -21,11 +21,14 @@ endforeach;
         <p class="help-block">{{ __('campaigns.helpers.theme') }}</p>
     </div>
 
+    @if (isset($campaign) && $campaign->id < 80000)
     <div class="form-group">
         <label>{{ __('campaigns.fields.css') }}</label>
-        {!! Form::textarea('css', null, ['class' => 'form-control', 'id' => 'css', 'spellcheck' => 'false']) !!}
-        <p class="help-block">{{ __('campaigns.helpers.css') }}</p>
+        <div class="text-info">
+            {!! __('campaigns/styles.helpers.css_moved', ['link' => link_to_route('campaign_styles.index', __('campaigns.show.tabs.styles'))]) !!}
+        </div>
     </div>
+    @endif
 
     <hr />
     <div class="row">

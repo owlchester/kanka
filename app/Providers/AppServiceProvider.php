@@ -15,6 +15,7 @@ use App\Models\CampaignPlugin;
 use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignSetting;
+use App\Models\CampaignStyle;
 use App\Models\CampaignSubmission;
 use App\Models\CampaignUser;
 use App\Models\AttributeTemplate;
@@ -124,6 +125,7 @@ class AppServiceProvider extends ServiceProvider
             CampaignSetting::observe('App\Observers\CampaignSettingObserver');
             CampaignDashboard::observe('App\Observers\CampaignDashboardObserver');
             CampaignSubmission::observe('App\Observers\CampaignSubmissionObserver');
+            CampaignStyle::observe('App\Observers\CampaignStyleObserver');
             //MapPoint::observe('App\Observers\MapPointObserver');
             Character::observe(CharacterObserver::class);
             CharacterTrait::observe('App\Observers\CharacterTraitObserver');

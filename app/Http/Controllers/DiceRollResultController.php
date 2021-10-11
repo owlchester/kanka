@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Character;
-use App\Models\DiceRoll;
-use App\Http\Requests\StoreDiceRoll;
+use App\Datagrids\NoneDatagrid;
 use App\Models\DiceRollResult;
-use App\Services\RandomDiceRollService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class DiceRollResultController extends CrudController
 {
@@ -50,10 +45,11 @@ class DiceRollResultController extends CrudController
         $model = new $this->model;
         $this->filterService->make($this->view, request()->all(), $model);
         $name = $this->view;
+        $langKey = $name;
         $actions = $this->indexActions;
         $filters = $this->filters;
         $filterService = $this->filterService;
-        $langKey = $name;
+        $datagrid = new NoneDatagrid();
 
         $base = $model
             ->search(request()->get('search'))
@@ -77,7 +73,8 @@ class DiceRollResultController extends CrudController
             'filterService',
             'filteredCount',
             'unfilteredCount',
-            'langKey'
+            'langKey',
+            'datagrid'
         ));
     }
 

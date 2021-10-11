@@ -17,15 +17,13 @@
                 </li>
             @endif
         @endforeach
-        @if (!isset($newCampaign))
         @can('create', \App\Models\Campaign::class)
             <li class="bordered">
-                <a href="{{ !Auth::user()->hasCampaigns() ? route('start') : route('campaigns.create') }}">
+                <a href="{{ route('start') }}">
                     <i class="fa fa-plus"></i> {{ __('sidebar.campaign_switcher.new_campaign') }}
                 </a>
             </li>
         @endcan
-        @endif
     </ul>
 
     @if (\App\Facades\UserCache::follows()->count() > 0)
@@ -54,3 +52,4 @@
         </li>
     </ul>
 </section>
+<div class="campaign-switcher-backdrop" style="display:none;"></div>

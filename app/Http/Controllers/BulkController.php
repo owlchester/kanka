@@ -11,6 +11,7 @@ use App\Services\EntityService;
 use App\Traits\BulkControllerTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class BulkController extends Controller
 {
@@ -97,6 +98,16 @@ class BulkController extends Controller
                 return redirect()
                     ->route($entity . '.' . $subroute, $routeParams)
                     ->with('success_raw', trans_choice('crud.bulk.success.copy_to_campaign', $count, ['count' => $count, 'campaign' => $campaign->name]));
+            } elseif ($action === 'transform') {
+                $models = explode(',', $request->get('models'));
+                $target = $request->get('target');
+                $count = $this
+                    ->bulkService
+                    ->entities($models)
+                    ->transform($target);
+                return redirect()
+                    ->route($entity . '.' . $subroute, $routeParams)
+                    ->with('success_raw', trans_choice('entities/transform.bulk.success', $count, ['count' => $count, 'type' => __('entities.' . $target)]));
             } elseif ($action === 'templates') {
                 $count = $this->bulkService
                     ->entities(explode(',', $request->get('models')))
@@ -138,22 +149,29 @@ class BulkController extends Controller
      */
     public function modal(Request $request)
     {
-        if (!$request->has('view') || !in_array($request->get('view'), ['permissions', 'copy_campaign', 'templates'])) {
+        if (!$request->has('view') || !in_array($request->get('view'), ['permissions', 'copy_campaign', 'templates', 'transform'])) {
             return response()->json(['error' => 'invalid view']);
         }
 
+        $type = request()->get('type');
         $templates = [];
+        $entities = null;
+
         if (request()->get('view') == 'templates') {
             $campaign = CampaignLocalization::getCampaign();
             /** @var AttributeService $service */
             $service = app()->make('App\Services\AttributeService');
             $templates = $service->campaign(CampaignLocalization::getCampaign())->templateList($campaign);
         }
-        $type = request()->get('type');
+        elseif (request()->get('view') === 'transform') {
+            $entities = $this->entityService
+                ->labelledEntities(true, [Str::plural($type), 'menu_links', 'relations'], true);
+            $entities[''] = __('entities/transform.fields.select_one');
+        }
 
         $campaign = CampaignLocalization::getCampaign();
         return view('cruds.datagrids.bulks.modals._' . $request->get('view'), compact(
-            'campaign', 'templates', 'type'
+            'campaign', 'templates', 'type', 'entities'
         ));
     }
 }

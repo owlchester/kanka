@@ -1,18 +1,27 @@
 <?php
 
 return [
-    'avatar'        => [
+    'avatar'                        => [
         'success'   => 'Avatar aktualizovaný.',
     ],
-    'description'   => 'Uprav detaily tvojho profilu',
-    'edit'          => [
+    'campaign_switcher_order_by'    => [
+        'alphabetical'      => 'Abecedne',
+        'date_created'      => 'Dátum vytvorenia',
+        'date_joined'       => 'Dátum členstva',
+        'default'           => 'Štandardne',
+        'r_alphabetical'    => 'Abecedne obrátene',
+        'r_date_created'    => 'Dátum vytvorenia obrátene',
+        'r_date_joined'     => 'Dátum členstva obrátene',
+    ],
+    'description'                   => 'Uprav detaily tvojho profilu',
+    'edit'                          => [
         'success'   => 'Profil upravený',
     ],
-    'editors'       => [
+    'editors'                       => [
         'legacy'        => 'Pôvodný (TinyMCE 4)',
         'summernote'    => 'Summernote',
     ],
-    'fields'        => [
+    'fields'                        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'E-mail',
         'hide_subscription'         => 'Skryť moje meno zo :hall_of_fame.',
@@ -25,7 +34,7 @@ return [
         'settings'                  => 'Nastavenia',
         'theme'                     => 'Téma',
     ],
-    'newsletter'    => [
+    'newsletter'                    => [
         'helpers'   => [
             'community-vote'    => 'Obdrž oznámenie stále, keď sa spustí nové :community-vote.',
             'header'            => 'Prihlás sa na odoberanie e-mailových newsletterov, nech vieš, čo sa s Kankou deje.',
@@ -49,17 +58,17 @@ return [
         ],
         'title'     => 'Newsletter',
     ],
-    'password'      => [
+    'password'                      => [
         'success'   => 'Heslo zmenené',
     ],
-    'placeholders'  => [
+    'placeholders'                  => [
         'email'                     => 'Tvoja e-mailová adresa',
         'name'                      => 'Tvoje meno, ako sa bude zobrazovať',
         'new_password'              => 'Tvoje nové heslo',
         'new_password_confirmation' => 'Potvrď tvoje nové heslo',
         'password'                  => 'Zadaj tvoje aktuálne heslo',
     ],
-    'sections'      => [
+    'sections'                      => [
         'delete'    => [
             'delete'    => 'Odstrániť moje konto',
             'helper'    => 'Odstránenie tvojho konta odstráni aj všetky kampane, ktorých si jediným členom. Táto akcia je trvalá a nemôže byť vrátená späť.',
@@ -70,14 +79,15 @@ return [
             'title' => 'Zmena hesla',
         ],
     ],
-    'settings'      => [
+    'settings'                      => [
         'fields'    => [
-            'advanced_mentions'     => 'Pokročilé referencie',
-            'date_format'           => 'Formát dátumu',
-            'default_nested'        => 'Vnorené zobrazenie ako štandard',
-            'editor'                => 'Textový editor',
-            'new_entity_workflow'   => 'Nový workflow objektu',
-            'pagination'            => 'Stránkovanie (počet objektov na stránke)',
+            'advanced_mentions'             => 'Pokročilé referencie',
+            'campaign_switcher_order_by'    => 'Zoradenie v prepínači kampaní',
+            'date_format'                   => 'Formát dátumu',
+            'default_nested'                => 'Vnorené zobrazenie ako štandard',
+            'editor'                        => 'Textový editor',
+            'new_entity_workflow'           => 'Nový workflow objektu',
+            'pagination'                    => 'Stránkovanie (počet objektov na stránke)',
         ],
         'helpers'   => [
             'editor'    => 'Štandardný editor (TinyMCE 4) je starší ale funguje dobre na desktope, nie však na mobile. Summernote je novší editor, ktorý správne funguje na všetkých zariadeniach, ale ešte stále ho testujeme.',
@@ -90,7 +100,7 @@ return [
         ],
         'success'   => 'Nastavenia zmenené.',
     ],
-    'theme'         => [
+    'theme'                         => [
         'success'   => 'Téma zmenená.',
         'themes'    => [
             'dark'      => 'Dark',
@@ -99,8 +109,8 @@ return [
             'midnight'  => 'Midnight Blue',
         ],
     ],
-    'title'         => 'Úprava profilu',
-    'workflows'     => [
+    'title'                         => 'Úprava profilu',
+    'workflows'                     => [
         'created'   => 'Prejsť na vytvorený objekt',
         'default'   => 'Zoznam objektov',
     ],

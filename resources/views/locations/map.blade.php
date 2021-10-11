@@ -17,14 +17,12 @@
             </a>
             @if ($location->map)
                 @can('update', $location)
-                    @notEnv('shadow')
                     <button id="map-admin-mode" class="btn btn-primary" title="{{ __('locations.map.helpers.admin') }}" data-toggle="tooltip" data-placement="bottom">
                         <i class="fa fa-edit"></i> <span class="hidden-xs">{{ __('locations.map.actions.admin_mode') }}</span>
                     </button>
                     <button id="map-view-mode" class="btn btn-primary" title="{{ __('locations.map.actions.view_mode') }}" data-toggle="tooltip" data-placement="bottom" style="display: none">
                         <i class="fa fa-eye"></i> <span class="hidden-xs">{{ __('locations.map.actions.view_mode') }}</span>
                     </button>
-                    @endenv
                 @endcan
             @endif
         </div>
@@ -119,10 +117,8 @@
 @section('scripts')
     <script src="{{ mix('js/location/map.js') }}" defer></script>
     <script src="{{ asset('js/vendor/jquery.ui.touch-punch.min.js') }}" defer></script>
-    <script src="/vendor/spectrum/spectrum.js" defer></script>
 @endsection
 
 @section('styles')
     <link href="{{ mix('css/map.css') }}" rel="stylesheet">
-    <link href="/vendor/spectrum/spectrum.css" rel="stylesheet">
 @endsection

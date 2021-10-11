@@ -102,6 +102,7 @@ return [
         'boosts_v2'         => [
             'description'       => 'Os nosos niveis de pagamento danche acceso a potenciadores, os cales podes usar para potenciar ou superpotenciar campañas. Facelo desbloquea os seguintes beneficios para unha campaña.',
             'description-count' => 'Potenciar unha campaña usa :boost-count potenciador. Superpotenciar unha campaña usa :superboost-count potenciadores.',
+            'moving'            => 'Os potenciadores poden ser movidos de campaña a campaña. Por exemplo, se unha campaña remata, podes despotenciala e potenciar ou superpotenciar outra campaña no seu lugar. Despotenciar unha campaña non elimina ningún dato das funcionalidades exclusivas, simplemente as esconde ata que a campaña sexa potenciada de novo.',
             'title'             => 'Campañas potenciadas e superpotenciadas',
         ],
         'calendars'         => [
@@ -191,7 +192,6 @@ return [
             'gallery'   => 'Galería de campaña e integración co editor de texto Summernote',
             'logs'      => 'Historial de cambios completo en entidades (ata 30 días)',
             'stats'     => 'Páxina de logros da campaña',
-            'title'     => 'Campañas superpotenciadas',
         ],
         'timelines'         => [
             'description'   => 'Representa visualmente as liñas temporais dos teus mundos, imperios, familias nobres, ou incluso dunha personaxe.',
@@ -264,12 +264,14 @@ return [
         'features'      => 'Funcionalidades',
         'help'          => 'Axuda',
         'home'          => 'Inicio',
+        'kb'            => 'Base de Coñecemento',
         'login'         => 'Iniciar sesión',
         'marketplace'   => 'Mercado',
         'media'         => 'Media',
         'news'          => 'Novas',
         'newsletter'    => 'Boletín informativo',
         'other'         => 'Miscelánea',
+        'overview'      => 'Resumo de funcionalidades',
         'pricing'       => 'Prezos',
         'privacy'       => 'Política de privacidade',
         'register'      => 'Rexistrarse',

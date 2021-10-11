@@ -50,8 +50,6 @@ class UpdateMentions extends Command
      */
     public function handle()
     {
-        define('MISCELLANY_SKIP_ENTITY_CREATION', true);
-
         EntityMention::with(['target', 'entity'])->entity()->chunk(10000, function ($mentions) {
             $bar = $this->output->createProgressBar(count($mentions));
             $bar->start();
@@ -139,6 +137,9 @@ class UpdateMentions extends Command
             if ($source->isDirty('entry')) {
                 $this->mentionCount++;
                 $source->timestamps = false;
+                if ($source instanceof MiscModel) {
+                    $source->savingObserver = false;
+                }
                 $source->save();
 
                 if ($mention->isEntity()) {

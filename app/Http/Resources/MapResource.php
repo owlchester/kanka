@@ -2,9 +2,7 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
 use App\Models\Map;
-use App\Models\MapMarker;
 
 class MapResource extends EntityResource
 {
@@ -16,7 +14,7 @@ class MapResource extends EntityResource
      */
     public function toArray($request)
     {
-        /** @var Character $model */
+        /** @var Map $model */
         $model = $this->resource;
 
         return $this->entity([

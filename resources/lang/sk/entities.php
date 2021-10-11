@@ -56,6 +56,8 @@ return [
     'quests'                => 'Úlohy',
     'race'                  => 'Rasa',
     'races'                 => 'Rasy',
+    'relation'              => 'Vzťah',
+    'relations'             => 'Vzťahy',
     'tag'                   => 'Kategória',
     'tags'                  => 'Kategórie',
     'timeline'              => 'Časová os',

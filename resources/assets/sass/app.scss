@@ -88,7 +88,22 @@ img.profile-user-img {
       }
     }
   }
+
+  .dropdown-menu > .notification-footer  {
+    a {
+      display: inline-block;
+      padding: 3px 5px;
+    }
+  }
 }
+.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a {
+  overflow: auto;
+  white-space: unset;
+}
+.navbar-nav > .notifications-menu > .dropdown-menu {
+  width: 360px;
+}
+
 .disabledLink{
   cursor: not-allowed;
 }
@@ -1108,7 +1123,13 @@ summary { display: list-item; }
   }
 }
 
-@media(min-width: 787px) {
+.box-footer {
+  .pagination {
+    margin: 0;
+  }
+}
+
+@media (min-width: 768px) {
   footer {
     .footer-socials {
       .email, .socials, .language-switcher {

@@ -5,6 +5,7 @@
 - [Maps](#maps)
   - [All Maps](#all-maps)
     - [Results](#results)
+    - [Filters](#filters)
   - [Map](#map)
     - [Results](#results-1)
   - [Create a Map](#create-a-map)
@@ -66,6 +67,11 @@ You can get a list of all the maps of a campaign by using the following endpoint
     ]
 }
 ```
+
+<a name="filters"></a>
+## Filters
+
+The list of returned maps can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=map" target="_blank">API filters</a>.
 
 
 <a name="map"></a>

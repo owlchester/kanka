@@ -59,13 +59,8 @@ class Conversation extends MiscModel
      * @var array
      */
     protected $filterableColumns = [
-        'name',
-        'type',
         'target',
-        'tag_id',
-        'is_private',
         'is_closed',
-        'tags',
     ];
 
     /**

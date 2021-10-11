@@ -26,6 +26,10 @@ trait EntityLogs
      */
     public static function bootEntityLogs(): void
     {
+        // Don't add this observer if in console mode
+        if (app()->runningInConsole()) {
+            return;
+        }
         static::observe(app(EntityLogObserver::class));
     }
 }

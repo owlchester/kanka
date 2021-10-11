@@ -22,6 +22,7 @@
         <th>{{ __('timelines/eras.fields.abbreviation') }}</th>
         <th>{{ __('timelines/eras.fields.start_year') }}</th>
         <th>{{ __('timelines/eras.fields.end_year') }}</th>
+        <th>{{ __('timelines/eras.fields.is_collapsed') }}</th>
         <th></th>
     </tr>
     </thead>
@@ -33,6 +34,11 @@
             <td>{{ $era->abbreviation }}</td>
             <td>{{ $era->start_year }}</td>
             <td>{{ $era->end_year }}</td>
+            <td>
+                @if($era->is_collapsed)
+                    <i class="fa fa-check-circle" title="{{ __('timelines/eras.helpers.is_collapsed') }}" data-toggle="tooltip"></i>
+                @endif
+            </td>
             <td class="text-right">
                 <a href="{{ route('timelines.timeline_eras.edit', [$model, $era]) }}" class="btn btn-primary btn-xs"
                    title="{{ __('crud.edit') }}"

@@ -14,7 +14,8 @@ return [
         'title'     => 'Edit Event :name',
     ],
     'events'        => [
-        'title' => 'Event :name Events',
+        'helper'    => 'Events that have this entity as their parent event are displayed here.',
+        'title'     => 'Event :name Events',
     ],
     'fields'        => [
         'date'      => 'Date',
@@ -45,7 +46,7 @@ return [
     'show'          => [
         'description'   => 'A detailed view of an event',
         'tabs'          => [
-            'information'   => 'Information',
+            'events'    => 'Events',
         ],
         'title'         => 'Event :name',
     ],

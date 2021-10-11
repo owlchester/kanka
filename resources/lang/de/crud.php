@@ -120,6 +120,7 @@ return [
         'calendar'              => 'Kalender',
         'calendar_date'         => 'Kalenderdatum',
         'character'             => 'Charakter',
+        'child'                 => 'Kind',
         'closed'                => 'geschlossen',
         'colour'                => 'Farbe',
         'copy_abilities'        => 'Kopiere Fähigkeiten',

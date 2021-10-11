@@ -85,6 +85,13 @@ return [
             'exhausted_boosts'      => 'Te has quedado sin mejoras. Elimina tu mejora de una campaña antes de dársela a otra.',
             'exhausted_superboosts' => 'Te has quedado sin mejoras. Necesitas 3 mejoras para supermejorar una campaña.',
         ],
+        'modals'            => [
+            'more'  => [
+                'action'    => '¿Más mejoras?',
+                'body'      => 'Puedes obtener más mejoras subiendo el nivel de tu suscripción, o eliminando alguna de otra campaña. Al quitar una mejora de una campaña no se elimina ninguna información, sino que solo se esconden las funcionalidades mejoradas hasta que vuelvas a mejorarla.',
+                'title'     => 'Obtener más mejoras',
+            ],
+        ],
         'success'           => [
             'boost'         => 'Campaña :name mejorada.',
             'delete'        => 'Tu mejora de :name se ha eliminado.',
@@ -155,25 +162,16 @@ return [
         'subscription_status'   => 'Estado de la suscripción',
     ],
     'patreon'       => [
-        'actions'           => [
-            'link'  => 'Enlazar cuenta',
-            'view'  => 'Visita la página de Patreon de Kanka',
-        ],
-        'benefits'          => 'Si nos ayudas en Patreon podrás subir imágenes más pesadas, y así nos ayudarás a cubrir los costes del servidor y a dedicarle más tiempo a trabajar en Kanka.',
-        'benefits_features' => 'Funciones increíbles',
-        'deprecated'        => 'Funcionalidad discontinuada. Si deseas apoyar a Kanka, puedes hacerlo mediante una :subscription. La vinculación con Patreon aún sigue activa para nuestros Patrons que vincularon sus cuentas antes de la mudanza de Patreon.',
-        'description'       => 'Sincronizando con Patreon',
-        'linked'            => '¡Gracias por apoyar a Kanka en Patreon! Se ha enlazado tu cuenta.',
-        'pledge'            => 'Pledge :name',
-        'remove'            => [
+        'deprecated'    => 'Funcionalidad obosleta. Si deseas apoyar a Kanka, puedes hacerlo mediante una :subscription. La vinculación con Patreon aún sigue activa para nuestros Patrons que vincularon sus cuentas antes de la mudanza de Patreon.',
+        'description'   => 'Sincronizando con Patreon',
+        'pledge'        => 'Pledge :name',
+        'remove'        => [
             'button'    => 'Desvincular mi cuenta de Patreon',
             'success'   => 'Tu cuenta de Patreon se ha desvinculado.',
             'text'      => 'Desvincular tu cuenta de Patreon de Kanka eliminará tus bonus, tu nombre en el salón de la fama, tus mejoras y otras funcionalidades vinculadas. Sin embargo, tu contenido mejorado no se perderá: si vuelves a suscribirte, volverás a tener acceso a esos datos, incluyendo la posibilidad de volver a mejorar dicha campaña.',
             'title'     => 'Desvincular mi cuenta de Patreon de Kanka',
         ],
-        'success'           => '¡Gracias por apoyar a Kanka en Patreon!',
-        'title'             => 'Patreon',
-        'wrong_pledge'      => 'Añadimos manualmente tu nivel de "pledge", así que ten en cuenta que podemos tardar unos pocos días. Si al cabo de un tiempo sigue sin estar bien, contáctanos por favor.',
+        'title'         => 'Patreon',
     ],
     'profile'       => [
         'actions'   => [
@@ -190,6 +188,7 @@ return [
             'update_currency'   => 'Guardar moneda preferida',
         ],
         'benefits'              => 'Si nos apoyas, desbloquearás algunas nuevas :features y nos ayudarás a dedicar más tiempo a la mejora de Kanka. No guardaremos tu información bancaria. Usamos :stripe para gestionar los cobros.',
+        'benefits_features'     => 'funcionalidades increíbles',
         'billing'               => [
             'helper'    => 'Tu información de pago se procesa y se guarda de forma segura mediante :stripe. Este método de pago se usará para todas tus suscripciones.',
             'saved'     => 'Método de pago guardado',

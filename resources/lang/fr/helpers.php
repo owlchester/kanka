@@ -5,6 +5,10 @@ return [
         'description'   => 'Il est possible de lier un personnage à un ou plusieurs calendriers de la campagne en allant sur la page Rappels du personnage. Sur cette page, ajouter un nouveau rappel et sélectionner la valeur Naissance ou Mort du champs type d\'événement. Si la naissance et la mort sont indiquées, l\'âge à la mort sera affiché. Si seulement la mort est indiquée, le nombre d\'années depuis lesquelles le personnage est décédé sera affiché.',
         'title'         => 'Âge et mort d\'un personnage',
     ],
+    'api-filters'       => [
+        'description'   => 'Les filtres suivants sont disponibles pour l\'API :name.',
+        'title'         => 'Filtres d\'API',
+    ],
     'attributes'        => [
         'con'               => 'Con',
         'description'       => 'Les attributs représentent des valeurs de l\'entité qui ne sont pas de longs textes. Il est possible de référencer d\'autres entités dans les attributs avec les mentions avancées :mention. Il est aussi possible de référencer d\'autres attributs de cette entité avec la syntaxe :attribute.',

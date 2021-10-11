@@ -12,6 +12,9 @@
 @import "~eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css";
 @import "~tributejs/tribute.css";
 
+// Spectrum colour picker
+@import "~spectrum-colorpicker/spectrum.css";
+
 // Pretty Checkboxes
 @import '~pretty-checkbox/src/pretty-checkbox.scss';
 
@@ -34,7 +37,7 @@
     color: white;
   }
 }
-@media (max-width: 787px) {
+@media (max-width: 767px) {
   .note-popover {
     left: 0 !important;
     width: 100% !important;

@@ -3,6 +3,7 @@
 ---
 
 - [All Journals](#all-journals)
+- [Filters](#filters)
 - [Single Journal](#journal)
 - [Create a Journal](#create-journal)
 - [Update a Journal](#update-journal)
@@ -46,6 +47,11 @@ You can get a list of all the journals of a campaign by using the following endp
     ]
 }
 ```
+
+<a name="filters"></a>
+## Filters
+
+The list of returned journals can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=journal" target="_blank">API filters</a>.
 
 
 <a name="journal"></a>

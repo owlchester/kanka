@@ -28,7 +28,7 @@ class StoreQuestElement extends FormRequest
     {
         $rules = [
             'entity_id' => 'required|exists:entities,id',
-            'description' => 'string',
+            'description' => 'string|nullable',
             'role' => 'nullable|string|max:191',
             'colour' => 'nullable|string|max:10',
             'visibility' => 'nullable|string|max:10',

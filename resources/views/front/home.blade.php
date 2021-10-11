@@ -37,7 +37,46 @@
                 <p class="text-muted">{{ __('front.features.description') }}</p>
                 <hr>
             </div>
-            @include('front.features.main')
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                        <h3>{{ __('front.features.free.title') }}</h3>
+                        <p class="text-muted">
+                            {!! __('front/features.free.description', [
+            'bonuses' => link_to_route('front.pricing', __('front.features.free.bonuses'), ['#paid-features']),
+        ]) !!}
+                        </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                        <h3>{{ __('front.features.collaborative.title') }}</h3>
+                        <p class="text-muted">
+                            {!! __('front/features.collaborative.description') !!}
+                        </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                        <h3>{{ __('front/features.entity.title') }}</h3>
+                        <p class="text-muted">
+                            {!! __('front/features.entity.description') !!}
+                        </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="m-3 text-center">
+            <a href="{{ route('front.features') }}" class="btn btn-primary btn-lg">
+                {{ __('front/features.discover-all') }}
+            </a>
+            </div>
         </div>
     </section>
 

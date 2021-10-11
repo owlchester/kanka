@@ -13,7 +13,7 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
         <section class="sidebar-campaign">
             <div class="campaign-block">
                 <div class="campaign-head">
-                    <div class="campaign-name" data-toggle="collapse" data-target="#campaign-switcher">
+                    <div class="campaign-name">
                         @if(auth()->check())<i class="fa fa-caret-down pull-right"></i>@endif
                         {!! $currentCampaign->name !!}
                     </div>

@@ -453,6 +453,9 @@ class Campaign extends MiscModel
         return Arr::get($this->settings, 'default_visibility', 'all');
     }
 
+    /**
+     * @return bool
+     */
     public function publicHasNoVisibility(): bool
     {
         /** @var CampaignRole $publicRole */
@@ -462,5 +465,16 @@ class Campaign extends MiscModel
             ->where('access', 1)
             ->count();
         return $permissionCount == 0;
+    }
+
+    /**
+     * Determine if a campaign has editing warnings (when multiple people are trying to edit
+     * the same entity). This is enabled if the campaign has several members.
+     * @return bool
+     */
+    public function hasEditingWarning(): bool
+    {
+        $members = CampaignCache::members();
+        return !empty($members) && $members->count() > 1;
     }
 }

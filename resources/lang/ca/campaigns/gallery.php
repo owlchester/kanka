@@ -6,6 +6,7 @@ return [
         'full'  => 'Enllaç a la imatge',
         'save'  => 'Desa',
     ],
+    'breadcrumb'    => 'Galeria',
     'destroy'       => [
         'success'   => 'S\'ha eliminat la imatge :name.',
     ],

@@ -65,6 +65,7 @@ return [
         'success'       => [
             'copy_to_campaign'  => '{1} :count objekt zkopírován do tažení :campaign.|[2,4] :count objekty zkopírovány do tažení :campaign.|[5,*] :count objektů zkopírováno do tažení :campaign.',
             'editing'           => '{1} :count objekt upraven.|[2,4] :count objekty upraveny.|[5,*] :count objektů upraveno.',
+            'editing_partial'   => '{1} :count/:total objekt byl upraven.|[2,4] :count/:total objekty byly upraveny.|[5,*] :count/:total bylo upraveno.',
             'permissions'       => '{1} Oprávnění změněno pro :count objekt.|[2,4] Oprávnění změněno pro :count objekty.|[5,*] Oprávnění změněno pro :count objektů',
             'private'           => '{1} :count objekt je nyní soukromý.|[2,4] :count objekty jsou nyní soukromé.|[5,*] :count objektů jsou nyní soukromých.',
             'public'            => '{1} :count objekt je nyní viditelný.|[2,4] :count objekty jsou nyní viditelné.|[5,*] :count objektů je nyní viditelných.',
@@ -117,6 +118,7 @@ return [
         'calendar'              => 'Kalendář',
         'calendar_date'         => 'Kalendářní datum',
         'character'             => 'Postava',
+        'child'                 => 'Podřazený',
         'closed'                => 'Uzavřeno',
         'colour'                => 'Barva',
         'copy_abilities'        => 'Kopírovat schopnosti',
@@ -187,6 +189,16 @@ return [
         'direct'                    => 'Jen přímo podřízené objekty',
         'filtered'                  => 'Zobrazuje se :count z celkového počtu :total objektů.',
         'hide'                      => 'Skrýt filtry',
+        'lists'                     => [
+            'desktop'   => [
+                'all'       => 'Zobrazit všechny podřazené (:count)',
+                'filtered'  => 'Zobrazit jen přímo podřazené (:count)',
+            ],
+            'mobile'    => [
+                'all'       => 'Zobrazit všechny (:count)',
+                'filtered'  => 'Zobrazit přímé (:count)',
+            ],
+        ],
         'mobile'                    => [
             'clear' => 'Vymazat',
             'copy'  => 'Schránka',

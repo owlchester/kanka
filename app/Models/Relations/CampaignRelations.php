@@ -9,6 +9,7 @@ use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignPlugin;
 use App\Models\CampaignRole;
 use App\Models\CampaignSetting;
+use App\Models\CampaignStyle;
 use App\Models\CampaignSubmission;
 use App\Models\CampaignUser;
 use App\Models\Character;
@@ -46,6 +47,7 @@ use App\User;
  * @property CampaignDashboardWidget[] $widgets
  * @property CampaignDashboard[] $dashboards
  * @property CampaignSubmission[] $submissions
+ * @property CampaignStyle[] $styles
  */
 trait CampaignRelations
 {
@@ -320,5 +322,10 @@ trait CampaignRelations
     public function dashboards()
     {
         return $this->hasMany(CampaignDashboard::class);
+    }
+
+    public function styles()
+    {
+        return $this->hasMany(CampaignStyle::class);
     }
 }

@@ -10,6 +10,8 @@ import select2 from './components/select2.js';
 import deleteConfirm from './components/delete-confirm.js';
 import dynamicMentions from "./mention";
 
+require('./tags.js');
+
 $(document).ready(function() {
 
     // Inject the isMobile variable into the window. We don't want ALL of the javascript
@@ -153,7 +155,7 @@ $(document).ready(function() {
         initCheckboxSwitch();
         initAjaxPagination();
         initTooltips();
-        initCategories();
+        window.initCategories();
         initSpectrum();
         initDynamicDelete();
         initImageRemoval();
@@ -479,14 +481,21 @@ function initSidebar() {
     }
 
     let down = $('.sidebar-campaign .campaign-head .campaign-name .fa-caret-down');
+    let dropdown = $('#campaign-switcher');
+    let backdrop = $('.campaign-switcher-backdrop');
 
     toggler.on('click', function(e) {
         e.preventDefault();
-        if (down.hasClass('flipped')) {
-            down.removeClass('flipped');
-        } else {
-            down.addClass('flipped');
-        }
+        dropdown.collapse('toggle');
+        backdrop.show();
+        down.addClass('flipped');
+    });
+
+    backdrop.click(function (e) {
+        e.preventDefault();
+        backdrop.hide();
+        dropdown.collapse('hide');
+        down.removeClass('flipped');
     });
 }
 
@@ -533,5 +542,4 @@ require('./keyboard.js');
 require('./crud.js');
 require('./calendar.js');
 require('./search.js');
-require('./tags.js');
 require('./notification');

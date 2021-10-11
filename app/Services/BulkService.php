@@ -34,6 +34,9 @@ class BulkService
     /** @var int Total entities submitted for update */
     protected $total = 0;
 
+    /** @var int Total entities that were updated */
+    protected $count = 0;
+
     /**
      * BulkService constructor.
      * @param EntityService $entityService
@@ -85,17 +88,16 @@ class BulkService
     {
         $model = $this->getEntity();
 
-        $count = 0;
         foreach ($this->ids as $id) {
             $entity = $model->find($id);
-            if (Auth::user()->can('delete', $entity)) {
+            if (auth()->user()->can('delete', $entity)) {
                 //dd($entity->descendants);
                 $entity->delete();
-                $count++;
+                $this->count++;
             }
         }
 
-        return $count;
+        return $this->count;
     }
 
     /**
@@ -122,18 +124,17 @@ class BulkService
      */
     public function permissions(array $permissions = [], bool $override = true): int
     {
-        $count = 0;
         $model = $this->getEntity();
 
         foreach ($this->ids as $id) {
             $entity = $model->findOrFail($id);
-            if (Auth::user()->can('update', $entity)) {
+            if (auth()->user()->can('update', $entity)) {
                 $this->permissionService->change($permissions, $entity->entity, $override);
-                $count++;
+                $this->count++;
             }
         }
 
-        return $count;
+        return $this->count;
     }
 
     /**
@@ -143,11 +144,10 @@ class BulkService
      */
     public function copyToCampaign(int $campaignId): int
     {
-        $count = 0;
         $model = $this->getEntity();
 
         // First we make sure we have access to the new campaign.
-        $campaign = Auth::user()->campaigns()->where('campaign_id', $campaignId)->first();
+        $campaign = auth()->user()->campaigns()->where('campaign_id', $campaignId)->first();
         if (empty($campaign)) {
             throw new TranslatableException('crud.move.errors.unknown_campaign');
         }
@@ -159,13 +159,42 @@ class BulkService
 
         foreach ($this->ids as $id) {
             $entity = $model->findOrFail($id);
-            if (Auth::user()->can('update', $entity)) {
+            if (auth()->user()->can('update', $entity)) {
                 $this->entityService->move($entity->entity, $options);
-                $count++;
+                $this->count++;
             }
         }
 
-        return $count;
+        return $this->count;
+    }
+
+    /**
+     * @param string|null $type
+     * @return int
+     * @throws TranslatableException
+     */
+    public function transform(string $type = null): int
+    {
+        if (empty($type)) {
+            throw new TranslatableException('entities/transform.bulk.errors.unknown_type');
+        }
+
+        // Validate the type
+        $validTypes = $this->entityService->entities(['menu_links', 'relations']);
+        if (!isset($validTypes[$type])) {
+            throw new TranslatableException('entities/transform.bulk.errors.unknown_type');
+        }
+
+        $model = $this->getEntity();
+        foreach ($this->ids as $id) {
+            $entity = $model->findOrFail($id);
+            if (auth()->user()->can('update', $entity)) {
+                $this->entityService->transform($entity->entity, $type, $entity);
+                $this->count++;
+            }
+        }
+
+        return $this->count;
     }
 
     /**
@@ -176,7 +205,6 @@ class BulkService
      */
     public function editing(array $fields, Bulk $bulk): int
     {
-        $count = 0;
         $model = $this->getEntity();
 
         // Only get fields that can be bulk edited and with content
@@ -220,7 +248,7 @@ class BulkService
             /** @var MiscModel $entity */
             $entity = $model->with('entity', 'entity.tags')->findOrFail($id);
             $this->total++;
-            if (!Auth::user()->can('update', $entity)) {
+            if (!auth()->user()->can('update', $entity)) {
                 // Can't update this? Technically not possible since bulk editing is only available
                 // for admins, but better safe than sorry
                 continue;
@@ -251,7 +279,7 @@ class BulkService
             $realEntity->name = $entity->name;
             $realEntity->save();
 
-            $count++;
+            $this->count++;
 
             // No tags? We're done
             if (empty($fields['tags'])) {
@@ -281,7 +309,7 @@ class BulkService
             }
         }
 
-        return $count;
+        return $this->count;
     }
 
     /**
@@ -292,7 +320,6 @@ class BulkService
      */
     public function templates($template): int
     {
-        $count = 0;
         $model = $this->getEntity();
 
         /** @var AttributeService $service */
@@ -301,13 +328,13 @@ class BulkService
         $entities = $model->with(['entity', 'campaign'])->whereIn('id', $this->ids)->get();
 
         foreach ($entities as $entity) {
-            if (Auth::user()->can('update', $entity)) {
+            if (auth()->user()->can('update', $entity)) {
                 $service->apply($entity->entity, $template);
-                $count++;
+                $this->count++;
             }
         }
 
-        return $count;
+        return $this->count;
     }
 
     /**
@@ -336,10 +363,9 @@ class BulkService
     protected function updateRelations(array $filledFields)
     {
         $relations = Relation::whereIn('id', $this->ids)->get();
-        $count = 0;
         foreach ($relations as $relation) {
             $this->total++;
-            if (!Auth::user()->can('update', $relation)) {
+            if (!auth()->user()->can('update', $relation)) {
                 // Can't update this? Technically not possible since bulk editing is only available
                 // for admins, but better safe than sorry
                 continue;
@@ -350,9 +376,9 @@ class BulkService
             }
 
             $relation->update($filledFields);
-            $count++;
+            $this->count++;
         }
 
-        return $count;
+        return $this->count;
     }
 }

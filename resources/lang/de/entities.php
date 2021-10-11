@@ -56,6 +56,8 @@ return [
     'quests'                => 'Quests',
     'race'                  => 'Spezies',
     'races'                 => 'Spezies',
+    'relation'              => 'Beziehung',
+    'relations'             => 'Beziehungen',
     'tag'                   => 'Tag',
     'tags'                  => 'Tags',
     'timeline'              => 'Zeitstrahl',

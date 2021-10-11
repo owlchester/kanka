@@ -2,11 +2,7 @@
  */?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('entities/profile.show.title', ['name' => $entity->name]),
-    'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
-        ['url' => $entity->url('show'), 'label' => $entity->name],
-        __('crud.tabs.profile')
-    ],
+    'breadcrumbs' => false,
     'canonical' => true,
     'mainTitle' => false,
     'miscModel' => $model,
@@ -25,7 +21,14 @@
     @endcan
 @endsection
 
-@include('entities.components.header', ['model' => $model, 'entity' => $entity])
+@include('entities.components.header', [
+    'model' => $entity->child,
+    'entity' => $entity,
+    'breadcrumb' => [
+        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
+        __('crud.tabs.profile')
+    ]
+])
 
 @section('content')
     @include('partials.errors')

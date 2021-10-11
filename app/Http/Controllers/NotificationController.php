@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Notifications\Header;
 
 class NotificationController extends Controller
 {
@@ -23,9 +22,12 @@ class NotificationController extends Controller
     public function index()
     {
         // Set all notifications as read
-        Auth::user()->unreadNotifications->markAsRead();
+        $user = auth()->user();
 
-        return view('notifications.index');
+        $notifications = $user->notifications()->paginate();
+        $user->unreadNotifications->markAsRead();
+
+        return view('notifications.index', compact('notifications'));
     }
 
     /**
@@ -34,8 +36,16 @@ class NotificationController extends Controller
      */
     public function refresh()
     {
-        $unreadNotifications = count(Auth::user()->unreadNotifications);
-        $notifications = Auth::user()->notifications()->take(5)->get();
+        $user = auth()->user();
+        $unreadNotifications = count($user->unreadNotifications);
+
+        // User is requesting to mark all notifications as read
+        if (request()->has('read-all')) {
+            $user->unreadNotifications->markAsRead();
+            $unreadNotifications = 0;
+        }
+
+        $notifications = $user->notifications()->take(5)->get();
         $body = view('notifications.list', compact(
             'notifications'
         ))->render();
@@ -47,17 +57,15 @@ class NotificationController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  integer  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function delete($id)
+    public function clearAll()
     {
-        foreach (Auth::user()->notifications as $notification) {
-            if ($notification->id == $id) {
-                $notification->delete();
-            }
-        }
+        auth()->user()->notifications()->delete();
+
+        return redirect()
+            ->route('notifications')
+            ->with('success', __('notifications.clear.success'))
+        ;
     }
 }

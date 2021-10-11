@@ -4,12 +4,12 @@
 namespace App\Models;
 
 
+use App\Models\Concerns\Nested;
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Kalnoy\Nestedset\NodeTrait;
 
 /**
  * @property TimelineEra[] $eras
@@ -26,7 +26,7 @@ class Timeline extends MiscModel
         ExportableTrait,
         SimpleSortableTrait,
         SoftDeletes,
-        NodeTrait;
+        Nested;
 
     public $fillable = [
         'name',
@@ -51,15 +51,8 @@ class Timeline extends MiscModel
      * @var array
      */
     protected $filterableColumns = [
-        'name',
-        'type',
         'calendar_id',
         'timeline_id',
-        'is_private',
-        'tags',
-        'has_image',
-        'has_entity_notes',
-        'has_entity_files',
     ];
 
     /**

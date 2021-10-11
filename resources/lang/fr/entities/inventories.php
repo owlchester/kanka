@@ -12,11 +12,16 @@ return [
         'success'   => 'Objet :item retiré de :entity.',
     ],
     'fields'        => [
-        'amount'        => 'Nombre',
-        'description'   => 'Description',
-        'is_equipped'   => 'Equipé',
-        'name'          => 'Nom',
-        'position'      => 'Position',
+        'amount'            => 'Nombre',
+        'copy_entity_entry' => 'Utiliser l\'entrée de l\'objet',
+        'description'       => 'Description',
+        'is_equipped'       => 'Equipé',
+        'name'              => 'Nom',
+        'position'          => 'Position',
+        'qty'               => 'Qté',
+    ],
+    'helpers'       => [
+        'copy_entity_entry' => 'Affiche l\'entrée de l\'objet au lieu de la description.',
     ],
     'placeholders'  => [
         'amount'        => 'Un nombre',

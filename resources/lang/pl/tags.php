@@ -63,7 +63,7 @@ return [
             'information'   => 'Informacje',
             'tags'          => 'Etykiety',
         ],
-        'title'         => 'Etykieta :nazwa',
+        'title'         => 'Etykieta :name',
     ],
     'tags'          => [
         'description'   => 'Etykiety pochodne',

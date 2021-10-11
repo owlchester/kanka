@@ -19,6 +19,7 @@ class MapApiController extends ApiController
         $this->authorize('access', $campaign);
         return Resource::collection($campaign
             ->maps()
+            ->filter(request()->all())
             ->with(['entity', 'entity.tags', 'entity.notes', 'entity.files', 'entity.events',
                 'entity.relationships', 'entity.attributes', 'groups', 'layers'])
             ->lastSync(request()->get('lastSync'))

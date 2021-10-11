@@ -19,12 +19,9 @@
     @include('cruds.forms._errors')
 
     <div class="nav-tabs-custom">
-        @env('shadow')
-        @else
-            <div class="pull-right">
-                @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
-            </div>
-        @endenv
+        <div class="pull-right">
+            @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
+        </div>
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="{{ (request()->get('tab') == null ? ' active' : '') }}">
                 <a href="#form-entry" title="{{ __('crud.panels.entry') }}" role="tab" aria-controls="form-entry">
@@ -80,6 +77,11 @@
             @endif
         </div>
     </div>
+
+
+    @if(!empty($model->entity) && $campaign->campaign()->hasEditingWarning())
+        <input type="hidden" id="editing-keep-alive" data-url="{{ route('entities.keep-alive', $model->entity->id) }}" />
+    @endif
 @endsection
 
 @include('editors.editor')
@@ -87,4 +89,39 @@
 
 @section('fullpage-form-end')
     {!! Form::close() !!}
+@endsection
+
+@section('modals')
+    @parent
+    @if(!empty($editingUsers) && !empty($model->entity))
+        <div class="modal" id="entity-edit-warning" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">{{ __('entities/story.warning.editing.title') }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            {{ __('entities/story.warning.editing.description') }}
+
+                        </p>
+                        <ul>
+                            @foreach ($editingUsers as $user)
+                                <li class="user-id-{{ $user->id }}">{{ __('entities/story.warning.editing.user', ['user' => $user->name, 'since' => \Carbon\Carbon::createFromTimeString($user->pivot->created_at)->diffForHumans()]) }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" id="entity-edit-warning-back" data-url="{{ url()->previous() }}">
+                            {{ __('entities/story.warning.editing.back') }}
+                        </button>
+
+                        <button type="button" class="btn btn-warning" id="entity-edit-warning-ignore" data-url="{{ route('entities.confirm-editing', $model->entity) }}">
+                            {{ __('entities/story.warning.editing.ignore') }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 @endsection

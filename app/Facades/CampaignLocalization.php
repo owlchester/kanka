@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static self setConsoleCampaign(int $campaignId)
  * @method static void forceCampaign(Campaign $campaign)
  *
+ * @mixin \App\Services\CampaignLocalization
  * @see \App\Services\CampaignLocalization
  */
 class CampaignLocalization extends Facade

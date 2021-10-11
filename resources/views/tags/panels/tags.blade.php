@@ -7,9 +7,6 @@ if (request()->has('tag_id')) {
 ?>
 <div class="box box-solid" id="tag-tags">
     <div class="box-body">
-        <h2 class="page-header with-border">
-            {{ trans('tags.show.tabs.children') }}
-        </h2>
         <p class="help-block export-hidden">
             {{ trans('tags.hints.tag') }}
         </p>

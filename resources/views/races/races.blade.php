@@ -1,11 +1,7 @@
 @extends('layouts.app', [
-    'title' => trans('races.races.title', ['name' => $model->name]),
-    'description' => trans('races.races.description'),
-    'breadcrumbs' => [
-        ['url' => Breadcrumb::index('races'), 'label' => __('races.index.title')],
-        ['url' => route('races.show', $model), 'label' => $model->name],
-        trans('races.show.tabs.races')
-    ],
+    'title' => __('races.races.title', ['name' => $model->name]),
+    'description' => __('races.races.description'),
+    'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $model,
 ])

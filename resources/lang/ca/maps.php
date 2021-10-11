@@ -26,8 +26,10 @@ return [
         ],
     ],
     'fields'        => [
+        'center_marker'     => 'Marcador',
         'center_x'          => 'Posició X per defecte (longitud)',
         'center_y'          => 'Posició Y per defecte (latitud)',
+        'centering'         => 'Centrar',
         'distance_measure'  => 'Medeix distàncies',
         'distance_name'     => 'Unitat de distància',
         'grid'              => 'Cuadrícula',
@@ -37,10 +39,15 @@ return [
         'max_zoom'          => 'Zoom màxim',
         'min_zoom'          => 'Zoom mínim',
         'name'              => 'Nom',
+        'tabs'              => [
+            'coordinates'   => 'Coordenades',
+            'marker'        => 'Marcador',
+        ],
         'type'              => 'Tipus',
     ],
     'helpers'       => [
         'center'            => 'Mitjançant aquests valors, es pot controlar quina àrea del mapa es focalitza en carregar-lo. Si es deixen en blanc, el mapa es carregarà focalitzat al centre.',
+        'centering'         => 'El centrat d\'un marcador tindrà prioritat sobre les coordenades per defecte.',
         'descendants'       => 'Aquí es mostren tots els mapes descendents d\'aquest, i no només els directament inferiors.',
         'distance_measure'  => 'En donar-li al mapa una mesura de distància, s\'habilitarà l\'eina de mesures al mode d\'exploració.',
         'grid'              => 'Definiu una grandària per a la quadrícula que es mostrarà al mode d\'exploració.',
@@ -65,6 +72,7 @@ return [
         'settings'  => 'Configuració',
     ],
     'placeholders'  => [
+        'center_marker'     => 'Deixeu-ho en blanc per a carregar el mapa al centre',
         'center_x'          => 'Deixeu-ho en blanc per a carregar el mapa al centre',
         'center_y'          => 'Deixeu-ho en blanc per a carregar el mapa al centre',
         'distance_measure'  => 'Unitats per píxel',

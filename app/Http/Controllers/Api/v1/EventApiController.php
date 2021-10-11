@@ -19,6 +19,7 @@ class EventApiController extends ApiController
         $this->authorize('access', $campaign);
         return Resource::collection($campaign
             ->events()
+            ->filter(request()->all())
             ->with(['entity', 'entity.tags', 'entity.notes', 'entity.files',
                 'entity.events', 'entity.relationships', 'entity.attributes'])
             ->lastSync(request()->get('lastSync'))

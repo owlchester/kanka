@@ -25,12 +25,16 @@ return [
             'remove'    => 'You have been removed from the :role role in the :campaign campaign.',
         ],
     ],
+    'clear'             => [
+        'action'    => 'Clear all',
+        'confirm'   => 'Are you sure you want to remove all notifications? This action can\'t be undone.',
+        'success'   => 'Notifications removed.',
+    ],
     'header'            => 'You have :count notifications',
     'index'             => [
-        'description'   => 'Your latest notifications.',
-        'title'         => 'Notifications',
+        'title' => 'Notifications',
     ],
-    'no_notifications'  => 'There are currently no notifications.',
+    'no_notifications'  => 'Notifications will appear here once you have some.',
     'subscriptions'     => [
         'charge_fail'   => 'An error occurred while processing your payment. Please wait a moment while we try again. If nothing changes, please contact us.',
         'deleted'       => 'Your subscription to Kanka was cancelled after too many failed attempts to charge your card. Please go to your Subscription settings and try updating your payment details.',
@@ -38,4 +42,5 @@ return [
         'failed'        => 'We couldn\'t charge your payment details. Please update them in your Payment Method settings.',
         'started'       => 'Your subscription to Kanka has started.',
     ],
+    'unread'            => 'New notification',
 ];

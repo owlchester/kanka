@@ -11,6 +11,7 @@ use App\Models\Entity;
 use App\Models\AttributeTemplate;
 use App\Models\MenuLink;
 use App\Models\MiscModel;
+use App\Services\Entity\MultiEditingService;
 use App\Services\FilterService;
 use App\Traits\BulkControllerTrait;
 use App\Traits\GuestAuthTrait;
@@ -316,7 +317,9 @@ class CrudController extends Controller
             }
 
             $subroute = 'index';
-            if (auth()->user()->defaultNested and \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
+            $campaign = CampaignLocalization::getCampaign();
+            $defaultNested = auth()->user()->defaultNested || $campaign->defaultToNested();
+            if ($defaultNested && \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
                 $subroute = 'tree';
             }
             $route = route($this->route . '.' . $subroute);
@@ -370,6 +373,17 @@ class CrudController extends Controller
         $this->authorize('update', $model);
 
         $campaign = CampaignLocalization::getCampaign();
+        $editingUsers = null;
+
+        /** @var MultiEditingService $editingService */
+        if ($campaign->hasEditingWarning()) {
+            $editingService = app()->make(MultiEditingService::class);
+            $editingUsers = $editingService->entity($model->entity)->user(auth()->user())->users();
+            // If no one is editing the entity, we are now editing it
+            if (empty($editingUsers)) {
+                $editingService->edit();
+            }
+        }
 
         $params = [
             'model' => $model,
@@ -381,6 +395,7 @@ class CrudController extends Controller
             'tabCopy' => $this->tabCopy,
             'entityType' => $model->getEntityType(),
             'horizontalForm' => $this->horizontalForm,
+            'editingUsers' => $editingUsers
         ];
 
         return view('cruds.forms.edit', $params);
@@ -421,6 +436,13 @@ class CrudController extends Controller
                     $model
                 )
             ]);
+
+
+            /** @var MultiEditingService $editingService */
+            $editingService = app()->make(MultiEditingService::class);
+            $editingService->entity($model->entity)
+                ->user(auth()->user())
+                ->finish();
             session()->flash('success_raw', $success);
 
             $route = route($this->route . '.show', $model->id);
@@ -430,7 +452,9 @@ class CrudController extends Controller
                 $route = route($this->route . '.edit', $model->id);
             } elseif ($request->has('submit-close')) {
                 $subroute = 'index';
-                if (auth()->user()->defaultNested and \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
+                $campaign = CampaignLocalization::getCampaign();
+                $defaultNested = auth()->user()->defaultNested || $campaign->defaultToNested();
+                if ($defaultNested && \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
                     $subroute = 'tree';
                 }
                 $route = route($this->route . '.' . $subroute);
@@ -458,7 +482,9 @@ class CrudController extends Controller
         $model->delete();
 
         $subroute = 'index';
-        if (auth()->user()->defaultNested and \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
+        $campaign = CampaignLocalization::getCampaign();
+        $defaultNested = auth()->user()->defaultNested || $campaign->defaultToNested();
+        if ($defaultNested && \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
             $subroute = 'tree';
         }
 
@@ -544,7 +570,8 @@ class CrudController extends Controller
             'name',
             'datagridSorter',
             'data',
-            'markers'
+            'markers',
+            'view'
         ));
     }
 

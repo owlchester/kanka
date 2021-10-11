@@ -12,6 +12,7 @@ return [
         'timeline_element'  => 'Zeitstrahlelement',
     ],
     'create'        => [
+        'new_title' => 'Neue Beziehungen',
         'success'   => 'Beziehung für :name hinzugefügt.',
         'title'     => 'Beziehung erstellen',
     ],
@@ -22,6 +23,7 @@ return [
         'attitude'          => 'Einstellung',
         'connection'        => 'Verbindungen',
         'is_star'           => 'Fixiert',
+        'owner'             => 'Quelle',
         'relation'          => 'Beziehung',
         'target'            => 'Ziel',
         'target_relation'   => 'Zielbeziehung',
@@ -36,6 +38,10 @@ return [
         ],
         'target_relation'   => 'Die Beziehungsbeschreibung des Ziels. Lassen Sie das Feld leer, um den Text dieser Beziehung zu verwenden.',
         'two_way'           => 'Wenn du eine gespiegelte Beziehung erstellst, wird die gleiche Beziehung auch auf dem Ziel erstellt. Wenn du diese später editierst, wird die gespiegelte Beziehung nicht aktualisiert.',
+    ],
+    'index'         => [
+        'add'   => 'Neue Beziehungen',
+        'title' => 'Beziehungen',
     ],
     'options'       => [
         'mentions'  => 'Beziehungen + verbundene + erwähnt',

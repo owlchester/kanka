@@ -1,18 +1,12 @@
 @extends('layouts.app', [
-    'title' => trans('characters.organisations.title', ['name' => $model->name]),
-    'description' => trans('characters.organisations.description'),
-    'breadcrumbs' => [
-        ['url' => route('characters.index'), 'label' => __('characters.index.title')],
-        ['url' => route('characters.show', $model), 'label' => $model->name],
-        trans('characters.show.tabs.organisations')
-    ],
+    'title' => __('characters.organisations.title', ['name' => $model->name]),
+    'description' => __('characters.organisations.description'),
+    'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $model,
 ])
 
 @inject('campaign', 'App\Services\CampaignService')
-
-@include('entities.components.header', ['model' => $model])
 
 @section('content')
     @include('partials.errors')

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\Nested;
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Models\Scopes\TagScopes;
 use App\Traits\CampaignTrait;
@@ -10,8 +11,6 @@ use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
-use Kalnoy\Nestedset\NodeTrait;
 
 /**
  * Class Tag
@@ -20,12 +19,15 @@ use Kalnoy\Nestedset\NodeTrait;
  * @property string $name
  * @property string $type
  * @property string $colour
+ * @property int $tag_id
+ * @property Tag $tag
+ * @property Tag[] $tags
  */
 class Tag extends MiscModel
 {
     use CampaignTrait,
         VisibleTrait,
-        NodeTrait,
+        Nested,
         ExportableTrait,
         TagScopes,
         SimpleSortableTrait,
@@ -55,14 +57,7 @@ class Tag extends MiscModel
      * @var array
      */
     protected $filterableColumns = [
-        'name',
-        'type',
-        'tag_id',
-        'is_private',
         'colour',
-        'has_image',
-        'has_entity_notes',
-        'has_entity_files',
     ];
 
     /**

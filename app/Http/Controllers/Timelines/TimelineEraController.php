@@ -19,6 +19,7 @@ class TimelineEraController extends Controller
         'entry',
         'start_year',
         'end_year',
+        'is_collapsed',
     ];
 
     /** @var TimelineService */

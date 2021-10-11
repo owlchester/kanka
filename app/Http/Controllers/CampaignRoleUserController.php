@@ -26,6 +26,11 @@ class CampaignRoleUserController extends Controller
         $this->middleware('campaign.member');
     }
 
+    public function index()
+    {
+        return redirect()->route('campaign_roles.index');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

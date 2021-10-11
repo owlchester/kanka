@@ -15,6 +15,7 @@ class SignImageCommand extends Command
      *
      * @example php artisan img:sign images/tiers/xxx-325.png app 200
      * @example php artisan img:sign locations/xxx.png user 200x304
+     * @example php artisan img:sign images/features/kanka-feature-dashboard.jpg app
      */
     protected $signature = 'img:sign {img} {base=user} {size=200}';
 
@@ -58,6 +59,8 @@ class SignImageCommand extends Command
         }
 
         $this->info("Url: " . $url);
+
+        return 0;
     }
 }
 

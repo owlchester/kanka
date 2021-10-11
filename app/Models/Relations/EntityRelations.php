@@ -13,6 +13,7 @@ use App\Models\EntityLink;
 use App\Models\EntityMention;
 use App\Models\EntityNote;
 use App\Models\EntityTag;
+use App\Models\EntityUser;
 use App\Models\Image;
 use App\Models\Inventory;
 use App\Models\Map;
@@ -49,6 +50,7 @@ use App\User;
  * @property EntityEvent[] $elapsedEvents
  * @property Image $image
  * @property Image $header
+ * @property User[] $users
  */
 trait EntityRelations
 {
@@ -445,5 +447,15 @@ trait EntityRelations
             ->with('target')
             ->has('target')
             ->acl();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function users()
+    {
+        return $this->belongsToMany(User::class)
+            ->using(EntityUser::class)
+            ->withPivot('type_id');
     }
 }

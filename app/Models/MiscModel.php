@@ -17,7 +17,6 @@ use App\Traits\AclTrait;
 use App\Traits\SourceCopiable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -695,6 +694,14 @@ abstract class MiscModel extends Model
         foreach ($this->entity->tags as $tag) {
             $classes[] = 'kanka-tag-' . $tag->id;
             $classes[] = 'kanka-tag-' . $tag->slug;
+        }
+
+        // Specific entity flags
+        if ($this instanceof Character and $this->is_dead) {
+            $classes[] = 'character-dead';
+        }
+        elseif ($this instanceof Quest and $this->is_completed) {
+            $classes[] = 'quest-completed';
         }
 
         return (string) implode(' ', $classes);

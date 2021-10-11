@@ -20,15 +20,24 @@ class InventoryController extends Controller
      */
     use GuestAuthTrait;
 
-    /**
-     * @var
-     */
+    /** @var string */
     protected $transKey;
 
-    /**
-     * @var
-     */
+    /** @var string */
     protected $viewPath;
+
+    /** @var string[]  */
+    protected $fillable = [
+        'amount',
+        'name',
+        'item_id',
+        'entity_id',
+        'position',
+        'description',
+        'visibility',
+        'is_equipped',
+        'copy_item_entry'
+    ];
 
     /**
      * @param Entity $entity
@@ -98,7 +107,7 @@ class InventoryController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $data = $request->only(['amount', 'name', 'item_id', 'entity_id', 'position', 'description', 'visibility', 'is_equipped']);
+        $data = $request->only($this->fillable);
         $ajax = $request->ajax();
 
         $inventory = new Inventory();
@@ -106,7 +115,7 @@ class InventoryController extends Controller
 
         return redirect()
             ->route('entities.inventory', $entity)
-            ->with('success', trans('entities/inventories.create.success', [
+            ->with('success', __('entities/inventories.create.success', [
                 'item' => $inventory->itemName(),
                 'entity' => $entity->name
             ]));
@@ -139,7 +148,7 @@ class InventoryController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $data = $request->only(['amount', 'name', 'item_id', 'entity_id', 'position', 'description', 'visibility', 'is_equipped']);
+        $data = $request->only($this->fillable);
         $ajax = $request->ajax();
 
         $inventory->update($data);
@@ -147,7 +156,7 @@ class InventoryController extends Controller
 
         return redirect()
             ->route('entities.inventory', $entity)
-            ->with('success', trans('entities/inventories' . '.update.success', [
+            ->with('success', __('entities/inventories' . '.update.success', [
                 'item' => $inventory->itemName(),
                 'entity' => $entity->name
             ]));
@@ -166,7 +175,7 @@ class InventoryController extends Controller
 
         return redirect()
             ->route('entities.inventory', [$entity->id])
-            ->with('success', trans('entities/inventories.destroy.success', [
+            ->with('success', __('entities/inventories.destroy.success', [
                 'item' => $inventory->itemName(),
                 'entity' => $entity->name
             ]));

@@ -5,6 +5,13 @@ return [
         'mode-map'      => 'Explorador de relacións',
         'mode-table'    => 'Táboa de relacións e conexións',
     ],
+    'bulk'          => [
+        'delete'    => '{1} Eliminada :count relación.|[2,*] Eliminadas :count relacións.',
+        'success'   => [
+            'editing'           => '{1} :count relación actualizada.|[2,*] :count relacións actualizadas.',
+            'editing_partial'   => '{1} :count/:total relación actualizada.|[2,*] :count/:total relacións actualizadas.',
+        ],
+    ],
     'connections'   => [
         'map_point'         => 'Punto de mapa',
         'mention'           => 'Mención',
@@ -12,6 +19,7 @@ return [
         'timeline_element'  => 'Elemento de liña temporal',
     ],
     'create'        => [
+        'new_title' => 'Nova relación',
         'success'   => 'Relación ":target" engadida a :entity.',
         'title'     => 'Nova relación para :name',
     ],
@@ -22,6 +30,7 @@ return [
         'attitude'          => 'Actitude',
         'connection'        => 'Conexión',
         'is_star'           => 'Fixada',
+        'owner'             => 'Fonte',
         'relation'          => 'Relación',
         'target'            => 'Obxectivo',
         'target_relation'   => 'Relación para o obxectivo',
@@ -36,6 +45,10 @@ return [
         ],
         'target_relation'   => 'A descrición da relación no obxectivo. Déixaa en branco para que use a mesma.',
         'two_way'           => 'Ao reflectir unha relación, a mesma relación será creada na entidade obxectivo. Unha vez creada, podes editalas sen que unha sexa afectada pola outra.',
+    ],
+    'index'         => [
+        'add'   => 'Nova relación',
+        'title' => 'Relacións',
     ],
     'options'       => [
         'mentions'  => 'Relacións + relacionadas + mencións',

@@ -34,7 +34,7 @@ class EntityImageApiController extends Controller
         ],200);
     }
 
-    public function delete(Request $request, Campaign $campaign, Entity $entity)
+    public function destroy(Request $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity->child);

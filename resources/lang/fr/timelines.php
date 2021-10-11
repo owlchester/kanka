@@ -20,6 +20,7 @@ return [
         'title'     => 'Modifier la chronologie :name',
     ],
     'fields'        => [
+        'copy_elements' => 'Copier les éléments',
         'copy_eras'     => 'Copier les ères',
         'eras'          => 'Ères',
         'name'          => 'Nom',
@@ -44,6 +45,9 @@ return [
         'type'  => 'Principale, chronique du monde, chronologie du royaume',
     ],
     'show'          => [
+        'tabs'  => [
+            'timelines' => 'Chronologies',
+        ],
         'title' => 'Chronologie :name',
     ],
     'timelines'     => [

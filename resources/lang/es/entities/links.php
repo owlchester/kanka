@@ -32,6 +32,10 @@ return [
         'helper'    => 'Las campañas mejoradas pueden añadir enlaces en las entidades que dirigen a webs externas.',
         'title'     => 'Enlaces de :name',
     ],
+    'unboosted'     => [
+        'text'  => 'Solo las :boosted-campaigns pueden añadir enlaces a recursos externos que se muestren directamente en la entidad.',
+        'title' => 'Funcionalidad de campaña mejorada',
+    ],
     'update'        => [
         'success'   => 'Enlace :name actualizado.',
         'title'     => 'Actualizar enlace de :name',

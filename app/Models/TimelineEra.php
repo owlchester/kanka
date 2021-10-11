@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string $abbreviation
  * @property int $start_year
  * @property int $end_year
+ * @property bool $is_collapsed
  *
  * @property Timeline $timeline
  * @property TimelineElement[] $elements
@@ -33,6 +34,7 @@ class TimelineEra extends Model
         'entry',
         'start_year',
         'end_year',
+        'is_collapsed',
     ];
 
     /**
@@ -61,5 +63,36 @@ class TimelineEra extends Model
             ->orderBy('start_year', ($revertOrder ? 'asc' : 'desc'))
             ->orderBy('end_year', ($revertOrder ? 'desc' : 'asc'))
             ->orderBy('name');
+    }
+
+    /**
+     * @return bool
+     */
+    public function collapsed(): bool
+    {
+        return $this->is_collapsed;
+    }
+
+    /**
+     * Get the age header of the era
+     * @return string
+     */
+    public function ages(): string
+    {
+        $from = strlen($this->start_year);
+        $to = strlen($this->end_year);
+
+        if ($from == 0 && $to == 0) {
+            return '';
+        }
+
+        if ($from == 0) {
+            return '< ' . $this->end_year;
+        }
+        elseif ($to == 0) {
+            return '> ' . $this->start_year;
+        }
+
+        return $this->start_year . ' &mdash; ' . $this->end_year;
     }
 }

@@ -68,18 +68,10 @@ class Quest extends MiscModel
      * @var array
      */
     protected $filterableColumns = [
-        'name',
-        'type',
         'date',
         'quest_id',
-        'tag_id',
         'character_id',
         'is_completed',
-        'is_private',
-        'tags',
-        'has_image',
-        'has_entity_notes',
-        'has_entity_files',
     ];
 
     /**

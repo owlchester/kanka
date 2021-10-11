@@ -5,6 +5,13 @@ return [
         'mode-map'      => 'Ferramenta de exploração das relações',
         'mode-table'    => 'Tabela de relações e conexões',
     ],
+    'bulk'          => [
+        'delete'    => '{1} :count relação deletada. |[2,*] :count relações deletadas.',
+        'success'   => [
+            'editing'           => '{1} :count relação foi atualizada. |[2,*] :count relações foram atualizadas.',
+            'editing_partial'   => '{1} :count/:total relação foi atualizada. |[2,*] :count/:total relações foram atualizadas.',
+        ],
+    ],
     'connections'   => [
         'map_point'         => 'Ponto do mapa',
         'mention'           => 'Menção',
@@ -12,6 +19,7 @@ return [
         'timeline_element'  => 'Elemento da linha do tempo',
     ],
     'create'        => [
+        'new_title' => 'Nova relação',
         'success'   => 'Relação adicionada para :name.',
         'title'     => 'Criar relações',
     ],
@@ -22,6 +30,7 @@ return [
         'attitude'          => 'Atitude',
         'connection'        => 'Conexão',
         'is_star'           => 'Fixado',
+        'owner'             => 'Fonte',
         'relation'          => 'Relação',
         'target'            => 'Alvo',
         'target_relation'   => 'Relação Alvo',
@@ -36,6 +45,10 @@ return [
         ],
         'target_relation'   => 'A descrição da relação do alvo. Deixe em branco para usar esse texto da relação.',
         'two_way'           => 'Se você selecionar para criar relação mútua, a mesma relação será criada no alvo. Entretanto, se você editar uma, a outra não será atualizada.',
+    ],
+    'index'         => [
+        'add'   => 'Nova relação',
+        'title' => 'Relações',
     ],
     'options'       => [
         'mentions'  => 'Relações + relacionados + menções',

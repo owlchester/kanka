@@ -32,6 +32,7 @@ return [
     'other'                 => 'Другое',
     'quests'                => 'Квесты',
     'races'                 => 'Расы',
+    'relations'             => 'Связи',
     'search'                => 'Искать...',
     'tags'                  => 'Тэги',
     'timelines'             => 'Хронологии',

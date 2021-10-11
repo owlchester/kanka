@@ -19,7 +19,7 @@
                     @include('cruds.partials.visibility', ['model' => $note])
 
                     @can('entity-note', [$model, 'edit', $note])
-                        <a href="{{ route('entities.entity_notes.edit', ['entity' => $entity, 'entity_note' => $note, 'from' => 'main']) }}" class="btn btn-default" title="{{ __('crud.edit') }}" role="button">
+                        <a href="{{ route('entities.entity_notes.edit', ['entity' => $entity, 'entity_note' => $note, 'from' => 'main']) }}" class="btn btn-box-tool" title="{{ __('crud.edit') }}" role="button">
                             <i class="fa fa-edit"></i>
                         </a>
                     @endcan

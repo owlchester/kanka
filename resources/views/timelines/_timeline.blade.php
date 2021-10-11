@@ -11,46 +11,41 @@ $eras = $timeline->eras()->ordered($timeline->revert_order)->get();
     $position = 1;
     @endphp
 
-    <div class="box box-widget" id="era{{ $era->id }}">
+    <div class="box box-solid entity-note box-widget" id="era{{ $era->id }}">
         <div class="box-header with-border">
-            <h3 class="box-title">
+            <h3 class="box-title cursor timeline-era-toggle" data-toggle="collapse" data-target="#era-items-{{ $era->id }}" data-short="timeline-era-toggle-{{ $era->id }}">
 
-                <i class="fa fa-chevron-up timeline-toggle panel-toggable" id="era-items-{{ $era->id }}-show" data-short="era-items-{{ $era->id }}" data-toggle="collapse" data-target="#era-items-{{ $era->id }}"></i>
-                <i class="fa fa-chevron-down timeline-toggle panel-toggable" style="display: none;" id="era-items-{{ $era->id }}-hide" data-short="era-items-{{ $era->id }}" data-toggle="collapse" data-target="#era-items-{{ $era->id }}"></i>
+                <i class="fa fa-chevron-up" id="timeline-era-toggle-{{ $era->id }}-show" @if($era->collapsed()) style="display: none;" @endif></i>
+                <i class="fa fa-chevron-down" id="timeline-era-toggle-{{ $era->id }}-hide" @if(!$era->collapsed()) style="display: none;" @endif></i>
 
                 {{ $era->name }} @if(!empty($era->abbreviation)) ({{ $era->abbreviation }}) @endif
-            </h3>
-            <span>
-                @if (isset($era->start_year) && isset($era->end_year))
-                    {{ $era->start_year }} &mdash; {{ $era->end_year }}
-                @elseif(!isset($era->start_year))
-                    < {{ $era->end_year }}
-                @elseif(!isset($era->end_year))
-                    > {{ $era->start_year }}
-                @else
 
-                @endif
+                <span class="text-sm">
+                {!! $era->ages()!!}
             </span>
 
-            <div class="pull-right">
-                @can('update', $timeline)
-                <a href="{{ route('timelines.timeline_eras.edit', [$timeline, $era, 'from' => 'view']) }}" class="margin-r-5"
-                   title="{{ __('crud.edit') }}"
-                >
-                    <i class="fa fa-pencil"></i>
-                </a>
+            </h3>
 
-                <a href="#" class="text-red delete-confirm margin-r-5" data-toggle="modal" data-name="{{ $era->name }}"
-                   data-target="#delete-confirm" data-delete-target="delete-form-timeline-era-{{ $era->id }}"
-                   title="{{ __('crud.remove') }}">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                </a>
-                {!! Form::open(['method' => 'DELETE', 'route' => ['timelines.timeline_eras.destroy', $timeline, $era], 'style '=> 'display:inline', 'id' => 'delete-form-timeline-era-' . $era->id]) !!}
-                {!! Form::close() !!}
+            <div class="box-tools">
+                @can('update', $timeline)
+                    <a href="{{ route('timelines.timeline_eras.edit', [$timeline, $era, 'from' => 'view']) }}"
+                       class="btn btn-box-tool" role="button"
+                       title="{{ __('crud.edit') }}"
+                    >
+                        <i class="fa fa-edit"></i>
+                    </a>
+
+                    <a href="#" class="btn btn-box-tool text-red delete-confirm"
+                       data-toggle="modal" data-name="{{ $era->name }}" role="button"
+                       data-target="#delete-confirm" data-delete-target="delete-form-timeline-era-{{ $era->id }}"
+                       title="{{ __('crud.remove') }}">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a>
+                    {!! Form::open(['method' => 'DELETE', 'route' => ['timelines.timeline_eras.destroy', $timeline, $era, 'from' => 'view'], 'style '=> 'display:inline', 'id' => 'delete-form-timeline-era-' . $era->id]) !!}
+                    {!! Form::close() !!}
                 @endcan
             </div>
         </div>
-        <!-- /.box-header -->
         <div class="box-body entity-content">
             {!! \App\Facades\Mentions::mapAny($era)  !!}
         </div>
@@ -60,7 +55,7 @@ $eras = $timeline->eras()->ordered($timeline->revert_order)->get();
         {!! Form::open(['route' => ['timelines.reorder', $timeline, $era], 'method' => 'POST']) !!}
     @endcan
 
-    <ul class="timeline collapse in" id="era-items-{{ $era->id }}" class="collapse in">
+    <ul class="timeline collapse {{ $era->is_collapsed ? 'out' : 'in' }}" id="era-items-{{ $era->id }}">
     @foreach($era->elements()->ordered()->get() as $element)
         @php
             $position = $element->position + 1;
@@ -77,7 +72,7 @@ $eras = $timeline->eras()->ordered($timeline->revert_order)->get();
                         <a href="{{ route('timelines.timeline_elements.edit', [$timeline, $element, 'from' => 'view']) }}" class="margin-r-5"
                            title="{{ __('crud.edit') }}"
                         >
-                            <i class="fa fa-pencil"></i>
+                            <i class="fa fa-edit"></i>
                         </a>
 
                         <a href="#" class="text-red delete-confirm" data-toggle="modal" data-name="{{ $element->elementName() }}"
@@ -169,7 +164,7 @@ $eras = $timeline->eras()->ordered($timeline->revert_order)->get();
                     @continue
                 @endif
 
-                {!! Form::open(['method' => 'DELETE', 'route' => ['timelines.timeline_elements.destroy', $timeline, $element], 'style '=> 'display:inline', 'id' => 'delete-form-timeline-element-' . $element->id]) !!}
+                {!! Form::open(['method' => 'DELETE', 'route' => ['timelines.timeline_elements.destroy', $timeline, $element, 'from' => 'view'], 'style '=> 'display:inline', 'id' => 'delete-form-timeline-element-' . $element->id]) !!}
                 {!! Form::close() !!}
             @endforeach
         @endforeach

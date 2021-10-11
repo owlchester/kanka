@@ -42,7 +42,7 @@ $r = $model->descendants()
                 <th class="avatar"><br /></th>
                 <th>{{ __('locations.fields.name') }}</th>
                 <th>{{ __('locations.fields.type') }}</th>
-                <th>{{ __('crud.fields.location') }}</th>
+                <th>{{ __('locations.fields.location') }}</th>
             </tr>
             @foreach ($r as $model)
                 <tr>

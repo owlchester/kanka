@@ -80,7 +80,7 @@ class CalendarWeatherApiController extends ApiController
      * @return \Illuminate\Http\JsonResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function delete(Request $request, Campaign $campaign, Calendar $calendar, CalendarWeather $calendarWeather)
+    public function destroy(Request $request, Campaign $campaign, Calendar $calendar, CalendarWeather $calendarWeather)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $calendar);

@@ -134,7 +134,9 @@
                     {{ $campaign->id }}
                 </td>
                 <td>
-                    {!! $campaign->dashboard() !!}
+                    <a href="{{ route('admin.campaigns.show', $campaign) }}">
+                        {!! $campaign->name !!}
+                    </a>
                     @if ($campaign->is_public)
                         <i class="fa fa-eye" title="Campaign is public"></i>
                     @else

@@ -4,7 +4,18 @@ namespace App\Models\Scopes;
 
 use App\Models\Campaign;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
+/**
+ * Trait SubEntityScopes
+ * @package App\Models\Scopes
+ *
+ * @method static self|Builder preparedWith()
+ * @method static self|Builder recent()
+ * @method static self|Builder lastSync()
+ * @method static self|Builder standardWith()
+ */
 trait SubEntityScopes
 {
     /**

@@ -17,7 +17,9 @@ class CharacterApiController extends ApiController
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        return CharacterResource::collection($campaign->characters()
+        return CharacterResource::collection($campaign
+            ->characters()
+            ->filter(request()->all())
             ->with([
                 'entity', 'entity.tags', 'entity.notes', 'entity.files', 'entity.events',
                 'entity.relationships', 'entity.attributes', 'characterTraits',

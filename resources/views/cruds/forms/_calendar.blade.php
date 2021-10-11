@@ -6,14 +6,21 @@
 $calendars = \App\Models\Calendar::get();
 $onlyOneCalendar = count($calendars) == 1;
 $oldCalendarID = old('calendar_id');
-if (!empty($source)) {
-    $oldCalendarID = $source->calendar_id;
+// Make sure the user has access to the source's calendar
+if (!empty($source) && $source->calendar) {
+    $oldCalendarID = $source->calendar->id;
 }
 $calendar = null;
 if (!empty($oldCalendarID)) {
     $calendar = \App\Models\Calendar::findOrFail($oldCalendarID);
 }
 ?>
+
+@if (isset($model) && $model->hasCalendarButNoAccess())
+    {!! Form::hidden('calendar_id', $model->calendar_id) !!}
+    {!! Form::hidden('calendar_skip', true) !!}
+    @php return; @endphp
+@endif
 <div class="form-group">
     <p class="help-block">{{ __('crud.hints.calendar_date') }}</p>
 
@@ -40,20 +47,20 @@ if (!empty($oldCalendarID)) {
             <div class="row">
                 <div class="col-md-4 col-sm-6">
                     <div class="form-group">
-                        <label>{{ trans('calendars.fields.current_year') }}</label>
+                        <label>{{ __('calendars.fields.current_year') }}</label>
                         {!! Form::number('calendar_year', FormCopy::field('calendar_year')->string(), ['class' => 'form-control']) !!}
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
 
                     <div class="form-group">
-                        <label>{{ trans('calendars.fields.current_month') }}</label>
+                        <label>{{ __('calendars.fields.current_month') }}</label>
                         {!! Form::select('calendar_month', (!empty($model) && $model->hasCalendar() ? $model->calendar->monthList(): (!empty($calendar) ? $calendar->monthList() : [])), FormCopy::field('calendar_month')->string(), ['class' => 'form-control']) !!}
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <div class="form-group">
-                        <label>{{ trans('calendars.fields.current_day') }}</label>
+                        <label>{{ __('calendars.fields.current_day') }}</label>
                         {!! Form::number('calendar_day', FormCopy::field('calendar_day')->string(), ['class' => 'form-control']) !!}
                     </div>
                 </div>
@@ -61,7 +68,7 @@ if (!empty($oldCalendarID)) {
             <div class="row">
                 <div class="col-md-4 col-sm-6">
                     <div class="form-group">
-                        <label>{{ trans('calendars.fields.length') }}</label>
+                        <label>{{ __('calendars.fields.length') }}</label>
                         {!! Form::number('length', FormCopy::field('length')->string(), ['class' => 'form-control']) !!}
                     </div>
                 </div>

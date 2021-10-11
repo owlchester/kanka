@@ -3,6 +3,7 @@
 ---
 
 - [All Timelines](#all-timelines)
+- [Filters](#filters)
 - [Single Timeline](#timeline)
 - [Create a Timeline](#create-timeline)
 - [Update a Timeline](#update-timeline)
@@ -79,6 +80,10 @@ You can get a list of all the timelines of a campaign by using the following end
 }
 ```
 
+<a name="filters"></a>
+## Filters
+
+The list of returned timelines can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=timeline" target="_blank">API filters</a>.
 
 <a name="timeline"></a>
 ## Timeline

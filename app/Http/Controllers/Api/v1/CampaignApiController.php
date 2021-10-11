@@ -10,7 +10,11 @@ class CampaignApiController extends ApiController
 {
     public function index(\Illuminate\Http\Request $request)
     {
-        $campaigns = $request->user()->campaigns()->lastSync(request()->get('lastSync'))->paginate();
+        $campaigns = $request
+            ->user()
+            ->campaigns()
+            ->lastSync(request()->get('lastSync'))
+            ->paginate();
         return CampaignResource::collection($campaigns);
     }
 

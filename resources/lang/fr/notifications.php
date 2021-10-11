@@ -25,10 +25,14 @@ return [
             'remove'    => 'Tu ne fais plus partie du rôle :role de la campagne :campaign.',
         ],
     ],
+    'clear'             => [
+        'action'    => 'Tout supprimer',
+        'confirm'   => 'Es-tu sûr de vouloir supprimer toutes les notifications? Cette action ne peut pas être annulée.',
+        'success'   => 'Notifications supprimées.',
+    ],
     'header'            => ':count notifications',
     'index'             => [
-        'description'   => 'Les dernières notifications.',
-        'title'         => 'Notifications',
+        'title' => 'Notifications',
     ],
     'no_notifications'  => 'Il n\'y a actuellement aucune notification.',
     'permissions'       => [],
@@ -39,4 +43,5 @@ return [
         'failed'        => 'Problème lors du traitement de la méthode de paiement, merci de les mettre à jour.',
         'started'       => 'L\'abonnement à Kanka a commencé.',
     ],
+    'unread'            => 'Nouvelle notification',
 ];

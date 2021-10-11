@@ -15,15 +15,8 @@
         // Name
         'name',
         'type',
-        [
-            'label' => trans('locations.fields.locations'),
-            'render' => function($model) {
-                return $model->locations->count();
-            },
-            'disableSort' => true,
-        ],
-        [
-            'label' => trans('locations.fields.location'),
+        /*[
+            'label' => __('locations.fields.location'),
             'render' => function($model) {
                 if ($model->parentLocation) {
                     return '<a href="' . route('locations.show', $model->parentLocation->id) . '">' . e($model->parentLocation->name) . '</a>';
@@ -31,9 +24,16 @@
             },
             'field' => 'parentLocation.name',
             'disableSort' => true,
+        ],*/
+        [
+            'label' => __('locations.fields.locations'),
+            'render' => function($model) {
+                return $model->locations->count();
+            },
+            'disableSort' => true,
         ],
         [
-            'label' => trans('locations.fields.characters'),
+            'label' => __('locations.fields.characters'),
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 return $model->characters->count();
@@ -41,7 +41,7 @@
             'disableSort' => true,
         ],
         [
-            'label' => trans('locations.fields.map'),
+            'label' => __('locations.fields.map'),
             'field' => 'map',
             'render' => function($model) {
                 if (!empty($model->map)) {

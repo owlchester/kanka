@@ -3,11 +3,7 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('entities/story.reorder.title', ['name' => $entity->name]),
     'description' => '',
-    'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
-        ['url' => $entity->url('show'), 'label' => $entity->name],
-        __('entities/story.reorder.panel_title')
-    ],
+    'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-story-reorder'
@@ -15,8 +11,15 @@
 @inject('campaign', 'App\Services\CampaignService')
 
 
-@include('entities.components.header', ['model' => $entity->child, 'entity' => $entity])
 
+@include('entities.components.header', [
+    'model' => $entity->child,
+    'entity' => $entity,
+    'breadcrumb' => [
+        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
+        __('entities/story.reorder.panel_title')
+    ]
+])
 @section('content')
     @include('partials.errors')
     <div class="row entity-grid">
@@ -24,16 +27,19 @@
             @include($entity->pluralType() . '._menu', ['active' => 'story', 'model' => $entity->child, 'name' => $entity->pluralType()])
         </div>
         <div class="col-md-10 entity-main-block">
-            <div class="box box-solid box-entity-story-reorder">
-                <div class="box-body">
-                    <h2 class="page-header with-border">
-                        {{ __('entities/story.reorder.panel_title') }}
-                    </h2>
 
-                    {!! Form::open([
-                        'route' => ['entities.story.reorder-save', $entity],
-                        'method' => 'POST',
-                    ]) !!}
+            {!! Form::open([
+                'route' => ['entities.story.reorder-save', $entity],
+                'method' => 'POST',
+            ]) !!}
+            <div class="box box-solid box-entity-story-reorder">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        {{ __('entities/story.reorder.panel_title') }}
+                    </h3>
+                </div>
+                <div class="box-body">
+
 
                     <div class="entity-notes-reorder">
                         @foreach($entity->notes()->ordered()->get() as $note)
@@ -55,14 +61,15 @@
                             </div>
                         @endforeach
                     </div>
-
+                </div>
+                <div class="box-footer">
                     <button class="btn btn-primary btn-block">
-                        {{ __('crud.save') }}
+                        {{ __('entities/story.reorder.save') }}
                     </button>
-
-                    {!! Form::close() !!}
                 </div>
             </div>
+
+            {!! Form::close() !!}
         </div>
     </div>
 @endsection

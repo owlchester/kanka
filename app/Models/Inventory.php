@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $visibility
  * @property integer $created_by
  * @property bool $is_equipped
+ * @property bool $copy_item_entry
  * @property Item $item
  * @property Entity $entity
  */
@@ -40,6 +41,7 @@ class Inventory extends Model
         'visibility',
         'created_by',
         'is_equipped',
+        'copy_item_entry',
     ];
 
     use VisibilityTrait, SimpleSortableTrait;

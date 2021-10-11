@@ -12,11 +12,16 @@ return [
         'success'   => 'Item :item removed from :entity.',
     ],
     'fields'        => [
-        'amount'        => 'Amount',
-        'description'   => 'Description',
-        'is_equipped'   => 'Equipped',
-        'name'          => 'Name',
-        'position'      => 'Position',
+        'amount'            => 'Quantity',
+        'copy_entity_entry' => 'Use item entry',
+        'description'       => 'Description',
+        'is_equipped'       => 'Equipped',
+        'name'              => 'Name',
+        'position'          => 'Position',
+        'qty'               => 'QTY',
+    ],
+    'helpers'       => [
+        'copy_entity_entry' => 'Display the item\'s entry instead of the custom description.',
     ],
     'placeholders'  => [
         'amount'        => 'Any amount',
@@ -25,7 +30,7 @@ return [
         'position'      => 'Equipped, Backpack, Storage, Bank',
     ],
     'show'          => [
-        'helper'    => 'Entities can have items attached to them to create an inventory.',
+        'helper'    => 'To create this entity\'s inventory, start by adding an item to it.',
         'title'     => 'Entity :name Inventory',
         'unsorted'  => 'Unsorted',
     ],

@@ -1,7 +1,25 @@
 <?php
 
 return [
+    'actions'       => [
+        'mode-map'      => 'Explorador de relaciones',
+        'mode-table'    => 'Tabla de relaciones y conexiones',
+    ],
+    'bulk'          => [
+        'delete'    => '{1} Se ha eliminado :count relación.|[2,*] Se han eliminado :count relaciones.',
+        'success'   => [
+            'editing'           => '{1} Se ha actualizado :count relación.|[2,*] Se han actualizado :count relaciones.',
+            'editing_partial'   => '{1} Se ha eliminado :count/:total relación.|[2,*] Se han eliminado :count/:total relaciones.',
+        ],
+    ],
+    'connections'   => [
+        'map_point'         => 'Punto de mapa',
+        'mention'           => 'Mención',
+        'quest_element'     => 'Elemento de una misión',
+        'timeline_element'  => 'Elemento de una línea de tiempo',
+    ],
     'create'        => [
+        'new_title' => 'Nueva relación',
         'success'   => 'Relación :target añadida a :entity.',
         'title'     => 'Nueva relación para :name',
     ],
@@ -10,7 +28,9 @@ return [
     ],
     'fields'        => [
         'attitude'          => 'Actitud',
+        'connection'        => 'Conexión',
         'is_star'           => 'Fijada',
+        'owner'             => 'Fuente',
         'relation'          => 'Relación',
         'target'            => 'Objetivo',
         'target_relation'   => 'Relación objetivo',
@@ -25,6 +45,17 @@ return [
         ],
         'target_relation'   => 'La descripción de la relación en el objetivo. Déjalo en blanco para usar el texto de esta relación.',
         'two_way'           => 'Al reflejar una relación, ésta se copiará en el objetivo seleccionado. Sin embargo, si editas una, la otra no se verá afectada.',
+    ],
+    'index'         => [
+        'add'   => 'Nueva relación',
+        'title' => 'Relaciones',
+    ],
+    'options'       => [
+        'relations' => 'Relaciones',
+        'show'      => 'Mostrar',
+    ],
+    'panels'        => [
+        'related'   => 'Eliminar',
     ],
     'placeholders'  => [
         'attitude'  => 'Desde -100 hasta 100, siendo 100 muy positiva.',

@@ -2,11 +2,7 @@
  * @var \App\Models\Ability $ability */?>
 @extends('layouts.app', [
     'title' => __('entities/abilities.show.title', ['name' => $entity->name]),
-    'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
-        ['url' => $entity->url('show'), 'label' => $entity->name],
-        __('crud.tabs.abilities')
-    ],
+    'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-abilities'
@@ -37,7 +33,14 @@
     @endcan
 @endsection
 
-@include('entities.components.header', ['model' => $entity->child, 'entity' => $entity])
+@include('entities.components.header', [
+    'model' => $entity->child,
+    'entity' => $entity,
+    'breadcrumb' => [
+        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
+        __('crud.tabs.abilities')
+    ]
+])
 
 @section('content')
     @include('partials.errors')

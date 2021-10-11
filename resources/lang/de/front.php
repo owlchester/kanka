@@ -279,6 +279,7 @@ return [
         'news'          => 'Neuigkeiten',
         'newsletter'    => 'Newsletter',
         'other'         => 'Andere',
+        'overview'      => 'Funktionsübersicht',
         'pricing'       => 'Preisgestaltung',
         'privacy'       => 'Datenschutzbestimmung',
         'register'      => 'Registrieren',

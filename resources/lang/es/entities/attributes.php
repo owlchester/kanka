@@ -44,6 +44,9 @@ return [
         'template'  => 'Seleccionar plantilla',
         'value'     => 'Valor del atributo',
     ],
+    'show'          => [
+        'title' => 'Atributos de :name',
+    ],
     'template'      => [
         'success'   => 'Plantilla de atributos :name aplicada a :entity',
         'title'     => 'Aplicar plantilla de atributos a :name',
@@ -56,6 +59,9 @@ return [
         'random'    => 'Aleatorio',
         'section'   => 'Sección',
         'text'      => 'Texto multilínea',
+    ],
+    'update'        => [
+        'success'   => 'Atributos de :entity actualizados.',
     ],
     'visibility'    => [
         'entry'     => 'El atributo se muestra en el menú de la entidad.',

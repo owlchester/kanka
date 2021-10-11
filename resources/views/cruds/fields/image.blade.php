@@ -23,7 +23,8 @@ if (isset($size) && $size == 'map') {
 
             <p class="help-block">
                 {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => auth()->user()->maxUploadSize(true, (isset($size) ? $size : 'image'))]) }}
-                @if (!auth()->user()->hasRole('patreon') && !\App\Facades\CampaignLocalization::getCampaign()->boosted())
+@php $currentCampaign = \App\Facades\CampaignLocalization::getCampaign(false); @endphp
+                @if (!auth()->user()->hasRole('patreon') && !($currentCampaign && $currentCampaign->boosted()))
                     <a href="{{ route('settings.subscription') }}">{{ __('crud.hints.image_patreon') }}</a>
                 @endif
             </p>

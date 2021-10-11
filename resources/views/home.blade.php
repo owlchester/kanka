@@ -137,6 +137,14 @@
                 </a>
             </div>
         </div>
+
+        @if($widgets->count() === 0)
+            <div class="callout callout-info margin-top">
+                {!! __('dashboard.setup.tutorial.text', [
+    'blog' => link_to('https://blog.kanka.io/2020/09/20/how-to-style-your-kanka-campaign-dashboard/', __('dashboard.setup.tutorial.blog'), ['target' => '_blank'])
+]) !!}
+            </div>
+        @endif
     @endif
 @endsection
 

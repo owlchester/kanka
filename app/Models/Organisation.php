@@ -3,25 +3,28 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\Nested;
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Kalnoy\Nestedset\NodeTrait;
 
 /**
  * Class Organisation
  * @package App\Models
+ *
+ * @property int $organisation_id
  * @property Organisation $organisation
  * @property Organisation[] $descendants
+ * @property Organisation[] $organisations
  */
 class Organisation extends MiscModel
 {
     use CampaignTrait,
         VisibleTrait,
         ExportableTrait,
-        NodeTrait,
+        Nested,
         SimpleSortableTrait,
         SoftDeletes;
     /**
@@ -55,16 +58,8 @@ class Organisation extends MiscModel
      * @var array
      */
     protected $filterableColumns = [
-        'name',
-        'type',
         'location_id',
         'organisation_id',
-        'tag_id',
-        'is_private',
-        'tags',
-        'has_image',
-        'has_entity_notes',
-        'has_entity_files',
     ];
 
     /**

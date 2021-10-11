@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Http\Requests\StoreCampaign;
@@ -75,18 +76,31 @@ class CampaignController extends Controller
      */
     public function store(StoreCampaign $request)
     {
-        $campaign = CampaignLocalization::getCampaign();
+        $campaign = new Campaign();
         $this->authorize('create', $campaign);
+
 
         $first = !Auth::user()->hasCampaigns();
         $campaign = Campaign::create($request->all());
-        if ($first) {
+
+        if ($request->has('submit-update')) {
+            return redirect()
+                ->to(app()->getLocale() . '/campaign/' . $campaign->id . '/campaigns/' . $campaign->id . '/edit')
+                ->with('success', __($this->view . '.create.success'));
+        }
+        elseif ($request->has('submit-new')) {
+            return redirect()
+                ->route('start')
+                ->with('success', __($this->view . '.create.success'));
+        }
+        elseif ($first) {
             $user = auth()->user();
             $user->welcome_campaign_id = $campaign->id;
             $user->save();
             return redirect()->route('home');
         }
-        return redirect()->route('home')->with('success', trans($this->view . '.create.success'));
+
+        return redirect()->route('home')->with('success', __($this->view . '.create.success'));
     }
 
     /**
@@ -126,8 +140,19 @@ class CampaignController extends Controller
 
         $campaign->update($request->all());
 
+        if ($request->has('submit-update')) {
+            return redirect()
+                ->route('campaigns.edit', $campaign)
+                ->with('success', __($this->view . '.edit.success'));
+        }
+        if ($request->has('submit-new')) {
+            return redirect()
+                ->route('start')
+                ->with('success', __($this->view . '.edit.success'));
+        }
+
         return redirect()->route('campaign')
-            ->with('success', trans($this->view . '.edit.success'));
+            ->with('success', __($this->view . '.edit.success'));
     }
 
     /**
@@ -172,13 +197,13 @@ class CampaignController extends Controller
     {
         $campaign = CampaignLocalization::getCampaign();
         $css = null;
-        if ($campaign->boosted() && !empty($campaign->css)) {
-            $css = $campaign->css;
+        if ($campaign->boosted()) {
+            $css = CampaignCache::styles();
         }
 
         $response = \Illuminate\Support\Facades\Response::make($css);
         $response->header('Content-Type', 'text/css');
-        $response->header('Expires', Carbon::now()->addMonth(1)->toDateTimeString());
+        $response->header('Expires', Carbon::now()->addMonth()->toDateTimeString());
         $month = 2592000;
         $response->header('Cache-Control', 'public, max_age=' . $month);
 

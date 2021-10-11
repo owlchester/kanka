@@ -96,6 +96,7 @@ return [
     'widgets'           => [
         'actions'                   => [
             'advanced-options'  => 'Opcions avançades',
+            'delete-confirm'    => 'aquest widget',
         ],
         'advanced_options_boosted'  => 'Les :boosted_campaigns tenen opcions avançades, com ara mostrar els membres d\'una família o els atributs de l\'entitat directament al taulell.',
         'calendar'                  => [
@@ -117,11 +118,12 @@ return [
             'success'   => 'S\'ha eliminat el widget del taulell.',
         ],
         'fields'                    => [
-            'dashboard' => 'Taulell',
-            'name'      => 'Nom personalitzat pel widget',
-            'order'     => 'Ordre',
-            'text'      => 'Text',
-            'width'     => 'Amplada',
+            'dashboard'         => 'Taulell',
+            'name'              => 'Nom personalitzat pel widget',
+            'optional-entity'   => 'Enllaç a l\'entitat',
+            'order'             => 'Ordre',
+            'text'              => 'Text',
+            'width'             => 'Amplada',
         ],
         'orders'                    => [
             'name_asc'  => 'Ascendent per nom',
@@ -144,9 +146,11 @@ return [
                 'full'              => 'Mostra tota l\'entitat per defecte en comptes d\'una previsualització.',
                 'show_attributes'   => 'Mostra els atributs de l\'entitat sota la descripció.',
                 'show_members'      => 'Si l\'entitat és una família o una organització, mostra els seus membres sota la descripció.',
+                'show_relations'    => 'Mostra les anotacions fixades sota l\'entrada de l\'entitat.',
             ],
             'show_attributes'   => 'Mostra els atributs',
             'show_members'      => 'Mostra els membres',
+            'show_relations'    => 'Mostra les relacions fixades',
             'singular'          => 'Singular',
             'tags'              => 'Filtra la llista de les entitats modificades recentment amb etiquetes específiques.',
             'title'             => 'Modificades recentment',
@@ -164,6 +168,7 @@ return [
             '4' => 'Terç (33%)',
             '6' => 'Meitat (50%)',
             '8' => 'Ampla (66%)',
+            '9' => 'Gran (75%)',
         ],
     ],
 ];

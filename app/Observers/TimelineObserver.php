@@ -17,6 +17,8 @@ class TimelineObserver extends MiscObserver
 
         // Copy eras from timeline
         if (request()->has('copy_eras') && request()->filled('copy_eras')) {
+            $copyElements = request()->has('copy_elements') && request()->filled('copy_elements');
+
             $sourceId = request()->post('copy_source_id');
             /** @var Entity $source */
             $source = Entity::findOrFail($sourceId);
@@ -26,6 +28,15 @@ class TimelineObserver extends MiscObserver
                     $newEra = $era->replicate();
                     $newEra->timeline_id = $timeline->id;
                     $newEra->save();
+
+                    if ($copyElements) {
+                        foreach ($era->elements as $element) {
+                            $newElement = $element->replicate();
+                            $newElement->timeline_id = $timeline->id;
+                            $newElement->era_id = $newEra->id;
+                            $newElement->save();
+                        }
+                    }
                 }
             }
         }
@@ -45,20 +56,6 @@ class TimelineObserver extends MiscObserver
             $sub->save();
         }
 
-        // We need to refresh our foreign relations to avoid deleting our children nodes again
-        $timeline->refresh();
-
-        if ($timeline->descendants()->count() > 0) {
-            foreach ($timeline->descendants as $sub) {
-                if (!empty($sub->timeline_id)) {
-                    continue;
-                }
-
-                // Got a descendant with the parent id null. Let's get them out of the tree
-                $sub->{$sub->getLftName()} = null;
-                $sub->{$sub->getRgtName()} = null;
-                $sub->save();
-            }
-        }
+        $this->cleanupTree($timeline, 'timeline_id');
     }
 }

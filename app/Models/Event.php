@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Nested;
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Kalnoy\Nestedset\NodeTrait;
 
 /**
  * Class Event
@@ -24,7 +24,7 @@ class Event extends MiscModel
         VisibleTrait,
         ExportableTrait,
         SoftDeletes,
-        NodeTrait,
+        Nested,
         SimpleSortableTrait;
 
     /**
@@ -48,16 +48,8 @@ class Event extends MiscModel
      * @var array
      */
     protected $filterableColumns = [
-        'name',
-        'type',
         'date',
         'location_id',
-        'tag_id',
-        'is_private',
-        'tags',
-        'has_image',
-        'has_entity_notes',
-        'has_entity_files',
         'event_id',
     ];
 

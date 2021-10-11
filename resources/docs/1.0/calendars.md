@@ -3,6 +3,7 @@ month_length# Calendars
 ---
 
 - [All Calendars](#all-calendars)
+- [Filters](#flters)
 - [Single Calendar](#calendar)
 - [Create a Calendar](#create-calendar)
 - [Update a Calendar](#update-calendar)
@@ -121,6 +122,10 @@ You can get a list of all the calendars of a campaign by using the following end
 }
 ```
 
+<a name="filters"></a>
+## Filters
+
+The list of returned calendars can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=calendar" target="_blank">API filters</a>.
 
 <a name="calendar"></a>
 ## Calendar

@@ -1,5 +1,5 @@
 @extends('layouts.admin', [
-    'title' => trans($trans . '.show.title', ['name' => $model->name]),
+    'title' => __($trans . '.show.title', ['name' => $model->name]),
     'breadcrumbs' => [
         ['url' => route($route . '.index'), 'label' => trans($trans . '.index.title')],
         $model->name,

@@ -4,13 +4,13 @@ namespace App\Models;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
+use App\Models\Concerns\Nested;
 use App\Models\Concerns\SimpleSortableTrait;
 use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
-use Kalnoy\Nestedset\NodeTrait;
 
 /**
  * Class Ability
@@ -18,6 +18,7 @@ use Kalnoy\Nestedset\NodeTrait;
  * @property int $ability_id
  * @property string $charges
  * @property Ability $ability
+ * @property Ability[] $descendants
  * @property Ability[] $abilities
  */
 class Ability extends MiscModel
@@ -25,7 +26,7 @@ class Ability extends MiscModel
     use CampaignTrait,
         VisibleTrait,
         ExportableTrait,
-        NodeTrait,
+        Nested,
         SimpleSortableTrait,
         SoftDeletes;
 
@@ -54,14 +55,7 @@ class Ability extends MiscModel
      * @var array
      */
     protected $filterableColumns = [
-        'name',
-        'type',
         'ability_id',
-        'is_private',
-        'has_image',
-        'has_entity_notes',
-        'has_entity_files',
-        'tags',
     ];
 
     /**

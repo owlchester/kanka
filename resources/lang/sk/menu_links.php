@@ -52,6 +52,10 @@ return [
     'random_types'  => [
         'any'   => 'Hociktorý objekt',
     ],
+    'reorder'       => [
+        'success'   => 'Menu linky zoradené.',
+        'title'     => 'Zmeniť poradie menu liniek',
+    ],
     'show'          => [
         'description'   => 'Detailný náhľad menu linku',
         'tabs'          => [

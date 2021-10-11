@@ -35,20 +35,7 @@ class OrganisationObserver extends MiscObserver
         }
 
         // We need to refresh our foreign relations to avoid deleting our children nodes again
-        $organisation->refresh();
-
-        if ($organisation->descendants()->count() > 0) {
-            foreach ($organisation->descendants as $sub) {
-                if (!empty($sub->organisation_id)) {
-                    continue;
-                }
-
-                // Got a descendant with the parent id null. Let's get them out of the tree
-                $sub->{$sub->getLftName()} = null;
-                $sub->{$sub->getRgtName()} = null;
-                $sub->save();
-            }
-        }
+        $this->cleanupTree($organisation, 'organisation_id');
     }
 
     /**

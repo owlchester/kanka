@@ -13,6 +13,7 @@ return [
     'fields'        => [
         'comment'       => 'Comentari',
         'entity_link'   => 'Enllaç a l\'entitat',
+        'honorable'     => 'Menció d\'honor',
         'rank'          => 'Resultat',
         'submitter'     => 'Remitent',
     ],
@@ -37,6 +38,7 @@ return [
     ],
     'results'       => [
         'description'       => 'El nostre jurat ha escollit els següents guanyadors de l\'esdeveniment.',
+        'scheduled'         => 'Aquest esdeveniment començarà el :start.',
         'title'             => 'Guanyadors de l\'esdeveniment',
         'waiting_results'   => 'L\'esdeveniment ha acabat! El jurat farà un cop d\'ull a les entregues i mostrarem aquí els guanyadors en quant siguin seleccionats.',
     ],

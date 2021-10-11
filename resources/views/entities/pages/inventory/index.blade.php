@@ -1,13 +1,9 @@
 <?php /** @var \App\Models\Entity $entity
  * @var \App\Models\Inventory $item */?>
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
-    'title' => trans('entities/inventories.show.title', ['name' => $entity->name]),
+    'title' => __('entities/inventories.show.title', ['name' => $entity->name]),
     'description' => '',
-    'breadcrumbs' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => trans($entity->pluralType() . '.index.title')],
-        ['url' => $entity->url('show'), 'label' => $entity->name],
-        __('crud.tabs.inventory')
-    ],
+    'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $entity->child,
     'bodyClass' => 'entity-inventory'
@@ -29,8 +25,15 @@
     @endcan
 @endsection
 
-@include('entities.components.header', ['model' => $entity->child, 'entity' => $entity])
 
+@include('entities.components.header', [
+    'model' => $entity->child,
+    'entity' => $entity,
+    'breadcrumb' => [
+        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
+        __('crud.tabs.inventory')
+    ]
+])
 @section('content')
     @include('partials.errors')
     <div class="row entity-grid">
@@ -40,13 +43,11 @@
         <div class="col-md-10 entity-main-block">
             <div class="box box-solid box-entity-inventory">
                 <div class="box-body">
-                    <h2 class="page-header with-border">
-                        {{ trans('crud.tabs.inventory') }}
-                    </h2>
+                    @if ($inventory->count() === 0)
+                        <p class="help-block">{{ __('entities/inventories.show.helper') }}</p>
 
-                    <p class="help-block">{{ __('entities/inventories.show.helper') }}</p>
-
-                    @include('entities.pages.inventory._inventory')
+                    @endif
+                    @includeWhen($inventory->count() > 0, 'entities.pages.inventory._inventory')
                 </div>
             </div>
         </div>

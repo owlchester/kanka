@@ -2,6 +2,7 @@
 
 namespace App\Scopes;
 
+use App\Models\MiscModel;
 use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -14,7 +15,7 @@ class CampaignScope implements Scope
      * Apply the scope to a given Eloquent query builder.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $builder
-     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @param  \Illuminate\Database\Eloquent\Model|MiscModel  $model
      * @return void
      */
     public function apply(Builder $builder, Model $model)
@@ -28,7 +29,7 @@ class CampaignScope implements Scope
             // In console mode, we still sometimes need scoping to a campaign (for example when deleting nested
             // elements to not interfere with data from other campaigns.
             $campaignId = CampaignLocalization::getConsoleCampaign();
-            if ($campaignId) {
+            if ($campaignId && $model->withCampaignLimit()) {
                 $builder->where($model->getTable() . '.campaign_id', '=', $campaignId);
             }
         }

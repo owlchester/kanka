@@ -56,6 +56,8 @@ return [
     'quests'                => 'Квесты',
     'race'                  => 'Раса',
     'races'                 => 'Расы',
+    'relation'              => 'Связь',
+    'relations'             => 'Связи',
     'tag'                   => 'Тэг',
     'tags'                  => 'Тэги',
     'timeline'              => 'Хронология',

@@ -58,6 +58,7 @@
     - [Mention Language](/docs/{{version}}/mention-language)
     - [Gallery](/docs/{{version}}/images)
     - [Templates](/docs/{{version}}/templates)
+    - [Campaign Styles](/docs/{{version}}/campaign-styles)
 
 - ## Help
     - [Troubleshooting](/docs/{{version}}/troubleshooting)

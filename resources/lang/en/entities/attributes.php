@@ -2,7 +2,7 @@
 
 return [
     'actions'       => [
-        'apply_template'    => 'Apply an Attribute Template',
+        'apply_template'    => 'Apply an attribute template',
         'manage'            => 'Manage',
         'more'              => 'More options',
         'remove_all'        => 'Delete All',
@@ -20,6 +20,7 @@ return [
     ],
     'helpers'       => [
         'delete_all'    => 'Are you sure you want to delete all of this entity\'s attributes?',
+        'setup'         => 'You can represent elements like HP or intelligence of an entity with attributes. Add attributes manually by clicking on the :manage button, or apply those from an attribute template.',
     ],
     'hints'         => [
         'is_private'    => 'You can hide all the attributes of an entity for all members outside of the admin role by making it private.',
@@ -48,8 +49,8 @@ return [
         'title' => ':name Attributes',
     ],
     'template'      => [
-        'success'   => 'Attribute Template :name applied to :entity',
-        'title'     => 'Apply an Attribute Template for :name',
+        'success'   => 'Attribute template :name applied to :entity',
+        'title'     => 'Apply an attribute template for :name',
     ],
     'types'         => [
         'attribute' => 'Attribute',

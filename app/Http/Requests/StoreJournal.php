@@ -36,7 +36,7 @@ class StoreJournal extends FormRequest
             'journal_id' => 'nullable|integer|exists:journals,id',
         ];
 
-        if (request()->has('calendar_id') && request()->post('calendar_id') !== null) {
+        if (request()->has('calendar_id') && request()->post('calendar_id') !== null && !request()->has('calendar_skip')) {
             $rules['calendar_day'] = 'required_with:calendar_id|min:1';
             $rules['calendar_year'] = 'required_with:calendar_id';
 

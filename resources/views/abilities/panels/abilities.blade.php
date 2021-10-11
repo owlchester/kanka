@@ -11,10 +11,6 @@ $r = $model->descendants()
 ?>
 <div class="box box-solid" id="ability-abilities">
     <div class="box-body">
-        <h2 class="page-header with-border">
-            {{ __('abilities.show.tabs.abilities') }}
-        </h2>
-
         <p class="help-block">{{ __('abilities.helpers.descendants') }}</p>
 
         <div class="row export-hidden">

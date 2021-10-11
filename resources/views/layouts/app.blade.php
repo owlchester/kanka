@@ -63,8 +63,8 @@ $campaign = CampaignLocalization::getCampaign(); ?>
 @if(!empty($campaign) && $campaign->boosted() && $campaign->hasPluginTheme())
     <link href="{{ route('campaign_plugins.css', ['ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">
 @endif
-@if (!empty($campaign) && $campaign->boosted() && !empty($campaign->css))
-    <link href="{{ route('campaign.css', ['ts' => $campaign->updated_at->getTimestamp()]) }}" rel="stylesheet">
+@if (!empty($campaign) && $campaign->boosted())
+    <link href="{{ route('campaign.css', ['ts' => \App\Facades\CampaignCache::stylesTimestamp()]) }}" rel="stylesheet">
 @endif
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 </head>

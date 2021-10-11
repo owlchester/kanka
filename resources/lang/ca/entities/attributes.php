@@ -44,6 +44,9 @@ return [
         'template'  => 'Selecciona una plantilla',
         'value'     => 'Valor de l\'atribut',
     ],
+    'show'          => [
+        'title' => 'Atributs de :name',
+    ],
     'template'      => [
         'success'   => 'S\'ha aplicat la plantilla d\'atributs :name a :entity',
         'title'     => 'Aplica una plantilla d\'atributs a :name',
@@ -56,6 +59,9 @@ return [
         'random'    => 'Aleatori',
         'section'   => 'Secció',
         'text'      => 'Text multilínia',
+    ],
+    'update'        => [
+        'success'   => 'S\'han actualitzat els atributs de :entity.',
     ],
     'visibility'    => [
         'entry'     => 'L\'atribut es mostra al menú de l\'entitat.',

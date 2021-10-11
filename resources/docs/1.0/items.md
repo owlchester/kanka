@@ -3,6 +3,7 @@
 ---
 
 - [All Items](#all-items)
+- [Filters](#filters)
 - [Single Item](#item)
 - [Create a Item](#create-item)
 - [Update a Item](#update-item)
@@ -49,6 +50,10 @@ You can get a list of all the items of a campaign by using the following endpoin
 }
 ```
 
+<a name="filters"></a>
+## Filters
+
+The list of returned items can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=item" target="_blank">API filters</a>.
 
 <a name="item"></a>
 ## Item

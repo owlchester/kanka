@@ -48,8 +48,7 @@ abstract class MiscObserver
 
         // If we're from the "move" service, we can skip this part.
         // Or if we are deleting, we don't want to re-do the whole set foreign ids to null
-        if (defined('MISCELLANY_SKIP_ENTITY_CREATION') ||
-            request()->isMethod('delete') === true ||
+        if (request()->isMethod('delete') === true ||
             $model->savingObserver === false) {
             return;
         }
@@ -280,6 +279,34 @@ abstract class MiscObserver
         catch (\Exception $e) {
             return '';
         }
+    }
 
+    /**
+     * @param MiscModel $model
+     * @param string $field
+     */
+    protected function cleanupTree(MiscModel $model, string $field = 'parent_id')
+    {
+        // Warning: we probably don't need this anymore, since we've removed the deleted() listened
+        // in the Nested trait.
+
+        // We need to refresh our foreign relations to avoid deleting our children nodes again
+        $model->refresh();
+
+        // Check that we have no descendants anymore.
+        if ($model->descendants()->count() === 0) {
+            return;
+        }
+
+        foreach ($model->descendants as $sub) {
+            if (!empty($sub->$field)) {
+                continue;
+            }
+
+            // Got a descendant with the parent id null. Let's get them out of the tree
+            $sub->{$sub->getLftName()} = null;
+            $sub->{$sub->getRgtName()} = null;
+            $sub->save();
+        }
     }
 }

@@ -124,7 +124,7 @@ class PermissionService
             $entityActions = ['read'];
         }
 
-        $excludedEntities = ['menu_links'];
+        $excludedEntities = ['menu_links', 'relations'];
 
         foreach ($this->entityService->entities() as $entity => $class) {
             if (in_array($entity, $excludedEntities)) {

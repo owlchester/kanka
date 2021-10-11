@@ -64,18 +64,10 @@ class Item extends MiscModel
      * @var array
      */
     protected $filterableColumns = [
-        'name',
-        'type',
         'location_id',
         'character_id',
-        'tag_id',
-        'is_private',
         'price',
         'size',
-        'tags',
-        'has_image',
-        'has_entity_notes',
-        'has_entity_files',
     ];
 
     /**

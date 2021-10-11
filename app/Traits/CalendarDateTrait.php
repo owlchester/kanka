@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Models\Calendar;
 use App\Models\EntityEvent;
 use App\Models\MiscModel;
 
@@ -13,6 +14,7 @@ use App\Models\MiscModel;
  * @property integer $calendar_month
  * @property integer $calendar_day
  * @property integer $calendar_id
+ * @property Calendar $calendar
  */
 trait CalendarDateTrait
 {
@@ -50,7 +52,7 @@ trait CalendarDateTrait
      * Used to know a model is using this trait
      * @return bool
      */
-    public function hasCalendarDateTrait()
+    public function hasCalendarDateTrait(): string
     {
         return true;
     }
@@ -58,15 +60,20 @@ trait CalendarDateTrait
     /**
      * @return bool
      */
-    public function hasCalendar()
+    public function hasCalendar(): bool
     {
         return !empty($this->calendar_id) && $this->calendar;
+    }
+
+    public function hasCalendarButNoAccess(): bool
+    {
+        return !empty($this->calendar_id) && empty($this->calendar);
     }
 
     /**
      * @return string
      */
-    public function getDate()
+    public function getDate(): string
     {
         return $this->calendar_year . '-' . $this->calendar_month . '-' . $this->calendar_day;
     }
@@ -133,16 +140,30 @@ trait CalendarDateTrait
      */
     protected function syncEntityEventOnSaved()
     {
+        // If we don't have an entity, not exactly sure what's going on. Skip the entity event
+        // observer and let the user report it instead of throwing an ugly error at them.
         $entity = $this->entity;
+        if (empty($entity)) {
+            return;
+        }
+
+        // The user is editing an entity with a calendar, but doesn't have the permission to see
+        // the calendar? We skip any work.
+        if (request()->has('calendar_skip')) {
+            return;
+        }
+
         $previousCalendarId = $this->getOriginal('calendar_id');
 
         // Previously, this lookup was only triggered when the calendar_id or date was dirty. However this excludes just
         // changing the colour or periodicity. To support the API not overriding the values, we still check to make
         // sure that the calendar_id property is set.
         if (!request()->has('calendar_id')) {
+            //dd('noping');
             return;
         }
 
+        //dd('why');
         // We already had this event linked
         /** @var EntityEvent $event */
         $event = EntityEvent::where([

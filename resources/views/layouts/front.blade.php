@@ -66,6 +66,7 @@
 <noscript id="deferred-styles">
 </noscript>
 
+<div id="top"></div>
 <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
     <div class="container">
         <a class="navbar-brand" href="{{ (auth()->check() ? route('front.home') : route('home')) }}">
@@ -104,23 +105,6 @@
 
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle @if(!empty($active) && $active == 'features') nav-active @endif" href="#"  id="navbarDropAbout" role="button" aria-expanded="false" data-toggle="dropdown" aria-haspopup="true">
-                        {{ __('front.menu.features') }} <span class="caret"></span>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropAbout">
-                        <a href="{{ route('front.features') }}" class="dropdown-item">
-                            {{ __('front.menu.overview') }}
-                        </a>
-
-                        <a href="{{ route('front.worldbuilder-features') }}" class="dropdown-item">
-                            {{ __('front.features.actions.worldbuilder') }}
-                        </a>
-                        <a href="{{ route('front.gm-features') }}" class="dropdown-item">
-                            {{ __('front.features.actions.rpg') }}
-                        </a>
-                    </div>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link @if(!empty($active) && $active == 'pricing') nav-active @endif" href="{{ route("front.pricing") }}">{{ __('front.menu.pricing') }}</a>
                 </li>
