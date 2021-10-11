@@ -1,5 +1,5 @@
 <?php
-$r = $model->descendants()->with('entity')->simpleSort($datagridSorter)->paginate();
+$r = $model->descendants()->with('entity')->has('event')->simpleSort($datagridSorter)->paginate();
 ?>
 
 <div class="box box-solid" id="event-events">
