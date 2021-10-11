@@ -32,6 +32,7 @@ return [
     'other'                 => 'Miscelánea',
     'quests'                => 'Misións',
     'races'                 => 'Razas',
+    'relations'             => 'Relacións',
     'search'                => 'Buscar...',
     'tags'                  => 'Etiquetas',
     'timelines'             => 'Liñas temporais',

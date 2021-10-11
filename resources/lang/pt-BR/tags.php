@@ -3,14 +3,14 @@
 return [
     'children'      => [
         'actions'       => [
-            'add'   => 'Adicionar nova tag',
+            'add'   => 'Adicionar à tag',
         ],
         'create'        => [
             'success'   => 'Adicionada a tag :name a entidade.',
             'title'     => 'Adicionar uma tag a :name',
         ],
         'description'   => 'Entidades que pertencem à tag',
-        'title'         => 'Tags secundárias da tag :name',
+        'title'         => 'Filhos da tag :name',
     ],
     'create'        => [
         'description'   => 'Criar nova tag',
@@ -26,14 +26,14 @@ return [
     ],
     'fields'        => [
         'characters'    => 'Personagens',
-        'children'      => 'Tags secundárias',
+        'children'      => 'Filhos',
         'name'          => 'Nome',
         'tag'           => 'Tag Principal',
         'tags'          => 'Subtags',
         'type'          => 'Tipo',
     ],
     'helpers'       => [
-        'nested'        => 'Quando em visualização aninhada, você pode visualizar suas tags de uma maneira aninhada. Tags que não estão relacionadas a uma tag primária serão mostradas por padrão. As tags com tags secundárias podem ser clicadas para visualizar essas tags. Você pode continuar clicando até que não haja mais tags secundárias para ver.',
+        'nested'        => 'Quando em visualização aninhada, você pode visualizar suas tags de uma maneira aninhada. Tags que não estão relacionadas a uma tag primária serão mostradas por padrão. As tags com filhos podem ser clicadas para visualizar essas tags. Você pode continuar clicando até que não haja mais tags secundárias para ver.',
         'nested_parent' => 'Mostrando as tags de :parent.',
         'nested_without'=> 'Mostrando todas as tags que não tem uma tag-pai. Clique em uma linha para ver as tags-filhos.',
     ],
@@ -59,14 +59,14 @@ return [
     'show'          => [
         'description'   => 'Uma visão detalhada da tag',
         'tabs'          => [
-            'children'      => 'Tags secundárias',
+            'children'      => 'Filhos',
             'information'   => 'Informação',
             'tags'          => 'Tags',
         ],
         'title'         => 'Tag :name',
     ],
     'tags'          => [
-        'description'   => 'Tags secundárias',
-        'title'         => 'Tags secundárias da tag :name',
+        'description'   => 'Filhos das Tags',
+        'title'         => 'Filhos da tag :name',
     ],
 ];

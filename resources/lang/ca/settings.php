@@ -85,6 +85,13 @@ return [
             'exhausted_boosts'      => 'Us heu quedat sense millores. Elimineu una millora d\'una campanya abans de donar-la-hi a una altra.',
             'exhausted_superboosts' => 'Us heu quedat sense millores. Calen 3 millores per a supermillorar una campanya.',
         ],
+        'modals'            => [
+            'more'  => [
+                'action'    => 'Més millores?',
+                'body'      => 'Podeu obtenir més millores pujant el vostre nivell de subscripció o eliminant-ne alguna d\'una altra campanya. En treure la millora d\'una campanya, no s\'esborrarà cap informació; només romandrà oculta fins quan torneu a afegir-hi millores.',
+                'title'     => 'Obtenir més millores',
+            ],
+        ],
         'success'           => [
             'boost'         => 'S\'ha millorat la campanya :name.',
             'delete'        => 'La vostra millora s\'ha tret de :name.',
@@ -155,25 +162,16 @@ return [
         'subscription_status'   => 'Estat de la subscripció',
     ],
     'patreon'       => [
-        'actions'           => [
-            'link'  => 'Vincula el compte',
-            'view'  => 'Visita la pàgina de Patreon de Kanka',
-        ],
-        'benefits'          => 'Fer-nos suport a Patreon desbloqueja moltes :features per a les campanyes, i ens ajuda a dedicar-li més temps a treballar en Kanka.',
-        'benefits_features' => 'funcions increïbles',
-        'deprecated'        => 'Funcionalitat discontinuada. Si desitgeu fer suport a Kanka, podeu fer-ho mitjançant una :subscription. La vinculació amb Patreon encara continua activa per als nostres Patrons que van vincular els seus comptes abans de la mudança de Patreon.',
-        'description'       => 'Sincronizant amb Patreon',
-        'linked'            => 'Gràcies per fer suport a Kanka en Patreon! S\'ha vinculat el vostre compte.',
-        'pledge'            => 'Pledge :name',
-        'remove'            => [
+        'deprecated'    => 'Funcionalitat discontinuada. Si desitgeu fer suport a Kanka, podeu fer-ho mitjançant una :subscription. La vinculació amb Patreon encara continua activa per als nostres Patrons que van vincular els seus comptes abans de la mudança de Patreon.',
+        'description'   => 'Sincronizant amb Patreon',
+        'pledge'        => 'Pledge :name',
+        'remove'        => [
             'button'    => 'Desvincula el meu compte de Patreon',
             'success'   => 'S\'ha desvinculat el vostre compte de Patreon.',
             'text'      => 'Desvincular el vostre compte de Patreon de Kanka eliminarà els vostres bonus, el vostre nom del saló de la fama, les vostres millores i altres funcionalitats vinculades. No obstant això, el vostre contingut millorat no es perdrà: si torneu a subscriure-us, tornareu a tenir accés a aquestes dades, incloent la possibilitat de tornar a millorar aquesta campanya.',
             'title'     => 'Desvincular el compte de Patreon de Kanka',
         ],
-        'success'           => 'Gràcies per fer suport a Kanka a Patreon!',
-        'title'             => 'Patreon',
-        'wrong_pledge'      => 'Afegim manualment el vostre nivell de "pledge", així que tingueu en compte que podem trigar uns pocs dies. Si al cap d\'un temps segueix sense estar bé, contacteu amb nosaltres.',
+        'title'         => 'Patreon',
     ],
     'profile'       => [
         'actions'   => [
@@ -190,6 +188,7 @@ return [
             'update_currency'   => 'Guarda com a moneda preferida',
         ],
         'benefits'              => 'En donar-nos suport, es desbloquegen noves :features i ens ajudeu a dedicar més temps a la millora de Kanka. No es guarda cap informació bancària. Usem :stripe per a gestionar els cobraments.',
+        'benefits_features'     => 'funcionalitats increïbles',
         'billing'               => [
             'helper'    => 'La vostra informació de pagament es processa i es guarda de manera segura mitjançant :stripe. Aquest mètode de pagament s\'usarà per a totes les vostres subscripcions.',
             'saved'     => 'Mètode de pagament guardat',

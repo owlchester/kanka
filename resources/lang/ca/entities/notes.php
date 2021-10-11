@@ -3,6 +3,7 @@
 return [
     'actions'       => [
         'add'       => 'Nova anotació',
+        'add_role'  => 'Afegeix un rol',
         'add_user'  => 'Afegeix un usuari',
     ],
     'create'        => [
@@ -22,13 +23,15 @@ return [
         'collapsed' => 'Tanca l\'anotació fixada per defecte',
         'creator'   => 'Creador',
         'entry'     => 'Entrada',
-        'is_pinned' => 'Fixada',
         'name'      => 'Nom',
-        'position'  => 'Posició fixa',
+    ],
+    'footer'        => [
+        'created'   => 'Creada per :user el :date',
+        'updated'   => 'Actualitzada per :user el :date',
     ],
     'hint'          => 'Aquí podeu afegir tota aquella informació que no encaixa del tot als camps per defecte de l\'entitat, o que es vol mantenir en privat.',
     'hints'         => [
-        'is_pinned' => 'Les anotacions fixades es mostren sota el text de l\'entitat a la vista principal segons l\'ordre de posició fixada.',
+        'reorder'   => 'Podeu reordenar les anotacions d\'una entitat fent-ne clic a l\'icona de :icon a la capçalera.',
     ],
     'index'         => [
         'title' => 'Anotacions de :name',

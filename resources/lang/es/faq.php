@@ -33,10 +33,7 @@ TEXT
         'answer'    => 'Kanka no tiene esta funcionalidad. Sin embargo, si quieres tener varios grupos en el mismo mundo, puedes usar la misma campaña y separar a los grupos mediante etiquetas, misiones y permisos.',
         'question'  => '¿Puedo sincronizar entidades entre varias campañas?',
     ],
-    'conversations'         => [
-        'answer'    => 'Se pueden crear conversaciones entre personajes o entre miembros de la campaña. Por ejemplo, si quieres documentar una charla importante entre PNJs y PJs, puedes hacerlo en este módulo. También se puede usar para jugar campañas online.',
-        'question'  => '¿Qué son las conversaciones?',
-    ],
+    'conversations'         => [],
     'custom'                => [
         'answer'    => 'Kanka viene con un conjunto de entidades predefinidas que interactúan entre ellas. Permitir tipos de entidad personalizados requeriría volver a reconstruir la app desde cero y le quitaría su propósito como herramienta de creación. Además, la flexibilidad de Kanka permite que puedas representar cualquier tipo de entidad con las Etiquetas.',
         'question'  => '¿Puedo crear tipos de entidad personalizados?',
@@ -101,10 +98,7 @@ TEXT
         'answer'    => 'Si prefieres ver tus entidades en vista anidada por defecto, puedes hacerlo desde las opciones de Diseño, dentro de tu Perfil. Allí puedes seleccionar la opción "Vista anidada por defecto". Esto solo afectará a tu cuenta.',
         'question'  => '¿Puedo configurar las listas para que aparezcan anidadas por defecto?',
     ],
-    'organise_play'         => [
-        'answer'    => 'Nos hemos asociado con :lfgm para ayudarte a organizar tus sesiones en grupo. Puedes sincronizar tu campaña de Kanka con tu campaña de LFGM para mostrar tus próximas disponibilidades directamente en el tablero de la campaña.',
-        'question'  => '¿Cómo puedo gestionar mis sesiones?',
-    ],
+    'organise_play'         => [],
     'permissions'           => [
         'answer'    => '¡Por supuesto, para eso hemos creado Kanka! Puedes invitar a todos tus jugadores a tus campañas, y darles roles y permisos. Hemos construido el sistema para que sea extremadamente flexible (con opción de incluir o de excluir) para cubrir las máximas necesidades y situaciones posibles.',
         'question'  => 'Quiero usar Kanka para construir mi mundo de rol, pero quiero que mis jugadores tengan acceso a algunas de las entidades y editar sus personajes. ¿Es posible?',

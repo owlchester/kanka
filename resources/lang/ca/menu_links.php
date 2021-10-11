@@ -16,6 +16,7 @@ return [
         'dashboard'     => 'Taulell',
         'entity'        => 'Entitat',
         'filters'       => 'Filtres',
+        'is_nested'     => 'Niuat',
         'menu'          => 'Menú',
         'name'          => 'Nom',
         'position'      => 'Posició',
@@ -46,6 +47,10 @@ return [
     ],
     'random_types'  => [
         'any'   => 'Qualsevol entitat',
+    ],
+    'reorder'       => [
+        'success'   => 'S\'han reordenat els accessos directes.',
+        'title'     => 'Reordena els accessos directes',
     ],
     'show'          => [
         'tabs'  => [

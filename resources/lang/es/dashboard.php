@@ -96,6 +96,7 @@ return [
     'widgets'           => [
         'actions'                   => [
             'advanced-options'  => 'Opciones avanzadas',
+            'delete-confirm'    => 'este widget',
         ],
         'advanced_options_boosted'  => 'Las :boosted_campaigns tienen opciones avanzadas, como mostrar los miembros de una familia o los atributos de una entidad desde el tablero.',
         'calendar'                  => [
@@ -117,11 +118,12 @@ return [
             'success'   => 'Widget eliminado del tablero.',
         ],
         'fields'                    => [
-            'dashboard' => 'Tablero',
-            'name'      => 'Nombre personalizado del widget',
-            'order'     => 'Orden',
-            'text'      => 'Texto',
-            'width'     => 'Anchura',
+            'dashboard'         => 'Tablero',
+            'name'              => 'Nombre personalizado del widget',
+            'optional-entity'   => 'Link a la entidad',
+            'order'             => 'Orden',
+            'text'              => 'Texto',
+            'width'             => 'Anchura',
         ],
         'orders'                    => [
             'name_asc'  => 'Ascendente por nombre',
@@ -144,9 +146,11 @@ return [
                 'full'              => 'Muestra toda la entidad por defecto en lugar de una previsualización.',
                 'show_attributes'   => 'Mostrar los atributos bajo la entrada',
                 'show_members'      => 'Si la entidad es una familia u organización, muestra sus miembros bajo la entrada.',
+                'show_relations'    => 'Muestra las relaciones fijadas bajo la entrada.',
             ],
             'show_attributes'   => 'Mostrar atributos',
             'show_members'      => 'Mostrar miembros',
+            'show_relations'    => 'Mostrar relaciones fijadas',
             'singular'          => 'Singular',
             'tags'              => 'Filtra la lista de las entidades recientemente modificadas con etiquetas específicas.',
             'title'             => 'Modificado recientemente',
@@ -164,6 +168,7 @@ return [
             '4' => 'Tercio (33%)',
             '6' => 'Mitad (50%)',
             '8' => 'Dos tercios (66%)',
+            '9' => 'Tres cuartos (75%)',
         ],
     ],
 ];

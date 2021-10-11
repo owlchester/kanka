@@ -35,6 +35,7 @@ return [
     'patreon'               => 'Patreon',
     'quests'                => 'Quests',
     'races'                 => 'Spezies',
+    'relations'             => 'Beziehungen',
     'releases'              => 'Versionshinweise',
     'search'                => 'Suche...',
     'support'               => 'Support / Community',

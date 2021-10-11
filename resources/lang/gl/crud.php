@@ -65,6 +65,7 @@ return [
         'success'       => [
             'copy_to_campaign'  => '{1} :count entidade copiada a ":campaign".|[2,*] :count entidades copiadas a ":campaign".',
             'editing'           => '{1} :count entidade actualizada.|[2,*] :count entidades actualizadas.',
+            'editing_partial'   => '{1} :count/:total entidade actualizada.|[2,*] entidades actualizadas.',
             'permissions'       => '{1} Permisos alterados para :count entidade.|[2,*] Permisos alterados para :count entidades.',
             'private'           => '{1} :count entidade é agora privada|[2,*] :count entidades son agora privadas.',
             'public'            => '{1} :count entidade é agora visíbel|[2,*] :count entidades son agora visíbeis.',
@@ -117,6 +118,7 @@ return [
         'calendar'              => 'Calendario',
         'calendar_date'         => 'Data do calendario',
         'character'             => 'Personaxe',
+        'child'                 => 'Descendente',
         'closed'                => 'Pechada',
         'colour'                => 'Cor',
         'copy_abilities'        => 'Copiar habilidades',
@@ -187,6 +189,16 @@ return [
         'direct'                    => 'Filtrar só descendentes directas',
         'filtered'                  => 'Mostrando :count de :total :entity.',
         'hide'                      => 'Ocultar filtros',
+        'lists'                     => [
+            'desktop'   => [
+                'all'       => 'Mostrar todas as descendentes (:count)',
+                'filtered'  => 'Mostrar descendentes directas (:count)',
+            ],
+            'mobile'    => [
+                'all'       => 'Mostrar todas (:count)',
+                'filtered'  => 'Mostrar directas (:count)',
+            ],
+        ],
         'mobile'                    => [
             'clear' => 'Limpar',
             'copy'  => 'Portapapeis',

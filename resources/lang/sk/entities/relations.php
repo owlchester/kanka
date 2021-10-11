@@ -5,6 +5,13 @@ return [
         'mode-map'      => 'Nástroj zobrazenia vzťahov',
         'mode-table'    => 'Tabuľka vzťahov a prepojení',
     ],
+    'bulk'          => [
+        'delete'    => '{1} :count vzťah odstránený.|[2,4] :count vzťahy odstránené.|[5,*] :count vzťahov odstránených.',
+        'success'   => [
+            'editing'           => '{1} :count vzťah aktualizovaný.|[2,4] :count vzťahy aktualizované.|[5,*] :count vzťahov aktualizovaných.',
+            'editing_partial'   => '{1} :count/:total vzťah aktualizovaný.|[2,4] :count/:total vzťahy aktualizované.|[5,*] :count/:total vzťahov aktualizovaných.',
+        ],
+    ],
     'connections'   => [
         'map_point'         => 'Bod na mape',
         'mention'           => 'Referencia',
@@ -12,6 +19,7 @@ return [
         'timeline_element'  => 'Prvok časovej osy',
     ],
     'create'        => [
+        'new_title' => 'Nový vzťah',
         'success'   => 'Vzťah pre :name pridaný.',
         'title'     => 'Vytvoriť vzťah',
     ],
@@ -22,6 +30,7 @@ return [
         'attitude'          => 'Postoj',
         'connection'        => 'Prepojenie',
         'is_star'           => 'Pripnutý',
+        'owner'             => 'Zdroj',
         'relation'          => 'Vzťah',
         'target'            => 'Cieľ',
         'target_relation'   => 'Vzťah cieľa',
@@ -36,6 +45,10 @@ return [
         ],
         'target_relation'   => 'Popis vzťahu u cieľa. Ponechaj prázdne, ak sa má použiť text tohto vzťahu.',
         'two_way'           => 'Keď vytvoríš zrkadlenie vzťahu, vytvorí sa rovnaký vzťah aj u cieľového objektu. Ak bude neskôr upravovaný, zrkadlený vzťah nebude zmenami dotknutý.',
+    ],
+    'index'         => [
+        'add'   => 'Nový vzťah',
+        'title' => 'Vzťahy',
     ],
     'options'       => [
         'mentions'  => 'Vzťahy + Prepojené + Referencie',

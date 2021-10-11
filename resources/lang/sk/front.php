@@ -103,6 +103,7 @@ return [
         'boosts_v2'         => [
             'description'       => 'Naše úrovne podpory ti dajú prístup k boostom, ktoré môžeš použiť na boostnutie alebo superboostnutie kampaní. Ak tak spravíš, odomknú sa v kampani nasledujúce výhody.',
             'description-count' => 'Boostnutie kampane použije :boost-count boost. Superboostnutie kampane použije :superboost-count boosty.',
+            'moving'            => 'Boosty môžu byť preradené medzi kampaňami. Napr. ak kampaň skončila, môžeš z nej odstrániť boost a priradiť ho inej kampani. Odstránenie boostu z kampane neodstráni žiadne dáta, iba ich jednoducho zneviditeľní, dokiaľ nebude kampaň opäť boostnutá.',
             'title'             => 'Boostnuté a Superboostnuté kampane',
         ],
         'calendars'         => [
@@ -279,6 +280,7 @@ return [
         'news'          => 'Novinky',
         'newsletter'    => 'Newsletter',
         'other'         => 'Iné',
+        'overview'      => 'Prehľad funkcionalít',
         'pricing'       => 'Cenník',
         'privacy'       => 'Ochrana osobných údajov',
         'register'      => 'Registrácia',

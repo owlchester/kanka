@@ -56,6 +56,8 @@ return [
     'quests'                => 'Misións',
     'race'                  => 'Raza',
     'races'                 => 'Razas',
+    'relation'              => 'Relación',
+    'relations'             => 'Relacións',
     'tag'                   => 'Etiqueta',
     'tags'                  => 'Etiquetas',
     'timeline'              => 'Liña temporal',

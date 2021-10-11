@@ -103,6 +103,7 @@ return [
         'boosts_v2'         => [
             'description'       => 'Nossos níveis pagos oferecem acesso a impulsões, que você pode usar para impulsionar ou superimpulsionar campanhas. Isso desbloqueia os seguintes benefícios para uma campanha.',
             'description-count' => 'Impulsionar uma campanha usa :boost-count impulsionamentos. Superimpulsionar uma campanha usa :superboost-count impulsionamentos.',
+            'moving'            => 'Os impulsionamentos podem ser movidos em torno das campanhas. Por exemplo, se uma campanha acabou, você pode desimpulsionar e impulsionar ou superimpulsionar outra campanha. O desimpulsionamento de uma campanha não exclui nenhum dado relacionado aos recursos otimizados, mas simplesmente os oculta até que a campanha seja otimizada novamente.',
             'title'             => 'Campanhas Impulsionadas e Super Impulsionadas',
         ],
         'calendars'         => [
@@ -279,6 +280,7 @@ return [
         'news'          => 'Novidades',
         'newsletter'    => 'Newsletter',
         'other'         => 'Outro',
+        'overview'      => 'Visão geral do recurso',
         'pricing'       => 'Preços',
         'privacy'       => 'Política de Privacidade',
         'register'      => 'Registrar',

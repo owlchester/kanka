@@ -55,6 +55,9 @@ return [
         'helpers'       => [
             'more'  => '¿No encuentras lo que buscas?',
         ],
+        'kb'            => [
+            'title' => '¿Necesitas ayuda para usar Kanka?',
+        ],
         'title'         => 'Preguntas Frecuentes',
     ],
     'features'      => [
@@ -81,10 +84,10 @@ return [
             'css'                   => 'CSS personalizado de la campaña',
             'dashboards'            => 'Configura tableros personalizados para los diferentes roles de la campaña',
             'description'           => 'Algunos niveles de mecenazgo otorgan mejoras a los usuarios, que pueden usar para mejorar campañas. Éstas obtienen los siguientes beneficios.',
-            'entity_files'          => 'Más archivos subidos por entidad (hasta 5, en vez de 3)',
             'entity_links'          => 'Enlaces a recursos y webs externas en las entidades',
             'header_image'          => 'Imagen de cabecera para las entidades',
             'images'                => 'Imágenes por defecto en las entidades',
+            'marketplace'           => 'Acceso al :marketplace',
             'no_ads'                => 'Sin anuncios en la campaña',
             'recovery'              => 'Recuperación de entidades de hasta 30 días',
             'relation-visualiser'   => 'Explora visualmente las relaciones entre entidades',
@@ -176,13 +179,10 @@ return [
             'title'         => 'Gestionar secretos',
         ],
         'superboosts'       => [
-            'boosted'       => 'Supermejorada',
-            'description'   => 'Para supermejorar una campaña y desbloquear las siguientes funcionalidades puedes usar tres mejoras de campaña en una sola.',
-            'files'         => 'Hasta 10 archivos subidos por entidad',
-            'gallery'       => 'Galería de campaña e integración con el editor de texto Summernote',
-            'logs'          => 'Registros completos de los cambios de las entidades (de hasta 30 días)',
-            'stats'         => 'Página de logros de campaña',
-            'title'         => 'Campañas supermejoradas',
+            'boosted'   => 'Supermejorada',
+            'gallery'   => 'Galería de campaña e integración con el editor de texto Summernote',
+            'logs'      => 'Registros completos de los cambios de las entidades (de hasta 30 días)',
+            'stats'     => 'Página de logros de campaña',
         ],
         'timelines'         => [
             'description'   => 'Representa visualmente las líneas de tiempo de tus mundos, imperios, familias nobles o hasta de un solo personaje.',
@@ -261,6 +261,7 @@ return [
         'news'          => 'Novedades',
         'newsletter'    => 'Newsletter',
         'other'         => 'Otros',
+        'overview'      => 'Funcionalidades principales',
         'pricing'       => 'Tarifas',
         'privacy'       => 'Política de Privacidad',
         'register'      => 'Registrarse',

@@ -26,9 +26,7 @@ TEXT
         'success'       => 'S\'ha actualitzat la campanya.',
         'title'         => 'Edició de la campanya :campaign',
     ],
-    'entity_note_visibility'            => [
-        'pinned'    => 'Fixa les anotacions',
-    ],
+    'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
         'private'   => 'La personalitat dels personatges nous és privada per defecte.',
     ],
@@ -52,10 +50,10 @@ TEXT
     ],
     'fields'                            => [
         'boosted'                       => 'Millorada per',
+        'connections'                   => 'Mostra la taula de connexions d\'una entitat per defecte (en comptes de l\'explorador de relacions de les campanyes millorades)',
         'css'                           => 'CSS',
         'description'                   => 'Descripció',
         'entity_count'                  => 'Nombre d\'entitats',
-        'entity_note_visibility'        => 'Anotacions d\'entitat fixades',
         'entity_personality_visibility' => 'Visibilitat de la personalitat',
         'entity_visibility'             => 'Visibilitat de l\'entitat',
         'entry'                         => 'Descripció de la campanya',
@@ -67,6 +65,7 @@ TEXT
         'image'                         => 'Imatge',
         'locale'                        => 'Idioma',
         'name'                          => 'Nom',
+        'nested'                        => 'Llistes niuades per defecte si estan disponibles',
         'open'                          => 'Oberta a sol·licituds',
         'public_campaign_filters'       => 'Filtres de les campanyes públiques',
         'related_visibility'            => 'Visibilitat dels elements relacionats',
@@ -84,7 +83,6 @@ TEXT
         'boosted'                       => 'Algunes característiques estan desbloquejades perquè aquesta campanya està millorada. Per a saber-ne més, feu una ullada a la pàgina de :settings.',
         'css'                           => 'Escriviu CSS propi per a les pàgines de la campanya. Tingueu en compte que abusar d\'aquesta eina pot comportar l\'eliminació del CSS personalitzat. Els incompliments repetits o greus poden comportar l\'eliminació de la campanya.',
         'dashboard'                     => 'Personalitzeu la forma en què es mostra el widget al taulell mitjançant els següents camps.',
-        'entity_note_visibility'        => 'En crear una nova anotació d\'entitat, l\'opció "Fixada" estarà seleccionada automàticament.',
         'entity_personality_visibility' => 'En crear un nou personatge, l\'opció de «Personalitat visible» estarà deseleccionada automàticament.',
         'entity_visibility'             => 'En crear una nova entitat, se seleccionarà automàticament l\'opció de «Privada».',
         'excerpt'                       => 'L\'extracte de la campanya es mostrarà al taulell principal. Escriviu unes línies per introduïr el món.',
@@ -94,6 +92,7 @@ TEXT
         'locale'                        => 'L\'idioma en què està escrita la campanya. Això serveix per a agrupar les campanyes públiques.',
         'name'                          => 'La campanya/món pot tenir qualsevol nom, sempre i quan contingui al menys 4 lletres o números.',
         'public_campaign_filters'       => 'Per facilitar que altres trobin aquesta campanya entre la resta, proporcioneu la informació següent.',
+        'public_no_visibility'          => 'Vigileu! La vostra campanya és pública, però el rol públic no té accés a res. :fix.',
         'related_visibility'            => 'La visibilitat per defecte en crear un nou element amb aquest camp (anotacions d\'entitat, relacions, habilitats, etc.)',
         'system'                        => 'Si la campanya és visible públicament, el sistema es mostrarà a la pàgina de :link.',
         'systems'                       => 'Per a evitar desordres, alguns elements de Kanka només estan disponibles amb sistemes de rol específics (per exemple, el bloc d\'stats de monstre de D&D 5e). Si trieu un sistema acceptat, s\'activaran aquests elements.',
@@ -121,15 +120,15 @@ TEXT
                 'send'      => 'Envia l\'invitació',
             ],
             'description'   => 'Convideu amics a la campanya',
-            'link'          => 'S\'ha creat l\'enllaç: <a href=":url" target="_blank">:url</a>',
             'success'       => 'S\'ha enviat la invitació.',
+            'success_link'  => 'S\'ha creat l\'enllaç. :link',
             'title'         => 'Invitacions a la campanya',
         ],
         'destroy'               => [
             'success'   => 'S\'ha eliminat la invitació.',
         ],
         'email'                 => [
-            'link'      => '<a href=":link">Uniu-vos a la campanya de :name </a>',
+            'link_text' => 'Uniu-vos a la campanya de :name',
             'subject'   => ':name us ha convidat a unir-vos a la seva campanya «:campaign» a kanka.io! Cliqueu el següent enllaç per acceptar la seva invitació.',
             'title'     => 'Invitació de :name',
         ],
@@ -199,6 +198,7 @@ TEXT
             'roles_page'    => 'Pàgina de rols',
             'title'         => 'Invitacions',
         ],
+        'manage_roles'          => 'Configuració de rols d\'usuari',
         'roles'                 => [
             'member'    => 'Membre',
             'owner'     => 'Administrador',
@@ -208,6 +208,10 @@ TEXT
         ],
         'switch_back_success'   => 'Heu tornat al vostre usuari.',
         'title'                 => 'Membres de la campanya :name',
+        'updates'               => [
+            'added'     => 'S\'ha afegit el rol :role a :user.',
+            'removed'   => 'S\'ha tret el rol :role a :user.',
+        ],
         'your_role'             => 'El vostre rol: <i>:role</i>',
     ],
     'open_campaign'                     => [
@@ -232,7 +236,9 @@ TEXT
     ],
     'roles'                             => [
         'actions'       => [
-            'add'   => 'Afegeix un rol',
+            'add'           => 'Afegeix un rol',
+            'permissions'   => 'Configura els permisos',
+            'rename'        => 'Canvia el nom del rol',
         ],
         'admin_role'    => 'rol d\'administrador',
         'create'        => [
@@ -264,6 +270,15 @@ TEXT
             'role_permissions'      => 'Habilita el rol «:name» per a que pugui fer les accions següents a totes les entitats.',
         ],
         'members'       => 'Membres',
+        'modals'        => [
+            'details'   => [
+                'button'    => 'Ajuda',
+                'campaign'  => 'Els permisos de la campanya permeten fer les següents accions.',
+                'entities'  => 'A continuació hi ha un resum ràpid del que poden fer els membres d\'aquest rol.',
+                'more'      => 'Per a més detalls, mireu el nostre tutorial a Youtube.',
+                'title'     => 'Detalls sobre els permisos',
+            ],
+        ],
         'permissions'   => [
             'actions'   => [
                 'add'           => 'Crear',
@@ -278,7 +293,15 @@ TEXT
                 'toggle'        => 'Canvia-ho per a tots',
             ],
             'helpers'   => [
-                'entity_note'   => 'Això permet que els usuaris que no tinguin permisos per a editar una entitat puguin afegir-hi anotacions.',
+                'add'           => 'Permet crear entitats d\'aquest tipus. Automàticament podran veure i editar les entitats que hagin creat, tot i que no tinguin permisos de veure o editar.',
+                'dashboard'     => 'Permet editar el taulell i els seus widgets.',
+                'delete'        => 'Permet eliminar totes les entitats d\'aquest tipus.',
+                'edit'          => 'Permet editar totes les entitats d\'aquest tipus.',
+                'entity_note'   => 'Permet afegir i editar anotacions malgrat no puguin editar l\'entitat en si.',
+                'manage'        => 'Permet editar la campanya com ho faria un administrador, sense permetre als membres que esborrin la campanya.',
+                'members'       => 'Permet convidar nous membres a la campanya.',
+                'permission'    => 'Permet configurar els permisos a les entitats d\'aquest tipus que puguin editar.',
+                'read'          => 'Permet veure totes les entitats d\'aquest tipus que no siguin privades.',
             ],
             'hint'      => 'Aquest rol té accés automàtic a tot.',
         ],
@@ -383,6 +406,7 @@ TEXT
     ],
     'ui'                                => [
         'helper'    => 'Aquestes opcions canvien la forma en què es mostren alguns elements a la campanya.',
+        'other'     => 'Altres',
     ],
     'visibilities'                      => [
         'private'   => 'Privada',

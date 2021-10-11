@@ -202,6 +202,7 @@ return [
             'update_currency'   => 'Uložiť preferovanú menu',
         ],
         'benefits'              => 'Ak nás podporíš, odomknú sa ti rôzne :features, a tiež nám pomôžeš, aby sme viac času mohli venovať Kanke. Neukladáme informácie o tvojej platobnej karte, ani s ňou nijak nenarábame. Všetky platby realizujeme cez :stripe.',
+        'benefits_features'     => 'úžasné funkcionality',
         'billing'               => [
             'helper'    => 'Tvoje platobné údaje sú spracované a uložené bezpečne na :stripe. Túto platobnú metódu používame pre všetky platby predplatného.',
             'saved'     => 'Uložený spôsob platby',

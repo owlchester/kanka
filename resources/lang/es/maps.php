@@ -26,8 +26,10 @@ return [
         ],
     ],
     'fields'        => [
+        'center_marker'     => 'Marcador',
         'center_x'          => 'Posicionamiento (longitud) por defecto',
         'center_y'          => 'Posicionamiento (latitud) por defecto',
+        'centering'         => 'Centrar',
         'distance_measure'  => 'Medir distancia',
         'distance_name'     => 'Unidad de distancia',
         'grid'              => 'Cuadrícula',
@@ -37,10 +39,15 @@ return [
         'max_zoom'          => 'Zoom máximo',
         'min_zoom'          => 'Zoom mínimo',
         'name'              => 'Nombre',
+        'tabs'              => [
+            'coordinates'   => 'Coordenadas',
+            'marker'        => 'Marcador',
+        ],
         'type'              => 'Tipo',
     ],
     'helpers'       => [
         'center'            => 'Cambia estos valores para controlar en qué área está focalizado el mapa. Si lo dejas en blanco, se mostrará el centro del mapa por defecto.',
+        'centering'         => 'Si un marcador está centrado, tendrá prioridad sobre las coordenadas por defecto.',
         'descendants'       => 'Esta lista contiene todos los mapas descendientes de este, y no solo los que están directamente debajo.',
         'distance_measure'  => 'Al darle al mapa una medida de distancia, se habilitará la herramienta de medidas en el modo de exploración.',
         'grid'              => 'Define un tamaño para la cuadrícula que se mostrará en el modo de exploración.',
@@ -65,6 +72,7 @@ return [
         'settings'  => 'Configuración',
     ],
     'placeholders'  => [
+        'center_marker'     => 'Dejar en blanco para cargar el mapa en el centro',
         'center_x'          => 'Dejar en blanco para cargar el mapa en el centro',
         'center_y'          => 'Dejar en blanco para cargar el mapa en el centro',
         'distance_measure'  => 'Unidades por píxel',

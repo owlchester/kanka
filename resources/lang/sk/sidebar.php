@@ -35,6 +35,7 @@ return [
     'patreon'               => 'Patreon',
     'quests'                => 'Úlohy',
     'races'                 => 'Rasy',
+    'relations'             => 'Vzťahy',
     'releases'              => 'Zmeny vo verziách',
     'search'                => 'Hľadať...',
     'support'               => 'Podpora / Komunita',

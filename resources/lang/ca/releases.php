@@ -2,10 +2,11 @@
 
 return [
     'categories'    => [
-        'event'     => 'Esdeveniment',
-        'other'     => 'Altres',
-        'release'   => 'Llançament',
-        'vote'      => 'Votació comunitària',
+        'event'         => 'Esdeveniment',
+        'livestream'    => 'Transmissió en directe',
+        'other'         => 'Altres',
+        'release'       => 'Llançament',
+        'vote'          => 'Votació comunitària',
     ],
     'index'         => [
         'description'   => 'Ultimes novetats de kanka.io',

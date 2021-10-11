@@ -26,9 +26,7 @@ TEXT
         'success'       => 'Campaña actualizada.',
         'title'         => 'Editar campaña :campaign',
     ],
-    'entity_note_visibility'            => [
-        'pinned'    => 'Fijar nuevas notas de entidad',
-    ],
+    'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
         'private'   => 'La personalidad de los personajes nuevos es privada por defecto.',
     ],
@@ -52,10 +50,10 @@ TEXT
     ],
     'fields'                            => [
         'boosted'                       => 'Mejorada por',
+        'connections'                   => 'Mostrar la tabla de conexiones de la entidad por defecto (en lugar del explorador de relaciones de las campañas mejoradas)',
         'css'                           => 'CSS',
         'description'                   => 'Descripción',
         'entity_count'                  => 'Número de entidades',
-        'entity_note_visibility'        => 'Notas de entidad fijadas',
         'entity_personality_visibility' => 'Visibilidad de la personalidad',
         'entity_visibility'             => 'Visibilidad de la entidad',
         'entry'                         => 'Descripción de la campaña',
@@ -67,6 +65,7 @@ TEXT
         'image'                         => 'Imagen',
         'locale'                        => 'Idioma',
         'name'                          => 'Nombre',
+        'nested'                        => 'Anidar las listas de entidades siempre que sea posible',
         'open'                          => 'Inscripciones abiertas',
         'public_campaign_filters'       => 'Filtros de las campañas públicas',
         'related_visibility'            => 'Visibilidad de elementos relacionados',
@@ -84,7 +83,6 @@ TEXT
         'boosted'                       => 'Algunas características están desbloqueadas porque esta campaña está mejorada. Para saber más sobre esto, echa un vistazo en la página de :settings.',
         'css'                           => 'Escribe tu propio CSS para las páginas de tu campaña. Ten en cuenta que abusar de esta herramienta puede llevar a la eliminación de tu CSS personalizado. Incumplimientos repetidos o graves pueden llevar a la eliminación de tu campaña.',
         'dashboard'                     => 'Personaliza la forma en que el widget se muestra en el tablero rellenando los campos siguientes.',
-        'entity_note_visibility'        => 'Al crear una nueva nota de entidad, la opción "Fijada" estará seleccionada automáticamente.',
         'entity_personality_visibility' => 'Al crear un nuevo personaje, la opción de "Personalidad visible" estará deseleccionada automáticamente.',
         'entity_visibility'             => 'Al crear una nueva entidad, se seleccionará automáticamente la opción de "Privada".',
         'excerpt'                       => 'El extracto de la campaña se mostrará en el tablero principal. Escribe unas pocas líneas para introducir tu mundo. Si lo dejas en blanco, se mostrarán los primeros 1.000 caracteres de la descripción de la campaña.',
@@ -94,6 +92,7 @@ TEXT
         'locale'                        => 'El idioma en que está escrita tu campaña. Esto se usa para generar contenido y agrupar campañas públicas.',
         'name'                          => 'Tu campaña/mundo puede tener cualquier nombre, siempre y cuando contenga al menos 4 letras o números.',
         'public_campaign_filters'       => 'Facilita que otros encuentren tu campaña entre las demás proporcionando la siguiente información.',
+        'public_no_visibility'          => '¡Ojo! Tu campaña es pública, pero el rol público no tiene acceso a nada. :fix.',
         'related_visibility'            => 'La visibilidad por defecto al crear un elemento con este campo (notas de entidad, relaciones, habilidades, etc.)',
         'system'                        => 'Si tu campaña es visible públicamente, el sistema se mostrará en la página de :link.',
         'systems'                       => 'Para evitar líos, algunos elementos de Kanka solo están disponibles en sistemas RPG específicos (por ejemplo, el bloque de stats de monstruo de D&D 5e). Si eliges un sistema soportado, se activarán dichos elementos.',
@@ -121,15 +120,15 @@ TEXT
                 'send'      => 'Enviar invitación',
             ],
             'description'   => 'Invita a un amigo a tu campaña',
-            'link'          => 'Enlace creado: <a href=":url" target="_blank">:url</a>',
             'success'       => 'Invitación enviada.',
+            'success_link'  => 'Link creado. :link',
             'title'         => 'Invita a alguien a tu campaña',
         ],
         'destroy'               => [
             'success'   => 'Invitación eliminada.',
         ],
         'email'                 => [
-            'link'      => '<a href=":link">Unirse a la campaña de :name </a>',
+            'link_text' => 'Unirse a la campaña de :name',
             'subject'   => '¡:name te ha invitado a que te unas a su campaña ":campaign" en kanka.io! Usa el siguiente enlace para aceptar su invitación.',
             'title'     => 'Invitación de :name',
         ],
@@ -199,6 +198,7 @@ TEXT
             'roles_page'    => 'Página de roles',
             'title'         => 'Invitaciones',
         ],
+        'manage_roles'          => 'Configurar roles de usuario',
         'roles'                 => [
             'member'    => 'Miembro',
             'owner'     => 'Administrador',
@@ -208,6 +208,10 @@ TEXT
         ],
         'switch_back_success'   => 'Has vuelto a tu usuario.',
         'title'                 => 'Miembros de la campaña :name',
+        'updates'               => [
+            'added'     => 'Se ha añadido el rol :role a :user.',
+            'removed'   => 'Se ha quitado el rol :role de :user.',
+        ],
         'your_role'             => 'Tu rol: <i>:role</i>',
     ],
     'open_campaign'                     => [
@@ -232,7 +236,9 @@ TEXT
     ],
     'roles'                             => [
         'actions'       => [
-            'add'   => 'Añadir un rol',
+            'add'           => 'Añadir un rol',
+            'permissions'   => 'Configurar permisos',
+            'rename'        => 'Renombrar rol',
         ],
         'admin_role'    => 'rol de administrador',
         'create'        => [
@@ -264,6 +270,15 @@ TEXT
             'role_permissions'      => 'Habilitar el rol ":name" para que pueda hacer las siguientes acciones en todas las entidades.',
         ],
         'members'       => 'Miembros',
+        'modals'        => [
+            'details'   => [
+                'button'    => 'Necesito ayuda',
+                'campaign'  => 'Los permisos de la campaña permiten lo siguiente.',
+                'entities'  => 'A continuación se muestra un resumen de los permisos de este rol.',
+                'more'      => 'Para más detalles, mira nuestro tutorial en Youtube.',
+                'title'     => 'Detalles de permisos',
+            ],
+        ],
         'permissions'   => [
             'actions'   => [
                 'add'           => 'Crear',
@@ -278,7 +293,15 @@ TEXT
                 'toggle'        => 'Cambiar para todos',
             ],
             'helpers'   => [
+                'add'           => 'Permite crear entidades de este tipo. Podrán ver y editar las entidades que creen aunque no tengan el permiso de ver o editar.',
+                'dashboard'     => 'Permite editar los tableros y sus widgets.',
+                'delete'        => 'Permite eliminar todas las entidades de este tipo.',
+                'edit'          => 'Permite editar todas las entidades de este tipo.',
                 'entity_note'   => 'Esto permite que los usuarios que no tengan permisos para editar una entidad puedan añadirle notas.',
+                'manage'        => 'Permite editar la campaña como un administrador, excepto eliminar la campaña.',
+                'members'       => 'Permite invitar nuevos miembros a la campaña.',
+                'permission'    => 'Permite configurar los permisos de las entidades de este tipo que puedan editar.',
+                'read'          => 'Permite visualizar todas las entidades de este tipo que no sean privadas.',
             ],
             'hint'      => 'Este rol tiene acceso automático a todo.',
         ],
@@ -383,6 +406,7 @@ TEXT
     ],
     'ui'                                => [
         'helper'    => 'Estas opciones cambian la forma en la que algunos elementos se muestran en la campaña.',
+        'other'     => 'Otros',
     ],
     'visibilities'                      => [
         'private'   => 'Privada',

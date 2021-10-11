@@ -1,18 +1,27 @@
 <?php
 
 return [
-    'avatar'        => [
+    'avatar'                        => [
         'success'   => 'Avatar actualizado.',
     ],
-    'description'   => 'Actualiza los detalles de tu perfil',
-    'edit'          => [
+    'campaign_switcher_order_by'    => [
+        'alphabetical'      => 'Alfabéticamente',
+        'date_created'      => 'Fecha de creación',
+        'date_joined'       => 'Fecha de entrada',
+        'default'           => 'Por defecto',
+        'r_alphabetical'    => 'Alfabéticamente inverso',
+        'r_date_created'    => 'Fecha de creación inversa',
+        'r_date_joined'     => 'Fecha de entrada inversa',
+    ],
+    'description'                   => 'Actualiza los detalles de tu perfil',
+    'edit'                          => [
         'success'   => 'Perfil actualizado',
     ],
-    'editors'       => [
+    'editors'                       => [
         'legacy'        => 'Obsoleto (TinyMCE 4)',
         'summernote'    => 'Summernote',
     ],
-    'fields'        => [
+    'fields'                        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'Correo Electronico',
         'hide_subscription'         => 'Ocultar mi nombre del :hall_of_fame.',
@@ -25,31 +34,38 @@ return [
         'settings'                  => 'Ajustes',
         'theme'                     => 'Tema',
     ],
-    'newsletter'    => [
+    'newsletter'                    => [
+        'helpers'   => [
+            'community-vote'    => 'Recibe una notificación cada vez que haya una nueva :community-vote.',
+            'header'            => 'Suscríbete a las newsletters para saber lo que está ocurriendo en Kanka.',
+            'monthly'           => 'Nuestro resumen mensual con todas las novedades y eventos relacionados con Kanka.',
+            'release'           => 'Recibe una notificación cada vez que Kanka se actualice con un resumen de lo que ha cambiado.',
+        ],
         'links'     => [
             'community-vote'    => 'Votación comunitaria',
             'news'              => 'Novedades',
             'updates'           => 'Actualizaciones de Kanka',
         ],
+        'options'   => [
+            'monthly'   => 'Newsletter de Kanka',
+            'release'   => 'Nueva actualización',
+        ],
         'settings'  => [
-            'news'          => 'Novedades - Notificarme cuando haya :news',
-            'newsletter'    => 'Newsletter - Recibe la newsletter de Kanka',
-            'updates'       => 'Actualizaciones: recibe notificaciones cuando Kanka se actualice.',
-            'votes'         => 'Votaciones comunitarias - Notificarme cuando una nueva :vote esté disponible',
+            'news'  => 'Novedades - Notificarme cuando haya :news',
         ],
         'title'     => 'Newsletters',
     ],
-    'password'      => [
+    'password'                      => [
         'success'   => 'Contraseña actualizada',
     ],
-    'placeholders'  => [
+    'placeholders'                  => [
         'email'                     => 'Tu correo electrónico',
         'name'                      => 'Tu nombre de usuario',
         'new_password'              => 'Tu nueva contraseña',
         'new_password_confirmation' => 'Confirma tu nueva contraseña',
         'password'                  => 'Escribe tu contraseña actual para aplicar los cambios',
     ],
-    'sections'      => [
+    'sections'                      => [
         'delete'    => [
             'delete'    => 'Eliminar cuenta',
             'helper'    => 'Eliminar tu cuenta también eliminara cualquier campaña de la que seas el único miembro. Esta acción es permanente y no se puede deshacer.',
@@ -60,14 +76,15 @@ return [
             'title' => 'Cambia tu contraseña',
         ],
     ],
-    'settings'      => [
+    'settings'                      => [
         'fields'    => [
-            'advanced_mentions'     => 'Menciones avanzadas',
-            'date_format'           => 'Formato de fecha',
-            'default_nested'        => 'Vista anidada por defecto',
-            'editor'                => 'Editor de texto',
-            'new_entity_workflow'   => 'Nuevo flujo de creación de entidades',
-            'pagination'            => 'Paginación (elementos por página)',
+            'advanced_mentions'             => 'Menciones avanzadas',
+            'campaign_switcher_order_by'    => 'Orden de las campañas en el menú',
+            'date_format'                   => 'Formato de fecha',
+            'default_nested'                => 'Vista anidada por defecto',
+            'editor'                        => 'Editor de texto',
+            'new_entity_workflow'           => 'Nuevo flujo de creación de entidades',
+            'pagination'                    => 'Paginación (elementos por página)',
         ],
         'helpers'   => [
             'editor_v2' => 'El editor de texto obsoleto (TinyMCE) no soporta menciones en dispositivos móviles ni algunas funcionalidades como la galería de campaña.',
@@ -79,7 +96,7 @@ return [
         ],
         'success'   => 'Ajustes cambiados.',
     ],
-    'theme'         => [
+    'theme'                         => [
         'success'   => 'Tema cambiado.',
         'themes'    => [
             'dark'      => 'Oscuro',
@@ -88,8 +105,8 @@ return [
             'midnight'  => 'Azul medianoche',
         ],
     ],
-    'title'         => 'Actualizar perfil',
-    'workflows'     => [
+    'title'                         => 'Actualizar perfil',
+    'workflows'                     => [
         'created'   => 'Ir a la entidad recién creada',
         'default'   => 'Lista de entidades',
     ],

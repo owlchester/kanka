@@ -32,6 +32,7 @@ return [
     'other'                 => 'Altres',
     'quests'                => 'Missions',
     'races'                 => 'Races',
+    'relations'             => 'Relacions',
     'search'                => 'Cerca...',
     'tags'                  => 'Etiquetes',
     'timelines'             => 'Línies de temps',
