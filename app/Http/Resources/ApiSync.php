@@ -6,6 +6,7 @@ namespace App\Http\Resources;
 
 use App\Services\Api\ApiService;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 trait ApiSync
 {
@@ -26,7 +27,12 @@ trait ApiSync
 
         // Make sure we have the app's url for pagination, otherwise on prod it will skip the https scheme
         try {
-            $resource->setPath(config('app.url'));
+            if (config('app.force_https')) {
+                /** @var \Illuminate\Pagination\LengthAwarePaginator $resource */
+                $path = $resource->path();
+                $path = Str::replaceFirst('http://', 'https://', $path);
+                $resource->setPath($path);
+            }
         } catch (\Exception $e) {
             // Do nothing, this can happen for sub resources
             // being called (ex character::characterOrgsCollection)
