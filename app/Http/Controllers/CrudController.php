@@ -437,12 +437,14 @@ class CrudController extends Controller
                 )
             ]);
 
+            if ($model->entity) {
+                /** @var MultiEditingService $editingService */
+                $editingService = app()->make(MultiEditingService::class);
+                $editingService->entity($model->entity)
+                    ->user(auth()->user())
+                    ->finish();
+            }
 
-            /** @var MultiEditingService $editingService */
-            $editingService = app()->make(MultiEditingService::class);
-            $editingService->entity($model->entity)
-                ->user(auth()->user())
-                ->finish();
             session()->flash('success_raw', $success);
 
             $route = route($this->route . '.show', $model->id);
