@@ -27,7 +27,7 @@ trait ApiSync
 
         // Make sure we have the app's url for pagination, otherwise on prod it will skip the https scheme
         try {
-            if (config('app.force_https')) {
+            if (app()->environment('prod')) {
                 /** @var \Illuminate\Pagination\LengthAwarePaginator $resource */
                 $path = $resource->path();
                 $path = Str::replaceFirst('http://', 'https://', $path);
