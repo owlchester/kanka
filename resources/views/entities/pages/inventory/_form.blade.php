@@ -68,7 +68,7 @@
     <div class="col-md-6">
         <div class="form-group checkbox">
             <label>
-                {!! Form::hidden('copy_item_entry') !!}
+                {!! Form::hidden('copy_item_entry', 0) !!}
                 {!! Form::checkbox('copy_item_entry') !!}
                 {{ __('entities/inventories.fields.copy_entity_entry') }}
                 <i class="fa fa-question-circle hidden-xs hidden-sm" title="{{ __('entities/inventories.helpers.copy_entity_entry') }}" data-toggle="tooltip"></i>
