@@ -1122,6 +1122,10 @@ summary {
   margin: 0;
 }
 
+.banner-notification {
+  padding: 5px;
+}
+
 @media (min-width: 768px) {
   footer .footer-socials .email,
   footer .footer-socials .socials,

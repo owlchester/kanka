@@ -79044,6 +79044,7 @@ $(document).ready(function () {
   initDynamicDelete();
   initImageRemoval();
   initSummernoteFixes();
+  initBannerPromoDismiss();
   /**
    * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
    */
@@ -79423,7 +79424,23 @@ function initEntityNoteToggle() {
   });
 }
 
-function initSummernoteFixes() {} // Helpers are injected directly in the window functions.
+function initSummernoteFixes() {}
+
+function initBannerPromoDismiss() {
+  $('#banner-notification-dismiss').click(function (e) {
+    e.preventDefault();
+    $('.banner-notification').fadeOut();
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    $.post({
+      url: $(this).data('url'),
+      method: 'POST'
+    }).done(function (data) {});
+  });
+} // Helpers are injected directly in the window functions.
 
 
 __webpack_require__(/*! ./helpers.js */ "./resources/assets/js/helpers.js");
