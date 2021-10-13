@@ -129,6 +129,16 @@ class Timeline extends MiscModel
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function elements()
+    {
+        return $this->hasMany(
+            'App\Models\TimelineElement',
+        );
+    }
+
+    /**
      * @return string
      */
     public function getParentIdName()
