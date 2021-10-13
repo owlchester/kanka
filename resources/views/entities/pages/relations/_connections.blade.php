@@ -14,8 +14,27 @@
             <thead>
             <tr>
                 <th class="avatar"></th>
-                <th>{{ __('crud.fields.name') }}</th>
-                <th>{{ __('crud.fields.entity_type') }}</th>
+                <th>
+                    @if(request()->get('order') == 'name' || !request()->has('order'))
+                        {{ __('crud.fields.name') }}
+                        <i class="fas fa-arrow-down"></i>
+                    @else
+                        <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'table', '#entity-related', 'order' => 'name']) }}">
+                            {{ __('crud.fields.name') }}
+                        </a>
+                    @endif
+                </th>
+                <th>
+                    @if(request()->get('order') == 'type')
+                        {{ __('crud.fields.entity_type') }}
+
+                        <i class="fas fa-arrow-down"></i>
+                    @else
+                    <a href="{{ route('entities.relations.index', [$entity, 'mode' => 'table', '#entity-related', 'order' => 'type']) }}">
+                        {{ __('crud.fields.entity_type') }}
+                    </a>
+                    @endif
+                </th>
                 <th>{{ __('entities/relations.fields.connection') }}</th>
             </tr>
             </thead>
@@ -45,7 +64,7 @@
             </tbody>
         </table>
 
-        {{ $connections->appends(['mode' => $mode])->fragment('entity-connections')->links() }}
+        {{ $connections->appends(['mode' => $mode, 'order' => request()->get('order')])->fragment('entity-connections')->links() }}
 
     </div>
 </div>

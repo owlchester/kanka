@@ -81,6 +81,8 @@ class RelationController extends Controller
             $option = null;
         }
 
+        $order = request()->get('order', null);
+
         $ajax = request()->ajax();
 
         $relations = $connections = $connectionService = [];
@@ -94,6 +96,7 @@ class RelationController extends Controller
 
             $connections = $this->connectionService
                 ->entity($entity)
+                ->order($order)
                 ->connections();
 
             $connectionService = $this->connectionService;

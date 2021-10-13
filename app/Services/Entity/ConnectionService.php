@@ -18,6 +18,8 @@ class ConnectionService
 
     protected $reasons = [];
 
+    protected $order = 'name';
+
     /**
      * @param Entity $entity
      * @return $this
@@ -25,6 +27,20 @@ class ConnectionService
     public function entity(Entity $entity): self
     {
         $this->entity = $entity;
+        return $this;
+    }
+
+    /**
+     * @param string|null $order
+     * @return $this
+     */
+    public function order($order): self
+    {
+        if (!in_array($order, ['name', 'type'])) {
+            return $this;
+        }
+
+        $this->order = $order;
         return $this;
     }
 
@@ -41,7 +57,7 @@ class ConnectionService
 
         return Entity::whereIn('id', $this->ids)
             ->acl()
-            ->orderBy('name')
+            ->orderBy($this->order)
             ->paginate();
     }
 

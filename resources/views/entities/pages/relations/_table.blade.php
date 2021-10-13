@@ -19,7 +19,7 @@
         <th class="hidden-xs hidden-sm">
             {{ __('entities/relations.fields.attitude') }}
         </th>
-        @if (Auth::check())
+        @if (auth()->check())
             <th>
                 <span class="hidden-xs hidden-sm">
                 {{ __('crud.fields.visibility') }}
