@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers\Settings;
 
+use App\Services\Subscription\CouponService;
 use App\Services\SubscriptionService;
 use App\User;
 use Illuminate\Http\Request;
@@ -13,10 +14,18 @@ class SubscriptionApiController extends Controller
     /** @var SubscriptionService */
     protected $service;
 
-    public function __construct(SubscriptionService $service)
+    /** @var CouponService */
+    protected $couponService;
+
+    /**
+     * SubscriptionApiController constructor.
+     * @param SubscriptionService $service
+     */
+    public function __construct(SubscriptionService $service, CouponService $couponService)
     {
         $this->middleware(['auth', 'identity']);
         $this->service = $service;
+        $this->couponService = $couponService;
     }
 
     /**
@@ -97,5 +106,22 @@ class SubscriptionApiController extends Controller
         }
 
         return response()->json(null, 204);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function checkCoupon(Request $request)
+    {
+        /** @var User $user */
+        $user = $request->user();
+        $coupon = $request->get('coupon');
+
+        return response()->json(
+            $this->couponService
+                ->code($coupon)
+                ->check()
+        );
     }
 }

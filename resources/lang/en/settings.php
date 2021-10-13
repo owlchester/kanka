@@ -212,6 +212,12 @@ return [
         'currency'              => [
             'title' => 'Change your preferred billing currency',
         ],
+        'coupon' => [
+            'invalid' => 'Invalid promotional code.',
+            'label' => 'Promotional code',
+            'percent_off' => 'We will discount your first yearly subscription by :percent%!',
+            'check' => 'Check promo code',
+        ],
         'errors'                => [
             'callback'      => 'Our payment provider reported an error. Please try again or contact us if the problem persists.',
             'subscribed'    => 'Couldn\'t process your subscription. Stripe provided the following hint.',
@@ -227,7 +233,7 @@ return [
         ],
         'helpers'               => [
             'alternatives'          => 'Pay for your subscription using :method. This payment method won\'t auto-renew at the end of your subscription. :method is only available in Euros.',
-            'alternatives_warning'  => 'Upgrading your subscription when using this method is not possible. Please create a new subscription when your current one ends.',
+            'alternatives_warning'  => 'Upgrading your subscription when using this method is not possible. Please subscribe again when your current one ends.',
             'alternatives_yearly'   => 'Due to the restrictions surrounding recurring payments, :method is only available for yearly subscriptions',
         ],
         'manage_subscription'   => 'Manage subscription',

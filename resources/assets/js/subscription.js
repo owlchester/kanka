@@ -4,6 +4,9 @@ var stripe, elements, card;
 // Form status
 var formSubmit = false;
 
+// Coupon stuff
+var couponBtn, couponField, couponSuccess, couponError, couponId, couponBtnOriginalText;
+
 $(document).ready(function() {
     initStripe();
     $('#subscribe-confirm').on('shown.bs.modal', () => {
@@ -103,5 +106,41 @@ function initConfirmListener()
         button.addClass('disabled').html('<i class="fa fa-spin fa-spinner"></i>');
 
         return true;
+    });
+
+    couponBtn = $('#coupon-check-btn');
+    couponField = $('#coupon-check');
+    couponSuccess = $('#coupon-success');
+    couponError = $('#coupon-invalid');
+    couponId = $('#coupon');
+
+    couponBtn.click(function (e) {
+        let coupon = couponField.val();
+        let url = couponField.data('url');
+        couponBtnOriginalText = $(this).html();
+
+        $(this).html('<i class="fas fa-span fa-spinner"></i>')
+            .prop('disabled', true);
+
+        $.ajax({
+                url: url + '?coupon=' + coupon,
+                context: this
+        }).done(function (result) {
+            couponBtn
+                .prop('disabled', false)
+                .html(couponBtnOriginalText);
+
+            if (!result.valid) {
+                couponSuccess.hide();
+                couponError.show();
+                couponId.val('');
+                return;
+            }
+
+            couponError.hide();
+            couponSuccess.html(result.discount).show();
+            couponId.val(result.coupon);
+        });
+
     });
 }

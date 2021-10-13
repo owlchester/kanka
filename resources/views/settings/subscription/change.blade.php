@@ -15,7 +15,24 @@
 
     <div class="alert alert-danger" style="display: none"></div>
 
+
     @if (!$cancel)
+        @if ($period == 'yearly')
+            <label>{{ __('settings.subscription.coupon.label') }}</label>
+            <div class="input-group margin-bottom">
+                <input type="text" name="coupon-check" maxlength="12" id="coupon-check" class="form-control" data-url="{{ route('subscription.check-coupon') }}" />
+
+                <span class="input-group-btn">
+                  <button type="button" id="coupon-check-btn" class="btn btn-info btn-flat" title="{{ __('settings.subscription.coupon.check') }}" data-toggle="tooltip">
+                      <i class="fas fa-check"></i>
+                  </button>
+                </span>
+            </div>
+            <p class="alert alert-success" style="display:none" id="coupon-success"></p>
+            <p class="alert alert-warning" style="display:none" id="coupon-invalid">
+                {{ __('settings.subscription.coupon.invalid') }}
+            </p>
+        @endif
         <div class="card">
 
         <!-- Nav tabs -->
@@ -56,6 +73,7 @@
                     </div>
 
                     <input type="hidden" name="tier" value="{{ $tier }}" />
+                    <input type="hidden" name="coupon" id="coupon" value="" />
                     <input type="hidden" name="period" value="{{ $period }}" />
                     <input type="hidden" name="payment_id" value="{{ $card ? $card->id : null }}" />
                     <input type="hidden" name="subscription-intent-token" value="{{ $intent->client_secret }}" />

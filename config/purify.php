@@ -171,7 +171,6 @@ return [
             . "www.google.com/maps/embed|"
             . "calendar.google.com/calendar/embed|"
             . "snazzymaps.com/embed|"
-            . "lookingforgm\.com/campaign/|"
             . "w.soundcloud.com/player/|"
             . "www\.dndbeyond\.com/|"
             . "www\.aonprd\.com/|"
