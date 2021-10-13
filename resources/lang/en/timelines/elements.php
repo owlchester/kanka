@@ -19,6 +19,7 @@ return [
     ],
     'helpers'       => [
         'icon'  => 'Copy the HTML of an icon from :fontawesome or :rpgawesome.',
+        'entity_is_private' => 'The element\'s entity is private.',
     ],
     'placeholders'  => [
         'date'      => 'e.g. March 42nd or 1332-1337',

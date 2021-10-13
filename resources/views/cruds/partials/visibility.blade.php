@@ -49,5 +49,5 @@ if ($model->visibility == \App\Models\Scopes\VisibilityScope::VISIBILITY_ALL) {
     @endif
 </ul>
 @else
-    <i id="entity-file-{{ $model->id }}" class="{{ $icon }}" title="{{ __('crud.visibilities.' . $model->visibility) }}"></i>
+    <i id="entity-file-{{ $model->id }}" class="{{ $icon }}" title="{{ __('crud.visibilities.' . $model->visibility) }}" data-toggle="tooltip"></i>
 @endif

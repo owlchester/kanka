@@ -69,6 +69,7 @@ $eras = $timeline->eras()->ordered($timeline->revert_order)->get();
             <div class="timeline-item">
                 @can('update', $timeline)
                     <span class="time">
+
                         <a href="{{ route('timelines.timeline_elements.edit', [$timeline, $element, 'from' => 'view']) }}" class="margin-r-5"
                            title="{{ __('crud.edit') }}"
                         >
@@ -84,7 +85,13 @@ $eras = $timeline->eras()->ordered($timeline->revert_order)->get();
                 @endcan
 
                 <h3 class="timeline-header">
-                    {!! $element->htmlName() !!} @if(isset($element->date))<span class="text-muted">{{ $element->date }}</span>@endif
+                    {!! $element->htmlName() !!}
+                    @if(isset($element->date))<span class="text-muted">{{ $element->date }}</span>@endif
+
+                    @if($element->entity && $element->entity->is_private)
+                        <i class="fas fa-lock" title="{{ __('timelines/elements.helpers.entity_is_private') }}" data-toggle="tooltip" ></i>
+                    @endif
+                    @include('cruds.partials.visibility', ['model' => $element])
                 </h3>
 
                 <div class="timeline-body entity-content">
@@ -100,7 +107,7 @@ $eras = $timeline->eras()->ordered($timeline->revert_order)->get();
 
     @can('update', $timeline)
         <div class="text-center margin-bottom">
-                <a href="{{ route('timelines.timeline_elements.create', [$model, 'era_id' => $era, 'position' => $position]) }}" class="btn btn-primary"
+                <a href="{{ route('timelines.timeline_elements.create', [$model, 'era_id' => $era, 'position' => $position]) }}" class="btn btn-primary btn-sm"
                     title="{{ __('crud.create') }}"
                     data-toggle="ajax-modal" data-target="#large-modal"
                    data-backdrop="static"
@@ -110,7 +117,7 @@ $eras = $timeline->eras()->ordered($timeline->revert_order)->get();
                     <span class="hidden-xs inline">{{  __('timelines.actions.add_element', ['era' => $era->name]) }}</span>
                 </a>
                 @if($era->elements()->count() > 1)
-                <a href="#" class="timeline-era-reorder btn btn-default" data-era-id="{{ $era->id }}" data-toggle="tooltip" title="{{ __('timelines.helpers.reorder_tooltip') }}">
+                <a href="#" class="timeline-era-reorder btn btn-default btn-sm" data-era-id="{{ $era->id }}" data-toggle="tooltip" title="{{ __('timelines.helpers.reorder_tooltip') }}">
                     <i class="fa fa-arrows-alt-v"></i> {{ __('timelines.actions.reorder') }}
                 </a>
                 @endif
