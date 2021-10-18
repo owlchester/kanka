@@ -1131,6 +1131,9 @@ summary { display: list-item; }
 
 .banner-notification {
   padding: 5px;
+  a {
+    color: white;
+  }
 }
 
 @media (min-width: 768px) {

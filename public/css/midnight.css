@@ -610,6 +610,10 @@ footer img.logo-white {
   border: none;
 }
 
+.banner-notification span a {
+  color: white !important;
+}
+
 body {
   background-color: #061F2F;
   color: #d3d4d4;
