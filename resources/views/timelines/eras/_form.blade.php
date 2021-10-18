@@ -38,8 +38,8 @@
 
 <div class="form-group checkbox">
     <label>
-        {!! Form::hidden('is_collapsed') !!}
-        {!! Form::checkbox('is_collapsed') !!}
+        {!! Form::hidden('is_collapsed', 0) !!}
+        {!! Form::checkbox('is_collapsed', 1) !!}
         {{ __('timelines/eras.fields.is_collapsed') }}
     </label>
     <p class="help-block">{{ __('timelines/eras.helpers.is_collapsed') }}</p>
