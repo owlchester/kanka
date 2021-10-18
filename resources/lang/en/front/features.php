@@ -11,7 +11,7 @@ Probably the most confusing and complex feature of entities are their attributes
 
 TEXT
 ,
-        'secondary'     => 'An entity\'s attributes can also be be styled to look like a TTRPG character sheet by using our  :marketplace.',
+        'secondary'     => 'An entity\'s attributes can also be styled to look like a TTRPG character sheet by using our  :marketplace.',
         'title'         => 'Attributes',
     ],
     'boosters'      => [
@@ -23,7 +23,7 @@ TEXT
         'description'   => 'Create one or several calendars of your world, fully controlling the number of days in a year, the months, length of weeks, seasons, moons and their phases, and more. Attach events to your calendars linked to other entities, such as automatically calculating a character\'s age based on the calendar.',
     ],
     'collaborative' => [
-        'description'   => 'We\'ve build Kanka to support worlds with multiple members and multiple campaigns. Add your friends to the campaign, assign them to one or several roles, and control what features and information they have access to. You can also  view the campaign as a member at any time, just to make sure you haven\'t left content visible that shouldn\'t be.',
+        'description'   => 'We\'ve built Kanka to support worlds with multiple members and multiple campaigns. Add your friends to the campaign, assign them to one or several roles, and control what features and information they have access to. You can also  view the campaign as a member at any time, just to make sure you haven\'t left content visible that shouldn\'t be.',
     ],
     'dashboards'    => [
         'description'   => 'The dashboard is the central hub where you control your campaign. Each campaign can fully customise the dashboard, adding widgets from a long list of available options. For large campaigns with multiple groups, Boosted Campaigns can create multiple dashboards tailored to each role.',
@@ -31,7 +31,7 @@ TEXT
     ],
     'discover-all'  => 'Discover our amazing features',
     'editor'        => [
-        'description'   => 'You won\'t need to learn programing to create beautiful texts. Thanks to :summernote, you can create rich text for all your texts. Best of all, we\'ve added support for mentions to other entities by using the :at-code symbol.',
+        'description'   => 'You won\'t need to learn programming to create beautiful texts. Thanks to :summernote, you can create rich text for all your texts. Best of all, we\'ve added support for mentions to other entities by using the :at-code symbol.',
         'title'         => 'Editor',
     ],
     'entity'        => [
@@ -39,17 +39,17 @@ TEXT
         'title'         => 'Entities in Kanka',
     ],
     'free'          => [
-        'description'   => 'Tired of having to pay for basic features like unlimited campaigns, having limits on the number of users in a campaign, or being able to control who sees what? We are too, which is why all core features of Kanka are absolutely free. We also have some :bonuses for our subscribers that are nice to have, though not essential.',
+        'description'   => 'Tired of having to pay for basic features like unlimited campaigns, having limits on the number of users in a campaign, or being able to control who sees what? We are too, which is why all core features of Kanka are absolutely free. We also have some :bonuses that are nice to have, though not essential.',
     ],
     'gm'            => [
         'title' => 'Game Masters',
     ],
     'inventory'     => [
-        'description'   => 'Every entity can have it\'s own inventory. This feature is used to manage a character\'s possessions, a shop\'s (location) sale inventory, a quest\'s reward for completion, a family\'s fortune, or any other scenarios you can think of. The inventory feature interacts with the items of your campaign, but is flexible and can be used without creating every item in your campaign.',
+        'description'   => 'Every entity can have its own inventory. This feature is used to manage a character\'s possessions, a shop\'s (location) sale inventory, a quest\'s reward for completion, a family\'s fortune, or any other scenarios you can think of. The inventory feature interacts with the items of your campaign, but is flexible and can be used without creating every item in your campaign.',
         'title'         => 'Inventory',
     ],
     'journals'      => [
-        'description'   => 'Plan your session or write a session recap in the eyes of a character using our journals module. These can be attached to calendars to keep track of both areal world date and an in game date where something happened.',
+        'description'   => 'Plan your session or write a session recap in the eyes of a character using our journals module. These can be attached to calendars to keep track of both a real world date and an in-game date where something happened.',
         'title'         => 'Journals',
     ],
     'links'         => [
@@ -90,7 +90,7 @@ TEXT
         'description'   => 'Timelines allow you to visually see and plan out a country\'s history, a family\'s rise to power, a character\'s story arc, and other options. Timelines are split in eras, and each era contains elements of text that can be attached to other entities of your campaign.',
     ],
     'updates'       => [
-        'description'   => 'Kanka isn\'t just a :small-team consisting of two of passionate worldbuilders. It\'s a huge community of dedicated users who help us shape and push frequent updates. We take pride in focusing on features that our community want and love. On average, we release two big updates every month to all users, and some months we spoil our users with more. We regularly go into detail about these upcoming updates and collect feedback on our Discord.',
+        'description'   => 'Kanka isn\'t just a :small-team consisting of two passionate worldbuilders. It\'s a huge community of dedicated users who help us shape and push frequent updates. We take pride in focusing on features that our community want and love. On average, we release two big updates every month to all users, and some months we spoil our users with more. We regularly go into detail about these upcoming updates and collect feedback on our Discord.',
         'small-team'    => 'team',
         'title'         => 'Frequent updates',
     ],
