@@ -69,7 +69,7 @@ return [
         ],
     ],
     'recent'            => [
-        'title' => 'Recently modified :name',
+        'title' => 'Entity list :name',
     ],
     'settings'          => [
         'title' => 'Dashboard Settings',
@@ -88,11 +88,11 @@ return [
         'widgets'   => [
             'calendar'      => 'Calendar',
             'campaign'      => 'Campaign header',
-            'header'        => 'Header',
+            'header'        => 'Text header',
             'preview'       => 'Entity preview',
             'random'        => 'Random entity',
-            'recent'        => 'Recently modified',
-            'unmentioned'   => 'Unmentioned entities',
+            'recent'        => 'Entity list',
+            'unmentioned'   => 'Unmentioned entities list',
         ],
     ],
     'title'             => 'Dashboard',

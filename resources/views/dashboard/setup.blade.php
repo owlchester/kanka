@@ -158,15 +158,16 @@
                     </h4>
                 </div>
                 <div class="modal-body" id="modal-content-buttons">
+                    <div class="btn btn-block btn-default btn-lg" id="btn-widget-recent" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'recent', 'dashboard' => $dashboard]) }}">
+                        <i class="fa fa-list"></i> {{ __('dashboard.setup.widgets.recent') }}
+                    </div>
                     <div class="btn btn-block btn-default btn-lg" id="btn-widget-preview" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'preview', 'dashboard' => $dashboard]) }}">
                         <i class="fa fa-align-justify"></i> {{ __('dashboard.setup.widgets.preview') }}
                     </div>
                     <div class="btn btn-block btn-default btn-lg" id="btn-widget-calendar" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'calendar', 'dashboard' => $dashboard]) }}">
                         <i class="ra ra-moon-sun"></i> {{ __('dashboard.setup.widgets.calendar') }}
                     </div>
-                    <div class="btn btn-block btn-default btn-lg" id="btn-widget-recent" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'recent', 'dashboard' => $dashboard]) }}">
-                        <i class="fa fa-history"></i> {{ __('dashboard.setup.widgets.recent') }}
-                    </div>
+
                     <div class="btn btn-block btn-default btn-lg" id="btn-widget-header" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => \App\Models\CampaignDashboardWidget::WIDGET_HEADER, 'dashboard' => $dashboard]) }}">
                         <i class="fas fa-heading"></i> {{ __('dashboard.setup.widgets.header') }}
                     </div>

@@ -355,4 +355,29 @@ class CampaignDashboardWidget extends Model
         $this->entity = $entity;
         return $this;
     }
+
+    public function widgetIcon(): string
+    {
+        $icon = null;
+        if ($this->widget === self::WIDGET_RECENT) {
+            $icon = 'fas fa-list';
+        } elseif ($this->widget === self::WIDGET_HEADER) {
+            $icon = 'fas fa-heading';
+        } elseif ($this->widget === self::WIDGET_PREVIEW) {
+            $icon = 'fas fa-align-justify';
+        } elseif ($this->widget === self::WIDGET_CALENDAR) {
+            $icon = 'ra ra-moon-sun';
+        } elseif ($this->widget === self::WIDGET_RANDOM) {
+            $icon = 'fas fa-dice-d20';
+        } elseif ($this->widget === self::WIDGET_CAMPAIGN) {
+            $icon = 'fas fa-th-list';
+        } elseif ($this->widget === self::WIDGET_UNMENTIONED) {
+            $icon = 'fa fa-question';
+        }
+
+        if (empty($icon)) {
+            return '';
+        }
+        return '<i class="' . $icon . '"></i>';
+    }
 }
