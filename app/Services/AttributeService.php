@@ -14,6 +14,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Kanka\Dnd5eMonster\Template;
 use Exception;
+use Stevebauman\Purify\Facades\Purify;
 
 class AttributeService
 {
@@ -311,6 +312,8 @@ class AttributeService
         $templateId = Arr::get($request, 'template_id', null);
         $touch = false;
 
+        $purifyConfig = $this->purifyConfig();
+
         foreach ($names as $id => $name) {
             // Skip empties, which are probably the templates, but still allow an attribute called '0'
             if (empty($name) || $name == '$TMP_ID') {
@@ -319,7 +322,7 @@ class AttributeService
                 }
             }
 
-            $value = $values[$id] ?? '';
+            $value = Purify::clean($values[$id] ?? '', $purifyConfig);
             $type = $types[$id] ?? '';
             $isPrivate = !empty($privates[$id]);
             $isStar = !empty($stars[$id]);
@@ -740,5 +743,21 @@ class AttributeService
             return $ref['loop'];
         }
         return false;
+    }
+
+    /**
+     * Prepare a custom HTML purifying config for attributes
+     * @return array
+     */
+    protected function purifyConfig(): array
+    {
+        $purifyConfig = config('purify.settings');
+        $purifyConfig['HTML.ForbiddenElements'] = 'iframe,a';
+        $purifyConfig['HTML.Allowed'] = preg_replace('`,iframe\[(.*)\]`', '$2', $purifyConfig['HTML.Allowed']);
+        $purifyConfig['HTML.Allowed'] = preg_replace('`,summary\[(.*)\]`', '$2', $purifyConfig['HTML.Allowed']);
+        $purifyConfig['HTML.Allowed'] = preg_replace('`,table\[(.*)\]`', '$2', $purifyConfig['HTML.Allowed']);
+        $purifyConfig['HTML.Allowed'] = str_replace('|data-toggle', null, $purifyConfig['HTML.Allowed']);
+        $purifyConfig['HTML.Allowed'] = str_replace('|data-html', null, $purifyConfig['HTML.Allowed']);
+        return $purifyConfig;
     }
 }
