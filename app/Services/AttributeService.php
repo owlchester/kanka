@@ -752,12 +752,10 @@ class AttributeService
     protected function purifyConfig(): array
     {
         $purifyConfig = config('purify.settings');
-        $purifyConfig['HTML.ForbiddenElements'] = 'iframe,a';
+        $purifyConfig['HTML.Allowed'] = preg_replace('`,a\[(.*)\]`', '$2', $purifyConfig['HTML.Allowed']);
         $purifyConfig['HTML.Allowed'] = preg_replace('`,iframe\[(.*)\]`', '$2', $purifyConfig['HTML.Allowed']);
         $purifyConfig['HTML.Allowed'] = preg_replace('`,summary\[(.*)\]`', '$2', $purifyConfig['HTML.Allowed']);
         $purifyConfig['HTML.Allowed'] = preg_replace('`,table\[(.*)\]`', '$2', $purifyConfig['HTML.Allowed']);
-        $purifyConfig['HTML.Allowed'] = str_replace('|data-toggle', null, $purifyConfig['HTML.Allowed']);
-        $purifyConfig['HTML.Allowed'] = str_replace('|data-html', null, $purifyConfig['HTML.Allowed']);
         return $purifyConfig;
     }
 }
