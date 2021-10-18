@@ -7,16 +7,16 @@
         gtag('js', new Date());
         gtag('config', '{{ config('tracking.ga') }}');
         gtag('consent', 'default', {
-            'ad_storage': 'denied',
-            'analytics_storage': 'denied'
+            'ad_storage': 'granted',
+            'analytics_storage': 'granted'
         });
-@if (!empty(config('tracking.ga_convo')))
+    @if (!empty(config('tracking.ga_convo')))
         gtag('config', '{{ config('tracking.ga_convo') }}');
-@endif
+    @endif
     </script>
-@if (!empty($tracking_new))
+    @if (!empty($tracking_new))
     <script> gtag('event', 'conversion', {'send_to': '{{ config('tracking.ga_convo') }}/pa10CJTvrssBEOaOq7oC'}); </script>
-@endif
+    @endif
     <!-- End Google Analytics -->
 @endif
 @if (!empty(config('tracking.gtm')))
