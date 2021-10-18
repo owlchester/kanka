@@ -5,9 +5,6 @@ use Illuminate\Support\Str;
  * @var \App\Models\CampaignDashboardWidget $widget
  * @var \App\Models\Tag $tag
  */
-if (!isset($offset)) {
-    $offset = 0;
-}
 $entityType = $widget->conf('entity');
 $entities = $widget->entities();
 
@@ -34,7 +31,7 @@ $entityString = !empty($entityType) ? Str::plural($entityType) : null;
         </h3>
     </div>
     <div class="panel-body widget-recent-list">
-        <?php /** @var \App\Models\Entity $entity */?>
+        <?php /** @var \App\Models\Entity[]|\Illuminate\Pagination\LengthAwarePaginator $entities */?>
         @foreach ($entities as $entity)
             <div class="flex">
                 <a class="entity-image" style="background-image: url('{{ $entity->avatar(true) }}');"
@@ -54,12 +51,14 @@ $entityString = !empty($entityType) ? Str::plural($entityType) : null;
                 </div>
             </div>
         @endforeach
+        @if($entities->hasMorePages())
         <div class="text-center">
             <a href="#" class="text-center widget-recent-more"
-               data-url="{{ route('dashboard.unmentioned', ['id' => $widget->id, 'offset' => $offset + 10]) }}">
+               data-url="{{ route('dashboard.unmentioned', ['id' => $widget->id, 'page' => $entities->currentPage() + 1]) }}">
                 {{ __('crud.actions.next') }}
             </a>
         </div>
+        @endif
 
     </div>
 </div>

@@ -259,11 +259,10 @@ class CampaignDashboardWidget extends Model
 
     /**
      * Get the entities of a widget
-     * @param int $offset
      * @return Entity[]|Builder[]|\Illuminate\Database\Eloquent\Collection
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function entities($offset = 0)
+    public function entities()
     {
         $base = null;
 
@@ -317,9 +316,8 @@ class CampaignDashboardWidget extends Model
             ->type($entityType)
             ->acl()
             ->with(['tags', 'image'])
-            ->take(10)
-            ->offset($offset)
-            ->get();
+            ->paginate(10)
+        ;
     }
 
     /**

@@ -1,4 +1,4 @@
-<?php /** @var \App\Models\Entity $entity */?>
+<?php /** @var \App\Models\Entity[]|\Illuminate\Pagination\LengthAwarePaginator $entities */?>
 @foreach ($entities as $entity)
     <div class="flex">
         <a class="entity-image" style="background-image: url('{{ ($campaign->boosted(true) && !empty($entity->image) ? Img::crop(40, 40)->url($entity->image->path) : $entity->avatar(true)) }}');"
@@ -21,9 +21,12 @@
     </div>
 
 @endforeach
+
+@if($entities->hasMorePages())
 <div class="text-center">
     <a href="#" class="text-center widget-recent-more"
-       data-url="{{ route('dashboard.recent', ['id' => $widget->id, 'offset' => $offset + 10]) }}">
+       data-url="{{ route('dashboard.recent', ['id' => $widget->id, 'page' => $entities->currentPage() + 1]) }}">
         {{ __('crud.actions.next') }}
     </a>
 </div>
+@endif

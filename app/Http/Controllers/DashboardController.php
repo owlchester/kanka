@@ -81,15 +81,13 @@ class DashboardController extends Controller
             ]);
         }
 
-        $offset = request()->get('offset', 0);
-
-        $entities = $widget->entities($offset);
+        $entities = $widget->entities();
 
         return view('dashboard.widgets._recent_list')
             ->with('entities', $entities)
             ->with('widget', $widget)
             ->with('campaign', $campaign)
-            ->with('offset', $offset);
+        ;
     }
 
     /**
@@ -106,21 +104,17 @@ class DashboardController extends Controller
             ]);
         }
 
-        $offset = request()->get('offset', 0);
-
         $entities = \App\Models\Entity::unmentioned()
             ->inTags($widget->tags->pluck('id')->toArray())
             ->type($widget->conf('entity'))
             ->acl()
             ->with(['updater'])
-            ->take(10)
-            ->offset($offset)
-            ->get();
+            ->paginate(10);
 
         return view('dashboard.widgets._recent_list')
             ->with('entities', $entities)
             ->with('widget', $widget)
             ->with('campaign', $campaign)
-            ->with('offset', $offset);
+        ;
     }
 }
