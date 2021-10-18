@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Facades\Mentions;
+use App\Models\QuestElement;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class QuestElementResource extends ModelResource
@@ -15,13 +16,17 @@ class QuestElementResource extends ModelResource
      */
     public function toArray($request)
     {
+        /** @var QuestElement $model */
+        $model = $this->resource;
+
         return $this->entity([
-            'entity_id' => $this->entity_id,
-            'description' => $this->description,
-            'description_parsed' => !empty($this->description) ? Mentions::mapAny($this->resource, 'description') : null,
-            'colour' => $this->colour,
-            'role' => $this->role,
-            'visibility' => $this->visibility,
+            'entity_id' => $model->entity_id,
+            'name' => $model->name,
+            'description' => $model->description,
+            'description_parsed' => !empty($model->description) ? Mentions::mapAny($model, 'description') : null,
+            'colour' => $model->colour,
+            'role' => $model->role,
+            'visibility' => $model->visibility,
         ]);
     }
 }

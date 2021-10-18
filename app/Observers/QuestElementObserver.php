@@ -19,6 +19,7 @@ class QuestElementObserver
     {
         $questElement->description = $this->purify(Mentions::codify($questElement->description));
         $questElement->role = $this->purify($questElement->role);
+        $questElement->name = $this->purify($questElement->name);
 
         if (empty($questElement->visibility)) {
             $questElement->visibility = 'all';

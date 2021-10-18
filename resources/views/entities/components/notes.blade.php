@@ -9,17 +9,38 @@ if (empty($entity)) {
     $entity = $model->entity;
 }
 $wrapper = false;
+$entryShown = false;
 if (!isset($pinnedNotes)) {
     $pinnedNotes = $entity->notes()->with(['permissions', 'location', 'creator', 'editor'])->ordered()->paginate(15);
     $wrapper = true;
 }
+
+$first = $pinnedNotes->first();
 @endphp
+
+@if(isset($withEntry) && ($pinnedNotes->count() === 0 || (!empty($first) && $first->position >= 0)))
+    @include('entities.components.entry')
+    @php $entryShown = true; @endphp
+@endif
+
+
 @if($wrapper)
 <div class="entity-notes">
 @endif
     @foreach ($pinnedNotes as $note)
+        @if (isset($withEntry) && !$entryShown && $note->position >= 0)
+            @include('entities.components.entry')
+            @php $entryShown = true @endphp
+        @endif
+
         @include('entities.components._note')
     @endforeach
+
+
+    @if (isset($withEntry) && !$entryShown)
+        @include('entities.components.entry')
+        @php $entryShown = true @endphp
+    @endif
 
     @if ($pinnedNotes->currentPage() < $pinnedNotes->lastPage())
         <div class="text-center">

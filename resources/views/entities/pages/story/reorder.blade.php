@@ -1,5 +1,12 @@
-<?php /** @var \App\Models\Entity $entity
- * @var \App\Models\Inventory $item */?>
+<?php /**
+ * @var \App\Models\Entity $entity
+ * @var \App\Models\EntityNote[]|\Illuminate\Support\Collection $notes
+ * @var \App\Models\EntityNote $first
+ */
+$hasEntry = false;
+
+$notes = $entity->notes()->ordered()->get();
+?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('entities/story.reorder.title', ['name' => $entity->name]),
     'description' => '',
@@ -42,9 +49,50 @@
 
 
                     <div class="entity-notes-reorder">
-                        @foreach($entity->notes()->ordered()->get() as $note)
+                        @if ($notes->count() > 0)
+                            @php $first = $notes->first(); @endphp
+                            @if ($first->position >= 0)
+                                @php $hasEntry = true @endphp
+                                <div class="story" data-id="story">
+                                    {!! Form::hidden('entity_types[]', 'story') !!}
+                                    <div class="dragger">
+                                        <span class="fa fa-ellipsis-v visible-md visible-lg"></span>
+                                        <div class="visible-xs visible-sm">
+                                            <span class="fa fa-arrow-up"></span><br />
+                                            <span class="fa fa-arrow-down"></span>
+                                        </div>
+                                    </div>
+                                    <div class="name">
+                                        <i class="fas fa-align-justify"></i> {{ __('crud.fields.entry') }}
+                                    </div>
+                                    <div class="icons">
+                                    </div>
+                                </div>
+                            @endif
+                        @endif
+                        @foreach($notes as $note)
+                            @if (!$hasEntry && $note->position >= 0)
+                                    @php $hasEntry = true @endphp
+                                    <div class="story" data-id="story">
+                                        {!! Form::hidden('entity_types[]', 'story') !!}
+                                        <div class="dragger">
+                                            <span class="fa fa-ellipsis-v visible-md visible-lg"></span>
+                                            <div class="visible-xs visible-sm">
+                                                <span class="fa fa-arrow-up"></span><br />
+                                                <span class="fa fa-arrow-down"></span>
+                                            </div>
+                                        </div>
+                                        <div class="name">
+                                            <i class="fas fa-align-justify"></i> {{ __('crud.fields.entry') }}
+                                        </div>
+                                        <div class="icons">
+                                        </div>
+                                    </div>
+                            @endif
+
                             <div class="story" data-id="{{ $note->id }}">
                                 {!! Form::hidden('entity_note_id[]', $note->id) !!}
+                                {!! Form::hidden('entity_types[]', 'post') !!}
                                 <div class="dragger">
                                     <span class="fa fa-ellipsis-v visible-md visible-lg"></span>
                                     <div class="visible-xs visible-sm">
@@ -60,6 +108,26 @@
                                 </div>
                             </div>
                         @endforeach
+
+
+                        @if (!$hasEntry)
+                            @php $hasEntry = true @endphp
+                            <div class="story" data-id="story">
+                                {!! Form::hidden('entity_types[]', 'story') !!}
+                                <div class="dragger">
+                                    <span class="fa fa-ellipsis-v visible-md visible-lg"></span>
+                                    <div class="visible-xs visible-sm">
+                                        <span class="fa fa-arrow-up"></span><br />
+                                        <span class="fa fa-arrow-down"></span>
+                                    </div>
+                                </div>
+                                <div class="name">
+                                    <i class="fas fa-align-justify"></i> {{ __('crud.fields.entry') }}
+                                </div>
+                                <div class="icons">
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <div class="box-footer">

@@ -108,6 +108,7 @@ To get the elements of a quest, use the following endpoint.
 {
     "data": {
         "entity_id": 33,
+        "name": null,
         "created_at":  "2019-01-30T00:01:44.000000Z",
         "created_by": null,
         "role": "Target",
@@ -122,6 +123,8 @@ To get the elements of a quest, use the following endpoint.
 ```
 
 > {info} Adding (`POST`), Updating (`PUT`, `PATCH`) and Deleting (`DELETE`) an element from a quest can also be done using the same patterns as for other endpoints.
+>
+> The `entity_id` or `name` field has to be provided when creating a quest element.
 
 
 <a name="create-quest"></a>

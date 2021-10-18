@@ -43,7 +43,6 @@ class QuestElementController extends Controller
         $elements = $quest
             ->elements()
             ->with('entity')
-            ->has('entity')
             ->acl()
             ->simpleSort($datagridSorter)
             ->paginate();
@@ -82,7 +81,7 @@ class QuestElementController extends Controller
         $this->authorize('update', $quest);
 
         $data = $request->only([
-            'entity_id', 'role', 'description', 'colour', 'visibility'
+            'entity_id', 'name', 'role', 'description', 'colour', 'visibility'
         ]);
         $data['quest_id'] = $quest->id;
 
@@ -93,7 +92,7 @@ class QuestElementController extends Controller
         return redirect()
             ->route('quests.quest_elements.index', $quest)
             ->with('success', __('quests.elements.create.success', [
-                'entity' => $element->entity->name
+                'entity' => $element->name()
             ]));
     }
 
@@ -136,7 +135,7 @@ class QuestElementController extends Controller
     {
         $this->authorize('update', $quest);
 
-        $data = $request->only(['entity_id', 'role', 'description', 'colour', 'visibility']);
+        $data = $request->only(['entity_id', 'name', 'role', 'description', 'colour', 'visibility']);
 
         $questElement->update($data);
         $questElement->refresh();
@@ -144,7 +143,7 @@ class QuestElementController extends Controller
         return redirect()
             ->route('quests.quest_elements.index', $quest)
             ->with('success', __('quests.elements.edit.success', [
-                'entity' => $questElement->entity->name
+                'entity' => $questElement->name()
             ]));
     }
 
@@ -163,7 +162,7 @@ class QuestElementController extends Controller
         return redirect()
             ->route('quests.quest_elements.index', $quest)
             ->with('success', __('quests.elements.destroy.success', [
-                'entity' => $questElement->entity->name
+                'entity' => $questElement->name()
             ]));
     }
 }
