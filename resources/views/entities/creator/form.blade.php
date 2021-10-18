@@ -31,7 +31,7 @@
     @include('cruds.fields.tags')
     @endif
 
-    @include('cruds.fields.private')
+    @include('cruds.fields.private2')
 </div>
 <div class="modal-footer">
     <a href="#" id="entity-creator-back" data-url="{{ route('entity-creator.selection') }}" data-target="#entity-modal" class="btn btn-default pull-left">

@@ -22,6 +22,6 @@
             <p class="help-block">{{ __('attribute_templates.hints.entity_type') }}</p>
         </div>
 
-        @include('cruds.fields.private')
+        @include('cruds.fields.private2')
     </div>
 </div>
