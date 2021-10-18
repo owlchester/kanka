@@ -73,7 +73,11 @@
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
-                <td class="text">{{ __('front.features.patreon.monthly_vote') }}</td>
+                <td class="text">
+                    <a href="{{ route('community-votes.index') }}">
+                        {{ __('front.features.patreon.monthly_vote') }}
+                    </a>
+                </td>
                 <td></td>
                 <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
@@ -102,13 +106,6 @@
             </tr>
             <tr>
                 <td class="text">{{ __('front.features.patreon.pagination') }} <i class="fa fa-question-circle-o" title="{{ __('front.features.patreon.pagination_help') }}"></i></td>
-                <td></td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
-                <td><i class="fa fa-check-circle"></i></td>
-            </tr>
-            <tr>
-                <td class="text">{{ __('front.features.patreon.monthly_vote') }}</td>
                 <td></td>
                 <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>
