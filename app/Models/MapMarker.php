@@ -271,6 +271,9 @@ class MapMarker extends Model
      */
     protected function isDraggable(): bool
     {
+        if (!auth()->check()) {
+            return false;
+        }
         return $this->editing || ($this->exploring && $this->is_draggable);
     }
 
