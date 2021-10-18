@@ -81,6 +81,10 @@ return [
             'edit'              => 'Edytuj widżet',
         ],
         'title'     => 'Konfiguracja pulpitu kampanii',
+        'tutorial'  => [
+            'blog'  => 'ten wpis',
+            'text'  => 'Potrzebujesz pomocy w przygotowaniu pulpitu kampanii? Sprawdź :blog, znajdziesz w nim porady i inspiracje.',
+        ],
         'widgets'   => [
             'calendar'      => 'Kalendarz',
             'campaign'      => 'Nagłówek kampanii',

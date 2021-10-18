@@ -93,6 +93,10 @@ return [
             'edit'              => 'Upraviť widget',
         ],
         'title'     => 'Nastavenie nástenky kampane',
+        'tutorial'  => [
+            'blog'  => 'náš návod',
+            'text'  => 'Potrebuješ nastaviť nástenku tvojej kampane? Prečítaj si :blog, ktorý ti poskytne pomoc a inšpiráciu.',
+        ],
         'widgets'   => [
             'calendar'      => 'Kalendár',
             'campaign'      => 'Záhlavie kampane',

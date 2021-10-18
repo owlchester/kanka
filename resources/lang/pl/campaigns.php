@@ -228,6 +228,10 @@ TEXT
         'link'      => 'zgłoszenia do kampanii',
         'title'     => 'Kampania otwarta',
     ],
+    'options'                           => [
+        'entity_personality_visibility' => 'Osobowość nowych postaci jest automatycznie tajna',
+        'entity_visibility'             => 'Nowo stworzone elementy są automatycznie tajne',
+    ],
     'panels'                            => [
         'boosted'   => 'Doładowana',
         'dashboard' => 'Pulpit',
@@ -402,6 +406,7 @@ TEXT
             'recovery'          => 'Odzyskiwanie',
             'roles'             => 'Role',
             'settings'          => 'Moduły',
+            'styles'            => 'Motywy',
         ],
         'title'         => 'Kampania :name',
     ],

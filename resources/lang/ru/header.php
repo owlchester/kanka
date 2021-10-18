@@ -6,6 +6,7 @@ return [
     'member_since'      => 'Присоединился :date',
     'notifications'     => [
         'header'    => 'Уведомления',
+        'mark_read' => 'Все прочитано',
         'read_all'  => 'Показать все',
     ],
     'profile'           => 'Профиль',

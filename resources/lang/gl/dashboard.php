@@ -81,6 +81,10 @@ return [
             'edit'              => 'Editar complemento',
         ],
         'title'     => 'Configuración do taboleiro de campaña',
+        'tutorial'  => [
+            'blog'  => 'o noso tutorial',
+            'text'  => 'Precisas axuda configurando o teu taboleiro? Le :blog para atopar axuda e inspiración.',
+        ],
         'widgets'   => [
             'calendar'      => 'Calendario',
             'campaign'      => 'Cabeceira da campaña',

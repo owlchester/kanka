@@ -12,11 +12,16 @@ return [
         'success'   => 'Predmet :name odstránený z :entity.',
     ],
     'fields'        => [
-        'amount'        => 'Počet',
-        'description'   => 'Popis',
-        'is_equipped'   => 'Vybavený',
-        'name'          => 'Názov',
-        'position'      => 'Umiestnenie',
+        'amount'            => 'Počet',
+        'copy_entity_entry' => 'Použiť popis predmetu',
+        'description'       => 'Popis',
+        'is_equipped'       => 'Vybavený',
+        'name'              => 'Názov',
+        'position'          => 'Umiestnenie',
+        'qty'               => 'Množ.',
+    ],
+    'helpers'       => [
+        'copy_entity_entry' => 'Zobraziť popis predmetu namiesto vlastné popisu.',
     ],
     'placeholders'  => [
         'amount'        => 'Hocijaké množstvo',

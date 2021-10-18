@@ -42,7 +42,7 @@ TEXT
         'question'  => 'Podo crear tipos de entidade personalizados?',
     ],
     'delete-campaign'       => [
-        'answer'    => 'Vai ao taboleiro da campaña e fai click en "Campaña" no menú da esquerda. Se eres administradora da campaña, aparecerache un botón de "Eliminar". Eliminar unha campaña é unha acción permanente que borrará todos os datos dos nosos servidores, incluíndo as imaxes.',
+        'answer'    => 'Vai ao taboleiro da campaña e fai click en "Campaña" no menú da esquerda. Se eres parte da administración da campaña, aparecerache un botón de "Eliminar". Eliminar unha campaña é unha acción permanente que borrará todos os datos dos nosos servidores, incluíndo as imaxes.',
         'question'  => 'Como podo eliminar unha campaña?',
     ],
     'discord'               => [

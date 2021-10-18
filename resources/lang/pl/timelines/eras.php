@@ -18,11 +18,13 @@ return [
     'fields'        => [
         'abbreviation'  => 'Skrót',
         'end_year'      => 'Rok zakończenia',
+        'is_collapsed'  => 'Zwinięta',
         'start_year'    => 'Rok rozpoczęcia',
     ],
     'helpers'       => [
-        'eras'      => 'Przed dodaniem epok należy stworzyć historię.',
-        'primary'   => 'Podziel historię na epoki. By historia działała poprawnie, musi posiadać przynajmniej jedną epokę.',
+        'eras'          => 'Przed dodaniem epok należy stworzyć historię.',
+        'is_collapsed'  => 'Epoka domyślnie wyświetlana jest zwinięta (zminimalizowana).',
+        'primary'       => 'Podziel historię na epoki. By historia działała poprawnie, musi posiadać przynajmniej jedną epokę.',
     ],
     'placeholders'  => [
         'abbreviation'  => 'AD, PNE, 3E',

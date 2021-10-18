@@ -5,6 +5,13 @@ return [
         'mode-map'      => 'Wizualizacja relacji',
         'mode-table'    => 'Tabela relacji i powiązań',
     ],
+    'bulk'          => [
+        'delete'    => '{1} Usunięto :count relację.|[2,3,4] Usunięto :count relacje.|[5,*] Usunięto :count relacji.',
+        'success'   => [
+            'editing'           => '{1} Zmienono :count relację.|[2,3,4] Zmienono :count relacje.|[5,*] Zmienono :count relacji.',
+            'editing_partial'   => '{1} Zmienono :count/:total relację.|[2,3,4] Zmienono :count/:total relacje.|[5,*] Zmienono :count/:total relacji.',
+        ],
+    ],
     'connections'   => [
         'map_point'         => 'Punkt na mapie',
         'mention'           => 'Wzmianka',
@@ -12,6 +19,7 @@ return [
         'timeline_element'  => 'Część historii',
     ],
     'create'        => [
+        'new_title' => 'Nowa relacja',
         'success'   => 'Dodano relację :target do elementu :entity.',
         'title'     => 'Nowa relacja elementu :name.',
     ],
@@ -22,6 +30,7 @@ return [
         'attitude'          => 'Nastawienie',
         'connection'        => 'Powiązanie',
         'is_star'           => 'Przypięta',
+        'owner'             => 'Źródło',
         'relation'          => 'Relacja',
         'target'            => 'Obiekt',
         'target_relation'   => 'Relacje obiektu',
@@ -36,6 +45,10 @@ return [
         ],
         'target_relation'   => 'Opis relacji dla jej obiektu. Jeżeli ma być taki sam, zostaw to pole puste.',
         'two_way'           => 'Jeżeli wybierzesz relację obustronną, taka sama relacja zostanie stworzona dla obiektu. Jeżeli potem zmodyfikujesz relację dla jednej strony, druga nie zostanie zaktualizowana.',
+    ],
+    'index'         => [
+        'add'   => 'Nowa relacja',
+        'title' => 'Relacje',
     ],
     'options'       => [
         'mentions'  => 'Relacje + związki + wzmianki',

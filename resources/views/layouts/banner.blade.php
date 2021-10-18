@@ -1,5 +1,5 @@
 @if (auth()->check() && auth()->user()->subscribed('kanka') && !auth()->user()->settings->get('banner_4yearpromo'))
-    <div class="bg-orange banner-notification">
+    <div class="bg-primary banner-notification">
         <span>
             <a href="{{ route('settings.subscription') }}">
                 {!! __('banners.kanka4years', ['code' => '<code>KANKA4YEARS</code>']) !!}

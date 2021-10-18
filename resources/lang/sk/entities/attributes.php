@@ -37,6 +37,7 @@ return [
     ],
     'helpers'       => [
         'delete_all'    => 'Naozaj chceš odstrániť všetky atribúty tohto objektu?',
+        'setup'         => 'Prvky ako HP alebo Inteligenciu nejakého objektu s atribútmi je možné referencovať. Atribúty pridáš ručne kliknutím na tlačidlo :manage alebo aplikovaním niektorej zo šablón atribútov.',
     ],
     'hints'         => [
         'is_private'    => 'Všetky atribúty objektu je možné skryť pred všetkými členmi okrem tých s rolou Admin, ak ho nastavíš ako súkromný.',

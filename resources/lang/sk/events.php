@@ -14,7 +14,8 @@ return [
         'title'     => 'Upraviť udalosť :name',
     ],
     'events'        => [
-        'title' => 'Udalosti podradené :name',
+        'helper'    => 'Udalosti, ktoré majú tento objekt ako ich nadradený, sa zobrazujú tu.',
+        'title'     => 'Udalosti podradené :name',
     ],
     'fields'        => [
         'date'      => 'Dátum',
@@ -46,6 +47,7 @@ return [
     'show'          => [
         'description'   => 'Detailný popis udalosti',
         'tabs'          => [
+            'events'        => 'Udalosti',
             'information'   => 'Informácie',
         ],
         'title'         => 'Udalosť :name',

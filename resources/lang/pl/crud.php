@@ -65,6 +65,7 @@ return [
         'success'       => [
             'copy_to_campaign'  => '{1} :count element został skopiowany do :campaign.|[2,3,4] :count elementy zostały skopiowane do :campaign.|[5,*] :count elementów zostało skopiowane do :campaign.',
             'editing'           => '{1} Zaktualizowano :count element .|[2,3,4] Zaktualizowano :count elementy .|[5,*] Zaktualizowano :count elementów.',
+            'editing_partial'   => '{1} Zmieniono :count/:total element.|[2,3,4] Zmieniono :count/:total elementy.|[5,*] Zmieniono :count/:total elementów.',
             'permissions'       => '{1} Zmieniono uprawnienia dla :count elementu.|[2,*] Zmieniono uprawnienia dla :count elementów.',
             'private'           => '{1} :count element jest teraz tajny|[2,3,4] :count elementy są teraz tajne|[5,*] elementów jest teraz tajnych.',
             'public'            => '{1} :count element jest teraz jawny|[2,3,4] :count elementy są teraz jawne|[5,*] elementów jest teraz jawnych.',
@@ -117,6 +118,7 @@ return [
         'calendar'              => 'Kalendarz',
         'calendar_date'         => 'Data',
         'character'             => 'Postać',
+        'child'                 => 'Pochodzenie',
         'closed'                => 'Zamknięta',
         'colour'                => 'Kolor',
         'copy_abilities'        => 'Kopiuj zdolności',
@@ -187,6 +189,16 @@ return [
         'direct'                    => 'Pokaż elementy bezpośrednio pochodne',
         'filtered'                  => 'Wyświetlono :count z :total elementów.',
         'hide'                      => 'Ukryj filtry',
+        'lists'                     => [
+            'desktop'   => [
+                'all'       => 'Pokaż wszystkie pochodne (:count)',
+                'filtered'  => 'Pokaż bezpośrednio pochodne  (:count)',
+            ],
+            'mobile'    => [
+                'all'       => 'Pokaż wszystkie  (:count)',
+                'filtered'  => 'Pokaż bezpośrednie (:count)',
+            ],
+        ],
         'mobile'                    => [
             'clear' => 'Wyczyść',
             'copy'  => 'Schowek',

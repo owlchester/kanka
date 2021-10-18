@@ -20,6 +20,7 @@ return [
     ],
     'helpers'       => [
         'delete_all'    => 'Czy na pewno chcesz usunąć cechy tego elementu?',
+        'setup'         => 'Element może posiadać cechy, na przykład Punkty Wytrzymałości albo Inteligencję. Cechę możesz ustalić i dodać ręcznie klikając na :manage albo zastosować szablon.',
     ],
     'hints'         => [
         'is_private'    => 'Oznaczając cechy jako tajne ukrywasz je przed graczami nie posiadającymi roli administratora.',

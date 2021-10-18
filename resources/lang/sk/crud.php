@@ -68,6 +68,7 @@ return [
         'success'       => [
             'copy_to_campaign'  => '{1} :count objekt bol skopírovaný do :campaign.|[2,4] :count objekty boli skopírované do :campaign.|[5,*] :count objektov bolo skopírovaných do :campaign.',
             'editing'           => '{1} :count objekt bol upravený.|[2,4] :count objekty boli upravené.|[5,*] :count objektov bolo upravených.',
+            'editing_partial'   => '{1} :count/:total objekt bol upravený.|[2,4] :count/:total objekty boli upravené.|[5,*] :count/:total objektov bolo upravených.',
             'permissions'       => '{1} Oprávnenia zmenené pre :count objekt.|[2,4] Oprávnenia zmenené pre :count objekty.|[5,*] Oprávnenia zmenené pre :count objektov.',
             'private'           => '{1} :count objekt je teraz súkromný.|[2,4] :count objekty je teraz súkromné.|[5,*] :count objektov je teraz súkromných.',
             'public'            => '{1} :count objekt je teraz viditeľný.|[2,4] :count objekty sú teraz viditeľné.|[5,*] :count objektov je teraz viditeľných.',
@@ -191,6 +192,16 @@ return [
         'direct'                    => 'Filter zobrazenia iba priamych podobjektov',
         'filtered'                  => 'Zobraziť :count z :total :entity.',
         'hide'                      => 'Skryť',
+        'lists'                     => [
+            'desktop'   => [
+                'all'       => 'Zobraziť všetky podradené (:count)',
+                'filtered'  => 'Zobraziť priamo podradené (:count)',
+            ],
+            'mobile'    => [
+                'all'       => 'Zobraziť všetky (:count)',
+                'filtered'  => 'Zobraziť priame (:count)',
+            ],
+        ],
         'mobile'                    => [
             'clear' => 'Vymazať',
             'copy'  => 'Schránka',

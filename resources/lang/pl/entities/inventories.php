@@ -12,11 +12,16 @@ return [
         'success'   => 'Usunięto przedmiot :item elementu :entity.',
     ],
     'fields'        => [
-        'amount'        => 'Ilość',
-        'description'   => 'Opis',
-        'is_equipped'   => 'Wyposażono',
-        'name'          => 'Nazwa',
-        'position'      => 'Umiejscowienie',
+        'amount'            => 'Ilość',
+        'copy_entity_entry' => 'Użyj opisu elementu',
+        'description'       => 'Opis',
+        'is_equipped'       => 'Wyposażono',
+        'name'              => 'Nazwa',
+        'position'          => 'Umiejscowienie',
+        'qty'               => 'Ilość',
+    ],
+    'helpers'       => [
+        'copy_entity_entry' => 'Wyświetla ogólny opis z menu przedmiotu zamiast szczegółowego',
     ],
     'placeholders'  => [
         'amount'        => 'Dowolna ilość',

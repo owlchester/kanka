@@ -228,6 +228,10 @@ TEXT
         'link'      => 'Prihlášky do kampane',
         'title'     => 'Otvorená kampaň',
     ],
+    'options'                           => [
+        'entity_personality_visibility' => 'Automaticky nastaviť, aby nové postavy mali Osobnosť nastavenú štandardne ako súkromnú.',
+        'entity_visibility'             => 'Automaticky nastaviť, aby novo vytvorené objekty boli štandardne nastavené ako súkromné.',
+    ],
     'panels'                            => [
         'boosted'   => 'Boostovaná',
         'dashboard' => 'Nástenka',
@@ -402,6 +406,7 @@ TEXT
             'recovery'          => 'Obnovenie',
             'roles'             => 'Roly',
             'settings'          => 'Moduly',
+            'styles'            => 'Témy',
         ],
         'title'         => 'Kampaň :name',
     ],

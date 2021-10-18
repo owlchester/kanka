@@ -5,6 +5,10 @@ return [
         'description'   => 'Możesz połączyć postać z kalendarzem kampanii wchodząc w zakładkę Powiadomienia w menu postaci. Tam dodaj nowe powiadomienie i ustaw typ jako Narodziny albo Śmierć, by automatycznie obliczyć wiek postaci. Jeżeli dodasz obie daty, nie tylko zostaną wyświetlone, ale program obliczy też wiek postaci w chwili śmierci. Dodanie wyłącznie daty narodzin spowoduje wyświetlenie obecnego wieku, a wyłącznie daty śmierci - liczby lat, która od niej upłynęła.',
         'title'         => 'Wiek i śmierć postaci',
     ],
+    'api-filters'       => [
+        'description'   => 'W węźle końcowym API :name dostępne są następujące filtry',
+        'title'         => 'Filtry API',
+    ],
     'attributes'        => [
         'con'               => 'Kon',
         'description'       => 'By oznaczyć współczynniki postaci, które nie są tekstem, używaj cech. Możesz tworzyć odnośniki do postaci w cechach używając składni zaawansowanych wzmianek :mention. Możesz też wspominać inne cechy za pomocą składni :attribute.',

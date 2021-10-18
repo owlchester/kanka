@@ -25,6 +25,11 @@ return [
             'remove'    => 'Odebrano ci rolę :role w kampanii :campaign.',
         ],
     ],
+    'clear'             => [
+        'action'    => 'Usuń wszystkie',
+        'confirm'   => 'Czy na pewno chcesz usunąć wszystkie powiadomienia? Tego działania nie można cofnąć.',
+        'success'   => 'Usunięto powiadomienia',
+    ],
     'header'            => 'Masz :count powiadomień.',
     'index'             => [
         'description'   => 'Twoje ostatnie powiadomienia',
@@ -42,4 +47,5 @@ return [
         'failed'        => 'Nie można pobrać płatności. Uaktualnij ustawienia Metody Płatności.',
         'started'       => 'Subskrybujesz od teraz Kankę.',
     ],
+    'unread'            => 'Nowe powiadomienie',
 ];

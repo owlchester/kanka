@@ -103,6 +103,7 @@ return [
         'boosts_v2'         => [
             'description'       => 'Poziomy wsparcia zapewniają dostęp do doładowań, których można używać w kampaniach. Doładowanie i turbodoładowanie kampanii powoduje następujące korzyści.',
             'description-count' => 'Doładowanie kampanii zużywa :boost-count doładowanie. Turbodoładowanie kampanii zużywa :superboost-count doładowania.',
+            'moving'            => 'Doładowania można przenosić między kampaniami. Na przykład: skończyliście rozgrywać jedną kampanię, więc możecie użyć jej doładowań, by doładować albo turbodoładować inną. Z kampanii, która straciła doładowanie, nie usuwamy żadnych związanych z nim elementów. Pozostają ukryte do czasu ponownego doładowania.',
             'title'             => 'Doładowana i turbodoładowana kampania',
         ],
         'calendars'         => [
@@ -275,6 +276,7 @@ return [
         'news'          => 'Co nowego',
         'newsletter'    => 'Newsletter',
         'other'         => 'Pozostałe',
+        'overview'      => 'Omówienie funkcji',
         'pricing'       => 'Cena',
         'privacy'       => 'Prywatność',
         'register'      => 'Rejestracja',

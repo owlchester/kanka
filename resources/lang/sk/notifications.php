@@ -25,6 +25,11 @@ return [
             'remove'    => 'Bola ti odobraná rola :role v kampani :campaign.',
         ],
     ],
+    'clear'             => [
+        'action'    => 'Vymazať všetky',
+        'confirm'   => 'Naozaj chceš odstrániť všetky notifikácie? Táto akcia nemôže byť vrátená späť.',
+        'success'   => 'Notifikácie vymazané.',
+    ],
     'header'            => '{1} Máš :count notifikáciu.|[2,4] Máš :count notifikácie.|[5,*] Máš :count notifikácií.',
     'index'             => [
         'description'   => 'Tvoje najnovšie notifikácie.',
@@ -47,4 +52,5 @@ TEXT
         'failed'        => 'Tvoje predplatné Kanky bolo zrušené po prekročení limitu pokusov o spracovanie platby. Prosím, prejdi na Nastavenia predplatného a skús zmeniť tvoje detaily platby.',
         'started'       => 'Tvoje predplatné Kanky bolo spustené.',
     ],
+    'unread'            => 'Nová notifikácia',
 ];

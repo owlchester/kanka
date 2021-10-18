@@ -20,6 +20,7 @@ return [
         'title'     => 'Upraviť časovú os :name.',
     ],
     'fields'        => [
+        'copy_elements' => 'Kopírovať prvky',
         'copy_eras'     => 'Kopírovať vek',
         'eras'          => 'Veky',
         'name'          => 'Názov',
@@ -45,6 +46,9 @@ return [
         'type'  => 'Primárna, Kronika sveta, Osud kráľovstva',
     ],
     'show'          => [
+        'tabs'  => [
+            'timelines' => 'Časové osi',
+        ],
         'title' => 'Časová os :name',
     ],
     'timelines'     => [

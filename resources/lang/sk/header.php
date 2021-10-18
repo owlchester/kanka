@@ -6,6 +6,7 @@ return [
     'member_since'      => 'Člen/ka od :date',
     'notifications'     => [
         'header'    => 'Oznámenia',
+        'mark_read' => 'Označiť všetky ako prečítané',
         'read_all'  => 'Označiť ako prečítané',
     ],
     'profile'           => 'Profil',

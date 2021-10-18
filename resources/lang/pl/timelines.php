@@ -20,6 +20,7 @@ return [
         'title'     => 'Edycja historii :name',
     ],
     'fields'        => [
+        'copy_elements' => 'Kopiuj składowe',
         'copy_eras'     => 'Kopiuj epoki',
         'eras'          => 'Epoki',
         'name'          => 'Nazwa',
@@ -45,6 +46,9 @@ return [
         'type'  => 'Główna, kronika dziejów świata, historia królestwa',
     ],
     'show'          => [
+        'tabs'  => [
+            'timelines' => 'Historie',
+        ],
         'title' => 'Historia :name',
     ],
     'timelines'     => [

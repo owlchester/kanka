@@ -14,7 +14,8 @@ return [
         'title'     => 'Edycja wydarzenia :name',
     ],
     'events'        => [
-        'title' => 'Wydarzenia wydarzenia :name',
+        'helper'    => 'Ty wyświetlone są wydarzenia pochodzące od tego elementu.',
+        'title'     => 'Wydarzenia wydarzenia :name',
     ],
     'fields'        => [
         'date'      => 'Data',
@@ -46,6 +47,7 @@ return [
     'show'          => [
         'description'   => 'Szczegółowy opis wydarzenia',
         'tabs'          => [
+            'events'        => 'Wydarzenia',
             'information'   => 'Informacje',
         ],
         'title'         => 'Wydarzenie :name',

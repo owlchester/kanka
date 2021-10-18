@@ -12,11 +12,16 @@ return [
         'success'   => 'Предмет ":item" объекта ":entity" удален.',
     ],
     'fields'        => [
-        'amount'        => 'Количество',
-        'description'   => 'Описание',
-        'is_equipped'   => 'Экипирован',
-        'name'          => 'Название',
-        'position'      => 'Нахождение',
+        'amount'            => 'Количество',
+        'copy_entity_entry' => 'Использовать статью',
+        'description'       => 'Описание',
+        'is_equipped'       => 'Экипирован',
+        'name'              => 'Название',
+        'position'          => 'Нахождение',
+        'qty'               => 'Кол-во',
+    ],
+    'helpers'       => [
+        'copy_entity_entry' => 'Использовать статью объекта вместо описания.',
     ],
     'placeholders'  => [
         'amount'        => 'Любое количество',
