@@ -1,4 +1,4 @@
-@if (auth()->check() && !auth()->user()->subscribed('kanka') && !auth()->user()->settings->get('banner_4yearpromo'))
+@if (auth()->check() && !auth()->user()->settings->get('banner_4yearpromo'))
     <div class="bg-primary banner-notification">
         <span>
             <a href="{{ route('settings.subscription') }}">
