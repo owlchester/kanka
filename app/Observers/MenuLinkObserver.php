@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Facades\CampaignLocalization;
 use App\Models\MenuLink;
 use App\Models\MiscModel;
+use App\Models\Tag;
 
 class MenuLinkObserver
 {
@@ -48,6 +49,47 @@ class MenuLinkObserver
         // Is private hook for non-admin (who can't set is_private)
         if (!isset($model->is_private)) {
             $model->is_private = false;
+        }
+    }
+
+    /**
+     * @param MiscModel|MenuLink $menuLink
+     */
+    public function saved(MiscModel $menuLink)
+    {
+        $this->saveTags($menuLink);
+    }
+
+    protected function saveTags(MiscModel $model)
+    {
+        if (!request()->has('save_tags')) {
+            return;
+        }
+
+        // Only save tags if we are in a form.
+        $ids = request()->post('tags', []);
+
+        // Only use tags the user can actually view. This way admins can
+        // have tags on entities that the user doesn't know about.
+        $existing = [];
+        foreach ($model->tags as $tag) {
+            $existing[$tag->id] = $tag->name;
+        }
+        $new = [];
+
+        foreach ($ids as $id) {
+            if (!empty($existing[$id])) {
+                unset($existing[$id]);
+            } else {
+                $tag = Tag::findOrFail($id);
+                $new[] = $tag->id;
+            }
+        }
+        $model->tags()->attach($new);
+
+        // Detach the remaining
+        if (!empty($existing)) {
+            $model->tags()->detach(array_keys($existing));
         }
     }
 }

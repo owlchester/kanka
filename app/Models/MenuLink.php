@@ -28,6 +28,7 @@ use Illuminate\Support\Str;
  * @property Entity $target
  * @property boolean $is_private
  * @property array $optionsAllowedKeys
+ * @property Tag[] $tags
  *
  * @method self ordered()
  */
@@ -152,6 +153,11 @@ class MenuLink extends MiscModel
     public function dashboard()
     {
         return $this->belongsTo('App\Models\CampaignDashboard', 'dashboard_id');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 
     /**
@@ -320,7 +326,8 @@ class MenuLink extends MiscModel
 
         /** @var Entity $entity */
         $entity = \App\Models\Entity::
-            type($entityType)
+            inTags($this->tags->pluck('id')->toArray())
+            ->type($entityType)
             ->acl()
             ->inRandomOrder()
             ->first();

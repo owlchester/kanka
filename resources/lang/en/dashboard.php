@@ -160,8 +160,8 @@ return [
             'show_members'      => 'Show members',
             'show_relations'    => 'Show pinned relations',
             'singular'          => 'Preview',
-            'tags'              => 'Filter the list of recently modified entities on specified tags.',
-            'title'             => 'Recently modified',
+            'tags'              => 'Filter the list of entities on specified tags.',
+            'title'             => 'Entity list',
         ],
         'unmentioned'               => [
             'title' => 'Unmentioned entities',

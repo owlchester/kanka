@@ -26,7 +26,7 @@ elseif(!empty($model) && !empty($model->entity)) {
             $selectedOption[$tag->id] = $tag;
         }
     }
-} elseif(!empty($model) && $model instanceof \App\Models\CampaignDashboardWidget) {
+} elseif(!empty($model) && ($model instanceof \App\Models\CampaignDashboardWidget || $model instanceof \App\Models\MenuLink)) {
     foreach ($model->tags()->get() as $tag) {
         $selectedOption[$tag->id] = $tag;
     }
