@@ -3,10 +3,9 @@
 namespace App\Models;
 
 use App\Facades\Dashboard;
+use App\Models\Concerns\Taggable;
 use App\Traits\CampaignTrait;
-use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
@@ -28,12 +27,13 @@ use Illuminate\Support\Str;
  * @property Entity $target
  * @property boolean $is_private
  * @property array $optionsAllowedKeys
- * @property Tag[] $tags
  *
  * @method self ordered()
  */
 class MenuLink extends MiscModel
 {
+    use Taggable;
+
     /**
      * @var string
      */
@@ -153,11 +153,6 @@ class MenuLink extends MiscModel
     public function dashboard()
     {
         return $this->belongsTo('App\Models\CampaignDashboard', 'dashboard_id');
-    }
-
-    public function tags()
-    {
-        return $this->belongsToMany(Tag::class);
     }
 
     /**
@@ -325,7 +320,7 @@ class MenuLink extends MiscModel
         $entityType = $this->random_entity_type != 'any' ? $this->random_entity_type : null;
 
         /** @var Entity $entity */
-        $entity = \App\Models\Entity::
+        $entity = Entity::
             inTags($this->tags->pluck('id')->toArray())
             ->type($entityType)
             ->acl()

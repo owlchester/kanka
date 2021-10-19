@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Taggable;
 use App\Services\FilterService;
 use App\Traits\CampaignTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 /**
@@ -22,7 +22,6 @@ use Illuminate\Support\Str;
  * @property array $config
  * @property integer $width
  * @property integer $position
- * @property Tag[] $tags
  * @property Entity $entity
  * @property CampaignDashboard $dashboard
  *
@@ -31,6 +30,8 @@ use Illuminate\Support\Str;
  */
 class CampaignDashboardWidget extends Model
 {
+    use Taggable;
+
     /**
      * Widget Constants
      */
