@@ -56,10 +56,11 @@ class CleanupEntityLogs extends Command
 
                 $statement = 'UPDATE entity_logs SET changes = null WHERE id in(' .
                     implode(', ', $entityIds) .
-                ') limit 100';
+                ') limit ' . count($entityIds);
                 DB::statement($statement);
             });
 
         $this->info('Cleaned up ' . $this->count . ' entity logs.');
+        return 0;
     }
 }
