@@ -152,9 +152,9 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}" title="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}" title="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">
-                        {{ trans('dashboard.setup.actions.add') }}
+                        {{ __('dashboard.setup.actions.add') }}
                     </h4>
                 </div>
                 <div class="modal-body" id="modal-content-buttons">
@@ -171,14 +171,10 @@
                     <div class="btn btn-block btn-default btn-lg" id="btn-widget-header" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => \App\Models\CampaignDashboardWidget::WIDGET_HEADER, 'dashboard' => $dashboard]) }}">
                         <i class="fas fa-heading"></i> {{ __('dashboard.setup.widgets.header') }}
                     </div>
-                    <div class="btn btn-block btn-default btn-lg" id="btn-widget-unmentioned" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'unmentioned', 'dashboard' => $dashboard]) }}">
-                        <i class="fa fa-question"></i> {{ __('dashboard.setup.widgets.unmentioned') }}
-                    </div>
                     <div class="btn btn-block btn-default btn-lg" id="btn-widget-random" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'random', 'dashboard' => $dashboard]) }}">
                         <i class="fas fa-dice-d20"></i> {{ __('dashboard.setup.widgets.random') }}
                     </div>
                     @if(!empty($dashboard))
-
                         <div class="btn btn-block btn-default btn-lg" id="btn-widget-campaign" data-url="{{ route('campaign_dashboard_widgets.create', ['widget' => 'campaign', 'dashboard' => $dashboard]) }}">
                             <i class="fas fa-th-list"></i> {{ __('dashboard.setup.widgets.campaign') }}
                         </div>

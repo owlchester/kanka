@@ -1,3 +1,10 @@
+@php
+$advancedFilters = [
+    '' => '',
+    'unmentioned' => __('dashboard.widgets.recent.advanced_filters.unmentioned'),
+    'mentionless' => __('dashboard.widgets.recent.advanced_filters.mentionless'),
+];
+@endphp
 <div class="form-group required">
     <label for="config-entity">
         {{ __('crud.fields.entity_type') }}
@@ -11,7 +18,15 @@
     <p class="help-block">{!! __('dashboard.widgets.recent.helpers.filters', ['link' => '<a href="' . route('helpers.widget-filters') . '" target="_blank"><i class="fas fa-external-link-alt"></i> ' . __('helpers.widget-filters.link') . '</a>']) !!}</p>
 </div>
 
-@include('dashboard.widgets.forms._tags')
+<div class="row">
+    <div class="col-md-6">
+        @include('dashboard.widgets.forms._tags')
+    </div>
+    <div class="col-md-6">
+        <label>{{ __('dashboard.widgets.recent.advanced_filter') }}</label>
+        {!! Form::select('config[adv_filter]', $advancedFilters, null, ['class' => 'form-control']) !!}
+    </div>
+</div>
 
 <div class="form-group">
     {!! Form::hidden('config[singular]', 0) !!}

@@ -70,7 +70,7 @@ class CampaignDashboardWidgetObserver
         }
         $model->tags()->attach($new);
 
-        // Detatch the remaining
+        // Detach the remaining
         if (!empty($existing)) {
             $model->tags()->detach(array_keys($existing));
         }

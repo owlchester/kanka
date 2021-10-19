@@ -139,6 +139,11 @@ return [
             ],
         ],
         'recent'                    => [
+            'advanced_filter' => 'Advanced filter',
+            'advanced_filters' => [
+                'mentionless' => 'Mentionless entities',
+                'unmentioned' => 'Unmentioned entities',
+            ],
             'entity-header'     => 'Use entity header as image',
             'filters'           => 'Filters',
             'full'              => 'Display full entry',

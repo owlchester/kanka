@@ -264,28 +264,36 @@ class CampaignDashboardWidget extends Model
      */
     public function entities()
     {
-        $base = null;
+        /** @var Entity $base */
+        $base = new Entity();
 
-        if ($this->widget == self::WIDGET_UNMENTIONED) {
-            $excludedTypes = [];
-            if (empty($entityType)) {
-                $excludedTypes = [
-                    'tag',
-                    'conversation',
-                    'attribute_template'
-                ];
-            }
-            $base = \App\Models\Entity::unmentioned()
-                ->whereNotIn('type', $excludedTypes)
+        $excludedTypes = [];
+        if (empty($entityType)) {
+            $excludedTypes = [
+                'tag',
+                'conversation',
+                'attribute_template',
+                'dice_roll',
+            ];
+        }
+
+        if ($this->filterUnmentioned()) {
+            $base = $base->unmentioned()
+                ->whereNotIn($base->getTable() . '.type', $excludedTypes)
             ;
+        } elseif ($this->filterMentionless()) {
+            $base = $base->mentionless()
+                ->whereNotIn($base->getTable() . '.type', $excludedTypes)
+            ;
+        }
+
+        // Ordering
+        $order = Arr::get($this->config, 'order', null);
+        if (empty($order)) {
+            $base = $base->recentlyModified();
         } else {
-            $order = Arr::get($this->config, 'order', null);
-            if (empty($order)) {
-                $base = \App\Models\Entity::recentlyModified();
-            } else {
-                list ($field, $order) = explode('_', $order);
-                $base = \App\Models\Entity::orderBy($field, $order);
-            }
+            list ($field, $order) = explode('_', $order);
+            $base = $base->orderBy($field, $order);
         }
 
         // If an entity type is provided, we can combine that with filters. We need to get the list of the misc
@@ -299,9 +307,12 @@ class CampaignDashboardWidget extends Model
 
             /** @var FilterService $filterService */
             $filterService = app()->make('App\Services\FilterService');
-            $filterService->session(false)->make($entityType, $this->filterOptions(), $model);
+            $filterService
+                ->session(false)
+                ->make($entityType, $this->filterOptions(), $model);
 
-            $models = $model->select('id')
+            $models = $model
+                ->select('id')
                 ->filter($filterService->filters())
                 ->get();
 
@@ -371,13 +382,27 @@ class CampaignDashboardWidget extends Model
             $icon = 'fas fa-dice-d20';
         } elseif ($this->widget === self::WIDGET_CAMPAIGN) {
             $icon = 'fas fa-th-list';
-        } elseif ($this->widget === self::WIDGET_UNMENTIONED) {
-            $icon = 'fa fa-question';
         }
 
         if (empty($icon)) {
             return '';
         }
         return '<i class="' . $icon . '"></i>';
+    }
+
+    /**
+     * @return bool
+     */
+    protected function filterUnmentioned(): bool
+    {
+        return Arr::get($this->config, 'adv_filter') === 'unmentioned';
+    }
+
+    /**
+     * @return bool
+     */
+    protected function filterMentionless(): bool
+    {
+        return Arr::get($this->config, 'adv_filter') === 'mentionless';
     }
 }
