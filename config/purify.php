@@ -176,7 +176,8 @@ return [
             . "www\.aonprd\.com/|"
             . "2e\.aonprd\.com/|"
             . "www\.aonsrd\.com/|"
-            . "p3d\.in/e/"
+            . "p3d\.in/e/|"
+            . "api\.mapbox\.com/"
             . ")%",
     ],
 
