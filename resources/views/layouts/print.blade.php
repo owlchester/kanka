@@ -38,7 +38,7 @@ $campaign = CampaignLocalization::getCampaign(); ?>
 @endif
 @yield('styles')
 
-@if (request()->has('_theme') && in_array(request()->get('_theme'), ['dark', 'midnight', 'future', 'base']))
+@if (request()->has('_theme') && in_array(request()->get('_theme'), ['dark', 'midnight', 'base']))
     @if(request()->get('_theme') != 'base')
     <link href="{{ mix('css/' . request()->get('_theme') . '.css') }}" rel="stylesheet">
     @endif

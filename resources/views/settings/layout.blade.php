@@ -24,7 +24,6 @@
                         {!! Form::select('theme', [
                             '' => __('profiles.theme.themes.default'),
                             'dark' => __('profiles.theme.themes.dark'),
-                            'future' => __('profiles.theme.themes.future'),
                             'midnight' => __('profiles.theme.themes.midnight')
                         ], null, ['class' => 'form-control']) !!}
                     </div>
