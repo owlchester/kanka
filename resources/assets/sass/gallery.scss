@@ -27,9 +27,9 @@ $total-iph: calc(#{$image-preview-height} + #{$image-preview-text-height});
       .image-preview {
         box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1),
           inset 0 0 0 1px rgba(0, 0, 0, 0.05);
-        background: #eee;
         cursor: pointer;
         height: $total-iph;
+        background-color: var(--gallery-background);
 
         .gallery-thumbnail {
           height: $image-preview-height;
@@ -52,6 +52,8 @@ $total-iph: calc(#{$image-preview-height} + #{$image-preview-text-height});
             vertical-align: middle;
             line-height: normal;
 
+            color: var(--gallery-folder-text);
+
             i {
               display: block;
             }
@@ -72,8 +74,8 @@ $total-iph: calc(#{$image-preview-height} + #{$image-preview-text-height});
 
         &:focus,
         &:hover {
-          box-shadow: 0 0 0 1px #5b9dd9, 0 0 2px 1px rgba(30, 140, 190, 0.8);
-          color: #124964;
+          box-shadow: 0 0 0 1px var(--gallery-hover-text), 0 0 2px 1px rgba(30, 140, 190, 0.8);
+          color: var(--gallery-hover-text);
           outline: 1px solid transparent;
         }
       }

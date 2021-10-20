@@ -1,3 +1,9 @@
+:root {
+  --calendar-today: #FFFDE2;
+  --calendar-week: #FFFDE2;
+  --calendar-weather: #ddd;
+}
+
 .calendar {
   table-layout: fixed;
 
@@ -22,7 +28,7 @@
       }
 
       .weather {
-        background-color: #ddd;
+        background-color: var(--calendar-weather);
       }
 
       .reminder-entity {
@@ -77,14 +83,14 @@
     }
 
     td.today {
-      background-color: #FFFDE2;
+      background-color: var(--calendar-today);
     }
 
     tr.named_week {
       td {
         height: 1em;
         font-style: italic;
-        background-color: #FFFDE2;
+        background-color: var(--calendar-week);
       }
     }
   }

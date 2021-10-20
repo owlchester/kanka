@@ -5,199 +5,145 @@ $Unfocused: #999;
 $White: #eee;
 
 @import "_base";
-$Hard: #fff;
 
-body {
-  background-color: #262626;
-  color: #777;
+:root {
+  --theme-wrapper-text: #777;
+  --theme-hard: #fff;
+  --theme-soft: #333;
+  --theme-detail: #222;
+  --theme-unfocused: #999;
+  --theme-background: #202121;
+  --theme-main-text: #fff;
+  --theme-soft-text: #999;
+  --theme-border: #3D3C3B;
+
+  --link-text: #999;
+  --link-focus: #fff;
+  --link-hover: #ccc;
+  --submenu-link: #999;
+
+  --theme-table-border: #777;
+  --submenu-hover-background: #333;
+
+
+  --theme-navbar-background: #262626;
+  --sidebar-background: #333;
+
+  --input-background-color: #222;
+  --input-border-color: #3D3C3B;
+  --input-text-color: #fff;
+
+  --theme-navbar-li-hover-color: var(--theme-wrapper-text);
+  --theme-navbar-li-hover-background: var(--theme-background);
+
+  --theme-table-info-background: #1e2d35;
+  --theme-table-info-hover: #293e4e;
+
+  --theme-box-border: none;
+  --theme-box-header-border: 1px solid var(--theme-border);
+  --theme-box-background: var(--theme-background);
+
+  // Stuff from the base design
+  --quick-creator-button-background: var(--theme-soft);
+  --quick-creator-button-hover-background: var(--dashboard-widget-admin-border);
+  --header-text: var(--theme-main-text);
+
+  --modal-background: #222;
+  --modal-inner-border: transparent;
+  --calendar-today: #333;
+  --calendar-week: #333;
+  --dashboard-preview-gradient: #222;
+  --dashboard-widget-admin-border: #3D3C3B;
+  --footer-background: #262626;
+  --footer-links-background: rgba(0, 0, 0, 0.2);
+  --footer-logo-blue: none;
+  --footer-logo-white: unset;
+
+  --body-background: #262626;
+  --body-text: #888;
+
+  --gallery-text: var(--theme-hard);
+  --gallery-background: var(--theme-background);
+  --gallery-hover-text: var(--theme-unfocused);
+
+  --relation-explorer-background: var(--theme-detail);
+  --relation-explorer-text: var(--theme-hard);
+
+  --conversation-comment-background: var(--theme-soft);
+
+  --info-background: #3BA0B6;
+  --success-background: #007239;
+  --danger-background: #814948;
+  --warning-background: #a96f13;
+  --primary-background:  #496e81;
+  --default-background: var(--theme-background);
+
+  --tab-background: none;
+  --bg-default-link: #fff;
+  --well-background: var(--theme-background);
+  --well-border: var(--theme-background);
+
+  --dashboard-setup-widget-background: rgba(0, 0, 0, 0.7);
+  --dashboard-setup-widget-hover: rgba(0, 0, 0, 0.8);
+
+  --content-wrapper-background: #262626;
+
+  --hr-border-top: 1px solid var(--theme-border);
 }
 
-.btn {
-  //background-color: $Unfocused !important;
-  color: white !important;
-  //border: none !important;
-
-  &:hover {
-    //color: $Detail !important;
-    //background-color: $Hard !important;
-    //border: none !important;
-  }
-}
-.btn-danger {
-  &:hover {
-    background-color: #992329 !important;
-    color: white !important;
-  }
-}
-.btn-default, .btn-app, .btn-secondary {
-  color: #444 !important;
-}
-
-.box, .panel, .timeline-item {
-  border: 1px solid #202121 !important;
-  background-color: #202121 !important;
-}
-
-.content-wrapper {
-  a {
-    color: $Unfocused !important;
-
-    &:hover {
-      color: $Hard !important;
-    }
-  }
-}
-.alert a {
-  color: $Hard !important;
-}
-
+// Tinymce stuff for dark mode
 .mce-edit-area, .mce-content-body {
   filter: invert(90%) !important;
 }
 
-@media (min-width: 1200px) {
-  a {
-    span.visible-lg {
-      display: none !important;
-    }
-  }
-}
 
-.main-footer {
-  border-top: none !important;
-}
-
+// Buttons in the navbar
 .navbar-nav > .user-menu > .dropdown-menu > .user-footer .btn-default {
-  background-color: $Soft !important;
-  color: $Hard !important;
-}
-.nav-tabs-custom, .nav-tabs {
-  background-color: #202121 !important;
-
-  .tab-content {
-    border-top: 1px solid #3D3C3B !important;
-    background: #202121 !important;
-  }
-}
-
-.nav-tabs {
-  border-bottom-color: #202121 !important;
-  li {
-    a {
-    }
-    &:hover {
-      background-color: #444444 !important;
-      a {
-        background: none;
-      }
-    }
-  }
-  li.active {
-    border-top-color: #496E81 !important;
-    a {
-      color: $Hard !important;
-      background: none !important;
-    }
-  }
-}
-.nav-tabs-custom > .nav-tabs > li:first-of-type.active > a,
-.nav-tabs-custom > .nav-tabs > li.active > a {
-    border-left-color: #3D3C3B !important;
-    border-right-color: #3D3C3B !important;
-    border-bottom-color: #202121 !important;
-}
-
-.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
-  border-top-color: #3D3C3B !important;
-}
-.box .nav-stacked > li {
-  border-bottom-color: #3D3C3B !important;
-}
-.nav > li > a:hover, .nav > li > a:active, .nav > li > a:focus {
-  background-color: #333 !important;
-}
-hr {
-  border-top: 1px solid #424240 !important;
-}
-
-/**
- * Calendar
- */
-.calendar {
-  td.today {
-    background-color: #515142;
-  }
-}
-
-
-.panel-body {
-  .preview {
-    background: none;
-    &:before {
-      background: linear-gradient(transparent 0px, $Soft) !important;;
-    }
-  }
-}
-
-.bg-aqua, .callout.callout-info, .alert-info, .label-info, .modal-info .modal-body {
-  background-color: #3BA0B6 !important;
-}
-
-.form-control {
-  border-color: #424240 !important;
-  border-radius: 2px;
-  background-color: #232424 !important;
-}
-
-.btn-primary {
-  background-color: #496E81 !important;
-  border: 1px solid #426375 !important;
-
-  &:hover {
-    background-color: #6b96ab !important;
-  }
+  background-color:var(--theme-soft);
+  color: var(--theme-link);
 }
 
 .btn-danger {
-  background-color: #814948 !important;
-  border: 1px solid #6f3e3d !important;
-
-  &:hover {
-    background-color: #994e4d !important;
+  background-color: var(--danger-background);
+  border: 1px solid var(--danger-background);
+  &:hover, &:focus, .focus {
+    background-color: #a2413f;
   }
 }
 
-.btn-success {
-  background-color: #007239 !important;
-  border: 1px solid #005028 !important;
-
-  &:hover {
-    background-color: #00934c !important;
+.btn-info {
+  background-color: var(--info-background);
+}
+.btn-primary {
+  background-color: var(--primary-background);
+  border: 1px solid var(--primary-background);
+  &:hover, &:focus, .focus {
+    background-color: #2ba6c1;
+  }
+}
+.btn-warning {
+  background-color: var(--warning-background);
+  border: 1px solid var(--warning-background);
+  &:hover, &:focus, .focus {
+    background-color: #c4841d;
   }
 }
 .btn-default {
-  background-color: #232424 !important;
-  border-color: #424240 !important;
-  color: #aaa !important;
-}
-
-.skin-black .main-header .navbar > .sidebar-toggle, .skin-black .main-header .navbar .nav > li > a {
-  color: #aaa;
-
-  &:hover {
-    color: #ccc;
+  background-color: var(--default-background);
+  border: 1px solid var(--theme-border);
+  color: var(--theme-unfocused);
+  &:hover, &:focus, .focus {
+    background-color: var(--default-background);
+    border: 1px solid var(--theme-link-hover);
+    color: var(--theme-link-hover);
   }
 }
 
-.navbar .user-image {
-  background-color: #aaa;
+// Icons in navbar
+.skin-black .main-header .navbar .nav > li > a, .skin-black .main-header .navbar > .sidebar-toggle {
+  color: white;
 }
-
-#cy {
-  background-color: $Detail;
-  color: $Hard;
-}
-
-.gallery ul li .image-preview .gallery-folder .text {
-  color: $Soft;
+// Notifications
+.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a {
+  color: #ccc;
 }

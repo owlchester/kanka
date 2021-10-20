@@ -7,199 +7,111 @@ $Unfocused: #999;
 $White: #eee;
 
 // Links
-$Link: #9CD7F7;
-$LinkHover: #d4eff7;
 
 @import "_base";
 
-body {
-  background-color: #061F2F;
-  color: #d3d4d4;
-}
 
-.btn {
-  //background-color: $Unfocused !important;
-  color: white !important;
-  //border: none !important;
+:root {
+  --theme-wrapper-text: #777;
+  --theme-hard: #fff;
+  --theme-soft: #333;
+  --theme-detail: #0a121b;
+  --theme-unfocused: #999;
+  --theme-background: #0a121b;
+  --theme-main-text: #fff;
+  --theme-soft-text: #999;
+  --theme-border: transparent;
 
-  &:hover {
-    //color: $Detail !important;
-    //background-color: $Hard !important;
-    //border: none !important;
-  }
-}
-.btn-danger {
-  &:hover {
-    background-color: #992329 !important;
-    color: white !important;
-  }
-}
-.btn-default, .btn-app, .btn-secondary {
-  color: #444 !important;
-}
+  --link-text: #9CD7F7;
+  --link-focus: #fff;
+  --link-hover: #d4eff7;
+  --submenu-link: var(--link-text);
 
-.box, .panel, .timeline-item  {
-  background-color: $Detail !important;
+  --theme-table-border: #061f2f;
+  --submenu-hover-background: #444;
 
-  .box-header, .panel-heading {
-    background-color: rgba(0, 0, 0, 0.1) !important;
-  }
-  .with-border {
-    border-bottom: none !important;
-  }
-}
 
-a {
-  color: $Link !important;
-  &:hover {
-    color: $LinkHover !important;
-    text-decoration: none;
-  }
-}
+  --theme-navbar-background: #0a121b;
 
-.nav-tabs-custom {
-  border: none;
-  background-color: rgba(0, 0, 0, 0.2) !important;
+  --input-background-color: #0a121b;
+  --input-border-color: #333;
+  --input-text-color: #fff;
 
-  .pull-right {
-    margin: 5px 5px 0 0;
-  }
+  --theme-navbar-li-hover-color: var(--theme-wrapper-text);
+  --theme-navbar-li-hover-background: var(--theme-background);
 
-  .nav-tabs {
-    border-bottom: 0;
+  --theme-table-info-background: #1e2d35;
+  --theme-table-info-hover: #293e4e;
 
-    li {
-      background-color: $Detail !important;
-    }
-    .active {
-      a {
-        background-color: $Detail !important;
-        color: $Hard !important;
-      }
-    }
-  }
-  .tab-content {
-    background: unset;
-  }
-}
-.nav-stacked {
-  li {
-    border-bottom: 1px solid $Soft !important;
+  --theme-box-border: none;
+  --theme-box-header-border: 1px solid var(--theme-border);
+  --theme-box-background: var(--theme-background);
 
-    a {
-      &:hover {
-        background-color: $Soft !important;
-      }
-    }
-  }
-}
-.nav-tabs {
-  li {
-    border: none;
-    &:hover {
-      background: $Detail;
-      border: none;
-      border-bottom: none;
-      a {
-        background: none;
-      }
-    }
-  }
-  li.active {
-    border-top: 3px solid transparent !important;
+  // Stuff from the base design
+  --quick-creator-button-background: var(--theme-soft);
+  --quick-creator-button-hover-background: var(--dashboard-widget-admin-border);
+  --header-text: var(--theme-main-text);
 
-    a {
-      color: $Soft !important;
-      background-color: $Hard !important;
-      border: none !important;
-    }
-  }
-}
+  --calendar-today: #0d3c5a;
+  --calendar-week: #061f2f;
+  --dashboard-preview-gradient: #0a121b;
+  --dashboard-widget-admin-border: #3D3C3B;
+  --footer-background: unset;
+  --footer-links-background: rgba(0, 0, 0, 0.2);
+  --footer-logo-blue: none;
+  --footer-logo-white: unset;
 
-.product-list-in-box > .item {
-  border-bottom: 1px solid $Soft;
-}
+  --body-background: #061f2f;
+  --body-text: #d3d4d4;
 
-/**
- * Menu
- */
-.navbar {
-  background: $Detail !important;
+  --gallery-text: var(--theme-hard);
+  --gallery-background: var(--theme-background);
+  --gallery-hover-text: var(--theme-unfocused);
 
-  a {
-    color: $Hard !important;
+  --relation-explorer-background: var(--theme-detail);
+  --relation-explorer-text: var(--theme-hard);
 
-    &:hover {
-      background: $Soft !important;
-    }
-  }
+  --conversation-comment-background: none;
 
-  .btn {
-    color: $Unfocused !important;
-    background: $Soft !important;
-  }
+  /*--info-background: #3BA0B6;
+  --success-background: #007239;
+  --danger-background: #814948;
+  --warning-background: #a96f13;
+  --primary-background:  #496e81;
+  --default-background: var(--theme-background);*/
 
-  .typeahead {
-    border-color: $Unfocused !important;
-  }
+  --tab-background: transparent;
+  --tab-text: #fff;
+  --bg-default-link: #fff;
+  --well-background: var(--theme-background);
+  --well-border: var(--theme-background);
 
-  li.header {
-    border: 0 !important;
-  }
-  .user-image {
-    background-color: #eee;
-  }
-}
+  --dashboard-setup-widget-background: rgba(0, 0, 0, 0.7);
+  --dashboard-setup-widget-hover: rgba(0, 0, 0, 0.8);
 
-/**
- * Calendar
- */
-.calendar {
-  td.today {
-    background-color: #515142;
-  }
-  .weather {
-    color: #000;
-  }
+  --content-wrapper-background: none;
+
+  --hr-border-top: 1px solid var(--theme-border);
+
+  --sidebar-background: #0a121b;
+  --sidebar-link: #9CD7F7;
+  --campaign-switcher-background: #0a121b;
+
+  --modal-background: #0a121b;
+  --modal-inner-border: transparent;
+  --navbar-li-text: #eee;
 }
 
 
-
-.main-sidebar {
-  background-color: $Detail !important;
-
-  .sidebar-text {
-    span, i {
-      color: $Link;
-    }
-  }
-  section.sidebar-campaign {
-    background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, $Detail 100%);
-  }
-  .sidebar {
-    background-color: $Detail;
-  }
-
-  li.active a {
-    color: $Hard !important;
-    background: $Detail !important;
-  }
-
-  .campaign-switcher {
-    background-color: $Detail;
-    ul li .background-gradient {
-      background: linear-gradient(270deg, rgba(33, 33, 33, 0) 0%, $Detail 100%);
-    }
-  }
+// Icons in navbar
+.skin-black .main-header .navbar .nav > li > a, .skin-black .main-header .navbar > .sidebar-toggle {
+  color: white;
+}
+// Notifications
+.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a {
+  color: #ccc;
 }
 
-
-/**
- * Conversations
- */
-.box-comments, .box-comment {
- background-color: $Detail;
-}
 
 @media (max-width: 991px) {
   .content-header > .breadcrumb {
@@ -209,17 +121,4 @@ a {
   .navbar-custom-menu > .navbar-nav > li > .dropdown-menu {
     background-color: $Detail;
   }
-}
-
-.panel-body {
-  .preview {
-    background: none;
-    &:before {
-      background: linear-gradient(transparent 0px, $Detail) !important;
-    }
-  }
-}
-
-.gallery ul li .image-preview .gallery-folder .text {
-  color: $Soft;
 }

@@ -165,7 +165,10 @@
 .entity-links {
   margin: 5px 0;
   li > a {
-    font-size: 20px;
+    font-size: 16px;
+    i {
+      font-size: 20px;
+    }
   }
 }
 

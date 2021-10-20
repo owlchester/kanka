@@ -20,23 +20,23 @@
   }
 }
 .content-wrapper {
-margin-left: $sidebarWidth;
+  margin-left: $sidebarWidth;
 }
 
 .main-sidebar {
   width: 280px;
-  background-color: #333;
-  color: #fff;
+  background-color: var(--sidebar-background);
+  color: var(--sidebar-text);
 
   background-size: 280px 210px;
   background-repeat: no-repeat;
 
   a {
-  color: #fff;
+    color: var(--sidebar-link);
   }
 
   .sidebar {
-    background-color: #333;
+    background-color: unset;
     margin-bottom: 60px;
 
     .sidebar-icon-link {
@@ -73,7 +73,7 @@ margin-left: $sidebarWidth;
       a, .sidebar-text {
         font-size: 11px;
         line-height: 22px;
-        color: #FFFFFF;
+        color: var(--sidebar-link);
         letter-spacing: 1.5px;
         text-transform: uppercase;
       }
@@ -109,7 +109,7 @@ background-color: unset;
 
 section.sidebar-campaign {
 height: 160px;
-background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, #333333 100%);
+background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background) 100%);
 overflow: hidden;
 
 .campaign-block {
@@ -163,12 +163,11 @@ padding-top: 96px;
   right: 0;
   bottom: 0;
   left: 0;
-  //background-color: rgba(0, 0, 0, 0.1);
   z-index: 1079;
   outline: 0;
 }
 .campaign-switcher {
-  background-color: #1F1F1F;
+  background-color: var(--campaign-switcher-background);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.33), 2px 2px 16px rgba(0, 0, 0, 0.33);
   border-radius: 8px;
   z-index: 1080;
@@ -231,7 +230,7 @@ padding-top: 96px;
         right: 0;
       }
       .background-gradient {
-        background: linear-gradient(270deg, rgba(31, 31, 31, 0) 0%, #1F1F1F 100%);
+        background: linear-gradient(270deg, rgba(31, 31, 31, 0) 0%, var(--campaign-switcher-background) 100%);
       }
     }
 
@@ -277,7 +276,7 @@ padding-top: 96px;
 
   a {
     text-align: center;
-    color: #fff !important;
+    color: #fff;
     mix-blend-mode: normal;
 
     // Whole button clickable
@@ -307,8 +306,8 @@ padding-top: 96px;
   }
 }
 
-.skin-black .wrapper, .skin-black .main-sidebar, .skin-black .left-side {
-  background-color: #333;
+.skin-black .main-sidebar, .skin-black .left-side {
+  background-color: var(--sidebar-background);
 }
 .main-sidebar .sidebar li .fa, .main-sidebar .sidebar li .ra, .main-sidebar .sidebar li .fas, .main-sidebar .sidebar li .far, .main-sidebar .sidebar li .ra {
   font-size: 14px;

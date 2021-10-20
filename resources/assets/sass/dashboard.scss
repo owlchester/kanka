@@ -1,6 +1,15 @@
 
 // Variables
 @import "variables";
+
+:root {
+  --dashboard-preview-gradient: white;
+  --dashboard-widget-admin-border: #ccc;
+
+  --dashboard-setup-widget-background: rgba(255, 255, 255, 0.7);
+  --dashboard-setup-widget-hover: rgba(255, 255, 255, 0.8);
+}
+
 .campaign-dashboard {
   .content-header {
     min-height: 28px;
@@ -59,7 +68,7 @@
         display: inline-block;
         width: 100%;
         color: white !important;
-        text-shadow: rgba(0, 0, 0, 0.9) 0px 1px 4px;
+        text-shadow: rgba(0, 0, 0, 0.9) 0 1px 4px;
         font-size: 18px;
       }
     }
@@ -87,7 +96,8 @@
         position: absolute;
         left: 0;
         bottom: 0;
-        background: linear-gradient(transparent 0px, white);
+        background: linear-gradient(transparent 0px, var(--dashboard-preview-gradient));
+
       }
     }
 
@@ -126,17 +136,17 @@
     font-size: 24px;
     cursor: pointer;
     text-align: center;
-    border: 1px solid #ccc;
+    border: 1px solid var(--dashboard-widget-admin-border);
     margin-bottom: 20px;
     height: 160px;
     overflow: hidden;
 
     &:hover {
-      background-color: rgba(255, 255, 255, 0.8);
+      background-color: var(--dashboard-setup-widget-hover);
     }
 
     .widget-overlay {
-      background-color: rgba(255, 255, 255, 0.7);
+      background-color: var(--dashboard-setup-widget-background);
       padding: 40px 20px;
       height: 160px;
 
@@ -398,3 +408,15 @@
     text-align: unset;
   }
 }
+
+/*.campaign-dashboard-widgets {
+  .widget {
+    .widget-overlay {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+}*/

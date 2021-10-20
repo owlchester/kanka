@@ -9,9 +9,34 @@
 // Variables
 @import "variables";
 
+:root {
+  --banner-link: white;
+  --campaign-selector-link: white;
+  --campaign-selector-background: #ddd;
+  --input-required-text: red;
+  --table-filters-background: #eee;
+  --quick-creator-button-text: #fff;
+  --quick-creator-button-background: #144c93;
+  --quick-creator-button-hover-background: rgb(45, 127, 237);
+  --quick-creator-button-hover-text: #fff;
+
+  --tab-background: #f5f8fa;
+  --tab-text: #444;
+  --bg-default-link: unset;
+
+  --gallery-folder-text: unset;
+  --gallery-background: #f5f8fa;
+  --gallery-hover-text: #124964;
+}
+
+@import "theming";
+
 #app {
   // AdminLTE wants this but it becomes weird with the min-height computed on firefox
   overflow: unset !important;
+}
+.skin-black .wrapper {
+  background: none;
 }
 
 img.profile-user-img {
@@ -21,9 +46,9 @@ img.profile-user-img {
   padding: 0;
 }
 
-.content {
+/*.content {
   padding-top: 5px;
-}
+}*/
 
 .content-header {
   .breadcrumb {
@@ -59,7 +84,7 @@ img.profile-user-img {
   .campaign-menu {
     a.campaign-selector {
       font-size: 1.2em;
-      color: white;
+      color: var(--campaign-selector-link);
       text-shadow: $text-shadow;
       -webkit-filter: grayscale(60%);
       filter: grayscale(60%);
@@ -71,7 +96,7 @@ img.profile-user-img {
     }
 
     a.campaign-selector.cover-background {
-      background-color: #ddd;
+      background-color: var(--campaign-selector-background);
     }
   }
   .user-menu {
@@ -80,7 +105,6 @@ img.profile-user-img {
     }
 
     .dropdown-menu > li.user-header {
-      background-color: #1e282c;
       a > img {
         z-index: 5;
         height: 90px;
@@ -145,7 +169,7 @@ img.profile-user-img {
 /** required form fields **/
 div.required label:after {
   content: " *";
-  color: red;
+  color: var(--input-required-text);
 }
 
 table th.avatar, table td.avatar {
@@ -160,26 +184,6 @@ table {
     .btn {
       i {
         padding-left: 0;
-      }
-    }
-
-    .table-filters {
-      background-color: #eee;
-      padding: 5px 15px;
-      display: inline-block;
-      cursor: pointer;
-      border-radius: 5px;
-      min-width: 60px;
-
-      i {
-        padding: 0px;
-      }
-      i.fa-filter {
-        font-size: 16px;
-        padding-right: 5px;
-      }
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.1);
       }
     }
   }
@@ -202,10 +206,6 @@ table {
     max-width: 100%;
   }
 }
-// Avoid floating images in summernote to be too large
-.note-editable img {
-  max-width: 100%;
-}
 
 .clear {
   clear: both;
@@ -217,33 +217,7 @@ table {
   margin-bottom: 5px;
 }
 
-.preview {
-  padding-top: 10px;
 
-  .image {
-    float: left;
-    margin: 0 10px 0 0;
-  }
-  img {
-    max-height: 200px;
-    max-width: 200px;
-    width: 100%;
-  }
-  a.img-delete {
-    color: white;
-    text-align: center;
-    display: block;
-    padding: 5px;
-    background: none;
-    margin-top: -30px;
-    position: relative;
-    background-color: rgba(0, 0, 0, 0.3);
-
-    &:hover {
-      background-color: rgba(31, 0, 4, 0.7);
-    }
-  }
-}
 .preview-v2 {
   .image {
     position: relative;
@@ -271,109 +245,6 @@ table {
   }
 }
 
-footer {
-  padding-top: 40px;
-  padding-bottom: 30px;
-  text-align: left;
-
-
-  img.logo-white {
-    display: none;
-  }
-
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-
-    li {
-      padding: 0;
-      display: block;
-      margin: 2px 0;
-
-      a {
-        font-size: 14px !important;
-        width: 100%;
-
-        &:hover {
-          transition: all 0.2s ease;
-          text-decoration: none;
-        }
-      }
-    }
-  }
-
-  .kanka-logo {
-    font-size: 14px;
-    font-weight: 700;
-
-    a {
-      padding: 5px;
-      display: inline-block;
-    }
-  }
-
-  a {
-    display: inline-block;
-    border-radius: 4px;
-    letter-spacing: 1.1px;
-    font-size: 1rem;
-  }
-
-  .footer-socials {
-    line-height: 1.8em;
-    padding: 1.5rem 0 1.5rem;
-    text-align: center;
-
-    .email, .socials, .language-switcher {
-      display: block;
-      font-size: 18px;
-      margin-bottom: 10px;
-
-      a {
-        font-size: 1.9rem;
-        margin-right: 8px;
-      }
-    }
-  }
-
-  .footer-copyright {
-    font-size: 12px;
-  }
-
-  .footer-links {
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 15px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    padding: 15px;
-    padding-top: 30px;
-
-    .section {
-      height: 60px;
-      position: relative;
-      margin: 0;
-      text-transform: uppercase;
-      font-size: 18px;
-
-      .section-title {
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        -ms-transform: translateY(-50%);
-        transform: translateY(-50%);
-      }
-    }
-    ul > li {
-      margin: 0;
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
-      font-weight: 400;
-      font-size: 0.875rem;
-      line-height: 1.3;
-    }
-  }
-}
 .main-header {
   .sidebar-toggle {
     font-family: 'Font Awesome 5 Free';
@@ -384,12 +255,6 @@ footer {
     width: 50px;
     height: 50px;
   }
-}
-.main-footer {
-  color: #636b6f;
-  background-color: #ecf0f5;
-  border-top: none;
-  padding-bottom: 0;
 }
 
 /** news */
@@ -438,7 +303,7 @@ tr.entity-hidden {
  * Crud filters
  */
 .filters {
-  background-color: #fff;
+  background-color: var(--filters-background);
   margin: 15px 0px;
   border-radius: 5px;
 
@@ -768,10 +633,10 @@ div.mce-fullscreen {
     text-align: center;
     margin-bottom: 20px;
     border-radius: 2px;
-    color: #fff;
+    color: var(--quick-creator-button-text);
     line-height: 18px;
     font-size: 14px;
-    background-color: #144c93;
+    background-color: var(--quick-creator-button-background);
     letter-spacing: 0.75px;
     text-transform: uppercase;
     overflow: hidden;
@@ -779,10 +644,10 @@ div.mce-fullscreen {
     word-break: break-all;
 
     &:hover {
-      background-color: rgb(45, 127, 237);
+      background-color: var(--quick-creator-button-hover-background);
       box-shadow: $box-shadow-hover;
       transition: all 0.3s ease-in-out;
-      color: #fff;
+      color: var(--quick-creator-button-hover-text);
     }
   }
 
@@ -802,7 +667,6 @@ td.breakable {
 }
 
 .entity-form {
-  //background-color: rgb(241, 245, 248);
   margin-block-end: 0;
 
   .nav-tabs-custom {
@@ -822,10 +686,14 @@ td.breakable {
     border-top-right-radius: 0;
     border-top-left-radius: 0;
     border-bottom-color: #fff;
+    border-bottom: none;
 
     li {
-      background-color: #f5f8fa;
+      background-color: var(--tab-background);
       margin-right: 2px;
+      a {
+        color: var(--tab-text);
+      }
     }
   }
 
@@ -940,7 +808,7 @@ td.breakable {
 .bg-gray, .bg-none {
   .widget-user-username {
     a {
-      color: #000;
+      color: var(--bg-default-link);
     }
   }
 }
@@ -998,9 +866,6 @@ td.breakable {
   word-break: break-word;
 }
 
-hr {
-  border-top: 1px solid #eeeeee
-}
 
 .label-tag-bubble {
   width: 20px;
@@ -1017,10 +882,25 @@ hr {
     min-width: 200px;
   }
 }
+
+/**
+ * Summernote
+ */
 // Chrome bug: merging lines when the body or p elements have a font-size in "em" break stuff
 .note-editable p {
   font-size: 14px;
 }
+// Avoid floating images in summernote to be too large
+.note-editable img {
+  max-width: 100%;
+}
+.note-editor.note-airframe, .note-editor.note-frame {
+  border: none;
+}
+.note-editable {
+  //color: var(--summernote-editable-text);
+}
+
 .note-editing-area {
   .mention, .attribute {
     background-color: #eee;
@@ -1030,6 +910,7 @@ hr {
     text-decoration: none;
   }
 }
+// Gallery
 .images-list {
   .img-item {
     overflow: hidden;
@@ -1037,6 +918,10 @@ hr {
       height: 120px;
       overflow: hidden;
       line-height: 120px;
+      background-color: var(--gallery-background);
+      color: var(--gallery-text);
+      border: none;
+      cursor: pointer;
 
       .text {
         display: inline-block;
@@ -1048,6 +933,12 @@ hr {
         }
       }
 
+      &:focus,
+      &:hover {
+        box-shadow: 0 0 0 1px var(--gallery-hover-text), 0 0 2px 1px rgba(30, 140, 190, 0.8);
+        color: var(--gallery-hover-text);
+        outline: 1px solid transparent;
+      }
     }
   }
 }
@@ -1132,23 +1023,11 @@ summary { display: list-item; }
 .banner-notification {
   padding: 5px;
   a {
-    color: white;
+    color: var(--banner-link);
   }
 }
 
-@media (min-width: 768px) {
-  footer {
-    .footer-socials {
-      .email, .socials, .language-switcher {
-        display: inline;
-      }
 
-      .email, .socials {
-        margin-right: 20px;
-      }
-    }
-  }
-}
 
 // Other stylings
 @import "calendar";
@@ -1156,4 +1035,5 @@ summary { display: list-item; }
 @import "mobile";
 @import "boosted";
 @import "entity";
+@import "footer";
 @import "../components/rpg/scss/rpg-awesome";

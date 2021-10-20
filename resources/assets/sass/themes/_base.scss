@@ -2,99 +2,95 @@
  * All themes can benefit from overriding the same stuff, which is put here.
  */
 
+:root {
+  --theme-hard: #fff;
+  --theme-soft: #333;
+  --theme-detail: #222;
+  --theme-unfocused: #999;
+  --theme-background: #202121;
+  --theme-main-text: #fff;
+  --theme-soft-text: #999;
+  --theme-border: #3D3C3B;
+  --theme-link: #999;
+  --theme-link-hover: #aaa;
+  --theme-link-focus: #fff;
 
-#app {
-  background: none;
+  --theme-helper-text: #ccc;
+
+ /* --theme-btn-primary-bg: #496E81;
+  --theme-btn-primary-border: 1px solid #426375;
+  --theme-btn-primary-hover: #6b96ab;
+  --theme-btn-primary-hover-text: white;
+  --theme-btn-danger-bg: #814948;
+  --theme-btn-danger-border: 1px solid #6f3e3d;
+  --theme-btn-danger-hover: #994e4d;
+  --theme-btn-danger-hover-text: white;
+  --theme-btn-success-bg: #007239;
+  --theme-btn-success-border: 1px solid #005028;
+  --theme-btn-success-hover: #00934c;
+  --theme-btn-success-hover-text: white;*/
+
+  --theme-navbar-background: pink;
+
+  --theme-navbar-notifications-text: var(--theme-main-text);
+  --theme-navbar-notifications-background: var(--theme-background);
+  --theme-navbar-notifications-border-bottom: 1px solid var(--theme-unfocused);
+
+  --theme-table-info-background: #22bbff;
+  --theme-table-info-hover: #22bbff;
+
+  --theme-body-background: none;
+  --theme-body-color: none;
+
+  --theme-breadcrumb-link: #ccc;
 }
 
-.campaign-dashboard-widgets {
-  .widget {
-    .widget-overlay {
-      background-color: rgba(0, 0, 0, 0.7);
-    }
 
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.5);
-    }
-  }
-}
-
-//.main-sidebar {
-//  background: $Detail !important;
-//  li:hover, li.active, li.header {
-//    background-color: $Detail !important;
-//    a {
-//      color: $Hard !important;
-//      background-color: $Detail !important;
-//    }
-//  }
-//}
-
-.content-wrapper {
-  background: none !important;
-  p {
-    color: $White;
-  }
-}
-
-.box, .panel, .timeline-item
-{
-  background: none !important;
-  border: none !important;
+/**
+ * All of the boxes follow a similar design in our themes
+ */
+.box, .panel, .timeline-item {
+  border: var(--theme-box-border);
+  background-color: var(--theme-box-background);
 
   .box-header, .panel-heading, .timeline-header {
-    border: none !important;
-    background-color: transparent !important;
-    color: $Unfocused !important;
+    border: none;
+    background-color: transparent;
+    color: var(--theme-soft-text);
   }
   .with-border {
-    background: none !important;
-    border-bottom: 1px solid $Hard !important;
+    background: none;
+    border-bottom: var(--theme-box-header-border);
   }
 
   .box-footer, .panel-footer {
-    background: none !important;
-    border: none !important;
+    background: none;
+    border: none;
   }
 
   .panel-body {
-    color: $White;
+    color: var(--theme-main-text);
     ul {
-      color: $White;
+      color: var(--theme-main-text);
     }
   }
 }
 
-
-.filters {
-  background: $Detail !important;
-  color: white;
-
-  .element {
-    cursor: pointer;
-    &:hover {
-      background: $Soft !important;
-    }
-  }
-  .first {
-    border-left: 1px solid $Unfocused;
+.content-wrapper {
+  p {
+    color: var(--theme-main-text);
   }
 }
 
-.no-header {
-  .content {
-    border: none;
-  }
-}
 
 .table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: $Detail !important;
+  background-color: var(--theme-detail);
 }
 .table-hover {
   tbody {
     tr {
       &:hover {
-        background-color: $Detail !important;
+        background-color: var(--theme-detail);
       }
     }
   }
@@ -105,110 +101,86 @@
 .table > thead > tr > td.active, .table > thead > tr > th.active, .table > thead > tr.active > td, .table > thead > tr.active > th, .table > tbody > tr > td.active, .table > tbody > tr > th.active, .table > tbody > tr.active > td, .table > tbody > tr.active > th, .table > tfoot > tr > td.active, .table > tfoot > tr > th.active, .table > tfoot > tr.active > td, .table > tfoot > tr.active > th {
   background-color: unset;
 }
-
-h1, h2, h3, h4, h5, h6, h1 > small {
-  color: $White !important;
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td, .table-bordered {
+  border-color: var(--theme-table-border);
+}
+.table > thead > tr > td.info, .table > thead > tr > th.info, .table > thead > tr.info > td, .table > thead > tr.info > th, .table > tbody > tr > td.info, .table > tbody > tr > th.info, .table > tbody > tr.info > td, .table > tbody > tr.info > th, .table > tfoot > tr > td.info, .table > tfoot > tr > th.info, .table > tfoot > tr.info > td, .table > tfoot > tr.info > th {
+  background-color: var(--theme-table-info-background);
+}
+.table-hover > tbody > tr > td.info:hover, .table-hover > tbody > tr > th.info:hover, .table-hover > tbody > tr.info:hover > td, .table-hover > tbody > tr:hover > .info, .table-hover > tbody > tr.info:hover > th {
+  background-color: var(--theme-table-info-hover);
+}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+  border-top-color: var(--theme-border);
+  border-bottom-color: var(--theme-border);
 }
 
-input, textarea, .select2, select  {
-  border: 1px solid $Hard !important;
-  //border-radius: 0 !important;
-  background-color: $Detail !important;
-  color: white;
+.skin-black .main-header .navbar {
+  background-color: var(--theme-navbar-background);
 }
-.form-control, label {
-  color: $White;
+.navbar-nav > .user-menu > .dropdown-menu > .user-footer {
+  background-color: var(--theme-detail);
 }
-.preview {
-  background-color: $Detail;
-  min-height: 40px;
+/*.nav-tabs-custom > .nav-tabs > li.active > a, .nav-tabs-custom > .nav-tabs > li.active:hover > a {
+  background-color: var(--theme-soft);
+}*/
+.nav-tabs-custom > .nav-tabs > li:first-of-type.active > a,
+.nav-tabs-custom > .nav-tabs > li.active > a {
+  border-left-color: var(--theme-border);
+  border-right-color: var(--theme-border);
+  border-bottom-color: var(--theme-background);
+}
+.nav-tabs-custom > .nav-tabs > li:hover > a, .nav-tabs-custom > .nav-tabs > li.active > a, .nav-tabs-custom > .nav-tabs > li.active:hover > a  {
+  background-color: var(--theme-background);
+  color: var(--theme-main-text);
 }
 
-.select2 {
-  .select2-selection {
-    background: none;
-    //border: none;
-    //height: 36px;
-
-    .select2-selection__rendered {
-      color: white;
-    }
+.nav-tabs-custom, .nav-tabs {
+  .tab-content {
+    background: var(--theme-background);
   }
 }
 
-.select2-dropdown {
-  background-color: $Detail;
-  .select2-results {
-    color: white;
-  }
+.skin-black .main-header .navbar .nav > li > a:hover, .skin-black .main-header .navbar .nav > li > a:active, .skin-black .main-header .navbar .nav > li > a:focus, .skin-black .main-header .navbar .nav .open > a, .skin-black .main-header .navbar .nav .open > a:hover, .skin-black .main-header .navbar .nav .open > a:focus, .skin-black .main-header .navbar .nav > .active > a {
+  color: var(--theme-navbar-li-hover-color);
+  background-color: var(--theme-navbar-li-hover-background);
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+  color: var(--theme-navbar-li-hover-color);
+  background-color: var(--theme-navbar-li-hover-background);
+}
+.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a:hover, .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a:hover, .navbar-nav > .tasks-menu > .dropdown-menu > li .menu > li > a:hover {
+  color: var(--theme-navbar-notifications-text);
+  background-color: var(--theme-navbar-notifications-background);
+}
+.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a, .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a, .navbar-nav > .tasks-menu > .dropdown-menu > li .menu > li > a {
+  border-bottom: 1px solid var(--theme-border);
 }
 
-// Fancy checkboxes
-input[type=checkbox] {
-  /*-webkit-appearance: none !important;
-  -moz-appearance: none;
-  appearance: none;*/
-  outline: 0;
-  width: 16px;
-  height: 16px;
-  cursor: pointer;
-  transition: all .2s ease;
-
-  &:hover {
-    //border-radius: 3px;
-  }
-
-  &:after {
-    background-color: $Detail !important;
-    border: 1px solid $Hard !important;
-  }
-
-  &:checked {
-    background: $Hard !important;
-  }
-
-  &:checked:after {
-    display: block;
-  }
+.skin-black .main-header .navbar .sidebar-toggle:hover {
+  color: var(--theme-navbar-li-hover-color);
+  background-color: var(--theme-navbar-li-hover-background);
 }
 
-.main-footer {
-  background: none !important;
-  color: #999fac !important;
-}
-.user-footer {
-  background-color: $Detail !important;
-}
-
-.post {
-  color: $White;
-}
-.help-block {
-  color: #bbb;
+.content-wrapper .help-block {
+  color: var(--theme-helper-text);
   font-style: italic;
 }
-li {
-  color: $White;
-}
 pre, blockquote {
-  background-color: $Detail;
-  color: $White;
+  background-color: var(--theme-detail);
+  color: var(--theme-main-text);
 }
 .list-group-item {
   background: none;
-  border: 1px solid $Detail;
-  color: $White;
+  border: 1px solid var(--theme-detail);
+  color: var(--theme-main-text);
 }
 
-.badge {
-  background-color: $Hard !important;
-  color: $Soft !important;
-}
 /**
  * Tinymce
  */
 .mce-panel {
-  background-color: $Detail !important;
+  background-color: var(--theme-detail) !important;
 }
 .mce-menubar {
   border: 0 !important;
@@ -217,13 +189,13 @@ pre, blockquote {
   background: none !important;
 }
 .mce-btn {
-  border: 1px solid $Unfocused !important;
+  border: 1px solid var(--theme-unfocused) !important;
   border-radius: 2px !important;
   background: none !important;
-  color: $White !important;
+  color: var(--theme-main-text) !important;
 }
 .mce-menubtn button, .mce-menubtn button span, .mce-ico {
-  color: $White !important;
+  color: var(--theme-main-text) !important;
 }
 .mce-tabs, .mce-tabs+.mce-container-body, .mce-tab {
   background: none !important;
@@ -232,102 +204,43 @@ pre, blockquote {
   text-shadow: 0 1px 1px rgba(0,0,0,0.75) !important;
 }
 .mce-menu-item.mce-disabled, .mce-menu-item.mce-disabled:hover {
-  background: $Unfocused !important;
+  background: var(--theme-unfocused) !important;
 }
 
 
 .input-group .input-group-addon {
-  color: $Hard;
-  background-color: $Soft;
+  color: var(--theme-main-text);
+  background-color: var(--theme-background);
+  border-color: var(--theme-border);
 }
 /**
  * Modal, Popover
  */
-.modal-content, .popover-content {
-  background: $Detail;
-  .modal-header, .popover-header {
-    border-color: $Hard !important;
-    border: none !important;
-  }
-  .modal-footer, .popover-footer {
-    border: none !important;
-  }
-}
-.popover-title {
-  background: $Detail;
-}
 
-/**
- * Dashboard
- */
-.products-list > .item {
-  background: none;
-}
-.product-list-in-box > .item {
-  border-bottom: 1px solid $Unfocused;
-}
-.small-box, .info-box {
-  background-color: $Detail !important;
-  border: 1px solid $Detail;
-  border-radius: 2px;
-}
-.info-box-icon {
-  background-color: $Unfocused;
-}
+
 
 /**
  * Menu
  */
 .dropdown-menu {
-  background-color: $Detail;
-  border: 1px solid $Unfocused;
+  background-color: var(--theme-background);
+  border: 1px solid var(--theme-border);
   border-radius: 2px;
 
-  li.header {
-    background: none !important;
+  li.divider {
+    background-color: var(--theme-border);
   }
   li {
-    color: $White !important;
+    color: var(--theme-main-text);
     a {
       border: none;
-      color: $White;
-    }
-  }
-}
-.main-header, .navbar {
-  background: none !important;
-  a {
-    background: none !important;
-    border: none !important;
-
-    &:hover {
-      color: $Hard !important;
-      background: $Detail !important;
-    }
-  }
-
-  .campaign-selector {
-    color: white !important;
-  }
-}
-
-
-
-.entity-form {
-  ul.nav {
-    border-bottom-color: unset;
-    border-bottom: none;
-    li {
-      background: unset;
+      color: var(--theme-main-text);
     }
   }
 }
 
-/**
- * Quests
- */
-.bg-success {
-  background-color: $Detail;
+.box .nav-stacked > li {
+  border-bottom-color: var(--theme-border);
 }
 
 /**
@@ -354,130 +267,17 @@ pre, blockquote {
   }
 }
 
-/**
- * Conversations
- */
-.box-comments, .box-comment {
-  background-color: $Soft;
-
-  .comment-text {
-    color: $White;
-    .username {
-      color: $White;
-    }
-  }
-
-}
-.box-conversation .box-footer {
-  background-color: $Soft;
-}
-
-// Filters
-.table-filters {
-  background-color: $Soft !important;
-}
-
-.alert  {
-  background-color: $Unfocused !important;
-  color: $White !important;
-  border-radius: 2px !important;
-  border: 0;
-
-  a {
-    color: $Hard !important;
-  }
-}
 
 
 /**
- * Footer
- */
-footer {
-  .footer-links {
-    background-color: rgba(0, 0, 0, 0.2);
-  }
-
-  img.logo-blue {
-    display: none;
-  }
-
-  img.logo-white {
-    display: unset;
-  }
-}
-
-/*
- Search
+ * Search
  */
 .tt-menu {
-  background-color: $Detail;
-  border-color: $Soft;
+  background-color: var(--theme-detail);
+  border-color: var(--theme-soft);
 }
 .tt-cursor {
-  color: $Hard !important;
-}
-
-
-/**
- * Dashboard
- */
-.cover-background {
-  .campaign-link {
-    background: rgba(0, 0, 0, 0.6) !important;
-
-    &:hover {
-      background: rgba(0, 0, 0, 0.9) !important;
-    }
-  }
-}
-
-/**
- * Quest Elements
- */
-.box-quest-element {
-  .widget-user-username {
-    a {
-      color: #fff !important;
-    }
-  }
-  .bg-gray {
-    .widget-user-desc {
-      color: #000 !important;
-    }
-    .widget-user-username {
-      a {
-        color: #000 !important;
-      }
-    }
-  }
-}
-
-/**
- * Conversation
- */
-.box-conversation {
-  .box-comment {
-    background-color: $Detail !important;
-    border-bottom: 1px solid $Soft;
-  }
-  .box-footer {
-    border: none !important;
-    background: none !important;
-  }
-}
-
-.campaign-settings {
-  .box-success {
-    .box-header {
-      background-color: #00a65a !important;
-    }
-  }
-}
-
-.entity-creator {
-  a {
-    background: #232424 !important;
-  }
+  color: var(--theme-hard) !important;
 }
 
 
@@ -489,24 +289,19 @@ footer {
 .leaflet-control-layers-expanded,
 .leaflet-control-layers,
 .leaflet-bar a {
-  background: $Detail;
+  background: var(--theme-detail);
 }
 .leaflet-bar a {
   &:hover {
-    background: $Unfocused;
+    background: var(--theme-unfocused);
   }
 }
 .leaflet-container {
-  background: $Soft;
+  background: var(--theme-soft);
 
   .leaflet-popup-content {
-    color: $White;
+    color: var(--theme-main-text);
   }
-}
-
-#cy {
-  background-color: $Detail;
-  color: $Hard;
 }
 
 
@@ -518,14 +313,15 @@ footer {
   }
   .info-box.bg-gray {
     color: #fff;
+    background-color: #333 !important;
   }
   .info-box.bg-aqua {
-    background-color: #00c0ef !important;
-    border: none !important;
+    background-color: #00c0ef;
+    border: none;
   }
   .info-box.bg-yellow {
-    background-color: #f39c12 !important;
-    border: none !important;
+    background-color: #f39c12;
+    border: none;
   }
 }
 
@@ -533,27 +329,26 @@ footer {
  * Spectrum
  */
 .sp-replacer {
-  border: 1px solid $Hard;
-  background-color: $Detail;
+  border: 1px solid var(--theme-border);
+  background-color: var(--theme-background);
 
   &:active, &:hover {
-    border: 1px solid $Hard;
+    border: 1px solid var(--theme-border);
   }
 }
 .sp-light {
-  background-color: $Detail;
-  border: 1px solid $Hard;
+  background-color: var(--theme-background);
+  border: 1px solid var(--theme-border);
   .sp-input {
     color: white;
   }
 }
 
-.well {
-  background-color: $Detail;
-  color: $Hard;
-  border: none;
-}
-
-.banner-notification span a {
-    color: white !important;
+/** why do we need this? **/
+@media (min-width: 1200px) {
+  a {
+    span.visible-lg {
+      display: none !important;
+    }
+  }
 }
