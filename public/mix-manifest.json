@@ -1,11 +1,11 @@
 {
     "/js/abilities.js": "/js/abilities.js?id=a61ee1c520d8bef3747c",
     "/js/ajax-subforms.js": "/js/ajax-subforms.js?id=c1bb60d64c91538fe394",
-    "/js/api.js": "/js/api.js?id=2fef4537bf5b3894863d",
-    "/js/app.js": "/js/app.js?id=0da322e9799d362e1347",
+    "/js/api.js": "/js/api.js?id=809e903734b49e454f8b",
+    "/js/app.js": "/js/app.js?id=6893607c66dc9dcce34e",
     "/css/bootstrap.css": "/css/bootstrap.css?id=78e02e90a73087591d43",
-    "/css/vendor.css": "/css/vendor.css?id=5503bacdeb3c99bc4bd2",
-    "/css/app.css": "/css/app.css?id=98a4aa79b5007a9e4774",
+    "/css/vendor.css": "/css/vendor.css?id=c5b0dee3366aaf5a7d94",
+    "/css/app.css": "/css/app.css?id=1c28be0c5140f83a0223",
     "/css/app-rtl.css": "/css/app-rtl.css?id=80e3a61f74d147c1283d",
     "/css/abilities.css": "/css/abilities.css?id=3ad3d5f63486a6e39843",
     "/css/story.css": "/css/story.css?id=874ec23212b12ed522ee",
@@ -13,7 +13,7 @@
     "/css/export.css": "/css/export.css?id=cccb0c200da7a7855e61",
     "/css/map.css": "/css/map.css?id=5a93ef549d1d601ade45",
     "/css/map-v2.css": "/css/map-v2.css?id=49855f3dc67c0a68ae04",
-    "/css/map-v3.css": "/css/map-v3.css?id=79e75ab8b670ced97d6a",
+    "/css/map-v3.css": "/css/map-v3.css?id=4007f1d930a9f5255efa",
     "/css/subscription.css": "/css/subscription.css?id=c7483700b4df297e4dbf",
     "/css/conversation.css": "/css/conversation.css?id=dad1b1b0c69786243aba",
     "/css/gallery.css": "/css/gallery.css?id=4cb048343346389e761b",
@@ -25,9 +25,7 @@
     "/css/relations.css": "/css/relations.css?id=79d309ace165d5b1c324",
     "/css/dashboard.css": "/css/dashboard.css?id=9419a4a72458b5ca4fd2",
     "/css/settings.css": "/css/settings.css?id=2884b72ee0286cf739c7",
-    "/css/future.css": "/css/future.css?id=887cac48ef9b545db72c",
-    "/css/dark.css": "/css/dark.css?id=486622114292515bab10",
-    "/css/midnight.css": "/css/midnight.css?id=db5deebdba24cd0e7f68",
+    "/css/dark.css": "/css/dark.css?id=77cee8367c3f3b350af7",
     "/css/tinymce.css": "/css/tinymce.css?id=95d821e81f618948389e",
     "/css/freyja.css": "/css/freyja.css?id=b4e069865cb7534cea87",
     "/css/print.css": "/css/print.css?id=9cbd24601cadd35606e8",
@@ -55,5 +53,6 @@
     "/js/timeline.js": "/js/timeline.js?id=3b92f2664c5a5406a3fb",
     "/js/jquery.fileupload.js": "/js/jquery.fileupload.js?id=20a07a657cad26703a1b",
     "/js/jquery.iframe-transport.js": "/js/jquery.iframe-transport.js?id=f371e8d9f57329f90114",
-    "/js/vendor/jquery.ui.widget.js": "/js/vendor/jquery.ui.widget.js?id=3d0f0f5ca5d86c5a4b4f"
+    "/js/vendor/jquery.ui.widget.js": "/js/vendor/jquery.ui.widget.js?id=3d0f0f5ca5d86c5a4b4f",
+    "/css/midnight.css": "/css/midnight.css?id=4b79886cdadcf20bd9be"
 }

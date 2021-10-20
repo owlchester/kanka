@@ -192,3 +192,30 @@
 //    transform: translate(-430px, 0);
 //  }
 //}
+
+:root {
+  --leaflet-popup-background: #fff;
+  --leaflet-popup-text: inherit;
+}
+
+/** Theming of the leaflet stuff **/
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip,
+.leaflet-control-layers-expanded,
+.leaflet-control-layers,
+.leaflet-bar a {
+  background-color: var(--leaflet-popup-background) !important;
+  color: var(--leaflet-popup-text) !important;
+}
+.leaflet-bar a {
+  &:hover {
+    background: var(--leaflet-popup-background);
+  }
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: var(--leaflet-popup-background) !important;
+
+  .leaflet-popup-content {
+    color: var(--leaflet-popup-text);
+  }
+}

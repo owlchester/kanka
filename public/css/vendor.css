@@ -9568,6 +9568,56 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
   color: white;
 }
 
+:root {
+  --spectrum-border: #f0c49B;
+  --spectrum-background: #ECECEC;
+  --spectrum-text: #222;
+  --search-background: #fff;
+  --search-text: inherit;
+  --search-cursor-background: #f5f5f5;
+  --search-cursor-text: inherit;
+}
+
+/** Spectrum */
+
+.sp-replacer {
+  border-color: var(--spectrum-border);
+  background-color: var(--spectrum-background);
+}
+
+.sp-replacer:active,
+.sp-replacer:hover {
+  border-color: var(--spectrum-border);
+}
+
+.sp-light {
+  background-color: var(--spectrum-background);
+  border-color: var(--spectrum-border);
+}
+
+.sp-light .sp-input {
+  color: var(--spectrum-text);
+}
+
+.sp-palette-container {
+  border-right-color: var(--spectrum-border);
+}
+
+.sp-picker-container {
+  border-left-color: var(--spectrum-border);
+}
+
+/** Type ahead / search results */
+
+.tt-cursor {
+  background-color: var(--search-cursor-background) !important;
+  color: var(--search-cursor-text) !important;
+}
+
+.tt-menu {
+  background-color: var(--search-background);
+}
+
 @media (max-width: 767px) {
   .note-popover {
     left: 0 !important;

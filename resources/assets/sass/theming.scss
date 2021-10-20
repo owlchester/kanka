@@ -56,8 +56,15 @@
   --navbar-tab-hover-background: #fff;
   --navbar-tab-hover-text: #fff;
 
-  --submenu-hover-background: #fff;
+  --submenu-hover-background: #f7f7f7;
   --submenu-link: inherit;
+
+  --dropdown-border: #eee;
+  --dropdown-background: var(--modal-background);
+  --dropdown-hover-background: #e1e3e9;
+  --dropdown-hover-text: inherit;
+
+  --tab-content-background: var(--modal-background);
 }
 
 body {
@@ -84,7 +91,7 @@ h1, h2, h3, h4, h5, h6, h1 > small, .panel-title {
 }
 
 
-input, textarea, .select2, select  {
+input, textarea, .select2, select, .input-group .input-group-addon  {
   border-color: var(--input-border-color);
   //border-radius: 0 !important;
   background-color: var(--input-background-color);
@@ -134,6 +141,22 @@ hr {
   background-color: var(--input-background-color) !important;
 }
 
+
+/** Dropdown menus **/
+.dropdown-menu {
+  background-color: var(--dropdown-background);
+  border: 1px solid var(--dropdown-border);
+
+  li.divider {
+    background-color: var(--dropdown-border);
+  }
+  li > a:hover, li > a:focus {
+    background-color: var(--dropdown-hover-background);
+    color: var(--dropdown-hover-text);
+  }
+}
+
+
 // Callouts / Modals / Labels
 /*.bg-info, .bg-primary, .callout.callout-info, .alert-info, .label-info {
    background-color: var(--info-background) !important;
@@ -174,6 +197,13 @@ hr {
 }
 */
 
+
+.nav-tabs-custom, .nav-tabs {
+  .tab-content {
+    background: var(--tab-content-background);
+  }
+}
+
 // Text for submenu
 .nav-stacked > li > a, .nav-stacked > li.active > a, .nav-stacked > li.active > a:hover {
   color: var(--submenu-link);
@@ -182,4 +212,6 @@ hr {
 // Hover background for submenu
 .nav > li > a:hover, .nav > li > a:active, .nav > li > a:focus {
   background-color: var(--submenu-hover-background);
+  color: var(--submenu-link);
+
 }

@@ -457,10 +457,6 @@ div.mce-fullscreen {
   cursor: pointer;
 }
 
-.tt-cursor {
-  background-color: #f5f5f5;
-}
-
 .live-search-close {
   float: left;
   padding: 6px 15px;
@@ -556,6 +552,7 @@ div.mce-fullscreen {
   margin-bottom: 0;
   .list-group-item {
     word-break: break-word;
+    background: none;
 
     &:first-child {
       border-top: none;

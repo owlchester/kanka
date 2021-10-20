@@ -1,39 +1,16 @@
-$Hard: #424240;
-$Soft: #333;
-$Detail: #222;
-$Unfocused: #999;
-$White: #eee;
-
 @import "_base";
 
 :root {
-  --theme-wrapper-text: #777;
-  --theme-hard: #fff;
+  --theme-main-text: #777;
+  --theme-hard-text: #eee;
   --theme-soft: #333;
   --theme-detail: #222;
-  --theme-unfocused: #999;
   --theme-background: #202121;
-  --theme-main-text: #fff;
   --theme-soft-text: #999;
   --theme-border: #3D3C3B;
 
-  --link-text: #999;
-  --link-focus: #fff;
-  --link-hover: #ccc;
-  --submenu-link: #999;
-
-  --theme-table-border: #777;
-  --submenu-hover-background: #333;
-
 
   --theme-navbar-background: #262626;
-  --sidebar-background: #333;
-
-  --input-background-color: #222;
-  --input-border-color: #3D3C3B;
-  --input-text-color: #fff;
-
-  --theme-navbar-li-hover-color: var(--theme-wrapper-text);
   --theme-navbar-li-hover-background: var(--theme-background);
 
   --theme-table-info-background: #1e2d35;
@@ -43,10 +20,23 @@ $White: #eee;
   --theme-box-header-border: 1px solid var(--theme-border);
   --theme-box-background: var(--theme-background);
 
+  --link-text: #999;
+  --link-focus: #fff;
+  --link-hover: #ccc;
+  --submenu-link: #999;
+  --submenu-hover-background: #333;
+
+  --sidebar-background: #333;
+
+  --input-background-color: #222;
+  --input-border-color: #3D3C3B;
+  --input-text-color: #fff;
+
+
   // Stuff from the base design
   --quick-creator-button-background: var(--theme-soft);
   --quick-creator-button-hover-background: var(--dashboard-widget-admin-border);
-  --header-text: var(--theme-main-text);
+  --header-text: var(--theme-hard-text);
 
   --modal-background: #222;
   --modal-inner-border: transparent;
@@ -62,12 +52,12 @@ $White: #eee;
   --body-background: #262626;
   --body-text: #888;
 
-  --gallery-text: var(--theme-hard);
+  --gallery-text: var(--theme-hard-text);
   --gallery-background: var(--theme-background);
-  --gallery-hover-text: var(--theme-unfocused);
+  --gallery-hover-text: var(--theme-soft-text);
 
   --relation-explorer-background: var(--theme-detail);
-  --relation-explorer-text: var(--theme-hard);
+  --relation-explorer-text: var(--theme-hard-text);
 
   --conversation-comment-background: var(--theme-soft);
 
@@ -89,6 +79,21 @@ $White: #eee;
   --content-wrapper-background: #262626;
 
   --hr-border-top: 1px solid var(--theme-border);
+
+  --leaflet-popup-background: var(--theme-background);
+  --leaflet-popup-text: #fff;
+
+  --spectrum-border: var(--theme-border);
+  --spectrum-background: var(--theme-background);
+  --spectrum-text: var(--theme-main-text);
+
+  --search-background: var(--theme-background);
+  --search-text: var(--theme-main-text);
+  --search-cursor-background: var(--theme-soft);
+
+  --dropdown-background: var(--theme-background);
+  --dropdown-border: var(--theme-border);
+  --dropdown-hover-background: var(--search-cursor-background);
 }
 
 // Tinymce stuff for dark mode
@@ -131,7 +136,7 @@ $White: #eee;
 .btn-default {
   background-color: var(--default-background);
   border: 1px solid var(--theme-border);
-  color: var(--theme-unfocused);
+  color: var(--theme-soft-text);
   &:hover, &:focus, .focus {
     background-color: var(--default-background);
     border: 1px solid var(--theme-link-hover);

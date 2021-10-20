@@ -71,8 +71,13 @@
   --navbar-tab-active-text: #fff;
   --navbar-tab-hover-background: #fff;
   --navbar-tab-hover-text: #fff;
-  --submenu-hover-background: #fff;
+  --submenu-hover-background: #f7f7f7;
   --submenu-link: inherit;
+  --dropdown-border: #eee;
+  --dropdown-background: var(--modal-background);
+  --dropdown-hover-background: #e1e3e9;
+  --dropdown-hover-text: inherit;
+  --tab-content-background: var(--modal-background);
 }
 
 body {
@@ -113,7 +118,8 @@ h1 > small,
 input,
 textarea,
 .select2,
-select {
+select,
+.input-group .input-group-addon {
   border-color: var(--input-border-color);
   background-color: var(--input-background-color);
   color: var(--input-text-color);
@@ -164,6 +170,23 @@ hr {
   background-color: var(--input-background-color) !important;
 }
 
+/** Dropdown menus **/
+
+.dropdown-menu {
+  background-color: var(--dropdown-background);
+  border: 1px solid var(--dropdown-border);
+}
+
+.dropdown-menu li.divider {
+  background-color: var(--dropdown-border);
+}
+
+.dropdown-menu li > a:hover,
+.dropdown-menu li > a:focus {
+  background-color: var(--dropdown-hover-background);
+  color: var(--dropdown-hover-text);
+}
+
 /*.bg-info, .bg-primary, .callout.callout-info, .alert-info, .label-info {
    background-color: var(--info-background) !important;
 }
@@ -212,6 +235,11 @@ hr {
 }
 */
 
+.nav-tabs-custom .tab-content,
+.nav-tabs .tab-content {
+  background: var(--tab-content-background);
+}
+
 .nav-stacked > li > a,
 .nav-stacked > li.active > a,
 .nav-stacked > li.active > a:hover {
@@ -222,6 +250,7 @@ hr {
 .nav > li > a:active,
 .nav > li > a:focus {
   background-color: var(--submenu-hover-background);
+  color: var(--submenu-link);
 }
 
 #app {
@@ -658,10 +687,6 @@ div.mce-fullscreen {
   cursor: pointer;
 }
 
-.tt-cursor {
-  background-color: #f5f5f5;
-}
-
 .live-search-close {
   float: left;
   padding: 6px 15px;
@@ -756,6 +781,7 @@ div.mce-fullscreen {
 
 .list-group-unbordered .list-group-item {
   word-break: break-word;
+  background: none;
 }
 
 .list-group-unbordered .list-group-item:first-child {
