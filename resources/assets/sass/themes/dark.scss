@@ -23,6 +23,7 @@
   --link-text: #999;
   --link-focus: #fff;
   --link-hover: #ccc;
+  --breadcrumb-text: var(--link-text);
   --submenu-link: #999;
   --submenu-hover-background: #333;
 
@@ -90,6 +91,7 @@
   --search-background: var(--theme-background);
   --search-text: var(--theme-main-text);
   --search-cursor-background: var(--theme-soft);
+  --search-border: var(--theme-border);
 
   --dropdown-background: var(--theme-background);
   --dropdown-border: var(--theme-border);

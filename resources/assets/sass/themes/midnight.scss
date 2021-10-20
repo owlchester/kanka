@@ -75,6 +75,7 @@
 
   --sidebar-background: #0a121b;
   --sidebar-link: #9CD7F7;
+  --breadcrumb-text: var(--sidebar-link);
   --campaign-switcher-background: #0a121b;
 
   --modal-background: #0a121b;
@@ -92,6 +93,7 @@
   --search-text: var(--theme-main-text);
 
   --search-cursor-background: #0e324a;
+  --search-border: var(--theme-border);
 
   --dropdown-background: var(--theme-background);
   --dropdown-border: #333;
@@ -107,6 +109,10 @@
 // Notifications
 .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a {
   color: #ccc;
+}
+
+.table > thead > tr > th {
+  border-bottom: 1px;
 }
 
 

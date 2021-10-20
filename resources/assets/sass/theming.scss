@@ -36,6 +36,8 @@
   --link-hover: #296282;
   --link-focus: #72afd2;
 
+  --breadcrumb-text: inherit;
+
   --input-border-color: #d2d6de;
   --input-background-color: inherit;
   --input-text-color: inherit;
@@ -72,7 +74,7 @@ body {
   color: var(--body-text);
 }
 
-a, .content-header > .breadcrumb > li > a {
+a {
   color: var(--link-text);
   &:hover {
     color: var(--link-hover);
@@ -80,6 +82,9 @@ a, .content-header > .breadcrumb > li > a {
   &:focus {
     color: var(--link-focus);
   }
+}
+.content-header > .breadcrumb > li > a {
+  color: var(--breadcrumb-text);
 }
 
 h1, h2, h3, h4, h5, h6, h1 > small, .panel-title {

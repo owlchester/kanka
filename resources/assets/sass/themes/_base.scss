@@ -48,7 +48,7 @@
   background-color: unset;
 }
 .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td, .table-bordered {
-  border-color: var(--theme-border);
+  border-color: var(--body-background);
 }
 .table > thead > tr > td.info, .table > thead > tr > th.info, .table > thead > tr.info > td, .table > thead > tr.info > th, .table > tbody > tr > td.info, .table > tbody > tr > th.info, .table > tbody > tr.info > td, .table > tbody > tr.info > th, .table > tfoot > tr > td.info, .table > tfoot > tr > th.info, .table > tfoot > tr.info > td, .table > tfoot > tr.info > th {
   background-color: var(--theme-table-info-background);
@@ -57,8 +57,8 @@
   background-color: var(--theme-table-info-hover);
 }
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
-  border-top-color: var(--theme-border);
-  border-bottom-color: var(--theme-border);
+  border-top-color: var(--body-background);
+  border-bottom-color: var(--body-background);
 }
 
 .skin-black .main-header .navbar {

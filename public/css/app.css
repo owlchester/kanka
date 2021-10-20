@@ -58,6 +58,7 @@
   --link-text: #3c8dbc;
   --link-hover: #296282;
   --link-focus: #72afd2;
+  --breadcrumb-text: inherit;
   --input-border-color: #d2d6de;
   --input-background-color: inherit;
   --input-text-color: inherit;
@@ -85,19 +86,20 @@ body {
   color: var(--body-text);
 }
 
-a,
-.content-header > .breadcrumb > li > a {
+a {
   color: var(--link-text);
 }
 
-a:hover,
-.content-header > .breadcrumb > li > a:hover {
+a:hover {
   color: var(--link-hover);
 }
 
-a:focus,
-.content-header > .breadcrumb > li > a:focus {
+a:focus {
   color: var(--link-focus);
+}
+
+.content-header > .breadcrumb > li > a {
+  color: var(--breadcrumb-text);
 }
 
 h1,

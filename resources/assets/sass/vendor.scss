@@ -48,6 +48,7 @@
 
   --search-cursor-background: #f5f5f5;
   --search-cursor-text: inherit;
+  --search-border: #d3e0e9;
 }
 
 /** Spectrum */
@@ -80,6 +81,11 @@
   color: var(--search-cursor-text) !important;
 }
 .tt-menu {
+  .list-group-item {
+    background-color: unset;
+    color: var(--search-cursor-text) !important;
+    border-color: var(--search-border);
+  }
   background-color: var(--search-background);
 }
 

@@ -82,7 +82,7 @@
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td,
 .table-bordered {
-  border-color: var(--theme-border);
+  border-color: var(--body-background);
 }
 
 .table > thead > tr > td.info,
@@ -114,8 +114,8 @@
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-  border-top-color: var(--theme-border);
-  border-bottom-color: var(--theme-border);
+  border-top-color: var(--body-background);
+  border-bottom-color: var(--body-background);
 }
 
 .skin-black .main-header .navbar {
@@ -242,6 +242,7 @@
   --link-text: #999;
   --link-focus: #fff;
   --link-hover: #ccc;
+  --breadcrumb-text: var(--link-text);
   --submenu-link: #999;
   --submenu-hover-background: #333;
   --sidebar-background: #333;
@@ -291,6 +292,7 @@
   --search-background: var(--theme-background);
   --search-text: var(--theme-main-text);
   --search-cursor-background: var(--theme-soft);
+  --search-border: var(--theme-border);
   --dropdown-background: var(--theme-background);
   --dropdown-border: var(--theme-border);
   --dropdown-hover-background: var(--search-cursor-background);
