@@ -58,7 +58,7 @@
                     'code' => '<code>{</code>'
                 ]) !!}
             </p>
-            <p class="info">{{ __('helpers.link.limitations') }}</p>
+            <p class="helo-block">{{ __('helpers.link.limitations') }}</p>
 
             <hr />
 

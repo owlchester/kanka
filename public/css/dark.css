@@ -8,7 +8,8 @@
 
 .box,
 .panel,
-.timeline-item {
+.timeline-item,
+.popover {
   border: var(--theme-box-border);
   background-color: var(--theme-box-background);
 }
@@ -21,7 +22,10 @@
 .panel .timeline-header,
 .timeline-item .box-header,
 .timeline-item .panel-heading,
-.timeline-item .timeline-header {
+.timeline-item .timeline-header,
+.popover .box-header,
+.popover .panel-heading,
+.popover .timeline-header {
   border: none;
   background-color: transparent;
   color: var(--theme-soft-text);
@@ -29,7 +33,8 @@
 
 .box .with-border,
 .panel .with-border,
-.timeline-item .with-border {
+.timeline-item .with-border,
+.popover .with-border {
   background: none;
   border-bottom: var(--theme-box-header-border);
 }
@@ -39,81 +44,31 @@
 .panel .box-footer,
 .panel .panel-footer,
 .timeline-item .box-footer,
-.timeline-item .panel-footer {
+.timeline-item .panel-footer,
+.popover .box-footer,
+.popover .panel-footer {
   background: none;
   border: none;
 }
 
+.popover {
+  border: 1px solid #333;
+}
+
+.popover .popover-title {
+  background-color: var(--theme-box-background);
+  border-color: #333;
+}
+
 .table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: var(--theme-detail);
+  background-color: var(--theme-table-highlight);
 }
 
 .table-hover tbody tr:hover {
-  background-color: var(--theme-detail);
+  background-color: var(--theme-table-highlight);
 }
 
-.table-hover > tbody > tr > td.active:hover,
-.table-hover > tbody > tr > th.active:hover,
-.table-hover > tbody > tr.active:hover > td,
-.table-hover > tbody > tr:hover > .active,
-.table-hover > tbody > tr.active:hover > th {
-  background-color: unset;
-}
-
-.table > thead > tr > td.active,
-.table > thead > tr > th.active,
-.table > thead > tr.active > td,
-.table > thead > tr.active > th,
-.table > tbody > tr > td.active,
-.table > tbody > tr > th.active,
-.table > tbody > tr.active > td,
-.table > tbody > tr.active > th,
-.table > tfoot > tr > td.active,
-.table > tfoot > tr > th.active,
-.table > tfoot > tr.active > td,
-.table > tfoot > tr.active > th {
-  background-color: unset;
-}
-
-.table-bordered > thead > tr > th,
-.table-bordered > tbody > tr > th,
-.table-bordered > tfoot > tr > th,
-.table-bordered > thead > tr > td,
-.table-bordered > tbody > tr > td,
-.table-bordered > tfoot > tr > td,
-.table-bordered {
-  border-color: var(--body-background);
-}
-
-.table > thead > tr > td.info,
-.table > thead > tr > th.info,
-.table > thead > tr.info > td,
-.table > thead > tr.info > th,
-.table > tbody > tr > td.info,
-.table > tbody > tr > th.info,
-.table > tbody > tr.info > td,
-.table > tbody > tr.info > th,
-.table > tfoot > tr > td.info,
-.table > tfoot > tr > th.info,
-.table > tfoot > tr.info > td,
-.table > tfoot > tr.info > th {
-  background-color: var(--theme-table-info-background);
-}
-
-.table-hover > tbody > tr > td.info:hover,
-.table-hover > tbody > tr > th.info:hover,
-.table-hover > tbody > tr.info:hover > td,
-.table-hover > tbody > tr:hover > .info,
-.table-hover > tbody > tr.info:hover > th {
-  background-color: var(--theme-table-info-hover);
-}
-
-.table > thead > tr > th,
-.table > tbody > tr > th,
-.table > tfoot > tr > th,
-.table > thead > tr > td,
-.table > tbody > tr > td,
-.table > tfoot > tr > td {
+.table :is(thead, tbody, tfoot) tr :is(td, th) {
   border-top-color: var(--body-background);
   border-bottom-color: var(--body-background);
 }
@@ -151,22 +106,22 @@
   background-color: var(--theme-navbar-li-hover-background);
 }
 
-.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a:hover,
-.navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a:hover,
-.navbar-nav > .tasks-menu > .dropdown-menu > li .menu > li > a:hover {
+.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a:hover {
   color: var(--theme-navbar-notifications-text);
   background-color: var(--theme-navbar-notifications-background);
 }
 
-.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a,
-.navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a,
-.navbar-nav > .tasks-menu > .dropdown-menu > li .menu > li > a {
+.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a {
   border-bottom: 1px solid var(--theme-border);
 }
 
 .skin-black .main-header .navbar .sidebar-toggle:hover {
   color: var(--theme-wrapper-text);
   background-color: var(--theme-navbar-li-hover-background);
+}
+
+.box .nav-stacked > li {
+  border-color: var(--theme-border);
 }
 
 /**

@@ -13,7 +13,7 @@
     "/css/export.css": "/css/export.css?id=cccb0c200da7a7855e61",
     "/css/map.css": "/css/map.css?id=5a93ef549d1d601ade45",
     "/css/map-v2.css": "/css/map-v2.css?id=49855f3dc67c0a68ae04",
-    "/css/map-v3.css": "/css/map-v3.css?id=4007f1d930a9f5255efa",
+    "/css/map-v3.css": "/css/map-v3.css?id=027a41f80a7617826d58",
     "/css/subscription.css": "/css/subscription.css?id=c7483700b4df297e4dbf",
     "/css/conversation.css": "/css/conversation.css?id=dad1b1b0c69786243aba",
     "/css/gallery.css": "/css/gallery.css?id=4cb048343346389e761b",
@@ -25,7 +25,8 @@
     "/css/relations.css": "/css/relations.css?id=79d309ace165d5b1c324",
     "/css/dashboard.css": "/css/dashboard.css?id=9419a4a72458b5ca4fd2",
     "/css/settings.css": "/css/settings.css?id=2884b72ee0286cf739c7",
-    "/css/dark.css": "/css/dark.css?id=ee4a74a4ab3ed6966c52",
+    "/css/dark.css": "/css/dark.css?id=9a112925c53d6c0f562e",
+    "/css/midnight.css": "/css/midnight.css?id=190d1aef032cc8db9ffb",
     "/css/tinymce.css": "/css/tinymce.css?id=95d821e81f618948389e",
     "/css/freyja.css": "/css/freyja.css?id=b4e069865cb7534cea87",
     "/css/print.css": "/css/print.css?id=9cbd24601cadd35606e8",
@@ -53,6 +54,5 @@
     "/js/timeline.js": "/js/timeline.js?id=3b92f2664c5a5406a3fb",
     "/js/jquery.fileupload.js": "/js/jquery.fileupload.js?id=20a07a657cad26703a1b",
     "/js/jquery.iframe-transport.js": "/js/jquery.iframe-transport.js?id=f371e8d9f57329f90114",
-    "/js/vendor/jquery.ui.widget.js": "/js/vendor/jquery.ui.widget.js?id=3d0f0f5ca5d86c5a4b4f",
-    "/css/midnight.css": "/css/midnight.css?id=ad270cba5c0674970b2a"
+    "/js/vendor/jquery.ui.widget.js": "/js/vendor/jquery.ui.widget.js?id=3d0f0f5ca5d86c5a4b4f"
 }

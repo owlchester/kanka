@@ -197,3 +197,7 @@
   color: var(--leaflet-popup-text);
 }
 
+.leaflet-container {
+  background: unset;
+}
+
