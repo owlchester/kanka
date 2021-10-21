@@ -321,6 +321,8 @@ class AttributeService
                     continue;
                 }
             }
+            // Don't put html in
+            $name = strip_tags($name);
 
             $value = Purify::clean($values[$id] ?? '', $purifyConfig);
             $type = $types[$id] ?? '';
