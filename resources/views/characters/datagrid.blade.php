@@ -3,17 +3,14 @@
 {!! $datagrid->filters($filters)
     ->render(
     $filterService,
-    // Columns
     [
-        // Avatar
         [
             'type' => 'avatar'
         ],
-        // Name
         'name',
         'title',
         [
-            'label' => trans('characters.fields.family'),
+            'label' => __('characters.fields.family'),
             'field' => 'family.name',
             'visible' => $campaign->enabled('families'),
             'render' => function($model) {
@@ -27,7 +24,7 @@
             'visible' => $campaign->enabled('locations'),
         ],
         [
-            'label' => trans('characters.fields.race'),
+            'label' => __('characters.fields.race'),
             'field' => 'race.name',
             'visible' => $campaign->enabled('races'),
             'render' => function($model) {
@@ -49,7 +46,8 @@
                     return '<i class="ra ra-skull" title="' . __('characters.fields.is_dead') . '"></i>';
                 }
                 return '';
-            }
+            },
+            'class' => 'icon'
         ],
         [
             'type' => 'is_private',

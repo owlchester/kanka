@@ -151,6 +151,9 @@ div.required label:after {
 table th.avatar, table td.avatar {
   width: 40px;
 }
+table th.icon, table th.icon {
+  min-width: 50px;
+}
 table {
   th {
     //i {
