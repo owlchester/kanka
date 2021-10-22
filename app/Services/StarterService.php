@@ -100,7 +100,6 @@ class StarterService
             'discord' => link_to(config('social.discord'), 'Discord'),
             'public' => link_to_route('front.public_campaigns', __('front.menu.campaigns')),
             'subscriptions' => link_to_route('settings.subscription', __('starter.note1.subscriptions')),
-            'lfgm' => link_to('https://lookingforgm.com', 'LookingForGM.com', ['target' => '_blank']),
         ]));
         $note = new Note([ 'name' => trans('starter.note1.name'),
             'campaign_id' => $this->campaign->id,
