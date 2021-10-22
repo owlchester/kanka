@@ -40,7 +40,7 @@
             },
             'disableSort' => true,
         ],
-        [
+        /*[
             'label' => __('locations.fields.map'),
             'field' => 'map',
             'render' => function($model) {
@@ -49,7 +49,7 @@
                 }
                 return null;
             },
-        ],
+        ],*/
         [
             'type' => 'is_private',
         ]
