@@ -32,6 +32,8 @@ class DiscordService
     /** @var mixed */
     protected $me = false;
 
+    protected $logs = [];
+
     /**
      * @param User $user
      * @return $this
@@ -170,11 +172,13 @@ class DiscordService
     {
         // Don't add roles if the user isn't connected
         if (empty($this->app)) {
+            $this->logs[] = 'User isn\'t synced with Discord';
             return $this;
         }
 
         // Only add roles if the user is a subscriber
         if (!$this->user->subscribed('kanka')) {
+            $this->logs[] = 'User isn\'t subbed to Kanka';
             return $this;
         }
 
@@ -194,7 +198,7 @@ class DiscordService
 
        foreach ($roles as $id) {
            $url = 'guilds/' . config('discord.channel_id') . '/members/' . $me->id . '/roles/' . $id;
-           $this->call('put', $url, $body, $headers);
+           $this->logs[] = $this->call('put', $url, $body, $headers);
        }
 
         return $this;
@@ -300,5 +304,13 @@ class DiscordService
         }
 
         return json_decode($response->getBody());
+    }
+
+    /**
+     * @return array
+     */
+    public function logs(): array
+    {
+        return $this->logs;
     }
 }
