@@ -13,6 +13,7 @@ use App\Services\Campaign\CampaignPluginService;
 use App\Services\EntityService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CampaignPluginController extends Controller
 {
@@ -36,8 +37,12 @@ class CampaignPluginController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
 
-        $plugins = $campaign->plugins()->paginate();
-        return view('campaigns.plugins', compact('campaign', 'plugins'));
+        $highlight = request()->get('highlight');
+        $plugins = $campaign->plugins()
+            ->highlighted($highlight)
+            ->paginate();
+
+        return view('campaigns.plugins', compact('campaign', 'plugins', 'highlight'));
     }
 
     /**

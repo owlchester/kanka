@@ -30,7 +30,7 @@
             </thead>
             <tbody>
         @forelse ($plugins as $plugin)
-            <tr>
+            <tr @if($plugin->uuid === $highlight) class="warning" @endif>
                 <td>
                     <a href="{{ config('marketplace.url') }}/plugins/{{ $plugin->uuid }}" target="_blank">
                         {{ $plugin->name }}

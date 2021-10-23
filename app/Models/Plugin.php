@@ -8,6 +8,8 @@ use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 /**
  * Class Plugin
@@ -22,6 +24,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property PluginVersion[] $versions
  * @property PluginVersion $version
  * @property User $user
+ *
+ * @method static|Builder highlighted(string $uuid)
  */
 class Plugin extends Model
 {
@@ -113,6 +117,22 @@ class Plugin extends Model
     public function isAttributeTemplate(): bool
     {
         return $this->type_id == PluginType::TYPE_ATTRIBUTE;
+    }
+
+    /**
+     * @param $query
+     * @param string|null $highlighted
+     * @return mixed
+     */
+    public function scopeHighlighted(Builder $query, string $uuid = null)
+    {
+        if (empty($uuid) || !Str::isUuid($uuid)) {
+            return $query;
+        }
+
+        return $query->orderByRaw(
+            DB::raw($this->getTable() . ".uuid = '$uuid' DESC")
+        );
     }
 
 }
