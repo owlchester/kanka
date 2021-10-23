@@ -35,7 +35,7 @@
 
         <div class="row">
             <div class="col-md-6">
-                <div class="form-group">
+                <div class="form-group required">
                     <label>{{ __('admin/releases.fields.published_at') }}</label>
                     <div class="input-group">
                         {!! Form::text('published_at', old('published_at'), ['placeholder' => __('admin/releases.fields.published_at'), 'class' => 'form-control datetime-picker', 'maxlength' => 25]) !!}

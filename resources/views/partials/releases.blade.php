@@ -8,9 +8,7 @@
         <div class="box box-widget">
             <div class="box-header with-border">
                 <div class="user-block">
-                    @if ($release->author && $release->author->avatar)
-                        <img class="img-circle" src="{{ $release->author->getAvatarUrl() }}" alt="{{ $release->author->name }}" title="{{ $release->author->name }}">
-                    @endif
+                        <img class="img-circle" src="/images/favicon/apple-touch-icon-76x76.png" alt="Kanka" title="Kanka">
                     <span class="username">
                         <a href="{{ $release->link }}" target="_blank">{{ $release->name }}</a>
                     </span>
