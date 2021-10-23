@@ -939,6 +939,10 @@ td.breakable {
 .text-black {
   color: #000 !important;
 }
+.text-break {
+  word-break: break-word!important;
+  overflow-wrap: break-word!important;
+}
 
 .bg-gray, .bg-none {
   .widget-user-username {

@@ -1,9 +1,9 @@
 @extends('layouts.app', [
-    'title' => trans('campaigns.members.title', ['name' => $campaign->name]),
-    'description' => trans('campaigns.members.description'),
+    'title' => __('campaigns.members.title', ['name' => $campaign->name]),
+    'description' => null,
     'breadcrumbs' => [
         ['url' => route('campaign'), 'label' => __('campaigns.index.title')],
-        trans('campaigns.show.tabs.members')
+        __('campaigns.show.tabs.members')
     ],
     'canonical' => true,
     'mainTitle' => false,

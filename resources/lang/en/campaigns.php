@@ -107,17 +107,17 @@ TEXT
         'actions'               => [
             'add'   => 'Email invite',
             'copy'  => 'Copy the link to your clipboard',
-            'link'  => 'New Link',
+            'link'  => 'Invite people',
         ],
         'create'                => [
             'buttons'       => [
-                'create'    => 'Create invite',
+                'create'    => 'Generate link',
                 'send'      => 'Send invite',
             ],
             'description'   => 'Invite a friend to your campaign',
             'success'       => 'Invitation sent.',
             'success_link'  => 'Link created: :link',
-            'title'         => 'Invite someone to your campaign',
+            'title'         => 'Invite friends to :campaign',
         ],
         'destroy'               => [
             'success'   => 'Invitation removed.',
@@ -138,7 +138,7 @@ TEXT
             'email'     => 'Email',
             'role'      => 'Role',
             'type'      => 'Type',
-            'validity'  => 'Validity',
+            'usage' => 'Max number of uses',
         ],
         'helpers'               => [
             'email'     => 'Our emails are often flagged as spam and can take up to a few hours before appearing in the inbox.',
@@ -152,6 +152,12 @@ TEXT
             'link'  => 'Link',
         ],
         'unlimited_validity'    => 'Unlimited',
+        'usages' => [
+            'no_limit' => 'No limit',
+            'once' => '1 use',
+            'five' => '5 uses',
+            'ten' => '10 uses',
+        ],
     ],
     'leave'                             => [
         'confirm'   => 'Are you sure you want to leave the :name campaign? You won\'t be able to access it anymore, unless an Admin of the campaign invites you again.',
@@ -160,13 +166,14 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
-            'switch'        => 'View as',
+            'switch'        => 'View campaign as user',
             'switch-back'   => 'Back to my user',
+            'help'          => 'Help',
+            'remove'        => 'Remove from campaign',
         ],
         'create'                => [
             'title' => 'Add a member to your campaign',
         ],
-        'description'           => 'Manage the members of the campaign',
         'edit'                  => [
             'description'   => 'Edit a member of your campaign',
             'title'         => 'Edit member :name',
@@ -188,7 +195,7 @@ TEXT
             'title'     => 'Impersonating :name',
         ],
         'invite'                => [
-            'description'   => 'You can invite friends to join your campaign by providing them with an Invite Link. Upon accepting their invitation, they will be added as a member in the requested role. You can also send them a request by email.',
+            'description'   => 'Invite your friends and players to the campaign by creating an invitation link and sending them the generated URL! Upon accepting their invitation, they will be added as a member in the invitation\'s requested role.',
             'more'          => 'You can add more roles on the :link.',
             'roles_page'    => 'Roles page',
             'title'         => 'Invite',

@@ -1,13 +1,24 @@
+@php
+$usages = [
+    '' => __('campaigns.invites.usages.no_limit'),
+    '1' => __('campaigns.invites.usages.once'),
+    '5' => __('campaigns.invites.usages.five'),
+    '10' => __('campaigns.invites.usages.ten'),
+];
+@endphp
+
 {{ csrf_field() }}
 <div class="form-group required">
 @if ($type == 'email')
-    <label>{{ trans('campaigns.invites.fields.email') }}</label>
+    <label>
+        {{ __('campaigns.invites.fields.email') }}
+        <i class="fa fa-question-circle hidden-xs hidden-sm" title="{{ __('campaigns.invites.helpers.email') }}" data-toggle="tooltip"></i>
+    </label>
     {!! Form::text('email', null, ['placeholder' => trans('campaigns.invites.placeholders.email'), 'class' => 'form-control']) !!}
-        <p class="help-block">{{  __('campaigns.invites.helpers.email')}}</p>
+        <p class="help-block visible-xs visible-sm">{{  __('campaigns.invites.helpers.email')}}</p>
 @else
-    <label>{{ trans('campaigns.invites.fields.validity') }}</label>
-    {!! Form::text('validity', null, ['class' => 'form-control', 'maxlength' => 3]) !!}
-    <p class="help-block">{{ trans('campaigns.invites.helpers.validity') }}</p>
+    <label>{{ trans('campaigns.invites.fields.usage') }}</label>
+    {!! Form::select('validity', $usages, null, ['class' => 'form-control']) !!}
 @endif
 </div>
 
@@ -16,15 +27,5 @@
     {!! Form::select('role_id', Auth::user()->campaign->roles()->where(['is_public' => false, 'is_admin' => false])->pluck('name', 'id'), null, ['class' => 'select form-control']) !!}
 </div>
 
-<div class="form-group">
-    <button class="btn btn-success">
-        @if ($type == 'email')
-            {{ __('campaigns.invites.create.buttons.send') }}
-        @else
-            {{ __('campaigns.invites.create.buttons.create') }}
-        @endif
-    </button>
-    @includeWhen(!request()->ajax(), 'partials.or_cancel')
-</div>
 
 {!! Form::hidden('type', $type) !!}
