@@ -58,14 +58,16 @@
   --link-text: #3c8dbc;
   --link-hover: #296282;
   --link-focus: #72afd2;
-  --breadcrumb-text: inherit;
+  --breadcrumb-text: #444;
   --input-border-color: #d2d6de;
-  --input-background-color: inherit;
+  --input-background-color: #fff;
   --input-text-color: inherit;
   --content-wrapper-background: #ecf0f5;
   --hr-border-top: 1px solid #eee;
   --modal-background: #fff;
   --modal-inner-border: #f4f4f4;
+  --modal-close-opacity: 0.2;
+  --modal-body-text: #444;
   --navbar-tab-text: #fff;
   --navbar-tab-background: #fff;
   --navbar-tab-active-background: #fff;
@@ -79,6 +81,7 @@
   --dropdown-hover-background: #e1e3e9;
   --dropdown-hover-text: inherit;
   --tab-content-background: var(--modal-background);
+  --list-group-item-border: #d3e0e9;
 }
 
 body {
@@ -226,6 +229,15 @@ hr {
   border-color: var(--modal-inner-border);
 }
 
+.modal .panel-body {
+  color: var(--modal-body-text);
+}
+
+.close {
+  color: var(--header-text);
+  opacity: var(--modal-close-opacity);
+}
+
 /*
 .nav-tabs-custom > .nav-tabs > li.active:hover > a, .nav-tabs-custom > .nav-tabs > li.active > a {
   background-color: var(--navbar-tab-active-background);
@@ -236,6 +248,11 @@ hr {
   color: var(--navbar-tab-hover-text);
 }
 */
+
+.nav-tabs-custom,
+.nav-tabs {
+  background: none;
+}
 
 .nav-tabs-custom .tab-content,
 .nav-tabs .tab-content {
@@ -253,6 +270,11 @@ hr {
 .nav > li > a:focus {
   background-color: var(--submenu-hover-background);
   color: var(--submenu-link);
+}
+
+.list-group-item {
+  border-color: var(--list-group-item-border);
+  color: var(--header-text);
 }
 
 #app {
@@ -678,6 +700,10 @@ div.mce-fullscreen {
 .live-search-results .list-group-item:first-child {
   border-top-right-radius: 0 !important;
   border-top-left-radius: 0 !important;
+}
+
+.search-results-dropdown {
+  margin-bottom: 0;
 }
 
 .entity-modification-history {
@@ -1236,6 +1262,8 @@ summary {
   --calendar-today: #FFFDE2;
   --calendar-week: #FFFDE2;
   --calendar-weather: #ddd;
+  --calendar-season: var(--calendar-weather);
+  --calendar-season-text: #444;
 }
 
 .calendar {
@@ -1265,6 +1293,12 @@ summary {
 
 .calendar tbody td .weather {
   background-color: var(--calendar-weather);
+}
+
+.calendar tbody td .calendar-season {
+  font-size: 90%;
+  color: var(--calendar-season-text);
+  background-color: var(--calendar-season);
 }
 
 .calendar tbody td .reminder-entity {
@@ -1359,6 +1393,11 @@ summary {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+:root {
+  --timeline-item-background: #fff;
+  --timeline-element-border: #ddd;
+}
+
 .timeline > li > .ra,
 .timeline > li > .fab,
 .timeline > li > .far,
@@ -1369,11 +1408,24 @@ summary {
   line-height: 30px;
   position: absolute;
   color: #666;
-  background: #d2d6de;
+  background: var(--timeline-element-border);
   border-radius: 50%;
   text-align: center;
   left: 18px;
   top: 0;
+}
+
+.timeline > li > .timeline-item {
+  background: var(--timeline-item-background);
+  color: var(--body-text);
+}
+
+.timeline > li > .timeline-item > .timeline-header {
+  color: var(--header-text);
+}
+
+.timeline:before {
+  background: var(--timeline-element-border);
 }
 
 @media (max-width: 767px) {

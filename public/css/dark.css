@@ -51,6 +51,10 @@
   border: none;
 }
 
+.timeline > li > .timeline-item > .timeline-header {
+  border-bottom: 1px solid var(--theme-border);
+}
+
 .popover {
   border: 1px solid #333;
 }
@@ -69,9 +73,15 @@
 }
 
 .table :is(thead, tbody, tfoot) tr :is(td, th) {
-  border-top-color: var(--body-background);
-  border-bottom-color: var(--body-background);
+  border-color: var(--theme-border);
 }
+
+/*.table-bordered {
+  border-color: var(--body-background);
+}
+.table-bordered :is(thead, tbody, tfoot) tr :is(td, th) {
+  border-color: var(--body-background);
+}*/
 
 .skin-black .main-header .navbar {
   background-color: var(--theme-navbar-background);
@@ -201,6 +211,7 @@
   --submenu-link: #999;
   --submenu-hover-background: #333;
   --sidebar-background: #333;
+  --tab-text: var(--link-text);
   --input-background-color: #222;
   --input-border-color: #3D3C3B;
   --input-text-color: #fff;
@@ -209,8 +220,12 @@
   --header-text: var(--theme-hard-text);
   --modal-background: #222;
   --modal-inner-border: transparent;
+  --modal-close-opacity: 0.6;
+  --modal-body-text: var(--theme-soft-text);
   --calendar-today: #333;
   --calendar-week: #333;
+  --calendar-weather: var(--theme-border);
+  --calendar-season-text: var(--theme-main-text);
   --dashboard-preview-gradient: #222;
   --dashboard-widget-admin-border: #3D3C3B;
   --footer-background: #262626;
@@ -251,6 +266,9 @@
   --dropdown-background: var(--theme-background);
   --dropdown-border: var(--theme-border);
   --dropdown-hover-background: var(--search-cursor-background);
+  --list-group-item-border: var(--theme-border);
+  --timeline-item-background: var(--theme-background);
+  --timeline-element-border: var(--theme-border);
 }
 
 .mce-edit-area,
@@ -310,8 +328,8 @@
 .btn-default:focus,
 .btn-default .focus {
   background-color: var(--default-background);
-  border: 1px solid var(--theme-link-hover);
-  color: var(--theme-link-hover);
+  border: 1px solid var(--theme-border);
+  color: var(--theme-hard-text);
 }
 
 .skin-black .main-header .navbar .nav > li > a,

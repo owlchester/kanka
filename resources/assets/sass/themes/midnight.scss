@@ -79,6 +79,8 @@
 
   --modal-background: #0a121b;
   --modal-inner-border: transparent;
+  --modal-close-opacity: 0.6;
+  --modal-body-text: var(--theme-soft-text);
   --navbar-li-text: #eee;
 
   --leaflet-popup-background: #0a121b;
@@ -98,6 +100,9 @@
   --dropdown-border: #333;
   --dropdown-hover-background: var(--search-cursor-background);
   --dropdown-hover-text: var(--theme-main-text);
+
+  --list-group-item-border: var(--theme-border);
+  --timeline-item-background: var(--theme-background);
 }
 
 
@@ -112,6 +117,17 @@
 
 .table > thead > tr > th {
   border-bottom: 1px;
+}
+
+.btn-default {
+  background-color: var(--default-background);
+  border: 1px solid var(--theme-border);
+  color: var(--theme-soft-text);
+  &:hover, &:focus, .focus, &:active {
+    background-color: var(--default-background);
+    border: 1px solid var(--theme-border);
+    color: var(--link-text);
+  }
 }
 
 

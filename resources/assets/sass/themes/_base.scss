@@ -27,7 +27,9 @@
     background: none;
     border: none;
   }
-
+}
+.timeline > li > .timeline-item > .timeline-header {
+  border-bottom: 1px solid var(--theme-border);
 }
 .popover {
   border: 1px solid #333;
@@ -50,9 +52,14 @@
   }
 }
 .table :is(thead, tbody, tfoot) tr :is(td, th) {
-  border-top-color: var(--body-background);
-  border-bottom-color: var(--body-background);
+  border-color: var(--theme-border);
 }
+/*.table-bordered {
+  border-color: var(--body-background);
+}
+.table-bordered :is(thead, tbody, tfoot) tr :is(td, th) {
+  border-color: var(--body-background);
+}*/
 
 .skin-black .main-header .navbar {
   background-color: var(--theme-navbar-background);

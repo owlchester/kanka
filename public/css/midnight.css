@@ -51,6 +51,10 @@
   border: none;
 }
 
+.timeline > li > .timeline-item > .timeline-header {
+  border-bottom: 1px solid var(--theme-border);
+}
+
 .popover {
   border: 1px solid #333;
 }
@@ -69,9 +73,15 @@
 }
 
 .table :is(thead, tbody, tfoot) tr :is(td, th) {
-  border-top-color: var(--body-background);
-  border-bottom-color: var(--body-background);
+  border-color: var(--theme-border);
 }
+
+/*.table-bordered {
+  border-color: var(--body-background);
+}
+.table-bordered :is(thead, tbody, tfoot) tr :is(td, th) {
+  border-color: var(--body-background);
+}*/
 
 .skin-black .main-header .navbar {
   background-color: var(--theme-navbar-background);
@@ -235,6 +245,8 @@
   --campaign-switcher-background: #0a121b;
   --modal-background: #0a121b;
   --modal-inner-border: transparent;
+  --modal-close-opacity: 0.6;
+  --modal-body-text: var(--theme-soft-text);
   --navbar-li-text: #eee;
   --leaflet-popup-background: #0a121b;
   --leaflet-popup-text: #fff;
@@ -249,6 +261,8 @@
   --dropdown-border: #333;
   --dropdown-hover-background: var(--search-cursor-background);
   --dropdown-hover-text: var(--theme-main-text);
+  --list-group-item-border: var(--theme-border);
+  --timeline-item-background: var(--theme-background);
 }
 
 .skin-black .main-header .navbar .nav > li > a,
@@ -262,6 +276,21 @@
 
 .table > thead > tr > th {
   border-bottom: 1px;
+}
+
+.btn-default {
+  background-color: var(--default-background);
+  border: 1px solid var(--theme-border);
+  color: var(--theme-soft-text);
+}
+
+.btn-default:hover,
+.btn-default:focus,
+.btn-default .focus,
+.btn-default:active {
+  background-color: var(--default-background);
+  border: 1px solid var(--theme-border);
+  color: var(--link-text);
 }
 
 @media (max-width: 991px) {

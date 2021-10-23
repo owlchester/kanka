@@ -1,3 +1,8 @@
+:root {
+  --timeline-item-background: #fff;
+  --timeline-element-border: #ddd;
+}
+
 .timeline > li > .ra, .timeline > li > .fab, .timeline > li > .far, .timeline > li > .fas {
   width: 30px;
   height: 30px;
@@ -5,9 +10,21 @@
   line-height: 30px;
   position: absolute;
   color: #666;
-  background: #d2d6de;
+  background: var(--timeline-element-border);
   border-radius: 50%;
   text-align: center;
   left: 18px;
   top: 0;
+}
+
+
+.timeline > li > .timeline-item {
+  background: var(--timeline-item-background);
+  color: var(--body-text);
+}
+.timeline > li > .timeline-item > .timeline-header {
+  color: var(--header-text);
+}
+.timeline:before {
+  background: var(--timeline-element-border);
 }
