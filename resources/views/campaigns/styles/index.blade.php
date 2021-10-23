@@ -66,7 +66,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#" class="text-danger delete-confirm" data-toggle="modal" data-name="{!! $style->name !!}"
+                                                <a href="#" class="text-red delete-confirm" data-toggle="modal" data-name="{!! $style->name !!}"
                                                    data-target="#delete-confirm" data-delete-target="delete-form-{{ $style->id }}">
                                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                                     {{ __('crud.remove') }}

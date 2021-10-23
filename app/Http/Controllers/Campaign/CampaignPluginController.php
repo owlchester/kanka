@@ -40,6 +40,7 @@ class CampaignPluginController extends Controller
         $highlight = request()->get('highlight');
         $plugins = $campaign->plugins()
             ->highlighted($highlight)
+            ->with('versions')
             ->paginate();
 
         return view('campaigns.plugins', compact('campaign', 'plugins', 'highlight'));

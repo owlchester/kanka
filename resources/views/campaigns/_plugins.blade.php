@@ -19,6 +19,7 @@
 
         @if($campaign->boosted())
 
+        <div class="table-responsive">
         <table class="table table-hover margin-top">
             <thead>
             <tr>
@@ -47,35 +48,67 @@
                 </td>
                 <td>
                     @if($plugin->pivot->is_active)
-                        {{ __('campaigns/plugins.status.enabled') }}
+                        <span class="hidden-xs hidden-sm">{{ __('campaigns/plugins.status.enabled') }}</span>
+                        <span class="hidden-md hidden-lg">
+                            <i class="fas fa-check-circle"></i>
+                        </span>
                     @else
-                        {{ __('campaigns/plugins.status.disabled') }}
+                        <span class="hidden-xs hidden-sm">{{ __('campaigns/plugins.status.disabled') }}</span>
+                        <span class="hidden-md hidden-lg">
+                            <i class="fas fa-times-circle"></i>
+                        </span>
                     @endif
                 </td>
-                <td class="text-center">
-                    @if($plugin->isTheme())
-                        @if($plugin->pivot->is_active)
-                            <a href="{{ route('campaign_plugins.disable', $plugin) }}" class="btn btn-block btn-default">
-                                <i class="fa fa-times-circle"></i> {{ __('campaigns/plugins.actions.disable') }}
-                            </a>
-                        @else
-                            <a href="{{ route('campaign_plugins.enable', $plugin) }}" class="btn btn-block btn-default">
-                                <i class="fa fa-check-circle"></i> {{ __('campaigns/plugins.actions.enable') }}
-                            </a>
-
-                        @endif
-                    @elseif($plugin->isContentPack())
-                        <a href="{{ route('campaign_plugins.import', $plugin, ) }}" class="btn btn-block btn-default">
-                            <i class="fa fa-refresh"></i> {{ __('campaigns/plugins.actions.import') }}
+                <td class="text-right">
+                    <div class="dropdown">
+                        <a class="dropdown-toggle btn btn-sm btn-default" data-toggle="dropdown" aria-expanded="false" data-placement="right" href="#">
+                            <i class="fa fa-ellipsis-h" data-tree="escape"></i>
+                            <span class="sr-only">{{ __('crud.actions.actions') }}</span>
                         </a>
-                    @endif
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            @if($plugin->hasUpdate())
+                                <li>
+                                <a href="{{ route('campaign_plugins.update-info', $plugin) }}"
+                                   data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_plugins.update-info', $plugin) }}">
+                                    {{ __('campaigns/plugins.actions.update_available') }}
+                                </a>
+                                </li>
+                            @endif
+                            @if($plugin->isTheme())
+                                @if($plugin->pivot->is_active)
+                                    <li>
+                                        <a href="{{ route('campaign_plugins.disable', $plugin) }}">
+                                            <i class="fa fa-times-circle"></i> {{ __('campaigns/plugins.actions.disable') }}
+                                        </a>
+                                    </li>
+                                @else
+                                    <li>
+                                        <a href="{{ route('campaign_plugins.enable', $plugin) }}">
+                                            <i class="fa fa-check-circle"></i> {{ __('campaigns/plugins.actions.enable') }}
+                                        </a>
+                                    </li>
+                                @endif
+                            @elseif($plugin->isContentPack())
+                                <li>
+                                    <a href="{{ route('campaign_plugins.import', $plugin, ) }}">
+                                        <i class="fa fa-refresh"></i> {{ __('campaigns/plugins.actions.import') }}
+                                    </a>
+                                </li>
+                            @endif
 
-                    <button class="btn btn-danger btn-block delete-confirm" title="{{ __('crud.remove') }}"
-                            data-toggle="modal" data-name="{{ $plugin->name }}"
-                            data-target="#delete-confirm" data-delete-target="campaign-plugin-{{ $plugin->id }}"
-                    >
-                        <i class="fa fa-trash" aria-hidden="true"></i> {{ __('campaigns/plugins.actions.remove') }}
-                    </button>
+                            <li>
+                                <a href="#" class="text-red delete-confirm" title="{{ __('crud.remove') }}"
+                                        data-toggle="modal" data-name="{{ $plugin->name }}"
+                                        data-target="#delete-confirm" data-delete-target="campaign-plugin-{{ $plugin->id }}"
+                                >
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                    {{ __('campaigns/plugins.actions.remove') }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+
                     {!! Form::open([
                         'method' => 'DELETE',
                         'route' => ['campaign_plugins.destroy', 'plugin' => $plugin],
@@ -95,6 +128,7 @@
         @endforelse
             </tbody>
         </table>
+        </div>
 
         {!! $plugins->links() !!}
 

@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +22,7 @@ use Illuminate\Support\Str;
  * @property int $status_id
  * @property string $name
  *
- * @property PluginVersion[] $versions
+ * @property PluginVersion[]|Collection $versions
  * @property PluginVersion $version
  * @property User $user
  *
@@ -30,6 +31,8 @@ use Illuminate\Support\Str;
 class Plugin extends Model
 {
     use SoftDeletes;
+
+    protected $cachedHasUpdate = null;
 
     /**
      * @return string
@@ -49,8 +52,22 @@ class Plugin extends Model
      */
     public function hasUpdate(): bool
     {
+        if ($this->cachedHasUpdate !== null) {
+            return $this->cachedHasUpdate;
+        }
+
+        $statuses = [3];
+        if ($this->created_by === auth()->user()->id) {
+            $statuses[] = 1;
+        }
+        return $this->cachedHasUpdate = $this
+                ->versions
+                ->whereIn('status_id', $statuses)
+                ->where('id', '>', $this->pivot->plugin_version_id)
+                ->count() > 0;
+
         // Check latest version
-        return $this
+        return $this->cachedHasUpdate = $this
                 ->versions()
                 ->where(function ($sub) {
                     if ($this->created_by == auth()->user()->id) {
@@ -58,9 +75,9 @@ class Plugin extends Model
                     } else {
                         return $sub->where('status_id', 3);
                     }
-
-                    }
-                )->where('id', '>', $this->pivot->plugin_version_id)->count() > 0;
+                })
+                ->where('id', '>', $this->pivot->plugin_version_id)
+                ->count() > 0;
     }
 
     /**
