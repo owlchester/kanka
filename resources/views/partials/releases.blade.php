@@ -12,7 +12,9 @@
                     <span class="username">
                         <a href="{{ $release->link }}" target="_blank">{{ $release->name }}</a>
                     </span>
-                    <span class="description">{{ $release->published_at->isoFormat('MMMM D, Y') }}</span>
+                    <span class="description">
+                        {{ $release->published_at->isoFormat('MMMM D, Y') }}
+                    </span>
                 </div>
                 <div class="box-tools">
                     <button type="button" class="btn btn-box-tool" data-widget="remove" data-url="{{ route('settings.release', $release) }}">
@@ -23,7 +25,7 @@
                 @endauth
             </div>
             <div class="box-body release-excerpt">
-                {{ $release->excerpt }}
+                {!! nl2br($release->excerpt) !!}
             </div>
         </div>
     </div>

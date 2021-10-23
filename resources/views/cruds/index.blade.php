@@ -83,9 +83,11 @@
                     {{ __('crud.filters.filtered', ['count' => $filteredCount, 'total' => $unfilteredCount, 'entity' => __('entities.' . $name)]) }}
                 </p>
             @endif
+            @if($models->hasPages())
             <div class="pull-right">
                 {{ $models->appends($filterService->pagination())->links() }}
             </div>
+            @endif
             {!! Form::hidden('entity', $name) !!}
             {!! Form::hidden('page', request()->get('page')) !!}
         </div>

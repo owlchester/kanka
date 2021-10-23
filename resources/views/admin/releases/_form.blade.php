@@ -8,7 +8,7 @@
         </div>
         <div class="form-group required">
             <label>{{ __('admin/releases.fields.excerpt') }}</label>
-            {!! Form::text('excerpt', old('excerpt'), ['placeholder' => __('admin/releases.fields.excerpt'), 'class' => 'form-control', 'maxlength' => 191]) !!}
+            {!! Form::textarea('excerpt', old('excerpt'), ['placeholder' => __('admin/releases.fields.excerpt'), 'class' => 'form-control', 'rows' => 3]) !!}
         </div>
 
         <div class="row">
