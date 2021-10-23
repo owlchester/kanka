@@ -8,7 +8,7 @@ return [
     'fields'    => [
         'deleted'   => 'Deleted',
     ],
-    'helper'    => 'You can recover deleted entities from the campaign for up to :count days. Select the entities you want to recover and click the recover button at the bottom.',
+    'helper'    => 'Deleted entities of the campaign can be recovered for up to :count days. Entities deleted while the campaign isn\'t boosted are still recoverable once the campaign becomes boosted.',
     'success'   => '{1} :count entity was recovered.|[2,*] :count entities were recovered.',
     'title'     => 'Entity Recovery for :campaign',
 ];

@@ -78942,7 +78942,8 @@ $(document).ready(function () {
   initSpectrum();
   initCheckboxSwitch();
   initCopyToClipboard();
-  initSidebar(); // Open select2 dropdowns on focus. Don't add this in initSelect2 since we only need this
+  initSidebar();
+  initSubmenuSwitcher(); // Open select2 dropdowns on focus. Don't add this in initSelect2 since we only need this
   // binded once.
 
   $(document).on('focus', '.select2.select2-container', function (e) {
@@ -79311,6 +79312,17 @@ function initSidebar() {
     backdrop.hide();
     dropdown.collapse('hide');
     down.removeClass('flipped');
+  });
+}
+
+function initSubmenuSwitcher() {
+  $('.submenu-switcher').change(function (e) {
+    e.preventDefault();
+    console.log('this', $(this));
+    var selected = $(this).find(":selected");
+    var route = selected.data('route');
+    console.log('route', route);
+    window.location.href = route;
   });
 }
 /**

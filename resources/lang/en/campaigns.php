@@ -160,7 +160,7 @@ TEXT
         ],
     ],
     'leave'                             => [
-        'confirm'   => 'Are you sure you want to leave the :name campaign? You won\'t be able to access it anymore, unless an Admin of the campaign invites you again.',
+        'confirm'   => 'Are you sure you want to leave the :name campaign? You won\'t be able to access it anymore, unless an admin of the campaign invites you again.',
         'error'     => 'Can\'t leave the campaign.',
         'success'   => 'You have left the campaign.',
     ],
@@ -351,7 +351,7 @@ TEXT
         'edit'          => [
             'success'   => 'Campaign settings updated.',
         ],
-        'helper'        => 'All modules of a campaign can be enabled or disabled at will. Disabling a module will simply hide interface elements related to it, and pre-existing entities will be hidden but still exist in the background, in case you change your mind. These change effect all users of a campaign, including Admin users.',
+        'helper'        => 'All modules of a campaign can be enabled or disabled at will. Disabling a module will simply hide interface elements related to it, and pre-existing entities will be hidden but still exist in the background, in case you change your mind. These change effect all users of a campaign, including members of the :admin role.',
         'helpers'       => [
             'abilities'     => 'Create abilities, be it feats, spells, or powers that can be assigned to entities.',
             'calendars'     => 'A place to define the calendars of your world.',

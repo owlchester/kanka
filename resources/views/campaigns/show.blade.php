@@ -18,7 +18,7 @@
     @include('partials.errors')
     <div class="row">
         <div class="{{ auth()->check() ? "col-md-3" : "" }}">
-            @include('campaigns._menu')
+            @include('campaigns._menu', ['active' => 'campaign'])
         </div>
         <div class="{{ auth()->check() ? "col-md-9" : "col-md-12" }}">
             <div class="box box-solid">

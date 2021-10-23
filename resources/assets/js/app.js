@@ -31,6 +31,7 @@ $(document).ready(function() {
     initCheckboxSwitch();
     initCopyToClipboard();
     initSidebar();
+    initSubmenuSwitcher()
 
     // Open select2 dropdowns on focus. Don't add this in initSelect2 since we only need this
     // binded once.
@@ -410,6 +411,19 @@ function initSidebar() {
         backdrop.hide();
         dropdown.collapse('hide');
         down.removeClass('flipped');
+    });
+}
+
+function initSubmenuSwitcher() {
+    $('.submenu-switcher').change(function (e) {
+        e.preventDefault();
+        console.log('this', $(this));
+
+        let selected = $(this).find(":selected");
+        let route = selected.data('route');
+        console.log('route', route);
+
+        window.location.href = route;
     });
 }
 
