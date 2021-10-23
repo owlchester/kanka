@@ -20,6 +20,7 @@ class StatService
 
     protected $tertiaryTargets = [1, 2, 5, 10, 20];
     //protected $secondaryTargets = [1, 2, 3, 4, 5];
+
     /**
      * @param Campaign $campaign
      * @return $this
@@ -30,8 +31,15 @@ class StatService
         return $this;
     }
 
+    /**
+     * @return array|array[]
+     */
     public function stats(): array
     {
+        if (!$this->campaign->superboosted()) {
+            return [];
+        }
+
         $cacheKey = 'campaign_' . $this->campaign->id . '_achievements';
 
         if (Cache::has($cacheKey)) {

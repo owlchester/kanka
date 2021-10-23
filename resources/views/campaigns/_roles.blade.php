@@ -22,8 +22,8 @@
         @endif
     </div>
 </div>
-<div class="box-body">
-    <div class="table-responsive">
+<div class="box-body no-padding">
+    <div class="">
     <table id="campaign-roles" class="table table-hover table-striped">
         <thead><tr>
             <th>{{ __('campaigns.roles.fields.name') }}</th>

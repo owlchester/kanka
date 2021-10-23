@@ -227,6 +227,9 @@ return [
         'copy_options'  => 'Copy the following related elements from the source to the new entity.',
     ],
     'hidden'                    => 'Hidden',
+    'tooltips'                  => [
+        'boosted_feature'       => 'Boosted campaign feature',
+    ],
     'hints'                     => [
         'attribute_template'    => 'The selected attribute template will be applied saving the entity.',
         'calendar_date'         => 'A calendar date allows easy filtering in lists, and also maintains a calendar event in the selected calendar.',

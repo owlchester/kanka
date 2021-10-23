@@ -159,8 +159,7 @@
                     <thead>
                     <tr>
                         <th>{{ __('campaigns.invites.fields.type') }}</th>
-                        <th>{{ __('campaigns.invites.fields.email') }}</th>
-                        <th>{{ __('campaigns.invites.fields.validity') }}</th>
+                        <th class="hidden-xs hidden-sm">{{ __('campaigns.invites.fields.usage') }}</th>
                         <th>{{ __('campaigns.invites.fields.role') }}</th>
                         <th class="hidden-xs hidden-md">{{ __('campaigns.invites.fields.created') }}</th>
                         <th class="text-right">
@@ -171,11 +170,10 @@
                     <tbody>
                     @foreach ($invitations as $relation)
                         <tr>
-                            <td>{{ __('campaigns.invites.types.' . $relation->type) }}</td>
                             <td>
                                 @if($relation->type == 'email')<span class="hidden-sm hidden-xs">{{ $relation->email }}</span>
                                 @else
-                                    <a href="{{ route('campaigns.join', ['token' => $relation->token]) }}" class="hidden-sm hidden-xs">
+                                    <a href="{{ route('campaigns.join', ['token' => $relation->token]) }}">
                                         {{ substr($relation->token, 0, 6) . '...' }}
                                     </a>
                                     <a href="#" title="{{ __('campaigns.invites.actions.copy') }}" data-clipboard="{{ route('campaigns.join', ['token' => $relation->token]) }}" data-toggle="tooltip">
@@ -183,10 +181,15 @@
                                     </a>
                                 @endif
                             </td>
-                            <td
-                            <td>{{ $relation->validity !== null ? $relation->validity : __('campaigns.invites.unlimited_validity') }}</td>
+                            <td class="hidden-xs hidden-sm">
+                                {{ $relation->validity !== null ? $relation->validity : __('campaigns.invites.unlimited_validity') }}
+                            </td>
                             <td>{{ $relation->role ? $relation->role->name : null }}</td>
-                            <td class="hidden-xs hidden-md"><span title="{{ $relation->created_at }}+00:00">{{ $relation->created_at->diffForHumans() }}</span></td>
+                            <td class="hidden-xs hidden-md">
+                                <span title="{{ $relation->created_at }}+00:00" data-toggle="tooltip">
+                                    {{ $relation->created_at->diffForHumans() }}
+                                </span>
+                            </td>
 
                             <td class="text-right">
                                 {!! Form::open(['method' => 'DELETE','route' => ['campaign_invites.destroy', $relation->id],'style'=>'display:inline']) !!}

@@ -28,4 +28,12 @@ trait Boosted
     {
         return $this->boost_count > ($superboosted ? 2 : 0);
     }
+
+    /**
+     * @return bool
+     */
+    public function superboosted(): bool
+    {
+        return $this->boosted(true);
+    }
 }
