@@ -7,8 +7,3 @@
         </div>
     </div>
 </div>
-
-<div class="form-group">
-    <button class="btn btn-success">{{ trans('crud.save') }}</button>
-    @include('partials.or_cancel')
-</div>

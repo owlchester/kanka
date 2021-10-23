@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\VisibleTrait;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
 
@@ -13,6 +14,9 @@ use DateTime;
  * @property integer $id
  * @property integer $campaign_role_id
  * @property integer $user_id
+ *
+ * @property User $user
+ * @property Campaign $campaign
  */
 class CampaignRoleUser extends Model
 {

@@ -242,22 +242,23 @@ TEXT
     ],
     'roles'                             => [
         'actions'       => [
-            'add'           => 'Add a role',
+            'add'           => 'Create role',
             'permissions'   => 'Manage permissions',
             'rename'        => 'Rename role',
+            'save'          => 'Save role',
         ],
         'admin_role'    => 'admin role',
         'create'        => [
-            'success'   => 'Role created.',
-            'title'     => 'Create a new role for :name',
+            'success'   => 'Role :name created.',
+            'title'     => 'New role',
         ],
         'description'   => 'Manage the roles of the campaign',
         'destroy'       => [
-            'success'   => 'Role removed.',
+            'success'   => 'Role :name removed.',
         ],
         'edit'          => [
-            'success'   => 'Role updated.',
-            'title'     => 'Edit Role :name',
+            'success'   => 'Role :name updated.',
+            'title'     => 'Edit role :name',
         ],
         'fields'        => [
             'name'          => 'Name',
@@ -266,7 +267,7 @@ TEXT
             'users'         => 'Users',
         ],
         'helper'        => [
-            '1' => 'A campaign can have as many roles as wanted. The "Admin" role automatically has access to everything in a campaign, but every other role can have specific permissions on different types of entities (character, location, etc).',
+            '1' => 'A campaign can have as many roles as wanted. The :admin role automatically has access to everything in a campaign, but every other role can have specific permissions on different types of entities (character, location, etc).',
             '2' => 'Entities can have more fine-tuned permissions by viewing the "Permissions" tab of an entity. This tab appears once your campaign has several roles or members.',
             '3' => 'One can either go with an "opt-out" system, where roles are given access to viewing all of the entities, and use the "Private" checkbox on entities to hide them. Or one can not give roles many permissions, but set each entity to be visible individually.',
         ],
@@ -326,7 +327,7 @@ TEXT
         ],
         'users'         => [
             'actions'   => [
-                'add'       => 'Add a member',
+                'add'       => 'Add member',
                 'remove'    => ':user from the :role role',
             ],
             'create'    => [

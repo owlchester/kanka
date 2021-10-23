@@ -33,7 +33,15 @@ class CampaignRoleController extends Controller
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('roles', $campaign);
-        return view('campaigns.roles', ['campaign' => $campaign]);
+
+        $roles = $campaign->roles()
+            ->with(['users', 'permissions', 'campaign'])
+            ->orderBy('is_admin', 'DESC')
+            ->orderBy('is_public', 'DESC')
+            ->orderBy('name')
+            ->paginate();
+
+        return view('campaigns.roles', compact('campaign', 'roles'));
     }
 
     /**
@@ -59,9 +67,9 @@ class CampaignRoleController extends Controller
     public function store(StoreCampaignRole $request)
     {
         $this->authorize('create', CampaignRole::class);
-        $relation = CampaignRole::create($request->all());
+        $role = CampaignRole::create($request->all());
         return redirect()->route('campaign_roles.index')
-            ->with('success', trans($this->view . '.create.success'));
+            ->with('success_raw', __($this->view . '.create.success', ['name' => $role->name]));
     }
 
     /**
@@ -75,9 +83,15 @@ class CampaignRoleController extends Controller
         $this->authorize('view', $campaignRole);
 
         $campaign = CampaignLocalization::getCampaign();
+        $members = $campaignRole
+            ->users()
+            ->with('user')
+            ->paginate();
+
         return view($this->view . '.show', [
             'model' => $campaign,
-            'role' => $campaignRole
+            'role' => $campaignRole,
+            'members' => $members,
         ]);
     }
 
@@ -114,7 +128,7 @@ class CampaignRoleController extends Controller
 
         $campaignRole->update($request->all());
         return redirect()->route('campaign_roles.index')
-            ->with('success', trans($this->view . '.edit.success'));
+            ->with('success_raw', __($this->view . '.edit.success', ['name' => $campaignRole->name]));
     }
 
     /**
@@ -129,7 +143,7 @@ class CampaignRoleController extends Controller
 
         $campaignRole->delete();
         return redirect()->route('campaign_roles.index')
-            ->with('success', trans($this->view . '.destroy.success'));
+            ->with('success_raw', __($this->view . '.destroy.success', ['name' => $campaignRole->name]));
     }
 
     /**

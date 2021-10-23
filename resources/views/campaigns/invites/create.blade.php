@@ -30,7 +30,7 @@
                 {{ __('crud.cancel') }}
             </button>
 
-            <button type="button" class="btn btn-success">
+            <button class="btn btn-success">
                 @if ($type == 'email')
                     {{ __('campaigns.invites.create.buttons.send') }}
                 @else
