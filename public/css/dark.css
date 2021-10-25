@@ -1,15 +1,3 @@
-/**
- * All themes can benefit from overriding the same stuff, which is put here.
- */
-
-/** why do we need this? **/
-
-@media (min-width: 1200px) {
-  a span.visible-lg {
-    display: none !important;
-  }
-}
-
 :root {
   --theme-main-text: #A4A4A4;
   --theme-hard-text: #E1E1E1;
@@ -28,6 +16,7 @@
   --main-navbar-hover-background: var(--theme-soft);
   --main-navbar-text: var(--theme-main-text);
   --table-highlight: var(--theme-soft);
+  --table-border: var(--theme-border);
   --link-text: var(--theme-link);
   --link-focus: var(--theme-link);
   --link-hover: var(--theme-link-hover);

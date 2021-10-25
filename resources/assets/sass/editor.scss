@@ -135,3 +135,8 @@ div.mce-fullscreen {
 .mce-label {
   text-shadow: none !important;
 }
+
+// Tinymce mentions dropdown
+.rte-autocomplete {
+  z-index: 9920;
+}

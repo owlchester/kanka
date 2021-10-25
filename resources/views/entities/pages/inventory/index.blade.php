@@ -19,7 +19,8 @@
                data-toggle="ajax-modal" data-target="#entity-modal"
                data-url="{{ route('entities.inventories.create', ['entity' => $entity]) }}"
             >
-                <i class="fa fa-plus"></i> <span class="visible-lg-inline">{{ __('entities/inventories.actions.add') }}</span>
+                <i class="fa fa-plus"></i>
+                {{ __('entities/inventories.actions.add') }}
             </a>
         </div>
     @endcan

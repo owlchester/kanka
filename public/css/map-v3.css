@@ -109,6 +109,8 @@
 .skin-map .main-sidebar {
   color: #efefef;
   overflow: hidden;
+  padding-top: 0;
+  z-index: 1040;
 }
 
 .skin-map .marker-details .marker-name {
@@ -119,7 +121,23 @@
   margin: 20px 0;
 }
 
+.skin-map .entity-title {
+  min-height: 40px;
+  margin-bottom: 5px;
+}
+
+.skin-map .entity-title a {
+  display: flex;
+  align-items: center;
+}
+
+.skin-map .entity-title .entity-image {
+  display: inline-block;
+  margin-right: 5px;
+}
+
 .skin-map .entity-title .entity-name {
+  display: inline;
   font-size: 12pt;
 }
 
@@ -198,6 +216,6 @@
 }
 
 .leaflet-container {
-  background: unset;
+  background: transparent !important;
 }
 

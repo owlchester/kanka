@@ -1,7 +1,9 @@
 @if ($entity)
-    <a href="{{ route($entity->pluralType() . '.show', $entity->child) }}" class="crud-field-entity"
-       data-toggle="tooltip" title="{{ $entity->tooltip() }}">
-        <span class="entity-image" style="background-image: url('{{ $entity->child->getImageUrl(40) }}')"></span>
-        <span class="entity-name">{{ $entity->name }}</span>
-    </a>
+    <div class="form-group">
+        <label>{{ __('crud.fields.entity') }}</label><br />
+        <a href="{{ route($entity->pluralType() . '.show', $entity->child) }}"
+           data-toggle="tooltip" title="{{ $entity->tooltip() }}" class="form-control" data-placement="bottom">
+            {{ $entity->name }}
+        </a>
+    </div>
 @endif

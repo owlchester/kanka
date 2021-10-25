@@ -121,6 +121,8 @@
     //background-color: #dedede;
     color: #efefef;
     overflow: hidden;
+    padding-top: 0;
+    z-index: 1040;
   }
   .marker-details {
     .marker-name {
@@ -133,7 +135,20 @@
   }
 
   .entity-title {
+    min-height: 40px;
+    margin-bottom: 5px;
+
+    a {
+      display: flex;
+      align-items: center;
+    }
+
+    .entity-image {
+      display: inline-block;
+      margin-right: 5px;
+    }
     .entity-name {
+      display: inline;
       font-size: 12pt;
     }
   }
@@ -220,5 +235,5 @@
   }
 }
 .leaflet-container {
-  background: unset;
+  background: transparent !important;
 }

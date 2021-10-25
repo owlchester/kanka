@@ -9,9 +9,11 @@
     </div>
     <div class="box-body">
 
-        <p class="help-block export-hidden">
+        @if ($relations->count() === 0)
+        <p class="help-block">
             {{ __('entities/relations.helper') }}
         </p>
+        @endif
 
         <div class="row row-sorting">
             <div class="col-md-6">

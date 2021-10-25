@@ -75,7 +75,7 @@
                                 <p>{!! $element->entry() !!}</p>
                             </div>
                             <div class="box-footer text-right">
-                                <div class="float-left">
+                                <div class="pull-left">
                                 @include('cruds.partials.visibility', ['model' => $element])
                                 </div>
                                 @can('update', $model)

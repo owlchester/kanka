@@ -9,7 +9,6 @@
   }
   .navbar-static-top {
     margin-left: $sidebarWidth;
-    //box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.33);
   }
   .navbar .navbar-custom-menu .navbar-nav > li > a, .navbar .navbar-right > li > a {
     border: unset;
@@ -103,8 +102,15 @@
 background-image: url(https://images.kanka.io/app/L5nSYCLgwtxR3wlUGk16fMZ0zAU=/280x210/src/images%2Fbackgrounds%2Fmountain-background-medium.jpg);
   z-index: 820;
 }
-.skin-black .sidebar-menu > li > .treeview-menu {
-background-color: unset;
+.skin-black .sidebar-menu {
+
+  .ra, .fas, .fab, .far {
+    display: inline-block;
+    width: 20px;
+  }
+  li > .treeview-menu {
+    background-color: unset;
+  }
 }
 
 section.sidebar-campaign {

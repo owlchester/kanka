@@ -456,6 +456,7 @@ hr {
 /** Tables */
 :root {
   --table-highlight: #f9f9f9;
+  --table-border: #f4f4f4;
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
@@ -471,5 +472,5 @@ hr {
   }
 }
 .table :is(thead, tbody, tfoot) tr :is(td, th) {
-  border-color: var(--input-border-color);
+  border-color: var(--table-border);
 }

@@ -118,7 +118,15 @@
   z-index: 820;
 }
 
-.skin-black .sidebar-menu > li > .treeview-menu {
+.skin-black .sidebar-menu .ra,
+.skin-black .sidebar-menu .fas,
+.skin-black .sidebar-menu .fab,
+.skin-black .sidebar-menu .far {
+  display: inline-block;
+  width: 20px;
+}
+
+.skin-black .sidebar-menu li > .treeview-menu {
   background-color: unset;
 }
 

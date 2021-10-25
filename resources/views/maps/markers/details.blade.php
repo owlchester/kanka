@@ -12,7 +12,7 @@
     @if ($marker->entity)
         <div class="marker-entity entity-title">
             <a href="{{ $marker->entity->url() }}" target="_blank">
-                <span class="entity-image" style="background-image: url('{{ $marker->entity->child->getImageUrl(40) }}');" title="{{ $marker->entity->name }}"></span>
+                <span class="entity-image pull-left" style="background-image: url('{{ $marker->entity->child->getImageUrl(40) }}');" title="{{ $marker->entity->name }}"></span>
 
                 <span class="entity-name">{{ $marker->entity->name }}</span>
             </a>
