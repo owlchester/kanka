@@ -80,14 +80,6 @@
     }
   }
 
-  section.content {
-    padding-top: 5px;
-  }
-
-  .profile-user-img {
-    max-height: calc(30vh) !important;
-  }
-
   .nav-tabs-custom {
     ul.nav-tabs {
       display: inline-flex;
@@ -124,5 +116,11 @@
 
   .navbar-nav > .notifications-menu > .dropdown-menu {
     width: 90%;
+  }
+}
+
+@media (max-width: 991px) {
+  .content-header > .breadcrumb {
+    background-color: transparent;
   }
 }

@@ -28,18 +28,18 @@
 
 .main-sidebar {
   width: 280px;
-  background-color: #333;
-  color: #fff;
+  background-color: var(--sidebar-background);
+  color: var(--sidebar-text);
   background-size: 280px 210px;
   background-repeat: no-repeat;
 }
 
 .main-sidebar a {
-  color: #fff;
+  color: var(--sidebar-link);
 }
 
 .main-sidebar .sidebar {
-  background-color: #333;
+  background-color: unset;
   margin-bottom: 60px;
 }
 
@@ -85,7 +85,7 @@
 .main-sidebar .sidebar li .sidebar-text {
   font-size: 11px;
   line-height: 22px;
-  color: #FFFFFF;
+  color: var(--sidebar-link);
   letter-spacing: 1.5px;
   text-transform: uppercase;
 }
@@ -118,13 +118,21 @@
   z-index: 820;
 }
 
-.skin-black .sidebar-menu > li > .treeview-menu {
+.skin-black .sidebar-menu .ra,
+.skin-black .sidebar-menu .fas,
+.skin-black .sidebar-menu .fab,
+.skin-black .sidebar-menu .far {
+  display: inline-block;
+  width: 20px;
+}
+
+.skin-black .sidebar-menu li > .treeview-menu {
   background-color: unset;
 }
 
 section.sidebar-campaign {
   height: 160px;
-  background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, #333333 100%);
+  background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background) 100%);
   overflow: hidden;
 }
 
@@ -180,7 +188,7 @@ section.sidebar-campaign .campaign-block .campaign-head .campaign-updated {
 }
 
 .campaign-switcher {
-  background-color: #1F1F1F;
+  background-color: var(--campaign-switcher-background);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.33), 2px 2px 16px rgba(0, 0, 0, 0.33);
   border-radius: 8px;
   z-index: 1080;
@@ -245,7 +253,7 @@ section.sidebar-campaign .campaign-block .campaign-head .campaign-updated {
 }
 
 .campaign-switcher ul li .background-gradient {
-  background: linear-gradient(270deg, rgba(31, 31, 31, 0) 0%, #1F1F1F 100%);
+  background: linear-gradient(270deg, rgba(31, 31, 31, 0) 0%, var(--campaign-switcher-background) 100%);
 }
 
 .campaign-switcher ul li.bordered {
@@ -288,7 +296,7 @@ section.sidebar-campaign .campaign-block .campaign-head .campaign-updated {
 
 .sidebar-creator a {
   text-align: center;
-  color: #fff !important;
+  color: #fff;
   mix-blend-mode: normal;
   width: 100%;
   padding: 14px 0;
@@ -309,10 +317,9 @@ section.sidebar-campaign .campaign-block .campaign-head .campaign-updated {
   width: 50px;
 }
 
-.skin-black .wrapper,
 .skin-black .main-sidebar,
 .skin-black .left-side {
-  background-color: #333;
+  background-color: var(--sidebar-background);
 }
 
 .main-sidebar .sidebar li .fa,
@@ -405,6 +412,13 @@ section.sidebar-campaign .campaign-block .campaign-head .campaign-updated {
   .sidebar-mini.sidebar-collapse .campaign-name {
     display: none !important;
   }
+}
+
+:root {
+  --sidebar-background: #333;
+  --sidebar-text: #eee;
+  --sidebar-link: #fff;
+  --campaign-switcher-background: #1F1F1F;
 }
 
 body,

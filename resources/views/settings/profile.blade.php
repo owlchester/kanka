@@ -53,14 +53,12 @@
                     {!! Form::hidden('remove-avatar') !!}
 
                     @if (!empty(auth()->user()->avatar) && auth()->user()->avatar != 'users/default.png')
-                        <div class="preview">
-                            <div class="image">
-                                <img src="{{ auth()->user()->getAvatarUrl(200) }}"/>
-                                <a href="#" class="img-delete" data-target="remove-avatar" title="{{ __('crud.remove') }}">
-                                    <i class="fa fa-trash"></i> {{ __('crud.remove') }}
+                        <div class="preview-v2">
+                            <div class="image" style="background-image: url('{{ auth()->user()->getAvatarUrl(200) }}')">
+                                <a href="#" class="img-delete" data-target="remove-avatar" title="{{ trans('crud.remove') }}">
+                                    <i class="fa fa-trash"></i> {{ trans('crud.remove') }}
                                 </a>
                             </div>
-                            <br class="clear">
                         </div>
                     @endif
 

@@ -31,7 +31,7 @@ $r = $model->entity->notes()->with(['creator', 'entity', 'permissions'])
         @endif
         <th class="text-right">@can('entity-note', [$model, 'add'])
             <a href="{{ route('entities.entity_notes.create', ['entity' => $model->entity]) }}" class="btn btn-primary btn-xs"
-                ><i class="fa fa-plus"></i> <span class="visible-lg-inline">{{ __('entities/notes.actions.add') }}</span>
+                ><i class="fa fa-plus"></i> {{ __('entities/notes.actions.add') }}
             </a>
         @endcan
         </th>
@@ -71,11 +71,6 @@ $r = $model->entity->notes()->with(['creator', 'entity', 'permissions'])
                         {!! Form::open(['method' => 'DELETE','route' => ['entities.entity_notes.destroy', 'entity' => $model->entity, 'entity_note' => $note], 'style '=> 'display:inline', 'id' => 'delete-form-' . $note->id]) !!}
                     {!! Form::close() !!}
                 @endcan
-            </td>
-        </tr>
-        <tr class="export-visible">
-            <td colspan="4" style="font-size: 12pt">
-                {!! $note->entry() !!}
             </td>
         </tr>
     @endforeach

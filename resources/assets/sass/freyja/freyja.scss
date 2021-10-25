@@ -2,6 +2,12 @@
 @import "sidebar";
 //@import "buttons";
 
+:root {
+  --sidebar-background: #333;
+  --sidebar-text: #eee;
+  --sidebar-link: #fff;
+  --campaign-switcher-background: #1F1F1F;
+}
 
 body, a, h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto', 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;

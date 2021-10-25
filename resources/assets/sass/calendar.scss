@@ -1,3 +1,12 @@
+:root {
+  --calendar-today: #FFFDE2;
+  --calendar-week: #FFFDE2;
+  --calendar-weather: #ddd;
+  --calendar-season: var(--calendar-weather);
+  --calendar-season-text: #444;
+  --calendar-event-text: white;
+}
+
 .calendar {
   table-layout: fixed;
 
@@ -22,7 +31,12 @@
       }
 
       .weather {
-        background-color: #ddd;
+        background-color: var(--calendar-weather);
+      }
+      .calendar-season {
+        font-size: 90%;
+        color: var(--calendar-season-text);
+        background-color: var(--calendar-season);
       }
 
       .reminder-entity {
@@ -59,7 +73,7 @@
       }
 
       .colour-pallet {
-        color: white;
+        color: var(--calendar-event-text);
       }
 
       .bg-gray {
@@ -77,14 +91,14 @@
     }
 
     td.today {
-      background-color: #FFFDE2;
+      background-color: var(--calendar-today);
     }
 
     tr.named_week {
       td {
         height: 1em;
         font-style: italic;
-        background-color: #FFFDE2;
+        background-color: var(--calendar-week);
       }
     }
   }

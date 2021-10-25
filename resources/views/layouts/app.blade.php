@@ -49,7 +49,7 @@ $specificTheme = null;
 @endif
 @yield('styles')
 
-@if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'future', 'base']))
+@if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
     @php $specificTheme = $themeOverride; @endphp
     @if($themeOverride != 'base')
     <link href="{{ mix('css/' . request()->get('_theme') . '.css') }}" rel="stylesheet">

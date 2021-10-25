@@ -109,6 +109,8 @@
 .skin-map .main-sidebar {
   color: #efefef;
   overflow: hidden;
+  padding-top: 0;
+  z-index: 1040;
 }
 
 .skin-map .marker-details .marker-name {
@@ -119,7 +121,23 @@
   margin: 20px 0;
 }
 
+.skin-map .entity-title {
+  min-height: 40px;
+  margin-bottom: 5px;
+}
+
+.skin-map .entity-title a {
+  display: flex;
+  align-items: center;
+}
+
+.skin-map .entity-title .entity-image {
+  display: inline-block;
+  margin-right: 5px;
+}
+
 .skin-map .entity-title .entity-name {
+  display: inline;
   font-size: 12pt;
 }
 
@@ -165,5 +183,39 @@
   #map-body.skin-black.sidebar-collapse .main-header .navbar-static-top {
     margin-left: 0;
   }
+}
+
+:root {
+  --leaflet-popup-background: #fff;
+  --leaflet-popup-text: inherit;
+}
+
+/** Theming of the leaflet stuff **/
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip,
+.leaflet-control-layers-expanded,
+.leaflet-control-layers,
+.leaflet-bar a {
+  background-color: var(--leaflet-popup-background) !important;
+  color: var(--leaflet-popup-text) !important;
+}
+
+.leaflet-bar a:hover {
+  background: var(--leaflet-popup-background);
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: var(--leaflet-popup-background) !important;
+}
+
+.leaflet-popup-content-wrapper .leaflet-popup-content,
+.leaflet-popup-tip .leaflet-popup-content {
+  color: var(--leaflet-popup-text);
+}
+
+.leaflet-container {
+  background: transparent !important;
 }
 

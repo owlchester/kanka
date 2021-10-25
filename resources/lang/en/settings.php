@@ -201,7 +201,7 @@ return [
         'change'                => [
             'text'  => [
                 'monthly'   => 'You are subscribing at the :tier tier, billed monthly for :amount.',
-                'yearly'    => 'You are subscribing at the :tier tier, billed annualy for :amount.',
+                'yearly'    => 'You are subscribing at the :tier tier, billed annually for :amount.',
             ],
             'title' => 'Change Subscription Tier',
         ],

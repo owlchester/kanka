@@ -218,17 +218,28 @@
 .cy-panzoom-zoom-only .cy-panzoom-zoom-out {
 	top: 70px;
 }
-#cy {
-  min-height: calc(90vh);
-  background-color: #fff;
-  color: #636b6f;
+:root {
+  --relation-explorer-background: #fff;
+  --relation-explorer-color: #636b6f;
 }
 
-#cy .node-hover {
-  border: 5px solid pink;
+#cy {
+  min-height: calc(90vh);
+  background-color: var(--relation-explorer-background);
+  color: var(--relation-explorer-color);
 }
 
 .cy-panzoom {
   z-index: 800;
+}
+
+.label-tag-bubble {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 8pt;
+  padding: 4px;
+  vertical-align: bottom;
 }
 

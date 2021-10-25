@@ -1,0 +1,142 @@
+
+
+/**
+ * vendor layout fix for ckeditor full screen mode
+ */
+div.mce-fullscreen {
+  z-index: 1400;
+}
+.mce-btn-group:not(:first-child) {
+  border-left: none !important;
+}
+
+.mce-btn-group:not(:first-child) {
+  border-left: none !important;
+}
+
+.editor-panel {
+  padding: 5px;
+
+  .form-group {
+    margin-bottom: 0;
+
+    .mce-container {
+      border: 0;
+      box-shadow: none;
+    }
+  }
+}
+
+/**
+ * Summernote
+ */
+// Chrome bug: merging lines when the body or p elements have a font-size in "em" break stuff
+.note-editable p {
+  font-size: 14px;
+}
+// Avoid floating images in summernote to be too large
+.note-editable img {
+  max-width: 100%;
+}
+.note-editor.note-airframe, .note-editor.note-frame {
+  border: none;
+}
+.note-editable {
+  //color: var(--summernote-editable-text);
+}
+
+.note-editing-area {
+  .mention, .attribute {
+    background-color: #eee;
+    padding: 3px 5px;
+    border-radius: 5px;
+    color: #333 !important;
+    text-decoration: none;
+  }
+}
+// Gallery
+.images-list {
+  .img-item {
+    overflow: hidden;
+    .thumbnail {
+      height: 120px;
+      overflow: hidden;
+      line-height: 120px;
+      background-color: var(--gallery-background);
+      color: var(--gallery-text);
+      border: none;
+      cursor: pointer;
+
+      .text {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
+
+        i {
+          display: block;
+        }
+      }
+
+      &:focus,
+      &:hover {
+        box-shadow: 0 0 0 1px var(--gallery-hover-text), 0 0 2px 1px rgba(30, 140, 190, 0.8);
+        color: var(--gallery-hover-text);
+        outline: 1px solid transparent;
+      }
+    }
+  }
+}
+
+
+/**
+ * Tinymce
+ */
+:root {
+  --tinymce-background: #FFF;
+  --tinymce-border: #c5c5c5;
+  --tinymce-filter: none; // set to invert(90%) for dark mode
+}
+
+// Tinymce stuff for dark mode
+.mce-edit-area, .mce-content-body {
+  filter: var(--tinymce-filter) !important;
+}
+.mce-panel {
+  background-color: var(--tinymce-background) !important;
+  border-color: var(--tinymce-border) !important;
+}
+.mce-menubar {
+  border-color: var(--tinymce-border) !important;
+}
+.mce-edit-area, .mce-content-body {
+  background: none !important;
+}
+.mce-btn {
+  border-color: transparent !important;
+  //border-radius: 2px !important;
+  background: none !important;
+  //color: var(--theme-main-text) !important;
+}
+.mce-menubtn button, .mce-menubtn button span, .mce-ico {
+  //color: var(--theme-main-text) !important;
+}
+.mce-tabs, .mce-tabs+.mce-container-body, .mce-tab {
+  background: none !important;
+}
+.mce-widget, .mce-label, .mce-tab {
+  //text-shadow: 0 1px 1px rgba(0,0,0,0.75) !important;
+}
+.mce-menu-item.mce-disabled, .mce-menu-item.mce-disabled:hover {
+  //background: var(--theme-background) !important;
+}
+#mce-modal-block {
+  background-color: var(--tinymce-background) !important;
+}
+.mce-label {
+  text-shadow: none !important;
+}
+
+// Tinymce mentions dropdown
+.rte-autocomplete {
+  z-index: 9920;
+}

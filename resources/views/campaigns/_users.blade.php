@@ -35,10 +35,10 @@
                 @foreach ($users as $relation)
                     <tr>
                         <td>
-                            <div class="entity-image float-left" style="background-image: url({{ $relation->user->getAvatarUrl() }})" title="{{ $relation->user->name }}">
+                            <div class="entity-image pull-left" style="background-image: url({{ $relation->user->getAvatarUrl() }})" title="{{ $relation->user->name }}">
                             </div>
-                            <div class="entity-name-img">
-                                <span class="text-break">{{ $relation->user->name }}</span>
+                            <div class="user-name text-break">
+                                {{ $relation->user->name }}
                             </div>
                         </td>
                         <td>

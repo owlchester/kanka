@@ -4,8 +4,6 @@ $Detail: #0B1F20;
 $Unfocused: #157778;
 $White: #eee;
 
-@import "_base";
-
 body {
   background-color: $Soft;
   background: linear-gradient(to left, $Detail, $Soft) !important;

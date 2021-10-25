@@ -44,7 +44,7 @@
                         </a>
                     @endif
 
-                    <div class="float-left margin-r-5">
+                    <div class="pull-left margin-r-5">
                         <i class="fab fa-discord fa-3x" style="color: rgb(114, 137, 218)"></i>
                     </div>
                     <strong>Discord</strong>
