@@ -1,93 +1,98 @@
 @import "_base";
 
 :root {
-  --theme-main-text: #777;
-  --theme-hard-text: #eee;
+  --theme-main-text: #A4A4A4;
+  --theme-hard-text: #E1E1E1;
   --theme-soft: #333;
   --theme-detail: #222;
-  --theme-background: #202121;
-  --theme-soft-text: #999;
-  --theme-border: #3D3C3B;
+  --theme-background: #1F1F1F;
+  --theme-soft-text: #A4A4A4;
+  --theme-border: #2E2E2E;
+  --theme-link: #2d8ebd;
+  --theme-link-hover: #345d7c;
+  --theme-soft-background: #121212;
+  --theme-input-text: #fff;
 
 
-  --theme-navbar-background: #262626;
-  --theme-navbar-li-hover-background: var(--theme-background);
+  --main-navbar-background: var(--theme-background);
+  --main-navbar-user-footer: var(--theme-soft);
+  --main-navbar-user-background: var(--theme-background);
+  --main-navbar-hover-background: var(--theme-soft);
+  --main-navbar-text: var(--theme-main-text);
 
-  --theme-table-info-background: #1e2d35;
-  --theme-table-info-hover: #293e4e;
+  --table-highlight: var(--theme-soft);
 
-  --theme-box-border: none;
-  --theme-box-header-border: 1px solid var(--theme-border);
-  --theme-box-background: var(--theme-background);
-
-  --link-text: #999;
-  --link-focus: #fff;
-  --link-hover: #ccc;
-  --breadcrumb-text: var(--link-text);
+  --link-text: var(--theme-link);
+  --link-focus: var(--theme-link);
+  --link-hover: var(--theme-link-hover);
+  --breadcrumb-text: var(--body-text);
   --submenu-link: #999;
-  --submenu-hover-background: #333;
+  --submenu-hover-background: var(--theme-soft);
 
-  --sidebar-background: #333;
-  --tab-text: var(--link-text);
+  --sidebar-background: var(--theme-background);
 
-  --input-background-color: #222;
-  --input-border-color: #3D3C3B;
-  --input-text-color: #fff;
+  --tab-color: var(--theme-main-text);
+  --tab-background: var(--theme-background);
+  --tab-hover-color: var(--theme-hard-text);
+  --tab-hover-background: var(--theme-background);
+  --tab-active-color: var(--theme-hard-text);
+  --tab-active-background: var(--theme-background);
+  --tab-active-border: var(--theme-border);
+
+  --input-background-color: var(--theme-detail);
+  --input-border-color: var(--theme-soft);
+  --input-text-color: var(--theme-input-text);
 
 
-  // Stuff from the base design
   --quick-creator-button-background: var(--theme-soft);
   --quick-creator-button-hover-background: var(--dashboard-widget-admin-border);
   --header-text: var(--theme-hard-text);
 
-  --modal-background: #222;
+  --modal-background: var(--theme-detail);
   --modal-inner-border: transparent;
   --modal-close-opacity: 0.6;
-  --modal-body-text: var(--theme-soft-text);
-  --calendar-today: #333;
-  --calendar-week: #333;
+  --modal-body-text: var(--theme-main-text);
+  --modal-close-color: var(--header-text);
+  --calendar-today: var(--theme-link-hover);
+  --calendar-week: var(--theme-soft);
   --calendar-weather: var(--theme-border);
   --calendar-season-text: var(--theme-main-text);
-  --dashboard-preview-gradient: #222;
-  --dashboard-widget-admin-border: #3D3C3B;
-  --footer-background: #262626;
+  --calendar-event-default: var(-theme-background);
+  --dashboard-preview-gradient: var(--theme-detail);
+  --dashboard-widget-admin-border: var(--theme-soft);
+  --footer-background: var(--theme-soft-background);
   --footer-links-background: rgba(0, 0, 0, 0.2);
   --footer-logo-blue: none;
   --footer-logo-white: unset;
+  --footer-text: var(--theme-main-text);
 
-  --body-background: #262626;
-  --body-text: #888;
+  --body-background: var(--theme-soft-background);
+  --body-text: var(--theme-main-text);
 
   --gallery-text: var(--theme-hard-text);
   --gallery-background: var(--theme-background);
-  --gallery-hover-text: var(--theme-soft-text);
+  --gallery-hover-text: var(--theme-main-text);
 
   --relation-explorer-background: var(--theme-detail);
   --relation-explorer-text: var(--theme-hard-text);
 
   --conversation-comment-background: var(--theme-soft);
 
-  --info-background: #3BA0B6;
-  --success-background: #007239;
-  --danger-background: #814948;
-  --warning-background: #a96f13;
-  --primary-background:  #496e81;
   --default-background: var(--theme-background);
 
-  --tab-background: none;
-  --bg-default-link: #fff;
+  --bg-default-link: var(--theme-input-text);
   --well-background: var(--theme-background);
   --well-border: var(--theme-background);
 
   --dashboard-setup-widget-background: rgba(0, 0, 0, 0.7);
   --dashboard-setup-widget-hover: rgba(0, 0, 0, 0.8);
 
-  --content-wrapper-background: #262626;
+  --content-wrapper-background: var(--theme-soft-background);
 
   --hr-border-top: 1px solid var(--theme-border);
 
   --leaflet-popup-background: var(--theme-background);
-  --leaflet-popup-text: #fff;
+  --leaflet-popup-text: var(--theme-input-text);
 
   --spectrum-border: var(--theme-border);
   --spectrum-background: var(--theme-background);
@@ -101,65 +106,30 @@
   --dropdown-background: var(--theme-background);
   --dropdown-border: var(--theme-border);
   --dropdown-hover-background: var(--search-cursor-background);
+  --dropdown-link: var(--theme-main-text);
 
   --list-group-item-border: var(--theme-border);
   --timeline-item-background: var(--theme-background);
   --timeline-element-border: var(--theme-border);
-}
+  --timeline-item-header-border: var(--theme-border);
 
-// Tinymce stuff for dark mode
-.mce-edit-area, .mce-content-body {
-  filter: invert(90%) !important;
-}
+  --btn-default-background: var(--theme-background);
+  --btn-default-text: var(--theme-main-text);
+  --btn-default-border: var(--theme-border);
+  --btn-default-hover-background: var(--default-background);
+  --btn-default-hover-text: var(--theme-input-text);
+  --label-default-background: var(--theme-background);
+  --label-default-text: var(--theme-main-text);
 
+  --box-background: var(--theme-background);
+  --box-with-border-bottom-border: var(--theme-border);
 
-// Buttons in the navbar
-.navbar-nav > .user-menu > .dropdown-menu > .user-footer .btn-default {
-  background-color:var(--theme-soft);
-  color: var(--theme-link);
-}
+  --box-footer-background: var(--theme-background);
+  --box-footer-border-top: var(--theme-border);
+  --popover-header-background: var(--theme-background);
+  --popover-border: var(--theme-border);
 
-.btn-danger {
-  background-color: var(--danger-background);
-  border: 1px solid var(--danger-background);
-  &:hover, &:focus, .focus {
-    background-color: #a2413f;
-  }
-}
-
-.btn-info {
-  background-color: var(--info-background);
-}
-.btn-primary {
-  background-color: var(--primary-background);
-  border: 1px solid var(--primary-background);
-  &:hover, &:focus, .focus {
-    background-color: #2ba6c1;
-  }
-}
-.btn-warning {
-  background-color: var(--warning-background);
-  border: 1px solid var(--warning-background);
-  &:hover, &:focus, .focus {
-    background-color: #c4841d;
-  }
-}
-.btn-default {
-  background-color: var(--default-background);
-  border: 1px solid var(--theme-border);
-  color: var(--theme-soft-text);
-  &:hover, &:focus, .focus {
-    background-color: var(--default-background);
-    border: 1px solid var(--theme-border);
-    color: var(--theme-hard-text);
-  }
-}
-
-// Icons in navbar
-.skin-black .main-header .navbar .nav > li > a, .skin-black .main-header .navbar > .sidebar-toggle {
-  color: white;
-}
-// Notifications
-.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a {
-  color: #ccc;
+  --tinymce-background: var(--theme-background);
+  --tinymce-border: transparent;
+  --tinymce-filter: invert(90%) !important;
 }

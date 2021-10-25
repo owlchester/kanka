@@ -4,6 +4,7 @@
   --calendar-weather: #ddd;
   --calendar-season: var(--calendar-weather);
   --calendar-season-text: #444;
+  --calendar-event-text: white;
 }
 
 .calendar {
@@ -72,7 +73,7 @@
       }
 
       .colour-pallet {
-        color: white;
+        color: var(--calendar-event-text);
       }
 
       .bg-gray {

@@ -1,6 +1,7 @@
 :root {
   --timeline-item-background: #fff;
   --timeline-element-border: #ddd;
+  --timeline-item-header-border: #f4f4f4;
 }
 
 .timeline > li > .ra, .timeline > li > .fab, .timeline > li > .far, .timeline > li > .fas {
@@ -21,6 +22,9 @@
 .timeline > li > .timeline-item {
   background: var(--timeline-item-background);
   color: var(--body-text);
+  .timeline-header {
+    border-bottom-color: var(--timeline-item-header-border);
+  }
 }
 .timeline > li > .timeline-item > .timeline-header {
   color: var(--header-text);

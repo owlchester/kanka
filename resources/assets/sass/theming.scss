@@ -32,9 +32,7 @@
   --body-text: #636b6f;
   --header-text: inherit;
 
-  --link-text: #3c8dbc;
-  --link-hover: #296282;
-  --link-focus: #72afd2;
+
 
   --breadcrumb-text: #444;
 
@@ -50,26 +48,23 @@
   --modal-inner-border: #f4f4f4;
   --modal-close-opacity: 0.2;
   --modal-body-text: #444;
-
-  --navbar-tab-text: #fff;
-  --navbar-tab-background: #fff;
-
-  --navbar-tab-active-background: #fff;
-  --navbar-tab-active-text: #fff;
-
-  --navbar-tab-hover-background: #fff;
-  --navbar-tab-hover-text: #fff;
+  --modal-close-color: #000;
 
   --submenu-hover-background: #f7f7f7;
   --submenu-link: inherit;
 
-  --dropdown-border: #eee;
-  --dropdown-background: var(--modal-background);
-  --dropdown-hover-background: #e1e3e9;
-  --dropdown-hover-text: inherit;
-
+  --tab-color: #444;
+  --tab-background: #f5f8fa;
+  --tab-hover-color: #999;
+  --tab-hover-background: #f5f8fa;
+  --tab-active-color: #444;
+  --tab-active-background: #fff;
   --tab-content-background: var(--modal-background);
+  --tab-active-border: #f4f4f4;
   --list-group-item-border: #d3e0e9;
+
+  --label-default-background: #d2d6de;
+  --label-default-text: #fff;
 }
 
 body {
@@ -77,6 +72,12 @@ body {
   color: var(--body-text);
 }
 
+/** links **/
+:root {
+  --link-text: #3c8dbc;
+  --link-hover: #296282;
+  --link-focus: #72afd2;
+}
 a {
   color: var(--link-text);
   &:hover {
@@ -86,6 +87,7 @@ a {
     color: var(--link-focus);
   }
 }
+
 .content-header > .breadcrumb > li > a {
   color: var(--breadcrumb-text);
 }
@@ -115,6 +117,10 @@ input, textarea, .select2, select, .input-group .input-group-addon  {
 
 label {
   color: var(--input-text-color);
+}
+.label-default {
+  background-color: var(--label-default-background);
+  color: var(--label-default-text);
 }
 
 .form-control {
@@ -151,6 +157,13 @@ hr {
 
 
 /** Dropdown menus **/
+:root {
+  --dropdown-border: #eee;
+  --dropdown-background: var(--modal-background);
+  --dropdown-hover-background: #e1e3e9;
+  --dropdown-hover-text: inherit;
+  --dropdown-link: #777;
+}
 .dropdown-menu {
   background-color: var(--dropdown-background);
   border: 1px solid var(--dropdown-border);
@@ -161,6 +174,9 @@ hr {
   li > a:hover, li > a:focus {
     background-color: var(--dropdown-hover-background);
     color: var(--dropdown-hover-text);
+  }
+  li > a {
+    color: var(--dropdown-link);
   }
 }
 
@@ -196,21 +212,13 @@ hr {
   color: var(--modal-body-text);
 }
 .close {
-  color: var(--header-text);
-  opacity: var(--modal-close-opacity)
+  color: var(--modal-close-color);
+  opacity: var(--modal-close-opacity);
+  &:hover, &:focus {
+    color: var(--modal-close-color);
+  }
 }
 
-// Standard
-/*
-.nav-tabs-custom > .nav-tabs > li.active:hover > a, .nav-tabs-custom > .nav-tabs > li.active > a {
-  background-color: var(--navbar-tab-active-background);
-  color: var(--navbar-tab-active-text);
-}
-.nav-tabs-custom > .nav-tabs > li:hover > a, .nav-tabs-custom > .nav-tabs > li.active > a, .nav-tabs-custom > .nav-tabs > li.active:hover > a {
-  background-color: var(--navbar-tab-hover-background);
-  color: var(--navbar-tab-hover-text);
-}
-*/
 
 
 .nav-tabs-custom, .nav-tabs, {
@@ -228,11 +236,240 @@ hr {
 .nav > li > a:hover, .nav > li > a:active, .nav > li > a:focus {
   background-color: var(--submenu-hover-background);
   color: var(--submenu-link);
+}
+.box .nav-stacked > li {
+  border-color: var(--box-with-border-bottom-border);
+}
 
+// All the tab stuff
+.nav-tabs > li:hover > a, .nav-tabs > li.active:hover > a {
+  color: var(--tab-hover-color) !important;
+  background-color: var(--tab-hover-background) !important;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover {
+  color: var(--tab-active-color) !important;
+  background-color: var(--tab-active-background) !important;
+}
+.nav-tabs > li > a {
+  color: var(--tab-color) !important;
+  background-color: var(--tab-background) !important;
 }
 
 .list-group-item {
   border-color: var(--list-group-item-border);
   color: var(--header-text);
 }
+.nav-tabs-custom > .nav-tabs > li.active > a {
+  border-color: var(--tab-active-border);
+}
 
+
+/** NAVBAR HELL **/
+:root {
+
+  /*--navbar-tab-text: #fff;
+  --navbar-tab-background: #fff;
+
+  --navbar-tab-active-background: #fff;
+  --navbar-tab-active-text: #fff;
+
+  --navbar-tab-hover-background: #fff;
+  --navbar-tab-hover-text: #fff;*/
+
+  --main-navbar-background: #fff;
+  --main-navbar-text: #333;
+  --main-navbar-user-footer: #f9f9f9;
+  --main-navbar-hover-background: #fff;
+  --main-navbar-user-background: #222;
+}
+.skin-black .main-header .navbar {
+  background-color: var(--main-navbar-background);
+}
+.skin-black .main-header li.user-header {
+  background-color: var(--main-navbar-user-background);
+}
+.navbar-nav > .user-menu > .dropdown-menu > .user-footer {
+  background-color: var(--main-navbar-user-footer);
+  .btn-default {
+    color: var(--btn-default-hover-text);
+  }
+}
+
+
+/** Hover & active on all the navbar buttons **/
+.skin-black .main-header .navbar .nav > li > a, .skin-black .main-header .navbar .nav > .active > a, .skin-black .main-header .navbar .sidebar-toggle, .skin-black .main-header .navbar .nav .open > a {
+  color: var(--main-navbar-text);
+  &:hover, &:active, &:focus, {
+    background-color: var(--main-navbar-hover-background);
+  }
+}
+.skin-black .main-header .navbar .nav .open > a, .skin-black .main-header .navbar .nav > .active > a,
+.skin-black .main-header .navbar .nav .open > a.active {
+  background-color: var(--main-navbar-hover-background);
+}
+.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a, .navbar-nav > .messages-menu > .dropdown-menu > li .menu > li > a:hover, .navbar-nav > .tasks-menu > .dropdown-menu > li .menu > li > a {
+  border-bottom-color: var(--btn-default-background);
+  color: var(--main-navbar-text);
+  &:hover {
+    background-color: var(--main-navbar-hover-background);
+  }
+}
+
+/**
+.navbar-nav > .user-menu > .dropdown-menu > .user-footer {
+  background-color: var(--theme-detail);
+}
+.nav-tabs-custom > .nav-tabs > li:first-of-type.active > a,
+.nav-tabs-custom > .nav-tabs > li.active > a {
+  border-left-color: var(--theme-border);
+  border-right-color: var(--theme-border);
+  border-bottom-color: var(--theme-background);
+}
+.nav-tabs-custom > .nav-tabs > li:hover > a, .nav-tabs-custom > .nav-tabs > li.active > a, .nav-tabs-custom > .nav-tabs > li.active:hover > a  {
+  background-color: var(--theme-background);
+  color: var(--theme-main-text);
+}
+
+.skin-black .main-header .navbar .nav > li > a:hover, .skin-black .main-header .navbar .nav > li > a:active, .skin-black .main-header .navbar .nav > li > a:focus, .skin-black .main-header .navbar .nav .open > a, .skin-black .main-header .navbar .nav .open > a:hover, .skin-black .main-header .navbar .nav .open > a:focus, .skin-black .main-header .navbar .nav > .active > a {
+  color: var(--theme-wrapper-text);
+  background-color: var(--theme-navbar-li-hover-background);
+}
+.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a:hover {
+  color: var(--theme-navbar-notifications-text);
+  background-color: var(--theme-navbar-notifications-background);
+}
+.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a {
+  border-bottom: 1px solid var(--theme-border);
+}
+
+.skin-black .main-header .navbar .sidebar-toggle:hover {
+  color: var(--theme-wrapper-text);
+  background-color: var(--theme-navbar-li-hover-background);
+}
+ */
+
+.nav-tabs-custom > .nav-tabs > li.active:hover > a, .nav-tabs-custom > .nav-tabs > li.active > a {
+  background-color: var(--navbar-tab-active-background);
+  color: var(--navbar-tab-active-text);
+}
+.nav-tabs-custom > .nav-tabs > li:hover > a, .nav-tabs-custom > .nav-tabs > li.active > a, .nav-tabs-custom > .nav-tabs > li.active:hover > a {
+  background-color: var(--navbar-tab-hover-background);
+  color: var(--navbar-tab-hover-text);
+}
+
+/** Buttons **/
+:root {
+  --btn-default-background: #f4f4f4;
+  --btn-default-text: #444;
+  --btn-default-border: #ddd;
+  --btn-default-hover-text: #636b6f;
+  --btn-default-hover-background: #e7e7e7;
+  --btn-default-hover-border: #adadad;
+
+  --label-default-background: #d2d6de;
+  --label-default-text: #fff;
+
+}
+.btn-default, .btn-app {
+  background-color: var(--btn-default-background);
+  color: var(--btn-default-text);
+  border-color: var(--btn-default-border);
+
+  &:hover, &:focus, &:active {
+    background-color: var(--btn-default-hover-background);
+    border-color: var(--btn-default-hover-border);
+    color: var(--btn-default-hover-text);
+  }
+}
+.btn-default:active:hover, .btn-default:active:focus, .btn-default:active.focus, .btn-default.active:hover, .btn-default.active:focus, .btn-default.active.focus, .open > .btn-default.dropdown-toggle:hover, .open > .btn-default.dropdown-toggle:focus, .open > .btn-default.dropdown-toggle.focus, .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
+  background-color: var(--btn-default-hover-background);
+  border-color: var(--btn-default-hover-border);
+  color: var(--btn-default-hover-text);
+}
+.label-default {
+  background-color: var(--label-default-background);
+  color: var(--btn-default-text);
+}
+.pagination > .disabled > span, .pagination > .disabled > span:hover, .pagination > .disabled > span:focus, .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus, .pagination > li > a {
+  background-color: var(--label-default-background);
+  color: var(--btn-default-text);
+  border-color: var(--btn-default-border);
+  &:hover {
+    background-color: var(--label-default-hover-background);
+    color: var(--label-default-hover-text);
+  }
+}
+
+/** Boxes, Panels, Timelines **/
+:root {
+  --box-border: none;
+  --box-background: #ffffff;
+
+  --box-header-background: transparent;
+  --box-header-text: var(--header-text);
+
+  --box-with-border-background: none;
+  --box-with-border-bottom-border: #f4f4f4;
+
+  --box-footer-background: #fff;
+  --box-footer-border-top: #f4f4f4;
+
+  --popover-border: rgba(0, 0, 0, 0.2);
+  --popover-header-background: #f7f7f7;
+}
+
+
+/**
+ * All of the boxes follow a similar design in our themes
+ */
+.box, .panel, .timeline-item, .popover {
+  border: var(--box-border);
+  background-color: var(--box-background);
+
+  .box-header, .panel-heading, .timeline-header {
+    background-color: var(--box-header-background);
+    color: var(--box-header-text);
+  }
+  .with-border {
+    background: var(--box-with-border-background);
+    border-bottom-color: var(--box-with-border-bottom-border);
+  }
+
+  .box-footer, .panel-footer {
+    background: var(--box-footer-background);
+    border-top-color: var(--box-footer-border-top);
+  }
+}
+
+.panel-default > .panel-heading {
+  border-color: var(--box-with-border-bottom-border);
+}
+.popover {
+  border: 1px solid var(--popover-border);
+  .popover-title {
+    background-color: var(--popover-header-background);
+    border-color: var(--box-with-border-bottom-border);
+  }
+}
+
+
+/** Tables */
+:root {
+  --table-highlight: #f9f9f9;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: var(--table-highlight);
+}
+.table-hover {
+  tbody {
+    tr {
+      &:hover {
+        background-color: var(--table-highlight);
+      }
+    }
+  }
+}
+.table :is(thead, tbody, tfoot) tr :is(td, th) {
+  border-color: var(--input-border-color);
+}

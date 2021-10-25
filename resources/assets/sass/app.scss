@@ -20,8 +20,6 @@
   --quick-creator-button-hover-background: rgb(45, 127, 237);
   --quick-creator-button-hover-text: #fff;
 
-  --tab-background: #f5f8fa;
-  --tab-text: #444;
   --bg-default-link: unset;
 
   --gallery-folder-text: unset;
@@ -245,17 +243,6 @@ table {
   }
 }
 
-.main-header {
-  .sidebar-toggle {
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-  }
-}
 
 /** news */
 .news .box-body img {
@@ -379,32 +366,6 @@ tr.entity-hidden {
   display: inline-block;
 }
 
-/**
- * vendor layout fix for ckeditor full screen mode
- */
-div.mce-fullscreen {
-  z-index: 1400;
-}
-.mce-btn-group:not(:first-child) {
-  border-left: none !important;
-}
-
-.mce-btn-group:not(:first-child) {
-  border-left: none !important;
-}
-
-.editor-panel {
-  padding: 5px;
-
-  .form-group {
-    margin-bottom: 0;
-
-    .mce-container {
-      border: 0;
-      box-shadow: none;
-    }
-  }
-}
 
 .export-visible {
   display: none;
@@ -598,9 +559,6 @@ div.mce-fullscreen {
 .datepicker {
   z-index: 1062 !important;
 }
-.popover {
-  max-width: 296px;
-}
 
 // Private/Public
 .entity-attributes {
@@ -689,11 +647,7 @@ td.breakable {
     border-bottom: none;
 
     li {
-      background-color: var(--tab-background);
       margin-right: 2px;
-      a {
-        color: var(--tab-text);
-      }
     }
   }
 
@@ -883,65 +837,7 @@ td.breakable {
   }
 }
 
-/**
- * Summernote
- */
-// Chrome bug: merging lines when the body or p elements have a font-size in "em" break stuff
-.note-editable p {
-  font-size: 14px;
-}
-// Avoid floating images in summernote to be too large
-.note-editable img {
-  max-width: 100%;
-}
-.note-editor.note-airframe, .note-editor.note-frame {
-  border: none;
-}
-.note-editable {
-  //color: var(--summernote-editable-text);
-}
 
-.note-editing-area {
-  .mention, .attribute {
-    background-color: #eee;
-    padding: 3px 5px;
-    border-radius: 5px;
-    color: #333 !important;
-    text-decoration: none;
-  }
-}
-// Gallery
-.images-list {
-  .img-item {
-    overflow: hidden;
-    .thumbnail {
-      height: 120px;
-      overflow: hidden;
-      line-height: 120px;
-      background-color: var(--gallery-background);
-      color: var(--gallery-text);
-      border: none;
-      cursor: pointer;
-
-      .text {
-        display: inline-block;
-        vertical-align: middle;
-        line-height: normal;
-
-        i {
-          display: block;
-        }
-      }
-
-      &:focus,
-      &:hover {
-        box-shadow: 0 0 0 1px var(--gallery-hover-text), 0 0 2px 1px rgba(30, 140, 190, 0.8);
-        color: var(--gallery-hover-text);
-        outline: 1px solid transparent;
-      }
-    }
-  }
-}
 
 // Attributes in entities and text area
 .attribute, .note-editing-area > .attribute {
@@ -1036,4 +932,5 @@ summary { display: list-item; }
 @import "boosted";
 @import "entity";
 @import "footer";
+@import "editor";
 @import "../components/rpg/scss/rpg-awesome";
