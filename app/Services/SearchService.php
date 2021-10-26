@@ -211,7 +211,7 @@ class SearchService
             if ($model->child) {
                 $img = '';
                 if (!empty($model->child->image)) {
-                    $img = '<span class="entity-image-mention" style="background-image: url(\''
+                    $img = '<span class="entity-image" style="background-image: url(\''
                         . $model->child->getImageUrl(40) . '\');"></span> ';
                 }
 

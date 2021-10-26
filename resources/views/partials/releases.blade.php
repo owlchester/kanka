@@ -25,7 +25,7 @@
                 @endauth
             </div>
             <div class="box-body release-excerpt">
-                {!! nl2br($release->excerpt) !!}
+                <p>{!! nl2br($release->excerpt) !!}</p>
             </div>
         </div>
     </div>

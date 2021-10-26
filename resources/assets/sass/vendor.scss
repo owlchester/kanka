@@ -82,11 +82,18 @@
 }
 .tt-menu {
   .list-group-item {
-    background-color: unset;
     color: var(--search-cursor-text) !important;
     border-color: var(--search-border);
+    background-color: var(--search-background);
   }
-  background-color: var(--search-background);
+
+  .entity-image {
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-right: 8px;
+    display: inline-block;
+  }
 }
 
 @media (max-width: 767px) {

@@ -36,16 +36,19 @@
   --tab-hover-background: var(--theme-background);
   --tab-active-color: var(--theme-hard-text);
   --tab-active-background: var(--theme-background);
-  --tab-active-border: var(--theme-border);
+  --tab-active-border: transparent;
 
   --input-background-color: var(--theme-detail);
   --input-border-color: var(--theme-soft);
   --input-text-color: var(--theme-input-text);
+  --input-background-disabled-color: var(--theme-background);
 
 
   --quick-creator-button-background: var(--theme-soft);
   --quick-creator-button-hover-background: var(--dashboard-widget-admin-border);
   --header-text: var(--theme-hard-text);
+  --text-help: #a4aaae;
+  --code-background: #c3c3c3;
 
   --modal-background: var(--theme-detail);
   --modal-inner-border: transparent;
@@ -108,6 +111,7 @@
   --dropdown-link: var(--theme-main-text);
 
   --list-group-item-border: var(--theme-border);
+  --list-group-item-background: var(--theme-background);
   --timeline-item-background: var(--theme-background);
   --timeline-element-border: var(--theme-border);
   --timeline-item-header-border: var(--theme-border);

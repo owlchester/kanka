@@ -103,13 +103,15 @@ background-image: url(https://images.kanka.io/app/L5nSYCLgwtxR3wlUGk16fMZ0zAU=/2
   z-index: 820;
 }
 .skin-black .sidebar-menu {
-
   .ra, .fas, .fab, .far {
     display: inline-block;
     width: 20px;
   }
   li > .treeview-menu {
     background-color: unset;
+  }
+  li > a {
+      padding: 8px 5px 8px 15px;
   }
 }
 

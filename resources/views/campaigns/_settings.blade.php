@@ -8,7 +8,7 @@
             <i class="fa fa-th-large"></i> {{ __('campaigns.show.tabs.settings') }}
         </h3>
         <div class="box-tools">
-            <button class="btn btn-secondary btn-sm" data-toggle="modal"
+            <button class="btn btn-default btn-sm" data-toggle="modal"
                     data-target="#settings-help">
                 <i class="fas fa-question-circle" aria-hidden="true"></i>
                 {!! __('campaigns.members.actions.help') !!}

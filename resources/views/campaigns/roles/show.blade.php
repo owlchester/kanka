@@ -27,7 +27,7 @@
                     <h3 class="box-title">{{ __('crud.permissions.title') }}</h3>
 
                     <div class="box-tools">
-                        <button class="btn btn-sm btn-secondary" data-target="#permission-modal" data-toggle="modal">
+                        <button class="btn btn-sm btn-default" data-target="#permission-modal" data-toggle="modal">
                             <i class="fa fa-question-circle"></i> {{ __('campaigns.roles.modals.details.button') }}
                         </button>
                     </div>

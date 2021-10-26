@@ -11,7 +11,7 @@
             <i class="fa fa-users"></i> {{ __('campaigns.show.tabs.members') }}
         </h3>
         <div class="box-tools">
-            <button class="btn btn-secondary btn-sm" data-toggle="modal"
+            <button class="btn btn-default btn-sm" data-toggle="modal"
                     data-target="#members-help">
                 <i class="fas fa-question-circle" aria-hidden="true"></i>
                     {{ __('campaigns.members.actions.help') }}
@@ -133,7 +133,7 @@
                 {{ __('campaigns.members.invite.title') }}
             </h3>
             <div class="box-tools">
-                <button class="btn btn-secondary btn-sm" data-toggle="modal"
+                <button class="btn btn-default btn-sm" data-toggle="modal"
                         data-target="#invite-help">
                     <i class="fas fa-question-circle" aria-hidden="true"></i>
                     <span class="hidden-xs hidden-md">{{ __('campaigns.members.actions.help') }}</span>

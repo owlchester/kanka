@@ -130,6 +130,10 @@
   background-color: unset;
 }
 
+.skin-black .sidebar-menu li > a {
+  padding: 8px 5px 8px 15px;
+}
+
 section.sidebar-campaign {
   height: 160px;
   background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background) 100%);

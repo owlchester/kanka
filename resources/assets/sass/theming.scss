@@ -38,6 +38,7 @@
 
   --input-border-color: #d2d6de;
   --input-background-color: #fff;
+  --input-background-disabled-color: #eeeeee;
   --input-text-color: inherit;
 
   --content-wrapper-background: #ecf0f5;
@@ -62,9 +63,14 @@
   --tab-content-background: var(--modal-background);
   --tab-active-border: #f4f4f4;
   --list-group-item-border: #d3e0e9;
+  --list-group-item-background: #fff;
 
   --label-default-background: #d2d6de;
   --label-default-text: #fff;
+
+  --text-help: #979797;
+  --code-background: #f9f2f4;
+  --code-text: #c7254e;
 }
 
 body {
@@ -127,6 +133,10 @@ label {
   border-color: var(--input-border-color);
   background-color: var(--input-background-color);
   color: var(--input-text-color);
+}
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+  background-color: var(--input-background-disabled-color);
+
 }
 
 hr {
@@ -259,10 +269,23 @@ hr {
   border-color: var(--list-group-item-border);
   color: var(--header-text);
 }
+.list-group-unbordered {
+  .list-group-item {
+    background: var(--list-group-item-background);
+  }
+}
 .nav-tabs-custom > .nav-tabs > li.active > a {
   border-color: var(--tab-active-border);
 }
 
+
+.help-block {
+  color: var(--text-help);
+}
+code {
+  color: var(--code-text);
+  background-color: var(--code-background);
+}
 
 /** NAVBAR HELL **/
 :root {
@@ -451,6 +474,9 @@ hr {
     border-color: var(--box-with-border-bottom-border);
   }
 }
+.box-default > .box-header > .box-title {
+  color: #444;
+}
 
 
 /** Tables */
@@ -474,3 +500,4 @@ hr {
 .table :is(thead, tbody, tfoot) tr :is(td, th) {
   border-color: var(--table-border);
 }
+

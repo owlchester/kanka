@@ -80,24 +80,6 @@
     }
   }
 
-  .nav-tabs-custom {
-    ul.nav-tabs {
-      display: inline-flex;
-      width: 100%;
-      overflow-x: auto;
-      -ms-overflow-style: none; /*// IE 10+*/
-      overflow: -moz-scrollbars-none; /*// Firefox*/
-    }
-
-    .form-group {
-      margin-bottom: 0;
-    }
-
-    .nav-tabs::-webkit-scrollbar {
-      display: none; /*Safari and Chrome*/
-    }
-  }
-
   .dl-force-mobile {
     dt {
       float: left;
@@ -122,5 +104,23 @@
 @media (max-width: 991px) {
   .content-header > .breadcrumb {
     background-color: transparent;
+  }
+
+  .nav-tabs-custom {
+    ul.nav-tabs {
+      display: inline-flex;
+      width: 100%;
+      overflow-x: auto;
+      -ms-overflow-style: none; /*// IE 10+*/
+      overflow: -moz-scrollbars-none; /*// Firefox*/
+    }
+
+    .form-group {
+      margin-bottom: 0;
+    }
+
+    .nav-tabs::-webkit-scrollbar {
+      display: none; /*Safari and Chrome*/
+    }
   }
 }
