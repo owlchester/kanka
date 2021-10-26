@@ -32,6 +32,11 @@
   display: block;
 }
 
+.login-page .btn-link,
+.register-page .btn-link {
+  white-space: unset;
+}
+
 /* Hover Effects on Card */
 
 @media (min-width: 992px) {
