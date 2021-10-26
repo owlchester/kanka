@@ -82,6 +82,8 @@
   --text-help: #979797;
   --code-background: #f9f2f4;
   --code-text: #c7254e;
+  --pre-background: #f9f9f9;
+  --pre-text: #333;
 }
 
 body {
@@ -338,6 +340,11 @@ hr {
 code {
   color: var(--code-text);
   background-color: var(--code-background);
+}
+
+pre {
+  color: var(--pre-text);
+  background-color: var(--pre-background);
 }
 
 /** NAVBAR HELL **/

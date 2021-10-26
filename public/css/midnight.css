@@ -41,6 +41,7 @@
   --header-text: var(--theme-hard-text);
   --text-help: #a4aaae;
   --code-background: #c3c3c3;
+  --pre-background: var(--code-background);
   --modal-background: var(--theme-detail);
   --modal-inner-border: transparent;
   --modal-close-opacity: 0.6;
