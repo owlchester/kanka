@@ -2,6 +2,8 @@
  * @var \App\Models\Map $map
  */
 $campaign = CampaignLocalization::getCampaign();
+$themeOverride = request()->get('_theme');
+$specificTheme = null;
 ?><!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -26,7 +28,8 @@ $campaign = CampaignLocalization::getCampaign();
           crossorigin=""/>
     <link rel="stylesheet" href="https://ppete2.github.io/Leaflet.PolylineMeasure/Leaflet.PolylineMeasure.css" />
 
-@if (request()->has('_theme') && in_array(request()->get('_theme'), ['dark', 'midnight', 'base']))
+@if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
+    @php $specificTheme = $themeOverride; @endphp
     @if(request()->get('_theme') != 'base')
         <link href="{{ mix('css/' . request()->get('_theme') . '.css') }}" rel="stylesheet">
     @endif
@@ -34,9 +37,11 @@ $campaign = CampaignLocalization::getCampaign();
     @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme))
         @if ($campaign->theme_id !== 1)
             <link href="{{ mix('css/' . $campaign->theme->name . '.css') }}" rel="stylesheet">
+            @php $specificTheme = $campaign->theme->name @endphp
         @endif
     @elseif (auth()->check() && !empty(auth()->user()->theme))
         <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">
+        @php $specificTheme = auth()->user()->theme @endphp
     @endif
 @endif
 @if(!empty($campaign) && $campaign->boosted() && $campaign->hasPluginTheme())
@@ -45,9 +50,9 @@ $campaign = CampaignLocalization::getCampaign();
 @if (!empty($campaign) && $campaign->boosted())
     <link href="{{ route('campaign.css', ['ts' => \App\Facades\CampaignCache::stylesTimestamp()]) }}" rel="stylesheet">
 @endif
-    @yield('styles')
+@yield('styles')
 </head>
-<body id="map-body" class="map-page skin-black skin-map sidebar-mini sidebar-collapse">
+<body id="map-body" class="map-page skin-black skin-map sidebar-mini sidebar-collapse" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
 @include('layouts._tracking-fallback')
 
     <div id="app" class="wrapper">

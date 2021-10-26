@@ -13,7 +13,6 @@
 @section('content')
     <div class="map map-explore" id="map{{ $map->id }}" style="width: 100%; height: 100%;">
     </div>
-
 @endsection
 
 @section('scripts')
@@ -116,8 +115,8 @@
     @parent
 
     <style>
-        @foreach ($map->markers as $marker)
-        @if ($marker->visible())
+@foreach ($map->markers as $marker)
+    @if ($marker->visible())
 
         .marker-{{ $marker->id }} {
             @if (!empty($marker->font_colour))
@@ -149,10 +148,8 @@
             font-size: {{ $marker->pinSize(false) / 2 }}px;
         }
 
-        @endif
-
-        @endforeach
-
+    @endif
+@endforeach
     </style>
 @endsection
 

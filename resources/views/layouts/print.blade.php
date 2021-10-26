@@ -3,8 +3,10 @@
  * @var \App\Models\Campaign $campaign
  * @var \App\Models\MiscModel $miscModel
  */
-$campaign = CampaignLocalization::getCampaign(); ?>
-<!DOCTYPE html>
+$campaign = CampaignLocalization::getCampaign();
+$themeOverride = request()->get('_theme');
+$specificTheme = null;
+?><!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" @if(app()->getLocale() == 'he') dir="rtl" @endif>
 <head>
     <meta charset="utf-8">
@@ -38,17 +40,20 @@ $campaign = CampaignLocalization::getCampaign(); ?>
 @endif
 @yield('styles')
 
-@if (request()->has('_theme') && in_array(request()->get('_theme'), ['dark', 'midnight', 'base']))
+@if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
+    @php $specificTheme = $themeOverride; @endphp
     @if(request()->get('_theme') != 'base')
     <link href="{{ mix('css/' . request()->get('_theme') . '.css') }}" rel="stylesheet">
     @endif
 @else
     @if (!empty($campaign) && $campaign->boosted() && !empty($campaign->theme))
-    @if ($campaign->theme_id !== 1)
-        <link href="{{ mix('css/' . $campaign->theme->name . '.css') }}" rel="stylesheet">
-    @endif
+        @if ($campaign->theme_id !== 1)
+            <link href="{{ mix('css/' . $campaign->theme->name . '.css') }}" rel="stylesheet">
+            @php $specificTheme = $campaign->theme->name @endphp
+        @endif
     @elseif (auth()->check() && !empty(auth()->user()->theme))
         <link href="{{ mix('css/' . auth()->user()->theme . '.css') }}" rel="stylesheet">
+        @php $specificTheme = auth()->user()->theme @endphp
     @endif
 @endif
 
@@ -61,8 +66,8 @@ $campaign = CampaignLocalization::getCampaign(); ?>
     <link href="{{ mix('css/print.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 </head>
-{{-- Hide the sidebar if the there is no current campaign --}}
-<body class="skin-black sidebar-mini @if (!empty($campaign) || (auth()->check() && auth()->user()->hasCampaigns()) || (!empty($sidebar) && $sidebar == 'settings'))@else layout-top-nav @endif @if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses() }}@endif @if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif">
+
+<body class="skin-black sidebar-mini @if (!empty($campaign) || (auth()->check() && auth()->user()->hasCampaigns()) || (!empty($sidebar) && $sidebar == 'settings'))@else layout-top-nav @endif @if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses() }}@endif @if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
 @include('layouts._tracking-fallback')
     <div id="app" class="wrapper">
 
