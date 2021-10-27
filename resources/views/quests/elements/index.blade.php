@@ -48,7 +48,7 @@
                         @continue
                     @endif
                     <div class="col-md-6">
-                        <div class="box box-widget widget-user-2 box-quest-element">
+                        <div class="box box-widget widget-user-2 box-quest-element" id="quest-element-{{ $element->id }}">
                             <div class="widget-user-header {{ $element->colourClass() }}">
                                 @if ($element->entity)
                                 <div class="widget-user-image">
@@ -62,11 +62,11 @@
                                         <i class="fas fa-lock pull-right" title="{{ __('crud.is_private') }}"></i>
                                     @endif
                                     @if($element->entity)
-                                        {!! $element->entity->tooltipedLink() !!}
+                                        {!! $element->entity->tooltipedLink($element->name) !!}
                                     @else
-                                        <a href="#quest-element-{{$element->id}}" class="name">
+                                        <span class="name">
                                             {!! $element->name !!}
-                                        </a>
+                                        </span>
                                     @endif
                                 </h3>
                                 <h5 class="widget-user-desc">{!! $element->role !!}<br /></h5>
