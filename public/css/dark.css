@@ -52,7 +52,7 @@
   --calendar-weather: var(--theme-border);
   --calendar-season-text: var(--theme-main-text);
   --calendar-event-default: var(-theme-background);
-  --dashboard-preview-gradient: var(--theme-detail);
+  --dashboard-preview-gradient: var(--theme-background);
   --dashboard-widget-admin-border: var(--theme-soft);
   --footer-background: var(--theme-soft-background);
   --footer-links-background: rgba(0, 0, 0, 0.2);
@@ -100,6 +100,8 @@
   --btn-default-hover-text: var(--theme-input-text);
   --label-default-background: var(--theme-background);
   --label-default-text: var(--theme-main-text);
+  --pagination-text: var(--theme-main-text);
+  --pagination-background: var(--theme-background);
   --box-background: var(--theme-background);
   --box-with-border-bottom-border: var(--theme-border);
   --box-footer-background: var(--theme-background);

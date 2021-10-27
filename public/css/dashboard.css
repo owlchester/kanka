@@ -257,6 +257,14 @@
   min-width: 35px;
 }
 
+.widget-recent-list .flex .fa,
+.widget-recent-list .flex .far,
+.widget-recent-list .flex .fas,
+.widget-recent-list .flex .fab,
+.widget-recent-list .flex .ra {
+  margin-left: 5px;
+}
+
 .widget-recent-list .flex .blame {
   margin-left: auto;
   font-size: 10pt;
@@ -286,6 +294,10 @@
   display: inline-block;
   vertical-align: middle;
   margin-right: 6px;
+}
+
+.widget-preview .panel-body {
+  overflow: hidden;
 }
 
 .widget-preview table {

@@ -530,6 +530,11 @@ pre {
   color: var(--btn-default-text);
 }
 
+:root {
+  --pagination-text: #777;
+  --pagination-background: #fff;
+}
+
 .pagination > .disabled > span,
 .pagination > .disabled > span:hover,
 .pagination > .disabled > span:focus,
@@ -537,8 +542,8 @@ pre {
 .pagination > .disabled > a:hover,
 .pagination > .disabled > a:focus,
 .pagination > li > a {
-  background-color: var(--label-default-background);
-  color: var(--btn-default-text);
+  background-color: var(--pagination-background);
+  color: var(--pagination-text);
   border-color: var(--btn-default-border);
 }
 

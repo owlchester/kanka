@@ -112,15 +112,6 @@ $(document).ready(function () {
       $(this).html('<i class="fa fa-chevron-down"></i>');
     }
   });
-  $.each($('[data-toggle="preview"]'), function (i) {
-    // If we are exactly the max-height, some content is hidden
-    // console.log('compare', $(this).height(), 'vs', $(this).css('max-height'));
-    if ($(this).height() === parseInt($(this).css('max-height'))) {
-      $(this).next().removeClass('hidden');
-    } else {
-      $(this).removeClass('pinned-entity preview');
-    }
-  });
   $.each($('[data-widget="remove"]'), function (i) {
     $(this).click(function (e) {
       $.post({
@@ -143,6 +134,7 @@ $(document).ready(function () {
   initDashboardRecent();
   initDashboardCalendars();
   initFollow();
+  removePreviewExpander();
 });
 /**
  *
@@ -240,13 +232,7 @@ function initDashboardRecent() {
       $(this).closest('.widget-recent-list').append(data);
       $(this).remove();
       initDashboardRecent();
-      window.ajaxTooltip(); // Reload tooltips
-      // Inject the isMobile variable into the window. We don't want ALL of the javascript
-      // for mobiles, namely the tooltip tool.
-      // window.kankaIsMobile = window.matchMedia("only screen and (max-width: 760px)");
-      // if (!window.kankaIsMobile.matches) {
-      //     $('[data-toggle="tooltip"]').tooltip();
-      // }
+      window.ajaxTooltip();
     });
   });
 }
@@ -314,6 +300,19 @@ function initFollow() {
         text.html(btn.data('follow'));
       }
     });
+  });
+}
+
+function removePreviewExpander() {
+  $.each($('[data-toggle="preview"]'), function (i) {
+    // If we are exactly the max-height, some content is hidden
+    // console.log('compare', $(this).height(), 'vs', $(this).css('max-height'));
+    if ($(this).height() === parseInt($(this).css('max-height'))) {
+      $(this).next().removeClass('hidden');
+    } else {
+      $(this).removeClass('pinned-entity preview');
+    } //$(this).next().removeClass('hidden');
+
   });
 }
 
