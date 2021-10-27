@@ -8,6 +8,11 @@
         </a>
 
         {!! $entity->tooltipedLink() !!}
+
+        @if ($entity->is_private)
+            <i class="fas fa-lock" title="{{ __('crud.is_private') }}"></i>
+        @endif
+
         <div class="blame">
             {{ !empty($entity->updated_by) ? \App\Facades\UserCache::name($entity->updated_by) : trans('crud.history.unknown') }}<br class="hidden-xs" />
 @can('history', [$entity, $campaign])

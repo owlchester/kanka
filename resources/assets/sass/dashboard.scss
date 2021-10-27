@@ -265,6 +265,10 @@
       min-width: 35px;
     }
 
+    .fa, .far, .fas, .fab, .ra {
+      margin-left: 5px;
+    }
+
     .blame {
       margin-left: auto;
       font-size: 10pt;
@@ -297,6 +301,9 @@
       vertical-align: middle;
       margin-right: 6px;
     }
+  }
+  .panel-body {
+    overflow: hidden;
   }
 
   table {
