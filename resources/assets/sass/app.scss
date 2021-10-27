@@ -552,6 +552,11 @@ summary { display: list-item; }
 .table .table-actions .dropdown-toggle i {
   margin: 3px 10px;
 }
+.table-responsive {
+  table {
+    margin-bottom: 20px;
+  }
+}
 
 .user-role-update {
   .btn {

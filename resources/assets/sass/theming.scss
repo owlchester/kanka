@@ -32,14 +32,13 @@
   --body-text: #636b6f;
   --header-text: inherit;
 
-
-
   --breadcrumb-text: #444;
 
   --input-border-color: #d2d6de;
   --input-background-color: #fff;
   --input-background-disabled-color: #eeeeee;
   --input-text-color: inherit;
+  --input-file-filter: none;
 
   --content-wrapper-background: #ecf0f5;
 
@@ -114,6 +113,9 @@ input, textarea, .select2, select, .input-group .input-group-addon  {
   //border-radius: 0 !important;
   background-color: var(--input-background-color);
   color: var(--input-text-color);
+}
+input[type=checkbox], input[type=file] {
+  filter: var(--input-file-filter);
 }
 .select2 {
   border: none;
@@ -270,6 +272,7 @@ hr {
 .list-group-item {
   border-color: var(--list-group-item-border);
   color: var(--header-text);
+  background: var(--list-group-item-background);
 }
 .list-group-unbordered {
   .list-group-item {

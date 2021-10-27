@@ -35,6 +35,7 @@
   --input-border-color: var(--theme-soft);
   --input-text-color: var(--theme-input-text);
   --input-background-disabled-color: var(--theme-background);
+  --input-file-filter: brightness(0.8);
   --quick-creator-button-background: var(--theme-soft);
   --quick-creator-button-hover-background: var(--dashboard-widget-admin-border);
   --header-text: var(--theme-hard-text);
