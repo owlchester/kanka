@@ -1,11 +1,7 @@
 @extends('layouts.app', [
-    'title' => trans('calendars.events.title', ['name' => $model->name]),
-    'description' => trans('calendars.events.description'),
-    'breadcrumbs' => [
-        ['url' => route('calendars.index'), 'label' => __('calendars.index.title')],
-        ['url' => route('calendars.show', $model), 'label' => $model->name],
-        trans('calendars.show.tabs.events')
-    ],
+    'title' => __('calendars.events.title', ['name' => $model->name]),
+    'description' => __('calendars.events.description'),
+    'breadcrumbs' => false,
     'canonical' => true,
     'mainTitle' => false,
     'miscModel' => $model,

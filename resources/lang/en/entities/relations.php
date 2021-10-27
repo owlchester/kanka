@@ -65,7 +65,7 @@ return [
         'target'    => 'Choose an entity',
     ],
     'show'          => [
-        'title' => 'Relations for :name',
+        'title' => ':name Connections',
     ],
     'teaser'        => 'Boost the campaign to get access to the relations explorer. Click to learn more about boosted campaigns.',
     'types'         => [
