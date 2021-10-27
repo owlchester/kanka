@@ -31,7 +31,7 @@
             </li>
             <li class="{{ $sidebar->settings('marketplace') }}">
                 <a href="{{ route('settings.marketplace') }}">
-                    <i class="fas fa-shopping-cart"></i> <span>{{ __('settings.menu.marketplace') }}</span>
+                    <i class="fas fa-palette"></i> <span>{{ __('settings.menu.marketplace') }}</span>
                 </a>
             </li>
 
