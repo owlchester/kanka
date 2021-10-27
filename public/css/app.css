@@ -2069,6 +2069,9 @@ div.mce-fullscreen {
   --tinymce-background: #FFF;
   --tinymce-border: #c5c5c5;
   --tinymce-filter: none;
+  --tinymce-input-background: #fff;
+  --tinymce-input-text: #595959;
+  --tinymce-input-border: #c5c5c5;
 }
 
 .mce-edit-area,
@@ -2099,6 +2102,12 @@ div.mce-fullscreen {
 .mce-tabs + .mce-container-body,
 .mce-tab {
   background: none !important;
+}
+
+.mce-textbox {
+  background-color: var(--tinymce-input-background) !important;
+  color: var(--tinymce-input-text) !important;
+  border-color: var(--tinymce-input-border) !important;
 }
 
 #mce-modal-block {

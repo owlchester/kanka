@@ -98,6 +98,10 @@ div.mce-fullscreen {
   --tinymce-background: #FFF;
   --tinymce-border: #c5c5c5;
   --tinymce-filter: none; // set to invert(90%) for dark mode
+
+  --tinymce-input-background: #fff;
+  --tinymce-input-text: #595959;
+  --tinymce-input-border: #c5c5c5;
 }
 
 // Tinymce stuff for dark mode
@@ -131,6 +135,11 @@ div.mce-fullscreen {
 }
 .mce-menu-item.mce-disabled, .mce-menu-item.mce-disabled:hover {
   //background: var(--theme-background) !important;
+}
+.mce-textbox {
+  background-color: var(--tinymce-input-background) !important;
+  color: var(--tinymce-input-text) !important;
+  border-color: var(--tinymce-input-border) !important;
 }
 #mce-modal-block {
   background-color: var(--tinymce-background) !important;

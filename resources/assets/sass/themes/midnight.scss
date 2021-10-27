@@ -139,4 +139,7 @@
   --tinymce-background: var(--theme-background);
   --tinymce-border: transparent;
   --tinymce-filter: invert(90%) !important;
+  --tinymce-input-background: var(--theme-background);
+  --tinymce-input-border: var(--theme-border);
+  --tinymce-input-text: var(--theme-main-text);
 }
