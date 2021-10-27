@@ -258,7 +258,7 @@ class CampaignPolicy
      */
     public function relations(?User $user, Campaign $campaign): bool
     {
-        return $user && UserCache::user($user)->admin() && $campaign->boosted();
+        return $user && UserCache::user($user)->admin();
     }
 
     /**
