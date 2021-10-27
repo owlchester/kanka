@@ -120,12 +120,16 @@ class QuestElement extends Model
         return $this->colour == 'grey' ? 'bg-gray' : 'bg-' . $this->colour;
     }
 
+    /**
+     * @return string
+     */
     public function name(): string
     {
-        if ($this->entity) {
+        if (empty($this->name) && $this->entity) {
             return $this->entity->name;
         }
 
         return (string) $this->name;
+
     }
 }

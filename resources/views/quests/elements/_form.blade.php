@@ -6,6 +6,7 @@
 <div class="row">
     <div class="col-md-6">
         <div class="form-group required">
+            <input type="hidden" name="entity_id" value="" />
             {!! Form::select2(
                 'entity_id',
                 (!empty($model) && $model->entity ? $model->entity : null),
