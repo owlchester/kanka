@@ -1181,6 +1181,16 @@ summary {
   color: var(--banner-link);
 }
 
+.label-tag-bubble {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 8pt;
+  padding: 4px;
+  vertical-align: bottom;
+}
+
 :root {
   --calendar-today: #FFFDE2;
   --calendar-week: #FFFDE2;

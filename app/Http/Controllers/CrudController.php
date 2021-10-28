@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Datagrids\Filters\DatagridFilter;
 use App\Datagrids\Sorters\DatagridSorter;
 use App\Facades\CampaignLocalization;
 use App\Facades\FormCopy;
@@ -18,9 +17,7 @@ use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 use LogicException;
 
 class CrudController extends Controller
