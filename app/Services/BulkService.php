@@ -363,6 +363,12 @@ class BulkService
     protected function updateRelations(array $filledFields)
     {
         $relations = Relation::whereIn('id', $this->ids)->get();
+
+        // If the colour is empty, unset it
+        if (empty($filledFields['colour'])) {
+            unset($filledFields['colour']);
+        }
+
         foreach ($relations as $relation) {
             $this->total++;
             if (!auth()->user()->can('update', $relation)) {
