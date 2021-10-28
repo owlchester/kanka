@@ -7,7 +7,8 @@
         ['url' => Breadcrumb::index($name), 'label' => __($name . '.index.title')],
         ['url' => route($name . '.show', $model->id), 'label' => $model->name],
         __('crud.edit'),
-    ]
+    ],
+    'mainTitle' => false,
 ])
 @inject('campaign', 'App\Services\CampaignService')
 

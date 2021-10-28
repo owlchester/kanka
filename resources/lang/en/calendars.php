@@ -34,20 +34,20 @@ return [
     ],
     'event'         => [
         'actions'   => [
-            'existing'  => 'Existing Entity',
-            'new'       => 'New Event',
-            'switch'    => 'Change choice',
+            'delete-confirm'    => 'this reminder',
+            'existing'          => 'Existing Entity',
+            'new'               => 'New Event',
+            'switch'            => 'Change choice',
         ],
         'create'    => [
             'description'   => 'Create a calendar event',
             'success'       => 'Calendar event created.',
             'title'         => 'Add a Calendar Event to :name',
         ],
-        'destroy'   => 'Event removed from calendar \':name\'.',
+        'destroy'   => 'Reminder removed from calendar \':name\'.',
         'edit'      => [
-            'description'   => 'Update a calendar event',
-            'success'       => 'Calendar event updated.',
-            'title'         => 'Update Calendar Event for :name',
+            'success'       => 'Reminder updated.',
+            'title'         => 'Update Reminder for :name',
         ],
         'helpers'   => [
             'add'               => 'Add an existing event to this calendar.',
@@ -57,7 +57,7 @@ return [
         'modal'     => [
             'title' => 'Add an event to the calendar',
         ],
-        'success'   => 'Event \':event\' added to the calendar.',
+        'success'   => 'Reminder \':event\' added to the calendar.',
     ],
     'events'        => [
         'description'   => 'Events in this calendar.',

@@ -1309,24 +1309,6 @@ summary {
   margin-right: 5px;
 }
 
-.calendar-event-action {
-  font-size: 2em;
-  cursor: pointer;
-  text-align: center;
-  width: 100%;
-  display: block;
-  padding: 15px 30px;
-}
-
-.calendar-event-action i {
-  display: block;
-  clear: both;
-}
-
-.calendar-event-action:hover {
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
 .tooltip-tags span {
   margin: 2px;
   display: inline-block;

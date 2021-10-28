@@ -12,7 +12,8 @@ $isAdmin = Auth::user()->isAdmin();
         ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($parentRoute . '.index.title')],
         ['url' => route($parentRoute . '.show', $entity->child->id), 'label' => $entity->name],
         __('crud.tabs.attributes'),
-    ]
+    ],
+    'mainTitle' => false,
 ])
 
 @section('fullpage-form')
@@ -21,10 +22,6 @@ $isAdmin = Auth::user()->isAdmin();
 
 @section('content')
     <div class="box box-solid">
-        <div class="box-header">
-
-            <button class="btn btn-success pull-right">{{ __('crud.save') }}</button>
-        </div>
         <div class="box-body">
 
             <div id="entity-attributes-all">
@@ -37,13 +34,24 @@ $isAdmin = Auth::user()->isAdmin();
                 <div id="add_unsortable_attribute_target"></div>
             </div>
 
-
             @include('cruds.forms.attributes._blocks', ['existing' => $r->count()])
+            @include('cruds.forms.attributes._buttons', ['model' => $entity->child, 'existing' => $r->count()])
+
         </div>
+
 
         <div class="box-footer">
-            @include('cruds.forms.attributes._buttons', ['model' => $entity->child, 'existing' => $r->count()])
+            <div class="pull-right">
+                <button class="btn btn-success">
+                    {{ __('crud.save') }}
+                </button>
+            </div>
+
+            <a href="{{ url()->previous() }}" class="btn btn-default">
+                {{ __('crud.cancel') }}
+            </a>
         </div>
+
     </div>
 @endsection
 

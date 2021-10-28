@@ -276,8 +276,7 @@ class CrudController extends Controller
                 $new->entity->crudSaved();
             }
 
-            $langKey = $this->langKey ?? $this->view;
-            $success = __($langKey . '.create.success', [
+            $success = __('general.success.created', [
                 'name' => link_to_route(
                     $this->view . '.show',
                     e($new->name),
@@ -426,7 +425,7 @@ class CrudController extends Controller
                 $model->entity->crudSaved();
             }
 
-            $success = __($this->view . '.edit.success', [
+            $success = __('general.success.updated', [
                 'name' => link_to_route(
                     $this->route . '.show',
                     e($model->name),
@@ -488,7 +487,7 @@ class CrudController extends Controller
         }
 
         return redirect()->route($this->route . '.' . $subroute)
-            ->with('success', __($this->view . '.destroy.success', ['name' => $model->name]));
+            ->with('success', __('general.success.deleted', ['name' => $model->name]));
     }
 
     /**

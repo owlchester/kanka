@@ -9,6 +9,7 @@
 @inject('campaign', 'App\Services\CampaignService')
 
 @section('content')
+    @dd('error 5015: please contact the team on Discord')
     <div class="row">
         <div class="col-md-12">
             @include('partials.errors')

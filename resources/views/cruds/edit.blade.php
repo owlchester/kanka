@@ -17,6 +17,8 @@
 @endsection
 
 @section('content')
+    @dd('error 5016: please contact the team on Discord')
+
     @include('partials.errors')
 
     {!! Form::model($model, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => [$name . '.update', $model->id], 'data-shortcut' => '1']) !!}

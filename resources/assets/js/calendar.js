@@ -206,21 +206,23 @@ function initCalendarEventModal() {
         }
     });
 
-    $('#calendar-action-existing').on('click', function() {
+    $('#calendar-action-existing').click(function(e) {
+        e.preventDefault();
         $('#calendar-event-first').hide();
         $('.calendar-new-event-field').hide();
         $('#calendar-event-subform').fadeToggle();
         $('#calendar-event-submit').toggle();
     });
 
-    $('#calendar-action-new').on('click', function() {
+    $('#calendar-action-new').click(function(e) {
+        e.preventDefault();
         $('#calendar-event-first').hide();
         $('.calendar-existing-event-field').hide();
         $('#calendar-event-subform').fadeToggle();
         $('#calendar-event-submit').toggle();
     });
 
-    $('#calendar-event-switch').on('click', function(e) {
+    $('#calendar-event-switch').click(function(e) {
         e.preventDefault();
         $('#calendar-event-subform').hide();
         $('#calendar-event-first').fadeToggle();
