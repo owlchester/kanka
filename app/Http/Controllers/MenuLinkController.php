@@ -120,7 +120,11 @@ class MenuLinkController extends CrudController
         $route = $menuLink->randomEntity();
 
         if (empty($route)) {
-            abort(404);
+            return redirect()
+                ->route('dashboard')
+                ->with('error',
+                    __('menu_links.random_no_entity')
+                );
         }
         return redirect()->to($route);
     }

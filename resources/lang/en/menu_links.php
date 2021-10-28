@@ -45,6 +45,7 @@ return [
         'name'      => 'Name of the quick link',
         'tab'       => '(deprecated)',
     ],
+    'random_no_entity' => 'No random entity found.',
     'random_types'  => [
         'any'   => 'Any entity',
     ],
