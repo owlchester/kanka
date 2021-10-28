@@ -2,11 +2,11 @@
 
 return [
     'actions'       => [
-        'delete-confirm' => 'this weather effect',
+        'delete-confirm' => 'this weather',
     ],
     'create'        => [
         'success'   => 'Weather added.',
-        'title'     => 'New Weather Effect',
+        'title'     => 'New weather',
     ],
     'destroy'       => [
         'success'   => 'Weather removed.',

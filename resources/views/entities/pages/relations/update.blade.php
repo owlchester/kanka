@@ -2,13 +2,15 @@
     'title' => __('entities/relations.update.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        ['url' => $entity->url('index'), 'label' => trans($entity->pluralType() . '.index.title')],
+        ['url' => $entity->url('index'), 'label' => __($entity->pluralType() . '.index.title')],
         ['url' => $entity->url('show'), 'label' => $entity->name],
-        ['url' => route('entities.relations.index', $entity->id), 'label' => trans('crud.tabs.relations')],
+        ['url' => route('entities.relations.index', $entity->id), 'label' => __('crud.tabs.relations')],
     ]
 ])
 
 @section('content')
+    {!! Form::model($relation, ['route' => ['entities.relations.update', $entity->id, $relation], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
+
     @if (request()->ajax())
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}">
@@ -20,29 +22,41 @@
         </div>
         <div class="modal-body">
     @else
-    <div class="panel panel-default">
+        <div class="panel panel-default">
     @endif
 
-        <div class="@if(!request()->ajax()) panel-body @endif">
-            @include('partials.errors')
+            <div class="@if(!request()->ajax()) panel-body @endif">
+                @include('partials.errors')
 
-            {!! Form::model($relation, ['route' => ['entities.relations.update', $entity->id, $relation], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
-            @include('entities.pages.relations._form')
-
-            {!! Form::hidden('owner_id', $entity->id) !!}
-
-            <div class="form-group">
-                <button class="btn btn-success">{{ trans('crud.save') }}</button>
-                @includeWhen(!request()->ajax(), 'partials.or_cancel')
+                @include('entities.pages.relations._form')
             </div>
 
-            @if(!empty($from))
-                <input type="hidden" name="from" value="{{ $from }}" />
-            @endif
-
-            {!! Form::close() !!}
+    @if(request()->ajax())
         </div>
-    @if(!request()->ajax())
-    </div>
+        <div class="modal-footer">
+            <button class="btn btn-success">{{ trans('crud.save') }}</button>
+
+            <div class="pull-left">
+                @include('partials.footer_cancel')
+            </div>
+        </div>
+    @else
+            <div class="panel-footer">
+                <div class="pull-right">
+                    <button class="btn btn-success">{{ trans('crud.save') }}</button>
+                </div>
+
+                @include('partials.footer_cancel')
+            </div>
+        </div>
     @endif
+
+
+
+    @if(!empty($from))
+        <input type="hidden" name="from" value="{{ $from }}" />
+    @endif
+
+    {!! Form::hidden('owner_id', $entity->id) !!}
+    {!! Form::close() !!}
 @endsection
