@@ -9,23 +9,25 @@
 ])
 
 @section('content')
+    {!! Form::open(['route' => ['calendars.calendar_weather.store', $calendar->id], 'method' => 'POST', 'data-shortcut' => '1']) !!}
+
     <div class="panel panel-default">
         <div class="panel-body">
             @include('partials.errors')
 
-            {!! Form::open(['route' => ['calendars.calendar_weather.store', $calendar->id], 'method' => 'POST', 'data-shortcut' => '1']) !!}
             @include('calendars.weather._form')
-
-            <div class="form-group">
+        </div>
+        <div class="panel-footer">
+            <div class="pull-right">
                 <button class="btn btn-success">{{ __('crud.save') }}</button>
-                @includeWhen(!$ajax, 'partials.or_cancel')
             </div>
-
-            {!! Form::hidden('year', $year) !!}
-            {!! Form::hidden('month', $month) !!}
-            {!! Form::hidden('day', $day) !!}
-
-            {!! Form::close() !!}
+            @include('partials.footer_cancel')
         </div>
     </div>
+
+    {!! Form::hidden('year', $year) !!}
+    {!! Form::hidden('month', $month) !!}
+    {!! Form::hidden('day', $day) !!}
+
+    {!! Form::close() !!}
 @endsection
