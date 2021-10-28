@@ -18,7 +18,7 @@ if (!isset($entity)) {
 
 $imageUrl = $imagePath = null;
 if ($model->image) {
-    $imageUrl = $model->getImageUrl(0);
+    $imageUrl = $model->getOriginalImageUrl();
     $imagePath = $model->getImageUrl(250, 250);
 } elseif ($campaign->campaign()->boosted(true) && !empty($entity) && $entity->image) {
     $imageUrl = $entity->image->getUrl();
