@@ -200,9 +200,9 @@ $clipboardFilters = $filterService->clipboardFilters();
 
 
             <span class="pull-right">
-                <button class="btn btn-primary margin-r-5">
+                <input type="submit" class="btn btn-primary margin-r-5">
                     <i class="fa fa-filter"></i> {{ __('crud.filter') }}
-                </button>
+                </input>
                 <span data-toggle="collapse" data-target="#datagrid-filters">
                     <i class="fa fa-chevron-up"></i>
                 </span>
