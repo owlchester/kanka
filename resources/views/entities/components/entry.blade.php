@@ -13,9 +13,11 @@
             @endif
         </div>
     </div>
+    @if ($model->hasEntry())
     <div class="box-body entity-content">
         {!! $model->entry() !!}
     </div>
+    @endif
 </div>
 
 

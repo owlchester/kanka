@@ -1,12 +1,19 @@
 <?php
 /**
  * @var \App\Models\Location $model
- * @var \App\Models\Character $character
+ * @var \App\Models\Character[] $characters
  */
 $filters = [];
 if (request()->has('location_id')) {
     $filters['location_id'] = request()->get('location_id');
 }
+
+$characters = $model
+        ->allCharacters()
+        ->filter($filters)
+        ->simpleSort($datagridSorter)
+        ->with(['location', 'family', 'entity', 'entity.tags'])
+        ->paginate();
 ?>
 <div class="box box-solid" id="location-characters">
     <div class="box-header">
@@ -27,8 +34,6 @@ if (request()->has('location_id')) {
         </div>
     </div>
     <div class="box-body">
-
-
         <p class="help-block export-hidden">
             {{ __('locations.helpers.characters') }}
         </p>
@@ -43,8 +48,8 @@ if (request()->has('location_id')) {
             </div>
         </div>
 
-        <?php  $r = $model->allCharacters()->filter($filters)->simpleSort($datagridSorter)->with(['location', 'family', 'entity', 'entity.tags'])->paginate(); ?>
-        <table id="characters" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+        @if ($characters->count() > 0)
+        <table id="characters" class="table table-hover">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ __('characters.fields.name') }}</th>
@@ -56,7 +61,7 @@ if (request()->has('location_id')) {
                     <th>{{ __('characters.fields.race') }}</th>
                 @endif
             </tr>
-            @foreach ($r as $character)
+            @foreach ($characters as $character)
                 <tr>
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $character->getImageUrl(40) }}');" title="{{ $character->name }}" href="{{ route('characters.show', $character->id) }}"></a>
@@ -90,7 +95,11 @@ if (request()->has('location_id')) {
             @endforeach
             </tbody>
         </table>
-
-        {{ $r->fragment('location-characters')->appends($filters)->links() }}
+        @endif
     </div>
+    @if ($characters->hasPages())
+        <div class="box-footer text-right">
+            {{ $characters->fragment('location-characters')->appends($filters)->links() }}
+        </div>
+    @endif
 </div>
