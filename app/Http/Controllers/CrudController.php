@@ -236,7 +236,7 @@ class CrudController extends Controller
         $campaign = CampaignLocalization::getCampaign();
 
         $params['ajax'] = request()->ajax();
-        $params['tabPermissions'] = $this->tabPermissions && Auth::user()->can('permission', $model);
+        $params['tabPermissions'] = $this->tabPermissions && auth()->user()->can('permission', $model);
         $params['tabAttributes'] = $this->tabAttributes;
         $params['tabCopy'] = $this->tabCopy;
         $params['tabBoosted'] = $this->tabBoosted && $campaign->boosted();
@@ -338,7 +338,7 @@ class CrudController extends Controller
     public function crudShow(Model $model)
     {
         // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
+        if (auth()->check()) {
             $this->authorize('view', $model);
         } else {
             $this->authorizeForGuest('read', $model);
@@ -385,8 +385,8 @@ class CrudController extends Controller
             'model' => $model,
             'name' => $this->view,
             'ajax' => request()->ajax(),
-            'tabPermissions' => $this->tabPermissions && Auth::user()->can('permission', $model),
-            'tabAttributes' => $this->tabAttributes && Auth::user()->can('attributes', $model->entity),
+            'tabPermissions' => $this->tabPermissions && auth()->user()->can('permission', $model),
+            'tabAttributes' => $this->tabAttributes && auth()->user()->can('attributes', $model->entity),
             'tabBoosted' => $this->tabBoosted && $campaign->boosted(),
             'tabCopy' => $this->tabCopy,
             'entityType' => $model->getEntityType(),
@@ -530,7 +530,7 @@ class CrudController extends Controller
     protected function menuView($model, $view, $directView = false)
     {
         // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
+        if (auth()->check()) {
             $this->authorize('view', $model);
         } else {
             $this->authorizeForGuest('read', $model);

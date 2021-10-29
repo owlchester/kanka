@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\Models\Organisation $model
- * @var \App\Models\OrganisationMember $relation
+ * @var \App\Models\OrganisationMember[] $members
  */
 $filters = [];
 $allMembers = true;
@@ -13,12 +13,23 @@ $datagridSorter = new \App\Datagrids\Sorters\OrganisationCharacterSorter();
 $datagridSorter->request(request()->all());
 
 $filterCount = !$allMembers ? $model->allMembers()->has('character')->count() : $model->members()->has('character')->count();
+
+
+$members = $model->allMembers()
+        ->filter($filters)
+        ->has('character')
+        ->with([
+                'character', 'character.race', 'character.location', 'character.family', 'organisation',
+                'character.entity', 'character.race.entity', 'character.location.entity', 'organisation.entity'
+        ])
+        ->simpleSort($datagridSorter)
+        ->paginate();
 ?>
 <div class="box box-solid" id="organisation-members">
     <div class="box-header with-border">
         <h3 class="box-title">{{ __('organisations.fields.members') }}</h3>
 
-        <div class="box-tools pull-right">
+        <div class="box-tools">
             @if (!$allMembers)
                 <a href="{{ route('organisations.show', [$model, 'all_members' => true, '#organisation-members']) }}" class="btn btn-default btn-sm">
                     <i class="fa fa-filter"></i>
@@ -42,22 +53,26 @@ $filterCount = !$allMembers ? $model->allMembers()->has('character')->count() : 
                 </a>
             @endif
 
-                @can('member', $model)
-                    <a href="{{ route('organisations.organisation_members.create', ['organisation' => $model->id]) }}" class="btn btn-primary btn-sm"
-                       data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('organisations.organisation_members.create', $model->id) }}">
-                        <i class="fa fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('organisations.members.actions.add') }}</span>
-                    </a>
-                @endcan
+            @can('member', $model)
+                <a href="{{ route('organisations.organisation_members.create', ['organisation' => $model->id]) }}" class="btn btn-primary btn-sm"
+                   data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('organisations.organisation_members.create', $model->id) }}">
+                    <i class="fa fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('organisations.members.actions.add') }}</span>
+                </a>
+            @endcan
         </div>
     </div>
-    <div class="box-body">
-        <p class="help-block export-hidden">
-            {{ __('organisations.members.helpers.' . ($allMembers ? 'all_' : null) . 'members') }}
-        </p>
 
-        <div class="export-hidden">
-            @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#organisation-members'])
+    @if ($members->count() === 0)
+        <div class="box-body">
+
+            <p class="help-block">
+                {{ __('organisations.members.helpers.' . ($allMembers ? 'all_' : null) . 'members') }}
+            </p>
         </div>
+    @else
+    <div class="box-body">
+
+        @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#organisation-members'])
 
         <table id="organisation-characters" class="table table-hover">
             <tbody><tr>
@@ -71,28 +86,20 @@ $filterCount = !$allMembers ? $model->allMembers()->has('character')->count() : 
                 @if ($campaign->enabled('races'))
                 <th class="hidden-sm hidden-xs">{{ __('characters.fields.race') }}</th>
                 @endif
-                <th><i class="ra ra-skull" title="{{ __('characters.fields.is_dead') }}"></i></th>
                 <th></th>
                 <th class="text-right">
 
                 </th>
             </tr>
-            <?php $r = $model->allMembers()
-                ->filter($filters)
-                ->has('character')
-                ->with([
-                    'character', 'character.race', 'character.location', 'character.family', 'organisation',
-                    'character.entity', 'character.race.entity', 'character.location.entity', 'organisation.entity'
-                ])
-                ->simpleSort($datagridSorter)
-                ->paginate();?>
-            @foreach ($r as $relation)
+            @foreach ($members as $relation)
                 <tr>
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $relation->character->getImageUrl(40) }}');" title="{{ $relation->character->name }}" href="{{ route('characters.show', $relation->character->id) }}"></a>
                     </td>
                     <td>
-                        {!! $relation->character->tooltipedLink() !!}<br />
+                        {!! $relation->character->tooltipedLink() !!}
+                        @if ($relation->character->is_dead)<span class="ra ra-skull" title="{{ __('characters.fields.is_dead') }}"></span>@endif
+                        <br />
                         <i>{{ $relation->character->title }}</i>
                     </td>
                     @if ($campaign->enabled('locations'))
@@ -115,7 +122,7 @@ $filterCount = !$allMembers ? $model->allMembers()->has('character')->count() : 
                             @endif
                         </td>
                     @endif
-                    <td>@if ($relation->character->is_dead)<span class="ra ra-skull"></span>@endif</td>
+                    <td></td>
                     <td>
                         @if (Auth::check() && Auth::user()->isAdmin())
                             @if ($relation->is_private == true)
@@ -146,7 +153,12 @@ $filterCount = !$allMembers ? $model->allMembers()->has('character')->count() : 
             @endforeach
             </tbody>
         </table>
-
-        {{ $r->fragment('organisation-members')->appends('all_members', request()->get('all_members'))->links() }}
     </div>
+    @if ($members->hasPages())
+        <div class="box-footer text-right">
+            {{ $members->fragment('organisation-members')->appends('all_members', request()->get('all_members'))->links() }}
+
+        </div>
+    @endif
+    @endif
 </div>

@@ -1,6 +1,6 @@
 <?php /** @var \App\Datagrids\Sorters\DatagridSorter $datagridSorter */?>
 @if (!empty($datagridSorter) && auth()->check())
-<div class="input-group export-hidden">
+<div class="input-group">
     <div class="input-group-addon">
         <i class="fa fa-sort-amount-down" title="{{ __('crud.filters.sorting.helper') }}" data-toggle="tooltip"></i>
     </div>
