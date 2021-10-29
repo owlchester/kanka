@@ -9,10 +9,24 @@ if (request()->has('location_id')) {
 }
 ?>
 <div class="box box-solid" id="location-characters">
-    <div class="box-body">
-        <h2 class="page-header with-border">
+    <div class="box-header">
+        <h3 class="box-title">
             {{ __('locations.show.tabs.characters') }}
-        </h2>
+        </h3>
+
+        <div class="box-tools">
+            @if (request()->has('location_id'))
+                <a href="{{ route('locations.characters', $model) }}" class="btn btn-box-tool">
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allCharacters()->count() }})
+                </a>
+            @else
+                <a href="{{ route('locations.characters', [$model, 'location_id' => $model->id]) }}" class="btn btn-box-tool">
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->characters()->count() }})
+                </a>
+            @endif
+        </div>
+    </div>
+    <div class="box-body">
 
 
         <p class="help-block export-hidden">
@@ -25,20 +39,11 @@ if (request()->has('location_id')) {
             </div>
             <div class="col-md-6 text-right">
 
-                @if (request()->has('location_id'))
-                    <a href="{{ route('locations.characters', $model) }}" class="btn btn-default btn-sm pull-right">
-                        <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allCharacters()->count() }})
-                    </a>
-                @else
-                    <a href="{{ route('locations.characters', [$model, 'location_id' => $model->id]) }}" class="btn btn-default btn-sm pull-right">
-                        <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->characters()->count() }})
-                    </a>
-                @endif
+
             </div>
         </div>
 
         <?php  $r = $model->allCharacters()->filter($filters)->simpleSort($datagridSorter)->with(['location', 'family', 'entity', 'entity.tags'])->paginate(); ?>
-        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ __('locations.show.tabs.characters') }}</p>
         <table id="characters" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
             <tbody><tr>
                 <th class="avatar"><br /></th>
@@ -50,7 +55,6 @@ if (request()->has('location_id')) {
                 @if ($campaign->enabled('races'))
                     <th>{{ __('characters.fields.race') }}</th>
                 @endif
-                <th>&nbsp;</th>
             </tr>
             @foreach ($r as $character)
                 <tr>
@@ -82,11 +86,6 @@ if (request()->has('location_id')) {
                             @endif
                         </td>
                     @endif
-                    <td class="text-right">
-                        <a href="{{ route('characters.show', [$character]) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-eye" aria-hidden="true"></i> {{ __('crud.view') }}
-                        </a>
-                    </td>
                 </tr>
             @endforeach
             </tbody>
