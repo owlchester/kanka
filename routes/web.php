@@ -25,11 +25,11 @@ Route::group([
     Route::get('/', 'HomeController@index')->name('home');
 
     // Frontend stuff
-    require base_path('routes/front.php');
+    //require base_path('routes/front.php');
 
     Auth::routes(['register' => config('auth.register_enabled')]);
 
-    require base_path('routes/profile.php');
+    //require base_path('routes/profile.php');
 
     Route::resources([
         'campaign_boosts' => 'CampaignBoostController',
@@ -511,7 +511,7 @@ Route::group([
     });
 
     // Admin/Moderation tools
-    require base_path('routes/admin.php');
+    //require base_path('routes/admin.php');
 
     // API docs
     Route::group([
@@ -536,10 +536,6 @@ Route::group(['prefix' => 'subscription-api'], function () {
     Route::post('remove-payment', 'Settings\SubscriptionApiController@removePaymentMethod');
     Route::get('check-coupon', 'Settings\SubscriptionApiController@checkCoupon')
         ->name('subscription.check-coupon');
-});
-
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
 });
 
 // Stripe

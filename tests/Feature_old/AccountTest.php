@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature_old;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ViewErrorBag;

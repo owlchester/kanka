@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature_old;
 
 use App\Http\Resources\CampaignCollection;
 use App\Models\Campaign;

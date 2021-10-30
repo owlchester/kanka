@@ -3,9 +3,8 @@
  * Admin and moderation routes
  */
 
-Route::namespace('Admin')->name('admin.')->middleware(['moderator'])->prefix('admin')->group(function () {
+//Route::namespace('Admin')->name('admin.')->middleware(['moderator'])->prefix('admin')->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
-    //Route::resourc('/faqs', 'Admin\FaqController@index')->name('admin.faqs.index');
 
     Route::get('/test-email', 'TestEmailController@index');
 
@@ -42,4 +41,4 @@ Route::namespace('Admin')->name('admin.')->middleware(['moderator'])->prefix('ad
 
     Route::delete('users/{user}/patreon-unsync', 'UserController@removePatreon')->name('users.patreon_unsync');
     Route::delete('users/{user}/roles', 'UserController@removeRole')->name('users.roles.destroy');
-});
+//});

@@ -45,6 +45,18 @@ class Kernel extends HttpKernel
             //Do this in the routes 'throttle:rate_limit,1',
             'bindings',
         ],
+
+        /* No locale redirect if missing */
+        'no-locale' => [
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            \Illuminate\Session\Middleware\AuthenticateSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \App\Http\Middleware\VerifyCsrfToken::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\HttpsProtocol::class,
+        ]
     ];
 
     /**

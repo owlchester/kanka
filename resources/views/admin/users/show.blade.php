@@ -110,6 +110,7 @@
         <h4 class="box-title">Campaigns</h4>
     </div>
     <div class="box-body">
+        <div class="table-responsive">
         <table class="table table-hover">
             <thead>
             <tr>
@@ -171,6 +172,7 @@
 @endforeach
             </tbody>
         </table>
+        </div>
     </div>
 </div>
 

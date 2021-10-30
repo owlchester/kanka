@@ -102,80 +102,7 @@ class AppServiceProvider extends ServiceProvider
         // Older mysql versions workaround
         Schema::defaultStringLength(191);
 
-
-        if (!app()->runningInConsole()) {
-            if($this->app->environment('prod')) {
-                \URL::forceScheme('https');
-            }
-
-            // Observers
-            Ability::observe('App\Observers\AbilityObserver');
-            AttributeTemplate::observe('App\Observers\AttributeTemplateObserver');
-            AppRelease::observe('App\Observers\AppReleaseObserver');
-            Calendar::observe(CalendarObserver::class);
-            CalendarWeather::observe(CalendarWeatherObserver::class);
-            Campaign::observe(CampaignObserver::class);
-            CampaignUser::observe(CampaignUserObserver::class);
-            CampaignRole::observe('App\Observers\CampaignRoleObserver');
-            CampaignRoleUser::observe('App\Observers\CampaignRoleUserObserver');
-            CampaignInvite::observe('App\Observers\CampaignInviteObserver');
-            CampaignDashboardWidget::observe('App\Observers\CampaignDashboardWidgetObserver');
-            CampaignFollower::observe('App\Observers\CampaignFollowerObserver');
-            CampaignPlugin::observe('App\Observers\CampaignPluginObserver');
-            CampaignSetting::observe('App\Observers\CampaignSettingObserver');
-            CampaignDashboard::observe('App\Observers\CampaignDashboardObserver');
-            CampaignSubmission::observe('App\Observers\CampaignSubmissionObserver');
-            CampaignStyle::observe('App\Observers\CampaignStyleObserver');
-            //MapPoint::observe('App\Observers\MapPointObserver');
-            Character::observe(CharacterObserver::class);
-            CharacterTrait::observe('App\Observers\CharacterTraitObserver');
-            CommunityVote::observe('App\Observers\CommunityVoteObserver');
-            CommunityEvent::observe('App\Observers\CommunityEventObserver');
-            CommunityEventEntry::observe('App\Observers\CommunityEventEntryObserver');
-            Conversation::observe('App\Observers\ConversationObserver');
-            ConversationMessage::observe('App\Observers\ConversationMessageObserver');
-            DiceRoll::observe('App\Observers\DiceRollObserver');
-            DiceRollResult::observe('App\Observers\DiceRollResultObserver');
-            Event::observe(EventObserver::class);
-            Entity::observe('App\Observers\EntityObserver');
-            EntityAbility::observe('App\Observers\EntityAbilityObserver');
-            EntityFile::observe('App\Observers\EntityFileObserver');
-            EntityLink::observe('App\Observers\EntityLinkObserver');
-            EntityNote::observe('App\Observers\EntityNoteObserver');
-            EntityEvent::observe('App\Observers\EntityEventObserver');
-            Location::observe(LocationObserver::class);
-            Family::observe(FamilyObserver::class);
-            Image::observe('App\Observers\ImageObserver');
-            Item::observe(ItemObserver::class);
-            Inventory::observe('App\Observers\InventoryObserver');
-            Map::observe('App\Observers\MapObserver');
-            MapPoint::observe('App\Observers\MapPointObserver');
-            MapLayer::observe('App\Observers\MapLayerObserver');
-            MapGroup::observe('App\Observers\MapGroupObserver');
-            MapMarker::observe('App\Observers\MapMarkerObserver');
-            MenuLink::observe('App\Observers\MenuLinkObserver');
-            Journal::observe(JournalObserver::class);
-            Organisation::observe(OrganisationObserver::class);
-            OrganisationMember::observe(OrganisationMemberObserver::class);
-            Tag::observe('App\Observers\TagObserver');
-            Timeline::observe('App\Observers\TimelineObserver');
-            TimelineEra::observe('App\Observers\TimelineEraObserver');
-            TimelineElement::observe('App\Observers\TimelineElementObserver');
-            Note::observe(NoteObserver::class);
-            User::observe(UserObserver::class);
-            Quest::observe('App\Observers\QuestObserver');
-            QuestElement::observe('App\Observers\QuestElementObserver');
-
-            Race::observe('App\Observers\RaceObserver');
-
-            Relation::observe('App\Observers\RelationObserver');
-
-            Release::observe('App\Observers\ReleaseObserver');
-
-            Paginator::useBootstrapThree();
-
-            $this->addBladeDirectives();
-        }
+        $this->registerObservers();
 
         Validator::resolver(function ($translator, $data, $rules, $messages) {
             return new HashValidator($translator, $data, $rules, $messages);
@@ -190,6 +117,86 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+    }
+
+    protected function registerObservers()
+    {
+        // If console AND not testing, no observers
+        if (app()->runningInConsole() && !$this->app->environment('testing')) {
+            return;
+        }
+
+        if($this->app->environment('prod')) {
+            \URL::forceScheme('https');
+        }
+
+        // Observers
+        Ability::observe('App\Observers\AbilityObserver');
+        AttributeTemplate::observe('App\Observers\AttributeTemplateObserver');
+        AppRelease::observe('App\Observers\AppReleaseObserver');
+        Calendar::observe(CalendarObserver::class);
+        CalendarWeather::observe(CalendarWeatherObserver::class);
+        Campaign::observe(CampaignObserver::class);
+        CampaignUser::observe(CampaignUserObserver::class);
+        CampaignRole::observe('App\Observers\CampaignRoleObserver');
+        CampaignRoleUser::observe('App\Observers\CampaignRoleUserObserver');
+        CampaignInvite::observe('App\Observers\CampaignInviteObserver');
+        CampaignDashboardWidget::observe('App\Observers\CampaignDashboardWidgetObserver');
+        CampaignFollower::observe('App\Observers\CampaignFollowerObserver');
+        CampaignPlugin::observe('App\Observers\CampaignPluginObserver');
+        CampaignSetting::observe('App\Observers\CampaignSettingObserver');
+        CampaignDashboard::observe('App\Observers\CampaignDashboardObserver');
+        CampaignSubmission::observe('App\Observers\CampaignSubmissionObserver');
+        CampaignStyle::observe('App\Observers\CampaignStyleObserver');
+        //MapPoint::observe('App\Observers\MapPointObserver');
+        Character::observe(CharacterObserver::class);
+        CharacterTrait::observe('App\Observers\CharacterTraitObserver');
+        CommunityVote::observe('App\Observers\CommunityVoteObserver');
+        CommunityEvent::observe('App\Observers\CommunityEventObserver');
+        CommunityEventEntry::observe('App\Observers\CommunityEventEntryObserver');
+        Conversation::observe('App\Observers\ConversationObserver');
+        ConversationMessage::observe('App\Observers\ConversationMessageObserver');
+        DiceRoll::observe('App\Observers\DiceRollObserver');
+        DiceRollResult::observe('App\Observers\DiceRollResultObserver');
+        Event::observe(EventObserver::class);
+        Entity::observe('App\Observers\EntityObserver');
+        EntityAbility::observe('App\Observers\EntityAbilityObserver');
+        EntityFile::observe('App\Observers\EntityFileObserver');
+        EntityLink::observe('App\Observers\EntityLinkObserver');
+        EntityNote::observe('App\Observers\EntityNoteObserver');
+        EntityEvent::observe('App\Observers\EntityEventObserver');
+        Location::observe(LocationObserver::class);
+        Family::observe(FamilyObserver::class);
+        Image::observe('App\Observers\ImageObserver');
+        Item::observe(ItemObserver::class);
+        Inventory::observe('App\Observers\InventoryObserver');
+        Map::observe('App\Observers\MapObserver');
+        MapPoint::observe('App\Observers\MapPointObserver');
+        MapLayer::observe('App\Observers\MapLayerObserver');
+        MapGroup::observe('App\Observers\MapGroupObserver');
+        MapMarker::observe('App\Observers\MapMarkerObserver');
+        MenuLink::observe('App\Observers\MenuLinkObserver');
+        Journal::observe(JournalObserver::class);
+        Organisation::observe(OrganisationObserver::class);
+        OrganisationMember::observe(OrganisationMemberObserver::class);
+        Tag::observe('App\Observers\TagObserver');
+        Timeline::observe('App\Observers\TimelineObserver');
+        TimelineEra::observe('App\Observers\TimelineEraObserver');
+        TimelineElement::observe('App\Observers\TimelineElementObserver');
+        Note::observe(NoteObserver::class);
+        User::observe(UserObserver::class);
+        Quest::observe('App\Observers\QuestObserver');
+        QuestElement::observe('App\Observers\QuestElementObserver');
+
+        Race::observe('App\Observers\RaceObserver');
+
+        Relation::observe('App\Observers\RelationObserver');
+
+        Release::observe('App\Observers\ReleaseObserver');
+
+        Paginator::useBootstrapThree();
+
+        $this->addBladeDirectives();
     }
 
     /**
