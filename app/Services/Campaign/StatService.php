@@ -15,6 +15,7 @@ class StatService
     protected $campaign;
 
     protected $primaryTargets = [25, 50, 100, 250, 500];
+    //protected $primaryTargets = [2, 5, 10, 25, 40];
 
     protected $secondaryTargets = [10, 20, 45, 100, 200];
 
@@ -117,13 +118,15 @@ class StatService
     {
         $targets = $level == 1 ? $this->primaryTargets : ($level == 2 ? $this->secondaryTargets : $this->tertiaryTargets);
 
+        $last = 20;
         foreach ($targets as $target) {
-            if ($amount < $target) {
+            if ($amount <= $target) {
                 return $target;
             }
+            $last = $target;
         }
 
-        return 20;
+        return $last;
     }
 
     /**
