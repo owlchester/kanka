@@ -41,8 +41,9 @@ class CampaignInviteController extends Controller
         if (!in_array($type, ['email', 'link'])) {
             $type = 'email';
         }
+        $typeID = $type == 'email' ? CampaignInvite::TYPE_EMAIL : CampaignInvite::TYPE_LINK;
 
-        return view('campaigns.invites.create', compact('campaign', 'ajax', 'type'));
+        return view('campaigns.invites.create', compact('campaign', 'ajax', 'type', 'typeID'));
     }
 
     /**
@@ -56,7 +57,7 @@ class CampaignInviteController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('invite', $campaign);
 
-        $invitation = CampaignInvite::create($request->only('email', 'role_id', 'type', 'validity'));
+        $invitation = CampaignInvite::create($request->only('email', 'role_id', 'type_id', 'validity'));
 
         return redirect()->route('campaign_users.index')
             ->with(

@@ -2,10 +2,24 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class UserLog
+ * @package App\Models
+ *
+ * @var User $user
+ * @var string $ip
+ * @var int $action_id
+ */
 class UserLog extends Model
 {
+    const ACTION_LOGIN = 1;
+    const ACTION_LOGOUT = 2;
+    const ACTION_LOGIN_FAIL = 3;
+    const ACTION_UPDATE = 4;
+
     /**
      * @var string
      */
@@ -16,7 +30,7 @@ class UserLog extends Model
      */
     protected $fillable = [
         'user_id',
-        'action',
+        'action_id',
         'ip'
     ];
 

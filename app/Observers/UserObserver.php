@@ -50,7 +50,7 @@ class UserObserver
 
         $log = UserLog::create([
             'user_id' => $user->id,
-            'action' => 'update',
+            'action_id' => UserLog::ACTION_UPDATE,
             'ip' => $ip,
         ]);
         $log->save();

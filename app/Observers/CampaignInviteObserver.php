@@ -18,7 +18,7 @@ class CampaignInviteObserver
     public function created(CampaignInvite $campaignInvite)
     {
         // Send email to the new user too join
-        if ($campaignInvite->type == 'email') {
+        if ($campaignInvite->type_id == CampaignInvite::TYPE_EMAIL) {
             InvitationEmailJob::dispatch($campaignInvite, auth()->user(), app()->getLocale());
         }
     }
@@ -33,7 +33,7 @@ class CampaignInviteObserver
         $campaignInvite->created_by = Auth::user()->id;
         $campaignInvite->campaign_id = Auth::user()->campaign->id;
 
-        if ($campaignInvite->type == 'link') {
+        if ($campaignInvite->type_id == CampaignInvite::TYPE_LINK) {
             $campaignInvite->email = '';
         } else {
             $campaignInvite->validity = 1;

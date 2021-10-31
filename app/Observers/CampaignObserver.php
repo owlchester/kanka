@@ -102,7 +102,6 @@ class CampaignObserver
         $role = new CampaignUser([
             'user_id' => Auth::user()->id,
             'campaign_id' => $campaign->id,
-            'role' => 'owner'
         ]);
         $role->save();
 

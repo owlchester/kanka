@@ -51,7 +51,7 @@ class UserEventSubscriber
             }
             $log = UserLog::create([
                 'user_id' => $event->user->id,
-                'action' => 'login',
+                'action_id' => UserLog::ACTION_LOGIN,
                 'ip' => $ip,
             ]);
             $log->save();
@@ -79,7 +79,7 @@ class UserEventSubscriber
 
             $log = UserLog::create([
                 'user_id' => $event->user->id,
-                'action' => 'logout',
+                'action_id' => UserLog::ACTION_LOGOUT,
                 'ip' => $ip,
             ]);
             $log->save();

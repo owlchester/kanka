@@ -29,7 +29,7 @@ class CampaignUser extends Pivot
     /**
      * @var array
      */
-    protected $fillable = ['user_id', 'campaign_id', 'role'];
+    protected $fillable = ['user_id', 'campaign_id'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

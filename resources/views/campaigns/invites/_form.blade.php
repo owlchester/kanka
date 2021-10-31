@@ -28,4 +28,4 @@ $usages = [
 </div>
 
 
-{!! Form::hidden('type', $type) !!}
+{!! Form::hidden('type_id', $typeID) !!}

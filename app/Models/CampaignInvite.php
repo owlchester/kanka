@@ -10,13 +10,17 @@ namespace App\Models;
  * @property string $email
  * @property int $role_id
  * @property int $campaign_id
+ * @property int $created_by
  * @property string $token
  * @property bool $is_active
- * @property string $type
+ * @property int $type_id
  * @property int $validity
  */
 class CampaignInvite extends MiscModel
 {
+    const TYPE_EMAIL = 1;
+    const TYPE_LINK = 2;
+
     /**
      * @var string
      */
@@ -32,7 +36,7 @@ class CampaignInvite extends MiscModel
         'created_by',
         'token',
         'is_active',
-        'type',
+        'type_id',
         'validity',
     ];
 
