@@ -101,10 +101,6 @@ TEXT
         'answer'    => 'Se você preferir visualizar suas entidades em uma visualização aninhada por padrão (por exemplo, o botão Visualização aninhada na lista de locais), você pode fazer isso acessando as opções de Perfil e Layout. Lá você pode marcar a opção Visualização aninhada. Isso é apenas para sua conta e não para suas campanhas.',
         'question'  => 'Posso definir as listas a serem aninhadas por padrão?',
     ],
-    'organise_play'         => [
-        'answer'    => 'Fizemos parceria com :lfgm que permite que você organize suas sessões com seu grupo. Você pode sincronizar sua campanha Kanka com sua campanha LFGM para mostrar suas próximas disponibilidades diretamente no painel da campanha.',
-        'question'  => 'Como posso gerenciar quando minhas sessões acontecem?',
-    ],
     'permissions'           => [
         'answer'    => 'Com certeza, é por isso que construímos o Kanka! Você pode convidar todos os seus jogadores para suas campanhas e dar-lhes funções e permissões. Construímos o sistema para ser extremamente flexível (você pode usar uma configuração opt-in e opt-out) para cobrir o máximo de necessidades e situações possíveis.',
         'question'  => 'Posso limitar as informações que meus jogadores veem em minha campanha?',

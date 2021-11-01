@@ -169,6 +169,7 @@ return array(
         'front.kb',
         'randomisers.characters',
         'backup::notifications',
+        'lfgm',
     ),
     /**
      * Exclude specific groups from Laravel Translation Manager in page edit mode.

@@ -92,10 +92,6 @@ TEXT
         'answer'    => 'Eğer varlıklarınızı varsayılan olarak iç içe görüntülemeyi tercih ediyorsanız (örneğin konumlar listesindeki İç İçe Görünüm butonu), Proflinize ve orada Düzen sekmesine giderek bunu yapabilirsiniz. Bu yalnızca sizin hesabınız içindir, serüvenleriniz için değil.',
         'question'  => 'Listeler varsayılan olarak iç içe olacak şekilde ayarlanabilir mi?',
     ],
-    'organise_play'         => [
-        'answer'    => 'Grubunuz ile yaptığınız oturumları organize etmenize olanak sağlayan :lfgm ile ortaklık kurduk. Boş olduğunuz aralıkları doğrudan serüven kontrol panelinde görüntülemek için Kanka serüveninizi LFGM serüveniniz ile senkronize edebilirsiniz',
-        'question'  => 'Oturumlarımı oynatırken nasıl düzenleme yapabilirim?',
-    ],
     'permissions'           => [
         'answer'    => 'Elbette, Kanka\'yı bu yüzden yarattık! Tüm oyuncularınızı serüveninize davet edebilir ve onlara roller ve izinler verebilirsiniz. Sistemi olabildiğince fazla ihtiyaç ve durumu karşılayabilecek, son derece esnek olacak şekilde (hem dahil olunabilir hem de dışarıda aklınabilir konfigürasyonunu kullanabilirsiniz) yarattık.',
         'question'  => 'Oyuncularımın serüvenimde gördükleri bilgi miktarını kısıtlayabilir miyim?',

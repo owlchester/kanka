@@ -39,7 +39,7 @@ return [
     ],
     'note1'         => [
         'entry'         => <<<'TEXT'
-Witaj w Kance! Stworzyliśmy dla ciebie pierwszą kampanię z kilkoma przykładami, dla inspiracji (możesz je oczywiście w każdej chwili usunąć). 
+Witaj w Kance! Stworzyliśmy dla ciebie pierwszą kampanię z kilkoma przykładami, dla inspiracji (możesz je oczywiście w każdej chwili usunąć).
 
 Pewnie chcesz już zacząć dodając kilka własnych elementów - wybierz je spośród kategorii po lewej. Jeżeli nie potrzebujesz jakiejś kategorii, możesz ją wyłączyć w ustawieniach kampanii. Ukryjesz w ten sposób zbędne elementy menu.
 
@@ -52,7 +52,6 @@ A oto kilka rad na początek:
 No i na koniec:
 - Przejrzyj :public by zobaczyć, jak inni używają Kanki.
 - Jeżeli masz pytania, albo chcesz pogadać, dołącz do nas na :discord.
-- Możecie ustalić z drużyną termin sesji używając :lfgm i synchronizować terminarz LFGM z kampania Kanki.
 - Podoba ci się aplikacja i chcesz by się rozwijała? Rozważ :subscriptions.
 TEXT
 ,

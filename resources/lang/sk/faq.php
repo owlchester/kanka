@@ -101,10 +101,6 @@ TEXT
         'answer'    => 'Ak preferuješ vnorené zobrazenie ako štandardné (napr. po kliknutí na Vnorené zobrazenie v zozname miest), môžeš si ho nastaviť v tvojom profile a nastaveniach zobrazenia. Tam môžeš zaškrtnúť možnosť pre vnorené zobrazenie. Toto je len pre tvoje konto, nie štandardne pre všetky kampane.',
         'question'  => 'Môžem nastaviť, aby sa zoznamy zobrazovali štandardne ako vnorené?',
     ],
-    'organise_play'         => [
-        'answer'    => 'Spojili sme sa s :lfgm, kde máš možnosť organizovať tvoje hracie sedenia s tvojou skupinou. Môžeš synchronizovať tvoju kampaň na Kanke s tvojou kampaňou na LFGM k zobrazeniu voľných termínov na nástenke kampane.',
-        'question'  => 'Kde môžem spravovať termíny mojich hracích sedení?',
-    ],
     'permissions'           => [
         'answer'    => 'Samozrejme, preto sme Kanku vytvorili! Môžeš do kampane pozvať všetkých hráčov a hráčky a zadať im role a oprávnenia. Systém sme vytvorili ako extrémne flexibilný (môžeš sa rozhodnúť pre stratégiu opt-in alebo opt-out), aby pokryl veľké množstvo požiadavok a situácií.',
         'question'  => 'Môžem nejak obmedziť informácie, ktoré hráči a hráčky vidia v mojej kampani?',

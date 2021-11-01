@@ -52,7 +52,6 @@ Başlamak için birkaç ipucu:
 Son olarak ama önemli:
 - Diğerlerinin Kanka'yı nasıl kullandığına dair ilham almak için :public kısmına göz atın.
 - Sorularınız, önerileriniz varsa ya da sadece laflamak istiyorsanız, bize :discord üzerinden katılın!
-- Grubunuzun bir sonraki oturumunu ne zaman yapacağını :lfgm'deki dostlarımız ile planlayın ve LFGM takviminizi Kanka serüveniniz ile senkronize edin.
 - Uygulama hoşunuza gitti ve onu desteklemek mi istiyorsunuz? Kanka'yı :subscriptions ile desteklemeyi düşünün.
 TEXT
 ,

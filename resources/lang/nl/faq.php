@@ -92,10 +92,6 @@ TEXT
         'answer'    => 'Als je jouw entiteiten liever standaard in een geneste weergave bekijkt (in bijvoorbeeld de knop Geneste Weergave in de lijst met locaties), kun je dit doen door naar je Profiel- en Lay-out opties te gaan. Daar kun je de optie Geneste Weergave controleren. Dit is alleen voor jouw account en niet voor je campaigns.',
         'question'  => 'Kan ik instellen dat de lijsten standaard worden genest?',
     ],
-    'organise_play'         => [
-        'answer'    => 'We werken samen met :lfgm waarmee je jouw sessies met je groep kunt organiseren. Je kunt je Kanka campaign synchroniseren met je LFGM campaign om je volgende beschikbaarheid direct op het campaign dashboard te tonen.',
-        'question'  => 'Hoe kan ik beheren wanneer ik mijn sessies uitvoer?',
-    ],
     'permissions'           => [
         'answer'    => 'Absoluut, daarom hebben we Kanka gebouwd! Je kunt al je spelers voor je campaigns uitnodigen en hen rollen en permissies geven. We hebben het systeem zo gebouwd dat het uiterst flexibel is (je kunt zowel een opt-in- als een opt-out-configuratie gebruiken) om in zoveel mogelijk behoeften en situaties te voorzien.',
         'question'  => 'Kan ik de informatie beperken die mijn spelers in mijn campagne zien?',

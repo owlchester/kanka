@@ -101,10 +101,6 @@ TEXT
         'answer'    => 'Si prefereiu veure les entitats en vista niada per defecte, podeu fer-ho des de les opcions de disseny, dins del perfil. Allà es pot seleccionar l\'opció "Vista niada per defecte". Això només afectarà el vostre compte.',
         'question'  => 'Es poden configurar les llistes perquè apareguin niades per defecte?',
     ],
-    'organise_play'         => [
-        'answer'    => 'Ens hem associat amb :lfgm per a ajudar-vos a organitzar les sessions en grup. Es pot sincronitzar la campanya de Kanka amb la campanya de LFGM per a mostrar les pròximes disponibilitats directament al tauler de la campanya.',
-        'question'  => 'Com es poden gestionar les sessions?',
-    ],
     'permissions'           => [
         'answer'    => 'Per descomptat, per a això hem creat Kanka! Podeu convidar tots els vostres jugadors a les teves campanyes, i donar-los rols i permisos. Hem construït el sistema perquè sigui extremadament flexible (amb opció d\'incloure o d\'excloure) per a cobrir les màximes necessitats i situacions possibles.',
         'question'  => 'Vull utilitzar Kanka per a construir el meu món de rol, però vull que els meus jugadors tinguin accés a algunes de les entitats i editar els seus personatges. És possible?',
