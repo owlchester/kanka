@@ -28,6 +28,7 @@ class CreateEntitiesTable extends Migration
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
 
             $table->index(['type', 'name', 'is_private']);
+            $table->index(['updated_at']);
         });
     }
 

@@ -55,6 +55,7 @@ class CreateConversations extends Migration
             $table->unsignedInteger('user_id')->nullable();
             $table->longText('message')->nullable();
             $table->timestamps();
+            $table->index(['created_at']);
 
             $table->foreign('conversation_id')->references('id')->on('conversations')->onDelete('cascade');
             $table->foreign('character_id')->references('id')->on('characters')->onDelete('set null');

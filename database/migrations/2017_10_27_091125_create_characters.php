@@ -19,12 +19,18 @@ class CreateCharacters extends Migration
             $table->string('slug');
             $table->integer('campaign_id')->unsigned()->notNull();
 
+            $table->string('type')->nullable();
+
+
             // Overview
             $table->longText('entry')->nullable();
 
             // Appearance
             $table->string('age', 25)->nullable();
             $table->string('sex', 45)->nullable();
+
+            $table->boolean('is_personality_visible')->default(true);
+
 
             $table->timestamps();
 
@@ -35,20 +41,6 @@ class CreateCharacters extends Migration
             $table->index(['name', 'slug']);
         });
 
-        Schema::create('character_relation', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('first_id')->unsigned()->notNull();
-            $table->integer('second_id')->unsigned()->notNull();
-            $table->string('relation', 45)->notNull();
-            $table->timestamps();
-
-            // Foreign
-            $table->foreign('first_id')->references('id')->on('characters')->onDelete('cascade');
-            $table->foreign('second_id')->references('id')->on('characters')->onDelete('cascade');
-
-            // Index
-            //$table->index([]);
-        });
     }
 
     /**
@@ -58,7 +50,6 @@ class CreateCharacters extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('character_relation');
         Schema::dropIfExists('characters');
     }
 }

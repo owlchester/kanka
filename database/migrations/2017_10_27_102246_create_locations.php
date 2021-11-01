@@ -21,7 +21,7 @@ class CreateLocations extends Migration
             $table->increments('id');
             $table->string('name')->notNull();
             $table->string('slug');
-            $table->string('type', 45);
+            $table->string('type', 45)->nullable();
             $table->string('image')->nullable();
             $table->longText('entry')->nullable();
             $table->integer('parent_location_id')->unsigned()->nullable();
@@ -37,22 +37,7 @@ class CreateLocations extends Migration
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
             $table->foreign('parent_location_id')->references('id')->on('locations')->onDelete('set null');
         });
-
-
-        Schema::create('location_attributes', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name')->notNull();
-            $table->string('value')->notNull();
-            $table->integer('location_id')->unsigned();
-            $table->timestamps();
-
-            // Index
-            $table->index(['name']);
-
-            // Foreign
-            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
-        });
-    }
+            }
 
     /**
      * Reverse the migrations.
@@ -61,7 +46,6 @@ class CreateLocations extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('location_attributes');
         Schema::dropIfExists('locations');
     }
 }

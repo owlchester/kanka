@@ -23,6 +23,8 @@ class CreateItemTable extends Migration
             $table->integer('campaign_id')->unsigned()->notNull();
             $table->integer('character_id')->unsigned()->nullable();
             $table->integer('location_id')->unsigned()->nullable();
+            $table->longText('description')->nullable();
+
 
             // Overview
             $table->longText('entry')->nullable();

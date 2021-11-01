@@ -14,7 +14,6 @@ class AlterCampaignsAddExcerpt extends Migration
     public function up()
     {
         Schema::table('campaigns', function (Blueprint $table) {
-            $table->text('excerpt')->nullable();
             $table->unsignedInteger('visible_entity_count')->default(0);
         });
     }
@@ -27,7 +26,6 @@ class AlterCampaignsAddExcerpt extends Migration
     public function down()
     {
         Schema::table('campaigns', function (Blueprint $table) {
-            $table->removeColumn('excerpt');
             $table->removeColumn('visible_entity_count');
         });
     }

@@ -14,7 +14,7 @@ class AddCampaignFeatured extends Migration
     public function up()
     {
         Schema::table('campaigns', function (Blueprint $table) {
-            $table->boolean('is_featured')->defaultValue(false);
+            $table->boolean('is_featured')->default(false);
             $table->index(['visibility', 'is_featured'], 'campaigns_public_idx');
         });
     }

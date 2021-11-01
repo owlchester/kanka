@@ -48,7 +48,7 @@ class CreateOrganisation extends Migration
             $table->foreign('character_id')->references('id')->on('characters')->onDelete('cascade');
 
             // Index
-            //$table->index([]);
+            $table->index(['role']);
         });
     }
 
