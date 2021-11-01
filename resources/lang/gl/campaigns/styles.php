@@ -22,6 +22,7 @@ return [
         'here'      => 'no noso blogue',
         'main'      => 'Podes crear estilos CSS personalizados para as túas campañas potenciadas. Estes estilos son cargados despois de calquera estilo importado do mercado que estea habilitado na campaña. Podes aprender máis sobre como estilar a túa campaña :here.',
     ],
+    'title'     => 'Estilos de campaña',
     'update'    => [
         'success'   => 'Estilo ":name" actualizado.',
         'title'     => 'Actualizar estilo',

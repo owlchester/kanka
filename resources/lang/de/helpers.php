@@ -5,6 +5,10 @@ return [
         'description'   => 'Sie können einen Charakter mit einem Kalender der Kampagne verknüpfen, indem Sie einen Charakter anzeigen und zur Registerkarte Erinnerungen wechseln. Fügen Sie von dort aus eine neue Erinnerung hinzu und setzen Sie den Typ auf Geburt oder Tod, um das Alter des Charakters automatisch zu berechnen. Wenn sowohl Geburt als auch Tod vorliegen, werden beide Daten und das Todesalter angezeigt. Wenn nur die Geburt eingestellt ist, werden das Datum und das aktuelle Alter angezeigt. Wenn nur der Tod festgelegt ist, werden das Datum und die Jahre seit dem Tod angezeigt.',
         'title'         => 'Charakter alter und Tod',
     ],
+    'api-filters'       => [
+        'description'   => 'Die folgenden Filter sind für den API-Endpunkt :name verfügbar.',
+        'title'         => 'API Filters',
+    ],
     'attributes'        => [
         'con'               => 'con',
         'description'       => 'Verwenden Sie Attribute, um Werte darzustellen, die an ein Objekt angehängt sind, die keine Texte sind. Sie können Objekte in Attributen mithilfe der erweiterten Erwähnungssyntax referenzieren :mention. Sie können auch auf andere Attribute verweisen, indem Sie die :attribute syntax verwenden.',
@@ -18,7 +22,6 @@ return [
         'random_examples'   => 'Wenn Sie beispielsweise eine Zahl zwischen 1 und 100 möchten, verwenden Sie :number. Wenn Sie einen Wert aus einer Liste von Optionen wünschen, verwenden Sie :list.',
         'title'             => 'Attribute',
     ],
-    'description'       => 'Einige hilfreiche Tipps und Tricks, um dir mit Kanka zu helfen',
     'dice'              => [
         'description'               => 'Allgemeine Würfelwürfe sind möglich, wenn du "d20", "4d4+4", "d%" (Prozentwürfe) oder "df" (FUDGE-würfe) schreibst.',
         'description_attributes'    => 'Es ist auch möglich ein Charakterattribut zu verwenden mittels {character.attribute_name} Syntac. Zum Beispiel, {character.level}d6+{character.wisdom}.',

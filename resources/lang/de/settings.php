@@ -7,7 +7,6 @@ return [
             'update_email'      => 'Email aktualisieren',
             'update_password'   => 'Passwort aktualisieren',
         ],
-        'description'       => 'Deinen Account aktualisieren',
         'email'             => 'Email ändern',
         'email_success'     => 'Email aktualisiert.',
         'password'          => 'Passwort ändern',
@@ -21,13 +20,9 @@ return [
         'title'             => 'Account',
     ],
     'api'           => [
-        'description'           => 'Aktualisiere deine API Einstellungen',
-        'experimental'          => 'Willkommen zur API von Kanka! Diese Features sind noch experimentell, aber sollten stabil genug sein, um mit API zu kommunizieren. Erstelle ein persönliches Access Token, welches in deinem API Request genutzt wird, oder nutze das Client Token wenn du möchtest, dass deine App Zugriff auf Nutzerdaten hat.',
-        'help'                  => 'Kanka wird bald eine RESTful API zur Verfügung stellen, so dass Drittanbieter-Apps mit Kanka kommunizieren können. Details, wie du deine API Keys verwaltest, wirst du bald hier finden.',
-        'helper'                => 'Willkommen bei den Kanka APIs. Generieren Sie ein persönliches Zugriffstoken, das Sie in Ihrer API-Anfrage verwenden können, um Informationen zu den Kampagnen zu sammeln, an denen Sie beteiligt sind.',
-        'link'                  => 'Lies die API Dokumentation',
-        'request_permission'    => 'Wir bauen zurzeit eine mächtige RESTful API, so das Drittanbieter-Apps sich zu Kanka verbinden können. Allerdings limitieren wir aktuell noch die Anzahl der Nutzer, die die API nutzen können, solange wir noch daran arbeiten. Wenn du Zugriff auf die API haben möchtest und coole Apps bauen möchtest, die mit Kanka kommunizieren, bitte kontaktiere uns und wir senden dir die Informationen, die du brauchst.',
-        'title'                 => 'API',
+        'helper'    => 'Willkommen bei den Kanka APIs. Generieren Sie ein persönliches Zugriffstoken, das Sie in Ihrer API-Anfrage verwenden können, um Informationen zu den Kampagnen zu sammeln, an denen Sie beteiligt sind.',
+        'link'      => 'Lies die API Dokumentation',
+        'title'     => 'API',
     ],
     'apps'          => [
         'actions'   => [
@@ -69,7 +64,6 @@ return [
                 'superboosted'  => 'Alle Superboost Kampagnenfunktionen',
             ],
             'recovery'          => 'Gelöschte Objekte für bis zu :amount Tage wiederherstellen.',
-            'second'            => 'Das Boosten einer Kampagne bietet die folgenden Vorteile:',
             'superboost'        => 'Beim Superboosting einer Kampagne werden 3 Ihrer Boosts verwendet und zusätzliche Funktionen für Boosted-Kampagnen freigeschaltet.',
             'theme'             => 'Leitmotiv auf Kampagnenebene und benutzerdefiniertes Design.',
             'third'             => 'Um eine Kampagne zu boosten, rufen Sie die Seite der Kampagne auf und klicken Sie auf die Schaltfläche ":boost_button" über der Schaltfläche ":edit_button".',
@@ -138,9 +132,8 @@ return [
         'title'     => 'Rechnungen',
     ],
     'layout'        => [
-        'description'   => 'Aktualisiere deine Layout Optionen',
-        'success'       => 'Layout Optionen aktualisiert.',
-        'title'         => 'Layout',
+        'success'   => 'Layout Optionen aktualisiert.',
+        'title'     => 'Layout',
     ],
     'marketplace'   => [
         'fields'    => [
@@ -169,40 +162,24 @@ return [
         'subscription_status'   => 'Abonnement Status',
     ],
     'patreon'       => [
-        'actions'           => [
-            'link'  => 'Account verlinken',
-            'view'  => 'Besuche Kanka auf Patreon',
-        ],
-        'benefits'          => 'Eure Unterstützung auf Patreon erlaubt es euch größere Bilder hochzuladen, hilft uns die Serverkosten zu begleichen und mehr Arbeitszeit in Kanka zu stecken.',
-        'benefits_features' => 'erstaunliche Eigenschaften',
-        'deprecated'        => 'Veraltete Funktion - Wenn Sie Kanka unterstützen möchten, tun Sie dies bitte mit einem :subscription. Die Patreon-Verknüpfung ist weiterhin für unsere Benutzer aktiv, die ihr Konto vor dem Umzug von Patreon verknüpft haben.',
-        'description'       => 'Synchronisierung mit Patreon',
-        'errors'            => [
-            'invalid_token' => 'Ungültiger Token! Patreon konnte die Anfrage nicht validieren.',
-            'missing_code'  => 'Fehlender Code! Patreon hat keinen Code zurück geschickt, um deinen Account zu verifizieren.',
-            'no_pledge'     => 'Kein Pledge! Patreon hat deinen Account verifiziert, aber konnte keinen aktiven Pledge feststellen.',
-        ],
-        'link'              => 'Benutze diesen Button, wenn du aktuell Kanka auf Patreon unterstützt. Das gibt dir Zugriff auf einige tolle Extras.',
-        'linked'            => 'Danke, dass du Kanka auf Patreon unterstützt! Dein Account wurde verlinkt.',
-        'pledge'            => 'Pledge :name',
-        'remove'            => [
+        'deprecated'    => 'Veraltete Funktion - Wenn Sie Kanka unterstützen möchten, tun Sie dies bitte mit einem :subscription. Die Patreon-Verknüpfung ist weiterhin für unsere Benutzer aktiv, die ihr Konto vor dem Umzug von Patreon verknüpft haben.',
+        'description'   => 'Synchronisierung mit Patreon',
+        'pledge'        => 'Pledge :name',
+        'remove'        => [
             'button'    => 'Trennen Sie die Verknüpfung Ihres Patreon-Kontos',
             'success'   => 'Ihr Patreon-Konto wurde getrennt.',
             'text'      => 'Wenn Sie die Verknüpfung Ihres Patreon-Kontos mit Kanka aufheben, werden Ihre Boni, Ihr Name in der Hall of Fame, Kampagnen-Boosts und andere Funktionen im Zusammenhang mit der Unterstützung von Kanka entfernt. Keiner Ihrer verstärkten Inhalte geht verloren (z. B. Objekt header). Wenn Sie sich erneut anmelden, haben Sie Zugriff auf alle Ihre vorherigen Daten, einschließlich der Möglichkeit, Ihre zuvor verstärkten Kampagnen zu boosten.',
             'title'     => 'Trennen Sie Ihr Patreon-Konto von Kanka',
         ],
-        'success'           => 'Danke, dass du Kanka auf Patreon unterstützt.',
-        'title'             => 'Patreon',
-        'wrong_pledge'      => 'Euer Patreon Tier wird manuell von uns gesetzt. Daher kann es sein, dass es bis zu ein paar Tagen dauert bis es korrekt hinterlegt wird. Wenn es länger falsch ist, kontaktiert uns bitte.',
+        'title'         => 'Patreon',
     ],
     'profile'       => [
-        'actions'       => [
+        'actions'   => [
             'update_profile'    => 'Aktualisiere dein Profil',
         ],
-        'avatar'        => 'Profilbild',
-        'description'   => 'Aktualisiere dein Profil',
-        'success'       => 'Profil aktualisiert.',
-        'title'         => 'Persönliches Profil',
+        'avatar'    => 'Profilbild',
+        'success'   => 'Profil aktualisiert.',
+        'title'     => 'Persönliches Profil',
     ],
     'subscription'  => [
         'actions'               => [
@@ -228,6 +205,12 @@ return [
             ],
             'title' => 'Abonnementstufe ändern',
         ],
+        'coupon'                => [
+            'check'         => 'Gutscheincode prüfen',
+            'invalid'       => 'Ungültiger Gutscheincode.',
+            'label'         => 'Promotional code',
+            'percent_off'   => 'Wir reduzieren dein erstes Jahresabonnement um :percent%!',
+        ],
         'currencies'            => [
             'eur'   => 'EUR',
             'usd'   => 'USD',
@@ -242,7 +225,6 @@ return [
         'fields'                => [
             'active_since'      => 'aktiv seit',
             'active_until'      => 'aktiv bis',
-            'billed_monthly'    => 'Monatlich abgerechnet',
             'billing'           => 'Abrechnung',
             'currency'          => 'Abrechnungswährung',
             'payment_method'    => 'Zahlungsmethode',

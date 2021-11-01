@@ -86,7 +86,6 @@ return [
             'css'                   => 'Benutzerdefinierte Kampagne CSS',
             'dashboards'            => 'Legen Sie benutzerdefinierte Dashboards für die Rollen der Kampagne fest',
             'description'           => 'Bestimmte Versprechen bieten Benutzern mit Booster, mit denen sie Kampagnen steigern können. Diese bieten die folgenden Vorteile.',
-            'entity_files'          => 'Maximal hochgeladene Dateien pro Objekt erhöht (bis zu 5 statt 3)',
             'entity_files_v2'       => 'Maximal hochgeladene Dateien pro Objekt',
             'entity_links'          => 'Setzen Sie Links auf Objekten zu externen Ressourcen und Webseiten',
             'header_image'          => 'Objekt-Header-Bild',
@@ -103,6 +102,7 @@ return [
         'boosts_v2'         => [
             'description'       => 'Unsere Pledge-Level geben dir Zugang zu Boostern, mit denen du Kampagnen boosten oder superboosten kannst. Dadurch werden die folgenden Vorteile für eine Kampagne freigeschaltet.',
             'description-count' => 'Das Boosten einer Kampagne verwendet :boost-count Booster. Beim Superboosten einer Kampagne werden :superboost-count Booster verwendet.',
+            'moving'            => 'Boosts können um Kampagnen herum verschoben werden. Wenn zum Beispiel eine Kampagne vorbei ist, können Sie sie aufheben und stattdessen eine andere Kampagne verstärken oder superboosten. Durch das Aufheben einer Kampagne werden keine Daten zu verstärkten Funktionen gelöscht, sondern einfach ausgeblendet, bis die Kampagne erneut verstärkt wird.',
             'title'             => 'Boosted und Superboosted Kampagnen',
         ],
         'calendars'         => [
@@ -110,12 +110,10 @@ return [
             'title'         => 'Kalender',
         ],
         'collaborative'     => [
-            'description'   => 'Nicht allein? Wir haben die Lösung für dich! Du kannst deine Freunde und Co-Dungeonmaster einladen, mit dir zusammen deine Kampagne aufzubauen!',
-            'title'         => 'Gemeinsam',
+            'title' => 'Gemeinsam',
         ],
         'dashboards'        => [
-            'description'   => 'Kontrolliere die Informationen, die deine Spieler sehen, wenn sie Kanka öffnen.',
-            'title'         => 'Dashboards',
+            'title' => 'Dashboards',
         ],
         'description'       => 'Hier sind einige Dinge, die du an unserer App lieben wirst!',
         'description_full'  => 'Hier einige unserer besten und beliebtesten Features.',
@@ -124,9 +122,8 @@ return [
             'title'         => 'Flora & Fauna',
         ],
         'free'              => [
-            'bonuses'       => 'Boni',
-            'description'   => 'Die besten Dinge im leben sind kostenlos.',
-            'title'         => 'Kostenlos',
+            'bonuses'   => 'Boni',
+            'title'     => 'Kostenlos',
         ],
         'landscape'         => 'Bitte schalten Sie Ihr Gerät in den Querformatmodus, um die Liste der Funktionen anzuzeigen.',
         'layers'            => [
@@ -146,10 +143,6 @@ return [
         'notebook'          => [
             'description'   => 'Bereite deine nächste Session vor oder protokoliere was passiert ist mit unserem Rich Text Logbuch Feature!',
             'title'         => 'Logbücher',
-        ],
-        'notes'             => [
-            'description'   => 'xxx',
-            'title'         => 'Anmerkungen',
         ],
         'patreon'           => [
             'api_calls'         => 'Erhöhte API-Aufrufe (90)',
@@ -192,13 +185,10 @@ return [
             'title'         => 'Geheimnisse verwalten',
         ],
         'superboosts'       => [
-            'boosted'       => 'Superboosted',
-            'description'   => 'Durch die Verwendung von drei Kampagnen-Boostern für eine Kampagne wird sie superboosted, wodurch die folgenden Funktionen freigeschaltet werden.',
-            'files'         => 'Bis zu 10 Dateien werden auf jedes Objekt hochgeladen',
-            'gallery'       => 'Kampagnengalerie und Integrationen mit dem Summernote-Texteditor',
-            'logs'          => 'Vollständige Änderungsprotokolle für Objekte (bis zu 30 Tage)',
-            'stats'         => 'Seite mit den Kampagnenerfolgen',
-            'title'         => 'Superboost Kampagne',
+            'boosted'   => 'Superboosted',
+            'gallery'   => 'Kampagnengalerie und Integrationen mit dem Summernote-Texteditor',
+            'logs'      => 'Vollständige Änderungsprotokolle für Objekte (bis zu 30 Tage)',
+            'stats'     => 'Seite mit den Kampagnenerfolgen',
         ],
         'timelines'         => [
             'description'   => 'Stellen Sie visuell die Zeitstrahlen Ihrer Welten, Reiche, Adelsfamilien oder sogar eines einzelnen Charakters dar.',
@@ -207,12 +197,10 @@ return [
         'title'             => 'Unbegrenzte Features, unbegrenzter Spaß',
         'unlimited'         => 'unbegrenzt',
         'updates'           => [
-            'description'   => 'Kanka erhält regelmäßige Update, die von der Community mitgestaltet werden.',
-            'title'         => 'Regelmäßige Updates',
+            'title' => 'Regelmäßige Updates',
         ],
         'worldbuilding'     => [
-            'description'   => 'Mit Modulen, die alles von Karten über Zeitstrahlen und Kalender bis hin zu Ereignissen abdecken, erleichtert Kanka die Organisation komplexer Welten.',
-            'title'         => 'Worldbuilding',
+            'title' => 'Worldbuilding',
         ],
     ],
     'first_block'   => [
@@ -225,7 +213,6 @@ return [
         'headings'  => [
             'app'           => 'App',
             'community'     => 'Community',
-            'friends'       => 'Unsere Freunde',
             'other'         => 'Andere',
             'useful_links'  => 'Nützliche Links',
         ],
@@ -303,16 +290,15 @@ return [
             'support'   => 'Unterstützung',
         ],
         'benefits'      => [
-            'big_maps'          => 'große Kartengröße (:size)',
-            'bigger_maps'       => 'größere Kartengröße (:size)',
-            'boosters'          => 'Kampagnen-Booster',
-            'core'              => 'Zugriff auf alle Kernfunktionen',
-            'higher_uploads'    => 'Höhere Größen beim Hochladen von Dateien',
-            'huge_maps'         => 'größte Kartengröße (:size)',
-            'huge_uploads'      => 'Riesige Upload-Größen für Dateien',
-            'no_boosters'       => 'Keine Kampagnen-Booster',
-            'unlimited'         => 'Unbegrenzte Kampagnen und Uploads',
-            'updates'           => 'Häufige Updates und Verbesserungen',
+            'big_maps'      => 'große Kartengröße (:size)',
+            'bigger_maps'   => 'größere Kartengröße (:size)',
+            'boosters'      => 'Kampagnen-Booster',
+            'core'          => 'Zugriff auf alle Kernfunktionen',
+            'huge_maps'     => 'größte Kartengröße (:size)',
+            'huge_uploads'  => 'Riesige Upload-Größen für Dateien',
+            'no_boosters'   => 'Keine Kampagnen-Booster',
+            'unlimited'     => 'Unbegrenzte Kampagnen und Uploads',
+            'updates'       => 'Häufige Updates und Verbesserungen',
         ],
         'description'   => 'Obwohl alle Kernfunktionen kostenlos sind, hilft uns die Unterstützung von Kanka dabei, häufige Updates und Verbesserungen für alle Benutzer bereitzustellen.',
         'tier'          => [
@@ -353,7 +339,6 @@ return [
     ],
     'second_block'  => [
         'call_to_action'    => 'Lass uns anfangen!',
-        'title'             => 'Warte nicht.<br />Beginne zu erstellen.',
     ],
     'seo'           => [
         'keywords'  => 'Worldbuilding, Tabletop-RPG, RPG-Kampagnenmanager',

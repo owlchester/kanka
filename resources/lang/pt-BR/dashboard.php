@@ -93,6 +93,10 @@ return [
             'edit'              => 'Editar um widget',
         ],
         'title'     => 'Configuração do dashboard da campanha',
+        'tutorial'  => [
+            'blog'  => 'nosso tutorial',
+            'text'  => 'Precisa de ajuda para configurar o dashboard de sua campanha? Leia o :blog para alguma ajuda e inspiração.',
+        ],
         'widgets'   => [
             'calendar'      => 'Calendário',
             'campaign'      => 'Cabeçalho da campanha',

@@ -218,6 +218,12 @@ return [
             ],
             'title' => 'Alterar nível de assinatura',
         ],
+        'coupon'                => [
+            'check'         => 'Verifique o código promocional',
+            'invalid'       => 'Código promocional inválido.',
+            'label'         => 'Código promocional',
+            'percent_off'   => 'Iremos descontar sua primeira assinatura anual por :percent%!',
+        ],
         'currencies'            => [
             'eur'   => 'EUR',
             'usd'   => 'USD',

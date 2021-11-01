@@ -18,11 +18,13 @@ return [
     'fields'        => [
         'abbreviation'  => 'Abreviação',
         'end_year'      => 'Ano inicial',
+        'is_collapsed'  => 'Colapsado',
         'start_year'    => 'Ano final',
     ],
     'helpers'       => [
-        'eras'      => 'Uma linha do tempo precisa ser criada antes que eras possam ser adicionadas a ela.',
-        'primary'   => 'Separe sua linha do tempo em eras. Uma linha do tempo precisa de pelo menos uma era para funcionar corretamente.',
+        'eras'          => 'Uma linha do tempo precisa ser criada antes que eras possam ser adicionadas a ela.',
+        'is_collapsed'  => 'Era está colapsada (minimizada) por padrão.',
+        'primary'       => 'Separe sua linha do tempo em eras. Uma linha do tempo precisa de pelo menos uma era para funcionar corretamente.',
     ],
     'placeholders'  => [
         'abbreviation'  => 'a.C., d.C.',

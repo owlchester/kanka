@@ -5,6 +5,10 @@ return [
         'description'   => 'Você pode vincular um personagem a um calendário da campanha visualizando um personagem e indo para a guia Lembretes. A partir daí, adicione um novo lembrete e defina o tipo como Nascimento ou Morte para calcular automaticamente a idade do personagem. Se o nascimento e a morte estiverem presentes, ambas as datas serão mostradas, bem como a idade da morte. Se apenas o nascimento for definido, a data e a idade atual serão mostradas. Se apenas a morte for definida, a data e os anos desde a morte serão mostrados.',
         'title'         => 'Idade do personagem e Morte',
     ],
+    'api-filters'       => [
+        'description'   => 'Os seguintes filtros estão disponíveis para o endpoint :name da API.',
+        'title'         => 'Filtros da API',
+    ],
     'attributes'        => [
         'con'               => 'Con',
         'description'       => 'Use atributos para representar valores anexados a uma entidade que não é texto. Você pode fazer referência a entidades em atributos usando a sintaxe de menções avançadas :mention. Você também pode fazer referência a outros atributos usando a sintaxe :attribute.',

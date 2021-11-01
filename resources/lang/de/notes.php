@@ -23,7 +23,6 @@ return [
         'type'          => 'Typ',
     ],
     'helpers'       => [
-        'nested'        => 'Anzeigen von Notizen, die keine übergeordnete Notiz haben. Klicken Sie auf eine Notiz, um die Untergeordnete Notizen zu erkunden.',
         'nested_parent' => 'Anzeigen der Notizen von :parent.',
         'nested_without'=> 'Anzeigen aller Notizen ohne übergeordnete Notiz. Klicken Sie auf eine Zeile, um die untergeordneten Notizen anzuzeigen.',
     ],

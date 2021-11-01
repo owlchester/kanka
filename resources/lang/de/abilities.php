@@ -38,7 +38,6 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Diese Liste enthält alle Fähigkeiten, die vererbt werden, und nicht nur diejenigen, die sich auf der nächstniedrigeren Ebene befinden.',
-        'nested'        => 'In der verschachtelten Ansicht können Sie Ihre Fähigkeiten verschachtelt anzeigen. Fähigkeiten ohne übergeordnete Fähigkeit werden standardmäßig angezeigt. Fähigkeiten mit Unterfähigkeiten können angeklickt werden, um diese Kinder anzuzeigen. Sie können so lange klicken, bis keine Kinder mehr angezeigt werden.',
         'nested_parent' => 'Anzeigen der Fähigkeiten von :parent.',
         'nested_without'=> 'Anzeigen aller Fähigkeiten, die keine übergeordnete Fähigkeit haben. Klicken Sie auf eine Zeile, um die Fähigkeiten untergeordneten Objekte anzuzeigen.',
     ],

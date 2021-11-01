@@ -12,11 +12,16 @@ return [
         'success'   => 'Item :item removido de :entuty',
     ],
     'fields'        => [
-        'amount'        => 'Quantidade',
-        'description'   => 'Descrição',
-        'is_equipped'   => 'Equipado',
-        'name'          => 'Nome',
-        'position'      => 'Posição',
+        'amount'            => 'Quantidade',
+        'copy_entity_entry' => 'Usar a entrada do item',
+        'description'       => 'Descrição',
+        'is_equipped'       => 'Equipado',
+        'name'              => 'Nome',
+        'position'          => 'Posição',
+        'qty'               => 'QTD',
+    ],
+    'helpers'       => [
+        'copy_entity_entry' => 'Mostra a entrada do item ao invés da descrição customizada.',
     ],
     'placeholders'  => [
         'amount'        => 'Qualquer quantidade',

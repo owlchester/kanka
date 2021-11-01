@@ -219,6 +219,12 @@ return [
             ],
             'title' => 'Zmeniť úroveň predplatného',
         ],
+        'coupon'                => [
+            'check'         => 'Skontrolovať promo kód',
+            'invalid'       => 'Neplatný promo kód.',
+            'label'         => 'Promo kód',
+            'percent_off'   => 'Tvoje prvé ročné predplatné bude zlacnené o :percent%!',
+        ],
         'currencies'            => [
             'eur'   => 'EUR',
             'usd'   => 'USD',

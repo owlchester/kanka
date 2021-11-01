@@ -50,7 +50,6 @@ return [
     'title'         => 'Kampagne :name Plugin',
     'types'         => [
         'attribute' => 'Attributvorlage',
-        'attributes'=> 'Attributvorlagen',
         'pack'      => 'Inhaltspaket',
         'theme'     => 'Thema',
     ],

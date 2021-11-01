@@ -25,6 +25,11 @@ return [
             'remove'    => 'Você foi removido do cargo :role na campanha :campaign.',
         ],
     ],
+    'clear'             => [
+        'action'    => 'Limpar tudo',
+        'confirm'   => 'Você tem certeza que quer remover todas as notificações? Essa ação não pode ser desfeita.',
+        'success'   => 'Notificações removidas.',
+    ],
     'header'            => 'Você tem :count notificações.',
     'index'             => [
         'description'   => 'Suas notificações mais recentes',
@@ -42,4 +47,5 @@ return [
         'failed'        => 'Não foi possível processar seus detalhes de pagamento. Por favor, atualize-os em suas configurações de Métodos de Pagamento.',
         'started'       => 'Sua assinatura do kanka foi iniciada.',
     ],
+    'unread'            => 'Nova notificação',
 ];

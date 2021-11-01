@@ -22,6 +22,7 @@ return [
         'here'      => 'z naszego bloga',
         'main'      => 'Możesz tworzyć własne style CSS w doładowanych kampaniach. Będą ładowane po załadowaniu stylów pobranych z targowiska. Więcej o tworzeniu stylów dowiesz się :here.',
     ],
+    'title'     => 'Motywy kampanii',
     'update'    => [
         'success'   => 'Zmieniono styl :name.',
         'title'     => 'Zmiana stylu',

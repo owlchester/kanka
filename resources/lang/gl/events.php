@@ -14,7 +14,8 @@ return [
         'title'     => 'Editar evento ":name"',
     ],
     'events'        => [
-        'title' => 'Eventos do evento ":name"',
+        'helper'    => 'Os eventos que teñen esta entidade como o seu evento superior son mostrados aquí.',
+        'title'     => 'Eventos do evento ":name"',
     ],
     'fields'        => [
         'date'      => 'Data',

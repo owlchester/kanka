@@ -33,10 +33,7 @@ TEXT
         'answer'    => 'Kanka non ten esta funcionalidade. No seu lugar, se o que queres é ter múltiples grupos dentro do mesmo mundo, considera usar a mesma campaña e separar os grupos usando misións, etiquetas, ou permisos.',
         'question'  => 'Podo sincronizar entidades entre varias campañas?',
     ],
-    'conversations'         => [
-        'answer'    => 'As conversas poden ser conversas entre personaxes ou entre membras da campaña. Se, por exemplo, queres documentar unha conversa importante entre PNXs e PXs, podes facelo usando este módulo. Tamén poden ser usadas para xogar campañas de forma escrita.',
-        'question'  => 'Que son as Conversas?',
-    ],
+    'conversations'         => [],
     'custom'                => [
         'answer'    => 'Kanka vén con un conxunto de tipos de entidade predefinidos que interaccionan entre si. Permitir tipos de entidade personalizados requeriría unha reconstrución completa da aplicación e iría en contra do seu propósito de ter uns tipos predefinidos que axudan no proceso de creación de mundos. Dito isto, as Etiquetas que Kanka ofrece son o suficientemente flexibles como para ser usadas para representar tipos de entidade personalizados.',
         'question'  => 'Podo crear tipos de entidade personalizados?',
@@ -101,10 +98,7 @@ TEXT
         'answer'    => 'Se prefires ver as túas entidades na forma de árbore por defecto, podes facelo dende o teu Perfil, nas opcións de Deseño. Aí podes marcar a opción de Vista en árbore. Isto afecta á túa conta, non ás túas campañas.',
         'question'  => 'Podo configurar as listas para que aparezan en forma de árbore por defecto?',
     ],
-    'organise_play'         => [
-        'answer'    => 'Estamos asociadas con :lfgm, que che permite organizar as túas sesións co teu grupo. Podes sincronizar os datos da túa campaña de Kanka coa túa campaña de LFGM para mostrar as túas próximas dispoñibilidades directamente no taboleiro da campaña.',
-        'question'  => 'Como podo administrar cando fago as miñas sesións?',
-    ],
+    'organise_play'         => [],
     'permissions'           => [
         'answer'    => 'Por suposto, é por iso que creamos Kanka! Podes invitar todas as túas xogantes ás túas campañas e darlles roles e permisos. Construímos o sistema para ser extremadamente flexíbel (podes usar opcións de inclusión e de exclusión) para cubrir as máximas necesidades e situacións posíbeis.',
         'question'  => 'Podo limitar a información que as persoas xogantes ven na miña campaña?',

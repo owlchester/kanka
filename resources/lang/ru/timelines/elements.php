@@ -18,7 +18,8 @@ return [
         'icon'  => 'Иконка',
     ],
     'helpers'       => [
-        'icon'  => 'Скопируйте HTML иконки с :fontawesome или :rpgawesome.',
+        'entity_is_private' => 'Объект элемента скрыт.',
+        'icon'              => 'Скопируйте HTML иконки с :fontawesome или :rpgawesome.',
     ],
     'placeholders'  => [
         'date'      => 'Например 42-ое марта или 1332-1337',

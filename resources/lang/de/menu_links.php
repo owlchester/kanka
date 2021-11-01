@@ -2,17 +2,15 @@
 
 return [
     'create'        => [
-        'description'   => 'Erstelle einen neuen Menü Link',
-        'success'       => 'Menü Link \':name\' created.',
-        'title'         => 'Neuer Menü Link',
+        'success'   => 'Menü Link \':name\' created.',
+        'title'     => 'Neuer Menü Link',
     ],
     'destroy'       => [
         'success'   => 'Menü Link \':name\' entfernt.',
     ],
     'edit'          => [
-        'description'   => 'Verändere einen Menü Punkt.',
-        'success'       => 'Menü Link \':name\' aktualisiert.',
-        'title'         => 'Menü Link :name',
+        'success'   => 'Menü Link \':name\' aktualisiert.',
+        'title'     => 'Menü Link :name',
     ],
     'fields'        => [
         'dashboard'     => 'Dashboard',
@@ -37,10 +35,8 @@ return [
         'type'      => 'Richten Sie diesen Menülink ein, um direkt zu einer Liste von Objekten zu gelangen. Kopieren Sie zum Filtern der Ergebnisse Teile der URL in die Liste der gefilterten Objekte nach :? Melden Sie sich im Feld :filter an',
     ],
     'index'         => [
-        'add'           => 'Neuer Menü Link',
-        'description'   => 'Verwalte die Menü Links von :name',
-        'header'        => 'Menü Link von :name',
-        'title'         => 'Menü Links',
+        'add'   => 'Neuer Menü Link',
+        'title' => 'Menü Links',
     ],
     'placeholders'  => [
         'entity'    => 'Wähle ein Objekt',
@@ -57,10 +53,9 @@ return [
         'title'     => 'Menü Links neu anordnen',
     ],
     'show'          => [
-        'description'   => 'Eine detaillierte Ansicht eines Menü Links',
-        'tabs'          => [
+        'tabs'  => [
             'information'   => 'Informationen',
         ],
-        'title'         => 'Menü Link :name',
+        'title' => 'Menü Link :name',
     ],
 ];

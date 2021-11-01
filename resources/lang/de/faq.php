@@ -33,10 +33,7 @@ TEXT
         'answer'    => 'Kanka hat diese Funktion nicht. Wenn Sie jedoch versuchen, mehrere Spielgruppen in derselben Welt zu haben, sollten Sie dieselbe Kampagne verwenden und Ihre Gruppen durch eine Kombination aus Quests, Tags und Berechtigungen trennen',
         'question'  => 'Kann ich Objekte über mehrere Kampagnen hinweg synchronisieren?',
     ],
-    'conversations'         => [
-        'answer'    => 'Unterhaltungen können als Gespräche zwischen Charakteren oder zwischen Kampagnenmitgliedern eingerichtet werden. Wenn du zum Beispiel ein wichtiges Gespräch zwischen NSCs und SCs dokumentieren möchtest, kannst du dies mit diesem Modul tun. Sie können auch für Play-by-Post-Kampagnen verwendet werden.',
-        'question'  => 'Was sind "Unterhaltungen"?',
-    ],
+    'conversations'         => [],
     'custom'                => [
         'answer'    => 'Kanka wird mit einer Reihe vordefinierter Objekttypen erstellt, die miteinander interagieren. Um benutzerdefinierte Objekttypen zuzulassen, müsste die Anwendung vollständig geändert und das Ziel der Vereinfachung der Organisation verfehlt werden. Darüber hinaus ist Kanka flexibel mit Tags, die die meisten benutzerdefinierten Objekte darstellen können.',
         'question'  => 'Kann ich benutzerdefinierte Objekttypen erstellen?',
@@ -106,10 +103,7 @@ TEXT
         'answer'    => 'Wenn Sie Ihre Objekte standardmäßig in einer verschachtelten Ansicht anzeigen möchten (z. B. die Schaltfläche Verschachtelte Ansicht in der Liste der Speicherorte), können Sie dies tun, indem Sie in die Optionen Profil und Layout wechseln. Dort können Sie die Option Verschachtelte Ansicht aktivieren. Dies gilt nur für Ihr Konto und nicht für Ihre Kampagnen.',
         'question'  => 'Kann ich festlegen, dass die Listen standardmäßig verschachtelt sind?',
     ],
-    'organise_play'         => [
-        'answer'    => 'Wir haben eine Partnerschaft mit :lfgm geschlossen, mit der Sie Ihre Sitzungen mit Ihrer Gruppe organisieren können. Sie können Ihre Kanka-Kampagne mit Ihrer LGFM-Kampagne synchronisieren, um Ihre nächsten Verfügbarkeiten direkt im Kampagnen-Dashboard anzuzeigen.',
-        'question'  => 'Wie kann ich verwalten, wann ich meine Sitzungen ausführe?',
-    ],
+    'organise_play'         => [],
     'permissions'           => [
         'answer'    => 'Ja absolut, deswegen haben wir Kanka gemacht! Du kannst all deine Spieler zu deiner Kampagne einladen und ihnen Rollen und Berechtigungen erteilen.  Wir haben das System für  große Flexibiliät gebaut (sowohl opt-in als auch opt-out Konfigurationen möglich), um so viele Ansprüche und Situationen wie möglich abzudecken.',
         'question'  => 'Ich möchte Kanka nutzen, um meine RPG Welt aufzubauen. Meinen Spielern möchte ich ermöglichen manche Objekte und ihre Charakter zu bearbeiten. Geht das?',

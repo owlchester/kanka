@@ -18,7 +18,8 @@ return [
         'icon'  => 'Ikona',
     ],
     'helpers'       => [
-        'icon'  => 'Skopiuj kod HTML ikony z :fontawesome lub :rpgawesome.',
+        'entity_is_private' => 'Element powiązany z tym wpisem jest tajny.',
+        'icon'              => 'Skopiuj kod HTML ikony z :fontawesome lub :rpgawesome.',
     ],
     'placeholders'  => [
         'date'      => 'np. 42 marca albo 1332-1337',
