@@ -20,6 +20,9 @@ use Illuminate\Database\Eloquent\Builder;
  * @property boolean $is_public
  * @property CampaignPermission[] $permissions
  * @property CampaignDashboardRole[] $dashboardRoles
+ *
+ * @method static|self admin(boolean $admin = true)
+ * @method static|self public(boolean $public = true)
  */
 class CampaignRole extends Model
 {
@@ -80,13 +83,24 @@ class CampaignRole extends Model
     }
 
     /**
+     * Filter on a campaign's admin role
+     * @param $query
+     * @param boolean $value
+     * @return mixed
+     */
+    public function scopeAdmin($query, $value = true)
+    {
+        return $query->where('is_admin', $value);
+    }
+
+    /**
      * Get all roles except admin
      * @param $query
      * @return mixed
      */
     public function scopeWithoutAdmin($query)
     {
-        return $query->where('is_admin', false);
+        return $query->admin(false);
     }
 
     /**

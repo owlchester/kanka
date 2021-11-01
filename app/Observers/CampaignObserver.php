@@ -99,20 +99,8 @@ class CampaignObserver
      */
     public function created(Campaign $campaign)
     {
-        $role = new CampaignUser([
-            'user_id' => Auth::user()->id,
-            'campaign_id' => $campaign->id,
-        ]);
-        $role->save();
-
         // If it's the user's first campaign, let's help out a bit.
-        $first = !Auth::user()->hasCampaigns();
         CampaignLocalization::setCampaign($campaign->id);
-
-        // Make sure we save the last campaign id to avoid infinite loops
-        $user = Auth::user();
-        $user->last_campaign_id = $campaign->id;
-        $user->save();
 
         $role = CampaignRole::create([
             'campaign_id' => $campaign->id,
@@ -131,11 +119,6 @@ class CampaignObserver
             'name' => trans('campaigns.members.roles.player'),
         ]);
 
-        CampaignRoleUser::create([
-            'campaign_role_id' => $role->id,
-            'user_id' => Auth::user()->id
-        ]);
-
         // Settings
         $setting = new CampaignSetting([
             'campaign_id' => $campaign->id,
@@ -144,12 +127,6 @@ class CampaignObserver
         ]);
         $setting->save();
 
-        // If it's the first campaign for the user, generate some boilerplate content
-        if ($first) {
-            $this->starterService->generateBoilerplate($campaign);
-        }
-
-        UserCache::clearCampaigns();
     }
 
     /**

@@ -92,7 +92,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return mixed
+     * @return CampaignRole|\Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function roles()
     {
