@@ -6,8 +6,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 uses(RefreshDatabase::class);
 
 it('setups up one', function() {
-
-
     $event = factory(CommunityEvent::class)->make();
     $event->save();
 });
