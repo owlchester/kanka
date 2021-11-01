@@ -31,7 +31,7 @@ You can get a list of all the campaigns the user has access to using the followi
             "image": "{path}",
             "image_full": "{url}",
             "image_thumb": "{url}",
-            "visibility": "public",
+            "visibility_id": 3,
             "created_at": "2017-11-02T16:29:34.000000Z",
             "updated_at": "2020-05-23T22:00:02.000000Z",
             "members": [
@@ -89,7 +89,7 @@ Getting a single campaign is straightforward. `{id}` is to be replaced with the 
         "image": "{path}",
         "image_full": "{url}",
         "image_thumb": "{url}",
-        "visibility": "public",
+        "visibility_id": 3,
         "created_at": "2017-11-02T16:29:34.000000Z",
         "updated_at": "2020-05-23T22:00:02.000000Z",
         "members": [

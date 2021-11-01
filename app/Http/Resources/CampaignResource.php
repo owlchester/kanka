@@ -39,7 +39,7 @@ class CampaignResource extends JsonResource
             'image' => $this->image,
             'image_full' => $this->getImageUrl(0),
             'image_thumb' => $this->getImageUrl(40),
-            'visibility' => $this->visibility,
+            'visibility_id' => $this->visibility_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'members' => CampaignUserResource::collection($this->members),

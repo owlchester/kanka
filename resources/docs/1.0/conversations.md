@@ -53,7 +53,7 @@ You can get a list of all the conversations of a campaign by using the following
                 "updated_at":  "2019-08-29T13:48:54.000000Z",
                 "updated_by": 1,
                 "type": "In Game",
-                "target": "members",
+                "target_id": 1,
                 "participants": 3,
                 "messages": 6
             },
@@ -94,7 +94,7 @@ To get the details of a single conversation, use the following endpoint.
         "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1,
         "type": "In Game",
-        "target": "members",
+        "target_id": 1,
         "participants": 3,
         "messages": 6
     },
@@ -197,7 +197,7 @@ To create a conversation, use the following endpoint.
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the conversation |
 | `type` | `string` | Type of conversation |
-| `target` | `string` | Available options: `users` and `characters`  |
+| `target_id` | `string` | Available options: 1 for `members` and 2 for `characters`  |
 | `tags` | `array` | Array of tag ids |
 | `is_closed` | `boolean` | If the conversation is closed |
 | `is_private` | `boolean` | If the conversation is only visible to `admin` members of the campaign |

@@ -20,7 +20,7 @@
                     <conversation
                             id="{{ $model->id }}"
                             api="{{ route('conversations.conversation_messages.index', $model) }}"
-                            target="{{ $model->target == \App\Models\Conversation::TARGET_CHARACTERS ? 'character' : 'user'}}"
+                            target="{{ $model->target_id == \App\Models\Conversation::TARGET_CHARACTERS ? 'character' : 'user'}}"
                             :targets="{{ $model->jsonParticipants() }}"
                             :disabled="{{ ($model->is_closed ? 'true' : 'false') }}"
                             send="{{ route('conversations.conversation_messages.store', $model) }}"

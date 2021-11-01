@@ -24,7 +24,7 @@ use Illuminate\Support\Str;
  * @property string $image
  * @property string $export_path
  * @property string $export_date
- * @property string $visibility
+ * @property int $visibility_id
  * @property bool $entity_visibility
  * @property bool $entity_personality_visibility
  * @property string $header_image
@@ -57,9 +57,9 @@ class Campaign extends MiscModel
     /**
      * Visibility of a campaign
      */
-    const VISIBILITY_PRIVATE = 'private';
-    const VISIBILITY_REVIEW = 'review';
-    const VISIBILITY_PUBLIC = 'public';
+    const VISIBILITY_PRIVATE = 1;
+    const VISIBILITY_REVIEW = 2;
+    const VISIBILITY_PUBLIC = 3;
 
     const LAYER_COUNT_MIN = 3;
     const LAYER_COUNT_MAX = 10;
@@ -76,7 +76,7 @@ class Campaign extends MiscModel
         'image',
         'export_path',
         'export_date',
-        'visibility',
+        'visibility_id',
         'entity_visibility',
         'entity_personality_visibility',
         'header_image',
@@ -242,7 +242,7 @@ class Campaign extends MiscModel
      */
     public function getIsPublicAttribute()
     {
-        return $this->visibility != self::VISIBILITY_PRIVATE;
+        return $this->visibility_id != self::VISIBILITY_PRIVATE;
     }
 
     /**
@@ -268,7 +268,7 @@ class Campaign extends MiscModel
      */
     public function isPublic(): bool
     {
-        return $this->visibility == self::VISIBILITY_PUBLIC;
+        return $this->visibility_id == self::VISIBILITY_PUBLIC;
     }
 
     /**

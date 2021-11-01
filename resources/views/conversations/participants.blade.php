@@ -46,12 +46,12 @@
             @can('update', $model)
                 @include('partials.errors')
                 <?php $memberList = $campaign->membersList($model->participantsList(false)); ?>
-                @if($model->target == \App\Models\Conversation::TARGET_CHARACTERS || count($memberList) > 0)
+                @if($model->target_id == \App\Models\Conversation::TARGET_CHARACTERS || count($memberList) > 0)
                 {!! Form::open(['route' => ['conversations.conversation_participants.store', $model], 'method'=>'POST', 'data-shortcut' => "1"]) !!}
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="form-group required">
-                            @if ($model->target ==  \App\Models\Conversation::TARGET_CHARACTERS)
+                            @if ($model->target_id ==  \App\Models\Conversation::TARGET_CHARACTERS)
                             {!! Form::select2(
                                 'character_id',
                                 null,
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        @if ($model->target ==  \App\Models\Conversation::TARGET_CHARACTERS)
+                        @if ($model->target_id ==  \App\Models\Conversation::TARGET_CHARACTERS)
                             <label></label>
                         @endif
                         <button class="btn btn-primary btn-info btn-flat btn-block">

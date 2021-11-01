@@ -15,10 +15,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $image
  * @property string $slug
  * @property string $type
- * @property string $target
+ * @property int $target_id
  * @property bool $is_private
  * @property bool $is_closed
- * @property User $created_by
  */
 class Conversation extends MiscModel
 {
@@ -32,15 +31,14 @@ class Conversation extends MiscModel
         'name',
         'image',
         'slug',
-        'type',
+        'target_id',
         'campaign_id',
-        'target',
         'is_private',
         'is_closed'
     ];
 
-    const TARGET_USERS = 'users';
-    const TARGET_CHARACTERS = 'characters';
+    const TARGET_USERS = 1;
+    const TARGET_CHARACTERS = 2;
 
     /**
      * Entity type
@@ -59,7 +57,7 @@ class Conversation extends MiscModel
      * @var array
      */
     protected $filterableColumns = [
-        'target',
+        'target_id',
         'is_closed',
     ];
 
@@ -68,7 +66,7 @@ class Conversation extends MiscModel
      * @var array
      */
     protected $sortableColumns = [
-        'target',
+        'target_id',
         'colour',
     ];
 
@@ -157,6 +155,14 @@ class Conversation extends MiscModel
      */
     public function forCharacters(): bool
     {
-        return $this->target == self::TARGET_CHARACTERS;
+        return $this->target_id == self::TARGET_CHARACTERS;
+    }
+
+    public function target(): string
+    {
+        if ($this->target_id == self::TARGET_CHARACTERS) {
+            return 'characters';
+        }
+        return 'members';
     }
 }

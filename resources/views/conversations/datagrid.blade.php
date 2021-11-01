@@ -13,21 +13,21 @@
         'name',
         'type',
         [
-            'label' => trans('conversations.fields.target'),
-            'field' => 'target',
+            'label' => __('conversations.fields.target'),
+            'field' => 'target_id',
             'render' => function($model) {
-                return trans('conversations.targets.' . $model->target);
+                return __('conversations.targets.' . $model->target());
             },
         ],
         [
-            'label' => trans('conversations.fields.participants'),
+            'label' => __('conversations.fields.participants'),
             'render' => function($model) {
                 return $model->participants()->count();
             },
             'disableSort' => true,
         ],
         [
-            'label' => trans('conversations.fields.messages'),
+            'label' => __('conversations.fields.messages'),
             'render' => function($model) {
                 return $model->messages()->count();
             },

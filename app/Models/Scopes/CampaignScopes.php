@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
  * Trait CampaignScopes
  * @package App\Models\Scopes
  *
- * @method static self|Builder visibility(string $visibility)
+ * @method static self|Builder visibility(int $visibility)
  * @method static self|Builder admin()
  * @method static self|Builder public()
  * @method static self|Builder top()
@@ -28,9 +28,9 @@ trait CampaignScopes
      * @param $visibility
      * @return mixed
      */
-    public function scopeVisibility(Builder $query, $visibility)
+    public function scopeVisibility(Builder $query, int $visibility)
     {
-        return $query->where($this->getTable() . '.visibility', $visibility);
+        return $query->where($this->getTable() . '.visibility_id', $visibility);
     }
 
     /**

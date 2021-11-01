@@ -1,3 +1,9 @@
+<?php
+$targets = [
+    \App\Models\Conversation::TARGET_CHARACTERS => __('conversations.targets.characters'),
+    \App\Models\Conversation::TARGET_USERS => __('conversations.targets.members'),
+]
+?>
 {{ csrf_field() }}
 <div class="row">
     <div class="col-md-6">
@@ -6,7 +12,7 @@
 
         <div class="form-group required">
             <label>{{ trans('conversations.fields.target') }}</label>
-            {!! Form::select('target', trans('conversations.targets'), FormCopy::field('target')->string(), ['class' => 'form-control']) !!}
+            {!! Form::select('target_id', $targets, FormCopy::field('target_id')->string(), ['class' => 'form-control']) !!}
         </div>
 
         @include('cruds.fields.tags')
