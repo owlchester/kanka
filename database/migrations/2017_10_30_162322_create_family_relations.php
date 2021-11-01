@@ -30,7 +30,7 @@ class CreateFamilyRelations extends Migration
 
         Schema::table('families', function (Blueprint $table) {
             $table->integer('location_id')->unsigned()->nullable();
-            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
+            $table->foreign('location_id')->references('id')->on('locations')->onDelete('set null');
         });
     }
 

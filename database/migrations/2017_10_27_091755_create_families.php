@@ -25,9 +25,9 @@ class CreateFamilies extends Migration
             $table->string('slug');
             $table->integer('campaign_id')->unsigned()->notNull();
 
-            $table->longText('history')->nullable();
+            $table->longText('entry')->nullable();
 
-            $table->string('banner')->nullable();
+            $table->string('image')->nullable();
 
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');

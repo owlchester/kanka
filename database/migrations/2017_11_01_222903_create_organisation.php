@@ -24,13 +24,13 @@ class CreateOrganisation extends Migration
             $table->integer('location_id')->unsigned()->nullable();
 
             // Overview
-            $table->longText('history')->nullable();
+            $table->longText('entry')->nullable();
 
             $table->timestamps();
 
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
-            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
+            $table->foreign('location_id')->references('id')->on('locations')->onDelete('set null');
 
             // Index
             $table->index(['name', 'slug', 'type']);
@@ -44,8 +44,8 @@ class CreateOrganisation extends Migration
             $table->timestamps();
 
             // Foreign
-            $table->foreign('organisation_id')->references('id')->on('organisations');
-            $table->foreign('character_id')->references('id')->on('characters');
+            $table->foreign('organisation_id')->references('id')->on('organisations')->onDelete('cascade');
+            $table->foreign('character_id')->references('id')->on('characters')->onDelete('cascade');
 
             // Index
             //$table->index([]);

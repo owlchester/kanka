@@ -16,8 +16,7 @@ class UpdateCharacterWithLocation extends Migration
         Schema::table('characters', function (Blueprint $table) {
             $table->integer('location_id')->unsigned()->nullable();
             $table->string('title')->nullable();
-            $table->string('languages')->nullable();
-            $table->longText('free')->nullable();
+
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('set null');
         });
     }
@@ -33,8 +32,6 @@ class UpdateCharacterWithLocation extends Migration
             $table->dropForeign('characters_location_id_foreign');
             $table->dropColumn('location_id');
             $table->dropColumn('title');
-            $table->dropColumn('languages');
-            $table->dropColumn('free');
         });
     }
 }

@@ -23,7 +23,7 @@ class CreateCampaign extends Migration
             $table->string('slug');
             $table->string('locale');
 
-            $table->unique(['name', 'slug']);
+            $table->unique(['name']);
 
             $table->timestamps();
         });

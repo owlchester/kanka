@@ -23,8 +23,7 @@ class CreateLocations extends Migration
             $table->string('slug');
             $table->string('type', 45);
             $table->string('image')->nullable();
-            $table->longText('description')->nullable();
-            $table->longText('history')->nullable();
+            $table->longText('entry')->nullable();
             $table->integer('parent_location_id')->unsigned()->nullable();
 
             $table->timestamps();
@@ -36,7 +35,7 @@ class CreateLocations extends Migration
 
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
-            $table->foreign('parent_location_id')->references('id')->on('locations')->onDelete('cascade');
+            $table->foreign('parent_location_id')->references('id')->on('locations')->onDelete('set null');
         });
 
 

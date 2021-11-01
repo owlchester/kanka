@@ -24,7 +24,6 @@ class CreateRace extends Migration
             $table->string('slug')->nullable();
             $table->longText('entry')->nullable();
             $table->boolean('is_private')->defaultValue(false);
-            $table->unsignedInteger('section_id')->nullable();
             $table->timestamps();
 
             $table->unsignedInteger('created_by')->nullable();
@@ -35,7 +34,6 @@ class CreateRace extends Migration
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
-            $table->foreign('section_id')->references('id')->on('sections')->onDelete('set null');
         });
 
         Schema::table('campaign_settings', function (Blueprint $table) {

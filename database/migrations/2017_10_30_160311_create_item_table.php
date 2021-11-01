@@ -25,14 +25,14 @@ class CreateItemTable extends Migration
             $table->integer('location_id')->unsigned()->nullable();
 
             // Overview
-            $table->longText('history')->nullable();
+            $table->longText('entry')->nullable();
 
             $table->timestamps();
 
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
-            $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
-            $table->foreign('character_id')->references('id')->on('characters')->onDelete('cascade');
+            $table->foreign('location_id')->references('id')->on('locations')->onDelete('set null');
+            $table->foreign('character_id')->references('id')->on('characters')->onDelete('set null');
 
             // Index
             $table->index(['name', 'slug', 'type']);
