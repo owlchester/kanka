@@ -213,7 +213,7 @@ class PermissionService
                     if ($action === 'allow') {
                         if (empty($permissions['role'][$roleId][$perm])) {
                             CampaignPermission::create([
-                                'key' => $entity->type . '_' . $perm . '_' . $entity->child->id,
+                                'key' => $entity->entityTypeCode() . '_' . $perm . '_' . $entity->child->id,
                                 'campaign_role_id' => $roleId,
                                 'table_name' => $entity->pluralType(),
                                 'entity_id' => $entity->id,
@@ -226,7 +226,7 @@ class PermissionService
                     } elseif ($action === 'deny') {
                         if (empty($permissions['role'][$roleId][$perm])) {
                             CampaignPermission::create([
-                                'key' => $entity->type . '_' . $perm . '_' . $entity->child->id,
+                                'key' => $entity->entityTypeCode() . '_' . $perm . '_' . $entity->child->id,
                                 'campaign_role_id' => $roleId,
                                 'table_name' => $entity->pluralType(),
                                 'entity_id' => $entity->id,
@@ -251,7 +251,7 @@ class PermissionService
                     if ($action === 'allow') {
                         if (empty($permissions['user'][$userId][$perm])) {
                             CampaignPermission::create([
-                                'key' => $entity->type . '_' . $perm . '_' . $entity->child->id,
+                                'key' => $entity->entityTypeCode() . '_' . $perm . '_' . $entity->child->id,
                                 'user_id' => $userId,
                                 'table_name' => $entity->pluralType(),
                                 'entity_id' => $entity->id,
@@ -265,7 +265,7 @@ class PermissionService
 
                         if (empty($permissions['user'][$userId][$perm])) {
                             CampaignPermission::create([
-                                'key' => $entity->type . '_' . $perm . '_' . $entity->child->id,
+                                'key' => $entity->entityTypeCode() . '_' . $perm . '_' . $entity->child->id,
                                 'user_id' => $userId,
                                 'table_name' => $entity->pluralType(),
                                 'entity_id' => $entity->id,
@@ -324,7 +324,7 @@ class PermissionService
                     if ($action == 'allow') {
                         if (empty($permissions['role'][$roleId][$perm])) {
                             CampaignPermission::create([
-                                'key' => $entity->type . '_' . $perm . '_' . $entity->child->id,
+                                'key' => $entity->entityTypeCode() . '_' . $perm . '_' . $entity->child->id,
                                 'campaign_role_id' => $roleId,
                                 'table_name' => $entity->pluralType(),
                                 'entity_id' => $entity->id,
@@ -342,7 +342,7 @@ class PermissionService
                     } elseif ($action === 'deny') {
                         if (empty($permissions['role'][$roleId][$perm])) {
                             CampaignPermission::create([
-                                'key' => $entity->type . '_' . $perm . '_' . $entity->child->id,
+                                'key' => $entity->entityTypeCode() . '_' . $perm . '_' . $entity->child->id,
                                 'campaign_role_id' => $roleId,
                                 'table_name' => $entity->pluralType(),
                                 'entity_id' => $entity->id,
@@ -368,7 +368,7 @@ class PermissionService
                     if ($action == 'allow') {
                         if (empty($permissions['user'][$userId][$perm])) {
                             CampaignPermission::create([
-                                'key' => $entity->type . '_' . $perm . '_' . $entity->child->id,
+                                'key' => $entity->entityTypeCode() . '_' . $perm . '_' . $entity->child->id,
                                 'user_id' => $userId,
                                 'table_name' => $entity->pluralType(),
                                 'entity_id' => $entity->id,
@@ -386,7 +386,7 @@ class PermissionService
                     } elseif ($action === 'deny') {
                         if (empty($permissions['user'][$userId][$perm])) {
                             CampaignPermission::create([
-                                'key' => $entity->type . '_' . $perm . '_' . $entity->child->id,
+                                'key' => $entity->entityTypeCode() . '_' . $perm . '_' . $entity->child->id,
                                 'user_id' => $userId,
                                 'table_name' => $entity->pluralType(),
                                 'entity_id' => $entity->id,
@@ -428,7 +428,7 @@ class PermissionService
             return $this->cachedPermissions;
         }
 
-        $keyBase = $entity->type . '_';
+        $keyBase = $entity->entityTypeCode() . '_';
         $keys = [];
 
         foreach ($this->entityActions as $action) {

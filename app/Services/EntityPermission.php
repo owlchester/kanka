@@ -274,7 +274,7 @@ class EntityPermission
     public function grant(Entity $entity, string $action = 'read'): self
     {
         $this->granted = true;
-        $this->cachedEntityIds[$entity->type][$entity->entity_id][$action] = true;
+        $this->cachedEntityIds[$entity->entityTypeCode()][$entity->entity_id][$action] = true;
         return $this;
     }
 

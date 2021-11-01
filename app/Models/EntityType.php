@@ -5,6 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
+/**
+ * Class EntityType
+ * @package App\Models
+ *
+ * @property string $code
+ */
 class EntityType extends Model
 {
     public $fillable = [

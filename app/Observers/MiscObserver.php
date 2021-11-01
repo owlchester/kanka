@@ -97,7 +97,7 @@ abstract class MiscObserver
         }
         $entity->is_private = $model->is_private;
         $entity->name = $model->name;
-        $entity->type = $model->getEntityType();
+        $entity->type_id = $model->entityTypeID();
 
         // Once saved, refresh the model so that we can call $model->entity
         if ($entity->save()) {

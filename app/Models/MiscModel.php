@@ -268,7 +268,7 @@ abstract class MiscModel extends Model
     {
         return $this
             ->hasOne('App\Models\Entity', 'entity_id', 'id')
-            ->where('type', $this->entityType);
+            ->where('type_id', $this->entityTypeID());
     }
 
     /**
@@ -574,7 +574,7 @@ abstract class MiscModel extends Model
             'campaign_id' => $this->campaign_id,
             'is_private' => $this->is_private,
             'name' => $this->name,
-            'type' => $this->getEntityType()
+            'type_id' => $this->entityTypeID()
         ]);
 
         return $entity;

@@ -17,7 +17,7 @@ use Illuminate\Support\Str;
  * @method static self type(string $type)
  * @method static self|Builder inTags(array $tags)
  * @method static self|Builder inTypes(array $types)
- * @method static self|Builder templates(string $entityType)
+ * @method static self|Builder templates(int $entityTypeID)
  * @method static self|Builder apiFilter(array $requests)
  */
 trait EntityScopes
@@ -30,7 +30,7 @@ trait EntityScopes
     {
         return $query
             ->select('*', DB::raw('count(id) as cpt'))
-            ->groupBy('type')
+            ->groupBy('type_id')
             ->orderBy('cpt', 'desc');
     }
 
@@ -54,7 +54,8 @@ trait EntityScopes
         if (empty($type)) {
             return $query;
         }
-        return $query->where('type', $type);
+        $id = config('entities.ids.' . $type);
+        return $query->where('type_id', $id);
     }
 
     /**
@@ -118,10 +119,10 @@ trait EntityScopes
      * @param string $entityType
      * @return Builder
      */
-    public function scopeTemplates(Builder $query, string $entityType)
+    public function scopeTemplates(Builder $query, int $entityTypeID)
     {
         return $query
-            ->where('type', $entityType)
+            ->where('type_id', $entityTypeID)
             ->where('is_template', 1);
     }
 
@@ -136,7 +137,7 @@ trait EntityScopes
         $types = Arr::get($request, 'types');
         if (!empty($types)) {
             $types = explode(',', $types);
-            $query->whereIn('type', $types);
+            $query->whereIn('type_id', $types);
         }
 
         // Other available:
@@ -207,6 +208,6 @@ trait EntityScopes
             return $query;
         }
 
-        return $query->whereIn('type', $types);
+        return $query->whereIn('type_id', $types);
     }
 }

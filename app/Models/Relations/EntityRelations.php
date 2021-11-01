@@ -13,6 +13,7 @@ use App\Models\EntityLink;
 use App\Models\EntityMention;
 use App\Models\EntityNote;
 use App\Models\EntityTag;
+use App\Models\EntityType;
 use App\Models\EntityUser;
 use App\Models\Image;
 use App\Models\Inventory;
@@ -51,6 +52,7 @@ use App\User;
  * @property Image $image
  * @property Image $header
  * @property User[] $users
+ * @property EntityType $type
  */
 trait EntityRelations
 {
@@ -457,5 +459,13 @@ trait EntityRelations
         return $this->belongsToMany(User::class)
             ->using(EntityUser::class)
             ->withPivot('type_id');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function type()
+    {
+        return $this->belongsTo(EntityType::class);
     }
 }

@@ -153,7 +153,7 @@ class RecoveryService
                 $subChild->timestamps = false;
                 $child->savingObserver = false;
                 $subChild->save();
-                dump('#' . $entity->id . ' child ' . $child->getEntityType() . ' #' . $child->id . ' untreed');
+                //dump('#' . $entity->id . ' child ' . $child->getEntityType() . ' #' . $child->id . ' untreed');
             }
 
             // Clean up the parent and tree to avoid the nested plugin to delete every child

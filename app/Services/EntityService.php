@@ -407,7 +407,7 @@ class EntityService
         $new->save();
 
         // If switching from an organisation to a family, we need to move the members?
-        if ($old->getEntityType() == 'organisation' && $new->getEntityType() == 'family') {
+        if ($old instanceof Organisation && $new instanceof Family) {
             foreach ($old->members as $member) {
                 if (empty($member->character->family_id)) {
                     $member->character->family_id = $new->id;
@@ -415,7 +415,7 @@ class EntityService
                 }
                 $member->delete();
             }
-        } elseif ($old->getEntityType() == 'family' && $new->getEntityType() == 'organisation') {
+        } elseif ($old instanceof Family && $new instanceof Organisation) {
             $characters = Character::where('family_id', $old->id)->get();
             foreach ($characters as $character) {
                 $orgMember = new OrganisationMember();
@@ -440,14 +440,14 @@ class EntityService
             }
         }
         // Remove a character from conversations
-        if ($old->getEntityType() == 'character') {
+        if ($old instanceof Character) {
             foreach ($old->conversationParticipants as $conPar) {
                 $conPar->delete();
             }
         }
 
         // Update entity
-        $entity->type = $new->getEntityType();
+        $entity->type_id = $new->entityTypeID();
         $entity->entity_id = $new->id;
         $entity->save();
 

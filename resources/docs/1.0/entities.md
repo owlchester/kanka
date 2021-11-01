@@ -57,6 +57,7 @@ To get the details of a single entity, use the following endpoint.
     "data": {
         "id": 95,
         "name": "Redkeep",
+        "type_id": 3,
         "type": "location",
         "child_id": 95,
         "tags": [],

@@ -82,7 +82,7 @@ class CampaignVisibileEntityCount extends Command
                 if (!empty($permission->entity_id)) {
                     $ids[] = $permission->entity_id;
                 } else {
-                    $types[] = $permission->type();
+                    $types[] = config('entities.ids.' . $permission->type());
                 }
             }
         }
@@ -92,7 +92,7 @@ class CampaignVisibileEntityCount extends Command
         return Entity::where(['campaign_id' => $campaign->id])
             ->where('is_private', false)
             ->where(function ($sub) use ($types, $ids) {
-                return $sub->whereIn('type', $types)
+                return $sub->whereIn('type_id', $types)
                     ->orWhereIn('id', $ids);
             })
             ->count();

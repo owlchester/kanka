@@ -71,7 +71,9 @@ class EntityMappingService
 
             /** @var Entity $entity */
             $entity = Entity::where([
-                'type' => $singularType, 'id' => $id, 'campaign_id' => $model->campaign_id
+                'type_id' => config('entities.ids.' . $type),
+                'id' => $id,
+                'campaign_id' => $model->campaign_id
             ])->first();
             if ($entity) {
                 //$this->log("- Mentions " . $entity->id);
@@ -228,7 +230,7 @@ class EntityMappingService
         $patternTooltip = '<a title="([^"]*)" href="' . $entityLinkSearch
             . '" data-toggle="tooltip"( data-html="true")?>(.*?)</a>';
 
-        $replace = '[' . $entity->type . ':' . $entity->child->id . ']';
+        $replace = '[' . $entity->entityTypeCode() . ':' . $entity->child->id . ']';
 
 //        dump($patternNoTooltip);
 //        dump($patternTooltip);

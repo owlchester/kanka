@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Facades\CampaignCache;
 use App\Models\Campaign;
+use App\Models\Location;
 use App\Models\MiscModel;
 use App\Notifications\Header;
 use App\Services\EntityService;
@@ -87,7 +88,7 @@ class CampaignAssetExport implements ShouldQueue
                         }
 
                         // Locations have maps
-                        if ($model->getEntityType() == 'location' && !empty($model->map)
+                        if ($model instanceof Location && !empty($model->map)
                             && Storage::exists($model->map)) {
                             $zip->addFromString($model->map, Storage::get($model->map));
                         }

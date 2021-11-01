@@ -211,7 +211,7 @@ class CampaignPluginService
 
             $this->updated[] = link_to($entity->url(), $entity->name);
         } else {
-            $className = '\App\Models\\' . Str::studly($pluginEntity->type->code);
+            $className = '\App\Models\\' . Str::studly($pluginEntity->entityTypeCode());
             //dump('new ' . $className);
 
             /** @var MiscModel $model */

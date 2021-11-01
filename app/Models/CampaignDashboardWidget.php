@@ -271,20 +271,20 @@ class CampaignDashboardWidget extends Model
         $excludedTypes = [];
         if (empty($entityType)) {
             $excludedTypes = [
-                'tag',
-                'conversation',
-                'attribute_template',
-                'dice_roll',
+                config('entities.ids.tag'),
+                config('entities.ids.conversation'),
+                config('entities.ids.attribute_template'),
+                config('entities.ids.dice_roll'),
             ];
         }
 
         if ($this->filterUnmentioned()) {
             $base = $base->unmentioned()
-                ->whereNotIn($base->getTable() . '.type', $excludedTypes)
+                ->whereNotIn($base->getTable() . '.type_id', $excludedTypes)
             ;
         } elseif ($this->filterMentionless()) {
             $base = $base->mentionless()
-                ->whereNotIn($base->getTable() . '.type', $excludedTypes)
+                ->whereNotIn($base->getTable() . '.type_id', $excludedTypes)
             ;
         }
 

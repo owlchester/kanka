@@ -80,10 +80,12 @@ trait CampaignScopes
      */
     public function scopeTop(Builder $query)
     {
+        $tag = config('entities.ids.tag');
+        $attr = config('entities.ids.attribute_template');
         return $query
             ->select([
                 $this->getTable() . '.*',
-                DB::raw("(select count(*) from entities where campaign_id = " . $this->getTable() . ".id and type not in ('tag', 'attribute_template')) as cpt")
+                DB::raw("(select count(*) from entities where campaign_id = " . $this->getTable() . ".id and type_id not in (" . $tag . ", " . $attr . "')) as cpt")
             ])
             ->orderBy('cpt', 'desc')
             ;

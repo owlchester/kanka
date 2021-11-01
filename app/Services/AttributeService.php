@@ -156,7 +156,7 @@ class AttributeService
                 unset($existing[$id]);
             } else {
                 // Special case if the attribute is a random
-                if ($entity->typeId() != config('entities.ids.attribute_template')) {
+                if ($entity->type_id != config('entities.ids.attribute_template')) {
                     list ($type, $value) = $this->randomAttribute($type, $value);
                 }
 
@@ -321,7 +321,7 @@ class AttributeService
                     continue;
                 }
             }
-            
+
             $name = Purify::clean($name, $purifyConfig);
             $value = Purify::clean($values[$id] ?? '', $purifyConfig);
             $type = $types[$id] ?? '';
@@ -347,7 +347,7 @@ class AttributeService
                 unset($existing[$id]);
             } else {
                 // Special case if the attribute is a random
-                if ($entity->typeId() != config('entities.ids.attribute_template')) {
+                if ($entity->type_id != config('entities.ids.attribute_template')) {
                     list ($type, $value) = $this->randomAttribute($type, $value);
                 }
 
@@ -392,7 +392,7 @@ class AttributeService
      */
     public function applyEntityTemplates(Entity $entity, $order = 0)
     {
-        $typeId = $entity->typeId();
+        $typeId = $entity->type_id;
         /** @var AttributeTemplate $template */
         $templates = AttributeTemplate::where(['entity_type_id' => $typeId])->get();
         foreach ($templates as $template) {

@@ -56,17 +56,18 @@ class EntityCacheService extends BaseCache
      */
     public function child(Entity $entity)
     {
-        $key = $entity->type . '_' . $entity->entity_id;
+        $key = $entity->type_id . '_' . $entity->entity_id;
         if (isset($this->entities[$key])) {
             return $this->entities[$key];
         }
 
-        if ($entity->type == 'attribute_template') {
+        if ($entity->type_id == config('entities.ids.attribute_template')) {
             $child = $entity->attributeTemplate;
-        } elseif ($entity->type == 'dice_roll') {
+        } elseif ($entity->type_id == config('entities.ids.dice_roll')) {
             $child = $entity->diceRoll;
         } else {
-            $child = $entity->{$entity->type};
+            $type = $entity->entityTypeCode();
+            $child = $entity->$type;
         }
 
         return $this->entities[$key] = $child;

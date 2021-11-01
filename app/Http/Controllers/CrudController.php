@@ -150,8 +150,8 @@ class CrudController extends Controller
 
         // Entity templates
         $templates = null;
-        if (auth()->check() && !empty($model->getEntityType()) && auth()->user()->can('create', $model)) {
-            $templates = Entity::templates($model->getEntityType())
+        if (auth()->check() && !empty($model->entityTypeID()) && auth()->user()->can('create', $model)) {
+            $templates = Entity::templates($model->entityTypeID())
                 ->acl()
                 ->get();
         }
@@ -301,7 +301,7 @@ class CrudController extends Controller
                 return response()->redirectTo($route);
             } elseif (auth()->user()->new_entity_workflow == 'created') {
                 $redirectToCreated = true;
-            } elseif ($model->getEntityType() == 'maps') {
+            } elseif ($model->entityTypeID() == config('entities.ids.map')) {
                 // If creating a map, go to edit it directly
                 $route = route($this->route . '.edit', $new);
                 return response()->redirectTo($route);

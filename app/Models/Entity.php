@@ -31,7 +31,7 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property integer $entity_id
  * @property integer $campaign_id
  * @property string $name
- * @property string $type
+ * @property integer $type_id
  * @property integer $created_by
  * @property integer $updated_by
  * @property boolean $is_private
@@ -58,7 +58,7 @@ class Entity extends Model
         'campaign_id',
         'entity_id',
         'name',
-        'type',
+        'type_id',
         'is_private',
         'is_attributes_private',
         'header_image',
@@ -109,18 +109,22 @@ class Entity extends Model
     /** @var bool|string */
     protected $cachedPluralName = false;
 
+    /** @var bool|string */
+    protected $cachedEntityTypeCode = false;
+
     /**
      * Get the child entity
      * @return \Illuminate\Database\Eloquent\Relations\HasMany|\Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function child()
     {
-        if ($this->type == 'attribute_template') {
+        if ($this->type_id == config('entities.ids.attribute_template')) {
             return $this->attributeTemplate();
-        } elseif ($this->type == 'dice_roll') {
+        } elseif ($this->type_id == config('entities.ids.dice_roll')) {
             return $this->diceRoll();
         } else {
-            return $this->{$this->type}();
+            $type = array_search($this->type_id, config('entities.ids'));
+            return $this->$type();
         }
     }
 
@@ -138,13 +142,14 @@ class Entity extends Model
      */
     public function reloadChild()
     {
-        if ($this->type == 'attribute_template') {
+        if ($this->type_id == config('entities.ids.attribute_template')) {
             return $this->load('attributeTemplate');
-        } elseif ($this->type == 'dice_roll') {
+        } elseif ($this->type_id == config('entities.ids.dice_roll')) {
             return $this->load('diceRoll');
         }
 
-        return $this->load($this->type);
+        $type = array_search($this->type_id, config('entities.ids'));
+        return $this->load($type);
     }
 
     /**
@@ -287,7 +292,7 @@ class Entity extends Model
         if ($this->cachedPluralName !== false) {
             return $this->cachedPluralName;
         }
-        return $this->cachedPluralName = Str::plural($this->type);
+        return $this->cachedPluralName = Str::plural($this->entityTypeCode());
     }
 
     /**
@@ -296,12 +301,27 @@ class Entity extends Model
      */
     public function typeId()
     {
-        return config('entities.ids.' . $this->type);
+        return $this->type_id;
     }
 
+    /**
+     * @return string
+     */
     public function entityType(): string
     {
-        return __('entities.' . $this->type);
+        return __('entities.' . $this->entityTypeCode());
+    }
+
+    /**
+     * @return string
+     */
+    public function entityTypeCode(): string
+    {
+        if ($this->cachedEntityTypeCode !== false) {
+            return $this->cachedEntityTypeCode;
+        }
+        $type = array_search($this->type_id, config('entities.ids'));
+        return $this->cachedEntityTypeCode = (string) $type;
     }
 
     /**
@@ -325,7 +345,7 @@ class Entity extends Model
      */
     public function hasFiles(): bool
     {
-        return $this->type != 'menu_links';
+        return $this->type_id != config('entities.ids.menu_links');
     }
 
     /**
