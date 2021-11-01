@@ -22,7 +22,7 @@ class AddMapGroups extends Migration
             $table->string('name');
             $table->unsignedSmallInteger('position')->nullable();
 
-            $table->enum('visibility', ['all', 'admin', 'admin-self', 'self'])->default('all');
+            $table->string('visibility', 10)->default('all');
 
             $table->timestamps();
 

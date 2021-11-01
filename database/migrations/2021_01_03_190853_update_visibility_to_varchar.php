@@ -37,7 +37,7 @@ class UpdateVisibilityToVarchar extends Migration
     public function down()
     {
         foreach ($this->tables as $tableName) {
-            DB::statement("ALTER TABLE $tableName CHANGE visibility visibility ENUM('all', 'admin', 'admin-self', 'self') CHARACTER SET utf8mb4 DEFAULT 'all' NOT NULL");
+            DB::statement("ALTER TABLE $tableName CHANGE visibility visibility varchar(10) CHARACTER SET utf8mb4 DEFAULT 'all' NOT NULL");
         }
     }
 }

@@ -13,19 +13,10 @@ class CreateEntitiesTable extends Migration
      */
     public function up()
     {
+        // attribute_template
         Schema::create('entities', function (Blueprint $table) {
             $table->increments('id');
-            $table->enum('type', [
-                'character',
-                'event',
-                'family',
-                'item',
-                'journal',
-                'location',
-                'note',
-                'organisation',
-                'quest'
-            ])->notNull();
+            $table->string('type', 18)->notNull();
             $table->string('name')->notNull();
             $table->boolean('is_private')->default(0);
             $table->integer('entity_id')->unsigned()->notNull();

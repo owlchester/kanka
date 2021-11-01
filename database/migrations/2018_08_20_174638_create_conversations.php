@@ -26,7 +26,7 @@ class CreateConversations extends Migration
             $table->string('image', 255)->nullable();
             $table->string('type', 45)->nullable();
             $table->string('slug')->nullable();
-            $table->enum('target', ['members', 'characters'])->defaultValue('members');
+            $table->string('target', 10)->defaultValue('members');
             $table->boolean('is_private')->defaultValue(false);
             $table->timestamps();
 
@@ -66,25 +66,6 @@ class CreateConversations extends Migration
         });
 
 
-        // Update entities
-        Schema::table('entities', function (Blueprint $table) {
-            $table->enum('type', [
-                'character',
-                'event',
-                'family',
-                'item',
-                'journal',
-                'location',
-                'note',
-                'organisation',
-                'quest',
-                'attribute_template',
-                'calendar',
-                'section',
-                'dice_roll',
-                'conversation',
-            ])->notNull()->change();
-        });
     }
 
     /**
@@ -104,23 +85,5 @@ class CreateConversations extends Migration
         });
 
 
-        // Update entities
-        Schema::table('entities', function (Blueprint $table) {
-            $table->enum('type', [
-                'character',
-                'event',
-                'family',
-                'item',
-                'journal',
-                'location',
-                'note',
-                'organisation',
-                'quest',
-                'attribute_template',
-                'calendar',
-                'section',
-                'dice_roll'
-            ])->notNull()->change();
-        });
     }
 }

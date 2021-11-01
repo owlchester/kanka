@@ -14,7 +14,7 @@ class AddVisibilitySelfAdmin extends Migration
     public function up()
     {
         Schema::table('entity_notes', function (Blueprint $table) {
-            $table->enum('visibility', ['all', 'admin', 'self', 'admin-self'])->default('all')->change();
+            $table->string('visibility', 10)->default('all')->change();
         });
 
         Schema::table('relations', function (Blueprint $table) {
@@ -34,15 +34,15 @@ class AddVisibilitySelfAdmin extends Migration
     public function down()
     {
         Schema::table('entity_notes', function (Blueprint $table) {
-            $table->enum('visibility', ['all', 'admin', 'self'])->default('all')->change();
+            $table->string('visibility', 10)->default('all')->change();
         });
 
         Schema::table('relations', function (Blueprint $table) {
-            $table->string('visibility', 191)->default('all')->change();
+            $table->string('visibility', 10)->default('all')->change();
         });
 
         Schema::table('entity_files', function (Blueprint $table) {
-            $table->string('visibility', 191)->default('all')->change();
+            $table->string('visibility', 10)->default('all')->change();
         });
     }
 }

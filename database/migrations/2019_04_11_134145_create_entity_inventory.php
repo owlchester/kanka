@@ -19,7 +19,7 @@ class CreateEntityInventory extends Migration
             $table->unsignedInteger('item_id');
             $table->unsignedInteger('amount')->nullable();
             $table->string('position')->nullable();
-            $table->enum('visibility', ['all', 'admin', 'admin-self', 'self'])->default('all');
+            $table->string('visibility', 10)->default('all');
             $table->timestamps();
 
             // Index

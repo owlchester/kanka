@@ -17,29 +17,6 @@ class UpdateCampaignAddMaps extends Migration
             $table->boolean('maps')->default(true);
         });
 
-        // Update entities
-        Schema::table('entities', function (Blueprint $table) {
-            $table->enum('type', [
-                'character',
-                'event',
-                'family',
-                'item',
-                'journal',
-                'location',
-                'note',
-                'organisation',
-                'quest',
-                'attribute_template',
-                'calendar',
-                'section',
-                'dice_roll',
-                'conversation',
-                'race',
-                'tag',
-                'ability',
-                'map',
-            ])->change();
-        });
     }
 
     /**
@@ -51,29 +28,6 @@ class UpdateCampaignAddMaps extends Migration
     {
         Schema::table('campaign_settings', function (Blueprint $table) {
             $table->dropColumn('maps');
-        });
-
-        // Update entities
-        Schema::table('entities', function (Blueprint $table) {
-            $table->enum('type', [
-                'character',
-                'event',
-                'family',
-                'item',
-                'journal',
-                'location',
-                'note',
-                'organisation',
-                'quest',
-                'attribute_template',
-                'calendar',
-                'section',
-                'dice_roll',
-                'conversation',
-                'race',
-                'tag',
-                'ability'
-            ])->change();
         });
     }
 }

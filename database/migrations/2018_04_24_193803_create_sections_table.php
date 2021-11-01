@@ -37,23 +37,6 @@ class CreateSectionsTable extends Migration
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('set null');
         });
 
-        // Update entities
-        Schema::table('entities', function (Blueprint $table) {
-            $table->enum('type', [
-                'character',
-                'event',
-                'family',
-                'item',
-                'journal',
-                'location',
-                'note',
-                'organisation',
-                'quest',
-                'attribute_template',
-                'calendar',
-                'section'
-            ])->notNull()->change();
-        });
 
         Schema::table('campaign_settings', function (Blueprint $table) {
             $table->boolean('sections')->default(true);
@@ -69,22 +52,6 @@ class CreateSectionsTable extends Migration
     {
         Schema::dropIfExists('sections');
 
-        // Update entities
-        Schema::table('entities', function (Blueprint $table) {
-            $table->enum('type', [
-                'character',
-                'event',
-                'family',
-                'item',
-                'journal',
-                'location',
-                'note',
-                'organisation',
-                'quest',
-                'attribute_template',
-                'calendar'
-            ])->notNull()->change();
-        });
 
         Schema::table('campaign_settings', function (Blueprint $table) {
             $table->dropColumn('sections');

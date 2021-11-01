@@ -18,7 +18,7 @@ class UpdateMapsPrivateSize extends Migration
         });
 
         Schema::table('location_map_points', function (Blueprint $table) {
-            $table->enum('size', ['standard', 'small', 'tiny', 'large', 'huge'])->default('standard')->change();
+            $table->string('size', 10)->default('standard')->change();
         });
     }
 
@@ -31,10 +31,6 @@ class UpdateMapsPrivateSize extends Migration
     {
         Schema::table('locations', function (Blueprint $table) {
             $table->dropColumn('is_map_private');
-        });
-
-        Schema::table('location_map_points', function (Blueprint $table) {
-            $table->enum('size', ['standard', 'small', 'large'])->default('standard')->change();
         });
     }
 }

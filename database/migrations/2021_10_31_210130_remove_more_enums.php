@@ -15,7 +15,7 @@ class RemoveMoreEnums extends Migration
     public function up()
     {
         Schema::table('campaigns', function (Blueprint $table) {
-            $table->unsignedTinyInteger('visibility_id')->default(1);
+            $table->unsignedTinyInteger('visibility_id')->default(1)->after('visibility');
             $table->index('visibility_id', 'campaign_visibility_idx');
         });
         DB::statement("UPDATE campaigns SET visibility_id = " . \App\Models\Campaign::VISIBILITY_PUBLIC . " where visibility = 'public'");
@@ -26,6 +26,14 @@ class RemoveMoreEnums extends Migration
         });
         DB::statement("UPDATE conversations SET target_id = " . \App\Models\Conversation::TARGET_CHARACTERS . " where target = 'characters'");
 
+        Schema::table('location_map_points', function (Blueprint $table) {
+            $table->string('shape', 8)->change();
+            $table->string('size', 9)->change();
+        });
+
+        Schema::table('character_traits', function (Blueprint $table) {
+            $table->string('section', 10)->change();
+        });
 
 
     }

@@ -41,27 +41,6 @@ class CreateRace extends Migration
         Schema::table('campaign_settings', function (Blueprint $table) {
             $table->boolean('races')->default(true);
         });
-
-        // Update entities
-        Schema::table('entities', function (Blueprint $table) {
-            $table->enum('type', [
-                'character',
-                'event',
-                'family',
-                'item',
-                'journal',
-                'location',
-                'note',
-                'organisation',
-                'quest',
-                'attribute_template',
-                'calendar',
-                'section',
-                'dice_roll',
-                'conversation',
-                'race'
-            ])->notNull()->change();
-        });
     }
 
     /**
@@ -73,25 +52,6 @@ class CreateRace extends Migration
     {
         Schema::dropIfExists('races');
 
-        // Update entities
-        Schema::table('entities', function (Blueprint $table) {
-            $table->enum('type', [
-                'character',
-                'event',
-                'family',
-                'item',
-                'journal',
-                'location',
-                'note',
-                'organisation',
-                'quest',
-                'attribute_template',
-                'calendar',
-                'section',
-                'dice_roll',
-                'conversation'
-            ])->notNull()->change();
-        });
 
         Schema::table('campaign_settings', function (Blueprint $table) {
             $table->dropColumn('races');
