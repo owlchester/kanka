@@ -87,7 +87,7 @@ To create a dashboard Widget, use the following endpoint.
 
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
-| `widget` | `string` (Required) | The widget type: `preview`, `recent`, `random`, `calendar` or `unmentioned`'  |
+| `widget` | `string` (Required) | The widget type: `preview`, `recent`, `random`, `calendar`, `header` or `campaign`'  |
 | `entity_id` | `int` | The related entity ID (required for and calendar) |
 | `config` | `array` | Config of the widget: boolean `singular`, boolean `full`, boolean `entity-header` |
 | `position` | `int` | Position of the widget. If empty, placed at end |

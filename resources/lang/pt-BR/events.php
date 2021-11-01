@@ -14,7 +14,8 @@ return [
         'title'     => 'Editar Evento :name',
     ],
     'events'        => [
-        'title' => 'Evento :name Eventos',
+        'helper'    => 'Eventos que tem essa entidade como seu evento-pai são mostrados aqui.',
+        'title'     => 'Evento :name Eventos',
     ],
     'fields'        => [
         'date'      => 'Data',
@@ -45,6 +46,7 @@ return [
     'show'          => [
         'description'   => 'Uma visão detalhada de um evento',
         'tabs'          => [
+            'events'        => 'Eventos',
             'information'   => 'Informação',
         ],
         'title'         => 'Evento :name',

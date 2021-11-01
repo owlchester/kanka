@@ -144,7 +144,7 @@ return [
         'image'                 => 'Image',
         'is_closed'             => 'La conversation est fermée et n\'acceptera plus de nouveau messages.',
         'is_private'            => 'Privé',
-        'is_private_v2'         => 'Seulement afficher ceci aux membres du :admin-role de la campagne.',
+        'is_private_v3'         => 'Seulement afficher cet élément aux membres du rôle :admin-role. Cette option remplace toutes autres permissions.',
         'is_star'               => 'Epinglé',
         'item'                  => 'Objet',
         'journal'               => 'Journal',
@@ -235,7 +235,6 @@ return [
         'header_image'          => 'Cette image s\'affiche au-delà de l\'entité. Les images larges mènent a un meilleur résultat.',
         'image_limitations'     => 'Formats supportés: :formats. Taille maximale: :size.',
         'image_patreon'         => 'Augmenter la taille limite?',
-        'is_private'            => 'Cacher des membres de type non-Admin',
         'is_star'               => 'Les éléments épinglés sont affichés sur le menu de l\'entité.',
         'tooltip'               => 'Remplace l\'infobulle automatiquement généré avec le texte ci-dessous.',
         'visibility'            => 'Si la visibilité est définie à Admin, seuls les membres du rôle Admin de la campagne verront ceci. La visibilité "Soi-même" signifie que tu es le seul à le voir.',
@@ -376,6 +375,9 @@ return [
         'story'         => 'Histoire',
         'timelines'     => 'Chronologies',
         'tooltip'       => 'Infobulle',
+    ],
+    'tooltips'                  => [
+        'boosted_feature'   => 'Fonctionnalité de campagne boostée',
     ],
     'update'                    => 'Modifier',
     'users'                     => [

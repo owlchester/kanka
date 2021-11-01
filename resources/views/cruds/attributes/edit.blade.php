@@ -12,6 +12,8 @@
         <div class="col-md-12 col-md-offset">
             <div class="panel panel-default">
                 <div class="panel-body">
+                    <h1>Whoops</h1>
+                    @dd('error 621')
                     @include('partials.errors')
 
                     {!! Form::model($model, ['method' => 'PATCH', 'route' => ['entities.attributes.update', $entity->id, $model->id], 'data-shortcut' => '1']) !!}

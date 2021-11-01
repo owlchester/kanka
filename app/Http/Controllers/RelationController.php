@@ -46,7 +46,6 @@ class RelationController extends CrudController
     {
         parent::__construct();
         $this->middleware('auth');
-        $this->middleware('campaign.boosted');
     }
 
     public function create()

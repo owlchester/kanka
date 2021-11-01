@@ -12,8 +12,7 @@ $actions = [
 ];
 ?>
 
-
-<div id="crud_permissions" class="tooltip-wide">
+<div id="crud_permissions">
     <div class="row margin-bottom">
         <div class="col-sm-4">
             <strong>{{ __('crud.permissions.fields.role') }}</strong>
@@ -105,9 +104,9 @@ $actions = [
         @foreach ($campaign->campaign()->members()->withoutAdmins()->with('user')->get() as $member)
             <div class="row margin-bottom">
                 <div class="col-sm-4">
-                    <div class="entity-image float-left" style="background-image: url({{ $member->user->getAvatarUrl() }})" title="{{ $member->user->name }}">
+                    <div class="entity-image pull-left" style="background-image: url({{ $member->user->getAvatarUrl() }})" title="{{ $member->user->name }}">
                     </div>
-                    <div class="entity-name-img">{{ $member->user->name }}</div>
+                    <div class="user-name">{{ $member->user->name }}</div>
                 </div>
                 <div class="col-sm-2 text-center">
                     <span class="visible-xs-inline visible-sm-inline">{{ __('crud.permissions.actions.read') }}</span>

@@ -110,10 +110,6 @@ TEXT
         'answer'    => 'Amennyiben kényelmesebb neked, hogy hierarchikusan jelenjenek meg az entitások (például a Hierarchikus nézet gomb a Helyszínek listás nézetén), ezt beállíthatod a Profilod \'Elrendezés\' menüpontjában a Alapértelmezetten hierarchikus nézet opciót kiválasztva. Érdemes megjegyezni, hogy ez a beállítás felhasználó-függő, nem pedig a kampány tulajdonsága.',
         'question'  => 'Beállíthatom, hogy alapértelmezetten Hierarchikus nézetben jelenjenek meg az entitások a lista felületeken?',
     ],
-    'organise_play'         => [
-        'answer'    => 'Összefogtunk az :lfgmmel, amely segít a játékülések szervezetésében a csapatoddal. Össze tudod szinkronizálni a Kanka kampányod az LFGM kampányoddal, hogy megjelenítsd a következő alkalmas időpontokat a kampányod főoldalán.',
-        'question'  => 'Hol menedzselhetem, hogy mikor meséljek?',
-    ],
     'permissions'           => [
         'answer'    => 'Teljességgel, ezért hoztuk létre a Kankát! Minden játékosodat meghívhatod a kampányaidba, és szerepeket és jogosultságokat adhatsz neki. Rendkívül rugalmasra építettük a rendszert (egyaránt használhatsz kizáró és megengedő jogosultságrendszereket), hogy lefedhessünk annyiféle helyzetet, amennyit csak lehet.',
         'question'  => 'A szerepjátékos világom építésére akarom használni a Kankát, de szeretném, hogy a játékosaim hozzáférhessenek néhány entitáshoz, és szerkeszthessék a karakterüket. Lehetséges ez?',

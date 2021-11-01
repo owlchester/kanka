@@ -34,9 +34,10 @@ return [
     ],
     'event'         => [
         'actions'   => [
-            'existing'  => 'Entité Existante',
-            'new'       => 'Nouvel Événement',
-            'switch'    => 'Choix différent',
+            'delete-confirm'    => 'cet événement',
+            'existing'          => 'Entité Existante',
+            'new'               => 'Nouvel Événement',
+            'switch'            => 'Choix différent',
         ],
         'create'    => [
             'description'   => 'Créer un événement de calendrier',
@@ -45,9 +46,8 @@ return [
         ],
         'destroy'   => 'Evénement retiré du calendrier \':name\'.',
         'edit'      => [
-            'description'   => 'Modifier un événement de calendrier',
-            'success'       => 'Evénement de calendrier modifié.',
-            'title'         => 'Modifier un événement de calendrier pour :name',
+            'success'   => 'Evénement de calendrier modifié.',
+            'title'     => 'Modifier un événement de calendrier pour :name',
         ],
         'helpers'   => [
             'add'               => 'Ajouter un événement à ce calendrier en utilisant la liste à choix.',

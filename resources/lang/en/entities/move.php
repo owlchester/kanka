@@ -13,7 +13,7 @@ return [
     ],
     'fields'        => [
         'campaign'      => 'Target campaign',
-        'copy'          => 'Make a copy',
+        'copy'          => 'Create a copy in the target campaign',
         'select_one'    => 'Select a campaign',
     ],
     'panel'         => [

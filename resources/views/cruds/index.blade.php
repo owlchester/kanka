@@ -70,20 +70,24 @@
         {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
         <div class="box-body no-padding">
 
-            @include($name . '.datagrid')
+            <div class="table-responsive">
+                @include($name . '.datagrid')
+            </div>
         </div>
         <div class="box-footer">
 
-            @includeWhen(auth()->check(), 'cruds.datagrids.bulks.actions')
+            @includeWhen(auth()->check() && $filteredCount > 0, 'cruds.datagrids.bulks.actions')
 
             @if ($unfilteredCount != $filteredCount)
                 <p class="help-block">
                     {{ __('crud.filters.filtered', ['count' => $filteredCount, 'total' => $unfilteredCount, 'entity' => __('entities.' . $name)]) }}
                 </p>
             @endif
+            @if($models->hasPages())
             <div class="pull-right">
                 {{ $models->appends($filterService->pagination())->links() }}
             </div>
+            @endif
             {!! Form::hidden('entity', $name) !!}
             {!! Form::hidden('page', request()->get('page')) !!}
         </div>

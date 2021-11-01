@@ -3,10 +3,9 @@
 namespace App\Models;
 
 use App\Facades\Dashboard;
+use App\Models\Concerns\Taggable;
 use App\Traits\CampaignTrait;
-use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
@@ -33,6 +32,8 @@ use Illuminate\Support\Str;
  */
 class MenuLink extends MiscModel
 {
+    use Taggable;
+
     /**
      * @var string
      */
@@ -319,8 +320,9 @@ class MenuLink extends MiscModel
         $entityType = $this->random_entity_type != 'any' ? $this->random_entity_type : null;
 
         /** @var Entity $entity */
-        $entity = \App\Models\Entity::
-            type($entityType)
+        $entity = Entity::
+            inTags($this->tags->pluck('id')->toArray())
+            ->type($entityType)
             ->acl()
             ->inRandomOrder()
             ->first();

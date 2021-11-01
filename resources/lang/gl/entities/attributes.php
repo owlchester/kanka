@@ -20,6 +20,7 @@ return [
     ],
     'helpers'       => [
         'delete_all'    => 'Seguro que queres eliminar todos os atributos desta entidade?',
+        'setup'         => 'Podes representar elementos como os PV ou a intelixencia dunha entidade con atributos. Engade atributos manualmente facendo clic no botón :manage, ou aplica os dun padrón de atributos.',
     ],
     'hints'         => [
         'is_private'    => 'Podes ocultar todos os atributos a toda persoa non administradora facendo que a entidade sexa privada.',

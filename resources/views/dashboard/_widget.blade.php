@@ -30,7 +30,10 @@ if ($widget->entity) {
     >
         <div class="widget-overlay">
             @if ($widget->widget != \App\Models\CampaignDashboardWidget::WIDGET_HEADER)
-                <span class="widget-type">{{ __('dashboard.setup.widgets.' . $widget->widget) }}</span>
+                <span class="widget-type">
+                     {!! $widget->widgetIcon() !!}
+                    {{ __('dashboard.setup.widgets.' . $widget->widget) }}
+                </span>
             @endif
 
             @if ($widget->entity)

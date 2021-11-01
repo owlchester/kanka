@@ -28,7 +28,6 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Diese Liste enthält alle Familien, die der Familie untergeordnet sind, nicht nur die direkt unter ihr.',
-        'nested'        => 'In der verschachtelten Ansicht kannst du deine Familien nach Oberfamilien sortiert sehen. Familien ohne übergeordneter Familie werden standardmäßig angezeigt. Familien mit Unterfamilien können angeklickt, werden damit man diese Familien sieht. Das geht so tief, bis es keine Unterfamilien mehr gibt.',
         'nested_parent' => 'Anzeigen der Familien von :parent.',
         'nested_without'=> 'Anzeigen aller Familien, die keine Elternfamilie haben. Klicken Sie auf eine Zeile, um die Kinderfamilien anzuzeigen.',
     ],

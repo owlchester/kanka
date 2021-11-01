@@ -96,11 +96,11 @@ $currentCampaign = CampaignLocalization::getCampaign();
                             <div class="pull-right">
                                 @if (\App\Facades\Identity::isImpersonating())
 
-                                    <a href="{{ route('identity.back') }}" class="btn btn-default">
+                                    <a href="{{ route('identity.back') }}" class="btn btn-default btn-flat">
                                         <i class="fa fa-sign-out-alt"></i> {{ __('campaigns.members.actions.switch-back') }}
                                     </a>
                                 @else
-                                <a href="{{ route('logout') }}" class="btn btn-default" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <a href="{{ route('logout') }}" class="btn btn-default btn-flat" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     {{ __('header.logout') }}
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

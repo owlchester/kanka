@@ -16,15 +16,13 @@
 </div>
 
 <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-6">
         @include('cruds.fields.colour_picker')
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-6">
         @include('cruds.fields.attitude')
     </div>
 </div>
-
-@include('cruds.fields.visibility', ['model' => isset($relation) ? $relation : null])
 
 @if(empty($relation) && (!isset($mirror) || $mirror == true))
     <div class="row">
@@ -69,6 +67,8 @@
         ]) !!}</p>
     </div>
 @endif
+
+@include('cruds.fields.visibility', ['model' => isset($relation) ? $relation : null])
 
 @if (!empty($mode))
     <input type="hidden" name="mode" value="{{ $mode }}" />

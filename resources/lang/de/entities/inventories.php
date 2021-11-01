@@ -12,11 +12,16 @@ return [
         'success'   => 'Gegenstand :item wurde von :entity entfernt',
     ],
     'fields'        => [
-        'amount'        => 'Menge',
-        'description'   => 'Beschreibung',
-        'is_equipped'   => 'Ausgestattet',
-        'name'          => 'Name',
-        'position'      => 'Position',
+        'amount'            => 'Menge',
+        'copy_entity_entry' => 'Benutze Gegenstand Eintrag',
+        'description'       => 'Beschreibung',
+        'is_equipped'       => 'Ausgestattet',
+        'name'              => 'Name',
+        'position'          => 'Position',
+        'qty'               => 'ANZ',
+    ],
+    'helpers'       => [
+        'copy_entity_entry' => 'Zeige den Eintrag des Objekts statt der benutzerdefinierten Beschreibung an.',
     ],
     'placeholders'  => [
         'amount'        => 'Die Menge',

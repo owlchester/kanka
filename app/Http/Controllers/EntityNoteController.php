@@ -24,12 +24,6 @@ class EntityNoteController extends Controller
     protected $route = 'entity_notes';
 
     /**
-     * Redirect tab after manipulating
-     * @var string
-     */
-    protected $tab = '#notes';
-
-    /**
      * Crud view path
      * @var string
      */
@@ -139,7 +133,7 @@ class EntityNoteController extends Controller
         }
 
         return redirect()
-            ->route($entity->pluralType() . '.show', [$entity->child->id, $this->tab])
+            ->route($entity->pluralType() . '.show', [$entity->child->id])
             ->with('success', trans('entities/notes.create.success', [
                 'name' => $note->name, 'entity' => $entity->child->name
             ]));
@@ -205,7 +199,7 @@ class EntityNoteController extends Controller
                 ]));
         }
 
-        return redirect()->route($entity->pluralType() . '.show', [$entity->child->id, $this->tab])
+        return redirect()->route($entity->pluralType() . '.show', [$entity->child->id])
             ->with('success', trans('entities/notes.edit.success', [
                 'name' => $entityNote->name, 'entity' => $entity->name
             ]));
@@ -224,7 +218,7 @@ class EntityNoteController extends Controller
         $entityNote->delete();
 
         return redirect()
-            ->route($entity->pluralType() . '.show', [$entity->child->id, $this->tab])
+            ->route($entity->pluralType() . '.show', [$entity->child->id])
             ->with('success', trans('entities/notes.destroy.success', [
                 'name' => $entityNote->name, 'entity' => $entity->name
             ]));

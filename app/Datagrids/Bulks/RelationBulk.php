@@ -11,7 +11,7 @@ class RelationBulk extends Bulk
         'target_id',
         'relation',
         'attitude',
-        //'colour_picker',
+        'colour_picker',
         'pinned_choice',
         'visibility',
     ];

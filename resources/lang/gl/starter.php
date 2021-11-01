@@ -51,7 +51,6 @@ Algúns consellos para comezar:
 Por último, pero non menos importante:
 - Mira as :public para inspiración e ver como outras persoas usan Kanka.
 - Se tes preguntas, suxestións ou tan só queres falar, únete ao noso :discod.
-- Planea a próxima sesión de xogo coas nosas amizades de :lfgm e sincroniza o teu calendario LFGM coa túa campaña de Kanka.
 - Gústache a aplicación e queres apoiala? Considera apoiarnos mediante :subscriptions.
 TEXT
 ,

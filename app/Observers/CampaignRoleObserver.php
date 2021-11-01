@@ -23,4 +23,14 @@ class CampaignRoleObserver
     {
         CampaignCache::clearRoles();
     }
+
+    /**
+     * @param CampaignRole $campaignRole
+     */
+    public function updated(CampaignRole $campaignRole)
+    {
+        if ($campaignRole->is_admin) {
+            CampaignCache::clearAdminRole();
+        }
+    }
 }

@@ -1,13 +1,19 @@
 
+@php
+    $role = \App\Facades\CampaignCache::adminRole();
+@endphp
 <div class="box box-solid">
     <div class="box-header with-border">
         <h3 class="box-title">
             <i class="fa fa-th-large"></i> {{ __('campaigns.show.tabs.settings') }}
         </h3>
-    </div>
-    <div class="box-body">
-
-        <p class="help-block">{{ __('campaigns.settings.helper') }}</p>
+        <div class="box-tools">
+            <button class="btn btn-default btn-sm" data-toggle="modal"
+                    data-target="#settings-help">
+                <i class="fas fa-question-circle" aria-hidden="true"></i>
+                {!! __('campaigns.members.actions.help') !!}
+            </button>
+        </div>
     </div>
 </div>
 
@@ -89,3 +95,31 @@
         </button>
 
 {!! Form::close() !!}
+
+
+
+@section('modals')
+
+    <div class="modal fade" id="settings-help" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        {{ __('campaigns.show.tabs.settings') }}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        {!! __('campaigns.settings.helper', ['admin' => link_to_route(
+        'campaigns.campaign_roles.admin',
+        \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')),
+        null,
+        ['target' => '_blank']
+)]) !!}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

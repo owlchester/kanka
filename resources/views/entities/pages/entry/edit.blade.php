@@ -4,12 +4,18 @@
     'breadcrumbs' => [
         ['url' => $entity->url('index'), 'label' => __($entity->pluralType() . '.index.title')],
         ['url' => $entity->url('show'), 'label' => $entity->name],
+        __('crud.tabs.story'),
+        __('crud.edit')
     ],
+    'mainTitle' => false,
 ])
 
 @inject('campaign', 'App\Services\CampaignService')
 
 @section('content')
+
+    {!! Form::model($entity->child, ['route' => ['entities.entry.update', $entity], 'method' => 'PATCH', 'data-shortcut' => 1, 'class' => 'entity-form entity-entry-form']) !!}
+
     <div class="box box-solid">
         @if (request()->ajax())
             <div class="box-header">
@@ -22,21 +28,22 @@
         <div class="box-body">
             @include('partials.errors')
 
-            {!! Form::model($entity->child, ['route' => ['entities.entry.update', $entity], 'method' => 'PATCH', 'data-shortcut' => 1, 'class' => 'entity-form entity-entry-form']) !!}
-
 
             <div class="form-group">
                 {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'entry', 'name' => 'entry']) !!}
             </div>
-
-            <div class="form-group">
+        </div>
+        <div class="box-footer">
+            <div class="pull-right">
                 <button class="btn btn-success">{{ __('crud.update') }}</button>
-                @includeWhen(!request()->ajax(), 'partials.or_cancel')
             </div>
-
-            {!! Form::close() !!}
+            <a href="{{ url()->previous() }}" class="btn btn-default">
+                {{ __('crud.cancel') }}
+            </a>
         </div>
     </div>
+
+    {!! Form::close() !!}
 @endsection
 
 @include('editors.editor')

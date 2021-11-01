@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Facades\CampaignLocalization;
 use App\Models\MenuLink;
 use App\Models\MiscModel;
+use App\Models\Tag;
 
 class MenuLinkObserver
 {

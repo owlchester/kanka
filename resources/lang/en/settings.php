@@ -201,9 +201,15 @@ return [
         'change'                => [
             'text'  => [
                 'monthly'   => 'You are subscribing at the :tier tier, billed monthly for :amount.',
-                'yearly'    => 'You are subscribing at the :tier tier, billed annualy for :amount.',
+                'yearly'    => 'You are subscribing at the :tier tier, billed annually for :amount.',
             ],
             'title' => 'Change Subscription Tier',
+        ],
+        'coupon'                => [
+            'check'         => 'Check promo code',
+            'invalid'       => 'Invalid promotional code.',
+            'label'         => 'Promotional code',
+            'percent_off'   => 'We will discount your first yearly subscription by :percent%!',
         ],
         'currencies'            => [
             'eur'   => 'EUR',
@@ -211,12 +217,6 @@ return [
         ],
         'currency'              => [
             'title' => 'Change your preferred billing currency',
-        ],
-        'coupon' => [
-            'invalid' => 'Invalid promotional code.',
-            'label' => 'Promotional code',
-            'percent_off' => 'We will discount your first yearly subscription by :percent%!',
-            'check' => 'Check promo code',
         ],
         'errors'                => [
             'callback'      => 'Our payment provider reported an error. Please try again or contact us if the problem persists.',

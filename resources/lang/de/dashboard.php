@@ -7,8 +7,7 @@ return [
         'unfollow'  => 'Nicht mehr folgen',
     ],
     'campaigns'         => [
-        'manage'    => 'Kampagnen verwalten',
-        'tabs'      => [
+        'tabs'  => [
             'modules'   => ':count Module',
             'roles'     => ':count Rollen',
             'users'     => ':count Users',
@@ -70,21 +69,10 @@ return [
         ],
     ],
     'recent'            => [
-        'add'           => 'Erstelle :name',
-        'no_entries'    => 'Es gibt keine Einträge zu diesem Typ.',
-        'title'         => 'Vor kurzem bearbeitete :name',
-        'view'          => 'Alle :name ansehen',
+        'title' => 'Vor kurzem bearbeitete :name',
     ],
     'settings'          => [
-        'description'   => 'Bearbeite, was du auf dem Dashboard siehst',
-        'edit'          => [
-            'success'   => 'Deine Änderungen wurden gespeichert.',
-        ],
-        'fields'        => [
-            'helper'        => 'Du kannst einfach anpassen, was du auf dem Dashboard siehst. Beachte bitte, dass dies für all deine Kampagnen gilt, egal was in der Kampagne eingestellt ist.',
-            'recent_count'  => 'Anzahl kürzlich hinzugefügter Objekte',
-        ],
-        'title'         => 'Dashboard Einstellungen',
+        'title' => 'Dashboard Einstellungen',
     ],
     'setup'             => [
         'actions'   => [
@@ -93,6 +81,10 @@ return [
             'edit'              => 'Widget bearbeiten.',
         ],
         'title'     => 'Kampagnen Dashboard Einrichtung',
+        'tutorial'  => [
+            'blog'  => 'unser Tutorial',
+            'text'  => 'Benötigen Sie Hilfe beim Einrichten Ihres Kampagnen-Dashboards? Lesen Sie :blog für Hilfe und Inspiration.',
+        ],
         'widgets'   => [
             'calendar'      => 'Kalender',
             'campaign'      => 'Kampagnenüberschrift',
@@ -104,20 +96,7 @@ return [
         ],
     ],
     'title'             => 'Dashboard',
-    'welcome'           => [
-        'body'  => <<<'TEXT'
-Willkommen bei Kanka! Deine erste Kampagne wurde erstellt und wir haben zur Inspiration ein paar Beispielobjekte mit angelegt (kannst du jederzeit löschen).
-
-Du willst wahrscheinlich mit ein paar eigenen Objekten starten, also such dir links eine Kategorie aus und leg los. Kategorien, die du nicht brauchst lassen sich in den Kampagnen Einstellungen ausblenden.
-
-Ein paar Tipps für den Anfang:
-- Du kannst @Objektname tippen, um ein bestimmtes Objekt zu verlinken. Der angezeigte Linktext wird automatisch aktualisiert, wenn du den Objektnamen oder die Beschreibung anpasst.
-- Du kannst Konto Einstellungen wie Design und Objekte pro Seite in deinem Profil oben rechts anpassen.
-- Es gibt eine wachsende Anzahl an Tutorials auf :youtube. Unter anderem über Attribute und wie man die eigene Kampagne mit anderen teilt. Der :faq ist vielleicht auch hilfreich.
-- Wenn du Fragen oder Vorschläge hast - oder einfach nur plaudern willst -, dann schau vorbei auf unserem :discord.
-TEXT
-,
-    ],
+    'welcome'           => [],
     'widgets'           => [
         'actions'                   => [
             'advanced-options'  => 'Erweiterte Optionen',

@@ -22,6 +22,7 @@ return [
         'here'      => 'na našom blogu',
         'main'      => 'Tvojej boostnutej kampani môžeš pridať vlastné CSS štýlovanie. Tieto štýly sú nahrávané po tom, ako je nahraná téma z trhoviska, ktorú máš aktivovanú pre danú kampaň. Viac o štýloch pre tvoju kampaň nájdeš :here.',
     ],
+    'title'     => 'Témovanie kampane',
     'update'    => [
         'success'   => 'Štýl :name aktualizovaný.',
         'title'     => 'Aktualizovať štýl',

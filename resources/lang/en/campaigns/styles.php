@@ -22,9 +22,9 @@ return [
         'here'      => 'on our blog',
         'main'      => 'You can create custom CSS styling for your boosted campaign. These styles are loaded after any themes from the marketplace that are enabled for the campaign. You can learn more about styling your campaign :here.',
     ],
+    'title'     => 'Campaign Theming',
     'update'    => [
         'success'   => 'Style :name updated.',
         'title'     => 'Update style',
     ],
-    'title' => 'Campaign Theming',
 ];

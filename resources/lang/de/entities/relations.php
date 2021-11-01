@@ -5,6 +5,13 @@ return [
         'mode-map'      => 'Tool zur Beziehungsdarstellung',
         'mode-table'    => 'Tabelle der Beziehungen und Verbindungen',
     ],
+    'bulk'          => [
+        'delete'    => '{1} :count Beziehung gelöscht.|[2,*] :count Beziehungen gelöscht.',
+        'success'   => [
+            'editing'           => '{1} :count Beziehung wurde aktualisiert.|[2,*] :count Beziehungen wurden aktualisiert.',
+            'editing_partial'   => '{1} :count/:total Beziehung wurde aktualisiert.|[2,*] :count/:total Beziehungen wurden aktualisiert.',
+        ],
+    ],
     'connections'   => [
         'map_point'         => 'Kartenpunkt',
         'mention'           => 'Erwähnung',

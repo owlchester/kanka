@@ -28,7 +28,7 @@ class StoreCampaignStyle extends FormRequest
     {
         return $this->clean([
             'name' => 'required|string|max:45',
-            'content' => 'required|string',
+            'content' => 'required|string|max:64000',
             'is_enabled' => 'nullable'
         ]);
     }

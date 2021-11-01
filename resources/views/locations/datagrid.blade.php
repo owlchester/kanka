@@ -34,7 +34,7 @@
             'disableSort' => true,
         ],
         [
-            'label' => __('locations.fields.map'),
+            'label' => null,
             'field' => 'map',
             'render' => function($model) {
                 if (!empty($model->map) && (!$model->is_map_private || auth()->check() && auth()->user()->can('map', $model))) {

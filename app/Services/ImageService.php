@@ -58,13 +58,8 @@ class ImageService
                         '?'
                     )
                 );
+                $cleanImageName = str_replace(['.', '/'], ['', ''], $cleanImageName);
                 $path = "$folder/" . uniqid() . "_" . Str::limit($cleanImageName, 20, '');
-
-                // Add back the extension if it's missing after trimming long names
-                $imageUrlExt = '.' . Str::afterLast($cleanImageName, '.');
-                if (!Str::endsWith($path, $imageUrlExt)) {
-                    $path = $path . strtolower($imageUrlExt);
-                }
 
                 // Check if file is too big
                 $copiedFileSize = ceil(filesize($tempImage) / 1000);
@@ -73,6 +68,12 @@ class ImageService
                     throw new \Exception('image_url target too big');
                 }
                 $file = new UploadedFile($tempImage, basename($externalUrl));
+
+                // Add back the extension if it's missing after trimming long names
+                $imageUrlExt = '.' . str_replace('image/', '', $file->getMimeType());
+                if (!Str::endsWith($path, $imageUrlExt)) {
+                    $path = $path . strtolower($imageUrlExt);
+                }
             } else {
                 $file = request()->file($field);
                 $path = $file->hashName($folder);

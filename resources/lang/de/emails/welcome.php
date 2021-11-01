@@ -13,7 +13,6 @@ return [
     'section_6'         => 'Kontaktiere uns',
     'section_7'         => 'Wenn Sie keine Antwort auf Ihre Fragen gefunden haben oder einfach nur Kontakt aufnehmen möchten, finden Sie uns auf: :facebook oder per E-Mail unter :email. Wir sind ein kleines Team von 2 Freunden, aber wir beantworten jede E-Mail, die wir erhalten. Bitte zögern Sie nicht!',
     'section_8'         => 'Eine letzte Sache',
-    'section_9'         => 'Wir haben dafür gesorgt, dass alle Kernfunktionen von Kanka kostenlos sind, und wir werden es immer so halten. Wenn Sie uns jedoch bei diesem Projekt unterstützen möchten, können Sie sich unseren :patrons anschließen und Zugang zu zusätzlichen Funktionen sowie zu unserer ewigen Dankbarkeit erhalten!',
     'section_9_v2'      => 'Wir haben dafür gesorgt, dass alle Kernfunktionen von Kanka kostenlos sind, und wir werden es immer so halten. Wenn Sie uns jedoch bei diesem Projekt unterstützen möchten, können Sie Abonnent werden und Zugang zu zusätzlichen Funktionen sowie zu unserer ewigen Dankbarkeit erhalten. Weitere Informationen finden Sie auf der :pricing page.',
     'social_account'    => 'Wenn Sie Probleme beim Anmelden in Ihrem Konto haben, eine kleine Erinnerung daran, dass Sie ein :provider login verwenden. Sie können dies in Ihren Kontoeinstellungen ändern.',
     'title'             => 'Erste Schritte mit Kanka',

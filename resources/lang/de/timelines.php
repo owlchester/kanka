@@ -20,6 +20,7 @@ return [
         'title'     => 'Zeitstrahl :name editieren',
     ],
     'fields'        => [
+        'copy_elements' => 'Elemente kopieren',
         'copy_eras'     => 'Epoche kopieren',
         'eras'          => 'Epochen',
         'name'          => 'Name',
@@ -29,7 +30,6 @@ return [
         'type'          => 'Typ',
     ],
     'helpers'       => [
-        'nested'            => 'Standardmäßig werden Zeitstrahlen ohne übergeordneten Zeitstrahl angezeigt. Klicken Sie auf die Zeile eines Zeitstrahls, um deren Nachkommen anzuzeigen.',
         'nested_parent'     => 'Anzeigen der Zeitleisten von :parent.',
         'nested_without'    => 'Anzeigen aller Zeitleisten ohne übergeordnete Zeitleiste. Klicken Sie auf eine Zeile, um die untergeordneten Zeitleisten anzuzeigen.',
         'reorder'           => 'Ziehen Sie Elemente der Epoche per Drag & Drop, um sie neu zu ordnen.',
@@ -45,6 +45,9 @@ return [
         'type'  => 'Grundschule, Weltchronik, Königreichserbe',
     ],
     'show'          => [
+        'tabs'  => [
+            'timelines' => 'Zeitstrahlen',
+        ],
         'title' => 'Zeitstrahl :name',
     ],
     'timelines'     => [

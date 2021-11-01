@@ -6,8 +6,11 @@ namespace App\Models;
 
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 /**
  * Class Plugin
@@ -19,13 +22,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $status_id
  * @property string $name
  *
- * @property PluginVersion[] $versions
+ * @property PluginVersion[]|Collection $versions
  * @property PluginVersion $version
  * @property User $user
+ *
+ * @method static|Builder highlighted(string $uuid)
  */
 class Plugin extends Model
 {
     use SoftDeletes;
+
+    protected $cachedHasUpdate = null;
 
     /**
      * @return string
@@ -45,8 +52,22 @@ class Plugin extends Model
      */
     public function hasUpdate(): bool
     {
+        if ($this->cachedHasUpdate !== null) {
+            return $this->cachedHasUpdate;
+        }
+
+        $statuses = [3];
+        if ($this->created_by === auth()->user()->id) {
+            $statuses[] = 1;
+        }
+        return $this->cachedHasUpdate = $this
+                ->versions
+                ->whereIn('status_id', $statuses)
+                ->where('id', '>', $this->pivot->plugin_version_id)
+                ->count() > 0;
+
         // Check latest version
-        return $this
+        return $this->cachedHasUpdate = $this
                 ->versions()
                 ->where(function ($sub) {
                     if ($this->created_by == auth()->user()->id) {
@@ -54,9 +75,9 @@ class Plugin extends Model
                     } else {
                         return $sub->where('status_id', 3);
                     }
-
-                    }
-                )->where('id', '>', $this->pivot->plugin_version_id)->count() > 0;
+                })
+                ->where('id', '>', $this->pivot->plugin_version_id)
+                ->count() > 0;
     }
 
     /**
@@ -113,6 +134,22 @@ class Plugin extends Model
     public function isAttributeTemplate(): bool
     {
         return $this->type_id == PluginType::TYPE_ATTRIBUTE;
+    }
+
+    /**
+     * @param $query
+     * @param string|null $highlighted
+     * @return mixed
+     */
+    public function scopeHighlighted(Builder $query, string $uuid = null)
+    {
+        if (empty($uuid) || !Str::isUuid($uuid)) {
+            return $query;
+        }
+
+        return $query->orderByRaw(
+            DB::raw($this->getTable() . ".uuid = '$uuid' DESC")
+        );
     }
 
 }

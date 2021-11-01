@@ -55,7 +55,6 @@ return [
         'max_zoom'          => 'Eine Karte kann bis zu diesem Wert maximal vergrößert werden. Der Standardwert ist :default, während der höchstzulässige Wert :max ist.',
         'min_zoom'          => 'Eine Karte kann bis zu diesem Wert maximal verkleinert werden. Der Standardwert ist :default, während der höchstzulässige Wert :min ist.',
         'missing_image'     => 'Speichern Sie die Karte mit einem Bild, bevor Sie Ebenen und Markierungen hinzufügen können.',
-        'nested'            => 'In der verschachtelten Ansicht können Sie Ihre Karten verschachtelt anzeigen. Karten ohne übergeordnete Karte werden standardmäßig angezeigt. Karten mit untergeordneten Tags können angeklickt werden, um diese untergeordneten Elemente anzuzeigen. Sie können so lange klicken, bis keine untergeordneten Elemente mehr angezeigt werden.',
         'nested_parent'     => 'Anzeigen der Karten von :parent.',
         'nested_without'    => 'Anzeigen aller Karten ohne übergeordnete Karte. Klicken Sie auf eine Zeile, um die untergeordneten Karten anzuzeigen.',
     ],

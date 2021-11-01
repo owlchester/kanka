@@ -6,7 +6,7 @@ $headerImage = true;
 @endphp
 
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
-    'title' => __($name . '.show.title', ['name' => $model->name]),
+    'title' => $model->name . ' - ' . __('entities.' . $name),
     'breadcrumbs' => false,
     'miscModel' => $model,
     'canonical' => true,

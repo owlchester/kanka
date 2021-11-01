@@ -52,7 +52,6 @@ Een paar tips om je op weg te helpen:
 Tenslotte:
 - Kijk eens naar :public voor inspiratie over hoe anderen Kanka gebruiken.
 - Als je vragen, suggesties hebt of gewoon wilt chatten, doe dan mee op :discord.
-- Plan wanneer je groep de volgende sessie met onze vrienden speelt op :lfgm en synchroniseer je LFGM-agenda met je Kanka campaign.
 - Houd je van de app en wil je de groei ervan ondersteunen? Overweeg om Kanka te steunen via :subscriptions.
 TEXT
 ,

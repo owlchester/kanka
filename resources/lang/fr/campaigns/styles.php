@@ -22,6 +22,7 @@ return [
         'here'      => 'sur notre blog',
         'main'      => 'Tu peux créer des règles CSS personnalisées pour ta campagne boostée. Ces styles sont chargés après les thèmes du marketplace activés pour la campagne. Tu peux en savoir plus sur comment personnalisé ta campagne :here.',
     ],
+    'title'     => 'Styles de la campagne',
     'update'    => [
         'success'   => 'Style :name modifié.',
         'title'     => 'Modifier le style',

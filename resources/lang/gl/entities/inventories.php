@@ -12,11 +12,16 @@ return [
         'success'   => 'Obxecto ":item" eliminado de :entity.',
     ],
     'fields'        => [
-        'amount'        => 'Cantidade',
-        'description'   => 'Descrición',
-        'is_equipped'   => 'Equipado',
-        'name'          => 'Nome',
-        'position'      => 'Posición',
+        'amount'            => 'Cantidade',
+        'copy_entity_entry' => 'Usar a entrada do obxecto',
+        'description'       => 'Descrición',
+        'is_equipped'       => 'Equipado',
+        'name'              => 'Nome',
+        'position'          => 'Posición',
+        'qty'               => 'Cantidade',
+    ],
+    'helpers'       => [
+        'copy_entity_entry' => 'Mostra a entrada do obxecto en vez da descrición personalizada.',
     ],
     'placeholders'  => [
         'amount'        => 'Calquera cantidade',

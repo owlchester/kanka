@@ -15,11 +15,13 @@ class StatService
     protected $campaign;
 
     protected $primaryTargets = [25, 50, 100, 250, 500];
+    //protected $primaryTargets = [2, 5, 10, 25, 40];
 
     protected $secondaryTargets = [10, 20, 45, 100, 200];
 
     protected $tertiaryTargets = [1, 2, 5, 10, 20];
     //protected $secondaryTargets = [1, 2, 3, 4, 5];
+
     /**
      * @param Campaign $campaign
      * @return $this
@@ -30,8 +32,15 @@ class StatService
         return $this;
     }
 
+    /**
+     * @return array|array[]
+     */
     public function stats(): array
     {
+        if (!$this->campaign->superboosted()) {
+            return [];
+        }
+
         $cacheKey = 'campaign_' . $this->campaign->id . '_achievements';
 
         if (Cache::has($cacheKey)) {
@@ -109,13 +118,15 @@ class StatService
     {
         $targets = $level == 1 ? $this->primaryTargets : ($level == 2 ? $this->secondaryTargets : $this->tertiaryTargets);
 
+        $last = 20;
         foreach ($targets as $target) {
-            if ($amount < $target) {
+            if ($amount <= $target) {
                 return $target;
             }
+            $last = $target;
         }
 
-        return 20;
+        return $last;
     }
 
     /**

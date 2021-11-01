@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Datagrids\Filters\DatagridFilter;
 use App\Datagrids\Sorters\DatagridSorter;
 use App\Facades\CampaignLocalization;
 use App\Facades\FormCopy;
@@ -18,9 +17,7 @@ use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 use LogicException;
 
 class CrudController extends Controller
@@ -239,7 +236,7 @@ class CrudController extends Controller
         $campaign = CampaignLocalization::getCampaign();
 
         $params['ajax'] = request()->ajax();
-        $params['tabPermissions'] = $this->tabPermissions && Auth::user()->can('permission', $model);
+        $params['tabPermissions'] = $this->tabPermissions && auth()->user()->can('permission', $model);
         $params['tabAttributes'] = $this->tabAttributes;
         $params['tabCopy'] = $this->tabCopy;
         $params['tabBoosted'] = $this->tabBoosted && $campaign->boosted();
@@ -279,8 +276,7 @@ class CrudController extends Controller
                 $new->entity->crudSaved();
             }
 
-            $langKey = $this->langKey ?? $this->view;
-            $success = __($langKey . '.create.success', [
+            $success = __('general.success.created', [
                 'name' => link_to_route(
                     $this->view . '.show',
                     e($new->name),
@@ -342,7 +338,7 @@ class CrudController extends Controller
     public function crudShow(Model $model)
     {
         // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
+        if (auth()->check()) {
             $this->authorize('view', $model);
         } else {
             $this->authorizeForGuest('read', $model);
@@ -389,8 +385,8 @@ class CrudController extends Controller
             'model' => $model,
             'name' => $this->view,
             'ajax' => request()->ajax(),
-            'tabPermissions' => $this->tabPermissions && Auth::user()->can('permission', $model),
-            'tabAttributes' => $this->tabAttributes && Auth::user()->can('attributes', $model->entity),
+            'tabPermissions' => $this->tabPermissions && auth()->user()->can('permission', $model),
+            'tabAttributes' => $this->tabAttributes && auth()->user()->can('attributes', $model->entity),
             'tabBoosted' => $this->tabBoosted && $campaign->boosted(),
             'tabCopy' => $this->tabCopy,
             'entityType' => $model->getEntityType(),
@@ -429,7 +425,7 @@ class CrudController extends Controller
                 $model->entity->crudSaved();
             }
 
-            $success = __($this->view . '.edit.success', [
+            $success = __('general.success.updated', [
                 'name' => link_to_route(
                     $this->route . '.show',
                     e($model->name),
@@ -491,7 +487,7 @@ class CrudController extends Controller
         }
 
         return redirect()->route($this->route . '.' . $subroute)
-            ->with('success', __($this->view . '.destroy.success', ['name' => $model->name]));
+            ->with('success', __('general.success.deleted', ['name' => $model->name]));
     }
 
     /**
@@ -534,7 +530,7 @@ class CrudController extends Controller
     protected function menuView($model, $view, $directView = false)
     {
         // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
+        if (auth()->check()) {
             $this->authorize('view', $model);
         } else {
             $this->authorizeForGuest('read', $model);

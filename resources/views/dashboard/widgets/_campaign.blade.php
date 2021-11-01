@@ -3,86 +3,82 @@
 ?>
 @section('content-header')
 <div class="campaign-header @if(!empty($campaign->header_image))campaign-imaged-header" style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }}) @else no-header @endif ">
-    <div class="social-bar">
-
-        @can ('follow', $campaign)
-            <button id="campaign-follow" class="btn btn-default btn-xl" data-id="{{ $campaign->id }}"
-                    style="display: none"
-                    data-following="{{ $campaign->isFollowing() ? true : false }}"
-                    data-follow="{{ __('dashboard.actions.follow') }}"
-                    data-unfollow="{{ __('dashboard.actions.unfollow') }}"
-                    data-url="{{ route('campaign.follow') }}"
-                    data-toggle="tooltip" title="{{ __('dashboard.helpers.follow') }}"
-                    data-placement="bottom"
-            >
-                <i class="fa fa-star"></i> <span id="campaign-follow-text"></span>
-            </button>
-        @endcan
-        @can('apply', $campaign)
-            <button id="campaign-apply" class="btn btn-default btn-xl margin-r-5" data-id="{{ $campaign->id }}"
-                    data-url="{{ route('campaign.apply') }}"
-                    data-toggle="ajax-modal" title="{{ __('dashboard.helpers.join') }}"
-                    data-target="#large-modal"
-                    data-placement="bottom"
-            >
-                <i class="fas fa-door-open"></i> {{ __('dashboard.actions.join') }}
-            </button>
-        @endcan
-
-
-        @cannot('update', $campaign)
-        @if(!empty($dashboards))
-            <div class="btn-group pull-right">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-th-large"></i>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    @if (!empty($dashboard))
-                        <li>
-                            <a href="{{ route('dashboard', ['dashboard' => 'default']) }}">
-                                {{ __('dashboard.dashboards.default.title')}}
-                            </a>
-                        </li>
-                    @endif
-                    @foreach ($dashboards as $dash)
-                        @if (!empty($dashboard) && $dash->id == $dashboard->id)
-                            @continue
-                        @endif
-                        <li>
-                            <a href="{{ route('dashboard', ['dashboard' => $dash->id]) }}">
-                                {!! $dash->name !!}
-                            </a>
-                        </li>
-                    @endforeach
-
-                    @if($settings)
-                        <li class="divider"></li>
-                        <li>
-                            <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}">
-                                {{ __('dashboard.settings.title') }}
-                            </a>
-                        </li>
-                    @endif
-                </ul>
-            </div>
-        @elseif($settings)
-            <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-xl" title="{{ __('dashboard.settings.title') }}">
-                <i class="fa fa-th-large"></i>
-            </a>
-        @endif
-        @endcannot
-    </div>
 
 
     <div class="campaign-header-content">
-
         <div class="campaign-content">
             <div class="campaign-head">
                 <a href="{{ route('campaigns.show', $campaign) }}" title="{!! $campaign->name !!}" class="campaign-title">
                     {!! $campaign->name !!}
                 </a>
-                @can('update', $campaign)
                     <div class="action-bar">
+                        @can ('follow', $campaign)
+                            <button id="campaign-follow" class="btn btn-default btn-xl" data-id="{{ $campaign->id }}"
+                                    style="display: none"
+                                    data-following="{{ $campaign->isFollowing() ? true : false }}"
+                                    data-follow="{{ __('dashboard.actions.follow') }}"
+                                    data-unfollow="{{ __('dashboard.actions.unfollow') }}"
+                                    data-url="{{ route('campaign.follow') }}"
+                                    data-toggle="tooltip" title="{{ __('dashboard.helpers.follow') }}"
+                                    data-placement="bottom"
+                            >
+                                <i class="fa fa-star"></i> <span id="campaign-follow-text"></span>
+                            </button>
+                        @endcan
+                        @can('apply', $campaign)
+                            <button id="campaign-apply" class="btn btn-default btn-xl margin-r-5" data-id="{{ $campaign->id }}"
+                                    data-url="{{ route('campaign.apply') }}"
+                                    data-toggle="ajax-modal" title="{{ __('dashboard.helpers.join') }}"
+                                    data-target="#large-modal"
+                                    data-placement="bottom"
+                            >
+                                <i class="fas fa-door-open"></i> {{ __('dashboard.actions.join') }}
+                            </button>
+                        @endcan
+
+                        @cannot('update', $campaign)
+                            @if(!empty($dashboards))
+                                <div class="btn-group pull-right">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-th-large"></i>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        @if (!empty($dashboard))
+                                            <li>
+                                                <a href="{{ route('dashboard', ['dashboard' => 'default']) }}">
+                                                    {{ __('dashboard.dashboards.default.title')}}
+                                                </a>
+                                            </li>
+                                        @endif
+                                        @foreach ($dashboards as $dash)
+                                            @if (!empty($dashboard) && $dash->id == $dashboard->id)
+                                                @continue
+                                            @endif
+                                            <li>
+                                                <a href="{{ route('dashboard', ['dashboard' => $dash->id]) }}">
+                                                    {!! $dash->name !!}
+                                                </a>
+                                            </li>
+                                        @endforeach
+
+                                        @if($settings)
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a href="{{ route('dashboard.setup', !empty($dashboard) ? ['dashboard' => $dashboard->id] : []) }}">
+                                                    {{ __('dashboard.settings.title') }}
+                                                </a>
+                                            </li>
+                                        @endif
+                                    </ul>
+                                </div>
+                            @elseif($settings)
+                                <a href="{{ route('dashboard.setup') }}" class="btn btn-default btn-xl" title="{{ __('dashboard.settings.title') }}">
+                                    <i class="fa fa-th-large"></i>
+                                </a>
+                            @endif
+                        @endcannot
+
+                        @can('update', $campaign)
                         <div class="btn-group">
                             <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" aria-expanded="false">
                                 <i class="fas fa-ellipsis-h"></i>
@@ -134,8 +130,8 @@
                                 </li>
                             </ul>
                         </div>
+                        @endcan
                     </div>
-                @endcan
             </div>
             @if ($campaign->hasPreview())
                 <div class="preview">

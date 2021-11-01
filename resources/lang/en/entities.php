@@ -16,10 +16,10 @@ return [
     'creator'               => [
         'back'      => 'Back to selection',
         'duplicate' => 'Head\'s up! There are other entities of this type with a similar name.',
-        'error'     => 'There was an error with your values. Please check them again.',
         'helper'    => 'Select an entity type to create. If no entities appear, it means that you don\'t have the permission to create any kind of entity in this campaign.',
         'success'   => 'New entity \':link\' created.',
         'title'     => 'New Entity',
+        'tooltip'   => 'Create a new entity without leaving the current page',
     ],
     'dice_roll'             => 'Dice Roll',
     'dice_rolls'            => 'Dice Rolls',

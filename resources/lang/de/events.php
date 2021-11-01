@@ -14,7 +14,8 @@ return [
         'title'     => 'Bearbeite Ereignis :name',
     ],
     'events'        => [
-        'title' => 'Ereignis :name Ereignisse',
+        'helper'    => 'Ereignisse, die dieses Objekt als übergeordnetes Ereignis haben, werden hier angezeigt.',
+        'title'     => 'Ereignis :name Ereignisse',
     ],
     'fields'        => [
         'date'      => 'Datum',
@@ -27,7 +28,6 @@ return [
     ],
     'helpers'       => [
         'date'          => 'Dieses Feld kann alles enthalten und ist nicht mit den Kalendern der Kampagne verknüpft. Um dieses Ereignis mit einem Kalender zu verknüpfen, fügen Sie es im Kalender oder auf der Registerkarte Erinnerungen dieses Ereignisses hinzu.',
-        'nested'        => 'Standardmäßig werden Ereignisse ohne übergeordnetes Ereignis angezeigt. Klicken Sie auf die Zeile eines Ereignisses, um dessen untergeordnete Ereignisse anzuzeigen.',
         'nested_parent' => 'Anzeigen der Ereignisse von :parent.',
         'nested_without'=> 'Anzeigen aller Ereignisse ohne übergeordnetes Ereignis. Klicken Sie auf eine Zeile, um die untergeordneten Ereignisse anzuzeigen.',
     ],
@@ -46,7 +46,7 @@ return [
     'show'          => [
         'description'   => 'Eine detaillierte Ansicht eines Ereignisses',
         'tabs'          => [
-            'information'   => 'Informationen',
+            'events'    => 'Ereignisse',
         ],
         'title'         => 'Ereignis :name',
     ],

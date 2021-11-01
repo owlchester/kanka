@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\Models\CommunityEvent $event
- * @var \App\Models\CommunityEventEntry $entry
+ * @var \App\Models\CommunityEventEntry[]|\Illuminate\Pagination\Paginator $entries
  */
 ?>
 @extends('layouts.admin', [
@@ -16,15 +16,33 @@
 
 
 @section('content')
-    <div class="panel panel-default">
-        <div class="panel-heading"> <a href="{{ route('admin.community-events.edit', $event) }}" class="pull-right btn btn-primary btn-sm"><i class="fa fa-pencil-alt"></i> Edit</a>
-            <h4>Community vote {{ $event->name }}</h4>
-            <div class="text-muted">{{ $event->start_at->isoFormat('MMMM D, Y') }} - {{ $event->end_at->isoFormat('MMMM D, Y') }}</div>
+    <div class="box box-solid">
+        <div class="box-header with-border">
+
+            <h4 class="box-title">{!! $event->name !!}</h4>
+            <div class="box-tools">
+                <a href="{{ route('community-events.show', $event) }}" class="btn btn-box-tool" title="View event" data-toggle="tooltip">
+                    <i class="fa fa-external-link-alt"></i>
+                </a>
+                <a href="{{ route('admin.community-events.edit', $event) }}" class="btn btn-box-tool" title="Edit event" data-toggle="tooltip">
+                    <i class="fa fa-pencil-alt"></i>
+                </a>
+            </div>
         </div>
+        <div class="box-body">
+            <div class="text-muted">{{ $event->start_at->isoFormat('MMMM D, Y') }} - {{ $event->end_at->isoFormat('MMMM D, Y') }}</div>
+            <div class="">
+                {!! $event->entry !!}
+            </div>
+        </div>
+    </div>
 
-        <div class="panel-body">
+    <div class="box box-solid">
+        <div class="box-header with-border">
 
-            <h4>Entries</h4>
+            <h4 class="box-title">Entries</h4>
+        </div>
+        <div class="box-body">
             <table class="table table-hover">
             <thead>
             <tr>
@@ -70,8 +88,12 @@
             @endforeach
             </tbody>
             </table>
+        </div>
+        @if($entries->hasPages() > 1)
+        <div class="box-footer">
 
             {!! $entries->links() !!}
         </div>
+        @endif
     </div>
 @endsection

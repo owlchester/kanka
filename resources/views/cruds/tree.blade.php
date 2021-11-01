@@ -68,12 +68,13 @@
         </div>
 
         <div class="box-body no-padding">
-            {!! Form::open(['url' => route('bulk.process'), 'method' => 'POST']) !!}
-            @include($name . '._tree')
+            <div class="table-responsive">
+                @include($name . '._tree')
+            </div>
         </div>
         <div class="box-footer">
 
-            @includeWhen(auth()->check(), 'cruds.datagrids.bulks.actions')
+            @includeWhen(auth()->check() && $filteredCount > 0, 'cruds.datagrids.bulks.actions')
 
             @if ($unfilteredCount != $filteredCount)
                 <p class="help-block">

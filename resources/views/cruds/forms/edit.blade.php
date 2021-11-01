@@ -7,7 +7,8 @@
         ['url' => Breadcrumb::index($name), 'label' => __($name . '.index.title')],
         ['url' => route($name . '.show', $model->id), 'label' => $model->name],
         __('crud.edit'),
-    ]
+    ],
+    'mainTitle' => false,
 ])
 @inject('campaign', 'App\Services\CampaignService')
 
@@ -32,23 +33,24 @@
             @if ($tabBoosted)
                 <li role="presentation" class="{{ (request()->get('tab') == 'boost' ? ' active' : '') }}">
                     <a href="#form-boost" title="{{ __('crud.tabs.boost') }}" role="tab" aria-controls="form-boost">
-                        <i class="fa fa-rocket"></i> <span class="hidden-xs">{{ __('crud.tabs.boost') }}</span>
+                        <i class="fa fa-rocket"></i>
+                        <span class="hidden-xs hidden-sm">{{ __('crud.tabs.boost') }}</span>
                     </a>
                 </li>
             @endif
             @if ($tabAttributes)
                 <li role="presentation"  class="{{ (request()->get('tab') == 'attributes' ? ' active' : '') }}">
                     <a href="#form-attributes" title="{{ __('crud.tabs.attributes') }}" role="tab" aria-controls="form-attributes">
+                        <i class="fa fa-th-list" title="{{ __('crud.tabs.attributes') }}"></i>
                         <span class="hidden-xs hidden-sm">{{ __('crud.tabs.attributes') }}</span>
-                        <i class="visible-xs visible-sm fa fa-th-list" title="{{ __('crud.tabs.attributes') }}"></i>
                     </a>
                 </li>
             @endif
             @if ($tabPermissions)
             <li role="presentation"  class="{{ (request()->get('tab') == 'permission' ? ' active' : '') }}">
                 <a href="#form-permission" title="{{ __('crud.tabs.permissions') }}" role="tab" aria-controls="form-permission">
+                    <i class="fa fa-cog" title="{{ __('crud.tabs.permissions') }}"></i>
                     <span class="hidden-xs hidden-sm">{{ __('crud.tabs.permissions') }}</span>
-                    <i class="visible-xs visible-sm fa fa-cog" title="{{ __('crud.tabs.permissions') }}"></i>
                 </a>
             </li>
             @endif

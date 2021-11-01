@@ -215,6 +215,12 @@ return [
             ],
             'title' => 'Zmiana poziomu subskrypcji',
         ],
+        'coupon'                => [
+            'check'         => 'Sprawdź kod promocyjny',
+            'invalid'       => 'Niewłaściwy kod promocyjny.',
+            'label'         => 'Kod promocyjny',
+            'percent_off'   => 'Uzyskujesz zniżką na pierwszą roczną subskrypcję w wysokości :percent%!',
+        ],
         'currencies'            => [
             'eur'   => 'EUR',
             'usd'   => 'USD',

@@ -52,7 +52,6 @@ Algumas dicas para lhe ajudar a começar:
 Por último, porém não menos importante:
 - Dê uma olhada em :public para encontrar inspiração em como outras pessoas usam o Kanka.
 - Se você tiver perguntas, sugestões ou apenas quiser conversar, una-se a nós, em nosso servidor do :discord
-- Planeje quando seu grupo jogará a próxima sessão com nossos amigos em :lfgm e sincronize seu calendário LFGM com a sua campanha no Kanka
 - Ama o app e quer apoiar seu crescimento? Considere apoiar o Kanka via :subscriptions.
 TEXT
 ,

@@ -51,10 +51,7 @@ return [
             'release'   => 'Neuerscheinung',
         ],
         'settings'  => [
-            'news'          => 'Nachrichten - benachrichtigt werden, wenn es :news gibt.',
-            'newsletter'    => 'Newsletter - Erhalten Sie den Kanka Newsletter.',
-            'updates'       => 'Updates - werde benachrichtigt, wenn ein Update für Kanka vorliegt.',
-            'votes'         => 'Community-Abstimmungen - benachrichtigt werden, sobald ein neuer :vote  verfügbar ist.',
+            'news'  => 'Nachrichten - benachrichtigt werden, wenn es :news gibt.',
         ],
         'title'     => 'Newsletter',
     ],
@@ -90,7 +87,6 @@ return [
             'pagination'                    => 'Seitennummerierung (Objekte pro Seite)',
         ],
         'helpers'   => [
-            'editor'    => 'Der Standardeditor (TinyMCE 4) ist veraltet, funktioniert aber immer noch gut auf dem Desktop, nicht aber auf Mobilengeräten. Summernote ist ein neuerer Editor, der auf allen Geräten funktioniert, aber wir befinden uns noch in der Testphase.',
             'editor_v2' => 'Die Verwendung des Legacy-Texteditors (TinyMCE) unterstützt keine Erwähnungen auf Mobilgeräten und unterstützt einige Funktionen wie die Kampagnengalerie nicht.',
         ],
         'hints'     => [

@@ -65,13 +65,18 @@
     </div>
 </div>
 
-@if (Auth::user()->isAdmin())
+@if (auth()->user()->isAdmin())
+    @php
+        $role = \App\Facades\CampaignCache::adminRole();
+    @endphp
     <hr />
     <div class="form-group">
         {!! Form::hidden('is_attributes_private', 0) !!}
         <label>{!! Form::checkbox('is_attributes_private', 1, empty($model) ? false : $model->entity->is_attributes_private) !!}
             {{ __('entities/attributes.fields.is_private') }}
         </label>
-        <p class="help-block">{{ __('entities/attributes.hints.is_private') }}</p>
+        <p class="help-block">{!! __('entities/attributes.hints.is_private2', [
+    'admin-role' => link_to_route('campaigns.campaign_roles.admin', \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')), null, ['target' => '_blank'])
+    ]) !!}</p>
     </div>
 @endif

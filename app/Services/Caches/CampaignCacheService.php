@@ -345,6 +345,38 @@ class CampaignCacheService extends BaseCache
     }
 
     /**
+     * Build a list of dashboards setup for the campaign
+     * @return array[]
+     */
+    public function adminRole(): array
+    {
+        $cacheKey = $this->adminRoleKey();
+        if ($this->has($cacheKey)) {
+            return (array) $this->get($cacheKey);
+        }
+
+        $role = $this->campaign->roles->where('is_admin', 1)->first();
+        $data = [
+            'id' => $role->id,
+            'name' => $role->name
+        ];
+
+        $this->forever($cacheKey, $data);
+        return (array) $data;
+    }
+
+    /**
+     * @return $this
+     */
+    public function clearAdminRole(): self
+    {
+        $this->forget(
+            $this->adminRoleKey()
+        );
+        return $this;
+    }
+
+    /**
      * Campaign members cache key
      * @return string
      */
@@ -414,5 +446,14 @@ class CampaignCacheService extends BaseCache
     protected function dashboardsKey(): string
     {
         return 'campaign_' . $this->campaign->id . '_dashboards';
+    }
+
+    /**
+     * Campaign dashboards cache key
+     * @return string
+     */
+    protected function adminRoleKey(): string
+    {
+        return 'campaign_' . $this->campaign->id . '_admin_role';
     }
 }

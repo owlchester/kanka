@@ -1,0 +1,141 @@
+
+:root {
+  --footer-links-background: rgba(255, 255, 255, 0.3);
+  --footer-text: #636b6f;
+  --footer-background: #ecf0f5;
+  --footer-logo-white: none;
+  --footer-logo-blue: unset;
+}
+
+.main-footer {
+  border: none;
+  background-color: var(--footer-background);
+  color: var(--footer-text);
+}
+
+footer {
+  border-top: none;
+
+  padding-top: 40px;
+  padding-bottom: 30px;
+  text-align: left;
+
+
+  img.logo-white {
+    display: var(--footer-logo-white);
+  }
+  img.logo-blue {
+    display: var(--footer-logo-blue);
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      padding: 0;
+      display: block;
+      margin: 2px 0;
+
+      a {
+        font-size: 14px !important;
+        width: 100%;
+        word-break: break-all;
+
+        &:hover {
+          transition: all 0.2s ease;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .kanka-logo {
+    font-size: 14px;
+    font-weight: 700;
+
+    a {
+      padding: 5px;
+      display: inline-block;
+    }
+  }
+
+  a {
+    display: inline-block;
+    border-radius: 4px;
+    letter-spacing: 1.1px;
+  }
+
+  .footer-socials {
+    line-height: 1.8em;
+    padding: 1.5rem 0 1.5rem;
+    text-align: center;
+
+    .email, .socials, .language-switcher {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 10px;
+
+      a {
+        font-size: 1.9rem;
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .footer-copyright {
+    font-size: 12px;
+  }
+
+  .footer-links {
+    background-color: var(--footer-links-background);
+    border-radius: 15px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 15px;
+    padding-top: 30px;
+
+    .row > .col-xs-6 {
+      min-height: 225px;
+    }
+
+    .section {
+      height: 60px;
+      position: relative;
+      margin: 0;
+      text-transform: uppercase;
+      font-size: 18px;
+
+      .section-title {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+      }
+    }
+    ul > li {
+      margin: 0;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      font-weight: 400;
+      font-size: 0.875rem;
+      line-height: 1.3;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  footer {
+    .footer-socials {
+      .email, .socials, .language-switcher {
+        display: inline;
+      }
+
+      .email, .socials {
+        margin-right: 20px;
+      }
+    }
+  }
+}

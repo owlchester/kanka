@@ -29,13 +29,17 @@
 
     <div class="box no-border">
         <div class="box-body no-padding">
-            @include($name . '.datagrid')
+            <div class="table-responsive">
+                @include($name . '.datagrid')
+            </div>
         </div>
+        @if ($models->hasPages())
         <div class="box-footer">
             <div class="pull-right">
                 {{ $models->appends($filterService->pagination())->links() }}
             </div>
-            {!! Form::hidden('entity', $name) !!}
         </div>
+        @endif
+        {!! Form::hidden('entity', $name) !!}
     </div>
 @endsection

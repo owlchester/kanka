@@ -110,12 +110,10 @@ return [
             'title'         => 'Calendarios',
         ],
         'collaborative'     => [
-            'description'   => 'Non estás só? Conta connosco! Podes invitar ás túas amizades e co-creadoras para axudarte a crear a túa campaña!',
-            'title'         => 'Colaborativo',
+            'title' => 'Colaborativo',
         ],
         'dashboards'        => [
-            'description'   => 'Controla a información que é visíbel para as integrantes da campaña cando abren Kanka.',
-            'title'         => 'Taboleiros',
+            'title' => 'Taboleiros',
         ],
         'description'       => 'Coas nosas @mencións, etiquetas, e sistema de permisos en profundidade, Kanka facilita a administración do teu mundo ou campaña. Isto inclúe Personaxes e as súas relacións, Lugares e a súa historia, Misións e os seus obxectivos, Liñas temporais e as súas eras, e Calendarios con tanto eventos como fenómenos meteorolóxicos. E por se fose pouco, as usuarias de Kanka teñen voz e voto en decidir que novas funcionalidades son implementadas a través dos Votos da Comunidade.',
         'description_full'  => 'Kanka está constantemente sendo actualizada con novas funcionalidades e melloras, mais aquí están algunhas das máis importantes que pensamos que che gustarán.',
@@ -124,9 +122,8 @@ return [
             'title'         => 'Flora e fauna',
         ],
         'free'              => [
-            'bonuses'       => 'bonificacións para as nosas subscriptoras',
-            'description'   => 'Todas as funcións principais de Kanka son completamente gratuítas, mais con :bonuses.',
-            'title'         => 'Uso gratuíto',
+            'bonuses'   => 'bonificacións para as nosas subscriptoras',
+            'title'     => 'Uso gratuíto',
         ],
         'landscape'         => 'Cambia o teu dispositivo a modo apaisado para mostrar a lista de funcionalidades.',
         'layers'            => [
@@ -200,12 +197,10 @@ return [
         'title'             => 'Potentes funcionalidades con incríbel flexibilidade',
         'unlimited'         => 'Ilimitadas',
         'updates'           => [
-            'description'   => 'Kanka é actualizada frecuentemente con contribucións da comunidade, con novas funcionalidades engadidas cada mes. Entramos en detalle sobre estas actualizacións no noso :discord.',
-            'title'         => 'Actualizacións frecuentes',
+            'title' => 'Actualizacións frecuentes',
         ],
         'worldbuilding'     => [
-            'description'   => 'Con módulos cubrindo todo, dende Mapas ata Liñas temporais, Calendarios, e Eventos, Kanka facilita a organización de mundos complexos.',
-            'title'         => 'Creación de mundos',
+            'title' => 'Creación de mundos',
         ],
     ],
     'first_block'   => [

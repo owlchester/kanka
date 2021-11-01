@@ -1,20 +1,24 @@
 <?php
+/**
+ * @var \App\Models\Location[] $locations
+ */
 $filters = [];
 if (request()->has('parent_location_id')) {
     $filters['parent_location_id'] = request()->get('parent_location_id');
 }
 
-$r = $model->descendants()
+$locations = $model->descendants()
         ->filter($filters)
         ->with('parent')
         ->simpleSort($datagridSorter)
         ->paginate();
 ?><div class="box box-solid" id="location-locations">
-    <div class="box-body">
-        <h2 class="page-header with-border">
+    <div class="box-header">
+        <h3 class="box-title">
             {{ __('locations.show.tabs.locations') }}
-        </h2>
-
+        </h3>
+    </div>
+    <div class="box-body">
         <p class="help-block">
             {{ __('locations.helpers.descendants') }}
         </p>
@@ -25,26 +29,26 @@ $r = $model->descendants()
             </div>
             <div class="col-md-6 text-right">
                 @if (request()->has('parent_location_id'))
-                    <a href="{{ route('locations.locations', [$model, '#location-locations']) }}" class="btn btn-default btn-sm pull-right">
+                    <a href="{{ route('locations.locations', [$model, '#location-locations']) }}" class="btn btn-default btn-sm">
                         <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->descendants()->count() }})
                     </a>
                 @else
-                    <a href="{{ route('locations.locations', [$model, 'parent_location_id' => $model->id, '#location-locations']) }}" class="btn btn-default btn-sm pull-right">
+                    <a href="{{ route('locations.locations', [$model, 'parent_location_id' => $model->id, '#location-locations']) }}" class="btn btn-default btn-sm">
                         <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->locations()->count() }})
                     </a>
                 @endif
             </div>
         </div>
 
-        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ __('locations.show.tabs.locations') }}</p>
-        <table id="locations" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+        @if($locations->count() > 0)
+        <table id="locations" class="table table-hover">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ __('locations.fields.name') }}</th>
                 <th>{{ __('locations.fields.type') }}</th>
                 <th>{{ __('locations.fields.location') }}</th>
             </tr>
-            @foreach ($r as $model)
+            @foreach ($locations as $model)
                 <tr>
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $model->getImageUrl(40) }}');" title="{{ $model->name }}" href="{{ route('locations.show', $model->id) }}"></a>
@@ -64,7 +68,11 @@ $r = $model->descendants()
             @endforeach
             </tbody>
         </table>
-
-        {{ $r->fragment('location-locations')->appends($filters)->links() }}
+        @endif
     </div>
+    @if ($locations->hasPages())
+        <div class="box-footer text-right">
+            {{ $locations->fragment('location-locations')->appends($filters)->links() }}
+        </div>
+    @endif
 </div>

@@ -18,11 +18,13 @@ return [
     'fields'        => [
         'abbreviation'  => 'Abkürzung',
         'end_year'      => 'Endjahr',
+        'is_collapsed'  => 'eingeklappt',
         'start_year'    => 'Startjahr',
     ],
     'helpers'       => [
-        'eras'      => 'Der Zeitstahl muss erstellt werden, bevor Epochen hinzugefügt werden können.',
-        'primary'   => 'Trennen Sie Ihre Zeitstrahlen in Epochen. Ein Zeitstrahl benötigt mindestens eine Epoche, um ordnungsgemäß zu funktionieren.',
+        'eras'          => 'Der Zeitstahl muss erstellt werden, bevor Epochen hinzugefügt werden können.',
+        'is_collapsed'  => 'Era ist standardmäßig eingeklappt (minimiert).',
+        'primary'       => 'Trennen Sie Ihre Zeitstrahlen in Epochen. Ein Zeitstrahl benötigt mindestens eine Epoche, um ordnungsgemäß zu funktionieren.',
     ],
     'placeholders'  => [
         'abbreviation'  => 'AD, BC, BCE',

@@ -30,7 +30,7 @@
 
                     @can('update', $entity->child)
                         <div class="form-group form-check">
-                            <label>{!! Form::checkbox('copy', 1, false) !!}
+                            <label>{!! Form::checkbox('copy', 1, true) !!}
                                 {{ __('entities/move.fields.copy') }}
                             </label>
                         </div>

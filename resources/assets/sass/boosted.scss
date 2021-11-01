@@ -30,6 +30,7 @@
     background-repeat: no-repeat;
     background-position: 50% 50%;
     cursor: pointer;
+    z-index: 10;
   }
 
   .tooltip {
@@ -65,6 +66,7 @@
       display: inline-block;
       a {
         text-decoration: none;
+        color: var(--breadcrumb-text);
       }
     }
     li+li:before {
@@ -165,7 +167,10 @@
 .entity-links {
   margin: 5px 0;
   li > a {
-    font-size: 20px;
+    font-size: 16px;
+    i {
+      font-size: 20px;
+    }
   }
 }
 

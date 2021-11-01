@@ -67,18 +67,27 @@
         <div class="col-md-12">
             <div class="social-auth-links text-center">
                 <p>- {{ trans('auth.login.or') }} -</p>
+
+                @if(config('services.facebook.client_id'))
                 <a href="{{ route('auth.provider', ['provider' => 'facebook']) }}" class="btn btn-app btn-facebook" title="{{ trans('auth.login.login_with_facebook') }}">
                     <i class="fab fa-facebook-f"></i>
                     Facebook
                 </a>
+                @endif
+
+                @if(config('services.google.client_id'))
                 <a href="{{ route('auth.provider', ['provider' => 'google']) }}" class="btn btn-app btn-google" title="{{ trans('auth.login.login_with_google') }}">
                     <i class="fab fa-google"></i>
                     Google
                 </a>
+                @endif
+
+                @if(config('services.twitter.client_id'))
                 <a href="{{ route('auth.provider', ['provider' => 'twitter']) }}" class="btn btn-app btn-twitter" title="{{ trans('auth.login.login_with_twitter') }}">
                     <i class="fab fa-twitter"></i>
                     Twitter
                 </a>
+                @endif
             </div>
         </div>
     </div>

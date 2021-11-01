@@ -9,9 +9,32 @@
 // Variables
 @import "variables";
 
+:root {
+  --banner-link: white;
+  --campaign-selector-link: white;
+  --campaign-selector-background: #ddd;
+  --input-required-text: red;
+  --table-filters-background: #eee;
+  --quick-creator-button-text: #fff;
+  --quick-creator-button-background: #144c93;
+  --quick-creator-button-hover-background: rgb(45, 127, 237);
+  --quick-creator-button-hover-text: #fff;
+
+  --bg-default-link: unset;
+
+  --gallery-folder-text: unset;
+  --gallery-background: #f5f8fa;
+  --gallery-hover-text: #124964;
+}
+
+@import "theming";
+
 #app {
   // AdminLTE wants this but it becomes weird with the min-height computed on firefox
   overflow: unset !important;
+}
+.skin-black .wrapper {
+  background: none;
 }
 
 img.profile-user-img {
@@ -21,9 +44,6 @@ img.profile-user-img {
   padding: 0;
 }
 
-.content {
-  padding-top: 5px;
-}
 
 .content-header {
   .breadcrumb {
@@ -40,55 +60,29 @@ img.profile-user-img {
   }
 }
 
-.navbar-custom-menu {
-  .btn-nav {
-    margin-top: 10px;
-    margin-right: 6px;
-  }
-}
 .navbar-nav {
-  .campaign-menu .campaign-image {
-    float: left;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    margin-right: 10px;
-    margin-top: -2px;
-  }
-
-  .campaign-menu {
-    a.campaign-selector {
-      font-size: 1.2em;
-      color: white;
-      text-shadow: $text-shadow;
-      -webkit-filter: grayscale(60%);
-      filter: grayscale(60%);
-
-      &:hover {
-        -webkit-filter: grayscale(0%);
-        filter: grayscale(0%);
-      }
-    }
-
-    a.campaign-selector.cover-background {
-      background-color: #ddd;
-    }
-  }
   .user-menu {
+    // Because adminlte is stupid
     a.dropdown-toggle {
       height: 50px;
     }
-
     .dropdown-menu > li.user-header {
-      background-color: #1e282c;
       a > img {
         z-index: 5;
         height: 90px;
         width: 90px;
       }
+      a {
+        display: inline;
+        background: none;
+        &:hover {
+          background: none;
+        }
+      }
     }
   }
 
+  // Playing the notification buttons next to each other
   .dropdown-menu > .notification-footer  {
     a {
       display: inline-block;
@@ -96,14 +90,11 @@ img.profile-user-img {
     }
   }
 }
-.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li > a {
-  overflow: auto;
-  white-space: unset;
-}
 .navbar-nav > .notifications-menu > .dropdown-menu {
   width: 360px;
 }
 
+// Map form
 .disabledLink{
   cursor: not-allowed;
 }
@@ -116,82 +107,25 @@ img.profile-user-img {
   background-repeat: no-repeat !important;
   background-position: 50% 50% !important;
 }
-.placeholder-background {
-  background: rgb(63,63,63);
-  background: linear-gradient(135deg, rgba(223,223,223,1) 0%, rgba(156,156,187,1) 100%, rgba(118,118,170,1) 100%);
-}
 
-.user-header a {
-  display: inline;
-  background: none;
-  &:hover {
-    background: none !important;
-  }
-}
-
-.sidebar-menu > li > a {
-  padding: 8px 5px 8px 15px;
-}
-.sidebar-menu {
-  .ra, .fas, .fab, .far {
-    display: inline-block;
-    width: 20px;
-  }
-  .campaign-name {
-    overflow: hidden;
-  }
-}
 
 /** required form fields **/
 div.required label:after {
   content: " *";
-  color: red;
+  color: var(--input-required-text);
 }
 
 table th.avatar, table td.avatar {
   width: 40px;
 }
+table th.icon, table th.icon {
+  min-width: 50px;
+}
 table {
-  th {
-    //i {
-    //  padding-left: 5px;
-    //}
-
-    .btn {
-      i {
-        padding-left: 0;
-      }
-    }
-
-    .table-filters {
-      background-color: #eee;
-      padding: 5px 15px;
-      display: inline-block;
-      cursor: pointer;
-      border-radius: 5px;
-      min-width: 60px;
-
-      i {
-        padding: 0px;
-      }
-      i.fa-filter {
-        font-size: 16px;
-        padding-right: 5px;
-      }
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.1);
-      }
-    }
-  }
-
   tbody {
     td {
       vertical-align: middle !important;
     }
-  }
-
-  label {
-    font-weight: normal;
   }
 }
 .tab-content, .box-body {
@@ -202,48 +136,11 @@ table {
     max-width: 100%;
   }
 }
-// Avoid floating images in summernote to be too large
-.note-editable img {
-  max-width: 100%;
-}
 
 .clear {
   clear: both;
 }
 
-.profile-username {
-  font-size: 1.3em;
-  word-wrap: break-word;
-  margin-bottom: 5px;
-}
-
-.preview {
-  padding-top: 10px;
-
-  .image {
-    float: left;
-    margin: 0 10px 0 0;
-  }
-  img {
-    max-height: 200px;
-    max-width: 200px;
-    width: 100%;
-  }
-  a.img-delete {
-    color: white;
-    text-align: center;
-    display: block;
-    padding: 5px;
-    background: none;
-    margin-top: -30px;
-    position: relative;
-    background-color: rgba(0, 0, 0, 0.3);
-
-    &:hover {
-      background-color: rgba(31, 0, 4, 0.7);
-    }
-  }
-}
 .preview-v2 {
   .image {
     position: relative;
@@ -264,6 +161,11 @@ table {
     padding: 5px;
     background: none;
     background-color: rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    max-height: 48px;
+
+    .fa {
+    }
 
     &:hover {
       background-color: rgba(31, 0, 4, 0.7);
@@ -271,137 +173,27 @@ table {
   }
 }
 
-footer {
-  padding-top: 40px;
-  padding-bottom: 30px;
-  text-align: left;
 
-
-  img.logo-white {
-    display: none;
-  }
-
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-
-    li {
-      padding: 0;
-      display: block;
-      margin: 2px 0;
-
-      a {
-        font-size: 14px !important;
-        width: 100%;
-
-        &:hover {
-          transition: all 0.2s ease;
-          text-decoration: none;
-        }
-      }
-    }
-  }
-
-  .kanka-logo {
-    font-size: 14px;
-    font-weight: 700;
-
-    a {
-      padding: 5px;
-      display: inline-block;
-    }
-  }
-
-  a {
-    display: inline-block;
-    border-radius: 4px;
-    letter-spacing: 1.1px;
-    font-size: 1rem;
-  }
-
-  .footer-socials {
-    line-height: 1.8em;
-    padding: 1.5rem 0 1.5rem;
-    text-align: center;
-
-    .email, .socials, .language-switcher {
-      display: block;
-      font-size: 18px;
-      margin-bottom: 10px;
-
-      a {
-        font-size: 1.9rem;
-        margin-right: 8px;
-      }
-    }
-  }
-
-  .footer-copyright {
-    font-size: 12px;
-  }
-
-  .footer-links {
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 15px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    padding: 15px;
-    padding-top: 30px;
-
-    .section {
-      height: 60px;
-      position: relative;
-      margin: 0;
-      text-transform: uppercase;
-      font-size: 18px;
-
-      .section-title {
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        -ms-transform: translateY(-50%);
-        transform: translateY(-50%);
-      }
-    }
-    ul > li {
-      margin: 0;
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
-      font-weight: 400;
-      font-size: 0.875rem;
-      line-height: 1.3;
-    }
-  }
-}
-.main-header {
-  .sidebar-toggle {
-    font-family: 'Font Awesome 5 Free';
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-  }
-}
-.main-footer {
-  color: #636b6f;
-  background-color: #ecf0f5;
-  border-top: none;
-  padding-bottom: 0;
+.campaign-name {
+  white-space: normal !important;
+  overflow: hidden;
 }
 
-/** news */
-.news .box-body img {
-  width: 100%;
-  display:block;
-}
-.news .box-body a {
+.entity-image {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
   display: block;
-  text-transform: uppercase;
-  line-height: 23px;
 }
+.user-name {
+  line-height: 2.8em;
+  margin-left: 8px;
+  display: inline-block;
+}
+
 
 tr.tr-hover {
   cursor: pointer;
@@ -411,156 +203,6 @@ tr.tr-hover {
     background-color: rgba(0, 0, 0, 0.1) !important;
   }
 }
-
-// Dashboard home
-.dashboard-box {
-  p.entity-short {
-    margin: 0;
-  }
-
-  li.entity {
-    min-height: 90px;
-  }
-}
-
-tr.entity-hidden {
-  td {
-    font-style: italic;
-    color: #444;
-  }
-}
-.campaign-name {
-  white-space: normal !important;
-  overflow: hidden;
-}
-
-/**
- * Crud filters
- */
-.filters {
-  background-color: #fff;
-  margin: 15px 0px;
-  border-radius: 5px;
-
-  .first, .element, .end {
-    float: left;
-    padding: 7px 15px;
-    cursor: pointer;
-
-    .field, .value {
-      float: left;
-    }
-    .value {
-      font-weight: 700;
-      padding-left: 15px;
-    }
-    label {
-      font-weight: 400;
-    }
-  }
-  .end {
-    float: right;
-
-    label {
-      cursor: pointer;
-
-      &:hover {
-        font-weight: 700;
-      }
-    }
-  }
-}
-
-.entity-image, .product-img .entity-image, .entity-image-mention {
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  display: block;
-}
-.product-img .entity-image {
-  border-radius: 0;
-  height: 70px;
-  width: 50px;
-}
-.entity-image-mention {
-  width: 20px;
-  height: 20px;
-  float: left;
-  margin-right: 8px;
-  display: inline-block;
-}
-.entity-name {
-  max-height: 60px;
-  overflow: hidden;
-  display: inline-block;
-}
-.entity-title {
-  margin: 0;
-  .entity-image {
-    display: inline-block;
-    margin-right: 5px;
-  }
-  .entity-name {
-    vertical-align: top;
-    padding-top: 8px
-  }
-}
-.entity-name-img {
-  line-height: 2.8em;
-  margin-left: 8px;
-  display: inline-block;
-}
-
-/**
- * vendor layout fix for ckeditor full screen mode
- */
-div.mce-fullscreen {
-  z-index: 1400;
-}
-.mce-btn-group:not(:first-child) {
-  border-left: none !important;
-}
-
-.mce-btn-group:not(:first-child) {
-  border-left: none !important;
-}
-
-.editor-panel {
-  padding: 5px;
-
-  .form-group {
-    margin-bottom: 0;
-
-    .mce-container {
-      border: 0;
-      box-shadow: none;
-    }
-  }
-}
-
-.export-visible {
-  display: none;
-}
-
-/**
- * Tinymce entry
- */
-.panel-entry {
-  padding: 5px;
-
-  .form-group {
-    margin-bottom: 0;
-
-    .mce-container {
-      border: 0;
-      box-shadow: none;
-    }
-  }
-}
-
 
 /**
  * Search
@@ -582,6 +224,9 @@ div.mce-fullscreen {
     border-top-left-radius: 0 !important;
   }
 }
+.search-results-dropdown {
+  margin-bottom: 0;
+}
 
 .entity-modification-history {
   font-style: italic;
@@ -592,99 +237,9 @@ div.mce-fullscreen {
   cursor: pointer;
 }
 
-.tt-cursor {
-  background-color: #f5f5f5;
-}
-
 .live-search-close {
   float: left;
   padding: 6px 15px;
-}
-
-.crud-field-entity {
-  padding: 5px;
-  border-radius: 5px;
-  display: block;
-  font-size: 1.8em;
-  max-height: 90px;
-  margin-bottom: 5px;
-  border: 1px solid #eee;
-  overflow: hidden;
-
-  .entity-image {
-    height: 80px;
-    width: 80px;
-    margin-right: 10px;
-    float: left;
-  }
-  .entity-name {
-    vertical-align: top;
-    display: block;
-    max-height: 80px;
-  }
-
-
-  // A touch lighter on hover
-  &:hover {
-    background-color: #eee;
-    transition: all 0.5s ease;
-  }
-}
-
-.new-tag {
-  color: rgba(0, 0, 0, 0.8);
-}
-.color-tag {
-  padding: 3px 5px;
-  border-radius: 3px;
-}
-
-.tooltip-tags {
-  span {
-    margin: 2px;
-    display: inline-block;
-  }
-}
-
-.tooltip-ajax {
-  min-width: 320px;
-  text-align: left;
-
-  .entity-tooltip-avatar {
-    display: flex;
-    align-items: center;
-    align-content: stretch;
-    min-height: unset;
-    height: auto;
-    margin: 5px 0;
-    justify-content: flex-start;
-
-
-    .entity-image {
-      margin: 0 10px 0 2px;
-      height: 60px;
-      width: 60px;
-    }
-  }
-
-  .tooltip-text {
-    clear: both;
-  }
-
-  .entity-names {
-    line-height: 24px;
-  }
-
-  .entity-name {
-    max-height: none;
-    font-size: 16pt;
-    display: block;
-  }
-
-  .entity-subtitle {
-    font-size: 12pt;
-    display: block;
-  }
 }
 
 .list-group-unbordered {
@@ -733,9 +288,6 @@ div.mce-fullscreen {
 .datepicker {
   z-index: 1062 !important;
 }
-.popover {
-  max-width: 296px;
-}
 
 // Private/Public
 .entity-attributes {
@@ -760,18 +312,18 @@ div.mce-fullscreen {
   }
 }
 
+// Entity creator model buttons
 .entity-creator {
-
   a {
     display: block;
     padding: 20px 10px;
     text-align: center;
     margin-bottom: 20px;
     border-radius: 2px;
-    color: #fff;
+    color: var(--quick-creator-button-text);
     line-height: 18px;
     font-size: 14px;
-    background-color: #144c93;
+    background-color: var(--quick-creator-button-background);
     letter-spacing: 0.75px;
     text-transform: uppercase;
     overflow: hidden;
@@ -779,10 +331,10 @@ div.mce-fullscreen {
     word-break: break-all;
 
     &:hover {
-      background-color: rgb(45, 127, 237);
+      background-color: var(--quick-creator-button-hover-background);
       box-shadow: $box-shadow-hover;
       transition: all 0.3s ease-in-out;
-      color: #fff;
+      color: var(--quick-creator-button-hover-text);
     }
   }
 
@@ -802,17 +354,12 @@ td.breakable {
 }
 
 .entity-form {
-  //background-color: rgb(241, 245, 248);
   margin-block-end: 0;
 
   .nav-tabs-custom {
     //width: calc(100% - 300px);
     min-height: 0;
     background-color: unset;
-
-    i.fa, i.ra, i.fas, i.far, i.fab {
-      line-height: 1.6em;
-    }
   }
 
   ul.nav {
@@ -822,10 +369,15 @@ td.breakable {
     border-top-right-radius: 0;
     border-top-left-radius: 0;
     border-bottom-color: #fff;
+    border-bottom: none;
 
     li {
-      background-color: #f5f8fa;
       margin-right: 2px;
+      a {
+        i.fa, i.ra, i.fas, i.far, i.fab {
+          line-height: 1;
+        }
+      }
     }
   }
 
@@ -834,10 +386,13 @@ td.breakable {
     //overflow-y: auto;
     //height: calc(100vh - 200px);
   }
-
-  .select2-container--default .select2-selection--multiple .select2-selection__choice {
-    color: #333;
-  }
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  color: #333;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+  color: white;
+  mix-blend-mode: difference;
 }
 .shortcut {
   margin-left: 14px;
@@ -864,10 +419,6 @@ td.breakable {
   }
 }
 
-// Text editor mentions
-.rte-autocomplete {
-  z-index: 9920;
-}
 
 // Quest entity image
 .widget-user-image {
@@ -880,25 +431,6 @@ td.breakable {
 
 .entity-file-visibility-dropdown {
   cursor: pointer;
-}
-
-/** New fancy images **/
-.full-sized-image {
-  width: 100%;
-  height: auto;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
-  min-height: 160px;
-  display: flex;
-
-  h1 {
-    margin: 5px;
-    font-size: 1.4em;
-    align-self: flex-end;
-    text-shadow: $text-shadow;
-    color: white;
-  }
 }
 
 
@@ -936,22 +468,16 @@ td.breakable {
 .text-black {
   color: #000 !important;
 }
+.text-break {
+  word-break: break-word!important;
+  overflow-wrap: break-word!important;
+}
 
 .bg-gray, .bg-none {
   .widget-user-username {
     a {
-      color: #000;
+      color: var(--bg-default-link);
     }
-  }
-}
-
-.float-left {
-  float: left;
-}
-
-.crud_permissions {
-  label {
-    cursor: pointer;
   }
 }
 
@@ -967,90 +493,15 @@ td.breakable {
   }
 }
 
-.widget-patron {
-  .img-circle {
-    border: none !important;
-    //width: 130px !important;
-    //height: 130px !important;
-    //margin-top: -40px;
-  }
-  .box-body {
-    padding-top: 37px;
-  }
-}
-.box-active {
-  box-shadow: $box-shadow;
-  transition: all 0.3s ease;
-}
-.box-green {
-  .box-body {
-    background-color: #c0d9bf;
-  }
-}
-.box-hover {
-  cursor: pointer;
-}
 
-#entry td, #entry th {
-  padding:2px;
+/*#entry td, #entry th {
+  padding: 2px;
 }
 #entry {
   word-break: break-word;
-}
+}*/
 
-hr {
-  border-top: 1px solid #eeeeee
-}
 
-.label-tag-bubble {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: inline-block;
-  font-size: 8pt;
-  padding: 4px;
-  vertical-align: middle;
-}
-
-.tooltip-wide {
-  .tooltip-inner {
-    min-width: 200px;
-  }
-}
-// Chrome bug: merging lines when the body or p elements have a font-size in "em" break stuff
-.note-editable p {
-  font-size: 14px;
-}
-.note-editing-area {
-  .mention, .attribute {
-    background-color: #eee;
-    padding: 3px 5px;
-    border-radius: 5px;
-    color: #333 !important;
-    text-decoration: none;
-  }
-}
-.images-list {
-  .img-item {
-    overflow: hidden;
-    .thumbnail {
-      height: 120px;
-      overflow: hidden;
-      line-height: 120px;
-
-      .text {
-        display: inline-block;
-        vertical-align: middle;
-        line-height: normal;
-
-        i {
-          display: block;
-        }
-      }
-
-    }
-  }
-}
 
 // Attributes in entities and text area
 .attribute, .note-editing-area > .attribute {
@@ -1065,10 +516,6 @@ hr {
 .btn {
   white-space: normal;
 }
-.btn-rounded {
-  border-radius: 50%;
-  text-align: center;
-}
 .btn-app > .ra, .btn-app > .fas, .btn-app > .far, .btn-app > .fab, .btn-app > .fa {
   font-size: 20px;
   display: block;
@@ -1081,17 +528,6 @@ hr {
   }
   .btn-app.btn-active > .badge {
     display: unset !important;
-  }
-}
-
-.nav-pills.nav-stacked {
-  li.nav-section {
-    font-size: 18px;
-    margin: 0;
-    line-height: 1;
-    position: relative;
-    display: block;
-    padding: 10px 8px;
   }
 }
 
@@ -1116,6 +552,11 @@ summary { display: list-item; }
 .table .table-actions .dropdown-toggle i {
   margin: 3px 10px;
 }
+.table-responsive {
+  table {
+    margin-bottom: 20px;
+  }
+}
 
 .user-role-update {
   .btn {
@@ -1123,7 +564,7 @@ summary { display: list-item; }
   }
 }
 
-.box-footer {
+.box-footer, .panel-footer, .modal-footer {
   .pagination {
     margin: 0;
   }
@@ -1132,28 +573,30 @@ summary { display: list-item; }
 .banner-notification {
   padding: 5px;
   a {
-    color: white;
+    color: var(--banner-link);
   }
 }
 
-@media (min-width: 768px) {
-  footer {
-    .footer-socials {
-      .email, .socials, .language-switcher {
-        display: inline;
-      }
-
-      .email, .socials {
-        margin-right: 20px;
-      }
-    }
-  }
+// Relation colour "bubble" in the relations datagrid and tables
+.label-tag-bubble {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  font-size: 8pt;
+  padding: 4px;
+  vertical-align: bottom;
 }
+
+
 
 // Other stylings
 @import "calendar";
+@import "tooltip";
 @import "timeline";
 @import "mobile";
 @import "boosted";
 @import "entity";
+@import "footer";
+@import "editor";
 @import "../components/rpg/scss/rpg-awesome";

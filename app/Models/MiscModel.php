@@ -365,7 +365,7 @@ abstract class MiscModel extends Model
         }
 
         // Put profile at the start
-        $items['second'] = array_merge(['first' => [
+        $items['second'] = array_merge(['profile' => [
             'name' => 'entities/profile.show.tab_name',
             'route' => 'entities.profile',
             'entity' => true,

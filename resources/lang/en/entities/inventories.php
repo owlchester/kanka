@@ -31,7 +31,7 @@ return [
     ],
     'show'          => [
         'helper'    => 'To create this entity\'s inventory, start by adding an item to it.',
-        'title'     => 'Entity :name Inventory',
+        'title'     => ':name Inventory',
         'unsorted'  => 'Unsorted',
     ],
     'update'        => [

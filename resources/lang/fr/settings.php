@@ -205,6 +205,12 @@ return [
             ],
             'title' => 'Changement d\'abonnement',
         ],
+        'coupon'                => [
+            'check'         => 'Vérifier',
+            'invalid'       => 'Code promotionnel invalide.',
+            'label'         => 'Code promotionnel',
+            'percent_off'   => 'Nous appliquerons un rabais de :percent% sur la première année de l\'abonnement!',
+        ],
         'currencies'            => [
             'eur'   => 'EUR',
             'usd'   => 'USD',

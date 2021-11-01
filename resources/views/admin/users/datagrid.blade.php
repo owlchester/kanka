@@ -3,6 +3,7 @@
     <thead>
     <tr>
         <th>User</th>
+        <th>Provider</th>
         <th>Discord</th>
         <th>Subscription</th>
         <th>Referral Code</th>
@@ -15,6 +16,9 @@
             <td>
                 <a href="{{ route('admin.users.show', $model) }}">{{ $model->name }}</a>
                 <p class="text-muted">Created at {{ $model->created_at->isoFormat('D.M.Y H:m') }}</p>
+            </td>
+            <td>
+                {{ $model->provider }}
             </td>
             <td>
                 @if ($discord = $model->apps->where('app', 'discord')->first())

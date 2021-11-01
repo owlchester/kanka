@@ -66,7 +66,7 @@ TEXT
     ],
     'free'                  => [
         'answer'    => <<<'TEXT'
-Tak! Uważamy szczerze, że nasza sytuacja finansowa nie powinna wpływać na radość z gry w RPG i wymyślania światów, więc Kanka zawsze będzie za darmo. Ale jeżeli chcesz przyczynić się rozwoju aplikacji, wesprzeć nas i głosować na funkcjonalności, które najbardziej ci się przydadzą, możesz wybrać płatną subskrypcję. 
+Tak! Uważamy szczerze, że nasza sytuacja finansowa nie powinna wpływać na radość z gry w RPG i wymyślania światów, więc Kanka zawsze będzie za darmo. Ale jeżeli chcesz przyczynić się rozwoju aplikacji, wesprzeć nas i głosować na funkcjonalności, które najbardziej ci się przydadzą, możesz wybrać płatną subskrypcję.
 
 Oprócz głosowania nad kierunkiem, w którym rozwijać się będzie Kanka, wspierając nas otrzymujesz też :boosters, możesz zamieszczać zamieszczać więcej plików, twoje imię trafia do galerii sław, dostajesz ładniejsze domyślne ikony i nie tylko!
 TEXT
@@ -100,10 +100,6 @@ TEXT
     'nested'                => [
         'answer'    => 'Jeżeli wolisz używać domyślnie widoku hierarchii elementów, zamiast ich list, przejdź do Profilu i wybierz opcję Układ. Tam możesz zaznaczyć Widok hierarchii. Opcja działa wyłącznie dla twojego konta, a nie wszystkich uczestników kampanii.',
         'question'  => 'Czy mogę ustawić wyświetlanie hierarchii jako domyślne?',
-    ],
-    'organise_play'         => [
-        'answer'    => 'Możesz łatwo organizować sesje dla swojej grupy dzięki naszemu partnerowi, :lfgm. Jeżeli zsynchronizujesz kampanię w Kance z kampanią w LFGM, dostępne terminy będą się wyświetlały na pulpicie.',
-        'question'  => 'Jak zarządzać terminami prowadzenia sesji?',
     ],
     'permissions'           => [
         'answer'    => 'Oczywiście, właśnie po to stworzyliśmy Kankę! Kiedy zaprosisz graczy do kampanii, możesz nadawać im role i uprawnienia. Stworzyliśmy bardzo elastyczny system (który pozwala zarządzać uprawnieniami globalnie i lokalnie), który łatwo dostosować do dowolnej sytuacji i potrzeb.',

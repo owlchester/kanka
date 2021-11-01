@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Taggable;
 use App\Services\FilterService;
 use App\Traits\CampaignTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 /**
@@ -22,7 +22,6 @@ use Illuminate\Support\Str;
  * @property array $config
  * @property integer $width
  * @property integer $position
- * @property Tag[] $tags
  * @property Entity $entity
  * @property CampaignDashboard $dashboard
  *
@@ -31,6 +30,8 @@ use Illuminate\Support\Str;
  */
 class CampaignDashboardWidget extends Model
 {
+    use Taggable;
+
     /**
      * Widget Constants
      */
@@ -259,34 +260,41 @@ class CampaignDashboardWidget extends Model
 
     /**
      * Get the entities of a widget
-     * @param int $offset
      * @return Entity[]|Builder[]|\Illuminate\Database\Eloquent\Collection
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function entities($offset = 0)
+    public function entities()
     {
-        $base = null;
+        /** @var Entity $base */
+        $base = new Entity();
 
-        if ($this->widget == self::WIDGET_UNMENTIONED) {
-            $excludedTypes = [];
-            if (empty($entityType)) {
-                $excludedTypes = [
-                    'tag',
-                    'conversation',
-                    'attribute_template'
-                ];
-            }
-            $base = \App\Models\Entity::unmentioned()
-                ->whereNotIn('type', $excludedTypes)
+        $excludedTypes = [];
+        if (empty($entityType)) {
+            $excludedTypes = [
+                'tag',
+                'conversation',
+                'attribute_template',
+                'dice_roll',
+            ];
+        }
+
+        if ($this->filterUnmentioned()) {
+            $base = $base->unmentioned()
+                ->whereNotIn($base->getTable() . '.type', $excludedTypes)
             ;
+        } elseif ($this->filterMentionless()) {
+            $base = $base->mentionless()
+                ->whereNotIn($base->getTable() . '.type', $excludedTypes)
+            ;
+        }
+
+        // Ordering
+        $order = Arr::get($this->config, 'order', null);
+        if (empty($order)) {
+            $base = $base->recentlyModified();
         } else {
-            $order = Arr::get($this->config, 'order', null);
-            if (empty($order)) {
-                $base = \App\Models\Entity::recentlyModified();
-            } else {
-                list ($field, $order) = explode('_', $order);
-                $base = \App\Models\Entity::orderBy($field, $order);
-            }
+            list ($field, $order) = explode('_', $order);
+            $base = $base->orderBy($field, $order);
         }
 
         // If an entity type is provided, we can combine that with filters. We need to get the list of the misc
@@ -300,9 +308,12 @@ class CampaignDashboardWidget extends Model
 
             /** @var FilterService $filterService */
             $filterService = app()->make('App\Services\FilterService');
-            $filterService->session(false)->make($entityType, $this->filterOptions(), $model);
+            $filterService
+                ->session(false)
+                ->make($entityType, $this->filterOptions(), $model);
 
-            $models = $model->select('id')
+            $models = $model
+                ->select('id')
                 ->filter($filterService->filters())
                 ->get();
 
@@ -317,9 +328,8 @@ class CampaignDashboardWidget extends Model
             ->type($entityType)
             ->acl()
             ->with(['tags', 'image'])
-            ->take(10)
-            ->offset($offset)
-            ->get();
+            ->paginate(10)
+        ;
     }
 
     /**
@@ -356,5 +366,44 @@ class CampaignDashboardWidget extends Model
     {
         $this->entity = $entity;
         return $this;
+    }
+
+    public function widgetIcon(): string
+    {
+        $icon = null;
+        if ($this->widget === self::WIDGET_RECENT) {
+            $icon = 'fas fa-list';
+        } elseif ($this->widget === self::WIDGET_HEADER) {
+            $icon = 'fas fa-heading';
+        } elseif ($this->widget === self::WIDGET_PREVIEW) {
+            $icon = 'fas fa-align-justify';
+        } elseif ($this->widget === self::WIDGET_CALENDAR) {
+            $icon = 'ra ra-moon-sun';
+        } elseif ($this->widget === self::WIDGET_RANDOM) {
+            $icon = 'fas fa-dice-d20';
+        } elseif ($this->widget === self::WIDGET_CAMPAIGN) {
+            $icon = 'fas fa-th-list';
+        }
+
+        if (empty($icon)) {
+            return '';
+        }
+        return '<i class="' . $icon . '"></i>';
+    }
+
+    /**
+     * @return bool
+     */
+    protected function filterUnmentioned(): bool
+    {
+        return Arr::get($this->config, 'adv_filter') === 'unmentioned';
+    }
+
+    /**
+     * @return bool
+     */
+    protected function filterMentionless(): bool
+    {
+        return Arr::get($this->config, 'adv_filter') === 'mentionless';
     }
 }

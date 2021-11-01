@@ -9,6 +9,7 @@ $model = Arr::get($options, 'model', null);
 $enableNew = Arr::get($options, 'enableNew', true);
 $label = Arr::get($options, 'label', true);
 $filterOptions = Arr::get($options, 'filterOptions', []);
+$helper = Arr::get($options, 'helper', null);
 if (!is_array($filterOptions)) {
     $filterOptions = [$filterOptions];
 }
@@ -25,7 +26,7 @@ elseif(!empty($model) && !empty($model->entity)) {
             $selectedOption[$tag->id] = $tag;
         }
     }
-} elseif(!empty($model) && $model instanceof \App\Models\CampaignDashboardWidget) {
+} elseif(!empty($model) && ($model instanceof \App\Models\CampaignDashboardWidget || $model instanceof \App\Models\MenuLink)) {
     foreach ($model->tags()->get() as $tag) {
         $selectedOption[$tag->id] = $tag;
     }
@@ -41,7 +42,11 @@ elseif(!empty($model) && !empty($model->entity)) {
 }
 ?>
 @if ($label)
-<label>{{ trans('crud.fields.tags') }}</label>
+<label>{{ __('crud.fields.tags') }}
+@if(!empty($helper))
+    <i class="fas fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ $helper }}"></i>
+@endif
+</label>
 @endif
 
 <select multiple="multiple" name="tags[]" id="{{ Arr::get($options, 'id', 'tags[]') }}" class="form-control form-tags" style="width: 100%" data-url="{{ route('tags.find') }}" data-allow-new="{{ $enableNew ? 'true' : 'false' }}" data-allow-clear="{{ Arr::get($options, 'allowClear', 'true') }}" data-new-tag="{{ trans('tags.new_tag') }}" data-placeholder="">

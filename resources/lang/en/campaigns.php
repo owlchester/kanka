@@ -107,17 +107,17 @@ TEXT
         'actions'               => [
             'add'   => 'Email invite',
             'copy'  => 'Copy the link to your clipboard',
-            'link'  => 'New Link',
+            'link'  => 'Invite people',
         ],
         'create'                => [
             'buttons'       => [
-                'create'    => 'Create invite',
+                'create'    => 'Generate link',
                 'send'      => 'Send invite',
             ],
             'description'   => 'Invite a friend to your campaign',
             'success'       => 'Invitation sent.',
             'success_link'  => 'Link created: :link',
-            'title'         => 'Invite someone to your campaign',
+            'title'         => 'Invite friends to :campaign',
         ],
         'destroy'               => [
             'success'   => 'Invitation removed.',
@@ -138,7 +138,7 @@ TEXT
             'email'     => 'Email',
             'role'      => 'Role',
             'type'      => 'Type',
-            'validity'  => 'Validity',
+            'usage'     => 'Max number of uses',
         ],
         'helpers'               => [
             'email'     => 'Our emails are often flagged as spam and can take up to a few hours before appearing in the inbox.',
@@ -152,21 +152,28 @@ TEXT
             'link'  => 'Link',
         ],
         'unlimited_validity'    => 'Unlimited',
+        'usages'                => [
+            'five'      => '5 uses',
+            'no_limit'  => 'No limit',
+            'once'      => '1 use',
+            'ten'       => '10 uses',
+        ],
     ],
     'leave'                             => [
-        'confirm'   => 'Are you sure you want to leave the :name campaign? You won\'t be able to access it anymore, unless an Admin of the campaign invites you again.',
+        'confirm'   => 'Are you sure you want to leave the :name campaign? You won\'t be able to access it anymore, unless an admin of the campaign invites you again.',
         'error'     => 'Can\'t leave the campaign.',
         'success'   => 'You have left the campaign.',
     ],
     'members'                           => [
         'actions'               => [
-            'switch'        => 'View as',
+            'help'          => 'Help',
+            'remove'        => 'Remove from campaign',
+            'switch'        => 'View campaign as user',
             'switch-back'   => 'Back to my user',
         ],
         'create'                => [
             'title' => 'Add a member to your campaign',
         ],
-        'description'           => 'Manage the members of the campaign',
         'edit'                  => [
             'description'   => 'Edit a member of your campaign',
             'title'         => 'Edit member :name',
@@ -188,7 +195,7 @@ TEXT
             'title'     => 'Impersonating :name',
         ],
         'invite'                => [
-            'description'   => 'You can invite friends to join your campaign by providing them with an Invite Link. Upon accepting their invitation, they will be added as a member in the requested role. You can also send them a request by email.',
+            'description'   => 'Invite your friends and players to the campaign by creating an invitation link and sending them the generated URL! Upon accepting their invitation, they will be added as a member in the invitation\'s requested role.',
             'more'          => 'You can add more roles on the :link.',
             'roles_page'    => 'Roles page',
             'title'         => 'Invite',
@@ -235,22 +242,23 @@ TEXT
     ],
     'roles'                             => [
         'actions'       => [
-            'add'           => 'Add a role',
+            'add'           => 'Create role',
             'permissions'   => 'Manage permissions',
             'rename'        => 'Rename role',
+            'save'          => 'Save role',
         ],
         'admin_role'    => 'admin role',
         'create'        => [
-            'success'   => 'Role created.',
-            'title'     => 'Create a new role for :name',
+            'success'   => 'Role :name created.',
+            'title'     => 'New role',
         ],
         'description'   => 'Manage the roles of the campaign',
         'destroy'       => [
-            'success'   => 'Role removed.',
+            'success'   => 'Role :name removed.',
         ],
         'edit'          => [
-            'success'   => 'Role updated.',
-            'title'     => 'Edit Role :name',
+            'success'   => 'Role :name updated.',
+            'title'     => 'Edit role :name',
         ],
         'fields'        => [
             'name'          => 'Name',
@@ -259,7 +267,7 @@ TEXT
             'users'         => 'Users',
         ],
         'helper'        => [
-            '1' => 'A campaign can have as many roles as wanted. The "Admin" role automatically has access to everything in a campaign, but every other role can have specific permissions on different types of entities (character, location, etc).',
+            '1' => 'A campaign can have as many roles as wanted. The :admin role automatically has access to everything in a campaign, but every other role can have specific permissions on different types of entities (character, location, etc).',
             '2' => 'Entities can have more fine-tuned permissions by viewing the "Permissions" tab of an entity. This tab appears once your campaign has several roles or members.',
             '3' => 'One can either go with an "opt-out" system, where roles are given access to viewing all of the entities, and use the "Private" checkbox on entities to hide them. Or one can not give roles many permissions, but set each entity to be visible individually.',
         ],
@@ -319,7 +327,7 @@ TEXT
         ],
         'users'         => [
             'actions'   => [
-                'add'       => 'Add a member',
+                'add'       => 'Add member',
                 'remove'    => ':user from the :role role',
             ],
             'create'    => [
@@ -343,7 +351,7 @@ TEXT
         'edit'          => [
             'success'   => 'Campaign settings updated.',
         ],
-        'helper'        => 'All modules of a campaign can be enabled or disabled at will. Disabling a module will simply hide interface elements related to it, and pre-existing entities will be hidden but still exist in the background, in case you change your mind. These change effect all users of a campaign, including Admin users.',
+        'helper'        => 'All modules of a campaign can be enabled or disabled at will. Disabling a module will simply hide interface elements related to it, and pre-existing entities will be hidden but still exist in the background, in case you change your mind. These change effect all users of a campaign, including members of the :admin role.',
         'helpers'       => [
             'abilities'     => 'Create abilities, be it feats, spells, or powers that can be assigned to entities.',
             'calendars'     => 'A place to define the calendars of your world.',

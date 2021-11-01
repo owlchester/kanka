@@ -40,9 +40,7 @@ return [
         'descendants'       => 'Diese Liste enthält alle Orte, die direkt in diesem Ort und allen untergeordneten Orten sind.',
         'families'          => 'Standorte können der Sitz mächtiger Familien sein.',
         'map'               => 'Durch Hinzufügen einer Karte zu einem Ort können Sie "Punkte" auf der Karte platzieren und mit anderen Objekten in der Kampagne verknüpfen.',
-        'map_deprecated'    => 'Karten sind jetzt ihr eigenes Modul! Diese neue Funktion ist derzeit für den frühen Zugriff auf :boosted verfügbar. Diese aktuelle Benutzeroberfläche ist nicht mehr verfügbar, sobald das neue Modul für alle verfügbar ist. Sie können jedoch weiterhin alte Karten in dieser Benutzeroberfläche bearbeiten.',
         'map_deprecated_2'  => 'Karten sind jetzt ihr eigenes Modul! Diese neue Funktion ist derzeit für den frühen Zugriff auf :boosted verfügbar. Diese aktuelle Benutzeroberfläche ist nicht mehr verfügbar, sobald das neue Modul für alle verfügbar ist. Sie können jedoch weiterhin alte Karten in dieser Benutzeroberfläche bearbeiten.',
-        'nested'            => 'Orte können in einer verschachtelten Ansicht angesehen werden. Orte ohne einen übergeordneten Ort werden direkt angezeigt. Orte, die untergeordnete Orte haben, können angeklickt werden um die untergeordneten Orte anzuzeigen. Du kannst so lange klicken, bis es keine untergeordneten Orte mehr gibt.',
         'nested_parent'     => 'Anzeigen der Speicherorte von :parent.',
         'nested_without'    => 'Anzeigen aller Standorte ohne übergeordneten Standort. Klicken Sie auf eine Zeile, um die untergeordneten Standorte anzuzeigen.',
         'organisations'     => 'Zeigen Sie alle Organisationen an diesem Standort und die untergeordneten Standorte oder nur die direkt hier befindlichen an.',
@@ -203,8 +201,7 @@ return [
         'title' => 'Ort :name Karten',
     ],
     'organisations' => [
-        'description'   => 'Organisationen in diesem Ort.',
-        'title'         => 'Ort :name Organisationen',
+        'title' => 'Ort :name Organisationen',
     ],
     'panels'        => [
         'map'   => 'Karte',

@@ -2,28 +2,14 @@
 
 return [
     'actions'       => [
-        'add'               => 'Attribut hinzufügen',
-        'add_block'         => 'Block hinzufügen',
-        'add_checkbox'      => 'Checkbox hinzufügen.',
-        'add_text'          => 'Text hinzufügen',
         'apply_template'    => 'Eine Attributvorlage anwenden',
         'manage'            => 'Verwalten',
         'more'              => 'Mehr Optionen',
         'remove_all'        => 'Alles löschen',
     ],
-    'create'        => [
-        'description'   => 'Erstelle ein neues Attribut',
-        'success'       => 'Attribut :name zu :entity hinzugefügt',
-        'title'         => 'Neues Attribute für :name',
-    ],
-    'destroy'       => [
-        'success'   => 'Attribut :name für :entity entfernt',
-    ],
-    'edit'          => [
-        'description'   => 'Aktualisiere ein bestehendes Attribut',
-        'success'       => 'Attribut :name für :entity aktualisiert',
-        'title'         => 'Aktualisiere Attribut für :name',
-    ],
+    'create'        => [],
+    'destroy'       => [],
+    'edit'          => [],
     'errors'        => [
         'loop'  => 'Diese Attributberechnung enthält eine Endlosschleife!',
     ],
@@ -37,6 +23,7 @@ return [
     ],
     'helpers'       => [
         'delete_all'    => 'Möchten Sie wirklich alle Attribute dieses Objekts löschen?',
+        'setup'         => 'Sie können Elemente wie TP oder Intelligenz eines Objekts mittels Attributen darstellen. Attribute können Sie manuell hinzufügen, indem sie auf den :manage Button klicken oder Sie wenden eine Attributsvorlage an.',
     ],
     'hints'         => [
         'is_private'    => 'Sie können alle Attribute eines Objekts für alle Mitglieder außerhalb der Administratorrolle ausblenden, indem Sie sie privat machen.',

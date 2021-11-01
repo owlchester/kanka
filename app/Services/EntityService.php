@@ -287,6 +287,11 @@ class EntityService
                 }
             }
 
+            // Remove map stuff from locations
+            if ($newModel instanceof Location) {
+                $newModel->map = null;
+            }
+
             // The model is ready to be saved.
             $newModel->savingObserver = false;
             $newModel->saveObserver = false;

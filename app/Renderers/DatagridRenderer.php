@@ -168,6 +168,7 @@ class DatagridRenderer
                     'is_private',
                     '<i class="fa fa-lock" title="' . trans('crud.fields.is_private') . '"></i>'
                 );
+                $class = 'icon';
             } elseif ($type == 'calendar_date') {
                 $class .= ' hidden-xs hidden-sm';
                 $html = $this->route('calendar_date', __('crud.fields.calendar_date'));

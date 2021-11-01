@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Settings;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMarketplaceProfile;
 use Illuminate\Support\Facades\Auth;
+use Stevebauman\Purify\Facades\Purify;
 
 class MarketplaceController extends Controller
 {
@@ -32,8 +33,9 @@ class MarketplaceController extends Controller
      */
     public function save(StoreMarketplaceProfile $request)
     {
+        $name = $request->only('marketplace_name');
         Auth::user()
-            ->saveSettings($request->only('marketplace_name'))
+            ->saveSettings(Purify::clean($name))
             ->update();
 
         return redirect()

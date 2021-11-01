@@ -167,9 +167,9 @@ $clipboardFilters = $filterService->clipboardFilters();
                 </a>
                 @else
                     <div class="visible-lg-inline-block visible-md-inline-block visible-sm-inline-block margin-r-5" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper_no_filters') }}">
-                    <button class="btn btn-default" style="pointer-events: none;" disabled >
+                    <a href="#" class="btn btn-default" style="pointer-events: none;" disabled >
                         <i class="fas fa-clipboard"></i> {{ __('crud.filters.copy_to_clipboard') }}
-                    </button>
+                    </a>
                     </div>
                 @endif
 
@@ -188,9 +188,9 @@ $clipboardFilters = $filterService->clipboardFilters();
                     <i class="fas fa-clipboard"></i> {{ __('crud.filters.mobile.copy') }}
                 </a>
             @else
-                <button class="btn btn-default margin-r-5" disabled="disabled" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper_no_filters') }}">
+                <a href="#" class="btn btn-default margin-r-5" disabled="disabled" data-toggle="tooltip" title="{{ __('crud.filters.copy_helper_no_filters') }}">
                     <i class="fas fa-clipboard"></i> {{ __('crud.filters.mobile.copy') }}
-                </button>
+                </a>
                 @endif
 
                 <a href="{{ route('helpers.filters') }}" data-url="{{ route('helpers.filters') }}" data-toggle="ajax-modal" data-target="#entity-modal" title="{{ __('helpers.filters.title') }}">
@@ -200,7 +200,7 @@ $clipboardFilters = $filterService->clipboardFilters();
 
 
             <span class="pull-right">
-                <button class="btn btn-primary margin-r-5">
+                <button type="submit" class="btn btn-primary margin-r-5">
                     <i class="fa fa-filter"></i> {{ __('crud.filter') }}
                 </button>
                 <span data-toggle="collapse" data-target="#datagrid-filters">

@@ -13,6 +13,7 @@ use Illuminate\Support\Str;
  *
  * @method static self|Builder recentlyModified()
  * @method static self|Builder unmentioned()
+ * @method static self|Builder mentionless()
  * @method static self type(string $type)
  * @method static self|Builder inTags(array $tags)
  * @method static self|Builder inTypes(array $types)
@@ -97,8 +98,18 @@ trait EntityScopes
     public function scopeUnmentioned(Builder $query)
     {
         return $query->select($this->getTable() . '.*')
-            ->recentlyModified()
             ->leftJoin('entity_mentions as em', 'em.target_id', $this->getTable() . '.id')
+            ->whereNull('em.id');
+    }
+
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeMentionless(Builder $query)
+    {
+        return $query->select($this->getTable() . '.*')
+            ->leftJoin('entity_mentions as em', 'em.entity_id', $this->getTable() . '.id')
             ->whereNull('em.id');
     }
 

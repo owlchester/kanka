@@ -1,18 +1,18 @@
 <?php
 
 return [
-    'create'        => [
+    'create'            => [
         'success'   => 'Quick Link \':name\' created.',
         'title'     => 'New Quick Link',
     ],
-    'destroy'       => [
+    'destroy'           => [
         'success'   => 'Menu Quick \':name\' removed.',
     ],
-    'edit'          => [
+    'edit'              => [
         'success'   => 'Quick Link \':name\' updated.',
         'title'     => 'Quick Link :name',
     ],
-    'fields'        => [
+    'fields'            => [
         'dashboard'     => 'Dashboard',
         'entity'        => 'Entity',
         'filters'       => 'Filters',
@@ -26,7 +26,7 @@ return [
         'tab'           => 'Tab',
         'type'          => 'Entity List',
     ],
-    'helpers'       => [
+    'helpers'           => [
         'dashboard' => 'Have the quick link target one of the campaign\'s custom dashboards.',
         'entity'    => 'Set up this quick link to go directly to an entity. The :menu field controls which subpage of the entity is opened.',
         'position'  => 'Use this field to control in which ascending order the links appear in the menu.',
@@ -34,25 +34,26 @@ return [
         'selector'  => 'Configure where this quick link goes when a user clicks on it in the sidebar.',
         'type'      => 'Set up this quick link to go directly to a list of entities. To filter the results, copy parts of the url on the filtered entity list after the :? sign into the :filter field.',
     ],
-    'index'         => [
+    'index'             => [
         'add'   => 'New Quick Link',
         'title' => 'Quick Links',
     ],
-    'placeholders'  => [
+    'placeholders'      => [
         'entity'    => 'Choose an entity',
         'filters'   => 'location_id=15&type=city',
         'menu'      => 'Menu subpage (use the last text of the url)',
         'name'      => 'Name of the quick link',
         'tab'       => '(deprecated)',
     ],
-    'random_types'  => [
+    'random_no_entity'  => 'No random entity found.',
+    'random_types'      => [
         'any'   => 'Any entity',
     ],
-    'reorder'       => [
+    'reorder'           => [
         'success'   => 'Quick links reordered.',
         'title'     => 'Reorder quick links',
     ],
-    'show'          => [
+    'show'              => [
         'tabs'  => [
             'information'   => 'Information',
         ],

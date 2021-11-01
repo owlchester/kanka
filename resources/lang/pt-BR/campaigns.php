@@ -228,6 +228,10 @@ TEXT
         'link'      => 'aplicações de campanha',
         'title'     => 'Abrir a campanha',
     ],
+    'options'                           => [
+        'entity_personality_visibility' => 'Define automaticamente novos personagens a terem sua personalidade privada por padrão.',
+        'entity_visibility'             => 'Define automaticamente entidades recém-criadas como privadas por padrão.',
+    ],
     'panels'                            => [
         'boosted'   => 'Impulsionada',
         'dashboard' => 'Dashboard',
@@ -403,6 +407,7 @@ TEXT
             'recovery'          => 'Recuperação',
             'roles'             => 'Cargos',
             'settings'          => 'Configurações',
+            'styles'            => 'Temas',
         ],
         'title'         => 'Campanha :name',
     ],

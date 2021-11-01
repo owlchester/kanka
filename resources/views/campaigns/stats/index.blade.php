@@ -2,7 +2,7 @@
 use \Illuminate\Support\Arr;
 @endphp
 @extends('layouts.app', [
-    'title' => trans('campaigns/stats.title', ['campaign' => $campaign->name]),
+    'title' => __('campaigns/stats.title', ['campaign' => $campaign->name]),
     'breadcrumbs' => [
         ['url' => route('campaign'), 'label' => trans('campaigns.index.title')],
         __('campaigns.show.tabs.achievements')
@@ -18,6 +18,17 @@ use \Illuminate\Support\Arr;
             @include('campaigns._menu', ['active' => 'stats'])
         </div>
         <div class="col-md-9 achievements">
+            @if (!$campaign->superboosted())
+                <div class="box no-border">
+                    <div class="box-body">
+
+                        <p class="help-block">
+                            {{ __('campaigns/stats.helper') }}
+                        </p>
+                        @include('partials.superboosted', ['callout' => true])
+                    </div>
+                </div>
+            @else
 
             @foreach ($stats as $key => $stat)
                 <div class="info-box level-{{ $stat['level'] }} @if($stat['level'] == 0) bg-gray @elseif ($stat['level'] == 5) bg-yellow @else bg-aqua @endif">
@@ -46,10 +57,12 @@ use \Illuminate\Support\Arr;
                 </div>
             @endforeach
 
+                <p class="help-block">
+                    {{ __('campaigns/stats.helper') }}
+                </p>
 
 
-
-            <p class="text-helper">{{ __('campaigns/stats.helper') }}</p>
+            @endif
         </div>
     </div>
 @endsection

@@ -15,14 +15,11 @@ return [
         'go_to'             => 'Gehe zu :name',
         'json-export'       => 'Export (json)',
         'manage_links'      => 'Links verwalten',
-        'more'              => 'Mehr Aktionen',
         'move'              => 'Verschieben',
         'new'               => 'Neu',
         'new_post'          => 'Neue Objektnotiz',
         'next'              => 'Weiter',
         'print'             => 'Drucken',
-        'private'           => 'Privat',
-        'public'            => 'Öffentlich',
         'reset'             => 'Zurücksetzen',
         'transform'         => 'Umwandeln',
     ],
@@ -68,6 +65,7 @@ return [
         'success'       => [
             'copy_to_campaign'  => '{1} :count der in :campaign kopierten Objekte. | [2, *] :count  der in :campaign kopierten Objekte.',
             'editing'           => '{1} :count objekt wurde aktualisiert. | [2, *] :count objekte wurden aktualisiert.',
+            'editing_partial'   => '{1} :count/:total Objekt wurde aktualisiert.|[2,*] :count/:total Objekte wurden aktualisiert.',
             'permissions'       => '{1} Berechtigungen für :count Objekt geändert.|Berechtigungen für :count Objekte geändert.',
             'private'           => '{1} :count Objekt ist jetzt privat.|:count Objekte sind jetzt privat.',
             'public'            => '{1} :count Objekt ist jetzt sichtbar.|:count Objekte sind jetzt sichtbar.',
@@ -191,6 +189,16 @@ return [
         'direct'                    => 'Filter um nur direkte Unterobjekte zu sehen',
         'filtered'                  => 'Zeige :count von :total :entity.',
         'hide'                      => 'Verstecken',
+        'lists'                     => [
+            'desktop'   => [
+                'all'       => 'Zeige alle Nachkommen (:count)',
+                'filtered'  => 'Zeige direkte Nachkommen (:count)',
+            ],
+            'mobile'    => [
+                'all'       => 'Zeige alle (:count)',
+                'filtered'  => 'Zeige direkte (:count)',
+            ],
+        ],
         'mobile'                    => [
             'clear' => 'Löschen',
             'copy'  => 'Clipboard',
@@ -248,31 +256,7 @@ return [
     'legacy'                    => 'Erbe',
     'linking_help'              => 'Wie kann ich zu anderen Objekten verlinken?',
     'manage'                    => 'Verwalten',
-    'move'                      => [
-        'description'   => 'Verschiebe diese Objekt an einen anderen Ort',
-        'errors'        => [
-            'permission'        => 'Du hast keine Berechtigung, Objekte diesen Typs in dieser Kampagne zu erstellen.',
-            'same_campaign'     => 'Du musst eine andere Kampagne auswählen, in welche du das Objekt verschieben willst.',
-            'unknown_campaign'  => 'Unbekannte Kampagne.',
-        ],
-        'fields'        => [
-            'campaign'  => 'Neue Kampagne',
-            'copy'      => 'Erstelle Kopie',
-            'target'    => 'Neuer Typ',
-        ],
-        'hints'         => [
-            'campaign'  => 'Du kannst auch versuchen, dieses Objekt in eine andere Kampagne zu verschieben.',
-            'copy'      => 'Wähle diese Option, wenn du eine Kopie in der neuen Kampagne erstellen willst.',
-            'target'    => 'Bitte beachte, das einige Daten verloren gehen können, wenn ein Objekt von einem Typ zu einem anderen verschoben wird.',
-        ],
-        'panels'        => [
-            'change'    => 'Objekttyp ändern',
-            'move'      => 'Verschiebe in eine andere Kampagne',
-        ],
-        'success'       => 'Objekt \':name\' verschoben',
-        'success_copy'  => 'Objekt \':name\' kopiert',
-        'title'         => 'Verschiebe :name an einen anderen Ort',
-    ],
+    'move'                      => [],
     'navigation'                => [
         'cancel'    => 'Abbrechen',
         'or_cancel' => 'oder :cancel',
@@ -284,7 +268,6 @@ return [
         ],
         'title' => 'Neues Objekt',
     ],
-    'or_cancel'                 => 'oder <a href=":url">abbrechen</a>',
     'panels'                    => [
         'appearance'            => 'Aussehen',
         'attribute_template'    => 'Attributsvorlage',
@@ -321,8 +304,7 @@ return [
         ],
         'helper'            => 'Benutze dieses Interface um die Berechtigungen von Nutzern und Rollen mit diesem Objekt  fein zu justieren.',
         'helpers'           => [
-            'entity_note'   => 'Ermöglichen Sie Benutzern das Erstellen von Objektnotizen für dieses Objekt. Ohne diese Berechtigung können sie weiterhin Objekt Notizen sehen, die auf Sichtbarkeit Alle eingestellt sind.',
-            'setup'         => 'Verwenden Sie diese Schnittstelle, um zu optimieren, wie Rollen und Benutzer mit diesem Objekt interagieren können. :allow ermöglicht dem Benutzer oder der Rolle, diese Aktion auszuführen. :deny wird ihnen diese Handlung verweigern. :inherit verwendet die Berechtigung des Benutzers oder der Hauptrolle. Ein Benutzer, der auf :allow eingestellt ist, kann die Aktion ausführen, auch wenn seine Rolle auf :deny eingestellt ist.',
+            'setup' => 'Verwenden Sie diese Schnittstelle, um zu optimieren, wie Rollen und Benutzer mit diesem Objekt interagieren können. :allow ermöglicht dem Benutzer oder der Rolle, diese Aktion auszuführen. :deny wird ihnen diese Handlung verweigern. :inherit verwendet die Berechtigung des Benutzers oder der Hauptrolle. Ein Benutzer, der auf :allow eingestellt ist, kann die Aktion ausführen, auch wenn seine Rolle auf :deny eingestellt ist.',
         ],
         'inherited'         => 'Für diese Rolle ist die Berechtigung für diesen Objekttyp bereits festgelegt.',
         'inherited_by'      => 'Dieser Benutzer ist Teil der Rolle \':role\', die diese Berechtigungen für diesen Objekttyp erteilt.',

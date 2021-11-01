@@ -2,13 +2,13 @@
 @if (empty($entityEvent))
     <div class="row" id="calendar-event-first">
         <div class="col-md-6">
-            <span class="calendar-event-action" id="calendar-action-existing">
-                <i class="ra ra-eyeball"></i> {{ __('calendars.event.actions.existing') }}
-            </span>
+            <a href="#" class="btn btn-default btn-block btn-lg" id="calendar-action-existing">
+                <i class="fa fa-search fa-2x"></i><br />{{ __('calendars.event.actions.existing') }}
+            </a>
         </div>
         <div class="col-md-6">
-            <span class="calendar-event-action" id="calendar-action-new">
-                <i class="far fa-calendar"></i> {{ __('calendars.event.actions.new') }}
+            <span class="btn btn-default btn-block btn-lg" id="calendar-action-new">
+                <i class="fa fa-bolt fa-2x"></i><br />{{ __('calendars.event.actions.new') }}
             </span>
         </div>
     </div>
@@ -20,14 +20,16 @@
     @if (empty($entityEvent))
         <div class="row">
             <div class="col-md-8 calendar-existing-event-field">
-                {!! Form::select2(
-                    'entity_id',
-                    null,
-                    App\Models\Entity::class,
-                    false,
-                    'crud.fields.entity',
-                    'search.entities-with-reminders'
-                ) !!}
+                <div class="form-group required">
+                    {!! Form::select2(
+                        'entity_id',
+                        null,
+                        App\Models\Entity::class,
+                        false,
+                        'crud.fields.entity',
+                        'search.entities-with-reminders'
+                    ) !!}
+                </div>
             </div>
             <div class="col-md-8 calendar-new-event-field">
                 <div class="form-group">

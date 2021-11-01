@@ -1,17 +1,31 @@
-<?php /** @var \App\Models\CampaignRole $relation */ ?>
+<?php /** @var \App\Models\CampaignRole[] $roles */ ?>
 <div class="box-header with-border">
     <h3 class="box-title">
         <i class="fa fa-users-cog"></i> {{ __('campaigns.show.tabs.roles') }}
     </h3>
+    <div class="box-tools">
+        <button class="btn btn-default btn-sm" data-toggle="modal"
+                data-target="#roles-help">
+            <i class="fas fa-question-circle" aria-hidden="true"></i>
+            {{ __('campaigns.members.actions.help') }}
+        </button>
+
+
+        @if (auth()->user()->can('update', $campaign))
+            <a href="{{ route('campaign_roles.create') }}" class="btn btn-sm btn-primary"
+               data-toggle="ajax-modal" data-target="#entity-modal"
+               data-url="{{ route('campaign_roles.create') }}"
+            >
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                {{ __('campaigns.roles.actions.add') }}
+            </a>
+        @endif
+    </div>
 </div>
-<div class="box-body">
-
-    <p class="help-block">{{ __('campaigns.roles.helper.1') }}</p>
-    <p class="help-block">{{ __('campaigns.roles.helper.2') }}</p>
-    <p class="help-block">{{ __('campaigns.roles.helper.3') }}</p>
-
+<div class="box-body no-padding">
+    <div class="">
     <table id="campaign-roles" class="table table-hover table-striped">
-        <tbody><tr>
+        <thead><tr>
             <th>{{ __('campaigns.roles.fields.name') }}</th>
             <th>
                 <span class="hidden-xs">{{ __('campaigns.roles.fields.users') }}</span>
@@ -23,12 +37,9 @@
             <th>
             </th>
         </tr>
-        @foreach ($r = $campaign->roles()
-                ->with(['users', 'permissions', 'campaign'])
-                ->orderBy('is_admin', 'DESC')
-                ->orderBy('is_public', 'DESC')
-                ->orderBy('name')
-                ->paginate() as $relation)
+        </thead>
+        <tbody>
+        @foreach ($roles as $relation)
             <tr>
                 <td>
                     <a href="{{ route('campaign_roles.show', ['campaign_role' => $relation]) }}">{{ $relation->name }}</a></td>
@@ -113,20 +124,39 @@
         @endforeach
         </tbody>
     </table>
+    </div>
 
-    {{ $r->fragment('tab_roles')->links() }}
 </div>
-
-<div class="box-footer">
-
-@if (Auth::user()->can('update', $campaign))
-    <a href="{{ route('campaign_roles.create') }}" class="btn btn-primary btn-block"
-       data-toggle="ajax-modal" data-target="#entity-modal"
-       data-url="{{ route('campaign_roles.create') }}"
-    >
-        <i class="fa fa-plus" aria-hidden="true"></i>
-        {{ __('campaigns.roles.actions.add') }}
-    </a>
+@if($roles->hasPages())
+    <div class="box-footer">
+        {!! $roles->fragment('tab_roles')->links() !!}
+    </div>
 @endif
-</div>
 
+
+@php
+    $role = \App\Facades\CampaignCache::adminRole();
+@endphp
+<div class="modal fade" id="roles-help" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+                    {{ __('campaigns.show.tabs.roles') }}
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p>{!! __('campaigns.roles.helper.1', [
+    'admin' => link_to_route(
+        'campaigns.campaign_roles.admin',
+        \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')),
+        null,
+        ['target' => '_blank']
+)]) !!}</p>
+                <p>{{ __('campaigns.roles.helper.2') }}</p>
+                <p>{{ __('campaigns.roles.helper.3') }}</p>
+            </div>
+        </div>
+    </div>
+</div>

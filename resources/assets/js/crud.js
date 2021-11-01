@@ -3,6 +3,7 @@
  */
 
 import select2 from './components/select2.js';
+import ajaxModal from "./components/ajax-modal";
 
 // Character
 var characterAddPersonality, characterTemplatePersonality;
@@ -11,16 +12,14 @@ var characterSortPersonality, characterSortAppearance;
 var entityFormActions;
 var characterAddOrganisation, characterTemplateOrganisation, characterOrganisations;
 
-var filtersActionsShow, filtersActionHide;
 
-var ajaxModalTarget, ajaxModal, multiEditingModal;
-var entityFormHasUnsavedChanges = false;
+var multiEditingModal;
 
 // Entity Calendar
 var entityCalendarAdd, entityCalendarForm, entityCalendarField;
 var entityCalendarMonthField, entityCalendarYearField, entityCalendarDayField;
 var entityCalendarCancel, entityCalendarLoading, entityCalendarSubForm;
-var entityCalendarModalField, entityCalendarModalForm;
+var entityCalendarModalForm;
 
 var entityName;
 
@@ -52,30 +51,7 @@ $(document).ready(function () {
         initCharacterOrganisation();
     }
 
-    $.each($('[data-toggle="ajax-modal"]'), function () {
-        $(this).click(function (e) {
-            e.preventDefault();
-            ajaxModal = $(this);
-            $.ajax({
-                url: $(this).attr('data-url')
-            }).done(function (result, textStatus, xhr) {
-                if (result) {
-                    let params= {};
-                    let target = $(ajaxModal).attr('data-target');
-                    let backdrop = $(ajaxModal).attr('data-backdrop');
-                    if (backdrop) {
-                        params.backdrop = backdrop;
-                    }
-
-                    $(target).find('.modal-content').html(result);
-                    $(target).modal(params);
-                }
-            }).fail(function (result, textStatus, xhr) {
-                //console.log('modal ajax error', result);
-            });
-            return false;
-        });
-    });
+    ajaxModal();
 
     entityFormActions = $('.form-submit-actions');
     if (entityFormActions.length > 0) {

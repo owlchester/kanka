@@ -18,7 +18,7 @@ if (!isset($entity)) {
 
 $imageUrl = $imagePath = null;
 if ($model->image) {
-    $imageUrl = $model->getImageUrl(0);
+    $imageUrl = $model->getOriginalImageUrl();
     $imagePath = $model->getImageUrl(250, 250);
 } elseif ($campaign->campaign()->boosted(true) && !empty($entity) && $entity->image) {
     $imageUrl = $entity->image->getUrl();
@@ -54,7 +54,9 @@ $superboosted = $campaign->campaign()->boosted();
                     <img src="{{ $imagePath }}" class="entity-print-image" alt="{{ $model->name }}"/>
                 @endif
 
-                <div class="entity-image dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="background-image: url('{{ $imagePath }}');"></div>
+
+                <a class="entity-image visible-xs" href="{{ $imageUrl }}" target="_blank" style="background-image: url('{{ $imagePath }}');"></a>
+                <div class="entity-image dropdown-toggle hidden-xs" data-toggle="dropdown" aria-expanded="false" style="background-image: url('{{ $imagePath }}');"></div>
 
 
                 <ul class="dropdown-menu dropdown-menu-right" role="menu">

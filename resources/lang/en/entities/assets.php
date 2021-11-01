@@ -6,6 +6,6 @@ return [
         'link'  => 'Link',
     ],
     'show'      => [
-        'title' => 'Assets of :name',
+        'title' => ':name Assets',
     ],
 ];
