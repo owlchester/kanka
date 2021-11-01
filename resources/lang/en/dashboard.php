@@ -139,10 +139,10 @@ return [
             ],
         ],
         'recent'                    => [
-            'advanced_filter' => 'Advanced filter',
-            'advanced_filters' => [
-                'mentionless' => 'Mentionless (entities that don\'t mention other entities)',
-                'unmentioned' => 'Unmentioned (entities that aren\'t mentioned by other entities)',
+            'advanced_filter'   => 'Advanced filter',
+            'advanced_filters'  => [
+                'mentionless'   => 'Mentionless (entities that don\'t mention other entities)',
+                'unmentioned'   => 'Unmentioned (entities that aren\'t mentioned by other entities)',
             ],
             'entity-header'     => 'Use entity header as image',
             'filters'           => 'Filters',

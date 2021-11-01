@@ -139,7 +139,7 @@ TEXT
             'email'     => 'Email',
             'role'      => 'Rôle',
             'type'      => 'Type',
-            'validity'  => 'Validité',
+            'usage'     => 'Nombre max d\'utilisation',
         ],
         'helpers'               => [
             'email'     => 'Les emails de Kanka sont souvent traités comme du spam et peuvent prendre jusqu\'à quelques heures avant d\'apparaître dans ta boîte aux lettres.',
@@ -153,6 +153,12 @@ TEXT
             'link'  => 'Lien',
         ],
         'unlimited_validity'    => 'Illimité',
+        'usages'                => [
+            'five'      => '5 fois',
+            'no_limit'  => 'Sans limite',
+            'once'      => '1 fois',
+            'ten'       => '10 fois',
+        ],
     ],
     'leave'                             => [
         'confirm'   => 'Es-tu sûr de vouloir quitter :name? Tu n\'auras plus accès aux données, sauf si un Admin de la campagne t\'invite à nouveau.',
@@ -161,13 +167,14 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
+            'help'          => 'Aide',
+            'remove'        => 'Retirer de la campagne',
             'switch'        => 'Basculer',
             'switch-back'   => 'Retour à mon compte',
         ],
         'create'                => [
             'title' => 'Ajouter un membre à la campagne',
         ],
-        'description'           => 'Gestion des membres de la campagne',
         'edit'                  => [
             'description'   => 'Modifier un membre de la campagne',
             'title'         => 'Modifier membre :name',
@@ -239,18 +246,19 @@ TEXT
             'add'           => 'Ajouter un rôle',
             'permissions'   => 'Gérer les permissions',
             'rename'        => 'Renommer le rôle',
+            'save'          => 'Enregistrer le rôle',
         ],
         'admin_role'    => 'rôle admin',
         'create'        => [
-            'success'   => 'Rôle créé.',
+            'success'   => 'Rôle :name créé.',
             'title'     => 'Créer un nouveau rôle pour :name',
         ],
         'description'   => 'Gestion des membres de la campagne',
         'destroy'       => [
-            'success'   => 'Rôle supprimé.',
+            'success'   => 'Rôle :name supprimé.',
         ],
         'edit'          => [
-            'success'   => 'Rôle modifié.',
+            'success'   => 'Rôle :name modifié.',
             'title'     => 'Modifier le rôle :name',
         ],
         'fields'        => [

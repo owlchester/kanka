@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'success' => [
-        'created' => ':name created.',
-        'updated' => ':name updated.',
-        'deleted' => ':name removed.',
+    'success'   => [
+        'created'   => ':name created.',
+        'deleted'   => ':name removed.',
+        'updated'   => ':name updated.',
     ],
 ];

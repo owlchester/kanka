@@ -28,8 +28,10 @@ return [
             'title'     => 'Modifier l\'élément de quête pour :name',
         ],
         'fields'    => [
-            'description'   => 'Description',
-            'quest'         => 'Quête',
+            'description'       => 'Description',
+            'entity_or_name'    => 'Sélection soit d\'une entité de la campagne, soit d\'un nom pour cet élément.',
+            'name'              => 'Nom',
+            'quest'             => 'Quête',
         ],
         'title'     => 'Éléments de quêtes pour :name',
     ],

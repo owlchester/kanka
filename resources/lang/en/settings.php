@@ -205,18 +205,18 @@ return [
             ],
             'title' => 'Change Subscription Tier',
         ],
+        'coupon'                => [
+            'check'         => 'Check promo code',
+            'invalid'       => 'Invalid promotional code.',
+            'label'         => 'Promotional code',
+            'percent_off'   => 'We will discount your first yearly subscription by :percent%!',
+        ],
         'currencies'            => [
             'eur'   => 'EUR',
             'usd'   => 'USD',
         ],
         'currency'              => [
             'title' => 'Change your preferred billing currency',
-        ],
-        'coupon' => [
-            'invalid' => 'Invalid promotional code.',
-            'label' => 'Promotional code',
-            'percent_off' => 'We will discount your first yearly subscription by :percent%!',
-            'check' => 'Check promo code',
         ],
         'errors'                => [
             'callback'      => 'Our payment provider reported an error. Please try again or contact us if the problem persists.',

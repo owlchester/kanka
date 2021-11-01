@@ -2,7 +2,7 @@
 
 return [
     'actions'       => [
-        'delete-confirm' => 'this weather',
+        'delete-confirm'    => 'this weather',
     ],
     'create'        => [
         'success'   => 'Weather added.',

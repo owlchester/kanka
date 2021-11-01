@@ -138,7 +138,7 @@ TEXT
             'email'     => 'Email',
             'role'      => 'Role',
             'type'      => 'Type',
-            'usage' => 'Max number of uses',
+            'usage'     => 'Max number of uses',
         ],
         'helpers'               => [
             'email'     => 'Our emails are often flagged as spam and can take up to a few hours before appearing in the inbox.',
@@ -152,11 +152,11 @@ TEXT
             'link'  => 'Link',
         ],
         'unlimited_validity'    => 'Unlimited',
-        'usages' => [
-            'no_limit' => 'No limit',
-            'once' => '1 use',
-            'five' => '5 uses',
-            'ten' => '10 uses',
+        'usages'                => [
+            'five'      => '5 uses',
+            'no_limit'  => 'No limit',
+            'once'      => '1 use',
+            'ten'       => '10 uses',
         ],
     ],
     'leave'                             => [
@@ -166,10 +166,10 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
-            'switch'        => 'View campaign as user',
-            'switch-back'   => 'Back to my user',
             'help'          => 'Help',
             'remove'        => 'Remove from campaign',
+            'switch'        => 'View campaign as user',
+            'switch-back'   => 'Back to my user',
         ],
         'create'                => [
             'title' => 'Add a member to your campaign',

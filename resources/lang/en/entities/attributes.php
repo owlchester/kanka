@@ -23,7 +23,7 @@ return [
         'setup'         => 'You can represent elements like HP or intelligence of an entity with attributes. Add attributes manually by clicking on the :manage button, or apply those from an attribute template.',
     ],
     'hints'         => [
-        'is_private2'    => 'If selected, only members of the :admin-role role can see the attributes of this entity.',
+        'is_private2'   => 'If selected, only members of the :admin-role role can see the attributes of this entity.',
     ],
     'index'         => [
         'success'   => 'Attributes for :entity updated.',

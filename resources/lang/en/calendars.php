@@ -46,8 +46,8 @@ return [
         ],
         'destroy'   => 'Reminder removed from calendar \':name\'.',
         'edit'      => [
-            'success'       => 'Reminder updated.',
-            'title'         => 'Update Reminder for :name',
+            'success'   => 'Reminder updated.',
+            'title'     => 'Update Reminder for :name',
         ],
         'helpers'   => [
             'add'               => 'Add an existing event to this calendar.',
