@@ -122,7 +122,9 @@ div.mce-fullscreen {
   border-color: transparent !important;
   //border-radius: 2px !important;
   background: none !important;
-  //color: var(--theme-main-text) !important;
+  .mce-txt {
+    color: var(--tinymce-input-text) !important;
+  }
 }
 .mce-menubtn button, .mce-menubtn button span, .mce-ico {
   //color: var(--theme-main-text) !important;
