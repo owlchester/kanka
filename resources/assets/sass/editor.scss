@@ -126,6 +126,11 @@ div.mce-fullscreen {
     color: var(--tinymce-input-text) !important;
   }
 }
+.mce-btn.mce-active, .mce-btn.mce-active:hover, .mce-btn.mce-active:focus, .mce-btn.mce-active:active {
+  i {
+    text-shadow: 1px 1px 0 black;
+  }
+}
 .mce-menubtn button, .mce-menubtn button span, .mce-ico {
   //color: var(--theme-main-text) !important;
 }

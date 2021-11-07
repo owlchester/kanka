@@ -497,6 +497,8 @@ pre {
 :root {
   --table-highlight: #f9f9f9;
   --table-border: #f4f4f4;
+  --table-warning: #fcf8e3;
+  --table-warning-hover: #faf2cc;
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
@@ -513,5 +515,11 @@ pre {
 }
 .table :is(thead, tbody, tfoot) tr :is(td, th) {
   border-color: var(--table-border);
+}
+.table :is(thead, tbody, tfoot) tr.warning :is(td, th) {
+  background-color: var(--table-warning);
+}
+.table :is(thead, tbody, tfoot) tr.warning:hover :is(td, th) {
+  background-color: var(--table-warning-hover);
 }
 

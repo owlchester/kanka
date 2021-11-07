@@ -26,11 +26,14 @@
     padding-top: 100%;
     position: relative;
     border-radius: 2px;
+    background-size: contain;
+    cursor: pointer;
+    z-index: 10;
+  }
+  .entity-image.no-thumbor {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    cursor: pointer;
-    z-index: 10;
   }
 
   .tooltip {

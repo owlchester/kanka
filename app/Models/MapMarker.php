@@ -226,8 +226,11 @@ class MapMarker extends Model
             // No entry field, include the entity tooltip
             if ($this->shape_id != MapMarker::SHAPE_LABEL) {
                 $body .= $this->entity->mappedPreview();
+                // Replace backslashes because javascript can think that things like \6e is an octogonal string
+                $body = str_replace('\\', '/', $body);
             }
         }
+
         if ($this->exploring) {
             return '.bindPopup(`
             <div class="marker-popup-content">

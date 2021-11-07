@@ -321,7 +321,7 @@ class AttributeService
                     continue;
                 }
             }
-            
+
             $name = Purify::clean($name, $purifyConfig);
             $value = Purify::clean($values[$id] ?? '', $purifyConfig);
             $type = $types[$id] ?? '';
@@ -753,10 +753,11 @@ class AttributeService
     protected function purifyConfig(): array
     {
         $purifyConfig = config('purify.settings');
-        $purifyConfig['HTML.Allowed'] = preg_replace('`,a\[(.*)\]`', '$2', $purifyConfig['HTML.Allowed']);
-        $purifyConfig['HTML.Allowed'] = preg_replace('`,iframe\[(.*)\]`', '$2', $purifyConfig['HTML.Allowed']);
-        $purifyConfig['HTML.Allowed'] = preg_replace('`,summary\[(.*)\]`', '$2', $purifyConfig['HTML.Allowed']);
-        $purifyConfig['HTML.Allowed'] = preg_replace('`,table\[(.*)\]`', '$2', $purifyConfig['HTML.Allowed']);
+        $purifyConfig['HTML.Allowed'] = preg_replace('`,a\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
+        $purifyConfig['HTML.Allowed'] = preg_replace('`,iframe\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
+        $purifyConfig['HTML.Allowed'] = preg_replace('`,summary\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
+        $purifyConfig['HTML.Allowed'] = preg_replace('`,table\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
+        $purifyConfig['HTML.Allowed'] = preg_replace('`,details\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
         return $purifyConfig;
     }
 }
