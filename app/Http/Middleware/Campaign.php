@@ -17,7 +17,7 @@ use \App\Facades\Identity;
 class Campaign
 {
     /**
-     * @param $request
+     * @param \Illuminate\Http\Request $request
      * @param Closure $next
      * @return mixed
      */
@@ -34,7 +34,7 @@ class Campaign
         $campaign = CampaignLocalization::getCampaign();
 
         // If we are impersonating someone
-        if (Auth::check() && Identity::isImpersonating()) {
+        if (auth()->check() && Identity::isImpersonating()) {
             $forcedCampaignID = Identity::getCampaignId();
             if ($campaign->id != $forcedCampaignID) {
                 return redirect()->to(app()->getLocale() . '/campaign/' . $forcedCampaignID);
@@ -42,23 +42,17 @@ class Campaign
         }
 
         // Make sure we can view this campaign?
-        if ($campaign->visibility == \App\Models\Campaign::VISIBILITY_PUBLIC) {
-            Session::put('campaign_id', $campaign->id);
+        if ($campaign->isPublic()) {
+            session()->put('campaign_id', $campaign->id);
             $this->saveUserLastCampaignId($campaign);
-            return $next($request);
-        } elseif (Auth::check()) {
+        } elseif (auth()->check()) {
             // Obvious check: are we a member of the campaign?
             if (!$campaign->userIsMember()) {
-                // Let's check if it's in Review mode, then we need to be an admin or moderator
-                if ($campaign->visibility != \App\Models\Campaign::VISIBILITY_REVIEW
-                    && !(Auth::user()->hasRole('moderator') || Auth::user()->hasRole('admin'))) {
-                    abort(403);
-                }
-            } else {
-                $this->saveUserLastCampaignId($campaign);
+                abort(403);
             }
+            $this->saveUserLastCampaignId($campaign);
         } else {
-            // No session, nada.
+            // No session and not a public campaign: deny the request
             abort(403);
         }
 
@@ -71,12 +65,9 @@ class Campaign
      */
     protected function saveUserLastCampaignId(\App\Models\Campaign $campaign)
     {
-        if (Auth::check()) {
-            $user = Auth::user();
-            if ($user->last_campaign_id != $campaign->id) {
-                $user->last_campaign_id = $campaign->id;
-                $user->save();
-            }
+        if (!auth()->check()) {
+            return;
         }
+        auth()->user()->update(['last_campaign_id' => $campaign->id]);
     }
 }

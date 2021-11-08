@@ -63,14 +63,15 @@ class CampaignObserver
 
         $campaign->slug = Str::slug($campaign->name, '');
 
-        // Public?
-        $previousVisibility = $campaign->getOriginal('visibility');
-        $isPublic = request()->get('is_public', null);
-        if (!empty($isPublic) && $previousVisibility == Campaign::VISIBILITY_PRIVATE) {
-            $campaign->visibility = Campaign::VISIBILITY_PUBLIC;
-            // Default to public for now. Later will have REVIEW mode.
-        } elseif (empty($isPublic) && $previousVisibility != Campaign::VISIBILITY_PRIVATE) {
-            $campaign->visibility = Campaign::VISIBILITY_PRIVATE;
+        if (request()->has('is_public')) {
+            $previousVisibility = $campaign->getOriginal('visibility_id');
+            $isPublic = request()->get('is_public', null);
+            if (!empty($isPublic) && $previousVisibility == Campaign::VISIBILITY_PRIVATE) {
+                $campaign->visibility_id = Campaign::VISIBILITY_PUBLIC;
+                // Default to public for now. Later will have REVIEW mode.
+            } elseif (empty($isPublic) && $previousVisibility != Campaign::VISIBILITY_PRIVATE) {
+                $campaign->visibility_id = Campaign::VISIBILITY_PRIVATE;
+            }
         }
 
         // UI settings

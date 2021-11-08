@@ -188,17 +188,16 @@ class CampaignCacheService extends BaseCache
     public function systems(): array
     {
         $key = 'campaign_public_systems';
-        /*if ($this->has($key)) {
+        if ($this->has($key)) {
             return $this->get($key);
-        }*/
+        }
 
         $data = Campaign::selectRaw('system, count(*) as cpt')
+            ->public()
             ->whereNotNull('system')
-            ->where('visibility', 'public')
             ->groupBy('system')
             ->orderBy('system')
             ->get();
-
 
         $data = $data->where('cpt', '>=', 5)->pluck('system', 'system')->toArray();
 

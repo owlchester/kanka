@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Facades\Mentions;
+use App\Models\Campaign;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CampaignResource extends JsonResource
@@ -30,6 +31,9 @@ class CampaignResource extends JsonResource
      */
     public function toArray($request)
     {
+        /** @var Campaign $campaign */
+        $campaign = $this->resource;
+
         $data = [
             'id' => $this->id,
             'name' => $this->name,
@@ -37,9 +41,10 @@ class CampaignResource extends JsonResource
             'entry' => $this->entry,
             'entry_parsed' => 'not available on the campaigns/ endpoint',
             'image' => $this->image,
-            'image_full' => $this->getImageUrl(0),
-            'image_thumb' => $this->getImageUrl(40),
-            'visibility' => $this->visibility,
+            'image_full' => $campaign->getImageUrl(0),
+            'image_thumb' => $campaign->getImageUrl(40),
+            'visibility' => $campaign->isPublic() ? 'public' : 'private',
+            'visibility_id' => $this->visibility_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'members' => CampaignUserResource::collection($this->members),
