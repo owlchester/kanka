@@ -18,7 +18,7 @@ use Illuminate\Support\Str;
  * @property integer $axis_y
  * @property string $name
  * @property string $colour
- * @property string $size
+ * @property int $size_id
  * @property int $shape_id
  * @property string $icon
  *
@@ -37,6 +37,13 @@ class MapPoint extends Model
     const SHAPE_CIRCLE = 1;
     const SHAPE_SQUARE = 2;
     const SHAPE_TRIANGLE = 3;
+
+    // 'standard','small','tiny','large','huge'
+    const SIZE_STANDARD = 1;
+    const SIZE_SMALL = 2;
+    const SIZE_TINY = 3;
+    const SIZE_LARGE = 4;
+    const SIZE_HUGE = 5;
 
     public const ICON_ENTITY = 'entity';
 
@@ -58,7 +65,7 @@ class MapPoint extends Model
         'name',
         'colour',
         'shape_id',
-        'size',
+        'size_id',
         'icon',
     ];
 
@@ -102,7 +109,7 @@ class MapPoint extends Model
             }
         }
 
-        $class = ['point', e($this->size), e($this->shape_id == self::SHAPE_CIRCLE ? 'circle' : 'square')];
+        $class = ['point', $this->size(), ($this->shape_id == self::SHAPE_CIRCLE ? 'circle' : 'square')];
         if (!empty($this->colour) && $this->colour != 'none') {
             if (Str::startsWith($this->colour, '#')) {
                 $style .= 'background-color: ' . $this->colour . ';';
@@ -157,16 +164,33 @@ class MapPoint extends Model
      */
     public function percentageSize(): int
     {
-        if ($this->size == 'large') {
+        if ($this->size_id == self::SIZE_LARGE) {
             return 100;
-        } elseif ($this->size == 'huge') {
+        } elseif ($this->size_id == self::SIZE_HUGE) {
             return 200;
-        } elseif ($this->size == 'small') {
+        } elseif ($this->size_id == self::SIZE_SMALL) {
             return 25;
-        } elseif ($this->size == 'tiny') {
+        } elseif ($this->size_id == self::SIZE_TINY) {
             return 10;
         }
         return 50;
+    }
+
+    /**
+     * @return string
+     */
+    public function size(): string
+    {
+        if ($this->size_id == self::SIZE_LARGE) {
+            return 'large';
+        } elseif ($this->size_id == self::SIZE_HUGE) {
+            return 'huge';
+        } elseif ($this->size_id == self::SIZE_SMALL) {
+            return 'small';
+        } elseif ($this->size_id == self::SIZE_TINY) {
+            return 'tiny';
+        }
+        return 'standard';
     }
 
     /**

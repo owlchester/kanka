@@ -24,7 +24,8 @@ class MapPointResource extends JsonResource
             'icon' => $this->icon,
             'shape' => $this->shape_id == MapPoint::SHAPE_CIRCLE ? 'circle' : 'square',
             'shape_id' => $this->shape_id,
-            'size' => $this->size,
+            'size_id' => $this->size_id,
+            'size' => $this->size(),
 
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

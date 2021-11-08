@@ -25,11 +25,11 @@ $shapeOptions = [
 
 
 $sizeOptions = [
-    'tiny' => __('locations.map.points.sizes.tiny'),
-    'small' => __('locations.map.points.sizes.small'),
-    'standard' => __('locations.map.points.sizes.standard'),
-    'large' => __('locations.map.points.sizes.large'),
-    'huge' => __('locations.map.points.sizes.huge'),
+    \App\Models\MapPoint::SIZE_TINY => __('locations.map.points.sizes.tiny'),
+    \App\Models\MapPoint::SIZE_SMALL => __('locations.map.points.sizes.small'),
+    \App\Models\MapPoint::SIZE_STANDARD => __('locations.map.points.sizes.standard'),
+    \App\Models\MapPoint::SIZE_LARGE => __('locations.map.points.sizes.large'),
+    \App\Models\MapPoint::SIZE_HUGE => __('locations.map.points.sizes.huge'),
 ];
 ?>
 
@@ -99,7 +99,7 @@ $sizeOptions = [
                 <label>{{ __('locations.map.points.fields.shape') }}</label>
                 <select name="shape_id" class="form-control select2-shape" style="width: 100%" data-language="{{ LaravelLocalization::getCurrentLocale() }}">
                     @foreach ($shapeOptions as $shape => $text)
-                        <option value="{{ $shape }}" @if (isset($model) && $model->shape == $shape) selected="selected" @endif>{{ $text }}</option>
+                        <option value="{{ $shape }}" @if (isset($model) && $model->shape_id == $shape) selected="selected" @endif>{{ $text }}</option>
                     @endforeach
                 </select>
             </div>
@@ -108,9 +108,9 @@ $sizeOptions = [
         <div class="col-sm-6">
             <div class="form-group required">
                 <label>{{ __('locations.map.points.fields.size') }}</label>
-                <select name="size" class="form-control select2-size" style="width: 100%" data-language="{{ LaravelLocalization::getCurrentLocale() }}">
+                <select name="size_id" class="form-control select2-size" style="width: 100%" data-language="{{ LaravelLocalization::getCurrentLocale() }}">
                     @foreach ($sizeOptions as $size => $text)
-                        <option value="{{ $size }}" @if ((isset($model) && $model->size == $size) || ($size == 'standard' && !isset($model))) selected="selected" @endif>{{ $text }}</option>
+                        <option value="{{ $size }}" @if ((isset($model) && $model->size_id == $size) || ($size == 'standard' && !isset($model))) selected="selected" @endif>{{ $text }}</option>
                     @endforeach
                 </select>
             </div>
