@@ -4,10 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Facades\CampaignLocalization;
 use App\Models\CampaignUser;
-use App\Http\Requests\StoreCampaignUser;
-use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class CampaignUserController extends Controller
 {
@@ -22,7 +19,8 @@ class CampaignUserController extends Controller
     }
 
     /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index()
     {
@@ -40,14 +38,18 @@ class CampaignUserController extends Controller
             ->paginate();
 
         $roles = $campaign->roles->where('is_public', false)->all();
-        return view('campaigns.users', ['campaign' => $campaign, 'roles' => $roles, 'users' => $users, 'invitations' => $invitations]);
+        return view('campaigns.users', [
+            'campaign' => $campaign,
+            'roles' => $roles,
+            'users' => $users,
+            'invitations' => $invitations
+        ]);
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\CampaignUser  $campaignUser
-     * @return \Illuminate\Http\Response
+     * @param CampaignUser $campaignUser
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(CampaignUser $campaignUser)
     {

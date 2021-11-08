@@ -21,6 +21,7 @@ use App\Models\Plugin;
 use App\Models\RpgSystem;
 use App\Models\Theme;
 use App\User;
+use Illuminate\Support\Collection;
 
 /**
  * Trait CampaignRelations
@@ -29,25 +30,25 @@ use App\User;
  * @property User[] $users
  * @property User[] $followers
  * @property RpgSystem $rpgSystem
- * @property CampaignRole[] $roles
+ * @property Collection|CampaignRole[] $roles
  *
- * @property EntityMention[] $mentions
- * @property CampaignSetting $setting
- * @property CampaignUser[] $members
- * @property Theme[] $theme
+ * @property Collection|EntityMention[] $mentions
+ * @property Collection|CampaignSetting $setting
+ * @property Collection|CampaignUser[] $members
+ * @property Collection|Theme[] $theme
  *
- * @property Entity[] $entities
- * @property Character[] $characters
- * @property Location[] $locations
+ * @property Collection|Entity[] $entities
+ * @property Collection|Character[] $characters
+ * @property Collection|Location[] $locations
  *
- * @property Image[] $images
- * @property Plugin[] $plugins
- * @property CampaignPlugin[] $campaignPlugins
+ * @property Collection|Image[] $images
+ * @property Collection|Plugin[] $plugins
+ * @property Collection|CampaignPlugin[] $campaignPlugins
  *
- * @property CampaignDashboardWidget[] $widgets
- * @property CampaignDashboard[] $dashboards
- * @property CampaignSubmission[] $submissions
- * @property CampaignStyle[] $styles
+ * @property Collection|CampaignDashboardWidget[] $widgets
+ * @property Collection|CampaignDashboard[] $dashboards
+ * @property Collection|CampaignSubmission[] $submissions
+ * @property Collection|CampaignStyle[] $styles
  */
 trait CampaignRelations
 {
