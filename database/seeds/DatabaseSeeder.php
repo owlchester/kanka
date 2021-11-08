@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         //$this->call(RpgSystemsTableSeeder::class);
         $this->call(ThemesTableSeeder::class);
         $this->call(RolesTableSeeder::class);
+        $this->call(VisibilitiesTableSeeder::class);
     }
 }
