@@ -453,7 +453,8 @@ class CampaignPluginService
             } else {
                 CharacterTrait::create([
                     'character_id' => $model->id,
-                    'section' => $block,
+                    'section_id' => $block == 'appearance' ?
+                        CharacterTrait::SECTION_APPEARANCE : CharacterTrait::SECTION_PERSONALITY,
                     'name' => $name,
                     'entry' => $value
                 ]);
