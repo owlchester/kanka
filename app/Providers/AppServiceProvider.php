@@ -98,84 +98,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
-        // Older mysql versions workaround
+        // Fix setups for utf8_mb4 mysql strings (emoji support)
         Schema::defaultStringLength(191);
 
-
-        if (!app()->runningInConsole()) {
-            if($this->app->environment('prod')) {
-                \URL::forceScheme('https');
-            }
-
-            // Observers
-            Ability::observe('App\Observers\AbilityObserver');
-            AttributeTemplate::observe('App\Observers\AttributeTemplateObserver');
-            AppRelease::observe('App\Observers\AppReleaseObserver');
-            Calendar::observe(CalendarObserver::class);
-            CalendarWeather::observe(CalendarWeatherObserver::class);
-            Campaign::observe(CampaignObserver::class);
-            CampaignUser::observe(CampaignUserObserver::class);
-            CampaignRole::observe('App\Observers\CampaignRoleObserver');
-            CampaignRoleUser::observe('App\Observers\CampaignRoleUserObserver');
-            CampaignInvite::observe('App\Observers\CampaignInviteObserver');
-            CampaignDashboardWidget::observe('App\Observers\CampaignDashboardWidgetObserver');
-            CampaignFollower::observe('App\Observers\CampaignFollowerObserver');
-            CampaignPlugin::observe('App\Observers\CampaignPluginObserver');
-            CampaignSetting::observe('App\Observers\CampaignSettingObserver');
-            CampaignDashboard::observe('App\Observers\CampaignDashboardObserver');
-            CampaignSubmission::observe('App\Observers\CampaignSubmissionObserver');
-            CampaignStyle::observe('App\Observers\CampaignStyleObserver');
-            //MapPoint::observe('App\Observers\MapPointObserver');
-            Character::observe(CharacterObserver::class);
-            CharacterTrait::observe('App\Observers\CharacterTraitObserver');
-            CommunityVote::observe('App\Observers\CommunityVoteObserver');
-            CommunityEvent::observe('App\Observers\CommunityEventObserver');
-            CommunityEventEntry::observe('App\Observers\CommunityEventEntryObserver');
-            Conversation::observe('App\Observers\ConversationObserver');
-            ConversationMessage::observe('App\Observers\ConversationMessageObserver');
-            DiceRoll::observe('App\Observers\DiceRollObserver');
-            DiceRollResult::observe('App\Observers\DiceRollResultObserver');
-            Event::observe(EventObserver::class);
-            Entity::observe('App\Observers\EntityObserver');
-            EntityAbility::observe('App\Observers\EntityAbilityObserver');
-            EntityFile::observe('App\Observers\EntityFileObserver');
-            EntityLink::observe('App\Observers\EntityLinkObserver');
-            EntityNote::observe('App\Observers\EntityNoteObserver');
-            EntityEvent::observe('App\Observers\EntityEventObserver');
-            Location::observe(LocationObserver::class);
-            Family::observe(FamilyObserver::class);
-            Image::observe('App\Observers\ImageObserver');
-            Item::observe(ItemObserver::class);
-            Inventory::observe('App\Observers\InventoryObserver');
-            Map::observe('App\Observers\MapObserver');
-            MapPoint::observe('App\Observers\MapPointObserver');
-            MapLayer::observe('App\Observers\MapLayerObserver');
-            MapGroup::observe('App\Observers\MapGroupObserver');
-            MapMarker::observe('App\Observers\MapMarkerObserver');
-            MenuLink::observe('App\Observers\MenuLinkObserver');
-            Journal::observe(JournalObserver::class);
-            Organisation::observe(OrganisationObserver::class);
-            OrganisationMember::observe(OrganisationMemberObserver::class);
-            Tag::observe('App\Observers\TagObserver');
-            Timeline::observe('App\Observers\TimelineObserver');
-            TimelineEra::observe('App\Observers\TimelineEraObserver');
-            TimelineElement::observe('App\Observers\TimelineElementObserver');
-            Note::observe(NoteObserver::class);
-            User::observe(UserObserver::class);
-            Quest::observe('App\Observers\QuestObserver');
-            QuestElement::observe('App\Observers\QuestElementObserver');
-
-            Race::observe('App\Observers\RaceObserver');
-
-            Relation::observe('App\Observers\RelationObserver');
-
-            Release::observe('App\Observers\ReleaseObserver');
-
-            Paginator::useBootstrapThree();
-
-            $this->addBladeDirectives();
-        }
+        $this->registerWebObservers();
 
         Validator::resolver(function ($translator, $data, $rules, $messages) {
             return new HashValidator($translator, $data, $rules, $messages);
@@ -193,7 +119,96 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     *
+     * Register web observers (ie not running in console)
+     * Kanka uses a lot of observers because they offer some magic, but
+     * they also make a lot of stuff break.
+     */
+    protected function registerWebObservers()
+    {
+        // When in console (queue, commands), we don't want observers to trigger
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+
+        // In production, we want URLs to be HTTPS for pagination and redirects
+        if($this->app->environment('prod')) {
+            \URL::forceScheme('https');
+        }
+
+        // Model observers. Lots of magic.
+        Ability::observe('App\Observers\AbilityObserver');
+        AttributeTemplate::observe('App\Observers\AttributeTemplateObserver');
+        AppRelease::observe('App\Observers\AppReleaseObserver');
+        Calendar::observe(CalendarObserver::class);
+        CalendarWeather::observe(CalendarWeatherObserver::class);
+        Campaign::observe(CampaignObserver::class);
+        CampaignUser::observe(CampaignUserObserver::class);
+        CampaignRole::observe('App\Observers\CampaignRoleObserver');
+        CampaignRoleUser::observe('App\Observers\CampaignRoleUserObserver');
+        CampaignInvite::observe('App\Observers\CampaignInviteObserver');
+        CampaignDashboardWidget::observe('App\Observers\CampaignDashboardWidgetObserver');
+        CampaignFollower::observe('App\Observers\CampaignFollowerObserver');
+        CampaignPlugin::observe('App\Observers\CampaignPluginObserver');
+        CampaignSetting::observe('App\Observers\CampaignSettingObserver');
+        CampaignDashboard::observe('App\Observers\CampaignDashboardObserver');
+        CampaignSubmission::observe('App\Observers\CampaignSubmissionObserver');
+        CampaignStyle::observe('App\Observers\CampaignStyleObserver');
+        Character::observe(CharacterObserver::class);
+        CharacterTrait::observe('App\Observers\CharacterTraitObserver');
+        CommunityVote::observe('App\Observers\CommunityVoteObserver');
+        CommunityEvent::observe('App\Observers\CommunityEventObserver');
+        CommunityEventEntry::observe('App\Observers\CommunityEventEntryObserver');
+        Conversation::observe('App\Observers\ConversationObserver');
+        ConversationMessage::observe('App\Observers\ConversationMessageObserver');
+        DiceRoll::observe('App\Observers\DiceRollObserver');
+        DiceRollResult::observe('App\Observers\DiceRollResultObserver');
+        Event::observe(EventObserver::class);
+        Entity::observe('App\Observers\EntityObserver');
+        EntityAbility::observe('App\Observers\EntityAbilityObserver');
+        EntityFile::observe('App\Observers\EntityFileObserver');
+        EntityLink::observe('App\Observers\EntityLinkObserver');
+        EntityNote::observe('App\Observers\EntityNoteObserver');
+        EntityEvent::observe('App\Observers\EntityEventObserver');
+        Location::observe(LocationObserver::class);
+        Family::observe(FamilyObserver::class);
+        Image::observe('App\Observers\ImageObserver');
+        Item::observe(ItemObserver::class);
+        Inventory::observe('App\Observers\InventoryObserver');
+        Map::observe('App\Observers\MapObserver');
+        MapPoint::observe('App\Observers\MapPointObserver');
+        MapLayer::observe('App\Observers\MapLayerObserver');
+        MapGroup::observe('App\Observers\MapGroupObserver');
+        MapMarker::observe('App\Observers\MapMarkerObserver');
+        MenuLink::observe('App\Observers\MenuLinkObserver');
+        Journal::observe(JournalObserver::class);
+        Organisation::observe(OrganisationObserver::class);
+        OrganisationMember::observe(OrganisationMemberObserver::class);
+        Tag::observe('App\Observers\TagObserver');
+        Timeline::observe('App\Observers\TimelineObserver');
+        TimelineEra::observe('App\Observers\TimelineEraObserver');
+        TimelineElement::observe('App\Observers\TimelineElementObserver');
+        Note::observe(NoteObserver::class);
+        User::observe(UserObserver::class);
+        Quest::observe('App\Observers\QuestObserver');
+        QuestElement::observe('App\Observers\QuestElementObserver');
+
+        Race::observe('App\Observers\RaceObserver');
+
+        Relation::observe('App\Observers\RelationObserver');
+
+        Release::observe('App\Observers\ReleaseObserver');
+
+        // Tell laravel that we are using bootstrap 3 to style the paginators
+        Paginator::useBootstrapThree();
+
+        // Add our custom blade directives
+        $this->addBladeDirectives();
+    }
+
+
+    /**
+     * Setup some custom blade directives to simply some code
+     * For example, use @admin in blade
      */
     protected function addBladeDirectives()
     {
@@ -207,17 +222,19 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('moderator', function () {
             return auth()->check() && auth()->user()->hasRole('moderator');
         });
-        Blade::if('env', function ($environment) {
+
+        // Environment based directives
+        /*Blade::if('env', function ($environment) {
             return app()->environment($environment);
         });
         Blade::if('notEnv', function ($environment) {
             return !app()->environment($environment);
-        });
+        });*/
 
         // API directive for users in the API role
-        Blade::if('api', function () {
+        /*Blade::if('api', function () {
             return auth()->check() && auth()->user()->hasRole('api');
-        });
+        });*/
 
         // Permission to view an entity
         Blade::if('viewentity', function (Entity $entity) {
@@ -229,8 +246,5 @@ class AppServiceProvider extends ServiceProvider
             return Img::nowebp();
         });
 
-//        Blade::if('campaigns', function () {
-//            return auth()->check() && auth()->user()->hasCampaigns();
-//        });
     }
 }

@@ -19,3 +19,5 @@ yarn-error.log
 .env
 .DS_Store
 .vscode
+.phpunit.result.cache
+

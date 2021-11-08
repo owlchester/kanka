@@ -17,9 +17,6 @@
             <li class="{{ $sidebar->admin('campaigns') }}">
                 <a href="{{ route('admin.campaigns.index') }}"><i class="fa fa-globe"></i> <span>{{ __('sidebar.campaigns') }}</span></a>
             </li>
-            <li class="{{ $sidebar->admin('patrons') }}">
-                <a href="{{ route('admin.patrons.index') }}"><i class="fab fa-patreon"></i> <span>Patrons</span></a>
-            </li>
             <li class="{{ $sidebar->admin('community-votes') }}">
                 <a href="{{ route('admin.community-votes.index') }}"><i class="fas fa-check-square"></i> <span>Community Votes</span></a>
             </li>

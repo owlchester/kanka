@@ -19,17 +19,9 @@ Route::group([
     'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime' ]
 ], function () {
 
-//    Route::get('/mail', function () {
-////        return new App\Mail\WelcomeEmail(Auth::user());
-////    });
     Route::get('/', 'HomeController@index')->name('home');
 
-    // Frontend stuff
-    require base_path('routes/front.php');
-
     Auth::routes(['register' => config('auth.register_enabled')]);
-
-    require base_path('routes/profile.php');
 
     Route::resources([
         'campaign_boosts' => 'CampaignBoostController',
@@ -505,14 +497,6 @@ Route::group([
         Translator::routes();
     });
 
-    // Partners
-    Route::namespace('Partner')->name('partner.')->middleware(['auth', 'partner'])->prefix('partner')->group(function () {
-        Route::get('/referrals', 'ReferralController@index')->name('referrals');
-    });
-
-    // Admin/Moderation tools
-    require base_path('routes/admin.php');
-
     // API docs
     Route::group([
         'prefix'     => config('larecipe.docs.route'),
@@ -538,9 +522,9 @@ Route::group(['prefix' => 'subscription-api'], function () {
         ->name('subscription.check-coupon');
 });
 
-Route::group(['prefix' => 'admin'], function () {
+/*Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
-});
+});/*
 
 // Stripe
 Route::post(
