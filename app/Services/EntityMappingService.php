@@ -69,12 +69,16 @@ class EntityMappingService
                 continue;
             }
 
+
             /** @var Entity $entity */
             $entity = Entity::where([
                 'type' => $singularType, 'id' => $id, 'campaign_id' => $model->campaign_id
             ])->first();
             if ($entity) {
-                //$this->log("- Mentions " . $entity->id);
+                // No need to save references to ourselves
+                if ($entity->id == $model->entity->id) {
+                    continue;
+                }
 
                 $mention = new EntityMention();
                 $mention->entity_id = $model->entity->id;
@@ -83,10 +87,6 @@ class EntityMappingService
 
                 $createdMappings++;
             }
-
-//             else {
-//                //$this->log("- Unknown entity of type $singularType and id $id");
-//            }
         }
 
         return $createdMappings;
@@ -155,7 +155,8 @@ class EntityMappingService
                 continue;
             }
 
-            // Determine the real campaign id from the model
+            // Determine the real campaign id from the model.
+            // Todo: why can't we use CampaignLocalization? Because this was used by the migration script?
             $campaignId = $model->campaign_id;
             if ($model instanceof Campaign) {
                 $campaignId = $model->id;
@@ -174,20 +175,11 @@ class EntityMappingService
                     //$this->log("- already have mapping");
                     unset($existingTargets[$target->id]);
                     $existingMappings++;
-                } else {
-                    $mention = new EntityMention();
-                    if ($model instanceof Campaign) {
-                        $mention->campaign_id = $model->id;
-                    } elseif ($model instanceof EntityNote) {
-                        $mention->entity_note_id = $model->id;
-                    } else {
-                        $mention->entity_id = $model->id;
-                    }
-                    $mention->target_id = $target->id;
-                    $mention->save();
-
-                    $createdMappings++;
+                    continue;
                 }
+
+                $this->createNewMention($model, $target->id);
+                $createdMappings++;
             }
         }
 
@@ -199,6 +191,31 @@ class EntityMappingService
         }
 
         return $createdMappings;
+    }
+
+    /**
+     * @param $model
+     * @param int $target
+     */
+    protected function createNewMention($model, int $target)
+    {
+        $mention = new EntityMention();
+
+        // Determine what kind of entity this is
+        if ($model instanceof Campaign) {
+            $mention->campaign_id = $model->id;
+        } elseif ($model instanceof EntityNote) {
+            $mention->entity_note_id = $model->id;
+        } else {
+            $mention->entity_id = $model->id;
+
+            // If we are making a reference to ourselves, no need to save it
+            if ($model->id == $target) {
+                return;
+            }
+        }
+        $mention->target_id = $target;
+        $mention->save();
     }
 
     /**
