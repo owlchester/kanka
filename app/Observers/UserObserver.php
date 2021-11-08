@@ -50,7 +50,7 @@ class UserObserver
 
         $log = UserLog::create([
             'user_id' => $user->id,
-            'action' => 'update',
+            'type_id' => UserLog::TYPE_UPDATE,
             'ip' => $ip,
         ]);
         $log->save();
@@ -96,14 +96,10 @@ class UserObserver
         foreach ($members as $member) {
             $member->delete();
 
+            // Delete a campaign if no one is left in it
             if ($member->campaign->members()->count() == 0) {
                 $member->campaign->delete();
             }
-        }
-
-        // Remove logs
-        foreach ($user->logs as $log) {
-            $log->delete();
         }
     }
 }

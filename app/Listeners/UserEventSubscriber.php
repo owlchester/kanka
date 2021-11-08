@@ -11,9 +11,7 @@ use Exception;
 
 class UserEventSubscriber
 {
-    /**
-     * @var InviteService
-     */
+    /** @var InviteService */
     public $inviteService;
 
     /**
@@ -32,9 +30,9 @@ class UserEventSubscriber
     public function onUserLogin($event)
     {
         // Does the user have a join campaign?
-        if (Session::has('invite_token')) {
+        if (session()->has('invite_token')) {
             try {
-                $campaign = $this->inviteService->useToken(Session::get('invite_token'));
+                $campaign = $this->inviteService->useToken(session()->get('invite_token'));
                 CampaignService::switchCampaign($campaign);
                 return true;
             } catch (Exception $e) {
@@ -51,11 +49,12 @@ class UserEventSubscriber
             }
             $log = UserLog::create([
                 'user_id' => $event->user->id,
-                'action' => 'login',
+                'type_id' => UserLog::TYPE_LOGIN,
                 'ip' => $ip,
             ]);
             $log->save();
 
+            // This triggers an "update" event directly
             $event->user->update(['last_login_at' => Carbon::now()->toDateTimeString()]);
         }
 
@@ -70,20 +69,21 @@ class UserEventSubscriber
     public function onUserLogout($event)
     {
         // Log the activity
-        if ($event->user) {
-
-            $ip = request()->ip();
-            if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
-                $ip = $_SERVER["HTTP_CF_CONNECTING_IP"];
-            }
-
-            $log = UserLog::create([
-                'user_id' => $event->user->id,
-                'action' => 'logout',
-                'ip' => $ip,
-            ]);
-            $log->save();
+        if (!$event->user) {
+            return;
         }
+
+        $ip = request()->ip();
+        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+            $ip = $_SERVER["HTTP_CF_CONNECTING_IP"];
+        }
+
+        $log = UserLog::create([
+            'user_id' => $event->user->id,
+            'type_id' => UserLog::TYPE_LOGOUT,
+            'ip' => $ip,
+        ]);
+        $log->save();
     }
 
     /**

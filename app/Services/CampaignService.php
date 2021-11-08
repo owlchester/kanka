@@ -67,7 +67,7 @@ class CampaignService
      */
     public static function switchCampaign(Campaign $campaign)
     {
-        Session::put('campaign_id', $campaign->id);
+        session()->put('campaign_id', $campaign->id);
         $user = auth()->user();
         $user->last_campaign_id = $campaign->id;
         $user->save();
@@ -92,7 +92,7 @@ class CampaignService
                 self::switchCampaign($member->campaign_id);
             } else {
                 // Need to create a new campaign
-                Session::forget('campaign_id');
+                session()->forget('campaign_id');
             }
 
             throw new Exception(__('campaigns.leave.error'));
@@ -156,7 +156,7 @@ class CampaignService
             self::switchCampaign($member->campaign);
         } else {
             // Need to create a new campaign
-            Session::forget('campaign_id');
+            session()->forget('campaign_id');
         }
     }
 
@@ -167,7 +167,7 @@ class CampaignService
      */
     public static function isUserPartOfCurrentCampaign()
     {
-        $member = CampaignUser::where('campaign_id', Session::get('campaign_id'))
+        $member = CampaignUser::where('campaign_id', session()->get('campaign_id'))
             ->where('user_id', auth()->user()->id)
             ->first();
         return !empty($member);
