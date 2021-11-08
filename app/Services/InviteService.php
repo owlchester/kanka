@@ -84,7 +84,6 @@ class InviteService
             $role = new CampaignUser([
                 'user_id' => auth()->user()->id,
                 'campaign_id' => $invite->campaign_id,
-                'role' => 'viewer'
             ]);
             $role->save();
         } else {

@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Builder;
  * Class CampaignUser
  * @package App\Models
  *
+ * @property int $user_id
+ * @property int $campaign_id
  * @property User $user
  * @property Campaign $campaign
  */
@@ -29,7 +31,7 @@ class CampaignUser extends Pivot
     /**
      * @var array
      */
-    protected $fillable = ['user_id', 'campaign_id', 'role'];
+    protected $fillable = ['user_id', 'campaign_id'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -102,7 +102,6 @@ class CampaignObserver
         $role = new CampaignUser([
             'user_id' => Auth::user()->id,
             'campaign_id' => $campaign->id,
-            'role' => 'owner'
         ]);
         $role->save();
 
@@ -117,19 +116,19 @@ class CampaignObserver
 
         $role = CampaignRole::create([
             'campaign_id' => $campaign->id,
-            'name' => trans('campaigns.members.roles.owner'),
+            'name' => __('campaigns.members.roles.owner'),
             'is_admin' => true,
         ]);
 
         $publicRole = CampaignRole::create([
             'campaign_id' => $campaign->id,
-            'name' => trans('campaigns.members.roles.public'),
+            'name' => __('campaigns.members.roles.public'),
             'is_public' => true,
         ]);
 
         $playerRole = CampaignRole::create([
             'campaign_id' => $campaign->id,
-            'name' => trans('campaigns.members.roles.player'),
+            'name' => __('campaigns.members.roles.player'),
         ]);
 
         CampaignRoleUser::create([
