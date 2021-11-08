@@ -38,25 +38,26 @@ You can get a list of all the conversations of a campaign by using the following
 {
     "data": [
          {
-                "id": 1,
-                "name": "Bob's Tavern",
-                "entry": null,
-                "image": "conversations/ORn3vytRVIGkWHAAfdLqgf4xN9NHdtgjRxQbf0ef.jpeg",
-                "image_full": "http://kanka.loc/storage/conversations/ORn3vytRVIGkWHAAfdLqgf4xN9NHdtgjRxQbf0ef.jpeg",
-                "image_thumb": "http://kanka.loc/storage/conversations/ORn3vytRVIGkWHAAfdLqgf4xN9NHdtgjRxQbf0ef_thumb.jpeg",
-                "is_closed": false,
-                "is_private": false,
-                "entity_id": 335,
-                "tags": [],
-                "created_at":  "2019-01-30T00:01:44.000000Z",
-                "created_by": 1,
-                "updated_at":  "2019-08-29T13:48:54.000000Z",
-                "updated_by": 1,
-                "type": "In Game",
-                "target": "members",
-                "participants": 3,
-                "messages": 6
-            },
+            "id": 1,
+            "name": "Bob's Tavern",
+            "entry": null,
+            "image": "conversations/ORn3vytRVIGkWHAAfdLqgf4xN9NHdtgjRxQbf0ef.jpeg",
+            "image_full": "http://kanka.loc/storage/conversations/ORn3vytRVIGkWHAAfdLqgf4xN9NHdtgjRxQbf0ef.jpeg",
+            "image_thumb": "http://kanka.loc/storage/conversations/ORn3vytRVIGkWHAAfdLqgf4xN9NHdtgjRxQbf0ef_thumb.jpeg",
+            "is_closed": false,
+            "is_private": false,
+            "entity_id": 335,
+            "tags": [],
+            "created_at":  "2019-01-30T00:01:44.000000Z",
+            "created_by": 1,
+            "updated_at":  "2019-08-29T13:48:54.000000Z",
+            "updated_by": 1,
+            "type": "In Game",
+            "target": "members",
+            "target_id": 1,
+            "participants": 3,
+            "messages": 6
+        }
     ]
 }
 ```
@@ -95,10 +96,10 @@ To get the details of a single conversation, use the following endpoint.
         "updated_by": 1,
         "type": "In Game",
         "target": "members",
+        "target_id": 1,
         "participants": 3,
         "messages": 6
-    },
-
+    }
 }
 ```
 
@@ -197,7 +198,7 @@ To create a conversation, use the following endpoint.
 | :- |   :-   |  :-  |
 | `name` | `string` (Required) | Name of the conversation |
 | `type` | `string` | Type of conversation |
-| `target` | `string` | Available options: `users` and `characters`  |
+| `target_id` | `int` | Available options: 1 for `users` and 2 for `characters`  |
 | `tags` | `array` | Array of tag ids |
 | `is_closed` | `boolean` | If the conversation is closed |
 | `is_private` | `boolean` | If the conversation is only visible to `admin` members of the campaign |

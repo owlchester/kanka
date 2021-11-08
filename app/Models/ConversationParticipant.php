@@ -111,6 +111,11 @@ class ConversationParticipant extends MiscModel
             (!empty($this->user_id) ? Conversation::TARGET_USERS : null));
     }
 
+    public function isMember(): bool
+    {
+        return !empty($this->user_id);
+    }
+
     /**
      * @return mixed
      */
@@ -120,6 +125,9 @@ class ConversationParticipant extends MiscModel
         return !empty($entity) ? $entity->id : null;
     }
 
+    /**
+     * @return Character|User|bool|\Illuminate\Database\Eloquent\Relations\HasOne|mixed
+     */
     public function entity()
     {
         return $this->loadEntity();

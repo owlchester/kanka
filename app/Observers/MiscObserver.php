@@ -6,6 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Facades\EntityCache;
 use App\Facades\Identity;
 use App\Facades\Mentions;
+use App\Models\Conversation;
 use App\Models\Entity;
 use App\Models\EntityLog;
 use App\Models\Location;
@@ -263,6 +264,11 @@ abstract class MiscObserver
                     return (string) $originalMarker->name;
                 }
                 return '';
+            }
+
+            // Silence
+            if ($attribute == 'target_id' && $model instanceof Conversation) {
+                return __('conversations.targets.' . ($original == Conversation::TARGET_USERS ? 'members' : 'characters'));
             }
 
             // Let's try based off of the attribute name
