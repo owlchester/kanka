@@ -14,7 +14,7 @@ class AddCampaignVisibility extends Migration
     public function up()
     {
         Schema::table('campaigns', function (Blueprint $table) {
-            $table->enum('visibility', ['private', 'review', 'public'])->default('private');
+            $table->string('visibility', 6)->default('private');
             $table->index(['visibility', 'id']);
         });
     }

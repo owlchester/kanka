@@ -19,7 +19,7 @@ class CreateEntityAbilities extends Migration
             $table->unsignedInteger('ability_id');
             $table->unsignedInteger('created_by')->nullable();
             $table->unsignedTinyInteger('position')->default(0);
-            $table->enum('visibility', ['all', 'admin', 'admin-self', 'self'])->default('all');
+            $table->string('visibility', 10)->default('all');
             $table->timestamps();
 
             // If we delete the entity or target, remove mentions

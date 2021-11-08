@@ -27,7 +27,7 @@ class CreateTimelineElements extends Migration
             $table->timestamps();
             $table->unsignedInteger('created_by')->nullable();
 
-            $table->enum('visibility', ['all', 'admin', 'admin-self', 'self'])->default('all');
+            $table->string('visibility', 10)->default('all');
 
             $table->index('position');
 

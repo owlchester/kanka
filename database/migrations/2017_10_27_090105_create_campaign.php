@@ -32,7 +32,7 @@ class CreateCampaign extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('campaign_id')->unsigned();
-            $table->enum('role', ['member', 'owner']);
+            $table->string('role', 6);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

@@ -26,8 +26,8 @@ class CreateConversations extends Migration
             $table->string('image', 255)->nullable();
             $table->string('type', 45)->nullable();
             $table->string('slug')->nullable();
-            $table->enum('target', ['members', 'characters'])->defaultValue('members');
-            $table->boolean('is_private')->defaultValue(false);
+            $table->string('target', 10)->default('members');
+            $table->boolean('is_private')->default(false);
             $table->timestamps();
 
             $table->index(['name', 'target', 'is_private']);

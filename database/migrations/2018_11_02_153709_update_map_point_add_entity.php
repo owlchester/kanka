@@ -14,8 +14,8 @@ class UpdateMapPointAddEntity extends Migration
     public function up()
     {
         Schema::table('location_map_points', function (Blueprint $table) {
-            $table->enum('shape', ['circle', 'square', 'triangle'])->default('circle');
-            $table->enum('size', ['standard', 'small', 'large'])->default('standard');
+            $table->string('shape', 8)->default('circle');
+            $table->string('size', 12)->default('standard');
 
             $table->integer('target_entity_id')->unsigned()->nullable();
             $table->foreign('target_entity_id')->references('id')->on('entities')->onDelete('cascade');

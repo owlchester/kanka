@@ -7,9 +7,6 @@ use Illuminate\Support\Facades\Schema;
 class UpdateVisibilityToVarchar extends Migration
 {
     protected $tables = [
-        'entity_notes',
-        'entity_abilities',
-        'inventories',
         'map_layers',
         'map_groups',
         'timeline_elements'
@@ -36,8 +33,6 @@ class UpdateVisibilityToVarchar extends Migration
      */
     public function down()
     {
-        foreach ($this->tables as $tableName) {
-            DB::statement("ALTER TABLE $tableName CHANGE visibility visibility ENUM('all', 'admin', 'admin-self', 'self') CHARACTER SET utf8mb4 DEFAULT 'all' NOT NULL");
-        }
+        // No turning back from the varchar
     }
 }

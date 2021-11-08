@@ -21,7 +21,7 @@ class CreateCharacterTraitsTable extends Migration
             $table->string('name')->notNull();
             $table->text('entry')->nullable();
             $table->boolean('is_private')->default(0);
-            $table->enum('section', ['appearance', 'personality']);
+            $table->string('section', 10)->default('appearance');
             $table->timestamps();
 
             // Foreign

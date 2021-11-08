@@ -14,7 +14,7 @@ class UpdateInvitesAddLink extends Migration
     public function up()
     {
         Schema::table('campaign_invites', function (Blueprint $table) {
-            $table->enum('type', ['email', 'link'])->default('email');
+            $table->string('type', 5)->default('email');
             $table->integer('validity')->unsigned()->nullable();
         });
     }

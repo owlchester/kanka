@@ -16,7 +16,7 @@ class CreateUserLog extends Migration
         Schema::create('user_logs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->enum('action', ['login', 'logout', 'login_fail', 'update'])->notNull();
+            $table->string('action', 10);
             $table->string('ip', 255)->nullable();
             $table->timestamps();
 

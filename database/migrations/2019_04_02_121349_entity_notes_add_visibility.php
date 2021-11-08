@@ -14,7 +14,7 @@ class EntityNotesAddVisibility extends Migration
     public function up()
     {
         Schema::table('entity_notes', function (Blueprint $table) {
-            $table->enum('visibility', ['all', 'admin', 'self'])->default('all');
+            $table->string('visibility', 10)->default('all');
             $table->index(['visibility']);
         });
 

@@ -64,7 +64,7 @@ class CreateMapsTable extends Migration
             // Overview
             $table->longText('entry')->nullable();
 
-            $table->enum('visibility', ['all', 'admin', 'admin-self', 'self'])->default('all');
+            $table->string('visibility', 10)->default('all');
 
             $table->timestamps();
 
@@ -96,7 +96,7 @@ class CreateMapsTable extends Migration
 
             $table->unsignedInteger('created_by')->nullable();
 
-            $table->enum('visibility', ['all', 'admin', 'admin-self', 'self'])->default('all');
+            $table->string('visibility', 10)->default('all');
 
             $table->timestamps();
 
