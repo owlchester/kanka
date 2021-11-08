@@ -45,6 +45,19 @@ div.mce-fullscreen {
   //color: var(--summernote-editable-text);
 }
 
+.note-hint-item {
+  .entity-hint {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 45px auto;
+
+    .entity-hint-name {
+    }
+    .entity-image {
+    }
+  }
+}
+
 .note-editing-area {
   .mention, .attribute {
     background-color: #eee;
@@ -88,6 +101,9 @@ div.mce-fullscreen {
 }
 .note-editor .note-toolbar .note-color .note-dropdown-menu .note-palette .note-color-reset:hover, .note-editor .note-toolbar .note-color .note-dropdown-menu .note-palette .note-color-select:hover, .note-popover .popover-content .note-color .note-dropdown-menu .note-palette .note-color-reset:hover, .note-popover .popover-content .note-color .note-dropdown-menu .note-palette .note-color-select:hover {
   color: #444;
+}
+.note-hint-popover .popover-content .note-hint-group .note-hint-item.active, .note-hint-popover .popover-content .note-hint-group .note-hint-item:hover {
+  white-space: normal !important;
 }
 
 

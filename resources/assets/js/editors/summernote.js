@@ -183,7 +183,18 @@ function attributeSearch(keyword, callback) {
  * @returns {string}
  */
 function hintTemplate(item) {
-    return (item.image ? item.image : '') + item.fullname + (item.type ? ' (' + item.type + ')' : '');
+    let type = (item.type ? ' (' + item.type + ')' : '');
+    if (item.image) {
+        return '<div class="entity-hint">' +
+            item.image +
+            '<div class="entity-hint-name">' +
+            item.fullname +
+            type +
+            '</div>' +
+        '</div>';
+
+    }
+    return item.fullname + type;
 }
 
 /**
