@@ -5,38 +5,38 @@ $entityFieldStyle = !isset($model) || empty($model->target_entity_id) ? 'display
 $nameFieldStyle = !isset($model) || empty($model->name) ? 'display: none' : '';
 
 $colourOptions = [
-    'grey' => trans('colours.grey'),
-    'red' => trans('colours.red'),
-    'blue' => trans('colours.blue'),
-    'green' => trans('colours.green'),
-    'yellow' => trans('colours.yellow'),
-    'black' => trans('colours.black'),
-    'white' => trans('colours.white')
+    'grey' => __('colours.grey'),
+    'red' => __('colours.red'),
+    'blue' => __('colours.blue'),
+    'green' => __('colours.green'),
+    'yellow' => __('colours.yellow'),
+    'black' => __('colours.black'),
+    'white' => __('colours.white')
 ];
 
-$iconOptions = trans('locations.map.points.icons');
+$iconOptions = __('locations.map.points.icons');
 unset($iconOptions['pin']);
 unset($iconOptions['entity']);
 
 $shapeOptions = [
-    'circle' => trans('locations.map.points.shapes.circle'),
-    'square' => trans('locations.map.points.shapes.square'),
+    \App\Models\MapPoint::SHAPE_CIRCLE => __('locations.map.points.shapes.circle'),
+    \App\Models\MapPoint::SHAPE_SQUARE => __('locations.map.points.shapes.square'),
 ];
 
 
 $sizeOptions = [
-    'tiny' => trans('locations.map.points.sizes.tiny'),
-    'small' => trans('locations.map.points.sizes.small'),
-    'standard' => trans('locations.map.points.sizes.standard'),
-    'large' => trans('locations.map.points.sizes.large'),
-    'huge' => trans('locations.map.points.sizes.huge'),
+    'tiny' => __('locations.map.points.sizes.tiny'),
+    'small' => __('locations.map.points.sizes.small'),
+    'standard' => __('locations.map.points.sizes.standard'),
+    'large' => __('locations.map.points.sizes.large'),
+    'huge' => __('locations.map.points.sizes.huge'),
 ];
 ?>
 
 <div class="location-map-errors text-red" style="display: none"></div>
 
 <div class="phase-first" style="{{ isset($model) ? 'display: none' : '' }}">
-    <p class="help-block">{{ trans('locations.map.points.helpers.location_or_name') }}</p>
+    <p class="help-block">{{ __('locations.map.points.helpers.location_or_name') }}</p>
     <div class="row">
         <div class="col-md-12 text-center">
             <a href="#" class="btn btn-app" id="phase-first-entity">
@@ -67,22 +67,22 @@ $sizeOptions = [
             </div>
             <div class="form-group required point-label" style="{{ $nameFieldStyle }}">
                 <a href="#" class="phase-undo pull-right"><i class="fa fa-undo" title="{{ __('crud.actions.back') }}"></i></a>
-                <label>{{ trans('locations.map.points.fields.name') }}</label>
-                {!! Form::text('name', (!isset($model) ? request()->get('name', null) : null), ['placeholder' => trans('locations.map.points.placeholders.name'), 'class' => 'form-control', 'maxlength' => 194]) !!}
+                <label>{{ __('locations.map.points.fields.name') }}</label>
+                {!! Form::text('name', (!isset($model) ? request()->get('name', null) : null), ['placeholder' => __('locations.map.points.placeholders.name'), 'class' => 'form-control', 'maxlength' => 194]) !!}
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group required">
-                <label>{{ trans('locations.map.points.fields.colour') }}</label><br />
+                <label>{{ __('locations.map.points.fields.colour') }}</label><br />
                 {!! Form::text('colour', null, ['class' => 'form-control spectrum', 'maxlength' => 20] ) !!}
             </div>
         </div>
 
         <div class="col-sm-6">
             <div class="form-group required">
-                <label>{{ trans('locations.map.points.fields.icon') }}</label>
+                <label>{{ __('locations.map.points.fields.icon') }}</label>
                 <select name="icon" class="form-control select2-icon" style="width: 100%" data-language="{{ LaravelLocalization::getCurrentLocale() }}">
                     <option value="pin" data-icon="fa fa-map-marker">{{ __('locations.map.points.icons.pin') }}</option>
                     <option value="entity"@if (isset($model) && $model->icon == "entity") selected="selected" @endif>{{ __('locations.map.points.icons.entity') }}</option>
@@ -96,8 +96,8 @@ $sizeOptions = [
     <div class="row">
         <div class="col-sm-6">
             <div class="form-group required">
-                <label>{{ trans('locations.map.points.fields.shape') }}</label>
-                <select name="shape" class="form-control select2-shape" style="width: 100%" data-language="{{ LaravelLocalization::getCurrentLocale() }}">
+                <label>{{ __('locations.map.points.fields.shape') }}</label>
+                <select name="shape_id" class="form-control select2-shape" style="width: 100%" data-language="{{ LaravelLocalization::getCurrentLocale() }}">
                     @foreach ($shapeOptions as $shape => $text)
                         <option value="{{ $shape }}" @if (isset($model) && $model->shape == $shape) selected="selected" @endif>{{ $text }}</option>
                     @endforeach
@@ -107,7 +107,7 @@ $sizeOptions = [
 
         <div class="col-sm-6">
             <div class="form-group required">
-                <label>{{ trans('locations.map.points.fields.size') }}</label>
+                <label>{{ __('locations.map.points.fields.size') }}</label>
                 <select name="size" class="form-control select2-size" style="width: 100%" data-language="{{ LaravelLocalization::getCurrentLocale() }}">
                     @foreach ($sizeOptions as $size => $text)
                         <option value="{{ $size }}" @if ((isset($model) && $model->size == $size) || ($size == 'standard' && !isset($model))) selected="selected" @endif>{{ $text }}</option>

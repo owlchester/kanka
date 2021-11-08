@@ -33,7 +33,7 @@ class StoreMapPoint extends FormRequest
             'axis_y' => 'required|integer',
             'colour' => 'max:7',
             'size' => 'required',
-            'shape' => 'required',
+            'shape_id' => 'required|integer',
             'icon' => 'required',
         ]);
     }

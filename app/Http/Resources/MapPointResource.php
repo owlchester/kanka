@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\MapPoint;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class MapPointResource extends JsonResource
@@ -21,7 +22,8 @@ class MapPointResource extends JsonResource
             'axis_y' => $this->axis_y,
             'colour' => $this->colour,
             'icon' => $this->icon,
-            'shape' => $this->shape,
+            'shape' => $this->shape_id == MapPoint::SHAPE_CIRCLE ? 'circle' : 'square',
+            'shape_id' => $this->shape_id,
             'size' => $this->size,
 
             'created_at' => $this->created_at,

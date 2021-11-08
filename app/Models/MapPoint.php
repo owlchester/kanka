@@ -19,7 +19,7 @@ use Illuminate\Support\Str;
  * @property string $name
  * @property string $colour
  * @property string $size
- * @property string $shape
+ * @property int $shape_id
  * @property string $icon
  *
  * @property Location $location
@@ -33,6 +33,10 @@ class MapPoint extends Model
     use AclTrait;
     public $entityType = 'location';
     public $aclFieldName = 'location_id';
+
+    const SHAPE_CIRCLE = 1;
+    const SHAPE_SQUARE = 2;
+    const SHAPE_TRIANGLE = 3;
 
     public const ICON_ENTITY = 'entity';
 
@@ -53,7 +57,7 @@ class MapPoint extends Model
         'axis_y',
         'name',
         'colour',
-        'shape',
+        'shape_id',
         'size',
         'icon',
     ];
@@ -98,7 +102,7 @@ class MapPoint extends Model
             }
         }
 
-        $class = ['point', e($this->size), e($this->shape)];
+        $class = ['point', e($this->size), e($this->shape_id == self::SHAPE_CIRCLE ? 'circle' : 'square')];
         if (!empty($this->colour) && $this->colour != 'none') {
             if (Str::startsWith($this->colour, '#')) {
                 $style .= 'background-color: ' . $this->colour . ';';
