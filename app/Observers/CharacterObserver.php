@@ -53,7 +53,7 @@ class CharacterObserver extends MiscObserver
             } else {
                 $model = new CharacterTrait();
                 $model->character_id = $character->id;
-                $model->section = $trait;
+                $model->section_id = $trait == 'personality' ? CharacterTrait::SECTION_PERSONALITY : CharacterTrait::SECTION_APPEARANCE;
             }
             $model->name = $name;
             $model->entry = $traitEntry[$id];

@@ -13,12 +13,20 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $character_id
  * @property string $name
  * @property string $entry
- * @property string $section
+ * @property int $section_id
  * @property boolean $is_private
  * @property integer $default_order
  */
 class CharacterTrait extends Model
 {
+    /**
+     * Traits
+     */
+    use VisibleTrait;
+    use Paginatable;
+
+    const SECTION_APPEARANCE = 1;
+    const SECTION_PERSONALITY = 2;
     /**
      * @var array
      */
@@ -26,17 +34,12 @@ class CharacterTrait extends Model
         'character_id',
         'name',
         'entry',
-        'section',
+        'section_id',
         'created_by',
         'is_private',
         'default_order',
     ];
 
-    /**
-     * Traits
-     */
-    use VisibleTrait;
-    use Paginatable;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -52,7 +55,7 @@ class CharacterTrait extends Model
      */
     public function scopePersonality($query)
     {
-        return $query->where('section', 'personality');
+        return $query->where('section_id', self::SECTION_PERSONALITY);
     }
 
     /**
@@ -61,6 +64,6 @@ class CharacterTrait extends Model
      */
     public function scopeAppearance($query)
     {
-        return $query->where('section', 'appearance');
+        return $query->where('section_id', self::SECTION_APPEARANCE);
     }
 }

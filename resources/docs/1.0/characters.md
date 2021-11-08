@@ -65,6 +65,7 @@ You can get a list of all the characters of a campaign by using the following en
                     "name": "Goals",
                     "entry": "Become a Paladin.",
                     "section": "personality",
+                    "section_id": 1,
                     "default_order": 0
                 }
             ]
@@ -124,6 +125,7 @@ To get the details of a single character, use the following endpoint.
                 "name": "Goals",
                 "entry": "Become a Paladin.",
                 "section": "personality",
+                "section_id": 1,
                 "is_private": false,
                 "default_order": 0
             }

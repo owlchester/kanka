@@ -17,9 +17,9 @@ if (request()->route()->getName() == 'characters.random') {
                     <div class="row">
                         <div class="col-md-4 col-xs-4">
                             <div class="input-group">
-                                    <span class="input-group-addon hidden-xs hidden-sm">
-                                        <span class="fa fa-arrows-alt-v"></span>
-                                    </span>
+                                <span class="input-group-addon hidden-xs hidden-sm">
+                                    <span class="fa fa-arrows-alt-v"></span>
+                                </span>
                                 {!! Form::text('appearance_name[' . $trait->id . ']', $trait->name, [
                                     'class' => 'form-control',
                                     'maxlength' => 191,
@@ -36,10 +36,10 @@ if (request()->route()->getName() == 'characters.random') {
                                     'spellcheck' => 'true'
                                 ]) !!}
                                 <span class="input-group-btn">
-                                        <span class="personality-delete btn btn-danger" title="{{ trans('crud.remove') }}">
-                                            <i class="fa fa-trash"></i>
-                                        </span>
+                                    <span class="personality-delete btn btn-danger" title="{{ trans('crud.remove') }}">
+                                        <i class="fa fa-trash"></i>
                                     </span>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -54,9 +54,9 @@ if (request()->route()->getName() == 'characters.random') {
                 <div class="row">
                     <div class="col-md-4 col-xs-4">
                         <div class="input-group">
-                                    <span class="input-group-addon hidden-xs hidden-sm">
-                                        <span class="fa fa-arrows-alt-v"></span>
-                                    </span>
+                            <span class="input-group-addon hidden-xs hidden-sm">
+                                <span class="fa fa-arrows-alt-v"></span>
+                            </span>
                             {!! Form::text('appearance_name[]', null, [
                                 'class' => 'form-control',
                                 'placeholder' => trans('characters.placeholders.appearance_name'),
