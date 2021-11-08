@@ -206,6 +206,11 @@ class EntityMappingService
             $mention->campaign_id = $model->id;
         } elseif ($model instanceof EntityNote) {
             $mention->entity_note_id = $model->id;
+
+            // If we are making a reference to ourselves, no need to save it
+            if ($model->entity_id == $target) {
+                return;
+            }
         } else {
             $mention->entity_id = $model->id;
 
