@@ -12,11 +12,13 @@ namespace App\Models;
  * @property int $campaign_id
  * @property string $token
  * @property bool $is_active
- * @property string $type
+ * @property int $type_id
  * @property int $validity
  */
 class CampaignInvite extends MiscModel
 {
+    const TYPE_LINK = 1;
+    const TYPE_EMAIL = 2;
     /**
      * @var string
      */
@@ -32,7 +34,7 @@ class CampaignInvite extends MiscModel
         'created_by',
         'token',
         'is_active',
-        'type',
+        'type_id',
         'validity',
     ];
 
@@ -50,5 +52,13 @@ class CampaignInvite extends MiscModel
     public function role()
     {
         return $this->belongsTo('App\Models\CampaignRole', 'role_id', 'id');
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEmail(): bool
+    {
+        return $this->type_id == self::TYPE_EMAIL;
     }
 }

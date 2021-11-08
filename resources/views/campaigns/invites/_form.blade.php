@@ -9,7 +9,7 @@ $usages = [
 
 {{ csrf_field() }}
 <div class="form-group required">
-@if ($type == 'email')
+@if ($typeID == \App\Models\CampaignInvite::TYPE_EMAIL)
     <label>
         {{ __('campaigns.invites.fields.email') }}
         <i class="fa fa-question-circle hidden-xs hidden-sm" title="{{ __('campaigns.invites.helpers.email') }}" data-toggle="tooltip"></i>
@@ -27,5 +27,3 @@ $usages = [
     {!! Form::select('role_id', Auth::user()->campaign->roles()->where(['is_public' => false, 'is_admin' => false])->pluck('name', 'id'), null, ['class' => 'select form-control']) !!}
 </div>
 
-
-{!! Form::hidden('type', $type) !!}

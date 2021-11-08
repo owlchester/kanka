@@ -522,10 +522,6 @@ Route::group(['prefix' => 'subscription-api'], function () {
         ->name('subscription.check-coupon');
 });
 
-/*Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});/*
-
 // Stripe
 Route::post(
     'stripe/webhook',

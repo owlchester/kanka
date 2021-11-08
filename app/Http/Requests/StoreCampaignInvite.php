@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\CampaignInvite;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,14 +25,14 @@ class StoreCampaignInvite extends FormRequest
      */
     public function rules()
     {
-        $type = request()->post('type');
+        $typeID = request()->post('type_id');
 
         $rules = [
-            'type' => 'required|in:email,link',
+            'type_id' => 'required|numeric',
             'role_id' => 'required|exists:campaign_roles,id',
         ];
 
-        if ($type == 'email') {
+        if ($typeID== CampaignInvite::TYPE_EMAIL) {
             $rules['email'] = 'required|email|unique:campaign_invites,email,NULL,id,campaign_id,'
                 . Auth::user()->campaign->id.',is_active,1';
         } else {

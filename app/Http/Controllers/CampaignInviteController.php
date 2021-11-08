@@ -37,12 +37,12 @@ class CampaignInviteController extends Controller
         $this->authorize('invite', $campaign);
         $ajax = request()->ajax();
 
-        $type = request()->get('type', 'email');
-        if (!in_array($type, ['email', 'link'])) {
-            $type = 'email';
+        $typeID = CampaignInvite::TYPE_LINK;
+        if (request()->get('type_id') == CampaignInvite::TYPE_EMAIL) {
+            $typeID = CampaignInvite::TYPE_EMAIL;
         }
 
-        return view('campaigns.invites.create', compact('campaign', 'ajax', 'type'));
+        return view('campaigns.invites.create', compact('campaign', 'ajax', 'typeID'));
     }
 
     /**
@@ -56,13 +56,15 @@ class CampaignInviteController extends Controller
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('invite', $campaign);
 
-        $invitation = CampaignInvite::create($request->only('email', 'role_id', 'type', 'validity'));
+        $invitation = CampaignInvite::create(
+            $request->only('email', 'role_id', 'type_id', 'validity')
+        );
 
         return redirect()->route('campaign_users.index')
             ->with(
                 'success_raw',
                 __(
-                    'campaigns.invites.create.' . ($invitation->type == 'email' ? 'success' : 'success_link'),
+                    'campaigns.invites.create.' . ($invitation->isEmail() ? 'success' : 'success_link'),
                     ['link' => link_to_route('campaigns.join', route('campaigns.join', $invitation->token), $invitation->token)]
                 )
             );

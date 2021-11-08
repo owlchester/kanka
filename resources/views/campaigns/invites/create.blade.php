@@ -25,18 +25,18 @@
     </div>
     <div class="modal-footer">
 
-
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">
                 {{ __('crud.cancel') }}
             </button>
 
             <button class="btn btn-success">
-                @if ($type == 'email')
+                @if ($typeID == \App\Models\CampaignInvite::TYPE_EMAIL)
                     {{ __('campaigns.invites.create.buttons.send') }}
                 @else
                     {{ __('campaigns.invites.create.buttons.create') }}
                 @endif
             </button>
     </div>
+    {!! Form::hidden('type_id', $typeID) !!}
     {!! Form::close() !!}
 @endsection
