@@ -3,6 +3,12 @@
  * This file contains all the stuff to hide when printing
  */
 
+.entity-image.hidden-xs {
+  display: none !important;
+}
+.entity-print-image {
+  width: 100%;
+}
 @media print
 {
   body {
@@ -110,6 +116,7 @@ body, #app.wrapper {
   }
 
   .entity-print-image {
+    display: unset;
   }
   .entity-image {
     display: none;

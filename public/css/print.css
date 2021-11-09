@@ -3,6 +3,14 @@
  * This file contains all the stuff to hide when printing
  */
 
+.entity-image.hidden-xs {
+  display: none !important;
+}
+
+.entity-print-image {
+  width: 100%;
+}
+
 @media print {
   body {
     -webkit-print-color-adjust: exact;
@@ -126,6 +134,10 @@ body,
 
 .entity-grid .entity-submenu {
   display: none;
+}
+
+.entity-grid .entity-print-image {
+  display: unset;
 }
 
 .entity-grid .entity-image {
