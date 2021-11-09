@@ -89,9 +89,8 @@
             </tbody>
             </table>
         </div>
-        @if($entries->hasPages() > 1)
-        <div class="box-footer">
-
+        @if($entries->hasPages())
+        <div class="box-footer text-right">
             {!! $entries->links() !!}
         </div>
         @endif

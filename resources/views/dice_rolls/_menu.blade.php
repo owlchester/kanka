@@ -1,3 +1,3 @@
-
-@includeWhen(!isset($exporting), 'entities.components.menu')
-@includeWhen(auth()->check() && !isset($exporting), 'entities.components.actions')
+<div class="entity-submenu">
+    @include('entities.components.menu')
+</div>

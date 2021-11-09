@@ -21,26 +21,26 @@
     @endcan
 @endsection
 
-@include('entities.components.header', [
-    'model' => $entity->child,
-    'entity' => $entity,
-    'breadcrumb' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
-        __('crud.tabs.profile')
-    ]
-])
 
 @section('content')
     @include('partials.errors')
-    <div class="row entity-grid">
-        <div class="col-md-2 entity-sidebar-submenu">
-            @include($entity->pluralType() . '._menu', [
-                'active' => 'profile',
-                'model' => $model,
-                'name' => $entity->pluralType()
-            ])
-        </div>
-        <div class="col-md-10 entity-main-block">
+    <div class="entity-grid">
+        @include('entities.components.header_grid', [
+            'model' => $entity->child,
+            'entity' => $entity,
+            'breadcrumb' => [
+                ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
+                __('crud.tabs.profile')
+            ]
+        ])
+
+        @include($entity->pluralType() . '._menu', [
+            'active' => 'profile',
+            'model' => $entity->child,
+            'name' => $entity->pluralType()
+        ])
+
+        <div class="entity-main-block">
             @includeIf('entities.pages.profile._' . $model->getEntityType())
         </div>
     </div>

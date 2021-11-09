@@ -1,28 +1,25 @@
-<div class="row entity-grid">
-    <div class="col-md-2 entity-sidebar-submenu">
-        @include('families._menu', ['active' => 'story'])
-    </div>
+<div class="entity-grid">
 
-    <div class="col-md-8 entity-story-block">
-        @include('entities.components.entry')
-        @include('entities.components.notes')
+    @include('entities.components.header_grid', [
+        'model' => $model,
+        'breadcrumb' => [
+            ['url' => Breadcrumb::index($name), 'label' => __($name . '.index.title')],
+            null
+        ]
+    ])
 
+    @include($name . '._menu', ['active' => 'story'])
+
+    <div class="entity-story-block">
+
+        @include('entities.components.notes', ['withEntry' => true])
         @include('families.panels._members')
 
         @include('cruds.partials.mentions')
         @include('cruds.boxes.history')
     </div>
 
-    <div class="col-md-2 entity-sidebar-pins">
+    <div class="entity-sidebar">
         @include('entities.components.pins')
     </div>
 </div>
-
-
-@if (isset($exporting))
-    @include('families.panels.families')
-    @if ($campaign->enabled('characters'))
-        @include('families.panels.members')
-        @include('families.panels.all_members')
-    @endif
-@endif

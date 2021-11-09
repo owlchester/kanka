@@ -1,20 +1,24 @@
-<?php /** @var \App\Models\Note $model */?>
-<div class="row entity-grid">
-    <div class="col-md-2 entity-sidebar-submenu">
-        @include('tags._menu', ['active' => 'story'])
-    </div>
+<?php /** @var \App\Models\Tag $model */?>
+<div class="entity-grid">
+    @include('entities.components.header_grid', [
+        'model' => $model,
+        'breadcrumb' => [
+            ['url' => Breadcrumb::index($name), 'label' => __($name . '.index.title')],
+            null
+        ]
+    ])
 
-    <div class="col-md-8 entity-story-block">
-        @include('entities.components.entry')
-        @include('entities.components.notes')
+    @include($name . '._menu', ['active' => 'story'])
 
+    <div class="entity-story-block">
+        @include('entities.components.notes', ['withEntry' => true])
         @include('tags.panels.children')
 
         @include('cruds.partials.mentions')
         @include('cruds.boxes.history')
     </div>
 
-    <div class="col-md-2 entity-sidebar-pins">
+    <div class="entity-sidebar">
         @include('entities.components.pins')
     </div>
 </div>

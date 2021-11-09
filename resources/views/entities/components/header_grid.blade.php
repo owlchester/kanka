@@ -5,13 +5,6 @@
  * @var \App\Models\Tag $tag
  */
 
-if ($model instanceof \App\Models\MenuLink) {
-    ?>
-    @include('entities.components.menu_link_header')
-    <?php
-    return;
-}
-
 if (!isset($entity)) {
     $entity = $model->entity;
 }
@@ -40,14 +33,22 @@ if (auth()->check() && auth()->user()->isAdmin()) {
 
 $superboosted = $campaign->campaign()->boosted();
 
+$hasBanner = false;
+if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) {
+    $hasBanner = true;
+}
+
+
+
 ?>
-@if(!isset($printing))
-@section('entity-header')
-@endif
-    <div class="row entity-header @if (empty($imageUrl)) without-entity-image @endif @if($campaign->campaign()->boosted() && $entity->hasHeaderImage($superboosted)) with-entity-header"  style="background-image: url('{{ $entity->getHeaderUrl($superboosted) }}');@endif">
+    <div class="entity-header @if ($hasBanner) with-entity-banner @endif">
+        @if ($hasBanner)
+            <div class="entity-banner" style="background-image: url('{{ $entity->getHeaderUrl($superboosted) }}');">
+            </div>
+        @endif
 
         @if ($imageUrl)
-        <div class="col-md-2 entity-image-col">
+        <div class="entity-header-image">
 
             @can('update', $model)
                 @if(isset($printing) && $printing)
@@ -83,7 +84,7 @@ $superboosted = $campaign->campaign()->boosted();
             @endcan
         </div>
         @endif
-        <div class="col-md-{{ ($imageUrl) ? 10 : 12 }} entity-header-col">
+        <div class="entity-header-text">
             <div class="entity-texts">
                 @if (!empty($breadcrumb))
                     <ol class="entity-breadcrumb">
@@ -245,7 +246,3 @@ $superboosted = $campaign->campaign()->boosted();
         </div>
     </div>
 
-
-@if(!isset($printing))
-@endsection
-@endif

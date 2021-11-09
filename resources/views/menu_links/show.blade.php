@@ -1,9 +1,16 @@
-<div class="row entity-grid">
-    <div class="col-md-3 entity-sidebar-menu">
+<div class="entity-grid">
+
+    @include('entities.components.menu_link_header', [
+        'model' => $model,
+        'breadcrumb' => [
+            ['url' => Breadcrumb::index($name), 'label' => __($name . '.index.title')],
+            null
+        ]
+    ])
+
+    <div class="entity-submenu">
         <div class="box box-solid">
             <div class="box-body">
-                @include ('cruds._image')
-
                 <ul class="list-group list-group-unbordered">
                     <li class="list-group-item">
                         <b>{{ trans('menu_links.fields.position') }}</b>
@@ -68,9 +75,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-9 entity-main-block">
+    <div class="entity-main-block">
         @include('cruds.boxes.history')
     </div>
 </div>
-
-@include('entities.components.actions', ['disableMove' => true, 'disableCopyCampaign' => true, 'disableEntityLinks' => true])

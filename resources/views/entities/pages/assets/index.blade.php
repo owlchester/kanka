@@ -23,40 +23,42 @@ $assetCount = 0; ?>
     @endcan
 @endsection
 
-@include('entities.components.header', [
-    'model' => $entity->child,
-    'entity' => $entity,
-    'breadcrumb' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
-        __('crud.tabs.assets')
-    ]
-
-])
-
-
 @section('content')
     @include('partials.errors')
-    <div class="row entity-grid">
-        <div class="col-md-2 entity-sidebar-submenu">
-            @include($entity->pluralType() . '._menu', ['active' => 'assets', 'model' => $entity->child, 'name' => $entity->pluralType()])
-        </div>
-        <div class="col-md-10 entity-main-block">
+
+    <div class="entity-grid">
+        @include('entities.components.header_grid', [
+            'model' => $entity->child,
+            'entity' => $entity,
+            'breadcrumb' => [
+                ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
+                __('crud.tabs.assets')
+            ]
+        ])
+
+        @include($entity->pluralType() . '._menu', [
+            'active' => 'assets',
+            'model' => $entity->child,
+            'name' => $entity->pluralType()
+        ])
+
+        <div class="entity-main-block">
+
             <div class="entity-assets">
                 <div class="row entity-assets-row">
-                @foreach ($entity->assets() as $asset)
-                    @if($assetCount % 3 == 0)
+                    @foreach ($entity->assets() as $asset)
+                        @if($assetCount % 3 == 0)
                 </div><div class="row entity-assets-row">
                     @endif
                     @includeWhen($asset->isFile(), 'entities.pages.assets._file')
                     @includeWhen($asset->isLink(), 'entities.pages.assets._link')
 
                     @php $assetCount++ @endphp
-                @endforeach
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
-
 @endsection
 
 

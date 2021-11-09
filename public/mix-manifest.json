@@ -5,7 +5,7 @@
     "/js/app.js": "/js/app.js?id=b289fbcc4b5a4ebbcb9a",
     "/css/bootstrap.css": "/css/bootstrap.css?id=78e02e90a73087591d43",
     "/css/vendor.css": "/css/vendor.css?id=b6a52740cb5344289204",
-    "/css/app.css": "/css/app.css?id=80361b438ebc80698016",
+    "/css/app.css": "/css/app.css?id=2b999c96c2750a616953",
     "/css/app-rtl.css": "/css/app-rtl.css?id=80e3a61f74d147c1283d",
     "/css/abilities.css": "/css/abilities.css?id=3ad3d5f63486a6e39843",
     "/css/story.css": "/css/story.css?id=874ec23212b12ed522ee",
@@ -13,6 +13,7 @@
     "/css/export.css": "/css/export.css?id=cccb0c200da7a7855e61",
     "/css/map.css": "/css/map.css?id=5a93ef549d1d601ade45",
     "/css/map-v2.css": "/css/map-v2.css?id=49855f3dc67c0a68ae04",
+    "/css/map-v3.css": "/css/map-v3.css?id=d41bb977eb0d5a8c0632",
     "/css/subscription.css": "/css/subscription.css?id=c7483700b4df297e4dbf",
     "/css/conversation.css": "/css/conversation.css?id=dad1b1b0c69786243aba",
     "/css/gallery.css": "/css/gallery.css?id=4cb048343346389e761b",
@@ -53,6 +54,5 @@
     "/js/timeline.js": "/js/timeline.js?id=3b92f2664c5a5406a3fb",
     "/js/jquery.fileupload.js": "/js/jquery.fileupload.js?id=20a07a657cad26703a1b",
     "/js/jquery.iframe-transport.js": "/js/jquery.iframe-transport.js?id=f371e8d9f57329f90114",
-    "/js/vendor/jquery.ui.widget.js": "/js/vendor/jquery.ui.widget.js?id=3d0f0f5ca5d86c5a4b4f",
-    "/css/map-v3.css": "/css/map-v3.css?id=d41bb977eb0d5a8c0632"
+    "/js/vendor/jquery.ui.widget.js": "/js/vendor/jquery.ui.widget.js?id=3d0f0f5ca5d86c5a4b4f"
 }

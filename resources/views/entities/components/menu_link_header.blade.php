@@ -7,11 +7,25 @@
 
 
 ?>
-@section('entity-header')
-    <div class="row entity-header">
-
-        <div class="col-md-12 entity-header-col">
+    <div class="entity-header">
+        <div class="entity-header-text">
             <div class="entity-texts">
+                @if (!empty($breadcrumb))
+                    <ol class="entity-breadcrumb">
+                        @foreach ($breadcrumb as $bcdata)
+                            <li>
+                                @if (is_array($bcdata))
+                                    <a href="{{ $bcdata['url'] }}" title="{{ $bcdata['label'] }}">
+                                        {{ $bcdata['label'] }}
+                                    </a>
+                                @elseif(!empty($bcdata))
+                                    {{ $bcdata }}
+                                @endif
+                            </li>
+                        @endforeach
+                    </ol>
+                @endif
+
                 <div class="entity-name-header">
                     <h1 class="entity-name">
                         {{ $model->name }}
@@ -58,4 +72,3 @@
             </div>
         </div>
     </div>
-@endsection

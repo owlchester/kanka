@@ -1,6 +1,5 @@
 @extends('layouts.app', [
     'title' => __('timelines.timelines.title', ['name' => $model->name]),
-    'description' => __('timelines.timelines.description'),
     'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $model,
@@ -10,11 +9,19 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="row entity-grid">
-        <div class="col-md-2 entity-sidebar-submenu">
-            @include('timelines._menu', ['active' => 'timelines'])
-        </div>
-        <div class="col-md-10 entity-main-block">
+
+    <div class="entity-grid">
+        @include('entities.components.header_grid', [
+            'model' => $model,
+            'breadcrumb' => [
+                ['url' => Breadcrumb::index($name), 'label' => __($name . '.index.title')],
+                null
+            ]
+        ])
+
+        @include($name . '._menu', ['active' => 'timelines'])
+
+        <div class="entity-main-block">
             @include('timelines.panels.timelines')
         </div>
     </div>

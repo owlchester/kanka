@@ -1,6 +1,5 @@
 @extends('layouts.app', [
-    'title' => trans('families.families.title', ['name' => $model->name]),
-    'description' => '',
+    'title' => __('families.families.title', ['name' => $model->name]),
     'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $model,
@@ -10,11 +9,19 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="row entity-grid">
-        <div class="col-md-2 entity-sidebar-submenu">
-            @include('families._menu', ['active' => 'families'])
-        </div>
-        <div class="col-md-10 entity-main-block">
+
+    <div class="entity-grid">
+        @include('entities.components.header_grid', [
+            'model' => $model,
+            'breadcrumb' => [
+                ['url' => Breadcrumb::index($name), 'label' => __($name . '.index.title')],
+                null
+            ]
+        ])
+
+        @include($name . '._menu', ['active' => 'families'])
+
+        <div class="entity-main-block">
             @include('families.panels.families')
         </div>
     </div>

@@ -34,10 +34,8 @@
             </div>
         </div>
         @if ($models->hasPages())
-        <div class="box-footer">
-            <div class="pull-right">
-                {{ $models->appends($filterService->pagination())->links() }}
-            </div>
+        <div class="box-footer text-right">
+            {{ $models->appends($filterService->pagination())->links() }}
         </div>
         @endif
         {!! Form::hidden('entity', $name) !!}

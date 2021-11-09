@@ -23,11 +23,25 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="row entity-grid">
-        <div class="col-md-2 entity-sidebar-submenu">
-            @include($entity->pluralType() . '._menu', ['active' => 'quests', 'model' => $entity->child, 'name' => $entity->pluralType()])
-        </div>
-        <div class="col-md-10 entity-main-block">
+
+
+    <div class="entity-grid">
+        @include('entities.components.header_grid', [
+            'model' => $entity->child,
+            'entity' => $entity,
+            'breadcrumb' => [
+                ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
+                __('crud.tabs.quests')
+            ]
+        ])
+
+        @include($entity->pluralType() . '._menu', [
+            'active' => 'quests',
+            'model' => $entity->child,
+            'name' => $entity->pluralType()
+        ])
+
+        <div class="entity-main-block">
             <div class="box box-solid box-entity-quests">
                 <div class="box-body">
                     <h2 class="page-header with-border">
@@ -67,9 +81,12 @@
                         @endforeach
                         </tbody>
                     </table>
-
-                    {{ $quests->links() }}
                 </div>
+                @if($quests->hasPages())
+                    <div class="box-footer text-right">
+                        {{ $quests->links() }}
+                    </div>
+                @endif
             </div>
         </div>
     </div>

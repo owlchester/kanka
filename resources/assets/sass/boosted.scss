@@ -16,9 +16,10 @@
   display: flex;
   flex-wrap: wrap;
 
-  [class*='col-'] {
+  .entity-header-text {
     display: flex;
     flex-direction: column;
+    padding-right: 20px;
   }
 
   .entity-image {
@@ -26,7 +27,7 @@
     padding-top: 100%;
     position: relative;
     border-radius: 2px;
-    background-size: contain;
+    //background-size: contain;
     cursor: pointer;
     z-index: 10;
   }
@@ -46,7 +47,7 @@
     }
   }
 
-  .entity-header-col {
+  .entity-header-text {
     align-self: flex-end;
     display: flex;
     .entity-texts {
@@ -135,9 +136,10 @@
   .entity-header-locations {
   }
 }
-.entity-header.with-entity-header {
-  padding-top: 50px;
-  margin-bottom: 20px;
+.entity-header.with-entity-banner {
+  .entity-header-image, .entity-header-text {
+    margin: 20px 0;
+  }
   .entity-name, .entity-title {
     text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
     color: white;
@@ -212,14 +214,9 @@
      display: block;
      float: left;
    }
-   .entity-image {
-     width: 100px;
-     margin-bottom: 10px;
-   }
 
-   .entity-header-col {
+   .entity-header-text {
      display: block;
-
    }
 
    .entity-name-header {
@@ -248,4 +245,103 @@
      margin-left: auto;
    }
  }
+}
+
+/**
+ * Everything is a grid now
+ */
+
+.entity-grid {
+  display: grid;
+  margin: 0 -15px;
+  grid-template-columns: 200px minmax(auto, calc(100% - 400px)) 200px;
+  grid-template-areas:
+    "header header header"
+    "menu main side"
+    "footer footer footer";
+
+
+  .entity-header {
+    grid-area: header;
+    display: grid;
+    grid-template-columns: 200px auto;
+
+    // Magic grid stuff to make stuff look nice even without an image
+    .entity-header-text {
+      grid-column: 1 / span 2;
+      grid-row: 1 / span 1;
+      width: 100%;
+      padding: 0 15px;
+    }
+    .entity-header-image + .entity-header-text {
+      grid-column: 2 / span 1;
+      grid-row: 1 / span 1;
+    }
+    .entity-header-image {
+      padding: 0 15px;
+      grid-row: 1 / span 1;
+      grid-column: 1 / span 1;
+      align-self: flex-end;
+      display: flex;
+    }
+    .entity-banner {
+      grid-column: 1 / span 2;
+      grid-row: 1 / span 1;
+      height: auto;
+      width: 100%;
+      min-height: 250px;
+    }
+  }
+  .entity-header.without-entity-image {
+    grid-template-columns: auto;
+  }
+
+
+  .entity-submenu, .entity-sidebar {
+    margin: 0 15px;
+  }
+
+  .entity-main-block {
+    margin: 0 15px;
+    grid-column: 2 / span 2;
+  }
+  .entity-story-block {
+    grid-column: 2 / span 1;
+    margin: 0 10px;
+  }
+}
+
+
+
+/** Grid fullscreen **/
+@media (max-width: 991px) {
+  .entity-grid {
+    grid-template-columns: 120px minmax(auto, calc(100% - 280px)) 160px;
+
+    .entity-header {
+      grid-template-columns: 120px auto;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .entity-grid {
+    display: block;
+
+    .entity-header {
+      grid-template-columns: 120px minmax(auto, calc(100% - 120px));
+
+      .entity-header-image {
+        width: 120px;
+
+        .entity-image {
+          height: 100px;
+        }
+      }
+    }
+
+    .entity-story-block, .entity-main-block {
+      margin: 0 20px;
+    }
+  }
 }

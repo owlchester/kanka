@@ -27,30 +27,35 @@
 @endsection
 
 
-@include('entities.components.header', [
-    'model' => $entity->child,
-    'entity' => $entity,
-    'breadcrumb' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
-        __('crud.tabs.inventory')
-    ]
-])
 @section('content')
     @include('partials.errors')
-    <div class="row entity-grid">
-        <div class="col-md-2 entity-sidebar-submenu">
-            @include($entity->pluralType() . '._menu', ['active' => 'inventory', 'model' => $entity->child, 'name' => $entity->pluralType()])
-        </div>
-        <div class="col-md-10 entity-main-block">
+
+    <div class="entity-grid">
+        @include('entities.components.header_grid', [
+            'model' => $entity->child,
+            'entity' => $entity,
+            'breadcrumb' => [
+                ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
+                __('crud.tabs.inventory')
+            ]
+        ])
+
+        @include($entity->pluralType() . '._menu', [
+            'active' => 'inventory',
+            'model' => $entity->child,
+            'name' => $entity->pluralType()
+        ])
+
+        <div class="entity-main-block">
             <div class="box box-solid box-entity-inventory">
                 <div class="box-body">
                     @if ($inventory->count() === 0)
                         <p class="help-block">{{ __('entities/inventories.show.helper') }}</p>
-
                     @endif
                     @includeWhen($inventory->count() > 0, 'entities.pages.inventory._inventory')
                 </div>
             </div>
         </div>
     </div>
+
 @endsection

@@ -26,24 +26,29 @@
 @endsection
 
 
-@include('entities.components.header', [
-    'model' => $entity->child,
-    'entity' => $entity,
-    'breadcrumb' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
-        __('crud.tabs.reminders')
-    ]
-])
 @section('content')
     @include('partials.errors')
-    <div class="row entity-grid">
-        <div class="col-md-2 entity-sidebar-submenu">
-            @include($entity->pluralType() . '._menu', ['active' => 'reminders', 'model' => $entity->child, 'name' => $entity->pluralType()])
-        </div>
-        <div class="col-md-10 entity-main-block">
+
+    <div class="entity-grid">
+        @include('entities.components.header_grid', [
+            'model' => $entity->child,
+            'entity' => $entity,
+            'breadcrumb' => [
+                ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
+                __('crud.tabs.reminders')
+            ]
+        ])
+
+        @include($entity->pluralType() . '._menu', [
+            'active' => 'reminders',
+            'model' => $entity->child,
+            'name' => $entity->pluralType()
+        ])
+
+        <div class="entity-main-block">
             <div class="box box-solid box-entity-reminders">
                 <div class="box-body">
-                    @include('entities.pages.reminders._table')
+            @include('entities.pages.reminders._table')
                 </div>
             </div>
         </div>

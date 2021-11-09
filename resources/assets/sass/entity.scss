@@ -2,14 +2,19 @@
 .entity-menu {
   li {
     display: flex;
+
     a {
       flex-grow: 1;
       max-height: 53px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
     a.icon {
       margin-left: auto;
       flex-grow: unset;
       padding: 10px 12px;
+      text-overflow: unset;
     }
   }
   li.active {

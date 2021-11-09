@@ -34,26 +34,31 @@
 @endsection
 
 
-@include('entities.components.header', [
-    'model' => $entity->child,
-    'entity' => $entity,
-    'breadcrumb' => [
-        ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
-        __('crud.tabs.connections')
-    ]
-])
 
 @section('content')
     @include('partials.errors')
-    <div class="row entity-grid">
-        <div class="col-md-2 entity-sidebar-submenu">
-            @include($entity->pluralType() . '._menu', ['active' => 'relations', 'model' => $entity->child, 'name' => $entity->pluralType()])
-        </div>
 
-        <div class="col-md-10 entity-main-block">
+    <div class="entity-grid">
+
+        @include('entities.components.header_grid', [
+            'model' => $entity->child,
+            'entity' => $entity,
+            'breadcrumb' => [
+                ['url' => Breadcrumb::index($entity->pluralType()), 'label' => __($entity->pluralType() . '.index.title')],
+                __('crud.tabs.connections')
+            ]
+        ])
+
+        @include($entity->pluralType() . '._menu', [
+            'active' => 'relations',
+            'model' => $entity->child,
+            'name' => $entity->pluralType()
+        ])
+
+        <div class="entity-main-block">
+
             @includeWhen($mode == 'map' || (empty($mode) && $campaign->campaign()->boosted()), 'entities.pages.relations._map')
             @includeWhen($mode == 'table' || (empty($mode) && !$campaign->campaign()->boosted()), 'entities.pages.relations._relations')
-
         </div>
     </div>
 @endsection

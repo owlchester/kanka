@@ -168,6 +168,7 @@ $specificTheme = null;
                     </div>
                 @endif
                 @include('partials.success')
+                @include('entities.components.actions')
 
 @if(!empty(config('tracking.adsense')) && (auth()->guest() || auth()->user()->showAds()) && !isset($skipBannerAd) && (!isset($sidebar) || $sidebar != 'settings'))
                 <p class="text-center text-muted">
