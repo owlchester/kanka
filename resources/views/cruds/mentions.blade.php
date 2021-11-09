@@ -21,7 +21,7 @@
 
                 <p class="help-block">{{ __('crud.helpers.mentions') }}</p>
             </div>
-            <div class="box-footer">
+            <div class="box-footer text-right">
                 {{ $mentions->links() }}
             </div>
         </div>

@@ -119,7 +119,7 @@
         </div>
     </div>
     @if ($users->hasPages())
-    <div class="box-footer">
+    <div class="box-footer text-right">
         {{ $users->links() }}
     </div>
     @endif

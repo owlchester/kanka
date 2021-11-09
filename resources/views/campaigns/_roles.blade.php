@@ -128,7 +128,7 @@
 
 </div>
 @if($roles->hasPages())
-    <div class="box-footer">
+    <div class="box-footer text-right">
         {!! $roles->fragment('tab_roles')->links() !!}
     </div>
 @endif

@@ -1,6 +1,5 @@
 <?php $r = $model->diceRollResults()->with('creator')->orderBy('created_at', 'DESC')->paginate(); ?>
-<p class="export-hidden">{{ trans('dice_rolls.results.hint') }}</p>
-<p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('dice_rolls.show.tabs.results') }}</p>
+
 
 <table id="dice-rolls-results" class="table table-hover {{ ($r->count() === 0 ? 'export-hidden' : '') }}">
     <tbody><tr>

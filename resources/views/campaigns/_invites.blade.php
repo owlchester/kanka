@@ -84,7 +84,7 @@
                 </div>
             </div>
             @if($invitations->hasPages())
-                <div class="box-footer">
+                <div class="box-footer text-right">
                     {{ $invitations->links() }}
                 </div>
             @endif

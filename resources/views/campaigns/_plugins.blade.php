@@ -135,7 +135,7 @@
         </div>
     </div>
     @if ($plugins->hasPages())
-    <div class="box-footer">
+    <div class="box-footer text-right">
         {!! $plugins->links() !!}
     </div>
     @endif
