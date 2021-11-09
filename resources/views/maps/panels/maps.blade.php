@@ -10,12 +10,14 @@ $r = $model->descendants()
         ->paginate();
 ?>
 <div class="box box-solid" id="map-maps">
-    <div class="box-body">
-        <h2 class="page-header with-border">
-            {{ trans('maps.show.tabs.maps') }}
+    <div class="box-header with-border">
+        <h2 class="box-title">
+            {{ __('maps.show.tabs.maps') }}
         </h2>
+    </div>
+    <div class="box-body">
 
-        <p class="help-block">{{ trans('maps.helpers.descendants') }}</p>
+        <p class="help-block">{{ __('maps.helpers.descendants') }}</p>
 
         <div class="row export-hidden">
             <div class="col-md-6">
@@ -34,12 +36,11 @@ $r = $model->descendants()
             </div>
         </div>
 
-        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('maps.show.tabs.maps') }}</p>
-        <table id="maps" class="table table-hover margin-top {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+        <table id="maps" class="table table-hover margin-top ">
             <tbody><tr>
                 <th class="avatar"><br /></th>
-                <th>{{ trans('maps.fields.name') }}</th>
-                <th>{{ trans('crud.fields.map') }}</th>
+                <th>{{ __('maps.fields.name') }}</th>
+                <th>{{ __('crud.fields.map') }}</th>
             </tr>
             @foreach ($r as $map)
                 <tr>
@@ -58,7 +59,10 @@ $r = $model->descendants()
             @endforeach
             </tbody>
         </table>
-
-        {{ $r->fragment('map-maps')->links() }}
     </div>
+    @if($r->hasPages())
+        <div class="box-footer text-right">
+            {{ $r->fragment('map-maps')->links() }}
+        </div>
+    @endif
 </div>

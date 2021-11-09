@@ -41,8 +41,8 @@ $r = $model->allJournals()
                 @endif
             </div>
         </div>
-        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('journals.show.tabs.journalsJourn') }}</p>
-        <table id="journals" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+
+        <table id="journals" class="table table-hover ">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ trans('journals.fields.name') }}</th>

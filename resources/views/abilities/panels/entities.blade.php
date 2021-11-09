@@ -13,8 +13,7 @@
         </div>
 
         <?php $r = $model->entities()->acl()->simpleSort($datagridSorter)->paginate(); ?>
-        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ __('abilities.show.tabs.abilities') }}</p>
-        <table id="abilities" class="table table-hover margin-top {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+        <table id="abilities" class="table table-hover margin-top ">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ __('crud.fields.entity') }}</th>

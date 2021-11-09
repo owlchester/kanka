@@ -5,7 +5,7 @@
         </h2>
 
         <?php  $r = $model->journals()->orderBy('name', 'ASC')->with(['character'])->paginate(); ?>
-        <table id="location-journals" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+        <table id="location-journals" class="table table-hover ">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ __('journals.fields.name') }}</th>

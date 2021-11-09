@@ -1,6 +1,5 @@
 <?php $r = $model->diceRolls()->paginate(); ?>
-<p class="export-hidden">{{ trans('characters.dice_rolls.hint') }}</p>
-<p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('characters.show.tabs.dice_rolls') }}</p>
+
 
 <table id="character-dice-rolls" class="table table-hover {{ ($r->count() === 0 ? 'export-hidden' : '') }}">
     <tbody><tr>

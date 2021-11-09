@@ -7,7 +7,7 @@
         <?php  $r = $model->diceRolls()->orderBy('name', 'ASC')->with([
             'entity', 'entity.tags'
         ])->paginate(); ?>
-        <table id="character-dice_rolls" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+        <table id="character-dice_rolls" class="table table-hover ">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ trans('dice_rolls.fields.name') }}</th>

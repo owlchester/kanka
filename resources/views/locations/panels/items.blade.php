@@ -5,8 +5,8 @@
         </h2>
 
         <?php  $r = $model->items()->orderBy('name', 'ASC')->with(['character'])->paginate(); ?>
-        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ __('locations.show.tabs.items') }}</p>
-        <table id="items" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+
+        <table id="items" class="table table-hover ">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ __('items.fields.name') }}</th>

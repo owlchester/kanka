@@ -3,8 +3,6 @@
 $r = $model->entity->notes()->with(['creator', 'entity', 'permissions'])
         ->order(request()->get('order'))
         ->paginate(); ?>
-<p class="export-hidden">{{ __('entities/notes.hint') }}</p>
-<p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ __('crud.tabs.notes') }}</p>
 
 <table id="crud_notes" class="table table-hover {{ ($r->count() === 0 ? 'export-hidden' : '') }}">
     <tbody><tr>

@@ -5,8 +5,8 @@
         </h2>
 
         <?php  $r = $model->maps()->orderBy('name', 'ASC')->paginate(); ?>
-        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ __('locations.show.tabs.maps') }}</p>
-        <table id="maps" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+
+        <table id="maps" class="table table-hover ">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ __('maps.fields.name') }}</th>

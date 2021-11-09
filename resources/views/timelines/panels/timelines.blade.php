@@ -5,11 +5,10 @@
         </h2>
 
         <?php  $r = $model->descendants()->with('entity')->simpleSort($datagridSorter)->paginate(); ?>
-        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('timelines.show.tabs.timelines') }}</p>
 
         @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#timeline-timelines'])
 
-        <table id="timelines" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+        <table id="timelines" class="table table-hover ">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ __('timelines.fields.name') }}</th>

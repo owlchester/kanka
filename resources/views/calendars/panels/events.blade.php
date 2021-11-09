@@ -12,7 +12,7 @@
         @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#calendar-events'])
 
         <?php  $r = $model->calendarEvents()->with('entity', 'calendar')->entityAcl()->simpleSort($datagridSorter)->paginate(); ?>
-        <table id="calendar-events" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+        <table id="calendar-events" class="table table-hover ">
             <thead>
                 <tr>
                     <th class="avatar"><br /></th>

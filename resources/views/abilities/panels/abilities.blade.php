@@ -30,8 +30,7 @@ $r = $model->descendants()
             </div>
         </div>
 
-        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ __('abilities.show.tabs.abilities') }}</p>
-        <table id="abilities" class="table table-hover margin-top {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+        <table id="abilities" class="table table-hover margin-top ">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ __('abilities.fields.name') }}</th>

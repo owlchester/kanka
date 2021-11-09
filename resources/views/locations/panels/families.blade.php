@@ -39,8 +39,8 @@ if (request()->has('location_id')) {
         </div>
 
         <?php  $r = $model->allFamilies()->filter($filters)->simpleSort($datagridSorter)->with(['location', 'family', 'entity', 'entity.tags'])->paginate(); ?>
-        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ __('locations.show.tabs.families') }}</p>
-        <table id="families" class="table table-hover margin-top {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+
+        <table id="families" class="table table-hover margin-top ">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ __('families.fields.name') }}</th>

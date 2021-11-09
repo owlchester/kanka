@@ -19,7 +19,6 @@ $r = $model
     @endcan
     {{ trans('crud.events.hint') }}
 </p>
-<p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ trans('crud.tabs.events') }}</p>
 <table id="entity-event-list" class="table table-hover {{ ($r->count() == 0 ? 'export-hidden' : '') }}">
     <tbody><tr>
         <th class="avatar"></th>

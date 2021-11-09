@@ -5,8 +5,8 @@
         </h2>
 
         <?php  $r = $model->events()->orderBy('name', 'ASC')->with(['location'])->paginate(); ?>
-        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ __('locations.show.tabs.events') }}</p>
-        <table id="events" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+
+        <table id="events" class="table table-hover ">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ __('events.fields.name') }}</th>

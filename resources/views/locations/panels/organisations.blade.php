@@ -26,8 +26,8 @@ if (request()->has('location_id')) {
         </p>
 
         <?php  $r = $model->allOrganisations()->filter($filters)->orderBy('name', 'ASC')->with(['members'])->paginate(); ?>
-        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ __('locations.show.tabs.organisations') }}</p>
-        <table id="items" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+
+        <table id="items" class="table table-hover ">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ __('organisations.fields.name') }}</th>

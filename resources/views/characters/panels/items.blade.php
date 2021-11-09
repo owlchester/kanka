@@ -8,7 +8,7 @@
         @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#character-items'])
 
         <?php  $r = $model->items()->simpleSort($datagridSorter)->with(['location', 'entity', 'entity.tags'])->paginate(); ?>
-        <table id="character-items-table" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+        <table id="character-items-table" class="table table-hover ">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ trans('items.fields.name') }}</th>

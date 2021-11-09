@@ -14,8 +14,8 @@
         @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#organisation-suborganisations'])
 
     <?php $r = $model->descendants()->with('parent')->simpleSort($datagridSorter)->paginate(); ?>
-        <p class="export-{{ $r->count() === 0 ? 'visible export-hidden' : 'visible' }}">{{ __('organisations.show.tabs.organisations') }}</p>
-        <table id="organisations" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+
+        <table id="organisations" class="table table-hover ">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ __('organisations.fields.name') }}</th>

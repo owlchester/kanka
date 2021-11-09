@@ -5,7 +5,7 @@
         </h2>
 
         <?php  $r = $model->relatedQuests()->paginate(); ?>
-        <table id="location-quests" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+        <table id="location-quests" class="table table-hover ">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ __('quests.fields.name') }}</th>

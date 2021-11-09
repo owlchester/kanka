@@ -8,7 +8,7 @@
         <?php  $r = $model->journals()->orderBy('name', 'ASC')->with([
             'entity', 'entity.tags'
         ])->paginate(); ?>
-        <table id="character-journals" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+        <table id="character-journals" class="table table-hover ">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ trans('journals.fields.name') }}</th>

@@ -5,7 +5,7 @@
         </h2>
 
         <?php  $r = $model->conversations()->orderBy('name', 'ASC')->with(['participants'])->paginate(); ?>
-        <table id="character-conversations" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+        <table id="character-conversations" class="table table-hover ">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ trans('conversations.fields.name') }}</th>

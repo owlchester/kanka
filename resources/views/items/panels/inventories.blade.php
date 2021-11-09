@@ -1,16 +1,18 @@
 <div class="box box-solid">
+    <div class="box-header with-header">
+        <h3 class="box-title">
+            {{ __('items.show.tabs.inventories') }}
+        </h3>
+    </div>
     <div class="box-body">
-        <h2 class="page-header with-border">
-            {{ trans('items.show.tabs.inventories') }}
-        </h2>
 
         <?php $r = $model->inventories()->acl()->orderBy('entity_id', 'ASC')->with(['entity'])->has('entity')->paginate(); ?>
-        <table id="item-inventories" class="table table-hover {{ $r->count() === 0 ? 'export-hidden' : '' }}">
+        <table id="item-inventories" class="table table-hover">
             <tbody><tr>
                 <th class="avatar"><br /></th>
-                <th>{{ trans('crud.fields.entity') }}</th>
-                <th class="hidden-sm">{{ trans('entities/inventories.fields.amount') }}</th>
-                <th class="hidden-sm">{{ trans('entities/inventories.fields.position') }}</th>
+                <th>{{ __('crud.fields.entity') }}</th>
+                <th class="hidden-sm">{{ __('entities/inventories.fields.amount') }}</th>
+                <th class="hidden-sm">{{ __('entities/inventories.fields.position') }}</th>
                 <th>&nbsp;</th>
             </tr>
             @foreach ($r as $inventory)
@@ -26,7 +28,7 @@
                     <td class="hidden-sm">{{ $inventory->position }}</td>
                     <td class="text-right">
                         <a href="{{ route('entities.inventory', $inventory->entity) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-eye" aria-hidden="true"></i> <span class="visible-sm">{{ trans('crud.view') }}</span>
+                            <i class="fa fa-eye" aria-hidden="true"></i> <span class="visible-sm">{{ __('crud.view') }}</span>
                         </a>
                     </td>
                 </tr>
@@ -34,7 +36,10 @@
             @endforeach
             </tbody>
         </table>
-
-        {{ $r->links() }}
     </div>
+    @if ($r->hasPages())
+        <div class="box-footer text-right">
+            {{ $r->links() }}
+        </div>
+    @endif
 </div>
