@@ -14,7 +14,15 @@
         {{ csrf_field() }}
 
         <div class="form-group has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
+            @if(config('auth.user_list'))
+                <select id="email" name="email" class="form-control">
+                    @foreach (\App\User::get() as $user)
+                        <option value="{{ $user->email}}">{{ $user->email }}</option>
+                    @endforeach
+                </select>
+            @else
             <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="{{ trans('auth.login.fields.email') }}" required autofocus>
+            @endif
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 
             @if ($errors->has('email'))
