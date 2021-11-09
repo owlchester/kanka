@@ -39,10 +39,6 @@
     -webkit-print-color-adjust: exact;
   }
 
-  .entity-header .entity-image-col {
-    max-width: 16%;
-  }
-
   .hidden-xs,
   .hidden-sm {
     display: inline-block !important;
@@ -124,11 +120,20 @@ body,
   padding-top: 0;
 }
 
-.entity-grid .entity-sidebar-submenu {
+.entity-grid {
+  grid-template-columns: 16% minmax(auto, calc(100% - 32%)) 16%;
+}
+
+.entity-grid .entity-submenu {
+  display: none;
+}
+
+.entity-grid .entity-image {
   display: none;
 }
 
 .entity-grid .entity-story-block {
+  grid-column: 1/span 2;
   width: 100%;
 }
 

@@ -41,8 +41,7 @@
 
 
   .entity-header {
-    .entity-image-col {
-      max-width: 16%;
+    .entity-header-image {
     }
   }
 
@@ -104,11 +103,21 @@ body, #app.wrapper {
 }
 
 .entity-grid {
-  .entity-sidebar-submenu {
+  grid-template-columns: 16% minmax(auto, calc(100% - 32%)) 16%;
+
+  .entity-submenu {
     display: none;
   }
 
+  .entity-print-image {
+  }
+  .entity-image {
+    display: none;
+  }
+
+
   .entity-story-block {
+    grid-column: 1 / span 2;
     width: 100%;
   }
   .entity-sidebar-pins {

@@ -5,7 +5,7 @@
 $headerImage = true;
 @endphp
 
-@extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
+@extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => $model->name . ' - ' . __('entities.' . $name),
     'breadcrumbs' => false,
     'miscModel' => $model,

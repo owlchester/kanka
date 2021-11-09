@@ -25,7 +25,11 @@
     </button>
 
     @include('entities.components.header', ['model' => $model])
-    @include($name . '.show')
+    @if(view()->exists($name . '.show'))
+        @include($name . '.show')
+    @else
+        @include('cruds.show')
+    @endif
     @includeIf('entities.pages.profile._' . $entity->type)
     @includeIf($name . '._print')
     @includeWhen($entity->abilities->count() > 0, 'entities.pages.print._abilities')
