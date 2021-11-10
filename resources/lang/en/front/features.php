@@ -53,7 +53,7 @@ TEXT
         'title'         => 'Journals',
     ],
     'links'         => [
-        'description'   => 'Entities in a boosted campaign have a new type of asset that can be attached to it: links. These are displayed in the story mode of an entity and allow to add external links, such as going to a character\'s DNDBeyond page.',
+        'description'   => 'Entities in a boosted campaign have a new type of asset that can be attached to it: links. These are displayed in the overview of an entity and allow to add external links, such as going to a character\'s DNDBeyond page.',
         'title'         => 'Links',
     ],
     'maps'          => [

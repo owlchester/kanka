@@ -240,12 +240,12 @@ return [
         'visibility'            => 'Setting the visibility to admin means only members in the Admin campaign role can view this. Setting it to self means only you can view this.',
     ],
     'history'                   => [
-        'created'       => 'Created by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'created_date'  => 'Created <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'unknown'       => 'Unknown',
-        'updated'       => 'Last modified by <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'updated_date'  => 'Last modified <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'view'          => 'View entity log',
+        'created_date_clean'    => 'Created :date',
+        'created_clean'         => 'Created by :name :date',
+        'unknown'               => 'Unknown',
+        'updated_clean'         => 'Last modified by :name :date',
+        'updated_date_clean'    => 'Last modified :date',
+        'view'                  => 'View entity log',
     ],
     'image'                     => [
         'error' => 'We weren\'t able to get the image you requested. It could be that the website doesn\'t allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid. Please also make sure that the image isn\'t larger than :size.',

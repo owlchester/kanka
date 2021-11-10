@@ -99,12 +99,10 @@
             <div class="entity-modification-history">
                 <div class="help-block text-right">
                     @if (!empty($campaign->created_at) && !empty($campaign->updated_at))
-                    {!! __('crud.history.created_date', [
-                        'date' => $campaign->created_at->diffForHumans(),
-                        'realdate' => $campaign->created_at . ' UTC',
-                    ]) !!}. {!! __('crud.history.updated_date', [
-                        'date' => $campaign->updated_at->diffForHumans(),
-                        'realdate' => $campaign->updated_at . ' UTC',
+                    {!! __('crud.history.created_date_clean', [
+                        'date' => '<span data-toggle="tooltip" title="' . $campaign->created_at . ' UTC' . '">' . $campaign->created_at->diffForHumans() . '</span>'
+                    ]) !!}. {!! __('crud.history.updated_date_clean', [
+                        'date' => '<span data-toggle="tooltip" title="' . $campaign->updated_at . ' UTC' . '">' . $campaign->updated_at->diffForHumans() . '</span>'
                     ]) !!}
                     @endif
                 </div>
