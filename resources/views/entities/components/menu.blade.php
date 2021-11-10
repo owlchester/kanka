@@ -1,3 +1,4 @@
+<div class="hidden-xs hidden-sm">
 @foreach ($model->menuItems() as $section => $menuItems)
     <div class="box box-solid entity-menu-{{ $section }}">
         <div class="box-body no-padding">
@@ -24,3 +25,33 @@
         </div>
     </div>
 @endforeach
+</div>
+
+
+@php $firstBlock = true @endphp
+<div class="hidden-md hidden-lg" id="sm-a">
+    <div class="form-group">
+        <select name="menu-switcher" class="form-control submenu-switcher">
+            @foreach ($model->menuItems() as $section => $menuItems)
+                @if (!$firstBlock)
+                    <option disabled>----</option>
+                @endif
+                @foreach ($menuItems as $key => $menuItem)
+                    <option
+                            name="{{ $key }}"
+                            data-route="{{ route($menuItem['route'], [(!isset($menuItem['entity']) ? $model : $model->entity)]) }}"
+                            @if($key == $active) selected="selected" @endif
+                            @if(\Illuminate\Support\Arr::get($menuItem, 'ajax')) data-toggle="ajax-modal" data-target="#large-modal" @endif
+
+                    >
+                        {{ __($menuItem['name']) }}
+                        @if (!empty($menuItem['count']))
+                            ({{ $menuItem['count'] }})
+                        @endif
+                    </option>
+                @endforeach
+                @php $firstBlock = false @endphp
+            @endforeach
+        </select>
+    </div>
+</div>

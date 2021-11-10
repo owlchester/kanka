@@ -891,7 +891,7 @@ tr.tr-hover:hover {
 }
 
 .color-tag {
-  padding: 0 5px;
+  padding: 2px 5px;
   border-radius: 2px;
 }
 
@@ -1902,10 +1902,22 @@ summary {
 
   .entity-grid .entity-header .entity-header-image {
     width: 120px;
+    align-self: flex-start;
   }
 
   .entity-grid .entity-header .entity-header-image .entity-image {
     height: 100px;
+  }
+
+  .entity-grid .entity-header .entity-header-text {
+    padding-left: 0;
+  }
+
+  .entity-grid .entity-header .entity-name {
+    font-size: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .entity-grid .entity-story-block,

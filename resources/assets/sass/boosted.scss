@@ -378,10 +378,21 @@
 
       .entity-header-image {
         width: 120px;
+        align-self: flex-start;
 
         .entity-image {
           height: 100px;
         }
+      }
+
+      .entity-header-text {
+        padding-left: 0;
+      }
+      .entity-name {
+        font-size: 20px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space:nowrap
       }
     }
 
