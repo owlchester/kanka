@@ -227,4 +227,21 @@ class Item extends MiscModel
     {
         return (int) config('entities.ids.item');
     }
+
+    /**
+     * Determine if the model has profile data to be displayed
+     * @return bool
+     */
+    public function showProfileInfo(): bool
+    {
+        if (!empty($this->type) || !empty($this->price) || !empty($this->size)) {
+            return true;
+        }
+
+        if ($this->character || $this->location) {
+            return true;
+        }
+
+        return false;
+    }
 }

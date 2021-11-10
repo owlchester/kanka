@@ -3,12 +3,12 @@
  * @var \App\Services\CampaignService $campaign
  */
 ?>
-@if ($model->date || $model->character)
+@if ($model->journal || $model->date)
     <div class="entity-header-sub pull-left">
-        @if($model->character)
-        <span title="{{ __('journals.fields.author') }}" data-toggle="tooltip" class="margin-r-5">
-        <i class="fa fa-user"></i>
-        {!! $model->character->tooltipedLink() !!}
+        @if($model->journal)
+        <span title="{{ __('journals.fields.journal') }}" data-toggle="tooltip" class="margin-r-5">
+        <i class="ra ra-quill-ink"></i>
+        {!! $model->journal->tooltipedLink() !!}
         </span>
         @endif
 

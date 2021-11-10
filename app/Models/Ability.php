@@ -218,4 +218,16 @@ class Ability extends MiscModel
 
         return $entityAbility !== false;
     }
+
+    /**
+     * Determine if the model has profile data to be displayed
+     * @return bool
+     */
+    public function showProfileInfo(): bool
+    {
+        if ($this->type || $this->charges) {
+            return true;
+        }
+        return false;
+    }
 }

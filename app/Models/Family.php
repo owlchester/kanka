@@ -210,4 +210,20 @@ class Family extends MiscModel
     {
         return (int) config('entities.ids.family');
     }
+
+    /**
+     * Determine if the model has profile data to be displayed
+     * @return bool
+     */
+    public function showProfileInfo(): bool
+    {
+        // Test text fields first
+        if (!empty($this->type)) {
+            return true;
+        }
+        if (!empty($this->family)) {
+            return true;
+        }
+        return false;
+    }
 }

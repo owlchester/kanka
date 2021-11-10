@@ -293,4 +293,16 @@ class Tag extends MiscModel
         return '<span class="label label-tag-bubble ' . ($this->hasColour() ? $this->colourClass() : 'label-default') . '" title="'
             . e($this->name) . '">' . ucfirst(substr(e($this->name), 0, 1)) . '</span>';
     }
+
+    /**
+     * Determine if the model has profile data to be displayed
+     * @return bool
+     */
+    public function showProfileInfo(): bool
+    {
+        if ($this->type || $this->colour) {
+            return true;
+        }
+        return false;
+    }
 }

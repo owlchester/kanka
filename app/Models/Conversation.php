@@ -158,4 +158,13 @@ class Conversation extends MiscModel
     {
         return $this->target_id == self::TARGET_CHARACTERS;
     }
+
+    /**
+     * Determine if the model has profile data to be displayed
+     * @return bool
+     */
+    public function showProfileInfo(): bool
+    {
+        return true;
+    }
 }

@@ -706,4 +706,13 @@ abstract class MiscModel extends Model
 
         return (string) implode(' ', $classes);
     }
+
+    /**
+     * To be overwritten by the model instance
+     * @return bool
+     */
+    public function showProfileInfo(): bool
+    {
+        return !empty($this->type);
+    }
 }

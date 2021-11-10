@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $entity_type_id
  * @property AttributeTemplate $attributeTemplate
  * @property AttributeTemplate[] $attributeTemplates
+ * @property EntityType $entityType
  */
 class AttributeTemplate extends MiscModel
 {
@@ -227,5 +228,17 @@ class AttributeTemplate extends MiscModel
     public function entry()
     {
         return '';
+    }
+
+    /**
+     * Determine if the model has profile data to be displayed
+     * @return bool
+     */
+    public function showProfileInfo(): bool
+    {
+        if ($this->entityType) {
+            return true;
+        }
+        return false;
     }
 }

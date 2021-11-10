@@ -398,4 +398,30 @@ class Character extends MiscModel
         }
         return $this->showAppearanceCache;
     }
+
+    /**
+     * Determine if the character has profile data to be displayed
+     * @return bool
+     */
+    public function showProfileInfo(): bool
+    {
+        // Test text fields first
+        if (!empty($this->type) || !empty($this->age) || !empty($this->sex)
+            || !empty($this->pronouns)) {
+            return true;
+        }
+        if (!empty($this->race) || !empty($this->family)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Determine if the character has an age. 0 counts as a valide age.
+     * @return bool
+     */
+    public function hasAge(): bool
+    {
+        return !empty($this->age) || $this->age === "0";
+    }
 }

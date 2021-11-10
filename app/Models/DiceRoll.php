@@ -8,6 +8,11 @@ use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @property string $system
+ * @property string $parameters
+ * @property int $character_id
+ */
 class DiceRoll extends MiscModel
 {
     use CampaignTrait,
@@ -109,5 +114,14 @@ class DiceRoll extends MiscModel
     public function entry()
     {
         return '';
+    }
+
+    /**
+     * Determine if the model has profile data to be displayed
+     * @return bool
+     */
+    public function showProfileInfo(): bool
+    {
+        return $this->parameters || $this->character;
     }
 }

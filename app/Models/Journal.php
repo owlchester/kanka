@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $date
  * @property int $character_id
  * @property int $journal_id
+ * @property Character $character
  * @property Journal $journal
  * @property Journal[] $journals
  * @property Journal[] $descendants
@@ -198,5 +199,22 @@ class Journal extends MiscModel
     public function setJournalIdAttribute($value)
     {
         $this->setParentIdAttribute($value);
+    }
+
+    /**
+     * Determine if the model has profile data to be displayed
+     * @return bool
+     */
+    public function showProfileInfo(): bool
+    {
+        if (!empty($this->type) || !empty($this->date)) {
+            return true;
+        }
+
+        if (!empty($this->character)) {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -80039,6 +80039,7 @@ $(document).ready(function () {
   registerEntityNotePerms();
   registerStoryActions();
   registerStoryLoadMore();
+  registerSidebarActions();
   registerEditWarning();
   registerEditKeepAlive();
 });
@@ -80736,6 +80737,22 @@ function registerStoryActions() {
       }
     });
     return false;
+  });
+}
+/**
+ * Sidebars elements can be collapsed after the page has been loaded
+ */
+
+
+function registerSidebarActions() {
+  $('.sidebar-section-title').click(function (e) {
+    if ($(this).next().hasClass('in')) {
+      $(this).find('.fa-chevron-down').hide();
+      $(this).find('.fa-chevron-right').show();
+    } else {
+      $(this).find('.fa-chevron-right').hide();
+      $(this).find('.fa-chevron-down').show();
+    }
   });
 }
 /*

@@ -14,6 +14,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models
  *
  * @property int $event_id
+ * @property int $location_id
+ * @property string $date
+ * @property Location $location
  * @property Event $event
  * @property Event[] $events
  * @property Event[] $descendants
@@ -192,5 +195,22 @@ class Event extends MiscModel
         ];
 
         return parent::menuItems($items);
+    }
+
+    /**
+     * Determine if the model has profile data to be displayed
+     * @return bool
+     */
+    public function showProfileInfo(): bool
+    {
+        if (!empty($this->type)) {
+            return true;
+        }
+
+        if ($this->location) {
+            return true;
+        }
+
+        return false;
     }
 }

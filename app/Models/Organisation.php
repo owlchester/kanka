@@ -254,4 +254,13 @@ class Organisation extends MiscModel
     {
         return (int) config('entities.ids.organisation');
     }
+
+    /**
+     * Determine if the model has profile data to be displayed
+     * @return bool
+     */
+    public function showProfileInfo(): bool
+    {
+        return !empty($this->type) || !empty($this->location);
+    }
 }
