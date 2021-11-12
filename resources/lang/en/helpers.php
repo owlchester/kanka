@@ -29,7 +29,7 @@ return [
         'title'                     => 'Dice Rolls',
     ],
     'entity_templates'  => [
-        'description'   => 'When creating new entities, you can create one based on a template instead of starting from an empty form. To set an entity as a template, view it and click on :link in the actions :action button on the top right. When viewing a list of entities, templates of that entity type will be available next to the :new button. You can have multiple templates for each entity type.',
+        'description'   => 'When creating new entities, you can create one based on a template instead of starting from an empty form. To set an entity as a template, view it and click on :link in the :action button next to the entity\'s name. When viewing a list of entities, templates of that entity type will be available next to the :new button. Multiple templates can be set for each entity type.',
         'link'          => 'How to set templates',
         'remove'        => 'To remove an entity as a template, click on the :remove action that replaces the :link action detailed above.',
         'title'         => 'Entity Templates',
