@@ -39,7 +39,7 @@
                         <div class="col-sm-6">
                             <dl class="dl-horizontal dl-force-mobile">
                                 <dt>{{ __('campaigns.fields.visibility') }}</dt>
-                                <dd>{{ __('campaigns.visibilities.' . $campaign->visibility) }}</dd>
+                                <dd>{{ __('campaigns.visibilities.' . ($campaign->isPublic() ? 'public' : 'private')) }}</dd>
 
                                 <dt>{{ __('campaigns.fields.entity_count') }}</dt>
                                 <dd>
