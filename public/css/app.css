@@ -1541,8 +1541,15 @@ summary {
   border: unset;
 }
 
+:root {
+  --sidebar-section-background: none;
+  --sidebar-section-padding: none;
+}
+
 .sidebar-section-box {
   margin-bottom: 30px;
+  background: var(--sidebar-section-background);
+  padding: var(--sidebar-section-padding);
 }
 
 .sidebar-section-box .sidebar-section-title {
@@ -1572,7 +1579,7 @@ summary {
 .sidebar-section-box .sidebar-elements .element .title {
   text-transform: uppercase;
   font-size: 11px;
-  line-height: 1;
+  line-height: 1.1;
 }
 
 .sidebar-section-box .list-group-unbordered .list-group-item {
@@ -1749,6 +1756,8 @@ summary {
 
 .entity-links li > a {
   font-size: 16px;
+  display: block;
+  line-height: 1.6;
 }
 
 .entity-links li > a i {

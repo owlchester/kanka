@@ -8,7 +8,7 @@
         {{ __('entities/pins.links') }}
     </div>
     <div class="sidebar-elements collapse in" id="sidebar-link-elements">
-        <ul class="list-inline">
+        <ul class="list-unstyled">
             @foreach ($model->entity->links()->ordered()->get() as $link)
                 <li data-target="{{ $link->id }}">
                     <a href="{{ route('entities.entity_links.go', ['entity' => $model->entity->id, 'entity_link' => $link->id]) }}" title="{!! $link->name !!}" target="_blank" rel="noreferrer nofollow" class="entity-link">
