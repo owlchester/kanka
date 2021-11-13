@@ -11,8 +11,6 @@ use App\Jobs\CampaignExport;
 use App\Notifications\Header;
 use App\User;
 use Illuminate\Session\Store;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use Exception;
 
 class CampaignService
@@ -118,7 +116,7 @@ class CampaignService
             [
                 'user' => auth()->user()->name,
                 'campaign' => $campaign->name,
-                'link' => route('dashboard')
+                'link' => $campaign->getMiddlewareLink()
             ]
         );
 
@@ -130,11 +128,11 @@ class CampaignService
 
     /**
      * Switch to the last campaign the user used
-     * @param null $userParam
+     * @param User|null $userParam
      */
     public static function switchToLast($userParam = null)
     {
-        $user = $userParam?:auth()->user();
+        $user = $userParam ?: auth()->user();
         if (!$user) {
             return;
         }
@@ -167,8 +165,10 @@ class CampaignService
      */
     public static function isUserPartOfCurrentCampaign()
     {
-        $member = CampaignUser::where('campaign_id', session()->get('campaign_id'))
-            ->where('user_id', auth()->user()->id)
+        $member = CampaignUser::campaignUser(
+            session()->get('campaign_id'),
+            auth()->user()->id
+        )
             ->first();
         return !empty($member);
     }
@@ -219,9 +219,9 @@ class CampaignService
     public function notify(Campaign $campaign, string $key, string $icon, string $colour, array $params = []): void
     {
         // Notify all admins
-        foreach ($campaign->admins() as $user) {
-            $user->notify(new Header('campaign.' . $key, $icon, $colour, $params));
-        }
+        $campaign->notifyAdmins(
+            new Header('campaign.' . $key, $icon, $colour, $params)
+        );
     }
 
     /**
@@ -231,7 +231,7 @@ class CampaignService
     {
         // On prod, only 1 export per "day"
         if (app()->environment('prod') && !empty($campaign->export_date) && $campaign->export_date == date('Y-m-d')) {
-            throw new TranslatableException(trans('campaigns.export.errors.limit'));
+            throw new TranslatableException(__('campaigns.export.errors.limit'));
         }
         $campaign->export_date = date('Y-m-d');
         $campaign->withObservers = false;

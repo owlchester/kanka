@@ -7,8 +7,12 @@ use App\Facades\Mentions;
 use App\Models\Concerns\Boosted;
 use App\Models\Relations\CampaignRelations;
 use App\Models\Scopes\CampaignScopes;
+use App\Notifications\Header;
+use App\User;
 use Carbon\Carbon;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -182,7 +186,7 @@ class Campaign extends MiscModel
 
     /**
      * Get a list of users who are admins of the campaign
-     * @return array
+     * @return User[]|array|Collection
      */
     public function admins()
     {
@@ -476,5 +480,18 @@ class Campaign extends MiscModel
     {
         $members = CampaignCache::members();
         return !empty($members) && $members->count() > 1;
+    }
+
+    /**
+     * Send a notification to the campaign's admins
+     * @param Notification $notification
+     * @return $this
+     */
+    public function notifyAdmins(Notification $notification): self
+    {
+        foreach ($this->admins() as $user) {
+            $user->notify($notification);
+        }
+        return $this;
     }
 }

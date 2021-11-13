@@ -11,7 +11,7 @@
                         <div class="background-image" style="background-image: url({{ Img::crop(208, 48)->url($userCampaign->image) }})"></div>
                         <div class="background-gradient"></div>
                     @endif
-                    <a href="{{ url(App::getLocale() . '/' . $userCampaign->getMiddlewareLink()) }}">
+                    <a href="{{ url(app()->getLocale() . '/' . $userCampaign->getMiddlewareLink()) }}">
                         {!! $userCampaign->name !!}
                     </a>
                 </li>
@@ -35,7 +35,7 @@
                             <div class="background-image" style="background-image: url({{ Img::crop(208, 48)->url($userCampaign->image) }})"></div>
                             <div class="background-gradient"></div>
                         @endif
-                        <a href="{{ url(App::getLocale() . '/' . $userCampaign->getMiddlewareLink()) }}">
+                        <a href="{{ url(app()->getLocale() . '/' . $userCampaign->getMiddlewareLink()) }}">
                             {!! $userCampaign->name !!}
                         </a>
                     </li>

@@ -22,6 +22,7 @@ Route::resources([
     'community-events' => 'CommunityEventController',
     'app-releases' => 'ReleaseController',
     'referrals' => 'ReferralController',
+    'admin_invites' => 'AdminInviteController',
 ]);
 
 Route::get('/community-events/{community_events}/entries', 'CommunityEventController@entries')

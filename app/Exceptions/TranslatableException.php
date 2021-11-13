@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Throwable;
 
 /**
  * Class TranslatableException
@@ -12,12 +13,6 @@ use Exception;
  */
 class TranslatableException extends Exception
 {
-    /**
-     * Translation key
-     * @var String
-     */
-    public $trans;
-
     /**
      * Translation options
      * @var array
@@ -29,7 +24,7 @@ class TranslatableException extends Exception
      */
     public function getTranslatedMessage(): string
     {
-        return __($this->trans, $this->options);
+        return __($this->message, $this->options);
     }
 
     /**

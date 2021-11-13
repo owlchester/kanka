@@ -51,6 +51,9 @@ Route::group([
     // Invitation's campaign comes from the token.
     Route::get('/invitation/join/{token}', 'InvitationController@join')->name('campaigns.join');
 
+    Route::get('/troubleshooting/invite', 'TroubleshootingController@invite')->name('troubleshooting');
+    Route::post('/troubleshooting/invite', 'TroubleshootingController@saveInvite')->name('troubleshooting.generate');
+
     Route::group([
         'prefix' => CampaignLocalization::setCampaign(),
         'middleware' => ['campaign']

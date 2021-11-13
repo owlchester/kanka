@@ -78,4 +78,15 @@ return [
         'more'          => 'You can copy values from the URL on entity lists. For example, when viewing the characters of the campaign, filter on the kind of characters you want to display, and copy values after the :question in the URL.',
         'title'         => 'Dashboard Widget Filters',
     ],
+    'troubleshooting' => [
+        'title' => 'Troubleshooting',
+        'subtitle' => 'Please send help!',
+        'description' => 'A member of Kanka\'s team has sent you to this page. Select a campaign from the dropdown to generate a token so we can temporarily join your campaign as an admin.',
+        'save_btn' => 'Generate token',
+        'success' => 'Please copy the following token and send it to someone on Kanka\'s team.',
+        'select_campaign' => 'Select a campaign',
+        'errors' => [
+            'token_exists' => 'A token already exists for :campaign.',
+        ]
+    ]
 ];

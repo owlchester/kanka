@@ -9,6 +9,7 @@ use App\Models\CampaignInvite;
 use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
 use App\Notifications\Header;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Exception;
@@ -20,6 +21,9 @@ class InviteService
      */
     public $campaignFollowService;
 
+    /** @var User */
+    protected $user;
+
     /**
      * InviteService constructor.
      * @param CampaignFollowService $campaignFollowService
@@ -27,6 +31,16 @@ class InviteService
     public function __construct(CampaignFollowService $campaignFollowService)
     {
         $this->campaignFollowService = $campaignFollowService;
+    }
+
+    /**
+     * @param User $user
+     * @return $this
+     */
+    public function user(User $user): self
+    {
+        $this->user = $user;
+        return $this;
     }
 
     /**
@@ -38,22 +52,22 @@ class InviteService
     public function useToken(string $token = null)
     {
         if (empty($token)) {
-            throw new \Exception(trans('campaigns.invites.error.invalid_token'));
+            throw new \Exception(__('campaigns.invites.error.invalid_token'));
         }
 
         $invite = CampaignInvite::where('token', $token)->first();
         if (empty($invite)) {
-            throw new Exception(trans('campaigns.invites.error.invalid_token'));
+            throw new Exception(__('campaigns.invites.error.invalid_token'));
         }
 
         // Inactive or removed campaign
         if ($invite->is_active == false || empty($invite->campaign)) {
-            throw new Exception(trans('campaigns.invites.error.inactive_token'));
+            throw new Exception(__('campaigns.invites.error.inactive_token'));
         }
 
-        if (Auth::guest()) {
+        if (auth()->guest()) {
             Session::put('invite_token', $invite->token);
-            throw new RequireLoginException(trans('campaigns.invites.error.login'));
+            throw new RequireLoginException(__('campaigns.invites.error.login'));
         }
 
         $this->join($invite->token);
@@ -75,15 +89,16 @@ class InviteService
 
         Session::forget('invite_token');
 
+        $campaign = $invite->campaign;
+
         // Already a member?
-        $role = CampaignUser::where('campaign_id', $invite->campaign_id)
-            ->where('user_id', Auth::user()->id)
+        $role = CampaignUser::campaignUser($campaign->id, $this->user->id)
             ->first();
 
         if (empty($role)) {
             $role = new CampaignUser([
-                'user_id' => auth()->user()->id,
-                'campaign_id' => $invite->campaign_id,
+                'user_id' => $this->user->id,
+                'campaign_id' => $campaign->id,
             ]);
             $role->save();
         } else {
@@ -114,25 +129,26 @@ class InviteService
         $invite->save();
 
         // If the user was following the campaign, remove it
-        if ($invite->campaign->isFollowing()) {
+        if ($campaign->isFollowing()) {
             $this->campaignFollowService->remove(
-                $invite->campaign,
-                auth()->user()
+                $campaign,
+                $this->user
             );
         }
 
         // Notify all admins of the campaign
-        foreach ($invite->campaign->admins() as $user) {
-            $user->notify(new Header(
+        $campaign->notifyAdmins(
+            new Header(
                 'campaign.join',
                 'user',
                 'green',
                 [
-                    'user' => auth()->user()->name,
-                    'campaign' => $invite->campaign->name
+                    'user' => $this->user->name,
+                    'campaign' => $campaign->name,
+                    'link' => $campaign->getMiddlewareLink()
                 ]
-            ));
-        }
+            )
+        );
 
         // Make sure the user's cache is cleared
         UserCache::clearCampaigns();

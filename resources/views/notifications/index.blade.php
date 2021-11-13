@@ -31,7 +31,13 @@
                         @if (!empty($notification->data['icon']))
                             <i class="fa fa-{{ $notification->data['icon'] }} text-{{ $notification->data['colour'] }}"></i>
                                 @if(\Illuminate\Support\Arr::has($notification->data['params'], 'link'))
-                                    <a href="{{ $notification->data['params']['link'] }}">
+@php
+    $url = $notification->data['params']['link'];
+    if (!\Illuminate\Support\Str::startsWith($url, 'http')) {
+        $url = url(app()->getLocale() . '/' . $url);
+    }
+@endphp
+                                    <a href="{{ $url }}">
                                         {!! __('notifications.' . $notification->data['key'], $notification->data['params']) !!}
                                     </a>
                                 @else

@@ -24,6 +24,9 @@ return [
             'add'       => 'You have been added to the :role role in the :campaign campaign.',
             'remove'    => 'You have been removed from the :role role in the :campaign campaign.',
         ],
+        'troubleshooting' => [
+            'joined'    => 'The Kanka team-member :user joined the campaign :campaign.',
+        ],
     ],
     'clear'             => [
         'action'    => 'Clear all',

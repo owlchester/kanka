@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Facade;
  * Class CampaignLocalization
  * @package App\Facades
  *
- * @method static self campaign(Campaign $campaign)
+ * @method static self|CampaignCacheService campaign(Campaign $campaign)
  * @method static Collection members(string $type = 'all')
  * @method static self|CampaignCacheService clearMembers(string $type = 'all')
  * @method static int entityCount(string $type = null)

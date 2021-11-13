@@ -14,9 +14,13 @@
         {{ session('warning') }}
     </div>
 @endif
-@if (session('error'))
+@if (session('error') or session('error_raw'))
     <div class="alert alert-danger alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        {{ session('error') }}
+        @if (session('error_raw'))
+            {!! session('error_raw') !!}
+        @else
+            {{ session('error') }}
+        @endif
     </div>
 @endif

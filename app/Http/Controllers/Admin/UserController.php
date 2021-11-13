@@ -28,6 +28,8 @@ class UserController extends AdminCrudController
 
     protected $subscriptionService;
 
+    public $createAction = false;
+
     /**
      * CharacterController constructor.
      */

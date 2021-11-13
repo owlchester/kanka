@@ -408,4 +408,22 @@ class User extends \TCG\Voyager\Models\User
 
         return true;
     }
+
+    /**
+     * @return array
+     */
+    public function adminCampaigns(): array
+    {
+        $campaigns = [];
+
+        $roles = $this
+            ->campaignRoles()
+            ->where('campaign_roles.is_admin', 1)->with('campaign')
+            ->get();
+        foreach ($roles as $role) {
+            $campaigns[$role->campaign->id] = $role->campaign->name;
+        }
+
+        return $campaigns;
+    }
 }

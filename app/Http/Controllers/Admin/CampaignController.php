@@ -18,6 +18,8 @@ class CampaignController extends AdminCrudController
      */
     protected $model = \App\Models\Campaign::class;
 
+    public $createAction = false;
+
     /**
      * CharacterController constructor.
      */

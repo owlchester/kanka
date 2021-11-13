@@ -5,10 +5,14 @@ namespace App\Listeners;
 use App\Models\UserLog;
 use App\Services\CampaignService;
 use App\Services\InviteService;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use Exception;
 
+/**
+ * @property User $user
+ */
 class UserEventSubscriber
 {
     /** @var InviteService */
@@ -29,10 +33,12 @@ class UserEventSubscriber
      */
     public function onUserLogin($event)
     {
-        // Does the user have a join campaign?
+        // Does the user have a join campaign token?
         if (session()->has('invite_token')) {
             try {
-                $campaign = $this->inviteService->useToken(session()->get('invite_token'));
+                $campaign = $this->inviteService
+                    ->user($event->user)
+                    ->useToken(session()->get('invite_token'));
                 CampaignService::switchCampaign($campaign);
                 return true;
             } catch (Exception $e) {

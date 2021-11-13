@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int $campaign_id
  * @property User $user
  * @property Campaign $campaign
+ *
+ * @method static|self campaignUser(int $campaignID, int $userID)
  */
 class CampaignUser extends Pivot
 {
@@ -102,5 +104,18 @@ class CampaignUser extends Pivot
             ->leftJoin('campaign_roles as cr', 'cr.id', 'cru.campaign_role_id')
             ->whereRaw('cr.campaign_id = ' . $this->getTable() . '.campaign_id')
             ->where(['is_admin' => false]);
+    }
+
+    /**
+     * @param Builder $builder
+     * @param int $campaignID
+     * @param int $userID
+     * @return Builder
+     */
+    public function scopeCampaignUser(Builder $builder, int $campaignID, int $userID)
+    {
+        return $builder
+            ->where('campaign_id', $campaignID)
+            ->where('user_id', $userID);
     }
 }
