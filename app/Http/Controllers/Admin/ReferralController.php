@@ -18,7 +18,7 @@ class ReferralController extends AdminCrudController
     /**
      * @var string
      */
-    protected $model = \App\Models\Referral::class;
+    protected $model = Referral::class;
 
     /**
      * CharacterController constructor.
@@ -37,7 +37,7 @@ class ReferralController extends AdminCrudController
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      * @throws \Exception
      */
-    public function index(\Illuminate\Http\Request $request)
+    public function index(Request $request)
     {
         $model = new $this->model;
         $name = $this->view;

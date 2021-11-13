@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\Admin\StoreReferral;
 use App\Models\AdminInvite;
-use App\Models\Referral;
 use App\Services\TroubleshootingService;
 use Illuminate\Http\Request;
 
@@ -20,7 +18,7 @@ class AdminInviteController extends AdminCrudController
     /**
      * @var string
      */
-    protected $model = \App\Models\AdminInvite::class;
+    protected $model = AdminInvite::class;
 
     /** @var TroubleshootingService */
     protected $service;
@@ -44,7 +42,7 @@ class AdminInviteController extends AdminCrudController
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      * @throws \Exception
      */
-    public function index(\Illuminate\Http\Request $request)
+    public function index(Request $request)
     {
         $model = new $this->model;
         $name = $this->view;

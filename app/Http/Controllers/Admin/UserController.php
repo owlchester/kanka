@@ -4,12 +4,10 @@
 namespace App\Http\Controllers\Admin;
 
 
-use App\Models\Admin\UserAdmin;
 use App\Models\Admin\UserRole;
 use App\Services\SubscriptionService;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class UserController extends AdminCrudController
 {
