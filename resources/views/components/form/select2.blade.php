@@ -34,7 +34,7 @@ if ($pluralField == 'parent_locations') {
     $pluralField = 'locations';
 }
 $placeholderKey = empty($placeholderKey) ? 'crud.placeholders.' . $singularFieldName : $placeholderKey;
-$labelKey = empty($labelKey) ? 'crud.fields.' . $singularFieldName : $labelKey;
+$labelKey = empty($labelKey) && $labelKey !== false ? 'crud.fields.' . $singularFieldName : $labelKey;
 $searchRouteName = empty($searchRouteName) ? $pluralField . '.find' : $searchRouteName;
 
 // Check for permissions
@@ -50,7 +50,9 @@ if (!empty($from)) {
 
 $fieldUniqIdentifier = $fieldId . '_' . uniqid();
 ?>
+@if ($labelKey !== false)
 <label>{{ __($labelKey) }}</label>
+@endif
 @if ($allowNew)
     <div class="input-group input-group-sm">
 @endif

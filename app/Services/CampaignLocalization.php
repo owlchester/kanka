@@ -64,17 +64,20 @@ class CampaignLocalization
      */
     public function getCampaign(bool $canAbort = true)
     {
-        if ($this->campaign == false) {
-            // Some pages like helper pages don't have a campaign in the url
-            $this->campaign = null;
-            if (is_numeric($this->campaignId) && !empty($this->campaignId)) {
-                $this->campaign = Campaign::find((int) $this->campaignId);
-                // If we're looking for a campaign that doesn't exist, just 404
-                if (empty($this->campaign) && $canAbort) {
-                    abort(404);
-                }
+        if ($this->campaign !== false) {
+            return $this->campaign;
+        }
+
+        // Some pages like helper pages don't have a campaign in the url
+        $this->campaign = null;
+        if (is_numeric($this->campaignId) && !empty($this->campaignId)) {
+            $this->campaign = Campaign::find((int) $this->campaignId);
+            // If we're looking for a campaign that doesn't exist, just 404
+            if (empty($this->campaign) && $canAbort) {
+                abort(404);
             }
         }
+
         return $this->campaign;
     }
 

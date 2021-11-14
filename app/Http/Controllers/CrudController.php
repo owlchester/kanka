@@ -239,7 +239,7 @@ class CrudController extends Controller
         $params['tabPermissions'] = $this->tabPermissions && auth()->user()->can('permission', $model);
         $params['tabAttributes'] = $this->tabAttributes;
         $params['tabCopy'] = $this->tabCopy;
-        $params['tabBoosted'] = $this->tabBoosted && $campaign->boosted();
+        $params['tabBoosted'] = $this->tabBoosted;
         $params['entityAttributeTemplates'] = $templates;
         $params['entityType'] = $model->getEntityType();
         $params['horizontalForm'] = $this->horizontalForm;
@@ -387,7 +387,7 @@ class CrudController extends Controller
             'ajax' => request()->ajax(),
             'tabPermissions' => $this->tabPermissions && auth()->user()->can('permission', $model),
             'tabAttributes' => $this->tabAttributes && auth()->user()->can('attributes', $model->entity),
-            'tabBoosted' => $this->tabBoosted && $campaign->boosted(),
+            'tabBoosted' => $this->tabBoosted,
             'tabCopy' => $this->tabCopy,
             'entityType' => $model->getEntityType(),
             'horizontalForm' => $this->horizontalForm,

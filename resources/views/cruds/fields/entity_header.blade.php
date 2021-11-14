@@ -11,6 +11,9 @@
     @endphp
 
     <div class="row">
+        <p class="help-block">
+            {{ __('fields.gallery-header.description') }}
+        </p>
         <div class="col-sm-10">
             <div class="form-group">
                 {!! Form::select2(
@@ -18,15 +21,12 @@
                     $preset,
                     App\Models\Image::class,
                     false,
-                    'crud.fields.gallery_header',
+                    false,
                     'images.find',
-                    'crud.placeholders.gallery_image'
+                    'fields.gallery.placeholder',
                 ) !!}
             </div>
 
-            <p class="help-block">
-                {{ __('crud.hints.gallery_header') }}
-            </p>
         </div>
         <div class="col-sm-2">
             @if (!empty($model->entity) && !empty($model->entity->header_uuid))
@@ -37,4 +37,6 @@
             @endif
         </div>
     </div>
+@else
+    @include('cruds.fields.helpers.superboosted', ['key' => 'fields.gallery-header.boosted-description'])
 @endif

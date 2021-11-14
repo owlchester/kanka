@@ -1,3 +1,7 @@
+<label>
+    {{ __('fields.gallery-image.title') }}
+    <i class="fas fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
+</label>
 @if ($campaign->campaign()->boosted(true))
     @php
     $preset = null;
@@ -12,21 +16,23 @@
 
     <div class="row">
         <div class="col-sm-10">
+
+            <p class="help-block">
+                {{ __('fields.gallery-image.description') }}
+            </p>
+
             <div class="form-group">
                 {!! Form::select2(
                     'entity_image_uuid',
                     $preset,
                     App\Models\Image::class,
                     false,
-                    'crud.fields.gallery_image',
+                    false,
                     'images.find',
-                    'crud.placeholders.gallery_image'
+                    'fields.gallery.placeholder'
                 ) !!}
             </div>
 
-            <p class="help-block">
-                {{ __('crud.hints.gallery_image') }}
-            </p>
         </div>
         <div class="col-sm-2">
             @if (!empty($model->entity) && !empty($model->entity->image_uuid))
@@ -37,4 +43,6 @@
             @endif
         </div>
     </div>
+@else
+    @include('cruds.fields.helpers.superboosted', ['key' => 'fields.gallery-image.boosted-description'])
 @endif
