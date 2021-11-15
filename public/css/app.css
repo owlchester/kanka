@@ -1601,6 +1601,10 @@ summary {
   padding-right: 20px;
 }
 
+.entity-header .entity-header-image {
+  position: relative;
+}
+
 .entity-header .entity-image {
   width: 100%;
   padding-top: 100%;

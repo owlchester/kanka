@@ -329,19 +329,6 @@ abstract class MiscModel extends Model
     {
         $campaign = CampaignLocalization::getCampaign();
 
-        // Todo: point to the new points
-        /*$mapPoints = $this->entity->targetMapPoints()->has('location')->count();
-        $newMapPoints = $this->entity->mapMarkers()->has('map')->count();
-        if (($mapPoints + $newMapPoints) > 0) {
-            $items['second']['map-points'] = [
-                'name' => 'crud.tabs.map-points',
-                'route' => 'entities.map-markers',
-                'count' => $mapPoints + $newMapPoints,
-                'icon' => 'fa fa-map-marked',
-                'entity' => true,
-            ];
-        }*/
-
         $items['first']['story'] = [
             'name' => 'crud.tabs.story',
             'route' => $this->entity->pluralType() . '.show',
@@ -363,20 +350,6 @@ abstract class MiscModel extends Model
                 'icon' => 'fa fa-users',
             ];
         }
-
-        // Put profile at the start
-        $items['second'] = array_merge(['profile' => [
-            'name' => 'entities/profile.show.tab_name',
-            'route' => 'entities.profile',
-            'entity' => true,
-
-            'button' => auth()->check() && auth()->user()->can('update', $this) ? [
-                'url' => $this->getLink('edit'),
-                'icon' => 'fa fa-pencil',
-                'tooltip' => __('crud.edit'),
-            ] : null,
-        ]], $items['second'] ?? []);
-
 
         // Timelines
         /*if ((!isset($this->hasTimelines) || $this->hasTimelines === true) && $campaign->enabled('timelines')) {

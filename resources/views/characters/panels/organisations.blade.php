@@ -14,15 +14,6 @@ $members = $model->organisations()
         <h3 class="box-title">
             {{ __('characters.show.tabs.organisations') }}
         </h3>
-        <div class="box-tools">
-            @can('organisation', [$model, 'add'])
-                <a href="{{ route('characters.character_organisations.create', ['character' => $model->id]) }}"
-                   class="btn btn-sm btn-primary" data-toggle="ajax-modal"
-                   data-target="#entity-modal" data-url="{{ route('characters.character_organisations.create', $model->id) }}">
-                    <i class="fa fa-plus"></i> {{ __('characters.organisations.actions.add')  }}
-                </a>
-            @endcan
-        </div>
     </div>
     <div class="box-body">
 

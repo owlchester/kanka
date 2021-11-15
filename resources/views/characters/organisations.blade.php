@@ -8,6 +8,19 @@
 
 @inject('campaign', 'App\Services\CampaignService')
 
+@section('entity-header-actions')
+
+    @can('organisation', [$model, 'add'])
+        <div class="header-buttons">
+            <a href="{{ route('characters.character_organisations.create', ['character' => $model->id]) }}"
+               class="btn btn-sm btn-warning" data-toggle="ajax-modal"
+               data-target="#entity-modal" data-url="{{ route('characters.character_organisations.create', $model->id) }}">
+                <i class="fa fa-plus"></i> {{ __('characters.organisations.actions.add')  }}
+            </a>
+        </div>
+    @endcan
+@endsection
+
 @section('content')
     @include('partials.errors')
 
