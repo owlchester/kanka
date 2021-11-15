@@ -1,4 +1,4 @@
-<div class="hidden-xs hidden-sm">
+<div class="hidden-xs">
 @foreach ($model->menuItems() as $section => $menuItems)
     <div class="box box-solid entity-menu-{{ $section }}">
         <div class="box-body no-padding">
@@ -29,7 +29,7 @@
 
 
 @php $firstBlock = true @endphp
-<div class="hidden-md hidden-lg" id="sm-a">
+<div class="hidden-md hidden-lg hidden-sm" id="sm-a">
     <div class="form-group">
         <select name="menu-switcher" class="form-control submenu-switcher">
             @foreach ($model->menuItems() as $section => $menuItems)

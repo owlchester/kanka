@@ -1598,20 +1598,15 @@ summary {
 .entity-header .entity-header-text {
   display: flex;
   flex-direction: column;
-  padding-right: 20px;
 }
 
-.entity-header .entity-header-text .entity-header-line {
-  background: rebeccapurple;
-  margin: 5px 0;
-}
-
-.entity-header .entity-header-line:nth-last-child(1 of .entity-header-text) {
-  border: 3px solid pink;
+.entity-header .entity-header-text .entity-header-line:nth-last-child(2) {
+  display: inline-block;
 }
 
 .entity-header .entity-header-image {
   position: relative;
+  padding-right: 30px;
 }
 
 .entity-header .entity-image {
@@ -1723,43 +1718,56 @@ summary {
   line-height: 20px;
 }
 
-.entity-header.with-entity-banner .entity-header-image,
-.entity-header.with-entity-banner .entity-header-text {
-  margin: 20px 0;
+.entity-header .entity-type {
+  display: none;
 }
 
-.entity-header.with-entity-banner .entity-name,
-.entity-header.with-entity-banner .entity-title {
+.entity-grid > .entity-header.with-entity-banner {
+  margin: 0;
+}
+
+.entity-grid > .entity-header.with-entity-banner .entity-header-image,
+.entity-grid > .entity-header.with-entity-banner .entity-header-text {
+  padding: 20px 15px;
+}
+
+.entity-grid > .entity-header.with-entity-banner .entity-header-text {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.entity-grid > .entity-header.with-entity-banner .entity-name,
+.entity-grid > .entity-header.with-entity-banner .entity-title {
   text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
   color: white;
 }
 
-.entity-header.with-entity-banner i.entity-icons {
+.entity-grid > .entity-header.with-entity-banner i.entity-icons {
   color: white;
 }
 
-.entity-header.with-entity-banner .entity-header-sub {
+.entity-grid > .entity-header.with-entity-banner .entity-header-sub {
   color: white;
 }
 
-.entity-header.with-entity-banner .entity-header-sub a {
+.entity-grid > .entity-header.with-entity-banner .entity-header-sub a {
   color: white;
   text-decoration: underline;
 }
 
-.entity-header.with-entity-banner .entity-header-sub .entity-header-sub-element {
+.entity-grid > .entity-header.with-entity-banner .entity-header-sub .entity-header-sub-element {
   display: inline-block;
 }
 
-.entity-header.with-entity-banner .entity-header-sub .entity-header-sub-element:not(:last-child) {
+.entity-grid > .entity-header.with-entity-banner .entity-header-sub .entity-header-sub-element:not(:last-child) {
   margin-right: 10px;
 }
 
-.entity-header.with-entity-banner .entity-breadcrumb {
+.entity-grid > .entity-header.with-entity-banner .entity-breadcrumb {
   color: white;
 }
 
-.entity-header.with-entity-banner .entity-breadcrumb a {
+.entity-grid > .entity-header.with-entity-banner .entity-breadcrumb a {
   color: white;
 }
 
@@ -1864,14 +1872,15 @@ summary {
 .entity-grid .entity-header .entity-header-image + .entity-header-text {
   grid-column: 2/span 1;
   grid-row: 1/span 1;
+  padding-left: 10px;
 }
 
 .entity-grid .entity-header .entity-header-image {
-  padding: 0 15px;
   grid-row: 1/span 1;
   grid-column: 1/span 1;
   align-self: flex-end;
   display: flex;
+  padding: 0 15px;
 }
 
 .entity-grid .entity-header .entity-banner {
@@ -1888,17 +1897,17 @@ summary {
 
 .entity-grid .entity-submenu,
 .entity-grid .entity-sidebar {
-  margin: 0 15px;
+  padding: 0 15px;
 }
 
 .entity-grid .entity-main-block {
-  margin: 0 15px;
+  padding: 0 15px;
   grid-column: 2/span 2;
 }
 
 .entity-grid .entity-story-block {
   grid-column: 2/span 1;
-  margin: 0 10px;
+  padding: 0 10px;
 }
 
 /** Grid fullscreen **/
@@ -1922,6 +1931,10 @@ summary {
     grid-template-columns: 120px minmax(auto, calc(100% - 120px));
   }
 
+  .entity-grid .entity-header .entity-banner {
+    min-height: 200px;
+  }
+
   .entity-grid .entity-header .entity-header-image {
     width: 120px;
     align-self: flex-start;
@@ -1929,10 +1942,6 @@ summary {
 
   .entity-grid .entity-header .entity-header-image .entity-image {
     height: 100px;
-  }
-
-  .entity-grid .entity-header .entity-header-text {
-    padding-left: 0;
   }
 
   .entity-grid .entity-header .entity-name {
@@ -1944,7 +1953,7 @@ summary {
 
   .entity-grid .entity-story-block,
   .entity-grid .entity-main-block {
-    margin: 0 20px;
+    margin: 0 5px;
   }
 }
 

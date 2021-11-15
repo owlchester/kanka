@@ -69,25 +69,18 @@
   .entity-header-text {
     display: flex;
     flex-direction: column;
-    padding-right: 20px;
-
-
-
 
     .entity-header-line {
-      background: rebeccapurple;
-      margin: 5px 0;
+      &:nth-last-child(2) {
+        display: inline-block;
+      }
     }
 
-
-  }
-
-  .entity-header-line:nth-last-child(1 of .entity-header-text)  {
-    border: 3px solid pink;
   }
 
   .entity-header-image {
     position: relative;
+    padding-right: 30px;
   }
 
   .entity-image {
@@ -204,15 +197,23 @@
   .entity-title {
   }
   .entity-type {
-    //display: none;
+    display: none;
   }
 
   .entity-header-locations {
   }
 }
-.entity-header.with-entity-banner {
+.entity-grid > .entity-header.with-entity-banner {
+  margin: 0;
   .entity-header-image, .entity-header-text {
-    margin: 20px 0;
+    padding: 20px 15px;
+  }
+  .entity-header-image {
+    //padding-right: 0;
+  }
+  .entity-header-text {
+    padding-left: 10px;
+    padding-right: 10px;
   }
   .entity-name, .entity-title {
     text-shadow: rgba(0, 0, 0, 0.5) 0 1px 4px;
@@ -352,13 +353,15 @@
     .entity-header-image + .entity-header-text {
       grid-column: 2 / span 1;
       grid-row: 1 / span 1;
+      padding-left: 10px;
     }
     .entity-header-image {
-      padding: 0 15px;
       grid-row: 1 / span 1;
       grid-column: 1 / span 1;
       align-self: flex-end;
       display: flex;
+      padding: 0 15px;
+      //margin-right: 25px;
     }
     .entity-banner {
       grid-column: 1 / span 2;
@@ -374,16 +377,16 @@
 
 
   .entity-submenu, .entity-sidebar {
-    margin: 0 15px;
+    padding: 0 15px;
   }
 
   .entity-main-block {
-    margin: 0 15px;
+    padding: 0 15px;
     grid-column: 2 / span 2;
   }
   .entity-story-block {
     grid-column: 2 / span 1;
-    margin: 0 10px;
+    padding: 0 10px;
   }
 }
 
@@ -407,6 +410,10 @@
     .entity-header {
       grid-template-columns: 120px minmax(auto, calc(100% - 120px));
 
+      .entity-banner {
+        min-height: 200px;
+      }
+
       .entity-header-image {
         width: 120px;
         align-self: flex-start;
@@ -417,7 +424,6 @@
       }
 
       .entity-header-text {
-        padding-left: 0;
       }
       .entity-name {
         font-size: 20px;
@@ -428,7 +434,7 @@
     }
 
     .entity-story-block, .entity-main-block {
-      margin: 0 20px;
+      margin: 0 5px;
     }
   }
 }
