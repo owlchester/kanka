@@ -7,11 +7,11 @@ if (request()->has('tag_id')) {
 ?>
 <div class="box box-solid" id="tag-tags">
     <div class="box-body">
-        <p class="help-block export-hidden">
+        <p class="help-block">
             {{ trans('tags.hints.tag') }}
         </p>
 
-        <div class="row export-hidden">
+        <div class="row">
             <div class="col-md-6">
                 @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#tag-tags'])
             </div>

@@ -43,14 +43,16 @@
 
         <div class="entity-main-block">
             <div class="box box-solid box-entity-quests">
-                <div class="box-body">
-                    <h2 class="page-header with-border">
+                <div class="box-header">
+                    <h3 class="box-title">
                         {{ __('entities/quests.title', ['name' => $entity->name]) }}
-                    </h2>
+                    </h3>
+                </div>
+                <div class="box-body">
 
                     <p class="help-block">{{ __('entities/quests.helper') }}</p>
 
-                    <table id="entity-quests" class="table table-hover {{ $data->count() === 0 ? 'export-hidden' : '' }}">
+                    <table id="entity-quests" class="table table-hover">
                         <tbody><tr>
                             <th class="avatar"></th>
                             <th>{{ __('quests.elements.fields.quest') }}</th>

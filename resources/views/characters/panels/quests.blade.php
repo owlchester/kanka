@@ -1,9 +1,11 @@
 <?php /** @var \App\Models\Character $model */?>
 <div class="box box-solid" id="character-quests">
-    <div class="box-body">
-        <h2 class="page-header ">
+    <div class="box-header">
+        <h3 class="box-title">
             {{ __('characters.show.tabs.quests') }}
-        </h2>
+        </h3>
+    </div>
+    <div class="box-body">
 
         @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#character-quests'])
 

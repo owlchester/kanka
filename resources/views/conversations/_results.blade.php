@@ -1,7 +1,7 @@
 <?php $r = $model->diceRollResults()->with('creator')->orderBy('created_at', 'DESC')->paginate(); ?>
 
 
-<table id="dice-rolls-results" class="table table-hover {{ ($r->count() === 0 ? 'export-hidden' : '') }}">
+<table id="dice-rolls-results" class="table table-hover">
     <tbody><tr>
         <th>{{ trans('dice_rolls.results.fields.creator') }}</th>
         <th>{{ trans('dice_rolls.results.fields.result') }}</th>

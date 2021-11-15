@@ -58,15 +58,12 @@ return [
         'title'         => 'Locations',
     ],
     'items'         => [
-        'description'   => 'Items located in or from the location.',
         'title'         => 'Location :name Items',
     ],
     'journals'      => [
-        'description'   => 'Journals that were written in the location.',
         'title'         => 'Location :name Journals',
     ],
     'locations'     => [
-        'description'   => 'Locations located in the location.',
         'title'         => 'Location :name Locations',
     ],
     'map'           => [
@@ -212,7 +209,6 @@ return [
         'type'      => 'City, Kingdom, Ruin',
     ],
     'quests'        => [
-        'description'   => 'Quests the location is a part of.',
         'title'         => 'Location :name Quests',
     ],
     'show'          => [

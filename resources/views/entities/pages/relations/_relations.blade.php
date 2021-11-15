@@ -3,9 +3,9 @@
  */?>
 <div class="box box-solid box-entity-relations box-entity-relations-table" id="entity-relations-table">
     <div class="box-header with-border">
-        <h2 class="box-title">
+        <h3 class="box-title">
             {{ __('crud.tabs.relations') }}
-        </h2>
+        </h3>
     </div>
     <div class="box-body">
 

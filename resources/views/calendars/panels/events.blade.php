@@ -3,11 +3,12 @@
 /** @var \App\Models\EntityEvent $event */
 ?>
 <div class="box box-solid" id="calendar-events">
+    <div class="box-header">
+        <h3 class="box-title">
+            {{ __('calendars.show.tabs.events') }}
+        </h3>
+    </div>
     <div class="box-body">
-        <h2 class="page-header with-border">
-            {{ trans('calendars.show.tabs.events') }}
-        </h2>
-
 
         @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#calendar-events'])
 

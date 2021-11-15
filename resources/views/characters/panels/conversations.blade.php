@@ -1,8 +1,10 @@
 <div class="box box-solid">
+    <div class="box-header">
+        <h3 class="box-title">
+            {{ __('characters.show.tabs.conversations') }}
+        </h3>
+    </div>
     <div class="box-body">
-        <h2 class="page-header ">
-            {{ trans('characters.show.tabs.conversations') }}
-        </h2>
 
         <?php  $r = $model->conversations()->orderBy('name', 'ASC')->with(['participants'])->paginate(); ?>
         <table id="character-conversations" class="table table-hover ">
@@ -34,7 +36,10 @@
             @endforeach
             </tbody>
         </table>
-
-        {{ $r->links() }}
     </div>
+    @if ($r->hasPages())
+        <div class="box-footer text-right">
+            {{ $r->links() }}
+        </div>
+    @endif
 </div>

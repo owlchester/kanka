@@ -23,7 +23,7 @@ $locations = $model->descendants()
             {{ __('locations.helpers.descendants') }}
         </p>
 
-        <div class="row export-hidden">
+        <div class="row">
             <div class="col-md-6">
                 @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#location-locations'])
             </div>

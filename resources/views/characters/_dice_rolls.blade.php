@@ -1,7 +1,7 @@
 <?php $r = $model->diceRolls()->paginate(); ?>
 
 
-<table id="character-dice-rolls" class="table table-hover {{ ($r->count() === 0 ? 'export-hidden' : '') }}">
+<table id="character-dice-rolls" class="table table-hover">
     <tbody><tr>
         <th class="avatar"></th>
         <th>{{ trans('dice_rolls.fields.name') }}</th>

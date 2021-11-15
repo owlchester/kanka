@@ -1,8 +1,10 @@
 <div class="box box-solid" id="race-races">
-    <div class="box-body">
-        <h2 class="page-header with-border">
+    <div class="box-header">
+        <h3 class="box-title">
             {{ trans('races.show.tabs.races') }}
-        </h2>
+        </h3>
+    </div>
+    <div class="box-body">
 
         <?php  $r = $model->races()->simpleSort($datagridSorter)->with(['characters'])->paginate(); ?>
 
@@ -15,7 +17,6 @@
                 @if ($campaign->enabled('characters'))
                     <th>{{ trans('races.fields.characters') }}</th>
                 @endif
-                <th>&nbsp;</th>
             </tr>
             @foreach ($r as $race)
                 <tr>
@@ -30,11 +31,6 @@
                         {{ $race->characters()->count() }}
                     </td>
                     @endif
-                    <td class="text-right">
-                        <a href="{{ route('races.show', [$race]) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
-                        </a>
-                    </td>
                 </tr>
             @endforeach
             </tbody>

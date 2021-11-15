@@ -1,9 +1,11 @@
 <?php /** @var \App\Models\Family $model */?>
 <div class="box box-solid" id="family-members">
-    <div class="box-body">
-        <h2 class="page-header with-border">
+    <div class="box-header">
+        <h3 class="box-title">
             {{ __('families.show.tabs.members') }}
-        </h2>
+        </h3>
+    </div>
+    <div class="box-body">
 
         <p class="help-block">{{ __('families.members.helpers.direct_members') }}</p>
 

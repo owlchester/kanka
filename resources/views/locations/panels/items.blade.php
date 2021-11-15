@@ -1,8 +1,10 @@
 <div class="box box-solid">
-    <div class="box-body">
-        <h2 class="page-header with-border">
+    <div class="box-header">
+        <h3 class="box-title">
             {{ __('locations.show.tabs.items') }}
-        </h2>
+        </h3>
+    </div>
+    <div class="box-body">
 
         <?php  $r = $model->items()->orderBy('name', 'ASC')->with(['character'])->paginate(); ?>
 
@@ -12,7 +14,6 @@
                 <th>{{ __('items.fields.name') }}</th>
                 <th>{{ __('items.fields.type') }}</th>
                 @if ($campaign->enabled('characters'))<th>{{ __('crud.fields.character') }}</th>@endif
-                <th>&nbsp;</th>
             </tr>
             @foreach ($r as $item)
                 <tr>
@@ -29,16 +30,14 @@
                             {!! $item->character->tooltipedLink() !!}
                         @endif
                     </td>@endif
-                    <td class="text-right">
-                        <a href="{{ route('items.show', [$item]) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-eye" aria-hidden="true"></i> {{ __('crud.view') }}
-                        </a>
-                    </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
-
-        {{ $r->links() }}
     </div>
+    @if ($r->hasPages())
+        <div class="box-footer text-right">
+            {{ $r->links() }}
+        </div>
+    @endif
 </div>

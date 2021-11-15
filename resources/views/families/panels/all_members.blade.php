@@ -1,9 +1,11 @@
 <?php /** @var \App\Models\Character $member */?>
 <div class="box box-solid">
-    <div class="box-body">
-        <h2 class="page-header with-border">
+    <div class="box-header">
+        <h3 class="box-title">
             {{ trans('families.show.tabs.all_members') }}
-        </h2>
+        </h3>
+    </div>
+    <div class="box-body">
 
         <p class="help-block">{{ trans('families.members.helpers.all_members') }}</p>
 
@@ -53,7 +55,10 @@
             @endforeach
             </tbody>
         </table>
-
-        {{ $r->links() }}
     </div>
+    @if ($r->hasPages())
+        <div class="box-footer text-right">
+            {{ $r->links() }}
+        </div>
+    @endif
 </div>

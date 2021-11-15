@@ -9,7 +9,7 @@ $r = $model
     ->with(['calendar', 'calendar.entity', 'entity'])
     ->order(request()->get('order'), 'events/date')
     ->paginate(); ?>
-<p class="export-hidden">
+<p class="">
     @can('events', $model)
     <a href="{{ route('entities.entity_events.create', [$model->entity, 'next' => 'entity.events']) }}" id="entity-calendar-modal-add"
        class="btn btn-sm btn-primary pull-right" data-toggle="ajax-modal" data-target="#entity-modal"
@@ -19,7 +19,7 @@ $r = $model
     @endcan
     {{ trans('crud.events.hint') }}
 </p>
-<table id="entity-event-list" class="table table-hover {{ ($r->count() == 0 ? 'export-hidden' : '') }}">
+<table id="entity-event-list" class="table table-hover">
     <tbody><tr>
         <th class="avatar"></th>
         @if (auth()->check())

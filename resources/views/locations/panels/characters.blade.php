@@ -34,11 +34,11 @@ $characters = $model
         </div>
     </div>
     <div class="box-body">
-        <p class="help-block export-hidden">
+        <p class="help-block">
             {{ __('locations.helpers.characters') }}
         </p>
 
-        <div class="row export-hidden">
+        <div class="row">
             <div class="col-md-6">
                 @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#location-characters'])
             </div>

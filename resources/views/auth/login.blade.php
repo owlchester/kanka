@@ -17,7 +17,7 @@
             @if(config('auth.user_list'))
                 <select id="email" name="email" class="form-control">
                     @foreach (\App\User::get() as $user)
-                        <option value="{{ $user->email}}">{{ $user->email }}</option>
+                        <option value="{{ $user->email}}">{!! $user->name !!}</option>
                     @endforeach
                 </select>
             @else

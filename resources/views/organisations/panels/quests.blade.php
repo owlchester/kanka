@@ -1,8 +1,10 @@
 <div class="box box-solid">
-    <div class="box-body">
-        <h2 class="page-header with-border">
+    <div class="box-header">
+        <h3 class="box-title">
             {{ trans('organisations.show.tabs.quests') }}
-        </h2>
+        </h3>
+    </div>
+    <div class="box-body">
 
         <?php  $r = $model->relatedQuests()->paginate(); ?>
         <table id="organisation-quests" class="table table-hover ">
@@ -19,7 +21,6 @@
                 <th>{{ trans('quests.fields.characters') }}</th>
                 @endif
                 <th>{{ trans('quests.fields.is_completed') }}</th>
-                <th>&nbsp;</th>
             </tr>
             @foreach ($r as $quest)
                 <tr>
@@ -51,16 +52,14 @@
                     <td>
                         @if ($quest->is_completed) <i class="fa fa-check-circle"></i> @endif
                     </td>
-                    <td class="text-right">
-                        <a href="{{ route('quests.show', [$quest]) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-eye" aria-hidden="true"></i> <span class="visible-sm">{{ trans('crud.view') }}</span>
-                        </a>
-                    </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
-
-        {{ $r->links() }}
     </div>
+    @if ($r->hasPages())
+        <div class="box-footer text-right">
+            {{ $r->links() }}
+        </div>
+    @endif
 </div>

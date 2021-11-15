@@ -10,16 +10,18 @@ if (request()->has('organisation_id')) {
 $hasOrg = request()->has('organisation_id');
 ?>
 <div class="box box-solid">
-    <div class="box-body">
-        <h2 class="page-header with-border">
+    <div class="box-header">
+        <h3 class="box-title">
             {{ __('organisations.fields.members') }}
-        </h2>
+        </h3>
+    </div>
+    <div class="box-body">
 
         <p class="help-block">
             {{ __('organisations.members.helpers.members') }}
         </p>
 
-        <div class="row export-hidden">
+        <div class="row">
             <div class="col-md-6">
                 @include('cruds.datagrids.sorters.simple-sorter')
             </div>

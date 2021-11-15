@@ -4,7 +4,7 @@ $r = $model->entity->notes()->with(['creator', 'entity', 'permissions'])
         ->order(request()->get('order'))
         ->paginate(); ?>
 
-<table id="crud_notes" class="table table-hover {{ ($r->count() === 0 ? 'export-hidden' : '') }}">
+<table id="crud_notes" class="table table-hover">
     <tbody><tr>
         <th>
             @if (auth()->check())

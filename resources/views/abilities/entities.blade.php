@@ -20,22 +20,22 @@
     @endcan
 @endsection
 
-@include('entities.components.header', [
-    'model' => $model,
-    'entity' => $model->entity,
-    'breadcrumb' => [
-        ['url' => Breadcrumb::index('abilities'), 'label' => __('abilities.index.title')],
-        __('abilities.show.tabs.entities')
-    ]
-])
 
 @section('content')
     @include('partials.errors')
-    <div class="row entity-grid">
-        <div class="col-md-2 entity-sidebar-submenu">
-            @include('abilities._menu', ['active' => 'entities'])
-        </div>
-        <div class="col-md-10 entity-main-block">
+
+    <div class="entity-grid">
+        @include('entities.components.header_grid', [
+            'model' => $model,
+            'breadcrumb' => [
+                ['url' => Breadcrumb::index('abilities'), 'label' => __('abilities.index.title')],
+                __('abilities.show.tabs.entities')
+            ]
+        ])
+
+        @include('abilities._menu', ['active' => 'entities'])
+
+        <div class="entity-main-block">
             @include('abilities.panels.entities')
         </div>
     </div>

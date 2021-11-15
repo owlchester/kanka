@@ -12,14 +12,13 @@
     </div>
     <div class="box-body">
 
-        <p class="help-block export-hidden">
+        <p class="help-block">
             {{ __('entities/timelines.helper') }}
         </p>
 
         @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#entity-timelines'])
 
-
-        <table id="entity_timelines" class="table table-hover {{ ($timelines->count() === 0 ? 'export-hidden' : '') }}">
+        <table id="entity_timelines" class="table table-hover">
             <thead>
             <tr>
                 <th class="avatar"><br></th>

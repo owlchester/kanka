@@ -3,7 +3,7 @@
     <div class="box-body">
         <p class="help-block">{{ __('abilities.helpers.descendants') }}</p>
 
-        <div class="row export-hidden">
+        <div class="row">
             <div class="col-md-6">
                 @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#ability-entities'])
             </div>
@@ -34,7 +34,10 @@
             @endforeach
             </tbody>
         </table>
-
-        {{ $r->fragment('ability-entities')->links() }}
     </div>
+    @if ($r->hasPages())
+        <div class="box-footer text-right">
+            {{ $r->fragment('ability-entities')->links() }}
+        </div>
+    @endif
 </div>

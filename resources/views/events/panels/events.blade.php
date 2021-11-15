@@ -3,10 +3,10 @@ $r = $model->descendants()->with('entity')->has('event')->simpleSort($datagridSo
 ?>
 
 <div class="box box-solid" id="event-events">
-    <div class="box-header with-border">
-        <h2 class="box-title">
+    <div class="box-header">
+        <h3 class="box-title">
             {{ __('events.fields.events') }}
-        </h2>
+        </h3>
     </div>
     <div class="box-body">
 
@@ -26,7 +26,6 @@ $r = $model->descendants()->with('entity')->has('event')->simpleSort($datagridSo
                 <th>{{ __('crud.fields.type') }}</th>
                 <th>{{ __('events.fields.date') }}</th>
                 <th>{{ __('events.fields.event') }}</th>
-                <th>&nbsp;</th>
             </tr>
             @foreach ($r as $event)
                 <tr>
@@ -45,18 +44,16 @@ $r = $model->descendants()->with('entity')->has('event')->simpleSort($datagridSo
                     <td>
                         {!! $event->event->tooltipedLink() !!}
                     </td>
-                    <td class="text-right">
-                        <a href="{{ route('events.show', [$event]) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
-                        </a>
-                    </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
 
-        {{ $r->fragment('event-events')->links() }}
-
         @endif
     </div>
+    @if ($r->hasPages())
+        <div class="box-footer text-right">
+            {{ $r->fragment('event-events')->links() }}
+        </div>
+    @endif
 </div>

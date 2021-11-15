@@ -1,8 +1,10 @@
 <div class="box box-solid">
-    <div class="box-body">
-        <h2 class="page-header with-border">
+    <div class="box-header">
+        <h3 class="box-title">
             {{ __('locations.show.tabs.journals') }}
-        </h2>
+        </h3>
+    </div>
+    <div class="box-body">
 
         <?php  $r = $model->journals()->orderBy('name', 'ASC')->with(['character'])->paginate(); ?>
         <table id="location-journals" class="table table-hover ">
@@ -42,7 +44,10 @@
             @endforeach
             </tbody>
         </table>
-
-        {{ $r->links() }}
     </div>
+    @if ($r->hasPages())
+        <div class="box-footer text-right">
+            {{ $r->links() }}
+        </div>
+    @endif
 </div>

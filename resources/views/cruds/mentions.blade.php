@@ -14,10 +14,12 @@
 
     <div class="col-md-9">
         <div class="box box-solid">
-            <div class="box-body">
-                <h2 class="page-header with-border">
+            <div class="box-header">
+                <h3 class="box-title">
                     {{ trans('crud.tabs.mentions') }}
-                </h2>
+                </h3>
+            </div>
+            <div class="box-body">
 
                 <p class="help-block">{{ __('crud.helpers.mentions') }}</p>
             </div>

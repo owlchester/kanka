@@ -11,15 +11,15 @@ $r = $model->descendants()
 ?>
 <div class="box box-solid" id="map-maps">
     <div class="box-header with-border">
-        <h2 class="box-title">
+        <h3 class="box-title">
             {{ __('maps.show.tabs.maps') }}
-        </h2>
+        </h3>
     </div>
     <div class="box-body">
 
         <p class="help-block">{{ __('maps.helpers.descendants') }}</p>
 
-        <div class="row export-hidden">
+        <div class="row">
             <div class="col-md-6">
                 @include('cruds.datagrids.sorters.simple-sorter', ['target' => 'map-maps'])
             </div>

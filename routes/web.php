@@ -143,10 +143,6 @@ Route::group([
         Route::get('/items/{item}/inventories', 'ItemController@inventories')->name('items.inventories');
 
         // Quest menus
-        /*Route::get('/quests/{quest}/characters', 'QuestController@characters')->name('quests.characters');
-        Route::get('/quests/{quest}/locations', 'QuestController@locations')->name('quests.locations');
-        Route::get('/quests/{quest}/items', 'QuestController@items')->name('quests.items');
-        Route::get('/quests/{quest}/organisations', 'QuestController@organisations')->name('quests.organisations');*/
         Route::get('/quests/tree', 'QuestController@tree')->name('quests.tree');
         //Route::get('/quests/{quest}/map-points', 'QuestController@mapPoints')->name('quests.map-points');
 

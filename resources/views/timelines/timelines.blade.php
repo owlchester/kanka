@@ -15,7 +15,7 @@
             'model' => $model,
             'breadcrumb' => [
                 ['url' => Breadcrumb::index($name), 'label' => __($name . '.index.title')],
-                null
+                __('timelines.fields.timelines')
             ]
         ])
 

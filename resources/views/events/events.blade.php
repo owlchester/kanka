@@ -1,6 +1,5 @@
 @extends('layouts.app', [
     'title' => __('events.events.title', ['name' => $model->name]),
-    'description' => __('events.events.description'),
     'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $model,
@@ -10,12 +9,21 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="row entity-grid">
-        <div class="col-md-2 entity-sidebar-submenu">
-            @include('events._menu', ['active' => 'events'])
-        </div>
-        <div class="col-md-10 entity-main-block">
+
+    <div class="entity-grid">
+        @include('entities.components.header_grid', [
+            'model' => $model,
+            'breadcrumb' => [
+                ['url' => Breadcrumb::index('events'), 'label' => __('events.index.title')],
+                __('events.show.tabs.events')
+            ]
+        ])
+
+        @include('events._menu', ['active' => 'events'])
+
+        <div class="entity-main-block">
             @include('events.panels.events')
         </div>
     </div>
 @endsection
+

@@ -1,8 +1,10 @@
 <div class="box box-solid">
-    <div class="box-body">
-        <h2 class="page-header ">
+    <div class="box-header">
+        <h3 class="box-title">
             {{ trans('characters.show.tabs.dice_rolls') }}
-        </h2>
+        </h3>
+    </div>
+    <div class="box-body">
 
         <?php  $r = $model->diceRolls()->orderBy('name', 'ASC')->with([
             'entity', 'entity.tags'
@@ -34,7 +36,10 @@
             @endforeach
             </tbody>
         </table>
-
-        {{ $r->links() }}
     </div>
+    @if ($r->hasPages())
+        <div class="box-footer text-right">
+            {{ $r->links() }}
+        </div>
+    @endif
 </div>

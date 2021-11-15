@@ -31,11 +31,11 @@ $datagridSorter->request(request()->all());
     </div>
     <div class="box-body">
 
-        <p class="help-block export-hidden">
+        <p class="help-block">
             {{ __('races.characters.helpers.' . ($allMembers ? 'all_' : null) . 'characters') }}
         </p>
 
-        <div class="export-hidden">
+        <div class="">
             @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#race-characters'])
         </div>
 

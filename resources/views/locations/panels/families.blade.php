@@ -9,18 +9,19 @@ if (request()->has('location_id')) {
 }
 ?>
 <div class="box box-solid" id="location-families">
-    <div class="box-body">
-        <h2 class="page-header with-border">
+    <div class="box-header">
+        <h3 class="box-title">
             {{ __('locations.show.tabs.families') }}
-        </h2>
+        </h3>
+    </div>
+    <div class="box-body">
 
-
-        <p class="help-block export-hidden">
+        <p class="help-block">
             {{ __('locations.helpers.families') }}
         </p>
 
 
-        <div class="row export-hidden">
+        <div class="row">
             <div class="col-md-6">
                 @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#location-families'])
             </div>

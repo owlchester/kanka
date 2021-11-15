@@ -1,6 +1,5 @@
 @extends('layouts.app', [
     'title' => __('abilities.abilities.title', ['name' => $model->name]),
-    'description' => '',
     'breadcrumbs' => false,
     'mainTitle' => false,
 ])
@@ -9,11 +8,19 @@
 
 @section('content')
     @include('partials.errors')
-    <div class="row entity-grid">
-        <div class="col-md-2 entity-sidebar-submenu">
-            @include('abilities._menu', ['active' => 'abilities'])
-        </div>
-        <div class="col-md-10 entity-main-block">
+
+    <div class="entity-grid">
+        @include('entities.components.header_grid', [
+            'model' => $model,
+            'breadcrumb' => [
+                ['url' => Breadcrumb::index('abilities'), 'label' => __('abilities.index.title')],
+                __('abilities.show.tabs.abilities')
+            ]
+        ])
+
+        @include('abilities._menu', ['active' => 'abilities'])
+
+        <div class="entity-main-block">
             @include('abilities.panels.abilities')
         </div>
     </div>

@@ -1,8 +1,10 @@
 <div class="box box-solid" id="timeline-timelines">
+    <div class="box-header">
+        <h3 class="box-title">
+            {{ __('timelines.fields.timelines') }}
+        </h3>
+    </div>
     <div class="box-body">
-        <h2 class="page-header with-border">
-            {{ trans('timelines.fields.timelines') }}
-        </h2>
 
         <?php  $r = $model->descendants()->with('entity')->simpleSort($datagridSorter)->paginate(); ?>
 
@@ -14,7 +16,6 @@
                 <th>{{ __('timelines.fields.name') }}</th>
                 <th>{{ __('crud.fields.type') }}</th>
                 <th>{{ __('timelines.fields.timeline') }}</th>
-                <th>&nbsp;</th>
             </tr>
             @foreach ($r as $timeline)
                 <tr>
@@ -32,16 +33,14 @@
                         {!! $timeline->timeline->tooltipedLink() !!}
                         @endif
                     </td>
-                    <td class="text-right">
-                        <a href="{{ route('timelines.show', [$timeline]) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-eye" aria-hidden="true"></i> {{ trans('crud.view') }}
-                        </a>
-                    </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
-
-        {{ $r->fragment('timeline-timelines')->links() }}
     </div>
+    @if ($r->hasPages())
+        <div class="box-footer text-right">
+            {{ $r->fragment('timeline-timelines')->links() }}
+        </div>
+    @endif
 </div>

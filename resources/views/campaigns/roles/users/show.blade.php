@@ -24,10 +24,13 @@
                         </p>
                     @endif
                     <table id="characters" class="table table-hover">
-                        <tbody><tr>
+                        <thead>
+                        <tr>
                             <th>{{ trans('campaigns.roles.users.fields.name') }}</th>
                             <th><br /></th>
                         </tr>
+                        </thead>
+                        <tbody>
                         <?php $r = $role->users()->paginate();?>
                         @foreach ($r as $relation)
                             <tr>
@@ -47,9 +50,14 @@
                                 </td>
                             </tr>
                         @endforeach
-                        </tbody></table>
-                    {{ $r->links() }}
+                        </thead>
+                    </table>
                 </div>
+                @if ($r->hasPages())
+                    <div class="box-footer text-right">
+                        {{ $r->links() }}
+                    </div>
+                @endif
             </div>
         </div>
     </div>

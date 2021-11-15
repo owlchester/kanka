@@ -4,7 +4,7 @@
  * @var \App\Models\Relation $relation
  */
 $r = $model->entity->relationships()->has('target')->with(['target', 'target.tags'])->order(request()->get('order'))->paginate(); ?>
-<p class="export-hidden">
+<p class="">
     @can('relation', [$model, 'add'])
         <a href="{{ route($name . '.relations.create', [$name => $model->id]) }}" class="btn btn-primary btn-sm pull-right" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route($name . '.relations.create', [$name => $model->id]) }}">
             <i class="fa fa-plus"></i> <span class="hidden-xs hidden-sm">
@@ -13,9 +13,9 @@ $r = $model->entity->relationships()->has('target')->with(['target', 'target.tag
     @endcan
     {{ trans('crud.relations.hint') }}
 </p>
-<p class="export-{{ ($r->count() === 0 ? 'visible export-hidden' : 'visible') }}">{{ trans('crud.tabs.relations') }}</p>
+<p >{{ trans('crud.tabs.relations') }}</p>
 
-<table id="crud_families" class="table table-hover {{ ($r->count() === 0 ? 'export-hidden' : '') }}">
+<table id="crud_families" class="table table-hover">
     <thead>
         <tr>
             <th>

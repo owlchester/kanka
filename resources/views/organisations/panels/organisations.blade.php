@@ -4,10 +4,12 @@
  * @var \App\Models\Organisation $r
  */
 ?><div class="box box-solid" id="organisation-suborganisations">
-    <div class="box-body">
-        <h2 class="page-header with-border">
+    <div class="box-header">
+        <h3 class="box-title">
             {{ __('organisations.show.tabs.organisations') }}
-        </h2>
+        </h3>
+    </div>
+    <div class="box-body">
 
         <p class="help-block">{{ __('organisations.helpers.descendants') }}</p>
 

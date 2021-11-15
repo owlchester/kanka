@@ -3,16 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Datagrids\Filters\QuestFilter;
-use App\Datagrids\Sorters\QuestCharacterSorter;
-use App\Datagrids\Sorters\QuestItemSorter;
-use App\Datagrids\Sorters\QuestLocationSorter;
-use App\Datagrids\Sorters\QuestOrganisationSorter;
 use App\Http\Requests\StoreQuest;
-use App\Models\Character;
 use App\Models\Quest;
-use App\Models\Tag;
 use App\Traits\TreeControllerTrait;
-use Illuminate\Http\Request;
 
 class QuestController extends CrudController
 {
@@ -84,54 +77,5 @@ class QuestController extends CrudController
     public function destroy(Quest $quest)
     {
         return $this->crudDestroy($quest);
-    }
-
-
-    /**
-     * @param Quest $quest
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function characters(Quest $quest)
-    {
-        return $this
-            ->datagridSorter(QuestCharacterSorter::class)
-            ->menuView($quest, 'characters');
-    }
-
-    /**
-     * @param Quest $quest
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function locations(Quest $quest)
-    {
-        return $this
-            ->datagridSorter(QuestLocationSorter::class)
-            ->menuView($quest, 'locations');
-    }
-
-    /**
-     * @param Quest $quest
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function items(Quest $quest)
-    {
-        return $this
-            ->datagridSorter(QuestItemSorter::class)
-            ->menuView($quest, 'items');
-    }
-
-    /**
-     * @param Quest $quest
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function organisations(Quest $quest)
-    {
-        return $this
-            ->datagridSorter(QuestOrganisationSorter::class)
-            ->menuView($quest, 'organisations');
     }
 }

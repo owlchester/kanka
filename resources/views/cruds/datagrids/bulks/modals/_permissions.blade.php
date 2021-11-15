@@ -11,7 +11,7 @@ $actions = [
     <h4 class="modal-title" id="clickModalLabel">{{ __('crud.bulk.permissions.title') }}</h4>
 </div>
 <div class="modal-body">
-    <table id="crud_permissions" class="table table-hover export-hidden">
+    <table id="crud_permissions" class="table table-hover">
         <tbody>
         <tr>
             <th>{{ __('crud.permissions.fields.role') }}</th>

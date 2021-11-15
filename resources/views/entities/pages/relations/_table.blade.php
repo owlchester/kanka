@@ -3,7 +3,7 @@
  */?>
 
 
-<table id="entity_relations" class="table table-hover {{ ($relations->count() === 0 ? 'export-hidden' : '') }}">
+<table id="entity_relations" class="table table-hover">
     <thead>
     <tr>
         <th>

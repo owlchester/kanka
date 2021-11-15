@@ -6,12 +6,14 @@ if (request()->has('location_id')) {
 }
 ?>
 <div class="box box-solid">
-    <div class="box-body">
-        <h2 class="page-header with-border">
+    <div class="box-header">
+        <h3 class="box-title">
             {{ __('locations.show.tabs.organisations') }}
-        </h2>
+        </h3>
+    </div>
+    <div class="box-body">
 
-        <p class="help-block export-hidden">
+        <p class="help-block">
 
             @if (request()->has('location_id'))
                 <a href="{{ route('locations.organisations', $model) }}" class="btn btn-default btn-sm pull-right">
@@ -57,7 +59,10 @@ if (request()->has('location_id')) {
             @endforeach
             </tbody>
         </table>
-
-        {{ $r->links() }}
     </div>
+    @if ($r->hasPages())
+        <div class="box-footer text-right">
+            {{ $r->links() }}
+        </div>
+    @endif
 </div>

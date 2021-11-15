@@ -18,10 +18,12 @@
     <div class="row">
         <div class="col-md-12">
             <div class="box box-solid box-entity-story-reorder">
-                <div class="box-body">
-                    <h2 class="page-header with-border">
+                <div class="box-header">
+                    <h3 class="box-title">
                         {{ __('menu_links.reorder.title') }}
-                    </h2>
+                    </h3>
+                </div>
+                <div class="box-body">
 
                     {!! Form::open([
                         'route' => 'quick-links.reorder-save',

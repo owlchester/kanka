@@ -1,22 +1,25 @@
 @extends('layouts.app', [
-    'title' => trans('locations.items.title', ['name' => $model->name]),
-    'description' => trans('locations.items.description'),
-    'breadcrumbs' => [
-        ['url' => Breadcrumb::index('locations'), 'label' => __('locations.index.title')],
-        ['url' => route('locations.show', $model), 'label' => $model->name],
-        trans('locations.show.tabs.items')
-    ],
+    'title' => __('locations.items.title', ['name' => $model->name]),
+    'breadcrumbs' => false,
     'mainTitle' => false,
     'miscModel' => $model,
 ])
 
 @section('content')
     @include('partials.errors')
-    <div class="row entity-grid">
-        <div class="col-md-2 entity-sidebar-submenu">
-            @include('locations._menu', ['active' => 'items'])
-        </div>
-        <div class="col-md-10 entity-main-block">
+
+    <div class="entity-grid">
+        @include('entities.components.header_grid', [
+            'model' => $model,
+            'breadcrumb' => [
+                ['url' => Breadcrumb::index('locations'), 'label' => __('locations.index.title')],
+                __('locations.show.tabs.items')
+            ]
+        ])
+
+        @include('locations._menu', ['active' => 'items'])
+
+        <div class="entity-main-block">
             @include('locations.panels.items')
         </div>
     </div>

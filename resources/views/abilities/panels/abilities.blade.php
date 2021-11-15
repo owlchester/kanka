@@ -13,7 +13,7 @@ $r = $model->descendants()
     <div class="box-body">
         <p class="help-block">{{ __('abilities.helpers.descendants') }}</p>
 
-        <div class="row export-hidden">
+        <div class="row">
             <div class="col-md-6">
                 @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#ability-abilities'])
             </div>
@@ -59,7 +59,10 @@ $r = $model->descendants()
             @endforeach
             </tbody>
         </table>
-
-        {{ $r->fragment('ability-abilities')->links() }}
     </div>
+    @if ($r->hasPages())
+        <div class="box-footer text-right">
+            {{ $r->fragment('ability-abilities')->links() }}
+        </div>
+    @endif
 </div>

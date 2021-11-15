@@ -29,14 +29,16 @@
         </div>
         <div class="col-md-10 entity-main-block">
             <div class="box box-solid box-entity-map-markers">
-                <div class="box-body">
-                    <h2 class="page-header with-border">
+                <div class="box-header">
+                    <h3 class="box-title">
                         {{ __('entities/map-points.title', ['name' => $entity->name]) }}
-                    </h2>
+                    </h3>
+                </div>
+                <div class="box-body">
 
                     <p class="help-block">{{ __('entities/map-points.helper') }}</p>
 
-                    <table id="entity-map-points" class="table table-hover {{ $data->count() === 0 ? 'export-hidden' : '' }}">
+                    <table id="entity-map-points" class="table table-hover">
                         <tbody><tr>
                             <th>{{ __('locations.fields.name') }}</th>
                             <th>{{ __('locations.fields.map') }}</th>
