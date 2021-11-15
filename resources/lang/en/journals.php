@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Create a new journal',
         'success'       => 'Journal \':name\' created.',
         'title'         => 'New Journal',
     ],
@@ -30,7 +29,6 @@ return [
     ],
     'index'         => [
         'add'           => 'New Journal',
-        'description'   => 'Manage the journals of :name.',
         'header'        => 'Journals of :name',
         'title'         => 'Journals',
     ],
@@ -45,7 +43,6 @@ return [
         'type'      => 'Session, One Shot, Draft',
     ],
     'show'          => [
-        'description'   => 'A detailed view of a journal',
         'tabs'          => [
             'journals'  => 'Journals',
         ],

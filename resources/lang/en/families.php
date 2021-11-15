@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Create a new family',
         'success'       => 'Family \':name\' created.',
         'title'         => 'New Family',
     ],
@@ -36,7 +35,6 @@ return [
     ],
     'index'         => [
         'add'           => 'New Family',
-        'description'   => 'Manage the families of :name.',
         'header'        => 'Families of :name',
         'title'         => 'Families',
     ],
@@ -53,7 +51,6 @@ return [
         'type'      => 'Royal, Noble, Extinct',
     ],
     'show'          => [
-        'description'   => 'A detailed view of a family',
         'tabs'          => [
             'all_members'   => 'All Members',
             'families'      => 'Families',

@@ -13,7 +13,6 @@ return [
         'r_date_created'    => 'Date Created Reversed',
         'r_date_joined'     => 'Date Joined Reversed',
     ],
-    'description'                   => 'Update your profile details',
     'edit'                          => [
         'success'   => 'Profile updated',
     ],

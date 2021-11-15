@@ -54,9 +54,6 @@ return [
         'title'     => 'Reorder quick links',
     ],
     'show'              => [
-        'tabs'  => [
-            'information'   => 'Information',
-        ],
         'title' => 'Quick Link :name',
     ],
 ];

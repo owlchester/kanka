@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Create a new item',
         'success'       => 'Item \':name\' created.',
         'title'         => 'New Item',
     ],
@@ -25,12 +24,10 @@ return [
     ],
     'index'         => [
         'add'           => 'New Item',
-        'description'   => 'Manage the items of :name.',
         'header'        => 'Items of :name',
         'title'         => 'Items',
     ],
     'inventories'   => [
-        'description'   => 'Entity Inventories the item is in.',
         'title'         => 'Item :name Inventories',
     ],
     'placeholders'  => [
@@ -41,16 +38,9 @@ return [
         'size'      => 'Size, Weight, Dimensions',
         'type'      => 'Weapon, Potion, Artefact',
     ],
-    'quests'        => [
-        'description'   => 'Quests the item is a part of.',
-        'title'         => 'Item :name Quests',
-    ],
     'show'          => [
-        'description'   => 'A detailed view of an item',
         'tabs'          => [
-            'information'   => 'Information',
             'inventories'   => 'Inventories',
-            'quests'        => 'Quests',
         ],
         'title'         => 'Item :name',
     ],

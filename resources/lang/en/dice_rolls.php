@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Create a new dice roll',
         'success'       => 'Dice Roll \':name\' created.',
         'title'         => 'New Dice Roll',
     ],
@@ -11,7 +10,6 @@ return [
         'success'   => 'Dice Roll \':name\' removed.',
     ],
     'edit'          => [
-        'description'   => 'Edit an dice Roll',
         'success'       => 'Dice Roll \':name\' updated.',
         'title'         => 'Edit Dice Roll :name',
     ],
@@ -31,7 +29,6 @@ return [
             'results'   => 'Results',
         ],
         'add'           => 'New Dice Roll',
-        'description'   => 'Manage the dice rolls of :name.',
         'header'        => 'Dice Rolls of :name',
         'title'         => 'Dice Rolls',
     ],
@@ -54,7 +51,6 @@ return [
         'success'   => 'Dice rolled.',
     ],
     'show'          => [
-        'description'   => 'A detailed view of a Dice Roll',
         'tabs'          => [
             'results'   => 'Results',
         ],

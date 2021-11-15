@@ -7,11 +7,9 @@ return [
         'add_personality'   => 'Add a personality',
     ],
     'conversations' => [
-        'description'   => 'Conversations the character is participating in.',
         'title'         => 'Character :name Conversations',
     ],
     'create'        => [
-        'description'   => 'Create a new character',
         'success'       => 'Character \':name\' created.',
         'title'         => 'New Character',
     ],
@@ -19,12 +17,10 @@ return [
         'success'   => 'Character \':name\' removed.',
     ],
     'dice_rolls'    => [
-        'description'   => 'Dice rolls assigned to the character.',
         'hint'          => 'Dice rolls can be assigned to a character for in game usage.',
         'title'         => 'Character :name Dice Rolls',
     ],
     'edit'          => [
-        'description'   => 'Edit a character',
         'success'       => 'Character \':name\' updated.',
         'title'         => 'Edit Character :name',
     ],
@@ -60,21 +56,17 @@ return [
             'random'    => 'New Random Character',
         ],
         'add'           => 'New Character',
-        'description'   => 'Manage the characters of :name.',
         'header'        => 'Characters in :name',
         'title'         => 'Characters',
     ],
     'items'         => [
-        'description'   => 'Items held or owned by the character.',
         'hint'          => 'Items can be assigned to characters and will be displayed here.',
         'title'         => 'Character :name Items',
     ],
     'journals'      => [
-        'description'   => 'Journals the character is an author of.',
         'title'         => 'Character :name Journals',
     ],
     'maps'          => [
-        'description'   => 'Relation map for a character.',
         'title'         => 'Character :name Relation Map',
     ],
     'organisations' => [
@@ -82,16 +74,13 @@ return [
             'add'   => 'Add organisation',
         ],
         'create'        => [
-            'description'   => 'Associate an organisation to a character',
             'success'       => 'Character added to organisation.',
             'title'         => 'New Organisation for :name',
         ],
-        'description'   => 'Organisations the character is a part of.',
         'destroy'       => [
             'success'   => 'Character organisation removed.',
         ],
         'edit'          => [
-            'description'   => 'Update a character\'s organisation',
             'success'       => 'Character organisation updated.',
             'title'         => 'Update Organisation for :name',
         ],
@@ -124,12 +113,10 @@ return [
         'type'              => 'NPC, Player Character, Deity',
     ],
     'quests'        => [
-        'description'   => 'Quests a character is a part of.',
         'helpers'       => [
             'quest_giver'   => 'Quests that the character is a quest giver of.',
             'quest_member'  => 'Quests that the character is a member of.',
         ],
-        'title'         => 'Character :name Quests',
     ],
     'sections'      => [
         'appearance'    => 'Appearance',
@@ -137,16 +124,10 @@ return [
         'personality'   => 'Personality',
     ],
     'show'          => [
-        'description'   => 'A detailed view of a character',
         'tabs'          => [
-            'conversations' => 'Conversations',
-            'dice_rolls'    => 'Dice Rolls',
-            'items'         => 'Items',
-            'journals'      => 'Journals',
             'map'           => 'Relation Map',
             'organisations' => 'Organisations',
             'personality'   => 'Personality',
-            'quests'        => 'Quests',
         ],
         'title'         => 'Character :name',
     ],

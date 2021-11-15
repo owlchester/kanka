@@ -2,7 +2,6 @@
 
 return [
     'characters'    => [
-        'description'   => 'Characters belonging to the race.',
         'helpers'       => [
             'all_characters'    => 'Displaying all the characters related to this race and it\'s sub races.',
             'characters'        => 'Displaying all the characters directly related to this race.',
@@ -10,7 +9,6 @@ return [
         'title'         => 'Race :name Characters',
     ],
     'create'        => [
-        'description'   => 'Create a new race',
         'success'       => 'Race \':name\' created.',
         'title'         => 'New Race',
     ],
@@ -34,7 +32,6 @@ return [
     ],
     'index'         => [
         'add'           => 'New Race',
-        'description'   => 'Manage the races of :name.',
         'header'        => 'Races of :name',
         'title'         => 'Races',
     ],
@@ -43,14 +40,11 @@ return [
         'type'  => 'Human, Fey, Borg',
     ],
     'races'         => [
-        'description'   => 'Races belonging to the race.',
         'title'         => 'Race :name Subraces',
     ],
     'show'          => [
-        'description'   => 'A detailed view of a race',
         'tabs'          => [
             'characters'    => 'Characters',
-            'menu'          => 'Menu',
             'races'         => 'Subraces',
         ],
         'title'         => 'Race :name',

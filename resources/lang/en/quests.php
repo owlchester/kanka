@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Create a new quest',
         'success'       => 'Quest \':name\' created.',
         'title'         => 'New Quest',
     ],
@@ -10,7 +9,6 @@ return [
         'success'   => 'Quest \':name\' removed.',
     ],
     'edit'          => [
-        'description'   => 'Edit a quest',
         'success'       => 'Quest \':name\' updated.',
         'title'         => 'Edit Quest :name',
     ],
@@ -56,7 +54,6 @@ return [
     ],
     'index'         => [
         'add'           => 'New Quest',
-        'description'   => 'Manage the quests of :name.',
         'header'        => 'Quests of :name',
         'title'         => 'Quests',
     ],
@@ -71,11 +68,8 @@ return [
         'actions'       => [
             'add_element'   => 'Add an element',
         ],
-        'description'   => 'A detailed view of a quest',
         'tabs'          => [
             'elements'      => 'Elements',
-            'information'   => 'Information',
-            'quests'        => 'Quests',
         ],
         'title'         => 'Quest :name',
     ],

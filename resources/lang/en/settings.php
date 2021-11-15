@@ -163,7 +163,6 @@ return [
     ],
     'patreon'       => [
         'deprecated'    => 'Deprecated feature - if you wish to support Kanka, please do so with a :subscription. Patreon linking is still active for our Patrons who have linked their account before the move away from Patreon.',
-        'description'   => 'Syncing with Patreon',
         'pledge'        => 'Pledge: :name',
         'remove'        => [
             'button'    => 'Unlink your Patreon account',

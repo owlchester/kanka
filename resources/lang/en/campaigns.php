@@ -22,7 +22,6 @@ TEXT
         'success'   => 'Campaign removed.',
     ],
     'edit'                              => [
-        'description'   => 'Edit your campaign',
         'success'       => 'Campaign updated.',
         'title'         => 'Edit Campaign :campaign',
     ],
@@ -38,7 +37,6 @@ TEXT
         'unknown_id'    => 'Unknown Campaign.',
     ],
     'export'                            => [
-        'description'       => 'Export the campaign.',
         'errors'            => [
             'limit' => 'You have exceeded your maximum of one exports per day. Please try again tomorrow.',
         ],
@@ -114,7 +112,6 @@ TEXT
                 'create'    => 'Generate link',
                 'send'      => 'Send invite',
             ],
-            'description'   => 'Invite a friend to your campaign',
             'success'       => 'Invitation sent.',
             'success_link'  => 'Link created: :link',
             'title'         => 'Invite friends to :campaign',
@@ -175,7 +172,6 @@ TEXT
             'title' => 'Add a member to your campaign',
         ],
         'edit'                  => [
-            'description'   => 'Edit a member of your campaign',
             'title'         => 'Edit member :name',
         ],
         'fields'                => [
@@ -252,7 +248,6 @@ TEXT
             'success'   => 'Role :name created.',
             'title'     => 'New role',
         ],
-        'description'   => 'Manage the roles of the campaign',
         'destroy'       => [
             'success'   => 'Role :name removed.',
         ],
@@ -316,7 +311,6 @@ TEXT
             'name'  => 'Name of the role',
         ],
         'show'          => [
-            'description'   => 'Members and Permissions of a campaign role',
             'title'         => 'Campaign Role \':role\'',
         ],
         'title'         => 'Campaign :name Roles',
@@ -347,7 +341,6 @@ TEXT
             'enable'    => 'Enable',
         ],
         'boosted'       => 'This feature is in early access and currently only available for :boosted.',
-        'description'   => 'Enable or disable modules of the campaign.',
         'edit'          => [
             'success'   => 'Campaign settings updated.',
         ],
@@ -381,7 +374,6 @@ TEXT
             'edit'  => 'Edit Campaign',
             'leave' => 'Leave campaign',
         ],
-        'description'   => 'A detailed view of a campaign',
         'menus'         => [
             'configuration'     => 'Configuration',
             'overview'          => 'Overview',
@@ -395,7 +387,6 @@ TEXT
             'export'            => 'Export',
             'information'       => 'Information',
             'members'           => 'Members',
-            'menu'              => 'Menu',
             'plugins'           => 'Plugins',
             'recovery'          => 'Recovery',
             'roles'             => 'Roles',

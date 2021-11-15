@@ -2,11 +2,9 @@
 
 return [
     'characters'    => [
-        'description'   => 'Characters located at the location.',
         'title'         => 'Location :name Characters',
     ],
     'create'        => [
-        'description'   => 'Create a new location',
         'success'       => 'Location \':name\' created.',
         'title'         => 'New Location',
     ],
@@ -18,7 +16,6 @@ return [
         'title'     => 'Edit Location :name',
     ],
     'events'        => [
-        'description'   => 'Events which took place at the location.',
         'title'         => 'Location :name Events',
     ],
     'families'      => [
@@ -53,7 +50,6 @@ return [
             'explore_view'  => 'Nested View',
         ],
         'add'           => 'New Location',
-        'description'   => 'Manage the locations of :name.',
         'header'        => 'Locations in :name',
         'title'         => 'Locations',
     ],
@@ -208,22 +204,16 @@ return [
         'name'      => 'Name of the location',
         'type'      => 'City, Kingdom, Ruin',
     ],
-    'quests'        => [
-        'title'         => 'Location :name Quests',
-    ],
     'show'          => [
-        'description'   => 'A detailed view of a location',
         'tabs'          => [
             'characters'    => 'Characters',
             'events'        => 'Events',
             'families'      => 'Families',
-            'information'   => 'Information',
             'items'         => 'Items',
             'journals'      => 'Journals',
             'locations'     => 'Locations',
             'map'           => 'Map',
             'maps'          => 'Maps',
-            'menu'          => 'Menu',
             'organisations' => 'Organisations',
             'quests'        => 'Quests',
         ],

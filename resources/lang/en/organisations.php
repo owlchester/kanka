@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Create a new organisation',
         'success'       => 'Organisation \':name\' created.',
         'title'         => 'New Organisation',
     ],
@@ -30,7 +29,6 @@ return [
     ],
     'index'         => [
         'add'           => 'New Organisation',
-        'description'   => 'Manage the organisations of :name.',
         'header'        => 'Organisations of :name',
         'title'         => 'Organisations',
     ],
@@ -39,7 +37,6 @@ return [
             'add'   => 'Add a member',
         ],
         'create'        => [
-            'description'   => 'Add a member to the organisation',
             'success'       => 'Member added to the organisation.',
             'title'         => 'New Organisation Member for :name',
         ],
@@ -73,12 +70,7 @@ return [
         'name'      => 'Name of the organisation',
         'type'      => 'Cult, Gang, Rebellion, Fandom',
     ],
-    'quests'        => [
-        'description'   => 'Quests the organisation is a part of.',
-        'title'         => 'Organisation :name Quests',
-    ],
     'show'          => [
-        'description'   => 'A detailed view of an organisation',
         'tabs'          => [
             'organisations' => 'Organisations',
             'quests'        => 'Quests',

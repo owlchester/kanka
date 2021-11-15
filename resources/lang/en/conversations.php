@@ -2,7 +2,6 @@
 
 return [
     'create'        => [
-        'description'   => 'Create a new conversation',
         'success'       => 'Conversation \':name\' created.',
         'title'         => 'New Conversation',
     ],
@@ -10,7 +9,6 @@ return [
         'success'   => 'Conversation \':name\' removed.',
     ],
     'edit'          => [
-        'description'   => 'Update the conversation',
         'success'       => 'Conversation \':name\' updated.',
         'title'         => 'Conversation :name',
     ],
@@ -27,7 +25,6 @@ return [
     ],
     'index'         => [
         'add'           => 'New Conversation',
-        'description'   => 'Manage the category of :name.',
         'header'        => 'Conversations in :name',
         'title'         => 'Conversations',
     ],
@@ -45,7 +42,6 @@ return [
         'create'        => [
             'success'   => 'Participant :entity added to the conversation.',
         ],
-        'description'   => 'Add or remove participants of a conversation',
         'destroy'       => [
             'success'   => 'Participant :entity removed from the conversation.',
         ],
@@ -57,7 +53,6 @@ return [
         'type'  => 'In Game, Prep, Plot',
     ],
     'show'          => [
-        'description'   => 'A detailed view of a conversation',
         'is_closed'     => 'Conversation is closed.',
         'title'         => 'Conversation :name',
     ],

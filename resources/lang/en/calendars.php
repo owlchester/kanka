@@ -19,7 +19,6 @@ return [
         'is_recurring'  => 'Takes place every year',
     ],
     'create'        => [
-        'description'   => 'Create a new calendar',
         'success'       => 'Calendar \':name\' created.',
         'title'         => 'New Calendar',
     ],
@@ -27,7 +26,6 @@ return [
         'success'   => 'Calendar \':name\' removed.',
     ],
     'edit'          => [
-        'description'   => 'Update the calendar',
         'success'       => 'Calendar \':name\' updated.',
         'title'         => 'Edit Calendar :name',
         'today'         => 'Calendar date updated.',
@@ -40,7 +38,6 @@ return [
             'switch'            => 'Change choice',
         ],
         'create'    => [
-            'description'   => 'Create a calendar event',
             'success'       => 'Calendar event created.',
             'title'         => 'Add a Calendar Event to :name',
         ],
@@ -60,7 +57,6 @@ return [
         'success'   => 'Reminder \':event\' added to the calendar.',
     ],
     'events'        => [
-        'description'   => 'Events in this calendar.',
         'title'         => 'Calendar :name Events',
     ],
     'fields'        => [
@@ -118,7 +114,6 @@ return [
     ],
     'index'         => [
         'add'           => 'New Calendar',
-        'description'   => 'Manage the calendars of :name.',
         'header'        => 'Calendars of :name',
         'title'         => 'Calendars',
     ],
@@ -210,7 +205,6 @@ return [
         'weekdays'          => 'Number of days in a week',
     ],
     'show'          => [
-        'description'       => 'A detailed view of a calendar',
         'missing_details'   => 'This calendar couldn\'t be displayed. Calendars need at least 2 months and 2 weekdays to render properly.',
         'moon_full_moon'    => ':moon Full Moon',
         'moon_new_moon'     => ':moon New Moon',

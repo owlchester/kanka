@@ -5,7 +5,6 @@ return [
         'title' => ':name attribute templates',
     ],
     'create'                => [
-        'description'   => 'Create a new attribute template',
         'success'       => 'Attribute Template \':name\' created.',
         'title'         => 'New Attribute Template',
     ],
@@ -13,7 +12,6 @@ return [
         'success'   => 'Attribute Template \':name\' removed.',
     ],
     'edit'                  => [
-        'description'   => 'Edit an attribute template',
         'success'       => 'Attribute Template \':name\' updated.',
         'title'         => 'Edit Attribute Template :name',
     ],
@@ -29,7 +27,6 @@ return [
     ],
     'index'                 => [
         'add'           => 'New Attribute Template',
-        'description'   => 'Manage the attribute Templates of :name.',
         'header'        => 'Attribute Templates of :name',
         'title'         => 'Attribute Templates',
     ],
@@ -38,7 +35,6 @@ return [
         'name'                  => 'Name of the Attribute Template',
     ],
     'show'                  => [
-        'description'   => 'A detailed view of an Attribute Template',
         'tabs'          => [
             'attribute_templates'   => 'Attribute Templates',
             'attributes'            => 'Attributes',

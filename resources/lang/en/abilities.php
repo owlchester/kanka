@@ -43,7 +43,6 @@ return [
     ],
     'index'         => [
         'add'           => 'New Ability',
-        'description'   => 'Create Powers, Spells, Feats and more for your entities.',
         'header'        => 'Abilities of :name',
         'title'         => 'Abilities',
     ],

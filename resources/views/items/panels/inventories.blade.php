@@ -13,7 +13,6 @@
                 <th>{{ __('crud.fields.entity') }}</th>
                 <th class="hidden-sm">{{ __('entities/inventories.fields.amount') }}</th>
                 <th class="hidden-sm">{{ __('entities/inventories.fields.position') }}</th>
-                <th>&nbsp;</th>
             </tr>
             @foreach ($r as $inventory)
                 @if ($inventory->entity->child)
@@ -26,11 +25,6 @@
                     </td>
                     <td class="hidden-sm">{{ $inventory->amount }}</td>
                     <td class="hidden-sm">{{ $inventory->position }}</td>
-                    <td class="text-right">
-                        <a href="{{ route('entities.inventory', $inventory->entity) }}" class="btn btn-xs btn-primary">
-                            <i class="fa fa-eye" aria-hidden="true"></i> <span class="visible-sm">{{ __('crud.view') }}</span>
-                        </a>
-                    </td>
                 </tr>
                 @endif
             @endforeach
