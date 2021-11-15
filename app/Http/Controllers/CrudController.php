@@ -233,7 +233,6 @@ class CrudController extends Controller
         }
         $model = new $this->model;
         $templates = $this->buildAttributeTemplates($model->entityTypeId());
-        $campaign = CampaignLocalization::getCampaign();
 
         $params['ajax'] = request()->ajax();
         $params['tabPermissions'] = $this->tabPermissions && auth()->user()->can('permission', $model);
@@ -488,37 +487,6 @@ class CrudController extends Controller
 
         return redirect()->route($this->route . '.' . $subroute)
             ->with('success', __('general.success.deleted', ['name' => $model->name]));
-    }
-
-    /**
-     * Multiple delete of a model
-     *
-     * @param Request $request
-     */
-    public function deleteMany(Request $request)
-    {
-        $model = new $this->model;
-        $ids = $request->get('model', []);
-        if (!is_array($ids)) {
-            $ids = [$ids];
-        }
-
-        $count = 0;
-        foreach ($ids as $id) {
-            $entity = $model->findOrFail($id);
-            if ($this->authorize('delete', $entity)) {
-                $entity->delete();
-                $count++;
-            }
-        }
-
-        $subroute = 'index';
-        if (auth()->user()->defaultNested and \Illuminate\Support\Facades\Route::has($this->route . '.tree')) {
-            $subroute = 'tree';
-        }
-
-        return redirect()->route($this->route . '.' . $subroute)
-            ->with('success', trans_choice('crud.destroy_many.success', $count, ['count' => $count]));
     }
 
     /**
