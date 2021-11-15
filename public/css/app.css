@@ -1601,6 +1601,15 @@ summary {
   padding-right: 20px;
 }
 
+.entity-header .entity-header-text .entity-header-line {
+  background: rebeccapurple;
+  margin: 5px 0;
+}
+
+.entity-header .entity-header-line:nth-last-child(1 of .entity-header-text) {
+  border: 3px solid pink;
+}
+
 .entity-header .entity-header-image {
   position: relative;
 }
@@ -1634,7 +1643,12 @@ summary {
 }
 
 .entity-header .entity-header-text .entity-header-sub {
+  display: inline-block;
   padding-top: 12px;
+}
+
+.entity-header .entity-header-text .entity-header-sub .entity-header-sub-element {
+  display: inline-block;
 }
 
 .entity-header .entity-breadcrumb {
@@ -1695,9 +1709,8 @@ summary {
 }
 
 .entity-header .header-buttons {
-  margin-left: auto;
-  order: 2;
-  margin-top: -36px;
+  display: inline-block;
+  float: right;
 }
 
 .entity-header .entity-tags {
@@ -1708,10 +1721,6 @@ summary {
   margin-right: 6px;
   font-size: 80%;
   line-height: 20px;
-}
-
-.entity-header .entity-type {
-  display: none;
 }
 
 .entity-header.with-entity-banner .entity-header-image,
@@ -2408,14 +2417,6 @@ div.mce-fullscreen {
   border: solid 0.08em #eee;
   border-radius: 0.1em;
   padding: 0.2em 0.25em 0.15em;
-}
-
-.pull-right {
-  float: right;
-}
-
-.pull-left {
-  float: left;
 }
 
 .ra.pull-left {

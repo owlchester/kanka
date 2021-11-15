@@ -70,6 +70,20 @@
     display: flex;
     flex-direction: column;
     padding-right: 20px;
+
+
+
+
+    .entity-header-line {
+      background: rebeccapurple;
+      margin: 5px 0;
+    }
+
+
+  }
+
+  .entity-header-line:nth-last-child(1 of .entity-header-text)  {
+    border: 3px solid pink;
   }
 
   .entity-header-image {
@@ -108,7 +122,11 @@
     }
 
     .entity-header-sub {
+      display: inline-block;
       padding-top: 12px;
+      .entity-header-sub-element {
+        display: inline-block;
+      }
     }
   }
 
@@ -169,9 +187,10 @@
   }
 
   .header-buttons {
-    margin-left: auto;
-    order: 2;
-    margin-top: -36px;
+    display: inline-block;
+    float: right;
+    //margin-left: auto;
+    //order: 2;
   }
 
   .entity-tags {
@@ -185,7 +204,7 @@
   .entity-title {
   }
   .entity-type {
-    display: none;
+    //display: none;
   }
 
   .entity-header-locations {

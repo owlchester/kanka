@@ -5,7 +5,7 @@
 ?>
 
 @if (($campaign->enabled('locations') && $model->location) || ($campaign->enabled('races') && $model->race))
-    <div class="entity-header-sub pull-left">
+    <div class="entity-header-sub entity-header-line">
     @if ($campaign->enabled('locations') && $model->location)
         <div class="entity-header-sub-element">
             <i class="ra ra-tower" title="{{ __('crud.fields.location') }}" data-toggle="tooltip"></i>
