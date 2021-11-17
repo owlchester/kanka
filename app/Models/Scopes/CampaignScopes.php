@@ -50,7 +50,7 @@ trait CampaignScopes
      */
     public function scopeAdmin(Builder $query)
     {
-        return $query->visibility(Campaign::VISIBILITY_REVIEW);
+        return $query->with('users');
     }
 
     /**
@@ -60,7 +60,11 @@ trait CampaignScopes
      */
     public function scopeFeatured(Builder $query, $featured = true)
     {
-        return $query->where('is_featured', $featured);
+        return $query->where('is_featured', $featured)
+            ->where(function ($sub) {
+                return $sub->whereNull('featured_until')
+                    ->orWhereDate('featured_until', '>=', Carbon::today()->toDateString());
+            });
     }
 
     /**
@@ -137,7 +141,6 @@ trait CampaignScopes
     public function scopeFront(Builder $query)
     {
         return $query
-            ->with('boosts')
             ->where('visible_entity_count', '>', 0)
             ->orderBy('visible_entity_count', 'desc')
             ->orderBy('name', 'asc');

@@ -41,3 +41,7 @@ Route::post('users/{user}/booster-count', 'UserController@boosterCount')->name('
 Route::delete('users/{user}/patreon-unsync', 'UserController@removePatreon')->name('users.patreon_unsync');
 Route::delete('users/{user}/roles', 'UserController@removeRole')->name('users.roles.destroy');
 
+// Campaign admin
+
+Route::post('campaigns/{campaign}/featured', 'CampaignController@featured')->name('campaigns.featured');
+

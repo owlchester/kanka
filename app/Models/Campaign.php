@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\CampaignCache;
+use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\Concerns\Boosted;
 use App\Models\Relations\CampaignRelations;
@@ -40,6 +41,9 @@ use Illuminate\Support\Str;
  * @property integer $visible_entity_count
  * @property array $ui_settings
  * @property boolean $is_open
+ * @property boolean $is_featured
+ * @property Carbon $featured_until
+ * @property string $featured_reason
  * @property array|null $default_images
  * @property array|null $settings
  * @property Carbon $created_at
@@ -98,6 +102,7 @@ class Campaign extends MiscModel
         'ui_settings' => 'array',
         'default_images' => 'array',
         'settings' => 'array',
+        'featured_until' => 'date'
     ];
 
     /**
@@ -495,5 +500,16 @@ class Campaign extends MiscModel
             $user->notify($notification);
         }
         return $this;
+    }
+
+
+    public function getImageUrl(int $width = 400, int $height = null, string $field = 'image')
+    {
+        if (empty($this->$field)) {
+            return '';
+        }
+        return Img::resetCrop()
+            ->crop($width, (!empty($height) ? $height : $width))
+            ->url($this->$field);
     }
 }

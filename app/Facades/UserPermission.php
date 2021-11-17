@@ -11,10 +11,8 @@ use Illuminate\Support\Facades\Facade;
  * Used for the Entity object
  * @package App\Facades
  *
- * @method self|static user(User $user = null)
- * @method self|static action(string $action)
- *
  * @see \App\Services\UserPermission
+ * @mixin \App\Services\UserPermission
  */
 class UserPermission extends Facade
 {

@@ -13,10 +13,8 @@ use Illuminate\Support\Facades\Facade;
  * Class Img
  * @package App\Facades
  *
- * @method static string parse(Attribute $attribute)
- * @method static array randomAttribute(string $type, string $value)
- *
  * @see AttributeService
+ * @mixin AttributeService
  */
 class Attributes extends Facade
 {
