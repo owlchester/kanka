@@ -151,6 +151,7 @@ return array(
      * @type array
      */
     'exclude_groups' => array(
+        'banners',
         'reminders',
         'validation',
         'validation-inline',
@@ -160,6 +161,7 @@ return array(
         'admin.cache',
         'admin.community-events',
         'admin.community-votes',
+        'admin.admin-invites',
         'admin.home',
         'admin.patrons',
         'admin.referrals',

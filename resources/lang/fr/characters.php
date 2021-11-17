@@ -7,26 +7,22 @@ return [
         'add_personality'   => 'Ajouter un trait de personnalité',
     ],
     'conversations' => [
-        'description'   => 'Conversations auxquelles le personnage participe.',
-        'title'         => 'Conversations du personnage :name',
+        'title' => 'Conversations du personnage :name',
     ],
     'create'        => [
-        'description'   => 'Créer une nouvelle personne',
-        'success'       => 'Personne \':name\' créée.',
-        'title'         => 'Créer une nouvelle personne',
+        'success'   => 'Personne \':name\' créée.',
+        'title'     => 'Créer une nouvelle personne',
     ],
     'destroy'       => [
         'success'   => 'Personne \':name\' supprimée.',
     ],
     'dice_rolls'    => [
-        'description'   => 'Jet de dés attribué au personnage.',
-        'hint'          => 'Les jets de dés peuvent être assignés à des personnages.',
-        'title'         => 'Jet de dés de :name',
+        'hint'  => 'Les jets de dés peuvent être assignés à des personnages.',
+        'title' => 'Jet de dés de :name',
     ],
     'edit'          => [
-        'description'   => 'Modifier une personne',
-        'success'       => 'Personne \':name\' modifiée.',
-        'title'         => 'Modifier Personne :name',
+        'success'   => 'Personne \':name\' modifiée.',
+        'title'     => 'Modifier Personne :name',
     ],
     'fields'        => [
         'age'                       => 'Age',
@@ -56,44 +52,37 @@ return [
         'personality_visible'       => 'Les traits de personnalités sont visibles pour tous.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'random'    => 'Nouvelle Personne Aléatoire',
         ],
-        'add'           => 'Nouvelle Personne',
-        'description'   => 'Gérer les personnes de :name.',
-        'header'        => 'Personnes de :name',
-        'title'         => 'Personnes',
+        'add'       => 'Nouvelle Personne',
+        'header'    => 'Personnes de :name',
+        'title'     => 'Personnes',
     ],
     'items'         => [
-        'description'   => 'Objets tenus ou appartenant au personnage.',
-        'hint'          => 'Des objets peuvent être assignés à des personnages et seront affichés ici.',
-        'title'         => 'Objets de :name',
+        'hint'  => 'Des objets peuvent être assignés à des personnages et seront affichés ici.',
+        'title' => 'Objets de :name',
     ],
     'journals'      => [
-        'description'   => 'Journaux dont l\'auteur est le personnage.',
-        'title'         => 'Journaux de :name',
+        'title' => 'Journaux de :name',
     ],
     'maps'          => [
-        'description'   => 'Visualisations des relations du personnage.',
-        'title'         => 'Carte relationnelle de :name',
+        'title' => 'Carte relationnelle de :name',
     ],
     'organisations' => [
         'actions'       => [
             'add'   => 'Nouvelle organisation',
         ],
         'create'        => [
-            'description'   => 'Associer une organisation à une personne',
-            'success'       => 'Personne ajoutée à l\'organisation.',
-            'title'         => 'Nouvelle Organisation pour :name',
+            'success'   => 'Personne ajoutée à l\'organisation.',
+            'title'     => 'Nouvelle Organisation pour :name',
         ],
-        'description'   => 'Organisations dont le personnage est membre.',
         'destroy'       => [
             'success'   => 'Organisation de personne supprimée.',
         ],
         'edit'          => [
-            'description'   => 'Modifier l\'organisation d\'une personne',
-            'success'       => 'Organisation de personne modifiée.',
-            'title'         => 'Modifier l\'Organisation pour :name',
+            'success'   => 'Organisation de personne modifiée.',
+            'title'     => 'Modifier l\'Organisation pour :name',
         ],
         'fields'        => [
             'organisation'  => 'Organisation',
@@ -124,12 +113,10 @@ return [
         'type'              => 'PNJ, Joueurs, Autre',
     ],
     'quests'        => [
-        'description'   => 'Quêtes auxquelles le personnage est lié.',
-        'helpers'       => [
+        'helpers'   => [
             'quest_giver'   => 'Quêtes dont le personnage est l\'auteur.',
             'quest_member'  => 'Quêtes dont le personnage est membre.',
         ],
-        'title'         => 'Quêtes de :name',
     ],
     'sections'      => [
         'appearance'    => 'Physique',
@@ -137,18 +124,12 @@ return [
         'personality'   => 'Personnalité',
     ],
     'show'          => [
-        'description'   => 'Détail d\'une personne',
-        'tabs'          => [
-            'conversations' => 'Conversations',
-            'dice_rolls'    => 'Jets de dés',
-            'items'         => 'Objets',
-            'journals'      => 'Journaux',
+        'tabs'  => [
             'map'           => 'Carte Relationnelle',
             'organisations' => 'Organisations',
             'personality'   => 'Personnalité',
-            'quests'        => 'Quêtes',
         ],
-        'title'         => 'Personne :name',
+        'title' => 'Personne :name',
     ],
     'warnings'      => [
         'personality_hidden'    => 'Tu n\'as pas le droit de modifier les traits de personnalité de ce personnage.',

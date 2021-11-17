@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Créer un nouveau journal',
-        'success'       => 'Journal créé.',
-        'title'         => 'Nouveau Journal',
+        'success'   => 'Journal créé.',
+        'title'     => 'Nouveau Journal',
     ],
     'destroy'       => [
         'success'   => 'Journal supprimé.',
@@ -29,10 +28,9 @@ return [
         'nested_without'=> 'Affichage des journaux sans parent. Cliquer sur une rangée pour afficher les journaux enfants.',
     ],
     'index'         => [
-        'add'           => 'Nouveau Journal',
-        'description'   => 'Gérer les journaux de :name.',
-        'header'        => 'Journaux de :name',
-        'title'         => 'Journaux',
+        'add'       => 'Nouveau Journal',
+        'header'    => 'Journaux de :name',
+        'title'     => 'Journaux',
     ],
     'journals'      => [
         'title' => 'Sous-journaux du journal :name',
@@ -45,10 +43,9 @@ return [
         'type'      => 'Session, One Shot, Brouillon',
     ],
     'show'          => [
-        'description'   => 'Détail d\'un journal',
-        'tabs'          => [
+        'tabs'  => [
             'journals'  => 'Journaux',
         ],
-        'title'         => 'Journal :name',
+        'title' => 'Journal :name',
     ],
 ];

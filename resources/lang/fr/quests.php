@@ -3,17 +3,15 @@
 return [
     'characters'    => [],
     'create'        => [
-        'description'   => 'Créer une nouvelle quête',
-        'success'       => 'Quête \':name\' créée.',
-        'title'         => 'Ajouter une quête',
+        'success'   => 'Quête \':name\' créée.',
+        'title'     => 'Ajouter une quête',
     ],
     'destroy'       => [
         'success'   => 'Quête \':name\' supprimée.',
     ],
     'edit'          => [
-        'description'   => 'Modifier une quête',
-        'success'       => 'Quête \':name\' modifiée.',
-        'title'         => 'Modifier Quête :name',
+        'success'   => 'Quête \':name\' modifiée.',
+        'title'     => 'Modifier Quête :name',
     ],
     'elements'      => [
         'create'    => [
@@ -56,10 +54,9 @@ return [
         'quests'    => 'Un réseau de quêtes liées peut être créé à l\'aide du champ Quête Parentale.',
     ],
     'index'         => [
-        'add'           => 'Nouvelle Quête',
-        'description'   => 'Gérer les quêtes de :name.',
-        'header'        => 'Quêtes de :name',
-        'title'         => 'Quêtes',
+        'add'       => 'Nouvelle Quête',
+        'header'    => 'Quêtes de :name',
+        'title'     => 'Quêtes',
     ],
     'placeholders'  => [
         'date'  => 'Date réelle de la quête',
@@ -69,15 +66,12 @@ return [
         'type'  => 'Principale, side quest, personnage',
     ],
     'show'          => [
-        'actions'       => [
+        'actions'   => [
             'add_element'   => 'Ajouter un élément',
         ],
-        'description'   => 'Détail de la quête',
-        'tabs'          => [
-            'elements'      => 'Éléments',
-            'information'   => 'Information',
-            'quests'        => 'Quêtes',
+        'tabs'      => [
+            'elements'  => 'Éléments',
         ],
-        'title'         => 'Quête :name',
+        'title'     => 'Quête :name',
     ],
 ];

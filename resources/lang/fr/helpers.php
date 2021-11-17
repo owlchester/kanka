@@ -72,6 +72,17 @@ return [
     ],
     'public'            => 'Une vidéo sur Youtube explique comment fonctionne les campagnes publiques.',
     'title'             => 'Aides',
+    'troubleshooting'   => [
+        'description'       => 'Un membre de l\'équipe Kanka t\'as envoyé vers cette page. Sélectionnes une campagne dans la liste pour générer un jeton. Ce jeton nous permettra de rejoindre la campagne en tant qu\'administrateur.',
+        'errors'            => [
+            'token_exists'  => 'Un jeton existe déjà pour :campaign.',
+        ],
+        'save_btn'          => 'Générer le jeton',
+        'select_campaign'   => 'Sélectionner une campagne',
+        'subtitle'          => 'J\'ai besoin d\'aide!',
+        'success'           => 'Copies le jeton et envois le à un membre de l\'équipe de Kanka.',
+        'title'             => 'Dépannage',
+    ],
     'widget-filters'    => [
         'description'   => 'Les entités affichées peuvent être filtrées en indiquant une liste de champs et leur valeur. Par example, utiliser :example pour filter les personnages morts et de type NPC.',
         'link'          => 'filtres de widget',

@@ -2,20 +2,18 @@
 
 return [
     'children'      => [
-        'actions'       => [
+        'actions'   => [
             'add'   => 'Ajouter une nouvelle étiquette',
         ],
-        'create'        => [
+        'create'    => [
             'success'   => 'L\'étiquette :name a été ajoutée à l\'entité.',
             'title'     => 'Ajouter une nouvelle étiquette pour :name',
         ],
-        'description'   => 'Entités appartenant à l\'étiquette',
-        'title'         => 'Enfants de l\'étiquette :name',
+        'title'     => 'Enfants de l\'étiquette :name',
     ],
     'create'        => [
-        'description'   => 'Ajouter une nouvelle étiquette',
-        'success'       => 'Nouvelle étiquette \':name\' ajoutée.',
-        'title'         => 'Nouvelle étiquette',
+        'success'   => 'Nouvelle étiquette \':name\' ajoutée.',
+        'title'     => 'Nouvelle étiquette',
     ],
     'destroy'       => [
         'success'   => 'L\'étiquette \':name\' a été retirée.',
@@ -41,13 +39,12 @@ return [
         'tag'       => 'Affichées ci-dessous sont toutes les étiquettes enfants de cette étiquette.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Mode Exploration',
         ],
-        'add'           => 'Nouvelle étiquette',
-        'description'   => 'Gérer les étiquettes pour :name.',
-        'header'        => 'Les étiquettes dans :name',
-        'title'         => 'Étiquettes',
+        'add'       => 'Nouvelle étiquette',
+        'header'    => 'Les étiquettes dans :name',
+        'title'     => 'Étiquettes',
     ],
     'new_tag'       => 'Nouvelle étiquette',
     'placeholders'  => [
@@ -56,16 +53,13 @@ return [
         'type'  => 'Légende, Guerres, Histoire, Religion',
     ],
     'show'          => [
-        'description'   => 'Vue détaillée de l\'étiquette',
-        'tabs'          => [
-            'children'      => 'Enfants',
-            'information'   => 'Information',
-            'tags'          => 'Étiquettes',
+        'tabs'  => [
+            'children'  => 'Enfants',
+            'tags'      => 'Étiquettes',
         ],
-        'title'         => 'Étiquette :name',
+        'title' => 'Étiquette :name',
     ],
     'tags'          => [
-        'description'   => 'Enfants d\'étiquette',
-        'title'         => 'Étiquette :name',
+        'title' => 'Étiquette :name',
     ],
 ];

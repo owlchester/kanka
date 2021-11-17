@@ -2,15 +2,15 @@
 
 return [
     'create'        => [
-        'success'       => 'Conversation \':name\' created.',
-        'title'         => 'New Conversation',
+        'success'   => 'Conversation \':name\' created.',
+        'title'     => 'New Conversation',
     ],
     'destroy'       => [
         'success'   => 'Conversation \':name\' removed.',
     ],
     'edit'          => [
-        'success'       => 'Conversation \':name\' updated.',
-        'title'         => 'Conversation :name',
+        'success'   => 'Conversation \':name\' updated.',
+        'title'     => 'Conversation :name',
     ],
     'fields'        => [
         'is_closed'     => 'Closed',
@@ -24,9 +24,9 @@ return [
         'participants'  => 'Please add participants to your conversation by pressing on the :icon icon on the upper-right.',
     ],
     'index'         => [
-        'add'           => 'New Conversation',
-        'header'        => 'Conversations in :name',
-        'title'         => 'Conversations',
+        'add'       => 'New Conversation',
+        'header'    => 'Conversations in :name',
+        'title'     => 'Conversations',
     ],
     'messages'      => [
         'destroy'       => [
@@ -39,22 +39,22 @@ return [
         ],
     ],
     'participants'  => [
-        'create'        => [
+        'create'    => [
             'success'   => 'Participant :entity added to the conversation.',
         ],
-        'destroy'       => [
+        'destroy'   => [
             'success'   => 'Participant :entity removed from the conversation.',
         ],
-        'modal'         => 'Participants',
-        'title'         => 'Participants of :name',
+        'modal'     => 'Participants',
+        'title'     => 'Participants of :name',
     ],
     'placeholders'  => [
         'name'  => 'Name of the conversation',
         'type'  => 'In Game, Prep, Plot',
     ],
     'show'          => [
-        'is_closed'     => 'Conversation is closed.',
-        'title'         => 'Conversation :name',
+        'is_closed' => 'Conversation is closed.',
+        'title'     => 'Conversation :name',
     ],
     'tabs'          => [
         'conversation'  => 'Conversation',

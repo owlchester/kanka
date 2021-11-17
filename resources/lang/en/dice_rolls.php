@@ -2,16 +2,16 @@
 
 return [
     'create'        => [
-        'success'       => 'Dice Roll \':name\' created.',
-        'title'         => 'New Dice Roll',
+        'success'   => 'Dice Roll \':name\' created.',
+        'title'     => 'New Dice Roll',
     ],
     'destroy'       => [
         'dice_roll' => 'Dice roll removed.',
         'success'   => 'Dice Roll \':name\' removed.',
     ],
     'edit'          => [
-        'success'       => 'Dice Roll \':name\' updated.',
-        'title'         => 'Edit Dice Roll :name',
+        'success'   => 'Dice Roll \':name\' updated.',
+        'title'     => 'Edit Dice Roll :name',
     ],
     'fields'        => [
         'created_at'    => 'Rolled At',
@@ -24,13 +24,13 @@ return [
         'parameters'    => 'What are my dice options?',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'dice'      => 'Dice Rolls',
             'results'   => 'Results',
         ],
-        'add'           => 'New Dice Roll',
-        'header'        => 'Dice Rolls of :name',
-        'title'         => 'Dice Rolls',
+        'add'       => 'New Dice Roll',
+        'header'    => 'Dice Rolls of :name',
+        'title'     => 'Dice Rolls',
     ],
     'placeholders'  => [
         'dice_roll' => 'Dice Roll',
@@ -51,9 +51,9 @@ return [
         'success'   => 'Dice rolled.',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'results'   => 'Results',
         ],
-        'title'         => 'Dice Roll :name',
+        'title' => 'Dice Roll :name',
     ],
 ];

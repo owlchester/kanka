@@ -22,9 +22,8 @@ TEXT
         'success'   => 'Campagne supprimée.',
     ],
     'edit'                              => [
-        'description'   => 'Modifier la campagne',
-        'success'       => 'Campagne modifiée.',
-        'title'         => 'Modifier la campagne :campaign',
+        'success'   => 'Campagne modifiée.',
+        'title'     => 'Modifier la campagne :campaign',
     ],
     'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
@@ -39,7 +38,6 @@ TEXT
         'unknown_id'    => 'Campagne inconnue.',
     ],
     'export'                            => [
-        'description'       => 'Exporter la campagne.',
         'errors'            => [
             'limit' => 'Nombre d\'exports maximal par jour excédé pour cette campagne.',
         ],
@@ -115,7 +113,6 @@ TEXT
                 'create'    => 'Créer une invitation',
                 'send'      => 'Envoyer une invitation',
             ],
-            'description'   => 'Invite tes amis à ta campagne',
             'success'       => 'Invitation envoyée.',
             'success_link'  => 'Liens créé: :link',
             'title'         => 'Invite un ami à la campagne',
@@ -176,8 +173,7 @@ TEXT
             'title' => 'Ajouter un membre à la campagne',
         ],
         'edit'                  => [
-            'description'   => 'Modifier un membre de la campagne',
-            'title'         => 'Modifier membre :name',
+            'title' => 'Modifier membre :name',
         ],
         'fields'                => [
             'joined'        => 'Rejoint',
@@ -253,7 +249,6 @@ TEXT
             'success'   => 'Rôle :name créé.',
             'title'     => 'Créer un nouveau rôle pour :name',
         ],
-        'description'   => 'Gestion des membres de la campagne',
         'destroy'       => [
             'success'   => 'Rôle :name supprimé.',
         ],
@@ -317,8 +312,7 @@ TEXT
             'name'  => 'Nom du rôle',
         ],
         'show'          => [
-            'description'   => 'Membres et Permissions d\'un rôle de campagne',
-            'title'         => 'Rôles de campagne',
+            'title' => 'Rôles de campagne',
         ],
         'title'         => 'Rôles de la campagne :name',
         'types'         => [
@@ -344,16 +338,15 @@ TEXT
         ],
     ],
     'settings'                          => [
-        'actions'       => [
+        'actions'   => [
             'enable'    => 'Activer',
         ],
-        'boosted'       => 'Cette fonctionnalité est actuellement en beta et seulement accessible pour les :boosted.',
-        'description'   => 'Activer ou désactiver des modules de la campagne.',
-        'edit'          => [
+        'boosted'   => 'Cette fonctionnalité est actuellement en beta et seulement accessible pour les :boosted.',
+        'edit'      => [
             'success'   => 'Campagne modifiée.',
         ],
-        'helper'        => 'Tu peux facilement modifier les éléments disponibles pour la campagne. Les éléments déjà créés seront simplement cachés',
-        'helpers'       => [
+        'helper'    => 'Tu peux facilement modifier les éléments disponibles pour la campagne. Les éléments déjà créés seront simplement cachés',
+        'helpers'   => [
             'abilities'     => 'Créer des pouvoirs, compétences, sorts, etc. qui peuvent être assignés aux entités.',
             'calendars'     => 'Un endroit pour définir les calendriers de ton monde.',
             'characters'    => 'Les personnages de ton monde.',
@@ -374,21 +367,20 @@ TEXT
             'tags'          => 'Chaque entité peut avoir plusieurs étiquettes. Les étiquettes peuvent appartenir à d\'autres étiquettes.',
             'timelines'     => 'Représenter l\'histoire du monde de manière visuelle avec des chronologies.',
         ],
-        'title'         => 'Modules de la campagne :name',
+        'title'     => 'Modules de la campagne :name',
     ],
     'show'                              => [
-        'actions'       => [
+        'actions'   => [
             'boost' => 'Booster la campagne',
             'edit'  => 'Modifier la campagne',
             'leave' => 'Quitter la campagne',
         ],
-        'description'   => 'Détail d\'une campagne',
-        'menus'         => [
+        'menus'     => [
             'configuration'     => 'Configuration',
             'overview'          => 'Vue d\'ensemble',
             'user_management'   => 'Gestion d\'utilisateur',
         ],
-        'tabs'          => [
+        'tabs'      => [
             'achievements'      => 'Accomplissements',
             'applications'      => 'Applications',
             'campaign'          => 'Campagne',
@@ -396,14 +388,13 @@ TEXT
             'export'            => 'Export',
             'information'       => 'Information',
             'members'           => 'Membres',
-            'menu'              => 'Menu',
             'plugins'           => 'Plugins',
             'recovery'          => 'Récupération',
             'roles'             => 'Rôles',
             'settings'          => 'Modules',
             'styles'            => 'Thèmage',
         ],
-        'title'         => 'Campagne :name',
+        'title'     => 'Campagne :name',
     ],
     'superboosted'                      => [
         'gallery'   => [

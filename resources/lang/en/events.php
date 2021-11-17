@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Event \':name\' created.',
-        'title'         => 'New Event',
+        'success'   => 'Event \':name\' created.',
+        'title'     => 'New Event',
     ],
     'destroy'       => [
         'success'   => 'Event \':name\' removed.',
@@ -31,9 +31,9 @@ return [
         'nested_without'=> 'Displaying all events that don\'t have a parent event. Click on a row to see the children events.',
     ],
     'index'         => [
-        'add'           => 'New Event',
-        'header'        => 'Events of :name',
-        'title'         => 'Events',
+        'add'       => 'New Event',
+        'header'    => 'Events of :name',
+        'title'     => 'Events',
     ],
     'placeholders'  => [
         'date'      => 'A date for your event',
@@ -42,10 +42,10 @@ return [
         'type'      => 'Ceremony, Festival, Disaster, Battle, Birth',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'events'    => 'Events',
         ],
-        'title'         => 'Event :name',
+        'title' => 'Event :name',
     ],
     'tabs'          => [
         'calendars' => 'Calendar Entries',

@@ -240,12 +240,12 @@ return [
         'visibility'            => 'Si la visibilité est définie à Admin, seuls les membres du rôle Admin de la campagne verront ceci. La visibilité "Soi-même" signifie que tu es le seul à le voir.',
     ],
     'history'                   => [
-        'created'       => 'Créé par <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'created_date'  => 'Créé <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'unknown'       => 'Inconnu',
-        'updated'       => 'Dernière modification par <strong>:name</strong> <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'updated_date'  => 'Dernière modification <span data-toggle="tooltip" title=":realdate">:date</span>',
-        'view'          => 'Visionner les journaux de l\'entité',
+        'created_clean'         => 'Créé par :name :date',
+        'created_date_clean'    => 'Créé :date',
+        'unknown'               => 'Inconnu',
+        'updated_clean'         => 'Dernière modification par :name :date',
+        'updated_date_clean'    => 'Dernière modification :date',
+        'view'                  => 'Visionner les journaux de l\'entité',
     ],
     'image'                     => [
         'error' => 'Impossible de récupérer l\'image demandée. Il est possible que le site web ne nous permet pas de télécharger des images (cela arrive par example avec squarespace et DeviantArt), ou le lien n\'est plus valide.',

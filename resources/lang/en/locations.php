@@ -2,11 +2,11 @@
 
 return [
     'characters'    => [
-        'title'         => 'Location :name Characters',
+        'title' => 'Location :name Characters',
     ],
     'create'        => [
-        'success'       => 'Location \':name\' created.',
-        'title'         => 'New Location',
+        'success'   => 'Location \':name\' created.',
+        'title'     => 'New Location',
     ],
     'destroy'       => [
         'success'   => 'Location \':name\' removed.',
@@ -16,7 +16,7 @@ return [
         'title'     => 'Edit Location :name',
     ],
     'events'        => [
-        'title'         => 'Location :name Events',
+        'title' => 'Location :name Events',
     ],
     'families'      => [
         'title' => 'Location :name Families',
@@ -46,21 +46,21 @@ return [
         'is_map_private'    => 'A private map will only be visible to members of the campaign\'s "Admin" role.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Nested View',
         ],
-        'add'           => 'New Location',
-        'header'        => 'Locations in :name',
-        'title'         => 'Locations',
+        'add'       => 'New Location',
+        'header'    => 'Locations in :name',
+        'title'     => 'Locations',
     ],
     'items'         => [
-        'title'         => 'Location :name Items',
+        'title' => 'Location :name Items',
     ],
     'journals'      => [
-        'title'         => 'Location :name Journals',
+        'title' => 'Location :name Journals',
     ],
     'locations'     => [
-        'title'         => 'Location :name Locations',
+        'title' => 'Location :name Locations',
     ],
     'map'           => [
         'actions'   => [
@@ -205,7 +205,7 @@ return [
         'type'      => 'City, Kingdom, Ruin',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Characters',
             'events'        => 'Events',
             'families'      => 'Families',
@@ -217,6 +217,6 @@ return [
             'organisations' => 'Organisations',
             'quests'        => 'Quests',
         ],
-        'title'         => 'Location :name',
+        'title' => 'Location :name',
     ],
 ];

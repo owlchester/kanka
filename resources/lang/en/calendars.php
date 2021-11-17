@@ -19,16 +19,16 @@ return [
         'is_recurring'  => 'Takes place every year',
     ],
     'create'        => [
-        'success'       => 'Calendar \':name\' created.',
-        'title'         => 'New Calendar',
+        'success'   => 'Calendar \':name\' created.',
+        'title'     => 'New Calendar',
     ],
     'destroy'       => [
         'success'   => 'Calendar \':name\' removed.',
     ],
     'edit'          => [
-        'success'       => 'Calendar \':name\' updated.',
-        'title'         => 'Edit Calendar :name',
-        'today'         => 'Calendar date updated.',
+        'success'   => 'Calendar \':name\' updated.',
+        'title'     => 'Edit Calendar :name',
+        'today'     => 'Calendar date updated.',
     ],
     'event'         => [
         'actions'   => [
@@ -38,8 +38,8 @@ return [
             'switch'            => 'Change choice',
         ],
         'create'    => [
-            'success'       => 'Calendar event created.',
-            'title'         => 'Add a Calendar Event to :name',
+            'success'   => 'Calendar event created.',
+            'title'     => 'Add a Calendar Event to :name',
         ],
         'destroy'   => 'Reminder removed from calendar \':name\'.',
         'edit'      => [
@@ -57,7 +57,7 @@ return [
         'success'   => 'Reminder \':event\' added to the calendar.',
     ],
     'events'        => [
-        'title'         => 'Calendar :name Events',
+        'title' => 'Calendar :name Events',
     ],
     'fields'        => [
         'calendar'              => 'Parent Calendar',
@@ -113,9 +113,9 @@ return [
         'years'             => 'Some years are so important that they have their own name.',
     ],
     'index'         => [
-        'add'           => 'New Calendar',
-        'header'        => 'Calendars of :name',
-        'title'         => 'Calendars',
+        'add'       => 'New Calendar',
+        'header'    => 'Calendars of :name',
+        'title'     => 'Calendars',
     ],
     'layouts'       => [
         'month' => 'Month',

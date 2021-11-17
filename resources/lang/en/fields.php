@@ -1,26 +1,26 @@
 <?php
 
 return [
-    'tooltip' => [
-        'name' => 'Tooltip',
-        'description' => 'Replace the automatically generated tooltip of the entity with the following text.',
-        'boosted-description' => 'Replace the automatically generated tooltip of the entity with a :boosted-campaign.',
+    'gallery'           => [
+        'placeholder'   => 'Choose an image from the campaign gallery',
     ],
-    'header-image' => [
-        'title' => 'Header Image',
-        'description' => 'Display a background image in the entity\'s header. For best results, use an image which is very large.',
-        'boosted-description' => 'Display a background image in the entity\'s header with a :boosted-campaign.',
+    'gallery-header'    => [
+        'boosted-description'   => 'Display a header image from the campaign gallery with a :superboosted-campaign.',
+        'description'           => 'If the entity has no header image, display an image from the campaign gallery instead.',
     ],
-    'gallery-header' => [
-        'description' => 'If the entity has no header image, display an image from the campaign gallery instead.',
-        'boosted-description' => 'Display a header image from the campaign gallery with a :superboosted-campaign.',
+    'gallery-image'     => [
+        'boosted-description'   => 'Display an image from the campaign gallery with a :superboosted-campaign.',
+        'description'           => 'If the entity has no image, display an image from the campaign gallery instead.',
+        'title'                 => 'Gallery Image',
     ],
-    'gallery-image' => [
-        'title' => 'Gallery Image',
-        'description' => 'If the entity has no image, display an image from the campaign gallery instead.',
-        'boosted-description' => 'Display an image from the campaign gallery with a :superboosted-campaign.',
+    'header-image'      => [
+        'boosted-description'   => 'Display a background image in the entity\'s header with a :boosted-campaign.',
+        'description'           => 'Display a background image in the entity\'s header. For best results, use an image which is very large.',
+        'title'                 => 'Header Image',
     ],
-    'gallery' => [
-        'placeholder' => 'Choose an image from the campaign gallery',
-    ]
+    'tooltip'           => [
+        'boosted-description'   => 'Replace the automatically generated tooltip of the entity with a :boosted-campaign.',
+        'description'           => 'Replace the automatically generated tooltip of the entity with the following text.',
+        'name'                  => 'Tooltip',
+    ],
 ];

@@ -7,22 +7,22 @@ return [
         'add_personality'   => 'Add a personality',
     ],
     'conversations' => [
-        'title'         => 'Character :name Conversations',
+        'title' => 'Character :name Conversations',
     ],
     'create'        => [
-        'success'       => 'Character \':name\' created.',
-        'title'         => 'New Character',
+        'success'   => 'Character \':name\' created.',
+        'title'     => 'New Character',
     ],
     'destroy'       => [
         'success'   => 'Character \':name\' removed.',
     ],
     'dice_rolls'    => [
-        'hint'          => 'Dice rolls can be assigned to a character for in game usage.',
-        'title'         => 'Character :name Dice Rolls',
+        'hint'  => 'Dice rolls can be assigned to a character for in game usage.',
+        'title' => 'Character :name Dice Rolls',
     ],
     'edit'          => [
-        'success'       => 'Character \':name\' updated.',
-        'title'         => 'Edit Character :name',
+        'success'   => 'Character \':name\' updated.',
+        'title'     => 'Edit Character :name',
     ],
     'fields'        => [
         'age'                       => 'Age',
@@ -52,37 +52,37 @@ return [
         'personality_visible'       => 'Personality traits of this character are visible to all.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'random'    => 'New Random Character',
         ],
-        'add'           => 'New Character',
-        'header'        => 'Characters in :name',
-        'title'         => 'Characters',
+        'add'       => 'New Character',
+        'header'    => 'Characters in :name',
+        'title'     => 'Characters',
     ],
     'items'         => [
-        'hint'          => 'Items can be assigned to characters and will be displayed here.',
-        'title'         => 'Character :name Items',
+        'hint'  => 'Items can be assigned to characters and will be displayed here.',
+        'title' => 'Character :name Items',
     ],
     'journals'      => [
-        'title'         => 'Character :name Journals',
+        'title' => 'Character :name Journals',
     ],
     'maps'          => [
-        'title'         => 'Character :name Relation Map',
+        'title' => 'Character :name Relation Map',
     ],
     'organisations' => [
         'actions'       => [
             'add'   => 'Add organisation',
         ],
         'create'        => [
-            'success'       => 'Character added to organisation.',
-            'title'         => 'New Organisation for :name',
+            'success'   => 'Character added to organisation.',
+            'title'     => 'New Organisation for :name',
         ],
         'destroy'       => [
             'success'   => 'Character organisation removed.',
         ],
         'edit'          => [
-            'success'       => 'Character organisation updated.',
-            'title'         => 'Update Organisation for :name',
+            'success'   => 'Character organisation updated.',
+            'title'     => 'Update Organisation for :name',
         ],
         'fields'        => [
             'organisation'  => 'Organisation',
@@ -113,7 +113,7 @@ return [
         'type'              => 'NPC, Player Character, Deity',
     ],
     'quests'        => [
-        'helpers'       => [
+        'helpers'   => [
             'quest_giver'   => 'Quests that the character is a quest giver of.',
             'quest_member'  => 'Quests that the character is a member of.',
         ],
@@ -124,12 +124,12 @@ return [
         'personality'   => 'Personality',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'map'           => 'Relation Map',
             'organisations' => 'Organisations',
             'personality'   => 'Personality',
         ],
-        'title'         => 'Character :name',
+        'title' => 'Character :name',
     ],
     'warnings'      => [
         'personality_hidden'    => 'You aren\'t allowed to edit personality traits on this character.',

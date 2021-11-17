@@ -54,9 +54,6 @@ return [
         'title'     => 'Réorganiser les liens de menu',
     ],
     'show'              => [
-        'tabs'  => [
-            'information'   => 'Information',
-        ],
         'title' => 'Lien de menu :name',
     ],
 ];

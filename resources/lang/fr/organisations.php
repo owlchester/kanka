@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Créer une nouvelle organisation',
-        'success'       => 'Organisation \':name\' créée.',
-        'title'         => 'Nouvelle Organisation',
+        'success'   => 'Organisation \':name\' créée.',
+        'title'     => 'Nouvelle Organisation',
     ],
     'destroy'       => [
         'success'   => 'Organisation \':name\' supprimée.',
@@ -29,19 +28,17 @@ return [
         'nested_without'=> 'Affichage des organisations sans parent. Cliquer sur une rangées pour afficher les organisations enfants.',
     ],
     'index'         => [
-        'add'           => 'Nouvelle Organisation',
-        'description'   => 'Gérer les organisation de :name.',
-        'header'        => 'Organisations de :name',
-        'title'         => 'Organisations',
+        'add'       => 'Nouvelle Organisation',
+        'header'    => 'Organisations de :name',
+        'title'     => 'Organisations',
     ],
     'members'       => [
         'actions'       => [
             'add'   => 'Ajouter un membre',
         ],
         'create'        => [
-            'description'   => 'Ajouter un membre à l\'organisation',
-            'success'       => 'Membre ajouté à l\'organisation :name.',
-            'title'         => 'Nouveau membre pour :name',
+            'success'   => 'Membre ajouté à l\'organisation :name.',
+            'title'     => 'Nouveau membre pour :name',
         ],
         'destroy'       => [
             'success'   => 'Membre retiré de l\'organisation',
@@ -73,17 +70,13 @@ return [
         'name'      => 'Nom de l\'organisation',
         'type'      => 'Culte, Bande, Rebellion',
     ],
-    'quests'        => [
-        'description'   => 'Quêtes dont l\'organisation fait partie.',
-        'title'         => 'Organisation :name Quêtes',
-    ],
+    'quests'        => [],
     'show'          => [
-        'description'   => 'Détail de l\'organisation',
-        'tabs'          => [
+        'tabs'  => [
             'organisations' => 'Organisations',
             'quests'        => 'Quêtes',
             'relations'     => 'Relations',
         ],
-        'title'         => 'Organisation :name',
+        'title' => 'Organisation :name',
     ],
 ];

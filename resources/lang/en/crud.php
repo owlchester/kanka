@@ -240,8 +240,8 @@ return [
         'visibility'            => 'Setting the visibility to admin means only members in the Admin campaign role can view this. Setting it to self means only you can view this.',
     ],
     'history'                   => [
-        'created_date_clean'    => 'Created :date',
         'created_clean'         => 'Created by :name :date',
+        'created_date_clean'    => 'Created :date',
         'unknown'               => 'Unknown',
         'updated_clean'         => 'Last modified by :name :date',
         'updated_date_clean'    => 'Last modified :date',

@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Créer un nouvel objet',
-        'success'       => 'Objet \':name\' créé.',
-        'title'         => 'Ajouter un objet',
+        'success'   => 'Objet \':name\' créé.',
+        'title'     => 'Ajouter un objet',
     ],
     'destroy'       => [
         'success'   => 'Objet \':name\' supprimé.',
@@ -24,14 +23,12 @@ return [
         'type'      => 'Type',
     ],
     'index'         => [
-        'add'           => 'Nouvel Objet',
-        'description'   => 'Gestion des objets de :name.',
-        'header'        => 'Objets de :name',
-        'title'         => 'Objets',
+        'add'       => 'Nouvel Objet',
+        'header'    => 'Objets de :name',
+        'title'     => 'Objets',
     ],
     'inventories'   => [
-        'description'   => 'Inventaires dans lesquels cet objet est.',
-        'title'         => 'Inventaires de l\'objet :name',
+        'title' => 'Inventaires de l\'objet :name',
     ],
     'placeholders'  => [
         'character' => 'Choix dun personnage',
@@ -41,17 +38,11 @@ return [
         'size'      => 'Taille, poids, dimensions.',
         'type'      => 'Arme, Potion, Coffre',
     ],
-    'quests'        => [
-        'description'   => 'Quêtes dont l\'objet fait partie.',
-        'title'         => 'Quêtes de l\'objet :name',
-    ],
+    'quests'        => [],
     'show'          => [
-        'description'   => 'Détail d\'un objet',
-        'tabs'          => [
-            'information'   => 'Information',
+        'tabs'  => [
             'inventories'   => 'Inventaires',
-            'quests'        => 'Quêtes',
         ],
-        'title'         => 'Objet :name',
+        'title' => 'Objet :name',
     ],
 ];

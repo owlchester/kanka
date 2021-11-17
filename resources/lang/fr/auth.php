@@ -42,7 +42,7 @@ return [
             'email'     => 'Adresse email',
             'name'      => 'Votre nom d\'utilisateur',
             'password'  => 'Mot de passe',
-            'tos'       => 'J\'accepte la <a href=":privacyUrl" target="_blank">Politique de confidentialité</a>.',
+            'tos_clean' => 'J\'accepte la :privacy',
         ],
         'register_with_facebook'    => 'S\'enregister avec Facebook',
         'register_with_google'      => 'S\'enregister avec Google',

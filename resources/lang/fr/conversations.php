@@ -2,17 +2,15 @@
 
 return [
     'create'        => [
-        'description'   => 'Créer une nouvelle conversation',
-        'success'       => 'Conversation \':name\' créée.',
-        'title'         => 'Nouvelle Conversation',
+        'success'   => 'Conversation \':name\' créée.',
+        'title'     => 'Nouvelle Conversation',
     ],
     'destroy'       => [
         'success'   => 'Conversation \':name\' supprimée.',
     ],
     'edit'          => [
-        'description'   => 'Modifier la conversation',
-        'success'       => 'Conversation \':name\' modifiée.',
-        'title'         => 'Conversation :name',
+        'success'   => 'Conversation \':name\' modifiée.',
+        'title'     => 'Conversation :name',
     ],
     'fields'        => [
         'is_closed'     => 'Fermée',
@@ -26,10 +24,9 @@ return [
         'participants'  => 'Ajoute des participants à la conversation.',
     ],
     'index'         => [
-        'add'           => 'Nouvelle Conversation',
-        'description'   => 'Gérer les conversations de :name.',
-        'header'        => 'Conversations dans :name',
-        'title'         => 'Conversations',
+        'add'       => 'Nouvelle Conversation',
+        'header'    => 'Conversations dans :name',
+        'title'     => 'Conversations',
     ],
     'messages'      => [
         'destroy'       => [
@@ -42,24 +39,22 @@ return [
         ],
     ],
     'participants'  => [
-        'create'        => [
+        'create'    => [
             'success'   => 'Participant :entity ajouté à la conversation.',
         ],
-        'description'   => 'Ajouter ou retirer des participants à une conversation',
-        'destroy'       => [
+        'destroy'   => [
             'success'   => 'Participant :entity retiré de la conversation.',
         ],
-        'modal'         => 'Participants',
-        'title'         => 'Participants de :name',
+        'modal'     => 'Participants',
+        'title'     => 'Participants de :name',
     ],
     'placeholders'  => [
         'name'  => 'Nom de la conversation',
         'type'  => 'In Game, Préparation, Quête',
     ],
     'show'          => [
-        'description'   => 'Vue détaillée d\'une conversation',
-        'is_closed'     => 'La conversation est fermée.',
-        'title'         => 'Conversation :name',
+        'is_closed' => 'La conversation est fermée.',
+        'title'     => 'Conversation :name',
     ],
     'tabs'          => [
         'conversation'  => 'Conversation',

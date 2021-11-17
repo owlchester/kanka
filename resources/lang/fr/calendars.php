@@ -19,18 +19,16 @@ return [
         'is_recurring'  => 'A lieu chaque année',
     ],
     'create'        => [
-        'description'   => 'Créer un nouveau calendrier',
-        'success'       => 'Nouveau calendrier \':name\' créé.',
-        'title'         => 'Nouveau Calendrier',
+        'success'   => 'Nouveau calendrier \':name\' créé.',
+        'title'     => 'Nouveau Calendrier',
     ],
     'destroy'       => [
         'success'   => 'Calendrier \':name\' supprimé.',
     ],
     'edit'          => [
-        'description'   => 'Modification de calendrier',
-        'success'       => 'Calendrier \':name\' modifié.',
-        'title'         => 'Modifier le calendrier :name',
-        'today'         => 'Date du calendrier mise à jour.',
+        'success'   => 'Calendrier \':name\' modifié.',
+        'title'     => 'Modifier le calendrier :name',
+        'today'     => 'Date du calendrier mise à jour.',
     ],
     'event'         => [
         'actions'   => [
@@ -40,9 +38,8 @@ return [
             'switch'            => 'Choix différent',
         ],
         'create'    => [
-            'description'   => 'Créer un événement de calendrier',
-            'success'       => 'Evénement de calendrier ajouté.',
-            'title'         => 'Ajouter un événement de calendrier à :name',
+            'success'   => 'Evénement de calendrier ajouté.',
+            'title'     => 'Ajouter un événement de calendrier à :name',
         ],
         'destroy'   => 'Evénement retiré du calendrier \':name\'.',
         'edit'      => [
@@ -60,8 +57,7 @@ return [
         'success'   => 'Evénement \':event\' ajouté au calendrier.',
     ],
     'events'        => [
-        'description'   => 'Evénements dans ce calendrier',
-        'title'         => 'Evénements du calendrier :name',
+        'title' => 'Evénements du calendrier :name',
     ],
     'fields'        => [
         'calendar'              => 'Calendrier parent',
@@ -117,10 +113,9 @@ return [
         'years'             => 'Certaines années sont tellement importantes qu\'elles ont leur propre nom.',
     ],
     'index'         => [
-        'add'           => 'Nouveau Calendrier',
-        'description'   => 'Gestion des calendriers pour :name.',
-        'header'        => 'Calendriers de :name',
-        'title'         => 'Calendrier',
+        'add'       => 'Nouveau Calendrier',
+        'header'    => 'Calendriers de :name',
+        'title'     => 'Calendrier',
     ],
     'layouts'       => [
         'month' => 'Mois',
@@ -210,7 +205,6 @@ return [
         'weekdays'          => 'Nombre de jours dans une semaine',
     ],
     'show'          => [
-        'description'       => 'Vue détaillée d\'un calendrier',
         'missing_details'   => 'Le calendrier ne peut pas être affiché. Un calendrier a besoin d\'au moins 2 mois et de 2 jours de la semaine pour être affiché correctement.',
         'moon_full_moon'    => 'Pleine lune de :moon',
         'moon_new_moon'     => 'Nouvelle lune de :moon',

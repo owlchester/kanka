@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Journal \':name\' created.',
-        'title'         => 'New Journal',
+        'success'   => 'Journal \':name\' created.',
+        'title'     => 'New Journal',
     ],
     'destroy'       => [
         'success'   => 'Journal \':name\' removed.',
@@ -28,9 +28,9 @@ return [
         'nested_without'=> 'Displaying all journals that don\'t have a parent journal. Click on a row to see the children journals.',
     ],
     'index'         => [
-        'add'           => 'New Journal',
-        'header'        => 'Journals of :name',
-        'title'         => 'Journals',
+        'add'       => 'New Journal',
+        'header'    => 'Journals of :name',
+        'title'     => 'Journals',
     ],
     'journals'      => [
         'title' => 'Journal :name sub journals',
@@ -43,9 +43,9 @@ return [
         'type'      => 'Session, One Shot, Draft',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'journals'  => 'Journals',
         ],
-        'title'         => 'Journal :name',
+        'title' => 'Journal :name',
     ],
 ];

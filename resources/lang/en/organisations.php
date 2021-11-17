@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Organisation \':name\' created.',
-        'title'         => 'New Organisation',
+        'success'   => 'Organisation \':name\' created.',
+        'title'     => 'New Organisation',
     ],
     'destroy'       => [
         'success'   => 'Organisation \':name\' removed.',
@@ -28,17 +28,17 @@ return [
         'nested_without'=> 'Displaying all organisations that don\'t have a parent organisation. Click on a row to see the children organisations.',
     ],
     'index'         => [
-        'add'           => 'New Organisation',
-        'header'        => 'Organisations of :name',
-        'title'         => 'Organisations',
+        'add'       => 'New Organisation',
+        'header'    => 'Organisations of :name',
+        'title'     => 'Organisations',
     ],
     'members'       => [
         'actions'       => [
             'add'   => 'Add a member',
         ],
         'create'        => [
-            'success'       => 'Member added to the organisation.',
-            'title'         => 'New Organisation Member for :name',
+            'success'   => 'Member added to the organisation.',
+            'title'     => 'New Organisation Member for :name',
         ],
         'destroy'       => [
             'success'   => 'Member removed from the organisation.',
@@ -71,11 +71,11 @@ return [
         'type'      => 'Cult, Gang, Rebellion, Fandom',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'organisations' => 'Organisations',
             'quests'        => 'Quests',
             'relations'     => 'Relations',
         ],
-        'title'         => 'Organisation :name',
+        'title' => 'Organisation :name',
     ],
 ];

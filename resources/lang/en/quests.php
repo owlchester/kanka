@@ -2,15 +2,15 @@
 
 return [
     'create'        => [
-        'success'       => 'Quest \':name\' created.',
-        'title'         => 'New Quest',
+        'success'   => 'Quest \':name\' created.',
+        'title'     => 'New Quest',
     ],
     'destroy'       => [
         'success'   => 'Quest \':name\' removed.',
     ],
     'edit'          => [
-        'success'       => 'Quest \':name\' updated.',
-        'title'         => 'Edit Quest :name',
+        'success'   => 'Quest \':name\' updated.',
+        'title'     => 'Edit Quest :name',
     ],
     'elements'      => [
         'create'    => [
@@ -53,9 +53,9 @@ return [
         'quests'    => 'A web of interlocking quests can be built using the Parent Quest field.',
     ],
     'index'         => [
-        'add'           => 'New Quest',
-        'header'        => 'Quests of :name',
-        'title'         => 'Quests',
+        'add'       => 'New Quest',
+        'header'    => 'Quests of :name',
+        'title'     => 'Quests',
     ],
     'placeholders'  => [
         'date'  => 'Real world date for the quest',
@@ -65,12 +65,12 @@ return [
         'type'  => 'Character Arc, Sidequest, Main',
     ],
     'show'          => [
-        'actions'       => [
+        'actions'   => [
             'add_element'   => 'Add an element',
         ],
-        'tabs'          => [
-            'elements'      => 'Elements',
+        'tabs'      => [
+            'elements'  => 'Elements',
         ],
-        'title'         => 'Quest :name',
+        'title'     => 'Quest :name',
     ],
 ];

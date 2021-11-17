@@ -163,7 +163,6 @@ return [
     ],
     'patreon'       => [
         'deprecated'    => 'Fonction obsolète - si tu souhaites supporter Kanka, fais-le avec un abonnement. La liaison Patreon est toujours active pour nos Patrons qui ont lié leur compte avant le changement d\'abonnement.',
-        'description'   => 'Synchronisation avec Patreon',
         'pledge'        => 'Pledge: :name',
         'remove'        => [
             'button'    => 'Délier le compte Patreon',

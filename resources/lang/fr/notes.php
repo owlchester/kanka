@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Ajouter une nouvelle note',
-        'success'       => 'Note \':name\' créée.',
-        'title'         => 'Nouvelle Note',
+        'success'   => 'Note \':name\' créée.',
+        'title'     => 'Nouvelle Note',
     ],
     'destroy'       => [
         'success'   => 'Note \':name\' supprimée.',
@@ -30,10 +29,9 @@ return [
         'is_pinned' => 'Jusqu\'à 3 notes peuvent être affichées sur le tableau de bord en les épinglant.',
     ],
     'index'         => [
-        'add'           => 'Nouvelle Note',
-        'description'   => 'Gérer les notes de :name.',
-        'header'        => 'Notes de :name',
-        'title'         => 'Notes',
+        'add'       => 'Nouvelle Note',
+        'header'    => 'Notes de :name',
+        'title'     => 'Notes',
     ],
     'placeholders'  => [
         'name'  => 'Nom de la note',
@@ -41,10 +39,6 @@ return [
         'type'  => 'Religion, Race, Moyen de transport',
     ],
     'show'          => [
-        'description'   => 'Détail de la note',
-        'tabs'          => [
-            'description'   => 'Description',
-        ],
-        'title'         => 'Note :name',
+        'title' => 'Note :name',
     ],
 ];

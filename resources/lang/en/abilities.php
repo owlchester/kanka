@@ -42,9 +42,9 @@ return [
         'nested_without'=> 'Displaying all abilities that don\'t have a parent ability. Click on a row to see the children abilities.',
     ],
     'index'         => [
-        'add'           => 'New Ability',
-        'header'        => 'Abilities of :name',
-        'title'         => 'Abilities',
+        'add'       => 'New Ability',
+        'header'    => 'Abilities of :name',
+        'title'     => 'Abilities',
     ],
     'placeholders'  => [
         'charges'   => 'Amount of charges. Reference attributes with {Level}*{CHA}',

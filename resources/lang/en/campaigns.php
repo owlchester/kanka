@@ -22,8 +22,8 @@ TEXT
         'success'   => 'Campaign removed.',
     ],
     'edit'                              => [
-        'success'       => 'Campaign updated.',
-        'title'         => 'Edit Campaign :campaign',
+        'success'   => 'Campaign updated.',
+        'title'     => 'Edit Campaign :campaign',
     ],
     'entity_personality_visibilities'   => [
         'private'   => 'New characters have their personality private by default.',
@@ -172,7 +172,7 @@ TEXT
             'title' => 'Add a member to your campaign',
         ],
         'edit'                  => [
-            'title'         => 'Edit member :name',
+            'title' => 'Edit member :name',
         ],
         'fields'                => [
             'joined'        => 'Joined',
@@ -311,7 +311,7 @@ TEXT
             'name'  => 'Name of the role',
         ],
         'show'          => [
-            'title'         => 'Campaign Role \':role\'',
+            'title' => 'Campaign Role \':role\'',
         ],
         'title'         => 'Campaign :name Roles',
         'types'         => [
@@ -337,15 +337,15 @@ TEXT
         ],
     ],
     'settings'                          => [
-        'actions'       => [
+        'actions'   => [
             'enable'    => 'Enable',
         ],
-        'boosted'       => 'This feature is in early access and currently only available for :boosted.',
-        'edit'          => [
+        'boosted'   => 'This feature is in early access and currently only available for :boosted.',
+        'edit'      => [
             'success'   => 'Campaign settings updated.',
         ],
-        'helper'        => 'All modules of a campaign can be enabled or disabled at will. Disabling a module will simply hide interface elements related to it, and pre-existing entities will be hidden but still exist in the background, in case you change your mind. These change effect all users of a campaign, including members of the :admin role.',
-        'helpers'       => [
+        'helper'    => 'All modules of a campaign can be enabled or disabled at will. Disabling a module will simply hide interface elements related to it, and pre-existing entities will be hidden but still exist in the background, in case you change your mind. These change effect all users of a campaign, including members of the :admin role.',
+        'helpers'   => [
             'abilities'     => 'Create abilities, be it feats, spells, or powers that can be assigned to entities.',
             'calendars'     => 'A place to define the calendars of your world.',
             'characters'    => 'The people who inhabit your world.',
@@ -366,20 +366,20 @@ TEXT
             'tags'          => 'Each entity can have several tags. Tags can belong to other tags, and entries can be filtered by tag.',
             'timelines'     => 'Represent the history of your world with timelines.',
         ],
-        'title'         => 'Campaign :name Modules',
+        'title'     => 'Campaign :name Modules',
     ],
     'show'                              => [
-        'actions'       => [
+        'actions'   => [
             'boost' => 'Boost campaign',
             'edit'  => 'Edit Campaign',
             'leave' => 'Leave campaign',
         ],
-        'menus'         => [
+        'menus'     => [
             'configuration'     => 'Configuration',
             'overview'          => 'Overview',
             'user_management'   => 'User management',
         ],
-        'tabs'          => [
+        'tabs'      => [
             'achievements'      => 'Achievements',
             'applications'      => 'Applications',
             'campaign'          => 'Campaign',
@@ -393,7 +393,7 @@ TEXT
             'settings'          => 'Modules',
             'styles'            => 'Theming',
         ],
-        'title'         => 'Campaign :name',
+        'title'     => 'Campaign :name',
     ],
     'superboosted'                      => [
         'gallery'   => [

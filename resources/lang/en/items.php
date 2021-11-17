@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Item \':name\' created.',
-        'title'         => 'New Item',
+        'success'   => 'Item \':name\' created.',
+        'title'     => 'New Item',
     ],
     'destroy'       => [
         'success'   => 'Item \':name\' removed.',
@@ -23,12 +23,12 @@ return [
         'type'      => 'Type',
     ],
     'index'         => [
-        'add'           => 'New Item',
-        'header'        => 'Items of :name',
-        'title'         => 'Items',
+        'add'       => 'New Item',
+        'header'    => 'Items of :name',
+        'title'     => 'Items',
     ],
     'inventories'   => [
-        'title'         => 'Item :name Inventories',
+        'title' => 'Item :name Inventories',
     ],
     'placeholders'  => [
         'character' => 'Choose a character',
@@ -39,9 +39,9 @@ return [
         'type'      => 'Weapon, Potion, Artefact',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'inventories'   => 'Inventories',
         ],
-        'title'         => 'Item :name',
+        'title' => 'Item :name',
     ],
 ];

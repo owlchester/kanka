@@ -2,6 +2,6 @@
 
 return [
     'index' => [
-        'title'         => 'Dice Roll Results',
+        'title' => 'Dice Roll Results',
     ],
 ];

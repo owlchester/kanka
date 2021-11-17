@@ -2,18 +2,16 @@
 
 return [
     'create'        => [
-        'description'   => 'Créer un nouveau jet de dés',
-        'success'       => 'Jet de dés \':name\' créé.',
-        'title'         => 'Nouveau jet de dés',
+        'success'   => 'Jet de dés \':name\' créé.',
+        'title'     => 'Nouveau jet de dés',
     ],
     'destroy'       => [
         'dice_roll' => 'Jet de dés retiré.',
         'success'   => 'Jet de dés \':name\' retiré.',
     ],
     'edit'          => [
-        'description'   => 'Modifier un jet de dés',
-        'success'       => 'Jet de dés \':name\' modifié.',
-        'title'         => 'Modifier le jet de dés :name',
+        'success'   => 'Jet de dés \':name\' modifié.',
+        'title'     => 'Modifier le jet de dés :name',
     ],
     'fields'        => [
         'created_at'    => 'Jeté à',
@@ -26,14 +24,13 @@ return [
         'parameters'    => 'Quelles sont mes options de dés?',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'dice'      => 'Jets de dés',
             'results'   => 'Résultats',
         ],
-        'add'           => 'Nouveau jet de dés',
-        'description'   => 'Gérer les jet de dés de :name.',
-        'header'        => 'Jets de dés pour :name',
-        'title'         => 'Jets de dés',
+        'add'       => 'Nouveau jet de dés',
+        'header'    => 'Jets de dés pour :name',
+        'title'     => 'Jets de dés',
     ],
     'placeholders'  => [
         'dice_roll' => 'Jet de dés',
@@ -54,10 +51,9 @@ return [
         'success'   => 'Dés jetés.',
     ],
     'show'          => [
-        'description'   => 'Détails d\'un jet de dés',
-        'tabs'          => [
+        'tabs'  => [
             'results'   => 'Résultats',
         ],
-        'title'         => 'Jet de dés :name',
+        'title' => 'Jet de dés :name',
     ],
 ];

@@ -13,7 +13,6 @@ return [
         'r_date_created'    => 'Date créée inverse',
         'r_date_joined'     => 'Date d\'adhésion inverse',
     ],
-    'description'                   => 'Modification du profil',
     'edit'                          => [
         'success'   => 'Profil modifié',
     ],

@@ -55,7 +55,6 @@ return [
             'visible'   => 'Visible',
         ],
     ],
-    'description'       => 'Place à la créativité',
     'helpers'           => [
         'follow'    => 'Suivre une campagne la rend visibile dans le changeur de campagne (en haut à droite) après tes campagnes.',
         'join'      => 'Cette campagne est ouverte à de nouveaux membres. Cliquer pour postuler pour rejoindre.',

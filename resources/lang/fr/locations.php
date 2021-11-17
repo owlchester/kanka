@@ -2,13 +2,11 @@
 
 return [
     'characters'    => [
-        'description'   => 'Personnages qui se trouvent dans ce lieu.',
-        'title'         => 'Personnages situés dans :name',
+        'title' => 'Personnages situés dans :name',
     ],
     'create'        => [
-        'description'   => 'Créer un nouveau lieu',
-        'success'       => 'Lieu \':name\' créé.',
-        'title'         => 'Ajouter un lieu',
+        'success'   => 'Lieu \':name\' créé.',
+        'title'     => 'Ajouter un lieu',
     ],
     'destroy'       => [
         'success'   => 'Lieu \':name\' supprimé.',
@@ -18,8 +16,7 @@ return [
         'title'     => 'Modifier Lieu :name',
     ],
     'events'        => [
-        'description'   => 'Evénements qui se sont déroulés dans ce lieu.',
-        'title'         => 'Evénements du lieu :name',
+        'title' => 'Evénements du lieu :name',
     ],
     'families'      => [
         'title' => 'Familles du lieu :name',
@@ -49,25 +46,21 @@ return [
         'is_map_private'    => 'Une carte privée est seulement visible aux membres du rôle Admin de la campagne.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Mode Exploration',
         ],
-        'add'           => 'Nouveau Lieu',
-        'description'   => 'Gérer les lieux of :name.',
-        'header'        => 'Lieux de :name',
-        'title'         => 'Lieux',
+        'add'       => 'Nouveau Lieu',
+        'header'    => 'Lieux de :name',
+        'title'     => 'Lieux',
     ],
     'items'         => [
-        'description'   => 'Objets situés dans ce lieu.',
-        'title'         => 'Objets du lieu :name',
+        'title' => 'Objets du lieu :name',
     ],
     'journals'      => [
-        'description'   => 'Journaux écrits dans ce lieu.',
-        'title'         => 'Journaux du lieu :name',
+        'title' => 'Journaux du lieu :name',
     ],
     'locations'     => [
-        'description'   => 'Lieu situé dans ce lieu.',
-        'title'         => 'Sous-lieux du lieu :name',
+        'title' => 'Sous-lieux du lieu :name',
     ],
     'map'           => [
         'actions'   => [
@@ -211,26 +204,20 @@ return [
         'name'      => 'Nom du lieu',
         'type'      => 'Village, Royaume, Ruine',
     ],
-    'quests'        => [
-        'description'   => 'Quêtes dont le lieu fait partie.',
-        'title'         => 'Quêtes du lieu :name',
-    ],
+    'quests'        => [],
     'show'          => [
-        'description'   => 'Détail d\'un lieu',
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Personnages',
             'events'        => 'Evénements',
             'families'      => 'Familles',
-            'information'   => 'Information',
             'items'         => 'Objets',
             'journals'      => 'Journaux',
             'locations'     => 'Lieux',
             'map'           => 'Carte',
             'maps'          => 'Cartes',
-            'menu'          => 'Menu',
             'organisations' => 'Organisations',
             'quests'        => 'Quêtes',
         ],
-        'title'         => 'Lieu :name',
+        'title' => 'Lieu :name',
     ],
 ];

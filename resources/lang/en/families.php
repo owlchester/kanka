@@ -2,8 +2,8 @@
 
 return [
     'create'        => [
-        'success'       => 'Family \':name\' created.',
-        'title'         => 'New Family',
+        'success'   => 'Family \':name\' created.',
+        'title'     => 'New Family',
     ],
     'destroy'       => [
         'success'   => 'Family \':name\' removed.',
@@ -34,9 +34,9 @@ return [
         'members'   => 'Members of a family are listed here. A character can be added to a family by editing the desired character and using the "Family" dropdown.',
     ],
     'index'         => [
-        'add'           => 'New Family',
-        'header'        => 'Families of :name',
-        'title'         => 'Families',
+        'add'       => 'New Family',
+        'header'    => 'Families of :name',
+        'title'     => 'Families',
     ],
     'members'       => [
         'helpers'   => [
@@ -51,12 +51,12 @@ return [
         'type'      => 'Royal, Noble, Extinct',
     ],
     'show'          => [
-        'tabs'          => [
+        'tabs'  => [
             'all_members'   => 'All Members',
             'families'      => 'Families',
             'members'       => 'Members',
             'relation'      => 'Relations',
         ],
-        'title'         => 'Family :name',
+        'title' => 'Family :name',
     ],
 ];

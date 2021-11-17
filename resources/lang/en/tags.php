@@ -2,18 +2,18 @@
 
 return [
     'children'      => [
-        'actions'       => [
+        'actions'   => [
             'add'   => 'Add to tag',
         ],
-        'create'        => [
+        'create'    => [
             'success'   => 'Added the tag :name to the entity.',
             'title'     => 'Add an entity to :name',
         ],
-        'title'         => 'Tag :name Children',
+        'title'     => 'Tag :name Children',
     ],
     'create'        => [
-        'success'       => 'Tag \':name\' created.',
-        'title'         => 'New Tag',
+        'success'   => 'Tag \':name\' created.',
+        'title'     => 'New Tag',
     ],
     'destroy'       => [
         'success'   => 'Tag \':name\' removed.',
@@ -39,12 +39,12 @@ return [
         'tag'       => 'Displayed below are all the tags that are directly under this tag.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Nested View',
         ],
-        'add'           => 'New Tag',
-        'header'        => 'Tags in :name',
-        'title'         => 'Tags',
+        'add'       => 'New Tag',
+        'header'    => 'Tags in :name',
+        'title'     => 'Tags',
     ],
     'new_tag'       => 'New Tag',
     'placeholders'  => [
@@ -53,13 +53,13 @@ return [
         'type'  => 'Lore, Wars, History, Religion, Vexillology',
     ],
     'show'          => [
-        'tabs'          => [
-            'children'      => 'Children',
-            'tags'          => 'Tags',
+        'tabs'  => [
+            'children'  => 'Children',
+            'tags'      => 'Tags',
         ],
-        'title'         => 'Tag :name',
+        'title' => 'Tag :name',
     ],
     'tags'          => [
-        'title'         => 'Tag :name Children',
+        'title' => 'Tag :name Children',
     ],
 ];
