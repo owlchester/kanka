@@ -136,6 +136,17 @@ class User extends \TCG\Voyager\Models\User
         return self::$currentCampaign;
     }
 
+    /**
+     * Change the current campaign (when creating a new one)
+     * @param Campaign $campaign
+     * @return $this
+     */
+    public function setCurrentCampaign(Campaign $campaign): self
+    {
+        self::$currentCampaign = $campaign;
+        return $this;
+    }
+
 
     /**
      * Get the other campaigns of the user
