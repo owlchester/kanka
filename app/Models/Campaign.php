@@ -44,6 +44,8 @@ use Illuminate\Support\Str;
  * @property array|null $settings
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @property int $created_by
+ * @property int $updated_by
  *
  * UI virtual Settings
  * @property bool $tooltip_family
