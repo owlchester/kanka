@@ -47,8 +47,10 @@ return [
             'title'     => 'Aktualizovať prvok úlohy pre :name',
         ],
         'fields'    => [
-            'description'   => 'Popis',
-            'quest'         => 'Úloha',
+            'description'       => 'Popis',
+            'entity_or_name'    => 'Zvoľ buď objekt kampane, alebo pomenuj tento prvok.',
+            'name'              => 'Názov',
+            'quest'             => 'Úloha',
         ],
         'title'     => 'Prvky úlohy :name',
     ],

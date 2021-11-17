@@ -6,8 +6,9 @@ return [
         'title'         => 'Fertigkeiten',
     ],
     'attributes'        => [
-        'secondary' => 'Die Attribute eines Objekts können auch so gestyled werden, dass sie wie ein TTRPG Charakterblatt aussehen, Vorlagen finden sich in unserem :marketplace.',
-        'title'     => 'Attribute',
+        'description'   => 'Das wahrscheinlich verwirrendste und komplexeste Merkmal von Objekten sind ihre Attribute. Dies können kleine Informationen sein, wie das Verfolgen der HP eines Charakters, die Bevölkerung eines Ortes, die Anzahl der Schreine einer Religion (Organisation) usw. Attribute eines Objektes können sich gegenseitig referenzieren, um Werte zu berechnen, zum Beispiel die HP eines Charakters, wobei HP= Stufe * Konstitution.',
+        'secondary'     => 'Die Attribute eines Objekts können auch so gestyled werden, dass sie wie ein TTRPG Charakterblatt aussehen, Vorlagen finden sich in unserem :marketplace.',
+        'title'         => 'Attribute',
     ],
     'boosters'          => [
         'link'  => 'Sehen Sie alle geboosteten Features auf unserer Preisgestaltungsseite',

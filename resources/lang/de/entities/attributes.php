@@ -27,6 +27,7 @@ return [
     ],
     'hints'         => [
         'is_private'    => 'Sie können alle Attribute eines Objekts für alle Mitglieder außerhalb der Administratorrolle ausblenden, indem Sie sie privat machen.',
+        'is_private2'   => 'Wenn diese Option ausgewählt ist, können nur Mitglieder der Rolle :admin-role die Attribute dieses Objekts sehen.',
     ],
     'index'         => [
         'success'   => 'Attribute für :entity aktualisiert',

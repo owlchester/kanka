@@ -153,6 +153,12 @@ TEXT
             'link'  => 'Ligazón',
         ],
         'unlimited_validity'    => 'Ilimitado',
+        'usages'                => [
+            'five'      => '5 usos',
+            'no_limit'  => 'Sen límite',
+            'once'      => '1 uso',
+            'ten'       => '10 usos',
+        ],
     ],
     'leave'                             => [
         'confirm'   => 'Seguro que queres abandonar a campaña ":name"? Non poderás volver acceder a ela, excepto se alguén da administración te convida de novo.',
@@ -161,13 +167,14 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
+            'help'          => 'Axuda',
+            'remove'        => 'Eliminar da campaña',
             'switch'        => 'Ver como',
             'switch-back'   => 'Voltar á miña conta',
         ],
         'create'                => [
             'title' => 'Engade unha persoa á túa campaña.',
         ],
-        'description'           => 'Administar as persoas integrantes da campaña',
         'edit'                  => [
             'description'   => 'Edita alguén da túa campaña',
             'title'         => 'Editar integrante :name',
@@ -239,10 +246,11 @@ TEXT
             'add'           => 'Engadir un rol',
             'permissions'   => 'Xestionar permisos',
             'rename'        => 'Renomear rol',
+            'save'          => 'Gardar rol',
         ],
         'admin_role'    => 'rol de administración',
         'create'        => [
-            'success'   => 'Rol creado.',
+            'success'   => 'Rol ":name" creado.',
             'title'     => 'Crear un novo rol para :name',
         ],
         'description'   => 'Administrar os roles da campaña',

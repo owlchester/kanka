@@ -140,6 +140,11 @@ return [
             ],
         ],
         'recent'                    => [
+            'advanced_filter'   => 'Erweiterter Filter',
+            'advanced_filters'  => [
+                'mentionless'   => 'Erwähnungslos (Objekte, die andere Objekte nicht erwähnen)',
+                'unmentioned'   => 'Nicht erwähnt (Objekte, die von anderen Objekten nicht erwähnt werden)',
+            ],
             'entity-header'     => 'Verwenden Sie den Objekt-Header als Bild',
             'filters'           => 'Filter',
             'full'              => 'Voll',

@@ -36,7 +36,7 @@ TEXT
     ],
     'custom'                => [
         'answer'    => <<<'TEXT'
-Systém Kanka nabízí předdefinované typy objektů, které jsou spolu navzájem propojeny. Možnost používat vlastní typy objektů by vyžadovala zcela jiný přístup ke zpracování dat v systému a narušit tak funkci systému, zaměřenou na co nejsnazší budování vlastního světa, namísto na způsob organizace dat. 
+Systém Kanka nabízí předdefinované typy objektů, které jsou spolu navzájem propojeny. Možnost používat vlastní typy objektů by vyžadovala zcela jiný přístup ke zpracování dat v systému a narušila by tak funkci systému, zaměřenou na co nejsnazší budování vlastního světa, namísto na způsob organizace dat. 
 Určitý kompromis nabízí možnost využívání štítků, které poskytují velmi flexibilní způsob označování objektů.
 TEXT
 ,
@@ -94,5 +94,9 @@ TEXT
     'monsters'              => [
         'answer'    => 'Pro objekty jako národy, živočišné druhy, nestvůry a jakékoli jiné živé (či nemrtvé) bytosti mimo postavy, doporučujeme používat modul Rasy.',
         'question'  => 'Jak vytvářet nestvůry?',
+    ],
+    'multiworld'            => [
+        'answer'    => 'Můžeš být členem libovolného množství tažení - ať už jsi je vytvořil sám nebo ne. Přepínat mezi taženími nebo vytvářet nová lze klepnutím na název tažení v postranní liště. Zobrazí se seznam tvých tažení a na konci i tlačítko pro tvorbu nového tažení.',
+        'question'  => 'Mohu být členem více tažení?',
     ],
 ];

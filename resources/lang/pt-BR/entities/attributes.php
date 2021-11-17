@@ -38,6 +38,7 @@ return [
     ],
     'hints'         => [
         'is_private'    => 'Você pode ocultar todos os atributos de uma entidade para todos os membros fora da função administrativa, tornando-a privada.',
+        'is_private2'   => 'Se selecionado, apenas membros da função :admin-role podem ver os atributos dessa entidade.',
     ],
     'index'         => [
         'success'   => 'Atributos de :entity atualizados.',

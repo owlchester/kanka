@@ -34,9 +34,10 @@ return [
     ],
     'event'         => [
         'actions'   => [
-            'existing'  => 'Bestehendes Objekt',
-            'new'       => 'Neues Ereignis',
-            'switch'    => 'Auswahl ändern',
+            'delete-confirm'    => 'diese Erinnerung',
+            'existing'          => 'Bestehendes Objekt',
+            'new'               => 'Neues Ereignis',
+            'switch'            => 'Auswahl ändern',
         ],
         'create'    => [
             'description'   => 'Erstelle ein Kalender Ereignis',

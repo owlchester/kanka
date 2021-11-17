@@ -165,6 +165,11 @@ TEXT
             ],
         ],
         'recent'                    => [
+            'advanced_filter'   => 'Rozšírený filter',
+            'advanced_filters'  => [
+                'mentionless'   => 'Neobsahuje referencie (Objekty, ktoré nereferencujú iné)',
+                'unmentioned'   => 'Nereferencované (Objekty, ktoré nie sú referencované v iných)',
+            ],
             'entity-header'     => 'Použiť záhlavie objektu ako obrázok',
             'filters'           => 'Filtre',
             'full'              => 'Plná',

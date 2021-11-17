@@ -152,6 +152,7 @@ TEXT
             'email'     => 'Email',
             'role'      => 'Rola',
             'type'      => 'Rodzaj',
+            'usage'     => 'Maksymalna liczba użyć',
             'validity'  => 'Limit',
         ],
         'helpers'               => [
@@ -166,6 +167,12 @@ TEXT
             'link'  => 'Odnośnik',
         ],
         'unlimited_validity'    => 'Nieograniczona',
+        'usages'                => [
+            'five'      => '5 użyć',
+            'no_limit'  => 'Bez limitu',
+            'once'      => '1 użycie',
+            'ten'       => '10 użyć',
+        ],
     ],
     'leave'                             => [
         'confirm'   => 'Czy na pewno chcesz opuścić kampanię :name? Utracisz do niej dostęp do czasu, gdy administrator kampanii zaprosi cię ponownie.',
@@ -174,6 +181,8 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
+            'help'          => 'Pomoc',
+            'remove'        => 'Usuń z kampanii',
             'switch'        => 'Przełącz',
             'switch-back'   => 'Powrót do profilu',
         ],
@@ -252,6 +261,7 @@ TEXT
             'add'           => 'Dodaj rolę',
             'permissions'   => 'Zarządzaj uprawnieniami',
             'rename'        => 'Zmień nazwę',
+            'save'          => 'Zapisz rolę',
         ],
         'admin_role'    => 'administrator',
         'create'        => [

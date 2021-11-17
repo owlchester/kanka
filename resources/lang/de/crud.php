@@ -145,6 +145,7 @@ return [
         'is_closed'             => 'Die Konversation wird geschlossen und es werden keine neuen Nachrichten mehr akzeptiert.',
         'is_private'            => 'Privat',
         'is_private_v2'         => 'Zeigen Sie dies nur Mitgliedern der Kampagne :admin-role',
+        'is_private_v3'         => 'Zeigen Sie dies nur Mitgliedern der Rolle :admin-role an. Dies überschreibt alle anderen Berechtigungen.',
         'is_star'               => 'Angepinnt',
         'item'                  => 'Gegenstand',
         'journal'               => 'Tagebuch',
@@ -377,6 +378,9 @@ return [
         'story'         => 'Geschichte',
         'timelines'     => 'Zeitstrahlen',
         'tooltip'       => 'Kurztip',
+    ],
+    'tooltips'                  => [
+        'boosted_feature'   => 'boost Kampagnenfunktion',
     ],
     'update'                    => 'Bearbeiten',
     'users'                     => [

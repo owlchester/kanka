@@ -1,18 +1,18 @@
 <?php
 
 return [
-    'create'        => [
+    'create'            => [
         'success'   => 'Stworzono skrót \':name\'.',
         'title'     => 'Nowy skrót',
     ],
-    'destroy'       => [
+    'destroy'           => [
         'success'   => 'Usunięto skrót menu \':name\'.',
     ],
-    'edit'          => [
+    'edit'              => [
         'success'   => 'Zmieniono skrót \':name\'.',
         'title'     => 'Skrót :name',
     ],
-    'fields'        => [
+    'fields'            => [
         'dashboard'     => 'Pulpit',
         'entity'        => 'Element',
         'filters'       => 'Filtry',
@@ -26,7 +26,7 @@ return [
         'tab'           => 'Zakładka',
         'type'          => 'Typ elementu',
     ],
-    'helpers'       => [
+    'helpers'           => [
         'dashboard' => 'Skrót prowadzący do jednego z własnych pulpitów kampanii. Ta opcja dostępna jest tylko w :boosted kampanii.',
         'entity'    => 'Stwórz skrót prowadzący wprost do jakiegoś elementu. Pole :tab pozwala decydować, która zakładka się wyświetli. Pole :menu pozwala określić, która podstrona zostanie otwarta.',
         'position'  => 'To pole pozwala ustalać kolejność (rosnącą) wyświetlania skrótów.',
@@ -34,25 +34,26 @@ return [
         'selector'  => 'Ustal dokąd skrót przeniesie użytkownika, który na niego kliknie',
         'type'      => 'Stwórz skrót prowadzący do listy elementów. By filtrować rezultaty, skopuj część adresu filtrowanej listy elementów po znaku :? w pole :filter.',
     ],
-    'index'         => [
+    'index'             => [
         'add'   => 'Nowy skrót',
         'title' => 'Skróty',
     ],
-    'placeholders'  => [
+    'placeholders'      => [
         'entity'    => 'Wybierz element',
         'filters'   => 'location_id=15&type=city',
         'menu'      => 'Podstrona menu (użyj ostatniego tekstu adresu)',
         'name'      => 'Nazwa skrótu',
         'tab'       => 'opis, relacje, notki',
     ],
-    'random_types'  => [
+    'random_no_entity'  => 'Nie znaleziono losowego elementu.',
+    'random_types'      => [
         'any'   => 'Dowolny element',
     ],
-    'reorder'       => [
+    'reorder'           => [
         'success'   => 'Zmieniono kolejność skrótów.',
         'title'     => 'Zmiana kolejności skrótów',
     ],
-    'show'          => [
+    'show'              => [
         'tabs'  => [
             'information'   => 'Informacje',
         ],

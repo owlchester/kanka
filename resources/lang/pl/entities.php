@@ -20,6 +20,7 @@ return [
         'helper'    => 'Wybierz element do stworzenia. Jeżeli jakiś typ się nie pojawia, nie masz uprawnień, by tworzyć elementy danego typu ramach tej kampanii.',
         'success'   => 'Stworzono nowy element \':link\'',
         'title'     => 'Nowy element',
+        'tooltip'   => 'Stwórz nowy element bez opuszczania obecnej strony',
     ],
     'dice_roll'             => 'Rzut kośćmi',
     'dice_rolls'            => 'Rzuty kośćmi',

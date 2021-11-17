@@ -20,6 +20,7 @@ return [
         'helper'    => 'Selecione um tipo de entidade para criar. Se nenhuma entidade for exibida, significa que você não tem permissão para criar qualquer tipo de entidade nesta campanha.',
         'success'   => 'Nova entidade :link criada',
         'title'     => 'Nova entidade',
+        'tooltip'   => 'Crie uma nova entidade sem deixar a página atual',
     ],
     'dice_roll'             => 'Rolagem de dado',
     'dice_rolls'            => 'Rolagem de dados',

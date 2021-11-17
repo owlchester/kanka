@@ -46,20 +46,21 @@ return [
     ],
     'event'         => [
         'actions'   => [
-            'existing'  => 'Existujúci objekt',
-            'new'       => 'Nová udalosť',
-            'switch'    => 'Zmeniť výber',
+            'delete-confirm'    => 'táto pripomienka',
+            'existing'          => 'Existujúci objekt',
+            'new'               => 'Nová udalosť',
+            'switch'            => 'Zmeniť výber',
         ],
         'create'    => [
             'description'   => 'Vytvoriť novú udalosť',
             'success'       => 'Nová udalosť vytvorená',
             'title'         => 'Pridať udalosť do :name',
         ],
-        'destroy'   => 'Udalosť z kalendára ":name" odstránená.',
+        'destroy'   => 'Pripomienka z kalendára ":name" odstránená.',
         'edit'      => [
             'description'   => 'Upraviť udalosť',
-            'success'       => 'Udalosť upravená',
-            'title'         => 'Upraviť udalosť v :name',
+            'success'       => 'Pripomienka upravená.',
+            'title'         => 'Upraviť pripomienku v :name',
         ],
         'helpers'   => [
             'add'               => 'Pridať existujúcu udalosť do tohto kalendára.',

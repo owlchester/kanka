@@ -152,6 +152,7 @@ TEXT
             'email'     => 'E-mail',
             'role'      => 'Rola',
             'type'      => 'Typ',
+            'usage'     => 'Max. počet použití',
             'validity'  => 'Platnosť',
         ],
         'helpers'               => [
@@ -166,6 +167,12 @@ TEXT
             'link'  => 'Link',
         ],
         'unlimited_validity'    => 'Neobmedzený',
+        'usages'                => [
+            'five'      => '5 použití',
+            'no_limit'  => 'Bez obmedzenia',
+            'once'      => '1 použitie',
+            'ten'       => '10 použití',
+        ],
     ],
     'leave'                             => [
         'confirm'   => 'Naozaj chceš opustiť kampaň :name? Už ku nej nebudeš mať prístup, ibaže by ťa do nej opäť pozval jej administrátor.',
@@ -174,6 +181,8 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
+            'help'          => 'Pomoc',
+            'remove'        => 'Odstrániť z kampane',
             'switch'        => 'Prepnúť',
             'switch-back'   => 'Prepnúť späť',
         ],
@@ -252,6 +261,7 @@ TEXT
             'add'           => 'Pridať rolu',
             'permissions'   => 'Spravovať oprávnenia',
             'rename'        => 'Premenovať rolu',
+            'save'          => 'Uložiť rolu',
         ],
         'admin_role'    => 'Rola administrátora',
         'create'        => [

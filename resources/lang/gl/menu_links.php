@@ -1,18 +1,18 @@
 <?php
 
 return [
-    'create'        => [
+    'create'            => [
         'success'   => 'Acceso directo ":name" creado.',
         'title'     => 'Novo acceso directo',
     ],
-    'destroy'       => [
+    'destroy'           => [
         'success'   => 'Acceso directo ":name" eliminado.',
     ],
-    'edit'          => [
+    'edit'              => [
         'success'   => 'Acceso directo ":name" actualizado.',
         'title'     => 'Acceso directo ":name"',
     ],
-    'fields'        => [
+    'fields'            => [
         'dashboard'     => 'Taboleiro',
         'entity'        => 'Entidade',
         'filters'       => 'Filtros',
@@ -26,7 +26,7 @@ return [
         'tab'           => 'Lapela',
         'type'          => 'Tipo de entidade',
     ],
-    'helpers'       => [
+    'helpers'           => [
         'dashboard' => 'Fai que o acceso directo ligue a un dos taboleiros personalizados da campaña.',
         'entity'    => 'Configura este acceso directo para ir directamente a unha entidade. O campo :tab control a lapela á que se accede. O campo :menu control que subpáxina da entidade é aberta.',
         'position'  => 'Usa este campo para controlar en que orde ascendente aparecen as ligazóns no menú.',
@@ -34,25 +34,26 @@ return [
         'selector'  => 'Configura a onde liga este acceso directo cando alguén fai clic nel.',
         'type'      => 'Configura este acceso directo para ir directamente a unha lista de entidades. Para filtrar os resultados, copia as partes da URL da lista filtrada a partir do signo :? no campo :filter.',
     ],
-    'index'         => [
+    'index'             => [
         'add'   => 'Novo acceso directo',
         'title' => 'Accesos directos',
     ],
-    'placeholders'  => [
+    'placeholders'      => [
         'entity'    => 'Elixe unha entidade',
         'filters'   => 'location_id=15&type=cidade',
         'menu'      => 'Subpáxina do menú (usa a última parte da URL)',
         'name'      => 'Nome do acceso directo',
         'tab'       => 'Entrada, Relacións, Notas...',
     ],
-    'random_types'  => [
+    'random_no_entity'  => 'Entidade aleatoria non encontrada.',
+    'random_types'      => [
         'any'   => 'Calquera entidade',
     ],
-    'reorder'       => [
+    'reorder'           => [
         'success'   => 'Accesos directos reordenados.',
         'title'     => 'Reordenar accesos directos',
     ],
-    'show'          => [
+    'show'              => [
         'tabs'  => [
             'information'   => 'Información',
         ],

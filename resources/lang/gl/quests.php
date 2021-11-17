@@ -28,8 +28,10 @@ return [
             'title'     => 'Actualizar elemento da misión ":name"',
         ],
         'fields'    => [
-            'description'   => 'Descrición',
-            'quest'         => 'Misión',
+            'description'       => 'Descrición',
+            'entity_or_name'    => 'Selecciona unha entidade ou dá un nome a este elemento.',
+            'name'              => 'Nome',
+            'quest'             => 'Misión',
         ],
         'title'     => 'Elementos da misión ":name"',
     ],

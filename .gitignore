@@ -20,4 +20,5 @@ yarn-error.log
 .DS_Store
 .vscode
 .phpunit.result.cache
+*.sql
 

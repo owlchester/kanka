@@ -20,6 +20,7 @@ return [
         'helper'    => 'Vyber si typ objektu, ktorý chceš vytvoriť. Ak sa nezobrazia žiadne objekty, znamená to, že ti chýba oprávnenie vytvoriť objekty v tejto kampani.',
         'success'   => 'Nový objekt :link vytvorený.',
         'title'     => 'Nový objekt',
+        'tooltip'   => 'Vytvoriť nový objekt bez opustenia aktuálnej stránky',
     ],
     'dice_roll'             => 'Hod kockou',
     'dice_rolls'            => 'Hody kockou',

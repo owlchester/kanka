@@ -47,8 +47,10 @@ return [
             'title'     => 'Zmień element misji :name',
         ],
         'fields'    => [
-            'description'   => 'Szczegóły',
-            'quest'         => 'Misja',
+            'description'       => 'Szczegóły',
+            'entity_or_name'    => 'Wybierz inny element kampanii albo nadaj nazwę temu elementowi.',
+            'name'              => 'Nazwa',
+            'quest'             => 'Misja',
         ],
         'title'     => 'Elementy misji :name',
     ],

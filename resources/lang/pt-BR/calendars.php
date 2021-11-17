@@ -34,9 +34,10 @@ return [
     ],
     'event'         => [
         'actions'   => [
-            'existing'  => 'Entidade Existente',
-            'new'       => 'Novo evento',
-            'switch'    => 'Escolha de mudança',
+            'delete-confirm'    => 'esse lembrete',
+            'existing'          => 'Entidade Existente',
+            'new'               => 'Novo evento',
+            'switch'            => 'Escolha de mudança',
         ],
         'create'    => [
             'description'   => 'Crie um evento de calendário',

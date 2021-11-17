@@ -139,6 +139,11 @@ return [
             ],
         ],
         'recent'                    => [
+            'advanced_filter'   => 'Filtro avanzado',
+            'advanced_filters'  => [
+                'mentionless'   => 'Sen mencións (entidades que non mencionan a ningunha outra)',
+                'unmentioned'   => 'Non mencionadas (entidades que non son mencionadas por ningunha outra)',
+            ],
             'entity-header'     => 'Usar cabeceira da entidade como imaxe',
             'filters'           => 'Filtros',
             'full'              => 'Completo',

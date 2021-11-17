@@ -6,7 +6,8 @@ return [
     'member_since'      => 'Uniuse o :date',
     'notifications'     => [
         'header'    => 'Notificacións',
-        'read_all'  => 'Ler todas',
+        'mark_read' => 'Marcar todas como lidas',
+        'read_all'  => 'Ver todas',
     ],
     'profile'           => 'Perfil',
     'toggle_navigation' => 'Mostrar menú',

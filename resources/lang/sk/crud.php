@@ -148,6 +148,7 @@ return [
         'is_closed'             => 'Diskusia bude uzavretá a nebude možné do nej pridávaťnové správy.',
         'is_private'            => 'Súkromný',
         'is_private_v2'         => 'Zobraziť len pre členov role :admin-role v kampani. Toto nastavenie prepíše iné oprávnenia.',
+        'is_private_v3'         => 'Zobraziť iba pre členov :admin-role role. Toto má prednosť pre ostatnými oprávneniami.',
         'is_star'               => 'Pripnutý',
         'item'                  => 'Predmet',
         'journal'               => 'Denník',
@@ -406,6 +407,9 @@ return [
         'story'         => 'Príbeh',
         'timelines'     => 'Časové osi',
         'tooltip'       => 'Bublina',
+    ],
+    'tooltips'                  => [
+        'boosted_feature'   => 'Funkcionalita boostnutej kampane',
     ],
     'update'                    => 'Upraviť',
     'users'                     => [

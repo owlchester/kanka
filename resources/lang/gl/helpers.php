@@ -5,6 +5,10 @@ return [
         'description'   => 'Podes ligar unha personaxe a un calendario da campaña dende a lapela Lembretes na páxina da personaxe. Dende aí, engade un novo lembrete e establece o tipo como Nacemento ou Morte para que a idade da personaxe sexa calculada automaticamente. Se tanto o nacemento como a morte están presentes, ámbalas dúas serán mostradas, así como a idade no momento da morte. Se só está establecido o nacemento, mostraranse a data e a idade actual. Se só está establecida a morte, mostraranse a data e os anos que pasaron dende a súa morte.',
         'title'         => 'Idade e Morte da personaxe',
     ],
+    'api-filters'       => [
+        'description'   => 'Os seguintes filtros están dispoñíbeis no punto API :name.',
+        'title'         => 'Filtros API',
+    ],
     'attributes'        => [
         'con'               => 'Con',
         'description'       => 'Usa atributos para representar valores non textuais asociados a unha entidade. Podes referenciar entidades dentro de atributos usando a sintaxe de mencións avanzadas :mention. Tamén podes referenciar outros atributos usando a sintaxe :attribute.',

@@ -139,6 +139,7 @@ TEXT
             'email'     => 'Email',
             'role'      => 'Rolle',
             'type'      => 'Typ',
+            'usage'     => 'Maximale Anzahl von Verwendungen',
             'validity'  => 'Gültigkeit',
         ],
         'helpers'               => [
@@ -153,6 +154,12 @@ TEXT
             'link'  => 'Link',
         ],
         'unlimited_validity'    => 'Unbegrenzt',
+        'usages'                => [
+            'five'      => '5 Verwendungen',
+            'no_limit'  => 'kein Limit',
+            'once'      => '1 Verwendung',
+            'ten'       => '10 Verwendungen',
+        ],
     ],
     'leave'                             => [
         'confirm'   => 'Bist du sicher, dass du die Kampagne :name verlassen möchtest? Du hast danach keinen Zugang mehr, außer ein Besitzer der Kampagne lädt dich erneut ein.',
@@ -161,6 +168,8 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
+            'help'          => 'Hilfe',
+            'remove'        => 'aus Kampagne entfernen',
             'switch'        => 'Wechseln',
             'switch-back'   => 'Zurück zu meinem User',
         ],
@@ -243,6 +252,7 @@ TEXT
             'add'           => 'Rolle hinzufügen',
             'permissions'   => 'Berechtigungen verwalten',
             'rename'        => 'Rolle umbenennen',
+            'save'          => 'Rolle speichern',
         ],
         'admin_role'    => 'Administratorenrolle',
         'create'        => [

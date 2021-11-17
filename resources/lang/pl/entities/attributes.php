@@ -24,6 +24,7 @@ return [
     ],
     'hints'         => [
         'is_private'    => 'Oznaczając cechy jako tajne ukrywasz je przed graczami nie posiadającymi roli administratora.',
+        'is_private2'   => 'Po zaznaczeniu tylko członkowie w roli :admin-role będą widzieć cechy tej postaci.',
     ],
     'index'         => [
         'success'   => 'Zaktualizowano cechy :entity',

@@ -145,6 +145,7 @@ return [
         'is_closed'             => 'Ta rozmowa zostanie zamknięta i nie będzie można dodawać do niej nowych wiadomości.',
         'is_private'            => 'Tajne',
         'is_private_v2'         => 'Pokazuj wyłącznie uczestnikom posiadającym rolę :admin-role.',
+        'is_private_v3'         => 'Wyświetlaj tylko użytkownikom w roli :admin-role. To ustawienie zastępuje wszystkie inne.',
         'is_star'               => 'Przypięte',
         'item'                  => 'Przedmiot',
         'journal'               => 'Dziennik',
@@ -401,6 +402,9 @@ return [
         'story'         => 'Podstawy',
         'timelines'     => 'Historie',
         'tooltip'       => 'Dymek',
+    ],
+    'tooltips'                  => [
+        'boosted_feature'   => 'Dostępne po doładowaniu',
     ],
     'update'                    => 'Aktualizacja',
     'users'                     => [

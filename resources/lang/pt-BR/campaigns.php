@@ -152,6 +152,7 @@ TEXT
             'email'     => 'Email',
             'role'      => 'Cargo',
             'type'      => 'Tipo',
+            'usage'     => 'Número máximo de usos',
             'validity'  => 'Validade',
         ],
         'helpers'               => [
@@ -166,6 +167,12 @@ TEXT
             'link'  => 'Link',
         ],
         'unlimited_validity'    => 'Ilimitado',
+        'usages'                => [
+            'five'      => '5 usos',
+            'no_limit'  => 'Sem limite',
+            'once'      => '1 uso',
+            'ten'       => '10 usos',
+        ],
     ],
     'leave'                             => [
         'confirm'   => 'Você tem certeza que deseja sair de :name campaign? Você não poderá acessar novamente, a não ser que o dono da campanha te convide novamente.',
@@ -174,6 +181,8 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
+            'help'          => 'Ajuda',
+            'remove'        => 'Remover da campanha',
             'switch'        => 'Trocar',
             'switch-back'   => 'Voltar para meu usuário',
         ],
@@ -252,6 +261,7 @@ TEXT
             'add'           => 'Adicione um cargo',
             'permissions'   => 'Gerenciar permissões',
             'rename'        => 'Renomear função',
+            'save'          => 'Salvar função',
         ],
         'admin_role'    => 'Cargo de Administrador',
         'create'        => [

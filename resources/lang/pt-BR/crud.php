@@ -148,6 +148,7 @@ return [
         'is_closed'             => 'Conversa será fechada e não aceitará novas mensagens.',
         'is_private'            => 'Privado',
         'is_private_v2'         => 'Mostre isso apenas para membros da campanha :admin-role. Isso substitui qualquer outra permissão.',
+        'is_private_v3'         => 'Mostre isso apenas aos membros da função :admin-role. Isso substitui qualquer outra permissão.',
         'is_star'               => 'Fixado',
         'item'                  => 'Item',
         'journal'               => 'Jornal',
@@ -405,6 +406,9 @@ return [
         'story'         => 'História',
         'timelines'     => 'Linhas do Tempo',
         'tooltip'       => 'Dica',
+    ],
+    'tooltips'                  => [
+        'boosted_feature'   => 'Recurso da campanha impulsionada',
     ],
     'update'                    => 'Atualizar',
     'users'                     => [

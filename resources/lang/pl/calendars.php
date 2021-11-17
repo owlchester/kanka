@@ -46,9 +46,10 @@ return [
     ],
     'event'         => [
         'actions'   => [
-            'existing'  => 'Istniejący element',
-            'new'       => 'Nowe wydarzenie',
-            'switch'    => 'Zmień wybór',
+            'delete-confirm'    => 'to wydarzenie',
+            'existing'          => 'Istniejący element',
+            'new'               => 'Nowe wydarzenie',
+            'switch'            => 'Zmień wybór',
         ],
         'create'    => [
             'description'   => 'Utwórz wydarzenie w kalendarzu',

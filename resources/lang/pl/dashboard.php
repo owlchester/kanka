@@ -139,6 +139,11 @@ return [
             ],
         ],
         'recent'                    => [
+            'advanced_filter'   => 'Filtry zaawansowane',
+            'advanced_filters'  => [
+                'mentionless'   => 'Niewzmiankujące (elementy, które nie wzmiankują żadnych innych elementów)',
+                'unmentioned'   => 'Niewzmiankowane (elementy, których nie wzmiankuje żadnej inny element)',
+            ],
             'entity-header'     => 'Używaj nagłówka elementu jako obrazu widżetu',
             'filters'           => 'Filtry',
             'full'              => 'Pełny',

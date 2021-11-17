@@ -25,10 +25,14 @@ return [
             'remove'    => 'Retiróuseche o rol ":role" na campaña ":campaign".',
         ],
     ],
+    'clear'             => [
+        'action'    => 'Limpar todas',
+        'confirm'   => 'Queres eliminar todas as notificacións? Esta acción non pode desfacerse.',
+        'success'   => 'Notificacións eliminadas.',
+    ],
     'header'            => 'Tes :count notificacións',
     'index'             => [
-        'description'   => 'As túas notificacións máis recentes.',
-        'title'         => 'Notificacións',
+        'title' => 'Notificacións',
     ],
     'no_notifications'  => 'Non tes notificacións.',
     'permissions'       => [],
@@ -39,4 +43,5 @@ return [
         'failed'        => 'Non foi posíbel procesar os teus detalles de pagamento. Por favor, actualízaos na túa configuración de Método de Pagamento.',
         'started'       => 'A túa subscripción a Kanka foi iniciada.',
     ],
+    'unread'            => 'Nova notificación',
 ];

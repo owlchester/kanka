@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'       => [
+        'delete-confirm'    => 'эту погоду',
+    ],
     'create'        => [
         'success'   => 'Погода добавлена.',
         'title'     => 'Новое погодное явление',

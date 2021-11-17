@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'       => [
+        'delete-confirm'    => 'esse clima',
+    ],
     'create'        => [
         'success'   => 'Clima adicionado',
         'title'     => 'Novo efeito do clima',

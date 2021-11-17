@@ -20,6 +20,7 @@ return [
         'helper'    => 'Wähle einen Objekttyp zum Erstellen. Wenn keine Objekte erscheinen, bedeutet das, dass dir die Berechtigung fehlt jede Art von Objekten in dieser Kampagne zu erstellen.',
         'success'   => 'Neues Objekt \':link\' erstellt.',
         'title'     => 'Neues Objekt',
+        'tooltip'   => 'Erstellen Sie ein neues Objekt, ohne die aktuelle Seite zu verlassen',
     ],
     'dice_roll'             => 'Würfelwurf',
     'dice_rolls'            => 'Würfelwürfe',

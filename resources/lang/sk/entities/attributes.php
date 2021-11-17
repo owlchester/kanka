@@ -41,6 +41,7 @@ return [
     ],
     'hints'         => [
         'is_private'    => 'Všetky atribúty objektu je možné skryť pred všetkými členmi okrem tých s rolou Admin, ak ho nastavíš ako súkromný.',
+        'is_private2'   => 'Ak aktivované, iba členovia role :admin-role budú vidieť atribúty tohto objektu.',
     ],
     'index'         => [
         'success'   => 'Atribúty pre :entity upravené.',
