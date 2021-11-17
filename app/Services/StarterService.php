@@ -25,19 +25,19 @@ class StarterService
 
         // Generate locations
         $kingdom = new Location([
-            'name' => trans('starter.kingdom1.name'),
-            'type' => trans('starter.kingdom1.type'),
-            'entry' => '<p>' . trans('starter.kingdom1.description') . '</p>',
+            'name' => __('starter.kingdom1.name'),
+            'type' => __('starter.kingdom1.type'),
+            'entry' => '<p>' . __('starter.kingdom1.description') . '</p>',
             'campaign_id' => $campaign->id,
             'is_private' => false,
         ]);
         $kingdom->save();
 
         $city = new Location([
-            'name' => trans('starter.kingdom2.name'),
-            'type' => trans('starter.kingdom2.type'),
+            'name' => __('starter.kingdom2.name'),
+            'type' => __('starter.kingdom2.type'),
             'parent_location_id' => $kingdom->id,
-            'entry' => '<p>' . trans('starter.kingdom2.description') . '</p>',
+            'entry' => '<p>' . __('starter.kingdom2.description') . '</p>',
             'campaign_id' => $campaign->id,
             'is_private' => false,
         ]);
@@ -45,39 +45,39 @@ class StarterService
 
         // Generate characters
         $james = new Character([
-            'name' => trans('starter.character1.name'),
-            'title' => trans('starter.character1.title'),
+            'name' => __('starter.character1.name'),
+            'title' => __('starter.character1.title'),
             'age' => '43',
-            'sex' => trans('starter.character1.sex'),
-            'entry' => '<p>' . trans('starter.character1.history') . '</p>',
+            'sex' => __('starter.character1.sex'),
+            'entry' => '<p>' . __('starter.character1.history') . '</p>',
             'location_id' => $city->id,
             'campaign_id' => $campaign->id,
-            'fears' => trans('starter.character1.fears'),
-            'traits' => trans('starter.character1.traits'),
+            'fears' => __('starter.character1.fears'),
+            'traits' => __('starter.character1.traits'),
             'is_private' => false,
         ]);
         $james->save();
 
         $irwie = new Character([
-            'name' => trans('starter.character2.name'),
-            'title' => trans('starter.character2.title'),
+            'name' => __('starter.character2.name'),
+            'title' => __('starter.character2.title'),
             'age' => '31',
-            'sex' => trans('starter.character2.sex'),
-            'entry' => '<p>' . trans('starter.character2.history') . '</p>',
+            'sex' => __('starter.character2.sex'),
+            'entry' => '<p>' . __('starter.character2.history') . '</p>',
             'location_id' => $city->id,
             'campaign_id' => $campaign->id,
-            'fears' => trans('starter.character2.fears'),
-            'traits' => trans('starter.character2.traits'),
+            'fears' => __('starter.character2.fears'),
+            'traits' => __('starter.character2.traits'),
             'is_private' => false,
         ]);
         $irwie->save();
 
         // One item for good measure
         $item = new Item([
-            'name' => trans('starter.item1.name'),
+            'name' => __('starter.item1.name'),
             'campaign_id' => $campaign->id,
-            'type' => trans('starter.item1.type'),
-            'entry' => '<p>' . trans('starter.item1.description') . '</p>',
+            'type' => __('starter.item1.type'),
+            'entry' => '<p>' . __('starter.item1.description') . '</p>',
             'character_id' => $irwie->id,
             'location_id' => $kingdom->id,
             'is_private' => false,
@@ -101,7 +101,7 @@ class StarterService
             'public' => link_to_route('front.public_campaigns', __('front.menu.campaigns')),
             'subscriptions' => link_to_route('settings.subscription', __('starter.note1.subscriptions')),
         ]));
-        $note = new Note([ 'name' => trans('starter.note1.name'),
+        $note = new Note([ 'name' => __('starter.note1.name'),
             'campaign_id' => $this->campaign->id,
             'entry' => $entry,
             'is_private' => false,

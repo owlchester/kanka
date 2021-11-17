@@ -8,12 +8,12 @@ use App\Models\Campaign;
 use App\Http\Requests\StoreCampaign;
 use App\Services\CampaignService;
 use App\Services\EntityService;
+use App\Services\StarterService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 class CampaignController extends Controller
 {
@@ -22,15 +22,14 @@ class CampaignController extends Controller
      */
     protected $view = 'campaigns';
 
-    /**
-     * @var CampaignService
-     */
+    /** @var CampaignService  */
     protected $campaignService;
 
-    /**
-     * @var EntityService
-     */
+    /** @var EntityService  */
     protected $entityService;
+
+    /** @var StarterService  */
+    protected $starterService;
 
     /**
      * Create a new controller instance.
@@ -38,11 +37,12 @@ class CampaignController extends Controller
      * CampaignController constructor.
      * @param CampaignService $campaignService
      */
-    public function __construct(CampaignService $campaignService, EntityService $entityService)
+    public function __construct(CampaignService $campaignService, EntityService $entityService, StarterService $starterService)
     {
         $this->middleware('auth', ['except' => ['index', 'show', 'css']]);
         $this->campaignService = $campaignService;
         $this->entityService = $entityService;
+        $this->starterService = $starterService;
     }
 
     /**
@@ -80,13 +80,28 @@ class CampaignController extends Controller
         $campaign = new Campaign();
         $this->authorize('create', $campaign);
 
-        $first = !Auth::user()->hasCampaigns();
+
+        $first = !auth()->user()->hasCampaigns();
         $data = $request->all();
 
         $data['entry'] = Arr::get($data, 'entry');
         $data['excerpt'] = Arr::get($data, 'excerpt');
 
-        $campaign = Campaign::create($data);
+        DB::beginTransaction();
+        try {
+            $campaign = Campaign::create($data);
+            auth()->user()->setCurrentCampaign($campaign);
+
+            // If it's the first campaign for the user, generate some boilerplate content
+            if ($first) {
+                CampaignLocalization::forceCampaign($campaign);
+                $this->starterService->generateBoilerplate($campaign);
+            }
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
 
         if ($request->has('submit-update')) {
             return redirect()
