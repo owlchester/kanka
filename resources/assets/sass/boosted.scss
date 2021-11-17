@@ -368,6 +368,9 @@
       height: auto;
       width: 100%;
       min-height: 250px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
     }
   }
   .entity-header.without-entity-image {
