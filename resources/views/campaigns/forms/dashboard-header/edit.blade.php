@@ -8,14 +8,12 @@
 
 @inject('campaign', 'App\Services\CampaignService')
 @section('content')
-    <div class="panel panel-default">
-        @if ($ajax)
-            <div class="panel-heading">
+    <div class="modal-default">
+            <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                <h4>{!! __('campaigns/dashboard-header.edit.title') !!}</h4>
+                <h4 class="modal-title">{!! __('campaigns/dashboard-header.edit.title') !!}</h4>
             </div>
-        @endif
-        <div class="panel-body">
+        <div class="modal-body">
             @include('partials.errors')
 
             {!! Form::model($model, [
@@ -28,22 +26,20 @@
 
             @include('campaigns.forms.dashboard-header._form')
 
-            <div class="row">
-                <div class="col-xs-6">
-
+        </div>
+        <div class="modal-footer">
                     @include('cruds.fields.save', ['onlySave' => true])
                     {!! Form::close() !!}
+
+                @if (!empty($widget))
+                <div class="pull-left">
+                    {!! Form::open(['method' => 'DELETE','route' => ['campaign_dashboard_widgets.destroy', $widget], 'class' => 'form-inline']) !!}
+                    <button class="btn btn-danger">
+                        <i class="fa fa-trash" aria-hidden="true"></i> <span class="hidden-xs hidden-md">{{ trans('crud.remove') }}</span>
+                    </button>
+                    {!! Form::close() !!}
                 </div>
-                <div class="col-xs-6 text-right">
-                    @if (!empty($widget))
-                        {!! Form::open(['method' => 'DELETE','route' => ['campaign_dashboard_widgets.destroy', $widget], 'class' => 'form-inline']) !!}
-                        <button class="btn btn-danger">
-                            <i class="fa fa-trash" aria-hidden="true"></i> <span class="hidden-xs hidden-md">{{ trans('crud.remove') }}</span>
-                        </button>
-                        {!! Form::close() !!}
-                    @endif
-                </div>
-            </div>
+                @endif
         </div>
     </div>
 @endsection

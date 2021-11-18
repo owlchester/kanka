@@ -238,6 +238,7 @@ return [
         'is_star'               => 'Pinned elements will appear on the entity\'s overview page.',
         'tooltip'               => 'Replace the automatically generated tooltip with the following contents. Any HTML code will be stripped, but you can still mention other entities using advanced mentions.',
         'visibility'            => 'Setting the visibility to admin means only members in the Admin campaign role can view this. Setting it to self means only you can view this.',
+        'image_recommendation'  => 'Recommended dimensions: :width by :height px.',
     ],
     'history'                   => [
         'created_clean'         => 'Created by :name :date',

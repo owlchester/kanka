@@ -390,8 +390,7 @@ class Entity extends Model
     public function getHeaderUrl(bool $superboosted = false): string
     {
         if (!empty($this->header_image)) {
-            return $this->getImageUrl(0, 0, 'header_image');
-
+            return $this->getImageUrl(1200, 400, 'header_image');
         }
 
         if (!$superboosted) {
@@ -403,7 +402,7 @@ class Entity extends Model
         }
 
         return Img::resetCrop()
-            ->crop(0, 0)
+            ->crop(1200, 400)
             ->url($this->header->path);
     }
 }
