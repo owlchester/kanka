@@ -94,20 +94,6 @@ trait CampaignScopes
     }
 
     /**
-     * Used by the API to get models updated since a previous date
-     * @param $query
-     * @param $lastSync
-     * @return mixed
-     */
-    public function scopeLastSync(Builder $query, $lastSync)
-    {
-        if (empty($lastSync)) {
-            return $query;
-        }
-        return $query->where(with(new static)->getTable() . '.updated_at', '>', $lastSync);
-    }
-
-    /**
      * Campaigns with the most entities
      * @param $query
      * @return mixed

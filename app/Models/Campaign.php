@@ -6,6 +6,7 @@ use App\Facades\CampaignCache;
 use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\Concerns\Boosted;
+use App\Models\Concerns\LastSync;
 use App\Models\Relations\CampaignRelations;
 use App\Models\Scopes\CampaignScopes;
 use App\Notifications\Header;
@@ -62,7 +63,8 @@ class Campaign extends MiscModel
 {
     use CampaignScopes,
         CampaignRelations,
-        Boosted;
+        Boosted,
+        LastSync;
 
     /**
      * Visibility of a campaign

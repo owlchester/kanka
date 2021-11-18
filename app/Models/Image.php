@@ -5,6 +5,7 @@ namespace App\Models;
 
 
 use App\Facades\Img;
+use App\Models\Concerns\LastSync;
 use App\Traits\CampaignTrait;
 use App\User;
 use Carbon\Carbon;
@@ -43,7 +44,7 @@ use Illuminate\Support\Facades\Storage;
  */
 class Image extends Model
 {
-    use CampaignTrait;
+    use CampaignTrait, LastSync;
 
     public $fillable = [
         'name',
@@ -207,20 +208,6 @@ class Image extends Model
         return $query
             ->where('is_folder', true)
             ->orderBy('name', 'asc');
-    }
-
-    /**
-     * Used by the API to get models updated since a previous date
-     * @param $query
-     * @param $lastSync
-     * @return mixed
-     */
-    public function scopeLastSync(Builder $query, $lastSync)
-    {
-        if (empty($lastSync)) {
-            return $query;
-        }
-        return $query->where('updated_at', '>', $lastSync);
     }
 
     /**

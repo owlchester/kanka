@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
+/**
+ * @method static self|Builder filter(array $params = null)
+ */
 trait Filterable
 {
     /**

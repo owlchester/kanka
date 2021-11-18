@@ -20,8 +20,7 @@ class AbilityApiController extends ApiController
         return Resource::collection($campaign
             ->abilities()
             ->filter(request()->all())
-            ->with(['entity', 'entity.tags', 'entity.notes', 'entity.files',
-                'entity.events', 'entity.relationships', 'entity.attributes'])
+            ->withApi()
             ->lastSync(request()->get('lastSync'))
             ->paginate());
     }

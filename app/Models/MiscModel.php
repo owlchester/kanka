@@ -7,6 +7,7 @@ use App\Facades\CampaignLocalization;
 use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\Concerns\Filterable;
+use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Searchable;
@@ -54,7 +55,8 @@ abstract class MiscModel extends Model
         Tooltip,
         Sortable,
         SubEntityScopes,
-        SourceCopiable
+        SourceCopiable,
+        LastSync
     ;
 
     /**

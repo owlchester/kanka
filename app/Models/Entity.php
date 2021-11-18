@@ -7,6 +7,7 @@ use App\Facades\EntityCache;
 use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\Concerns\EntityLogs;
+use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Picture;
 use App\Models\Concerns\Searchable;
@@ -81,7 +82,8 @@ class Entity extends Model
         SimpleSortableTrait,
         SoftDeletes,
         EntityLogs,
-        Paginatable
+        Paginatable,
+        LastSync
     ;
 
     /**

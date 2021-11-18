@@ -21,8 +21,7 @@ class RaceApiController extends ApiController
         return Resource::collection($campaign
             ->races()
             ->filter(request()->all())
-            ->with(['entity', 'entity.tags', 'entity.notes', 'entity.files', 'entity.events',
-                'entity.relationships', 'entity.attributes'])
+            ->withApi()
             ->has('entity')
             ->lastSync(request()->get('lastSync'))
             ->paginate());

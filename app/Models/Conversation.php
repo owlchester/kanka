@@ -92,6 +92,11 @@ class Conversation extends MiscModel
     ];
 
     /**
+     * @var string[] Extra relations loaded for the API endpoint
+     */
+    public $apiWith = ['messages', 'participants'];
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function messages()

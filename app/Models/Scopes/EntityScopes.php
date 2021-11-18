@@ -179,20 +179,6 @@ trait EntityScopes
     }
 
     /**
-     * Used by the API to get models updated since a previous date
-     * @param $query
-     * @param $lastSync
-     * @return mixed
-     */
-    public function scopeLastSync(Builder $query, $lastSync)
-    {
-        if (empty($lastSync)) {
-            return $query;
-        }
-        return $query->where('updated_at', '>', $lastSync);
-    }
-
-    /**
      * @param Builder $query
      * @param array|null $types
      * @return Builder
