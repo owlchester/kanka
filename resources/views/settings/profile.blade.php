@@ -36,7 +36,7 @@
                         <div class="form-group checkbox">
                             <label>
                                 {!! Form::hidden('settings[hide_subscription]', 0) !!}
-                                {!! Form::checkbox('settings[hide_subscription]') !!}
+                                {!! Form::checkbox('settings[hide_subscription]', 1) !!}
                                 {!! __('profiles.fields.hide_subscription', [
     'hall_of_fame' => link_to_route('front.hall-of-fame', __('front/hall-of-fame.title'), null, ['target' => '_blank'])
 ]) !!}</label>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSettingsProfile;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,12 +35,15 @@ class ProfileController extends Controller
      */
     public function update(StoreSettingsProfile $request)
     {
+        /** @var User $user */
         $user = $request->user();
-        if ($user->isPatron()) {
-            $user->settings = $user->settings->put('hide_subscription', (bool) $request->input('settings.hide_subscription', false));
+        $settings = $user->settings();
+        if ($user->isPatron() && $request->has('settings.hide_subscription') && $request->input('settings.hide_subscription') == '1') {
+            $settings->put('hide_subscription', true);
         } else {
-            unset($user->settings['hide_subscription']);
+            $settings->forget('hide_subscription');
         }
+        $user->settings = $settings;
         $user->update($request->only('name', 'has_last_login_sharing', 'avatar'));
 
         return redirect()

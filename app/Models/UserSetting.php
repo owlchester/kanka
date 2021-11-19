@@ -25,9 +25,9 @@ use Illuminate\Support\Collection;
  */
 trait UserSetting
 {
-    public function getSettingsAttribute()
+    public function settings()
     {
-        return new Collection($this->attributes['settings']);
+        return new Collection($this->settings);
     }
 
     /**

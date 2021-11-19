@@ -28,7 +28,7 @@ class ReleaseController extends Controller
     {
         $user = auth()->user();
         /** @var Collection $settings */
-        $settings = $user->settings;
+        $settings = $user->settings();
         $settings->put('releases_' . $appRelease->category_id, $appRelease->id);
         $user->settings = $settings;
         $user->save();
