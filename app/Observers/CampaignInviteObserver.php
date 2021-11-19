@@ -2,12 +2,9 @@
 
 namespace App\Observers;
 
+use App\Facades\CampaignLocalization;
 use App\Jobs\Emails\InvitationEmailJob;
-use App\Mail\CampaignInviteMail;
 use App\Models\CampaignInvite;
-use App\Services\StarterService;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class CampaignInviteObserver
@@ -17,8 +14,8 @@ class CampaignInviteObserver
      */
     public function created(CampaignInvite $campaignInvite)
     {
-        // Send email to the new user too join
-        if ($campaignInvite->type == 'email') {
+        // Send email to the new user to join
+        if ($campaignInvite->isEmail()) {
             InvitationEmailJob::dispatch($campaignInvite, auth()->user(), app()->getLocale());
         }
     }
@@ -28,15 +25,16 @@ class CampaignInviteObserver
      */
     public function creating(CampaignInvite $campaignInvite)
     {
+        $campaign = CampaignLocalization::getCampaign();
         $campaignInvite->token = sha1(Str::random(50)) . time() . uniqid();
         $campaignInvite->is_active = true;
-        $campaignInvite->created_by = Auth::user()->id;
-        $campaignInvite->campaign_id = Auth::user()->campaign->id;
+        $campaignInvite->created_by = auth()->user()->id;
+        $campaignInvite->campaign_id = $campaign->id;
 
-        if ($campaignInvite->type == 'link') {
-            $campaignInvite->email = '';
-        } else {
+        if ($campaignInvite->isEmail()) {
             $campaignInvite->validity = 1;
+        } else {
+            $campaignInvite->email = '';
         }
     }
 }
