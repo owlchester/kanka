@@ -78,6 +78,7 @@ class BulkController extends Controller
                 return $this->batch();
             }
         } catch (\Exception $e) {
+            throw $e;
             return redirect()
                 ->route($this->indexRoute(), $this->routeParams)
                 ->with('error', __('crud.bulk.errors.general', ['hint' => $e->getMessage()]));

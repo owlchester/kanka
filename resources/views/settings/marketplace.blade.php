@@ -9,7 +9,7 @@
 
 @section('content')
     @include('partials.errors')
-    {!! Form::model(auth()->user(), ['method' => 'POST', 'route' => ['settings.marketplace.save']]) !!}
+    {!! Form::model(auth()->user(), ['method' => 'POST', 'route' => ['settings.marketplace.save'], 'data-shortcut' => 1]) !!}
     <div class="box box-solid">
         <div class="box-header with-border">
             <h3 class="box-title">

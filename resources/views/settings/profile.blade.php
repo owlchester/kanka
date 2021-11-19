@@ -8,7 +8,7 @@
 
 @section('content')
     @include('partials.errors')
-    {!! Form::model($user, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['settings.profile']]) !!}
+    {!! Form::model($user, ['method' => 'PATCH', 'enctype' => 'multipart/form-data', 'route' => ['settings.profile'], 'data-shortcut' => 1]) !!}
     <div class="box box-solid">
         <div class="box-body">
             <div class="row">

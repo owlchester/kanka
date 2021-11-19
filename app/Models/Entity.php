@@ -321,6 +321,13 @@ class Entity extends Model
         return $this->cachedType = $type;
     }
 
+    public function cleanCache(): self
+    {
+        $this->cachedType = false;
+        $this->cachedPluralName = false;
+        return $this;
+    }
+
     /**
      * Get the image (or default image) of an entity
      * @param int $width = 200

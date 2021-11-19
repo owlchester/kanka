@@ -350,6 +350,7 @@ class EntityService
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
+            throw $e;
         }
 
         // Switch back to the original campaign
@@ -455,9 +456,9 @@ class EntityService
         }
 
         // Update entity
-        $entity->type_id = $new->getEntityTypeID();
+        $entity->type_id = $new->entityTypeID();
         $entity->entity_id = $new->id;
-        $entity->save();
+        $entity->cleanCache()->save();
 
         // Delete old, this will take care of pictures and stuff. We detach the
         // entity to avoid the softDelete affecting it and causing duplicate
