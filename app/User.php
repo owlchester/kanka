@@ -47,7 +47,7 @@ use Laravel\Passport\HasApiTokens;
  * @property string $patreon_fullname
  * @property string $patreon_email
  */
-class User extends \TCG\Voyager\Models\User
+class User extends \Illuminate\Foundation\Auth\User
 {
     use Notifiable,
         HasApiTokens,
@@ -436,5 +436,25 @@ class User extends \TCG\Voyager\Models\User
         }
 
         return $campaigns;
+    }
+
+    /**
+     * Check if User has a Role(s) associated.
+     *
+     * @param string|array $name The role(s) to check.
+     *
+     * @return bool
+     */
+    public function hasRole($name)
+    {
+        $roles = $this->roles->pluck('name')->toArray();
+
+        foreach ((is_array($name) ? $name : [$name]) as $role) {
+            if (in_array($role, $roles)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

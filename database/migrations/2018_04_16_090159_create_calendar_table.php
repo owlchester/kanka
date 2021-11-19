@@ -53,22 +53,6 @@ class CreateCalendarTable extends Migration
         Schema::table('campaign_settings', function (Blueprint $table) {
             $table->boolean('calendars')->default(true);
         });
-
-        Schema::table('entities', function (Blueprint $table) {
-            $table->enum('type', [
-                'character',
-                'event',
-                'family',
-                'item',
-                'journal',
-                'location',
-                'note',
-                'organisation',
-                'quest',
-                'attribute_template',
-                'calendar',
-            ])->notNull()->change();
-        });
     }
 
     /**
@@ -88,20 +72,5 @@ class CreateCalendarTable extends Migration
         foreach ($entities as $entity) {
             $entity->delete();
         }
-
-        Schema::table('entities', function (Blueprint $table) {
-            $table->enum('type', [
-                'character',
-                'event',
-                'family',
-                'item',
-                'journal',
-                'location',
-                'note',
-                'organisation',
-                'quest',
-                'attribute_template'
-            ])->notNull()->change();
-        });
     }
 }

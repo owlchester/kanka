@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3fa9fd921b31de50937734faa6ac980c",
+    "content-hash": "9fc97204bf30b542b800b5a478fc696c",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -52,72 +52,6 @@
                 "source": "https://github.com/ColorlibHQ/AdminLTE/tree/v2.4.3"
             },
             "time": "2018-02-04T12:54:57+00:00"
-        },
-        {
-            "name": "arrilot/laravel-widgets",
-            "version": "3.13.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/arrilot/laravel-widgets.git",
-                "reference": "ae0e44ce625026ae71c6ab9259f89f13af227e37"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/arrilot/laravel-widgets/zipball/ae0e44ce625026ae71c6ab9259f89f13af227e37",
-                "reference": "ae0e44ce625026ae71c6ab9259f89f13af227e37",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/cache": ">=5.5",
-                "illuminate/console": ">=5.5",
-                "illuminate/container": ">=5.5",
-                "illuminate/contracts": ">=5.5",
-                "illuminate/support": ">=5.5",
-                "illuminate/view": ">=5.5",
-                "php": ">=7.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~6.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Arrilot\\Widgets\\ServiceProvider"
-                    ],
-                    "aliases": {
-                        "Widget": "Arrilot\\Widgets\\Facade",
-                        "AsyncWidget": "Arrilot\\Widgets\\AsyncFacade"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Arrilot\\Widgets\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nekrasov Ilya",
-                    "email": "nekrasov.ilya90@gmail.com"
-                }
-            ],
-            "description": "A powerful alternative to view composers. Asynchronous widgets, reloadable widgets, console generator, caching - everything you can think of.",
-            "homepage": "https://github.com/arrilot/laravel-widgets",
-            "keywords": [
-                "ajax",
-                "laravel",
-                "widgets"
-            ],
-            "support": {
-                "issues": "https://github.com/arrilot/laravel-widgets/issues",
-                "source": "https://github.com/arrilot/laravel-widgets/tree/3.13.1"
-            },
-            "time": "2020-09-20T19:56:38+00:00"
         },
         {
             "name": "asm89/stack-cors",
@@ -3443,167 +3377,6 @@
                 }
             ],
             "time": "2021-06-24T12:49:22+00:00"
-        },
-        {
-            "name": "larapack/doctrine-support",
-            "version": "v0.1.9",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/larapack/doctrine-support.git",
-                "reference": "ab6e821c467704ae91a9a944e6ebdaad6a99a294"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/larapack/doctrine-support/zipball/ab6e821c467704ae91a9a944e6ebdaad6a99a294",
-                "reference": "ab6e821c467704ae91a9a944e6ebdaad6a99a294",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/dbal": "^2.5",
-                "illuminate/support": ">=5.3"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Larapack\\DoctrineSupport\\DoctrineSupportServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Larapack\\DoctrineSupport\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mark Topper",
-                    "email": "mark@ulties.com"
-                }
-            ],
-            "description": "Better Doctrine Support with Laravel (Support for `enum`)",
-            "homepage": "https://github.com/larapack/doctrine-support",
-            "keywords": [
-                "dbal",
-                "doctrine",
-                "enum",
-                "laravel",
-                "support"
-            ],
-            "support": {
-                "issues": "https://github.com/larapack/doctrine-support/issues",
-                "source": "https://github.com/larapack/doctrine-support"
-            },
-            "time": "2019-09-05T13:15:40+00:00"
-        },
-        {
-            "name": "larapack/hooks",
-            "version": "v1.0.12",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/larapack/hooks.git",
-                "reference": "ce2c8c078a56036c357f26036174412cb9059f8e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/larapack/hooks/zipball/ce2c8c078a56036c357f26036174412cb9059f8e",
-                "reference": "ce2c8c078a56036c357f26036174412cb9059f8e",
-                "shasum": ""
-            },
-            "require": {
-                "composer/composer": ">=1.4"
-            },
-            "require-dev": {
-                "orchestra/testbench": ">=3.0",
-                "phpunit/phpunit": ">=5.6"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Larapack\\Hooks\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mark Topper",
-                    "email": "mark@ulties.com"
-                }
-            ],
-            "description": "A Laravel Hook system",
-            "homepage": "https://larapack.io/",
-            "keywords": [
-                "hooks",
-                "laravel"
-            ],
-            "support": {
-                "issues": "https://github.com/larapack/hooks/issues",
-                "source": "https://github.com/larapack/hooks"
-            },
-            "time": "2020-03-10T13:15:02+00:00"
-        },
-        {
-            "name": "larapack/voyager-hooks",
-            "version": "v1.2.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/larapack/voyager-hooks.git",
-                "reference": "1a54df95b4179a9d26e9aacbd8676c8ccd78be0e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/larapack/voyager-hooks/zipball/1a54df95b4179a9d26e9aacbd8676c8ccd78be0e",
-                "reference": "1a54df95b4179a9d26e9aacbd8676c8ccd78be0e",
-                "shasum": ""
-            },
-            "require": {
-                "larapack/hooks": "~1.0.2"
-            },
-            "require-dev": {
-                "orchestra/testbench": ">=3.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Larapack\\VoyagerHooks\\VoyagerHooksServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Larapack\\VoyagerHooks\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mark Topper",
-                    "email": "mark@ulties.com"
-                }
-            ],
-            "description": "Hooks integrated in Voyager",
-            "homepage": "https://larapack.io/",
-            "keywords": [
-                "hooks",
-                "laravel",
-                "voyager"
-            ],
-            "support": {
-                "issues": "https://github.com/larapack/voyager-hooks/issues",
-                "source": "https://github.com/larapack/voyager-hooks"
-            },
-            "time": "2020-03-04T21:35:18+00:00"
         },
         {
             "name": "laravel/cashier",
@@ -11044,103 +10817,6 @@
             "time": "2021-07-29T06:20:01+00:00"
         },
         {
-            "name": "tcg/voyager",
-            "version": "1.4.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/the-control-group/voyager.git",
-                "reference": "110229618c035600fc55c2104bd629701d96c283"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/the-control-group/voyager/zipball/110229618c035600fc55c2104bd629701d96c283",
-                "reference": "110229618c035600fc55c2104bd629701d96c283",
-                "shasum": ""
-            },
-            "require": {
-                "arrilot/laravel-widgets": "^3.7",
-                "doctrine/dbal": "^2.5",
-                "ext-json": "*",
-                "illuminate/support": "~6.0|~7.0|~8.0",
-                "intervention/image": "^2.4",
-                "larapack/doctrine-support": "~0.1.4",
-                "larapack/voyager-hooks": "~1.2.1",
-                "laravel/ui": ">=1.0",
-                "league/flysystem": "~1.1|~2.0",
-                "php": "^7.3|^7.4|^8.0"
-            },
-            "require-dev": {
-                "laravel/browser-kit-testing": ">=5.0.0",
-                "laravel/framework": "~6.0|~7.0|~8.0",
-                "orchestra/testbench": ">=4.0",
-                "orchestra/testbench-browser-kit": ">=4.0",
-                "phpunit/phpcov": ">=6.0",
-                "phpunit/phpunit": ">=8.0"
-            },
-            "suggest": {
-                "laravel/legacy-factories": "Required to run Voyager tests with Laravel 8.x"
-            },
-            "default-branch": true,
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "TCG\\Voyager\\VoyagerServiceProvider",
-                        "TCG\\Voyager\\Providers\\VoyagerDummyServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "TCG\\Voyager\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Tony Lea",
-                    "email": "tony.lea@thecontrolgroup.com"
-                }
-            ],
-            "description": "A Laravel Admin Package for The Control Group to make your life easier and steer your project in the right direction",
-            "homepage": "https://voyager.devdojo.com/",
-            "keywords": [
-                "admin",
-                "laravel",
-                "panel"
-            ],
-            "support": {
-                "issues": "https://github.com/the-control-group/voyager/issues",
-                "source": "https://github.com/the-control-group/voyager"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/[user1",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/emptynick]# Replace with up to 4 GitHub Sponsors-enabled usernames e.g.",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/fletch3555",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/tnylea",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/user2",
-                    "type": "github"
-                }
-            ],
-            "time": "2021-07-30T06:25:26+00:00"
-        },
-        {
             "name": "tijsverkoyen/css-to-inline-styles",
             "version": "2.2.3",
             "source": {
@@ -13563,9 +13239,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "tcg/voyager": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

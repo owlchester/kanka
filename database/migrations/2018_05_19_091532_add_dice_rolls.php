@@ -39,24 +39,6 @@ class AddDiceRolls extends Migration
             $table->boolean('dice_rolls')->default(true);
         });
 
-        // Update entities
-        Schema::table('entities', function (Blueprint $table) {
-            $table->enum('type', [
-                'character',
-                'event',
-                'family',
-                'item',
-                'journal',
-                'location',
-                'note',
-                'organisation',
-                'quest',
-                'attribute_template',
-                'calendar',
-                'section',
-                'dice_roll',
-            ])->notNull()->change();
-        });
     }
 
     /**
@@ -74,22 +56,5 @@ class AddDiceRolls extends Migration
             $table->dropColumn('dice_rolls');
         });
 
-        // Update entities
-        Schema::table('entities', function (Blueprint $table) {
-            $table->enum('type', [
-                'character',
-                'event',
-                'family',
-                'item',
-                'journal',
-                'location',
-                'note',
-                'organisation',
-                'quest',
-                'attribute_template',
-                'calendar',
-                'section',
-            ])->notNull()->change();
-        });
     }
 }

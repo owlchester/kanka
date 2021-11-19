@@ -21,8 +21,6 @@ Route::group([
 
     Route::get('/', 'HomeController@index')->name('home');
 
-    Auth::routes(['register' => config('auth.register_enabled')]);
-
     Route::resources([
         'campaign_boosts' => 'CampaignBoostController',
     ]);

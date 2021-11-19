@@ -143,9 +143,10 @@ class PatreonService
         }
 
         $ids = $role->users()->pluck('id');
+        /** @var User $user */
         $users = User::select(['patreon_pledge', 'name', 'settings'])->whereIn('id', $ids)->orderBy('name', 'ASC')->get();
         foreach ($users as $user) {
-            if ($user->settings->get('hide_subscription', false)) {
+            if ($user->setting('hide_subscription', false)) {
                 continue;
             }
             $patrons[$user->patreon_pledge ?: 'Kobold'][] = $user->name;

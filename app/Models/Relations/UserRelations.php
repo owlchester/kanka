@@ -138,4 +138,12 @@ trait UserRelations
         return $this->belongsToMany(Entity::class)
             ->using(EntityUser::class);
     }
+
+    /**
+     * Return alternative User Roles.
+     */
+    public function roles()
+    {
+        return $this->belongsToMany('App\Models\Role', 'user_roles', 'user_id', 'role_id');
+    }
 }
