@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
-use TCG\Voyager\Models\Post;
+use App\Models\Post;
 
 /**
  * Class Release

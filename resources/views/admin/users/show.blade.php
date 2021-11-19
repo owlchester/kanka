@@ -288,7 +288,7 @@
                     {!! Form::model($model, ['route' => ['admin.users.roles', $model]]) !!}
                     <div class="form-group">
                         <label>Role</label>
-                        {!! Form::select('role_id', \TCG\Voyager\Models\Role::pluck('name', 'id')->toArray(), null, ['class' => 'form-control']) !!}
+                        {!! Form::select('role_id', \App\Models\Role::pluck('name', 'id')->toArray(), null, ['class' => 'form-control']) !!}
                     </div>
                     <button type="submit" class="btn btn-primary">Add</button>
                     {!! Form::close() !!}

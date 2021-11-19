@@ -62,8 +62,6 @@ class UpdateTablesAddIndexesQ22020 extends Migration
         Schema::table('campaigns', function (Blueprint $table) {
             $table->dropIndex('campaigns_public_idx');
             $table->index(['visibility', 'is_featured', 'visible_entity_count']);
-
-            $table->dropColumn('join_token');
         });
         Schema::table('entities', function (Blueprint $table) {
             $table->index('updated_at');

@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Services\ReferralService;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -29,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Auth::guest()) {
+        if (auth()->guest()) {
             return $this->front();
         } else {
             return $this->back();
@@ -45,12 +42,12 @@ class HomeController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse|void
      */
     protected function back()
     {
-        $campaignId = Session::get('campaign_id');
-        if (empty($campaignId) || !isset($campaignId) || !Auth::user()->hasCampaigns()) {
+        $campaignId = session()->get('campaign_id');
+        if (empty($campaignId) || !isset($campaignId) || !auth()->user()->hasCampaigns()) {
             return redirect()->route('start');
         }
 
@@ -61,7 +58,7 @@ class HomeController extends Controller
         }
 
         // Otherwise, redirect to the last campaign the user has
-        $last = Auth::user()->last_campaign_id;
+        $last = auth()->user()->last_campaign_id;
         if (!empty($last)) {
             $campaign = Campaign::find($last);
             if ($campaign) {

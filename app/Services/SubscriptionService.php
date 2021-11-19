@@ -13,6 +13,7 @@ use App\Jobs\Emails\SubscriptionFailedEmailJob;
 use App\Jobs\Emails\SubscriptionNewElementalEmailJob;
 use App\Jobs\SubscriptionEndJob;
 use App\Models\Patreon;
+use App\Models\Role;
 use App\Models\SubscriptionSource;
 use App\Notifications\Header;
 use App\User;
@@ -24,8 +25,6 @@ use Stripe\Charge;
 use Stripe\Customer as StripeCustomer;
 use Stripe\Source;
 use Stripe\Stripe;
-use Stripe\Subscription;
-use TCG\Voyager\Facades\Voyager;
 use Exception;
 
 class SubscriptionService
@@ -219,7 +218,7 @@ class SubscriptionService
         $this->user->update(['patreon_pledge']);
 
         // We're so far, good. Let's add the user to the Patreon group
-        $role = Voyager::model('Role')->where('name', '=', 'patreon')->first();
+        $role = Role::where('name', '=', 'patreon')->first();
         if ($role && !$this->user->hasRole('patreon')) {
             $this->user->roles()->attach($role->id);
         }
