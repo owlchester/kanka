@@ -55,7 +55,7 @@ class CrudAttributeController extends Controller
 
         $attributes = $entity->attributes()->paginate();
         $name = $this->view;
-        $route = $entity->type . $this->route;
+        $route = $entity->type() . $this->route;
         $parentRoute = $entity->pluralType();
 
         $existing = count($entity->attributes);

@@ -35,7 +35,10 @@ class UserObserver
      */
     public function saved(User $user)
     {
-        UserCache::user($user)->clearName();
+        // Only clear the cache if the name changed
+        if ($user->isDirty('name')) {
+            UserCache::user($user)->clearName();
+        }
     }
 
     /**
@@ -80,10 +83,11 @@ class UserObserver
             Storage::disk('public')->delete($user->avatar);
         }
 
-        // Send notification that an account has been removed
-        //GoodbyeEmailJob::dispatch($user, app()->getLocale());
-
-        UserCache::user($user)->clearName()->clearCampaigns()->clearRoles();
+        UserCache::user($user)
+            ->clearName()
+            ->clearCampaigns()
+            ->clearRoles()
+        ;
     }
 
     /**

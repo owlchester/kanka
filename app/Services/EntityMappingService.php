@@ -69,10 +69,11 @@ class EntityMappingService
                 continue;
             }
 
+            $singularType = config('entities.ids.' . $singularType);
 
             /** @var Entity $entity */
             $entity = Entity::where([
-                'type' => $singularType, 'id' => $id, 'campaign_id' => $model->campaign_id
+                'type_id' => $singularType, 'id' => $id, 'campaign_id' => $model->campaign_id
             ])->first();
             if ($entity) {
                 // No need to save references to ourselves
@@ -154,6 +155,7 @@ class EntityMappingService
             if ($singularType == 'campaign') {
                 continue;
             }
+            $singularType = config('entities.ids.' . $singularType);
 
             // Determine the real campaign id from the model.
             // Todo: why can't we use CampaignLocalization? Because this was used by the migration script?
@@ -166,7 +168,7 @@ class EntityMappingService
 
             /** @var Entity $entity */
             $target = Entity::where([
-                'type' => $singularType, 'id' => $id, 'campaign_id' => $campaignId
+                'type_id' => $singularType, 'id' => $id, 'campaign_id' => $campaignId
             ])->first();
             if ($target) {
                 //$this->log("- Mentions " . $model->id);
@@ -250,7 +252,7 @@ class EntityMappingService
         $patternTooltip = '<a title="([^"]*)" href="' . $entityLinkSearch
             . '" data-toggle="tooltip"( data-html="true")?>(.*?)</a>';
 
-        $replace = '[' . $entity->type . ':' . $entity->child->id . ']';
+        $replace = '[' . $entity->type() . ':' . $entity->child->id . ']';
 
 //        dump($patternNoTooltip);
 //        dump($patternTooltip);

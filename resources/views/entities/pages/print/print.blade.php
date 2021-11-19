@@ -30,7 +30,7 @@
     @else
         @include('cruds.show')
     @endif
-    @includeIf('entities.pages.profile._' . $entity->type)
+    @includeIf('entities.pages.profile._' . $entity->type())
     @includeIf($name . '._print')
     @includeWhen($entity->abilities->count() > 0, 'entities.pages.print._abilities')
     @includeWhen($entity->inventories->count() > 0, 'entities.pages.inventory._inventory', [

@@ -51,7 +51,8 @@ class EntityResource extends JsonResource
         $data = [
             'id' => $entity->id,
             'name' => $entity->name,
-            'type' => $entity->type,
+            'type' => $entity->type(),
+            'type_id' => $entity->type_id,
             'child_id' => $entity->entity_id,
             'tags' => $entity->tags->pluck('id')->toArray(),
             'is_private' => (bool) $entity->is_private,

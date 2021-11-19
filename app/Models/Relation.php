@@ -233,4 +233,10 @@ class Relation extends Model
     {
         return $this;
     }
+
+    /** Fake entity type ID */
+    public function entityTypeID()
+    {
+        return 0;
+    }
 }

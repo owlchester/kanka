@@ -162,7 +162,7 @@ class EntityObserver
             $permission = new CampaignPermission();
             $permission->entity_id = $entity->id;
             $permission->user_id = auth()->user()->id;
-            $permission->key = $entity->type . '_read_' . $entity->entity_id;
+            $permission->key = $entity->type() . '_read_' . $entity->entity_id;
             $permission->table_name = $entity->pluralType();
             $permission->access = true;
             $permission->save();
@@ -173,7 +173,7 @@ class EntityObserver
             $permission = new CampaignPermission();
             $permission->entity_id = $entity->id;
             $permission->user_id = auth()->user()->id;
-            $permission->key = $entity->type . '_edit_' . $entity->entity_id;
+            $permission->key = $entity->type() . '_edit_' . $entity->entity_id;
             $permission->table_name = $entity->pluralType();
             $permission->access = true;
             $permission->save();

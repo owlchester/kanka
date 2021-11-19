@@ -115,13 +115,13 @@ trait EntityScopes
 
     /**
      * @param Builder $query
-     * @param string $entityType
+     * @param int $entityTypeID
      * @return Builder
      */
-    public function scopeTemplates(Builder $query, string $entityType)
+    public function scopeTemplates(Builder $query, int $entityTypeID)
     {
         return $query
-            ->where('type', $entityType)
+            ->where('type_id', $entityTypeID)
             ->where('is_template', 1);
     }
 
@@ -135,8 +135,16 @@ trait EntityScopes
         $related = Arr::get($request, 'related', false);
         $types = Arr::get($request, 'types');
         if (!empty($types)) {
-            $types = explode(',', $types);
-            $query->whereIn('type', $types);
+            $typeNames = explode(',', $types);
+            $typeIds = [];
+            foreach ($typeNames as $type) {
+                $id = config('entities.ids.' . $type);
+                if (empty($id)) {
+                    continue;
+                }
+                $typeIds[] = $id;
+            }
+            $query->whereIn('type_id', $typeIds);
         }
 
         // Other available:
@@ -193,6 +201,6 @@ trait EntityScopes
             return $query;
         }
 
-        return $query->whereIn('type', $types);
+        return $query->whereIn('type_id', $types);
     }
 }

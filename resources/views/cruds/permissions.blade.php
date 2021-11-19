@@ -21,7 +21,7 @@
     @inject('permissionService', 'App\Services\PermissionService')
 @php
 /** @var \App\Services\PermissionService $permissionService */
-$permissions = $permissionService->type($entity->type)->entityPermissions($entity);
+$permissions = $permissionService->type($entity->type())->entityPermissions($entity);
 @endphp
 
     <div class="panel panel-default">

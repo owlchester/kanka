@@ -54,7 +54,7 @@
                                     {{ $entity->name }}
                                 </td>
                                 <td>
-                                    {{ __('entities.' . $entity->type) }}
+                                    {{ __('entities.' . $entity->type()) }}
                                 </td>
                                 <td>
                                     {{ $entity->deleted_at->diffForHumans() }}

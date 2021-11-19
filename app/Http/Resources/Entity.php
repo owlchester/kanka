@@ -22,7 +22,8 @@ class Entity extends EntityChild
             'image_thumb' => $this->child->getImageUrl(40),
             'has_custom_image' => !empty($this->child->image),
 
-            'type' => $this->type,
+            'type' => $this->type(),
+            'type_id' => $this->type_id,
             'tooltip' => $this->tooltip,
             'url' => $this->url(),
             'is_attributes_private' => $this->is_attributes_private,

@@ -28,7 +28,7 @@
 
         @include('entities.components.header', ['model' => $model])
         @include($entity->pluralType() . '.show')
-        @includeIf('entities.pages.profile._' . $entity->type)
+        @includeIf('entities.pages.profile._' . $entity->type())
         @includeIf($entity->pluralType() . '._print')
         @includeWhen($entity->abilities->count() > 0, 'entities.pages.print._abilities')
         @includeWhen($entity->inventories->count() > 0, 'entities.pages.inventory._inventory', [

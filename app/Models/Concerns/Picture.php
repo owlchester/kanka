@@ -53,8 +53,8 @@ trait Picture
         if (Str::contains($avatar, '/images/defaults/') && !Str::contains($avatar, '/patreon/')) {
             // Check if the campaign has a default image first
             $campaign = CampaignLocalization::getCampaign();
-            if ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->type)) {
-                return Img::crop(40, 40)->url(CampaignCache::defaultImages()[$this->type]['path']);
+            if ($campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->type())) {
+                return Img::crop(40, 40)->url(CampaignCache::defaultImages()[$this->type()]['path']);
             }
 
             if (auth()->check() && auth()->user()->isGoblinPatron()) {
