@@ -3,7 +3,7 @@
 ---
 
 - [All Tags](#all-tags)
-- [Filters](#filters)
+
 - [Single Tag](#tag)
 - [Create a Tag](#create-tag)
 - [Update a Tag](#update-tag)
@@ -17,9 +17,13 @@ You can get a list of all the tags of a campaign by using the following endpoint
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `tags` | Default |
+
+### URL Parameters
+
+The list of returned tags can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=tag" target="_blank">API filters</a>.
 
 ### Results
 ```json
@@ -52,18 +56,12 @@ You can get a list of all the tags of a campaign by using the following endpoint
 }
 ```
 
-<a name="filters"></a>
-## Filters
-
-The list of returned tags can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=tag" target="_blank">API filters</a>.
-
-
 <a name="tag"></a>
 ## Tag
 
 To get the details of a single tag, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `tags/{tag.id}` | Default |
 
@@ -102,7 +100,7 @@ To get the details of a single tag, use the following endpoint.
 
 To create a tag, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `tags` | Default |
 
@@ -115,8 +113,10 @@ To create a tag, use the following endpoint.
 | `type` | `string` | The tag's type |
 | `colour` | `string` | The tag's colour |
 | `tag_id` | `integer` | The parent tag |
-| `is_private` | `boolean` | If the tag is only visible to `admin` members of the campaign |
 | `image_url` | `string` | URL to a picture to be used for the tag |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `is_private` | `boolean` | If the tag is only visible to `admin` members of the campaign |
 
 ### Results
 
@@ -128,7 +128,7 @@ To create a tag, use the following endpoint.
 
 To update a tag, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `tags/{tag.id}` | Default |
 
@@ -146,7 +146,7 @@ The same body parameters are available as for when creating a tag.
 
 To delete a tag, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `tags/{tag.id}` | Default |
 

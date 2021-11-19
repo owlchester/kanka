@@ -55,7 +55,7 @@ return [
 
     'settings' => [
         'auth'  => false,
-        'ga_id' => ''
+        'ga_id' => config('tracking.ga')
     ],
 
     /*
@@ -135,15 +135,11 @@ return [
 
     'ui'                 => [
         'fav'            => '/favicon.ico', // e.g.: /fav.png
-        'theme'          => 'dark',
-        'fa_v4_shims'    => true, // Add FontAwesome v4 shims prevent BC break
+        'code_theme'     => 'dark',
         'colors'         => [
             'primary'    => '#787AF6',
             'secondary'  => '#2b9cf2',
-            'selection'  => '#f4f5f7'
         ],
-
-        'theme_order'    => null // ['LaRecipeDarkTheme', 'customTheme']
     ],
 
     /*

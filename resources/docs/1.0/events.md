@@ -3,7 +3,7 @@
 ---
 
 - [All Events](#all-events)
-- [Filters](#filters)
+
 - [Single Event](#event)
 - [Create a Event](#create-event)
 - [Update a Event](#update-event)
@@ -17,9 +17,13 @@ You can get a list of all the events of a campaign by using the following endpoi
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `events` | Default |
+
+### URL Parameters
+
+The list of returned events can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=event" target="_blank">API filters</a>.
 
 ### Results
 ```json
@@ -48,17 +52,12 @@ You can get a list of all the events of a campaign by using the following endpoi
 }
 ```
 
-<a name="filters"></a>
-## Filters
-
-The list of returned events can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=event" target="_blank">API filters</a>.
-
 <a name="event"></a>
 ## Event
 
 To get the details of a single event, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `events/{event.id}` | Default |
 
@@ -94,7 +93,7 @@ To get the details of a single event, use the following endpoint.
 
 To create a event, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `events` | Default |
 
@@ -108,9 +107,10 @@ To create a event, use the following endpoint.
 | `date` | `string` | Fictional date at which the event took place |
 | `location_id` | `string` | Location of the event |
 | `tags` | `array` | Array of tag ids |
-| `is_private` | `boolean` | If the event is only visible to `admin` members of the campaign |
 | `image_url` | `string` | URL to a picture to be used for the event |
-
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `is_private` | `boolean` | If the event is only visible to `admin` members of the campaign |
 ### Results
 
 > {success} Code 200 with JSON body of the new event.
@@ -121,7 +121,7 @@ To create a event, use the following endpoint.
 
 To update a event, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `events/{event.id}` | Default |
 
@@ -139,7 +139,7 @@ The same body parameters are available as for when creating a event.
 
 To delete a event, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `events/{event.id}` | Default |
 

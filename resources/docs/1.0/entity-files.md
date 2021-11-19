@@ -15,7 +15,7 @@ You can get a list of all the entity-files of an entity by using the following e
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `entities/{entity.id}/entity_files` | Default |
 
@@ -47,7 +47,7 @@ You can get a list of all the entity-files of an entity by using the following e
 
 To get the details of a single entity-file, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `entities/{entity.id}/entity_files/{entity_file.id}` | Default |
 
@@ -77,7 +77,7 @@ To get the details of a single entity-file, use the following endpoint.
 
 To create an entity-file, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `entities/{entity.id}/entity_files` | Default |
 
@@ -98,7 +98,7 @@ To create an entity-file, use the following endpoint.
 
 To delete an entity-file, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `entities/{entity.id}/entity_files/{entity_file.id}` | Default |
 

@@ -3,7 +3,7 @@
 ---
 
 - [All Quests](#all-quests)
-- [Filters](#filters)
+
 - [Single Quest](#quest)
 - [Quest Elements](#quest-elements)
 - [Create a Quest](#create-quest)
@@ -18,9 +18,13 @@ You can get a list of all the quests of a campaign by using the following endpoi
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `quests` | Default |
+
+### URL Parameters
+
+The list of returned quests can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=quest" target="_blank">API filters</a>.
 
 ### Results
 ```json
@@ -51,18 +55,12 @@ You can get a list of all the quests of a campaign by using the following endpoi
 }
 ```
 
-<a name="filters"></a>
-## Filters
-
-The list of returned quests can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=quest" target="_blank">API filters</a>.
-
-
 <a name="quest"></a>
 ## Quest
 
 To get the details of a single quest, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `quests/{quest.id}` | Default |
 
@@ -99,7 +97,7 @@ To get the details of a single quest, use the following endpoint.
 
 To get the elements of a quest, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `quests/{quest.id}/quest_elements` | Default |
 
@@ -132,7 +130,7 @@ To get the elements of a quest, use the following endpoint.
 
 To create a quest, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `quests` | Default |
 
@@ -146,8 +144,10 @@ To create a quest, use the following endpoint.
 | `quest_id` | `integer` | The parent quest |
 | `character_id` | `integer` | The quest's character (quest giver) |
 | `tags` | `array` | Array of tag ids |
-| `is_private` | `boolean` | If the quest is only visible to `admin` members of the campaign |
 | `image_url` | `string` | URL to a picture to be used for the quest |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `is_private` | `boolean` | If the quest is only visible to `admin` members of the campaign |
 
 ### Results
 
@@ -159,7 +159,7 @@ To create a quest, use the following endpoint.
 
 To update a quest, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `quests/{quest.id}` | Default |
 
@@ -177,7 +177,7 @@ The same body parameters are available as for when creating a quest.
 
 To delete a quest, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `quests/{quest.id}` | Default |
 

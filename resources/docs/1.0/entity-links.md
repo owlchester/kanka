@@ -15,7 +15,7 @@ You can get a list of all the entity-links of an entity by using the following e
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `entities/{entity.id}/entity_links` | Default |
 
@@ -46,7 +46,7 @@ You can get a list of all the entity-links of an entity by using the following e
 
 To get the details of a single entity-link, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `entities/{entity.id}/entity_links/{entity_link.id}` | Default |
 
@@ -75,7 +75,7 @@ To get the details of a single entity-link, use the following endpoint.
 
 To create an entity-link, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `entities/{entity.id}/entity_links` | Default |
 
@@ -99,7 +99,7 @@ To create an entity-link, use the following endpoint.
 
 To delete an entity-link, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `entities/{entity.id}/entity_links/{entity_link.id}` | Default |
 

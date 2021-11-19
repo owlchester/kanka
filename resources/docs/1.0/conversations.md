@@ -5,7 +5,7 @@
 - [Conversations](#conversations)
   - [All Conversations](#all-conversations)
     - [Results](#results)
-    - [Filters](#filters)
+
   - [Conversation](#conversation)
     - [Results](#results-1)
   - [Conversation Participants](#conversation-participants)
@@ -29,9 +29,13 @@ You can get a list of all the conversations of a campaign by using the following
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `conversations` | Default |
+
+### URL Parameters
+
+The list of returned conversations can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=conversation" target="_blank">API filters</a>.
 
 ### Results
 ```json
@@ -62,17 +66,12 @@ You can get a list of all the conversations of a campaign by using the following
 }
 ```
 
-<a name="filters"></a>
-## Filters
-
-The list of returned conversations can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=conversation" target="_blank">API filters</a>.
-
 <a name="conversation"></a>
 ## Conversation
 
 To get the details of a single conversation, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `conversations/{conversation.id}` | Default |
 
@@ -109,7 +108,7 @@ To get the details of a single conversation, use the following endpoint.
 
 To get the participants of an conversation, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `conversations/{conversation.id}/conversation_participants` | Default |
 
@@ -147,7 +146,7 @@ To get the participants of an conversation, use the following endpoint.
 
 To get the messages of an conversation, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `conversations/{conversation.id}/conversation_messages` | Default |
 
@@ -188,7 +187,7 @@ To get the messages of an conversation, use the following endpoint.
 
 To create a conversation, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `conversations` | Default |
 
@@ -201,8 +200,10 @@ To create a conversation, use the following endpoint.
 | `target_id` | `int` | Available options: 1 for `users` and 2 for `characters`  |
 | `tags` | `array` | Array of tag ids |
 | `is_closed` | `boolean` | If the conversation is closed |
-| `is_private` | `boolean` | If the conversation is only visible to `admin` members of the campaign |
 | `image_url` | `string` | URL to a picture to be used for the conversation |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `is_private` | `boolean` | If the conversation is only visible to `admin` members of the campaign |
 
 ### Results
 
@@ -214,7 +215,7 @@ To create a conversation, use the following endpoint.
 
 To update a conversation, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `conversations/{conversation.id}` | Default |
 
@@ -232,7 +233,7 @@ The same body parameters are available as for when creating a conversation.
 
 To delete a conversation, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `conversations/{conversation.id}` | Default |
 

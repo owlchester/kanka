@@ -16,7 +16,7 @@ You can get a list of all the weather effects of a calendar by using the followi
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `calendars/{calendar.id}/calendar_weathers` | Default |
 
@@ -63,7 +63,7 @@ You can get a list of all the weather effects of a calendar by using the followi
 
 To get the details of a single weather effect, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `calendars/{calendar.id}/calendar_weathers/{calendar_weather.id}` | Default |
 
@@ -84,7 +84,7 @@ To get the details of a single weather effect, use the following endpoint.
         "created_at": "2020-01-27 14:32:59",
         "updated_at": "2020-01-27 14:33:22"
     }
-    
+
 }
 ```
 
@@ -94,7 +94,7 @@ To get the details of a single weather effect, use the following endpoint.
 
 To create a calendar weather, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `calendars/{calendar.id}/calendar_weathers` | Default |
 
@@ -121,7 +121,7 @@ To create a calendar weather, use the following endpoint.
 
 To update a calendar, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `calendars/{calendar.id}/calendar_weathers/{calendar_weather.id}` | Default |
 
@@ -139,7 +139,7 @@ The same body parameters are available as for when creating a calendar weather.
 
 To delete a calendar weather, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `calendars/{calendar.id}/calendar_weathers/{calendar_weather.id}` | Default |
 

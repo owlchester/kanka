@@ -13,7 +13,7 @@ You can get a list of entities marked as templates by calling the following API 
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `entities/templates` | Default |
 
@@ -49,7 +49,7 @@ You can get a list of entities marked as templates by calling the following API 
 
 To change the template status of an entity, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `entities/template/{entity.id}/switch` | Default |
 

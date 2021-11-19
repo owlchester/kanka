@@ -5,7 +5,6 @@
 - [Characters](#characters)
   - [All Characters](#all-characters)
     - [Results](#results)
-    - [Filters](#filters)
   - [Character](#character)
     - [Results](#results-1)
   - [Create a Character](#create-a-character)
@@ -25,11 +24,17 @@ You can get a list of all the characters of a campaign by using the following en
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `characters` | Default |
 
+### URL Parameters
+
+The list of returned characters can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=character" target="_blank">API filters</a>.
+
+
 ### Results
+
 ```json
 {
     "data": [
@@ -74,11 +79,6 @@ You can get a list of all the characters of a campaign by using the following en
 }
 ```
 
-<a name="filters"></a>
-## Filters
-
-The list of returned characters can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=character" target="_blank">API filters</a>.
-
 
 <a name="character"></a>
 ## Character
@@ -86,7 +86,7 @@ The list of returned characters can be filtered. The available filters are avail
 To get the details of a single character, use the following endpoint.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `characters/{character.id}` | Default |
 
@@ -142,7 +142,7 @@ To get the details of a single character, use the following endpoint.
 
 To create a character, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `characters` | Default |
 
@@ -164,6 +164,8 @@ To create a character, use the following endpoint.
 | `is_dead` | `boolean` | If the character is dead |
 | `is_private` | `boolean` | If the character is only visible to `admin` members of the campaign |
 | `image_url` | `string` | URL to a picture to be used for the character |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
 | `personality_name` | `array` | An array representing the name of personality traits. For example ```["Goals", "Fears"]```  |
 | `personality_entry` | `array` | An array representing the values of personality traits. For example ```["To become a King", "Quiet places"]```  |
 | `appearance_name` | `array` | An array representing the name of appearance traits. For example ```["Hair", "Eyes"]```  |
@@ -180,7 +182,7 @@ To create a character, use the following endpoint.
 
 To update a character, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `characters/{character.id}` | Default |
 
@@ -198,7 +200,7 @@ The same body parameters are available as for when creating a character.
 
 To delete a character, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `characters/{character.id}` | Default |
 

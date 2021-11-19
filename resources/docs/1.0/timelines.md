@@ -3,7 +3,7 @@
 ---
 
 - [All Timelines](#all-timelines)
-- [Filters](#filters)
+
 - [Single Timeline](#timeline)
 - [Create a Timeline](#create-timeline)
 - [Update a Timeline](#update-timeline)
@@ -19,9 +19,13 @@ You can get a list of all the timelines of a campaign by using the following end
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `timelines` | Default |
+
+### URL Parameters
+
+The list of returned timelines can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=timeline" target="_blank">API filters</a>.
 
 ### Results
 ```json
@@ -80,17 +84,12 @@ You can get a list of all the timelines of a campaign by using the following end
 }
 ```
 
-<a name="filters"></a>
-## Filters
-
-The list of returned timelines can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=timeline" target="_blank">API filters</a>.
-
 <a name="timeline"></a>
 ## Timeline
 
 To get the details of a single timeline, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `timelines/{timeline.id}` | Default |
 
@@ -141,7 +140,7 @@ To get the details of a single timeline, use the following endpoint.
 
 To create a timeline, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `timelines` | Default |
 
@@ -154,8 +153,10 @@ To create a timeline, use the following endpoint.
 | `type` | `string` | The timeline's type |
 | `revert_order` | `boolean` | Revert era rendering order (older first) |
 | `tags` | `array` | Array of tag ids |
-| `is_private` | `boolean` | If the timeline is only visible to `admin` members of the campaign |
 | `image_url` | `string` | URL to a picture to be used for the timeline |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `is_private` | `boolean` | If the timeline is only visible to `admin` members of the campaign |
 
 ### Results
 
@@ -167,7 +168,7 @@ To create a timeline, use the following endpoint.
 
 To update a timeline, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `timelines/{timeline.id}` | Default |
 
@@ -185,7 +186,7 @@ The same body parameters are available as for when creating a timeline.
 
 To delete a timeline, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `timelines/{timeline.id}` | Default |
 

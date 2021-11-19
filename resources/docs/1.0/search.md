@@ -5,7 +5,7 @@
 A search API is available at the following endpoint.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET | `search/{search_term}` | Default |
 

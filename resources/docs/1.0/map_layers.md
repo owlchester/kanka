@@ -15,7 +15,7 @@ You can get a list of all the map-layers of a map by using the following endpoin
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `maps/{map.id}/map_layers` | Default |
 
@@ -49,7 +49,7 @@ You can get a list of all the map-layers of a map by using the following endpoin
 
 To create a map layer, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `maps/{map.id}/map-layers` | Default |
 
@@ -76,7 +76,7 @@ To create a map layer, use the following endpoint.
 
 To update a map, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `maps/{map.id}/map-layers/{map.id}` | Default |
 
@@ -94,7 +94,7 @@ The same body parameters are available as for when creating a map.
 
 To delete a map, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `maps/{map.id}/map-layers/{map.id}` | Default |
 

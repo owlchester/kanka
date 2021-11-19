@@ -16,7 +16,7 @@ You can get a list of all the era effects of a timeline by using the following e
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `timelines/{timeline.id}/timeline_eras` | Default |
 
@@ -62,7 +62,7 @@ You can get a list of all the era effects of a timeline by using the following e
 
 To get the details of a single era effect, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `timelines/{timeline.id}/timeline_eras/{timeline_era.id}` | Default |
 
@@ -92,7 +92,7 @@ To get the details of a single era effect, use the following endpoint.
 
 To create a timeline era, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `timelines/{timeline.id}/timeline_eras` | Default |
 
@@ -118,7 +118,7 @@ To create a timeline era, use the following endpoint.
 
 To update a timeline, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `timelines/{timeline.id}/timeline_eras/{timeline_era.id}` | Default |
 
@@ -136,7 +136,7 @@ The same body parameters are available as for when creating a timeline era.
 
 To delete a timeline era, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `timelines/{timeline.id}/timeline_eras/{timeline_era.id}` | Default |
 

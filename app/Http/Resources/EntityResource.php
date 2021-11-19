@@ -122,7 +122,6 @@ class EntityResource extends JsonResource
 
         $galleryImage = $misc->entity->image;
         $campaign = CampaignLocalization::getCampaign();
-        $boosted = $campaign->boosted();
         $superboosted = $campaign->boosted(true);
 
         $merged = [
@@ -138,11 +137,11 @@ class EntityResource extends JsonResource
             'image_full' => !empty($misc->image) ? $misc->getImageUrl(0) : ($misc->entity->image ? $misc->entity->image->getImagePath(0) : null),
             'image_thumb' => $misc->getImageUrl(40),
             'has_custom_image' => !empty($misc->image) || !empty($galleryImage),
-            'image_uuid' => $boosted ? ($misc->entity->image ? $misc->entity->image->id : null) : null,
+            'image_uuid' => $superboosted & $misc->entity->image ? $misc->entity->image->id : null,
 
             // Header
             'header_full' => $misc->entity->getHeaderUrl($superboosted),
-            'header_uuid' => $superboosted ? ($misc->entity->header ? $misc->entity->header->id : null) : null,
+            'header_uuid' => $superboosted & $misc->entity->header ? $misc->entity->header->id : null,
             'has_custom_header' => $misc->entity->hasHeaderImage($superboosted),
 
             'is_private' => (bool) $this->is_private,

@@ -16,7 +16,7 @@ You can get a list of all the entity-tags of an entity by using the following en
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `entities/{entity.id}/entity_tags` | Default |
 
@@ -39,7 +39,7 @@ You can get a list of all the entity-tags of an entity by using the following en
 
 To get the details of a single entity-tag, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `entities/{entity.id}/entity_tags/{entity_tag.id}` | Default |
 
@@ -60,7 +60,7 @@ To get the details of a single entity-tag, use the following endpoint.
 
 To create an entity-tag, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `entities/{entity.id}/entity_tags` | Default |
 
@@ -82,7 +82,7 @@ To create an entity-tag, use the following endpoint.
 
 To update an entity-tag, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `entities/{entity.id}/entity_tags/{entity_tag.id}` | Default |
 
@@ -100,7 +100,7 @@ The same body parameters are available as for when creating an entity-tag.
 
 To delete an entity-tag, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `entities/{entity.id}/entity_tags/{entity_tag.id}` | Default |
 

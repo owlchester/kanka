@@ -16,7 +16,7 @@ You can get a list of all the attributes of an entity by using the following end
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `entities/{entity.id}/attributes` | Default |
 
@@ -50,7 +50,7 @@ You can get a list of all the attributes of an entity by using the following end
 
 To get the details of a single attribute, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `entities/{entity.id}/attributes/{attribute.id}` | Default |
 
@@ -82,7 +82,7 @@ To get the details of a single attribute, use the following endpoint.
 
 To create an attribute, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `entities/{entity.id}/attributes` | Default |
 
@@ -109,7 +109,7 @@ To create an attribute, use the following endpoint.
 
 To update an attribute, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `entities/{entity.id}/attributes/{attribute.id}` | Default |
 
@@ -127,7 +127,7 @@ The same body parameters are available as for when creating an attribute. The `n
 
 To delete an attribute, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `entities/{entity.id}/attributes/{attribute.id}` | Default |
 

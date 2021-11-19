@@ -16,7 +16,7 @@ You can get a list of all the campaign styles of a campaign by using the followi
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `campaign_styles` | Default |
 
@@ -43,7 +43,7 @@ You can get a list of all the campaign styles of a campaign by using the followi
 
 To get the details of a single campaign Style, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `campaign_styles/{campaign-campaign-style.id}` | Default |
 
@@ -69,7 +69,7 @@ To get the details of a single campaign Style, use the following endpoint.
 
 To create a campaign Style, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `campaign_styles` | Default |
 
@@ -92,7 +92,7 @@ Style |
 
 To update a campaign style, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `campaign_styles/{campaign-campaign-style.id}` | Default |
 
@@ -110,7 +110,7 @@ The same body parameters are available as for when creating a campaign Style.
 
 To delete a campaign style, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `campaign_styles/{campaign-campaign-style.id}` | Default |
 

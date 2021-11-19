@@ -16,7 +16,7 @@ You can get a list of all the entity-events of an entity by using the following 
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `entities/{entity.id}/entity_events` | Default |
 
@@ -53,7 +53,7 @@ You can get a list of all the entity-events of an entity by using the following 
 
 To get the details of a single entity-event, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `entities/{entity.id}/entity_events/{entity_event.id}` | Default |
 
@@ -88,7 +88,7 @@ To get the details of a single entity-event, use the following endpoint.
 
 To create an entity-event, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `entities/{entity.id}/entity_events` | Default |
 
@@ -120,7 +120,7 @@ To create an entity-event, use the following endpoint.
 
 To update an entity-event, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `entities/{entity.id}/entity_events/{entity_event.id}` | Default |
 
@@ -138,7 +138,7 @@ The same body parameters are available as for when creating an entity-event.
 
 To delete an entity-event, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `entities/{entity.id}/entity_events/{entity_event.id}` | Default |
 
