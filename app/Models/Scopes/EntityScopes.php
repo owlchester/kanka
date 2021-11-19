@@ -30,7 +30,7 @@ trait EntityScopes
     {
         return $query
             ->select('*', DB::raw('count(id) as cpt'))
-            ->groupBy('type')
+            ->groupBy('type_id')
             ->orderBy('cpt', 'desc');
     }
 

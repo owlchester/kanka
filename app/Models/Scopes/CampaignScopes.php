@@ -87,7 +87,7 @@ trait CampaignScopes
         return $query
             ->select([
                 $this->getTable() . '.*',
-                DB::raw("(select count(*) from entities where campaign_id = " . $this->getTable() . ".id and type not in ('tag', 'attribute_template')) as cpt")
+                DB::raw("(select count(*) from entities where campaign_id = " . $this->getTable() . ".id and type_id not in (" . config('entities.ids.tag') . ", " . config('entities.ids.attribute_template') . ")) as cpt")
             ])
             ->orderBy('cpt', 'desc')
             ;
