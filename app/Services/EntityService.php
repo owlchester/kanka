@@ -350,7 +350,6 @@ class EntityService
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
-            throw $e;
         }
 
         // Switch back to the original campaign
