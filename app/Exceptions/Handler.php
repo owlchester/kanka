@@ -76,7 +76,7 @@ class Handler extends ExceptionHandler
             return response()->view('errors.maintenance', [
                 'message' => $exception->getMessage(),
                 'retry' => $exception->retryAfter
-            ], 500);
+            ], 200);
         }
 
         return parent::render($request, $exception);
