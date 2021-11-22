@@ -677,6 +677,10 @@ abstract class MiscModel extends Model
             $classes[] = 'quest-completed';
         }
 
+        if ($this->is_private) {
+            $classes[] = 'kanka-entity-private';
+        }
+
         return (string) implode(' ', $classes);
     }
 
