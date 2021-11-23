@@ -10,7 +10,6 @@ return [
             'add'   => 'Add organization',
         ],
         'create'        => [
-            'description'   => 'Associate an organization to a character',
             'success'       => 'Character added to organization.',
             'title'         => 'New Organization for :name',
         ],
