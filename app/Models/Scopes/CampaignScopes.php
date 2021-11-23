@@ -132,6 +132,11 @@ trait CampaignScopes
             ->orderBy('name', 'asc');
     }
 
+    /**
+     * @param Builder $query
+     * @param array $options
+     * @return Builder
+     */
     public function scopeFilterPublic(Builder $query, array $options)
     {
         $language = Arr::get($options, 'language');
@@ -161,6 +166,15 @@ trait CampaignScopes
             $query->where('is_open', false);
         }
 
+        return $query;
+    }
+
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopePreparedWith($query)
+    {
         return $query;
     }
 }

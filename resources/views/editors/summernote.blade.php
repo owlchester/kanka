@@ -41,7 +41,7 @@
         data-gallery="{{ $campaign->campaign()->boosted(true) ? route('campaign.gallery.summernote') : null }}"
     @if($campaign->campaign()->boosted(true)) data-gallery-upload="{{ route('campaign.gallery.ajax-upload') }}" @endif
 @endif
-@if (!empty($model) && $model->entity)        data-attributes="{{ route('search.attributes', $model->entity) }}"
+@if (!empty($model) && !($model instanceof \App\Models\Campaign) && $model->entity)        data-attributes="{{ route('search.attributes', $model->entity) }}"
 @elseif (!empty($entity))        data-attributes="{{ route('search.attributes', $entity) }}"
 
 @endif
