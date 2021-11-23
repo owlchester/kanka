@@ -62,6 +62,10 @@ class UserObserver
     public function creating(User $user)
     {
         $user->locale = LaravelLocalization::getCurrentLocale();
+        if (session()->has('tracking')) {
+            $user->settings = ['tracking' => session()->get('tracking')];
+            session()->remove('tracking');
+        }
     }
 
     /**
