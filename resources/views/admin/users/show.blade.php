@@ -113,7 +113,7 @@
 
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 col-lg-4">
         <div class="box box-solid">
             <div class="box-header with-border">
                 <h4 class="box-title">Kanka Roles</h4>
@@ -155,7 +155,7 @@
 
     @if (!$model->subscribed('kanka') && !empty($model->patreon_pledge) && auth()->user()->id == 1)
 
-        <div class="col-md-6">
+        <div class="col-md-6 col-lg-4">
             <div class="box box-solid">
                 <div class="box-header with-border">
                     <h4 class="box-title">Patreon Sync</h4>
@@ -183,9 +183,10 @@
             </div>
         </div>
     @endif
-</div>
 
-@include('admin.users._logs')
+
+    @include('admin.users._logs')
+</div>
 
 
 <div class="modal fade" id="user-booster" role="dialog" aria-labelledby="deleteConfirmLabel">
