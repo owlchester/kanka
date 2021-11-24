@@ -63,6 +63,7 @@ use App\Models\Tag;
 use App\Models\Timeline;
 use App\Models\TimelineElement;
 use App\Models\TimelineEra;
+use App\Models\UserLog;
 use App\Observers\CalendarObserver;
 use App\Observers\CalendarWeatherObserver;
 use App\Observers\CampaignObserver;
@@ -189,6 +190,7 @@ class AppServiceProvider extends ServiceProvider
         TimelineElement::observe('App\Observers\TimelineElementObserver');
         Note::observe(NoteObserver::class);
         User::observe(UserObserver::class);
+        UserLog::observe('App\Observers\UserLogObserver');
         Quest::observe('App\Observers\QuestObserver');
         QuestElement::observe('App\Observers\QuestElementObserver');
 

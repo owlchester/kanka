@@ -6,6 +6,7 @@ use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Http\Requests\StoreCampaign;
+use App\Models\UserLog;
 use App\Services\CampaignService;
 use App\Services\EntityService;
 use App\Services\StarterService;
@@ -97,6 +98,11 @@ class CampaignController extends Controller
                 CampaignLocalization::forceCampaign($campaign);
                 $this->starterService->generateBoilerplate($campaign);
             }
+
+            UserLog::create([
+                'user_id' => auth()->user()->id,
+                'type_id' => UserLog::TYPE_CAMPAIGN_NEW
+            ]);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -186,8 +192,7 @@ class CampaignController extends Controller
     {
         $this->authorize('delete', $campaign);
 
-        $campaign->delete();
-        CampaignService::switchToNext();
+        $this->campaignService->delete($campaign);
 
         return redirect()->route('home');
     }

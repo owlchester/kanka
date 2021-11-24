@@ -24,6 +24,7 @@ use Illuminate\Support\Str;
  * Class Campaign
  * @package App
  *
+ * @property int $id
  * @property string $name
  * @property string $locale
  * @property string $entry

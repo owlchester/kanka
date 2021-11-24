@@ -46,17 +46,11 @@ class UserObserver
      */
     public function updated(User $user)
     {
-        $ip = request()->ip();
-        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
-            $ip = $_SERVER["HTTP_CF_CONNECTING_IP"];
-        }
-
-        $log = UserLog::create([
+        /*$log = UserLog::create([
             'user_id' => $user->id,
             'type_id' => UserLog::TYPE_UPDATE,
-            'ip' => $ip,
         ]);
-        $log->save();
+        $log->save();*/
     }
 
     public function creating(User $user)

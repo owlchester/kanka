@@ -8,6 +8,7 @@ use App\Exceptions\RequireLoginException;
 use App\Models\CampaignInvite;
 use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
+use App\Models\UserLog;
 use App\Notifications\Header;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -104,6 +105,8 @@ class InviteService
         } else {
             // User is already part of the campaign, don't go further otherwise one user can spam the join link and
             // use up all the available tokens (validity field).
+            UserCache::clearCampaigns();
+            UserCache::clearRoles();
             return true;
         }
 
@@ -149,6 +152,11 @@ class InviteService
                 ]
             )
         );
+
+        UserLog::create([
+            'user_id' => $this->user->id,
+            'type_id' => UserLog::TYPE_CAMPAIGN_JOIN
+        ]);
 
         // Make sure the user's cache is cleared
         UserCache::clearCampaigns();

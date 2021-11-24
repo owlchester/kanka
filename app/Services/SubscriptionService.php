@@ -15,6 +15,7 @@ use App\Jobs\SubscriptionEndJob;
 use App\Models\Patreon;
 use App\Models\Role;
 use App\Models\SubscriptionSource;
+use App\Models\UserLog;
 use App\Notifications\Header;
 use App\User;
 use Carbon\Carbon;
@@ -133,11 +134,11 @@ class SubscriptionService
     {
         // Get the correct plan
         $this->plan = null;
-        if ($this->tier === Patreon::PLEDGE_OWLBEAR) {
+        if ($this->toOwlbear()) {
             $this->plan = $this->owlbearPlanID();
-        } elseif ($this->tier === Patreon::PLEDGE_WYVERN) {
+        } elseif ($this->toWyvern()) {
             $this->plan = $this->wyvernPlanID();
-        } elseif ($this->tier === Patreon::PLEDGE_ELEMENTAL) {
+        } elseif ($this->toElemental()) {
             $this->plan = $this->elementalPlanID();
         }
 
@@ -172,12 +173,27 @@ class SubscriptionService
             $this->user->newSubscription('kanka', $planID)
                 ->withCoupon($this->coupon)
                 ->create($paymentID);
+
+            UserLog::create([
+                'user_id' => $this->user->id,
+                'type_id' => UserLog::TYPE_SUB_NEW,
+            ]);
         } else {
             // If going down from elemental to owlbear, keep it as is until the current billing period
             if ($this->downgrading()) {
                 $this->user->subscription('kanka')->swap($planID);
+
+                UserLog::create([
+                    'user_id' => $this->user->id,
+                    'type_id' => UserLog::TYPE_SUB_DOWNGRADE,
+                ]);
             } else {
                 $this->user->subscription('kanka')->swapAndInvoice($planID);
+
+                UserLog::create([
+                    'user_id' => $this->user->id,
+                    'type_id' => UserLog::TYPE_SUB_UPGRADE,
+                ]);
             }
         }
 
@@ -204,6 +220,10 @@ class SubscriptionService
         // when the user really changes. Probably?
         if ($this->downgrading()) {
             SubscriptionDowngradedEmailJob::dispatch($this->user);
+            UserLog::create([
+                'user_id' => $this->user->id,
+                'type_id' => UserLog::TYPE_SUB_DOWNGRADE,
+            ]);
             return $this;
         }
 
@@ -247,6 +267,8 @@ class SubscriptionService
     {
         // Notify admin
         SubscriptionFailedEmailJob::dispatch($this->user);
+
+
     }
 
     /**
@@ -256,7 +278,7 @@ class SubscriptionService
      */
     public function prepare(Request $request): Source
     {
-        $amount = $this->tier === Patreon::PLEDGE_ELEMENTAL ? 25 : 5;
+        $amount = $this->toElemental() ? 25 : ($this->toWyvern() ? 10 : 5);
         $amount = ($amount * ($this->period === 'yearly' ? 11 : 1)) * 100;
 
         Stripe::setApiKey(config('cashier.secret'));
@@ -326,11 +348,11 @@ class SubscriptionService
     public function amount(): string
     {
         $amount = 0;
-        if ($this->tier === Patreon::PLEDGE_OWLBEAR) {
+        if ($this->toOwlbear()) {
             $amount = 5;
-        } elseif ($this->tier === Patreon::PLEDGE_WYVERN) {
+        } elseif ($this->toWyvern()) {
             $amount = 10;
-        } elseif ($this->tier === Patreon::PLEDGE_ELEMENTAL) {
+        } elseif ($this->toElemental()) {
             $amount = 25;
         }
 
@@ -379,6 +401,12 @@ class SubscriptionService
                 $this->user->subscription('kanka')->ends_at
             );
 
+        // Log on the user that they cancelled
+        UserLog::create([
+            'user_id' => $this->user->id,
+            'type_id' => UserLog::TYPE_SUB_CANCEL,
+        ]);
+
         $this->cancelled = true;
 
         return true;
@@ -395,7 +423,7 @@ class SubscriptionService
             ->firstOrFail();
         $this->user($source->user);
 
-        $amount = $source->tier === Patreon::PLEDGE_ELEMENTAL ? 25 : 5;
+        $amount = $source->tier === Patreon::PLEDGE_ELEMENTAL ? 25 : ($source->tier === Patreon::PLEDGE_WYVERN ? 10 : 5);
         $amount = ($amount * ($source->period === 'yearly' ? 11 : 1)) * 100;
 
         try {
@@ -506,6 +534,12 @@ class SubscriptionService
 
         // Dispatch the job when the subscription actually ends
         SubscriptionEndJob::dispatch($this->user);
+
+        // Log info on the user
+        UserLog::create([
+            'user_id' => $this->user->id,
+            'type_id' => UserLog::TYPE_SUB_FAIL,
+        ]);
 
         return true;
     }
@@ -647,13 +681,18 @@ class SubscriptionService
      */
     protected function downgrading(): bool
     {
-        return
-            // Elemental downgrading -> owl or wyv
-            $this->user->isElementalPatreon() && in_array($this->tier, [Patreon::PLEDGE_OWLBEAR, Patreon::PLEDGE_WYVERN]) ||
-            // Wyvern downgrading to owl
-            $this->user->isWyvern() && $this->tier == Patreon::PLEDGE_OWLBEAR ||
-            // Cancelling
-            $this->tier === Patreon::PLEDGE_KOBOLD;
+        // Elemental downgrading -> owl or wyv
+        if ($this->user->isElementalPatreon() && in_array($this->tier, [Patreon::PLEDGE_OWLBEAR, Patreon::PLEDGE_WYVERN])) {
+            return true;
+        }
+
+        // Wyvern downgrading to owl
+        if ($this->user->isWyvern() && $this->toOwlbear()) {
+            return true;
+        }
+
+        // Cancelling
+        return $this->tier === Patreon::PLEDGE_KOBOLD;
     }
 
     /**
@@ -689,5 +728,29 @@ class SubscriptionService
             return false;
         }
         return $sub->created_at->lessThan(Carbon::yesterday());
+    }
+
+    /**
+     * @return bool
+     */
+    protected function toOwlbear(): bool
+    {
+        return $this->tier == Patreon::PLEDGE_OWLBEAR;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function toWyvern(): bool
+    {
+        return $this->tier == Patreon::PLEDGE_WYVERN;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function toElemental(): bool
+    {
+        return $this->tier == Patreon::PLEDGE_ELEMENTAL;
     }
 }
