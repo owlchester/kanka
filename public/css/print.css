@@ -11,6 +11,10 @@
   width: 100%;
 }
 
+.entity-header .entity-header-text .entity-header-line:nth-last-child(2) {
+  display: block;
+}
+
 @media print {
   body {
     -webkit-print-color-adjust: exact;

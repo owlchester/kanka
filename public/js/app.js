@@ -80040,6 +80040,7 @@ function select2() {
     $.each($('select.select2'), function (index) {
       // Check it isn't the select2-icon
       var allowClear = $(this).data('allow-clear');
+      var dropdownParent = $(this).data('dropdown-parent');
       $(this).select2({
         //data: newOptions,
         placeholder: $(this).data('placeholder'),
@@ -80047,6 +80048,7 @@ function select2() {
         tags: $(this).is('[data-tags]'),
         language: $(this).data('language'),
         minimumInputLength: 0,
+        dropdownParent: dropdownParent || '',
         ajax: {
           delay: 500,
           quietMillis: 500,

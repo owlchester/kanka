@@ -1568,7 +1568,6 @@ summary {
   display: grid;
   grid-template-columns: 100%;
   margin: 5px 0;
-  overflow: hidden;
 }
 
 .sidebar-section-box .sidebar-elements .element {
@@ -1865,7 +1864,6 @@ summary {
 .entity-grid .entity-header .entity-header-text {
   grid-column: 1/span 2;
   grid-row: 1/span 1;
-  width: 100%;
   padding: 0 15px;
 }
 
@@ -1889,6 +1887,9 @@ summary {
   height: auto;
   width: 100%;
   min-height: 250px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
 }
 
 .entity-grid .entity-header.without-entity-image {
