@@ -1,6 +1,6 @@
 <?php
 
-it('can register', function () {
+it('has users page', function () {
     $response = $this->get('/');
 
     $response->assertStatus(200);
