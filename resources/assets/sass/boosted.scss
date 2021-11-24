@@ -40,7 +40,6 @@
     display: grid;
     grid-template-columns: 100%;
     margin: 5px 0;
-    overflow: hidden;
 
     .element {
       margin: 10px 0;
@@ -347,7 +346,6 @@
     .entity-header-text {
       grid-column: 1 / span 2;
       grid-row: 1 / span 1;
-      width: 100%;
       padding: 0 15px;
     }
     .entity-header-image + .entity-header-text {
@@ -369,6 +367,9 @@
       height: auto;
       width: 100%;
       min-height: 250px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
     }
   }
   .entity-header.without-entity-image {

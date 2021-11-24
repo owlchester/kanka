@@ -40,13 +40,18 @@ class InvitationController extends Controller
     public function join($token)
     {
         try {
-            $campaign = $this->inviteService->useToken($token);
+            if (auth()->check()) {
+                $this->inviteService
+                    ->user(auth()->user());
+            }
+            $campaign = $this->inviteService
+                ->useToken($token);
             CampaignService::switchCampaign($campaign);
             return redirect()->to('/');
         } catch (RequireLoginException $e) {
             return redirect()->route('login')->with('info', $e->getMessage());
         } catch (\Exception $e) {
-            if (Auth::guest()) {
+            if (auth()->guest()) {
                 return redirect()->route('login')->withErrors($e->getMessage());
             } else {
                 return redirect()->route('home')->withErrors($e->getMessage());
