@@ -17,10 +17,6 @@ class AddCharacterFamily extends Migration
             $table->integer('family_id')->unsigned()->nullable();
             $table->foreign('family_id')->references('id')->on('families')->onDelete('cascade');
         });
-
-        Schema::table('items', function (Blueprint $table) {
-            $table->longText('description')->nullable();
-        });
     }
 
     /**

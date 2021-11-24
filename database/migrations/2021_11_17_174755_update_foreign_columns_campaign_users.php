@@ -13,6 +13,9 @@ class UpdateForeignColumnsCampaignUsers extends Migration
      */
     public function up()
     {
+        if (app()->environment('testing')) {
+            return;
+        }
         Schema::table('campaign_user', function (Blueprint $table) {
             $table->dropForeign('campaign_user_campaign_id_foreign');
             $table->dropForeign('campaign_user_user_id_foreign');

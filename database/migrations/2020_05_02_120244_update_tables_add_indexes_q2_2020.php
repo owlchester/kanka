@@ -14,46 +14,7 @@ class UpdateTablesAddIndexesQ22020 extends Migration
     public function up()
     {
 
-        Schema::table('calendars', function (Blueprint $table) {
-            $table->dropForeign('calendars_section_id_foreign');
-            $table->dropColumn('section_id');
-        });
-        Schema::table('characters', function (Blueprint $table) {
-            $table->dropForeign('characters_section_id_foreign');
-            $table->dropColumn('section_id');
-        });
-        Schema::table('events', function (Blueprint $table) {
-            $table->dropForeign('events_section_id_foreign');
-            $table->dropColumn('section_id');
-        });
-        Schema::table('families', function (Blueprint $table) {
-            $table->dropForeign('families_section_id_foreign');
-            $table->dropColumn('section_id');
-        });
-        Schema::table('items', function (Blueprint $table) {
-            $table->dropForeign('items_section_id_foreign');
-            $table->dropColumn('section_id');
-        });
-        Schema::table('journals', function (Blueprint $table) {
-            $table->dropForeign('journals_section_id_foreign');
-            $table->dropColumn('section_id');
-        });
-        Schema::table('locations', function (Blueprint $table) {
-            $table->dropForeign('locations_section_id_foreign');
-            $table->dropColumn('section_id');
-        });
-        Schema::table('notes', function (Blueprint $table) {
-            $table->dropForeign('notes_section_id_foreign');
-            $table->dropColumn('section_id');
-        });
-        Schema::table('quests', function (Blueprint $table) {
-            $table->dropForeign('quests_section_id_foreign');
-            $table->dropColumn('section_id');
-        });
-        Schema::table('races', function (Blueprint $table) {
-            $table->dropForeign('races_section_id_foreign');
-            $table->dropColumn('section_id');
-        });
+
 
         Schema::table('attributes', function (Blueprint $table) {
             $table->index('default_order');

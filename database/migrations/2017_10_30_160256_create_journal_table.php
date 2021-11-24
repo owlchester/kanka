@@ -23,7 +23,7 @@ class CreateJournalTable extends Migration
             $table->integer('campaign_id')->unsigned()->notNull();
 
             // Overview
-            $table->longText('history')->nullable();
+            $table->longText('entry')->nullable();
 
             $table->timestamps();
 

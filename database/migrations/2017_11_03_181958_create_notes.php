@@ -23,7 +23,7 @@ class CreateNotes extends Migration
             $table->integer('campaign_id')->unsigned()->notNull();
 
             // Overview
-            $table->longText('description')->nullable();
+            $table->longText('entry')->nullable();
 
             $table->timestamps();
 

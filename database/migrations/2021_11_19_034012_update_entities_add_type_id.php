@@ -14,8 +14,9 @@ class UpdateEntitiesAddTypeId extends Migration
     public function up()
     {
         Schema::table('entities', function (Blueprint $table) {
-            $table->unsignedInteger('type_id')->after('type')->nullable();
-
+            if (!app()->environment('testing')) {
+                $table->unsignedInteger('type_id')->after('type')->nullable();
+            }
             $table->foreign('type_id')->references('id')->on('entity_types')->cascadeOnDelete();
         });
     }

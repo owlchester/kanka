@@ -33,6 +33,9 @@ class MigrateMapPointShapeEnum extends Migration
         \Illuminate\Support\Facades\DB::statement('UPDATE location_map_points SET size_id = ' . MapPoint::SIZE_LARGE . ' WHERE size = \'large\'');
         \Illuminate\Support\Facades\DB::statement('UPDATE location_map_points SET size_id = ' . MapPoint::SIZE_HUGE . ' WHERE size = \'huge\'');
 
+        if (app()->environment('testing')) {
+            return;
+        }
         Schema::table('location_map_points', function (Blueprint $table) {
             $table->dropColumn('shape');
             $table->dropColumn('size');

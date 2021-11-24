@@ -18,20 +18,17 @@ class AddDiceRolls extends Migration
         Schema::create('dice_rolls', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('campaign_id');
-            $table->unsignedInteger('created_by');
             $table->unsignedInteger('character_id')->nullable();
             $table->string('name', 191);
             $table->string('slug')->nullable();
             $table->string('system', 20)->nullable();
             $table->text('parameters')->nullable();
-            $table->text('results')->nullable();
             $table->boolean('is_private')->defaultValue(false);
             $table->timestamps();
 
             $table->index(['name', 'system', 'is_private']);
 
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('character_id')->references('id')->on('characters')->onDelete('cascade');
         });
 
