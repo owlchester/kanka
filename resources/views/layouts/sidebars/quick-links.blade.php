@@ -1,4 +1,4 @@
-<li class="{{ $sidebar->open('menu_links') }} sidebar-section sidebar-quick-links">
+<li class="{{ $sidebar->active('menu_links') }} section sidebar-quick-links">
     @if(auth()->check() && auth()->user()->isAdmin())
         <a href="{{ route('menu_links.index') }}">
             <i class="fa fa-star"></i>
@@ -9,7 +9,7 @@
         <i class="fa fa-star"></i>
         <span>{{ __('entities.menu_links') }}</span>
 
-        @if(Auth::check() && Auth::user()->isAdmin())
+        @if(auth()->check() && auth()->user()->isAdmin())
             <a href="{{ route('menu_links.index') }}" class="pull-right sidebar-icon-link">
                 <i class="fas fa-cog"></i>
             </a>
