@@ -170,11 +170,15 @@ class EntityRelationService
             // Fallback?
             $img = '';
         }
+        $params = [$entity->id, 'mode' => 'map'];
+        if ($this->option) {
+            $params['option'] = $this->option;
+        }
         $this->entities[$entity->id] = [
             'id' => $entity->id,
             'name' => $entity->name . "\n(" . __('entities.' . $entity->type) . ')',
             'image' => $img,
-            'link' => route('entities.relations.index', $entity->id),
+            'link' => route('entities.relations.index', $params),
             //'tooltip' => route('entities.tooltip', $entity->id)
         ];
         return $this;
