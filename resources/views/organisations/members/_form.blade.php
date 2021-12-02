@@ -5,6 +5,11 @@ $options = [
     \App\Models\OrganisationMember::PIN_ORGANISATION => __('organisations.members.pinned.organisation'),
     \App\Models\OrganisationMember::PIN_BOTH => __('organisations.members.pinned.both'),
 ];
+$statuses = [
+    \App\Models\OrganisationMember::STATUS_ACTIVE => __('organisations.members.status.active'),
+    \App\Models\OrganisationMember::STATUS_INACTIVE => __('organisations.members.status.inactive'),
+    \App\Models\OrganisationMember::STATUS_UNKNOWN => __('organisations.members.status.unknown'),
+];
 @endphp
 
 {{ csrf_field() }}
@@ -18,6 +23,13 @@ $options = [
 <div class="form-group">
     <label>{{ __('organisations.members.fields.role') }}</label>
     {!! Form::text('role', null, ['placeholder' => __('organisations.members.placeholders.role'), 'class' => 'form-control', 'maxlength' => 45]) !!}
+</div>
+
+<div class="form-group">
+    <label>
+        {{ __('organisations.members.fields.status') }}
+    </label>
+    {!! Form::select('status_id', $statuses, null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">

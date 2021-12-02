@@ -105,6 +105,7 @@ $members = $model->allMembers()
                         <a class="entity-image" style="background-image: url('{{ $relation->character->getImageUrl(40) }}');" title="{{ $relation->character->name }}" href="{{ route('characters.show', $relation->character->id) }}"></a>
                     </td>
                     <td>
+                        @if ($relation->character->is_private) <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i> @endif
                         {!! $relation->character->tooltipedLink() !!}
                         @if ($relation->character->is_dead)<span class="ra ra-skull" title="{{ __('characters.fields.is_dead') }}"></span>@endif
                         <br />
@@ -122,7 +123,14 @@ $members = $model->allMembers()
                         {!! $relation->organisation->tooltipedLink() !!}
                     </td>
                     @endif
-                    <td>{{ $relation->role }}</td>
+                    <td>
+                        @if ($relation->inactive())
+                            <i class="fas fa-user-slash" title="{{ __('organisations.members.status.inactive') }}" data-toggle="tooltip"></i>
+                        @elseif ($relation->unknown())
+                            <i class="fas fa-question" title="{{ __('organisations.members.status.unknown') }}" data-toggle="tooltip"></i>
+                        @endif
+                        {{ $relation->role }}
+                    </td>
                     @if ($campaign->enabled('races'))
                         <td class="hidden-sm hidden-xs">
                             @if ($relation->character->race)

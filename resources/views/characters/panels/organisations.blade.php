@@ -50,10 +50,18 @@ $members = $model->organisations()
                         <a class="entity-image" style="background-image: url('{{ $organisation->organisation->getImageUrl(40) }}');" title="{{ $organisation->organisation->name }}" href="{{ route('organisations.show', $organisation->organisation->id) }}"></a>
                     </td>
                     <td>
+                        @if ($organisation->organisation->is_private) <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i> @endif
                         {!! $organisation->organisation->tooltipedLink() !!}
                     </td>
                     <td class="hidden-sm hidden-xs">{{ $organisation->organisation->type }}</td>
-                    <td>{{ $organisation->role }}</td>
+                    <td>
+                        @if ($organisation->inactive())
+                            <i class="fas fa-user-slash" title="{{ __('organisations.members.status.inactive') }}" data-toggle="tooltip"></i>
+                        @elseif ($organisation->unknown())
+                            <i class="fas fa-question" title="{{ __('organisations.members.status.unknown') }}" data-toggle="tooltip"></i>
+                        @endif
+                        {{ $organisation->role }}
+                    </td>
                     @if ($campaign->enabled('locations'))
                         <td class="hidden-sm hidden-xs">
                             @if ($organisation->organisation->location)

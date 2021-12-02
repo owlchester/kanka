@@ -50,8 +50,9 @@ return [
         'fields'        => [
             'character'     => 'Character',
             'organisation'  => 'Organisation',
-            'role'          => 'Role',
             'pinned'        => 'Pinned',
+            'status'        => 'Membership status',
+            'role'          => 'Role',
         ],
         'helpers'       => [
             'all_members'   => 'All characters that are members of this organisations and it\'s sub-organisations.',
@@ -67,6 +68,11 @@ return [
         'placeholders'  => [
             'character' => 'Choose a character',
             'role'      => 'Leader, Member, High Septon, Spymaster',
+        ],
+        'status' => [
+            'active'    => 'Active member',
+            'inactive'  => 'Inactive member',
+            'unknown'   => 'Unknown status',
         ],
         'title'         => 'Organisation :name Members',
     ],

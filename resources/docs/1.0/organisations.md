@@ -112,6 +112,7 @@ To get the members of an organisation, use the following endpoint.
         "organisation_id": 1,
         "role": "Leader",
         "pin_id": null,
+        "status_id": 1,
         "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1
     }

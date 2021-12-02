@@ -20,6 +20,7 @@ use Illuminate\Database\Query\Builder;
  * @property string $role
  * @property bool $is_private
  * @property int $pin_id
+ * @property int $status_id
  * @property Character $character
  * @property Organisation $organisation
  *
@@ -38,6 +39,10 @@ class OrganisationMember extends Model
     const PIN_ORGANISATION = 2;
     const PIN_BOTH = 3;
 
+    const STATUS_ACTIVE = 0;
+    const STATUS_INACTIVE = 1;
+    const STATUS_UNKNOWN = 2;
+
     public $entityType = 'character';
     public $aclFieldName = 'character_id';
 
@@ -51,6 +56,7 @@ class OrganisationMember extends Model
         'role',
         'is_private',
         'pin_id',
+        'status_id',
     ];
 
     /**
@@ -101,6 +107,21 @@ class OrganisationMember extends Model
         return $this->pin_id == self::PIN_BOTH;
     }
 
+    /**
+     * @return bool
+     */
+    public function inactive(): bool
+    {
+        return $this->status_id === self::STATUS_INACTIVE;
+    }
+
+    /**
+     * @return bool
+     */
+    public function unknown(): bool
+    {
+        return $this->status_id === self::STATUS_UNKNOWN;
+    }
     /**
      * @param Builder $query
      * @param int $pin
