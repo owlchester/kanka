@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
+use Illuminate\View\Factory;
+use Illuminate\View\View;
 
 /**
  * Class PluginVersion
@@ -153,6 +155,7 @@ class PluginVersion extends Model
         // Prepare attributes
         $data = [];
         $this->entityAttributes = $entity->allAttributes;
+        $allAttributes = [];
         foreach ($this->entityAttributes as $attr) {
             $name = str_replace(' ', null, $attr->name);
             $data[$name] = $attr->mappedValue();
@@ -160,8 +163,14 @@ class PluginVersion extends Model
                 $data[$name] = nl2br($data[$name]);
             }
             //dump('mapping ' . $name . ' to ' . $attr->mappedValue());
+
+            $allAttributes[$name] = $data[$name];
             unset($this->templateAttributes[$name]);
         }
+
+        // We need this for some blade directives like foreach
+        $data['__env'] = app(\Illuminate\View\Factory::class);
+        $data['attributes'] = $allAttributes;
 
         //dump($data);
         ///dump($this->templateAttributes);
@@ -185,6 +194,7 @@ class PluginVersion extends Model
         } catch (\Exception $e) {
             while (ob_get_level() > $obLevel) ob_end_clean();
             $errors = $e->getMessage();
+            dd($html);
             //throw $e;
         } catch (\Throwable $e) {
             while (ob_get_level() > $obLevel) ob_end_clean();
