@@ -68,7 +68,7 @@ class PluginVersion extends Model
             return $this->renderBlade($entity);
         }
 
-        $this->entityAttributes = $entity->attributes()->get();
+        $this->entityAttributes = $entity->allAttributes;
         $html = preg_replace_callback('`\{(.*?)\}`i', function ($matches) {
             $name = (string) $matches[1];
             return $this->attribute($name);
@@ -101,6 +101,19 @@ class PluginVersion extends Model
         return $html;
     }
 
+    public function css(): string
+    {
+        $css = (string) $this->css;
+
+
+
+        return $css;
+    }
+
+    /**
+     * @param Entity $entity
+     * @return false|string
+     */
     protected function renderBlade(Entity $entity)
     {
         $html = $this->content;
@@ -139,7 +152,7 @@ class PluginVersion extends Model
 
         // Prepare attributes
         $data = [];
-        $this->entityAttributes = $entity->attributes()->get();
+        $this->entityAttributes = $entity->allAttributes;
         foreach ($this->entityAttributes as $attr) {
             $name = str_replace(' ', null, $attr->name);
             $data[$name] = $attr->mappedValue();

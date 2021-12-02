@@ -62,6 +62,11 @@ trait EntityRelations
         return $this->hasMany('App\Models\Attribute', 'entity_id', 'id');
     }
 
+    public function allAttributes()
+    {
+        return $this->attributes();
+    }
+
     /**
      * Call $entity->entityAttributes to avoid multiple calls to the db
      * @return mixed
