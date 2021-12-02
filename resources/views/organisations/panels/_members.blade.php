@@ -75,22 +75,30 @@ $members = $model->allMembers()
         @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#organisation-members'])
 
         <table id="organisation-characters" class="table table-hover">
-            <tbody><tr>
-                <th class="avatar"><br></th>
-                <th>{{ __('characters.fields.name') }}</th>
-                @if ($campaign->enabled('locations'))
-                <th class="hidden-sm hidden-xs">{{ __('characters.fields.location') }}</th>
-                @endif
-                @if ($allMembers)<th>{{ __('organisations.members.fields.organisation') }}</th>@endif
-                <th>{{ __('organisations.members.fields.role') }}</th>
-                @if ($campaign->enabled('races'))
-                <th class="hidden-sm hidden-xs">{{ __('characters.fields.race') }}</th>
-                @endif
-                <th></th>
-                <th class="text-right">
+            <thead>
+                <tr>
+                    <th class="avatar"><br></th>
+                    <th>{{ __('characters.fields.name') }}</th>
+                    @if ($campaign->enabled('locations'))
+                    <th class="hidden-sm hidden-xs">{{ __('characters.fields.location') }}</th>
+                    @endif
+                    @if ($allMembers)<th>{{ __('organisations.members.fields.organisation') }}</th>@endif
+                    <th>{{ __('organisations.members.fields.role') }}</th>
+                    @if ($campaign->enabled('races'))
+                    <th class="hidden-sm hidden-xs">{{ __('characters.fields.race') }}</th>
+                    @endif
+                    @if (auth()->check() && auth()->user()->isAdmin())
+                    <th></th>
+                    @endif
+                    <th>
+                        <i class="fas fa-star" title="{{ __('organisations.members.fields.pinned') }}" data-toggle="tooltip"></i>
+                    </th>
+                    <th class="text-right">
 
-                </th>
-            </tr>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
             @foreach ($members as $relation)
                 <tr>
                     <td>
@@ -122,11 +130,21 @@ $members = $model->allMembers()
                             @endif
                         </td>
                     @endif
-                    <td></td>
+                    @if (auth()->check() && auth()->user()->isAdmin())
                     <td>
-                        @if (Auth::check() && Auth::user()->isAdmin())
-                            @if ($relation->is_private == true)
-                                <i class="fas fa-lock" title="{{ __('crud.is_private') }}"></i>
+                        @if ($relation->is_private == true)
+                            <i class="fas fa-lock" title="{{ __('crud.is_private') }}"></i>
+                        @endif
+                    </td>
+                    @endif
+                    <td>
+                        @if ($relation->pinned())
+                            @if ($relation->pinnedToCharacter())
+                                <i class="fa fa-user" data-toggle="tooltip" title="{{ __('organisations.members.pinned.character') }}"></i>
+                            @elseif ($relation->pinnedToOrganisation())
+                                <i class="ra ra-hood" data-toggle="tooltip" title="{{ __('organisations.members.pinned.organisation') }}"></i>
+                            @else
+                                <i class="fas fa-star" data-toggle="tooltip" title="{{ __('organisations.members.pinned.both') }}"></i>
                             @endif
                         @endif
                     </td>

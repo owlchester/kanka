@@ -29,13 +29,16 @@ return [
         'create'    => [
             'description'   => 'Add a member to the organization',
             'success'       => 'Member added to the organization.',
-            'title'         => 'New Organization Member for :name',
+            'title'         => 'New Member',
         ],
         'destroy'   => [
             'success'   => 'Member removed from the organization.',
         ],
         'edit'      => [
             'success'   => 'Organization member updated.',
+        ],
+        'pinned'    => [
+            'organisation'  => 'Organization',
         ],
         'title'     => 'Organization :name Members',
     ],
