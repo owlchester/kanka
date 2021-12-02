@@ -1,3 +1,5 @@
+{!! Form::model($member, ['method' => 'PATCH', 'route' => ['characters.character_organisations.update', $model->id, $member->id], 'data-shortcut' => 1]) !!}
+
 <div class="panel panel-default">
     @if ($ajax)
         <div class="panel-heading">
@@ -8,10 +10,13 @@
     <div class="panel-body">
         @include('partials.errors')
 
-        {!! Form::model($member, ['method' => 'PATCH', 'route' => ['characters.character_organisations.update', $model->id, $member->id], 'data-shortcut' => "1"]) !!}
         @include('characters.organisations._form')
 
-        {!! Form::hidden('character_id', $model->id) !!}
-        {!! Form::close() !!}
+    </div>
+    <div class="panel-footer text-right">
+        <button class="btn btn-success">{{ trans('crud.save') }}</button>
+        @includeWhen(!request()->ajax(), 'partials.or_cancel')
     </div>
 </div>
+{!! Form::hidden('character_id', $model->id) !!}
+{!! Form::close() !!}

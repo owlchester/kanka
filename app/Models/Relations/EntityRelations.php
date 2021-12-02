@@ -209,6 +209,16 @@ trait EntityRelations
         );
     }
 
+    protected $tagsWithEntity = false;
+
+    public function tagsWithEntity()
+    {
+        if ($this->tagsWithEntity === false) {
+            $this->tagsWithEntity = $this->tags()->with('entity')->get();
+        }
+        return $this->tagsWithEntity;
+    }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

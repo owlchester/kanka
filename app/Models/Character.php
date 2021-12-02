@@ -286,6 +286,21 @@ class Character extends MiscModel
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Relations\HasMany[]|OrganisationMember
+     */
+    public function pinnedMembers()
+    {
+        return $this
+            ->organisations()
+            ->has('organisation')
+            ->with(['organisation', 'organisation.entity'])
+            ->whereIn('pin_id', [OrganisationMember::PIN_CHARACTER, OrganisationMember::PIN_BOTH])
+            ->orderBy('role')
+            ->get()
+        ;
+    }
+
+    /**
      * Detach children when moving this entity from one campaign to another
      */
     public function detach()
@@ -310,16 +325,6 @@ class Character extends MiscModel
     {
         $campaign = CampaignLocalization::getCampaign();
         $canEdit = auth()->check() && auth()->user()->can('update', $this);
-
-        /*$count = $this->items()->count();
-        if ($campaign->enabled('items') && $count > 0) {
-            $items['second']['items'] = [
-                'name' => 'characters.show.tabs.items',
-                'route' => 'characters.items',
-                'count' => $count
-            ];
-        }*/
-
 
         $items['second']['profile'] = [
             'name' => 'entities/profile.show.tab_name',

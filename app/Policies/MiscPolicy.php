@@ -166,7 +166,7 @@ class MiscPolicy
             return $this->checkPermission('permission', $user, null);
         }
         return $user->campaign->id == $entity->campaign_id &&
-            ($user->campaign->roles()->count() > 1 || $user->campaign->members()->count() > 1) &&
+            (UserCache::roles()->count() > 1 || $user->campaign->members()->count() > 1) &&
             $this->checkPermission('permission', $user, $entity);
     }
 

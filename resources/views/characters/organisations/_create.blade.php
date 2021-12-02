@@ -1,3 +1,4 @@
+{!! Form::open(array('route' => ['characters.character_organisations.store', $model->id], 'method'=>'POST', 'data-shortcut' => "1")) !!}
 
 <div class="panel panel-default">
     @if ($ajax)
@@ -7,11 +8,14 @@
         </div>
     @endif
     <div class="panel-body">
-        {!! Form::open(array('route' => ['characters.character_organisations.store', $model->id], 'method'=>'POST', 'data-shortcut' => "1")) !!}
         @include('characters.organisations._form')
 
-        {!! Form::hidden('character_id', $model->id) !!}
-
-        {!! Form::close() !!}
+    </div>
+    <div class="panel-footer text-right">
+        <button class="btn btn-success">{{ trans('crud.save') }}</button>
+        @includeWhen(!request()->ajax(), 'partials.or_cancel')
     </div>
 </div>
+
+{!! Form::hidden('character_id', $model->id) !!}
+{!! Form::close() !!}

@@ -19,8 +19,8 @@ $members = $model->allMembers()
         ->filter($filters)
         ->has('character')
         ->with([
-                'character', 'character.race', 'character.location', 'character.family', 'organisation',
-                'character.entity', 'character.race.entity', 'character.location.entity', 'organisation.entity'
+            'character', 'character.race', 'character.location', 'organisation',
+            'character.entity', 'organisation.entity'
         ])
         ->simpleSort($datagridSorter)
         ->paginate();
@@ -130,13 +130,7 @@ $members = $model->allMembers()
                             @endif
                         </td>
                     @endif
-                    @if (auth()->check() && auth()->user()->isAdmin())
-                    <td>
-                        @if ($relation->is_private == true)
-                            <i class="fas fa-lock" title="{{ __('crud.is_private') }}"></i>
-                        @endif
-                    </td>
-                    @endif
+                    @include('cruds.partials.private', ['model' => $relation])
                     <td>
                         @if ($relation->pinned())
                             @if ($relation->pinnedToCharacter())

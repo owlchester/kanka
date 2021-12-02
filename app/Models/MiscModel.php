@@ -353,33 +353,6 @@ abstract class MiscModel extends Model
             ];
         }
 
-        // Timelines
-        /*if ((!isset($this->hasTimelines) || $this->hasTimelines === true) && $campaign->enabled('timelines')) {
-            $timelines = $this->entity->timelines()->with('timeline')->has('timeline')->count();
-            if ($timelines > 0) {
-                $items['second']['timelines'] = [
-                    'name' => 'crud.tabs.timelines',
-                    'route' => 'entities.timelines',
-                    'count' => $timelines,
-                    'entity' => true,
-                    'icon' => 'fas fa-hourglass-half',
-                ];
-            }
-        }*/
-
-        /*if ($campaign->enabled('quests')) {
-            $quests = $this->entity->quests()->with('quest')->has('quest')->count();
-            if ($quests > 0) {
-                $items['second']['quests'] = [
-                    'name' => 'crud.tabs.quests',
-                    'route' => 'entities.quests',
-                    'count' => $quests,
-                    'entity' => true,
-                    'icon' => 'ra ra-wooden-sign',
-                ];
-            }
-        }*/
-
         // Each entity can have abilities
         if ($campaign->enabled('abilities') && $this->entityTypeId() != config('entities.ids.ability')) {
             $items['third']['abilities'] = [
@@ -425,7 +398,7 @@ abstract class MiscModel extends Model
             $items['third']['assets'] = [
                 'name' => 'crud.tabs.assets',
                 'route' => 'entities.assets',
-                'count' => $this->entity->files()->count() + ($campaign->boosted() ? $this->entity->links()->count() : 0),
+                'count' => $this->entity->files->count() + ($campaign->boosted() ? $this->entity->links->count() : 0),
                 'entity' => true,
                 'icon' => 'fa fa-file',
             ];
@@ -664,7 +637,7 @@ abstract class MiscModel extends Model
             $classes[] = 'kanka-type-' . Str::slug($this->type);
         }
 
-        foreach ($this->entity->tags as $tag) {
+        foreach ($this->entity->tagsWithEntity() as $tag) {
             $classes[] = 'kanka-tag-' . $tag->id;
             $classes[] = 'kanka-tag-' . $tag->slug;
         }

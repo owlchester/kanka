@@ -111,6 +111,21 @@ class Organisation extends MiscModel
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Relations\HasMany[]|OrganisationMember
+     */
+    public function pinnedMembers()
+    {
+        return $this
+            ->members()
+            ->has('character')
+            ->with(['character', 'character.entity'])
+            ->whereIn('pin_id', [OrganisationMember::PIN_ORGANISATION, OrganisationMember::PIN_BOTH])
+            ->orderBy('role')
+            ->get()
+        ;
+    }
+
+    /**
      * Parent
      */
     public function organisation()
