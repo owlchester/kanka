@@ -818,7 +818,7 @@ class EntityRelationService
             $this->relations[] = [
                 'source' => $this->entity->id,
                 'target' => $related->quest->entity->id,
-                'text' => __('crud.tabs.map-points'),
+                'text' => __('entities/relations.connections.quest_element'),
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'entity-map-point',
