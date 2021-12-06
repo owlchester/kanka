@@ -33,7 +33,7 @@
                         <a href="{{ route('front.newsletter') }}">{{ __('front.menu.newsletter') }}</a>
                     </li>
                     <li>
-                        <a href="https://blog.kanka.io" target="_blank">{{ __('front.menu.news') }}</a>
+                        <a href="§//blog.kanka.io" target="_blank">{{ __('front.menu.news') }}</a>
                     </li>
                 </ul>
             </div>
@@ -91,10 +91,10 @@
                 </div>
                 <ul>
                     <li>
-                        <a href="https://marketplace.kanka.io" target="_blank">{{ __('front.menu.marketplace') }}</a>
+                        <a href="//marketplace.kanka.io" target="_blank">{{ __('front.menu.marketplace') }}</a>
                     </li>
                     <li>
-                        <a href="https://loot.kanka.io" target="_blank">{{ __('front.menu.merch') }}</a>
+                        <a href="//loot.kanka.io" target="_blank">{{ __('front.menu.merch') }}</a>
                     </li>
                     <li>
                         <a href="/docs/1.0">{{ __('front.menu.api') }}</a>
