@@ -1550,6 +1550,7 @@ summary {
   margin-bottom: 30px;
   background: var(--sidebar-section-background);
   padding: var(--sidebar-section-padding);
+  overflow: hidden;
 }
 
 .sidebar-section-box .sidebar-section-title {

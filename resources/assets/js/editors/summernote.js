@@ -16,6 +16,7 @@ window.initSummernote = function() {
     var $summernote = $('.html-editor').summernote({
         height: '300px',
         lang: editorLang(summernoteConfig.data('locale')),
+        hintSelect: 'next',
         toolbar: [
             ['style', ['style']],
             ['font', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
