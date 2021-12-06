@@ -91,7 +91,10 @@
                 </div>
                 <ul>
                     <li>
-                        <a href="https://marketplace.kanka.io">{{ __('front.menu.marketplace') }}</a>
+                        <a href="https://marketplace.kanka.io" target="_blank">{{ __('front.menu.marketplace') }}</a>
+                    </li>
+                    <li>
+                        <a href="https://loot.kanka.io" target="_blank">{{ __('front.menu.merch') }}</a>
                     </li>
                     <li>
                         <a href="/docs/1.0">{{ __('front.menu.api') }}</a>
