@@ -107,6 +107,17 @@ class Map extends MiscModel
         'center_marker_id'
     ];
 
+
+    /**
+     * Foreign relations to add to export
+     * @var array
+     */
+    protected $foreignExport = [
+        'layers',
+        'groups',
+        'markers'
+    ];
+
     /**
      * Entity type
      * @var string
