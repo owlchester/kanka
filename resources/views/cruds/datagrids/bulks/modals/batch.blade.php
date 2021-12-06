@@ -10,7 +10,13 @@
             <div class="modal-body">
                 @foreach ($bulk->fields() as $field)
                     @php $trimmed = \Illuminate\Support\Str::beforeLast($field, '_id'); @endphp
-                    @include('cruds.fields.' . $trimmed, ['trans' => $name, 'enableNew' => false, 'base' => $model, 'bulk' => true, 'parent' => $trimmed == $name])
+                    @include('cruds.fields.' . $trimmed, [
+    'trans' => $name,
+    'enableNew' => false,
+    'base' => $model,
+    'bulk' => true,
+    'parent' => \Illuminate\Support\Str::plural($trimmed) == $name
+])
                 @endforeach
             </div>
             <div class="modal-footer">

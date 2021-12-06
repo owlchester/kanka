@@ -1,19 +1,21 @@
 <?php
+use Illuminate\Support\Arr;
 /**
  * @var array $options
  * We want to pre-load the data from the model, or what has been sent with the form.
  */
 $selectedOption = [];
 
-$prefill = \Illuminate\Support\Arr::get($options, 'preset');
-$prefillModel = \Illuminate\Support\Arr::get($options, 'class');
-$allowNew = \Illuminate\Support\Arr::get($options, 'allowNew', false);
-$labelKey = \Illuminate\Support\Arr::get($options, 'labelKey');
-$searchParams = \Illuminate\Support\Arr::get($options, 'searchParams');
-$searchRouteName = \Illuminate\Support\Arr::get($options, 'searchRouteName');
-$placeholderKey = \Illuminate\Support\Arr::get($options, 'placeholderKey');
-$from = \Illuminate\Support\Arr::get($options, 'from');
-$allowClear = \Illuminate\Support\Arr::get($options, 'allowClear', true);
+$prefill = Arr::get($options, 'preset');
+$prefillModel = Arr::get($options, 'class');
+$allowNew = Arr::get($options, 'allowNew', false);
+$labelKey = Arr::get($options, 'labelKey');
+$searchParams = Arr::get($options, 'searchParams');
+$searchRouteName = Arr::get($options, 'searchRouteName');
+$placeholderKey = Arr::get($options, 'placeholderKey');
+$from = Arr::get($options, 'from');
+$allowClear = Arr::get($options, 'allowClear', true);
+$dropdownParent = Arr::get($options, 'dropdown-parent');
 
 // Try to load what was sent with the form first, in case there was a form validation error
 $previous = old($fieldId);
@@ -82,7 +84,7 @@ $fieldUniqIdentifier = $fieldId . '_' . uniqid();
         'data-placeholder' => __($placeholderKey),
         'data-language' => LaravelLocalization::getCurrentLocale(),
         'data-allow-clear' => $allowClear ? 'true' : 'false'
-    ]
+    ],
 ) !!}
 
 @if ($allowNew)

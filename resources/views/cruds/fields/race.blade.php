@@ -17,7 +17,7 @@
                 'preset' => $preset,
                 'class' => App\Models\Race::class,
                 'enableNew' => isset($enableNew) ? $enableNew : true,
-                'labelKey' => isset($parent) ? 'races.fields.race' : null,
+                'labelKey' => isset($parent) && $parent ? 'races.fields.race' : null,
                 'from' => isset($from) ? $from : null,
             ]
         ) !!}

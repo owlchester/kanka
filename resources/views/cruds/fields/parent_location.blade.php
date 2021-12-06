@@ -14,7 +14,7 @@
             $preset,
             App\Models\Location::class,
             isset($enableNew) ? $enableNew : true,
-            'crud.fields.location',
+            'locations.fields.location',
             'locations.find',
             'locations.placeholders.location'
         ) !!}
