@@ -15,7 +15,7 @@ $searchRouteName = Arr::get($options, 'searchRouteName');
 $placeholderKey = Arr::get($options, 'placeholderKey');
 $from = Arr::get($options, 'from');
 $allowClear = Arr::get($options, 'allowClear', true);
-$dropdownParent = Arr::get($options, 'dropdown-parent');
+$dropdownParent = Arr::get($options, 'dropdownParent');
 
 // Try to load what was sent with the form first, in case there was a form validation error
 $previous = old($fieldId);
@@ -83,7 +83,9 @@ $fieldUniqIdentifier = $fieldId . '_' . uniqid();
         'data-url' => route($searchRouteName, $searchParams),
         'data-placeholder' => __($placeholderKey),
         'data-language' => LaravelLocalization::getCurrentLocale(),
-        'data-allow-clear' => $allowClear ? 'true' : 'false'
+        'data-allow-clear' => $allowClear ? 'true' : 'false',
+        'from' => null,
+        'data-dropdown-parent' => $dropdownParent ?: null,
     ],
 ) !!}
 

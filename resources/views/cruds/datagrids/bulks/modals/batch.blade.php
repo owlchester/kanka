@@ -15,7 +15,8 @@
     'enableNew' => false,
     'base' => $model,
     'bulk' => true,
-    'parent' => \Illuminate\Support\Str::plural($trimmed) == $name
+    'parent' => \Illuminate\Support\Str::plural($trimmed) == $name,
+    'dropdownParent' => '#bulk-edit'
 ])
                 @endforeach
             </div>
