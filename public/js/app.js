@@ -79197,6 +79197,11 @@ $(document).ready(function () {
     initImageRemoval();
     Object(_components_delete_confirm_js__WEBPACK_IMPORTED_MODULE_1__["default"])();
   });
+}); // Select2 open focus bugfix with newer jquery versions
+
+$(document).on('select2:open', function () {
+  var allFound = document.querySelectorAll('.select2-container--open .select2-search__field');
+  allFound[allFound.length - 1].focus();
 });
 /**
  * Init the toggle elements
