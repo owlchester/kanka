@@ -57,7 +57,7 @@ return [
         'helpers'       => [
             'all_members'   => 'All characters that are members of this organisations and it\'s sub-organisations.',
             'members'       => 'All characters that are members of this organisation.',
-            'pinned'        => 'Choose if this member should be shown in the pinned section of the entity\'s overview.',
+            'pinned'        => 'Choose if this member should be shown in the pinned section of the overview of its associated entities.',
         ],
         'pinned'        => [
             'both'          => 'Both',
