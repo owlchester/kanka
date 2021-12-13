@@ -102,7 +102,7 @@ class EntityRelationService
      */
     public function map(): array
     {
-        $entityHook = 'init' . $this->entity->entityType();
+        $entityHook = 'init' . ucfirst($this->entity->type());
         if (method_exists($this, $entityHook)) {
             $this->$entityHook();
         }
