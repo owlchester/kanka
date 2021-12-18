@@ -9,3 +9,9 @@
         </span>
     </div>
 @endif
+
+<div class="bg-danger banner-notification">
+    <span>
+        Kanka will be unavailable on Monday 20th of December at <strong><a href="https://everytimezone.com/s/9c5cae60" target="_blank">4PM UTC</a></strong> for about 60 minutes while we do some maintenance work.
+    </span>
+</div>

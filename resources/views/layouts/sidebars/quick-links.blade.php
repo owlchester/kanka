@@ -1,4 +1,4 @@
-<li class="{{ $sidebar->active('menu_links') }} section sidebar-quick-links">
+<li class="{{ $sidebar->active('menu_links') }} section sidebar-section sidebar-quick-links">
     @if(auth()->check() && auth()->user()->isAdmin())
         <a href="{{ route('menu_links.index') }}">
             <i class="fa fa-star"></i>
