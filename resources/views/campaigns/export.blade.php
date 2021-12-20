@@ -16,6 +16,7 @@
             @include('campaigns._menu', ['active' => 'export'])
         </div>
         <div class="col-md-9">
+            {!! Form::open(['method' => 'POST', 'route' => ['campaign_export']]) !!}
             <div class="box box-solid">
                 <div class="box-header with-border">
                     <h3 class="box-title">
@@ -23,9 +24,23 @@
                     </h3>
                 </div>
                 <div class="box-body">
-                    @include('campaigns._export')
+                    <p>{{ __('campaigns.export.helper') }}</p>
+                    <p>{!! __('campaigns.export.helper_secondary', [
+    'api' => link_to('/docs/1.0', __('front.menu.api'))
+]) !!}</p>
+                    <p class="help-text">
+                        {{ __('campaigns.export.helper_third') }}
+                    </p>
+
+                </div>
+                <div class="box-footer text-right">
+                    <button class="btn btn-primary">
+                        <i class="fa fa-download"></i> {{ __('crud.export') }}
+                    </button>
                 </div>
             </div>
+            {!! Form::close() !!}
+
         </div>
     </div>
 @endsection

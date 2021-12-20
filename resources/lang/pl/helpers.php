@@ -72,6 +72,17 @@ return [
     ],
     'public'            => 'Zobacz tutorial na Youtube dotyczący kampanii publicznych.',
     'title'             => 'Pomoc',
+    'troubleshooting'   => [
+        'description'       => 'Skierował cię na tę stronę członek zespołu Kanki. Wybierz kampanię z rozwijanego menu by stworzyć zgłoszenie, dzięki któremu ktoś od nas będzie mógł czasowo dołączyć do kampanii jako administrator.',
+        'errors'            => [
+            'token_exists'  => 'Dla :campaign istnieje już zgłoszenie',
+        ],
+        'save_btn'          => 'Stwórz zgłoszenie',
+        'select_campaign'   => 'Wybierz kampanię',
+        'subtitle'          => 'Przybądźcie z odsieczą!',
+        'success'           => 'Skopuj następujące zgłoszenie i prześlij je do kogoś z zespołu Kanki',
+        'title'             => 'Rozwiązywanie problemów',
+    ],
     'widget-filters'    => [
         'description'   => 'Możesz filtrować elementy wyświetlane przez zmodyfikowany widżet tworząc listę pól dla elementów albo wartości. Na przykład możesz użyć :example by filtrować martwe postaci na liście BNów.',
         'link'          => 'filtry widżetów',

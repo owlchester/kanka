@@ -90,6 +90,8 @@ class CharacterObserver extends MiscObserver
         $orgCount = 0;
         $organisations = request()->post('organisations', []);
         $roles = new Collection(request()->post('organisation_roles', []));
+        $statuses = new Collection(request()->post('organisation_statuses', []));
+        $pins = new Collection(request()->post('organisation_pins', []));
         $privates = new Collection(request()->post('organisation_privates', []));
 
         // Prepare roles and permissions that a new (have no id) to properly map them with new organisations
@@ -97,6 +99,20 @@ class CharacterObserver extends MiscObserver
         foreach ($roles as $id => $role) {
             if (empty($id)) {
                 $newRoles->push($role);
+            }
+        }
+
+        $newStatuses = new Collection();
+        foreach ($statuses as $id => $status) {
+            if (empty($id)) {
+                $newStatuses->push($status);
+            }
+        }
+
+        $newPins = new Collection();
+        foreach ($pins as $id => $pin) {
+            if (empty($id)) {
+                $newPins->push($pin);
             }
         }
 
@@ -121,6 +137,8 @@ class CharacterObserver extends MiscObserver
             }
             $model->organisation_id = $id;
             $model->role = $roles->has($key) ? $roles->get($key, '') : $newRoles->shift();
+            $model->pin_id = $pins->has($key) ? $pins->get($key,  '') : $newPins->shift();
+            $model->status_id = $statuses->has($key) ? $statuses->get($key,  '') : $newStatuses->shift();
             if (request()->has('organisation_privates')) {
                 $model->is_private = $privates->has($key) ? $privates->get($key, false) : $newPrivates->shift();
             } else {

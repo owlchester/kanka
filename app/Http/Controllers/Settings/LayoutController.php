@@ -45,6 +45,6 @@ class LayoutController extends Controller
 
         return redirect()
             ->route('settings.layout')
-            ->with('success', trans('settings.layout.success'));
+            ->with('success', __('settings.layout.success'));
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Taggable;
 use App\Services\FilterService;
 use App\Traits\CampaignTrait;
@@ -30,7 +31,7 @@ use Illuminate\Support\Str;
  */
 class CampaignDashboardWidget extends Model
 {
-    use Taggable;
+    use Taggable, LastSync;
 
     /**
      * Widget Constants
@@ -159,21 +160,6 @@ class CampaignDashboardWidget extends Model
     public function conf($value)
     {
         return Arr::get($this->config, $value, null);
-    }
-
-
-    /**
-     * Used by the API to get models updated since a previous date
-     * @param $query
-     * @param $lastSync
-     * @return mixed
-     */
-    public function scopeLastSync(Builder $query, $lastSync)
-    {
-        if (empty($lastSync)) {
-            return $query;
-        }
-        return $query->where('updated_at', '>', $lastSync);
     }
 
     /**

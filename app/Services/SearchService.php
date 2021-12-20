@@ -96,7 +96,8 @@ class SearchService
     public function type($type)
     {
         if (!empty($type)) {
-            $this->onlyTypes = [$type];
+            $typeID = config('entities.ids.' . $type);
+            $this->onlyTypes = [$typeID];
         }
         return $this;
     }
@@ -142,11 +143,18 @@ class SearchService
     }
 
     /**
-     * @param array $ids
+     * @param array|string $ids
      * @return $this
      */
-    public function excludeIds(array $ids): self
+    public function excludeIds($ids): self
     {
+        if (empty($ids)) {
+            $this->excludeIds = [];
+            return $this;
+        }
+        if (!is_array($ids)) {
+            $ids = [$ids];
+        }
         $this->excludeIds = $ids;
         return $this;
     }
@@ -178,7 +186,9 @@ class SearchService
     public function find()
     {
         // Figure out what kind of entities we want.
-        $availableEntityTypes = $this->entityService->getEnabledEntities($this->campaign);
+        $availableEntityTypes = $this->entityService
+            ->campaign($this->campaign)
+            ->getEnabledEntitiesID();
 
         // If a list of types are provided, use those
         if (!empty($this->onlyTypes)) {
@@ -189,7 +199,7 @@ class SearchService
             $availableEntityTypes = array_diff($availableEntityTypes, $this->excludedTypes);
         }
 
-        $query = Entity::whereIn('type', $availableEntityTypes);
+        $query = Entity::whereIn('type_id', $availableEntityTypes);
         if (empty($this->term)) {
             $query->orderBy('updated_at', 'DESC');
         } else {
@@ -200,39 +210,43 @@ class SearchService
             }
         }
 
+        if (!empty($this->excludeIds)) {
+            $query->whereNotIn('id', $this->excludeIds);
+        }
+
         $query
-            ->whereNotIn('id', $this->excludeIds)
             ->acl()
             ->limit($this->limit);
 
         $searchResults = [];
         foreach ($query->get() as $model) {
             // Force having a child for "ghost" entities.
-            if ($model->child) {
-                $img = '';
-                if (!empty($model->child->image)) {
-                    $img = '<span class="entity-image" style="background-image: url(\''
-                        . $model->child->getImageUrl(40) . '\');"></span> ';
-                }
+            if (empty($model->child)) {
+                continue;
+            }
+            $img = '';
+            if (!empty($model->child->image)) {
+                $img = '<span class="entity-image" style="background-image: url(\''
+                    . $model->child->getImageUrl(40) . '\');"></span> ';
+            }
 
-                $parsedName = str_replace('&#039;', '\'', e($model->name));
-                if ($this->full) {
-                    $searchResults[] = [
-                        'id' => $model->id,
-                        'fullname' => $parsedName,
-                        'image' => $img,
-                        'name' => $parsedName,
-                        'type' => __('entities.' . $model->type),
-                        'model_type' => $model->type,
-                        'tooltip' => $model->tooltip(),
-                        'url' => $model->url()
-                    ];
-                } else {
-                    $searchResults[] = [
-                        'id' => $model->id,
-                        'text' => $parsedName . ' (' . trans('entities.' . $model->type) . ')'
-                    ];
-                }
+            $parsedName = str_replace('&#039;', '\'', e($model->name));
+            if ($this->full) {
+                $searchResults[] = [
+                    'id' => $model->id,
+                    'fullname' => $parsedName,
+                    'image' => $img,
+                    'name' => $parsedName,
+                    'type' => __('entities.' . $model->type()),
+                    'model_type' => $model->type(),
+                    'tooltip' => $model->tooltip(),
+                    'url' => $model->url()
+                ];
+            } else {
+                $searchResults[] = [
+                    'id' => $model->id,
+                    'text' => $parsedName . ' (' . trans('entities.' . $model->type()) . ')'
+                ];
             }
         }
 

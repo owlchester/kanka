@@ -29,7 +29,7 @@ trait ExportableTrait
 
         // Entity values
         if (!empty($this->entity)) {
-            $foreigns = ['notes', 'attributes', 'relationships'];
+            $foreigns = ['notes', 'attributes', 'relationships', 'abilities', 'events', 'files', 'tags'];
             foreach ($foreigns as $foreign) {
                 // Have to do the ()->get because of attributes being otherwise something else
                 foreach ($this->entity->$foreign()->get() as $model) {

@@ -6,8 +6,7 @@ use App\User;
 use Patreon\API;
 use Patreon\OAuth;
 use Exception;
-use TCG\Voyager\Facades\Voyager;
-use TCG\Voyager\Models\Role;
+use App\Models\Role;
 
 /**
  * Class PatreonService
@@ -90,7 +89,7 @@ class PatreonService
      */
     protected function getRole()
     {
-        return Voyager::model('Role')->where('name', '=', $this->patreonRoleName)->first();
+        return Role::where('name', '=', $this->patreonRoleName)->first();
     }
 
     /**
@@ -143,9 +142,10 @@ class PatreonService
         }
 
         $ids = $role->users()->pluck('id');
+        /** @var User $user */
         $users = User::select(['patreon_pledge', 'name', 'settings'])->whereIn('id', $ids)->orderBy('name', 'ASC')->get();
         foreach ($users as $user) {
-            if ($user->settings->get('hide_subscription', false)) {
+            if ($user->setting('hide_subscription', false)) {
                 continue;
             }
             $patrons[$user->patreon_pledge ?: 'Kobold'][] = $user->name;

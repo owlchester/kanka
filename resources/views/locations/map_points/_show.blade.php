@@ -29,7 +29,7 @@
     <div class="panel-footer">
             <a href="{{ $mapPoint->targetEntity->child->getLink() }}">{{ __('crud.actions.go_to', ['name' => $mapPoint->targetEntity->name]) }}</a>
 
-            @if ($mapPoint->targetEntity->type == 'location' && !empty($mapPoint->targetEntity->child->map))
+            @if ($mapPoint->targetEntity->typeID() == config('entities.ids.location') && !empty($mapPoint->targetEntity->child->map))
                 <a href="{{ $mapPoint->targetEntity->child->getLink('map') }}" class="pull-right"><i class="fa fa-map"></i> {{ __('locations.show.tabs.map') }}</a>
             @endif
         @else

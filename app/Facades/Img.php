@@ -11,15 +11,8 @@ use Illuminate\Support\Facades\Facade;
  * Class Img
  * @package App\Facades
  *
- * @method static string url(string $img, string $base = 'user')
- * @method static self|Img crop(int $width, int $height)
- * @method static self|Img focus(int $x, int $y)
- * @method static self|Img resetCrop()
- * @method static self|Img base(string $base)
- * @method static self|Img console()
- * @method static bool nowebp()
- *
  * @see ImgService
+ * @mixin ImgService
  */
 class Img extends Facade
 {

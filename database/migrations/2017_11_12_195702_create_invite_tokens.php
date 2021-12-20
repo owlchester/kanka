@@ -23,7 +23,7 @@ class CreateInviteTokens extends Migration
             $table->timestamps();
 
             // Foreign
-            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
 
             $table->index(['token', 'is_active']);

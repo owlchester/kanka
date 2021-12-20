@@ -17,7 +17,7 @@ You can get a list of all the images of a campaign by using the following endpoi
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `images` | Default |
 
@@ -59,7 +59,7 @@ You can get a list of all the images of a campaign by using the following endpoi
 
 To get the details of a single image, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `images/{image.id}` | Default |
 
@@ -89,7 +89,7 @@ To get the details of a single image, use the following endpoint.
 
 To create a image, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `images` | Default |
 
@@ -111,7 +111,7 @@ To create a image, use the following endpoint.
 
 To update a image, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `images/{image.id}` | Default |
 
@@ -133,7 +133,7 @@ To update a image, use the following endpoint.
 
 To delete a image, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `images/{image.id}` | Default |
 

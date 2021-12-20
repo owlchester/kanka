@@ -94,7 +94,7 @@ class AppRelease extends Model
      */
     public function alreadyRead(): bool
     {
-        $lastRelease = auth()->user()->settings->get('releases_' . $this->category_id);
+        $lastRelease = auth()->user()->settings()->get('releases_' . $this->category_id);
         return $lastRelease == $this->id;
     }
 

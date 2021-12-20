@@ -43,7 +43,7 @@ class LiveController extends Controller
                 ->campaign($campaign)
                 ->new($new)
                 ->full()
-                ->excludeIds([$exclude])
+                ->excludeIds($exclude)
                 ->find()
         );
     }
@@ -62,7 +62,12 @@ class LiveController extends Controller
             $this->search
                 ->term($term)
                 ->campaign($campaign)
-                ->exclude(['calendar', 'tag', 'map', 'timeline'])
+                ->exclude([
+                    config('entities.ids.calendar'),
+                    config('entities.ids.tag'),
+                    config('entities.ids.map'),
+                    config('entities.ids.timeline')
+                ])
                 ->find()
         );
     }
@@ -81,7 +86,7 @@ class LiveController extends Controller
             $this->search
                 ->term($term)
                 ->campaign($campaign)
-                ->exclude(['menu_link'])
+                ->exclude([config('entities.ids.menu_link')])
                 ->find()
         );
     }
@@ -108,7 +113,7 @@ class LiveController extends Controller
             $this->search
                 ->term($term)
                 ->campaign($campaign)
-                ->exclude(['tag'])
+                ->exclude([config('entities.ids.tag')])
                 ->excludeIds($exclude)
                 ->find()
         );
@@ -128,7 +133,7 @@ class LiveController extends Controller
             $this->search
                 ->term($term)
                 ->campaign($campaign)
-                ->only(['calendars'])
+                ->only([config('entities.ids.calendar')])
                 ->find()
         );
     }

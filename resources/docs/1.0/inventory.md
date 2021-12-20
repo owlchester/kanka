@@ -15,7 +15,7 @@ You can get a list of the inventory of an entity by using the following endpoint
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `entities/{entity.id}/inventories` | Default |
 
@@ -46,7 +46,7 @@ You can get a list of the inventory of an entity by using the following endpoint
 
 To add an item to an entity, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `entities/{entity.id}/inventories` | Default |
 
@@ -70,7 +70,7 @@ To add an item to an entity, use the following endpoint.
 
 To update an inventory, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `entities/{entity.id}/inventories/{inventory.id}` | Default |
 
@@ -88,7 +88,7 @@ The same body parameters are available as for when creating an inventory.
 
 To delete an inventory, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `entities/{entity.id}/inventories/{inventory.id}` | Default |
 

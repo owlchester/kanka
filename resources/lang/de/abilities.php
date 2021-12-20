@@ -42,10 +42,9 @@ return [
         'nested_without'=> 'Anzeigen aller Fähigkeiten, die keine übergeordnete Fähigkeit haben. Klicken Sie auf eine Zeile, um die Fähigkeiten untergeordneten Objekte anzuzeigen.',
     ],
     'index'         => [
-        'add'           => 'Neue Fähigkeit',
-        'description'   => 'Erstelle Kräfte, Zauber, Talente und mehr für deine Objekte',
-        'header'        => 'Fähigkeiten von :name',
-        'title'         => 'Fähigkeiten',
+        'add'       => 'Neue Fähigkeit',
+        'header'    => 'Fähigkeiten von :name',
+        'title'     => 'Fähigkeiten',
     ],
     'placeholders'  => [
         'charges'   => 'Anzahl der Verwendungen. Attribute können mit mit {Level} * {CHA} referenziert werden.',

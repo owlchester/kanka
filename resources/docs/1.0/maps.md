@@ -5,7 +5,7 @@
 - [Maps](#maps)
   - [All Maps](#all-maps)
     - [Results](#results)
-    - [Filters](#filters)
+
   - [Map](#map)
     - [Results](#results-1)
   - [Create a Map](#create-a-map)
@@ -25,9 +25,13 @@ You can get a list of all the maps of a campaign by using the following endpoint
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `maps` | Default |
+
+### URL Parameters
+
+The list of returned maps can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=map" target="_blank">API filters</a>.
 
 ### Results
 ```json
@@ -68,18 +72,13 @@ You can get a list of all the maps of a campaign by using the following endpoint
 }
 ```
 
-<a name="filters"></a>
-## Filters
-
-The list of returned maps can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=map" target="_blank">API filters</a>.
-
 
 <a name="map"></a>
 ## Map
 
 To get the details of a single map, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `maps/{map.id}` | Default |
 
@@ -126,7 +125,7 @@ To get the details of a single map, use the following endpoint.
 
 To create a map, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `maps` | Default |
 
@@ -143,8 +142,9 @@ To create a map, use the following endpoint.
 | `center_x` | `float` | The custom longitude on page load |
 | `center_y` | `float` | The custom latitude on page load |
 | `tags` | `array` | Array of tag ids |
+| `image_url` | `string` (Required) without `image`) | URL to a picture to be used for the map || `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
 | `is_private` | `boolean` | If the map is only visible to `admin` members of the campaign |
-| `image_url` | `string` (Required) without `image`) | URL to a picture to be used for the map |
 
 ### Results
 
@@ -156,7 +156,7 @@ To create a map, use the following endpoint.
 
 To update a map, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `maps/{map.id}` | Default |
 
@@ -174,7 +174,7 @@ The same body parameters are available as for when creating a map.
 
 To delete a map, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `maps/{map.id}` | Default |
 

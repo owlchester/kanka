@@ -66,7 +66,7 @@ $hasOrg = request()->has('organisation_id');
                 ->has('character')
                 ->with([
                     'character', 'character.race', 'character.location', 'character.family', 'organisation',
-                    'character.entity', 'character.entity.tags'
+                    'character.entity'
                 ])
                 ->simpleSort($datagridSorter)
                 ->paginate();?>

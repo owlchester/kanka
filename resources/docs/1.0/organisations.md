@@ -3,7 +3,7 @@
 ---
 
 - [All Organisations](#all-organisations)
-- [Filters](#filters)
+
 - [Single Organisation](#organisation)
 - [Organisation Members](#organisation-members)
 - [Create an organisation](#create-organisation)
@@ -18,9 +18,13 @@ You can get a list of all the organisations of a campaign by using the following
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `organisations` | Default |
+
+### URL Parameters
+
+The list of returned organisations can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=organisation" target="_blank">API filters</a>.
 
 ### Results
 ```json
@@ -50,18 +54,12 @@ You can get a list of all the organisations of a campaign by using the following
 }
 ```
 
-<a name="filters"></a>
-## Filters
-
-The list of returned organisations can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=organisation" target="_blank">API filters</a>.
-
-
 <a name="organisation"></a>
 ## Organisation
 
 To get the details of a single organisation, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `organisations/{organisation.id}` | Default |
 
@@ -98,7 +96,7 @@ To get the details of a single organisation, use the following endpoint.
 
 To get the members of an organisation, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `organisations/{organisation.id}/organisation_members` | Default |
 
@@ -113,6 +111,8 @@ To get the members of an organisation, use the following endpoint.
         "is_private": false,
         "organisation_id": 1,
         "role": "Leader",
+        "pin_id": null,
+        "status_id": 1,
         "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1
     }
@@ -127,7 +127,7 @@ To get the members of an organisation, use the following endpoint.
 
 To create an organisation, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `organisations` | Default |
 
@@ -141,8 +141,9 @@ To create an organisation, use the following endpoint.
 | `organisation_id` | `integer` | The parent organisation |
 | `location_id` | `integer` | The organisation's location |
 | `tags` | `array` | Array of tag ids |
+| `image_url` | `string` | URL to a picture to be used for the organisation || `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
 | `is_private` | `boolean` | If the organisation is only visible to `admin` members of the campaign |
-| `image_url` | `string` | URL to a picture to be used for the organisation |
 
 ### Results
 
@@ -154,7 +155,7 @@ To create an organisation, use the following endpoint.
 
 To update an organisation, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `organisations/{organisation.id}` | Default |
 
@@ -172,7 +173,7 @@ The same body parameters are available as for when creating an organisation.
 
 To delete an organisation, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `organisations/{organisation.id}` | Default |
 

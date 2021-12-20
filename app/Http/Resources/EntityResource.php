@@ -51,7 +51,8 @@ class EntityResource extends JsonResource
         $data = [
             'id' => $entity->id,
             'name' => $entity->name,
-            'type' => $entity->type,
+            'type' => $entity->type(),
+            'type_id' => $entity->type_id,
             'child_id' => $entity->entity_id,
             'tags' => $entity->tags->pluck('id')->toArray(),
             'is_private' => (bool) $entity->is_private,
@@ -137,9 +138,11 @@ class EntityResource extends JsonResource
             'image_full' => !empty($misc->image) ? $misc->getImageUrl(0) : ($misc->entity->image ? $misc->entity->image->getImagePath(0) : null),
             'image_thumb' => $misc->getImageUrl(40),
             'has_custom_image' => !empty($misc->image) || !empty($galleryImage),
+            'image_uuid' => $superboosted & $misc->entity->image ? $misc->entity->image->id : null,
 
             // Header
             'header_full' => $misc->entity->getHeaderUrl($superboosted),
+            'header_uuid' => $superboosted & $misc->entity->header ? $misc->entity->header->id : null,
             'has_custom_header' => $misc->entity->hasHeaderImage($superboosted),
 
             'is_private' => (bool) $this->is_private,

@@ -18,7 +18,7 @@ if ($model->image) {
     $imagePath = Img::crop(250, 250)->url($entity->image->path);
 }
 /** @var \App\Models\Tag[] $entityTags */
-$entityTags = $entity->tags()->with('entity')->get();
+$entityTags = $entity->tagsWithEntity();
 
 $buttonsClass = 1;
 if ($model instanceof \App\Models\Character && $model->is_dead) {

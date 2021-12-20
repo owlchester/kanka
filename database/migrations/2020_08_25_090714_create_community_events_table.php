@@ -40,7 +40,7 @@ class CreateCommunityEventsTable extends Migration
             //$table->unsignedInteger('entity_id')->nullable();
 
             $table->foreign('community_event_id')->references('id')->on('community_events')->onDelete('cascade');
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             //$table->foreign('entity_id')->references('id')->on('entities')->onDelete('set null');
         });
     }

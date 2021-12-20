@@ -2,20 +2,18 @@
 
 return [
     'children'      => [
-        'actions'       => [
+        'actions'   => [
             'add'   => 'Afegeix a l\'etiqueta',
         ],
-        'create'        => [
+        'create'    => [
             'success'   => 'S\'ha afegit l\'etiqueta :name a l\'entitat.',
             'title'     => 'Afegeix una etiqueta a :name',
         ],
-        'description'   => 'Entitats etiquetades',
-        'title'         => 'Descendents de l\'etiqueta :name',
+        'title'     => 'Descendents de l\'etiqueta :name',
     ],
     'create'        => [
-        'description'   => 'Crea una nova etiqueta',
-        'success'       => 'S\'ha creat l\'etiqueta «:name».',
-        'title'         => 'Nova etiqueta',
+        'success'   => 'S\'ha creat l\'etiqueta «:name».',
+        'title'     => 'Nova etiqueta',
     ],
     'destroy'       => [
         'success'   => 'S\'ha eliminat l\'etiqueta «:name».',
@@ -41,13 +39,12 @@ return [
         'tag'       => 'Aquí es mostren totes les etiquetes que estan directament sota aquesta etiqueta.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Vista niada',
         ],
-        'add'           => 'Nova etiqueta',
-        'description'   => 'Gestiona les etiquetes de :name.',
-        'header'        => 'Etiquetes de :name',
-        'title'         => 'Etiquetes',
+        'add'       => 'Nova etiqueta',
+        'header'    => 'Etiquetes de :name',
+        'title'     => 'Etiquetes',
     ],
     'new_tag'       => 'Nova etiqueta',
     'placeholders'  => [
@@ -56,16 +53,13 @@ return [
         'type'  => 'Tradicions, guerres, història, religió...',
     ],
     'show'          => [
-        'description'   => 'Vista detallada de l\'etiqueta',
-        'tabs'          => [
-            'children'      => 'Entitats niades',
-            'information'   => 'Informació',
-            'tags'          => 'Etiquetes',
+        'tabs'  => [
+            'children'  => 'Entitats niades',
+            'tags'      => 'Etiquetes',
         ],
-        'title'         => 'Etiqueta :name',
+        'title' => 'Etiqueta :name',
     ],
     'tags'          => [
-        'description'   => 'Subetiquetes',
-        'title'         => 'Descendents de l\'etiqueta :name',
+        'title' => 'Descendents de l\'etiqueta :name',
     ],
 ];

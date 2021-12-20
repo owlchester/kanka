@@ -30,7 +30,7 @@ return [
             'email'     => 'Adreça de mail',
             'name'      => 'Nom d\'usuari',
             'password'  => 'Contrasenya',
-            'tos'       => 'Accepto els termes de la <a href=":privacyUrl" target="_blank">Política de Privacitat</a>.',
+            'tos_clean' => 'Accepto els :privacy',
         ],
         'register_with_facebook'    => 'Registra\'t amb Facebook',
         'register_with_google'      => 'Registra\'t amb Google',

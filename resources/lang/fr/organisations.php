@@ -50,15 +50,29 @@ return [
         'fields'        => [
             'character'     => 'Personnage',
             'organisation'  => 'Organisation',
+            'pinned'        => 'Épinglé',
             'role'          => 'Rôle',
+            'status'        => 'Status de membre',
         ],
         'helpers'       => [
             'all_members'   => 'Tous les personnages qui sont membres de cette organisation et des sous-organisations.',
             'members'       => 'Tous les personnages directement membres de cette organisation.',
+            'pinned'        => 'Définir sur le membre doit être affiché dans les épingles des entités associées.',
+        ],
+        'pinned'        => [
+            'both'          => 'Les deux',
+            'character'     => 'Personnage',
+            'none'          => 'Aucun',
+            'organisation'  => 'Organisation',
         ],
         'placeholders'  => [
             'character' => 'Choix du personnage',
             'role'      => 'Chef, Membre, Prêtre, Maître d\'arme',
+        ],
+        'status'        => [
+            'active'    => 'Membre actif',
+            'inactive'  => 'Membre inactif',
+            'unknown'   => 'Status inconnu',
         ],
         'title'         => 'Organisation :name Membres',
     ],

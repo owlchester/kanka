@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Rules\AccountName;
-use App\Services\ReferralService;
-use App\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
+use App\Providers\RouteServiceProvider;
+use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -30,26 +29,16 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
-
-    /** @var ReferralService */
-    protected $referralService;
+    protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(ReferralService $service)
+    public function __construct()
     {
         $this->middleware('guest');
-
-        if (!config('auth.register_enabled')) {
-            throw new AccessDeniedHttpException('ACCOUNT REGISTRATION DISABLED');
-        }
-
-        $this->referralService = $service;
-        $this->referralService->validate(request());
     }
 
     /**
@@ -61,10 +50,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255', 'min:2', new AccountName],
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-            'tos' => 'required'
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8'],
         ]);
     }
 
@@ -79,8 +67,7 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'referral_id' => $this->referralService->referralId(),
+            'password' => Hash::make($data['password']),
         ]);
     }
 }

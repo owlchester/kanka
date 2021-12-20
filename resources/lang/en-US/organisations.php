@@ -14,28 +14,37 @@ return [
     ],
     'fields'        => [
         'organisation'  => 'Parent Organization',
+        'organisations' => 'Sub Organizations',
     ],
     'helpers'       => [
         'descendants'   => 'This list contains all organizations which are descendants of this organization, and not only those directly under it.',
-        'nested'        => 'When in Nested View, you can view your Organizations in a nested manner. Organizations with no parent organization will be shown by default. Organizations with children tags can be clicked to view those children. You can keep clicking until there are no more children to view.',
+        'nested_parent' => 'Displaying the organizations of :parent.',
+        'nested_without'=> 'Displaying all organizations that don\'t have a parent organization. Click on a row to see the children organizations.',
     ],
     'index'         => [
-        'add'           => 'New Organization',
-        'description'   => 'Manage the organizations of :name.',
-        'header'        => 'Organizations of :name',
-        'title'         => 'Organizations',
+        'add'       => 'New Organization',
+        'header'    => 'Organizations of :name',
+        'title'     => 'Organizations',
     ],
     'members'       => [
         'create'    => [
-            'description'   => 'Add a member to the organization',
-            'success'       => 'Member added to the organization.',
-            'title'         => 'New Organization Member for :name',
+            'success'   => 'Member added to the organization.',
         ],
         'destroy'   => [
             'success'   => 'Member removed from the organization.',
         ],
         'edit'      => [
             'success'   => 'Organization member updated.',
+        ],
+        'fields'    => [
+            'organisation'  => 'Organization',
+        ],
+        'helpers'   => [
+            'all_members'   => 'All characters that are members of this organizations and it\'s sub-organizations.',
+            'members'       => 'All characters that are members of this organization.',
+        ],
+        'pinned'    => [
+            'organisation'  => 'Organization',
         ],
         'title'     => 'Organization :name Members',
     ],
@@ -47,10 +56,9 @@ return [
     ],
     'quests'        => [],
     'show'          => [
-        'description'   => 'A detailed view of an organization',
-        'tabs'          => [
+        'tabs'  => [
             'organisations' => 'Organizations',
         ],
-        'title'         => 'Organization :name',
+        'title' => 'Organization :name',
     ],
 ];

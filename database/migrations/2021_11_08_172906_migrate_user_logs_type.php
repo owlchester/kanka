@@ -19,8 +19,10 @@ class MigrateUserLogsType extends Migration
                 ->after('user_id')
                 ->default(UserLog::TYPE_LOGIN);
 
-            $table->dropForeign('user_logs_user_id_foreign');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            if (!app()->environment('testing')) {
+                $table->dropForeign('user_logs_user_id_foreign');
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            }
         });
 
         \Illuminate\Support\Facades\DB::statement('UPDATE user_logs SET type_id = ' . UserLog::TYPE_LOGOUT . ' WHERE action = \'logout\'');

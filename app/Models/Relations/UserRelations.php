@@ -11,6 +11,7 @@ use App\Models\CampaignSubmission;
 use App\Models\Entity;
 use App\Models\EntityUser;
 use App\Models\Referral;
+use App\Models\Role;
 use App\Models\UserApp;
 
 /**
@@ -137,5 +138,13 @@ trait UserRelations
     {
         return $this->belongsToMany(Entity::class)
             ->using(EntityUser::class);
+    }
+
+    /**
+     * Return alternative User Roles.
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'user_roles');
     }
 }

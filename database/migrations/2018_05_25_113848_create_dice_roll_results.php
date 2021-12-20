@@ -14,14 +14,8 @@ class CreateDiceRollResults extends Migration
     public function up()
     {
         Schema::table('dice_rolls', function (Blueprint $table) {
-            $table->dropForeign('dice_rolls_created_by_foreign');
-            $table->dropColumn('created_by');
-            $table->dropColumn('results');
 
             $table->string('image', 255)->nullable();
-
-            $table->unsignedInteger('section_id')->nullable();
-            $table->foreign('section_id')->references('id')->on('sections')->onDelete('set null');
         });
 
         Schema::dropIfExists('dice_roll_results');

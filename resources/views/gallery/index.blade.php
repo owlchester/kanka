@@ -58,7 +58,7 @@ if ($folder) {
               <input type="file" id="file-upload" name="file" multiple />
         </span>
 
-            <p>{{ trans('crud.files.hints.limitations', ['formats' => 'jpg, png, webp, gif', 'size' => auth()->user()->maxUploadSize(true)]) }}</p>
+            <p>{{ __('crud.files.hints.limitations', ['formats' => 'jpg, png, webp, gif', 'size' => auth()->user()->maxUploadSize(true)]) }}</p>
 
 
             <p class="text-red gallery-error" style="display:none"></p>
@@ -93,8 +93,8 @@ if ($folder) {
             <div class="modal-content">
                 {!! Form::open(['route' => 'campaign.gallery.folder', 'method' => 'POST']) !!}
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">{{ trans('campaigns/gallery.new_folder.title') }}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{ __('campaigns/gallery.new_folder.title') }}</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -103,7 +103,7 @@ if ($folder) {
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('crud.cancel') }}</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                     <button type="submit" class="btn btn-primary">
                     {{ __('crud.create') }}
                 </button>

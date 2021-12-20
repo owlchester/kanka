@@ -16,31 +16,8 @@ use Illuminate\Support\Facades\Facade;
  * Class CampaignLocalization
  * @package App\Facades
  *
- * @method static self|CampaignCacheService campaign(Campaign $campaign)
- * @method static Collection members(string $type = 'all')
- * @method static self|CampaignCacheService clearMembers(string $type = 'all')
- * @method static int entityCount(string $type = null)
- * @method static int followerCount()
- * @method static self|CampaignCacheService clearFollowerCount()
- * @method static Collection roles()
- * @method static self|CampaignCacheService clearRoles()
- * @method static CampaignSetting settings()
- * @method static self|CampaignCacheService clearSettings();
- * @method static array defaultImages()
- * @method static self|CampaignCacheService clearDefaultImages();
- * @method static array systems();
- * @method static self|CampaignCacheService clearTheme();
- * @method static string themes();
- * @method static self|CampaignCacheService clearStyles();
- * @method static string styles();
- * @method static int stylesTimestamp();
- * @method static array adminRole();
- * @method static self|CampaignCacheService clearAdminRole();
- *
- * @method static array dashboards();
- * @method static self|CampaignCacheService clearDashboards();
- *
  * @see \App\Services\Caches\CampaignCacheService
+ * @mixin \App\Services\Caches\CampaignCacheService
  */
 class CampaignCache extends Facade
 {

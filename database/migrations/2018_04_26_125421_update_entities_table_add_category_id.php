@@ -14,8 +14,8 @@ class UpdateEntitiesTableAddCategoryId extends Migration
     public function up()
     {
         Schema::table('entities', function (Blueprint $table) {
-            $table->unsignedInteger('section_id')->nullable();
-            $table->foreign('section_id')->references('id')->on('sections')->onDelete('set null');
+            $table->unsignedInteger('tag_id')->nullable();
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('set null');
         });
     }
 
@@ -27,8 +27,8 @@ class UpdateEntitiesTableAddCategoryId extends Migration
     public function down()
     {
         Schema::table('entities', function (Blueprint $table) {
-            $table->dropForeign('entities_section_id_foreign');
-            $table->dropColumn('section_id');
+            $table->dropForeign('entities_tag_id_foreign');
+            $table->dropColumn('tag_id');
         });
     }
 }

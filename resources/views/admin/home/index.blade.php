@@ -127,7 +127,7 @@
                     <div class="row">
                         @foreach (\App\Models\Entity::top()->get() as $entity)
                             <div class="col-xs-8 text-right">
-                                {{ $entity->type }}
+                                {{ $entity->type() }}
                             </div>
                             <div class="col-xs-4 text-bold">
                                 {{ number_format($entity->cpt, 0, '.', '\'') }}

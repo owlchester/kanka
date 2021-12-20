@@ -44,7 +44,7 @@ class EntityNoteController extends Controller
 
         $notes = $entity->notes()->paginate();
         $name = $this->view;
-        $route = $entity->type . $this->route;
+        $route = $entity->type() . $this->route;
         $parentRoute = $entity->pluralType();
 
         return view('cruds.notes.index', compact(

@@ -8,10 +8,8 @@ use Illuminate\Support\Facades\Facade;
  * Class CharacterCache
  * @package App\Facades
  *
- * @method static array genderSuggestion()
- * @method static self|CharacterCacheService clearSuggestion()
- *
  * @see \App\Services\Caches\CharacterCacheService
+ * @mixin \App\Services\Caches\CharacterCacheService
  */
 class CharacterCache extends Facade
 {

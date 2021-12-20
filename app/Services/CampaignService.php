@@ -8,6 +8,7 @@ use App\Models\Campaign;
 use App\Models\CampaignUser;
 use App\Exceptions\TranslatableException;
 use App\Jobs\CampaignExport;
+use App\Models\UserLog;
 use App\Notifications\Header;
 use App\User;
 use Illuminate\Session\Store;
@@ -122,6 +123,11 @@ class CampaignService
 
         // Clear cache
         UserCache::clearCampaigns();
+
+        UserLog::create([
+            'user_id' => auth()->user()->id,
+            'type_id' => UserLog::TYPE_CAMPAIGN_LEAVE
+        ]);
 
         self::switchToNext();
     }
@@ -239,5 +245,20 @@ class CampaignService
 
         CampaignExport::dispatch($campaign, $user);
         CampaignAssetExport::dispatch($campaign, $user);
+    }
+
+    /**
+     * @param Campaign $campaign
+     * @throws Exception
+     */
+    public function delete(Campaign $campaign)
+    {
+        UserLog::create([
+            'user_id' => auth()->user()->id,
+            'type_id' => UserLog::TYPE_CAMPAIGN_DELETE
+        ]);
+
+        $campaign->delete();
+        CampaignService::switchToNext();
     }
 }

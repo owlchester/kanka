@@ -2,10 +2,9 @@
 
 namespace App\Models\Scopes;
 
+use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 
 /**
  * Trait SubEntityScopes
@@ -13,8 +12,8 @@ use Illuminate\Support\Str;
  *
  * @method static self|Builder preparedWith()
  * @method static self|Builder recent()
- * @method static self|Builder lastSync()
  * @method static self|Builder standardWith()
+ * @method static self|Builder withApi()
  */
 trait SubEntityScopes
 {
@@ -41,25 +40,38 @@ trait SubEntityScopes
     }
 
     /**
-     * Used by the API to get models updated since a previous date
-     * @param $query
-     * @param $lastSync
-     * @return mixed
-     */
-    public function scopeLastSync(Builder $query, $lastSync)
-    {
-        if (empty($lastSync)) {
-            return $query;
-        }
-        return $query->where('updated_at', '>', $lastSync);
-    }
-
-    /**
      * @param $query
      * @return mixed
      */
     public function scopeStandardWith($query)
     {
         return $query->with('entity', 'entitiy.tags');
+    }
+
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeWithApi(Builder $query)
+    {
+        $relations = [
+            'entity',
+            'entity.tags', 'entity.notes', 'entity.events',
+            'entity.relationships', 'entity.attributes', 'entity.inventories',
+            'entity.files', 'entity.links'
+        ];
+
+        $with = !empty($this->apiWith) ? $this->apiWith : [];
+        foreach ($with as $relation) {
+            $relations[] = $relation;
+        }
+
+        $campaign = CampaignLocalization::getCampaign();
+        if ($campaign->boosted(true)) {
+            $relations[] = 'entity.header';
+            $relations[] = 'entity.image';
+        }
+
+        return $query->with($relations);
     }
 }

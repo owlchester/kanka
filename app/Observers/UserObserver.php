@@ -35,7 +35,10 @@ class UserObserver
      */
     public function saved(User $user)
     {
-        UserCache::user($user)->clearName();
+        // Only clear the cache if the name changed
+        if ($user->isDirty('name')) {
+            UserCache::user($user)->clearName();
+        }
     }
 
     /**
@@ -43,22 +46,20 @@ class UserObserver
      */
     public function updated(User $user)
     {
-        $ip = request()->ip();
-        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
-            $ip = $_SERVER["HTTP_CF_CONNECTING_IP"];
-        }
-
-        $log = UserLog::create([
+        /*$log = UserLog::create([
             'user_id' => $user->id,
             'type_id' => UserLog::TYPE_UPDATE,
-            'ip' => $ip,
         ]);
-        $log->save();
+        $log->save();*/
     }
 
     public function creating(User $user)
     {
         $user->locale = LaravelLocalization::getCurrentLocale();
+        if (session()->has('tracking')) {
+            $user->settings = ['tracking' => session()->get('tracking')];
+            session()->remove('tracking');
+        }
     }
 
     /**
@@ -80,10 +81,11 @@ class UserObserver
             Storage::disk('public')->delete($user->avatar);
         }
 
-        // Send notification that an account has been removed
-        //GoodbyeEmailJob::dispatch($user, app()->getLocale());
-
-        UserCache::user($user)->clearName()->clearCampaigns()->clearRoles();
+        UserCache::user($user)
+            ->clearName()
+            ->clearCampaigns()
+            ->clearRoles()
+        ;
     }
 
     /**

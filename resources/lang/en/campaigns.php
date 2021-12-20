@@ -42,6 +42,7 @@ TEXT
         ],
         'helper'            => 'Export your campaign. A notification with a download link will be made available.',
         'helper_secondary'  => 'Two files will be made available, one with the entities exported as JSON, and another with images uploaded to entities. Please note that on larger campaigns, the images export crashes and can only be recovered using the :api.',
+        'helper_third'      => 'JSON files can be opened with any text file application. They represent the data stored in the Kanka database in a text format. There is no way to import your export back into Kanka.',
         'success'           => 'Your campaign export is being prepared. You\'ll receive a notification in Kanka to a downloadable zip as soon as it\'s ready.',
         'title'             => 'Campaign :name Export',
     ],

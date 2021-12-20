@@ -31,7 +31,7 @@
                     @include('front.news._recent')
                 </div>
                 <div class="col-12 col-md-9">
-                    <?php /** @var \TCG\Voyager\Models\Post $model */ ?>
+                    <?php /** @var \App\Models\Post $model */ ?>
                     @foreach ($models as $model)
                         @include('front.news._article', ['preview' => true])
                     @endforeach

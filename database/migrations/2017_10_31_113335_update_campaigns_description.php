@@ -15,7 +15,7 @@ class UpdateCampaignsDescription extends Migration
     {
         Schema::table('campaigns', function (Blueprint $table) {
             $table->string('image', 255)->nullable();
-            $table->longText('description')->nullable();
+            $table->longText('entry')->nullable();
         });
     }
 
@@ -28,7 +28,7 @@ class UpdateCampaignsDescription extends Migration
     {
         Schema::table('campaigns', function (Blueprint $table) {
             $table->dropColumn('image');
-            $table->dropColumn('description');
+            $table->dropColumn('entry');
         });
     }
 }

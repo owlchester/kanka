@@ -2,17 +2,15 @@
 
 return [
     'characters'    => [
-        'description'   => 'Personatges d\'aquesta raça.',
-        'helpers'       => [
+        'helpers'   => [
             'all_characters'    => 'Mostrant tots els personatges relacionats amb aquesta raça i les seves descendents.',
             'characters'        => 'Mostrant tots els personatges directament relacionats amb aquesta raça.',
         ],
-        'title'         => 'Personatges de la raça :name',
+        'title'     => 'Personatges de la raça :name',
     ],
     'create'        => [
-        'description'   => 'Crea una nova raça',
-        'success'       => 'S\'ha creat la raça «:name».',
-        'title'         => 'Nova raça',
+        'success'   => 'S\'ha creat la raça «:name».',
+        'title'     => 'Nova raça',
     ],
     'destroy'       => [
         'success'   => 'S\'ha eliminat la raça «:name».',
@@ -33,26 +31,22 @@ return [
         'nested_without'=> 'S\'estan mostrant les races sense pare. Feu clic a la fila d\'una raça per a mostrar-ne les descendents.',
     ],
     'index'         => [
-        'add'           => 'Nova raça',
-        'description'   => 'Gestiona les races de :name.',
-        'header'        => 'Races de :name',
-        'title'         => 'Races',
+        'add'       => 'Nova raça',
+        'header'    => 'Races de :name',
+        'title'     => 'Races',
     ],
     'placeholders'  => [
         'name'  => 'Nom de la raça',
         'type'  => 'Humà, elf, follet...',
     ],
     'races'         => [
-        'description'   => 'Races pertanyents a aquesta raça.',
-        'title'         => 'Sub-races de la raça :name',
+        'title' => 'Sub-races de la raça :name',
     ],
     'show'          => [
-        'description'   => 'Vista detallada de la raça',
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Personatges',
-            'menu'          => 'Menú',
             'races'         => 'Sub-races',
         ],
-        'title'         => 'Raça :name',
+        'title' => 'Raça :name',
     ],
 ];

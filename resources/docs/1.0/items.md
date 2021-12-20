@@ -3,7 +3,7 @@
 ---
 
 - [All Items](#all-items)
-- [Filters](#filters)
+
 - [Single Item](#item)
 - [Create a Item](#create-item)
 - [Update a Item](#update-item)
@@ -17,9 +17,13 @@ You can get a list of all the items of a campaign by using the following endpoin
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `items` | Default |
+
+### URL Parameters
+
+The list of returned items can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=item" target="_blank">API filters</a>.
 
 ### Results
 ```json
@@ -50,17 +54,12 @@ You can get a list of all the items of a campaign by using the following endpoin
 }
 ```
 
-<a name="filters"></a>
-## Filters
-
-The list of returned items can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=item" target="_blank">API filters</a>.
-
 <a name="item"></a>
 ## Item
 
 To get the details of a single item, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `items/{item.id}` | Default |
 
@@ -98,7 +97,7 @@ To get the details of a single item, use the following endpoint.
 
 To create a item, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `items` | Default |
 
@@ -116,6 +115,8 @@ To create a item, use the following endpoint.
 | `tags` | `array` | Array of tag ids |
 | `is_private` | `boolean` | If the item is only visible to `admin` members of the campaign |
 | `image_url` | `string` | URL to a picture to be used for the item |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
 
 ### Results
 
@@ -127,7 +128,7 @@ To create a item, use the following endpoint.
 
 To update a item, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `items/{item.id}` | Default |
 
@@ -145,7 +146,7 @@ The same body parameters are available as for when creating a item.
 
 To delete a item, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `items/{item.id}` | Default |
 

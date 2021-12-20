@@ -19,7 +19,7 @@ class CreateQuests extends Migration
             $table->string('name')->notNull();
             $table->string('slug')->nullable();
             $table->string('type', 45)->nullable();
-            $table->longText('description')->nullable();
+            $table->longText('entry')->nullable();
             $table->string('image', 255)->nullable();
             $table->boolean('is_private')->default(false)->notNull();
 

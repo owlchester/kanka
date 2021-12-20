@@ -3,7 +3,6 @@
 ---
 
 - [All Journals](#all-journals)
-- [Filters](#filters)
 - [Single Journal](#journal)
 - [Create a Journal](#create-journal)
 - [Update a Journal](#update-journal)
@@ -17,9 +16,13 @@ You can get a list of all the journals of a campaign by using the following endp
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `journals` | Default |
+
+### URL Parameters
+
+The list of returned journals can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=journal" target="_blank">API filters</a>.
 
 ### Results
 ```json
@@ -48,18 +51,13 @@ You can get a list of all the journals of a campaign by using the following endp
 }
 ```
 
-<a name="filters"></a>
-## Filters
-
-The list of returned journals can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=journal" target="_blank">API filters</a>.
-
 
 <a name="journal"></a>
 ## Journal
 
 To get the details of a single journal, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `journals/{journal.id}` | Default |
 
@@ -95,7 +93,7 @@ To get the details of a single journal, use the following endpoint.
 
 To create a journal, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `journals` | Default |
 
@@ -109,9 +107,10 @@ To create a journal, use the following endpoint.
 | `date` | `string` | The date of the session |
 | `character_id` | `string` | The "author" of the journal |
 | `tags` | `array` | Array of tag ids |
-| `is_private` | `boolean` | If the journal is only visible to `admin` members of the campaign |
 | `image_url` | `string` | URL to a picture to be used for the journal |
-
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `is_private` | `boolean` | If the journal is only visible to `admin` members of the campaign |
 ### Results
 
 > {success} Code 200 with JSON body of the new journal.
@@ -122,7 +121,7 @@ To create a journal, use the following endpoint.
 
 To update a journal, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `journals/{journal.id}` | Default |
 
@@ -140,7 +139,7 @@ The same body parameters are available as for when creating a journal.
 
 To delete a journal, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `journals/{journal.id}` | Default |
 

@@ -19,12 +19,8 @@ class CharacterApiController extends ApiController
         $this->authorize('access', $campaign);
         return CharacterResource::collection($campaign
             ->characters()
+            ->withApi()
             ->filter(request()->all())
-            ->with([
-                'entity', 'entity.tags', 'entity.notes', 'entity.files', 'entity.events',
-                'entity.relationships', 'entity.attributes', 'characterTraits',
-                'entity.links',
-            ])
             ->lastSync(request()->get('lastSync'))
             ->paginate()
         );

@@ -14,10 +14,7 @@ class CleanupUserRows extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('is_translator');
             $table->dropColumn('campaign_role');
-            $table->dropColumn('newsletter');
-            $table->dropColumn('timezone');
         });
     }
 

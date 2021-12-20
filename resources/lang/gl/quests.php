@@ -3,17 +3,15 @@
 return [
     'characters'    => [],
     'create'        => [
-        'description'   => 'Crear unha nova misión',
-        'success'       => 'Misión ":name" creada.',
-        'title'         => 'Nova misión',
+        'success'   => 'Misión ":name" creada.',
+        'title'     => 'Nova misión',
     ],
     'destroy'       => [
         'success'   => 'Misión ":name" eliminada.',
     ],
     'edit'          => [
-        'description'   => 'Editar unha misión',
-        'success'       => 'Misión ":name" actualizada.',
-        'title'         => 'Editar misión ":name"',
+        'success'   => 'Misión ":name" actualizada.',
+        'title'     => 'Editar misión ":name"',
     ],
     'elements'      => [
         'create'    => [
@@ -56,10 +54,9 @@ return [
         'quests'    => 'Podes crear unha rede de misións entrelazadas usando o campo "Misión superior".',
     ],
     'index'         => [
-        'add'           => 'Nova misión',
-        'description'   => 'Administra as misións de ":name".',
-        'header'        => 'Misións de ":name"',
-        'title'         => 'Misións',
+        'add'       => 'Nova misión',
+        'header'    => 'Misións de ":name"',
+        'title'     => 'Misións',
     ],
     'items'         => [],
     'locations'     => [],
@@ -72,15 +69,12 @@ return [
         'type'  => 'Arco de personaxe, Misión secundaria, Historia principal...',
     ],
     'show'          => [
-        'actions'       => [
+        'actions'   => [
             'add_element'   => 'Engadir un elemento',
         ],
-        'description'   => 'Vista detallada dunha misión',
-        'tabs'          => [
-            'elements'      => 'Elementos',
-            'information'   => 'Información',
-            'quests'        => 'Misións',
+        'tabs'      => [
+            'elements'  => 'Elementos',
         ],
-        'title'         => 'Misión ":name"',
+        'title'     => 'Misión ":name"',
     ],
 ];

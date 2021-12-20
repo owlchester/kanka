@@ -24,7 +24,6 @@ class CreateRace extends Migration
             $table->string('slug')->nullable();
             $table->longText('entry')->nullable();
             $table->boolean('is_private')->defaultValue(false);
-            $table->unsignedInteger('section_id')->nullable();
             $table->timestamps();
 
             $table->unsignedInteger('created_by')->nullable();
@@ -35,32 +34,10 @@ class CreateRace extends Migration
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('set null');
-            $table->foreign('section_id')->references('id')->on('sections')->onDelete('set null');
         });
 
         Schema::table('campaign_settings', function (Blueprint $table) {
             $table->boolean('races')->default(true);
-        });
-
-        // Update entities
-        Schema::table('entities', function (Blueprint $table) {
-            $table->enum('type', [
-                'character',
-                'event',
-                'family',
-                'item',
-                'journal',
-                'location',
-                'note',
-                'organisation',
-                'quest',
-                'attribute_template',
-                'calendar',
-                'section',
-                'dice_roll',
-                'conversation',
-                'race'
-            ])->notNull()->change();
         });
     }
 
@@ -72,26 +49,6 @@ class CreateRace extends Migration
     public function down()
     {
         Schema::dropIfExists('races');
-
-        // Update entities
-        Schema::table('entities', function (Blueprint $table) {
-            $table->enum('type', [
-                'character',
-                'event',
-                'family',
-                'item',
-                'journal',
-                'location',
-                'note',
-                'organisation',
-                'quest',
-                'attribute_template',
-                'calendar',
-                'section',
-                'dice_roll',
-                'conversation'
-            ])->notNull()->change();
-        });
 
         Schema::table('campaign_settings', function (Blueprint $table) {
             $table->dropColumn('races');

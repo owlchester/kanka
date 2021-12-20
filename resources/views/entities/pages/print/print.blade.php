@@ -24,12 +24,13 @@
         <i class="fas fa-print"></i> {{ __('crud.actions.print') }}
     </button>
 
+    @include('entities.components.header', ['model' => $model])
     @if(view()->exists($name . '.show'))
         @include($name . '.show')
     @else
-        @include('cruds.overview')
+        @include('cruds.show')
     @endif
-    @includeWhen($entity->typeId() == config('entities.ids.character'), 'entities.pages.profile._' . $entity->type)
+    @includeIf('entities.pages.profile._' . $entity->type())
     @includeIf($name . '._print')
     @includeWhen($entity->abilities->count() > 0, 'entities.pages.print._abilities')
     @includeWhen($entity->inventories->count() > 0, 'entities.pages.inventory._inventory', [

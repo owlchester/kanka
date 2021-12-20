@@ -20,7 +20,7 @@ class CreateUserLog extends Migration
             $table->string('ip', 255)->nullable();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

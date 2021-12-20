@@ -15,6 +15,13 @@ return [
         'link'          => 'Mira todas as funcionalidades potenciadas na nosa páxina de prezos.',
         'title'         => 'Potenciadores de campaña',
     ],
+    'dashboards'        => [
+        'title' => 'Taboleiros de campaña',
+    ],
+    'discover-all'      => 'Descubre as nosas funcionalidades',
+    'editor'            => [
+        'title' => 'Editor',
+    ],
     'gm'                => [
         'title' => 'Dirección de xogo',
     ],

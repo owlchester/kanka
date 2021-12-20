@@ -24,7 +24,7 @@ You can get a list of all the menu links of a campaign by using the following en
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `menu_links` | Default |
 
@@ -59,7 +59,7 @@ You can get a list of all the menu links of a campaign by using the following en
 
 To get the details of a single menu link, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `menu_links/{menu-link.id}` | Default |
 
@@ -93,7 +93,7 @@ To get the details of a single menu link, use the following endpoint.
 
 To create a menu link, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `menu_links` | Default |
 
@@ -124,7 +124,7 @@ To create a menu link, use the following endpoint.
 
 To update a menu link, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `menu_links/{menu-link.id}` | Default |
 
@@ -142,7 +142,7 @@ The same body parameters are available as for when creating a menu link.
 
 To delete a menu link, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `menu_links/{menu-link.id}` | Default |
 

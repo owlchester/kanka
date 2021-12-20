@@ -1,5 +1,6 @@
+@php $modelMenuItems = $model->menuItems(); @endphp
 <div class="hidden-xs">
-@foreach ($model->menuItems() as $section => $menuItems)
+@foreach ($modelMenuItems as $section => $menuItems)
     <div class="box box-solid entity-menu-{{ $section }}">
         <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked entity-menu">
@@ -32,7 +33,7 @@
 <div class="hidden-md hidden-lg hidden-sm" id="sm-a">
     <div class="form-group">
         <select name="menu-switcher" class="form-control submenu-switcher">
-            @foreach ($model->menuItems() as $section => $menuItems)
+            @foreach ($modelMenuItems as $section => $menuItems)
                 @if (!$firstBlock)
                     <option disabled>----</option>
                 @endif

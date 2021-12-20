@@ -1,11 +1,37 @@
-@if ($campaign->enabled('characters'))
-    <div class="form-group">
-        {!! Form::select2(
-            'character_id',
-            (isset($model) && $model->character ? $model->character : FormCopy::field('character')->select()),
-            App\Models\Character::class,
-            isset($enableNew) ? $enableNew : true,
-            isset($label) ? $label : null
-        ) !!}
-    </div>
+@if (!$campaign->enabled('characters'))
+    @php return @endphp
 @endif
+
+@php
+$preset = null;
+if (isset($model) && $model->character) {
+    $preset = $model->character;
+} elseif (isset($isRandom) && $isRandom) {
+    $preset = $random->generateForeign(\App\Models\Character::class);
+} else {
+    $preset = FormCopy::field('character')->select();
+}
+
+$data = [
+    'preset' => $preset,
+    'class' => App\Models\Character::class,
+];
+if (isset($enableNew)) {
+    $data['allowNew'] = $enableNew;
+}
+if (isset($parent) && $parent) {
+    $data['labelKey'] = 'characters.fields.character';
+}
+if (isset($dropdownParent)) {
+    $data['dropdownParent'] = $dropdownParent;
+}
+if (isset($from)) {
+    $data['from'] = $from;
+}
+@endphp
+<div class="form-group">
+    {!! Form::foreignSelect(
+        'character_id',
+        $data
+    ) !!}
+</div>

@@ -3,7 +3,6 @@ month_length# Calendars
 ---
 
 - [All Calendars](#all-calendars)
-- [Filters](#flters)
 - [Single Calendar](#calendar)
 - [Create a Calendar](#create-calendar)
 - [Update a Calendar](#update-calendar)
@@ -18,9 +17,13 @@ You can get a list of all the calendars of a campaign by using the following end
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `calendars` | Default |
+
+### URL Parameters
+
+The list of returned calendars can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=calendar" target="_blank">API filters</a>.
 
 ### Results
 ```json
@@ -122,17 +125,12 @@ You can get a list of all the calendars of a campaign by using the following end
 }
 ```
 
-<a name="filters"></a>
-## Filters
-
-The list of returned calendars can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=calendar" target="_blank">API filters</a>.
-
 <a name="calendar"></a>
 ## Calendar
 
 To get the details of a single calendar, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `calendars/{calendar.id}` | Default |
 
@@ -226,7 +224,7 @@ To get the details of a single calendar, use the following endpoint.
 
 To create a calendar, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `calendars` | Default |
 
@@ -258,8 +256,10 @@ To create a calendar, use the following endpoint.
 | `leap_year_offset` | `integer` | Every how many years the leap days occur |
 | `leap_year_start` | `integer` | The year from which the leap days start occurring  |
 | `tags` | `array` | Array of tag ids |
-| `is_private` | `boolean` | If the calendar is only visible to `admin` members of the campaign |
 | `image_url` | `string` | URL to a picture to be used for the calendar |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `is_private` | `boolean` | If the calendar is only visible to `admin` members of the campaign |
 
 ### Results
 
@@ -271,7 +271,7 @@ To create a calendar, use the following endpoint.
 
 To update a calendar, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `calendars/{calendar.id}` | Default |
 
@@ -289,7 +289,7 @@ The same body parameters are available as for when creating a calendar.
 
 To delete a calendar, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `calendars/{calendar.id}` | Default |
 

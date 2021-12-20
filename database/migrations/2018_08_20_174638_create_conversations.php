@@ -65,26 +65,6 @@ class CreateConversations extends Migration
             $table->boolean('conversations')->default(true);
         });
 
-
-        // Update entities
-        Schema::table('entities', function (Blueprint $table) {
-            $table->enum('type', [
-                'character',
-                'event',
-                'family',
-                'item',
-                'journal',
-                'location',
-                'note',
-                'organisation',
-                'quest',
-                'attribute_template',
-                'calendar',
-                'section',
-                'dice_roll',
-                'conversation',
-            ])->notNull()->change();
-        });
     }
 
     /**
@@ -97,30 +77,10 @@ class CreateConversations extends Migration
         Schema::dropIfExists('conversation_messages');
         Schema::dropIfExists('conversation_participants');
         Schema::dropIfExists('conversations');
-        DB::statement("delete from entities where type = 'conversation'");
 
         Schema::table('campaign_settings', function (Blueprint $table) {
             $table->dropColumn('conversations');
         });
 
-
-        // Update entities
-        Schema::table('entities', function (Blueprint $table) {
-            $table->enum('type', [
-                'character',
-                'event',
-                'family',
-                'item',
-                'journal',
-                'location',
-                'note',
-                'organisation',
-                'quest',
-                'attribute_template',
-                'calendar',
-                'section',
-                'dice_roll'
-            ])->notNull()->change();
-        });
     }
 }

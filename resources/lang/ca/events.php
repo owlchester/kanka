@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Crea un nou esdeveniment',
-        'success'       => 'S\'ha creat l\'esdeveniment «:name».',
-        'title'         => 'Nou esdeveniment',
+        'success'   => 'S\'ha creat l\'esdeveniment «:name».',
+        'title'     => 'Nou esdeveniment',
     ],
     'destroy'       => [
         'success'   => 'S\'ha esborrat l\'esdeveniment «:name».',
@@ -14,7 +13,8 @@ return [
         'title'     => 'Edita l\'esdeveniment :name',
     ],
     'events'        => [
-        'title' => 'Esdeveniments de :name',
+        'helper'    => 'Aquí es mostren els esdeveniments que tenen aquesta entitat com el seu esdeveniment pare.',
+        'title'     => 'Esdeveniments de :name',
     ],
     'fields'        => [
         'date'      => 'Data',
@@ -31,10 +31,9 @@ return [
         'nested_without'=> 'S\'estan mostrant els esdeveniments sense pare. Feu clic a la fila d\'un esdeveniment per a mostrar-ne els descendents.',
     ],
     'index'         => [
-        'add'           => 'Nou esdeveniment',
-        'description'   => 'Gestiona els esdeveniments de :name.',
-        'header'        => 'Esdeveniments de :name',
-        'title'         => 'Esdeveniments',
+        'add'       => 'Nou esdeveniment',
+        'header'    => 'Esdeveniments de :name',
+        'title'     => 'Esdeveniments',
     ],
     'placeholders'  => [
         'date'      => 'Data de l\'esdeveniment',
@@ -43,11 +42,10 @@ return [
         'type'      => 'Cerimònia, festival, catàstrofe, batalla, naixement...',
     ],
     'show'          => [
-        'description'   => 'Vista detallada de l\'esdeveniment',
-        'tabs'          => [
-            'information'   => 'Informació',
+        'tabs'  => [
+            'events'    => 'Esdeveniments',
         ],
-        'title'         => 'Esdeveniment :name',
+        'title' => 'Esdeveniment :name',
     ],
     'tabs'          => [
         'calendars' => 'Entrades del calendari',

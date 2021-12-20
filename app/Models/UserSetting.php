@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\User;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 
 /**
  * Trait UserSetting
@@ -24,6 +25,11 @@ use Illuminate\Support\Arr;
  */
 trait UserSetting
 {
+    public function settings()
+    {
+        return new Collection($this->settings);
+    }
+
     /**
      * @param $value
      */

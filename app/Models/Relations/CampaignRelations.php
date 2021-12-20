@@ -4,6 +4,8 @@
 namespace App\Models\Relations;
 
 
+use App\Models\Ability;
+use App\Models\Calendar;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignPlugin;
@@ -13,13 +15,27 @@ use App\Models\CampaignStyle;
 use App\Models\CampaignSubmission;
 use App\Models\CampaignUser;
 use App\Models\Character;
+use App\Models\Conversation;
+use App\Models\DiceRoll;
 use App\Models\Entity;
 use App\Models\EntityMention;
+use App\Models\Event;
+use App\Models\Family;
 use App\Models\Image;
+use App\Models\Item;
+use App\Models\Journal;
 use App\Models\Location;
+use App\Models\Map;
+use App\Models\MenuLink;
+use App\Models\Note;
+use App\Models\Organisation;
 use App\Models\Plugin;
+use App\Models\Quest;
+use App\Models\Race;
 use App\Models\RpgSystem;
+use App\Models\Tag;
 use App\Models\Theme;
+use App\Models\Timeline;
 use App\User;
 use Illuminate\Support\Collection;
 
@@ -101,7 +117,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return Character|\Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function characters()
     {
@@ -109,7 +125,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return Location|\Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function locations()
     {
@@ -117,135 +133,135 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return Calendar|\Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function calendars()
     {
-        return $this->hasMany('App\Models\Calendar');
+        return $this->hasMany(Calendar::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return Event|\Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function events()
     {
-        return $this->hasMany('App\Models\Event');
+        return $this->hasMany(Event::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return Family|\Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function families()
     {
-        return $this->hasMany('App\Models\Family');
+        return $this->hasMany(Family::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return Item|\Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function items()
     {
-        return $this->hasMany('App\Models\Item');
+        return $this->hasMany(Item::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return Journal|\Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function journals()
     {
-        return $this->hasMany('App\Models\Journal');
+        return $this->hasMany(Journal::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return Map|\Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function maps()
     {
-        return $this->hasMany('App\Models\Map');
+        return $this->hasMany(Map::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return Note|\Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function notes()
     {
-        return $this->hasMany('App\Models\Note');
+        return $this->hasMany(Note::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return Organisation|\Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function organisations()
     {
-        return $this->hasMany('App\Models\Organisation');
+        return $this->hasMany(Organisation::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return Quest|\Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function quests()
     {
-        return $this->hasMany('App\Models\Quest');
+        return $this->hasMany(Quest::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return Ability|\Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function abilities()
     {
-        return $this->hasMany('App\Models\Ability');
+        return $this->hasMany(Ability::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return Tag|\Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function tags()
     {
-        return $this->hasMany('App\Models\Tag');
+        return $this->hasMany(Tag::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return Timeline|\Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function timelines()
     {
-        return $this->hasMany('App\Models\Timeline');
+        return $this->hasMany(Timeline::class);
     }
 
     /**
-     * @return mixed
+     * @return MenuLink|\Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function menuLinks()
     {
-        return $this->hasMany('App\Models\MenuLink');
+        return $this->hasMany(MenuLink::class);
     }
 
     /**
-     * @return mixed
+     * @return DiceRoll|\Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function diceRolls()
     {
-        return $this->hasMany('App\Models\DiceRoll');
+        return $this->hasMany(DiceRoll::class);
     }
 
     /**
-     * @return mixed
+     * @return Conversation|\Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function conversations()
     {
-        return $this->hasMany('App\Models\Conversation');
+        return $this->hasMany(Conversation::class);
     }
 
     /**
-     * @return mixed
+     * @return Race|\Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function races()
     {
-        return $this->hasMany('App\Models\Race');
+        return $this->hasMany(Race::class);
     }
 
     /**
-     * @return mixed
+     * @return mixed|Image
      */
     public function images()
     {
@@ -264,7 +280,7 @@ trait CampaignRelations
 
     /**
      * List of entities that are mentioned in the campaign's description
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return Entity|\Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function entities()
     {

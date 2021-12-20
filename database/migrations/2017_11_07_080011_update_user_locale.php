@@ -15,7 +15,6 @@ class UpdateUserLocale extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('locale', 5)->default('en');
-            $table->string('timezone', 28)->default('UTC');
         });
     }
 
@@ -28,7 +27,6 @@ class UpdateUserLocale extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('locale');
-            $table->dropColumn('timezone');
         });
     }
 }

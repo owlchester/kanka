@@ -167,7 +167,7 @@ class FrontController extends Controller
      */
     public function campaigns(Request $request)
     {
-        $features = Campaign::public()->front()->featured()->get();
+        $featured = Campaign::public()->front()->featured()->get();
         $campaigns = Campaign::public()
             ->front()
             ->featured(false)
@@ -175,7 +175,7 @@ class FrontController extends Controller
             ->paginate();
 
         return view('front.campaigns')
-            ->with('featured', $features)
+            ->with('featured', $featured)
             ->with('campaigns', $campaigns);
     }
 

@@ -38,7 +38,7 @@ return [
         ],
         'create'        => [
             'success'   => 'Member added to the organisation.',
-            'title'     => 'New Organisation Member for :name',
+            'title'     => 'New Member',
         ],
         'destroy'       => [
             'success'   => 'Member removed from the organisation.',
@@ -50,15 +50,29 @@ return [
         'fields'        => [
             'character'     => 'Character',
             'organisation'  => 'Organisation',
+            'pinned'        => 'Pinned',
             'role'          => 'Role',
+            'status'        => 'Membership status',
         ],
         'helpers'       => [
             'all_members'   => 'All characters that are members of this organisations and it\'s sub-organisations.',
             'members'       => 'All characters that are members of this organisation.',
+            'pinned'        => 'Choose if this member should be shown in the pinned section of the overview of its associated entities.',
+        ],
+        'pinned'        => [
+            'both'          => 'Both',
+            'character'     => 'Character',
+            'none'          => 'None',
+            'organisation'  => 'Organisation',
         ],
         'placeholders'  => [
             'character' => 'Choose a character',
             'role'      => 'Leader, Member, High Septon, Spymaster',
+        ],
+        'status'        => [
+            'active'    => 'Active member',
+            'inactive'  => 'Inactive member',
+            'unknown'   => 'Unknown status',
         ],
         'title'         => 'Organisation :name Members',
     ],

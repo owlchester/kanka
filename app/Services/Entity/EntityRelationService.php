@@ -102,7 +102,7 @@ class EntityRelationService
      */
     public function map(): array
     {
-        $entityHook = 'init' . $this->entity->entityType();
+        $entityHook = 'init' . ucfirst($this->entity->type());
         if (method_exists($this, $entityHook)) {
             $this->$entityHook();
         }
@@ -170,11 +170,15 @@ class EntityRelationService
             // Fallback?
             $img = '';
         }
+        $params = [$entity->id, 'mode' => 'map'];
+        if ($this->option) {
+            $params['option'] = $this->option;
+        }
         $this->entities[$entity->id] = [
             'id' => $entity->id,
             'name' => $entity->name . "\n(" . __('entities.' . $entity->type) . ')',
             'image' => $img,
-            'link' => route('entities.relations.index', $entity->id),
+            'link' => route('entities.relations.index', $params),
             //'tooltip' => route('entities.tooltip', $entity->id)
         ];
         return $this;
@@ -818,7 +822,7 @@ class EntityRelationService
             $this->relations[] = [
                 'source' => $this->entity->id,
                 'target' => $related->quest->entity->id,
-                'text' => __('crud.tabs.map-points'),
+                'text' => __('entities/relations.connections.quest_element'),
                 'colour' => '#ccc',
                 'attitude' => null,
                 'type' => 'entity-map-point',

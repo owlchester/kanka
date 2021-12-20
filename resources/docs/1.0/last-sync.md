@@ -23,7 +23,7 @@ Each API result on `index` endpoint of entities contain a `sync` attribute. This
 
 When calling an `index` enpoint, for example the `items` endpoint, you can provide the `lastSync` parameter and only get items which have been changed since your last call.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET | `items/?lastSync=2019-03-21T19:17:42.207577Z` | Default |
 

@@ -1,7 +1,9 @@
 <?php
 
 return [
-    'actions'       => [],
+    'actions'       => [
+        'add_organisation'  => 'Add an organization',
+    ],
     'fields'        => [
         'eye'   => 'Eye color',
     ],
@@ -10,8 +12,8 @@ return [
             'add'   => 'Add organization',
         ],
         'create'        => [
-            'success'       => 'Character added to organization.',
-            'title'         => 'New Organization for :name',
+            'success'   => 'Character added to organization.',
+            'title'     => 'New Organization for :name',
         ],
         'destroy'       => [
             'success'   => 'Character organization removed.',
@@ -26,10 +28,9 @@ return [
         'placeholders'  => [
             'organisation'  => 'Choose an organization...',
         ],
+        'title'         => 'Character :name Organizations',
     ],
-    'placeholders'  => [
-        'eye'   => 'Eye color',
-    ],
+    'placeholders'  => [],
     'show'          => [
         'tabs'  => [
             'organisations' => 'Organizations',

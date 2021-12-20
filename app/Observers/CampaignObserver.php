@@ -62,6 +62,7 @@ class CampaignObserver
         $campaign->excerpt = $this->purify(Mentions::codify($campaign->excerpt));
 
         $campaign->slug = Str::slug($campaign->name, '');
+        $campaign->updated_by = auth()->user()->id;
 
         if (request()->has('is_public')) {
             $previousVisibility = $campaign->getOriginal('visibility_id');
@@ -93,6 +94,13 @@ class CampaignObserver
         // Handle image. Let's use a service for this.
         ImageService::handle($campaign, 'campaigns');
         ImageService::handle($campaign, 'campaigns', true, 'header_image');
+    }
+
+    /**
+     * @param Campaign $campaign
+     */
+    public function creating(Campaign $campaign) {
+        $campaign->created_by = auth()->user()->id;
     }
 
     /**

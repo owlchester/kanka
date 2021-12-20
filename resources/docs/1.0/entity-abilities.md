@@ -16,7 +16,7 @@ You can get a list of all the entity-abilities of an entity by using the followi
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `entities/{entity.id}/entity_abilities` | Default |
 
@@ -47,7 +47,7 @@ You can get a list of all the entity-abilities of an entity by using the followi
 
 To get the details of a single entity-ability, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `entities/{entity.id}/entity_abilities/{entity_ability.id}` | Default |
 
@@ -76,7 +76,7 @@ To get the details of a single entity-ability, use the following endpoint.
 
 To create an entity-ability, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `entities/{entity.id}/entity_abilities` | Default |
 
@@ -100,7 +100,7 @@ To create an entity-ability, use the following endpoint.
 
 To update an entity-ability, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `entities/{entity.id}/entity_abilities/{entity_ability.id}` | Default |
 
@@ -118,7 +118,7 @@ The same body parameters are available as for when creating an entity-ability.
 
 To delete an entity-ability, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `entities/{entity.id}/entity_abilities/{entity_ability.id}` | Default |
 

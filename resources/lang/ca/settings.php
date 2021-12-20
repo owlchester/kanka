@@ -163,7 +163,6 @@ return [
     ],
     'patreon'       => [
         'deprecated'    => 'Funcionalitat discontinuada. Si desitgeu fer suport a Kanka, podeu fer-ho mitjançant una :subscription. La vinculació amb Patreon encara continua activa per als nostres Patrons que van vincular els seus comptes abans de la mudança de Patreon.',
-        'description'   => 'Sincronizant amb Patreon',
         'pledge'        => 'Pledge :name',
         'remove'        => [
             'button'    => 'Desvincula el meu compte de Patreon',
@@ -204,6 +203,12 @@ return [
                 'yearly'    => 'Us esteu subscrivint al nivell :tier, que costa :amount anuals.',
             ],
             'title' => 'Canvia el nivell de subscripció',
+        ],
+        'coupon'                => [
+            'check'         => 'Comprova un codi promocional',
+            'invalid'       => 'Codi promocional no vàlid.',
+            'label'         => 'Codi promocional',
+            'percent_off'   => ':percent% de descompte per la vostra primera subscripció anual!',
         ],
         'currencies'            => [
             'eur'   => 'Euros',

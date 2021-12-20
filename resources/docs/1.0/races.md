@@ -3,7 +3,7 @@
 ---
 
 - [All Races](#all-races)
-- [Filters](#filters)
+
 - [Single Race](#race)
 - [Create a Race](#create-race)
 - [Update a Race](#update-race)
@@ -17,9 +17,13 @@ You can get a list of all the races of a campaign by using the following endpoin
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `races` | Default |
+
+### URL Parameters
+
+The list of returned races can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=race" target="_blank">API filters</a>.
 
 ### Results
 ```json
@@ -47,18 +51,12 @@ You can get a list of all the races of a campaign by using the following endpoin
 }
 ```
 
-<a name="filters"></a>
-## Filters
-
-The list of returned races can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=race" target="_blank">API filters</a>.
-
-
 <a name="race"></a>
 ## Race
 
 To get the details of a single race, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `races/{race.id}` | Default |
 
@@ -93,7 +91,7 @@ To get the details of a single race, use the following endpoint.
 
 To create a race, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `races` | Default |
 
@@ -106,8 +104,10 @@ To create a race, use the following endpoint.
 | `type` | `string` | The race's type |
 | `race_id` | `string` | Parent race of the race |
 | `tags` | `array` | Array of tag ids |
-| `is_private` | `boolean` | If the race is only visible to `admin` members of the campaign |
 | `image_url` | `string` | URL to a picture to be used for the race |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `is_private` | `boolean` | If the race is only visible to `admin` members of the campaign |
 
 ### Results
 
@@ -119,7 +119,7 @@ To create a race, use the following endpoint.
 
 To update a race, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `races/{race.id}` | Default |
 
@@ -137,7 +137,7 @@ The same body parameters are available as for when creating a race.
 
 To delete a race, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `races/{race.id}` | Default |
 

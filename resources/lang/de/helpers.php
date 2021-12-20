@@ -3,16 +3,16 @@
 return [
     'age'               => [
         'description'   => 'Sie können einen Charakter mit einem Kalender der Kampagne verknüpfen, indem Sie einen Charakter anzeigen und zur Registerkarte Erinnerungen wechseln. Fügen Sie von dort aus eine neue Erinnerung hinzu und setzen Sie den Typ auf Geburt oder Tod, um das Alter des Charakters automatisch zu berechnen. Wenn sowohl Geburt als auch Tod vorliegen, werden beide Daten und das Todesalter angezeigt. Wenn nur die Geburt eingestellt ist, werden das Datum und das aktuelle Alter angezeigt. Wenn nur der Tod festgelegt ist, werden das Datum und die Jahre seit dem Tod angezeigt.',
-        'title'         => 'Charakter alter und Tod',
+        'title'         => 'Charakteralter und Tod',
     ],
     'api-filters'       => [
         'description'   => 'Die folgenden Filter sind für den API-Endpunkt :name verfügbar.',
         'title'         => 'API Filters',
     ],
     'attributes'        => [
-        'con'               => 'con',
+        'con'               => 'Kon',
         'description'       => 'Verwenden Sie Attribute, um Werte darzustellen, die an ein Objekt angehängt sind, die keine Texte sind. Sie können Objekte in Attributen mithilfe der erweiterten Erwähnungssyntax referenzieren :mention. Sie können auch auf andere Attribute verweisen, indem Sie die :attribute syntax verwenden.',
-        'level'             => 'Level',
+        'level'             => 'Stufe',
         'link'              => 'Attributoptionen',
         'math'              => 'Sie können auch mit einigen grundlegenden mathematischen Optionen kreativ werden. Beispiel :example multipliziert die Attribute :level und :con dieses Objektes. Wenn Sie auf- oder abrunden möchten, können Sie Folgendes verwenden :floor oder :ceil',
         'name'              => 'Sie können auf den Namen des Objektes verweisen mit :name. Wenn ein Attribut mit diesem Namen vorhanden ist, wird stattdessen das Attribut verwendet.',
@@ -72,6 +72,17 @@ return [
     ],
     'public'            => 'Sie die Tutorial Videos über öffentliche Kampagnen auf Youtube an.',
     'title'             => 'Hilfe',
+    'troubleshooting'   => [
+        'description'       => 'Ein Mitglied von Kankas Team hat Sie auf diese Seite geschickt. Wählen Sie eine Kampagne aus der Dropdown-Liste aus, um ein Token zu generieren, damit wir Ihrer Kampagne vorübergehend als Administrator beitreten können.',
+        'errors'            => [
+            'token_exists'  => 'Es besteht bereits ein Token für :campaign.',
+        ],
+        'save_btn'          => 'Token erstellen',
+        'select_campaign'   => 'Kampagne auswählen',
+        'subtitle'          => 'Bitte senden Sie Hilfe!',
+        'success'           => 'Bitte kopieren Sie den folgenden Token und senden Sie ihn an jemanden aus Kankas Team.',
+        'title'             => 'Troubleshooting',
+    ],
     'widget-filters'    => [
         'description'   => 'Sie können Objekte filtern, die im kürzlich geänderten Widget angezeigt werden, indem Sie eine Liste der Felder der Objekte und der Werte bereitstellen. Zum Beispiel können Sie :example verwenden, um nach toten Charakteren des NPC-Typs zu filtern.',
         'link'          => 'Widget Filter',

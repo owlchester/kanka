@@ -25,7 +25,7 @@ class CreateItemTable extends Migration
             $table->integer('location_id')->unsigned()->nullable();
 
             // Overview
-            $table->longText('history')->nullable();
+            $table->longText('entry')->nullable();
 
             $table->timestamps();
 

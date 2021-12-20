@@ -16,10 +16,10 @@ return [
     'creator'               => [
         'back'      => 'Torna a la selecció',
         'duplicate' => 'Ja existeixen altres entitats d\'aquest tipus amb el mateix nom.',
-        'error'     => 'Hi ha hagut un error amb els valors introduïts.',
         'helper'    => 'Seleccioneu el tipus d\'entitat a crear. Si no n\'apareix cap, vol dir que no teniu permís per a crear entitats en aquesta campanya.',
         'success'   => 'Nueva entidad \':link\' creada.',
         'title'     => 'Nova entitat',
+        'tooltip'   => 'Crea una nova entitat sense abandonar la pàgina',
     ],
     'dice_roll'             => 'Tirada de daus',
     'dice_rolls'            => 'Tirades de daus',

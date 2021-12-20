@@ -71,46 +71,55 @@ class CampaignAssetExport implements ShouldQueue
         $zip = new ZipArchive();
         $zip->open($pathName, ZipArchive::CREATE);
 
+        $files = 0;
         foreach ($this->entity->entities() as $entity => $class) {
-            if ($this->campaign->enabled($entity) && method_exists($class, 'export')) {
-                try {
-                    /** @var MiscModel $model */
-                    $property = Str::camel($entity);
-                    foreach ($this->campaign->$property()->with('entity')->get() as $model) {
-                        if (!empty($model->image) && Storage::exists($model->image)) {
-                            $zip->addFromString($model->image, Storage::get($model->image));
-                        }
-
-                        // Boosted image?
-                        if (!empty($model->entity->header_image) && Storage::exists($model->entity->header_image)) {
-                            $zip->addFromString($model->entity->header_image, Storage::get($model->entity->header_image));
-                        }
-
-                        // Locations have maps
-                        if ($model->getEntityType() == 'location' && !empty($model->map)
-                            && Storage::exists($model->map)) {
-                            $zip->addFromString($model->map, Storage::get($model->map));
-                        }
+            if (!$this->campaign->enabled($entity) || !method_exists($class, 'export')) {
+                continue;
+            }
+            try {
+                /** @var MiscModel $model */
+                $property = Str::camel($entity);
+                foreach ($this->campaign->$property()->with('entity')->get() as $model) {
+                    if (!empty($model->image) && Storage::exists($model->image)) {
+                        $zip->addFromString($model->image, Storage::get($model->image));
+                        $files++;
                     }
-                } catch (Exception $e) {
-                    $zip->close();
-                    unlink($pathName);
-                    throw new Exception(
-                        'Missing campaign entity relation: ' . $entity . '-' . $class . '? '
-                        . $e->getMessage()
-                    );
+
+                    // Boosted image?
+                    if (!empty($model->entity->header_image) && Storage::exists($model->entity->header_image)) {
+                        $zip->addFromString($model->entity->header_image, Storage::get($model->entity->header_image));
+                        $files++;
+                    }
+
+                    // Locations have maps
+                    if ($model->getEntityType() == 'location' && !empty($model->map)
+                        && Storage::exists($model->map)) {
+                        $zip->addFromString($model->map, Storage::get($model->map));
+                        $files++;
+                    }
                 }
+            } catch (Exception $e) {
+                $zip->close();
+                unlink($pathName);
+                throw new Exception(
+                    'Missing campaign entity relation: ' . $entity . '-' . $class . '? '
+                    . $e->getMessage()
+                );
             }
         }
 
         // Save all the content.
         $zip->close();
 
+        // No files generated? End the process
+        if ($files === 0) {
+            return;
+        }
+
         // Move to ?
         $downloadPath = Storage::putFileAs('exports/campaigns', new File($pathName), $zipName, 'public');
         unlink($pathName);
 
-        // Email ?
         $this->user->notify(new Header(
             'campaign.asset_export',
             'download',

@@ -3,7 +3,7 @@
 ---
 
 - [All Locations](#all-locations)
-- [Filters](#filters)
+
 - [Single Location](#location)
 - [Location Map Points](#location-map-points)
 - [Create a Location](#create-location)
@@ -18,9 +18,13 @@ You can get a list of all the locations of a campaign by using the following end
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `locations` | Default |
+
+### URL Parameters
+
+The list of returned locations can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=location" target="_blank">API filters</a>.
 
 ### Results
 ```json
@@ -51,18 +55,13 @@ You can get a list of all the locations of a campaign by using the following end
 }
 ```
 
-<a name="filters"></a>
-## Filters
-
-The list of returned locations can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=location" target="_blank">API filters</a>.
-
 
 <a name="location"></a>
 ## Location
 
 To get the details of a single location, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `locations/{location.id}` | Default |
 
@@ -100,7 +99,7 @@ To get the details of a single location, use the following endpoint.
 
 To get the map points of a location, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `locations/{location.id}/map_points` | Default |
 
@@ -128,7 +127,7 @@ To get the map points of a location, use the following endpoint.
 
 To create a map point on a location, use the following endpoint. This feature is deprecated and usage of the maps entity is recommended.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `locations/{location.id}/map_points` | Default |
 
@@ -158,7 +157,7 @@ To create a map point on a location, use the following endpoint. This feature is
 
 To create a location, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `locations` | Default |
 
@@ -173,8 +172,8 @@ To create a location, use the following endpoint.
 | `tags` | `array` | Array of tag ids |
 | `is_private` | `boolean` | If the location is only visible to `admin` members of the campaign |
 | `image_url` | `string` | URL to a picture to be used for the location |
-| `map_url` | `string` | URL to a picture to be used for the location's map |
-| `is_map_private` | `boolean` | If the location's map is only visible to `admin` members of the campaign |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
 
 
 ### Results
@@ -187,7 +186,7 @@ To create a location, use the following endpoint.
 
 To update a location, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `locations/{location.id}` | Default |
 
@@ -205,7 +204,7 @@ The same body parameters are available as for when creating a location.
 
 To delete a location, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `locations/{location.id}` | Default |
 

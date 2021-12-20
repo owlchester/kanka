@@ -161,7 +161,8 @@ class Tag extends MiscModel
         if ($withTags) {
             return Entity::whereIn('id', $children);
         }
-        return Entity::whereIn('id', $children)->whereNotIn('type', ['tag']);
+        return Entity::whereIn('id', $children)
+            ->whereNotIn('type_id', [config('entities.ids.tag')]);
     }
 
     /**

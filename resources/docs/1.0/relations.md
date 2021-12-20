@@ -17,7 +17,7 @@ You can get a list of all the relations of an entity by using the following endp
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `entities/{entity.id}/relations` | Default |
 
@@ -47,7 +47,7 @@ You can get a list of all the relations of an entity by using the following endp
 
 To get the details of a single relation, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `entities/{entity.id}/relations/{relation.id}` | Default |
 
@@ -75,7 +75,7 @@ To get the details of a single relation, use the following endpoint.
 
 To create a relation, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `entities/{entity.id}/relations` | Default |
 
@@ -102,7 +102,7 @@ To create a relation, use the following endpoint.
 
 To update a relation, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `entities/{entity.id}/relations/{relation.id}` | Default |
 
@@ -120,7 +120,7 @@ The same body parameters are available as for when creating a relation.
 
 To delete a relation, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `entities/{entity.id}/relations/{relation.id}` | Default |
 
@@ -137,6 +137,6 @@ You can get a list of all the relations of a campaign by using the following end
 
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `relations` | Default |

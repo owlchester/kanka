@@ -9,7 +9,7 @@
 
 @section('content')
     @include('partials.errors')
-    {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['settings.layout']]) !!}
+    {!! Form::model(auth()->user(), ['method' => 'PATCH', 'route' => ['settings.layout'], 'data-shortcut' => 1]) !!}
     <div class="box box-solid">
         <div class="box-header with-border">
             <h3 class="box-title">

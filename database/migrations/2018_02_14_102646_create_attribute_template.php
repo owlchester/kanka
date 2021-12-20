@@ -29,22 +29,6 @@ class CreateAttributeTemplate extends Migration
             // Indexes
             $table->index(['name', 'is_private']);
         });
-
-        // Update entities
-        Schema::table('entities', function (Blueprint $table) {
-            $table->enum('type', [
-                'character',
-                'event',
-                'family',
-                'item',
-                'journal',
-                'location',
-                'note',
-                'organisation',
-                'quest',
-                'attribute_template'
-            ])->notNull()->change();
-        });
     }
 
     /**
@@ -56,20 +40,5 @@ class CreateAttributeTemplate extends Migration
     {
         //
         Schema::dropIfExists('attribute_templates');
-
-        // Update entities
-        Schema::table('entities', function (Blueprint $table) {
-            $table->enum('type', [
-                'character',
-                'event',
-                'family',
-                'item',
-                'journal',
-                'location',
-                'note',
-                'organisation',
-                'quest'
-            ])->notNull()->change();
-        });
     }
 }

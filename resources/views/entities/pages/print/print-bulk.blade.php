@@ -14,6 +14,9 @@
 ])
 
 
+
+
+
 @section('content')
 
     <button class="btn btn-lg btn-warning btn-print" onclick="javascript:window.print();">
@@ -21,16 +24,11 @@
     </button>
 
     @foreach ($entities as $model)
-        @php $entity = $model->entity; $name = $entity->pluralType(); @endphp
+        @php $entity = $model->entity @endphp
 
-
-        @if(view()->exists($name . '.show'))
-            @include($name . '.show')
-        @else
-            @include('cruds.overview')
-        @endif
-        @includeWhen($entity->typeId() == config('entities.ids.character'), 'entities.pages.profile._' . $entity->type)
-
+        @include('entities.components.header', ['model' => $model])
+        @include($entity->pluralType() . '.show')
+        @includeIf('entities.pages.profile._' . $entity->type())
         @includeIf($entity->pluralType() . '._print')
         @includeWhen($entity->abilities->count() > 0, 'entities.pages.print._abilities')
         @includeWhen($entity->inventories->count() > 0, 'entities.pages.inventory._inventory', [

@@ -165,6 +165,12 @@ $(document).ready(function() {
     });
 });
 
+// Select2 open focus bugfix with newer jquery versions
+$(document).on('select2:open', () => {
+    let allFound = document.querySelectorAll('.select2-container--open .select2-search__field');
+    allFound[allFound.length - 1].focus();
+});
+
 /**
  * Init the toggle elements
  */

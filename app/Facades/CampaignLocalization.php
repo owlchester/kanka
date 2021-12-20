@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Facade;
  * Class CampaignLocalization
  * @package App\Facades
  *
- *
  * @mixin \App\Services\CampaignLocalization
  * @see \App\Services\CampaignLocalization
  */

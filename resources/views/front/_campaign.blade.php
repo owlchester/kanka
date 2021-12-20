@@ -30,3 +30,8 @@
         </div>
     </a>
 </div>
+@if ($campaign->is_featured && !empty($campaign->featured_reason))
+    <p class="font-weight-light text-muted">
+        {!! $campaign->featured_reason !!}
+    </p>
+@endif

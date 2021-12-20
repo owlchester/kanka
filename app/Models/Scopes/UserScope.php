@@ -4,6 +4,7 @@
 namespace App\Models\Scopes;
 
 
+use App\Models\UserLog;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
@@ -49,7 +50,7 @@ trait UserScope
             ->select([
                 $this->getTable() . '.*',
                 DB::raw("(select count(*) from user_logs where user_id = " . $this->getTable()
-                    . ".id and action = 'login') as cpt")
+                    . ".id and type_id = " . UserLog::TYPE_LOGIN . ") as cpt")
             ])
             ->orderBy('cpt', 'desc')
             ;

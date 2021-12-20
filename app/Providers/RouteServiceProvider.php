@@ -18,6 +18,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected $namespace = 'App\Http\Controllers';
 
+    public const HOME = '/';
+
+
     /**
      * Define your route model bindings, pattern filters, etc.
      *
@@ -46,6 +49,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapProfileRoutes();
         $this->mapAdminRoutes();
         $this->mapPartnerRoutes();
+        $this->mapAuthRoutes();
     }
 
     /**
@@ -122,5 +126,14 @@ class RouteServiceProvider extends ServiceProvider
             ->namespace('App\Http\Controllers\Partner')
             ->name('partner.')
             ->group(base_path('routes/partner.php'));
+    }
+
+    protected function mapAuthRoutes()
+    {
+        Route::middleware(['web', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'localizeDatetime'])
+            ->prefix(LaravelLocalization::setLocale())
+            ->namespace('App\Http\Controllers')
+            ->group(base_path('routes/auth.php'))
+        ;
     }
 }

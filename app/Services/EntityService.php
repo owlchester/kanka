@@ -39,6 +39,8 @@ class EntityService
 
     protected $copied = false;
 
+    protected $campaign;
+
     /**
      * EntityService constructor.
      */
@@ -70,6 +72,12 @@ class EntityService
 
     /** @var bool|array */
     protected $cachedNewEntityTypes = false;
+
+    public function campaign(Campaign $campaign): self
+    {
+        $this->campaign = $campaign;
+        return $this;
+    }
 
     /**
      * Get the entities
@@ -113,9 +121,9 @@ class EntityService
         foreach ($this->entities() as $entity => $class) {
             if (auth()->check() && auth()->user()->can('create', $class)) {
                 if ($singular) {
-                    $labels[$entity] = trans('entities.' . $this->singular($entity));
+                    $labels[$entity] = __('entities.' . $this->singular($entity));
                 } else {
-                    $labels[$entity] = trans('entities.' . $entity);
+                    $labels[$entity] = __('entities.' . $entity);
                 }
             }
         }
@@ -447,9 +455,9 @@ class EntityService
         }
 
         // Update entity
-        $entity->type = $new->getEntityType();
+        $entity->type_id = $new->entityTypeID();
         $entity->entity_id = $new->id;
-        $entity->save();
+        $entity->cleanCache()->save();
 
         // Delete old, this will take care of pictures and stuff. We detach the
         // entity to avoid the softDelete affecting it and causing duplicate
@@ -513,6 +521,21 @@ class EntityService
             }
         }
         return $entityTypes;
+    }
+
+    /**
+     * @param array $except
+     * @return array
+     */
+    public function getEnabledEntitiesID(array $except = []): array
+    {
+        $types = $this->getEnabledEntities($this->campaign, $except);
+        $ids = [];
+        foreach ($types as $type) {
+            $ids[] = config('entities.ids.' . $type);
+        }
+
+        return $ids;
     }
 
     /**

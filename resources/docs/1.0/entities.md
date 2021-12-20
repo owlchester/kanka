@@ -47,7 +47,7 @@ Most entities have the following attributes.
 
 To get the details of a single entity, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `entities/{entity.id}` | Default |
 
@@ -121,7 +121,7 @@ With each request to an object (ie. `character`, `location`, etc), you can inclu
 
 ### Examples
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `characters?related=1` | Default |
 | GET/HEAD | `characters/1?related=1` | Default |

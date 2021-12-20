@@ -205,7 +205,7 @@ class CampaignPluginService
         if ($entity) {
             $this->entityIds[$pluginEntity->id] = $entity->id;
             $this->miscIds[$pluginEntity->id] = $entity->entity_id;
-            $this->entityTypes[$pluginEntity->id] = $entity->type;
+            $this->entityTypes[$pluginEntity->id] = $entity->type();
             //dump('existing ' . $pluginEntity->uuid);
             $model = $entity->child;
 

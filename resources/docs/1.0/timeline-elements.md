@@ -16,7 +16,7 @@ You can get a list of all the element effects of a timeline by using the followi
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `timelines/{timeline.id}/timeline_elements` | Default |
 
@@ -65,7 +65,7 @@ You can get a list of all the element effects of a timeline by using the followi
 
 To get the details of a single element effect, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `timelines/{timeline.id}/timeline_elements/{timeline_element.id}` | Default |
 
@@ -98,7 +98,7 @@ To get the details of a single element effect, use the following endpoint.
 
 To create a timeline element, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `timelines/{timeline.id}/timeline_elements` | Default |
 
@@ -127,7 +127,7 @@ To create a timeline element, use the following endpoint.
 
 To update a timeline, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `timelines/{timeline.id}/timeline_elements/{timeline_element.id}` | Default |
 
@@ -145,7 +145,7 @@ The same body parameters are available as for when creating a timeline element.
 
 To delete a timeline element, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `timelines/{timeline.id}/timeline_elements/{timeline_element.id}` | Default |
 

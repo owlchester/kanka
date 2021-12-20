@@ -48,19 +48,12 @@ class UserEventSubscriber
 
         // Log the login
         if ($event->user) {
-
-            $ip = request()->ip();
-            if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
-                $ip = $_SERVER["HTTP_CF_CONNECTING_IP"];
-            }
             $log = UserLog::create([
                 'user_id' => $event->user->id,
                 'type_id' => UserLog::TYPE_LOGIN,
-                'ip' => $ip,
             ]);
             $log->save();
 
-            // This triggers an "update" event directly
             $event->user->update(['last_login_at' => Carbon::now()->toDateTimeString()]);
         }
 
@@ -79,15 +72,9 @@ class UserEventSubscriber
             return;
         }
 
-        $ip = request()->ip();
-        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
-            $ip = $_SERVER["HTTP_CF_CONNECTING_IP"];
-        }
-
         $log = UserLog::create([
             'user_id' => $event->user->id,
             'type_id' => UserLog::TYPE_LOGOUT,
-            'ip' => $ip,
         ]);
         $log->save();
     }

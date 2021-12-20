@@ -6,7 +6,7 @@
 $model = $widget->entity->child;
 $entity = $widget->entity;
 
-$specificPreview = 'dashboard.widgets.previews.' . $entity->type;
+$specificPreview = 'dashboard.widgets.previews.' . $entity->type();
 $customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name, $widget->conf('text')) : null;
 
 \App\Facades\Dashboard::add($entity);

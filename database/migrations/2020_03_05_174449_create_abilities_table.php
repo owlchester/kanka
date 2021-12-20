@@ -49,30 +49,6 @@ class CreateAbilitiesTable extends Migration
         Schema::table('campaign_settings', function (Blueprint $table) {
             $table->boolean('abilities')->default(true);
         });
-
-        // Update entities
-        Schema::table('entities', function (Blueprint $table) {
-            $table->enum('type', [
-                'character',
-                'event',
-                'family',
-                'item',
-                'journal',
-                'location',
-                'note',
-                'organisation',
-                'quest',
-                'attribute_template',
-                'calendar',
-                'section',
-                'dice_roll',
-                'conversation',
-                'race',
-                'tag',
-                'ability'
-            ])->change();
-        });
-
     }
 
     /**
@@ -86,27 +62,6 @@ class CreateAbilitiesTable extends Migration
 
         Schema::table('campaign_settings', function (Blueprint $table) {
             $table->dropColumn('abilities');
-        });
-
-        Schema::table('entities', function (Blueprint $table) {
-            $table->enum('type', [
-                'character',
-                'event',
-                'family',
-                'item',
-                'journal',
-                'location',
-                'note',
-                'organisation',
-                'quest',
-                'attribute_template',
-                'calendar',
-                'section',
-                'dice_roll',
-                'conversation',
-                'race',
-                'tag',
-            ])->change();
         });
     }
 }

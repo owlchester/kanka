@@ -1,7 +1,25 @@
 <?php
 
 return [
+    'actions'       => [
+        'mode-map'      => 'Eina d\'exploració de relacions',
+        'mode-table'    => 'Taula de relacions i connexions',
+    ],
+    'bulk'          => [
+        'delete'    => '{1} S\'ha eliminat :count relació.|[2,*] S\'han esborrat :count relacions.',
+        'success'   => [
+            'editing'           => '{1} S\'ha actualitzat :count relació.|[2,*] S\'han actualitzat :count relacions.',
+            'editing_partial'   => '{1} S\'ha actualitzat :count/:total relació.|[2,*] S\'han actualitzat :count/:total relacions.',
+        ],
+    ],
+    'connections'   => [
+        'map_point'         => 'Punt del mapa',
+        'mention'           => 'Menció',
+        'quest_element'     => 'Element de missió',
+        'timeline_element'  => 'Element de línia temporal',
+    ],
     'create'        => [
+        'new_title' => 'Nova relació',
         'success'   => 'S\'ha afegit la relació :target a :entity.',
         'title'     => 'Nova relació per :name',
     ],
@@ -10,7 +28,9 @@ return [
     ],
     'fields'        => [
         'attitude'          => 'Actitud',
+        'connection'        => 'Connexió',
         'is_star'           => 'Fixada',
+        'owner'             => 'Origen',
         'relation'          => 'Relació',
         'target'            => 'Objectiu',
         'target_relation'   => 'Relació objectiu',
@@ -25,6 +45,19 @@ return [
         ],
         'target_relation'   => 'La descripció de la relació a l\'objectiu. Deixeu-ho en blanc per a utilitzar el text d\'aquesta relació.',
         'two_way'           => 'Al emmirallar una relació, aquesta es copia a l\'objectiu seleccionat. Tanmateix, si editeu una, l\'atra no es veu afectada.',
+    ],
+    'index'         => [
+        'add'   => 'Nova relació',
+        'title' => 'Relacions',
+    ],
+    'options'       => [
+        'mentions'  => 'Relacions + relacionades + mencions',
+        'related'   => 'Relacions + relacionades',
+        'relations' => 'Relacions',
+        'show'      => 'Mostra',
+    ],
+    'panels'        => [
+        'related'   => 'Relacionades',
     ],
     'placeholders'  => [
         'attitude'  => 'Des de -100 fins a 100, sent 100 molt positiva.',

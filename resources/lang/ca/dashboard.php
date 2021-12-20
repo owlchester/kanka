@@ -55,7 +55,6 @@ return [
             'visible'   => 'Visible',
         ],
     ],
-    'description'       => 'La llar de la creativitat',
     'helpers'           => [
         'follow'    => 'Les campanyes que seguiu apareixen al menú de canvi de campanya (adalt a l\'esquerra) sota les vostres campanyes.',
         'join'      => 'Aquesta campanya es troba oberta a nous membres. Cliqueu a "Uneix-me" per a sol·licitar unir-vos.',
@@ -81,6 +80,10 @@ return [
             'edit'              => 'Edita el widget',
         ],
         'title'     => 'Configura el taulell de la campanya',
+        'tutorial'  => [
+            'blog'  => 'el nostre tutorial',
+            'text'  => 'Us cal ajuda per a configurar el tauler de la campanya? Al :blog hi trobareu ajuda i inspiració.',
+        ],
         'widgets'   => [
             'calendar'      => 'Calendari',
             'campaign'      => 'Encapçalament de la campanya',
@@ -136,6 +139,11 @@ return [
             ],
         ],
         'recent'                    => [
+            'advanced_filter'   => 'Filtre avançat',
+            'advanced_filters'  => [
+                'mentionless'   => 'Sense mencions (entitats que no en mencionen cap altra)',
+                'unmentioned'   => 'Sense mencionar (entitats que no són mencionades a cap altra)',
+            ],
             'entity-header'     => 'Utilitza la capçalera de l\'entitat com a imatge',
             'filters'           => 'Filtres',
             'full'              => 'Completa',

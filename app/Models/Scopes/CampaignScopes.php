@@ -50,7 +50,7 @@ trait CampaignScopes
      */
     public function scopeAdmin(Builder $query)
     {
-        return $query->visibility(Campaign::VISIBILITY_REVIEW);
+        return $query->with('users');
     }
 
     /**
@@ -60,7 +60,11 @@ trait CampaignScopes
      */
     public function scopeFeatured(Builder $query, $featured = true)
     {
-        return $query->where('is_featured', $featured);
+        return $query->where('is_featured', $featured)
+            ->where(function ($sub) {
+                return $sub->whereNull('featured_until')
+                    ->orWhereDate('featured_until', '>=', Carbon::today()->toDateString());
+            });
     }
 
     /**
@@ -83,24 +87,10 @@ trait CampaignScopes
         return $query
             ->select([
                 $this->getTable() . '.*',
-                DB::raw("(select count(*) from entities where campaign_id = " . $this->getTable() . ".id and type not in ('tag', 'attribute_template')) as cpt")
+                DB::raw("(select count(*) from entities where campaign_id = " . $this->getTable() . ".id and type_id not in (" . config('entities.ids.tag') . ", " . config('entities.ids.attribute_template') . ")) as cpt")
             ])
             ->orderBy('cpt', 'desc')
             ;
-    }
-
-    /**
-     * Used by the API to get models updated since a previous date
-     * @param $query
-     * @param $lastSync
-     * @return mixed
-     */
-    public function scopeLastSync(Builder $query, $lastSync)
-    {
-        if (empty($lastSync)) {
-            return $query;
-        }
-        return $query->where(with(new static)->getTable() . '.updated_at', '>', $lastSync);
     }
 
     /**
@@ -137,12 +127,16 @@ trait CampaignScopes
     public function scopeFront(Builder $query)
     {
         return $query
-            ->with('boosts')
             ->where('visible_entity_count', '>', 0)
             ->orderBy('visible_entity_count', 'desc')
             ->orderBy('name', 'asc');
     }
 
+    /**
+     * @param Builder $query
+     * @param array $options
+     * @return Builder
+     */
     public function scopeFilterPublic(Builder $query, array $options)
     {
         $language = Arr::get($options, 'language');
@@ -172,6 +166,15 @@ trait CampaignScopes
             $query->where('is_open', false);
         }
 
+        return $query;
+    }
+
+    /**
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopePreparedWith($query)
+    {
         return $query;
     }
 }

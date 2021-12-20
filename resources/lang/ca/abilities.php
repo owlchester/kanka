@@ -42,10 +42,9 @@ return [
         'nested_without'=> 'S\'estan mostrant totes les habilitats que no tenen cap pare. Cliqueu una fila per a veure\'n les habilitats descendents.',
     ],
     'index'         => [
-        'add'           => 'Nova habilitat',
-        'description'   => 'Poders, encanteris, millores i més per a les entitats.',
-        'header'        => 'Habilitats de :name',
-        'title'         => 'Habilitats',
+        'add'       => 'Nova habilitat',
+        'header'    => 'Habilitats de :name',
+        'title'     => 'Habilitats',
     ],
     'placeholders'  => [
         'charges'   => 'Quantitat d\'usos. Es pot referenciar un atribut amb {Nivell}*{CHA}',

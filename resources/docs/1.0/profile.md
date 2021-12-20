@@ -5,7 +5,7 @@
 The following endpoint provides simple data about the current user.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `profile` | Default |
 

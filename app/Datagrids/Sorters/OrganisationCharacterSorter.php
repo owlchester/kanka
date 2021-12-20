@@ -15,6 +15,7 @@ class OrganisationCharacterSorter extends DatagridSorter
     public $options = [
         'character.name' => 'characters.fields.name',
         'organisation.name' => 'organisations.fields.organisation',
-        'role' => 'organisations.members.fields.role'
+        'role' => 'organisations.members.fields.role',
+        'status_id' => 'organisations.members.fields.status',
     ];
 }

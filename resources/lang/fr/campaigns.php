@@ -43,6 +43,7 @@ TEXT
         ],
         'helper'            => 'Export de la campagne. Une notification contenant un lien de téléchargement sera généré.',
         'helper_secondary'  => 'Deux fichiers seront générés. Le premier contiendra toutes les entités de la campagne au format JSON, et le second contiendra les images uploadées sur les entités. Si l\'export des images ne fonctionne pas (typiquement sur les grandes campagnes), nous recommandons d\'utiliser l\':api.',
+        'helper_third'      => 'Les fichiers JSON peuvent être généralement ouverts avec n\'importe quelle application de texte. Ils représentent les données enregistrées dans Kanka dans un format textuel. Il n\'y a pas de moyen de réimporter ces données dans Kanka.',
         'success'           => 'L\'export de la campagne est en préparation. Une notification dans Kanka avec un lien de téléchargement sera généré dès que c\'est prêt.',
         'title'             => 'Export Campagne :name',
     ],

@@ -19,35 +19,32 @@ return [
         'is_recurring'  => 'Té lloc cada any',
     ],
     'create'        => [
-        'description'   => 'Crea un nou calendari',
-        'success'       => 'S\'ha creat el calendari «:name».',
-        'title'         => 'Nou calendari',
+        'success'   => 'S\'ha creat el calendari «:name».',
+        'title'     => 'Nou calendari',
     ],
     'destroy'       => [
         'success'   => 'S\'ha eliminat el calendari «:name».',
     ],
     'edit'          => [
-        'description'   => 'Actualiza el calendari',
-        'success'       => 'S\'ha actualitzat el calendari «:name».',
-        'title'         => 'Edita el calendari :name',
-        'today'         => 'S\'ha actualitzat la data del calendari.',
+        'success'   => 'S\'ha actualitzat el calendari «:name».',
+        'title'     => 'Edita el calendari :name',
+        'today'     => 'S\'ha actualitzat la data del calendari.',
     ],
     'event'         => [
         'actions'   => [
-            'existing'  => 'Entitat existent',
-            'new'       => 'Nou esdeveniment',
-            'switch'    => 'Canvia l\'elecció',
+            'delete-confirm'    => 'aquest recordatori',
+            'existing'          => 'Entitat existent',
+            'new'               => 'Nou esdeveniment',
+            'switch'            => 'Canvia l\'elecció',
         ],
         'create'    => [
-            'description'   => 'Crea un esdeveniment al calendari',
-            'success'       => 'S\'ha creat l\'esdeveniment al calendari.',
-            'title'         => 'Afegeix un esdeveniment al calendari :name',
+            'success'   => 'S\'ha creat l\'esdeveniment al calendari.',
+            'title'     => 'Afegeix un esdeveniment al calendari :name',
         ],
         'destroy'   => 'S\'ha eliminat l\'esdeveniment del calendari «:name».',
         'edit'      => [
-            'description'   => 'Actualitza l\'esdeveniment del calendari',
-            'success'       => 'S\'ha actualitzat l\'esdeveniment al calendari.',
-            'title'         => 'Actualitza l\'esdeveniment del calendari :name',
+            'success'   => 'S\'ha actualitzat l\'esdeveniment al calendari.',
+            'title'     => 'Actualitza l\'esdeveniment del calendari :name',
         ],
         'helpers'   => [
             'add'               => 'Afegeix un esdeveniment existent a aquest calendari.',
@@ -60,8 +57,7 @@ return [
         'success'   => 'S\'ha afegit l\'esdeveniment «:name» al calendari.',
     ],
     'events'        => [
-        'description'   => 'Esdeveniments en aquest calendari.',
-        'title'         => 'Esdeveniments del calendari :name',
+        'title' => 'Esdeveniments del calendari :name',
     ],
     'fields'        => [
         'calendar'              => 'Calendari superior',
@@ -117,10 +113,9 @@ return [
         'years'             => 'Alguns anys són tan importants que tenen el seu propi nom.',
     ],
     'index'         => [
-        'add'           => 'Nou calendari',
-        'description'   => 'Gestiona els calendaris de :name',
-        'header'        => 'Calendaris de :name',
-        'title'         => 'Calendaris',
+        'add'       => 'Nou calendari',
+        'header'    => 'Calendaris de :name',
+        'title'     => 'Calendaris',
     ],
     'layouts'       => [
         'month' => 'Mes',
@@ -210,7 +205,6 @@ return [
         'weekdays'          => 'Nombre de dies de la setmana',
     ],
     'show'          => [
-        'description'       => 'Vista detallada del calendari',
         'missing_details'   => 'Aquest calendari no es pot mostrar. Els calendaris necessiten un mínim de 2 mesos i 2 dies setmanals per a renderizar-se correctament.',
         'moon_full_moon'    => 'Lluna :moon plena',
         'moon_new_moon'     => 'Lluna :moon nova',

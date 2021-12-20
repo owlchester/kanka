@@ -3,7 +3,7 @@
 ---
 
 - [All Dice Rolls](#all-dice-rolls)
-- [Filters](#filters)
+
 - [Single Dice Roll](#dice-roll)
 - [Create a Dice Roll](#create-dice-roll)
 - [Update a Dice Roll](#update-dice-roll)
@@ -17,9 +17,13 @@ You can get a list of all the dice-rolls of a campaign by using the following en
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `dice_rolls` | Default |
+
+### URL Parameters
+
+The list of returned dice rolls can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=dice_roll" target="_blank">API filters</a>.
 
 ### Results
 ```json
@@ -52,18 +56,12 @@ You can get a list of all the dice-rolls of a campaign by using the following en
 }
 ```
 
-<a name="filters"></a>
-## Filters
-
-The list of returned dice rolls can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=dice_roll" target="_blank">API filters</a>.
-
-
 <a name="dice-roll"></a>
 ## Dice Roll
 
 To get the details of a single dice-roll, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `dice_rolls/{dice_roll.id}` | Default |
 
@@ -103,7 +101,7 @@ To get the details of a single dice-roll, use the following endpoint.
 
 To create a dice-roll, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `dice_rolls` | Default |
 
@@ -116,8 +114,10 @@ To create a dice-roll, use the following endpoint.
 | `system` | `string` | The dice-roll's system (always standard) |
 | `character_id` | `integer` | The dice-roll's owner |
 | `tags` | `array` | Array of tag ids |
-| `is_private` | `boolean` | If the dice-roll is only visible to `admin` members of the campaign |
 | `image_url` | `string` | URL to a picture to be used for the dice-roll |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `is_private` | `boolean` | If the dice-roll is only visible to `admin` members of the campaign |
 
 ### Results
 
@@ -129,7 +129,7 @@ To create a dice-roll, use the following endpoint.
 
 To update a dice-roll, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `dice_rolls/{dice_roll.id}` | Default |
 
@@ -147,7 +147,7 @@ The same body parameters are available as for when creating a dice-roll.
 
 To delete a dice-roll, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `dice_rolls/{dice_roll.id}` | Default |
 

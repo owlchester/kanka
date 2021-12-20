@@ -19,8 +19,8 @@ $members = $model->allMembers()
         ->filter($filters)
         ->has('character')
         ->with([
-                'character', 'character.race', 'character.location', 'character.family', 'organisation',
-                'character.entity', 'character.race.entity', 'character.location.entity', 'organisation.entity'
+            'character', 'character.race', 'character.location', 'organisation',
+            'character.entity', 'organisation.entity'
         ])
         ->simpleSort($datagridSorter)
         ->paginate();
@@ -75,28 +75,37 @@ $members = $model->allMembers()
         @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#organisation-members'])
 
         <table id="organisation-characters" class="table table-hover">
-            <tbody><tr>
-                <th class="avatar"><br></th>
-                <th>{{ __('characters.fields.name') }}</th>
-                @if ($campaign->enabled('locations'))
-                <th class="hidden-sm hidden-xs">{{ __('characters.fields.location') }}</th>
-                @endif
-                @if ($allMembers)<th>{{ __('organisations.members.fields.organisation') }}</th>@endif
-                <th>{{ __('organisations.members.fields.role') }}</th>
-                @if ($campaign->enabled('races'))
-                <th class="hidden-sm hidden-xs">{{ __('characters.fields.race') }}</th>
-                @endif
-                <th></th>
-                <th class="text-right">
+            <thead>
+                <tr>
+                    <th class="avatar"><br></th>
+                    <th>{{ __('characters.fields.name') }}</th>
+                    @if ($campaign->enabled('locations'))
+                    <th class="hidden-sm hidden-xs">{{ __('characters.fields.location') }}</th>
+                    @endif
+                    @if ($allMembers)<th>{{ __('organisations.members.fields.organisation') }}</th>@endif
+                    <th>{{ __('organisations.members.fields.role') }}</th>
+                    @if ($campaign->enabled('races'))
+                    <th class="hidden-sm hidden-xs">{{ __('characters.fields.race') }}</th>
+                    @endif
+                    @if (auth()->check() && auth()->user()->isAdmin())
+                    <th></th>
+                    @endif
+                    <th>
+                        <i class="fas fa-star" title="{{ __('organisations.members.fields.pinned') }}" data-toggle="tooltip"></i>
+                    </th>
+                    <th class="text-right">
 
-                </th>
-            </tr>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
             @foreach ($members as $relation)
                 <tr>
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $relation->character->getImageUrl(40) }}');" title="{{ $relation->character->name }}" href="{{ route('characters.show', $relation->character->id) }}"></a>
                     </td>
                     <td>
+                        @if ($relation->character->is_private) <i class="fas fa-lock" title="{{ __('crud.is_private') }}" data-toggle="tooltip"></i> @endif
                         {!! $relation->character->tooltipedLink() !!}
                         @if ($relation->character->is_dead)<span class="ra ra-skull" title="{{ __('characters.fields.is_dead') }}"></span>@endif
                         <br />
@@ -114,7 +123,14 @@ $members = $model->allMembers()
                         {!! $relation->organisation->tooltipedLink() !!}
                     </td>
                     @endif
-                    <td>{{ $relation->role }}</td>
+                    <td>
+                        @if ($relation->inactive())
+                            <i class="fas fa-user-slash" title="{{ __('organisations.members.status.inactive') }}" data-toggle="tooltip"></i>
+                        @elseif ($relation->unknown())
+                            <i class="fas fa-question" title="{{ __('organisations.members.status.unknown') }}" data-toggle="tooltip"></i>
+                        @endif
+                        {{ $relation->role }}
+                    </td>
                     @if ($campaign->enabled('races'))
                         <td class="hidden-sm hidden-xs">
                             @if ($relation->character->race)
@@ -122,11 +138,15 @@ $members = $model->allMembers()
                             @endif
                         </td>
                     @endif
-                    <td></td>
+                    @include('cruds.partials.private', ['model' => $relation])
                     <td>
-                        @if (Auth::check() && Auth::user()->isAdmin())
-                            @if ($relation->is_private == true)
-                                <i class="fas fa-lock" title="{{ __('crud.is_private') }}"></i>
+                        @if ($relation->pinned())
+                            @if ($relation->pinnedToCharacter())
+                                <i class="fa fa-user" data-toggle="tooltip" title="{{ __('organisations.members.pinned.character') }}"></i>
+                            @elseif ($relation->pinnedToOrganisation())
+                                <i class="ra ra-hood" data-toggle="tooltip" title="{{ __('organisations.members.pinned.organisation') }}"></i>
+                            @else
+                                <i class="fas fa-star" data-toggle="tooltip" title="{{ __('organisations.members.pinned.both') }}"></i>
                             @endif
                         @endif
                     </td>

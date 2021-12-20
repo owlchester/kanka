@@ -3,7 +3,7 @@
 ---
 
 - [All Notes](#all-notes)
-- [Filters](#filters)
+
 - [Single Note](#note)
 - [Create a Note](#create-note)
 - [Update a Note](#update-note)
@@ -17,9 +17,13 @@ You can get a list of all the notes of a campaign by using the following endpoin
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `notes` | Default |
+
+### URL Parameters
+
+The list of returned notes can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=note" target="_blank">API filters</a>.
 
 ### Results
 ```json
@@ -48,18 +52,13 @@ You can get a list of all the notes of a campaign by using the following endpoin
 }
 ```
 
-<a name="filters"></a>
-## Filters
-
-The list of returned notes can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=note" target="_blank">API filters</a>.
-
 
 <a name="note"></a>
 ## Note
 
 To get the details of a single note, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `notes/{note.id}` | Default |
 
@@ -95,7 +94,7 @@ To get the details of a single note, use the following endpoint.
 
 To create a note, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `notes` | Default |
 
@@ -108,8 +107,10 @@ To create a note, use the following endpoint.
 | `type` | `string` | The note's type |
 | `note_id` | `integer` | The parent note id |
 | `tags` | `array` | Array of tag ids |
-| `is_private` | `boolean` | If the note is only visible to `admin` members of the campaign |
 | `image_url` | `string` | URL to a picture to be used for the note |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `is_private` | `boolean` | If the note is only visible to `admin` members of the campaign |
 
 ### Results
 
@@ -121,7 +122,7 @@ To create a note, use the following endpoint.
 
 To update a note, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `notes/{note.id}` | Default |
 
@@ -139,7 +140,7 @@ The same body parameters are available as for when creating a note.
 
 To delete a note, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `notes/{note.id}` | Default |
 

@@ -10,7 +10,7 @@
     <div class="sidebar-elements collapse in" id="sidebar-link-elements">
         <ul class="list-unstyled">
             @foreach ($model->entity->links()->ordered()->get() as $link)
-                <li data-target="{{ $link->id }}">
+                <li data-target="{{ $link->id }}" data-visibility="{{ $link->visibility }}">
                     <a href="{{ route('entities.entity_links.go', ['entity' => $model->entity->id, 'entity_link' => $link->id]) }}" title="{!! $link->name !!}" target="_blank" rel="noreferrer nofollow" class="entity-link">
                         <i class="{{ $link->iconName() }} margin-r-5"></i> {!! $link->name !!}
                     </a>

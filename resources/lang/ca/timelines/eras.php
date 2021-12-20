@@ -18,11 +18,13 @@ return [
     'fields'        => [
         'abbreviation'  => 'Abreviatura',
         'end_year'      => 'Any final',
+        'is_collapsed'  => 'Col·lapsada',
         'start_year'    => 'Any inicial',
     ],
     'helpers'       => [
-        'eras'      => 'Cal crear la línia de temps per a poder afegir-hi eres.',
-        'primary'   => 'Separa la línia de temps en eres. Una línia de temps necessita almenys una era per a funcionar correctament.',
+        'eras'          => 'Cal crear la línia de temps per a poder afegir-hi eres.',
+        'is_collapsed'  => 'L\'era està col·lapsada (minimitzada) per defecte.',
+        'primary'       => 'Separa la línia de temps en eres. Una línia de temps necessita almenys una era per a funcionar correctament.',
     ],
     'placeholders'  => [
         'abbreviation'  => 'a.C., d.C., BCE...',

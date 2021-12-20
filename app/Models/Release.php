@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use App\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
-use TCG\Voyager\Models\Post;
+use App\Models\Post;
 
 /**
  * Class Release
@@ -18,7 +19,7 @@ use TCG\Voyager\Models\Post;
  * @property string $image
  * @property User $author
  */
-class Release extends Post implements Feedable
+class Release extends Model implements Feedable
 {
     // Do nothing, this class is just for the route resource binding to work with release instead of post.
 

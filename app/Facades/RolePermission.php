@@ -10,10 +10,8 @@ use Illuminate\Support\Facades\Facade;
  * Used for the Entity object
  * @package App\Facades
  *
- * @method self|static role(CampaignRole $role = null)
- * @method array permissions()
- *
  * @see \App\Services\RolePermission
+ * @mixin \App\Services\RolePermission
  */
 class RolePermission extends Facade
 {

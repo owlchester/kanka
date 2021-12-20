@@ -16,7 +16,7 @@ You can get a list of all the dashboard Widgets of a campaign by using the follo
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `campaign_dashboard_widgets` | Default |
 
@@ -48,7 +48,7 @@ You can get a list of all the dashboard Widgets of a campaign by using the follo
 
 To get the details of a single dashboard Widget, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `campaign_dashboard_widgets/{campaign-dashboard-widget.id}` | Default |
 
@@ -79,7 +79,7 @@ To get the details of a single dashboard Widget, use the following endpoint.
 
 To create a dashboard Widget, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `campaign_dashboard_widgets` | Default |
 
@@ -105,7 +105,7 @@ Widget |
 
 To update a dashboard widget, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `campaign_dashboard_widgets/{campaign-dashboard-widget.id}` | Default |
 
@@ -123,7 +123,7 @@ The same body parameters are available as for when creating a dashboard Widget.
 
 To delete a dashboard widget, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `campaign_dashboard_widgets/{campaign-dashboard-widget.id}` | Default |
 

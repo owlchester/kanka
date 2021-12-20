@@ -14,7 +14,6 @@ class UpdateCharacterRace extends Migration
     public function up()
     {
         Schema::table('characters', function (Blueprint $table) {
-            $table->renameColumn('race', 'old_race');
             $table->unsignedInteger('race_id')->nullable();
             $table->foreign('race_id')->references('id')->on('races')->onDelete('set null');
         });
@@ -30,7 +29,6 @@ class UpdateCharacterRace extends Migration
         Schema::table('characters', function (Blueprint $table) {
             $table->dropForeign('characters_race_id_foreign');
             $table->dropColumn('race_id');
-            $table->renameColumn('old_race', 'race');
         });
     }
 }

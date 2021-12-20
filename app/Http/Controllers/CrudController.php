@@ -150,8 +150,8 @@ class CrudController extends Controller
 
         // Entity templates
         $templates = null;
-        if (auth()->check() && !empty($model->getEntityType()) && auth()->user()->can('create', $model)) {
-            $templates = Entity::templates($model->getEntityType())
+        if (auth()->check() && !empty($model->entityTypeID()) && auth()->user()->can('create', $model)) {
+            $templates = Entity::templates($model->entityTypeID())
                 ->acl()
                 ->get();
         }

@@ -14,7 +14,7 @@ To upload an entity's image to Kanka.
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `entities/{entity.id}/image` | Default |
 
@@ -45,7 +45,7 @@ curl --location --request POST 'https://kanka.io/api/1.0/campaigns/{campaign.id}
 To remove an entity's image from Kanka.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `entities/{entity.id}/image` | Default |
 

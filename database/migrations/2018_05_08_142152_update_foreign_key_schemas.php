@@ -30,6 +30,9 @@ class UpdateForeignKeySchemas extends Migration
      */
     public function up()
     {
+        if (app()->environment('testing')) {
+            return;
+        }
         foreach ($this->tables as $tableName => $fields) {
             Schema::table($tableName, function (Blueprint $table) use ($tableName, $fields) {
                 foreach ($fields as $field) {

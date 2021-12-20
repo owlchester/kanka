@@ -3,7 +3,7 @@
 ---
 
 - [All Families](#all-families)
-- [Filters](#filters)
+
 - [Single Family](#family)
 - [Create a Family](#create-family)
 - [Update a Family](#update-family)
@@ -17,9 +17,13 @@ You can get a list of all the families of a campaign by using the following endp
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `families` | Default |
+
+### URL Parameters
+
+The list of returned families can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=family" target="_blank">API filters</a>.
 
 ### Results
 ```json
@@ -51,18 +55,12 @@ You can get a list of all the families of a campaign by using the following endp
 }
 ```
 
-<a name="filters"></a>
-## Filters
-
-The list of returned families can be filtered. The available filters are available here: <a href="/en/helpers/api-filters?type=family" target="_blank">API filters</a>.
-
-
 <a name="family"></a>
 ## Family
 
 To get the details of a single family, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `families/{family.id}` | Default |
 
@@ -104,7 +102,7 @@ To get the details of a single family, use the following endpoint.
 
 To create a family, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `families` | Default |
 
@@ -118,8 +116,10 @@ To create a family, use the following endpoint.
 | `location_id` | `integer` | The family's location id |
 | `family_id` | `integer` | The parent family id |
 | `tags` | `array` | Array of tag ids |
-| `is_private` | `boolean` | If the family is only visible to `admin` members of the campaign |
 | `image_url` | `string` | URL to a picture to be used for the family |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `is_private` | `boolean` | If the family is only visible to `admin` members of the campaign |
 
 ### Results
 
@@ -131,7 +131,7 @@ To create a family, use the following endpoint.
 
 To update a family, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `families/{family.id}` | Default |
 
@@ -149,7 +149,7 @@ The same body parameters are available as for when creating a family.
 
 To delete a family, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `families/{family.id}` | Default |
 

@@ -11,10 +11,8 @@ use Illuminate\Support\Facades\Facade;
  * Class PostCache
  * @package App\Facades
  *
- * @method static null|Collection|AppRelease[] latest()
- * @method static bool clearLatest()
- *
  * @see PostCacheService
+ * @mixin PostCacheService
  */
 class PostCache extends Facade
 {

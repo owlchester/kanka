@@ -24,7 +24,7 @@ if (empty($entity) || empty($entity->child)) {
 \App\Facades\Dashboard::add($entity);
 $model = $entity->child;
 
-$specificPreview = 'dashboard.widgets.previews.' . $entity->type;
+$specificPreview = 'dashboard.widgets.previews.' . $entity->type();
 $customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name, $widget->conf('text')) : null;
 $widget->setEntity($entity);
 ?>

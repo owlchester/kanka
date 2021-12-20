@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\StorePatron;
-use App\Http\Requests\StoreFaq;
-use App\Models\Faq;
 use App\Services\CampaignBoostService;
 use App\User;
 use Illuminate\Http\Request;
-use TCG\Voyager\Models\Role;
+use App\Models\Role;
 
 class PatronController extends AdminCrudController
 {

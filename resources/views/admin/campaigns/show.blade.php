@@ -23,7 +23,7 @@
             <div class="box-body">
                 <dl class="dl-horizontal">
                     <dt>Visibility</dt>
-                    <dd>{{ $model->visibility }}</dd>
+                    <dd>{{ $model->isPublic() ? 'Public' : 'Private' }}</dd>
                     <dt>Boost status</dt>
                     <dd>
                         @if ($model->boost_count > 1)
@@ -54,17 +54,30 @@
             <div class="box-header with-border">
                 <h4 class="box-title">Featured status</h4>
                 <div class="box-tools">
-                    <a href="#" role="button" class="btn btn-box-tool">
-                        <i class="fas fa-pencil"></i>
+                    <a href="#" class="btn btn-box-tool" data-toggle="modal" data-target="#campaign-featured">
+                        <i class="fa fa-pencil-alt"></i>
                     </a>
+
                 </div>
             </div>
             <div class="box-body">
                 <dl class="dl-horizontal">
                     <dt>Is Featured</dt>
                     <dd>{{ $model->is_featured ? 'Yes' : 'No' }}</dd>
-                    <dt>Feature Reason</dt>
-                    <dd>TBD</dd>
+                    @if ($model->is_featured)
+                    <dt>Until</dt>
+                    <dd>
+                        @if ($model->featured_until)
+                        <span class="" data-toggle="tooltip" title="{{ $model->featured_until}} UTC">
+                        {{ $model->featured_until->diffForHumans() }}
+                        </span>
+                        @endif
+                    </dd>
+                    <dt>Reason</dt>
+                    <dd>
+                        {!! $model->featured_reason !!}
+                    </dd>
+                    @endif
                 </dl>
             </div>
 
@@ -78,36 +91,63 @@
         <h4 class="box-title">Members</h4>
     </div>
     <div class="box-body">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>User</th>
-                <th>Roles</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            @foreach ($model->members()->with(['user', 'user.campaignRoles'])->get() as $member)
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
                 <tr>
-                    <td>
-                        #{{ $member->id }}
-                    </td>
-                    <td>
-                        <a href="{{ route('admin.users.show', $member->user->id) }}">
-                        {!! $member->user->name !!}
-                        </a>
-                    </td>
-                    <td>
-                        @foreach ($member->user->campaignRoles()->where('campaign_id', $model->id)->get() as $role)
-                            <span title="#{{ $role->id }}">
+                    <th>#</th>
+                    <th>User</th>
+                    <th>Roles</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                @foreach ($model->members()->with(['user', 'user.campaignRoles'])->get() as $member)
+                    <tr>
+                        <td>
+                            #{{ $member->id }}
+                        </td>
+                        <td>
+                            <a href="{{ route('admin.users.show', $member->user->id) }}">
+                                {!! $member->user->name !!}
+                            </a>
+                        </td>
+                        <td>
+                            @foreach ($member->user->campaignRoles()->where('campaign_id', $model->id)->get() as $role)
+                                <span title="#{{ $role->id }}">
                             {!! $role->name !!}
                             </span>
-                        @endforeach
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
+                            @endforeach
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="campaign-featured" role="dialog" aria-labelledby="deleteConfirmLabel">
+    <div class="modal-dialog" role="document">
+
+        {!! Form::model($model, ['route' => ['admin.campaigns.featured', $model]]) !!}
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="clickModalLabel">
+                    Featured status
+                </h4>
+            </div>
+            <div class="modal-body">
+                @include('admin.campaigns.forms.featured')
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+        {!! Form::close() !!}
+
     </div>
 </div>

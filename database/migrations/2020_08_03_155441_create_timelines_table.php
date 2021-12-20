@@ -67,31 +67,6 @@ class CreateTimelinesTable extends Migration
         Schema::table('campaign_settings', function (Blueprint $table) {
             $table->boolean('timelines')->default(true);
         });
-
-        // Update entities
-        Schema::table('entities', function (Blueprint $table) {
-            $table->enum('type', [
-                'character',
-                'event',
-                'family',
-                'item',
-                'journal',
-                'location',
-                'note',
-                'organisation',
-                'quest',
-                'attribute_template',
-                'calendar',
-                'section',
-                'dice_roll',
-                'conversation',
-                'race',
-                'tag',
-                'ability',
-                'map',
-                'timeline',
-            ])->change();
-        });
     }
 
     /**
@@ -103,30 +78,6 @@ class CreateTimelinesTable extends Migration
     {
         Schema::drop('timeline_eras');
         Schema::drop('timelines');
-
-        // Update entities
-        Schema::table('entities', function (Blueprint $table) {
-            $table->enum('type', [
-                'character',
-                'event',
-                'family',
-                'item',
-                'journal',
-                'location',
-                'note',
-                'organisation',
-                'quest',
-                'attribute_template',
-                'calendar',
-                'section',
-                'dice_roll',
-                'conversation',
-                'race',
-                'tag',
-                'ability',
-                'map',
-            ])->change();
-        });
 
         Schema::table('campaign_settings', function (Blueprint $table) {
             $table->dropColumn('timelines');

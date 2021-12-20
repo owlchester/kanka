@@ -14,7 +14,7 @@ You can get a list of all the campaigns the user has access to using the followi
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/`. For example, `campaigns` becomes `kanka.io/api/{{version}}/campaigns`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET | `campaigns` | Default |
 
@@ -74,7 +74,7 @@ You can get a list of all the campaigns the user has access to using the followi
 
 Getting a single campaign is straightforward. `{id}` is to be replaced with the campaign's id returned in the `campaigns` call.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET | `campaigns/{id}` | Default |
 
@@ -117,7 +117,7 @@ Getting a single campaign is straightforward. `{id}` is to be replaced with the 
 
 To get a list of all the members of a campaign, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET | `campaigns/{id}/users` | Default |
 

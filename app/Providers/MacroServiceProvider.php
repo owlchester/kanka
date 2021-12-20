@@ -32,6 +32,7 @@ class MacroServiceProvider extends HtmlServiceProvider
             'searchRouteName' => null,
             'placeholderKey' => null,
             'from' => null,
+            'dropdownParent' => null,
         ]);
 
         Form::component('foreignSelect', 'components.form.select3', [

@@ -7,6 +7,7 @@ use App\Facades\EntityCache;
 use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\Concerns\EntityLogs;
+use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Picture;
 use App\Models\Concerns\Searchable;
@@ -32,6 +33,7 @@ use RichanFongdasen\EloquentBlameable\BlameableTrait;
  * @property integer $campaign_id
  * @property string $name
  * @property string $type
+ * @property integer $type_id
  * @property integer $created_by
  * @property integer $updated_by
  * @property boolean $is_private
@@ -58,7 +60,7 @@ class Entity extends Model
         'campaign_id',
         'entity_id',
         'name',
-        'type',
+        'type_id',
         'is_private',
         'is_attributes_private',
         'header_image',
@@ -81,7 +83,8 @@ class Entity extends Model
         SimpleSortableTrait,
         SoftDeletes,
         EntityLogs,
-        Paginatable
+        Paginatable,
+        LastSync
     ;
 
     /**
@@ -109,19 +112,21 @@ class Entity extends Model
     /** @var bool|string */
     protected $cachedPluralName = false;
 
+    /** @var bool|string the entity type string */
+    protected $cachedType = false;
+
     /**
      * Get the child entity
      * @return \Illuminate\Database\Eloquent\Relations\HasMany|\Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function child()
     {
-        if ($this->type == 'attribute_template') {
+        if ($this->type_id == config('entities.ids.attribute_template')) {
             return $this->attributeTemplate();
-        } elseif ($this->type == 'dice_roll') {
+        } elseif ($this->type_id == config('entities.ids.dice_roll')) {
             return $this->diceRoll();
-        } else {
-            return $this->{$this->type}();
         }
+        return $this->{$this->type()}();
     }
 
     /**
@@ -138,13 +143,13 @@ class Entity extends Model
      */
     public function reloadChild()
     {
-        if ($this->type == 'attribute_template') {
+        if ($this->type_id == config('entities.ids.attribute_template')) {
             return $this->load('attributeTemplate');
-        } elseif ($this->type == 'dice_roll') {
+        } elseif ($this->type_id == config('entities.ids.dice_roll')) {
             return $this->load('diceRoll');
         }
 
-        return $this->load($this->type);
+        return $this->load($this->type());
     }
 
     /**
@@ -287,7 +292,7 @@ class Entity extends Model
         if ($this->cachedPluralName !== false) {
             return $this->cachedPluralName;
         }
-        return $this->cachedPluralName = Str::plural($this->type);
+        return $this->cachedPluralName = Str::plural($this->type());
     }
 
     /**
@@ -296,12 +301,31 @@ class Entity extends Model
      */
     public function typeId()
     {
-        return config('entities.ids.' . $this->type);
+        return $this->type_id;
     }
 
     public function entityType(): string
     {
-        return __('entities.' . $this->type);
+        return __('entities.' . $this->type());
+    }
+
+    /**
+     * @return string
+     */
+    public function type(): string
+    {
+        if ($this->cachedType !== false) {
+            return $this->cachedType;
+        }
+        $type = array_search($this->type_id, config('entities.ids'));
+        return $this->cachedType = $type;
+    }
+
+    public function cleanCache(): self
+    {
+        $this->cachedType = false;
+        $this->cachedPluralName = false;
+        return $this;
     }
 
     /**
@@ -325,7 +349,7 @@ class Entity extends Model
      */
     public function hasFiles(): bool
     {
-        return $this->type != 'menu_links';
+        return $this->type_id != config('entities.ids.menu_link');
     }
 
     /**
@@ -390,8 +414,7 @@ class Entity extends Model
     public function getHeaderUrl(bool $superboosted = false): string
     {
         if (!empty($this->header_image)) {
-            return $this->getImageUrl(0, 0, 'header_image');
-
+            return $this->getImageUrl(1200, 400, 'header_image');
         }
 
         if (!$superboosted) {
@@ -403,7 +426,7 @@ class Entity extends Model
         }
 
         return Img::resetCrop()
-            ->crop(0, 0)
+            ->crop(1200, 400)
             ->url($this->header->path);
     }
 }

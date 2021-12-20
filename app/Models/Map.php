@@ -107,11 +107,28 @@ class Map extends MiscModel
         'center_marker_id'
     ];
 
+
+    /**
+     * Foreign relations to add to export
+     * @var array
+     */
+    protected $foreignExport = [
+        'layers',
+        'groups',
+        'markers'
+    ];
+
     /**
      * Entity type
      * @var string
      */
     protected $entityType = 'map';
+
+    /**
+     * Extra relations loaded for the API endpoint
+     * @var string[]
+     */
+    public $apiWith = ['groups', 'layers'];
 
     /**
      * Parent ID used for the Node Trait

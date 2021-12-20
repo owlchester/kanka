@@ -15,7 +15,7 @@ You can get a list of all the map-markers of a map by using the following endpoi
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `api/{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | GET/HEAD | `maps/{map.id}/map_markers` | Default |
 
@@ -58,7 +58,7 @@ You can get a list of all the map-markers of a map by using the following endpoi
 
 To create a map marker, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | POST | `maps/{map.id}/map_markers` | Default |
 
@@ -96,7 +96,7 @@ To create a map marker, use the following endpoint.
 
 To update a map, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | PUT/PATCH | `maps/{map.id}/map_markers/{map.id}` | Default |
 
@@ -114,7 +114,7 @@ The same body parameters are available as for when creating a map.
 
 To delete a map, use the following endpoint.
 
-| Method | Endpoint| Headers |
+| Method | URI | Headers |
 | :- |   :-   |  :-  |
 | DELETE | `maps/{map.id}/map_markers/{map.id}` | Default |
 

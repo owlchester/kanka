@@ -20,24 +20,12 @@ class CreateCharacters extends Migration
             $table->integer('campaign_id')->unsigned()->notNull();
 
             // Overview
-            $table->longText('history')->nullable();
+            $table->longText('entry')->nullable();
 
             // Appearance
-            $table->mediumInteger('age')->nullable();
-            $table->string('height', 10)->nullable();
-            $table->string('weight', 10)->nullable();
+            $table->string('age', 25)->nullable();
             $table->string('sex', 10)->nullable();
-            $table->string('race', 45)->nullable();
-            $table->string('eye_colour', 12)->nullable();
-            $table->string('hair', 45)->nullable();
-            $table->string('skin', 45)->nullable();
             $table->string('image')->nullable();
-
-            // Social
-            $table->text('traits')->nullable();
-            $table->text('goals')->nullable();
-            $table->text('fears')->nullable();
-            $table->text('mannerisms')->nullable();
 
             $table->timestamps();
 
@@ -45,7 +33,7 @@ class CreateCharacters extends Migration
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
 
             // Index
-            $table->index(['name', 'slug', 'race']);
+            $table->index(['name', 'slug']);
         });
 
         Schema::create('character_relation', function (Blueprint $table) {

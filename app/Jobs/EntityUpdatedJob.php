@@ -59,7 +59,7 @@ class EntityUpdatedJob implements ShouldQueue
         // Invalid cache
         cache()->forget($entity->child->tooltipCacheKey());
 
-        if ($entity->type == 'tag') {
+        if ($entity->type_id == config('entities.ids.tag')) {
             /** @var Entity $child */
 //            foreach ($entity->child->allChildren()->get() as $child) {
 //                if ($child->child) {
@@ -67,7 +67,7 @@ class EntityUpdatedJob implements ShouldQueue
 //                    cache()->forget($child->child->tooltipCacheKey('public'));
 //                }
 //            }
-        } elseif ($entity->type == 'family') {
+        } elseif ($entity->type_id == config('entities.ids.family')) {
             /** @var Family $family */
             $family = $entity->child;
             foreach ($family->members as $child) {

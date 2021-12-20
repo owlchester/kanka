@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Crea una nova organització',
-        'success'       => 'S\'ha creat l\'organització «:name».',
-        'title'         => 'Nova organització',
+        'success'   => 'S\'ha creat l\'organització «:name».',
+        'title'     => 'Nova organització',
     ],
     'destroy'       => [
         'success'   => 'S\'ha eliminat l\'organització «:name».',
@@ -29,19 +28,17 @@ return [
         'nested_without'=> 'S\'estan mostrant les organitzacions sense pare. Feu clic a la fila d\'una organització per a mostrar-ne les descendents.',
     ],
     'index'         => [
-        'add'           => 'Nova organització',
-        'description'   => 'Gestiona les organitzacions de :name.',
-        'header'        => 'Organitzacions de :name',
-        'title'         => 'Organitzacions',
+        'add'       => 'Nova organització',
+        'header'    => 'Organitzacions de :name',
+        'title'     => 'Organitzacions',
     ],
     'members'       => [
         'actions'       => [
             'add'   => 'Afegeix un membre',
         ],
         'create'        => [
-            'description'   => 'Afegeix un membre a l\'organització',
-            'success'       => 'S\'ha afegit el membre a l\'organització.',
-            'title'         => 'Nou membre de :name',
+            'success'   => 'S\'ha afegit el membre a l\'organització.',
+            'title'     => 'Nou membre de :name',
         ],
         'destroy'       => [
             'success'   => 'S\'ha tret el membre de l\'organització.',
@@ -73,17 +70,13 @@ return [
         'name'      => 'Nom de l\'organització',
         'type'      => 'Secta, banda, rebel·lió, gremi...',
     ],
-    'quests'        => [
-        'description'   => 'Missions on participa l\'organització.',
-        'title'         => 'Missions de :name',
-    ],
+    'quests'        => [],
     'show'          => [
-        'description'   => 'Vista detallada de l\'organització',
-        'tabs'          => [
+        'tabs'  => [
             'organisations' => 'Organitzacions',
             'quests'        => 'Missions',
             'relations'     => 'Relacions',
         ],
-        'title'         => 'Organització :name',
+        'title' => 'Organització :name',
     ],
 ];
