@@ -235,6 +235,7 @@ return [
         'header_image'          => 'Cette image s\'affiche au-delà de l\'entité. Les images larges mènent a un meilleur résultat.',
         'image_limitations'     => 'Formats supportés: :formats. Taille maximale: :size.',
         'image_patreon'         => 'Augmenter la taille limite?',
+        'image_recommendation'  => 'Dimensions recommandées: :width par :height px.',
         'is_star'               => 'Les éléments épinglés sont affichés sur le menu de l\'entité.',
         'tooltip'               => 'Remplace l\'infobulle automatiquement généré avec le texte ci-dessous.',
         'visibility'            => 'Si la visibilité est définie à Admin, seuls les membres du rôle Admin de la campagne verront ceci. La visibilité "Soi-même" signifie que tu es le seul à le voir.',

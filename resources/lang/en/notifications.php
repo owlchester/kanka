@@ -2,30 +2,30 @@
 
 return [
     'campaign'          => [
-        'application'       => [
+        'application'           => [
             'approved'  => 'Your application to the :campaign campaign has been approved.',
             'new'       => 'New application for :campaign.',
             'rejected'  => 'Your application to the :campaign campaign has been rejected. Reason provided: :reason',
         ],
-        'asset_export'      => 'An export of a campaign assets is available. The link is available for :time minutes.',
-        'asset_export_error' => 'An error occurred while exporting the campaign assets. This happens on large campaigns.',
-        'boost'             => [
+        'asset_export'          => 'An export of a campaign assets is available. The link is available for :time minutes.',
+        'asset_export_error'    => 'An error occurred while exporting the campaign assets. This happens on large campaigns.',
+        'boost'                 => [
             'add'           => 'Campaign :campaign is being boosted by :user.',
             'remove'        => ':user is no longer boosting the :campaign campaign.',
             'superboost'    => 'Campaign :campaign is being superboosted by :user.',
         ],
-        'export'            => 'An export of a campaign is available. The link is available for :time minutes.',
-        'export_error'      => 'An error occurred while exporting your campaign assets. Please contact us if this problem persists.',
-        'join'              => ':user joined the campaign :campaign.',
-        'leave'             => ':user left the campaign :campaign.',
-        'plugin'            => [
+        'export'                => 'An export of a campaign is available. The link is available for :time minutes.',
+        'export_error'          => 'An error occurred while exporting your campaign assets. Please contact us if this problem persists.',
+        'join'                  => ':user joined the campaign :campaign.',
+        'leave'                 => ':user left the campaign :campaign.',
+        'plugin'                => [
             'deleted'   => 'The plugin :plugin was deleted from the marketplace and removed from your campaign :campaign.',
         ],
-        'role'              => [
+        'role'                  => [
             'add'       => 'You have been added to the :role role in the :campaign campaign.',
             'remove'    => 'You have been removed from the :role role in the :campaign campaign.',
         ],
-        'troubleshooting'   => [
+        'troubleshooting'       => [
             'joined'    => 'The Kanka team-member :user joined the campaign :campaign.',
         ],
     ],

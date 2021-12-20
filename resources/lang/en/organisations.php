@@ -51,8 +51,8 @@ return [
             'character'     => 'Character',
             'organisation'  => 'Organisation',
             'pinned'        => 'Pinned',
-            'status'        => 'Membership status',
             'role'          => 'Role',
+            'status'        => 'Membership status',
         ],
         'helpers'       => [
             'all_members'   => 'All characters that are members of this organisations and it\'s sub-organisations.',
@@ -69,7 +69,7 @@ return [
             'character' => 'Choose a character',
             'role'      => 'Leader, Member, High Septon, Spymaster',
         ],
-        'status' => [
+        'status'        => [
             'active'    => 'Active member',
             'inactive'  => 'Inactive member',
             'unknown'   => 'Unknown status',
