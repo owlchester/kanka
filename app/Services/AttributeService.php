@@ -50,6 +50,9 @@ class AttributeService
         if (!Str::contains($attribute->value, ['{', '}'])) {
             return (string) $attribute->value;
         }
+        if (Str::contains($attribute->value, ['<', '>'])) {
+            return (string) $attribute->value;
+        }
 
         if ($this->loadedEntity === null || $this->loadedEntity->id != $attribute->entity_id) {
             $this->loadedEntity = $attribute->entity;
@@ -60,8 +63,8 @@ class AttributeService
             return (string) $calculated['final'];
 
         } catch(\Exception $e) {
-            throw $e;
-            return $attribute->value;
+            //throw $e;
+            return (string) $attribute->value;
         }
     }
 
