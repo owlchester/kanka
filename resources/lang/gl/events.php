@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Crear un novo evento',
-        'success'       => 'Evento ":name" creado.',
-        'title'         => 'Novo evento',
+        'success'   => 'Evento ":name" creado.',
+        'title'     => 'Novo evento',
     ],
     'destroy'       => [
         'success'   => 'Evento ":name" eliminado.',
@@ -32,10 +31,9 @@ return [
         'nested_without'=> 'Mostrando todos os eventos que non teñen un evento pai. Fai clic nunha fila para ver os seus descendentes.',
     ],
     'index'         => [
-        'add'           => 'Novo evento',
-        'description'   => 'Xestiona os eventos de ":name"',
-        'header'        => 'Eventos de ":name"',
-        'title'         => 'Eventos',
+        'add'       => 'Novo evento',
+        'header'    => 'Eventos de ":name"',
+        'title'     => 'Eventos',
     ],
     'placeholders'  => [
         'date'      => 'Data do teu evento',
@@ -44,11 +42,10 @@ return [
         'type'      => 'Cerimonia, festival, desastre, batalla, nacemento...',
     ],
     'show'          => [
-        'description'   => 'Vista detallada dun evento',
-        'tabs'          => [
-            'information'   => 'Información',
+        'tabs'  => [
+            'events'    => 'Eventos',
         ],
-        'title'         => 'Evento ":name"',
+        'title' => 'Evento ":name"',
     ],
     'tabs'          => [
         'calendars' => 'Entradas en calendarios',

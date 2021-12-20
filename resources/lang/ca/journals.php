@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Crea una crònica nova',
-        'success'       => 'S\'ha creat la crònica «:name».',
-        'title'         => 'Nova crònica',
+        'success'   => 'S\'ha creat la crònica «:name».',
+        'title'     => 'Nova crònica',
     ],
     'destroy'       => [
         'success'   => 'S\'ha eliminat la crònica «:name».',
@@ -29,10 +28,9 @@ return [
         'nested_without'=> 'S\'estan mostrant les cròniques sense pare. Feu clic a la fila d\'una família per a mostrar-ne les subcròniques.',
     ],
     'index'         => [
-        'add'           => 'Nova crònica',
-        'description'   => 'Gestiona les cròniques de :name',
-        'header'        => 'Cròniques de :name',
-        'title'         => 'Cròniques',
+        'add'       => 'Nova crònica',
+        'header'    => 'Cròniques de :name',
+        'title'     => 'Cròniques',
     ],
     'journals'      => [
         'title' => 'Subcròniques de la crònica :name',
@@ -45,10 +43,9 @@ return [
         'type'      => 'Sessió, esborrany...',
     ],
     'show'          => [
-        'description'   => 'Vista detallada de la crònica',
-        'tabs'          => [
+        'tabs'  => [
             'journals'  => 'Cròniques',
         ],
-        'title'         => 'Crònica :name',
+        'title' => 'Crònica :name',
     ],
 ];

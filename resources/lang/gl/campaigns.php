@@ -22,9 +22,8 @@ TEXT
         'success'   => 'Campaña eliminada.',
     ],
     'edit'                              => [
-        'description'   => 'Edita a túa campaña',
-        'success'       => 'Campaña actualizada.',
-        'title'         => 'Editar a campaña ":campaign"',
+        'success'   => 'Campaña actualizada.',
+        'title'     => 'Editar a campaña ":campaign"',
     ],
     'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
@@ -39,7 +38,6 @@ TEXT
         'unknown_id'    => 'Campaña descoñecida.',
     ],
     'export'                            => [
-        'description'       => 'Exportar a campaña.',
         'errors'            => [
             'limit' => 'Excediches o número máximo de exportacións ao día. Por favor, inténtao de novo mañá.',
         ],
@@ -115,7 +113,6 @@ TEXT
                 'create'    => 'Crear convite',
                 'send'      => 'Enviar convite',
             ],
-            'description'   => 'Convida unha amizade á túa campaña',
             'success'       => 'Convite enviado.',
             'success_link'  => 'Ligazón creada: :link',
             'title'         => 'Convida alguén á túa campaña.',
@@ -139,7 +136,7 @@ TEXT
             'email'     => 'Correo electrónico',
             'role'      => 'Rol',
             'type'      => 'Tipo',
-            'validity'  => 'Validez',
+            'usage'     => 'Número máximo de usos',
         ],
         'helpers'               => [
             'email'     => 'Os nosos correos son frecuentemente marcados como spam e poden tardar unhas horas ata aparecer na túa caixa de entrada.',
@@ -176,8 +173,7 @@ TEXT
             'title' => 'Engade unha persoa á túa campaña.',
         ],
         'edit'                  => [
-            'description'   => 'Edita alguén da túa campaña',
-            'title'         => 'Editar integrante :name',
+            'title' => 'Editar integrante :name',
         ],
         'fields'                => [
             'joined'        => 'Uniuse',
@@ -253,7 +249,6 @@ TEXT
             'success'   => 'Rol ":name" creado.',
             'title'     => 'Crear un novo rol para :name',
         ],
-        'description'   => 'Administrar os roles da campaña',
         'destroy'       => [
             'success'   => 'Rol eliminado.',
         ],
@@ -317,8 +312,7 @@ TEXT
             'name'  => 'Nome do rol',
         ],
         'show'          => [
-            'description'   => 'Integrantes e permisos dun rol da campaña',
-            'title'         => 'Rol ":role"',
+            'title' => 'Rol ":role"',
         ],
         'title'         => 'Roles da campaña :name',
         'types'         => [
@@ -344,16 +338,15 @@ TEXT
         ],
     ],
     'settings'                          => [
-        'actions'       => [
+        'actions'   => [
             'enable'    => 'Activar',
         ],
-        'boosted'       => 'Esta función está en acceso anticipado e actualmente só dispoñíbel para :boosted.',
-        'description'   => 'Habilita ou deshabilita módulos da campaña.',
-        'edit'          => [
+        'boosted'   => 'Esta función está en acceso anticipado e actualmente só dispoñíbel para :boosted.',
+        'edit'      => [
             'success'   => 'Configuración da campaña actualizada.',
         ],
-        'helper'        => 'Todos os módulos dunha campaña poden ser habilitados ou deshabilitados a vontade. Deshabilitar un módulo simplemente ocultará todos os elementos da interface relacionados con el, e as entidades preexistentes seguirán existindo pero ocultas, no caso de que cambies de parecer. Este cambio afecta a todas as persoas integrantes dunha campaña, incluíndo a Administración.',
-        'helpers'       => [
+        'helper'    => 'Todos os módulos dunha campaña poden ser habilitados ou deshabilitados a vontade. Deshabilitar un módulo simplemente ocultará todos os elementos da interface relacionados con el, e as entidades preexistentes seguirán existindo pero ocultas, no caso de que cambies de parecer. Este cambio afecta a todas as persoas integrantes dunha campaña, incluíndo a Administración.',
+        'helpers'   => [
             'abilities'     => 'Crea habilidades (talentos, feitizos, poderes...) que poden ser asignados a entidades.',
             'calendars'     => 'Un lugar para definir os calendarios do teu mundo.',
             'characters'    => 'A xente que habita no teu mundo.',
@@ -374,21 +367,20 @@ TEXT
             'tags'          => 'Cada entidade pode ter varias etiquetas. As etiquetas poden á súa vez pertencer a outras etiquetas, e as entradas poden ser filtradas por etiqueta.',
             'timelines'     => 'Representa a historia do teu mundo usando liñas temporais.',
         ],
-        'title'         => 'Módulos da campaña ":name"',
+        'title'     => 'Módulos da campaña ":name"',
     ],
     'show'                              => [
-        'actions'       => [
+        'actions'   => [
             'boost' => 'Potenciar campaña',
             'edit'  => 'Editar campaña',
             'leave' => 'Abandonar campaña',
         ],
-        'description'   => 'Vista detallada da campaña',
-        'menus'         => [
+        'menus'     => [
             'configuration'     => 'Configuración',
             'overview'          => 'Visión xeral',
             'user_management'   => 'Xestión de integrantes',
         ],
-        'tabs'          => [
+        'tabs'      => [
             'achievements'      => 'Logros',
             'applications'      => 'Solicitudes',
             'campaign'          => 'Campaña',
@@ -396,14 +388,13 @@ TEXT
             'export'            => 'Exportar',
             'information'       => 'Información',
             'members'           => 'Integrantes',
-            'menu'              => 'Menú',
             'plugins'           => 'Complementos',
             'recovery'          => 'Recuperación',
             'roles'             => 'Roles',
             'settings'          => 'Módulos',
             'styles'            => 'Estilo',
         ],
-        'title'         => 'Campaña ":name"',
+        'title'     => 'Campaña ":name"',
     ],
     'superboosted'                      => [
         'gallery'   => [

@@ -12,11 +12,16 @@ return [
         'success'   => 'Předmět :item odstraněn z objektu :entity',
     ],
     'fields'        => [
-        'amount'        => 'Množství',
-        'description'   => 'Popis',
-        'is_equipped'   => 'Ve výbavě',
-        'name'          => 'Název',
-        'position'      => 'Umístění',
+        'amount'            => 'Množství',
+        'copy_entity_entry' => 'Použít záznam předmětu',
+        'description'       => 'Popis',
+        'is_equipped'       => 'Ve výbavě',
+        'name'              => 'Název',
+        'position'          => 'Umístění',
+        'qty'               => 'Množ.',
+    ],
+    'helpers'       => [
+        'copy_entity_entry' => 'Zobrazit záznam předmětu namísto vlastního popisu.',
     ],
     'placeholders'  => [
         'amount'        => 'Libovolné množství',

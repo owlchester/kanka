@@ -20,7 +20,8 @@ return [
         'title'     => 'Edita la línia de temps :name',
     ],
     'fields'        => [
-        'copy_eras'     => 'Copia les eres',
+        'copy_elements' => 'Copia\'n els elements',
+        'copy_eras'     => 'Copia\'n les eres',
         'eras'          => 'Eres',
         'name'          => 'Nom',
         'reverse_order' => 'Era en ordre invers',
@@ -44,6 +45,9 @@ return [
         'type'  => 'Primària, crònica del món, llegat del regne...',
     ],
     'show'          => [
+        'tabs'  => [
+            'timelines' => 'Línies de temps',
+        ],
         'title' => 'Línia de temps :name',
     ],
     'timelines'     => [

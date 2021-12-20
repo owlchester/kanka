@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Crea una nota nova',
-        'success'       => 'S\'ha creat la nota «:name».',
-        'title'         => 'Nova nota',
+        'success'   => 'S\'ha creat la nota «:name».',
+        'title'     => 'Nova nota',
     ],
     'destroy'       => [
         'success'   => 'S\'ha eliminat la nota «:name».',
@@ -30,10 +29,9 @@ return [
         'is_pinned' => 'Es poden fixar fins a 3 notes al tauler de la campanya.',
     ],
     'index'         => [
-        'add'           => 'Nova nota',
-        'description'   => 'Gestiona les notes de :name.',
-        'header'        => 'Notes de :name',
-        'title'         => 'Notes',
+        'add'       => 'Nova nota',
+        'header'    => 'Notes de :name',
+        'title'     => 'Notes',
     ],
     'placeholders'  => [
         'name'  => 'Nom de la nota',
@@ -41,10 +39,6 @@ return [
         'type'  => 'Religió, relat, sistema polític...',
     ],
     'show'          => [
-        'description'   => 'Vista detallada de la nota',
-        'tabs'          => [
-            'description'   => 'Descripció',
-        ],
-        'title'         => 'Nota :name',
+        'title' => 'Nota :name',
     ],
 ];

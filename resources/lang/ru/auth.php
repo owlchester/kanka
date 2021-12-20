@@ -42,7 +42,7 @@ return [
             'email'     => 'Электронная почта',
             'name'      => 'Имя пользователя',
             'password'  => 'Пароль',
-            'tos'       => 'Я соглашаюсь с <a href=":privacyUrl" target="_blank">Политикой Конфиденциальности</a>.',
+            'tos_clean' => 'Я соглашаюсь с :privacy',
         ],
         'register_with_facebook'    => 'Регистрация через Facebook',
         'register_with_google'      => 'Регистрация через Google',

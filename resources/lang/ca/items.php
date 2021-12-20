@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Crear un objecte nou',
-        'success'       => 'S\'ha creat l\'objecte «:name».',
-        'title'         => 'Nou objecte',
+        'success'   => 'S\'ha creat l\'objecte «:name».',
+        'title'     => 'Nou objecte',
     ],
     'destroy'       => [
         'success'   => 'S\'ha eliminat l\'objecte «:name».',
@@ -24,14 +23,12 @@ return [
         'type'      => 'Tipus',
     ],
     'index'         => [
-        'add'           => 'Nou objecte',
-        'description'   => 'Gestiona els objectes de :name.',
-        'header'        => 'Objectes de :name',
-        'title'         => 'Objectes',
+        'add'       => 'Nou objecte',
+        'header'    => 'Objectes de :name',
+        'title'     => 'Objectes',
     ],
     'inventories'   => [
-        'description'   => 'Els inventaris on es troba aquest objecte.',
-        'title'         => 'Inventaris de l\'objecte :name',
+        'title' => 'Inventaris de l\'objecte :name',
     ],
     'placeholders'  => [
         'character' => 'Trieu un personatge',
@@ -41,17 +38,11 @@ return [
         'size'      => 'Grandària, pes, dimensions',
         'type'      => 'Arma, poció, artefacte...',
     ],
-    'quests'        => [
-        'description'   => 'Missions on apareix l\'objecte.',
-        'title'         => 'Missions de :name',
-    ],
+    'quests'        => [],
     'show'          => [
-        'description'   => 'Vista detallada de l\'objecte',
-        'tabs'          => [
-            'information'   => 'Informació',
+        'tabs'  => [
             'inventories'   => 'Inventaris',
-            'quests'        => 'Missions',
         ],
-        'title'         => 'Objecte :name',
+        'title' => 'Objecte :name',
     ],
 ];

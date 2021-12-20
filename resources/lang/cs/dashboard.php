@@ -81,6 +81,10 @@ return [
             'edit'              => 'Upravit součást nástěnky',
         ],
         'title'     => 'Nastavení nástěnky tažení',
+        'tutorial'  => [
+            'blog'  => 'Naše výuka',
+            'text'  => 'Potřebuješ pomoci s přípravou nástěnky svého tažení? Pomoc a inspiraci najdeš zde: :blog',
+        ],
         'widgets'   => [
             'calendar'      => 'Kalendář',
             'campaign'      => 'Záhlaví kalendáře',
@@ -135,6 +139,11 @@ return [
             ],
         ],
         'recent'                    => [
+            'advanced_filter'   => 'Pokročilý filtr',
+            'advanced_filters'  => [
+                'mentionless'   => 'Objekty bez odkazů (neobsahují odkazy na jiné objekty)',
+                'unmentioned'   => 'Neodkazované objekty (objekty, na které není nikde odkaz)',
+            ],
             'entity-header'     => 'Použít záhlaví objektu jako obrázek',
             'filters'           => 'Filtry',
             'full'              => 'Zobrazit celý záznam',

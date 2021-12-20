@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Crea una nova família',
-        'success'       => 'S\'ha creat la família «:name».',
-        'title'         => 'Nova família',
+        'success'   => 'S\'ha creat la família «:name».',
+        'title'     => 'Nova família',
     ],
     'destroy'       => [
         'success'   => 'S\'ha eliminat la família «:name».',
@@ -35,10 +34,9 @@ return [
         'members'   => 'Aquí es mostren els membres d\'una família. Es pot afegir un personatge a una família des del menú d\'edició d\'aquest, mitjançant el desplegable «Família».',
     ],
     'index'         => [
-        'add'           => 'Nova família',
-        'description'   => 'Gestiona les famílies de :name.',
-        'header'        => 'Famílies de :name',
-        'title'         => 'Famílies',
+        'add'       => 'Nova família',
+        'header'    => 'Famílies de :name',
+        'title'     => 'Famílies',
     ],
     'members'       => [
         'helpers'   => [
@@ -53,13 +51,12 @@ return [
         'type'      => 'Real, noble, extingida...',
     ],
     'show'          => [
-        'description'   => 'Vista detallada de la família',
-        'tabs'          => [
+        'tabs'  => [
             'all_members'   => 'Tots els membres',
             'families'      => 'Famílies',
             'members'       => 'Membres',
             'relation'      => 'Relacions',
         ],
-        'title'         => 'Família :name',
+        'title' => 'Família :name',
     ],
 ];

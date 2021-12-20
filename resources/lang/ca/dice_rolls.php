@@ -2,18 +2,16 @@
 
 return [
     'create'        => [
-        'description'   => 'Crea una nova tirada de daus',
-        'success'       => 'S\'ha creat la tirada de daus «:name».',
-        'title'         => 'Nova tirada de daus',
+        'success'   => 'S\'ha creat la tirada de daus «:name».',
+        'title'     => 'Nova tirada de daus',
     ],
     'destroy'       => [
         'dice_roll' => 'S\'ha eliminat la tirada de daus.',
         'success'   => 'S\'ha eliminat la tirada de daus «:name».',
     ],
     'edit'          => [
-        'description'   => 'Edita la tirada de daus',
-        'success'       => 'S\'ha actualitzat la tirada de daus «:name».',
-        'title'         => 'Edita la tirada de daus :name',
+        'success'   => 'S\'ha actualitzat la tirada de daus «:name».',
+        'title'     => 'Edita la tirada de daus :name',
     ],
     'fields'        => [
         'created_at'    => 'Tirada a',
@@ -26,14 +24,13 @@ return [
         'parameters'    => 'Quines són les opcions per tirar daus?',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'dice'      => 'Tirades de daus',
             'results'   => 'Resultats',
         ],
-        'add'           => 'Nova tirada de daus',
-        'description'   => 'Gestiona les tirades de daus de :name.',
-        'header'        => 'Tirada de daus de :name',
-        'title'         => 'Tirades de daus',
+        'add'       => 'Nova tirada de daus',
+        'header'    => 'Tirada de daus de :name',
+        'title'     => 'Tirades de daus',
     ],
     'placeholders'  => [
         'dice_roll' => 'Tirada de daus',
@@ -54,10 +51,9 @@ return [
         'success'   => 'S\'han llençat els daus.',
     ],
     'show'          => [
-        'description'   => 'Vista detallada de la tirada de daus',
-        'tabs'          => [
+        'tabs'  => [
             'results'   => 'Resultats',
         ],
-        'title'         => 'Tirada de daus :name',
+        'title' => 'Tirada de daus :name',
     ],
 ];

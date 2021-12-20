@@ -2,13 +2,11 @@
 
 return [
     'characters'    => [
-        'description'   => 'Personatges que són aquí.',
-        'title'         => 'Personatges a :name',
+        'title' => 'Personatges a :name',
     ],
     'create'        => [
-        'description'   => 'Crea un indret nou',
-        'success'       => 'S\'ha creat l\'indret «:name».',
-        'title'         => 'Nou indret',
+        'success'   => 'S\'ha creat l\'indret «:name».',
+        'title'     => 'Nou indret',
     ],
     'destroy'       => [
         'success'   => 'S\'ha eliminat l\'indret «:name».',
@@ -18,8 +16,7 @@ return [
         'title'     => 'Edita l\'indret :name',
     ],
     'events'        => [
-        'description'   => 'Esdeveniments que passen aquí.',
-        'title'         => 'Esdeveniments a :name',
+        'title' => 'Esdeveniments a :name',
     ],
     'families'      => [
         'title' => 'Famílies a :name',
@@ -49,25 +46,21 @@ return [
         'is_map_private'    => 'Un mapa privat només és visible per als administradors.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Vista d\'exploració',
         ],
-        'add'           => 'Nou indret',
-        'description'   => 'Gestiona els indrets de :name.',
-        'header'        => 'Indrets de :name',
-        'title'         => 'Indrets',
+        'add'       => 'Nou indret',
+        'header'    => 'Indrets de :name',
+        'title'     => 'Indrets',
     ],
     'items'         => [
-        'description'   => 'Objectes situats o procedents d\'aquest indret.',
-        'title'         => 'Objectes de :name',
+        'title' => 'Objectes de :name',
     ],
     'journals'      => [
-        'description'   => 'Cròniques escrites en aquest indret.',
-        'title'         => 'Cròniques de :name',
+        'title' => 'Cròniques de :name',
     ],
     'locations'     => [
-        'description'   => 'Indrets situats en aquesta localització.',
-        'title'         => 'Indrets de :name',
+        'title' => 'Indrets de :name',
     ],
     'map'           => [
         'actions'   => [
@@ -211,26 +204,20 @@ return [
         'name'      => 'Nom de l\'indret',
         'type'      => 'Ciutat, regne, ruïnes...',
     ],
-    'quests'        => [
-        'description'   => 'Missions vinculades a aquest indret.',
-        'title'         => 'Missions a :name',
-    ],
+    'quests'        => [],
     'show'          => [
-        'description'   => 'Vista detallada de l\'indret',
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Personatges',
             'events'        => 'Esdeveniments',
             'families'      => 'Famílies',
-            'information'   => 'Informació',
             'items'         => 'Objectes',
             'journals'      => 'Cròniques',
             'locations'     => 'Indrets',
             'map'           => 'Mapa',
             'maps'          => 'Mapes',
-            'menu'          => 'Menú',
             'organisations' => 'Organitzacions',
             'quests'        => 'Missions',
         ],
-        'title'         => 'Indret :name',
+        'title' => 'Indret :name',
     ],
 ];

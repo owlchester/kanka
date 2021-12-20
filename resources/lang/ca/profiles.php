@@ -1,18 +1,26 @@
 <?php
 
 return [
-    'avatar'        => [
+    'avatar'                        => [
         'success'   => 'S\'ha actualitzat l\'avatar.',
     ],
-    'description'   => 'Actualitza els detalls del perfil',
-    'edit'          => [
+    'campaign_switcher_order_by'    => [
+        'alphabetical'      => 'Alfabèticament',
+        'date_created'      => 'Data de creació',
+        'date_joined'       => 'Data d\'unió',
+        'default'           => 'Per defecte',
+        'r_alphabetical'    => 'Alfabètic invers',
+        'r_date_created'    => 'Data de creació inversa',
+        'r_date_joined'     => 'Data d\'unió inversa',
+    ],
+    'edit'                          => [
         'success'   => 'S\'ha actualitzat el perfil.',
     ],
-    'editors'       => [
+    'editors'                       => [
         'legacy'        => 'Obsolet (TinyMCE 4)',
         'summernote'    => 'Summernote',
     ],
-    'fields'        => [
+    'fields'                        => [
         'avatar'                    => 'Avatar',
         'email'                     => 'Adreça electrònica',
         'hide_subscription'         => 'Amaga el meu nom del :hall_of_fame.',
@@ -25,31 +33,38 @@ return [
         'settings'                  => 'Configuració',
         'theme'                     => 'Tema',
     ],
-    'newsletter'    => [
+    'newsletter'                    => [
+        'helpers'   => [
+            'community-vote'    => 'Notifica\'m cada cop que hi hagi una :community-vote.',
+            'header'            => 'Subscriu-me a les següents newsletters per a assabentar-me del que passa a Kanka.',
+            'monthly'           => 'El nostre resum mensual d\'esdeveniments relacionats amb Kanka.',
+            'release'           => 'Notifica\'m sempre que Kanka rebi una actualització amb un resum del que ha canviat.',
+        ],
         'links'     => [
             'community-vote'    => 'Votació comunitària',
             'news'              => 'Novetats',
             'updates'           => 'Actualitzacions de Kanka',
         ],
+        'options'   => [
+            'monthly'   => 'Newsletter de Kanka',
+            'release'   => 'Nou llançament',
+        ],
         'settings'  => [
-            'news'          => 'Novetats - Notifica\'m quan hi hagi :news',
-            'newsletter'    => 'Newsletter - Rep la newsletter de Kanka',
-            'updates'       => 'Actualitzacions: rebreu una notificació quan Kanka s\'actualitzi.',
-            'votes'         => 'Votacions comunitàrias - Notifica\'m quan una nova :vote estigui disponible',
+            'news'  => 'Novetats - Notifica\'m quan hi hagi :news',
         ],
         'title'     => 'Newsletters',
     ],
-    'password'      => [
+    'password'                      => [
         'success'   => 'S\'ha actualitzat la contrasenya.',
     ],
-    'placeholders'  => [
+    'placeholders'                  => [
         'email'                     => 'La vostra adreça electrònica',
         'name'                      => 'El vostre nom d\'usuari',
         'new_password'              => 'La nova contrasenya',
         'new_password_confirmation' => 'Confirmeu la nova contrasenya',
         'password'                  => 'Escriviu la contrasenya actual per a aplicar els canvis',
     ],
-    'sections'      => [
+    'sections'                      => [
         'delete'    => [
             'delete'    => 'Elimina el compte',
             'helper'    => 'En eliminar el compte s\'eliminaran també les campanyes on en sigueu l\'únic membre. Aquesta acció és permanent i no es pot desfer.',
@@ -60,14 +75,15 @@ return [
             'title' => 'Canvi de contrasenya',
         ],
     ],
-    'settings'      => [
+    'settings'                      => [
         'fields'    => [
-            'advanced_mentions'     => 'Mencions avançades',
-            'date_format'           => 'Format de data',
-            'default_nested'        => 'Vista niada per defecte',
-            'editor'                => 'Editor de text',
-            'new_entity_workflow'   => 'Nou flux de treball',
-            'pagination'            => 'Paginació (elements per pàgina)',
+            'advanced_mentions'             => 'Mencions avançades',
+            'campaign_switcher_order_by'    => 'Ordre de les campanyes al commutador',
+            'date_format'                   => 'Format de data',
+            'default_nested'                => 'Vista niada per defecte',
+            'editor'                        => 'Editor de text',
+            'new_entity_workflow'           => 'Nou flux de treball',
+            'pagination'                    => 'Paginació (elements per pàgina)',
         ],
         'helpers'   => [
             'editor_v2' => 'L\'editor de text obsolet (TinyMCE) no suporta mencions als dispositius mòbils, i no té suport per a funcionalitats com la galeria de campanya.',
@@ -79,7 +95,7 @@ return [
         ],
         'success'   => 'S\'ha canviat la configuració.',
     ],
-    'theme'         => [
+    'theme'                         => [
         'success'   => 'S\'ha canviat el tema.',
         'themes'    => [
             'dark'      => 'Fosc',
@@ -88,8 +104,8 @@ return [
             'midnight'  => 'Blau mitjanit',
         ],
     ],
-    'title'         => 'Actualitza el perfil',
-    'workflows'     => [
+    'title'                         => 'Actualitza el perfil',
+    'workflows'                     => [
         'created'   => 'Anar a l\'entitat nova',
         'default'   => 'Llista d\'entitats',
     ],

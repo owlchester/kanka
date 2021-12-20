@@ -68,11 +68,22 @@ return [
         'title'         => 'Mapas de locais',
     ],
     'pins'              => [
-        'description'   => 'As entidades podem ter relações e atributos fixados à direita de sua exibição de história. Para fixar um elemento, vá e edite a relação ou atributos e defina o valor fixado neles.',
+        'description'   => 'As entidades podem ter relações e atributos fixados à direita de sua visão geral. Para fixar um elemento, vá e edite a relação ou atributos e defina o valor fixado neles.',
         'title'         => 'Entidades Fixadas',
     ],
     'public'            => 'Assista a um tutorial em vídeo no Youtube explicando as campanhas públicas.',
     'title'             => 'Ajuda',
+    'troubleshooting'   => [
+        'description'       => 'Um membro da equipe de Kanka enviou você para esta página. Selecione uma campanha no menu suspenso para gerar um token para que possamos ingressar temporariamente em sua campanha como um administrador.',
+        'errors'            => [
+            'token_exists'  => 'Um token já existe para :campaign.',
+        ],
+        'save_btn'          => 'Gerar token',
+        'select_campaign'   => 'Selecionar uma campanha',
+        'subtitle'          => 'Por favor, envie ajuda!',
+        'success'           => 'Copie o seguinte token e envie-o para alguém da equipe de Kanka.',
+        'title'             => 'Solução de Problemas',
+    ],
     'widget-filters'    => [
         'description'   => 'Você pode filtrar entidades exibidas no widget modificado recentemente, fornecendo uma lista de campos da entidade e valores. Por exemplo, você pode usar :example para filtrar personagens mortos do tipo PdM.',
         'link'          => 'filtros de widget',

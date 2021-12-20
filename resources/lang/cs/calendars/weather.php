@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'       => [
+        'delete-confirm'    => 'Tyto povětrnostní podmínky',
+    ],
     'create'        => [
         'success'   => 'Povětrnostní podmínky přidány',
         'title'     => 'Nové povětrnostní podmínky',

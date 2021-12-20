@@ -99,4 +99,54 @@ TEXT
         'answer'    => 'Můžeš být členem libovolného množství tažení - ať už jsi je vytvořil sám nebo ne. Přepínat mezi taženími nebo vytvářet nová lze klepnutím na název tažení v postranní liště. Zobrazí se seznam tvých tažení a na konci i tlačítko pro tvorbu nového tažení.',
         'question'  => 'Mohu být členem více tažení?',
     ],
+    'nested'                => [
+        'answer'    => 'Pokud chceš své objekty vypisovat standardně ve vnořeném zobrazení (tak, jak se například zobrazí po klepnutí na tlačítko "Vnořené zobrazení" v seznamu míst), je možné to nastavit ve svém profilu mezi možnostmi zobrazení. Zde stačí zaškrtnout políčko "Vnořené zobrazení". Toto nastavení platí pro daný účet, nikoli pro tažení, jichž jsi členem.',
+        'question'  => 'Je možné ve výchozím nastavení vypisovat seznamy ve vnořeném zobrazení?',
+    ],
+    'permissions'           => [
+        'answer'    => 'Rozhodně! To je jeden z hlavních důvodů, proč jsme systém Kanka stvořili! Stačí pozvat své hráče do tažení a přiřadit jim vhodné role a oprávnění. Vytvořili jsme tento systém tak, aby byl co nejpřizpůsobivější, takže je možné jej provozovat jak v režimu "vše povol, zakaž vybrané", tak v režimu "vše zakaž, povol vybrané". Díky tomu by měl pokrýt jakékoli potřeby, které se mohou při tvorbě světa vyskytnout.',
+        'question'  => 'Mohu omezit informace, které jsou dostupné uživatelům tažení?',
+    ],
+    'plans'                 => [
+        'answer'    => <<<'TEXT'
+V dlouhodobém výhledu bychom chtěli systém Kanka dovést do stavu, kdy bude široce použitelný pro tvorbu světa a správu tažení a zároveň neutrální s ohledem na používaný herní systém a komunita hráčů v něm může vytvářet obsah pomocí "Komunitních šablon". Také bychom chtěli dosáhnout toho, aby se systém Kanka mohl propojit s platformami na virtuální deskové hraní (VTT - Virtual Tabletop).
+
+Protože systém Kanka sami používáme, nepředpokládáme, že bychom jej někdy přestali vyvíjet a zlepšovat. Nicméně projekt je typu "open-source" a jeho zdrojové kódy může převzít komunita, pokud bychom se jej přece jen rozhodli někdy opustit.
+TEXT
+,
+        'question'  => 'Jaké máte dlouhodobé plány?',
+    ],
+    'public-campaigns'      => [
+        'answer'    => 'Podívej se sám na stránku :public-campaigns a uvidíš.',
+        'question'  => 'Jak používají systém Kanka ostatní?',
+    ],
+    'renaming-modules'      => [
+        'answer'    => 'Přejmenovat moduly není přímo možné. Nicméně zvýhodněná (boosted) tažení mohou změnit názvy modulů v zobrazení postranní lišty pomocí vlastního CSS stylu.',
+        'question'  => 'Je možné přejmenovat moduly? Například Rody na Klany nebo Organizace na Frakce?',
+    ],
+    'sections'              => [
+        'community'     => 'Komunita',
+        'general'       => 'Obecné',
+        'other'         => 'Další',
+        'permissions'   => 'Oprávnění',
+        'pricing'       => 'Ceník',
+        'worldbuilding' => 'Tvorba světa',
+    ],
+    'show'                  => [
+        'return'    => 'Zpět k FAQ',
+        'timestamp' => 'Naposledy aktualizováno :date',
+        'title'     => 'FAQ :name',
+    ],
+    'unboost'               => [
+        'answer'    => 'Pokud skončí zvýhodnění (boost) tažení, nedojde ke smazání žádných dat, vytvořených během období zvýhodnění, související informace a funkce se ale skryjí. Pokud dojde k obnovení zvýhodnění, související prvky se znovu zpřístupní stejně jako před ukončením zvýhodnění.',
+        'question'  => 'Co se stane, když dojde k ukončení zvýhodnění (boost) tažení?',
+    ],
+    'user-switch'           => [
+        'answer'    => 'Oprávnění mohou být komplikovaná - obzvláště u větších tažení. Jako správce tažení můžeš na stránce členů tažení klepnout na tlačítko "Zobrazit z pohledu", které se nachází u ostatních členů tažení. Poté tě systém přihlásí jako daného uživatele a uvidíš informace v tažení z pohledu daného uživatele. To je nejjednodušší způsob, jak zkontrolovat oprávnění v rámci tažení.',
+        'question'  => 'Nastavil jsem oprávnění ke svému tažení. Mohu je nějak otestovat?',
+    ],
+    'visibility'            => [
+        'answer'    => 'Do tvého tažení mohou nahlížet a pracovat s ním pouze uživatelé, které do něj pozveš. Tvá data jsou soukromá a pouze ty je můžeš ovládat. Můžeš ale svou kampaň označit za veřejnou a tím umožníš její prohlížení i uživatelům, kteří nejsou členy tvého tažení.',
+        'question'  => 'Mohou ostatní nahlížet do mého světa?',
+    ],
 ];

@@ -3,17 +3,15 @@
 return [
     'characters'    => [],
     'create'        => [
-        'description'   => 'Создание нового квеста',
-        'success'       => 'Квест ":name" создан.',
-        'title'         => 'Новый квест',
+        'success'   => 'Квест ":name" создан.',
+        'title'     => 'Новый квест',
     ],
     'destroy'       => [
         'success'   => 'Квест ":name" удален.',
     ],
     'edit'          => [
-        'description'   => 'Редактирование квеста',
-        'success'       => 'Квест ":name" обновлен.',
-        'title'         => 'Редактирование квеста :name',
+        'success'   => 'Квест ":name" обновлен.',
+        'title'     => 'Редактирование квеста :name',
     ],
     'elements'      => [
         'create'    => [
@@ -56,10 +54,9 @@ return [
         'quests'    => 'С помощью поля "Родительский квест" можно создать сеть пересекающихся квестов.',
     ],
     'index'         => [
-        'add'           => 'Новый квест',
-        'description'   => 'Управление квестами :name.',
-        'header'        => 'Квесты :name',
-        'title'         => 'Квесты',
+        'add'       => 'Новый квест',
+        'header'    => 'Квесты :name',
+        'title'     => 'Квесты',
     ],
     'items'         => [],
     'locations'     => [],
@@ -72,15 +69,12 @@ return [
         'type'  => 'Арка персонажа, побочный, основной',
     ],
     'show'          => [
-        'actions'       => [
+        'actions'   => [
             'add_element'   => 'Добавить элемент',
         ],
-        'description'   => 'Детальный вид квеста.',
-        'tabs'          => [
-            'elements'      => 'Элементы',
-            'information'   => 'Информация',
-            'quests'        => 'Квесты',
+        'tabs'      => [
+            'elements'  => 'Элементы',
         ],
-        'title'         => 'Квест :name',
+        'title'     => 'Квест :name',
     ],
 ];

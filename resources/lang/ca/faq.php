@@ -33,10 +33,7 @@ TEXT
         'answer'    => 'Kanka no té aquesta funcionalitat. No obstant això, si per tenir diversos grups al mateix món, podeu utilitzar la mateixa campanya i separar els grups mitjançant etiquetes, missions i permisos.',
         'question'  => 'Es poden sincronitzar entitats entre diverses campanyes?',
     ],
-    'conversations'         => [
-        'answer'    => 'Es poden crear converses entre personatges o entre membres de la campanya. Per exemple, per documentar una xerrada important entre PNJs i PJs. També es pot usar per a jugar campanyes online.',
-        'question'  => 'Què són les converses?',
-    ],
+    'conversations'         => [],
     'custom'                => [
         'answer'    => 'Kanka ve amb un conjunt d\'entitats predefinides que interactuen entre elles. Permetre tipus d\'entitat personalitzats requeriria tornar a reconstruir l\'app des de zero i li llevaria el seu propòsit com a eina de creació. A més, la flexibilitat de Kanka permet que es pugui representar qualsevol tipus d\'entitat amb les etiquetes.',
         'question'  => 'Es poden crear tipus d\'entitat personalitzats?',

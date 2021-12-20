@@ -2,20 +2,18 @@
 
 return [
     'children'      => [
-        'actions'       => [
+        'actions'   => [
             'add'   => 'Добавить объект',
         ],
-        'create'        => [
+        'create'    => [
             'success'   => 'Тэг ":name" добавлен к объекту.',
             'title'     => 'Добавление тэга :name к объекту',
         ],
-        'description'   => 'Объекты с этим тэгом',
-        'title'         => 'Объекты тэга :name',
+        'title'     => 'Объекты тэга :name',
     ],
     'create'        => [
-        'description'   => 'Создание нового тэга',
-        'success'       => 'Тэг ":name" создан.',
-        'title'         => 'Новый тэг',
+        'success'   => 'Тэг ":name" создан.',
+        'title'     => 'Новый тэг',
     ],
     'destroy'       => [
         'success'   => 'Тэг ":name" удален.',
@@ -41,13 +39,12 @@ return [
         'tag'       => 'Это список всех непосредственных потомков этого тэга.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Свернутый вид',
         ],
-        'add'           => 'Новый тэг',
-        'description'   => 'Управление тэгами :name',
-        'header'        => 'Тэги в :name',
-        'title'         => 'Тэги',
+        'add'       => 'Новый тэг',
+        'header'    => 'Тэги в :name',
+        'title'     => 'Тэги',
     ],
     'new_tag'       => 'Новый тэг',
     'placeholders'  => [
@@ -56,16 +53,13 @@ return [
         'type'  => 'Знания, войны, история, религия, флаги',
     ],
     'show'          => [
-        'description'   => 'Детальный вид тэга',
-        'tabs'          => [
-            'children'      => 'Потомки',
-            'information'   => 'Информация',
-            'tags'          => 'Тэги',
+        'tabs'  => [
+            'children'  => 'Потомки',
+            'tags'      => 'Тэги',
         ],
-        'title'         => 'Тэг :name',
+        'title' => 'Тэг :name',
     ],
     'tags'          => [
-        'description'   => 'Подтэги',
-        'title'         => 'Подтэги тэга :name',
+        'title' => 'Подтэги тэга :name',
     ],
 ];

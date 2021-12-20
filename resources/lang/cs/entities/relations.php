@@ -5,6 +5,13 @@ return [
         'mode-map'      => 'Průzkumník souvislostí',
         'mode-table'    => 'Tabulka souvislostí a vztahů',
     ],
+    'bulk'          => [
+        'delete'    => '{1} Smazán :count vztah.|[2,4] Smazány :count vztahy.|[5,*] Smazáno :count vztahů.',
+        'success'   => [
+            'editing'           => '{1} Aktualizován :count vztah.|[2,4] Aktualizovány :count vztahy.|[5,*] Aktualizováno :count vztahů.',
+            'editing_partial'   => '{1} Celkem :count z :total vztahu aktualizováno.|[2,4] Celkem :count ze :total vztahů aktualizováno.|[5,*] Celkem :count/ z :total vztahů aktualizováno',
+        ],
+    ],
     'connections'   => [
         'map_point'         => 'Bod na mapě',
         'mention'           => 'Odkaz',
@@ -12,6 +19,7 @@ return [
         'timeline_element'  => 'Prvek časové osy',
     ],
     'create'        => [
+        'new_title' => 'Nový vztah',
         'success'   => 'Vztah :target přidán k objektu.',
         'title'     => 'Nový vztah objektu :name',
     ],
@@ -22,6 +30,7 @@ return [
         'attitude'          => 'Postoj',
         'connection'        => 'Souvislost',
         'is_star'           => 'Připnuté',
+        'owner'             => 'Zdroj',
         'relation'          => 'Vztah',
         'target'            => 'Cíl',
         'target_relation'   => 'Cílový vztah',

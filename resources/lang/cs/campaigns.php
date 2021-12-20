@@ -155,6 +155,7 @@ TEXT
             'email'     => 'E-mail',
             'role'      => 'Role',
             'type'      => 'Typ',
+            'usage'     => 'Maximální počet použití',
             'validity'  => 'Platnost',
         ],
         'helpers'               => [
@@ -169,6 +170,12 @@ TEXT
             'link'  => 'Odkaz',
         ],
         'unlimited_validity'    => 'Neomezené použití',
+        'usages'                => [
+            'five'      => '5 použití',
+            'no_limit'  => 'Bez omezení',
+            'once'      => '1 použití',
+            'ten'       => '10 použití',
+        ],
     ],
     'leave'                             => [
         'confirm'   => 'Určitě chceš opustit toto tažení? Tím k němu natrvalo ztratíš přístup - pokud ti správce tažení nepošle znovu pozvánku.',
@@ -177,6 +184,8 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
+            'help'          => 'Nápověda',
+            'remove'        => 'Odstranit z tažení',
             'switch'        => 'Zobrazit jako',
             'switch-back'   => 'Zpět k mému zobrazení',
         ],
@@ -231,6 +240,10 @@ TEXT
         'link'      => 'Přihlášky k tažení',
         'title'     => 'Otevřené tažení',
     ],
+    'options'                           => [
+        'entity_personality_visibility' => 'U nově vytvořených postav bude ve výchozím nastavení skrytý popis osobnosti.',
+        'entity_visibility'             => 'Nově vytvořené objekty budou ve výchozím nastavení skryté.',
+    ],
     'panels'                            => [
         'boosted'   => 'Zvýhodněné ("boosted") tažení.',
         'dashboard' => 'Nástěnka',
@@ -251,6 +264,7 @@ TEXT
             'add'           => 'Přidat roli',
             'permissions'   => 'Spravovat oprávnění',
             'rename'        => 'Přejmenovat roli',
+            'save'          => 'Uložit roli',
         ],
         'admin_role'    => 'Role správce',
         'create'        => [
@@ -405,6 +419,7 @@ TEXT
             'recovery'          => 'Obnova',
             'roles'             => 'Role',
             'settings'          => 'Moduly',
+            'styles'            => 'Téma vzhledu',
         ],
         'title'         => 'Tažení :name',
     ],

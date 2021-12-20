@@ -2,27 +2,30 @@
 
 return [
     'campaign'          => [
-        'application'   => [
+        'application'       => [
             'approved'  => 'Zatwierdzono twoje zgłoszenie do kampanii :campaign.',
             'new'       => 'Nowe zgłoszenie do udziału w kampanii :campaign.',
             'rejected'  => 'Odrzucono twoje zgłoszenie do kampanii :campaign. Oto powód: :reason',
         ],
-        'asset_export'  => 'Można pobrać wyeksportowane pliki kampanii. Odnośnik będzie dostępny przez :time minut.',
-        'boost'         => [
+        'asset_export'      => 'Można pobrać wyeksportowane pliki kampanii. Odnośnik będzie dostępny przez :time minut.',
+        'boost'             => [
             'add'           => 'Kampania :campaign została doładowana przez :user.',
             'remove'        => ':user nie doładowuje już kampanii :campaign.',
             'superboost'    => 'Kampania :campaign została turbodoładowana przez :user.',
         ],
-        'export'        => 'Można pobrać wyeksportowaną kampanię. Odnośnik będzie dostępny przez :time minut.',
-        'export_error'  => 'Podczas eksportowania plików kampanii wystąpił błąd. Jeżeli będzie się powtarzał, skontaktuj się z nami. To się zdarza w dużych kampaniach posiadających duże obrazy.',
-        'join'          => ':user dołącza do kampanii :campaign.',
-        'leave'         => ':user opuszcza do kampanię :campaign.',
-        'plugin'        => [
+        'export'            => 'Można pobrać wyeksportowaną kampanię. Odnośnik będzie dostępny przez :time minut.',
+        'export_error'      => 'Podczas eksportowania plików kampanii wystąpił błąd. Jeżeli będzie się powtarzał, skontaktuj się z nami. To się zdarza w dużych kampaniach posiadających duże obrazy.',
+        'join'              => ':user dołącza do kampanii :campaign.',
+        'leave'             => ':user opuszcza do kampanię :campaign.',
+        'plugin'            => [
             'deleted'   => 'Wtyczka :plugin została usunięta z targowiska, więc usunięto ją również z kampanii :campaign.',
         ],
-        'role'          => [
+        'role'              => [
             'add'       => 'Nadano ci rolę :role w kampanii :campaign.',
             'remove'    => 'Odebrano ci rolę :role w kampanii :campaign.',
+        ],
+        'troubleshooting'   => [
+            'joined'    => ':user z zespołu Kanki dołączył do kampanii :campaign',
         ],
     ],
     'clear'             => [

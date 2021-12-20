@@ -34,9 +34,10 @@ return [
     ],
     'event'         => [
         'actions'   => [
-            'existing'  => 'Existující objekt',
-            'new'       => 'Nová událost',
-            'switch'    => 'Změnit výběr',
+            'delete-confirm'    => 'Tato připomínka',
+            'existing'          => 'Existující objekt',
+            'new'               => 'Nová událost',
+            'switch'            => 'Změnit výběr',
         ],
         'create'    => [
             'description'   => 'Vytvořit novou událost',

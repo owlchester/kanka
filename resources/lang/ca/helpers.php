@@ -5,6 +5,10 @@ return [
         'description'   => 'Es pot vincular un personatge a un calendari de la campanya des de la pestanya de recordatoris del personatge. Des d\'allà, afegiu un nou recordatori i doneu-li el tipus Naixement o Mort per a calcular automàticament l\'edat del personatge. Si totes dues dates són presents, es mostraran les dues juntament amb l\'edat de defunció. Si només s\'ha indicat el naixement, es mostraran la data i l\'edat actual. Si només s\'ha indicat la mort, es mostraran la data i els anys des de la mort.',
         'title'         => 'Edat i mort dels personatges',
     ],
+    'api-filters'       => [
+        'description'   => 'Els següents filtres estan disponibles per a l\'endpoint :name de l\'API.',
+        'title'         => 'Filtres de l\'API',
+    ],
     'attributes'        => [
         'con'               => 'Con',
         'description'       => 'Es poden usar atributs per representar valors no textuals associats a una entitat. Es poden referenciar altres entitats als atributs mitjançant la sintaxi de mencions avançada :mention. També es poden referenciar altres atributs amb la sintaxi d\':attribute.',
@@ -68,6 +72,16 @@ return [
     ],
     'public'            => 'Mireu el vídeo tutorial a Youtube sobre les campanyes públiques.',
     'title'             => 'Ajuda',
+    'troubleshooting'   => [
+        'errors'            => [
+            'token_exists'  => 'Ja existeix un token per a la campanya :campaign.',
+        ],
+        'save_btn'          => 'Genera un token',
+        'select_campaign'   => 'Seleccioneu una campanya',
+        'subtitle'          => 'Ajuda, siusplau!',
+        'success'           => 'Copieu el següent token i envieu-lo a algú de l\'equip de Kanka.',
+        'title'             => 'Solucionar errors',
+    ],
     'widget-filters'    => [
         'description'   => 'Podeu filtrar les entitats mostrades al widget de les recentment modificades mitjançant una llista dels camps de l\'entitat i els seus valors. Per exemple, podeu usar :example per a filtrar per personatges morts de tipus NPC.',
         'link'          => 'filtres dels widgets',

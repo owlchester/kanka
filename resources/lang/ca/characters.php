@@ -7,26 +7,22 @@ return [
         'add_personality'   => 'Afegeix personalitat',
     ],
     'conversations' => [
-        'description'   => 'Converses on el personatge participa.',
-        'title'         => 'Converses de :name',
+        'title' => 'Converses de :name',
     ],
     'create'        => [
-        'description'   => 'Crea un nou personatge',
-        'success'       => 'S\'ha creat el personatge «:name».',
-        'title'         => 'Nou personatge',
+        'success'   => 'S\'ha creat el personatge «:name».',
+        'title'     => 'Nou personatge',
     ],
     'destroy'       => [
         'success'   => 'S\'ha eliminat el personatge «:name».',
     ],
     'dice_rolls'    => [
-        'description'   => 'Tirades de daus assignades al personatge.',
-        'hint'          => 'Es poden assignar tirades de daus a un personatge per utilitzar-les durant el joc.',
-        'title'         => 'Tirades de daus de :name',
+        'hint'  => 'Es poden assignar tirades de daus a un personatge per utilitzar-les durant el joc.',
+        'title' => 'Tirades de daus de :name',
     ],
     'edit'          => [
-        'description'   => 'Edita el personatge',
-        'success'       => 'S\'ha actualitzat el personatge «:name».',
-        'title'         => 'Edita el personatge :name',
+        'success'   => 'S\'ha actualitzat el personatge «:name».',
+        'title'     => 'Edita el personatge :name',
     ],
     'fields'        => [
         'age'                       => 'Edat',
@@ -56,44 +52,37 @@ return [
         'personality_visible'       => 'Els trets de personalitat d\'aquest personatge són visibles per a tothom.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'random'    => 'Nou personatge aleatori',
         ],
-        'add'           => 'Nou personatge',
-        'description'   => 'Gestiona els personatges de :name.',
-        'header'        => 'Personatges de :name',
-        'title'         => 'Personatges',
+        'add'       => 'Nou personatge',
+        'header'    => 'Personatges de :name',
+        'title'     => 'Personatges',
     ],
     'items'         => [
-        'description'   => 'Els objectes que duu el personatge.',
-        'hint'          => 'Aquí es mostren els objectes assignats als personatges.',
-        'title'         => 'Objectes de :name',
+        'hint'  => 'Aquí es mostren els objectes assignats als personatges.',
+        'title' => 'Objectes de :name',
     ],
     'journals'      => [
-        'description'   => 'Diaris que ha escrit el personatge.',
-        'title'         => 'Diaris de :name',
+        'title' => 'Diaris de :name',
     ],
     'maps'          => [
-        'description'   => 'Mapa de relacions d\'un personatge.',
-        'title'         => 'Mapa de relacions de :name',
+        'title' => 'Mapa de relacions de :name',
     ],
     'organisations' => [
         'actions'       => [
             'add'   => 'Afegeix una organització',
         ],
         'create'        => [
-            'description'   => 'Associa una organització a un personatge',
-            'success'       => 'S\'ha afegit el personatge a l\'organització.',
-            'title'         => 'Nova organització per a :name',
+            'success'   => 'S\'ha afegit el personatge a l\'organització.',
+            'title'     => 'Nova organització per a :name',
         ],
-        'description'   => 'Organizacions on es troba el personatge.',
         'destroy'       => [
             'success'   => 'S\'ha tret el personatge de l\'organització.',
         ],
         'edit'          => [
-            'description'   => 'Actualiza l\'organizació d\'un personatge',
-            'success'       => 'S\'ha actualitzat l\'organització del personatge.',
-            'title'         => 'Actualiza l\'organizació de :name',
+            'success'   => 'S\'ha actualitzat l\'organització del personatge.',
+            'title'     => 'Actualiza l\'organizació de :name',
         ],
         'fields'        => [
             'organisation'  => 'Organització',
@@ -124,12 +113,10 @@ return [
         'type'              => 'PNJ, Personatge Jugador, divinitat...',
     ],
     'quests'        => [
-        'description'   => 'Les missions on participa el personatge.',
-        'helpers'       => [
+        'helpers'   => [
             'quest_giver'   => 'Les missions que ha iniciat el personatge.',
             'quest_member'  => 'Les missions on el personatge és un membre.',
         ],
-        'title'         => 'Missions de :name',
     ],
     'sections'      => [
         'appearance'    => 'Aparença',
@@ -137,18 +124,12 @@ return [
         'personality'   => 'Personalitat',
     ],
     'show'          => [
-        'description'   => 'Vista detallada del personatge',
-        'tabs'          => [
-            'conversations' => 'Converses',
-            'dice_rolls'    => 'Tirades de daus',
-            'items'         => 'Objectes',
-            'journals'      => 'Diaris',
+        'tabs'  => [
             'map'           => 'Mapa de relacions',
             'organisations' => 'Organitzacions',
             'personality'   => 'Trets',
-            'quests'        => 'Missions',
         ],
-        'title'         => 'Personatge :name',
+        'title' => 'Personatge :name',
     ],
     'warnings'      => [
         'personality_hidden'    => 'No teniu permís per editar els trets de personalitat d\'aquest personatge.',

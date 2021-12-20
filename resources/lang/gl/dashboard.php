@@ -55,7 +55,6 @@ return [
             'visible'   => 'Visíbel',
         ],
     ],
-    'description'       => 'O lar da túa creatividade',
     'helpers'           => [
         'follow'    => 'Seguir unha campaña fará que esta apareza no selector de campañas (arriba á esquerda) baixo as túas campañas.',
         'join'      => 'Esta campaña está aberta a inscricións. Fai clic para solicitar unirte a ela.',

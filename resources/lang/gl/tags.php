@@ -2,20 +2,18 @@
 
 return [
     'children'      => [
-        'actions'       => [
+        'actions'   => [
             'add'   => 'Engadir á etiqueta',
         ],
-        'create'        => [
+        'create'    => [
             'success'   => 'A etiqueta ":name" foi engadida á entidade.',
             'title'     => 'Engadir unha entidade a ":name"',
         ],
-        'description'   => 'Entidades asociadas á etiqueta',
-        'title'         => 'Subetiquetas da etiqueta ":name"',
+        'title'     => 'Subetiquetas da etiqueta ":name"',
     ],
     'create'        => [
-        'description'   => 'Crear unha nova etiqueta',
-        'success'       => 'Etiqueta ":name" creada.',
-        'title'         => 'Nova etiqueta',
+        'success'   => 'Etiqueta ":name" creada.',
+        'title'     => 'Nova etiqueta',
     ],
     'destroy'       => [
         'success'   => 'Etiqueta ":name" eliminada.',
@@ -41,13 +39,12 @@ return [
         'tag'       => 'Abaixo están mostradas todas as etiquetas directamente baixo esta etiqueta.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Vista en árbore',
         ],
-        'add'           => 'Nova etiqueta',
-        'description'   => 'Xestionar a etiqueta de ":name"',
-        'header'        => 'Etiquetas en ":name"',
-        'title'         => 'Etiquetas',
+        'add'       => 'Nova etiqueta',
+        'header'    => 'Etiquetas en ":name"',
+        'title'     => 'Etiquetas',
     ],
     'new_tag'       => 'Nova etiqueta',
     'placeholders'  => [
@@ -56,16 +53,13 @@ return [
         'type'  => 'Tradicións, guerras, historia, relixión, vexiloloxía...',
     ],
     'show'          => [
-        'description'   => 'Vista detallada dunha etiqueta',
-        'tabs'          => [
-            'children'      => 'Subetiquetas',
-            'information'   => 'Información',
-            'tags'          => 'Etiquetas',
+        'tabs'  => [
+            'children'  => 'Subetiquetas',
+            'tags'      => 'Etiquetas',
         ],
-        'title'         => 'Etiqueta ":name"',
+        'title' => 'Etiqueta ":name"',
     ],
     'tags'          => [
-        'description'   => 'Subetiquetas',
-        'title'         => 'Subetiquetas de ":name"',
+        'title' => 'Subetiquetas de ":name"',
     ],
 ];
