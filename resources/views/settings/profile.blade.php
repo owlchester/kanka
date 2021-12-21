@@ -104,7 +104,7 @@
             <div class="form-group checkbox">
                 <label>
                     {!! Form::checkbox('mail_release', 1, $user->mail_release) !!}
-                    {!! __('profiles.newsletter.options.release', ['news' => link_to_route('front.news', __('profiles.newsletter.links.updates'))]) !!}
+                    {!! __('profiles.newsletter.options.release') !!}
                 </label>
                 <p class="help-block">
                     {{ __('profiles.newsletter.helpers.release') }}
