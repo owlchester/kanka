@@ -147,7 +147,7 @@
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal new widget -->
     <div class="modal fade" id="new-widget" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -192,7 +192,7 @@
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal edit widget -->
     <div class="modal fade" id="edit-widget" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
