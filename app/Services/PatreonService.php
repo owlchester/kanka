@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\User;
+use Illuminate\Support\Arr;
 use Patreon\API;
 use Patreon\OAuth;
 use Exception;
@@ -134,6 +135,7 @@ class PatreonService
 
         // We need to do this workaround since role->users() returns the TCG\User group, which doesn't have
         // our accessors for the patreon data.
+        /** @var Role $role */
         $role = Role::where(['name' => 'patreon'])->first();
 
         // No patreon role? Local instance or not properly set up. Let's just avoid throwing an error.
@@ -145,7 +147,7 @@ class PatreonService
         /** @var User $user */
         $users = User::select(['patreon_pledge', 'name', 'settings'])->whereIn('id', $ids)->orderBy('name', 'ASC')->get();
         foreach ($users as $user) {
-            if ($user->setting('hide_subscription', false)) {
+            if (Arr::get($user, 'settings.hide_subscription', false)) {
                 continue;
             }
             $patrons[$user->patreon_pledge ?: 'Kobold'][] = $user->name;
