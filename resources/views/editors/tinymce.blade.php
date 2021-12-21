@@ -26,14 +26,14 @@
             extended_valid_elements: "+@[data-mention]",
             directionality : '{{ App::getLocale() == 'he' ? 'rtl' : 'ltr' }}',
             mentions: {
-                delimiter: ['@', '#', '['@if(!empty($model) && $model->entity), '{'@endif],
+                delimiter: ['@', '#', '['@if(!empty($model) && $model->hasEntity()), '{'@endif],
                 delay: 250,
                 source: function(query, process, delimiter) {
                     if (delimiter === '#') {
                         $.getJSON('{{ route('search.calendar-months') }}?q='+ query, function(data) {
                             process(data)
                         })
-                    } @if(!empty($model) && $model->entity)else if(delimiter === '{') {
+                    } @if(!empty($model) && $model->hasEntity())else if(delimiter === '{') {
                         $.getJSON('{{ route('search.attributes', $model->entity) }}?q='+ query, function(data) {
                             process(data)
                         })

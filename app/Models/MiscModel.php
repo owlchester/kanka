@@ -274,6 +274,14 @@ abstract class MiscModel extends Model
     }
 
     /**
+     * @return bool
+     */
+    public function hasEntity(): bool
+    {
+        return method_exists($this, 'entityTypeID');
+    }
+
+    /**
      * @return string|null (menu links)
      */
     public function getEntityType()
