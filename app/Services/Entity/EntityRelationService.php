@@ -176,7 +176,7 @@ class EntityRelationService
         }
         $this->entities[$entity->id] = [
             'id' => $entity->id,
-            'name' => $entity->name . "\n(" . __('entities.' . $entity->type) . ')',
+            'name' => $entity->name . "\n(" . $entity->entityType() . ')',
             'image' => $img,
             'link' => route('entities.relations.index', $params),
             //'tooltip' => route('entities.tooltip', $entity->id)
