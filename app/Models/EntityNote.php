@@ -154,6 +154,14 @@ class EntityNote extends Model
     }
 
     /**
+     * @return bool
+     */
+    public function hasEntity(): bool
+    {
+        return true;
+    }
+
+    /**
      * @return mixed
      */
     public function getEntryForEditionAttribute()
