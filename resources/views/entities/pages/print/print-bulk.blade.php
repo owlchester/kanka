@@ -24,9 +24,8 @@
     </button>
 
     @foreach ($entities as $model)
-        @php $entity = $model->entity @endphp
+        @php $entity = $model->entity; $name = $entity->pluralType() @endphp
 
-        @include('entities.components.header', ['model' => $model])
         @include($entity->pluralType() . '.show')
         @includeIf('entities.pages.profile._' . $entity->type())
         @includeIf($entity->pluralType() . '._print')
