@@ -8,10 +8,11 @@ if (!isset($offset)) {
     $offset = 0;
 }
 $entityType = $widget->conf('entity');
+$entityTypeID = (int) config('entities.ids.' . $entityType);
 $entity = \App\Models\Entity::
         inTags($widget->tags->pluck('id')->toArray())
         ->whereNotIn('type', ['attribute_template', 'conversation', 'tag'])
-        ->type($entityType)
+        ->type($entityTypeID)
         ->acl()
         ->with(['image'])
         ->whereNotIn('entities.id', \App\Facades\Dashboard::excluding())

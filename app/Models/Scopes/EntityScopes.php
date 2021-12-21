@@ -46,15 +46,15 @@ trait EntityScopes
 
     /**
      * @param $query
-     * @param $type
+     * @param int $type
      * @return mixed
      */
-    public function scopeType(Builder $query, $type)
+    public function scopeType(Builder $query, int $type)
     {
         if (empty($type)) {
             return $query;
         }
-        return $query->where('type', $type);
+        return $query->where('type_id', $type);
     }
 
     /**

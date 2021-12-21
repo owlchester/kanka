@@ -25,7 +25,7 @@ trait Filterable
 
         $default = [
             'name',
-            'type',
+            'type_id',
             'is_private',
             'tag_id',
             'tags',
@@ -270,7 +270,7 @@ trait Filterable
             ->select($this->getTable() . '.*')
             ->leftJoin('entities as e', function ($join) {
                 $join->on('e.entity_id', '=', $this->getTable() . '.id');
-                $join->where('e.type', '=', $this->getEntityType())
+                $join->where('e.type_id', '=', $this->entityTypeID())
                     ->whereRaw('e.campaign_id = ' . $this->getTable() . '.campaign_id');
             })
         ;

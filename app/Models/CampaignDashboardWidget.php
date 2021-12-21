@@ -309,9 +309,10 @@ class CampaignDashboardWidget extends Model
             $base = $base->whereIn('entities.entity_id', $entityIds);
         }
 
+        $entityTypeID = (int) config('entities.ids.' . $entityType);
         return $base
             ->inTags($this->tags->pluck('id')->toArray())
-            ->type($entityType)
+            ->type($entityTypeID)
             ->acl()
             ->with(['tags', 'image'])
             ->paginate(10)
