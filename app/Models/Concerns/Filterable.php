@@ -25,7 +25,7 @@ trait Filterable
 
         $default = [
             'name',
-            'type_id',
+            'type',
             'is_private',
             'tag_id',
             'tags',

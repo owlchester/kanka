@@ -38,7 +38,7 @@ class EntityController extends Controller
             $this->search
                 ->term($term)
                 ->campaign($campaign)
-                ->only(['calendars'])
+                ->only([config('entities.ids.calendar')])
                 ->find()
         );
     }

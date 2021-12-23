@@ -33,7 +33,7 @@ class CalendarController extends Controller
             $this->search
                 ->term($term)
                 ->campaign($campaign)
-                ->only('calendar')
+                ->only(config('entities.ids.calendar'))
                 ->find()
         );
     }
