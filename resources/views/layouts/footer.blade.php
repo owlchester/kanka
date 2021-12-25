@@ -33,7 +33,7 @@
                         <a href="{{ route('front.newsletter') }}">{{ __('front.menu.newsletter') }}</a>
                     </li>
                     <li>
-                        <a href="§//blog.kanka.io" target="_blank">{{ __('front.menu.news') }}</a>
+                        <a href="//blog.kanka.io" target="_blank">{{ __('front.menu.news') }}</a>
                     </li>
                 </ul>
             </div>
