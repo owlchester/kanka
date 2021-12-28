@@ -447,7 +447,7 @@ class SubscriptionService
             $this->user->update(['patreon_pledge']);
 
             // We're so far, good. Let's add the user to the Patreon group
-            $role = Voyager::model('Role')->where('name', '=', 'patreon')->first();
+            $role = Role::where('name', '=', 'patreon')->first();
             if ($role && !$this->user->hasRole('patreon')) {
                 $this->user->roles()->attach($role->id);
             }
