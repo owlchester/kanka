@@ -318,11 +318,15 @@ class MenuLink extends MiscModel
     public function randomEntity()
     {
         $entityType = $this->random_entity_type != 'any' ? $this->random_entity_type : null;
+        $entityTypeID = null;
+        if (!empty($entityType)) {
+            $entityTypeID = config('entities.ids.' . $entityType);
+        }
 
         /** @var Entity $entity */
         $entity = Entity::
             inTags($this->tags->pluck('id')->toArray())
-            ->type($entityType)
+            ->type($entityTypeID)
             ->acl()
             ->inRandomOrder()
             ->first();
