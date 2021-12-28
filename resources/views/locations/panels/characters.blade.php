@@ -49,10 +49,12 @@ $characters = $model
         </div>
 
         @if ($characters->count() > 0)
+        <div class="table-responsive">
         <table id="characters" class="table table-hover">
             <tbody><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ __('characters.fields.name') }}</th>
+                <th>{{ __('characters.fields.type') }}</th>
                 @if ($campaign->enabled('families'))
                     <th>{{ __('characters.fields.family') }}</th>
                 @endif
@@ -73,6 +75,9 @@ $characters = $model
                         @endif
                         <br />
                         <i>{{ $character->title }}</i>
+                    </td>
+                    <td>
+                        {{ $character->type }}
                     </td>
                     @if ($campaign->enabled('families'))
                         <td>
@@ -95,6 +100,7 @@ $characters = $model
             @endforeach
             </tbody>
         </table>
+        </div>
         @endif
     </div>
     @if ($characters->hasPages())
