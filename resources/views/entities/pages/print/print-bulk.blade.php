@@ -26,7 +26,11 @@
     @foreach ($entities as $model)
         @php $entity = $model->entity; $name = $entity->pluralType() @endphp
 
-        @include($entity->pluralType() . '.show')
+        @if(view()->exists($entity->pluralType() . '.show'))
+            @include($entity->pluralType() . '.show')
+        @else
+            @include('cruds.overview')
+        @endif
         @includeIf('entities.pages.profile._' . $entity->type())
         @includeIf($entity->pluralType() . '._print')
         @includeWhen($entity->abilities->count() > 0, 'entities.pages.print._abilities')
