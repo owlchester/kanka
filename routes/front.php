@@ -38,11 +38,9 @@ Route::get('/features/relations', 'Front\FeatureController@relations')->name('fr
 Route::get('/hall-of-fame', 'FrontController@hallOfFame')->name('front.hall-of-fame');
 
 // Slug
-Route::get('/releases/{id}-{slug?}', 'ReleaseController@show');
 
 Route::post('/community-votes/{community_vote}/vote', 'CommunityVoteController@vote')->name('community-votes.vote');
 Route::resources([
-    'releases' => 'ReleaseController',
     'community-votes' => 'CommunityVoteController',
     'community-events' => 'Front\CommunityEventController',
     'community-events.community-event-entries' => 'Front\CommunityEventEntryController',
