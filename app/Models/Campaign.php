@@ -451,13 +451,6 @@ class Campaign extends MiscModel
         return !empty(CampaignCache::themes());
     }
 
-    /**
-     * @return bool
-     */
-    public function getEntityNoteVisibilityAttribute(): bool
-    {
-        return (bool) Arr::get($this->settings, 'entity_note_visibility', false);
-    }
 
     /**
      * @return array|\ArrayAccess|mixed

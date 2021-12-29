@@ -7,6 +7,11 @@ $permissions = [
     1 => __('crud.edit'),
     2 => __('crud.permissions.actions.bulk.deny')
 ];
+$currentCampaign = \App\Facades\CampaignLocalization::getCampaign();
+$defaultCollapsed = null;
+if (!empty($currentCampaign->ui_settings['post_collapsed'])) {
+    $defaultCollapsed = 1;
+}
 ?>
 
 <div class="nav-tabs-custom">
@@ -55,7 +60,7 @@ $permissions = [
                 <div class="col-md-6">
                     <div class="form-group">
                         {!! Form::hidden('settings[collapsed]', 0) !!}
-                        <label>{!! Form::checkbox('settings[collapsed]', 1, null) !!}
+                        <label>{!! Form::checkbox('settings[collapsed]', 1, $defaultCollapsed) !!}
                             {{ __('entities/notes.fields.collapsed') }}
                         </label>
                         <div class="help-block">
