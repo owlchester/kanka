@@ -6,6 +6,7 @@ namespace App\Models\Relations;
 use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
+use App\Models\CampaignPermission;
 use App\Models\Conversation;
 use App\Models\EntityAbility;
 use App\Models\EntityEvent;
@@ -51,6 +52,7 @@ use App\User;
  * @property Image $image
  * @property Image $header
  * @property User[] $users
+ * @property CampaignPermission[] $permissions
  */
 trait EntityRelations
 {

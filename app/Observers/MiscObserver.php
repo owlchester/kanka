@@ -153,6 +153,12 @@ abstract class MiscObserver
                 $inventory->copyTo($model->entity);
             }
         }
+        if (request()->has('copy_source_permissions') && request()->filled('copy_source_permissions')) {
+            $source = $source ?? Entity::findOrFail($sourceId);
+            foreach ($source->permissions as $perm) {
+                $perm->copyTo($model->entity, $source->entity_id, $model->id);
+            }
+        }
     }
 
     /**

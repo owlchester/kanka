@@ -115,4 +115,16 @@ class CampaignPermission extends Model
         }
         return $this->cachedSegments;
     }
+
+    /**
+     * Copy an entity inventory to another target
+     * @param Entity $target
+     */
+    public function copyTo(Entity $target, string $from, string $to)
+    {
+        $new = $this->replicate(['entity_id']);
+        $new->entity_id = $target->id;
+        $new->key = Str::replaceLast('_' . $from, '_' . $to, $new->key);
+        return $new->save();
+    }
 }

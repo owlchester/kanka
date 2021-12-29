@@ -26,6 +26,13 @@
     </label>
 </div>
 
+<div class="form-group">
+    {!! Form::hidden('copy_source_permissions', null) !!}
+    <label>{!! Form::checkbox('copy_source_permissions', 1, request()->filled('template')) !!}
+        {{ __('crud.fields.copy_permissions') }}
+    </label>
+</div>
+
 @if (view()->exists($name . '.form._copy'))
     @include($name . '.form._copy')
 @endif

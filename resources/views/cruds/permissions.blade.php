@@ -23,6 +23,7 @@
 /** @var \App\Services\PermissionService $permissionService */
 $permissions = $permissionService->type($entity->type())->entityPermissions($entity);
 @endphp
+    {!! Form::open(['route' => ['entities.permissions', $entity->id], 'method'=>'POST', 'data-shortcut' => "1"]) !!}
 
     <div class="panel panel-default">
         @if ($ajax)
@@ -42,15 +43,15 @@ $permissions = $permissionService->type($entity->type())->entityPermissions($ent
 
             @include('partials.errors')
 
-            {!! Form::open(['route' => ['entities.permissions', $entity->id], 'method'=>'POST', 'data-shortcut' => "1"]) !!}
 
             @include('cruds.permissions.permissions_table')
-
-            {!! Form::hidden('entity_id', $entity->id) !!}
-            <div class="form-group">
-                <button class="btn btn-success">{{ __('crud.save') }}</button>
-            </div>
-            {!! Form::close() !!}
+        </div>
+        <div class="panel-footer text-right">
+            <button class="btn btn-success">{{ __('crud.save') }}</button>
         </div>
     </div>
+
+
+    {!! Form::hidden('entity_id', $entity->id) !!}
+    {!! Form::close() !!}
 @endsection

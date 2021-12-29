@@ -125,6 +125,7 @@ return [
         'copy_attributes'       => 'Copy Attributes',
         'copy_inventory'        => 'Copy Inventory',
         'copy_links'            => 'Copy Entity Links',
+        'copy_permissions'      => 'Copy Permissions (this will override values set in the permissions tab)',
         'copy_posts'            => 'Copy Posts (this includes the posts permissions)',
         'creator'               => 'Creator',
         'dice_roll'             => 'Dice Roll',
