@@ -33,7 +33,7 @@
                         $.getJSON('{{ route('search.calendar-months') }}?q='+ query, function(data) {
                             process(data)
                         })
-                    } @if(!empty($model) && $model->hasEntity())else if(delimiter === '{') {
+                    } @if(!empty($model) && $model->hasEntity() && $model->entity)else if(delimiter === '{') {
                         $.getJSON('{{ route('search.attributes', $model->entity) }}?q='+ query, function(data) {
                             process(data)
                         })
@@ -51,7 +51,7 @@
                 insert: function(item) {
                     // Attribute
                     if (item.value) {
-                        @if (Auth::user()->advancedMentions)
+                        @if (auth()->user()->advancedMentions)
                             return '{attribute:' + item.id + '}';
                         @else
                             return '<a href="#" class="attribute attribute-mention" data-attribute="{attribute:' + item.id + '}">{' + item.name + '}</a>'
@@ -59,7 +59,7 @@
                     }
                     else if (item.id) {
                         var mention = '[' + item.model_type + ':' + item.id + ']';
-                        @if (Auth::user()->advancedMentions)
+                        @if (auth()->user()->advancedMentions)
                         return mention;
                         @else
                         if (advancedRequest) {

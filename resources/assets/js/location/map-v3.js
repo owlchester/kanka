@@ -104,6 +104,16 @@ function initMapExplore()
  */
 function initMapForms()
 {
+    $('select[name="size_id"]').change(function (e) {
+        if (this.value == 6) {
+            $('.map-marker-circle-helper').hide();
+            $('.map-marker-circle-radius').show();
+        } else {
+            $('.map-marker-circle-radius').hide();
+            $('.map-marker-circle-helper').show();
+        }
+    });
+
     //console.info('mapsv3', 'initMapForms');
     let layerForm = $('#map-layer-form');
     let markerForm = $('#map-marker-form');

@@ -29,7 +29,7 @@
     <div
         id="summernote-config"
         data-mention="{{ route('search.live') }}"
-        data-advanced-mention="{{ Auth::user()->advancedMentions }}"
+        data-advanced-mention="{{ auth()->user()->advancedMentions }}"
         data-months="{{ route('search.calendar-months') }}"
         data-gallery-title="Superboosted Gallery"
         data-gallery-close="{{ __('crud.click_modal.close') }}"
@@ -51,7 +51,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ trans('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.delete_modal.close') }}"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">{{ __('campaigns.superboosted.gallery.error.title') }}</h4>
                 </div>
                 <div class="modal-body">
@@ -60,7 +60,7 @@
 ]) !!}</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('crud.cancel') }}</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>
                 </div>
             </div>
         </div>

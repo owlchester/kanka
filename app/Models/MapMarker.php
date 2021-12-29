@@ -497,4 +497,13 @@ class MapMarker extends Model
         $stripped = trim(preg_replace('/\s\s+/', ' ', $this->entry));
         return !empty($stripped);
     }
+
+    /**
+     * For legacy tinymce editor
+     * @return bool
+     */
+    public function hasEntity(): bool
+    {
+        return false;
+    }
 }

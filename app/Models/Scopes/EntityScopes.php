@@ -49,7 +49,7 @@ trait EntityScopes
      * @param int $type
      * @return mixed
      */
-    public function scopeType(Builder $query, int $type)
+    public function scopeType(Builder $query, int $type = null)
     {
         if (empty($type)) {
             return $query;

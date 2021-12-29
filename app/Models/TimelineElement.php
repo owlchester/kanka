@@ -169,4 +169,13 @@ class TimelineElement extends Model
 
         return $this->entity->tooltipedLink($this->name);
     }
+
+    /**
+     * For legacy tinymce editor
+     * @return bool
+     */
+    public function hasEntity(): bool
+    {
+        return false;
+    }
 }
