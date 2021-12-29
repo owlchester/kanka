@@ -125,7 +125,7 @@ return [
         'copy_attributes'       => 'Copy Attributes',
         'copy_inventory'        => 'Copy Inventory',
         'copy_links'            => 'Copy Entity Links',
-        'copy_notes'            => 'Copy Posts',
+        'copy_posts'            => 'Copy Posts (this includes the posts permissions)',
         'creator'               => 'Creator',
         'dice_roll'             => 'Dice Roll',
         'entity'                => 'Entity',

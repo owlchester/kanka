@@ -2,7 +2,7 @@
 <div class="form-group">
     {!! Form::hidden('copy_source_notes', null) !!}
     <label>{!! Form::checkbox('copy_source_notes', 1, true) !!}
-        {{ __('crud.fields.copy_notes') }}
+        {{ __('crud.fields.copy_posts') }}
     </label>
 </div>
 @if ($campaign->campaign()->boosted())
