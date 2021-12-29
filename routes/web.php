@@ -413,6 +413,7 @@ Route::group([
         Route::get('/search/reminder-entities', 'Search\LiveController@reminderEntities')->name('search.entities-with-reminders');
         Route::get('/search/relation-entities', 'Search\LiveController@relationEntities')->name('search.entities-with-relations');
         Route::get('/search/tag-children', 'Search\LiveController@tagChildren')->name('search.tag-children');
+        Route::get('/search/organisation-member', 'Search\LiveController@organisationMembers')->name('search.organisation-member');
         Route::get('/search/months', 'Search\CalendarController@months')->name('search.calendar-months');
         Route::get('/search/live', 'Search\LiveController@index')->name('search.live');
 

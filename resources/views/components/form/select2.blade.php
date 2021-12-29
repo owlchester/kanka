@@ -22,6 +22,8 @@ if (empty($selectedOption) && !empty($prefill)) {
         $selectedOption = [$prefill->id => $prefill->name];
     } elseif ($prefill instanceof \App\Models\Image) {
         $selectedOption = [$prefill->id => $prefill->name];
+    }  elseif ($prefill instanceof \App\Models\OrganisationMember) {
+        $selectedOption = [$prefill->id => $prefill->character->name];
     } elseif (is_array($prefill)) {
         $selectedOption = $prefill;
     }

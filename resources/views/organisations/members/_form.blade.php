@@ -21,8 +21,24 @@ $statuses = [
     ) !!}
 </div>
 <div class="form-group">
-    <label>{{ __('organisations.members.fields.role') }}</label>
-    {!! Form::text('role', null, ['placeholder' => __('organisations.members.placeholders.role'), 'class' => 'form-control', 'maxlength' => 45]) !!}
+    {!! Form::select2(
+        'parent_id',
+        (!empty($member) ? $member->parent : null),
+        App\Models\OrganisationMember::class,
+        false,
+        'organisations.members.fields.parent',
+        'search.organisation-member',
+        'organisations.members.placeholders.parent',
+        $model,
+    ) !!}
+</div>
+
+<div class="form-group">
+    <label>
+        {{ __('organisations.members.fields.pinned') }}
+        <i class="fas fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('organisations.members.helpers.pinned') }}"></i>
+    </label>
+    {!! Form::select('pin_id', $options, null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">

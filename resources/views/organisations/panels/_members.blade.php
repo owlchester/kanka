@@ -20,7 +20,8 @@ $members = $model->allMembers()
         ->has('character')
         ->with([
             'character', 'character.race', 'character.location', 'organisation',
-            'character.entity', 'organisation.entity'
+            'character.entity', 'organisation.entity',
+            'parent', 'parent.character'
         ])
         ->simpleSort($datagridSorter)
         ->paginate();
@@ -70,10 +71,11 @@ $members = $model->allMembers()
             </p>
         </div>
     @else
-    <div class="box-body">
+    <div class="box-body no-padding">
 
         @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#organisation-members'])
 
+        <div class="table-responsive">
         <table id="organisation-characters" class="table table-hover">
             <thead>
                 <tr>
@@ -84,9 +86,7 @@ $members = $model->allMembers()
                     @endif
                     @if ($allMembers)<th>{{ __('organisations.members.fields.organisation') }}</th>@endif
                     <th>{{ __('organisations.members.fields.role') }}</th>
-                    @if ($campaign->enabled('races'))
-                    <th class="hidden-sm hidden-xs">{{ __('characters.fields.race') }}</th>
-                    @endif
+                    <th class="hidden-sm hidden-xs">{{ __('organisations.members.fields.parent') }}</th>
                     @if (auth()->check() && auth()->user()->isAdmin())
                     <th></th>
                     @endif
@@ -131,13 +131,11 @@ $members = $model->allMembers()
                         @endif
                         {{ $relation->role }}
                     </td>
-                    @if ($campaign->enabled('races'))
-                        <td class="hidden-sm hidden-xs">
-                            @if ($relation->character->race)
-                                {!! $relation->character->race->tooltipedLink() !!}
-                            @endif
+                    <td class="hidden-sm hidden-xs">
+                        @if ($relation->parent && $relation->parent->character)
+                            {!! $relation->parent->character->tooltipedLink() !!}
+                        @endif
                         </td>
-                    @endif
                     @include('cruds.partials.private', ['model' => $relation])
                     <td>
                         @if ($relation->pinned())
@@ -152,27 +150,38 @@ $members = $model->allMembers()
                     </td>
                     <td class="text-right">
                         @can('member', $model)
-                            <a href="{{ route('organisations.organisation_members.edit', [$model, $relation]) }}"
-                               class="btn btn-xs btn-primary" data-toggle="ajax-modal" data-target="#entity-modal"
-                               data-url="{{ route('organisations.organisation_members.edit', [$model, $relation]) }}"
-                               title=" {{ __('crud.edit') }}"
-                            >
-                                <i class="fa fa-edit"></i>
-                            </a>
+                            <div class="dropdown">
+                                <a class="dropdown-toggle btn btn-xs btn-default" data-toggle="dropdown" aria-expanded="false" data-placement="right" href="#">
+                                    <i class="fa fa-ellipsis-h" data-tree="escape"></i>
+                                    <span class="sr-only">{{ __('crud.actions.actions') }}</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                    <li>
+                                        <a href="{{ route('organisations.organisation_members.edit', [$model, $relation]) }}"
+                                           data-toggle="ajax-modal" data-target="#entity-modal"
+                                           data-url="{{ route('organisations.organisation_members.edit', [$model, $relation]) }}">
+                                            <i class="fa fa-pencil"></i> {{ __('crud.edit') }}
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="text-red delete-confirm" data-toggle="modal" data-name="{!! $relation->character->name !!}"
+                                           data-target="#delete-confirm" data-delete-target="delete-form-{{ $relation->id }}">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                            {{ __('crud.remove') }}
+                                        </a>
 
-                            <button class="btn btn-xs btn-danger delete-confirm" data-toggle="modal" data-name="{{ $relation->character->name }}"
-                                    data-target="#delete-confirm" data-delete-target="delete-form-{{ $relation->id }}"
-                                    title="{{ __('crud.remove') }}">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                            </button>
-                            {!! Form::open(['method' => 'DELETE', 'route' => ['organisations.organisation_members.destroy', $model->id, $relation->id], 'style' => 'display:inline', 'id' => 'delete-form-' . $relation->id]) !!}
-                            {!! Form::close() !!}
+                                        {!! Form::open(['method' => 'DELETE', 'route' => ['organisations.organisation_members.destroy', $model->id, $relation->id], 'style' => 'display:inline', 'id' => 'delete-form-' . $relation->id]) !!}
+                                        {!! Form::close() !!}
+                                    </li>
+                                </ul>
+                            </div>
                         @endcan
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
+        </div>
     </div>
     @if ($members->hasPages())
         <div class="box-footer text-right">

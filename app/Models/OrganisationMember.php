@@ -17,12 +17,14 @@ use Illuminate\Database\Query\Builder;
  * @property integer $id
  * @property integer $character_id
  * @property integer $organisation_id
+ * @property integer $parent_id
  * @property string $role
  * @property bool $is_private
  * @property int $pin_id
  * @property int $status_id
  * @property Character $character
  * @property Organisation $organisation
+ * @property OrganisationMember $parent
  *
  */
 class OrganisationMember extends Model
@@ -57,6 +59,7 @@ class OrganisationMember extends Model
         'is_private',
         'pin_id',
         'status_id',
+        'parent_id',
     ];
 
     /**
@@ -73,6 +76,14 @@ class OrganisationMember extends Model
     public function organisation()
     {
         return $this->belongsTo('App\Models\Organisation', 'organisation_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function parent()
+    {
+        return $this->belongsTo('App\Models\OrganisationMember', 'parent_id');
     }
 
     /**

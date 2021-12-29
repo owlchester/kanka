@@ -25,6 +25,9 @@ To create an organisation Member, use the following endpoint.
 | `character_id` | `integer` (required) | The character id organisation |
 | `role` | `string` | The member's role |
 | `is_private` | `boolean` | If the member is only visible to `admin` members of the campaign |
+| `pin_id` | `integer` | 0, 1 if the member is pinned to the character, 2 if pinned to the org, 3 if both |
+| `status_id` | `integer` | 0 for active member, 1 for past, 2 for unknown |
+| `parent_id` | `integer` | parent organisation member (boss) |
 
 ### Results
 

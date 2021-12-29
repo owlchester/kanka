@@ -53,6 +53,7 @@ return [
             'pinned'        => 'Pinned',
             'role'          => 'Role',
             'status'        => 'Membership status',
+            'parent'        => 'Leader',
         ],
         'helpers'       => [
             'all_members'   => 'All characters that are members of this organisations and it\'s sub-organisations.',
@@ -68,6 +69,7 @@ return [
         'placeholders'  => [
             'character' => 'Choose a character',
             'role'      => 'Leader, Member, High Septon, Spymaster',
+            'parent'    => 'Who is this member\'s boss',
         ],
         'status'        => [
             'active'    => 'Active member',
