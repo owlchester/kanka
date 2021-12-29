@@ -12,6 +12,7 @@ use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignSetting;
 use App\Models\RpgSystem;
+use App\Notifications\Header;
 use App\Services\EntityMappingService;
 use App\Services\ImageService;
 use App\Services\StarterService;
@@ -196,7 +197,16 @@ class CampaignObserver
      */
     public function deleting(Campaign $campaign)
     {
+        // Technically, only a campaign with a single user can be deleted.
         foreach ($campaign->members as $member) {
+            $member->user->notify(new Header(
+                'campaign.deleted',
+                'trash',
+                'yellow',
+                [
+                    'campaign' => $campaign->name
+                ]
+            ));
             $member->delete();
         }
 
