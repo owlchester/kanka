@@ -11,6 +11,8 @@ if ($model->visibility == \App\Models\Scopes\VisibilityScope::VISIBILITY_ALL) {
     $icon =  "far fa-eye";
 } elseif ($model->visibility == VisibilityScope::VISIBILITY_MEMBERS) {
     $icon = "fas fa-users";
+} elseif ($model->visibility == VisibilityScope::VISIBILITY_SELF) {
+    $icon = "fas fa-user-secret";
 }
 ?>
 @if ($live && auth()->check())
