@@ -27,6 +27,7 @@ class EventFilter extends DatagridFilter
             ->hasImage()
             ->hasEntityNotes()
             ->hasEntityFiles()
+            ->hasAttributes()
             ->tags()
         ;
     }

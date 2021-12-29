@@ -26,6 +26,7 @@ class NoteFilter extends DatagridFilter
             ->hasImage()
             ->hasEntityNotes()
             ->hasEntityFiles()
+            ->hasAttributes()
             ->tags()
         ;
     }

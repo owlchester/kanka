@@ -137,6 +137,7 @@ return [
         'files'                 => 'Files',
         'gallery_header'        => 'Gallery Header',
         'gallery_image'         => 'Gallery Image',
+        'has_attributes'        => 'Has attributes',
         'has_entity_files'      => 'Has entity files',
         'has_entity_notes'      => 'Has posts',
         'has_image'             => 'Has an image',

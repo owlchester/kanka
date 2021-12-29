@@ -20,6 +20,7 @@ class ItemFilter extends DatagridFilter
             ->hasImage()
             ->hasEntityNotes()
             ->hasEntityFiles()
+            ->hasAttributes()
             ->tags()
         ;
     }

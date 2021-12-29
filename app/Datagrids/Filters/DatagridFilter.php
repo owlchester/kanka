@@ -119,7 +119,7 @@ abstract class DatagridFilter
     }
 
     /**
-     * Add the has image
+     * Add the entity has an image
      * @return $this
      */
     protected function hasImage(): self
@@ -129,12 +129,22 @@ abstract class DatagridFilter
     }
 
     /**
-     * Add the has image
+     * Add the entity has posts
      * @return $this
      */
     protected function hasEntityNotes(): self
     {
         $this->filters[] = 'has_entity_notes';
+        return $this;
+    }
+
+    /**
+     * Add the entity has attributes
+     * @return $this
+     */
+    protected function hasAttributes(): self
+    {
+        $this->filters[] = 'has_attributes';
         return $this;
     }
 

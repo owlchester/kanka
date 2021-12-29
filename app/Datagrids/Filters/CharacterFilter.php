@@ -50,6 +50,7 @@ class CharacterFilter extends DatagridFilter
             ->hasImage()
             ->hasEntityNotes()
             ->hasEntityFiles()
+            ->hasAttributes()
             ->tags()
         ;
     }

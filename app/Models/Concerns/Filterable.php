@@ -32,6 +32,7 @@ trait Filterable
             'has_image',
             'has_entity_notes',
             'has_entity_files',
+            'has_attributes',
             'created_by',
             'updated_by',
         ];
@@ -157,6 +158,16 @@ trait Filterable
                         } else {
                             $query->whereNull('entity_notes.id');
                         }
+                    } elseif ($key == 'has_attributes') {
+
+                        $query = $this->joinEntity($query);
+                        $query->leftJoin('attributes', 'attributes.entity_id', 'e.id');
+
+                        if ($value) {
+                            $query->whereNotNull('attributes.id');
+                        } else {
+                            $query->whereNull('attributes.id');
+                        }
                     } elseif ($key == 'has_entity_files') {
 
                         $query = $this->joinEntity($query);
@@ -273,6 +284,7 @@ trait Filterable
                 $join->where('e.type_id', '=', $this->entityTypeID())
                     ->whereRaw('e.campaign_id = ' . $this->getTable() . '.campaign_id');
             })
+            ->groupBy($this->getTable() . '.id')
         ;
     }
 }

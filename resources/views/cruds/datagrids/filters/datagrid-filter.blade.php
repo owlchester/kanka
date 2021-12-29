@@ -111,7 +111,7 @@ $clipboardFilters = $filterService->clipboardFilters();
                                     </div>
                                 @endif
                             @else
-                                <label>{{ __((in_array($field, ['is_private', 'has_image', 'has_entity_files', 'has_entity_notes']) ? 'crud.fields.' : $langKey . '.fields.') . $field) }}</label>
+                                <label>{{ __((in_array($field, ['is_private', 'has_image', 'has_attributes', 'has_entity_files', 'has_entity_notes']) ? 'crud.fields.' : $langKey . '.fields.') . $field) }}</label>
                                 @if ($filterService->isCheckbox($field))
                                     <select class="filter-select form-control" id="{{ $field }}" name="{{ $field }}">
                                         <option value=""></option>
