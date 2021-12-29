@@ -332,6 +332,9 @@ class MentionsService
         // And now for extra fun, let's do attributes!
         $this->mapAttributes();
 
+        // Can't forget our custom blocks
+        $this->mapCodes();
+
         // Clean up weird ` chars that break the js
         $this->text = str_replace('`', '\'', $this->text);
 
@@ -516,6 +519,19 @@ class MentionsService
             }
             return $replace;
         }, $this->text);
+    }
+
+    protected function mapCodes()
+    {
+        if (Str::contains($this->text, '{table-of-contents}')) {
+            $markupFixer  = new \TOC\MarkupFixer();
+            $tocGenerator = new \TOC\TocGenerator();
+
+            $this->text = $markupFixer->fix($this->text);
+            $toc = $tocGenerator->getHtmlMenu($this->text);
+            $this->text = Str::replaceFirst('{table-of-contents}', '<div class="toc">' . $toc .  "</div>\n", $this->text);
+        }
+
     }
 
     /**
