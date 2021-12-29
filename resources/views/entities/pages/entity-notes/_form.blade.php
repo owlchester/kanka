@@ -9,7 +9,7 @@ $permissions = [
 ];
 $currentCampaign = \App\Facades\CampaignLocalization::getCampaign();
 $defaultCollapsed = null;
-if (!empty($currentCampaign->ui_settings['post_collapsed'])) {
+if (!isset($model) && !empty($currentCampaign->ui_settings['post_collapsed'])) {
     $defaultCollapsed = 1;
 }
 ?>
