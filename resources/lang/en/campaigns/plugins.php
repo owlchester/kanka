@@ -37,7 +37,7 @@ return [
         'title'     => 'Import :plugin',
         'helper'    => 'You are about to import :count entities from the :plugin plugin. If this plugin was previously imported, changes you have made to the imported entities can be lost.',
         'button'    => 'Import',
-        'option_private' => 'Import all new entities as private.',
+        'option_private' => 'Import all entities as private.',
         'option_only_import' => 'Only import new entities, skipping previously imported entities.',
     ],
     'info'          => [
