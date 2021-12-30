@@ -120,7 +120,7 @@ class GalleryController extends Controller
         $this->service
             ->campaign($campaign)
             ->image($image)
-            ->update($request->only('name', 'folder_id'));
+            ->update($request->only('name', 'folder_id', 'visibility_id'));
 
         $params = null;
         if ($image->is_folder) {

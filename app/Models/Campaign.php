@@ -460,6 +460,26 @@ class Campaign extends MiscModel
         return Arr::get($this->settings, 'default_visibility', 'all');
     }
 
+    public function defaultVisibilityID(): int
+    {
+        $visibility = $this->default_visibility;
+
+        if ($visibility == 'admin') {
+            return Visibility::VISIBILITY_ADMIN;
+        }
+        elseif ($visibility == 'admin-self') {
+            return Visibility::VISIBILITY_ADMIN_SELF;
+        }
+        elseif ($visibility == 'members') {
+            return Visibility::VISIBILITY_MEMBERS;
+        }
+        elseif ($visibility == 'self') {
+            return Visibility::VISIBILITY_SELF;
+        }
+
+        return Visibility::VISIBILITY_ALL;
+    }
+
     /**
      * @return bool
      */

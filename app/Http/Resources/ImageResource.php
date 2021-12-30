@@ -32,6 +32,8 @@ class ImageResource extends JsonResource
             'created_at' => $image->created_at,
             'created_by' => $image->created_by,
             'updated_at' => $image->updated_at,
+
+            'visibility_id' => $image->visibility_id,
         ];
     }
 }

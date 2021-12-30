@@ -7,6 +7,7 @@ namespace App\Services\Campaign;
 use App\Models\Campaign;
 use App\Models\Image;
 use App\Models\ImageFolder;
+use App\Models\Visibility;
 use App\Observers\PurifiableTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -69,6 +70,7 @@ class GalleryService
         $image->size = ceil($source->getSize() / 1024); // kb
         $image->name = substr($name, 0, 45);
         $image->folder_id = $request->post('folder_id');
+        $image->visibility_id = $this->campaign->defaultVisibilityID();
         $image->save();
 
         $source
@@ -88,7 +90,8 @@ class GalleryService
     {
         $this->image->update([
             'name' => Arr::get($options, 'name'),
-            'folder_id' => Arr::get($options, 'folder_id', null)
+            'folder_id' => Arr::get($options, 'folder_id', null),
+            'visibility_id' => Arr::get($options, 'visibility_id', Visibility::VISIBILITY_ALL),
         ]);
 
         return $this->image;
@@ -107,6 +110,7 @@ class GalleryService
         $folder->folder_id = $request->post('folder_id');
         $folder->is_folder = true;
         $folder->created_by = $request->user()->id;
+        $folder->visibility_id = Visibility::VISIBILITY_ALL;
         $folder->save();
 
         return $folder;
