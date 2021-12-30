@@ -110,7 +110,7 @@ class GalleryService
         $folder->folder_id = $request->post('folder_id');
         $folder->is_folder = true;
         $folder->created_by = $request->user()->id;
-        $folder->visibility_id = Visibility::VISIBILITY_ALL;
+        $folder->visibility_id = $request->post('visibility_id');
         $folder->save();
 
         return $folder;
