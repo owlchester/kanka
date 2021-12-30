@@ -38,7 +38,7 @@ class CampaignPolicy
      */
     public function access(User $user, Campaign $campaign): bool
     {
-        if ($campaign->visibility == 'public') {
+        if ($campaign->isPublic()) {
             return true;
         }
         return $campaign->userIsMember();
@@ -192,7 +192,7 @@ class CampaignPolicy
             return false;
         }
 
-        if ($campaign->visibility != Campaign::VISIBILITY_PUBLIC) {
+        if (!$campaign->isPublic()) {
             return false;
         }
 
@@ -211,7 +211,7 @@ class CampaignPolicy
             return false;
         }
 
-        if ($campaign->visibility != Campaign::VISIBILITY_PUBLIC || !$campaign->is_open) {
+        if (!$campaign->isPublic() || !$campaign->is_open) {
             return false;
         }
 

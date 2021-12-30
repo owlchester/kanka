@@ -397,6 +397,8 @@ pre {
   --btn-default-hover-text: #636b6f;
   --btn-default-hover-background: #e7e7e7;
   --btn-default-hover-border: #adadad;
+  --btn-box-header-background: inherit;
+  --btn-box-header-text: inherit;
 
   --label-default-background: #d2d6de;
   --label-default-text: #fff;
@@ -512,6 +514,9 @@ pre {
       }
     }
   }
+}
+.table-bordered {
+  border-top: 1px solid var(--table-border);
 }
 .table :is(thead, tbody, tfoot) tr :is(td, th) {
   border-color: var(--table-border);

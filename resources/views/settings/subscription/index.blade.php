@@ -132,7 +132,7 @@
                 {{ __('settings.subscription.tiers') }}
             </h3>
             <div class="box-tools">
-                <button class="btn btn-secondary btn-sm" data-toggle="modal"
+                <button class="btn btn-box-tool" data-toggle="modal"
                         data-target="#change-information">
                     <i class="fas fa-question-circle" aria-hidden="true"></i> {{ __('settings.subscription.upgrade_downgrade.button') }}
                 </button>
