@@ -192,7 +192,7 @@ class CampaignPolicy
             return false;
         }
 
-        if ($campaign->visibility != Campaign::VISIBILITY_PUBLIC) {
+        if (!$campaign->isPublic()) {
             return false;
         }
 
@@ -211,7 +211,7 @@ class CampaignPolicy
             return false;
         }
 
-        if ($campaign->visibility != Campaign::VISIBILITY_PUBLIC || !$campaign->is_open) {
+        if (!$campaign->isPublic() || !$campaign->is_open) {
             return false;
         }
 
