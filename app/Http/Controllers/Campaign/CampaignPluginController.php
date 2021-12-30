@@ -9,12 +9,9 @@ use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
 use App\Models\CampaignPlugin;
 use App\Models\Plugin;
-use App\Models\PluginVersion;
 use App\Services\Campaign\CampaignPluginService;
-use App\Services\EntityService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class CampaignPluginController extends Controller
 {
