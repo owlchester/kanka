@@ -4,7 +4,7 @@ use Illuminate\Support\Arr;
  * We want to pre-load the data from the model, or what has been sent with the form.
  */
 $selectedOption = [];
-$dropdownParent = Arr::get($options, 'dropdown-parent');
+$dropdownParent = Arr::get($options, 'dropdownParent');
 
 ?>
 <select name="role" id="role"
