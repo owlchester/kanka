@@ -65,19 +65,6 @@ class Plugin extends Model
                 ->whereIn('status_id', $statuses)
                 ->where('id', '>', $this->pivot->plugin_version_id)
                 ->count() > 0;
-
-        // Check latest version
-        return $this->cachedHasUpdate = $this
-                ->versions()
-                ->where(function ($sub) {
-                    if ($this->created_by == auth()->user()->id) {
-                        return $sub->whereIn('status_id', [1, 3]);
-                    } else {
-                        return $sub->where('status_id', 3);
-                    }
-                })
-                ->where('id', '>', $this->pivot->plugin_version_id)
-                ->count() > 0;
     }
 
     /**
@@ -151,5 +138,4 @@ class Plugin extends Model
             DB::raw($this->getTable() . ".uuid = '$uuid' DESC")
         );
     }
-
 }

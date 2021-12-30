@@ -66,6 +66,12 @@ class CampaignPluginService
     /** @var array created entities */
     protected $created = [];
 
+    /** @var array entities that are to be skipped */
+    protected $skippedEntities = [];
+
+    protected $forcePrivate = false;
+    protected $skipUpdates = false;
+
     /**
      * @param Campaign $campaign
      * @return $this
@@ -73,6 +79,21 @@ class CampaignPluginService
     public function campaign(Campaign $campaign): self
     {
         $this->campaign = $campaign;
+        return $this;
+    }
+
+    /**
+     * @param array
+     * @return $this
+     */
+    public function options(array $options): self
+    {
+        if (Arr::get($options, 'force_private', false)) {
+            $this->forcePrivate = true;
+        }
+        if (Arr::get($options, 'only_new', false)) {
+            $this->skipUpdates = true;
+        }
         return $this;
     }
 
@@ -209,7 +230,11 @@ class CampaignPluginService
             //dump('existing ' . $pluginEntity->uuid);
             $model = $entity->child;
 
-            $this->updated[] = link_to($entity->url(), $entity->name);
+            if (!$this->skipUpdates) {
+                $this->updated[] = link_to($entity->url(), $entity->name);
+            } else {
+                $this->skippedEntities[] = $pluginEntity->id;
+            }
         } else {
             $className = '\App\Models\\' . Str::studly($pluginEntity->type->code);
             //dump('new ' . $className);
@@ -238,6 +263,9 @@ class CampaignPluginService
      */
     protected function importFields(PluginVersionEntity $pluginEntity)
     {
+        if (in_array($pluginEntity->id, $this->skippedEntities)) {
+            return;
+        }
         //dump('Parsing entity ' . $pluginEntity->name . ' #' . $pluginEntity->id . '');
         $model = $this->models[$pluginEntity->id];
         $entityId = $this->getEntityId($pluginEntity->id);
@@ -262,9 +290,15 @@ class CampaignPluginService
                 $this->importBlock($field, $value, $model);
             } elseif ($field == 'tags') {
                 $this->importTags($value, $model);
+            } elseif ($field == 'is_private' && $this->forcePrivate) {
+                // Skip
             } else {
                 $model->$field = $value;
             }
+        }
+
+        if ($this->forcePrivate) {
+            $model->is_private = true;
         }
 
         $model = $this->importImage($model, $pluginEntity);

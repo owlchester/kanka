@@ -370,7 +370,8 @@ Route::group([
             Route::delete('/plugins/{plugin}/delete', 'Campaign\CampaignPluginController@delete')->name('campaign_plugins.destroy');
             Route::get('/plugins/{plugin}/enable', 'Campaign\CampaignPluginController@enable')->name('campaign_plugins.enable');
             Route::get('/plugins/{plugin}/disable', 'Campaign\CampaignPluginController@disable')->name('campaign_plugins.disable');
-            Route::get('/plugins/{plugin}/import', 'Campaign\CampaignPluginController@import')->name('campaign_plugins.import');
+            Route::post('/plugins/{plugin}/import', 'Campaign\CampaignPluginController@import')->name('campaign_plugins.import');
+            Route::get('/plugins/{plugin}/confirm-import', 'Campaign\CampaignPluginController@confirmImport')->name('campaign_plugins.confirm-import');
             Route::get('/plugins/{plugin}/update', 'Campaign\CampaignPluginController@updateInfo')->name('campaign_plugins.update-info');
             Route::post('/plugins/{plugin}/update', 'Campaign\CampaignPluginController@update')->name('campaign_plugins.update');
         }

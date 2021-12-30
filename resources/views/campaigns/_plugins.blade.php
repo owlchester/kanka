@@ -94,7 +94,7 @@
                                         @endif
                                     @elseif($plugin->isContentPack())
                                         <li>
-                                            <a href="{{ route('campaign_plugins.import', $plugin, ) }}">
+                                            <a href="{{ route('campaign_plugins.confirm-import', $plugin, ) }}" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('campaign_plugins.confirm-import', $plugin) }}">
                                                 <i class="fa fa-refresh"></i> {{ __('campaigns/plugins.actions.import') }}
                                             </a>
                                         </li>
