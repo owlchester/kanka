@@ -80,7 +80,7 @@
                     {{ __('settings.boost.available_boosts', ['max' => auth()->user()->maxBoosts(), 'amount' => auth()->user()->availableBoosts()]) }}
                 </h3>
                 <div class="box-tools">
-                    <button class="btn btn-secondary btn-sm" data-toggle="modal"
+                    <button class="btn btn-box-tool" data-toggle="modal"
                             data-target="#more-boosters">
                         <i class="fa fa-question-circle"></i> {{ __('settings.boost.modals.more.action') }}
                     </button>
