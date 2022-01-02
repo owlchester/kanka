@@ -8,9 +8,10 @@
                     <dropdown tag="a" menu-left class="message-options" v-if="permission">
                         <a class="dropdown-toggle" role="button">
                             <i class="fas fa-lock" v-if="ability.visibility === 'admin'" v-bind:title="$t('crud.visibilities.admin')"></i>
-                            <i class="fas fa-user-lock" v-if="ability.visibility === 'self'" v-bind:title="$t('crud.visibilities.self')"></i>
+                            <i class="fas fa-user-lock" v-if="ability.visibility === 'self-admin'" v-bind:title="$t('crud.visibilities.self')"></i>
                             <i class="fas fa-users" v-if="ability.visibility === 'members'" v-bind:title="$t('crud.visibilities.members')"></i>
-                            <i class="fa fa-eye" v-if="ability.visibility === 'all'" v-bind:title="$t('crud.visibilities.all')"></i>
+                            <i class="fas fa-secret" v-if="ability.visibility === 'self'" v-bind:title="$t('crud.visibilities.members')"></i>
+                            <i class="fa fa-user-secret" v-if="ability.visibility === 'all'" v-bind:title="$t('crud.visibilities.all')"></i>
                         </a>
                         <template slot="dropdown">
                             <li>

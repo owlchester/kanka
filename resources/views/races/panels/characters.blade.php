@@ -6,7 +6,7 @@
 $filters = [];
 $allMembers = true;
 if (!request()->has('all_members')) {
-    $filters['race_id'] = $model->id;
+    //$filters['race_id'] = $model->id;
     $allMembers = false;
 }
 $datagridSorter = new \App\Datagrids\Sorters\RaceCharacterSorter();
@@ -20,11 +20,11 @@ $datagridSorter->request(request()->all());
         <div class="box-tools pull-right">
             @if (!$allMembers)
                 <a href="{{ route('races.show', [$model, 'all_members' => true, '#race-characters']) }}" class="btn btn-default btn-sm">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allCharacters()->has('entity')->count() }})
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.all') }} ({{ $model->allCharacters(true)->has('entity')->count() }})
                 </a>
             @else
                 <a href="{{ route('races.show', [$model, '#race-characters']) }}" class="btn btn-default btn-sm">
-                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->characters()->has('entity')->count() }})
+                    <i class="fa fa-filter"></i> {{ __('crud.filters.direct') }} ({{ $model->allCharacters(false)->has('entity')->count() }})
                 </a>
             @endif
         </div>
@@ -52,7 +52,7 @@ $datagridSorter->request(request()->all());
             </tr>
 
 <?php
-$r = $model->allCharacters()
+$r = $model->allCharacters($allMembers)
     ->has('entity')
     ->with(['family', 'location', 'entity'])
     ->filter($filters)

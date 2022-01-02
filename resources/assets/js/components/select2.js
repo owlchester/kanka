@@ -4,11 +4,13 @@ export default function select2() {
             // Check it isn't the select2-icon
             let allowClear = $(this).data('allow-clear');
             let dropdownParent = $(this).data('dropdown-parent');
+            console.log('select2', $(this).attr('name'));
+            console.log('is tags?', $(this).data('tags'));
             $(this).select2({
                 //data: newOptions,
                 placeholder: $(this).data('placeholder'),
                 allowClear: allowClear || true,
-                tags: $(this).is('[data-tags]'),
+                //tags: $(this).data('tags') || false,
                 language: $(this).data('language'),
                 minimumInputLength: 0,
                 dropdownParent: dropdownParent || '',

@@ -8,7 +8,6 @@ use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Stevebauman\Purify\Facades\Purify;
 
 /**
  * Class Character
@@ -24,6 +23,7 @@ use Stevebauman\Purify\Facades\Purify;
  * @property Family $family
  * @property Location $location
  * @property Race $race
+ * @property Race[] $races
  */
 class Character extends MiscModel
 {
@@ -68,6 +68,7 @@ class Character extends MiscModel
         'race_id',
         'name',
         'organisation_member',
+        'races',
     ];
 
     /**
@@ -78,7 +79,7 @@ class Character extends MiscModel
         'title',
         'family.name',
         'location.name',
-        'race.name',
+        //'races.id',
         'age',
         'sex',
         'is_dead'
@@ -159,8 +160,8 @@ class Character extends MiscModel
             'location.entity',
             'family',
             'family.entity',
-            'race',
-            'race.entity',
+            'races',
+            'races.entity',
         ]);
     }
 
@@ -186,6 +187,15 @@ class Character extends MiscModel
     public function race()
     {
         return $this->belongsTo('App\Models\Race', 'race_id', 'id');
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function races()
+    {
+        return $this->belongsToMany('App\Models\Race')
+            ;
+        return $this->hasMany('App\Models\Race', 'character_id', 'id');
     }
 
     /**
@@ -410,7 +420,7 @@ class Character extends MiscModel
             || !empty($this->pronouns)) {
             return true;
         }
-        if (!empty($this->race) || !empty($this->family)) {
+        if (!$this->races->isEmpty() || !empty($this->family)) {
             return true;
         }
         return false;

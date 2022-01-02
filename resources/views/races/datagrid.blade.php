@@ -12,7 +12,7 @@
         'name',
         'type',
         [
-            'label' => trans('characters.fields.race'),
+            'label' => __('characters.fields.race'),
             'field' => 'race.name',
             'visible' => $campaign->enabled('races'),
             'render' => function($model) {
@@ -22,10 +22,10 @@
             }
         ],
         [
-            'label' => trans('races.fields.characters'),
+            'label' => __('races.fields.characters'),
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
-                return $model->characters->count();
+                return $model->characters()->count();
             },
             'disableSort' => true,
         ],

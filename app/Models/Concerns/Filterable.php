@@ -142,6 +142,22 @@ trait Filterable
                                 $join->on('om.character_id', '=', $this->getTable() . '.id');
                             })
                             ->where('om.organisation_id', $value);
+                    } elseif ($key == 'races') {
+                        // Character races
+                        if (!empty($filterOption) && $filterOption == 'none')  {$query
+                            ->select($this->getTable() . '.*')
+                            ->leftJoin('character_race as cr', function ($join) {
+                                $join->on('cr.character_id', '=', $this->getTable() . '.id');
+                            })
+                            ->where('cr.race_id', null);
+                            continue;
+                        }
+                        $query
+                            ->select($this->getTable() . '.*')
+                            ->leftJoin('character_race as cr', function ($join) {
+                                $join->on('cr.character_id', '=', $this->getTable() . '.id');
+                            })
+                            ->where('cr.race_id', $value);
                     } elseif ($key == 'has_image') {
                         if ($value) {
                             $query->whereNotNull($this->getTable() . '.image');

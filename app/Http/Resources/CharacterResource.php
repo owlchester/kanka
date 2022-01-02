@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Models\Character;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Arr;
 
 class CharacterResource extends EntityResource
 {
@@ -18,13 +19,17 @@ class CharacterResource extends EntityResource
         /** @var Character $model */
         $model = $this->resource;
 
+        // Fallback for old api calls
+        $raceIDs = $model->races()->pluck('id');
+        $raceID = Arr::first($raceIDs);
+
         $character = [
             'title' => $model->title,
             'age' => $model->age,
             'sex' => $model->sex,
             'pronouns' => $model->pronouns,
-            'race_id' => $model->race_id,
-            'races' => [$model->race_id],
+            'race_id' => $raceID,
+            'races' => $raceIDs,
             'type' => $model->type,
 
             'family_id' => $model->family_id,

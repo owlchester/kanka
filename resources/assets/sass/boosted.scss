@@ -51,6 +51,12 @@
         font-size: 11px;
         line-height: 1.1;
       }
+
+      a:not(:last-child), span:not(:last-child) {
+        &:after {
+          content: ', ';
+        }
+      }
     }
   }
   .list-group-unbordered .list-group-item {

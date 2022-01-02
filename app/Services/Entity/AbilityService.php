@@ -278,7 +278,7 @@ class AbilityService
             throw new Exception('not_character');
         }
 
-        if (empty($this->entity->child->race)) {
+        if (empty($this->entity->child->races)) {
             throw new Exception('no_race');
         }
 
@@ -294,18 +294,21 @@ class AbilityService
         }
 
         /** @var EntityAbility[] $abilities */
-        $abilities = $this->entity->child->race->entity->abilities;
-        $count = 0;
-        foreach ($abilities as $ability) {
-            // If it's deleted or already on this entity, skip
-            if (empty($ability) || empty($ability->ability) || in_array($ability->ability_id, $existingIds)) {
-                continue;
+        foreach ($this->entity->child->races()->with('entity')->get() as $race) {
+            $abilities = $race->entity->abilities;
+            $count = 0;
+            foreach ($abilities as $ability) {
+                // If it's deleted or already on this entity, skip
+                if (empty($ability) || empty($ability->ability) || in_array($ability->ability_id, $existingIds)) {
+                    continue;
+                }
+                $new = $ability->replicate(['entity_id']);
+                $new->entity_id = $this->entity->id;
+                $new->save();
+                $count++;
             }
-            $new = $ability->replicate(['entity_id']);
-            $new->entity_id = $this->entity->id;
-            $new->save();
-            $count++;
         }
+
 
         return $count;
     }

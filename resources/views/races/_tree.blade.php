@@ -15,7 +15,7 @@
         'name',
         'type',
         /*[
-            'label' => trans('characters.fields.race'),
+            'label' => __('characters.fields.race'),
             'field' => 'race.name',
             'visible' => $campaign->enabled('races'),
             'render' => function($model) {
@@ -25,17 +25,17 @@
             }
         ],*/
         [
-            'label' => trans('races.fields.races'),
+            'label' => __('races.fields.races'),
             'render' => function($model) {
                 return $model->races->count();
             },
             'disableSort' => true,
         ],
         [
-            'label' => trans('races.fields.characters'),
+            'label' => __('races.fields.characters'),
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
-                return $model->characters->count() . ' / ' . $model->allCharacters()->count();
+                return $model->characters()->count() . ' / ' . $model->allCharacters(true)->count();
             },
             'disableSort' => true,
         ],
