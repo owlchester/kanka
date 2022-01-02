@@ -19,7 +19,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property bool $is_dead
  * @property bool $is_personality_visible
  * @property int $family_id
- * @property int $race_id
  * @property Family $family
  * @property Location $location
  * @property Race $race
@@ -49,7 +48,6 @@ class Character extends MiscModel
         'is_private',
         'type',
         'is_dead',
-        'race_id',
         'is_personality_visible',
     ];
 
@@ -65,7 +63,6 @@ class Character extends MiscModel
         'location_id',
         'family_id',
         'is_dead',
-        'race_id',
         'name',
         'organisation_member',
         'races',
@@ -140,7 +137,6 @@ class Character extends MiscModel
     public $nullableForeignKeys = [
         'location_id',
         'family_id',
-        'race_id',
         'is_personality_visible', // checkbox
     ];
 
@@ -181,13 +177,6 @@ class Character extends MiscModel
         return $this->belongsTo('App\Models\Family', 'family_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function race()
-    {
-        return $this->belongsTo('App\Models\Race', 'race_id', 'id');
-    }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

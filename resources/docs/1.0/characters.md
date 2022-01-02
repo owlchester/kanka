@@ -60,10 +60,8 @@ The list of returned characters can be filtered. The available filters are avail
             "age": "39",
             "sex": "Male",
             "pronouns": null,
-            "race_id": 3,
             "races": [3],
             "type": null,
-            "family_id": 34,
             "families": [34],
             "is_dead": true,
             "traits": [
@@ -117,7 +115,6 @@ To get the details of a single character, use the following endpoint.
         "age": "39",
         "sex": "Male",
         "pronouns": null,
-        "race_id": 3,
         "races": [3],
         "type": null,
         "family_id": 34,
@@ -163,7 +160,7 @@ To create a character, use the following endpoint.
 | `type` | `string`  | Type of the character |
 | `family_id` | `integer` | Family id |
 | `location_id` | `integer` | Location id |
-| `race_id` | `integer` | Race id |
+| `races` | `array` | Race ids |
 | `tags` | `array` | Array of tag ids |
 | `is_dead` | `boolean` | If the character is dead |
 | `is_private` | `boolean` | If the character is only visible to `admin` members of the campaign |
