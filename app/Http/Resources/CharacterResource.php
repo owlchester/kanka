@@ -24,9 +24,11 @@ class CharacterResource extends EntityResource
             'sex' => $model->sex,
             'pronouns' => $model->pronouns,
             'race_id' => $model->race_id,
+            'races' => [$model->race_id],
             'type' => $model->type,
 
             'family_id' => $model->family_id,
+            'families' => [$model->family_id],
 
             'is_dead' => (bool) $model->is_dead,
             'traits' => CharacterTraitResource::collection($model->characterTraits),

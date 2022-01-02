@@ -61,8 +61,10 @@ The list of returned characters can be filtered. The available filters are avail
             "sex": "Male",
             "pronouns": null,
             "race_id": 3,
+            "races": [3],
             "type": null,
             "family_id": 34,
+            "families": [34],
             "is_dead": true,
             "traits": [
                 {
@@ -116,8 +118,10 @@ To get the details of a single character, use the following endpoint.
         "sex": "Male",
         "pronouns": null,
         "race_id": 3,
+        "races": [3],
         "type": null,
         "family_id": 34,
+        "families": [34],
         "is_dead": true,
         "traits": [
             {
