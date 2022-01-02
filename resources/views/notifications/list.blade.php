@@ -3,6 +3,9 @@
     <li>
         @php
         $url = \Illuminate\Support\Arr::get($notification->data['params'], 'link', route('notifications'));
+        if (!\Illuminate\Support\Str::startsWith($url, 'http')) {
+            $url = url(app()->getLocale() . '/' . $url);
+        }
         @endphp
         <a href="{{ $url }}">
             @if(!$notification->read())
