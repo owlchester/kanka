@@ -8257,10 +8257,12 @@ var render = function() {
                             })
                           : _vm._e(),
                         _vm._v(" "),
-                        _vm.ability.visibility === "self-admin"
+                        _vm.ability.visibility === "admin-self"
                           ? _c("i", {
                               staticClass: "fas fa-user-lock",
-                              attrs: { title: _vm.$t("crud.visibilities.self") }
+                              attrs: {
+                                title: _vm.$t("crud.visibilities.admin-self")
+                              }
                             })
                           : _vm._e(),
                         _vm._v(" "),
@@ -8275,16 +8277,14 @@ var render = function() {
                         _vm._v(" "),
                         _vm.ability.visibility === "self"
                           ? _c("i", {
-                              staticClass: "fas fa-secret",
-                              attrs: {
-                                title: _vm.$t("crud.visibilities.members")
-                              }
+                              staticClass: "fas fa-user-secret",
+                              attrs: { title: _vm.$t("crud.visibilities.self") }
                             })
                           : _vm._e(),
                         _vm._v(" "),
                         _vm.ability.visibility === "all"
                           ? _c("i", {
-                              staticClass: "fa fa-user-secret",
+                              staticClass: "fa fa-eye",
                               attrs: { title: _vm.$t("crud.visibilities.all") }
                             })
                           : _vm._e()
