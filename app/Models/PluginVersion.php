@@ -194,7 +194,6 @@ class PluginVersion extends Model
         } catch (\Exception $e) {
             while (ob_get_level() > $obLevel) ob_end_clean();
             $errors = $e->getMessage();
-            dd($html);
             //throw $e;
         } catch (\Throwable $e) {
             while (ob_get_level() > $obLevel) ob_end_clean();
