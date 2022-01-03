@@ -18,12 +18,7 @@ elseif(!empty($model)) {
     /** @var \App\Models\OrganisationMember $member */
     foreach ($model->races as $race) {
         if (\App\Facades\EntityPermission::canView($race->entity)) {
-            // If this is a copy, we need to add the member's real id. Also no copying of roles in this constellation
-            if (!empty($source)) {
-                $selectedOption[$race->id] = strip_tags($race->name);
-            } else {
-                $selectedOption['r_' . $race->id] = strip_tags($race->name);
-            }
+            $selectedOption[$race->id] = strip_tags($race->name);
         }
     }
 }
