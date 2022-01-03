@@ -91,9 +91,9 @@ $characters = $model
                     </td>
                     @if ($campaign->enabled('races'))
                         <td>
-                            @if ($character->race)
-                                {!! $character->race->tooltipedLink() !!}
-                            @endif
+                            @foreach ($character->races as $race)
+                                {!! $race->tooltipedLink() !!}
+                            @endforeach
                         </td>
                     @endif
                 </tr>

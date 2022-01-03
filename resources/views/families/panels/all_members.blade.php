@@ -44,9 +44,9 @@
                     @endif
                     @if ($campaign->enabled('races'))
                         <td>
-                            @if ($member->race)
-                                {!! $member->race->tooltipedLink() !!}
-                            @endif
+                            @foreach ($member->races as $race)
+                            {!! $race->tooltipedLink() !!}
+                            @endforeach
                         </td>
                     @endif
                     <td>{{ $member->sex }}</td>

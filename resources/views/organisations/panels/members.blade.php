@@ -94,8 +94,8 @@ $hasOrg = request()->has('organisation_id');
                     <td>{{ $relation->role }}</td>
                     @if ($campaign->enabled('races'))
                         <td class="hidden-sm hidden-xs">
-                            @if ($relation->character->race)
-                                {!! $relation->character->race->tooltipedLink() !!}
+                            @foreach ($relation->character->races as $race)
+                                {!! $race->tooltipedLink() !!}
                             @endif
                         </td>
                     @endif
