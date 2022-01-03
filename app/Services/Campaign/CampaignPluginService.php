@@ -8,6 +8,7 @@ use App\Facades\CampaignCache;
 use App\Http\Resources\QuestElementResource;
 use App\Models\Campaign;
 use App\Models\CampaignPlugin;
+use App\Models\Character;
 use App\Models\CharacterTrait;
 use App\Models\Entity;
 use App\Models\EntityNote;
@@ -22,6 +23,7 @@ use App\Models\QuestElement;
 use App\Models\QuestItem;
 use App\Models\QuestLocation;
 use App\Models\QuestOrganisation;
+use App\Models\Race;
 use App\Models\Relation;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
@@ -281,6 +283,17 @@ class CampaignPluginService
             }
             // Foreign key
             if (Str::endsWith($field, '_id')) {
+                if ($field == 'race_id' && $model instanceof Character) {
+                    if (empty($value)) {
+                        $model->races()->detach();
+                    } elseif (isset($this->miscIds[$value])) {
+                        $raceID = $this->miscIds[$value];
+                        $race = Race::find($raceID);
+                        if ($race) {
+                            $model->races()->attach($race);
+                        }
+                    }
+                }
                 if (empty($value)) {
                     $model->$field = null;
                 } elseif(isset($this->miscIds[$value])) {
