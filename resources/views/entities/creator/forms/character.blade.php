@@ -16,7 +16,7 @@
         @include('cruds.fields.family')
     </div>
     <div class="col-lg-6">
-        @include('cruds.fields.race')
+        @include('cruds.fields.races')
     </div>
     <div class="col-lg-6">
         @include('cruds.fields.location')
