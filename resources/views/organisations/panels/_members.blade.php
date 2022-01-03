@@ -19,7 +19,7 @@ $members = $model->allMembers()
         ->filter($filters)
         ->has('character')
         ->with([
-            'character', 'character.race', 'character.location', 'organisation',
+            'character', 'character.location', 'organisation',
             'character.entity', 'organisation.entity',
             'parent', 'parent.character'
         ])
