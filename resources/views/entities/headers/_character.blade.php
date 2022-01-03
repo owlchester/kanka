@@ -27,7 +27,7 @@
             <i class="ra ra-dragon" title="{{ __('crud.fields.race') }}" data-toggle="tooltip"></i>
             {!! $race->tooltipedLink() !!}
         </div>
-        @endif
+        @endforeach
     @endif
 
     @if ($campaign->enabled('families') && $model->family)
