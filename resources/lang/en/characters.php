@@ -26,8 +26,8 @@ return [
     ],
     'fields'        => [
         'age'                       => 'Age',
-        'family'                    => 'Family',
         'families'                  => 'Families',
+        'family'                    => 'Family',
         'image'                     => 'Image',
         'is_dead'                   => 'Dead',
         'is_personality_visible'    => 'Personality visible',

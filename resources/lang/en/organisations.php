@@ -50,10 +50,10 @@ return [
         'fields'        => [
             'character'     => 'Character',
             'organisation'  => 'Organisation',
+            'parent'        => 'Superior',
             'pinned'        => 'Pinned',
             'role'          => 'Role',
             'status'        => 'Membership status',
-            'parent'        => 'Leader',
         ],
         'helpers'       => [
             'all_members'   => 'All characters that are members of this organisations and it\'s sub-organisations.',
@@ -68,8 +68,8 @@ return [
         ],
         'placeholders'  => [
             'character' => 'Choose a character',
+            'parent'    => 'Who is this member\'s superior',
             'role'      => 'Leader, Member, High Septon, Spymaster',
-            'parent'    => 'Who is this member\'s boss',
         ],
         'status'        => [
             'active'    => 'Active member',

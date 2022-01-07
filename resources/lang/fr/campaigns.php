@@ -64,6 +64,7 @@ TEXT
         'name'                      => 'Nom',
         'nested'                    => 'Afficher les listes d\'entités de manière imbriquée par défaut',
         'open'                      => 'Ouvert aux applications',
+        'post_collapsed'            => 'Les nouvelles notes sur les entités sont minimisées par défaut.',
         'public_campaign_filters'   => 'Filtres pour les campagnes publiques',
         'related_visibility'        => 'Visibilité des éléments liés',
         'rpg_system'                => 'Système RPG',

@@ -50,6 +50,7 @@ return [
         'fields'        => [
             'character'     => 'Personnage',
             'organisation'  => 'Organisation',
+            'parent'        => 'Superieur',
             'pinned'        => 'Épinglé',
             'role'          => 'Rôle',
             'status'        => 'Status de membre',
@@ -67,6 +68,7 @@ return [
         ],
         'placeholders'  => [
             'character' => 'Choix du personnage',
+            'parent'    => 'Qui est le supérieur de ce membre',
             'role'      => 'Chef, Membre, Prêtre, Maître d\'arme',
         ],
         'status'        => [
