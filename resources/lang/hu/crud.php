@@ -119,6 +119,7 @@ return [
         'calendar'              => 'Naptár',
         'calendar_date'         => 'Naptári dátum',
         'character'             => 'Karakter',
+        'child'                 => 'Gyermek',
         'closed'                => 'Lezárt',
         'colour'                => 'Szín',
         'copy_abilities'        => 'Képességek másolása',
@@ -189,6 +190,16 @@ return [
         'direct'                    => 'Szűrés közvetlen leszármazottakra',
         'filtered'                  => ':count :entity a(z) :total elemből',
         'hide'                      => 'Szűrők elrejtése',
+        'lists'                     => [
+            'desktop'   => [
+                'all'       => 'Minden leszármazott megmutatása (:count)',
+                'filtered'  => 'Közvetlen leszármazottak megmutatása (:count)',
+            ],
+            'mobile'    => [
+                'all'       => 'Összes megmutatása (:count)',
+                'filtered'  => 'Közvetlen megmutatása (:count)',
+            ],
+        ],
         'mobile'                    => [
             'clear' => 'Üres',
             'copy'  => 'Vágólap',

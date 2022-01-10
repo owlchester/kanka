@@ -263,6 +263,7 @@ return [
         'login'         => 'Iniciar sesión',
         'marketplace'   => 'Mercado',
         'media'         => 'Media',
+        'merch'         => 'Produtos',
         'news'          => 'Novas',
         'newsletter'    => 'Boletín informativo',
         'other'         => 'Miscelánea',

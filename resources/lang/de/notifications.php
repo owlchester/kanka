@@ -2,29 +2,30 @@
 
 return [
     'campaign'          => [
-        'application'       => [
+        'application'           => [
             'approved'  => 'Ihre Bewerbung für die Kampagne :campaign wurde genehmigt.',
             'new'       => 'Neue Bewerbung für :campaign',
             'rejected'  => 'Ihr Bewerbung für die :campaign Kampagne wurde abgelehnt. Grund dafür ist :reason',
         ],
-        'asset_export'      => 'Ein Export eines Kampagnen-Assets ist verfügbar. Der Link ist verfügbar für :time Minuten.',
-        'boost'             => [
+        'asset_export'          => 'Ein Export eines Kampagnen-Assets ist verfügbar. Der Link ist verfügbar für :time Minuten.',
+        'asset_export_error'    => 'Beim Exportieren der Kampagnenassets ist ein Fehler aufgetreten. Dies geschieht bei großen Kampagnen.',
+        'boost'                 => [
             'add'           => 'Kampagne :campaign wird geboosted durch :user.',
             'remove'        => ':user boosted die :campaign  nicht mehr.',
             'superboost'    => 'Die Kampagne :campaigne wird von :user superboosted.',
         ],
-        'export'            => 'Ein Export der Kampagne steht zur Verfügung. Der Link ist :time Minuten gültig.',
-        'export_error'      => 'Beim Export deiner Kampagne ist ein Fehler aufgetreten. Bitte kontaktiere uns, wenn das Problem weiterhin besteht.',
-        'join'              => ':user ist der Kampagne :campaign beigetreten.',
-        'leave'             => ':user hat die Kampagne :campaign verlassen.',
-        'plugin'            => [
+        'export'                => 'Ein Export der Kampagne steht zur Verfügung. Der Link ist :time Minuten gültig.',
+        'export_error'          => 'Beim Export deiner Kampagne ist ein Fehler aufgetreten. Bitte kontaktiere uns, wenn das Problem weiterhin besteht.',
+        'join'                  => ':user ist der Kampagne :campaign beigetreten.',
+        'leave'                 => ':user hat die Kampagne :campaign verlassen.',
+        'plugin'                => [
             'deleted'   => 'Das Plugin :plugin wurde vom Marktplatz gelöscht und aus Ihrer Kampagne :campaign entfernt.',
         ],
-        'role'              => [
+        'role'                  => [
             'add'       => 'Du wurdest zur Rolle :role in der Kampagne :campaign hinzugefügt.',
             'remove'    => 'Du wurdest aus der Rolle :role in der Kampagne :campaign entfernt.',
         ],
-        'troubleshooting'   => [
+        'troubleshooting'       => [
             'joined'    => 'Das Kanka Teammitglied :user ist der Kampagne :campaign beigetreten.',
         ],
     ],

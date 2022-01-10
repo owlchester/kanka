@@ -49,6 +49,7 @@ TEXT
         ],
         'helper'            => 'Eksportuj kampanię. Pojawi się zawiadomienie z odnośnikiem do pobrania materiałów.',
         'helper_secondary'  => 'Zostaną utworzone dwa pliki: jeden zawierający elementy w formacie JSON i drugi z powiązanymi obrazami. Uwaga, w wypadku dużych kampanii eksport obrazów może ulec awarii i można je odzyskać wyłącznie przy pomocy :api.',
+        'helper_third'      => 'Pliki .json można otworzyć każdym edytorem tekstu. To zapisane w formacie tekstowym dane pobrane z bazy Kanki. Wyeksportowanych w ten sposób plików nie można ponownie zaimportować.',
         'success'           => 'Przygotowujemy eksport kampanii. Gdy plik zip będzie gotowy do pobrania, otrzymasz powiadomienie.',
         'title'             => 'Eksportowanie kampanii :nazwa',
     ],

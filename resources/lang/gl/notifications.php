@@ -2,27 +2,31 @@
 
 return [
     'campaign'          => [
-        'application'   => [
+        'application'           => [
             'approved'  => 'A túa solicitude de inscrición na campaña ":campaign" foi aprobada.',
             'new'       => 'Nova solicitude de inscrición en ":campaign".',
             'rejected'  => 'A túa solicitude de inscrición na campaña ":campaign" foi rexeitada. Motivo: :reason',
         ],
-        'asset_export'  => 'Hai unha exportación de campaña dispoñíbel, A ligazón estará activa durante :time minutos.',
-        'boost'         => [
+        'asset_export'          => 'Hai unha exportación de campaña dispoñíbel, A ligazón estará activa durante :time minutos.',
+        'asset_export_error'    => 'Ocorreu un erro durante a exportación dos recursos da campaña. Isto pode pasar en campañas moi grandes.',
+        'boost'                 => [
             'add'           => 'A campaña ":campaign" está potenciada por :user.',
             'remove'        => ':user xa non está potenciando a campaña ":campaign".',
             'superboost'    => 'A campaña ":campaign" está agora sendo superpotenciada por :user.',
         ],
-        'export'        => 'A exportación da campaña está dispoñíbel. A ligazón estará dispoñíbel durante :time minutos.',
-        'export_error'  => 'Ocorreu un erro mentres se exportaba a túa campaña. Por favor, contacta connosco se o problema persiste.',
-        'join'          => ':user uníuse á campaña ":campaign".',
-        'leave'         => ':user abandonou a campaña ":campaign".',
-        'plugin'        => [
+        'export'                => 'A exportación da campaña está dispoñíbel. A ligazón estará dispoñíbel durante :time minutos.',
+        'export_error'          => 'Ocorreu un erro mentres se exportaba a túa campaña. Por favor, contacta connosco se o problema persiste.',
+        'join'                  => ':user uníuse á campaña ":campaign".',
+        'leave'                 => ':user abandonou a campaña ":campaign".',
+        'plugin'                => [
             'deleted'   => 'A extensión ":plugin" foi eliminado do mercado e da túa campaña ":campaign".',
         ],
-        'role'          => [
+        'role'                  => [
             'add'       => 'Asignóuseche o rol ":role" na campaña ":campaign".',
             'remove'    => 'Retiróuseche o rol ":role" na campaña ":campaign".',
+        ],
+        'troubleshooting'       => [
+            'joined'    => ':user (integrante do equipo de Kanka) uníuse á campaña ":campaign".',
         ],
     ],
     'clear'             => [

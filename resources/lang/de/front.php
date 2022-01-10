@@ -263,6 +263,7 @@ return [
         'login'         => 'Login',
         'marketplace'   => 'Marktplatz',
         'media'         => 'Medien',
+        'merch'         => 'Waren',
         'news'          => 'Neuigkeiten',
         'newsletter'    => 'Newsletter',
         'other'         => 'Andere',

@@ -54,15 +54,29 @@ return [
         'fields'        => [
             'character'     => 'Postava',
             'organisation'  => 'Organizácia',
+            'pinned'        => 'Pripnuté',
             'role'          => 'Rola',
+            'status'        => 'Stav členstva',
         ],
         'helpers'       => [
             'all_members'   => 'Všetky postavy, ktoré sú členmi tejto a podradených organizácií.',
             'members'       => 'Všetky postavy, ktoré sú členmi tejto organizácie',
+            'pinned'        => 'Zvoľ, či toto členstvo má byť zobrazené v sekcii pripnutých v prehľade priradených objektov.',
+        ],
+        'pinned'        => [
+            'both'          => 'Oboje',
+            'character'     => 'Postava',
+            'none'          => 'Žiadne',
+            'organisation'  => 'Organizácia',
         ],
         'placeholders'  => [
             'character' => 'Vyber postavu',
             'role'      => 'veliteľ, člen, veľkňaz, majster špiónov',
+        ],
+        'status'        => [
+            'active'    => 'Aktívne členstvo',
+            'inactive'  => 'Neaktívne členstvo',
+            'unknown'   => 'Neznámy stav',
         ],
         'title'         => 'Členovia organizácie :name',
     ],

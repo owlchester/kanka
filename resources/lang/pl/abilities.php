@@ -38,13 +38,13 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Na liście znajdują się wszystkie zdolności pochodzące od tej zdolności, nie tylko bezpośrednio.',
-        'nested'        => 'W widoku hierarchii najpierw wyświetlane są zdolności, które nie mają źródła. Po kliknięciu na wiersz zdolności zobaczysz jej pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
+        'nested'        => 'Widok hierarchii',
         'nested_parent' => 'Wyświetlono zdolności pochodzące od :parent.',
         'nested_without'=> 'Wyświetlono wszystkie zdolności nie posiadające źródła. Kliknij na rząd, by wyświetlić zdolności pochodne.',
     ],
     'index'         => [
         'add'           => 'Nowa zdolność',
-        'description'   => 'Dodawaj moce, czary, atuty i inne zdolności specjalne różnych elementów kampanii.',
+        'description'   => 'Opis',
         'header'        => 'Zdolności elementu :nazwa',
         'title'         => 'Zdolności',
     ],

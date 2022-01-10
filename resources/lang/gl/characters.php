@@ -34,7 +34,7 @@ return [
         'location'                  => 'Localización',
         'name'                      => 'Nome',
         'physical'                  => 'Físico',
-        'pronouns'                  => 'Pronomes',
+        'pronouns'                  => 'Terminacións/pronomes',
         'race'                      => 'Raza',
         'relation'                  => 'Relación',
         'sex'                       => 'Xénero',

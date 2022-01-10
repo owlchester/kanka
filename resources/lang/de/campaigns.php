@@ -45,6 +45,7 @@ TEXT
         ],
         'helper'            => 'Exportiere deine Kampagne. Eine Benachrichtigung mit dem Downloadlink wir dir bereit gestellt.',
         'helper_secondary'  => 'Es werden zwei Dateien zur Verfügung gestellt, eine mit dem Objektexporter als JSON und eine mit Bildern, die auf Objekte hochgeladen wurden. Bitte beachte, dass bei größeren Kampagnen der Bilderexport abstürzt und nur mit der :api wiederhergestellt werden kann.',
+        'helper_third'      => 'JSON-Dateien können mit jeder Textdateianwendung geöffnet werden. Sie stellen die in der Kanka-Datenbank gespeicherten Daten in einem Textformat dar. Es gibt keine Möglichkeit, Ihren Export zurück in Kanka zu importieren.',
         'success'           => 'Der Export deiner Kampagne wird vorbereitet. Du erhältst eine Nachricht in Kanka sobald dein Download bereit steht.',
         'title'             => 'Kampagne :name Export',
     ],

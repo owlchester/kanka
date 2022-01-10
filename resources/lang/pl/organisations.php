@@ -54,15 +54,29 @@ return [
         'fields'        => [
             'character'     => 'Postać',
             'organisation'  => 'Organiacja',
+            'pinned'        => 'Przypnij',
             'role'          => 'Rola',
+            'status'        => 'Rodzaj członkostwa',
         ],
         'helpers'       => [
             'all_members'   => 'Wszystkie postaci należące do tej organizacji i organizacji pochodnych.',
             'members'       => 'Wszystkie postaci należące do tej organizacji.',
+            'pinned'        => 'Wybierz czy członkostwo ma być wyświetlane w sekcji "przypięte" wskazanych elementów.',
+        ],
+        'pinned'        => [
+            'both'          => 'Do obu',
+            'character'     => 'Do postaci',
+            'none'          => 'Do żadnego',
+            'organisation'  => 'Do organizacji',
         ],
         'placeholders'  => [
             'character' => 'Wybierz postać',
             'role'      => 'Przywódca, członek, Wielki Septon, mistrz szpiegów',
+        ],
+        'status'        => [
+            'active'    => 'Aktywna działalność',
+            'inactive'  => 'Była działalność',
+            'unknown'   => 'Nieznany',
         ],
         'title'         => 'Członkowie organizacji :name',
     ],

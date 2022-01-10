@@ -13,7 +13,7 @@ return [
         'r_date_created'    => 'Odwrócona data stworzenia',
         'r_date_joined'     => 'Odwócona data dołączenia',
     ],
-    'description'                   => 'Aktualizuj szczegóły profilu',
+    'description'                   => 'Opis',
     'edit'                          => [
         'success'   => 'Zmieniono profil',
     ],
@@ -52,9 +52,9 @@ return [
         ],
         'settings'  => [
             'news'          => 'Aktualności - otrzymuj powiadomienia, gdy mamy :news.',
-            'newsletter'    => 'Newsletter - otrzymuj newsletter Kanki.',
+            'newsletter'    => 'Newsletter',
             'updates'       => 'Aktualizacje - otrzymasz wiadomość kiedy Kanka zostanie zaktualizowana',
-            'votes'         => 'Głosowania społeczności - otrzymuj powiadomienia, gdy możliwe jest :vote.',
+            'votes'         => 'Głosowania',
         ],
         'title'     => 'Newslettery',
     ],
@@ -90,6 +90,7 @@ return [
             'pagination'                    => 'Elementy na stronie',
         ],
         'helpers'   => [
+            'editor'    => 'Edytor',
             'editor_v2' => 'Jeżeli używasz poprzedniego edytora tekstu (TinyMCE) nie będziesz mieć dostępu do powiadomień na urządzeniach mobilnych oraz niektórych funkcji, na przykład galerii kampanii.',
         ],
         'hints'     => [
