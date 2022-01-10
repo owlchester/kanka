@@ -3,7 +3,10 @@
 namespace App\Exceptions;
 
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Http\Exceptions\MaintenanceModeException;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 use Http\Client\Exception\HttpException;
@@ -77,6 +80,30 @@ class Handler extends ExceptionHandler
                 'message' => $exception->getMessage(),
                 'retry' => $exception->retryAfter
             ], 200);
+        }
+
+        // API error handling
+        elseif ($request->is('api/*')) {
+            if ($exception instanceof ModelNotFoundException) {
+                return response()
+                    ->json([
+                        'code' => 404,
+                        'error' => $exception->getMessage(),
+                    ], 404);
+            } elseif ($exception instanceof MethodNotAllowedHttpException) {
+                return response()
+                    ->json([
+                        'code' => 405,
+                        'error' => $exception->getMessage()
+                    ], 405);
+            } elseif ($exception instanceof ValidationException) {
+                return response()
+                    ->json([
+                        'code' => $exception->status,
+                        'error' => $exception->getMessage(),
+                        'fields' => $exception->errors()
+                    ], $exception->status);
+            }
         }
 
         return parent::render($request, $exception);
