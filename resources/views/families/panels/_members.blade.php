@@ -17,7 +17,7 @@ if (!$allMembers) {
 }
 $datagridSorter = new \App\Datagrids\Sorters\FamilyCharacterSorter();
 $datagridSorter->request(request()->all());
-$r = $r->with(['race', 'location'])->simpleSort($datagridSorter)->orderBy('name')->paginate();
+$r = $r->with(['races', 'location'])->simpleSort($datagridSorter)->orderBy('name')->paginate();
 ?>
 <div class="box box-solid" id="family-members">
     <div class="box-header with-border">
