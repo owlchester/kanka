@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Facades\Mentions;
+use App\Facades\UserCache;
 use App\Models\Campaign;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -35,23 +36,29 @@ class CampaignResource extends JsonResource
         $campaign = $this->resource;
 
         $data = [
-            'id' => $this->id,
-            'name' => $this->name,
-            'locale' => $this->locale,
-            'entry' => $this->entry,
+            'id' => $campaign->id,
+            'name' => $campaign->name,
+            'locale' => $campaign->locale,
+            'entry' => $campaign->entry,
             'entry_parsed' => 'not available on the campaigns/ endpoint',
-            'image' => $this->image,
+            'image' => $campaign->image,
             'image_full' => $campaign->getImageUrl(0),
             'image_thumb' => $campaign->getImageUrl(40),
             'visibility' => $campaign->isPublic() ? 'public' : 'private',
-            'visibility_id' => $this->visibility_id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'members' => CampaignUserResource::collection($this->members),
-            'settings' => $this->settings,
-            'ui_settings' => $this->ui_settings,
-            'default_images' => $this->default_images,
+            'visibility_id' => $campaign->visibility_id,
+            'created_at' => $campaign->created_at,
+            'updated_at' => $campaign->updated_at,
+            'settings' => $campaign->settings,
+            'ui_settings' => $campaign->ui_settings,
+            'default_images' => $campaign->default_images,
+
+            'boosted' => $campaign->boosted(),
+            'superboosted' => $campaign->boosted(true)
         ];
+
+        if ($campaign->userIsMember() && auth()->user()->can('members', $campaign)) {
+            $data['members'] = CampaignUserResource::collection($campaign->members);
+        }
 
         if ($this->withMentions) {
             $data['entry_parsed'] = Mentions::mapCampaign($this->resource);
