@@ -36,7 +36,7 @@ class StoreCampaign extends FormRequest
             'theme_id' => 'nullable|exists:themes,id'
         ];
 
-        if (request()->is('api/*')) {
+        if (request()->is('api/*') && !request()->isMethod('POST')) {
             $rules['name'] = 'string|min:4';
         }
 

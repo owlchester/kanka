@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Facades\CampaignCache;
 use App\Facades\Mentions;
 use App\Facades\UserCache;
 use App\Models\Campaign;
@@ -56,6 +57,8 @@ class CampaignResource extends JsonResource
             'superboosted' => $campaign->boosted(true)
         ];
 
+        CampaignCache::campaign($campaign)->user(auth()->user());
+        UserCache::campaign($campaign)->user(auth()->user());
         if ($campaign->userIsMember() && auth()->user()->can('members', $campaign)) {
             $data['members'] = CampaignUserResource::collection($campaign->members);
         }
