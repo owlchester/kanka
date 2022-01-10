@@ -50,15 +50,29 @@ return [
         'fields'        => [
             'character'     => 'Personaxe',
             'organisation'  => 'Organización',
+            'pinned'        => 'Fixada',
             'role'          => 'Cargo',
+            'status'        => 'Estado',
         ],
         'helpers'       => [
             'all_members'   => 'Todas as personaxes que son integrantes desta organización ou das súas suborganizacións.',
             'members'       => 'Todas as personaxes integrantes desta organización.',
+            'pinned'        => 'Escolle se a pertenza a esta organización debería ser mostrada na sección de "Fixados" da correspondente entidade.',
+        ],
+        'pinned'        => [
+            'both'          => 'En ambas',
+            'character'     => 'Na páxina da personaxe',
+            'none'          => 'En ningunha',
+            'organisation'  => 'Na páxina da organización',
         ],
         'placeholders'  => [
             'character' => 'Elixe unha personaxe',
             'role'      => 'Líder, integrante, Septón supremo, Mestre de espías...',
+        ],
+        'status'        => [
+            'active'    => 'En activo',
+            'inactive'  => 'Inactivo',
+            'unknown'   => 'Estado descoñecido',
         ],
         'title'         => 'Integrantes de :name',
     ],

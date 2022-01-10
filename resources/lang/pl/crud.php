@@ -236,6 +236,7 @@ return [
         'header_image'          => 'Obraz umieszczony w nagłówku elementu. Użyj szerokiego obrazu by osiągnąć najlepszy efekt.',
         'image_limitations'     => 'Dozwolone formaty: :formats. Maksymalny rozmiar pliku :size.',
         'image_patreon'         => 'Zwiększyć limit rozmiaru pliku?',
+        'image_recommendation'  => 'Sugerowane wymiary: :width na :height pikseli.',
         'is_private'            => 'Element oznaczony jako tajny jest widoczny tylko dla posiadaczy roli "administrator".',
         'is_star'               => 'Elementy przypięte pojawiają się w menu elementu.',
         'tooltip'               => 'Zastąp dymek z poradą generowaną automatycznie następującą zawartością.',

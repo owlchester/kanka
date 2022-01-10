@@ -254,6 +254,6 @@ class Quest extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        return !empty($this->type) || !empty($this->character);
+        return !empty($this->type) || !empty($this->character) || !empty($this->date);
     }
 }

@@ -101,6 +101,8 @@ if ($folder) {
                         <label>{{ __('campaigns/gallery.fields.name') }}</label>
                         {!! Form::text('name', null, ['class' => 'form-control', 'maxlength' => 100]) !!}
                     </div>
+
+                    @include('cruds.fields.visibility_id', ['model' => null])
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('crud.cancel') }}</button>

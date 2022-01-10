@@ -53,15 +53,29 @@ return [
         'fields'        => [
             'character'     => 'Charakter',
             'organisation'  => 'Organisation',
+            'pinned'        => 'gepinned',
             'role'          => 'Rolle',
+            'status'        => 'Mitgliedsstatus',
         ],
         'helpers'       => [
             'all_members'   => 'Alle Charaktere, die Mitglieder dieser Organisation und ihrer Unterorganisationen sind.',
             'members'       => 'Alle Charaktere, die Mitglieder dieser Organisation sind.',
+            'pinned'        => 'Wählen Sie aus, ob dieses Mitglied im angehefteten Abschnitt der Übersicht der zugehörigen Objekten angezeigt werden soll.',
+        ],
+        'pinned'        => [
+            'both'          => 'beide',
+            'character'     => 'Charakter',
+            'none'          => 'keiner',
+            'organisation'  => 'Organisation',
         ],
         'placeholders'  => [
             'character' => 'Wähle einen Charakter',
             'role'      => 'Anführer, Mitglied, Hoher Septon, Meisterspion',
+        ],
+        'status'        => [
+            'active'    => 'aktive Mitglieder',
+            'inactive'  => 'inaktive Mitglieder',
+            'unknown'   => 'unbekannter Status',
         ],
         'title'         => 'Organisationen :name Mitglieder',
     ],

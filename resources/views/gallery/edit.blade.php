@@ -57,7 +57,10 @@ $imageCount = 0;
                     <label for="folder_id" class="control-label">{{ __('campaigns/gallery.fields.folder') }}</label>
                     {!! Form::select('folder_id', $folders, null, ['class' => 'form-control']) !!}
                 </div>
+
                 @endif
+
+                @include('cruds.fields.visibility_id', ['model' => $image])
 
                 <input type="submit" class="btn btn-sm btn-primary" value="{{ __('campaigns/gallery.actions.save') }}">
 

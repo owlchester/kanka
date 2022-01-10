@@ -19,6 +19,7 @@ class OrganisationMemberResource extends ModelResource
             'organisation_id' => $this->organisation_id,
             'pin_id' => $this->pin_id,
             'status_id' => $this->status_id,
+            'parent_id' => $this->parent_id,
         ]);
     }
 }

@@ -108,7 +108,9 @@ class EntityObserver
      */
     public function savePermissions(Entity $entity)
     {
-        if (!Auth::user()->can('permission', $entity->child)) {
+        if (!auth()->user()->can('permission', $entity->child)) {
+            return;
+        } elseif (request()->has('copy_source_permissions') && request()->filled('copy_source_permissions')) {
             return;
         }
 

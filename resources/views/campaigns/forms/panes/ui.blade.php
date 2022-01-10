@@ -48,6 +48,13 @@
                     {{ __('campaigns.fields.nested') }}
                 </label>
             </div>
+
+            {!! Form::hidden('ui_settings[post_collapsed]', 0) !!}
+            <div class="checkbox">
+                <label>{!! Form::checkbox('ui_settings[post_collapsed]') !!}
+                    {{ __('campaigns.fields.post_collapsed') }}
+                </label>
+            </div>
         </div>
     </div>
 </div>

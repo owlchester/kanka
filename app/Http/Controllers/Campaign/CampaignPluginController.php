@@ -7,13 +7,11 @@ namespace App\Http\Controllers\Campaign;
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
+use App\Models\CampaignPlugin;
 use App\Models\Plugin;
-use App\Models\PluginVersion;
 use App\Services\Campaign\CampaignPluginService;
-use App\Services\EntityService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class CampaignPluginController extends Controller
 {
@@ -168,12 +166,27 @@ class CampaignPluginController extends Controller
 
     }
 
+    public function confirmImport(Plugin $plugin)
+    {
+        $campaign = CampaignLocalization::getCampaign();
+        $this->authorize('recover', $campaign);
+
+        $version = CampaignPlugin::where('campaign_id', $campaign->id)
+            ->where('plugin_id', $plugin->id)
+            ->firstOrFail();
+
+        return view('campaigns.plugins.confirm')
+            ->with('plugin', $plugin)
+            ->with('version', $version)
+        ;
+    }
+
     /**
      * @param Plugin $plugin
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function import(Plugin $plugin)
+    public function import(Request $request, Plugin $plugin)
     {
         $campaign = CampaignLocalization::getCampaign();
         $this->authorize('recover', $campaign);
@@ -182,6 +195,7 @@ class CampaignPluginController extends Controller
             $count = $this->service
                 ->plugin($plugin)
                 ->campaign($campaign)
+                ->options($request->only(['force_private', 'only_new']))
                 ->import();
 
             return redirect()->route('campaign_plugins.index')
@@ -191,6 +205,7 @@ class CampaignPluginController extends Controller
                 )
                 ->with('plugin_entities_created', $this->service->created())
                 ->with('plugin_entities_updated', $this->service->updated())
+                ->with('plugin_only_new', $request->get('only_new'))
                 ;
         }
         catch (\Exception $e) {

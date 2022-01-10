@@ -115,7 +115,7 @@ class Race extends MiscModel
      */
     public function characters()
     {
-        return $this->hasMany('App\Models\Character', 'race_id', 'id');
+        return $this->belongsToMany('App\Models\Character', 'character_race');
     }
 
     /**
@@ -140,14 +140,21 @@ class Race extends MiscModel
     /**
      * Get all characters in the location and descendants
      */
-    public function allCharacters()
+    public function allCharacters(bool $allMembers = false)
     {
         $raceIds = [$this->id];
-        foreach ($this->descendants as $descendant) {
-            $raceIds[] = $descendant->id;
-        };
+        if ($allMembers) {
+            foreach ($this->descendants as $descendant) {
+                $raceIds[] = $descendant->id;
+            };
+        }
 
-        return Character::whereIn('race_id', $raceIds)->with('race');
+        return Character
+            ::select('characters.*')
+            ->leftJoin('character_race as cr', function ($join) {
+                $join->on('cr.character_id', '=', 'characters.id');
+            })
+            ->whereIn('cr.race_id', $raceIds);
     }
 
     /**

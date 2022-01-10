@@ -50,6 +50,7 @@ return [
         'fields'        => [
             'character'     => 'Character',
             'organisation'  => 'Organisation',
+            'parent'        => 'Superior',
             'pinned'        => 'Pinned',
             'role'          => 'Role',
             'status'        => 'Membership status',
@@ -67,6 +68,7 @@ return [
         ],
         'placeholders'  => [
             'character' => 'Choose a character',
+            'parent'    => 'Who is this member\'s superior',
             'role'      => 'Leader, Member, High Septon, Spymaster',
         ],
         'status'        => [

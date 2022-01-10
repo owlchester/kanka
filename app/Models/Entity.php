@@ -392,7 +392,7 @@ class Entity extends Model
             return true;
         }
 
-        if ($superboosted && !empty($this->header_uuid)) {
+        if ($superboosted && !empty($this->header_uuid) && !empty($this->header)) {
             return true;
         }
 

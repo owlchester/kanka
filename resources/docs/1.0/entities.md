@@ -171,9 +171,9 @@ With each request to an object (ie. `character`, `location`, etc), you can inclu
             "title": null,
             "age": null,
             "sex": null,
-            "race_id": null,
+            "races": [],
             "type": null,
-            "family_id": null,
+            "families": [],
             "is_dead": false,
             "traits": []
         }

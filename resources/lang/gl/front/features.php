@@ -11,7 +11,7 @@ return [
         'title'         => 'Atributos',
     ],
     'boosters'          => [
-        'description'   => 'Algunhas funcionalidades só están dispoñíbeis para campañas potenciadas. Cando unha persoa se subscribe a Kanka, esta gaña certo número de potenciadores que poden usar en unha ou varias campañas. Estes potenciadores poden ser movidos de campaña a campaña a vontade, e duran ataque a persoa deixe de estar subscrita a Kanka.',
+        'description'   => 'Algunhas funcionalidades só están dispoñíbeis para campañas potenciadas. Cando unha persoa se subscribe a Kanka, esta gaña certo número de potenciadores que pode usar en unha ou varias campañas. Estes potenciadores poden ser movidos de campaña a campaña a vontade, e duran ata que a persoa deixe de estar subscrita a Kanka.',
         'link'          => 'Mira todas as funcionalidades potenciadas na nosa páxina de prezos.',
         'title'         => 'Potenciadores de campaña',
     ],

@@ -273,6 +273,7 @@ return [
         'login'         => 'Logowanie',
         'marketplace'   => 'Targowisko',
         'media'         => 'Media',
+        'merch'         => 'Gadżety',
         'news'          => 'Co nowego',
         'newsletter'    => 'Newsletter',
         'other'         => 'Pozostałe',

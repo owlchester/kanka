@@ -236,6 +236,7 @@ return [
         'header_image'          => 'Dieses Bild wird über dem Objekt platziert. Verwenden Sie ein breites Bild, um optimale Ergebnisse zu erzielen.',
         'image_limitations'     => 'Unterstützte Formate: :formats. Maximale Dateigröße: :size.',
         'image_patreon'         => 'Erhöhe das Limit indem du uns bei Patreon unterstützt.',
+        'image_recommendation'  => 'empfohlene Abmaße: :width by :height px.',
         'is_private'            => 'Vor \'Zuschauern\' verbergen',
         'is_star'               => 'Angepinnte Objekte erscheinen im Objektmenü.',
         'tooltip'               => 'Ersetzen Sie die automatisch generierte Kurzinfo durch den folgenden Inhalt.',

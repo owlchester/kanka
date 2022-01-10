@@ -23,6 +23,7 @@ class AttributeTemplateFilter extends DatagridFilter
                 'model' => AttributeTemplate::class,
             ])
             ->isPrivate()
+            ->hasAttributes()
             ->tags()
         ;
     }

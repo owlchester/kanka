@@ -142,7 +142,16 @@ class EntityNote extends Model
     {
         $new = $this->replicate(['entity_id']);
         $new->entity_id = $target->id;
-        return $new->save();
+        $result = $new->save();
+
+        // Also replicate permissions
+        foreach ($this->permissions as $perm) {
+            $newPerm = $perm->replicate(['entity_note_id']);
+            $newPerm->entity_note_id = $new->id;
+            $newPerm->save();
+        }
+
+        return $result;
     }
 
     /**

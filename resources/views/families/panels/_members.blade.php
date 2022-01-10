@@ -75,9 +75,9 @@ $r = $r->with(['race', 'location'])->simpleSort($datagridSorter)->orderBy('name'
                     @endif
                     @if ($campaign->enabled('races'))
                         <td class="hidden-xs hidden-sm">
-                            @if ($member->race)
-                                {!! $member->race->tooltipedLink() !!}
-                            @endif
+                            @foreach ($member->races as $race)
+                                {!! $race->tooltipedLink() !!}
+                            @endforeach
                         </td>
                     @endif
                     <td>{{ $member->sex }}</td>

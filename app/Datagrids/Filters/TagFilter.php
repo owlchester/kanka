@@ -27,6 +27,7 @@ class TagFilter extends DatagridFilter
             ->hasImage()
             ->hasEntityNotes()
             ->hasEntityFiles()
+            ->hasAttributes()
         ;
     }
 }

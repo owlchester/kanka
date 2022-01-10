@@ -2,7 +2,7 @@
 <div class="form-group">
     {!! Form::hidden('copy_source_notes', null) !!}
     <label>{!! Form::checkbox('copy_source_notes', 1, true) !!}
-        {{ __('crud.fields.copy_notes') }}
+        {{ __('crud.fields.copy_posts') }}
     </label>
 </div>
 @if ($campaign->campaign()->boosted())
@@ -23,6 +23,13 @@
     {!! Form::hidden('copy_source_inventory', null) !!}
     <label>{!! Form::checkbox('copy_source_inventory', 1, request()->filled('template')) !!}
         {{ __('crud.fields.copy_inventory') }}
+    </label>
+</div>
+
+<div class="form-group">
+    {!! Form::hidden('copy_source_permissions', null) !!}
+    <label>{!! Form::checkbox('copy_source_permissions', 1, request()->filled('template')) !!}
+        {{ __('crud.fields.copy_permissions') }}
     </label>
 </div>
 

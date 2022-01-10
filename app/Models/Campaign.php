@@ -451,13 +451,6 @@ class Campaign extends MiscModel
         return !empty(CampaignCache::themes());
     }
 
-    /**
-     * @return bool
-     */
-    public function getEntityNoteVisibilityAttribute(): bool
-    {
-        return (bool) Arr::get($this->settings, 'entity_note_visibility', false);
-    }
 
     /**
      * @return array|\ArrayAccess|mixed
@@ -465,6 +458,26 @@ class Campaign extends MiscModel
     public function getDefaultVisibilityAttribute()
     {
         return Arr::get($this->settings, 'default_visibility', 'all');
+    }
+
+    public function defaultVisibilityID(): int
+    {
+        $visibility = $this->default_visibility;
+
+        if ($visibility == 'admin') {
+            return Visibility::VISIBILITY_ADMIN;
+        }
+        elseif ($visibility == 'admin-self') {
+            return Visibility::VISIBILITY_ADMIN_SELF;
+        }
+        elseif ($visibility == 'members') {
+            return Visibility::VISIBILITY_MEMBERS;
+        }
+        elseif ($visibility == 'self') {
+            return Visibility::VISIBILITY_SELF;
+        }
+
+        return Visibility::VISIBILITY_ALL;
     }
 
     /**

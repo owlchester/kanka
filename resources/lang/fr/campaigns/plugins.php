@@ -30,9 +30,15 @@ return [
     ],
     'helper'        => 'La communauté de Kanka est constamment en train d\'ajouter de nouveaux plugins incroyables sur le marketplace. Les campagnes boostées peuvent installer les plugins du marketplace. Cette interface permet de gérer les plugins installés sur la campagne.',
     'import'        => [
-        'created'   => 'Les entités suivantes ont été créées:',
-        'success'   => '{1} Importé :count entité du plugin :plugin.|[2,*] Importé :count entités du plugin :plugin.',
-        'updated'   => 'Les entités suivantes ont été modifiées:',
+        'button'                => 'Importer',
+        'created'               => 'Les entités suivantes ont été créées:',
+        'helper'                => ':count entités du plugin :plugin seront importées. Si ce plugin a déjà été importé dans le passé, les changements fait aux entités déjà importées peuvent être perdus.',
+        'no_new_entities'       => 'Il n\'y a pas de nouvelles entités à importer.',
+        'option_only_import'    => 'Seulement importer les nouvelles entités, et ignorer les entités déjà précédemment importées.',
+        'option_private'        => 'Importer toutes les entités comme privées.',
+        'success'               => '{1} Importé :count entité du plugin :plugin.|[2,*] Importé :count entités du plugin :plugin.',
+        'title'                 => 'Importer :plugin',
+        'updated'               => 'Les entités suivantes ont été modifiées:',
     ],
     'info'          => [
         'helper'        => 'Dès qu\'un plugin a une nouvelle version, tu peux mettre à jour le plugin à la version la plus récente.',

@@ -49,6 +49,7 @@ TEXT
         ],
         'helper'            => 'Exportuj svoju kampaň. Zobrazí sa notifikácia s linkom na stiahnutie.',
         'helper_secondary'  => 'Budú vytvorené dva súbory - jeden s objektami ako JSON a druhý s obrázkami nahratými k objektom. Pri veľkých kampaniach je možné, že export obrázkov zlyhá a bude ho možné obnoviť len pomocou :api.',
+        'helper_third'      => 'JSON súbory môžeš otvoriť v hociktorom textovom editore. Reprezentujú dáta z databázy Kanky uložené v textovom formáte. Tento export nie je možné použiť pre spätný import do Kanky.',
         'success'           => 'Export tvojej kampane sa pripravuje. Kanka ti zašle správu, akonáhle bude zozipovaný súbor pripravený na stiahnutie.',
         'title'             => 'Export kampane :name',
     ],

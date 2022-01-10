@@ -5,7 +5,7 @@ return [
         'title' => 'Szablony cech :name',
     ],
     'create'                => [
-        'description'   => 'Dodaj szablon cech',
+        'description'   => 'Opis',
         'success'       => 'Dodano szablon cech \':name\'.',
         'title'         => 'Nowy szablon cech',
     ],
@@ -13,7 +13,7 @@ return [
         'success'   => 'Usunięto szablon cech \':name\'.',
     ],
     'edit'                  => [
-        'description'   => 'Edytuj szablon cech',
+        'description'   => 'Opis',
         'success'       => 'Zmieniono szablon cech \':name\'.',
         'title'         => 'Edycja szablonu cech :name',
     ],
@@ -29,7 +29,7 @@ return [
     ],
     'index'                 => [
         'add'           => 'Nowy szablon cech',
-        'description'   => 'Zarządzaj szablonami cech elementu :name',
+        'description'   => 'Opis',
         'header'        => 'Szablony cech elementu :name',
         'title'         => 'Szablony cech',
     ],
@@ -38,7 +38,7 @@ return [
         'name'                  => 'Nazwa szablonu cech',
     ],
     'show'                  => [
-        'description'   => 'Widok szczegółowy szablonu cech',
+        'description'   => 'Opis',
         'tabs'          => [
             'attribute_templates'   => 'Szablony cech',
             'attributes'            => 'Cechy',

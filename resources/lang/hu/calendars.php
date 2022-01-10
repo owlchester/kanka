@@ -46,9 +46,10 @@ return [
     ],
     'event'         => [
         'actions'   => [
-            'existing'  => 'Létező entitás',
-            'new'       => 'Új esemény',
-            'switch'    => 'Választás megváltoztatása',
+            'delete-confirm'    => 'Emlékeztető',
+            'existing'          => 'Létező entitás',
+            'new'               => 'Új esemény',
+            'switch'            => 'Választás megváltoztatása',
         ],
         'create'    => [
             'description'   => 'Esemény létrehozása a naptárban',

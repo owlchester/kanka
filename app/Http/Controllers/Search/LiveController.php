@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Search;
 
 use App\Facades\CampaignLocalization;
 use App\Http\Controllers\Controller;
+use App\Models\Organisation;
+use App\Models\OrganisationMember;
 use App\Models\Tag;
 use App\Services\SearchService;
 use Illuminate\Http\Request;
@@ -91,7 +93,6 @@ class LiveController extends Controller
         );
     }
 
-
     /**
      * Filter on entities which have multiple tags
      * @param Request $request
@@ -135,6 +136,36 @@ class LiveController extends Controller
                 ->campaign($campaign)
                 ->only([config('entities.ids.calendar')])
                 ->find()
+        );
+    }
+
+    /**
+     * Filter on org members
+     * @param Request $request
+     * @return mixed
+     */
+    public function organisationMembers(Request $request)
+    {
+        $term = trim($request->q);
+        $campaign = CampaignLocalization::getCampaign();
+
+        $exclude = [];
+        $data = [];
+        if ($request->has('exclude')) {
+            /** @var Organisation $tag */
+            $org = Organisation::findOrFail($request->get('exclude'));
+            /** @var OrganisationMember $member */
+            foreach ($org->members()->with('character')->has('character')->get() as $member) {
+                $data[] = [
+                    'id' => $member->id,
+                    'text' => $member->character->name . ' (' . $member->role . ')'
+                ];
+            }
+        }
+
+
+        return Response::json(
+            $data
         );
     }
 }

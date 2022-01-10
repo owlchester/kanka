@@ -10,7 +10,11 @@
         @if ($image->is_folder)
             <div class="gallery-folder">
                 <span class="text">
+                    @if ($image->visibility_id == \App\Models\Visibility::VISIBILITY_ALL)
                     <i class="fa fa-folder fa-2x"></i>
+                    @else
+                        {!! $image->visibilityIcon('fa-2x') !!}
+                    @endif
                     {{ $image->name }}
                 </span>
             </div>
@@ -19,7 +23,7 @@
                 style="background-image: url('{{ Img::crop(100, 100)->url($image->path) }}')">
             </div>
             <span class="thumbnail-text">
-                {{ $image->name }}
+                {!! $image->visibilityIcon() !!} {{ $image->name }}
             </span>
         @endif
     </div>

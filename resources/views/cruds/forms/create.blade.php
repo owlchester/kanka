@@ -34,13 +34,6 @@
                     </a>
                 </li>
             @endif
-            @if ((!empty($source) || !empty(old('copy_source_id'))) && $tabCopy)
-                <li class="{{ (request()->get('tab') == 'copy' ? ' active' : '') }}">
-                    <a href="#form-copy" title="{{ __('crud.forms.copy_options') }}">
-                        {{ __('crud.forms.copy_options') }}
-                    </a>
-                </li>
-            @endif
             @if ($tabAttributes)
                 <li class="{{ (request()->get('tab') == 'attributes' ? ' active' : '') }}">
                     <a href="#form-attributes" title="{{ __('crud.tabs.attributes') }}">
@@ -56,6 +49,13 @@
                     <span class="hidden-xs hidden-sm">{{ __('crud.tabs.permissions') }}</span>
                 </a>
             </li>
+            @endif
+            @if ((!empty($source) || !empty(old('copy_source_id'))) && $tabCopy)
+                <li class="{{ (request()->get('tab') == 'copy' ? ' active' : '') }}">
+                    <a href="#form-copy" title="{{ __('crud.forms.copy_options') }}">
+                        {{ __('crud.forms.copy_options') }}
+                    </a>
+                </li>
             @endif
         </ul>
 

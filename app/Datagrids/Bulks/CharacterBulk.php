@@ -11,7 +11,7 @@ class CharacterBulk extends Bulk
         'title',
         'family_id',
         'location_id',
-        'race_id',
+        'races',
         'type',
         'sex',
         'dead_choice',

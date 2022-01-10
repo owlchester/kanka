@@ -42,6 +42,7 @@ return [
             'name'      => 'Felhasználónév',
             'password'  => 'Jelszó',
             'tos'       => 'Egyetértek az <a href=":privacyUrl" target="_blank">Adatvédelmi politikával</a>.',
+            'tos_clean' => 'Egyetértek a :privacy',
         ],
         'register_with_facebook'    => 'Regisztráció a Facebook segítségével',
         'register_with_google'      => 'Regisztráció a Google segítségével',

@@ -24,21 +24,26 @@
             </div>
         @endif
 
-        @if (!empty($model->race) || $model->hasAge())
-            @if (!empty($model->race) && !$model->hasAge())
+        @if (!$model->races->isEmpty() || $model->hasAge())
+            @if (!$model->races->isEmpty() && !$model->hasAge())
             <div class="element profile-race">
-                <div class="title">{{ __('characters.fields.race') }}</div>
-                {!! $model->race->tooltipedLink() !!}
+                <div class="title">{{ __('characters.fields.races') }}</div>
+                @foreach ($model->races as $race)
+                {!! $race->tooltipedLink() !!}
+                @endforeach
             </div>
-            @elseif (empty($model->race) && $model->hasAge())
+            @elseif ($model->races->isEmpty() && $model->hasAge())
             <div class="element profile-age">
                 <div class="title">{{ __('characters.fields.age') }}</div>
-                {{ $model->age }}
+                <span>{{ $model->age }}</span>
             </div>
             @else
             <div class="element profile-race-age">
-                <div class="title">{{ __('characters.fields.race') }}, {{ __('characters.fields.age') }}</div>
-                {!! $model->race->tooltipedLink() !!}, {{ $model->age }}
+                <div class="title">{{ __('characters.fields.races') }}, {{ __('characters.fields.age') }}</div>
+                @foreach ($model->races as $race)
+                    {!! $race->tooltipedLink() !!}
+                @endforeach
+                <span>{{ $model->age }}</span>
             </div>
             @endif
         @endif
@@ -48,17 +53,18 @@
             @if (!empty($model->sex) && empty($model->pronouns))
                 <div class="element profile-gender">
                     <div class="title">{{ __('characters.fields.sex') }}</div>
-                    {{ $model->sex }}
+                    <span>{{ $model->sex }}</span>
                 </div>
             @elseif (empty($model->sex) && !empty($model->pronouns))
                 <div class="element profile-pronouns">
                     <div class="title">{{ __('characters.fields.pronouns') }}</div>
-                    {{ $model->pronouns }}
+                    <span>{{ $model->pronouns }}</span>
                 </div>
             @else
                 <div class="element profile-gender-pronouns">
                     <div class="title">{{ __('characters.fields.sex') }}, {{ __('characters.fields.pronouns') }}</div>
-                    {{ $model->sex }}, {{ $model->pronouns }}
+                    <span>{{ $model->sex }}</span>
+                    <span>{{ $model->pronouns }}</span>
                 </div>
             @endif
         @endif

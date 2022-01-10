@@ -26,6 +26,12 @@
             {!! session('plugin_entities_updated') !!}
         </div>
     @endif
+    @if(session('plugin_only_new') == 'on' && session('plugin_entities_created') == 0)
+        <div class="alert alert-warning alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <strong>{{ __('campaigns/plugins.import.no_new_entities') }}</strong><br />
+        </div>
+    @endif
     <div class="row">
         <div class="col-md-3">
             @include('campaigns._menu', ['active' => 'plugins'])

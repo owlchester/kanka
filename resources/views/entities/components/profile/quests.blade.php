@@ -19,6 +19,13 @@
             </div>
         @endif
 
+        @if ($model->date)
+            <div class="element profile-date">
+                <div class="title">{{ __('journals.fields.date') }}</div>
+                {{ $model->date }}
+            </div>
+        @endif
+
         @include('entities.components.profile._type')
     </div>
 </div>

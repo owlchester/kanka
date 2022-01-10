@@ -7,12 +7,10 @@ namespace App\Models;
 use App\Facades\Img;
 use App\Models\Concerns\LastSync;
 use App\Traits\CampaignTrait;
+use App\Traits\VisibilityIDTrait;
 use App\User;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Storage;
 
 /**
  * Class Image
@@ -36,20 +34,26 @@ use Illuminate\Support\Facades\Storage;
  * @property Image[] $folders
  * @property Image[] $images
  *
+ *
+ * @property int $visibility_id
+ * @property Visibility $visibility
+ *
  * @property string $path
  * @property string $file
  * @property string $folder
+ *
  *
  * @property int $_usageCount
  */
 class Image extends Model
 {
-    use CampaignTrait, LastSync;
+    use CampaignTrait, LastSync, VisibilityIDTrait;
 
     public $fillable = [
         'name',
         'is_folder',
-        'folder_id'
+        'folder_id',
+        'visibility_id',
     ];
 
     /**
@@ -92,6 +96,11 @@ class Image extends Model
     public function headers()
     {
         return $this->hasMany(Entity::class, 'header_uuid', 'id');
+    }
+
+    public function visibility()
+    {
+        return $this->belongsTo(Visibility::class);
     }
 
     public function inEntities(): array

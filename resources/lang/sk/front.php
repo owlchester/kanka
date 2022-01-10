@@ -277,6 +277,7 @@ return [
         'login'         => 'Login',
         'marketplace'   => 'Trhovisko',
         'media'         => 'Médiá',
+        'merch'         => 'Merch',
         'news'          => 'Novinky',
         'newsletter'    => 'Newsletter',
         'other'         => 'Iné',

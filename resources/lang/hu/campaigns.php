@@ -166,6 +166,12 @@ TEXT
             'link'  => 'Link',
         ],
         'unlimited_validity'    => 'Korlátlan',
+        'usages'                => [
+            'five'      => '5 használat',
+            'no_limit'  => 'Nincs limit',
+            'once'      => '1 használat',
+            'ten'       => '10 használat',
+        ],
     ],
     'leave'                             => [
         'confirm'   => 'Biztos vagy benne, hogy el akarod hagyni az :name nevű kampányt? Nem tudsz majd többé hozzáférni, kivéve, ha a kampány tulajdonosa újra meghív téged.',
@@ -174,6 +180,8 @@ TEXT
     ],
     'members'                           => [
         'actions'               => [
+            'help'          => 'Segítség',
+            'remove'        => 'Eltávolítás a kampányból',
             'switch'        => 'Váltás',
             'switch-back'   => 'Vissza a saját felhasználómhoz',
         ],
@@ -248,6 +256,7 @@ TEXT
             'add'           => 'Szerep hozzáadása',
             'permissions'   => 'Engedélyek kezelése',
             'rename'        => 'Szerep átnevezése',
+            'save'          => 'Szerep mentése',
         ],
         'admin_role'    => 'admin szerep',
         'create'        => [
@@ -379,7 +388,7 @@ TEXT
     ],
     'show'                              => [
         'actions'       => [
-            'boost' => 'Kampány boost-olása',
+            'boost' => 'Kampány megerősítése',
             'edit'  => 'Kampány szerkesztése',
             'leave' => 'Kilépés a kampányból',
         ],
@@ -402,6 +411,7 @@ TEXT
             'recovery'          => 'Visszaállítás',
             'roles'             => 'Szerepek',
             'settings'          => 'Modulok',
+            'styles'            => 'Témázás',
         ],
         'title'         => ':name kampány',
     ],

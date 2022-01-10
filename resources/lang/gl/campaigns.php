@@ -43,6 +43,7 @@ TEXT
         ],
         'helper'            => 'Exporta a túa campaña. Recibirás unha notificación coa ligazón de descarga.',
         'helper_secondary'  => 'Dous arquivos estarán dispoñíbeis, un coas entidades exportadas como JSON, e outro coas imaxes subidas ás entidades. Por favor, ten en conta que en campañas grandes, a exportación de imaxes pode non funcionar. Nese caso poden ser recuperadas usando a :api.',
+        'helper_third'      => 'Os ficheiros JSON poden abrirse con calquera editor de texto e conteñen os datos gardados na base de datos de Kanka. Os datos exportados deste xeito non poden ser importados de volta.',
         'success'           => 'A exportación da túa campaña está sendo preparada. Recibirás unha notificación en Kanka para descargar un arquivo zip cando esté lista.',
         'title'             => 'Exportación da campaña ":name"',
     ],

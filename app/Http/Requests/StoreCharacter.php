@@ -38,6 +38,9 @@ class StoreCharacter extends FormRequest
             'pronouns' => 'nullable|max:45',
             'title' => 'nullable|max:191',
             'template_id' => 'nullable',
+            'races' => [
+                '*' => 'exists:races,id'
+            ]
         ];
 
         return $this->clean($rules);

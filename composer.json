@@ -18,6 +18,7 @@
         "barryvdh/laravel-dompdf": "^0.8.2",
         "binarytorch/larecipe": "^2.0",
         "blueimp/jquery-file-upload": "^9.23",
+        "caseyamcl/toc": "^3.0",
         "chriskonnertz/string-calc": "^1.0",
         "enlightn/enlightn": "^1.6",
         "enshrined/svg-sanitize": "^0.13.3",

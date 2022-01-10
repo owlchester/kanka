@@ -63,6 +63,7 @@ TEXT
         'name'                      => 'Name',
         'nested'                    => 'Default entity lists to nested when available',
         'open'                      => 'Open to applications',
+        'post_collapsed'            => 'New posts on entities are collapsed by default.',
         'public_campaign_filters'   => 'Public Campaign Filters',
         'related_visibility'        => 'Related Elements Visibility',
         'rpg_system'                => 'RPG Systems',

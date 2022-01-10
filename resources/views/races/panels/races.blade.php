@@ -1,7 +1,7 @@
 <div class="box box-solid" id="race-races">
     <div class="box-header">
         <h3 class="box-title">
-            {{ trans('races.show.tabs.races') }}
+            {{ __('races.show.tabs.races') }}
         </h3>
     </div>
     <div class="box-body">
@@ -13,9 +13,10 @@
         <table id="races" class="table table-hover ">
             <tbody><tr>
                 <th class="avatar"><br /></th>
-                <th>{{ trans('races.fields.name') }}</th>
+                <th>{{ __('races.fields.name') }}</th>
+                <th>{{ __('races.fields.type') }}</th>
                 @if ($campaign->enabled('characters'))
-                    <th>{{ trans('races.fields.characters') }}</th>
+                    <th>{{ __('races.fields.characters') }}</th>
                 @endif
             </tr>
             @foreach ($r as $race)
@@ -25,6 +26,9 @@
                     </td>
                     <td>
                         {!! $race->tooltipedLink() !!}
+                    </td>
+                    <td>
+                        {{ $race->type }}
                     </td>
                     @if ($campaign->enabled('characters'))
                     <td>

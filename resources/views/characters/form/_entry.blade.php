@@ -15,7 +15,7 @@ if (request()->route()->getName() == 'characters.random') {
         @include('cruds.fields.name', ['trans' => 'characters'])
         @include('cruds.fields.title')
         @include('cruds.fields.family')
-        @include('cruds.fields.race')
+        @include('cruds.fields.races')
         @include('cruds.fields.location')
         @include('cruds.fields.tags')
         @include('cruds.fields.type', ['base' => \App\Models\Character::class, 'trans' => 'characters'])
@@ -62,4 +62,3 @@ if (request()->route()->getName() == 'characters.random') {
 </div>
 
 @include('cruds.fields.private2')
-

@@ -32,6 +32,7 @@ trait Filterable
             'has_image',
             'has_entity_notes',
             'has_entity_files',
+            'has_attributes',
             'created_by',
             'updated_by',
         ];
@@ -141,6 +142,22 @@ trait Filterable
                                 $join->on('om.character_id', '=', $this->getTable() . '.id');
                             })
                             ->where('om.organisation_id', $value);
+                    } elseif ($key == 'races') {
+                        // Character races
+                        if (!empty($filterOption) && $filterOption == 'none')  {$query
+                            ->select($this->getTable() . '.*')
+                            ->leftJoin('character_race as cr', function ($join) {
+                                $join->on('cr.character_id', '=', $this->getTable() . '.id');
+                            })
+                            ->where('cr.race_id', null);
+                            continue;
+                        }
+                        $query
+                            ->select($this->getTable() . '.*')
+                            ->leftJoin('character_race as cr', function ($join) {
+                                $join->on('cr.character_id', '=', $this->getTable() . '.id');
+                            })
+                            ->where('cr.race_id', $value);
                     } elseif ($key == 'has_image') {
                         if ($value) {
                             $query->whereNotNull($this->getTable() . '.image');
@@ -156,6 +173,16 @@ trait Filterable
                             $query->whereNotNull('entity_notes.id');
                         } else {
                             $query->whereNull('entity_notes.id');
+                        }
+                    } elseif ($key == 'has_attributes') {
+
+                        $query = $this->joinEntity($query);
+                        $query->leftJoin('attributes', 'attributes.entity_id', 'e.id');
+
+                        if ($value) {
+                            $query->whereNotNull('attributes.id');
+                        } else {
+                            $query->whereNull('attributes.id');
                         }
                     } elseif ($key == 'has_entity_files') {
 
@@ -273,6 +300,7 @@ trait Filterable
                 $join->where('e.type_id', '=', $this->entityTypeID())
                     ->whereRaw('e.campaign_id = ' . $this->getTable() . '.campaign_id');
             })
+            ->groupBy($this->getTable() . '.id')
         ;
     }
 }

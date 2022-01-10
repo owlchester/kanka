@@ -370,7 +370,8 @@ Route::group([
             Route::delete('/plugins/{plugin}/delete', 'Campaign\CampaignPluginController@delete')->name('campaign_plugins.destroy');
             Route::get('/plugins/{plugin}/enable', 'Campaign\CampaignPluginController@enable')->name('campaign_plugins.enable');
             Route::get('/plugins/{plugin}/disable', 'Campaign\CampaignPluginController@disable')->name('campaign_plugins.disable');
-            Route::get('/plugins/{plugin}/import', 'Campaign\CampaignPluginController@import')->name('campaign_plugins.import');
+            Route::post('/plugins/{plugin}/import', 'Campaign\CampaignPluginController@import')->name('campaign_plugins.import');
+            Route::get('/plugins/{plugin}/confirm-import', 'Campaign\CampaignPluginController@confirmImport')->name('campaign_plugins.confirm-import');
             Route::get('/plugins/{plugin}/update', 'Campaign\CampaignPluginController@updateInfo')->name('campaign_plugins.update-info');
             Route::post('/plugins/{plugin}/update', 'Campaign\CampaignPluginController@update')->name('campaign_plugins.update');
         }
@@ -413,6 +414,7 @@ Route::group([
         Route::get('/search/reminder-entities', 'Search\LiveController@reminderEntities')->name('search.entities-with-reminders');
         Route::get('/search/relation-entities', 'Search\LiveController@relationEntities')->name('search.entities-with-relations');
         Route::get('/search/tag-children', 'Search\LiveController@tagChildren')->name('search.tag-children');
+        Route::get('/search/organisation-member', 'Search\LiveController@organisationMembers')->name('search.organisation-member');
         Route::get('/search/months', 'Search\CalendarController@months')->name('search.calendar-months');
         Route::get('/search/live', 'Search\LiveController@index')->name('search.live');
 

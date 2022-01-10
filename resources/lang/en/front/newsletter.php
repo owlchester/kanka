@@ -12,9 +12,9 @@ return [
     ],
     'groups'    => [
         'community-votes'   => 'Community Votes',
-        'news'              => 'News',
+        'news'              => 'New updates and improvements to Kanka',
         'newsletter'        => 'Newsletter',
-        'updates'           => 'Updates',
+        'updates'           => 'Updates from the team',
     ],
     'headline'  => 'Subscribe to one or all of our newsletters to stay up to date with Kanka.',
     'title'     => 'Email Updates',

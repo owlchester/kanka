@@ -31,6 +31,7 @@ class StoreOrganisationMember extends FormRequest
             'character_id' => 'required|exists:characters,id',
             'role' => 'nullable',
             'is_private' => 'nullable',
+            'parent_id' => 'nullable|exists:organisation_member,id',
         ]);
     }
 }

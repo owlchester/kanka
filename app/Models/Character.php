@@ -8,7 +8,6 @@ use App\Traits\CampaignTrait;
 use App\Traits\ExportableTrait;
 use App\Traits\VisibleTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Stevebauman\Purify\Facades\Purify;
 
 /**
  * Class Character
@@ -20,10 +19,10 @@ use Stevebauman\Purify\Facades\Purify;
  * @property bool $is_dead
  * @property bool $is_personality_visible
  * @property int $family_id
- * @property int $race_id
  * @property Family $family
  * @property Location $location
  * @property Race $race
+ * @property Race[] $races
  */
 class Character extends MiscModel
 {
@@ -49,7 +48,6 @@ class Character extends MiscModel
         'is_private',
         'type',
         'is_dead',
-        'race_id',
         'is_personality_visible',
     ];
 
@@ -65,9 +63,9 @@ class Character extends MiscModel
         'location_id',
         'family_id',
         'is_dead',
-        'race_id',
         'name',
         'organisation_member',
+        'races',
     ];
 
     /**
@@ -78,7 +76,7 @@ class Character extends MiscModel
         'title',
         'family.name',
         'location.name',
-        'race.name',
+        //'races.id',
         'age',
         'sex',
         'is_dead'
@@ -139,7 +137,6 @@ class Character extends MiscModel
     public $nullableForeignKeys = [
         'location_id',
         'family_id',
-        'race_id',
         'is_personality_visible', // checkbox
     ];
 
@@ -159,8 +156,8 @@ class Character extends MiscModel
             'location.entity',
             'family',
             'family.entity',
-            'race',
-            'race.entity',
+            'races',
+            'races.entity',
         ]);
     }
 
@@ -183,9 +180,11 @@ class Character extends MiscModel
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function race()
+    public function races()
     {
-        return $this->belongsTo('App\Models\Race', 'race_id', 'id');
+        return $this->belongsToMany('App\Models\Race')
+            ;
+        return $this->hasMany('App\Models\Race', 'character_id', 'id');
     }
 
     /**
@@ -410,7 +409,7 @@ class Character extends MiscModel
             || !empty($this->pronouns)) {
             return true;
         }
-        if (!empty($this->race) || !empty($this->family)) {
+        if (!$this->races->isEmpty() || !empty($this->family)) {
             return true;
         }
         return false;

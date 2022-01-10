@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Crear un novo caderno',
-        'success'       => 'Caderno ":name" creado.',
-        'title'         => 'Novo caderno',
+        'success'   => 'Caderno ":name" creado.',
+        'title'     => 'Novo caderno',
     ],
     'destroy'       => [
         'success'   => 'Caderno ":name" eliminado.',
@@ -29,10 +28,9 @@ return [
         'nested_without'=> 'Mostrando todos os cadernos que non teñen un caderno pai. Fai clic nunha fila para ver os seus descendentes.',
     ],
     'index'         => [
-        'add'           => 'Novo caderno',
-        'description'   => 'Xestiona os cadernos de ":name".',
-        'header'        => 'Cadernos de ":name"',
-        'title'         => 'Cadernos',
+        'add'       => 'Novo caderno',
+        'header'    => 'Cadernos de ":name"',
+        'title'     => 'Cadernos',
     ],
     'journals'      => [
         'title' => 'Subcadernos de ":name"',
@@ -45,10 +43,9 @@ return [
         'type'      => 'Sesión, campaña, borrador...',
     ],
     'show'          => [
-        'description'   => 'Vista detallada dun caderno',
-        'tabs'          => [
+        'tabs'  => [
             'journals'  => 'Cadernos',
         ],
-        'title'         => 'Caderno ":name"',
+        'title' => 'Caderno ":name"',
     ],
 ];

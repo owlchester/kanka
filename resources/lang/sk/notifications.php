@@ -2,29 +2,30 @@
 
 return [
     'campaign'          => [
-        'application'       => [
+        'application'           => [
             'approved'  => 'Tvoja prihláška do kampane :campaign bola schválená.',
             'new'       => 'Nová prihláška pre :campaign.',
             'rejected'  => 'Tvoja prihláška do kampane :campaign bola odmietnutá. Uvedený dôvod: :reason',
         ],
-        'asset_export'      => 'Export materiálov kampane je dostupný. Link je dostupný na :time min.',
-        'boost'             => [
+        'asset_export'          => 'Export materiálov kampane je dostupný. Link je dostupný na :time min.',
+        'asset_export_error'    => 'Vyskytla sa chyba pri exportovaní obsahu kampane. Táto je obvyklá pri veľkých kampaniach.',
+        'boost'                 => [
             'add'           => 'Kampaň :campaign bola boostnutá používateľom :user.',
             'remove'        => 'Kampaň :campaign už nie je boostovaná používateľom :user.',
             'superboost'    => ':user superboostol kampaň :campaign.',
         ],
-        'export'            => 'Export kampane je dostupný. Link je platný po dobu :time minút.',
-        'export_error'      => 'Počas exportu tvojej kampane došlo k chybe. Prosím, kontaktuj nás, ak problém pretrváva.',
-        'join'              => ':user pristúpil do kampane :campaign.',
-        'leave'             => ':user opustil kampaň :campaign.',
-        'plugin'            => [
+        'export'                => 'Export kampane je dostupný. Link je platný po dobu :time minút.',
+        'export_error'          => 'Počas exportu tvojej kampane došlo k chybe. Prosím, kontaktuj nás, ak problém pretrváva.',
+        'join'                  => ':user pristúpil do kampane :campaign.',
+        'leave'                 => ':user opustil kampaň :campaign.',
+        'plugin'                => [
             'deleted'   => 'Plugin :plugin bol odstránený z trhoviska a tvojej kampane :campaign.',
         ],
-        'role'              => [
+        'role'                  => [
             'add'       => 'Bola ti pridaná rola :role v kampani :campaign.',
             'remove'    => 'Bola ti odobraná rola :role v kampani :campaign.',
         ],
-        'troubleshooting'   => [
+        'troubleshooting'       => [
             'joined'    => 'Člen tímu Kanky :user pristúpil do kampane :campaign.',
         ],
     ],

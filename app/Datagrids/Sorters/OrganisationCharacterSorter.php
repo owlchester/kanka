@@ -17,5 +17,6 @@ class OrganisationCharacterSorter extends DatagridSorter
         'organisation.name' => 'organisations.fields.organisation',
         'role' => 'organisations.members.fields.role',
         'status_id' => 'organisations.members.fields.status',
+        'parent_id' => 'organisations.members.fields.parent',
     ];
 }

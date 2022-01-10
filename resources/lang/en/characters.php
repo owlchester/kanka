@@ -26,6 +26,7 @@ return [
     ],
     'fields'        => [
         'age'                       => 'Age',
+        'families'                  => 'Families',
         'family'                    => 'Family',
         'image'                     => 'Image',
         'is_dead'                   => 'Dead',
@@ -36,6 +37,7 @@ return [
         'physical'                  => 'Physical',
         'pronouns'                  => 'Pronouns',
         'race'                      => 'Race',
+        'races'                     => 'Races',
         'relation'                  => 'Relation',
         'sex'                       => 'Gender',
         'title'                     => 'Title',
@@ -107,6 +109,7 @@ return [
         'physical'          => 'Physical',
         'pronouns'          => 'He/Him, She/Her, They/Their',
         'race'              => 'Race',
+        'races'             => 'Choose races',
         'sex'               => 'Gender',
         'title'             => 'Title',
         'traits'            => 'Traits',

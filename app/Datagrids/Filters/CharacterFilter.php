@@ -26,7 +26,7 @@ class CharacterFilter extends DatagridFilter
             ])
             ->location()
             ->add([
-                'field' => 'race_id',
+                'field' => 'races',
                 'label' => __('crud.fields.race'),
                 'type' => 'select2',
                 'route' => route('races.find'),
@@ -50,6 +50,7 @@ class CharacterFilter extends DatagridFilter
             ->hasImage()
             ->hasEntityNotes()
             ->hasEntityFiles()
+            ->hasAttributes()
             ->tags()
         ;
     }

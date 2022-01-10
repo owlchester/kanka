@@ -35,7 +35,7 @@
 
         </div>
         <div class="col-sm-2">
-            @if (!empty($model->entity) && !empty($model->entity->image_uuid))
+            @if (!empty($model->entity) && !empty($model->entity->image_uuid) && !empty($model->entity->image))
                 <div class="preview-v2">
                     <a href="{{ route('campaign.gallery.index', ['folder_id' => $model->entity->image->folder_id]) }}" class="image" style="background-image: url('{{ $model->entity->image->getUrl(80, null, 'header_image') }}')" title="{{ $model->name }}">
                     </a>
@@ -43,6 +43,9 @@
             @endif
         </div>
     </div>
+    @if (!empty($model->entity) && !empty($model->entity->image_uuid) && empty($model->entity->image))
+        <input type="hidden" name="entity_image_uuid" value="{{ $model->entity->image_uuid }}" />
+    @endif
 @else
     @include('cruds.fields.helpers.superboosted', ['key' => 'fields.gallery-image.boosted-description'])
 @endif

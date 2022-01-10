@@ -3,10 +3,10 @@
 namespace App\Observers;
 
 use App\Facades\CharacterCache;
-use App\Models\Character;
 use App\Models\CharacterTrait;
 use App\Models\MiscModel;
 use App\Models\OrganisationMember;
+use App\Models\Race;
 use Illuminate\Support\Collection;
 
 class CharacterObserver extends MiscObserver
@@ -155,11 +155,50 @@ class CharacterObserver extends MiscObserver
     }
 
     /**
+     * @param MiscModel $character
+     */
+    protected function saveRaces(MiscModel $character)
+    {
+        if (!request()->has('races')) {
+            return;
+        }
+
+        /** @var Race $races */
+        $existing = [];
+        foreach ($character->races as $race) {
+            $existing[$race->id] = $race->id;
+        }
+
+        $races = request()->get('races', []);
+        $newRaces = [];
+        foreach ($races as $id) {
+            // Existing race, do nothing
+            if (!empty($existing[$id])) {
+                unset($existing[$id]);
+            } else {
+                $race = Race::find($id);
+                if (empty($race)) {
+                    continue;
+                }
+                $newRaces[] = $race->id;
+            }
+        }
+        $character->races()->attach($newRaces);
+
+        // Detach the remaining
+        if (!empty($existing)) {
+            $character->races()->detach($existing);
+        }
+    }
+
+    /**
      * @param MiscModel $model
      */
     public function saved(MiscModel $model)
     {
         parent::saved($model);
+
+        $this->saveRaces($model);
 
 
         // Clear some cache

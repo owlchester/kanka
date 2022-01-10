@@ -24,13 +24,16 @@
             'visible' => $campaign->enabled('locations'),
         ],
         [
-            'label' => __('characters.fields.race'),
-            'field' => 'race.name',
+            'label' => __('characters.fields.races'),
             'visible' => $campaign->enabled('races'),
+            //'field' => 'races.id',
+            'disableSort' => true,
             'render' => function($model) {
-                if ($model->race) {
-                    return $model->race->tooltipedLink();
+                $races = [];
+                foreach ($model->races as $race) {
+                    $races[] = $race->tooltipedLink();
                 }
+                return implode( ', ', $races);
             }
         ],
         'type',

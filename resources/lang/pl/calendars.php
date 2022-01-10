@@ -31,7 +31,7 @@ return [
         'teal'      => 'Morski',
     ],
     'create'        => [
-        'description'   => 'Stwórz nowy kalendarz',
+        'description'   => 'Opis',
         'success'       => 'Stworzono kalendarz :name.',
         'title'         => 'Nowy kalendarz',
     ],
@@ -39,7 +39,7 @@ return [
         'success'   => 'Usunięto kalendarz :name',
     ],
     'edit'          => [
-        'description'   => 'Aktualizuj kalendarz',
+        'description'   => 'Opis',
         'success'       => 'Zmieniono kalendarz \':nazwa\'',
         'title'         => 'Edycja kalendarza :nazwa',
         'today'         => 'Zmieniono datę kalendarza.',
@@ -52,13 +52,13 @@ return [
             'switch'            => 'Zmień wybór',
         ],
         'create'    => [
-            'description'   => 'Utwórz wydarzenie w kalendarzu',
+            'description'   => 'Opis',
             'success'       => 'Utworzono wydarzenie.',
             'title'         => 'Dodaj wydarzenie do :name',
         ],
         'destroy'   => 'Wydarzenie usunięto z kalendarza \':name\'.',
         'edit'      => [
-            'description'   => 'Aktualizuj wydarzenie',
+            'description'   => 'Opis',
             'success'       => 'Zmieniono wydarzenie w kalendarzu.',
             'title'         => 'Aktualizuj wydarzenie dla :name',
         ],
@@ -73,7 +73,7 @@ return [
         'success'   => 'Dodano do kalendarza wydarzenie \':event\'.',
     ],
     'events'        => [
-        'description'   => 'Wydarzenia w tym kalendarzu',
+        'description'   => 'Opis',
         'title'         => 'Wydarzenia w kalendarzu :name',
     ],
     'fields'        => [
@@ -111,7 +111,7 @@ return [
     ],
     'helpers'       => [
         'month_type'    => 'Miesiące dodatkowe nie mają dni tygodnia, ale wpływają na pory roku czy fazy księżyca.',
-        'nested'        => 'W widoku hierarchii najpierw wyświetlane są kalendarze, które nie mają źródła. Po kliknięciu na wiersz kalendarza zobaczysz jego pochodne. Możesz schodzić niżej, póki nie skończą się poziomy hierarchii.',
+        'nested'        => 'Widok hierarchii',
         'nested_parent' => 'Wyświetlono kalendarze pochodzące od :parent.',
         'nested_without'=> 'Wyświetlono wszystkie kalendarze nie posiadające źródła. Kliknij na rząd, by wyświetlić kalendarze pochodne.',
         'start_offset'  => 'Domyślnie kalendarz zaczyna się pierwszego dnia roku 0. Liczba w tym polu zmienia położenie pierwszego dnia kalendarza.',
@@ -132,7 +132,7 @@ return [
     ],
     'index'         => [
         'add'           => 'Nowy kalendarz',
-        'description'   => 'Zarządzaj kalendarzami elementu :name',
+        'description'   => 'Opis',
         'header'        => 'Kalendarze elementu :name',
         'title'         => 'Kalendarze',
     ],
@@ -224,7 +224,7 @@ return [
         'weekdays'          => 'Liczba dni w tygodniu',
     ],
     'show'          => [
-        'description'       => 'Szczegółowy widok kalendarza',
+        'description'       => 'Opis',
         'missing_details'   => 'Nie można wyświetlić kalendarza. Do poprawnego wyświetlania niezbędne są przynajmniej 2 miesiące posiadające po 2 dni tygodnia.',
         'moon_full_moon'    => ':moon Pełnia',
         'moon_new_moon'     => ':moon Nów',

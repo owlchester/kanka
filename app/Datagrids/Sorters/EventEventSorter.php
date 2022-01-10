@@ -13,5 +13,6 @@ class EventEventSorter extends DatagridSorter
      */
     public $options = [
         'name' => 'crud.fields.name',
+        'event.date' => 'events.fields.date'
     ];
 }

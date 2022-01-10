@@ -2,13 +2,11 @@
 
 return [
     'characters'    => [
-        'description'   => 'Personaxes presentes no lugar.',
-        'title'         => 'Personaxes en :name',
+        'title' => 'Personaxes en :name',
     ],
     'create'        => [
-        'description'   => 'Crear un novo lugar',
-        'success'       => 'Lugar ":name" creado.',
-        'title'         => 'Novo lugar',
+        'success'   => 'Lugar ":name" creado.',
+        'title'     => 'Novo lugar',
     ],
     'destroy'       => [
         'success'   => 'Lugar ":name" eliminado.',
@@ -18,8 +16,7 @@ return [
         'title'     => 'Editar lugar ":name"',
     ],
     'events'        => [
-        'description'   => 'Eventos neste lugar.',
-        'title'         => 'Eventos en :name',
+        'title' => 'Eventos en :name',
     ],
     'families'      => [
         'title' => 'Familias de :name',
@@ -49,25 +46,21 @@ return [
         'is_map_private'    => 'Un mapa privado só será visíbel para a Administración da campaña.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Vista en árbore',
         ],
-        'add'           => 'Novo lugar',
-        'description'   => 'Administra os lugares de :name',
-        'header'        => 'Lugares en :name',
-        'title'         => 'Lugares',
+        'add'       => 'Novo lugar',
+        'header'    => 'Lugares en :name',
+        'title'     => 'Lugares',
     ],
     'items'         => [
-        'description'   => 'Obxectos localizados ou procedentes deste lugar.',
-        'title'         => 'Obxectos de :name',
+        'title' => 'Obxectos de :name',
     ],
     'journals'      => [
-        'description'   => 'Cadernos escritos neste lugar.',
-        'title'         => 'Cadernos de :name',
+        'title' => 'Cadernos de :name',
     ],
     'locations'     => [
-        'description'   => 'Lugares dentro deste lugar.',
-        'title'         => 'Lugares dentro de :name',
+        'title' => 'Lugares dentro de :name',
     ],
     'map'           => [
         'actions'   => [
@@ -211,26 +204,20 @@ return [
         'name'      => 'Nome do lugar',
         'type'      => 'Cidade, reino, ruína...',
     ],
-    'quests'        => [
-        'description'   => 'Misións nas que aparece este lugar.',
-        'title'         => 'Misións en :name',
-    ],
+    'quests'        => [],
     'show'          => [
-        'description'   => 'Vista detallada dun lugar',
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Personaxes',
             'events'        => 'Eventos',
             'families'      => 'Familias',
-            'information'   => 'Información',
             'items'         => 'Obxectos',
             'journals'      => 'Cadernos',
             'locations'     => 'Lugares',
             'map'           => 'Mapa',
             'maps'          => 'Mapas',
-            'menu'          => 'Menú',
             'organisations' => 'Organizacións',
             'quests'        => 'Misións',
         ],
-        'title'         => 'Lugar ":name"',
+        'title' => 'Lugar ":name"',
     ],
 ];

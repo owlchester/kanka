@@ -263,6 +263,7 @@ return [
         'login'         => 'Вход',
         'marketplace'   => 'Каталог',
         'media'         => 'Медиа',
+        'merch'         => 'Мерч',
         'news'          => 'Новости',
         'newsletter'    => 'Рассылка',
         'other'         => 'Другое',
