@@ -149,7 +149,7 @@ class TagController extends CrudController
         }
 
         $tag->attachEntity($request->only('entity_id'));
-        return redirect()->route('tags.children', $redirectUrlOptions)
+        return redirect()->route('tags.show', $redirectUrlOptions)
             ->with('success', trans('tags.children.create.success', ['name' => $tag->name]));
     }
 }
