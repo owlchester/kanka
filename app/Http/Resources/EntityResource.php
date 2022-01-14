@@ -124,12 +124,14 @@ class EntityResource extends JsonResource
         $galleryImage = $misc->entity->image;
         $campaign = CampaignLocalization::getCampaign();
         $superboosted = $campaign->boosted(true);
+        $boosted = $campaign->boosted();
 
         $merged = [
             'id' => $misc->id,
             'name' => $misc->name,
             'entry' => $this->hasEntry() ? $misc->entry : null,
             'entry_parsed' => $misc->hasEntry() ? Mentions::map($this->resource) : null,
+            'tooltip' => $boosted ? ($misc->tooltip ?: null) : null,
             'image' => $misc->image,
             'focus_x' => $misc->entity->focus_x,
             'focus_y' => $misc->entity->focus_y,
