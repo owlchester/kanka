@@ -108,7 +108,7 @@ class CampaignPolicy
     public function invite(User $user, Campaign $campaign): bool
     {
         return $user->campaign->id == $campaign->id && (
-            UserCache::user($user)->admin() || $this->checkPermission('members', $user)
+            UserCache::user($user)->admin() || $this->checkPermission('members', $user, $campaign)
         );
     }
 
@@ -140,7 +140,7 @@ class CampaignPolicy
     public function dashboard(User $user, Campaign $campaign): bool
     {
         return $user->campaign->id == $campaign->id && (
-            UserCache::user($user)->admin() || $this->checkPermission('dashboard', $user));
+            UserCache::user($user)->admin() || $this->checkPermission('dashboard', $user, $campaign));
     }
 
     /**
@@ -226,7 +226,7 @@ class CampaignPolicy
      */
     public function members(?User $user, Campaign $campaign)
     {
-        return (UserCache::user($user)->admin() || $this->checkPermission('members', $user)) ||
+        return (UserCache::user($user)->admin() || $this->checkPermission('members', $user, $campaign)) ||
             !($campaign->boosted() && $campaign->hide_members);
     }
 
