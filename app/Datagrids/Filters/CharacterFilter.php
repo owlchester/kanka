@@ -26,7 +26,7 @@ class CharacterFilter extends DatagridFilter
             ])
             ->location()
             ->add([
-                'field' => 'races',
+                'field' => 'race',
                 'label' => __('crud.fields.race'),
                 'type' => 'select2',
                 'route' => route('races.find'),
