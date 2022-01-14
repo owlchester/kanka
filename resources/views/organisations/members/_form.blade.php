@@ -21,6 +21,7 @@ $statuses = [
     ) !!}
 </div>
 <div class="form-group">
+    <input type="hidden" name="parent_id" value="" />
     {!! Form::select2(
         'parent_id',
         (!empty($member) ? $member->parent : null),
