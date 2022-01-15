@@ -128,14 +128,6 @@ trait Filterable
                             ->leftJoin('entity_tags as et', 'et.entity_id', 'e.id')
                             ->where('et.tag_id', $value);
                     } elseif ($key == 'organisation_member') {
-                        if (!empty($filterOption) && $filterOption == 'none')  {$query
-                            ->select($this->getTable() . '.*')
-                            ->leftJoin('organisation_member as om', function ($join) {
-                                $join->on('om.character_id', '=', $this->getTable() . '.id');
-                            })
-                            ->where('om.organisation_id', null);
-                            continue;
-                        }
                         $query
                             ->select($this->getTable() . '.*')
                             ->leftJoin('organisation_member as om', function ($join) {
@@ -144,15 +136,7 @@ trait Filterable
                             ->where('om.organisation_id', $value);
                     } elseif ($key == 'race') {
                         // Character races
-                        if (!empty($filterOption) && $filterOption == 'none') {
-                            $query
-                            ->select($this->getTable() . '.*')
-                            ->leftJoin('character_race as cr', function ($join) {
-                                $join->on('cr.character_id', '=', $this->getTable() . '.id');
-                            })
-                            ->where('cr.race_id', null);
-                            continue;
-                        } elseif (!empty($filterOption) && $filterOption == 'exclude') {
+                        if (!empty($filterOption) && $filterOption == 'exclude') {
                             $query->whereRaw('(select count(*) from character_race as cr where cr.character_id = ' . $this->getTable() . '.id and cr.race_id = ' . ((int) $value) . ') = 0');
                             continue;
                         }
@@ -247,10 +231,23 @@ trait Filterable
                 // Validate the key is a filter
                 if (in_array($key, $fields)) {
                     // Left join shenanigans
-                    if ($key == 'organisation_member') {
-                        continue;
+                    if (!in_array($key, ['organisation_member', 'race'])) {
+                        $query->whereNull($this->getTable() . '.' . $key);
+                    } elseif($key == 'organisation_member') {
+                        $query
+                            ->select($this->getTable() . '.*')
+                            ->leftJoin('organisation_member as om', function ($join) {
+                                $join->on('om.character_id', '=', $this->getTable() . '.id');
+                            })
+                            ->where('om.organisation_id', null);
+                    } elseif ($key == 'race') {
+                        $query
+                            ->select($this->getTable() . '.*')
+                            ->leftJoin('character_race as cr', function ($join) {
+                                $join->on('cr.character_id', '=', $this->getTable() . '.id');
+                            })
+                            ->where('cr.race_id', null);
                     }
-                    $query->whereNull($this->getTable() . '.' . $key);
                 }
             }
         }
