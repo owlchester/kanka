@@ -167,4 +167,15 @@ abstract class DatagridFilter
         $this->filters[] = 'date';
         return $this;
     }
+
+
+    /**
+     * Add the attributes selector
+     * @return $this
+     */
+    protected function attributes(): self
+    {
+        $this->filters[] = 'attributes';
+        return $this;
+    }
 }
