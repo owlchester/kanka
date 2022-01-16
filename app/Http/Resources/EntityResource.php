@@ -131,7 +131,7 @@ class EntityResource extends JsonResource
             'name' => $misc->name,
             'entry' => $this->hasEntry() ? $misc->entry : null,
             'entry_parsed' => $misc->hasEntry() ? Mentions::map($this->resource) : null,
-            'tooltip' => $boosted ? ($misc->tooltip ?: null) : null,
+            'tooltip' => $boosted ? ($misc->entity->tooltip ?: null) : null,
             'image' => $misc->image,
             'focus_x' => $misc->entity->focus_x,
             'focus_y' => $misc->entity->focus_y,
