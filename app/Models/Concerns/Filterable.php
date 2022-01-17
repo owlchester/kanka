@@ -3,6 +3,7 @@
 namespace App\Models\Concerns;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -35,6 +36,8 @@ trait Filterable
             'has_attributes',
             'created_by',
             'updated_by',
+            'attribute_name',
+            'attribute_value',
         ];
         if (isset($this->defaultFilterableColumns)) {
             $default = $this->defaultFilterableColumns;
@@ -134,6 +137,23 @@ trait Filterable
                                 $join->on('om.character_id', '=', $this->getTable() . '.id');
                             })
                             ->where('om.organisation_id', $value);
+                    } elseif (in_array($key, ['attribute_value', 'attribute_name'])) {
+                        if ($key == 'attribute_value') {
+                            continue;
+                        }
+                        $query = $this->joinEntity($query);
+                        $query
+                            ->select($this->getTable() . '.*')
+                            ->leftJoin('attributes as att', function ($join) {
+                                $join->on('att.entity_id', '=', 'e.id');
+                            })
+                            ->where('att.name', $value);
+
+                        $attributeValue = Arr::get($params, 'attribute_value');
+                        if ($attributeValue !== '' && $attributeValue !== null) {
+                            $query
+                            ->where('att.value', $attributeValue);
+                        }
                     } elseif ($key == 'race') {
                         // Character races
                         if (!empty($filterOption) && $filterOption == 'exclude') {

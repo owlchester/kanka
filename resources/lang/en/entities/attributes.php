@@ -18,6 +18,10 @@ return [
         'template'              => 'Template',
         'value'                 => 'Value',
     ],
+    'filters'       => [
+        'name' => 'Attribute name',
+        'value' => 'Attribute value',
+    ],
     'helpers'       => [
         'delete_all'    => 'Are you sure you want to delete all of this entity\'s attributes?',
         'setup'         => 'You can represent elements like HP or intelligence of an entity with attributes. Add attributes manually by clicking on the :manage button, or apply those from an attribute template.',

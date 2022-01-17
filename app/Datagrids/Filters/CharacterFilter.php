@@ -52,7 +52,7 @@ class CharacterFilter extends DatagridFilter
             ->hasEntityFiles()
             ->hasAttributes()
             ->tags()
-            ->attributes()po
+            ->attributes()
         ;
     }
 }
