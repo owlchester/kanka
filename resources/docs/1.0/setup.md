@@ -13,6 +13,9 @@ Before you can start interacting with the Kanka API, you need to generate a Key 
 
 ![Api Request](/images/docs/api-request.png)
 
+> {warning} Tokens are valid for 365 days. Never share your tokens with anyone!
+
+
 <a name="authentication"></a>
 ## Authentication
 

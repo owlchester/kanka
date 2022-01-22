@@ -35,7 +35,7 @@ Generate a new token in your [Api settings](https://kanka.io/en/settings/api) an
 
 ### What causes an invalid token?
 
-Kanka tokens are valid for 100 years by default, but when we update our servers, all tokens get invalidated. This happens about once a year on average.
+Kanka tokens are valid for 1 year by default. All tokens get invalidated when we add more servers to Kanka, which happens less than once a year.
 
 ## 422 Unprocessable Entity
 If your `POST`, `PUT` or `PATCH` requests to the API are returning something about a missing required field, even when your body has a the field:
