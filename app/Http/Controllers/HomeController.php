@@ -66,6 +66,15 @@ class HomeController extends Controller
                 return redirect()->to(CampaignLocalization::getUrl($campaign->id));
             }
         }
+        // No valid last campaign? Let's redirect to the last campaign the user had
+        $campaigns = auth()->user()->campaigns;
+        foreach ($campaigns as $campaign) {
+            CampaignLocalization::setCampaign($campaign->id);
+            return redirect()->to(CampaignLocalization::getUrl($campaign->id));
+        }
+
+        // No campaign? Ok, go to start.
+        return redirect()->route('start');
 
         abort(500);
     }

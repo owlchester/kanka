@@ -4,7 +4,7 @@ export default function select2() {
             // Check it isn't the select2-icon
             let allowClear = $(this).data('allow-clear');
             let dropdownParent = $(this).data('dropdown-parent');
-            console.log('select2', $(this).attr('name'), 'allow new', ($(this).data('allow-new') || false));
+            //console.log('select2', $(this).attr('name'), 'allow new', ($(this).data('allow-new') || false));
             $(this).select2({
                 //data: newOptions,
                 tags: false,

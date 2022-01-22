@@ -29,10 +29,10 @@ return [
             'connect'   => 'Connect',
             'remove'    => 'Remove',
         ],
-        'benefits'  => 'Kanka provides a few integration to third party services. More third party integrations are planned for the future.',
+        'benefits'  => 'Kanka provides a few integrations to third party services. More third party integrations are planned for the future.',
         'discord'   => [
             'errors'    => [
-                'add'   => 'An error occurred linking up your Discord account with Kanka. Please try again.',
+                'add'   => 'An error occurred linking up your Discord account with Kanka. Please try again. If this keeps happening, please be aware that Discord has a limit on 100 joined servers when using their APIs.',
             ],
             'success'   => [
                 'add'       => 'Your Discord account has been linked.',

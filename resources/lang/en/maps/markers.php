@@ -50,11 +50,11 @@ return [
         ],
     ],
     'icons'         => [
-        'custom'        => 'Custom',
-        'entity'        => 'Entity',
-        'exclamation'   => 'Exclamation',
-        'marker'        => 'Marker',
-        'question'      => 'Question',
+        'custom'        => 'Custom icon',
+        'entity'        => 'Entity\'s picture',
+        'exclamation'   => 'Exclamation icon',
+        'marker'        => 'Marker icon',
+        'question'      => 'Question icon',
     ],
     'placeholders'  => [
         'custom_shape'  => '100,100 200,240 340,110',

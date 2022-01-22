@@ -24,16 +24,10 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
                     @foreach ($model->races as $race)
                     <p class="entity-race" data-foreign="{{ $race->id }}">
                         <b>{{ __('characters.fields.race') }}</b><br />
-                        @if ($race->race)
-                            {!! $race->tooltipedLink() !!},
-                            {!! $race->race->tooltipedLink() !!}
-                        @else
-                            {!! $race->tooltipedLink() !!}
-                        @endif
+                        {!! $race->tooltipedLink() !!}
                     </p>
                     @endforeach
                 @endif
-
                 @if ($campaign->enabled('families') && $model->family)
                     <p class="entity-family" data-foreign="{{ $model->family_id }}">
                         <b>{{ __('characters.fields.family') }}</b><br />

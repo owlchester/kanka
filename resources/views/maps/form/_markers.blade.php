@@ -141,7 +141,7 @@
     //'id' => 'map-marker-new-form'
     'class' => 'ajax-subform',
 ]) !!}
-                        @include('maps.markers._form', ['model' => null, 'map' => $model, 'activeTab' => 1])
+                        @include('maps.markers._form', ['model' => null, 'map' => $model, 'activeTab' => 1, 'dropdownParent' => '#marker-modal'])
 
                         <div class="form-group">
                             <div class="submit-group">

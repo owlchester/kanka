@@ -26,6 +26,9 @@ trait Boosted
      */
     public function boosted(bool $superboosted = false): bool
     {
+        if (request()->get('_boosted') === '0') {
+            return false;
+        }
         return $this->boost_count > ($superboosted ? 2 : 0);
     }
 
