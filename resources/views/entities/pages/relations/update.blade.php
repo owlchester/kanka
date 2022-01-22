@@ -17,7 +17,7 @@
                 <span aria-hidden="true">&times;</span>
             </button>
             <h4 class="modal-title">
-                {{ __('entities/relations.create.title', ['name' => $entity->name]) }}
+                {{ __('entities/relations.update.title', ['name' => $entity->name]) }}
             </h4>
         </div>
         <div class="modal-body">
