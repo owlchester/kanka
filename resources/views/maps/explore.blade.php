@@ -185,7 +185,7 @@
                     <div class="panel-body">
 
                         {!! Form::open(['route' => ['maps.map_markers.store', $map], 'method' => 'POST', 'data-shortcut' => 1, 'id' => 'map-marker-form', 'class' => 'ajax-subform']) !!}
-                        @include('maps.markers._form', ['model' => null, 'map' => $map, 'activeTab' => 1])
+                        @include('maps.markers._form', ['model' => null, 'map' => $map, 'activeTab' => 1, 'dropdownParent' => '#marker-modal'])
 
                         <div class="form-group">
                             <div class="submit-group">

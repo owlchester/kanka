@@ -158,14 +158,17 @@ $sizeOptions = [
     </div>
     <div class="col-sm-6">
         <div class="form-group">
-            {!! Form::select2(
+            {!! Form::foreignSelect(
                 'entity_id',
-                (isset($model) && $model->entity ? $model->entity : \App\Facades\FormCopy::field('entity')->select()),
-                App\Models\Entity::class,
-                false,
-                'crud.fields.entity',
-                'search.entities-with-relations',
-                'crud.placeholders.entity'
+                [
+                    'preset' => (isset($model) && $model->entity ? $model->entity : \App\Facades\FormCopy::field('entity')->select()),
+                    'class' => App\Models\Entity::class,
+                    'labelKey' => 'crud.fields.entity',
+                    'from' => null,
+                    'searchRouteName' => 'search.entities-with-relations',
+                    'placeholderKey' => 'crud.placeholders.entity',
+                    'dropdownParent' => (isset($dropdownParent) ? $dropdownParent : null)
+                ]
             ) !!}
         </div>
     </div>
