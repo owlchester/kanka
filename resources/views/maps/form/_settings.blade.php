@@ -2,12 +2,12 @@
 {{--    <div class="col-sm-6">--}}
 
 {{--        <div class="form-group">--}}
-{{--            <label>{{ trans('maps.fields.distance_name') }}</label>--}}
+{{--            <label>{{ __('maps.fields.distance_name') }}</label>--}}
 {{--            {!! Form::text(--}}
 {{--                'distance_name',--}}
 {{--                FormCopy::field('distance_name')->string(),--}}
 {{--                [--}}
-{{--                    'placeholder' => trans('maps.placeholders.distance_name'),--}}
+{{--                    'placeholder' => __('maps.placeholders.distance_name'),--}}
 {{--                    'class' => 'form-control',--}}
 {{--                    'maxlength' => 20--}}
 {{--                ]--}}
@@ -16,12 +16,12 @@
 {{--    </div>--}}
 {{--    <div class="col-sm-6">--}}
 
-{{--        <label>{{ trans('maps.fields.distance_measure') }}</label>--}}
+{{--        <label>{{ __('maps.fields.distance_measure') }}</label>--}}
 {{--        {!! Form::number(--}}
 {{--            'distance_measure',--}}
 {{--            FormCopy::field('distance_measure')->string(),--}}
 {{--            [--}}
-{{--                'placeholder' => trans('maps.placeholders.distance_measure'),--}}
+{{--                'placeholder' => __('maps.placeholders.distance_measure'),--}}
 {{--                'class' => 'form-control',--}}
 {{--                'maxlength' => 4--}}
 {{--            ]--}}
@@ -30,10 +30,23 @@
 {{--</div>--}}
 {{--<p class="help-block">{{ __('maps.helpers.distance_measure') }}</p>--}}
 
+<input type="hidden" name="is_real" value="0" />
+<div class="form-group checkbox">
+    <label>
+        {!! Form::checkbox('is_real') !!}
+        {{ __('maps.fields.is_real') }}
+    </label>
+    <p class="help-block">
+        {!! __('maps.helpers.is_real') !!}
+    </p>
+</div>
+
+<hr />
+
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
-            <label>{{ trans('maps.fields.initial_zoom') }}</label>
+            <label>{{ __('maps.fields.initial_zoom') }}</label>
             {!! Form::number(
             'initial_zoom',
             FormCopy::field('initial_zoom')->string(),
@@ -51,7 +64,7 @@
     </div>
     <div class="col-sm-6">
         <div class="form-group">
-            <label>{{ trans('maps.fields.min_zoom') }}</label>
+            <label>{{ __('maps.fields.min_zoom') }}</label>
             {!! Form::number(
             'min_zoom',
             FormCopy::field('min_zoom')->string(),
@@ -70,7 +83,7 @@
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
-            <label>{{ trans('maps.fields.max_zoom') }}</label>
+            <label>{{ __('maps.fields.max_zoom') }}</label>
             {!! Form::number(
             'max_zoom',
             FormCopy::field('max_zoom')->string(),
@@ -87,12 +100,12 @@
     </div>
     <div class="col-sm-6">
         <div class="form-group">
-            <label>{{ trans('maps.fields.grid') }}</label>
+            <label>{{ __('maps.fields.grid') }}</label>
             {!! Form::number(
             'grid',
             FormCopy::field('grid')->string(),
             [
-            'placeholder' => trans('maps.placeholders.grid'),
+            'placeholder' => __('maps.placeholders.grid'),
             'class' => 'form-control',
             'maxlength' => 4
             ]
@@ -129,7 +142,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>{{ trans('maps.fields.center_y') }}</label>
+                            <label>{{ __('maps.fields.center_y') }}</label>
                             {!! Form::number(
                             'center_y',
                             FormCopy::field('center_y')->string(),
@@ -144,7 +157,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label>{{ trans('maps.fields.center_x') }}</label>
+                            <label>{{ __('maps.fields.center_x') }}</label>
                             {!! Form::number(
                             'center_x',
                             FormCopy::field('center_x')->string(),

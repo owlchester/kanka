@@ -18,6 +18,12 @@
         @endif
     </p>
 
+    @if (isset($model) && $model->is_real)
+        <p class="alert alert-warning">
+            {{ __('maps/layers.helper.is_real') }}
+        </p>
+    @endif
+
     <table class="table table-condensed">
     <thead>
     <tr>

@@ -47,6 +47,7 @@ The list of returned maps can be filtered. The available filters are available h
             "image_thumb": "{url}",
             "has_custom_image": false,
             "is_private": true,
+            "is_real": false,
             "entity_id": 164,
             "tags": [],
             "created_at":  "2020-09-18T00:01:44.000000Z",
@@ -95,6 +96,7 @@ To get the details of a single map, use the following endpoint.
         "image_thumb": "{url}",
         "has_custom_image": false,
         "is_private": true,
+        "is_real": false,
         "entity_id": 164,
         "tags": [],
         "created_at":  "2020-09-18T00:01:44.000000Z",
@@ -144,6 +146,7 @@ To create a map, use the following endpoint.
 | `tags` | `array` | Array of tag ids |
 | `image_url` | `string` (Required) without `image`) | URL to a picture to be used for the map || `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `is_real` | `boolean` | If the map uses openmaps (the real world) |
 | `is_private` | `boolean` | If the map is only visible to `admin` members of the campaign |
 
 ### Results

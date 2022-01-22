@@ -23,6 +23,7 @@ return [
     'helper'        => [
         'amount'            => 'You can add up to :amount layers on a map to switch the background image displayed below your markers.',
         'boosted_campaign'  => ':boosted can have up to :amount layers.',
+        'is_real'           => 'Layers aren\'t available when using OpenStreetMaps.',
     ],
     'placeholders'  => [
         'name'      => 'Underground, Level 2, Shipwreck',

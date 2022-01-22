@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Storage;
  * @property float $center_x
  * @property float $center_y
  * @property int $center_marker_id
+ * @property bool $is_real
  * @property Map $map
  * @property Map[] $maps
  * @property Location $location
@@ -49,6 +50,8 @@ class Map extends MiscModel
 
     const MAX_ZOOM = 10;
     const MIN_ZOOM = -10;
+    const MAX_ZOOM_REAL = 15;
+    const MIN_ZOOM_REAL = 2;
 
     /**
      * @var array
@@ -73,6 +76,7 @@ class Map extends MiscModel
         'center_x',
         'center_y',
         'center_marker_id',
+        'is_real',
     ];
 
     /**
@@ -296,7 +300,10 @@ class Map extends MiscModel
      */
     public function activeLayers(bool $groups = true): string
     {
-        $layers = ['baseLayer' . $this->id];
+        $layers = [];
+        if (!$this->is_real) {
+            $layers = ['baseLayer' . $this->id];
+        }
         if ($groups) {
             foreach ($this->groups->where('is_shown', true) as $group) {
                 $layers[] = 'group' . $group->id;
@@ -376,6 +383,9 @@ class Map extends MiscModel
     public function minZoom(): int
     {
         if (!is_numeric($this->min_zoom)) {
+            if ($this->is_real) {
+                return self::MIN_ZOOM_REAL;
+            }
             return -2;
         }
 
@@ -383,7 +393,8 @@ class Map extends MiscModel
         if ($this->min_zoom > $this->initial_zoom && $this->initial_zoom > self::MIN_ZOOM) {
             return $this->initial_zoom;
         }
-        return (int) max($this->min_zoom, self::MIN_ZOOM);
+        $min = $this->is_real ? self::MIN_ZOOM_REAL : self::MIN_ZOOM;
+        return (int) max($this->min_zoom, $min);
     }
 
     /**
@@ -393,9 +404,13 @@ class Map extends MiscModel
     public function maxZoom(): float
     {
         if (!is_numeric($this->max_zoom)) {
+            if ($this->is_real) {
+                return self::MAX_ZOOM_REAL;
+            }
             return 2.75;
         }
-        return (float) min($this->max_zoom, self::MAX_ZOOM);
+        $max = $this->is_real ? self::MAX_ZOOM_REAL : self::MAX_ZOOM;
+        return (float) min($this->max_zoom, $max);
     }
 
     /**
@@ -405,6 +420,9 @@ class Map extends MiscModel
     public function initialZoom(): int
     {
         if (!is_numeric($this->initial_zoom)) {
+            if ($this->is_real) {
+                return 12;
+            }
             return 0;
         }
 
@@ -422,6 +440,9 @@ class Map extends MiscModel
      */
     public function centerFocus(): string
     {
+        if ($this->is_real) {
+            return "46.205, 6.147";
+        }
         //init position in the middle of the map
         $latitude = floor($this->height / 2);
         $longitude = floor($this->width / 2);
