@@ -2,10 +2,14 @@
  * @var \App\Models\Campaign $campaign
  * @var \App\Models\AppRelease $release
  */ ?>
-<?php $position = 0; ?>
+@php
+    $position = 0;
+    $seoTitle = (!empty($dashboard) ? $dashboard->name : __('sidebar.dashboard')) .  ' - ' . $campaign->name;
+@endphp
 
 @extends('layouts.app', [
     'title' => __('dashboard.title') . ' ' . (!empty($dashboard) ? $dashboard->name : $campaign->name),
+    'seoTitle' => $seoTitle,
     'breadcrumbs' => false,
     'canonical' => true,
     'contentId' => 'campaign-dashboard'

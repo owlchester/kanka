@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'title' => __($langKey . '.index.title', ['name' => CampaignLocalization::getCampaign()->name]),
-    'description' => '',
+    'seoTitle' => __($langKey . '.index.title') . ' - ' . CampaignLocalization::getCampaign()->name,
     'breadcrumbs' => [
         ['url' => Breadcrumb::index($name), 'label' => __($langKey . '.index.title')],
     ],
