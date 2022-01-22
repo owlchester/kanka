@@ -142,12 +142,20 @@ trait Filterable
                             continue;
                         }
                         $query = $this->joinEntity($query);
+
+                        // No attribute with this name
+                        if ($operator === 'not like') {
+                            $query
+                                ->whereRaw('(select count(*) from attributes as att where att.entity_id = e.id and att.name = \'' . ($filterValue) . '\') = 0');
+                            continue;
+                        }
                         $query
                             ->select($this->getTable() . '.*')
                             ->leftJoin('attributes as att', function ($join) {
                                 $join->on('att.entity_id', '=', 'e.id');
                             })
-                            ->where('att.name', $value);
+                            ->where('att.name', $filterValue);
+
 
                         $attributeValue = Arr::get($params, 'attribute_value');
                         if ($attributeValue !== '' && $attributeValue !== null) {
