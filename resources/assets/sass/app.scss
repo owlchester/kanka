@@ -551,8 +551,9 @@ summary { display: list-item; }
   margin: 3px 10px;
 }
 .table-responsive {
-  table {
-    margin-bottom: 20px;
+  overflow-x: unset;
+  .table {
+    margin-bottom: 0;
   }
 }
 
