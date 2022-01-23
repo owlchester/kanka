@@ -229,6 +229,7 @@ class MentionsService
             $segments = explode('|', $matches[2]);
             $id = (int) $segments[0];
             $entityType = $matches[1];
+
             if (!in_array($id, $this->mentionedEntities)) {
                 $this->mentionedEntities[] = $id;
             }
@@ -276,6 +277,14 @@ class MentionsService
                             $page = 'relations.index';
                         }
                         $url = route('entities.' . $page, $entity->id);
+                    }
+                }
+                // An alias was used for this mention, so let's try and find it. ACL is handled directly
+                // on the EntityAlias object.
+                if (!empty($data['alias'])) {
+                    $alias = $entity->aliases()->where('id', $data['alias'])->first();
+                    if (!empty($alias)) {
+                        $data['text'] = $alias->name;
                     }
                 }
                 $dataUrl = route('entities.tooltip', $entity);

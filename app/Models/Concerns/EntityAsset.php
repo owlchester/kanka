@@ -15,4 +15,8 @@ trait EntityAsset
     {
         return $this->isFile;
     }
+    public function isAlias(): bool
+    {
+        return $this->isAlias;
+    }
 }

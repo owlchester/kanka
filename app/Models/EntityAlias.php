@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Blameable;
 use App\Models\Concerns\EntityAsset;
-use App\Traits\VisibilityTrait;
+use App\Traits\VisibilityIDTrait;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 /**
  * Class EntityLink
@@ -15,32 +15,27 @@ use Illuminate\Support\Str;
  * @property integer $entity_id
  * @property integer $created_by
  * @property string $name
- * @property integer $position
- * @property string $icon
- * @property string $url
+ * @property integer $visibility_id
  * @property Entity $entity
  * @property User $user
  * @property Campaign $campaign
+ * @property Visibility $visibility
  */
-class EntityLink extends Model
+class EntityAlias extends Model
 {
-    use VisibilityTrait,
-        EntityAsset;
+    use VisibilityIDTrait, Blameable, EntityAsset;
 
     public $fillable = [
         'entity_id',
         'created_by',
         'name',
-        'url',
-        'icon',
-        'position',
-        'visibility',
+        'visibility_id',
     ];
 
     /** EntityAsset booleans */
-    protected $isLink = true;
+    protected $isLink = false;
     protected $isFile = false;
-    protected $isAlias = false;
+    protected $isAlias = true;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -59,24 +54,11 @@ class EntityLink extends Model
     }
 
     /**
-     * @param $query
-     * @return mixed
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function scopeOrdered($query)
+    public function visibility()
     {
-        return $query->orderBy('position', 'ASC');
-    }
-
-    /**
-     * @return string
-     */
-    public function iconName(): string
-    {
-        if (empty($this->icon)) {
-            return 'fa fa-external-link';
-        }
-
-        return (string) $this->icon;
+        return $this->belongsTo('App\Models\Visibility', 'visibility_id');
     }
 
     /**

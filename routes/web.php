@@ -337,6 +337,7 @@ Route::group([
             'entities.entity_events' => 'EntityEventController',
             'entities.entity_files' => 'EntityFileController',
             'entities.entity_links' => 'Entity\LinkController',
+            'entities.entity_aliases' => 'Entity\AliasController',
             'entities.inventories' => 'Entity\InventoryController',
             'entities.relations' => 'Entity\RelationController',
 

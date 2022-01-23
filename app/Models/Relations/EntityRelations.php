@@ -9,6 +9,7 @@ use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignPermission;
 use App\Models\Conversation;
 use App\Models\EntityAbility;
+use App\Models\EntityAlias;
 use App\Models\EntityEvent;
 use App\Models\EntityLink;
 use App\Models\EntityMention;
@@ -53,6 +54,7 @@ use App\User;
  * @property Image $header
  * @property User[] $users
  * @property CampaignPermission[] $permissions
+ * @property EntityAlias[] $aliases
  */
 trait EntityRelations
 {
@@ -443,6 +445,14 @@ trait EntityRelations
     public function links()
     {
         return $this->hasMany('App\Models\EntityLink', 'entity_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function aliases()
+    {
+        return $this->hasMany('App\Models\EntityAlias', 'entity_id', 'id');
     }
 
     /**
