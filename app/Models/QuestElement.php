@@ -130,6 +130,14 @@ class QuestElement extends Model
         }
 
         return (string) $this->name;
+    }
 
+    /**
+     * For the legacy editor
+     * @return bool
+     */
+    public function hasEntity(): bool
+    {
+        return false;
     }
 }
