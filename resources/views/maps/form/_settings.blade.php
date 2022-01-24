@@ -54,11 +54,11 @@
             'placeholder' => 0,
             'class' => 'form-control',
             'min' => \App\Models\Map::MIN_ZOOM,
-            'max' => \App\Models\Map::MAX_ZOOM,
+            'max' => \App\Models\Map::MAX_ZOOM_REAL,
             ]
             ) !!}
             <p class="help-block">
-                {{ __('maps.helpers.initial_zoom', ['min' => \App\Models\Map::MIN_ZOOM, 'max' => \App\Models\Map::MAX_ZOOM, 'default' => 0]) }}
+                {{ __('maps.helpers.initial_zoom', ['min' => \App\Models\Map::MIN_ZOOM, 'max' => \App\Models\Map::MAX_ZOOM_REAL, 'default' => 0]) }}
             </p>
         </div>
     </div>
@@ -72,7 +72,7 @@
             'placeholder' => -2,
             'class' => 'form-control',
             'min' => \App\Models\Map::MIN_ZOOM,
-            'max' => 0,
+            'max' => \App\Models\Map::MAX_ZOOM_REAL,
             ]
             ) !!}
             <p class="help-block">
