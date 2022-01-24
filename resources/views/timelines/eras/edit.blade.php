@@ -28,7 +28,7 @@ __('timelines/eras.edit.title', ['name' => $model->name])
         <div class="panel-body">
             @include('partials.errors')
 
-            {!! Form::model($model, ['route' => ['timelines.timeline_eras.update', 'timeline' => $timeline, 'timeline_era' => $model], 'method' => 'PATCH', 'id' => 'timeline-era-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform']) !!}
+            {!! Form::model($model, ['route' => ['timelines.timeline_eras.update', 'timeline' => $timeline, 'timeline_era' => $model], 'method' => 'PATCH', 'id' => 'timeline-era-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform', 'data-shortcut' => 1]) !!}
             @include('timelines.eras._form')
 
             <div class="form-era">

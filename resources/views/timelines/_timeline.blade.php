@@ -18,7 +18,7 @@ $eras = $timeline->eras()->ordered($timeline->revert_order)->get();
                 <i class="fa fa-chevron-up" id="timeline-era-toggle-{{ $era->id }}-show" @if($era->collapsed()) style="display: none;" @endif></i>
                 <i class="fa fa-chevron-down" id="timeline-era-toggle-{{ $era->id }}-hide" @if(!$era->collapsed()) style="display: none;" @endif></i>
 
-                {{ $era->name }} @if(!empty($era->abbreviation)) ({{ $era->abbreviation }}) @endif
+                {!! $era->name !!} @if(!empty($era->abbreviation)) ({{ $era->abbreviation }}) @endif
 
                 <span class="text-sm">
                 {!! $era->ages()!!}
@@ -115,7 +115,7 @@ $eras = $timeline->eras()->ordered($timeline->revert_order)->get();
                 data-url="{{ route('timelines.timeline_elements.create', [$model, 'era_id' => $era, 'position' => $position]) }}"
             >
                 <i class="fa fa-plus"></i>
-                <span class="hidden-xs inline">{{  __('timelines.actions.add_element', ['era' => $era->name]) }}</span>
+                <span class="hidden-xs inline">{!! __('timelines.actions.add_element', ['era' => $era->name]) !!}</span>
             </a>
             @if($era->elements()->count() > 1)
             <a href="#" class="timeline-era-reorder btn btn-default btn-sm" data-era-id="{{ $era->id }}" data-toggle="tooltip" title="{{ __('timelines.helpers.reorder_tooltip') }}">
