@@ -21,6 +21,10 @@
         <div class="panel-body">
             @include('partials.errors')
 
+            <p class="help-block">
+                {{ __('entities/aliases.helpers.primary') }}
+            </p>
+
             {!! Form::open(['route' => ['entities.entity_aliases.store', $entity], 'method' => 'POST', 'data-shortcut' => 1]) !!}
             @include('entities.pages.aliases._form')
 

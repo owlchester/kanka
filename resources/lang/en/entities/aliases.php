@@ -14,6 +14,9 @@ return [
     'fields'        => [
         'name'      => 'Name',
     ],
+    'helpers'       => [
+        'primary'   => 'Setting one or several aliases on the entity will make it findable in the global search (top bar) and through mentions.',
+    ],
     'placeholders'  => [
         'name'  => 'New alias',
     ],
