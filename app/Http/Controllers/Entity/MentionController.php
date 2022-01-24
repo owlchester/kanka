@@ -45,7 +45,6 @@ class MentionController extends Controller
 
         $ajax = request()->ajax();
         $mentions = $entity->targetMentions()->paginate();
-
         return view('entities.pages.mentions.mentions', compact(
             'ajax',
             'entity',
@@ -61,7 +60,7 @@ class MentionController extends Controller
     protected function show(MiscModel $model)
     {
         // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
+        if (auth()->check()) {
             $this->authorize('view', $model);
         } else {
             $this->authorizeForGuest('read', $model);

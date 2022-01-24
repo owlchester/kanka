@@ -25,7 +25,9 @@
                     <i class="fa fa-spinner fa-spin fa-4x"></i>
                 </div>
                 <div class="pagination-ajax-content">
-                    <p class="help-block">{{ __('entities/mentions.helper') }}</p>
+                    <p class="help-block">
+                        {{ __('entities/mentions.helper') }}
+                    </p>
                     <table class="table table-hover">
                         <thead>
                         <tr>
