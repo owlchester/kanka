@@ -1,8 +1,10 @@
 <!-- Main Footer -->
 <footer id="footer" class="main-footer">
+    @if (auth()->check())
     <div class="translator-call text-center hidden-xs hidden-sm">
         <p class="text-muted">{!! __('footer.translator_call', ['discord' => link_to(config('discord.url'), 'Discord', ['target' => '_blank'])]) !!}</p>
     </div>
+    @endif
 
     <div class="footer-links">
         <div class="row">
