@@ -460,7 +460,6 @@ function initTimelineToggle() {
 function initEntityNoteToggle() {
     $('.entity-note-toggle').on('click', function() {
         let id = $(this).data('short');
-        console.log('clicky', id);
         $('#' + id + "-show").toggle();
         $('#' + id + "-hide").toggle();
     });
