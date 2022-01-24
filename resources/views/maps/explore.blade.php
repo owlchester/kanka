@@ -30,7 +30,7 @@
             @if (!$marker->visible())
                 @continue
             @endif
-            var marker{{ $marker->id }} = {!! $marker->exploring()->marker() !!};
+            var marker{{ $marker->id }} = {!! $marker->exploring()->multiplier($map->is_real)->marker() !!};
             markers.push('marker' + {{ $marker->id }});
         @endforeach
 

@@ -440,20 +440,23 @@ class Map extends MiscModel
      */
     public function centerFocus(): string
     {
+        // Init position in the middle of the map
+        $latitude = $longitude = 0;
         if ($this->is_real) {
-            return "46.205, 6.147";
+            $latitude = 46.205;
+            $longitude = 6.147;
+        } else {
+            $latitude = floor($this->height / 2);
+            $longitude = floor($this->width / 2);
         }
-        //init position in the middle of the map
-        $latitude = floor($this->height / 2);
-        $longitude = floor($this->width / 2);
 
-        //if we have a center marker
+        // If we have a center marker
         if ($this->center_marker != null) {
             //use his position
             $latitude = $this->center_marker->latitude;
             $longitude = $this->center_marker->longitude;
         } else {
-            //use the center positions if they exist
+            // Use the center positions if they exist
             if (!empty($this->center_y)) {
                 $latitude = $this->center_y;
             }

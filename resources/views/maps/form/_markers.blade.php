@@ -42,7 +42,7 @@
 
             var markers = {};
             @foreach ($model->markers as $marker)
-                var marker{{ $marker->id }} = {!! $marker->marker() !!};
+                var marker{{ $marker->id }} = {!! $marker->multiplier($model->is_real)->marker() !!};
             @endforeach
 
         </script>

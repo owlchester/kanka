@@ -92,7 +92,7 @@ __('maps/markers.edit.title', ['name' => $model->name])
             popupAnchor: [0, -20],
         });
 
-        var marker{{ $model->id }} = {!! $model->editing()->marker() !!}.addTo(map{{ $map->id }});
+        var marker{{ $model->id }} = {!! $model->editing()->multiplier($map->is_real)->marker() !!}.addTo(map{{ $map->id }});
 
         @if ($model->shape_id == 5)
             map{{ $map->id }}.on('click', function(ev) {
