@@ -20,7 +20,7 @@ $members = $model->allMembers()
         ->has('character')
         ->with([
             'character', 'character.location', 'organisation',
-            'character.entity', 'organisation.entity',
+            'character.entity', 'organisation.entity', 'character.location.entity',
             'parent', 'parent.character'
         ])
         ->simpleSort($datagridSorter)
@@ -32,7 +32,7 @@ $members = $model->allMembers()
 
         <div class="box-tools">
             @if (!$allMembers)
-                <a href="{{ route('organisations.show', [$model, 'all_members' => true, '#organisation-members']) }}" class="btn btn-default btn-sm">
+                <a href="{{ route('organisations.show', [$model, 'all_members' => true, '#organisation-members']) }}" class="btn btn-box-tool">
                     <i class="fa fa-filter"></i>
                     <span class="hidden-xs hidden-sm">
                         {{ __('crud.filters.lists.desktop.all', ['count' => $filterCount]) }}
@@ -42,7 +42,7 @@ $members = $model->allMembers()
                     </span>
                 </a>
             @else
-                <a href="{{ route('organisations.show', [$model, '#organisation-members']) }}" class="btn btn-default btn-sm">
+                <a href="{{ route('organisations.show', [$model, '#organisation-members']) }}" class="btn btn-box-tool">
                     <i class="fa fa-filter"></i>
 
                     <span class="hidden-xs hidden-sm">
@@ -100,7 +100,7 @@ $members = $model->allMembers()
             </thead>
             <tbody>
             @foreach ($members as $relation)
-                <tr>
+                <tr data-entity-id="{{ $relation->character->entity->id }}" data-type="{{ \Illuminate\Support\Str::slug($relation->character->type) }}" data-entity-type="{{ $relation->character->entity->type() }}">
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $relation->character->getImageUrl(40) }}');" title="{{ $relation->character->name }}" href="{{ route('characters.show', $relation->character->id) }}"></a>
                     </td>
