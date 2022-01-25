@@ -46,7 +46,7 @@
                     <td>
                         {!! $connection->child->tooltipedLink() !!}
 
-                        @if ($connection->type == 'map')
+                        @if ($connection->type() == 'map')
                             <a href="{{ route('maps.explore', $connection->child) }}" class="btn btn-xs btn-primary" target="_blank">
                                 <i class="fa fa-map"></i> {{ __('maps.actions.explore') }}
                             </a>
