@@ -8,6 +8,9 @@ $KankaBlue: #2828A1;
 $KankaDarkBlue: #08083c;
 $KankaGrey: #EDEDED;
 
+html {
+  scroll-behavior: smooth;
+}
 body {
   background-color: #222;
 }
@@ -662,6 +665,21 @@ section.features .feature-item i {
 .device {
   img {
     aspect-ratio: attr(width) / attr(height);
+  }
+}
+
+.skip-nav-link {
+  position: absolute;
+  left: .5rem;
+  border-radius: 0 0 0.25rem 0.25rem;
+  padding: 0.5rem 1rem;
+  background-color: white;
+  transform: translateY(-120%);
+  transition: transform 325ms ease-in;
+  z-index: 50;
+
+  &:focus {
+    transform: translateY(0);
   }
 }
 

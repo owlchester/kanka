@@ -1211,6 +1211,22 @@ summary {
   vertical-align: bottom;
 }
 
+.skip-nav-link {
+  position: absolute;
+  left: 0.5rem;
+  border-radius: 0 0 0.25rem 0.25rem;
+  padding: 0.5rem 1rem;
+  background-color: white;
+  color: blue;
+  transform: translateY(-120%);
+  transition: transform 325ms ease-in;
+  z-index: 1040;
+}
+
+.skip-nav-link:focus {
+  transform: translateY(0);
+}
+
 :root {
   --calendar-today: #FFFDE2;
   --calendar-week: #FFFDE2;

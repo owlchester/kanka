@@ -21,7 +21,8 @@ $currentCampaign = CampaignLocalization::getCampaign();
             {!! Form::open(['route' => 'search', 'class' => 'visible-md visible-lg navbar-form navbar-left live-search-form', 'method'=>'GET']) !!}
                 <input type="text" name="q" id="live-search" class="typeahead form-control" autocomplete="off"
                        placeholder="{{ __('sidebar.search') }}" data-url="{{ route('search.live') }}"
-                       data-empty="{{ __('search.no_results') }}">
+                       data-empty="{{ __('search.no_results') }}"
+                       tabindex="2">
 
                     <a href="#" class="live-search-close visible-xs visible-sm pull-right" name="search-close">
                         <i class="fa fa-close"></i>

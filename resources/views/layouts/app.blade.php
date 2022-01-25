@@ -77,6 +77,10 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
 {{-- Hide the sidebar if the there is no current campaign --}}
 <body class="skin-black sidebar-mini @if (!empty($campaign) || (auth()->check() && auth()->user()->hasCampaigns()) || (!empty($sidebar) && $sidebar == 'settings'))@else layout-top-nav @endif @if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses() }}@endif @if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif " @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
 @include('layouts._tracking-fallback')
+
+<a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="skip-nav-link" tabindex="1">
+    {{ __('crud.navigation.skip_to_content') }}
+</a>
     <div id="app" class="wrapper">
         @include('layouts.header')
 
@@ -84,7 +88,7 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
 
         @yield('fullpage-form')
 
-        <div class="content-wrapper" @if(isset($contentId)) id="{{ $contentId }}" @endif>
+        <div class="content-wrapper" id="{{ isset($contentId) ? $contentId : "main-content" }}">
 
             @if(!view()->hasSection('content-header'))
             <section class="content-header">
