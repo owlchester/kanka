@@ -231,7 +231,7 @@ class SearchService
         }
 
         if (!empty($this->excludeIds)) {
-            $query->whereNotIn('id', $this->excludeIds);
+            $query->whereNotIn('entities.id', $this->excludeIds);
         }
 
         $query
