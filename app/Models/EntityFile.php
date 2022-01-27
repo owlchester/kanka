@@ -48,6 +48,7 @@ class EntityFile extends Model
     /** EntityAsset booleans */
     protected $isFile = true;
     protected $isLink = false;
+    protected $isAlias = false;
 
     /**
      * Trigger for filtering based on the order request.

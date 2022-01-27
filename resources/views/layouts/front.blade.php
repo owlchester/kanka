@@ -66,6 +66,9 @@
 <noscript id="deferred-styles">
 </noscript>
 
+<a href="#main-content" class="skip-nav-link" tabindex="0">
+    {{ __('crud.navigation.skip_to_content') }}
+</a>
 <div id="top"></div>
 <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
     <div class="container">
@@ -197,6 +200,8 @@
         </ul>
     </div>
 </nav>
+
+<div id="main-content"></div>
 @yield('content')
 
 @include('front.footer')

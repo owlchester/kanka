@@ -4,7 +4,7 @@
  */
 ?>
 <div class="box box-solid box-entity-connections" id="entity-related">
-    <div class="box-header with-border">
+    <div class="box-header">
         <h3 class="box-title">
             {{ __('entities/relations.panels.related') }}
         </h3>
@@ -13,8 +13,7 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th class="avatar"></th>
-                <th>
+                <th colspan="2">
                     @if(request()->get('order') == 'name' || !request()->has('order'))
                         {{ __('crud.fields.name') }}
                         <i class="fas fa-arrow-down"></i>
@@ -40,14 +39,14 @@
             </thead>
             <tbody>
             @foreach ($connections as $connection)
-                <tr>
-                    <td>
+                <tr data-entity-id="{{ $connection->id }}" data-entity-type="{{ $connection->type() }}">
+                    <td class="avatar">
                         <a class="entity-image" style="background-image: url('{{ $connection->child->getImageUrl(40) }}');" title="{{ $connection->name }}" href="{{ $connection->url() }}"></a>
                     </td>
                     <td>
                         {!! $connection->child->tooltipedLink() !!}
 
-                        @if ($connection->type == 'map')
+                        @if ($connection->type() == 'map')
                             <a href="{{ route('maps.explore', $connection->child) }}" class="btn btn-xs btn-primary" target="_blank">
                                 <i class="fa fa-map"></i> {{ __('maps.actions.explore') }}
                             </a>

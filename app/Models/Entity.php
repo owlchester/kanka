@@ -375,6 +375,8 @@ class Entity extends Model
         $assets = $this->files;
         $campaign = CampaignLocalization::getCampaign();
         $links = $campaign->boosted() ? $this->links : [];
+        $aliases = $campaign->boosted() ? $this->aliases : [];
+        $assets = $assets->merge($aliases);
         $assets = $assets->merge($links);
         //$assets
         return $assets->sort(function ($a, $b) {

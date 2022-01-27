@@ -194,6 +194,11 @@
                 <td><i class="fa fa-check-circle"></i></td>
             </tr>
             <tr>
+                <td class="text">{{ __('front.features.boosts.entity-aliases') }}</td>
+                <td><i class="fa fa-check-circle"></i></td>
+                <td><i class="fa fa-check-circle"></i></td>
+            </tr>
+            <tr>
                 <td class="text">{{ __('front.features.boosts.no_ads') }}</td>
                 <td><i class="fa fa-check-circle"></i></td>
                 <td><i class="fa fa-check-circle"></i></td>

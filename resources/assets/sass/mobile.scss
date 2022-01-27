@@ -99,6 +99,16 @@
   .navbar-nav > .notifications-menu > .dropdown-menu {
     width: 90%;
   }
+
+  .table-responsive {
+    overflow-x: auto;
+    overflow-y: auto;
+    border: none;
+
+    table {
+    }
+    padding-bottom: 20px;
+  }
 }
 
 @media (max-width: 991px) {

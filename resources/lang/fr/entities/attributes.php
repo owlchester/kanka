@@ -18,6 +18,10 @@ return [
         'template'              => 'Modèle',
         'value'                 => 'Valeur',
     ],
+    'filters'       => [
+        'name'  => 'Nom d\'attribut',
+        'value' => 'Valeur d\'attribut',
+    ],
     'helpers'       => [
         'delete_all'    => 'Es-tu certain de vouloir supprimer tous les attributs de cette entité?',
         'setup'         => 'Tu peux représenter des valeurs comme les points de vie ou l\'intelligence d\'une entité avec les attributs. Ajoutes des attributs manuellement en cliquant le bouton :manage, ou applique ceux d\'un modèle d\'attributs.',

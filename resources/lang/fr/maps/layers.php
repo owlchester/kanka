@@ -23,6 +23,7 @@ return [
     'helper'        => [
         'amount'            => 'Ajouter jusqu\'à :amount couches sur une carte pour changer l\'image affichée sous les marqueurs.',
         'boosted_campaign'  => 'Les :boosted peuvent avoir jusqu\'à :amount couches.',
+        'is_real'           => 'Les couches ne sont pas disponibles quand la carte utilise OpenStreetMaps.',
     ],
     'placeholders'  => [
         'name'      => 'Sous-sol, Niveau 2, Epave',

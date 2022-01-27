@@ -21,6 +21,7 @@ class JournalFilter extends DatagridFilter
             ->hasEntityFiles()
             ->hasAttributes()
             ->tags()
+            ->attributes()
         ;
     }
 }

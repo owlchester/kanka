@@ -73,6 +73,7 @@ TEXT
         'name'                          => 'Názov',
         'nested'                        => 'Vnorené zobrazenie zoznamov objektov, ak možné',
         'open'                          => 'Otvorená pre prihlášky',
+        'post_collapsed'                => 'Nové príspevky k objektom sú štandardne minimalizované.',
         'public_campaign_filters'       => 'Filter verejných kampaní',
         'related_visibility'            => 'Viditeľnosť príbuzných prvkov',
         'rpg_system'                    => 'RPG systémy',

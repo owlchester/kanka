@@ -6,16 +6,17 @@
 $campaign = \App\Facades\CampaignLocalization::getCampaign();
 $themeOverride = request()->get('_theme');
 $specificTheme = null;
+$seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
 ?><!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" @if(app()->getLocale() == 'he') dir="rtl" @endif>
 <head>
 @include('layouts._tracking')
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{!! $title ?? '' !!} - {{ config('app.name', 'Kanka') }}</title>
+    <title>{!! $seoTitle !!} - {{ config('app.name', 'Kanka') }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-    <meta property="og:title" content="{{ $title ?? '' }} - {{ config('app.name') }}" />
+    <meta property="og:title" content="{!! $seoTitle !!} - {{ config('app.name') }}" />
     <meta property="og:site_name" content="{{ config('app.site_name') }}" />
 @if (isset($canonical))
     <link rel="canonical" href="{{ LaravelLocalization::localizeURL(null, $campaign->locale) }}" />
@@ -76,6 +77,10 @@ $specificTheme = null;
 {{-- Hide the sidebar if the there is no current campaign --}}
 <body class="skin-black sidebar-mini @if (!empty($campaign) || (auth()->check() && auth()->user()->hasCampaigns()) || (!empty($sidebar) && $sidebar == 'settings'))@else layout-top-nav @endif @if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses() }}@endif @if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif " @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
 @include('layouts._tracking-fallback')
+
+<a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="skip-nav-link" tabindex="1">
+    {{ __('crud.navigation.skip_to_content') }}
+</a>
     <div id="app" class="wrapper">
         @include('layouts.header')
 
@@ -83,7 +88,7 @@ $specificTheme = null;
 
         @yield('fullpage-form')
 
-        <div class="content-wrapper" @if(isset($contentId)) id="{{ $contentId }}" @endif>
+        <div class="content-wrapper" id="{{ isset($contentId) ? $contentId : "main-content" }}">
 
             @if(!view()->hasSection('content-header'))
             <section class="content-header">

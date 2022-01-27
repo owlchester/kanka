@@ -29,6 +29,7 @@ class TimelineFilter extends DatagridFilter
             ->hasEntityFiles()
             ->hasAttributes()
             ->tags()
+            ->attributes()
         ;
     }
 }

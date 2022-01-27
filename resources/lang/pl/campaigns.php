@@ -73,6 +73,7 @@ TEXT
         'name'                          => 'Nazwa',
         'nested'                        => 'Domyślnie pokazuj listy elementów w widoku hierarchii (jeżeli jest dostępny)',
         'open'                          => 'Otwarta na zgłoszenia',
+        'post_collapsed'                => 'Nowe komentarze do elementów są domyślnie zwynięte.',
         'public_campaign_filters'       => 'Filtry kampanii publicznych',
         'related_visibility'            => 'Widoczność tworzonych elementów',
         'rpg_system'                    => 'Systemy RPG',

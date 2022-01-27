@@ -28,6 +28,7 @@ class LocationFilter extends DatagridFilter
             ->hasEntityFiles()
             ->hasAttributes()
             ->tags()
+            ->attributes()
         ;
     }
 }

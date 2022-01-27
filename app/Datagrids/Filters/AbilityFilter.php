@@ -28,6 +28,7 @@ class AbilityFilter extends DatagridFilter
             ->hasEntityFiles()
             ->hasAttributes()
             ->tags()
+            ->attributes()
         ;
     }
 }

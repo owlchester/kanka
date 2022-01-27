@@ -1,6 +1,8 @@
 <?php
-/** @var \App\Models\Tag $model*/
-/** @var \App\Models\Entity $child */
+/**
+ * @var \App\Models\Tag $model
+ * @var \App\Models\Entity[] $r
+ */
 $filters = [];
 $r = null;
 $addEntityUrl = route('tags.entity-add', $model);
@@ -30,6 +32,14 @@ $r = $r->acl()
         <h3 class="box-title">
             {{ __('tags.show.tabs.children') }}
         </h3>
+        <div class="box-tools">
+            @can('update', $model)
+                <a href="{{ $addEntityUrl }}" class="btn btn-primary btn-sm"
+                   data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ $addEntityUrl }}">
+                    <i class="fa fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('tags.children.actions.add') }}</span>
+                </a>
+            @endcan
+        </div>
     </div>
     <div class="box-body">
 
@@ -54,21 +64,18 @@ $r = $r->acl()
             </div>
         </div>
         <table id="section-children" class="table table-hover">
-            <tbody><tr>
+            <thead>
+            <tr>
                 <th class="avatar"><br /></th>
                 <th>{{ __('crud.fields.name') }}</th>
                 <th>{{ __('crud.fields.entity_type') }}</th>
                 <th class="text-right">
-                    @can('update', $model)
-                        <a href="{{ $addEntityUrl }}" class="btn btn-primary btn-sm"
-                           data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ $addEntityUrl }}">
-                            <i class="fa fa-plus"></i> <span class="hidden-sm hidden-xs">{{ __('tags.children.actions.add') }}</span>
-                        </a>
-                    @endcan
                 </th>
             </tr>
+            </thead>
+            <tbody>
             @foreach ($r as $child)
-                <tr>
+                <tr data-entity-id="{{ $child->id }}" data-entity-type="{{ $child->type() }}">
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $child->avatar(true) }}');" title="{{ $child->name }}" href="{{ $child->url() }}"></a>
                     </td>

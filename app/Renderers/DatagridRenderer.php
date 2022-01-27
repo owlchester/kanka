@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Collective\Html\FormFacade as Form;
+use Illuminate\Support\Str;
 
 class DatagridRenderer
 {
@@ -280,7 +281,8 @@ class DatagridRenderer
         }
 
         $html = '<tr data-id="' . $model->id . '" '
-            . ($useEntity ? 'data-entity-id="' . $model->entity->id . '"' : null);
+            . (!empty($model->type) ? 'data-type="' . Str::slug($model->type) . '" ' : null)
+            . ($useEntity ? 'data-entity-id="' . $model->entity->id . '" data-entity-type="' . $model->entity->type() . '"' : null);
         if (!empty($this->options['row']) && !empty($this->options['row']['data'])) {
             foreach ($this->options['row']['data'] as $name => $data) {
                 $html .= ' ' . $name . '="' . $data($model) . '"';

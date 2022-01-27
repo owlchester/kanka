@@ -34,7 +34,7 @@
     <tbody>
     @foreach ($relations as $relation)
         @viewentity($relation->target)
-        <tr>
+        <tr data-entity-id="{{ $relation->target->id }}" data-entity-type="{{ $relation->target->type() }}">
             <td class="breakable">
                 @if ($relation->is_star)
                     <i class="fas fa-star" title="{{ __('crud.fields.is_star') }}" data-toggle="tooltip"></i>

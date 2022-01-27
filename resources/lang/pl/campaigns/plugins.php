@@ -30,9 +30,15 @@ return [
     ],
     'helper'        => 'Społeczność Kanki bezustannie tworzy fantastyczne dodatki, umieszczane na targowisku.  Możesz je instalować bezpośrednio z targowiska do każdej doładowanej kampanii. To menu pozwala natomiast usuwać dodatki.',
     'import'        => [
-        'created'   => 'Stworzono następujące elementy:',
-        'success'   => '{1} Zaimportowano :count element z dodatku :plugin.|[2,3,4] Zaimportowano :count elementy z dodatku :plugin.|[5,*] Zaimportowano :count elementów z dodatku :plugin.',
-        'updated'   => 'Zmieniono następujące elementy:',
+        'button'                => 'Importuj',
+        'created'               => 'Stworzono następujące elementy:',
+        'helper'                => 'Zaimportujesz zaraz :elementów z dodatku :plugin. Jeżeli był importowany wcześniej, utracisz wszystkie zmiany wprowadzone w tych elementach.',
+        'no_new_entities'       => 'Brak nowych elementów do zaimportowania.',
+        'option_only_import'    => 'Importuj tylko nowe elementy i pomijaj już zaimportowanie.',
+        'option_private'        => 'Importowane elementy są tajne.',
+        'success'               => '{1} Zaimportowano :count element z dodatku :plugin.|[2,3,4] Zaimportowano :count elementy z dodatku :plugin.|[5,*] Zaimportowano :count elementów z dodatku :plugin.',
+        'title'                 => 'Import :plugin',
+        'updated'               => 'Zmieniono następujące elementy:',
     ],
     'info'          => [
         'helper'        => 'Wydano nowszą wersję tego dodatku - możesz go zaktualizować.',

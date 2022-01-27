@@ -30,6 +30,7 @@ return [
     ],
     'fields'        => [
         'age'                       => 'Alter',
+        'families'                  => 'Familien',
         'family'                    => 'Familie',
         'image'                     => 'Bild',
         'is_dead'                   => 'Tot',
@@ -40,6 +41,7 @@ return [
         'physical'                  => 'Körper',
         'pronouns'                  => 'Pronomen',
         'race'                      => 'Spezies',
+        'races'                     => 'Spezies',
         'relation'                  => 'Beziehung',
         'sex'                       => 'Geschlecht',
         'title'                     => 'Titel',
@@ -118,6 +120,7 @@ return [
         'physical'          => 'Körper',
         'pronouns'          => 'Er / Ihn, Sie / Sie, Sie / Ihre',
         'race'              => 'Spezies',
+        'races'             => 'Spezies wählen',
         'sex'               => 'Geschlecht',
         'title'             => 'Titel',
         'traits'            => 'Eigenschaften',

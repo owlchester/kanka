@@ -30,6 +30,7 @@ return [
     ],
     'fields'        => [
         'age'                       => 'Vek',
+        'families'                  => 'Rody',
         'family'                    => 'Rod',
         'image'                     => 'Obrázok',
         'is_dead'                   => 'Po smrti',
@@ -40,6 +41,7 @@ return [
         'physical'                  => 'Telesné črty',
         'pronouns'                  => 'Zámená',
         'race'                      => 'Rasa',
+        'races'                     => 'Rasy',
         'relation'                  => 'Vzťah',
         'sex'                       => 'Pohlavie',
         'title'                     => 'Titul',
@@ -120,6 +122,7 @@ return [
         'physical'          => 'Telesné črty',
         'pronouns'          => 'On/Jeho, Ona/Jej, Oni/Ich',
         'race'              => 'Rasa',
+        'races'             => 'Vyber rasy',
         'sex'               => 'Pohlavie',
         'title'             => 'Titul',
         'traits'            => 'Vlastnosti',

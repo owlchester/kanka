@@ -28,11 +28,27 @@ $clipboardFilters = $filterService->clipboardFilters();
         <div class="box-body">
             <div class="row">
                 @foreach ($filters as $field)
-                    @if ($count % 2 === 0)
+                    @if ($count % 2 === 0 || (is_string($field) && $field == 'attributes'))
                 </div>
                 <div class="row">
                     @endif
                     @php $count++ @endphp
+
+                    @if (!is_array($field) && $field === 'attributes')
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>{{ __('entities/attributes.filters.name') }}</label>
+                                <input type="text" class="form-control" name="attribute_name" value="{{ $filterService->single('attribute_name') }}" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>{{ __('entities/attributes.filters.value') }}</label>
+                                <input type="text" class="form-control" name="attribute_value" value="{{ $filterService->single('attribute_value') }}" />
+                            </div>
+                        </div>
+                        @continue
+                    @endif
                     <div class="col-md-6">
                         <div class="form-group">
                             @if (is_array($field))

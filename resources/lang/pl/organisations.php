@@ -54,6 +54,7 @@ return [
         'fields'        => [
             'character'     => 'Postać',
             'organisation'  => 'Organiacja',
+            'parent'        => 'Zwierzchnik',
             'pinned'        => 'Przypnij',
             'role'          => 'Rola',
             'status'        => 'Rodzaj członkostwa',
@@ -71,6 +72,7 @@ return [
         ],
         'placeholders'  => [
             'character' => 'Wybierz postać',
+            'parent'    => 'Zwierzchnik tego członka',
             'role'      => 'Przywódca, członek, Wielki Septon, mistrz szpiegów',
         ],
         'status'        => [

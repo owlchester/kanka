@@ -13,10 +13,13 @@ $assetCount = 0; ?>
 @section('entity-header-actions')
     @can('update', $entity->child)
         <div class="header-buttons">
-            <a href="#" class="btn btn-warning" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_files.create', [$entity]) }}">
+            <a href="#" class="btn btn-warning btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_aliases.create', [$entity]) }}">
+                <i class="fas fa-plus"></i> {{ __('entities/assets.actions.alias') }}
+            </a>
+            <a href="#" class="btn btn-warning btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_files.create', [$entity]) }}">
                 <i class="fas fa-plus"></i> {{ __('entities/assets.actions.file') }}
             </a>
-            <a href="#" class="btn btn-warning" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_links.create', [$entity]) }}">
+            <a href="#" class="btn btn-warning btn-sm" data-toggle="ajax-modal" data-target="#entity-modal" data-url="{{ route('entities.entity_links.create', [$entity]) }}">
                 <i class="fas fa-plus"></i> {{ __('entities/assets.actions.link') }}
             </a>
         </div>
@@ -52,6 +55,7 @@ $assetCount = 0; ?>
                     @endif
                     @includeWhen($asset->isFile(), 'entities.pages.assets._file')
                     @includeWhen($asset->isLink(), 'entities.pages.assets._link')
+                    @includeWhen($asset->isAlias(), 'entities.pages.assets._alias')
 
                     @php $assetCount++ @endphp
                     @endforeach

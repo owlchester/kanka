@@ -97,6 +97,9 @@ trait MentionTrait
                 } elseif ($type == 'field') {
                     $data['field'] = strtolower($value);
                     $data['custom'] = true;
+                } elseif ($type == 'alias') {
+                    $data['alias'] = (int) $value;
+                    $data['custom'] = true;
                 }
             }
         }

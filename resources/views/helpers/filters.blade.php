@@ -30,6 +30,12 @@
 
             <hr />
 
+            <strong>{{ __('entities/attributes.filters.name') }}</strong><br />
+            <p>{!! __('helpers.filters.attributes.first', ['exclude' => '<code>' . __('helpers.filters.attributes.exclude') . '</code>']) !!}</p>
+            <p>{!! __('helpers.filters.attributes.second', ['code' => '<code>HP * Level</code>']) !!}</p>
+
+            <hr />
+
             <p>{{ __('helpers.filters.clipboard') }}</p>
         </div>
     </div>

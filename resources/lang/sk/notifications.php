@@ -14,6 +14,7 @@ return [
             'remove'        => 'Kampaň :campaign už nie je boostovaná používateľom :user.',
             'superboost'    => ':user superboostol kampaň :campaign.',
         ],
+        'deleted'               => 'Kampaň :campaign bola zmazaná.',
         'export'                => 'Export kampane je dostupný. Link je platný po dobu :time minút.',
         'export_error'          => 'Počas exportu tvojej kampane došlo k chybe. Prosím, kontaktuj nás, ak problém pretrváva.',
         'join'                  => ':user pristúpil do kampane :campaign.',

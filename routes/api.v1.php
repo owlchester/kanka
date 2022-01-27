@@ -61,6 +61,7 @@ Route::apiResources([
     'campaigns.entities.inventory' => 'EntityInventoryApiController',
     'campaigns.entities.entity_abilities' => 'EntityAbilityApiController',
     'campaigns.entities.entity_links' => 'EntityLinkApiController',
+    'campaigns.entities.entity_aliases' => 'EntityAliasApiController',
 
     'campaigns.campaign_dashboard_widgets' => 'CampaignDashboardWidgetApiController',
     'campaigns.campaign_styles' => 'CampaignStyleApiController',

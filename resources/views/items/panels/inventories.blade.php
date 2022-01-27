@@ -16,7 +16,7 @@
             </tr>
             @foreach ($r as $inventory)
                 @if ($inventory->entity->child)
-                <tr>
+                <tr data-entity-id="{{ $inventory->entity->id }}" data-entity-type="{{ $inventory->entity->type() }}">
                     <td>
                         <a class="entity-image" style="background-image: url('{{ $inventory->entity->child->getImageUrl(40) }}');" title="{{ $inventory->entity->name }}" href="{{ $inventory->entity->url() }}"></a>
                     </td>

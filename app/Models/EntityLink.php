@@ -40,6 +40,7 @@ class EntityLink extends Model
     /** EntityAsset booleans */
     protected $isLink = true;
     protected $isFile = false;
+    protected $isAlias = false;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

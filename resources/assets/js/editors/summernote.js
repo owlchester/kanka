@@ -215,6 +215,9 @@ function attributeTemplate(item) {
 function hintContent(item) {
     if (item.id) {
         let mention = '[' + item.model_type + ':' + item.id + ']';
+        if (item.alias_id) {
+            return '[' + item.model_type + ':' + item.id + '|alias:' + item.alias_id + ']';
+        }
         if (summernoteConfig.data('advanced-mention')) {
             return mention;
         }

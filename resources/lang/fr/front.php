@@ -86,6 +86,7 @@ return [
             'css'                   => 'CSS personnalisé pour la campagne',
             'dashboards'            => 'Créer des tableaux de bords personnalisé pour les rôles d\'une campagne.',
             'description'           => 'Certains niveaux de soutien donnent aux utilisateurs des boosters qu\'ils peuvent utiliser pour booster des campagnes. Ceci donne les avantages suivants.',
+            'entity-aliases'        => 'Définir des aliases d\'entités pour une recherche et des mentions plus féxibles',
             'entity_files_v2'       => 'Nombre de fichiers maximal sur chaque entité',
             'entity_links'          => 'Définir des liens sur les entités vers des resources et site web externes',
             'header_image'          => 'Image d\'entête pour entité',

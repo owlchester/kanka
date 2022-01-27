@@ -259,8 +259,9 @@ return [
     'linking_help'              => 'Comment lier vers d\'autres éléments?',
     'manage'                    => 'Gérer',
     'navigation'                => [
-        'cancel'    => 'annuler',
-        'or_cancel' => 'ou :cancel',
+        'cancel'            => 'annuler',
+        'or_cancel'         => 'ou :cancel',
+        'skip_to_content'   => 'Aller au contenu',
     ],
     'new_entity'                => [
         'error' => 'Vérifier les valeurs.',

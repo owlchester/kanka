@@ -199,19 +199,39 @@ class SearchService
             $availableEntityTypes = array_diff($availableEntityTypes, $this->excludedTypes);
         }
 
-        $query = Entity::whereIn('type_id', $availableEntityTypes);
+        $cleanTerm = ltrim(str_replace('_', ' ', $this->term), '=');
+        $query = Entity::inTypes($availableEntityTypes);
         if (empty($this->term)) {
             $query->orderBy('updated_at', 'DESC');
         } else {
-            if (Str::startsWith($this->term, '=')) {
-                $query->where('name', ltrim($this->term, '='));
-            } else {
-                $query->where('name', 'like', '%' . $this->term . '%');
+            if ($this->campaign->boosted()) {
+                $query
+                    ->select(['entities.*', 'ea.id as alias_id', 'ea.name as alias_name'])
+                    ->distinct()
+                    ->leftJoin('entity_aliases as ea', function ($join) use ($cleanTerm) {
+                        $join->on('ea.entity_id', '=', 'entities.id');
+                        if (Str::startsWith($this->term, '=')) {
+                            $join->where('ea.name', $cleanTerm);
+                        } else {
+                            $join->where('ea.name', 'like', '%' . $this->term . '%');
+                        }
+                    })
+                    ->where(function ($sub) use ($cleanTerm) {
+                        if (Str::startsWith($this->term, '=')) {
+                            $sub->where('entities.name', $cleanTerm)
+                                ->orWhere('ea.name', $cleanTerm)
+                            ;
+                        } else {
+                            $sub->where('entities.name', 'like', '%' . $this->term . '%')
+                                ->orWhere('ea.name', 'like', '%' . $this->term . '%')
+                            ;
+                        }
+                    });
             }
         }
 
         if (!empty($this->excludeIds)) {
-            $query->whereNotIn('id', $this->excludeIds);
+            $query->whereNotIn('entities.id', $this->excludeIds);
         }
 
         $query
@@ -231,23 +251,25 @@ class SearchService
             }
 
             $parsedName = str_replace('&#039;', '\'', e($model->name));
-            if ($this->full) {
+            if (!$this->full) {
                 $searchResults[] = [
                     'id' => $model->id,
-                    'fullname' => $parsedName,
-                    'image' => $img,
-                    'name' => $parsedName,
-                    'type' => __('entities.' . $model->type()),
-                    'model_type' => $model->type(),
-                    'tooltip' => $model->tooltip(),
-                    'url' => $model->url()
+                    'text' => $parsedName . ' (' . __('entities.' . $model->type()) . ')'
                 ];
-            } else {
-                $searchResults[] = [
-                    'id' => $model->id,
-                    'text' => $parsedName . ' (' . trans('entities.' . $model->type()) . ')'
-                ];
+                continue;
             }
+
+            $searchResults[] = [
+                'id' => $model->id,
+                'fullname' => $parsedName,
+                'image' => $img,
+                'name' => $parsedName,
+                'type' => __('entities.' . $model->type()),
+                'model_type' => $model->type(),
+                'tooltip' => $model->tooltip(),
+                'url' => $model->url(),
+                'alias_id' => $model->alias_id,
+            ];
         }
 
         if (empty($searchResults) && $this->new) {

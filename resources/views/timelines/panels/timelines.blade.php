@@ -11,12 +11,14 @@
         @include('cruds.datagrids.sorters.simple-sorter', ['target' => '#timeline-timelines'])
 
         <table id="timelines" class="table table-hover ">
-            <tbody><tr>
+            <thead><tr>
                 <th class="avatar"><br /></th>
                 <th>{{ __('timelines.fields.name') }}</th>
                 <th>{{ __('crud.fields.type') }}</th>
                 <th>{{ __('timelines.fields.timeline') }}</th>
             </tr>
+            </thead>
+            <tbody>
             @foreach ($r as $timeline)
                 <tr>
                     <td>

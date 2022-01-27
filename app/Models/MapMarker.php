@@ -89,6 +89,9 @@ class MapMarker extends Model
     /** @var bool Exploring the map */
     protected $exploring = false;
 
+    /** @var int size multiplier for circles */
+    protected $sizeMultiplier = 1;
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -419,6 +422,15 @@ class MapMarker extends Model
     }
 
     /**
+     * @return $this
+     */
+    public function multiplier(bool $isReal = false): self
+    {
+        $this->sizeMultiplier = $isReal ? 50 : 1;
+        return $this;
+    }
+
+    /**
      * Get the opacity of a point. Users input a %, convert it to a float for leaflet
      * @return float
      */
@@ -482,9 +494,9 @@ class MapMarker extends Model
     protected function circleRadius(): int
     {
         if (!empty($this->circle_radius)) {
-            return (int) $this->circle_radius;
+            return (int) $this->circle_radius * $this->sizeMultiplier;
         }
-        return (int) $this->size_id * 20;
+        return (int) ($this->size_id * 20) * ($this->size_id * $this->sizeMultiplier);
     }
 
 

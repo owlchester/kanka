@@ -551,8 +551,9 @@ summary { display: list-item; }
   margin: 3px 10px;
 }
 .table-responsive {
-  table {
-    margin-bottom: 20px;
+  overflow-x: unset;
+  .table {
+    margin-bottom: 0;
   }
 }
 
@@ -586,6 +587,22 @@ summary { display: list-item; }
   vertical-align: bottom;
 }
 
+// UX
+.skip-nav-link {
+  position: absolute;
+  left: .5rem;
+  border-radius: 0 0 0.25rem 0.25rem;
+  padding: 0.5rem 1rem;
+  background-color: white;
+  color: blue;
+  transform: translateY(-120%);
+  transition: transform 325ms ease-in;
+  z-index: 1040;
+
+  &:focus {
+    transform: translateY(0);
+  }
+}
 
 
 // Other stylings

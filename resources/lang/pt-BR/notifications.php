@@ -2,29 +2,31 @@
 
 return [
     'campaign'          => [
-        'application'       => [
+        'application'           => [
             'approved'  => 'Sua solicitação para a campanha :campaign foi aprovada.',
             'new'       => 'Nova solicitação para :campaign.',
             'rejected'  => 'Sua solicitação para a campanha :campaign foi rejeitada. Razão fornecida: :reason',
         ],
-        'asset_export'      => 'Uma exportação de recursos da campanha está disponível. O link está disponível por :time minutos.',
-        'boost'             => [
+        'asset_export'          => 'Uma exportação de recursos da campanha está disponível. O link está disponível por :time minutos.',
+        'asset_export_error'    => 'Ocorreu um erro ao exportar os recursos da campanha. Isso acontece em grandes campanhas.',
+        'boost'                 => [
             'add'           => 'A campanha :campaign  está sendo impulsionada por :user',
             'remove'        => ':user não está mais impulsionando a campanha :campaign',
             'superboost'    => 'A campanha :campaign está sendo super-impulsionada por :user',
         ],
-        'export'            => 'A exportação da campanha está disponível. O link estará disponível por :time minutos.',
-        'export_error'      => 'Ocorreu um erro enquanto sua campanha era exportada. Por favor, contate-nos se o problema persistir,',
-        'join'              => ':user se juntou à campanha :campaign',
-        'leave'             => ':user saiu da campanha :campaign',
-        'plugin'            => [
+        'deleted'               => 'A campanha :campaign foi excluída.',
+        'export'                => 'A exportação da campanha está disponível. O link estará disponível por :time minutos.',
+        'export_error'          => 'Ocorreu um erro enquanto sua campanha era exportada. Por favor, contate-nos se o problema persistir,',
+        'join'                  => ':user se juntou à campanha :campaign',
+        'leave'                 => ':user saiu da campanha :campaign',
+        'plugin'                => [
             'deleted'   => 'O plugin :plugin foi deletado do mercado e removido de sua campanha :campaign.',
         ],
-        'role'              => [
+        'role'                  => [
             'add'       => 'Você ganhou o cargo de :role na campanha :campaign',
             'remove'    => 'Você foi removido do cargo :role na campanha :campaign.',
         ],
-        'troubleshooting'   => [
+        'troubleshooting'       => [
             'joined'    => 'O membro da equipe Kanka :user juntou-se a campanha :campaign.',
         ],
     ],
