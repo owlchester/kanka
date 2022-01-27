@@ -44,6 +44,9 @@ class EntityEventController extends Controller
      */
     public function index(Entity $entity)
     {
+        if (empty($entity->child)) {
+            abort(404);
+        }
         if (Auth::check()) {
             $this->authorize('view', $entity->child);
         } else {
