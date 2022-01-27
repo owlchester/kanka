@@ -300,7 +300,6 @@ TEXT
             'helpers'   => [
                 'add'           => 'Allow creating entities of this type. They will automatically be allowed to view and edit entities they create if they don\'t have the view or edit permission.',
                 'dashboard'     => 'Allow editing the dashboards and dashboard widgets.',
-                'gallery'       => 'Allow managing the superboosted campaign\'s gallery.',
                 'delete'        => 'Allow removing all entities of this type.',
                 'edit'          => 'Allow editing all entities of this type.',
                 'entity_note'   => 'Allows adding and editing posts even if the member can\'t edit the entity.',
