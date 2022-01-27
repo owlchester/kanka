@@ -5,7 +5,6 @@
  * @var \App\Models\TimelineElement $element
  */
 $eras = $timeline->eras()->ordered($timeline->revert_order)->get();
-$loadedElements = [];
 ?>
 @foreach ($eras as $era)
     @php
@@ -60,7 +59,6 @@ $loadedElements = [];
     @foreach($era->elements()->ordered()->get() as $element)
         @php
             $position = $element->position + 1;
-            $loadedElements[] = $element;
         @endphp
         @if(!empty($element->entity_id) && empty($element->entity->child))
             @continue
@@ -126,16 +124,18 @@ $loadedElements = [];
 
 @section('modals')
     @can('update', $timeline)
-        @foreach($loadedElements as $element)
-            @php
-                $position = $element->position + 1;
-            @endphp
-            @if(!empty($element->entity_id) && empty($element->entity->child))
-                @continue
-            @endif
+        @foreach ($eras as $era)
+            @foreach($era->elements as $element)
+                @php
+                    $position = $element->position + 1;
+                @endphp
+                @if(!empty($element->entity_id) && empty($element->entity->child))
+                    @continue
+                @endif
 
-            {!! Form::open(['method' => 'DELETE', 'route' => ['timelines.timeline_elements.destroy', $timeline, $element, 'from' => 'view'], 'style '=> 'display:inline', 'id' => 'delete-form-timeline-element-' . $element->id]) !!}
-            {!! Form::close() !!}
+                {!! Form::open(['method' => 'DELETE', 'route' => ['timelines.timeline_elements.destroy', $timeline, $element, 'from' => 'view'], 'style '=> 'display:inline', 'id' => 'delete-form-timeline-element-' . $element->id]) !!}
+                {!! Form::close() !!}
+            @endforeach
         @endforeach
     @endcan
 @endsection
