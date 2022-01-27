@@ -149,7 +149,7 @@
                             [
                             'placeholder' => __('maps.placeholders.center_y'),
                             'class' => 'form-control',
-                            'min' => 0,
+                            'min' => -90,
                             'step' => 0.001
                             ]
                             ) !!}
@@ -164,7 +164,7 @@
                             [
                             'placeholder' => __('maps.placeholders.center_x'),
                             'class' => 'form-control',
-                            'min' => 0,
+                            'min' => -180,
                             'step' => 0.001
                             ]
                             ) !!}
