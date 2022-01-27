@@ -50,7 +50,6 @@ return [
         'title'         => 'How to use filters',
     ],
     'link'              => [
-        'anchor'            => 'The advanced mention can also specify the HTML anchor the link should point to using :example.',
         'attributes'        => 'You can reference attributes of the entity by typing :code. This only works for on existing attributes of the entity.',
         'auto_update'       => 'Links to other entities will automatically be updated when the target\'s name or description is changed.',
         'description'       => 'You can easily link to other entities in your campaign using the following shorthands.',
