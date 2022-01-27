@@ -19,7 +19,7 @@ return [
         'value'                 => 'Value',
     ],
     'filters'       => [
-        'name' => 'Attribute name',
+        'name'  => 'Attribute name',
         'value' => 'Attribute value',
     ],
     'helpers'       => [

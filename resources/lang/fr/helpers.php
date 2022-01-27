@@ -35,6 +35,11 @@ return [
         'title'         => 'Modèles d\'entités',
     ],
     'filters'           => [
+        'attributes'    => [
+            'exclude'   => '!Niveau',
+            'first'     => 'Il est possible de filter les entités avec leurs attributs. Le champ cherche des résultats exactes pour le nom et la valeur. Si la valeur est laissée vide, cela cherchera des entités avec un attribut de ce nom. Il est possible d\'utiliser :exclude pour exclure les entités avec un attribut nommé Niveau.',
+            'second'    => 'Le filtre n\'évalue pas les calculations d\'attributs. Si un attribute a une valeur de :code, chercher pour le résultat de la calculation n\'est pas possible.',
+        ],
         'clipboard'     => 'Lorsque des filtres sont actifs, le bouton copier les filtres devient actif. Ce bouton copie les filtres dans le presse-papier, et cette valeur peut être utilisée dans le champ filtre des widgets de tableau de bord ou des liens rapides.',
         'description'   => 'Utilise les filtres pour limiter le nombre de résultats. Les champs de texte supportent plusieurs fonctionnalités pour plus de granularité.',
         'empty'         => 'Le code :tag: dans un champ cherche pour toutes les entités ou ce champ est vide.',

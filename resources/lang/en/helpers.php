@@ -36,9 +36,9 @@ return [
     ],
     'filters'           => [
         'attributes'    => [
-            'first' => 'You can filter entities based on their attributes. The search fields are exact matches for both the name and value. When the value field is left empty, it looks for entities that have an attribute with that exact name. You can type :exclude to exclude entities with an attribute called Level.',
-            'exclude' => '!Level',
-            'second' => 'The filter doesn\'t evaluate attribute calculations. If an attribute has a value of :code, searching for the result of that calculation isn\'t possible.',
+            'exclude'   => '!Level',
+            'first'     => 'You can filter entities based on their attributes. The search fields are exact matches for both the name and value. When the value field is left empty, it looks for entities that have an attribute with that exact name. You can type :exclude to exclude entities with an attribute called Level.',
+            'second'    => 'The filter doesn\'t evaluate attribute calculations. If an attribute has a value of :code, searching for the result of that calculation isn\'t possible.',
         ],
         'clipboard'     => 'When filters are active, the copy to clipboard button becomes active. This copies the filters to your clipboard, and you can use those for dashboard widget filters or for quick link filters.',
         'description'   => 'You can use filters to limit the amount of results shown in lists. Text fields support various options to control in further detail what is filtered out.',

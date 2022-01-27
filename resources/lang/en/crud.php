@@ -259,9 +259,9 @@ return [
     'linking_help'              => 'How can I link to other entities?',
     'manage'                    => 'Manage',
     'navigation'                => [
-        'cancel'    => 'cancel',
-        'or_cancel' => 'or :cancel',
-        'skip_to_content' => 'Skip navigation'
+        'cancel'            => 'cancel',
+        'or_cancel'         => 'or :cancel',
+        'skip_to_content'   => 'Skip navigation',
     ],
     'new_entity'                => [
         'error' => 'Please review your values.',

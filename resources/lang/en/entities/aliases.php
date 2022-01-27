@@ -12,7 +12,7 @@ return [
         'success'   => 'Alias :name removed.',
     ],
     'fields'        => [
-        'name'      => 'Name',
+        'name'  => 'Name',
     ],
     'helpers'       => [
         'primary'   => 'Setting one or several aliases on the entity will make it findable in the global search (top bar) and through mentions.',
@@ -22,7 +22,6 @@ return [
     ],
     'unboosted'     => [
         'text'  => 'Adding aliases to entities for searches and mentions are reserved to :boosted-campaigns.',
-        'title' => 'Boosted campaign feature',
     ],
     'update'        => [
         'success'   => 'Alias :name updated for :entity.',
