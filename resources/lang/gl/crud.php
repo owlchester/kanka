@@ -374,7 +374,7 @@ return [
         'quests'        => 'Misións',
         'relations'     => 'Relacións',
         'reminders'     => 'Lembretes',
-        'story'         => 'Historia',
+        'story'         => 'Entradas',
         'timelines'     => 'Liñas temporais',
         'tooltip'       => 'Previsualización emerxente',
     ],

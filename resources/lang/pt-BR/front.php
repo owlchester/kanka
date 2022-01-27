@@ -277,6 +277,7 @@ return [
         'login'         => 'Login',
         'marketplace'   => 'Mercado',
         'media'         => 'Mídia',
+        'merch'         => 'Mercadoria',
         'news'          => 'Novidades',
         'newsletter'    => 'Newsletter',
         'other'         => 'Outro',

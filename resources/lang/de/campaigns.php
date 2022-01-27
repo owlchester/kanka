@@ -66,6 +66,7 @@ TEXT
         'name'                      => 'Name',
         'nested'                    => 'Standardmäßig verschachtelte Objektslisten, wenn verfügbar',
         'open'                      => 'Offen für Bewerbungen',
+        'post_collapsed'            => 'Neue Beiträge zu Objekten werden standardmäßig minimiert.',
         'public_campaign_filters'   => 'Öffentliche Kampagnenfilter',
         'related_visibility'        => 'Verwandte Elemente Sichtbarkeit',
         'rpg_system'                => 'Rollenspielsysteme',

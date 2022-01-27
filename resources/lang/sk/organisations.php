@@ -54,6 +54,7 @@ return [
         'fields'        => [
             'character'     => 'Postava',
             'organisation'  => 'Organizácia',
+            'parent'        => 'Nadriadená osoba',
             'pinned'        => 'Pripnuté',
             'role'          => 'Rola',
             'status'        => 'Stav členstva',
@@ -71,7 +72,8 @@ return [
         ],
         'placeholders'  => [
             'character' => 'Vyber postavu',
-            'role'      => 'veliteľ, člen, veľkňaz, majster špiónov',
+            'parent'    => 'Kto je nadriadená osoba tohto člena?',
+            'role'      => 'veliteľ, členka, veľkňaz, majsterka špiónov',
         ],
         'status'        => [
             'active'    => 'Aktívne členstvo',

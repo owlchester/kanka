@@ -41,7 +41,7 @@ return [
             'email'     => 'Enderezo de correo electrónico',
             'name'      => 'Nome da conta',
             'password'  => 'Contrasinal',
-            'tos'       => 'Acepto a <a href=":privacyUrl" target="_blank">Política de Privacidade</a>.',
+            'tos_clean' => 'Acepto a :privacy',
         ],
         'register_with_facebook'    => 'Rexistrarse con Facebook',
         'register_with_google'      => 'Rexistrarse con Google',

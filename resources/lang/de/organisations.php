@@ -53,6 +53,7 @@ return [
         'fields'        => [
             'character'     => 'Charakter',
             'organisation'  => 'Organisation',
+            'parent'        => 'Vorgesetzter',
             'pinned'        => 'gepinned',
             'role'          => 'Rolle',
             'status'        => 'Mitgliedsstatus',
@@ -70,6 +71,7 @@ return [
         ],
         'placeholders'  => [
             'character' => 'Wähle einen Charakter',
+            'parent'    => 'Wer ist der Vorgesetzte dieses Mitglieds?',
             'role'      => 'Anführer, Mitglied, Hoher Septon, Meisterspion',
         ],
         'status'        => [
