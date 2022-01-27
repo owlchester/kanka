@@ -10,6 +10,7 @@
 ])
 
 @section('content')
+    {!! Form::model($entityAlias, ['route' => ['entities.entity_aliases.update', $entity->id, $entityAlias], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
     <div class="panel panel-default">
         @if (request()->ajax())
             <div class="panel-heading">
@@ -22,13 +23,15 @@
         <div class="panel-body">
             @include('partials.errors')
 
-            {!! Form::model($entityAlias, ['route' => ['entities.entity_aliases.update', $entity->id, $entityAlias], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
+
             @include('entities.pages.aliases._form')
+        </div>
+            <div class="panel-footer text-right">
 
             <button class="btn btn-success">{{ __('crud.save') }}</button>
             @includeWhen(!request()->ajax(), 'partials.or_cancel')
 
-            <div class="pull-right">
+            <div class="pull-left">
                 <a role="button" tabindex="0" class="btn btn-danger btn-dynamic-delete" data-toggle="popover"
                    title="{{ __('crud.delete_modal.title') }}"
                    data-content="<p>{{ __('crud.delete_modal.description_final', ['tag' => $entityAlias->name]) }}</p>
@@ -38,11 +41,11 @@
             </div>
         </div>
 
-            {!! Form::close() !!}
-
 
         </div>
     </div>
+
+    {!! Form::close() !!}
 
     {!! Form::open(['method' => 'DELETE', 'route' => ['entities.entity_aliases.destroy', 'entity' => $entity, 'entity_alias' => $entityAlias], 'style' => 'display:inline', 'id' => 'delete-form-alias-' . $entityAlias->id]) !!}
     {!! Form::close() !!}

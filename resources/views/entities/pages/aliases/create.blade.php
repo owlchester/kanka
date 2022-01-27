@@ -9,6 +9,7 @@
 ])
 
 @section('content')
+    {!! Form::open(['route' => ['entities.entity_aliases.store', $entity], 'method' => 'POST', 'data-shortcut' => 1]) !!}
     <div class="panel panel-default">
         @if (request()->ajax())
             <div class="panel-heading">
@@ -25,15 +26,14 @@
                 {{ __('entities/aliases.helpers.primary') }}
             </p>
 
-            {!! Form::open(['route' => ['entities.entity_aliases.store', $entity], 'method' => 'POST', 'data-shortcut' => 1]) !!}
             @include('entities.pages.aliases._form')
 
-            <div class="form-group">
+        </div>
+        <div class="panel-footer text-right">
                 <button class="btn btn-success">{{ __('crud.save') }}</button>
                 @includeWhen(!request()->ajax(), 'partials.or_cancel')
-            </div>
 
-            {!! Form::close() !!}
         </div>
     </div>
+    {!! Form::close() !!}
 @endsection

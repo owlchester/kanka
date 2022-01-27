@@ -9,6 +9,8 @@
 ])
 
 @section('content')
+    {!! Form::open(['route' => ['entities.entity_links.store', $entity], 'method'=>'POST', 'data-shortcut' => 1]) !!}
+
     <div class="panel panel-default">
         @if (request()->ajax())
             <div class="panel-heading">
@@ -21,15 +23,12 @@
         <div class="panel-body">
             @include('partials.errors')
 
-            {!! Form::open(['route' => ['entities.entity_links.store', $entity], 'method'=>'POST', 'data-shortcut' => 1]) !!}
             @include('entities.pages.links._form')
-
-            <div class="form-group">
-                <button class="btn btn-success">{{ trans('crud.save') }}</button>
-                @includeWhen(!request()->ajax(), 'partials.or_cancel')
-            </div>
-
-            {!! Form::close() !!}
+        </div>
+        <div class="panel-footer text-right">
+            <button class="btn btn-success">{{ trans('crud.save') }}</button>
+            @includeWhen(!request()->ajax(), 'partials.or_cancel')
         </div>
     </div>
+    {!! Form::close() !!}
 @endsection

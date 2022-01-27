@@ -10,6 +10,7 @@
 ])
 
 @section('content')
+    {!! Form::model($entityFile, ['route' => ['entities.entity_files.update', $entity->id, $entityFile], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
     <div class="panel panel-default">
         @if (request()->ajax())
             <div class="panel-heading">
@@ -22,13 +23,15 @@
         <div class="panel-body">
             @include('partials.errors')
 
-            {!! Form::model($entityFile, ['route' => ['entities.entity_files.update', $entity->id, $entityFile], 'method' => 'PATCH', 'data-shortcut' => 1]) !!}
+
             @include('entities.pages.files._form')
+        </div>
+        <div class="panel-footer text-right">
 
             <button class="btn btn-success">{{ __('crud.save') }}</button>
             @includeWhen(!request()->ajax(), 'partials.or_cancel')
 
-            <div class="pull-right">
+            <div class="pull-left">
                 <a role="button" tabindex="0" class="btn btn-danger btn-dynamic-delete" data-toggle="popover"
                    title="{{ __('crud.delete_modal.title') }}"
                    data-content="<p>{{ __('crud.delete_modal.description_final', ['tag' => $entityFile->name]) }}</p>
@@ -38,8 +41,8 @@
             </div>
         </div>
 
-        {!! Form::close() !!}
     </div>
+    {!! Form::close() !!}
 
     {!! Form::open(['method' => 'DELETE', 'route' => ['entities.entity_files.destroy', 'entity' => $entity, 'entity_file' => $entityFile], 'style' => 'display:inline', 'id' => 'delete-form-link-' . $entityFile->id]) !!}
     {!! Form::close() !!}
