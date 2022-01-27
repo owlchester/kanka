@@ -29,7 +29,7 @@ class GalleryController extends Controller
     public function index()
     {
         $campaign = CampaignLocalization::getCampaign();
-        $this->authorize('gallery', $campaign);
+        $this->authorize('update', $campaign);
 
         $folder = null;
         $folderId = request()->get('folder_id');
@@ -48,7 +48,7 @@ class GalleryController extends Controller
     public function search()
     {
         $campaign = CampaignLocalization::getCampaign();
-        $this->authorize('gallery', $campaign);
+        $this->authorize('update', $campaign);
 
         $name = trim(request()->get('q', null));
         $images = Image::where('name', 'like', "%$name%")
@@ -64,7 +64,7 @@ class GalleryController extends Controller
     public function store(GalleryImageStore $request)
     {
         $campaign = CampaignLocalization::getCampaign();
-        $this->authorize('gallery', $campaign);
+        $this->authorize('update', $campaign);
 
         $image = $this->service
             ->campaign($campaign)
@@ -81,7 +81,7 @@ class GalleryController extends Controller
     public function ajaxUpload(GalleryImageStore $request)
     {
         $campaign = CampaignLocalization::getCampaign();
-        $this->authorize('gallery', $campaign);
+        $this->authorize('update', $campaign);
 
         $image = $this->service
             ->campaign($campaign)
@@ -98,7 +98,7 @@ class GalleryController extends Controller
     public function edit(Image $image)
     {
         $campaign = CampaignLocalization::getCampaign();
-        $this->authorize('gallery', $campaign);
+        $this->authorize('update', $campaign);
 
         $folders = $this->service->campaign($campaign)->folderList();
 
@@ -114,7 +114,7 @@ class GalleryController extends Controller
     public function update(GalleryImageUpdate $request, Image $image)
     {
         $campaign = CampaignLocalization::getCampaign();
-        $this->authorize('gallery', $campaign);
+        $this->authorize('update', $campaign);
 
         $originalFolderID = $image->folder_id;
         $this->service
@@ -143,7 +143,7 @@ class GalleryController extends Controller
     public function destroy(Image $image)
     {
         $campaign = CampaignLocalization::getCampaign();
-        $this->authorize('gallery', $campaign);
+        $this->authorize('update', $campaign);
 
         $image->delete();
 
@@ -160,7 +160,7 @@ class GalleryController extends Controller
     public function folder(GalleryImageFolderStore $request)
     {
         $campaign = CampaignLocalization::getCampaign();
-        $this->authorize('gallery', $campaign);
+        $this->authorize('update', $campaign);
 
         $folder = $this->service
             ->campaign($campaign)
