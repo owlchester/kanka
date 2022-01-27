@@ -16,10 +16,12 @@ return [
         'date'  => 'Date',
         'era'   => 'Era',
         'icon'  => 'Icon',
+        'use_entity_entry' => 'Display the attached entity\'s entry.',
     ],
     'helpers'       => [
         'entity_is_private' => 'The element\'s entity is private.',
         'icon'              => 'Copy the HTML of an icon from :fontawesome or :rpgawesome.',
+        'is_collapsed'      => 'The element displays collapsed by default.',
     ],
     'placeholders'  => [
         'date'      => 'e.g. March 42nd or 1332-1337',

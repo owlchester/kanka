@@ -33,6 +33,13 @@
 <div class="form-group">
     <label>{{ trans('crud.fields.entry') }}</label>
     {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'element-entry', 'name' => 'entry']) !!}
+
+
+    {!! Form::hidden('use_entity_entry', 0) !!}
+    <label>
+        {!! Form::checkbox('use_entity_entry') !!}
+        {{ __('timelines/elements.fields.use_entity_entry') }}
+    </label>
 </div>
 
 <div class="row">
@@ -74,6 +81,16 @@
 <div class="row">
     <div class="col-md-6">
         @include('cruds.fields.visibility')
+    </div>
+    <div class="col-md-6">
+        <div class="form-group checkbox">
+            <label>
+                {!! Form::hidden('is_collapsed', 0) !!}
+                {!! Form::checkbox('is_collapsed', 1) !!}
+                {{ __('timelines/eras.fields.is_collapsed') }}
+            </label>
+            <p class="help-block">{{ __('timelines/elements.helpers.is_collapsed') }}</p>
+        </div>
     </div>
 </div>
 
