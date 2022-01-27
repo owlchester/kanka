@@ -25,7 +25,7 @@
                 <th>{{ __('characters.fields.is_dead') }}</th>
             </tr></thead>
             <tbody>
-            <?php $r = $model->members()->with(['race', 'location'])->simpleSort($datagridSorter)->paginate();?>
+            <?php $r = $model->members()->with(['races', 'location'])->simpleSort($datagridSorter)->paginate();?>
             @foreach ($r->sortBy('character.name') as $member)
                 <tr>
                     <td>
