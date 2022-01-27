@@ -277,10 +277,10 @@ class AbilityService
         if ($this->entity->typeId() !== config('entities.ids.character')) {
             throw new Exception('not_character');
         }
-
         if (empty($this->entity->child->races)) {
             throw new Exception('no_race');
         }
+        $count = 0;
 
         // Existing abilities
         $abilities = $this->entity->abilities;
