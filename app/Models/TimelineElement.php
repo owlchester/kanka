@@ -26,8 +26,6 @@ use Illuminate\Support\Str;
  * @property int $position
  * @property string $colour
  * @property string $icon
- * @property boolean $use_entity_entry
- * @property boolean $is_collapsed
  *
  * @property Timeline $timeline
  * @property TimelineEra $era
@@ -52,8 +50,6 @@ class TimelineElement extends Model
         'visibility',
         'icon',
         'date',
-        'is_collapsed',
-        'use_entity_entry',
     ];
 
     /**
@@ -181,10 +177,5 @@ class TimelineElement extends Model
     public function hasEntity(): bool
     {
         return false;
-    }
-
-    public function collapsed(): bool
-    {
-        return $this->is_collapsed;
     }
 }
