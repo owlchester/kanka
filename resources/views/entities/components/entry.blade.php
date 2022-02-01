@@ -20,6 +20,8 @@
     @endif
 </div>
 
+@includeWhen($model instanceof \App\Models\Character && $model->is_appearance_pinned, 'characters.panels._appearance')
+@includeWhen($model instanceof \App\Models\Character && $model->is_personality_pinned, 'characters.panels._personality')
 
 
 @if(auth()->check() && auth()->user()->can('update', $model))

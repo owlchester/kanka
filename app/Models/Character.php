@@ -18,6 +18,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $pronouns
  * @property bool $is_dead
  * @property bool $is_personality_visible
+ * @property bool $is_appearance_pinned
+ * @property bool $is_personality_pinned
  * @property int $family_id
  * @property Family $family
  * @property Location $location
@@ -49,6 +51,8 @@ class Character extends MiscModel
         'type',
         'is_dead',
         'is_personality_visible',
+        'is_appearance_pinned',
+        'is_personality_pinned',
     ];
 
     /**
