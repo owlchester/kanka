@@ -59,7 +59,9 @@
                 <tr>
                     <td>{{ $entry->rank }} <a data-toggle="collapse" href="#entry-id-{{ $entry->id }}" class="pull-right"><i class="fa fa-pencil-alt"></i></a></td>
                     <td>
-                        {{ $entry->user->name }}
+                        <a href="{{ route('admin.users.show', $entry->user) }}">
+                            {!! $entry->user->name !!}
+                        </a>
                     </td>
                     <td>
                         @if ($discord = $entry->user->apps->where('app', 'discord')->first())
