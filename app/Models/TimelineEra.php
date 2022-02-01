@@ -96,6 +96,9 @@ class TimelineEra extends Model
         return $this->start_year . ' &mdash; ' . $this->end_year;
     }
 
+    /**
+     * @return bool
+     */
     public function hasEntity(): bool
     {
         return false;

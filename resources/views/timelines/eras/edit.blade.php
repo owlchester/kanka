@@ -5,13 +5,13 @@
 */
 ?>
 @extends('layouts.' . ($ajax ? 'ajax' : 'app'), [
-'title' => __('timelines/eras.edit.title', ['name' => $model->name]),
-'description' => '',
-'breadcrumbs' => [
-['url' => route('timelines.index'), 'label' => __('timelines.index.title')],
-['url' => $timeline->entity->url('show'), 'label' => $timeline->name],
-__('timelines/eras.edit.title', ['name' => $model->name])
-]
+    'title' => __('timelines/eras.edit.title', ['name' => $model->name]),
+    'description' => '',
+    'breadcrumbs' => [
+        ['url' => route('timelines.index'), 'label' => __('timelines.index.title')],
+        ['url' => $timeline->entity->url('show'), 'label' => $timeline->name],
+        __('timelines/eras.edit.title', ['name' => $model->name])
+    ]
 ])
 
 @section('content')
