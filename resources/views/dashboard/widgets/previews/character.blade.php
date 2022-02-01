@@ -7,7 +7,7 @@
  */
 $model = $entity->child;
 ?>
-<div class="panel panel-default widget-preview" id="dashboard-widget-{{ $widget->id }}">
+<div class="panel panel-default widget-preview {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
     <div
     @if ($widget->conf('entity-header') && $campaign->boosted() && $entity->header_image)
         class="panel-heading panel-heading-entity"

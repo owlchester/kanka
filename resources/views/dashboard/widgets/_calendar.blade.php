@@ -8,7 +8,7 @@
 $entity = $widget->entity;
 $calendar = $entity->child;
 ?>
-<div class="panel panel-default" id="dashboard-widget-{{ $widget->id }}">
+<div class="panel panel-default {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
     @if (!$calendar->image)
     <div class="panel-heading">
        <h3 class="panel-title">

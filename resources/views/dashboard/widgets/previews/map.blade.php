@@ -9,7 +9,7 @@ $map = $entity->child;
 
 
 @if(empty($map->image))
-    <div class="panel panel-default widget-preview" id="dashboard-widget-{{ $widget->id }}">
+    <div class="panel panel-default widget-preview {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
         <div class="panel-heading">
             <h3 class="panel-title">
                 <a href="{{ $map->getLink() }}">

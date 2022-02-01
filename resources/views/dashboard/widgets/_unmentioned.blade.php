@@ -10,7 +10,7 @@ $entities = $widget->entities();
 
 $entityString = !empty($entityType) ? Str::plural($entityType) : null;
 ?>
-<div class="panel panel-default" id="dashboard-widget-{{ $widget->id }}">
+<div class="panel panel-default {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
     <div class="panel-heading">
         <h3 class="panel-title">
             @if (!empty($widget->conf('text')))

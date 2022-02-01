@@ -2,7 +2,7 @@
 /** @var \App\Models\Quest $model */
 $model = $widget->entity->child;
 ?>
-<div class="box box-widget widget-user" id="dashboard-widget-{{ $widget->id }}">
+<div class="box box-widget widget-user {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
     <div class="widget-user-header bg-gray" @if (!empty($model->image)) style="background-image: url({{ $model->getImageUrl() }})" @endif >
         <div class="widget-user-overlay">
             <h3 class="widget-user-username">

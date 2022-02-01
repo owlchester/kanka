@@ -7,12 +7,12 @@
      and if the user has read permissions on it --}}
 @if ($widget->entity != null && $widget->entity->child != null)
     <a href="{{ $widget->entity->url() }}">
-        <h3 class="widget-header-text text-center" id="dashboard-widget-{{ $widget->id }}">
+        <h3 class="widget-header-text text-center {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
             {{ $widget->conf('text') }}
         </h3>
     </a>
 @else
-    <h3 class="widget-header-text text-center" id="dashboard-widget-{{ $widget->id }}">
+    <h3 class="widget-header-text text-center {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
         {{ $widget->conf('text') }}
     </h3>
 @endif

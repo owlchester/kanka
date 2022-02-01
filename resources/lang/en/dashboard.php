@@ -120,12 +120,16 @@ return [
             'success'   => 'Widget removed from the dashboard.',
         ],
         'fields'                    => [
+            'class'             => 'CSS class',
             'dashboard'         => 'Dashboard',
             'name'              => 'Custom widget name',
             'optional-entity'   => 'Link to entity',
             'order'             => 'Ordering',
             'text'              => 'Text',
             'width'             => 'Width',
+        ],
+        'helpers'                   => [
+            'class'             => 'Define a custom css class added to the widget.',
         ],
         'orders'                    => [
             'name_asc'  => 'Name ascending',
@@ -161,6 +165,10 @@ return [
             'singular'          => 'Preview',
             'tags'              => 'Filter the list of entities on specified tags.',
             'title'             => 'Entity list',
+        ],
+        'tabs'      => [
+            'setup' => 'Setup',
+            'advanced' => 'Advanced',
         ],
         'unmentioned'               => [
             'title' => 'Unmentioned entities',

@@ -32,7 +32,7 @@ $widget->setEntity($entity);
 @if(view()->exists($specificPreview))
     @include($specificPreview, ['entity' => $entity, 'customName' => $customName])
 @else
-<div class="panel panel-default widget-preview" id="dashboard-widget-{{ $widget->id }}">
+<div class="panel panel-default widget-preview {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
     <div class="panel-heading @if ($widget->conf('entity-header') && $campaign->boosted() && $entity->header_image) panel-heading-entity" style="background-image: url('{{ $entity->getImageUrl(0, 0, 'header_image') }}') @elseif ($model->image) panel-heading-entity" style="background-image: url('{{ $model->getImageUrl() }}') @endif">
         <h3 class="panel-title">
             <a href="{{ $entity->url() }}">

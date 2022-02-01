@@ -355,6 +355,9 @@ class CampaignDashboardWidget extends Model
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function widgetIcon(): string
     {
         $icon = null;
@@ -376,6 +379,18 @@ class CampaignDashboardWidget extends Model
             return '';
         }
         return '<i class="' . $icon . '"></i>';
+    }
+
+    public function customClass(Campaign $campaign): string
+    {
+        if (!$campaign->boosted()) {
+            return '';
+        }
+        if (empty($this->conf('class'))) {
+            return '';
+        }
+
+        return (string) $this->conf('class');
     }
 
     /**
