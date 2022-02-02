@@ -20,6 +20,11 @@ $clipboardFilters = $filterService->clipboardFilters();
 
         @if ($activeFilters > 0)
             <span class="label label-danger">{{ $activeFilters }}</span>
+            <div class="box-tools">
+                <a href="{{ route($route, ['reset-filter' => 'true']) }}" class="btn btn-box-tool">
+                    <i class="fa fa-eraser"></i> {{ __('crud.filters.clear') }}
+                </a>
+            </div>
         @endif
     </div>
 
