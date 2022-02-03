@@ -37,7 +37,7 @@ class SubscriptionController extends Controller
     public function index()
     {
         $stripeApiToken = config('cashier.key', null);
-        $status = $this->subscription->user(Auth::user())->status();
+        $status = $this->subscription->user(auth()->user())->status();
         $currentPlan = $this->subscription->currentPlan();
         $service = $this->subscription;
         /** @var User $user */
@@ -45,6 +45,10 @@ class SubscriptionController extends Controller
         $currency = $user->currencySymbol();
         $invoices = !empty($user->stripe_id) ? $user->invoices(true, ['limit' => 3]) : [];
         $tracking = session()->get('sub_tracking');
+        $gaTrackingEvent = null;
+        if (!empty($tracking)) {
+            $gaTrackingEvent = 'TJhYCMDErpYDEOaOq7oC';
+        }
 
         return view('settings.subscription.index', compact(
             'stripeApiToken',
@@ -54,7 +58,8 @@ class SubscriptionController extends Controller
             'currency',
             'service',
             'invoices',
-            'tracking'
+            'tracking',
+            'gaTrackingEvent'
         ));
     }
 

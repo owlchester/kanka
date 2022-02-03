@@ -14,8 +14,8 @@
         gtag('config', '{{ config('tracking.ga_convo') }}');
     @endif
     </script>
-    @if (!empty($tracking_new))
-    <script> gtag('event', 'conversion', {'send_to': '{{ config('tracking.ga_convo') }}/pa10CJTvrssBEOaOq7oC'}); </script>
+    @if (isset($gaTrackingEvent) && !empty($gaTrackingEvent))
+    <script> gtag('event', 'conversion', {'send_to': '{{ config('tracking.ga_convo') }}/{{ $gaTrackingEvent }}'}); </script>
     @endif
     <!-- End Google Analytics -->
 @endif
