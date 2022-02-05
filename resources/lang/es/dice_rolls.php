@@ -2,18 +2,16 @@
 
 return [
     'create'        => [
-        'description'   => 'Crear nueva tirada de dados',
-        'success'       => 'Tirada de dados \':name\' creada.',
-        'title'         => 'Nueva tirada de dados',
+        'success'   => 'Tirada de dados \':name\' creada.',
+        'title'     => 'Nueva tirada de dados',
     ],
     'destroy'       => [
         'dice_roll' => 'Tirada de dados eliminada.',
         'success'   => 'Tirada de dados \':name\' eliminada.',
     ],
     'edit'          => [
-        'description'   => 'Editar tirada de dados',
-        'success'       => 'Tirada de dados \':name\' actualizada.',
-        'title'         => 'Editar tirada de dados :name',
+        'success'   => 'Tirada de dados \':name\' actualizada.',
+        'title'     => 'Editar tirada de dados :name',
     ],
     'fields'        => [
         'created_at'    => 'Tirada en',
@@ -26,14 +24,13 @@ return [
         'parameters'    => '¿Qué opciones de dados hay?',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'dice'      => 'Tiradas de dados',
             'results'   => 'Resultados',
         ],
-        'add'           => 'Nueva tirada de dados',
-        'description'   => 'Gestiona las tiradas de dados de :name.',
-        'header'        => 'Tirada de dados de :name',
-        'title'         => 'Tiradas de dados',
+        'add'       => 'Nueva tirada de dados',
+        'header'    => 'Tirada de dados de :name',
+        'title'     => 'Tiradas de dados',
     ],
     'placeholders'  => [
         'dice_roll' => 'Tirada de dados',
@@ -54,10 +51,9 @@ return [
         'success'   => 'Dados tirados.',
     ],
     'show'          => [
-        'description'   => 'Vista detallada de tirada de dados',
-        'tabs'          => [
+        'tabs'  => [
             'results'   => 'Resultados',
         ],
-        'title'         => 'Tirada de dados :name',
+        'title' => 'Tirada de dados :name',
     ],
 ];

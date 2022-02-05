@@ -30,7 +30,7 @@ return [
             'email'     => 'Correo electrónico',
             'name'      => 'Usuario',
             'password'  => 'Contraseña',
-            'tos'       => 'Acepto los términos de la <a href=":privacyUrl" target="_blank">Política de Privacidad</a>.',
+            'tos_clean' => 'Acepto los :privacy',
         ],
         'register_with_facebook'    => 'Registrarse con Facebook',
         'register_with_google'      => 'Registrarse con Google',

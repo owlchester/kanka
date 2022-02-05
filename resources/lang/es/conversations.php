@@ -2,17 +2,15 @@
 
 return [
     'create'        => [
-        'description'   => 'Crear nueva conversación',
-        'success'       => 'Conversación ":name" creada.',
-        'title'         => 'Nueva Conversación',
+        'success'   => 'Conversación ":name" creada.',
+        'title'     => 'Nueva Conversación',
     ],
     'destroy'       => [
         'success'   => 'Conversación ":name" eliminada.',
     ],
     'edit'          => [
-        'description'   => 'Actualizar la conversación',
-        'success'       => 'Conversación ":name" actualizada.',
-        'title'         => 'Conversación :name',
+        'success'   => 'Conversación ":name" actualizada.',
+        'title'     => 'Conversación :name',
     ],
     'fields'        => [
         'is_closed'     => 'Cerrada',
@@ -26,10 +24,9 @@ return [
         'participants'  => 'Añade participantes a la conversación mediante el icono :icon arriba a la derecha.',
     ],
     'index'         => [
-        'add'           => 'Nueva conversación',
-        'description'   => 'Gestiona las conversaciones de :name.',
-        'header'        => 'Conversaciones de :name',
-        'title'         => 'Conversaciones',
+        'add'       => 'Nueva conversación',
+        'header'    => 'Conversaciones de :name',
+        'title'     => 'Conversaciones',
     ],
     'messages'      => [
         'destroy'       => [
@@ -42,24 +39,22 @@ return [
         ],
     ],
     'participants'  => [
-        'create'        => [
+        'create'    => [
             'success'   => 'El participante :entity se ha añadido a la conversación.',
         ],
-        'description'   => 'Añadir o eliminar participantes de una conversación',
-        'destroy'       => [
+        'destroy'   => [
             'success'   => 'El participante :entity se ha eliminado de la conversación.',
         ],
-        'modal'         => 'Participantes',
-        'title'         => 'Participantes de :name',
+        'modal'     => 'Participantes',
+        'title'     => 'Participantes de :name',
     ],
     'placeholders'  => [
         'name'  => 'Nombre de la conversación',
         'type'  => 'Dentro del juego, Preparación, Argumento...',
     ],
     'show'          => [
-        'description'   => 'Vista detallada de conversación',
-        'is_closed'     => 'La conversación se ha cerrado.',
-        'title'         => 'Conversación :name',
+        'is_closed' => 'La conversación se ha cerrado.',
+        'title'     => 'Conversación :name',
     ],
     'tabs'          => [
         'conversation'  => 'Conversación',

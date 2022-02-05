@@ -86,6 +86,7 @@ return [
             'css'                   => 'CSS personalizado da campaña',
             'dashboards'            => 'Establecer taboleiros personalizados para os roles da campaña',
             'description'           => 'Certos niveis de mecenazgo otorgan potenciadores que poden ser usados para potenciar campañas. Estes potenciadores otorgan os seguintes beneficios.',
+            'entity-aliases'        => 'Pon alias ás entidades para unha procura máis flexíbel.',
             'entity_files_v2'       => 'Número máximo de arquivos subidos por entidade',
             'entity_links'          => 'Pon ligazóns a recursos e páxinas externas nas entidades',
             'header_image'          => 'Imaxe de cabeceira nas entidades',

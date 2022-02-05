@@ -3,17 +3,15 @@
 return [
     'characters'    => [],
     'create'        => [
-        'description'   => 'Crear nueva misión',
-        'success'       => 'Misión ":name" creada.',
-        'title'         => 'Nueva misión',
+        'success'   => 'Misión ":name" creada.',
+        'title'     => 'Nueva misión',
     ],
     'destroy'       => [
         'success'   => 'Misión ":name" eliminada.',
     ],
     'edit'          => [
-        'description'   => 'Editar misión',
-        'success'       => 'Misión ":name" actualizada.',
-        'title'         => 'Editar misión :name',
+        'success'   => 'Misión ":name" actualizada.',
+        'title'     => 'Editar misión :name',
     ],
     'elements'      => [
         'create'    => [
@@ -28,8 +26,10 @@ return [
             'title'     => 'Actualizar elemento de la misión :name',
         ],
         'fields'    => [
-            'description'   => 'Descripción',
-            'quest'         => 'Misión',
+            'description'       => 'Descripción',
+            'entity_or_name'    => 'Selecciona una entidad de la campaña o asigna un nombre a este elemento.',
+            'name'              => 'Nombre',
+            'quest'             => 'Misión',
         ],
         'title'     => 'Elementos de la misión :name',
     ],
@@ -54,10 +54,9 @@ return [
         'quests'    => 'Se puede crear una red de misiones entrelazadas usando el campo Misión Superior.',
     ],
     'index'         => [
-        'add'           => 'Nueva misión',
-        'description'   => 'Gestiona las misiones de :name.',
-        'header'        => 'Misiones de :name',
-        'title'         => 'Misiones',
+        'add'       => 'Nueva misión',
+        'header'    => 'Misiones de :name',
+        'title'     => 'Misiones',
     ],
     'items'         => [],
     'locations'     => [],
@@ -70,15 +69,12 @@ return [
         'type'  => 'Historia Principal, Arco de Personaje, Misión Secundaria...',
     ],
     'show'          => [
-        'actions'       => [
+        'actions'   => [
             'add_element'   => 'Añadir elemento',
         ],
-        'description'   => 'Vista detallada de la misión',
-        'tabs'          => [
-            'elements'      => 'Elementos',
-            'information'   => 'Información',
-            'quests'        => 'Misiones',
+        'tabs'      => [
+            'elements'  => 'Elementos',
         ],
-        'title'         => 'Misión :name',
+        'title'     => 'Misión :name',
     ],
 ];

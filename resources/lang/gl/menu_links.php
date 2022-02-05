@@ -54,9 +54,6 @@ return [
         'title'     => 'Reordenar accesos directos',
     ],
     'show'              => [
-        'tabs'  => [
-            'information'   => 'Información',
-        ],
         'title' => 'Acceso directo ":name"',
     ],
 ];

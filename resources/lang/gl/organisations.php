@@ -50,6 +50,7 @@ return [
         'fields'        => [
             'character'     => 'Personaxe',
             'organisation'  => 'Organización',
+            'parent'        => 'Superior',
             'pinned'        => 'Fixada',
             'role'          => 'Cargo',
             'status'        => 'Estado',
@@ -67,6 +68,7 @@ return [
         ],
         'placeholders'  => [
             'character' => 'Elixe unha personaxe',
+            'parent'    => 'Quen é a superior desta integrante',
             'role'      => 'Líder, integrante, Septón supremo, Mestre de espías...',
         ],
         'status'        => [

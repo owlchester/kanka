@@ -86,6 +86,7 @@ return [
             'css'                   => 'Vlastné CSS tvojej kampane',
             'dashboards'            => 'Nastaviť vlastné nástenky pre role v kampani',
             'description'           => 'Niektoré formy predplatného dávajú užívateľom možnosť boostnuť kampane. Tieto následne získajú tieto výhody.',
+            'entity-aliases'        => 'Nastaviť aliasy objektov s cieľom flexibilnejšieho hľadania a referencií',
             'entity_files'          => 'Navýšený max. počet nahraných súborov v objekte (5 namiesto 3)',
             'entity_files_v2'       => 'Maximálny počet súborov v objekte',
             'entity_links'          => 'Nastav linky na objekty pre externé zdroje a webstránky',

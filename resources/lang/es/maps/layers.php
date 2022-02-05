@@ -23,6 +23,7 @@ return [
     'helper'        => [
         'amount'            => 'Puedes añadir hasta :amount capas en un mapa para cambiar la imagen de fondo que se muestra bajo los marcadores.',
         'boosted_campaign'  => ':boosted pueden tener hasta :amount capas.',
+        'is_real'           => 'Las capas no están disponibles con OpenStretMaps.',
     ],
     'placeholders'  => [
         'name'      => 'Subterráneo, nivel 2, naufragio...',

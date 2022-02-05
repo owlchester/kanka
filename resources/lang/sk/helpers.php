@@ -35,6 +35,11 @@ return [
         'title'         => 'Šablóny objektov',
     ],
     'filters'           => [
+        'attributes'    => [
+            'exclude'   => '!Úroveň',
+            'first'     => 'Môžeš filtrovať objekty podľa ich atribútov. Polia hľadania sú korešpondujú s názvom a hodnotou. Ak ponecháš pole hodnoty prázdne, budú vyhľadané objekty, ktorých atribút má daný názov. Môžeš vpísať :exclude, aby napr. neboli zohľadnené objekty s názvom atribútu Úroveň.',
+            'second'    => 'Filter nezohľadňuje prepočty v atribútoch. Ak atribút má hodnotu :code, nie je možné ho vyhľadať.',
+        ],
         'clipboard'     => 'Ak sú filtre aktívne, je aktívne aj tlačidlo na kopírovanie do schránky. Toto skopíruje filtre do tvojej schránky a následne ich môžeš použiť ako filtre pre nástenkové widgety alebo pre rýchle linky.',
         'description'   => 'Na obmedzenie počtu zobrazených výsledkov môžeš použiť filtre. Textové polia dovoľujú použiť rozličné možnosti na kontrolu filtrov.',
         'empty'         => 'Ak vpíšeš :tag do poľa, systém nájde všetky objekty, ktoré majú toto pole prázdne.',

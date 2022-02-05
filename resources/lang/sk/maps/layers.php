@@ -23,6 +23,7 @@ return [
     'helper'        => [
         'amount'            => 'Môžeš pridať až :amount vrstiev k danej mape pre zmenu obrázku pozadia pod tvojimi značkami.',
         'boosted_campaign'  => ':boosted môžu mať až :amount vrstiev.',
+        'is_real'           => 'Vrstvy nie sú dostupné, ak používaš OpenStreetMaps.',
     ],
     'placeholders'  => [
         'name'      => 'Podsvetie, Úroveň 2, Vrak lode',

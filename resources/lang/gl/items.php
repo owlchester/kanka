@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Crear un novo obxecto',
-        'success'       => 'Obxecto ":name" creado.',
-        'title'         => 'Novo obxecto',
+        'success'   => 'Obxecto ":name" creado.',
+        'title'     => 'Novo obxecto',
     ],
     'destroy'       => [
         'success'   => 'Obxecto ":name" eliminado.',
@@ -24,14 +23,12 @@ return [
         'type'      => 'Tipo',
     ],
     'index'         => [
-        'add'           => 'Novo obxecto',
-        'description'   => 'Xestiona os obxectos de ":name".',
-        'header'        => 'Obxectos de ":name"',
-        'title'         => 'Obxectos',
+        'add'       => 'Novo obxecto',
+        'header'    => 'Obxectos de ":name"',
+        'title'     => 'Obxectos',
     ],
     'inventories'   => [
-        'description'   => 'Inventarios de entidades nos que está este obxecto.',
-        'title'         => 'Inventarios do obxecto ":name"',
+        'title' => 'Inventarios do obxecto ":name"',
     ],
     'placeholders'  => [
         'character' => 'Elixe unha personaxe',
@@ -41,17 +38,11 @@ return [
         'size'      => 'Tamaño, peso, dimensións...',
         'type'      => 'Arma, apócema, artefacto...',
     ],
-    'quests'        => [
-        'description'   => 'Misións das que o obxecto é parte',
-        'title'         => 'Misións do obxecto ":name"',
-    ],
+    'quests'        => [],
     'show'          => [
-        'description'   => 'Vista detallada dun obxecto',
-        'tabs'          => [
-            'information'   => 'Información',
+        'tabs'  => [
             'inventories'   => 'Inventarios',
-            'quests'        => 'Misións',
         ],
-        'title'         => 'Obxecto ":name"',
+        'title' => 'Obxecto ":name"',
     ],
 ];

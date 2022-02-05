@@ -2,17 +2,15 @@
 
 return [
     'create'        => [
-        'description'   => 'Crear unha nova conversa',
-        'success'       => 'Conversa ":name" creada.',
-        'title'         => 'Nova conversa',
+        'success'   => 'Conversa ":name" creada.',
+        'title'     => 'Nova conversa',
     ],
     'destroy'       => [
         'success'   => 'Conversa ":name" eliminada.',
     ],
     'edit'          => [
-        'description'   => 'Actualizar a conversa',
-        'success'       => 'Conversa ":name" actualizada.',
-        'title'         => 'Conversa ":name"',
+        'success'   => 'Conversa ":name" actualizada.',
+        'title'     => 'Conversa ":name"',
     ],
     'fields'        => [
         'is_closed'     => 'Pechada',
@@ -26,10 +24,9 @@ return [
         'participants'  => 'Engade participantes á conversa presionando a icona :icon arriba á dereita.',
     ],
     'index'         => [
-        'add'           => 'Nova conversa',
-        'description'   => 'Xestiona a categoría de ":name".',
-        'header'        => 'Conversas en ":name"',
-        'title'         => 'Conversas',
+        'add'       => 'Nova conversa',
+        'header'    => 'Conversas en ":name"',
+        'title'     => 'Conversas',
     ],
     'messages'      => [
         'destroy'       => [
@@ -42,24 +39,22 @@ return [
         ],
     ],
     'participants'  => [
-        'create'        => [
+        'create'    => [
             'success'   => 'Participante :entity engadida á conversa.',
         ],
-        'description'   => 'Engade ou elimina participantes da conversa',
-        'destroy'       => [
+        'destroy'   => [
             'success'   => 'Participante :entity eliminada da conversa.',
         ],
-        'modal'         => 'Participantes',
-        'title'         => 'Participantes de ":name"',
+        'modal'     => 'Participantes',
+        'title'     => 'Participantes de ":name"',
     ],
     'placeholders'  => [
         'name'  => 'Nome da conversa',
         'type'  => 'Dentro do xogo, preparación, argumento...',
     ],
     'show'          => [
-        'description'   => 'Vista detallada dunha conversa',
-        'is_closed'     => 'A conversa está pechada.',
-        'title'         => 'Conversa ":name"',
+        'is_closed' => 'A conversa está pechada.',
+        'title'     => 'Conversa ":name"',
     ],
     'tabs'          => [
         'conversation'  => 'Conversa',

@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Crear nuevo evento',
-        'success'       => 'Se ha creado el evento ":name".',
-        'title'         => 'Nuevo evento',
+        'success'   => 'Se ha creado el evento ":name".',
+        'title'     => 'Nuevo evento',
     ],
     'destroy'       => [
         'success'   => 'Se ha eliminado el evento ":name".',
@@ -14,7 +13,8 @@ return [
         'title'     => 'Editar ":name"',
     ],
     'events'        => [
-        'title' => 'Eventos del evento :name',
+        'helper'    => 'Aquí se muestran los eventos que tienen esta entidad como evento padre.',
+        'title'     => 'Eventos del evento :name',
     ],
     'fields'        => [
         'date'      => 'Fecha',
@@ -31,10 +31,9 @@ return [
         'nested_without'=> 'Mostrando todos los eventos sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
     ],
     'index'         => [
-        'add'           => 'Nuevo evento',
-        'description'   => 'Gestiona los eventos de :name.',
-        'header'        => 'Eventos de :name',
-        'title'         => 'Eventos',
+        'add'       => 'Nuevo evento',
+        'header'    => 'Eventos de :name',
+        'title'     => 'Eventos',
     ],
     'placeholders'  => [
         'date'      => 'Fecha del evento',
@@ -43,11 +42,10 @@ return [
         'type'      => 'Ceremonia, festival, catástrofe, batalla, nacimiento...',
     ],
     'show'          => [
-        'description'   => 'Vista detallada del evento',
-        'tabs'          => [
-            'information'   => 'Información',
+        'tabs'  => [
+            'events'    => 'Eventos',
         ],
-        'title'         => 'Evento :name',
+        'title' => 'Evento :name',
     ],
     'tabs'          => [
         'calendars' => 'Entradas del calendario',

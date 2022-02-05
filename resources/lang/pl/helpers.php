@@ -35,6 +35,11 @@ return [
         'title'         => 'Szablony elementów',
     ],
     'filters'           => [
+        'attributes'    => [
+            'exclude'   => '!Poziom',
+            'first'     => 'Możesz filtrować elementy ze względu na cechy, wpisując dokładną nazwę i wartość w odpowiednie pola wyszukiwania. Jeżeli nie wpiszesz wartości, wyszukane zostaną tylko elementy posiadające wpisaną cechę. Możesz wpisać :exclude by wyłączyć z wyszukiwania elementy posiadające cechę o nazwie Poziom.',
+            'second'    => 'Filtr nie wyszukuje wyników obliczeń. Jeżeli cecha ma wartość :code, nie da się wyszukiwać takiej kalkulacji.',
+        ],
         'clipboard'     => 'Kiedy ustawisz filtry, możesz skopiować ich wartość do schowka. Możesz ich wówczas użyć do filtrowania widżetów pulpitu albo tworząc skróty.',
         'description'   => 'Możesz zmniejszyć liczbę wyświetlanych elementów za pomocą filtrów. Pola tekstowe posiadają kilka opcji które pozwalają dodatkowo zawęzić filtrowanie.',
         'empty'         => 'Wpisując w treści zapytania :tag wyszukasz elementy, które mają to pole puste.',

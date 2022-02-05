@@ -290,8 +290,9 @@ return [
         'title'         => 'Zmiana lub Przenoszenie :name',
     ],
     'navigation'                => [
-        'cancel'    => 'anuluj',
-        'or_cancel' => 'lub :cancel',
+        'cancel'            => 'anuluj',
+        'or_cancel'         => 'lub :cancel',
+        'skip_to_content'   => 'Pomiń nawigację',
     ],
     'new_entity'                => [
         'error' => 'Sprawdź poprawność wartości.',

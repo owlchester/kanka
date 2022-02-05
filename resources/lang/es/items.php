@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Crear nuevo objeto',
-        'success'       => 'Objeto ":name" creado.',
-        'title'         => 'Nuevo objeto',
+        'success'   => 'Objeto ":name" creado.',
+        'title'     => 'Nuevo objeto',
     ],
     'destroy'       => [
         'success'   => 'Objeto ":name" eliminado.',
@@ -24,14 +23,12 @@ return [
         'type'      => 'Tipo',
     ],
     'index'         => [
-        'add'           => 'Nuevo objeto',
-        'description'   => 'Gestiona los objetos de :name.',
-        'header'        => 'Objetos de :name',
-        'title'         => 'Objetos',
+        'add'       => 'Nuevo objeto',
+        'header'    => 'Objetos de :name',
+        'title'     => 'Objetos',
     ],
     'inventories'   => [
-        'description'   => 'Los inventarios donde se encuentra este objeto.',
-        'title'         => 'Inventarios del objeto :name',
+        'title' => 'Inventarios del objeto :name',
     ],
     'placeholders'  => [
         'character' => 'Seleccionar personaje',
@@ -41,17 +38,11 @@ return [
         'size'      => 'Tamaño, peso, dimensiones',
         'type'      => 'Arma, Poción, Artefacto...',
     ],
-    'quests'        => [
-        'description'   => 'Misiones en las que aparece el objeto.',
-        'title'         => 'Misiones de :name',
-    ],
+    'quests'        => [],
     'show'          => [
-        'description'   => 'Vista detallada del objeto',
-        'tabs'          => [
-            'information'   => 'Información',
+        'tabs'  => [
             'inventories'   => 'Inventarios',
-            'quests'        => 'Misiones',
         ],
-        'title'         => 'Objeto :name',
+        'title' => 'Objeto :name',
     ],
 ];

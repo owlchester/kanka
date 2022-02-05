@@ -86,6 +86,7 @@ return [
             'css'                   => 'Własne css kampanii',
             'dashboards'            => 'Rożne pulpity kampanii dla różnych ról jej uczestników',
             'description'           => 'Niektóre poziomy wsparcia zapewniają użytkownikom doładowania, których mogą używać w kampaniach. Doładowanie zapewnia następujące korzyści.',
+            'entity-aliases'        => 'Dodawaj elementom aliasy, by ułatwić wyszukiwanie i wzmianki',
             'entity_files'          => 'Zwiększona maksymalna liczba plików dołączonych do elementów kampanii (5 zamiast 3)',
             'entity_files_v2'       => 'Maksymalna liczba plików elementu',
             'entity_links'          => 'Możliwość dodawania odnośników prowadzących na zewnątrz Kanki',

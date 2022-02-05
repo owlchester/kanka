@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Crear nueva familia',
-        'success'       => 'Familia ":name" creada.',
-        'title'         => 'Nueva familia',
+        'success'   => 'Familia ":name" creada.',
+        'title'     => 'Nueva familia',
     ],
     'destroy'       => [
         'success'   => 'Familia ":name" eliminada.',
@@ -35,10 +34,9 @@ return [
         'members'   => 'Aquí se muestran los miembros de la familia. Se puede añadir un personaje a una familia en el menú de edición de dicho personaje, usando el desplegable "Familia".',
     ],
     'index'         => [
-        'add'           => 'Nueva familia',
-        'description'   => 'Gestiona las familias de :name.',
-        'header'        => 'Familias de :name',
-        'title'         => 'Familias',
+        'add'       => 'Nueva familia',
+        'header'    => 'Familias de :name',
+        'title'     => 'Familias',
     ],
     'members'       => [
         'helpers'   => [
@@ -53,13 +51,12 @@ return [
         'type'      => 'Real, noble, extinguida...',
     ],
     'show'          => [
-        'description'   => 'Vista detallada de la familia',
-        'tabs'          => [
+        'tabs'  => [
             'all_members'   => 'Todos los miembros',
             'families'      => 'Familias',
             'members'       => 'Miembros',
             'relation'      => 'Relaciones',
         ],
-        'title'         => 'Familia :name',
+        'title' => 'Familia :name',
     ],
 ];

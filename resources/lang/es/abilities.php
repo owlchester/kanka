@@ -42,10 +42,9 @@ return [
         'nested_without'=> 'Mostrando todas las habilidades que no tienen superior. Haz clic sobre una fila para mostrar las habilidades anidadas.',
     ],
     'index'         => [
-        'add'           => 'Nueva habilidad',
-        'description'   => 'Crea poderes, hechizos, mejoras y más para tus entidades.',
-        'header'        => 'Habilidades de :name',
-        'title'         => 'Habilidades',
+        'add'       => 'Nueva habilidad',
+        'header'    => 'Habilidades de :name',
+        'title'     => 'Habilidades',
     ],
     'placeholders'  => [
         'charges'   => 'Cantidad de usos. Puedes hacer referencia a un atributo con {Nivel}*{CHA}',

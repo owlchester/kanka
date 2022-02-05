@@ -294,8 +294,9 @@ return [
         'title'         => 'Premiestniť :name na iné miesto',
     ],
     'navigation'                => [
-        'cancel'    => 'Zrušiť',
-        'or_cancel' => 'alebo :cancel',
+        'cancel'            => 'Zrušiť',
+        'or_cancel'         => 'alebo :cancel',
+        'skip_to_content'   => 'Preskočiť navigáciu',
     ],
     'new_entity'                => [
         'error' => 'Prosím, prekontroluj tvoje zadanie.',

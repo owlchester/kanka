@@ -20,6 +20,7 @@ return [
         'title'     => 'Editar línea de tiempo :name',
     ],
     'fields'        => [
+        'copy_elements' => 'Copiar elementos',
         'copy_eras'     => 'Copiar eras',
         'eras'          => 'Eras',
         'name'          => 'Nombre',
@@ -44,6 +45,9 @@ return [
         'type'  => 'Primaria, Crónica del mundo, Legado del reino...',
     ],
     'show'          => [
+        'tabs'  => [
+            'timelines' => 'Líneas de tiempo',
+        ],
         'title' => 'Línea de tiempo :name',
     ],
     'timelines'     => [

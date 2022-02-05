@@ -5,6 +5,10 @@ return [
         'description'   => 'Se puede vincular un personaje a un calendario de campaña desde la pestaña de Recordatorios del personaje. Desde allí, añade un nuevo recordatorio y dale el tipo Nacimiento o Muerte para calcular automáticamente la edad del personaje. Si ambas fechas están presentes, se mostrarán las dos junto con la edad de fallecimiento. Si solo se ha indicado el nacimiento, se mostrarán la fecha y la edad actual. Si solo se ha indicado la muerte, se mostrarán la fecha y los años desde la muerte.',
         'title'         => 'Edad y muerte de los personajes',
     ],
+    'api-filters'       => [
+        'description'   => 'Están disponibles los siguientes filtros para el endpoint :name de la API.',
+        'title'         => 'Filtros de la API',
+    ],
     'attributes'        => [
         'con'               => 'Con',
         'description'       => 'Puedes usar atributos para representar valores no textuales de una entidad. Puedes hacer referencia a otras entidades dentro de un atributo usando la sintaxis de :mention avanzada. También puedes vincular otros atributos usando la sintaxis de :attribute.',
@@ -31,6 +35,9 @@ return [
         'title'         => 'Plantillas de entidad',
     ],
     'filters'           => [
+        'attributes'    => [
+            'exclude'   => '!Nivel',
+        ],
         'clipboard'     => 'Cuando haya filtros puestos, se activará el botón de copiar, con el que puedes copiar dichos filtros al portapapeles y usarlos para los widgets del tablero o los enlaces del acceso rápido.',
         'description'   => 'Puedes usar los filtros para limitar la cantidad de resultados que se muestra en las listas. Se puede filtrar por más de un campo para controlar detalladamente qué se excluye con los filtros.',
         'empty'         => 'Si escribes :tag en un campo, se buscarán todas las entidades donde este campo esté vacío.',
@@ -68,6 +75,16 @@ return [
     ],
     'public'            => 'Mira el vídeo tutorial en Youtube acerca de las campañas públicas.',
     'title'             => 'Consejos',
+    'troubleshooting'   => [
+        'errors'            => [
+            'token_exists'  => 'Ya existe un token para :campaign.',
+        ],
+        'save_btn'          => 'Generar token',
+        'select_campaign'   => 'Seleccionar una campaña',
+        'subtitle'          => '¡Ayuda, por favor!',
+        'success'           => 'Copia el siguiente token y envíalo a alguien del equipo de Kanka.',
+        'title'             => 'Resolución de problemas',
+    ],
     'widget-filters'    => [
         'description'   => 'Puedes filtrar las entidades mostradas en el widget de recientemente modificadas mediante sus campos y valores. Por ejemplo, puedes usar :example para filtrar por personajes muertos de tipo NPC.',
         'link'          => 'filtros de widget',

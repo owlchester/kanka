@@ -2,13 +2,11 @@
 
 return [
     'characters'    => [
-        'description'   => 'Personajes que están en este lugar.',
-        'title'         => 'Personajes en :name',
+        'title' => 'Personajes en :name',
     ],
     'create'        => [
-        'description'   => 'Crear nuevo lugar',
-        'success'       => 'Lugar ":name" creado.',
-        'title'         => 'Nuevo lugar',
+        'success'   => 'Lugar ":name" creado.',
+        'title'     => 'Nuevo lugar',
     ],
     'destroy'       => [
         'success'   => 'Lugar ":name" eliminado.',
@@ -18,8 +16,7 @@ return [
         'title'     => 'Editar lugar :name',
     ],
     'events'        => [
-        'description'   => 'Eventos que ocurren en este lugar.',
-        'title'         => 'Eventos en :name',
+        'title' => 'Eventos en :name',
     ],
     'families'      => [
         'title' => 'Familias en :name',
@@ -49,25 +46,21 @@ return [
         'is_map_private'    => 'Un mapa privado solo será visible para los miembros con el rol "Admin".',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Vista de exploración',
         ],
-        'add'           => 'Nuevo lugar',
-        'description'   => 'Gestiona los lugares de :name.',
-        'header'        => 'Lugares en :name',
-        'title'         => 'Lugares',
+        'add'       => 'Nuevo lugar',
+        'header'    => 'Lugares en :name',
+        'title'     => 'Lugares',
     ],
     'items'         => [
-        'description'   => 'Objetos situados o procedentes de este lugar.',
-        'title'         => 'Objetos de :name',
+        'title' => 'Objetos de :name',
     ],
     'journals'      => [
-        'description'   => 'Diarios escritos en este lugar.',
-        'title'         => 'Diarios de :name',
+        'title' => 'Diarios de :name',
     ],
     'locations'     => [
-        'description'   => 'Lugares situados en esta localización.',
-        'title'         => 'Lugares de :name',
+        'title' => 'Lugares de :name',
     ],
     'map'           => [
         'actions'   => [
@@ -211,26 +204,20 @@ return [
         'name'      => 'Nombre del lugar',
         'type'      => 'Ciudad, Reino, Ruinas',
     ],
-    'quests'        => [
-        'description'   => 'Misiones vinculadas a este lugar.',
-        'title'         => 'Misiones en :name',
-    ],
+    'quests'        => [],
     'show'          => [
-        'description'   => 'Vista detallada del lugar',
-        'tabs'          => [
+        'tabs'  => [
             'characters'    => 'Personajes',
             'events'        => 'Eventos',
             'families'      => 'Familias',
-            'information'   => 'Información',
             'items'         => 'Objetos',
             'journals'      => 'Diarios',
             'locations'     => 'Lugares',
             'map'           => 'Mapa',
             'maps'          => 'Mapas',
-            'menu'          => 'Menú',
             'organisations' => 'Organizaciones',
             'quests'        => 'Misiones',
         ],
-        'title'         => 'Lugar :name',
+        'title' => 'Lugar :name',
     ],
 ];

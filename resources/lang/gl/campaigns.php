@@ -64,6 +64,7 @@ TEXT
         'name'                      => 'Nome',
         'nested'                    => 'Mostrar as listaxes de entidades en árbore, cando sexa posíbel',
         'open'                      => 'Aberta a solicitudes',
+        'post_collapsed'            => 'As novas entradas nas entidades estarán colapsadas por defecto.',
         'public_campaign_filters'   => 'Filtros de campañas públicas',
         'related_visibility'        => 'Visibilidade de elementos relacionados',
         'rpg_system'                => 'Sistemas RPG',

@@ -13,7 +13,6 @@ return [
         'r_date_created'    => 'Fecha de creación inversa',
         'r_date_joined'     => 'Fecha de entrada inversa',
     ],
-    'description'                   => 'Actualiza los detalles de tu perfil',
     'edit'                          => [
         'success'   => 'Perfil actualizado',
     ],
