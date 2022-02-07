@@ -79,12 +79,11 @@ if (isset($single) && $single) {
         maxZoom: {{ $map->maxZoom() }},
     }).setView([ {{ $focus }} ], {{ $map->initialZoom() }});
 
-
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map{{ $map->id }});
 
-    L.control.layers(overlayMaps{{ $map->id }}).addTo(map{{ $map->id }});
+    L.control.layers(null, overlayMaps{{ $map->id }}).addTo(map{{ $map->id }});
 
     @endif
 
