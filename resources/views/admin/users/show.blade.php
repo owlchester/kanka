@@ -1,7 +1,7 @@
 <?php
 /** @var \App\User $model */
 ?>
-
+@inject('dateRenderer', 'App\Renderers\DateRenderer')
 
 <div class="row margin-bottom">
     <div class="col-md-12">
@@ -26,10 +26,18 @@
                     @endif
 
                     <dt>Created at</dt>
-                    <dd>{{ $model->created_at }}</dd>
+                    <dd>
+                        <span title="{{ $model->created_at }} UTC" data-toggle="tooltip">
+                            {{ $dateRenderer->render($model->created_at->format('Y-m-d')) }}
+                        </span>
+                    </dd>
 
                     <dt>Last Login</dt>
-                    <dd>{{ $model->last_login_at }}</dd>
+                    <dd>
+                        <span title="{{ $model->last_login_at }} UTC" data-toggle="tooltip">
+                            {{ $model->last_login_at->diffForHumans() }}
+                        </span>
+                    </dd>
 
                     @if($model->referrer)
                     <dt>Referral</dt>
