@@ -10,6 +10,7 @@
         {!! Form::model($style, [
             'route' => ['campaign_styles.update', $style],
             'method' => 'PATCH',
+            'data-shortcut' => 1
         ]) !!}
         <div class="panel-body">
             @include('partials.errors')

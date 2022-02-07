@@ -10,6 +10,7 @@
         {!! Form::open([
             'route' => ['campaign_styles.store'],
             'method' => 'POST',
+            'data-shortcut' => 1
         ]) !!}
         <div class="panel-body">
             @include('partials.errors')
