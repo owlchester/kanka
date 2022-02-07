@@ -354,7 +354,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function maxBoosts(): int
     {
-        // Allows us to give boosters to members of the community
+        // Allows admins to give boosters to members of the community
         $base = 0;
         if (!empty($this->booster_count)) {
             $base += $this->booster_count;
@@ -365,7 +365,7 @@ class User extends \Illuminate\Foundation\Auth\User
         }
 
         if ($this->hasRole('admin')) {
-            return 3;
+            return max(3, $base);
         }
 
         $levels = [
