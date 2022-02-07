@@ -17,18 +17,18 @@ $customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name
 
 <div class="panel panel-default widget-preview {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
     <div
-    @if ($widget->conf('entity-header') && $campaign->boosted() && $widget->entity->header_image)
+    @if ($widget->conf('entity-header') && $campaign->boosted() && $entity->header_image)
         class="panel-heading panel-heading-entity"
-        style="background-image: url('{{ $widget->entity->getImageUrl(1200, 400, 'header_image') }}')"
-    @elseif ($widget->conf('entity-header') && $campaign->boosted(true) && $widget->entity->header)
+        style="background-image: url('{{ $entity->getImageUrl(1200, 400, 'header_image') }}')"
+    @elseif ($widget->conf('entity-header') && $campaign->boosted(true) && $entity->header)
         class="panel-heading panel-heading-entity"
-        style="background-image: url('{{ Img::crop(1200, 400)->url($widget->entity->header->path) }}')"
+        style="background-image: url('{{ Img::crop(1200, 400)->url($entity->header->path) }}')"
     @elseif ($model->image)
         class="panel-heading panel-heading-entity"
         style="background-image: url('{{ $widget->entity->child->getImageUrl() }}')"
-    @elseif($campaign->boosted(true) && !empty($widget->entity->image))
+    @elseif($campaign->boosted(true) && !empty($entity->image))
         class="panel-heading panel-heading-entity"
-        style="background-image: url('{{ Img::crop(1200, 400)->url($widget->entity->image->path) }}')"
+        style="background-image: url('{{ Img::crop(1200, 400)->url($entity->image->path) }}')"
     @else
         class="panel-heading"
     @endif
