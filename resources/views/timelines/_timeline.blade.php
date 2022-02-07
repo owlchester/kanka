@@ -73,9 +73,6 @@ $loadedElements = [];
         <div class="text-center margin-bottom">
             <a href="{{ route('timelines.timeline_elements.create', [$model, 'era_id' => $era, 'position' => $position]) }}" class="btn btn-primary btn-sm"
                 title="{{ __('crud.create') }}"
-                data-toggle="ajax-modal" data-target="#large-modal"
-               data-backdrop="static"
-                data-url="{{ route('timelines.timeline_elements.create', [$model, 'era_id' => $era, 'position' => $position]) }}"
             >
                 <i class="fa fa-plus"></i>
                 <span class="hidden-xs inline">{!! __('timelines.actions.add_element', ['era' => $era->name]) !!}</span>
