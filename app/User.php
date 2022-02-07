@@ -355,12 +355,13 @@ class User extends \Illuminate\Foundation\Auth\User
     public function maxBoosts(): int
     {
         // Allows us to give boosters to members of the community
+        $base = 0;
         if (!empty($this->booster_count)) {
-            return $this->booster_count;
+            $base += $this->booster_count;
         }
 
         if (!$this->isPatron()) {
-            return 0;
+            return $base;
         }
 
         if ($this->hasRole('admin')) {
@@ -376,7 +377,7 @@ class User extends \Illuminate\Foundation\Auth\User
         ];
 
         // Default 3 for admins and owlbears
-        return Arr::get($levels, $this->patreon_pledge, 0);
+        return Arr::get($levels, $this->patreon_pledge, 0) + $base;
     }
 
     /**
