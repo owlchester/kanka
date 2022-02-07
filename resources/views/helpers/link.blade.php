@@ -40,12 +40,6 @@
             </p>
 
             <p>
-                {!! __('helpers.link.anchor', [
-                    'example' => '<code>[entity:123|anchor:entity-note-69]</code>',
-                ]) !!}
-            </p>
-
-            <p>
                 {!! __('helpers.link.mentions_field', [
                     'code' => '<code>[entity:123|field:location]</code>',
                 ]) !!}

@@ -84,6 +84,8 @@ if (isset($single) && $single) {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map{{ $map->id }});
 
+    L.control.layers(overlayMaps{{ $map->id }}).addTo(map{{ $map->id }});
+
     @endif
 
 </script>

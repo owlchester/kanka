@@ -35,6 +35,10 @@ return [
         'template'              => 'Šablóna',
         'value'                 => 'Hodnota',
     ],
+    'filters'       => [
+        'name'  => 'Názov atribútu',
+        'value' => 'Hodnota atribútu',
+    ],
     'helpers'       => [
         'delete_all'    => 'Naozaj chceš odstrániť všetky atribúty tohto objektu?',
         'setup'         => 'Prvky ako HP alebo Inteligenciu nejakého objektu s atribútmi je možné referencovať. Atribúty pridáš ručne kliknutím na tlačidlo :manage alebo aplikovaním niektorej zo šablón atribútov.',

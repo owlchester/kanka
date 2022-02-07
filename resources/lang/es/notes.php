@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Crear nueva nota',
-        'success'       => 'Nota ":name" creada.',
-        'title'         => 'Nueva nota',
+        'success'   => 'Nota ":name" creada.',
+        'title'     => 'Nueva nota',
     ],
     'destroy'       => [
         'success'   => 'Nota ":name" eliminada.',
@@ -30,10 +29,9 @@ return [
         'is_pinned' => 'Se pueden fijar hasta 3 notas para que se muestren en el tablero.',
     ],
     'index'         => [
-        'add'           => 'Nueva nota',
-        'description'   => 'Gestiona las notas de :name.',
-        'header'        => 'Notas de :name',
-        'title'         => 'Notas',
+        'add'       => 'Nueva nota',
+        'header'    => 'Notas de :name',
+        'title'     => 'Notas',
     ],
     'placeholders'  => [
         'name'  => 'Nombre de la nota',
@@ -41,10 +39,6 @@ return [
         'type'  => 'Religión, Raza, Sistema politico...',
     ],
     'show'          => [
-        'description'   => 'Vista detallada de la nota',
-        'tabs'          => [
-            'description'   => 'Descripción',
-        ],
-        'title'         => 'Nota :name',
+        'title' => 'Nota :name',
     ],
 ];

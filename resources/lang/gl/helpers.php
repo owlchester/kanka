@@ -35,6 +35,11 @@ return [
         'title'         => 'Padróns de entidade',
     ],
     'filters'           => [
+        'attributes'    => [
+            'exclude'   => '!Nivel',
+            'first'     => 'Podes filtrar entidades segundo os seus atributos. Os campos de búsqueda deben coincidir exactamente co nome e/ou valor do atributo. Cando o valor non é especificado, búscanse entidades que teñan un atributo co nome especificado. Podes escribir ":exclude" para excluít entidades entidades cun atributo chamado "Nivel".',
+            'second'    => 'O filtro non evalúa cálculos de atributos. Se un atributo ten un valor de :code, buscar polo resultado dese cálculo non é posíbel.',
+        ],
         'clipboard'     => 'Cando os filtros están activos, o botón de copiar ao portapapeis tamén o está. Este botón copia os filtros ao teu portapapeis, e así podes usalos en filtros de complementos do taboleiro ou en filtros de accesos directos.',
         'description'   => 'Podes usar filtros para limitar o número de resultados que se mostran nas listas. Os campos de texto ofrecen opcións variadas para controlar en detalle o que é excluído polo filtro.',
         'empty'         => 'Escrebendo :tag nun campo buscará todas as entidades nas que ese campo está baleiro.',
@@ -72,6 +77,17 @@ return [
     ],
     'public'            => 'Aprende máis sobre campañas públicas vendo o vídeo tutorial en Youtube.',
     'title'             => 'Consellos',
+    'troubleshooting'   => [
+        'description'       => 'Un membro do equipo de Kanka envioute a esta páxina. Selecciona unha campaña para xerar un token para que poidamos unirnos temporalmente á túa campaña como admin.',
+        'errors'            => [
+            'token_exists'  => 'Xa existe un token para ":campaign".',
+        ],
+        'save_btn'          => 'Xerar token',
+        'select_campaign'   => 'Selecciona unha campaña',
+        'subtitle'          => 'Axuda, por favor!',
+        'success'           => 'Copia o seguinte token e envíao a alguén do equipo de Kanka.',
+        'title'             => 'Resolución de problemas',
+    ],
     'widget-filters'    => [
         'description'   => 'Podes filtrar as entidades mostradas no complemento de "modificadas recentemente" proporcionando unha lista de campos da entidade e valores. Por exemplo, podes usar :example para filtrar as personaxes mortas do tipo NPC.',
         'link'          => 'filtros de complemento',

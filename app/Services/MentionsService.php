@@ -287,9 +287,6 @@ class MentionsService
                         $data['text'] = $alias->name;
                     }
                 }
-                if (!empty($data['anchor'])) {
-                    $url .= '#' . $data['anchor'];
-                }
                 $dataUrl = route('entities.tooltip', $entity);
 
                 // If this request is through the API, we need to inject the language in the url

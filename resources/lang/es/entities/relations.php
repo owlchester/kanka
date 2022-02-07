@@ -51,6 +51,8 @@ return [
         'title' => 'Relaciones',
     ],
     'options'       => [
+        'mentions'  => 'Relaciones + relacionadas + menciones',
+        'related'   => 'Relaciones + relacionadas',
         'relations' => 'Relaciones',
         'show'      => 'Mostrar',
     ],

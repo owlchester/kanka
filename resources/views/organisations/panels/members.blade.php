@@ -96,7 +96,7 @@ $hasOrg = request()->has('organisation_id');
                         <td class="hidden-sm hidden-xs">
                             @foreach ($relation->character->races as $race)
                                 {!! $race->tooltipedLink() !!}
-                            @endif
+                            @endforeach
                         </td>
                     @endif
                     <td>@if ($relation->character->is_dead)<span class="ra ra-skull"></span>@endif</td>

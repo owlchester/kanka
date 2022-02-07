@@ -56,7 +56,9 @@ return [
             'more'  => '¿No encuentras lo que buscas?',
         ],
         'kb'            => [
-            'title' => '¿Necesitas ayuda para usar Kanka?',
+            'button'    => 'Encuentra respuestas en nuestra base de conocimientos',
+            'text'      => '¿Tienes preguntas sobre cómo usar las funcionalidades de Kanka? Nuestra base de conocimiento es el lugar a donde ir.',
+            'title'     => '¿Necesitas ayuda para usar Kanka?',
         ],
         'title'         => 'Preguntas Frecuentes',
     ],
@@ -101,12 +103,10 @@ return [
             'title'         => 'Calendarios',
         ],
         'collaborative'     => [
-            'description'   => '¿No estás solo? ¡Cuenta con nosotros! ¡Puedes invitar a tus amigos para ayudarte a construir tu campaña juntos!',
-            'title'         => 'Colaborativo',
+            'title' => 'Colaborativo',
         ],
         'dashboards'        => [
-            'description'   => 'Controla la información que ven tus jugadores cuando abren Kanka.',
-            'title'         => 'Tableros',
+            'title' => 'Tableros',
         ],
         'description'       => 'Kanka tiene una gran cantidad de funciones. Puedes hacer un seguimiento de tus personajes y sus relaciones, los lugares y su historia, las misiones y sus objetivos, los calendarios y sus eventos y fenómenos meteorológicos, y mucho más. Lo mejor de todo es que Kanka recibe muchas actualizaciones cada mes basadas en los comentarios de los usuarios.',
         'description_full'  => 'Kanka se actualiza constantemente, pero aquí hay algunas de las más importantes que creemos que te van a encantar.',
@@ -115,9 +115,8 @@ return [
             'title'         => 'Flora y fauna',
         ],
         'free'              => [
-            'bonuses'       => 'Bonus',
-            'description'   => 'Todas las funciones principales de Kanka son absolutamente gratis, con algunos :bonuses para los suscriptores.',
-            'title'         => 'Uso Gratuito',
+            'bonuses'   => 'Bonus',
+            'title'     => 'Uso Gratuito',
         ],
         'landscape'         => 'Por favor, pon tu dispositivo en modo apaisado para mostrar toda la lista de características.',
         'layers'            => [
@@ -191,12 +190,10 @@ return [
         'title'             => 'Poderosas funciones con increíble flexibilidad',
         'unlimited'         => 'Ilimitado',
         'updates'           => [
-            'description'   => 'Kanka se actualiza frecuentemente gracias a las aportaciones de la comunidad. Los detalles de dichas actualizaciones se discuten en profundidad en nuestro :discord.',
-            'title'         => 'Actualizaciones frecuentes',
+            'title' => 'Actualizaciones frecuentes',
         ],
         'worldbuilding'     => [
-            'description'   => 'Kanka te facilita organizar mundos complejos con su variedad de módulos: todo desde Mapas hasta Líneas de tiempo, Calendarios y Eventos.',
-            'title'         => 'Creación de mundos',
+            'title' => 'Creación de mundos',
         ],
     ],
     'first_block'   => [
@@ -255,9 +252,11 @@ return [
         'features'      => 'Características',
         'help'          => 'Ayuda',
         'home'          => 'Inicio',
+        'kb'            => 'Base de conocimientos',
         'login'         => 'Iniciar sesión',
         'marketplace'   => 'Marketplace',
         'media'         => 'Medios',
+        'merch'         => 'Merchandising',
         'news'          => 'Novedades',
         'newsletter'    => 'Newsletter',
         'other'         => 'Otros',

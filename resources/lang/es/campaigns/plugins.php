@@ -30,9 +30,15 @@ return [
     ],
     'helper'        => 'La comunidad de Kanka crea continuamente plugins estupendos para la tienda. Si tienes una campaña mejorada, puedes instalarle plugins de la tienda. Desde aquí puedes desinstalar los plugins de la campaña.',
     'import'        => [
-        'created'   => 'Se han creado las siguientes entidades:',
-        'success'   => '{1} Se ha importado :count entidad del plugin :plugin.|[2,*] Se han importado :count entidades del plugin :plugin.',
-        'updated'   => 'Se han actualizado las siguientes entidades:',
+        'button'                => 'Importar',
+        'created'               => 'Se han creado las siguientes entidades:',
+        'helper'                => 'Se van a importar :count entidades del plugin :plugin. Si este plugin ya estaba importado, los cambios que hayas hecho a las entidades importadas podrían perderse.',
+        'no_new_entities'       => 'No hay nuevas entidades que importar.',
+        'option_only_import'    => 'Importa solo las entidades nuevas, omitiendo las previamente importadas.',
+        'option_private'        => 'Importa todas las entidades como privadas.',
+        'success'               => '{1} Se ha importado :count entidad del plugin :plugin.|[2,*] Se han importado :count entidades del plugin :plugin.',
+        'title'                 => 'Importar :plugin',
+        'updated'               => 'Se han actualizado las siguientes entidades:',
     ],
     'info'          => [
         'helper'        => 'Cuando salga una nueva versión de un plugin, puedes actualizarla a la nueva versión.',

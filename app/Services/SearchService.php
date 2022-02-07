@@ -227,6 +227,12 @@ class SearchService
                             ;
                         }
                     });
+            } else {
+                if (Str::startsWith($this->term, '=')) {
+                    $query->where('name', ltrim($this->term, '='));
+                } else {
+                    $query->where('name', 'like', '%' . $this->term . '%');
+                }
             }
         }
 

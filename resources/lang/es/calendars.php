@@ -19,35 +19,32 @@ return [
         'is_recurring'  => 'Ocurre cada año',
     ],
     'create'        => [
-        'description'   => 'Crear nuevo calendario',
-        'success'       => 'Calendario ":name" creado.',
-        'title'         => 'Nuevo Calendario',
+        'success'   => 'Calendario ":name" creado.',
+        'title'     => 'Nuevo Calendario',
     ],
     'destroy'       => [
         'success'   => 'Calendario ":name" eliminado.',
     ],
     'edit'          => [
-        'description'   => 'Actualizar calendario',
-        'success'       => 'Calendario ":name" actualizado.',
-        'title'         => 'Editar calendario :name',
-        'today'         => 'Fecha del calendario actualizada.',
+        'success'   => 'Calendario ":name" actualizado.',
+        'title'     => 'Editar calendario :name',
+        'today'     => 'Fecha del calendario actualizada.',
     ],
     'event'         => [
         'actions'   => [
-            'existing'  => 'Entidad existente',
-            'new'       => 'Nuevo evento',
-            'switch'    => 'Cambiar elección',
+            'delete-confirm'    => 'este recordatorio',
+            'existing'          => 'Entidad existente',
+            'new'               => 'Nuevo evento',
+            'switch'            => 'Cambiar elección',
         ],
         'create'    => [
-            'description'   => 'Crear un evento en el calendario',
-            'success'       => 'Evento creado en el calendario',
-            'title'         => 'Añadir evento del calendario a :name',
+            'success'   => 'Evento creado en el calendario',
+            'title'     => 'Añadir evento del calendario a :name',
         ],
         'destroy'   => 'Evento eliminado del calendario :name',
         'edit'      => [
-            'description'   => 'Actualizar evento del calendario',
-            'success'       => 'Evento del calendario actualizado',
-            'title'         => 'Actualizar evento del calendario de :name',
+            'success'   => 'Evento del calendario actualizado',
+            'title'     => 'Actualizar evento del calendario de :name',
         ],
         'helpers'   => [
             'add'               => 'Añade un evento existente a este calendario.',
@@ -60,8 +57,7 @@ return [
         'success'   => 'Evento \':event\' añadido al calendario.',
     ],
     'events'        => [
-        'description'   => 'Eventos en este calendario.',
-        'title'         => 'Eventos del calendario :name',
+        'title' => 'Eventos del calendario :name',
     ],
     'fields'        => [
         'calendar'              => 'Calendario superior',
@@ -117,10 +113,9 @@ return [
         'years'             => 'Algunos años son tan importantes que tienen su propio nombre.',
     ],
     'index'         => [
-        'add'           => 'Nuevo Calendario',
-        'description'   => 'Gestiona los calendarios de :name.',
-        'header'        => 'Calendarios de :name',
-        'title'         => 'Calendarios',
+        'add'       => 'Nuevo Calendario',
+        'header'    => 'Calendarios de :name',
+        'title'     => 'Calendarios',
     ],
     'layouts'       => [
         'month' => 'Mes',
@@ -210,7 +205,6 @@ return [
         'weekdays'          => 'Número de días de la semana',
     ],
     'show'          => [
-        'description'       => 'Vista detallada del calendario',
         'missing_details'   => 'Este calendario no se puede mostrar. Los calendarios necesitan un mínimo de 2 meses y 2 días semanales para renderizarse correctamente.',
         'moon_full_moon'    => 'Luna :moon llena',
         'moon_new_moon'     => 'Luna :moon nueva',

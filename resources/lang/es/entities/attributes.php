@@ -18,11 +18,16 @@ return [
         'template'              => 'Plantilla',
         'value'                 => 'Valor',
     ],
+    'filters'       => [
+        'name'  => 'Nombre del atributo',
+        'value' => 'Valor del atributo',
+    ],
     'helpers'       => [
         'delete_all'    => '¿Seguro que quieres eliminar todos los atributos de esta entidad?',
+        'setup'         => 'Puedes representar elementos como los PV o la inteligencia de un personaje mediante los atributos. Puedes añadirlos manualmente desde el botón de :manage, o aplicarlos desde una plantilla de atributos.',
     ],
     'hints'         => [
-        'is_private'    => 'Oculta todos los atributos de una entidad a todos los miembros no administradores haciéndola privada.',
+        'is_private2'   => 'Si está seleccionado, solo los miembros del rol :admin-rola podrán ver los atributos de esta entidad.',
     ],
     'index'         => [
         'success'   => 'Atributos de :entity actualizados.',

@@ -18,7 +18,8 @@ return [
         'icon'  => 'Icono',
     ],
     'helpers'       => [
-        'icon'  => 'Copia el HTML de un icono de :fontawesome o :rpgawesome.',
+        'entity_is_private' => 'La entidad de este elemento es privada.',
+        'icon'              => 'Copia el HTML de un icono de :fontawesome o :rpgawesome.',
     ],
     'placeholders'  => [
         'date'      => '22 de marzo, 1332-1337...',

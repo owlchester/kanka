@@ -165,7 +165,7 @@ class PermissionService
             $campaignRolePermissions[$perm->key] = 1;
         }
 
-        $entityActions = ['manage', 'dashboard', 'members', 'gallery'];
+        $entityActions = ['manage', 'dashboard', 'members'];
         $icons = [
             'manage' => [
                 'fa fa-cog',
@@ -176,9 +176,6 @@ class PermissionService
             'members' => [
                 'fas fa-users'
             ],
-            'gallery' => [
-                'fas fa-image'
-            ]
         ];
 
         foreach ($entityActions as $action) {

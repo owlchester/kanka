@@ -2,9 +2,8 @@
 
 return [
     'create'        => [
-        'description'   => 'Crear nuevo diario',
-        'success'       => 'Diario ":name" creado.',
-        'title'         => 'Nuevo diario',
+        'success'   => 'Diario ":name" creado.',
+        'title'     => 'Nuevo diario',
     ],
     'destroy'       => [
         'success'   => 'Diario ":name" eliminado.',
@@ -29,10 +28,9 @@ return [
         'nested_without'=> 'Mostrando todos los diarios sin ningún superior. Haz clic sobre una fila para mostrar sus descendientes.',
     ],
     'index'         => [
-        'add'           => 'Nuevo diario',
-        'description'   => 'Gestiona los diarios de :name',
-        'header'        => 'Diarios de :name',
-        'title'         => 'Diarios',
+        'add'       => 'Nuevo diario',
+        'header'    => 'Diarios de :name',
+        'title'     => 'Diarios',
     ],
     'journals'      => [
         'title' => 'Subdiarios del diario :name',
@@ -45,10 +43,9 @@ return [
         'type'      => 'Sesión, Borrador...',
     ],
     'show'          => [
-        'description'   => 'Vista detallada del diario',
-        'tabs'          => [
+        'tabs'  => [
             'journals'  => 'Diarios',
         ],
-        'title'         => 'Diario :name',
+        'title' => 'Diario :name',
     ],
 ];

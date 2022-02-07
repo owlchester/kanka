@@ -4,6 +4,17 @@ return [
     'abilities'     => [
         'title' => 'Underförmågor till :name',
     ],
+    'children'      => [
+        'actions'       => [
+            'add'   => 'Lägg till förmåga till entitet',
+        ],
+        'create'        => [
+            'success'   => 'Förmågan :name tillagd till entiteten.',
+            'title'     => 'Lägg till en entitet till :name',
+        ],
+        'description'   => 'Entiteter som har förmågan',
+        'title'         => 'Förmåga \':name\' Entiteter',
+    ],
     'create'        => [
         'success'   => 'Förmåga \':name\' skapad.',
         'title'     => 'Ny Förmåga',
@@ -15,6 +26,9 @@ return [
         'success'   => 'Förmåga \':name\' uppdaterad.',
         'title'     => 'Redigera Förmåga :name',
     ],
+    'entities'      => [
+        'title' => 'Entiteter med :name förmågan',
+    ],
     'fields'        => [
         'abilities' => 'Förmågor',
         'ability'   => 'Huvudförmåga',
@@ -24,13 +38,13 @@ return [
     ],
     'helpers'       => [
         'descendants'   => 'Denna lista innehåller alla förmågor som har härletts från denna förmåga, och inte bara de direkt under denna.',
-        'nested'        => 'I Hierarkisk Vy kan du se dina förmågor i hierarkisk ordning. Förmågor utan en huvudförmåga kommer visas som standard. Förmågor med underförmågor kan klickas på för att visa dessa. Du kan fortsätta klicka tills det inte finns fler underförmågor.',
+        'nested_parent' => 'Visar förmågor för :parent.',
+        'nested_without'=> 'Visar alla förmågor som inte har en huvudförmåga. Klicka på en rad för att se underförmågor.',
     ],
     'index'         => [
-        'add'           => 'Ny Förmåga',
-        'description'   => 'Skapa Krafter, Trollformler, Bedrifter m.m. för dina entiteter.',
-        'header'        => 'Förmågor till :name',
-        'title'         => 'Förmågor',
+        'add'       => 'Ny Förmåga',
+        'header'    => 'Förmågor till :name',
+        'title'     => 'Förmågor',
     ],
     'placeholders'  => [
         'charges'   => 'Antal laddningar. Referera till egenskaper med {Level}*{CHA}',
@@ -40,6 +54,7 @@ return [
     'show'          => [
         'tabs'  => [
             'abilities' => 'Förmågor',
+            'entities'  => 'Entiteter',
         ],
         'title' => 'Förmåga :name',
     ],

@@ -260,8 +260,9 @@ return [
     'manage'                    => 'Управление',
     'move'                      => [],
     'navigation'                => [
-        'cancel'    => 'отменить',
-        'or_cancel' => 'или :cancel',
+        'cancel'            => 'отменить',
+        'or_cancel'         => 'или :cancel',
+        'skip_to_content'   => 'Пропустить меню',
     ],
     'new_entity'                => [
         'error' => 'Пожалуйста, проверьте значения.',

@@ -23,6 +23,7 @@ return [
     'helper'        => [
         'amount'            => 'Możesz dodać do :amount warstw do mapy, by zmieniać obraz wyświetlany pod znacznikami.',
         'boosted_campaign'  => 'Mapy :boosted mogą posiadać do :amount warstw.',
+        'is_real'           => 'Podczas używania OpenStreetMaps warstwy są niedostępne.',
     ],
     'placeholders'  => [
         'name'      => 'Podziemia, poziom 2, wrak statku',

@@ -13,7 +13,6 @@ return [
         'r_date_created'    => 'Data de creación inversa',
         'r_date_joined'     => 'Data na que te uniches inversa',
     ],
-    'description'                   => 'Actualiza os detalles do teu perfil',
     'edit'                          => [
         'success'   => 'Perfil actualizado',
     ],

@@ -55,7 +55,6 @@ return [
             'visible'   => 'Visible',
         ],
     ],
-    'description'       => 'Tu plaza creativa',
     'helpers'           => [
         'follow'    => 'Si sigues una campaña, esta aparecerá en el menú de cambio de campaña (arriba a la derecha) bajo tus campañas.',
         'join'      => 'Esta campaña está abierta a nuevos miembros. Haz clic en unirse para enviar una solicitud.',
@@ -81,6 +80,10 @@ return [
             'edit'              => 'Editar widget',
         ],
         'title'     => 'Configurar el tablero de campaña',
+        'tutorial'  => [
+            'blog'  => 'nuestro tutorial',
+            'text'  => '¿Necesitas ayuda para configurar el tablero de tu campaña? Lee :blog para obtener ayuda e inspiración.',
+        ],
         'widgets'   => [
             'calendar'      => 'Calendario',
             'campaign'      => 'Encabezado de la campaña',
@@ -136,6 +139,11 @@ return [
             ],
         ],
         'recent'                    => [
+            'advanced_filter'   => 'Filtro avanzado',
+            'advanced_filters'  => [
+                'mentionless'   => 'Sin menciones (entidades que no mencionan a otras)',
+                'unmentioned'   => 'No mencionada (entidades que no son mencionadas por otras)',
+            ],
             'entity-header'     => 'Usar la cabecera de la entidad como imagen',
             'filters'           => 'Filtros',
             'full'              => 'Completa',

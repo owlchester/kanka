@@ -38,13 +38,14 @@ class StartController extends Controller
         $this->authorize('create', $campaign);
 
         // A user with campaigns doesn't need this process.
-        $new = session()->has('user_registered');
-        if ($new) {
+        $tracking = null;
+        if (session()->has('user_registered')) {
             session()->remove('user_registered');
+            $tracking = 'pa10CJTvrssBEOaOq7oC';
         }
         return view($this->view . '.create', [
             'start' => auth()->user()->campaigns->count() === 0,
-            'tracking_new' => $new,
+            'gaTrackingEvent' => $tracking,
         ]);
     }
 

@@ -12,11 +12,16 @@ return [
         'success'   => 'Objeto :item eliminado de :entity.',
     ],
     'fields'        => [
-        'amount'        => 'Cantidad',
-        'description'   => 'Observaciones',
-        'is_equipped'   => 'Equipado',
-        'name'          => 'Nombre',
-        'position'      => 'Localización',
+        'amount'            => 'Cantidad',
+        'copy_entity_entry' => 'Usar la descripción del objeto',
+        'description'       => 'Observaciones',
+        'is_equipped'       => 'Equipado',
+        'name'              => 'Nombre',
+        'position'          => 'Localización',
+        'qty'               => 'Cantidad',
+    ],
+    'helpers'       => [
+        'copy_entity_entry' => 'Muestra la descripción del objeto en lugar de una descripción personalizada.',
     ],
     'placeholders'  => [
         'amount'        => 'Cualquier cantidad',

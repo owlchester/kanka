@@ -2,20 +2,18 @@
 
 return [
     'children'      => [
-        'actions'       => [
+        'actions'   => [
             'add'   => 'Añadir etiqueta nueva',
         ],
-        'create'        => [
+        'create'    => [
             'success'   => 'Se ha añadido la etiqueta :name a la entidad.',
             'title'     => 'Añadir etiqueta a :name',
         ],
-        'description'   => 'Entidades etiquetadas',
-        'title'         => 'Descendientes de la etiqueta :name',
+        'title'     => 'Descendientes de la etiqueta :name',
     ],
     'create'        => [
-        'description'   => 'Crear nueva etiqueta',
-        'success'       => 'Etiqueta ":name" creada.',
-        'title'         => 'Nueva etiqueta',
+        'success'   => 'Etiqueta ":name" creada.',
+        'title'     => 'Nueva etiqueta',
     ],
     'destroy'       => [
         'success'   => 'Etiqueta ":name" eliminada.',
@@ -41,13 +39,12 @@ return [
         'tag'       => 'A continuación se muestran todas las etiquetas que están directamente bajo esta etiqueta.',
     ],
     'index'         => [
-        'actions'       => [
+        'actions'   => [
             'explore_view'  => 'Vista anidada',
         ],
-        'add'           => 'Nueva etiqueta',
-        'description'   => 'Gestiona las etiquetas de :name.',
-        'header'        => 'Etiquetas en :name',
-        'title'         => 'Etiquetas',
+        'add'       => 'Nueva etiqueta',
+        'header'    => 'Etiquetas en :name',
+        'title'     => 'Etiquetas',
     ],
     'new_tag'       => 'Nueva etiqueta',
     'placeholders'  => [
@@ -56,16 +53,13 @@ return [
         'type'  => 'Tradiciones, guerras, historia, religión...',
     ],
     'show'          => [
-        'description'   => 'Vista detallada de la etiqueta',
-        'tabs'          => [
-            'children'      => 'Entidades anidadas',
-            'information'   => 'Información',
-            'tags'          => 'Etiquetas',
+        'tabs'  => [
+            'children'  => 'Entidades anidadas',
+            'tags'      => 'Etiquetas',
         ],
-        'title'         => 'Etiqueta :name',
+        'title' => 'Etiqueta :name',
     ],
     'tags'          => [
-        'description'   => 'Subetiquetas',
-        'title'         => 'Descendientes de la etiqueta :name',
+        'title' => 'Descendientes de la etiqueta :name',
     ],
 ];
