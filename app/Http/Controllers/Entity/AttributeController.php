@@ -51,10 +51,14 @@ class AttributeController extends Controller
         }
 
         // Policies will always fail if they can't resolve the user.
-        if (Auth::check()) {
+        if (auth()->check()) {
             $this->authorize('view', $entity->child);
         } else {
             $this->authorizeEntityForGuest('read', $entity->child);
+        }
+
+        if (!$entity->accessAttributes()) {
+            abort(403);
         }
 
         $ajax = request()->ajax();
@@ -90,6 +94,7 @@ class AttributeController extends Controller
             abort(404);
         }
         $this->authorize('attribute', [$entity->child, 'edit']);
+        $this->authorize('attributes', $entity);
 
         $parentRoute = $entity->pluralType();
 
@@ -105,6 +110,7 @@ class AttributeController extends Controller
             abort(404);
         }
         $this->authorize('attribute', [$entity->child, 'edit']);
+        $this->authorize('attributes', $entity);
 
         $data = request()->only(
             'attr_name',

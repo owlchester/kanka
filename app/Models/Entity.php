@@ -431,4 +431,15 @@ class Entity extends Model
             ->crop(1200, 400)
             ->url($this->header->path);
     }
+
+    /**
+     * @return bool
+     */
+    public function accessAttributes(): bool
+    {
+        if (!$this->is_attributes_private) {
+            return true;
+        }
+        return auth()->check() && auth()->user()->isAdmin();
+    }
 }

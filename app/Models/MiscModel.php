@@ -382,6 +382,7 @@ abstract class MiscModel extends Model
             ];
         }
 
+        if ($this->entity->accessAttributes())
         $items['third']['attributes'] = [
             'name' => 'crud.tabs.attributes',
             'route' => 'entities.attributes',

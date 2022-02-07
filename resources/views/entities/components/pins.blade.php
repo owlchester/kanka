@@ -12,7 +12,7 @@
         <ul class="list-group list-group-unbordered">
             @include('entities.components.relations')
             @includeWhen(method_exists($model, 'pinnedMembers'), 'entities.components.members')
-            @include('entities.components.attributes')
+            @includeWhen($model->entity->accessAttributes(), 'entities.components.attributes')
         </ul>
     </div>
 </div>
