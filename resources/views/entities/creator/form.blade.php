@@ -28,16 +28,18 @@
     @include('entities.creator.forms.' . $singularType)
 
     @if ($type !== 'tags')
-    @include('cruds.fields.tags')
+    @include('cruds.fields.tags', ['dropdownParent' => '#entity-modal'])
     @endif
 
     @include('cruds.fields.private2')
 </div>
 <div class="modal-footer">
+    @if (empty($origin))
     <a href="#" id="entity-creator-back" data-url="{{ route('entity-creator.selection') }}" data-target="#entity-modal" class="btn btn-default pull-left">
         <i class="fa fa-chevron-left"></i>
         {{ __('entities.creator.back') }}
     </a>
+    @endif
 
     <button class="btn btn-success" id="quick-creator-submit-btn" data-text="{{ __('crud.create') }}">
         {{ __('crud.create') }}
@@ -46,4 +48,7 @@
 </div>
 
     <input type="hidden" name="entity" value="{{ $type }}" />
+@if (!empty($target))
+    <input type="hidden" name="_target" value="{{ $target }}" />
+@endif
 </form>

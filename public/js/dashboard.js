@@ -200,7 +200,7 @@ function loadModalForm(url) {
   $.ajax(url).done(function (data) {
     modalContentSpinner.hide();
     modalContentTarget.html(data);
-    window.initSelect2();
+    window.initForeignSelect();
     window.initTags();
     initWidgetSubform();
   });

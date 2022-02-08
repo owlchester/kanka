@@ -79043,9 +79043,8 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_select2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/select2.js */ "./resources/assets/js/components/select2.js");
-/* harmony import */ var _components_delete_confirm_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/delete-confirm.js */ "./resources/assets/js/components/delete-confirm.js");
-/* harmony import */ var _mention__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mention */ "./resources/assets/js/mention.js");
+/* harmony import */ var _components_delete_confirm_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/delete-confirm.js */ "./resources/assets/js/components/delete-confirm.js");
+/* harmony import */ var _mention__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./mention */ "./resources/assets/js/mention.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -79056,8 +79055,9 @@ __webpack_require__(/*! ./bootstrap */ "./resources/assets/js/bootstrap.js");
 
 
 
-
 __webpack_require__(/*! ./tags.js */ "./resources/assets/js/tags.js");
+
+__webpack_require__(/*! ./components/select2.js */ "./resources/assets/js/components/select2.js");
 
 $(document).ready(function () {
   // Inject the isMobile variable into the window. We don't want ALL of the javascript
@@ -79072,9 +79072,8 @@ $(document).ready(function () {
   });*/
 
 
-  window.initSelect2();
+  window.initForeignSelect();
   initSpectrum();
-  initCheckboxSwitch();
   initCopyToClipboard();
   initSidebar();
   initSubmenuSwitcher(); // Open select2 dropdowns on focus. Don't add this in initSelect2 since we only need this
@@ -79170,8 +79169,8 @@ $(document).ready(function () {
       });
   });*/
 
-  Object(_components_delete_confirm_js__WEBPACK_IMPORTED_MODULE_1__["default"])();
-  Object(_mention__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  Object(_components_delete_confirm_js__WEBPACK_IMPORTED_MODULE_0__["default"])();
+  Object(_mention__WEBPACK_IMPORTED_MODULE_1__["default"])();
   initTogglePasswordFields();
   initAjaxPagination();
   initTimelineToggle();
@@ -79187,14 +79186,13 @@ $(document).ready(function () {
   $(document).on('shown.bs.modal shown.bs.popover', function () {
     $('[data-toggle="tooltip"]').tooltip(); // Also re-bind select2 elements on modal show
 
-    window.initSelect2();
-    initCheckboxSwitch();
+    window.initForeignSelect();
     initAjaxPagination();
     initTooltips();
     initSpectrum();
     initDynamicDelete();
     initImageRemoval();
-    Object(_components_delete_confirm_js__WEBPACK_IMPORTED_MODULE_1__["default"])();
+    Object(_components_delete_confirm_js__WEBPACK_IMPORTED_MODULE_0__["default"])();
   });
 }); // Select2 open focus bugfix with newer jquery versions
 
@@ -79203,24 +79201,8 @@ $(document).on('select2:open', function () {
   allFound[allFound.length - 1].focus();
 });
 /**
- * Init the toggle elements
- */
-
-function initCheckboxSwitch() {} //$('[data-toggle="switch"]').bootstrapSwitch();
-
-/**
- * Select2 is used for all the fancy dropdowns
- */
-
-
-function initSelect2() {
-  console.log('app initSelect2');
-  Object(_components_select2_js__WEBPACK_IMPORTED_MODULE_0__["default"])();
-}
-/**
  * Go through table trs to add on click support
  */
-
 
 function treeViewInit() {
   var treeViewLoader = $('.list-treeview');
@@ -80033,73 +80015,72 @@ function deleteConfirm() {
 /*!***************************************************!*\
   !*** ./resources/assets/js/components/select2.js ***!
   \***************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/*! no static exports found */
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return select2; });
-function select2() {
-  if ($('select.select2').length === 0) {
-    return;
-  }
-
-  $.each($('select.select2'), function (index) {
-    if ($(this).hasClass("select2-hidden-accessible")) {
+$(document).ready(function () {
+  window.initForeignSelect = function () {
+    if ($('select.select2').length === 0) {
       return;
-    } // Check it isn't the select2-icon
+    }
+
+    $.each($('select.select2'), function (index) {
+      if ($(this).hasClass("select2-hidden-accessible")) {
+        return;
+      } // Check it isn't the select2-icon
 
 
-    var allowClear = $(this).data('allow-clear');
-    var dropdownParent = $(this).data('dropdown-parent');
-    $(this).select2({
-      tags: false,
-      placeholder: $(this).data('placeholder'),
-      allowClear: allowClear || true,
-      //tags: $(this).data('tags') || false,
-      language: $(this).data('language'),
-      minimumInputLength: 0,
-      dropdownParent: dropdownParent || '',
-      ajax: {
-        delay: 500,
-        quietMillis: 500,
-        url: $(this).data('url'),
-        dataType: 'json',
-        data: function data(params) {
-          return {
-            q: $.trim(params.term)
-          };
+      var allowClear = $(this).data('allow-clear');
+      var dropdownParent = $(this).data('dropdown-parent');
+      $(this).select2({
+        tags: false,
+        placeholder: $(this).data('placeholder'),
+        allowClear: allowClear || true,
+        //tags: $(this).data('tags') || false,
+        language: $(this).data('language'),
+        minimumInputLength: 0,
+        dropdownParent: dropdownParent || '',
+        ajax: {
+          delay: 500,
+          quietMillis: 500,
+          url: $(this).data('url'),
+          dataType: 'json',
+          data: function data(params) {
+            return {
+              q: $.trim(params.term)
+            };
+          },
+          processResults: function processResults(data) {
+            return {
+              results: data
+            };
+          },
+          cache: true
         },
-        processResults: function processResults(data) {
-          return {
-            results: data
-          };
-        },
-        cache: true
-      },
-      templateResult: function templateResult(item) {
-        var $span = '';
+        templateResult: function templateResult(item) {
+          var $span = '';
 
-        if (item.image) {
-          $span = $("<span><img src='" + item.image + "' width='40' height='40'/> " + item.text + "</span>");
-        } else {
-          $span = $("<span>" + item.text + "</span>");
+          if (item.image) {
+            $span = $("<span><img src='" + item.image + "' width='40' height='40'/> " + item.text + "</span>");
+          } else {
+            $span = $("<span>" + item.text + "</span>");
+          }
+
+          return $span;
+        },
+        createTag: function createTag(data) {
+          return null;
         }
+      });
+    }); // Select2 with local search
 
-        return $span;
-      },
-      createTag: function createTag(data) {
-        return null;
-      }
+    $('select.select2-local').select2({
+      placeholder: $(this).data('placeholder'),
+      language: $(this).data('language'),
+      allowClear: true
     });
-  }); // Select2 with local search
-
-  $('select.select2-local').select2({
-    placeholder: $(this).data('placeholder'),
-    language: $(this).data('language'),
-    allowClear: true
-  });
-}
+  };
+});
 
 /***/ }),
 
@@ -80113,6 +80094,7 @@ function select2() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_select2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/select2.js */ "./resources/assets/js/components/select2.js");
+/* harmony import */ var _components_select2_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_components_select2_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_ajax_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/ajax-modal */ "./resources/assets/js/components/ajax-modal.js");
 /**
  * Crud
@@ -80312,7 +80294,7 @@ function characterDeleteRowHandler() {
 
   characterSortPersonality.sortable();
   characterSortAppearance.sortable();
-  Object(_components_select2_js__WEBPACK_IMPORTED_MODULE_0__["default"])();
+  _components_select2_js__WEBPACK_IMPORTED_MODULE_0___default()();
 }
 /**
  *
@@ -81368,7 +81350,7 @@ function quickCreatorLoadingModal() {
 
 function quickCreatorSubformHandler() {
   quickCreatorSubmitBtn = $('#quick-creator-submit-btn');
-  window.initSelect2();
+  window.initForeignSelect();
   window.initTags();
   quickCreatorDuplicateName(); // Back button
 
@@ -81550,7 +81532,7 @@ function submitSuggestion(ev, suggestion) {
 
 $(document).ready(function () {
   window.initTags = function () {
-    console.log('form-tags loop');
+    //console.log('form-tags loop');
     $.each($('.form-tags'), function (index) {
       var dropdownParent = $(this).data('dropdown-parent');
 

@@ -13,28 +13,45 @@ if (request()->route()->getName() == 'characters.random') {
 <div class="row">
     <div class="col-md-6">
         @include('cruds.fields.name', ['trans' => 'characters'])
+    </div>
+    <div class="col-md-6">
+        @include('cruds.fields.type', ['base' => \App\Models\Character::class, 'trans' => 'characters'])
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
         @include('cruds.fields.title')
+        @include('cruds.fields.location')
+    </div>
+    <div class="col-md-6">
         @include('cruds.fields.family')
         @include('cruds.fields.races')
-        @include('cruds.fields.location')
-        @include('cruds.fields.tags')
-        @include('cruds.fields.type', ['base' => \App\Models\Character::class, 'trans' => 'characters'])
+    </div>
+</div>
+
+@include('cruds.fields.entry2')
+
+<div class="row">
+    <div class="col-md-6">
         <div class="form-group">
-            <label>{{ trans('characters.fields.age') }}</label>
-            {!! Form::text('age', ($isRandom ? $random->generateNumber(1, 300) : FormCopy::field('age')->string()), ['placeholder' => trans('characters.placeholders.age'), 'class' => 'form-control', 'maxlength' => 25]) !!}
+            <label>{{ __('characters.fields.age') }}</label>
+            {!! Form::text('age', ($isRandom ? $random->generateNumber(1, 300) : FormCopy::field('age')->string()), ['placeholder' => __('characters.placeholders.age'), 'class' => 'form-control', 'maxlength' => 25]) !!}
             <p class="help-block">{!! __('characters.helpers.age', ['more' => link_to_route('helpers.age', __('crud.actions.find_out_more'))]) !!}</p>
         </div>
+    </div>
+
+    <div class="col-md-6">
         <div class="form-group">
-            <label>{{ trans('characters.fields.sex') }}</label>
+            <label>{{ __('characters.fields.sex') }}</label>
             {!! Form::text('sex', ($isRandom ? $random->generate('sex') : FormCopy::field('sex')->string()), [
-                'placeholder' => trans('characters.placeholders.sex'),
+                'placeholder' => __('characters.placeholders.sex'),
                 'class' => 'form-control',
                 'maxlength' => 45,
                 'list' => 'character-gender-list',
                 'autocomplete' => 'off'
             ]) !!}
         </div>
-
         <div class="hidden">
             <datalist id="character-gender-list">
                 @foreach (\App\Facades\CharacterCache::genderSuggestion() as $gender)
@@ -42,21 +59,30 @@ if (request()->route()->getName() == 'characters.random') {
                 @endforeach
             </datalist>
         </div>
-
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
         @include('cruds.fields.pronouns')
-
-        <div class="form-group">
-            {!! Form::hidden('is_dead', 0) !!}
-            <label>{!! Form::checkbox('is_dead', 1, (!empty($model) ? $model->is_dead : ($isRandom ? $random->generateBool(10) : (!empty($source) ? FormCopy::field('is_dead')->boolean() : 0)))) !!}
-                {{ trans('characters.fields.is_dead') }}
-            </label>
-            <p class="help-block">{{ trans('characters.hints.is_dead') }}</p>
-        </div>
     </div>
 
     <div class="col-md-6">
-        @include('cruds.fields.entry2')
+        <div class="form-group">
+            {!! Form::hidden('is_dead', 0) !!}
+            <label>{!! Form::checkbox('is_dead', 1, (!empty($model) ? $model->is_dead : ($isRandom ? $random->generateBool(10) : (!empty($source) ? FormCopy::field('is_dead')->boolean() : 0)))) !!}
+                {{ __('characters.fields.is_dead') }}
+            </label>
+            <p class="help-block">{{ __('characters.hints.is_dead') }}</p>
+        </div>
+    </div>
+</div>
 
+
+<div class="row">
+    <div class="col-md-6">
+        @include('cruds.fields.tags')
+    </div>
+    <div class="col-md-6">
         @include('cruds.fields.image')
     </div>
 </div>

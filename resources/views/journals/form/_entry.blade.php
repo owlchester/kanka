@@ -1,4 +1,3 @@
-
 <div class="row">
     <div class="col-md-6">
         @include('cruds.fields.name', ['trans' => 'journals'])
@@ -7,48 +6,61 @@
         @include('cruds.fields.type', ['base' => \App\Models\Journal::class, 'trans' => 'journals'])
     </div>
 </div>
-
-@include('cruds.fields.entry2')
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            {!! Form::foreignSelect(
+                'journal_id',
+                [
+                    'preset' => (isset($model) && $model->journal ? $model->journal : FormCopy::field('journal')->select()),
+                    'class' => App\Models\Journal::class,
+                    'enableNew' => true,
+                    'labelKey' => __('journals.fields.journal'),
+                    'placeholderKey' => 'journals.placeholders.journal',
+                    'from' => (isset($model) ? $model : null),
+                    'quickCreator' => true,
+                ]
+            ) !!}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>{{ __('journals.fields.date') }}</label>
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                {!! Form::text('date', FormCopy::field('date')->string(), ['placeholder' => __('journals.placeholders.date'), 'id' => 'date', 'class' => 'form-control date-picker', 'autocomplete' => 'off']) !!}
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <div class="row">
     <div class="col-md-6">
         <div class="row">
             <div class="col-sm-6">
-        @include('cruds.fields.character', ['label' => 'journals.fields.author'])
+                @include('cruds.fields.character', ['labelKey' => 'journals.fields.author'])
             </div>
             <div class="col-sm-6">
-        @include('cruds.fields.location')
+                @include('cruds.fields.location', ['quickCreator' => true])
             </div>
         </div>
 
-        @include('cruds.fields.tags')
-
-        <div class="form-group">
-            <label>{{ trans('journals.fields.date') }}</label>
-            <div class="input-group">
-                <div class="input-group-addon">
-                    <i class="fa fa-calendar"></i>
-                </div>
-                {!! Form::text('date', FormCopy::field('date')->string(), ['placeholder' => trans('journals.placeholders.date'), 'id' => 'date', 'class' => 'form-control date-picker']) !!}
-            </div>
-        </div>
     </div>
     <div class="col-md-6">
-        <div class="form-group">
-            {!! Form::foreignSelect(
-                'journal_id',
-                [
-                'preset' => (isset($model) && $model->journal ? $model->journal : FormCopy::field('journal')->select()),
-                'class' => App\Models\Journal::class,
-                'enableNew' => true,
-                'labelKey' => __('journals.fields.journal'),
-                'placeholderKey' => 'journals.placeholders.journal',
-                'from' => (isset($model) ? $model : null),
-            ]
-            ) !!}
-        </div>
+    </div>
+</div>
 
+@include('cruds.fields.entry2')
+
+
+<div class="row">
+    <div class="col-md-6">
+        @include('cruds.fields.tags')
+    </div>
+    <div class="col-md-6">
         @include('cruds.fields.image')
     </div>
 </div>

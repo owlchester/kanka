@@ -569,7 +569,7 @@ function addPointMove(point) {
 
 
 function initModalForm() {
-  window.initSelect2();
+  window.initForeignSelect();
   initDeleteMapPoint();
   initIconSelect();
   var phaseFirst = $('.phase-first');

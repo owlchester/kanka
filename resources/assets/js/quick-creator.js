@@ -81,7 +81,7 @@ function quickCreatorSubformHandler() {
 
     quickCreatorSubmitBtn = $('#quick-creator-submit-btn');
 
-    window.initSelect2();
+    window.initForeignSelect();
     window.initTags();
     quickCreatorDuplicateName();
 

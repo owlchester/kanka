@@ -1,23 +1,36 @@
 <div class="row">
     <div class="col-md-6">
         @include('cruds.fields.name', ['trans' => 'locations'])
+    </div>
+    <div class="col-md-6">
         @include('cruds.fields.type', ['base' => \App\Models\Location::class, 'trans' => 'locations'])
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
         <div class="form-group">
-            {!! Form::select2(
+            {!! Form::foreignSelect(
                 'parent_location_id',
-                (isset($model) && $model->parentLocation ? $model->parentLocation : FormCopy::field('parentLocation')->select(true, \App\Models\Location::class)),
-                App\Models\Location::class,
-                true,
-                'locations.fields.location',
-                'locations.find',
-                'locations.placeholders.location',
-                (isset($model) ? $model : null)
+                [
+                    'preset' => (isset($model) && $model->parentLocation ? $model->parentLocation : FormCopy::field('parentLocation')->select(true, \App\Models\Location::class)),
+                    'class' => App\Models\Location::class,
+                    'quickCreator' => true,
+                    'labelKey' => 'locations.fields.location',
+                    'placeholderKey' => 'locations.placeholders.location',
+                    'from' => isset($model) ? $model : null,
+                ],
             ) !!}
         </div>
+    </div>
+</div>
+@include('cruds.fields.entry2')
+
+<div class="row">
+    <div class="col-md-6">
         @include('cruds.fields.tags')
     </div>
     <div class="col-md-6">
-        @include('cruds.fields.entry2')
         @include('cruds.fields.image')
     </div>
 </div>

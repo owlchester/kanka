@@ -50,18 +50,24 @@ class EntityCreatorController extends Controller
         // Make sure the user is allowed to create this kind of entity
         $model = $this->entityService->getClass($type);
         $this->authorize('create', $model);
+        $origin = request()->get('origin');
+        $target = request()->get('target');
 
         return view('entities.creator.form', [
             'type' => $type,
             'singularType' => Str::singular($type),
             'source' => null,
+            'origin' => $origin,
+            'target' => $target,
         ]);
     }
 
     /**
      * @param $type
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function store($type)
     {
@@ -81,6 +87,9 @@ class EntityCreatorController extends Controller
             $values['entry'] = '';
         }
 
+        // Remove target as we need that for something else
+        unset($values['_target']);
+
         /** @var MiscModel $model */
         $model = new $class;
         $new = $model->create($values);
@@ -89,6 +98,15 @@ class EntityCreatorController extends Controller
 
         // Content for the selector
         $entities = $this->availableEntities();
+
+        // Have a target? Return json for the js to handle it instead
+        if ($request->has('_target')) {
+            return response()->json([
+                '_target' => $request->get('_target'),
+                '_id' => $new->id,
+                '_name' => $new->name,
+            ]);
+        }
 
         return view('entities.creator.selection', [
             'entities' => $entities,

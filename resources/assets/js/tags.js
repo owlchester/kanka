@@ -1,6 +1,6 @@
 $(document).ready(function() {
     window.initTags = function() {
-        console.log('form-tags loop');
+        //console.log('form-tags loop');
         $.each($('.form-tags'), function (index) {
 
             let dropdownParent = $(this).data('dropdown-parent');

@@ -11,19 +11,7 @@
 
 <div class="row">
     <div class="col-md-6">
-        <div class="form-group">
-            {!! Form::foreignSelect(
-                'note_id',
-                [
-                    'preset' => (isset($model) && $model->note ? $model->note : FormCopy::field('note')->select()),
-                    'class' => App\Models\Note::class,
-                    'enableNew' => true,
-                    'placeholder' => __('notes.placeholders.note'),
-                    'labelKey' => 'notes.fields.note',
-                    'from' => (isset($model) ? $model : null),
-                ]
-            ) !!}
-        </div>
+        @include('cruds.fields.note', ['parent' => true, 'from' => isset($model) ? $model : null, 'quickCreator' => true])
     </div>
 </div>
 

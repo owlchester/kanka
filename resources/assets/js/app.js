@@ -4,13 +4,14 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+
 require('./bootstrap');
 
-import select2 from './components/select2.js';
 import deleteConfirm from './components/delete-confirm.js';
 import dynamicMentions from "./mention";
 
 require('./tags.js');
+require('./components/select2.js');
 
 $(document).ready(function() {
 
@@ -25,10 +26,8 @@ $(document).ready(function() {
         sanitize: false,
     });*/
 
-
-    window.initSelect2();
+    window.initForeignSelect();
     initSpectrum();
-    initCheckboxSwitch();
     initCopyToClipboard();
     initSidebar();
     initSubmenuSwitcher()
@@ -153,8 +152,7 @@ $(document).ready(function() {
         $('[data-toggle="tooltip"]').tooltip();
 
         // Also re-bind select2 elements on modal show
-        window.initSelect2();
-        initCheckboxSwitch();
+        window.initForeignSelect();
         initAjaxPagination();
         initTooltips();
         initSpectrum();
@@ -169,21 +167,6 @@ $(document).on('select2:open', () => {
     let allFound = document.querySelectorAll('.select2-container--open .select2-search__field');
     allFound[allFound.length - 1].focus();
 });
-
-/**
- * Init the toggle elements
- */
-function initCheckboxSwitch() {
-    //$('[data-toggle="switch"]').bootstrapSwitch();
-}
-
-/**
- * Select2 is used for all the fancy dropdowns
- */
-function initSelect2() {
-    console.log('app initSelect2');
-    select2();
-}
 
 
 /**

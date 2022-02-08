@@ -501,7 +501,7 @@ function addPointMove(point) {
  * Modal form submit catcher
  */
 function initModalForm() {
-    window.initSelect2();
+    window.initForeignSelect();
     initDeleteMapPoint();
     initIconSelect();
 

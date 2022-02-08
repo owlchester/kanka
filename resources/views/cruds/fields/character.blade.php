@@ -22,11 +22,17 @@ if (isset($enableNew)) {
 if (isset($parent) && $parent) {
     $data['labelKey'] = 'characters.fields.character';
 }
+if (isset($labelKey)) {
+    $data['labelKey'] = __($labelKey);
+}
 if (isset($dropdownParent)) {
     $data['dropdownParent'] = $dropdownParent;
 }
 if (isset($from)) {
     $data['from'] = $from;
+}
+if (isset($quickCreator)) {
+    $data['quickCreator'] = $quickCreator;
 }
 @endphp
 <div class="form-group">

@@ -28,6 +28,9 @@ if (isset($dropdownParent)) {
 if (isset($from)) {
     $data['from'] = $from;
 }
+if (isset($quickCreator)) {
+    $data['quickCreator'] = true;
+}
 @endphp
 <div class="form-group">
     {!! Form::foreignSelect(
