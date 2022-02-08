@@ -159,14 +159,27 @@ class CharacterObserver extends MiscObserver
      */
     protected function saveRaces(MiscModel $character)
     {
-        if (!request()->has('races')) {
+        if (!request()->has('save_races') && !request()->has('races')) {
             return;
         }
 
         /** @var Race $races */
         $existing = [];
+        $unique = [];
+        $recreate = [];
         foreach ($character->races as $race) {
+            // If it already exists, we have an issue
+            if (!empty($existing[$race->id])) {
+                $recreate[$race->id] = $race->id;
+                $character->races()->detach($race->id);
+                continue;
+            }
             $existing[$race->id] = $race->id;
+            $unique[$race->id] = $race->id;
+        }
+
+        if (!empty($recreate)) {
+            $character->races()->attach($recreate);
         }
 
         $races = request()->get('races', []);
@@ -175,13 +188,19 @@ class CharacterObserver extends MiscObserver
             // Existing race, do nothing
             if (!empty($existing[$id])) {
                 unset($existing[$id]);
-            } else {
-                $race = Race::find($id);
-                if (empty($race)) {
-                    continue;
-                }
-                $newRaces[] = $race->id;
+                continue;
             }
+            // If already managed, again, ignore
+            if (!empty($unique[$id])) {
+                continue;
+            }
+
+            $race = Race::find($id);
+            if (empty($race)) {
+                continue;
+            }
+            $newRaces[] = $race->id;
+
         }
         $character->races()->attach($newRaces);
 

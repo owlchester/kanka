@@ -28,8 +28,13 @@
             @if (!$model->races->isEmpty() && !$model->hasAge())
             <div class="element profile-race">
                 <div class="title">{{ __('characters.fields.races') }}</div>
+                @php $existingRaces = []; @endphp
                 @foreach ($model->races as $race)
-                {!! $race->tooltipedLink() !!}
+                    @if(!empty($existingRaces[$race->id]))
+                        @continue
+                    @endif
+                    @php $existingRaces[$race->id] = true; @endphp
+                    {!! $race->tooltipedLink() !!}
                 @endforeach
             </div>
             @elseif ($model->races->isEmpty() && $model->hasAge())
@@ -40,7 +45,12 @@
             @else
             <div class="element profile-race-age">
                 <div class="title">{{ __('characters.fields.races') }}, {{ __('characters.fields.age') }}</div>
+                @php $existingRaces = []; @endphp
                 @foreach ($model->races as $race)
+                    @if(!empty($existingRaces[$race->id]))
+                        @continue
+                    @endif
+                    @php $existingRaces[$race->id] = true; @endphp
                     {!! $race->tooltipedLink() !!}
                 @endforeach
                 <span>{{ $model->age }}</span>

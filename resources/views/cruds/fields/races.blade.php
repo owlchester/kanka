@@ -34,7 +34,7 @@ if (isset($from)) {
     $data['from'] = $from;
 }
 @endphp
-<input type="hidden" name="sync_org_members" value="1">
+<input type="hidden" name="save_races" value="1">
 <div class="form-group">
     {!! Form::races(
         'id',

@@ -151,6 +151,7 @@ class Race extends MiscModel
 
         return Character
             ::select('characters.*')
+            ->distinct('characters.id')
             ->leftJoin('character_race as cr', function ($join) {
                 $join->on('cr.character_id', '=', 'characters.id');
             })

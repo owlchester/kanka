@@ -21,7 +21,12 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
                 @endif
 
                 @if ($campaign->enabled('races') && !$model->races->isEmpty())
+                    @php $existingRaces = []; @endphp
                     @foreach ($model->races as $race)
+                        @if(!empty($existingRaces[$race->id]))
+                            @continue
+                        @endif
+                        @php $existingRaces[$race->id] = true; @endphp
                     <p class="entity-race" data-foreign="{{ $race->id }}">
                         <b>{{ __('characters.fields.race') }}</b><br />
                         {!! $race->tooltipedLink() !!}
