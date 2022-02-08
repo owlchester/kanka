@@ -248,7 +248,9 @@ class CampaignPolicy
      */
     public function gallery(?User $user, Campaign $campaign): bool
     {
-        return $user && UserCache::user($user)->admin() && $campaign->boosted(true);
+        return $user && $campaign->boosted(true) && (
+            UserCache::user($user)->admin() || $this->checkPermission('gallery', $user, $campaign)
+        );
     }
 
     /**

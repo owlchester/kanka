@@ -290,6 +290,7 @@ TEXT
                 'delete'        => 'Delete',
                 'edit'          => 'Edit',
                 'entity-note'   => 'Post',
+                'gallery'       => 'Gallery',
                 'manage'        => 'Manage',
                 'members'       => 'Members',
                 'permission'    => 'Permissions',
