@@ -80093,13 +80093,10 @@ $(document).ready(function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_select2_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/select2.js */ "./resources/assets/js/components/select2.js");
-/* harmony import */ var _components_select2_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_components_select2_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_ajax_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/ajax-modal */ "./resources/assets/js/components/ajax-modal.js");
+/* harmony import */ var _components_ajax_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/ajax-modal */ "./resources/assets/js/components/ajax-modal.js");
 /**
  * Crud
  */
-
  // Character
 
 var characterAddPersonality, characterTemplatePersonality;
@@ -80144,7 +80141,7 @@ $(document).ready(function () {
     initCharacterOrganisation();
   }
 
-  Object(_components_ajax_modal__WEBPACK_IMPORTED_MODULE_1__["default"])();
+  Object(_components_ajax_modal__WEBPACK_IMPORTED_MODULE_0__["default"])();
   entityFormActions = $('.form-submit-actions');
 
   if (entityFormActions.length > 0) {
@@ -80294,7 +80291,7 @@ function characterDeleteRowHandler() {
 
   characterSortPersonality.sortable();
   characterSortAppearance.sortable();
-  _components_select2_js__WEBPACK_IMPORTED_MODULE_0___default()();
+  window.initForeignSelect();
 }
 /**
  *

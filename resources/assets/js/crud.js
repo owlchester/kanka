@@ -2,7 +2,6 @@
  * Crud
  */
 
-import select2 from './components/select2.js';
 import ajaxModal from "./components/ajax-modal";
 
 // Character
@@ -219,7 +218,7 @@ function characterDeleteRowHandler() {
     // Always re-calc the sortable traits
     characterSortPersonality.sortable();
     characterSortAppearance.sortable();
-    select2();
+    window.initForeignSelect();
 }
 
 /**
