@@ -100,6 +100,9 @@ trait MentionTrait
                 } elseif ($type == 'alias') {
                     $data['alias'] = (int) $value;
                     $data['custom'] = true;
+                } elseif ($type == 'anchor') {
+                    $data['anchor'] = $value;
+                    $data['custom'] = true;
                 }
             }
         }
