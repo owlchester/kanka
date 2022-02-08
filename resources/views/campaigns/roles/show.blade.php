@@ -122,6 +122,10 @@
                             <code>{{ __('campaigns.roles.permissions.actions.members') }}</code>:
                             {{ __('campaigns.roles.permissions.helpers.members') }}
                         </li>
+                        <li>
+                            <code>{{ __('campaigns.roles.permissions.actions.gallery') }}</code>:
+                            {{ __('campaigns.roles.permissions.helpers.gallery') }}
+                        </li>
                     </ul>
 
                     <p>
