@@ -9,6 +9,7 @@ $model = Arr::get($options, 'model', null);
 $enableNew = Arr::get($options, 'enableNew', true);
 $label = Arr::get($options, 'label', true);
 $filterOptions = Arr::get($options, 'filterOptions', []);
+$dropdownParent = Arr::get($options, 'dropdownParent', '#app');
 $helper = Arr::get($options, 'helper', null);
 if (!is_array($filterOptions)) {
     $filterOptions = [$filterOptions];
@@ -49,7 +50,12 @@ elseif(!empty($model) && !empty($model->entity)) {
 </label>
 @endif
 
-<select multiple="multiple" name="tags[]" id="{{ Arr::get($options, 'id', 'tags[]') }}" class="form-control form-tags" style="width: 100%" data-url="{{ route('tags.find') }}" data-allow-new="{{ $enableNew ? 'true' : 'false' }}" data-allow-clear="{{ Arr::get($options, 'allowClear', 'true') }}" data-new-tag="{{ trans('tags.new_tag') }}" data-placeholder="">
+<select multiple="multiple" name="tags[]" id="{{ Arr::get($options, 'id', 'tags_' . uniqid() . '') }}"
+        class="form-control form-tags" style="width: 100%"
+        data-url="{{ route('tags.find') }}" data-allow-new="{{ $enableNew ? 'true' : 'false' }}"
+        data-allow-clear="{{ Arr::get($options, 'allowClear', 'true') }}" data-new-tag="{{ __('tags.new_tag') }}"
+        data-placeholder="" @if (!empty($dropdownParent)) data-dropdown-parent="{{ $dropdownParent }}" @endif
+>
     @foreach ($selectedOption as $key => $tag)
         <option value="{{ $key }}" data-colour="{{ $tag->colourClass() }}" selected="selected">{{ $tag->name }}</option>
     @endforeach

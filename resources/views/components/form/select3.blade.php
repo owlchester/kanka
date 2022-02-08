@@ -9,6 +9,7 @@ $selectedOption = [];
 $prefill = Arr::get($options, 'preset');
 $prefillModel = Arr::get($options, 'class');
 $allowNew = Arr::get($options, 'allowNew', false);
+$quickCreator = Arr::get($options, 'quickCreator', false);
 $labelKey = Arr::get($options, 'labelKey');
 $searchParams = Arr::get($options, 'searchParams');
 $searchRouteName = Arr::get($options, 'searchRouteName');
@@ -69,9 +70,11 @@ if (!empty($from)) {
 $fieldUniqIdentifier = $fieldId . '_' . uniqid();
 ?>
 <label>{{ __($labelKey) }}</label>
-@if ($allowNew)
+
+@if ($allowNew || !empty($quickCreator))
     <div class="input-group input-group-sm">
 @endif
+
 {!! Form::select(
     $fieldId,
     $selectedOption,
@@ -96,4 +99,11 @@ $fieldUniqIdentifier = $fieldId . '_' . uniqid();
         </a>
     </div>
 </div>
+@elseif(!empty($quickCreator))
+    <div class="input-group-btn">
+        <a class="quick-creator-subform btn btn-tab-form" data-url="{{ route('entity-creator.form', ['type' => $pluralField, 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier]) }}">
+            <span class="glyphicon glyphicon-plus"></span>
+        </a>
+    </div>
+    </div>
 @endif

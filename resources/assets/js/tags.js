@@ -1,14 +1,25 @@
 $(document).ready(function() {
-    window.initCategories = function() {
+    window.initTags = function() {
+        console.log('form-tags loop');
         $.each($('.form-tags'), function (index) {
+
+            let dropdownParent = $(this).data('dropdown-parent');
+
+
+            if ($(this).hasClass("select2-hidden-accessible")) {
+                return;
+            }
+
+//            console.log('generate', $(this).data('dropdown-parent'));
             $(this).select2({
                 tags: $(this).data('allow-new'),
                 allowClear: $(this).data('allow-clear'),
+                dropdownParent: dropdownParent || '',
                 minimumInputLength: 0,
                 ajax: {
                     quietMillis: 500,
                     delay: 500,
-                    url: $(this).attr('data-url'),
+                    url: $(this).data('url'),
                     dataType: 'json',
                     data: function (params) {
                         return {
@@ -52,5 +63,5 @@ $(document).ready(function() {
         });
     };
 
-    window.initCategories();
+    window.initTags();
 });

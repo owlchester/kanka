@@ -26,7 +26,7 @@ $(document).ready(function() {
     });*/
 
 
-    initSelect2();
+    window.initSelect2();
     initSpectrum();
     initCheckboxSwitch();
     initCopyToClipboard();
@@ -153,11 +153,10 @@ $(document).ready(function() {
         $('[data-toggle="tooltip"]').tooltip();
 
         // Also re-bind select2 elements on modal show
-        initSelect2();
+        window.initSelect2();
         initCheckboxSwitch();
         initAjaxPagination();
         initTooltips();
-        window.initCategories();
         initSpectrum();
         initDynamicDelete();
         initImageRemoval();
@@ -182,6 +181,7 @@ function initCheckboxSwitch() {
  * Select2 is used for all the fancy dropdowns
  */
 function initSelect2() {
+    console.log('app initSelect2');
     select2();
 }
 

@@ -8,7 +8,8 @@
             'tag_id',
             [
                 'model' => isset($model) ? $model : FormCopy::model(),
-                'enableNew' => isset($enableNew) ? $enableNew : auth()->user()->can('create', \App\Models\Tag::class)
+                'enableNew' => isset($enableNew) ? $enableNew : auth()->user()->can('create', \App\Models\Tag::class),
+                'dropdownParent' => isset($dropdownParent) ? $dropdownParent : '#app'
             ]
         ) !!}
     </div>
