@@ -12,7 +12,7 @@
         @include('cruds.fields.map', ['parent' => true, 'from' => (isset($model) ? $model : null)])
     </div>
     <div class="col-md-6">
-        @include('cruds.fields.location')
+        @include('cruds.fields.location', ['quickCreator' => true])
     </div>
 </div>
 

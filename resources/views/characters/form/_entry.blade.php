@@ -22,10 +22,10 @@ if (request()->route()->getName() == 'characters.random') {
 <div class="row">
     <div class="col-md-6">
         @include('cruds.fields.title')
-        @include('cruds.fields.location')
+        @include('cruds.fields.location', ['quickCreator' => true])
     </div>
     <div class="col-md-6">
-        @include('cruds.fields.family')
+        @include('cruds.fields.family', ['quickCreator' => true])
         @include('cruds.fields.races')
     </div>
 </div>

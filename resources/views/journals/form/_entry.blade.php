@@ -41,7 +41,7 @@
     <div class="col-md-6">
         <div class="row">
             <div class="col-sm-6">
-                @include('cruds.fields.character', ['labelKey' => 'journals.fields.author'])
+                @include('cruds.fields.character', ['labelKey' => 'journals.fields.author', 'quickCreator' => true])
             </div>
             <div class="col-sm-6">
                 @include('cruds.fields.location', ['quickCreator' => true])
