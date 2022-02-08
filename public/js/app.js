@@ -79160,15 +79160,6 @@ $(document).ready(function () {
 
   treeViewInit();
   manageTabs();
-  manageDashboardNotifications(); // Live search on forms
-
-  /*$.each($('.datagrid-search'), function(index) {
-      $(this).submit(function(event) {
-          event.preventDefault();
-           window.location.href =
-      });
-  });*/
-
   Object(_components_delete_confirm_js__WEBPACK_IMPORTED_MODULE_0__["default"])();
   Object(_mention__WEBPACK_IMPORTED_MODULE_1__["default"])();
   initTogglePasswordFields();
@@ -79260,27 +79251,6 @@ function manageTabs() {
 
   var tabHash = window.location.hash.replace('tab_', '');
   $('ul.nav-tabs > li > a[href="' + tabHash + '"]').tab('show');
-}
-/**
- *
- */
-
-
-function manageDashboardNotifications() {
-  $.each($('.click-notification'), function (index) {
-    $(this).modal();
-  });
-  $.each($('.notification-delete'), function (index) {
-    $(this).on('click', function () {
-      $.ajax({
-        url: $(this).data('url'),
-        dataType: 'json'
-      }); // Had this in the done, but it never fired?
-
-      var parent = $(this).data('parent');
-      $('#' + parent).modal('toggle');
-    });
-  });
 }
 /**
  * Show/Hide password field helpers
@@ -81438,17 +81408,18 @@ function quickCreatorBackButton() {
 __webpack_require__(/*! corejs-typeahead */ "./node_modules/corejs-typeahead/dist/typeahead.bundle.js");
 
 window.Bloodhound = __webpack_require__(/*! bloodhound-js */ "./node_modules/bloodhound-js/index.js");
-var liveSearchField,
-    liveSearchResults,
-    liveSearchRunning = false;
+var liveSearchField;
 var liveSearchForm, liveSearchClose;
 var searchEngine;
+var liveSearchTargetUrl;
 $(document).ready(function () {
   liveSearchField = $('.typeahead');
 
-  if (liveSearchField.length === 1) {
-    initLiveSearch();
+  if (liveSearchField.length !== 1) {
+    return;
   }
+
+  initLiveSearch();
 });
 /**
  * Init the bloodhound search engine
@@ -81490,7 +81461,7 @@ function initLiveSearch() {
       }
     }
   }) //Catch typeahead events
-  .on('typeahead:select', submitSuggestion).on('typeahead:autocomplete', submitSuggestion); // Mobile search
+  .on('typeahead:select', submitSelection).on('typeahead:autocomplete', submitSuggestion).on('keyup', submitEnter); // Mobile search
 
   liveSearchForm = $('.live-search-form');
   liveSearchClose = $('.live-search-close');
@@ -81513,9 +81484,26 @@ function initLiveSearch() {
 
 
 function submitSuggestion(ev, suggestion) {
+  //console.log('suggestion');
   //liveSearchField.val(suggestion.name);
   liveSearchField.prop('disabled', true);
   window.location = suggestion.url;
+}
+
+function submitSelection(ev, suggestion) {
+  liveSearchTargetUrl = suggestion.url; //console.log('selection', ev);
+}
+
+function submitEnter(ev) {
+  if (ev.keyCode !== 13) {
+    return;
+  } //console.log('trigger search', liveSearchTargetUrl);
+
+
+  if (liveSearchTargetUrl) {
+    liveSearchField.prop('disabled', true);
+    window.location = liveSearchTargetUrl;
+  }
 }
 
 /***/ }),

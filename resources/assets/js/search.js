@@ -4,16 +4,19 @@
 require('corejs-typeahead');
 window.Bloodhound = require('bloodhound-js');
 
-var liveSearchField, liveSearchResults, liveSearchRunning = false;
+var liveSearchField;
 var liveSearchForm, liveSearchClose;
 var searchEngine;
+var liveSearchTargetUrl;
+
 
 
 $(document).ready(function() {
     liveSearchField = $('.typeahead');
-    if (liveSearchField.length === 1) {
-        initLiveSearch();
+    if (liveSearchField.length !== 1) {
+        return;
     }
+    initLiveSearch();
 });
 
 /**
@@ -67,8 +70,10 @@ function initLiveSearch() {
     })
 
     //Catch typeahead events
-    .on('typeahead:select', submitSuggestion)
-    .on('typeahead:autocomplete', submitSuggestion);
+    .on('typeahead:select', submitSelection)
+    .on('typeahead:autocomplete', submitSuggestion)
+    .on('keyup', submitEnter)
+    ;
 
     // Mobile search
     liveSearchForm = $('.live-search-form');
@@ -92,7 +97,25 @@ function initLiveSearch() {
  * or autocomplete event
  */
 function submitSuggestion(ev, suggestion) {
+    //console.log('suggestion');
     //liveSearchField.val(suggestion.name);
     liveSearchField.prop('disabled', true);
     window.location = suggestion.url;
+}
+
+function submitSelection(ev, suggestion) {
+    liveSearchTargetUrl = suggestion.url;
+    //console.log('selection', ev);
+}
+
+function submitEnter(ev) {
+    if (ev.keyCode !== 13) {
+        return;
+    }
+
+    //console.log('trigger search', liveSearchTargetUrl);
+    if (liveSearchTargetUrl) {
+        liveSearchField.prop('disabled', true);
+        window.location = liveSearchTargetUrl;
+    }
 }
