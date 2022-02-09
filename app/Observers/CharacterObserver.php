@@ -17,20 +17,21 @@ class CharacterObserver extends MiscObserver
     public function crudSaved(MiscModel $model)
     {
         parent::crudSaved($model);
-        $this->saveTraits($model, 'personality');
-        $this->saveTraits($model, 'appearance');
-        $this->saveOrganisations($model);
+        $this->saveTraits($model, 'personality')
+            ->saveTraits($model, 'appearance')
+            ->saveOrganisations($model)
+            ->saveRaces($model);
     }
 
     /**
      * @param MiscModel $model
      */
-    protected function saveTraits(MiscModel $character, $trait = 'personality')
+    protected function saveTraits(MiscModel $character, $trait = 'personality'): self
     {
         // Users who can edit the character but can't access personality traits shouldn't be allowed to
         // change those traitrs.
         if ($trait == 'personality' && !auth()->user()->can('personality', $character)) {
-            return;
+            return $this;
         }
 
         $existing = [];
@@ -66,6 +67,8 @@ class CharacterObserver extends MiscObserver
         foreach ($existing as $id => $model) {
             $model->delete();
         }
+
+        return $this;
     }
 
     /**
@@ -73,12 +76,12 @@ class CharacterObserver extends MiscObserver
      * @param MiscModel $character
      * @throws \Exception
      */
-    protected function saveOrganisations(MiscModel $character): void
+    protected function saveOrganisations(MiscModel $character): self
     {
         // If the organisations array isn't provided, skip this feature. The crud interface will always provide one,
         // and the api calls will provide one if necessary.
         if (!request()->has('character_save_organisations')) {
-            return;
+            return $this;
         }
 
         /** @var OrganisationMember $org */
@@ -152,15 +155,17 @@ class CharacterObserver extends MiscObserver
         foreach ($existing as $id => $model) {
             $model->delete();
         }
+
+        return $this;
     }
 
     /**
      * @param MiscModel $character
      */
-    protected function saveRaces(MiscModel $character)
+    protected function saveRaces(MiscModel $character): self
     {
         if (!request()->has('save_races') && !request()->has('races')) {
-            return;
+            return $this;
         }
 
         /** @var Race $races */
@@ -208,6 +213,8 @@ class CharacterObserver extends MiscObserver
         if (!empty($existing)) {
             $character->races()->detach($existing);
         }
+
+        return $this;
     }
 
     /**
@@ -216,8 +223,6 @@ class CharacterObserver extends MiscObserver
     public function saved(MiscModel $model)
     {
         parent::saved($model);
-
-        $this->saveRaces($model);
 
 
         // Clear some cache
