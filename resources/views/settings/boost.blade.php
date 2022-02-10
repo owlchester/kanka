@@ -63,7 +63,7 @@
                         <li>{{ __('settings.boost.benefits.entity_logs') }}</li>
                     </ul>
                     <div class="text-center">
-                        <a href="{{ route('front.features', '#superboost') }}" target="_blank">
+                        <a href="{{ route('front.pricing', '#boost') }}" target="_blank">
                             {{ __('settings.boost.benefits.more.superboosted') }}
                         </a>
                     </div>

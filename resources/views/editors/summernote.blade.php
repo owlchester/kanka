@@ -56,7 +56,7 @@
                 </div>
                 <div class="modal-body">
                     <p id="superboosted-error">{!! __('campaigns.superboosted.gallery.error.text', [
-    'superboosted' => link_to_route('front.features', __('crud.superboosted_campaigns'), '#superboost', ['target' => '_blank'])
+    'superboosted' => link_to_route('front.features', __('crud.superboosted_campaigns'), '#boost', ['target' => '_blank'])
 ]) !!}</p>
                 </div>
                 <div class="modal-footer">
