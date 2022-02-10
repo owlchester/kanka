@@ -107,6 +107,7 @@ return [
         'boosted_campaigns'             => 'This feature is only available for :boosted.',
         'node_must_not_be_a_descendant' => 'Invalid node (tag, parent location): it would be a descendant of itself.',
         'unavailable_feature'           => 'Unavailable feature',
+        'cannot_move_node_into_itself'  => 'The selected parent entity is invalid. This could be due to it having this entity as the parent.',
     ],
     'events'                    => [
         'hint'  => 'Shown below is a list of all the Calendars in which this entity was added using the "Add an event to a calendar" interface.',

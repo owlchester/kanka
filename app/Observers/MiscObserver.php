@@ -57,6 +57,9 @@ abstract class MiscObserver
         $attributes = $model->getAttributes();
         if (array_key_exists('entry', $attributes)) {
             $model->entry = $this->purify(Mentions::codify($model->entry));
+            if (method_exists($model, 'forceBoundReset')) {
+                $model->forceBoundReset();
+            }
         }
 
         // Handle image. Let's use a service for this.

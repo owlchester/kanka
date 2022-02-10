@@ -103,6 +103,7 @@ trait Nested
      */
     protected function callPendingAction()
     {
+        //dump('nested saving');
         $this->moved = false;
 
         if ( ! $this->pending && ! $this->exists) {
@@ -112,11 +113,19 @@ trait Nested
         if ( ! $this->pending) return;
 
         $method = 'action'.ucfirst(array_shift($this->pending));
+        //dump($method);
         $parameters = $this->pending;
 
         $this->pending = null;
 
         $this->moved = call_user_func_array([ $this, $method ], $parameters);
+    }
+
+    public function forceBoundReset()
+    {
+        if ( ! $this->pending && ! $this->exists) {
+            $this->actionRoot();
+        }
     }
 
     /**
@@ -155,8 +164,11 @@ trait Nested
             $this->setLft($cut);
             $this->setRgt($cut + 1);
 
+            //dump($this->getBounds());
             return true;
         }
+        //dump('exists');
+        //dump($this->getLowerBound() + 1);
 
         return $this->insertAt($this->getLowerBound() + 1);
     }
