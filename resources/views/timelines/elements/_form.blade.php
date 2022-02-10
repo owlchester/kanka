@@ -31,9 +31,8 @@
 
 
 <div class="form-group">
-    <label>{{ trans('crud.fields.entry') }}</label>
+    <label>{{ __('crud.fields.entry') }}</label>
     {!! Form::textarea('entryForEdition', null, ['class' => 'form-control html-editor', 'id' => 'element-entry', 'name' => 'entry']) !!}
-
 
     {!! Form::hidden('use_entity_entry', 0) !!}
     <label>
@@ -65,7 +64,7 @@
             {!! Form::select('colour', FormCopy::colours(false), (!empty($model) ? null : 'grey'), ['class' => 'form-control']) !!}
         </div>
     </div>
-    <div class="col-xs-6">
+    <div class="col-md-6">
         <div class="form-group">
             <label>{{ __('timelines/elements.fields.icon') }}</label>
             @if ($campaign->campaign()->boosted())
