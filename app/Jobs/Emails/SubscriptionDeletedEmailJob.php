@@ -48,7 +48,7 @@ class SubscriptionDeletedEmailJob implements ShouldQueue
         }
 
         $user->notify(new Header(
-            'subscriptions.notifications.deleted',
+            'subscriptions.deleted',
             'far fa-credit-card',
             'red'
         ));

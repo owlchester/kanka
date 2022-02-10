@@ -6,7 +6,7 @@
 </head>
 <body>
     <p>
-        Failed payment too many times for user {{ $user->name }} (#{{ $user->id }}) <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>.
+        Failed payment too many times for user <a href="{{ route('admin.users.show', $user) }}">{{ $user->name }}</a> (#{{ $user->id }}) <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>.
     </p>
 </body>
 </html>

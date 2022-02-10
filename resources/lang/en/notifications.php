@@ -42,7 +42,7 @@ return [
     'no_notifications'  => 'Notifications will appear here once you have some.',
     'subscriptions'     => [
         'charge_fail'   => 'An error occurred while processing your payment. Please wait a moment while we try again. If nothing changes, please contact us.',
-        'deleted'       => 'Your subscription to Kanka was cancelled after too many failed attempts to charge your card. Please go to your Subscription settings and try updating your payment details.',
+        'deleted'       => 'Your subscription to Kanka was automatically cancelled after too many failed attempts to charge your card. Please go to your Subscription settings and try updating your payment details.',
         'ended'         => 'Your subscription to Kanka has ended. Your campaign boosts and Discord roles have been removed. We hope to see you back soon!',
         'failed'        => 'We couldn\'t charge your payment details. Please update them in your Payment Method settings.',
         'started'       => 'Your subscription to Kanka has started.',

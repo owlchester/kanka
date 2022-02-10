@@ -8,7 +8,7 @@
     <p>
         Dear {{ $user->name }},
     </p>
-    <p>We couldn't charge your card 3 times in a row, and subsequently your subscription has been cancelled. We hope to see you back soon!
+    <p>We couldn't charge your card 3 times in a row, and subsequently your subscription has been automatically cancelled. We hope to see you back soon!
     </p>
     <p>The Kanka Team</p>
 </body>
