@@ -12,7 +12,7 @@
     },
     "devDependencies": {
         "admin-lte": "^2.4.17",
-        "axios": "^0.19",
+        "axios": "^0.21",
         "bootstrap-sass": "^3.4.1",
         "bread-compressor-cli": "^1.1.0",
         "cross-env": "^7.0",
