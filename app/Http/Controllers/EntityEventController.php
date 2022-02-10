@@ -60,6 +60,17 @@ class EntityEventController extends Controller
 
     /**
      * @param Entity $entity
+     * @param EntityEvent $entityEvent
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function show(Entity $entity, EntityEvent $entityEvent)
+    {
+        return redirect()
+            ->route('entities.entity_events.index', $entity);
+    }
+
+    /**
+     * @param Entity $entity
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
