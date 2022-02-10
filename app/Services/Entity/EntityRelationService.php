@@ -36,6 +36,9 @@ class EntityRelationService
     /** @var array Loaded relation IDS */
     protected $relationIds = [];
 
+    /** @var array Loaded org members to avoid things getting messy */
+    protected $orgMembers = [];
+
     /** @var array Mirrored IDs */
     protected $mirrors = [];
 
@@ -310,8 +313,11 @@ class EntityRelationService
             if (empty($member->character->entity)) {
                 return;
             }
+            if (isset($this->orgMembers[$member->id])) {
+                continue;
+            }
+            $this->orgMembers[$member->id] = true;
             $this->addEntity($member->character->entity, $member->character->getImageUrl(80, 80));
-
 
             // Add relation
             $this->relations[] = [
