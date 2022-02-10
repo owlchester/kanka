@@ -98,7 +98,7 @@ class EntityResource extends JsonResource
 
         // Get the actual model
         if ($this->withMisc) {
-            $className = 'App\Http\Resources\\' . ucfirst($entity->type) . 'Resource';
+            $className = 'App\Http\Resources\\' . ucfirst($entity->type()) . 'Resource';
             if (class_exists($className)) {
                 $obj = new $className($entity->child);
                 $data['child'] = $obj;

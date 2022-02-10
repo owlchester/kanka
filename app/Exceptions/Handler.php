@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Http\Exceptions\MaintenanceModeException;
@@ -103,6 +104,12 @@ class Handler extends ExceptionHandler
                         'error' => $exception->getMessage(),
                         'fields' => $exception->errors()
                     ], $exception->status);
+            } elseif ($exception instanceof AuthorizationException) {
+                return response()
+                    ->json([
+                        'code' => 403,
+                        'error' => $exception->getMessage()
+                    ], 403);
             }
         }
 
