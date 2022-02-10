@@ -27,7 +27,7 @@ class ExportService
      */
     public function json()
     {
-        $child = Str::studly($this->entity->type);
+        $child = Str::studly($this->entity->type());
         $className = 'App\Http\Resources\\' . $child . 'Resource';
 
         if (class_exists($className)) {
