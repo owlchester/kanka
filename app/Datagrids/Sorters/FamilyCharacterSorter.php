@@ -15,7 +15,7 @@ class FamilyCharacterSorter extends DatagridSorter
         'name' => 'characters.fields.name',
         'location.name' => 'crud.fields.location',
         'age' => 'characters.fields.age',
-        'race.name' => 'characters.fields.race',
+        //'races.name' => 'characters.fields.race',
         'sex' => 'characters.fields.sex',
         'is_dead' => 'characters.fields.is_dead',
     ];

@@ -16,7 +16,7 @@ class LocationCharacterSorter extends DatagridSorter
         'family.name' => 'characters.fields.family',
         'location.name' => 'crud.fields.location',
         'age' => 'characters.fields.age',
-        'race.name' => 'characters.fields.race',
+        //'race.name' => 'characters.fields.race',
     ];
 
     public $orderCasting = [
