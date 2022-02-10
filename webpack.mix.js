@@ -1,5 +1,5 @@
 let mix = require('laravel-mix');
-require('laravel-mix-brotli');
+//require('laravel-mix-brotli');
 
 /*
  |--------------------------------------------------------------------------
@@ -70,13 +70,13 @@ mix.js('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/tinymce.scss', 'public/css')
     .sass('resources/assets/sass/freyja/freyja.scss', 'public/css')
     .sass('resources/assets/sass/print.scss', 'public/css')
-    .brotli({
-        enabled: mix.inProduction(),
-        asset: '[path].br[query]',
-        test: /\.(js|css|html|svg)$/,
-        threshold: 10240,
-        minRatio: 0.8
-    })
+    //.brotli({
+    //    enabled: mix.inProduction(),
+    //    asset: '[path].br[query]',
+    //    test: /\.(js|css|html|svg)$/,
+    //    threshold: 10240,
+    //    minRatio: 0.8
+    //})
     // .options({
     //     processCssUrls: false,
     //     postCss:[
