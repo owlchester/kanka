@@ -46,11 +46,12 @@ function registerUserRoles() {
  * Initiate codemirror editor in the theming section
  */
 function registerCodeMirror() {
-    $.each($('.codemirror'), function (i) {
+    $.each($('.codemirror'), function () {
         let elementID = $(this).attr('id');
         CodeMirror.fromTextArea(document.getElementById(elementID), {
             extraKeys: {"Ctrl-Space": "autocomplete"},
             lineNumbers: true,
+            lineWrapping: true,
             theme: 'dracula',
         });
     });

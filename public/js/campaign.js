@@ -144,13 +144,14 @@ function registerUserRoles() {
 
 
 function registerCodeMirror() {
-  $.each($('.codemirror'), function (i) {
+  $.each($('.codemirror'), function () {
     var elementID = $(this).attr('id');
     CodeMirror.fromTextArea(document.getElementById(elementID), {
       extraKeys: {
         "Ctrl-Space": "autocomplete"
       },
       lineNumbers: true,
+      lineWrapping: true,
       theme: 'dracula'
     });
   });
