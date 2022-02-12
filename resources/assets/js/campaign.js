@@ -2,13 +2,14 @@ $(document).ready(function() {
     initRpgSystems();
     registerModules();
     registerUserRoles();
+    registerCodeMirror();
 });
 
 /**
  * Form Rpg Systems field
  */
 function initRpgSystems() {
-    $.each($('.form-rpg-systems'), function (index) {
+    $.each($('.form-rpg-systems'), function () {
         $(this).select2({
             multiple: true,
             allowClear: true,
@@ -38,5 +39,19 @@ function registerUserRoles() {
         html: true,
         sanitize: false,
         trigger: 'focus',
+    });
+}
+
+/**
+ * Initiate codemirror editor in the theming section
+ */
+function registerCodeMirror() {
+    $.each($('.codemirror'), function (i) {
+        let elementID = $(this).attr('id');
+        CodeMirror.fromTextArea(document.getElementById(elementID), {
+            extraKeys: {"Ctrl-Space": "autocomplete"},
+            lineNumbers: true,
+            theme: 'dracula',
+        });
     });
 }

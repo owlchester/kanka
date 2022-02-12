@@ -5,6 +5,7 @@ namespace App\Models;
 
 
 use App\Traits\CampaignTrait;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
@@ -18,6 +19,8 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int $created_by
  * @property string $name
  * @property string $content
+ * @property Carbon $updated_at
+ * @property Carbon $created_at
  * @property bool $is_enabled
  *
  * @method static self|Builder enabled($enabled = true)

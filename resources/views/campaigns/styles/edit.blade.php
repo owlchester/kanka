@@ -16,14 +16,14 @@
             @include('partials.errors')
 
             <div class="form-group required">
-                <label>{{ trans('campaigns/styles.fields.name') }}</label>
+                <label>{{ __('campaigns/styles.fields.name') }}</label>
                 {!! Form::text('name', null, ['class' => 'form-control']) !!}
             </div>
 
 
             <div class="form-group required">
-                <label>{{ trans('campaigns/styles.fields.content') }}</label>
-                {!! Form::textarea('content', null, ['class' => 'form-control', 'id' => 'css', 'spellcheck' => 'false']) !!}
+                <label>{{ __('campaigns/styles.fields.content') }}</label>
+                {!! Form::textarea('content', null, ['class' => 'form-control codemirror', 'id' => 'css', 'spellcheck' => 'false']) !!}
                 <p class="help-block">{{ __('campaigns.helpers.css') }}</p>
             </div>
 
@@ -47,4 +47,20 @@
 
     {{ csrf_field() }}
     {!! Form::close() !!}
+@endsection
+
+@section('scripts')
+    @parent
+    <script src="/vendor/codemirror/lib/codemirror.js"></script>
+    <script src="/vendor/codemirror/mode/css/css.js"></script>
+    <script src="/vendor/codemirror/addon/hint/show-hint.js"></script>
+    <script src="/vendor/codemirror/addon/hint/css-hint.js"></script>
+    <script src="{{ mix('js/campaign.js') }}" defer></script>
+@endsection
+
+@section('styles')
+    @parent
+    <link rel="stylesheet" href="/vendor/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="/vendor/codemirror/addon/hint/show-hint.css">
+    <link rel="stylesheet" href="/vendor/codemirror/theme/dracula.css">
 @endsection
