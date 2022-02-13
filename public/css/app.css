@@ -1227,6 +1227,39 @@ summary {
   transform: translateY(0);
 }
 
+/** Toast **/
+
+:root {
+  --toast-background: #00a65a;
+  --toast-text: white;
+}
+
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  max-height: 100%;
+  right: 20px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.toast-container .toast-success {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.toast-container .toast-success .toast-message {
+  display: inline-block;
+  background-color: var(--toast-background);
+  color: var(--toast-text);
+  padding: 10px;
+}
+
+.toast-container .toast-success .toast-message .fa-times {
+  cursor: pointer;
+  margin-left: 5px;
+}
+
 :root {
   --calendar-today: #FFFDE2;
   --calendar-week: #FFFDE2;

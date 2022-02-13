@@ -5,25 +5,25 @@
  * @var \App\Models\TimelineElement $element
  */
 ?>
-<li id="element{{ $element->id }}">
+<li id="timeline-element-{{ $element->id }}">
     {!! $element->htmlIcon() !!}
 
     <div class="timeline-item">
         @can('update', $timeline)
             <span class="time">
 
-                        <a href="{{ route('timelines.timeline_elements.edit', [$timeline, $element, 'from' => 'view']) }}" class="margin-r-5"
-                           title="{{ __('crud.edit') }}"
-                        >
-                            <i class="fa fa-edit"></i>
-                        </a>
+                <a href="{{ route('timelines.timeline_elements.edit', [$timeline, $element, 'from' => 'view']) }}" class="margin-r-5"
+                   title="{{ __('crud.edit') }}"
+                >
+                    <i class="fa fa-edit"></i>
+                </a>
 
-                        <a href="#" class="text-red delete-confirm" data-toggle="modal" data-name="{{ $element->elementName() }}"
-                           data-target="#delete-confirm" data-delete-target="delete-form-timeline-element-{{ $element->id }}"
-                           title="{{ __('crud.remove') }}">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                        </a>
-                    </span>
+                <a href="#" class="text-red delete-confirm" data-toggle="modal" data-name="{{ $element->elementName() }}"
+                   data-target="#delete-confirm" data-delete-target="delete-form-timeline-element-{{ $element->id }}"
+                   title="{{ __('crud.remove') }}">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                </a>
+            </span>
         @endcan
 
         <h3 class="timeline-header cursor entity-note-toggle" data-toggle="collapse" data-target="#timeline-element-{{ $element->id }}" data-short="timeline-element-toggle-{{ $element->id }}">

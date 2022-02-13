@@ -79168,8 +79168,8 @@ $(document).ready(function () {
   initEntityNoteToggle();
   initDynamicDelete();
   initImageRemoval();
-  initSummernoteFixes();
   initBannerPromoDismiss();
+  registerToastDismiss();
   /**
    * Whenever a modal or popover is shown, we'll need to re-bind various helpers we have.
    */
@@ -79321,14 +79321,40 @@ function initCopyToClipboard() {
     document.execCommand("copy");
     $temp.remove();
     var post = $(this).data('success');
+    var toast = $(this).data('toast');
+
+    if (toast) {
+      showToast(toast);
+      return false;
+    }
 
     if (post) {
       $(post).fadeIn();
       setTimeout(function () {
-        console.log('post', post);
         $(post).fadeOut();
       }, 3000);
-    }
+    } else return false;
+  });
+}
+/** Show an expiring message at the bottom right of the page **/
+
+
+function showToast(message) {
+  var $container = $('<div class="toast-success">');
+  $container.html('<span class="toast-message">' + message + '<i class="fa fa-times" data-toggle="dismiss"></i></span');
+  $('.toast-container').append($container);
+  setTimeout(function () {
+    $container.fadeOut();
+  }, 3000);
+  registerToastDismiss();
+}
+/** Handle closing of a toast **/
+
+
+function registerToastDismiss() {
+  $('.toast-container [data-toggle="dismiss"]').unbind('click').on('click', function (e) {
+    e.preventDefault();
+    $(this).parent().parent().fadeOut();
   });
 }
 /**
@@ -79447,8 +79473,6 @@ function initEntityNoteToggle() {
     $('#' + id + "-hide").toggle();
   });
 }
-
-function initSummernoteFixes() {}
 
 function initBannerPromoDismiss() {
   $('#banner-notification-dismiss').click(function (e) {
