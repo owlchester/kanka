@@ -155,7 +155,7 @@ $superboosted = $campaign->campaign()->boosted();
                                 @endcan
                                     <li>
                                         <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}]" data-toggle="tooltip"
-                                           data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}]" data-success="#copy-mention-success">
+                                           data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}]" data-toast="{{ __('crud.alerts.copy_mention') }}">
                                             <i class="fa fa-link"></i> {{ __('crud.actions.copy_mention') }}
                                         </a>
                                     </li>

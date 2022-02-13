@@ -15,7 +15,7 @@ $inSection = false;
         <div class="panel panel-default">
             <div class="panel-heading" data-toggle="collapse" data-target="#attribute-section-body-{{ $attribute->id }}">
                 <h4 class="panel-title">
-                    @if (Auth::check() && Auth::user()->isAdmin() && $attribute->is_private == true)
+                    @if (auth()->check() && auth()->user()->isAdmin() && $attribute->is_private == true)
                         <i class="fas fa-lock pull-right" title="{{ trans('crud.is_private') }}"></i>
                     @endif
 
@@ -28,10 +28,10 @@ $inSection = false;
     @endif
         <dt>
             <span title="{attribute:{{ $attribute->id }}}" data-toggle="tooltip"
-                  data-clipboard="{attribute:{{ $attribute->id }}}" data-success="#copy-attribute-success">
+                  data-clipboard="{attribute:{{ $attribute->id }}}" data-toast="{{ __('crud.alerts.copy_attribute') }}">
             {!! $attribute->name() !!}
             </span>
-            @if (Auth::check() && Auth::user()->isAdmin() && $attribute->is_private == true)
+            @if (auth()->check() && auth()->user()->isAdmin() && $attribute->is_private == true)
                 <i class="fas fa-lock" title="{{ trans('crud.is_private') }}"></i>
             @endif
         </dt>

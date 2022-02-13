@@ -37,7 +37,7 @@ $inSection = false;
     @endif
         <dt>
             <span title="{attribute:{{ $attribute->id }}}" data-toggle="tooltip"
-                  data-clipboard="{attribute:{{ $attribute->id }}}" data-success="#copy-attribute-success">
+                  data-clipboard="{attribute:{{ $attribute->id }}}" data-toast="{{ __('crud.alerts.copy_attribute') }}">
             {!! $attribute->name() !!}
             </span>
             @if (Auth::check() && Auth::user()->isAdmin() && $attribute->is_private == true)

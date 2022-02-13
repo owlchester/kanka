@@ -127,7 +127,6 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
                     </div>
                 @endif
                 @include('partials.success')
-                @include('entities.components.actions')
 
 @if(!empty(config('tracking.adsense')) && (auth()->guest() || auth()->user()->showAds()) && !isset($skipBannerAd) && (!isset($sidebar) || $sidebar != 'settings'))
                 <p class="text-center text-muted">
@@ -239,6 +238,26 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
 @endif
 
     @yield('modals')
+
+    <div class="toast-container">@if (false)
+       @for ($i = 0; $i < 5; $i++)
+        <div class="toast-success">
+            <span class="toast-message">
+                {{ $i }} message to the user spam
+
+                <i class="fa fa-times" data-toggle="dismiss"></i>
+            </span>
+        </div>
+        @endfor
+        <div class="toast-success">
+
+            <span class="toast-message">
+                Last message
+                <i class="fa fa-times" data-toggle="dismiss"></i>
+            </span>
+        </div>
+        @endif
+    </div>
 
     <script src="https://kit.fontawesome.com/d7f0be4a8d.js" crossorigin="anonymous"></script>
     <script src="{{ mix('js/app.js') }}" defer></script>

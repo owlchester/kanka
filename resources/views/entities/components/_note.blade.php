@@ -7,7 +7,7 @@
 */
 ?>
 <div class="entity-note-{{ $note->id }} entity-note-position-{{ $note->position }}" data-visibility="{{ $note->visibility }}">
-    <div class="box box-solid entity-note" id="entity-note-{{ $note->id }}">
+    <div class="box box-solid entity-note" id="post-{{ $note->id }}">
         <div class="box-header with-border">
             <h3 class="box-title cursor entity-note-toggle" data-toggle="collapse" data-target="#entity-note-body-{{ $note->id }}" data-short="entity-note-toggle-{{ $note->id }}">
                 <i class="fa fa-chevron-up" id="entity-note-toggle-{{ $note->id }}-show" @if($note->collapsed()) style="display: none;" @endif></i>
@@ -18,11 +18,27 @@
                 @if (auth()->check())
                     @include('cruds.partials.visibility', ['model' => $note])
 
-                    @can('entity-note', [$model, 'edit', $note])
-                        <a href="{{ route('entities.entity_notes.edit', ['entity' => $entity, 'entity_note' => $note, 'from' => 'main']) }}" class="btn btn-box-tool" title="{{ __('crud.edit') }}" role="button">
-                            <i class="fa fa-edit"></i>
-                        </a>
-                    @endcan
+
+                    <a class="dropdown-toggle btn btn-box-tool" data-toggle="dropdown" aria-expanded="false" data-placement="right" data-tree="escape">
+                        <i class="fas fa-ellipsis-v"></i>
+                        <span class="sr-only">{{__('crud.actions.actions') }}'</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                        @can('entity-note', [$model, 'edit', $note])
+                        <li>
+                            <a href="{{ route('entities.entity_notes.edit', ['entity' => $entity, 'entity_note' => $note, 'from' => 'main']) }}" title="{{ __('crud.edit') }}">
+                                <i class="fa fa-edit"></i> {{ __('crud.edit') }}
+                            </a>
+                        </li>
+                        @endcan
+                        <li>
+                            <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:note-{{ $note->id }}]" data-toggle="tooltip"
+                               data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:note-{{ $note->id }}]" data-toast="{{ __('entities/notes.copy_mention.success') }}">
+                                <i class="fa fa-link"></i> {{ __('entities/notes.copy_mention.copy') }}
+                            </a>
+                        </li>
+                    </ul>
+
                 @endif
             </div>
         </div>
