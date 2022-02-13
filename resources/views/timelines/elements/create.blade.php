@@ -28,7 +28,7 @@ __('timelines/elements.create.title')
         <div class="panel-body">
             @include('partials.errors')
 
-            {!! Form::open(['route' => ['timelines.timeline_elements.store', $timeline], 'method' => 'POST', 'id' => 'timeline-element-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform']) !!}
+            {!! Form::open(['route' => ['timelines.timeline_elements.store', $timeline], 'method' => 'POST', 'id' => 'timeline-element-form', 'enctype' => 'multipart/form-data', 'class' => 'ajax-subform', 'data-shortcut' => 1]) !!}
             @include('timelines.elements._form', ['model' => null])
 
             <div class="form-element">

@@ -171,7 +171,7 @@ class TimelineElement extends Model
             return $this->name;
         }
 
-        return $this->entity->tooltipedLink($this->name);
+        return $this->entity->tooltipedLink($this->name, false);
     }
 
     /**
