@@ -13,7 +13,7 @@
     @foreach ($models as $model)
         <tr>
             <td>
-                <a href="{{ route('admin.app-releases.edit', $model) }}">{{ $model->name }}</a><br />
+                <a href="{{ route('admin.app-releases.edit', $model) }}">{!! $model->name !!}</a><br />
                 <p class="help-block">{!! nl2br($model->excerpt) !!}</p>
             </td>
             <td>

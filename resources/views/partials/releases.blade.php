@@ -10,7 +10,7 @@
                 <div class="user-block">
                         <img class="img-circle" src="/images/favicon/apple-touch-icon-76x76.png" alt="Kanka" title="Kanka">
                     <span class="username">
-                        <a href="{{ $release->link }}" target="_blank">{{ $release->name }}</a>
+                        <a href="{{ $release->link }}" target="_blank">{!! $release->name !!}</a>
                     </span>
                     <span class="description">
                         {{ $release->published_at->isoFormat('MMMM D, Y') }}
