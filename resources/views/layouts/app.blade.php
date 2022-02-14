@@ -167,31 +167,6 @@ $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
             </div>
         </div>
     </div>
-    <!-- new foreign model -->
-    <div class="modal fade" id="new-entity-modal" tabindex="-1" role="dialog" aria-labelledby="newEntityModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ __('crud.click_modal.close') }}"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="newEntityModalLabel">{{ __('crud.new_entity.title') }}</h4>
-                </div>
-                {!! Form::open(['url' => route('entities.create'), 'method' => 'POST', 'id' => 'new-entity-form']) !!}
-                <div class="modal-body">
-                    <div class="form-group required">
-                        <label>{{ __('crud.new_entity.fields.name') }}</label>
-                        {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'new-entity-name']) !!}
-                    </div>
-                    <p class="text-red" id="new-entity-errors" style="display:none">{{ __('crud.new_entity.error') }}</p>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-success" id="new-entity-save" data-text="{{ __('crud.save') }}">{{ __('crud.save') }}</button>
-                </div>
-                {{ csrf_field() }}
-                {!! Form::hidden('target', null, ['id' => 'new-entity-type']) !!}
-                {!! Form::close() !!}
-            </div>
-        </div>
-    </div>
 
     <div class="modal fade" id="entity-modal" role="dialog" aria-labelledby="deleteConfirmLabel">
         <div class="modal-dialog" role="document">

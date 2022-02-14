@@ -2,13 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\TranslatableException;
-use App\Http\Requests\CopyEntityToCampaignRequest;
-use App\Http\Requests\CreateEntityRequest;
-use App\Http\Requests\MoveEntityRequest;
 use App\Models\Entity;
 use App\Services\EntityService;
-use Illuminate\Support\Facades\Auth;
 
 class EntityController extends Controller
 {
@@ -55,19 +50,6 @@ class EntityController extends Controller
         return $pdf
             ->loadView('cruds.export', compact('entityType', 'name', 'entities', 'exporting', 'datagridSorter'))
             ->download('kanka ' . strip_tags($realEntity->name) . ' export.pdf');
-    }
-
-    /**
-     * @param CreateEntityRequest $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function create(CreateEntityRequest $request)
-    {
-        $entity = $this->entityService->create($request->post('name'), $request->post('target'));
-        return response()->json([
-            'id' => $entity->id,
-            'name' => $entity->name
-        ]);
     }
 
     /**

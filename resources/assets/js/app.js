@@ -73,51 +73,6 @@ $(document).ready(function() {
         });
     }
 
-    $.each($('.new-entity-selector'), function (index) {
-        $(this).on('click', function (e) {
-            $('#new-entity-type').val($(this).data('entity'));
-            $('#new-entity-form').data('parent', $(this).data('parent'));
-        });
-    });
-
-    if ($('#new-entity-form').length > 0) {
-        $('#new-entity-form').on('submit', function (e) {
-            $('#new-entity-errors').hide();
-            var target = $(this).data('parent');
-            $.ajax({
-                type: "POST",
-                url: $(this).attr('action'),
-                data: $(this).serialize()
-            }).done(function (result, textStatus, xhr) {
-                if (textStatus === 'success' && result.id) {
-                    $('#' + target).children().remove().end().append(new Option(result.name, result.id)).val(result.id).trigger('change');
-
-                    // Close modal
-                    $('#new-entity-modal').modal('toggle');
-                    $('#new-entity-errors').hide();
-                    $('#new-entity-name').val('');
-
-                    // Reset submit button
-                    resetSubmitButton('#new-entity-save');
-                } else {
-                    $('#new-entity-errors').show();
-
-                    // Reset submit button
-                    resetSubmitButton('#new-entity-save');
-                }
-            }).fail(function (result, textStatus, xhr) {
-                $('#new-entity-errors').show();
-
-                // Re-enable the submit button
-                resetSubmitButton('#new-entity-save');
-            });
-
-            e.preventDefault();
-            return false;
-        });
-    }
-
-
     // Treeview for locations
     treeViewInit();
 

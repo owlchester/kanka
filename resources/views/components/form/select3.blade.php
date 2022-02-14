@@ -57,6 +57,9 @@ $searchRouteName = empty($searchRouteName) ? $pluralField . '.find' : $searchRou
 if ($allowNew) {
     $allowNew = auth()->user()->can('create', new $prefillModel);
 }
+if ($quickCreator) {
+    $quickCreator = auth()->user()->can('create', new $prefillModel);
+}
 
 //initialise to empty array if empty
 if(empty($searchParams)){

@@ -470,8 +470,6 @@ Route::group([
         Route::get('/entities/{entity}/permissions', 'PermissionController@view')->name('entities.permissions');
         Route::post('/entities/{entity}/permissions', 'PermissionController@store')->name('entities.permissions');
 
-        Route::post('/entities/create', 'EntityController@create')->name('entities.create');
-
         // The campaign management sub pages
         Route::get('/campaign', 'CampaignController@index')->name('campaign');
         Route::get('/campaign-settings', 'CampaignSettingController@index')->name('campaign_settings');

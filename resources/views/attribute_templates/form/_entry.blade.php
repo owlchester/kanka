@@ -6,7 +6,7 @@
                 'attribute_template_id',
                 (isset($model) && $model->attributeTemplate ? $model->attributeTemplate : FormCopy::field('attributeTemplate')->select()),
                 App\Models\AttributeTemplate::class,
-                true,
+                false,
                 __('attribute_templates.fields.attribute_template'),
                 null,
                 __('attribute_templates.placeholders.attribute_template')
