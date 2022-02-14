@@ -6,6 +6,10 @@ return [
         'add_role'  => 'Add role',
         'add_user'  => 'Add user',
     ],
+    'copy_mention'  => [
+        'copy'      => 'Copy advanced mention',
+        'success'   => 'Advanced mention to post copied to the clipboard.',
+    ],
     'create'        => [
         'description'   => 'Create a new post',
         'success'       => 'Post \':name\' added to :entity.',
@@ -42,9 +46,5 @@ return [
     'show'          => [
         'advanced'  => 'Advanced Permissions',
         'title'     => 'Post :name for :entity',
-    ],
-    'copy_mention'  => [
-        'copy' => 'Copy advanced mention',
-        'success' => 'Advanced mention to post copied to the clipboard.',
     ],
 ];

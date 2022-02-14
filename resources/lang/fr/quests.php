@@ -47,8 +47,9 @@ return [
         'type'          => 'Type',
     ],
     'helpers'       => [
-        'nested_parent' => 'Affichage des quêtes de :parent.',
-        'nested_without'=> 'Affichage des quêtes sans parent. Cliquer sur une rangée pour afficher les quêtes enfants.',
+        'is_completed'      => 'Sélectionner si la quête est considérée comme completée.',
+        'nested_parent'     => 'Affichage des quêtes de :parent.',
+        'nested_without'    => 'Affichage des quêtes sans parent. Cliquer sur une rangée pour afficher les quêtes enfants.',
     ],
     'hints'         => [
         'quests'    => 'Un réseau de quêtes liées peut être créé à l\'aide du champ Quête Parentale.',

@@ -121,12 +121,16 @@ return [
             'success'   => 'Widget retiré du tableau de bord.',
         ],
         'fields'                    => [
+            'class'             => 'Classe CSS',
             'dashboard'         => 'Tableau de bord',
             'name'              => 'Nom de widget personnalisé',
             'optional-entity'   => 'Liens vers une entité',
             'order'             => 'Ordre d\'affichage',
             'text'              => 'Texte',
             'width'             => 'Largeur',
+        ],
+        'helpers'                   => [
+            'class' => 'Définition d\'une classe css ajoutée au widget.',
         ],
         'orders'                    => [
             'name_asc'  => 'Nom ascendant',
@@ -162,6 +166,10 @@ return [
             'singular'          => 'Singulier',
             'tags'              => 'Filtrer la liste des entités récemment modifiées sur une ou plusieurs étiquettes.',
             'title'             => 'Récemment modifié',
+        ],
+        'tabs'                      => [
+            'advanced'  => 'Avancé',
+            'setup'     => 'Général',
         ],
         'unmentioned'               => [
             'title' => 'Entité non mentionnées',

@@ -6,6 +6,10 @@ return [
         'add_role'  => 'Ajouter un rôle',
         'add_user'  => 'Ajouter un membre',
     ],
+    'copy_mention'  => [
+        'copy'      => 'Copier la mention avancée',
+        'success'   => 'La mention avancée de la note a été copiée au presse-papier.',
+    ],
     'create'        => [
         'description'   => 'Créer une nouvelle note',
         'success'       => 'Note \':name\' ajoutée à :entity.',

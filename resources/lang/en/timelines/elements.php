@@ -13,10 +13,10 @@ return [
         'title'     => 'Edit Timeline Element',
     ],
     'fields'        => [
-        'date'  => 'Date',
-        'era'   => 'Era',
-        'icon'  => 'Icon',
-        'use_entity_entry' => 'Display the attached entity\'s entry below. This element\'s text will be displayed first if it is present.',
+        'date'              => 'Date',
+        'era'               => 'Era',
+        'icon'              => 'Icon',
+        'use_entity_entry'  => 'Display the attached entity\'s entry below. This element\'s text will be displayed first if it is present.',
     ],
     'helpers'       => [
         'entity_is_private' => 'The element\'s entity is private.',

@@ -46,9 +46,9 @@ return [
         'type'          => 'Type',
     ],
     'helpers'       => [
-        'nested_parent' => 'Displaying the quests of :parent.',
-        'nested_without'=> 'Displaying all quests that don\'t have a parent quest. Click on a row to see the children quests.',
-        'is_completed' => 'Select if the quest is considered as completed.',
+        'is_completed'      => 'Select if the quest is considered as completed.',
+        'nested_parent'     => 'Displaying the quests of :parent.',
+        'nested_without'    => 'Displaying all quests that don\'t have a parent quest. Click on a row to see the children quests.',
     ],
     'hints'         => [
         'quests'    => 'A web of interlocking quests can be built using the Parent Quest field.',

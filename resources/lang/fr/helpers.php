@@ -50,6 +50,7 @@ return [
         'title'         => 'Comment utiliser les filtres',
     ],
     'link'              => [
+        'anchor'            => 'La mention avancée peut aussi spécifier l\'ancre HTML vers lequel le liens ira avec :example.',
         'attributes'        => 'Pour référencer des attributs de cette entité, utiliser la touche :code. Ceci fonctionne seulement sur les attributs sauvegardés de l\'entité.',
         'auto_update'       => 'Les liens vers d\'autres entités seront automatiquement mis à jour lorsque le nom ou la description de l\'entité cible est modifié.',
         'description'       => 'Un lien vers une entité peut être facilement inséré en utilisant \'@\' dans le text. \'#\' peut être utilisé pour avoir une liste de mois depuis les calendriers de la campagne.',

@@ -129,7 +129,7 @@ return [
             'width'             => 'Width',
         ],
         'helpers'                   => [
-            'class'             => 'Define a custom css class added to the widget.',
+            'class' => 'Define a custom css class added to the widget.',
         ],
         'orders'                    => [
             'name_asc'  => 'Name ascending',
@@ -166,9 +166,9 @@ return [
             'tags'              => 'Filter the list of entities on specified tags.',
             'title'             => 'Entity list',
         ],
-        'tabs'      => [
-            'setup' => 'Setup',
-            'advanced' => 'Advanced',
+        'tabs'                      => [
+            'advanced'  => 'Advanced',
+            'setup'     => 'Setup',
         ],
         'unmentioned'               => [
             'title' => 'Unmentioned entities',

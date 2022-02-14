@@ -105,6 +105,7 @@ return [
     'errors'                    => [
         'boosted'                       => 'Cette fonctionnalité n\'est accessible qu\'aux campagnes boostées..',
         'boosted_campaigns'             => 'Cette fonctionnalité n\'est que disponible que pour les :boosted.',
+        'cannot_move_node_into_itself'  => 'Le parent sélectionné est invalide. Cela peut être causé par le parent ayant cette entité comme parent.',
         'node_must_not_be_a_descendant' => 'Node invalide (étiquette, lieu parent): l\'entité serait un descendant de lui-même.',
         'unavailable_feature'           => 'Fonctionnalité indisponible',
     ],
