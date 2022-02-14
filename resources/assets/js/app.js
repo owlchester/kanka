@@ -97,7 +97,7 @@ $(document).ready(function() {
 
         // Also re-bind select2 elements on modal show
         window.initForeignSelect();
-        window.initTags();
+        window.initTags(); // Need this for the abilities popup on entities
         initAjaxPagination();
         initTooltips();
         initSpectrum();
