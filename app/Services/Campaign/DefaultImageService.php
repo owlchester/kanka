@@ -96,7 +96,10 @@ class DefaultImageService
         }
 
         /** @var Image $image */
-        $image = Image::findOrFail($images[$this->type]);
+        $image = Image::find($images[$this->type]);
+        if (empty($image)) {
+            return false;
+        }
         $image->delete();
 
         unset($images[$this->type]);
