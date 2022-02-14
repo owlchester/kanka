@@ -8,6 +8,7 @@ use App\Http\Requests\StoreProfile;
 use App\Http\Requests\StoreSettingsAccount;
 use App\Http\Requests\StoreSettingsAccountEmail;
 use App\Http\Requests\StoreSettingsAccountSocial;
+use App\Models\UserLog;
 use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
@@ -37,6 +38,10 @@ class AccountController extends Controller
     public function password(StoreSettingsAccount $request)
     {
         Auth::user()->update($request->only('password_new'));
+        UserLog::create([
+            'user_id' => auth()->user()->id,
+            'type_id' => UserLog::TYPE_PASSWORD_UPDATE,
+        ]);
 
         return redirect()
             ->route('settings.account')
@@ -50,6 +55,10 @@ class AccountController extends Controller
     public function email(StoreSettingsAccountEmail $request)
     {
         Auth::user()->update($request->only('email'));
+        UserLog::create([
+            'user_id' => auth()->user()->id,
+            'type_id' => UserLog::TYPE_EMAIL_UPDATE,
+        ]);
 
         return redirect()
             ->route('settings.account')
@@ -72,6 +81,10 @@ class AccountController extends Controller
         $data['provider_id'] = null;
 
         Auth::user()->update($data);
+        UserLog::create([
+            'user_id' => auth()->user()->id,
+            'type_id' => UserLog::TYPE_SOCIAL_SWITCH,
+        ]);
 
         return redirect()
             ->route('settings.account')

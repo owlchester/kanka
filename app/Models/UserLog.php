@@ -30,6 +30,14 @@ class UserLog extends Model
     const TYPE_CAMPAIGN_LEAVE = 22;
     const TYPE_CAMPAIGN_DELETE = 23;
 
+    const TYPE_PASSWORD_UPDATE = 30;
+    const TYPE_PASSWORD_RESET = 31;
+    const TYPE_PASSWORD_REQUEST = 32;
+    const TYPE_PASSWORD_ADMIN_UPDATE = 35;
+
+    const TYPE_EMAIL_UPDATE = 40;
+    const TYPE_SOCIAL_SWITCH = 41;
+
     /**
      * @var string
      */
@@ -79,6 +87,17 @@ class UserLog extends Model
                 return 'Leave campaign';
             case self::TYPE_CAMPAIGN_DELETE:
                 return 'Delete campaign';
+            case self::TYPE_PASSWORD_UPDATE:
+                return 'Password updated';
+            case self::TYPE_PASSWORD_REQUEST:
+                return 'Password reset request';
+            case self::TYPE_PASSWORD_ADMIN_UPDATE:
+                return 'Admin password update';
+
+            case self::TYPE_EMAIL_UPDATE:
+                return 'Update email';
+            case self::TYPE_SOCIAL_SWITCH:
+                return 'Disable social';
         }
 
         return 'unknown';
