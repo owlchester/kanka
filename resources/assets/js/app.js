@@ -97,6 +97,7 @@ $(document).ready(function() {
 
         // Also re-bind select2 elements on modal show
         window.initForeignSelect();
+        window.initTags();
         initAjaxPagination();
         initTooltips();
         initSpectrum();

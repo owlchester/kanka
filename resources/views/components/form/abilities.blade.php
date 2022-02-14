@@ -45,10 +45,10 @@ elseif(!empty($model) && !empty($model->entity)) {
 }
 ?>
 @if ($label)
-<label>{{ trans('entities.abilities') }}</label>
+<label>{{ __('entities.abilities') }}</label>
 @endif
 
-<select multiple="multiple" name="abilities[]" id="{{ Arr::get($options, 'id', 'abilities[]') }}" class="form-control form-tags form-abilities" style="width: 100%" data-url="{{ route('abilities.find', $searchParams) }}" data-allow-new="{{ $enableNew ? 'true' : 'false' }}" data-allow-clear="{{ Arr::get($options, 'allowClear', 'true') }}" data-new-tag="{{ trans('abilities.new_ability') }}" data-placeholder="">
+<select multiple="multiple" name="abilities[]" id="{{ Arr::get($options, 'id', 'abilities[]') }}" class="form-control form-tags form-abilities" style="width: 100%" data-url="{{ route('abilities.find', $searchParams) }}" data-allow-new="{{ $enableNew ? 'true' : 'false' }}" data-allow-clear="{{ Arr::get($options, 'allowClear', 'true') }}" data-new-tag="{{ __('abilities.new_ability') }}" data-placeholder="">
     @foreach ($selectedOption as $key => $ability)
         <option value="{{ $key }}" class="select2-ability" selected="selected">{{ $ability->name }}</option>
     @endforeach
