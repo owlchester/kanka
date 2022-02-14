@@ -55,7 +55,8 @@
                         <thead>
                         <tr>
                             <th>{{ __('campaigns/styles.fields.name') }}</th>
-                            <th>{{ __('campaigns/styles.fields.length') }}</th>
+                            <th class="hidden-xs">{{ __('campaigns/styles.fields.length') }}</th>
+                            <th class="hidden-xs">{{ __('campaigns/styles.fields.modified') }}</th>
                             <th>{{ __('campaigns/styles.fields.is_enabled') }}</th>
                             <th></th>
                         </tr>
@@ -66,8 +67,11 @@
                                 <td>
                                     <a href="{{ route('campaign_styles.edit', $style) }}">{!! $style->name !!}</a>
                                 </td>
-                                <td>
+                                <td class="hidden-xs">
                                     {{ number_format(strlen($style->content)) }}
+                                </td>
+                                <td class="hidden-xs">
+                                    {{ $style->updated_at->diffForHumans() }}
                                 </td>
                                 <td>
                                     @if($style->is_enabled)

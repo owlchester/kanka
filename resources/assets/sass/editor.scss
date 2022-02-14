@@ -175,3 +175,8 @@ div.mce-fullscreen {
 .rte-autocomplete {
   z-index: 9920;
 }
+
+/** Code mirror **/
+.CodeMirror {
+  resize: vertical;
+}
