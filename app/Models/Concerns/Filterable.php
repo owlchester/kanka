@@ -264,10 +264,10 @@ trait Filterable
                     } elseif($key == 'organisation_member') {
                         $query
                             ->select($this->getTable() . '.*')
-                            ->leftJoin('organisation_member as om', function ($join) {
-                                $join->on('om.character_id', '=', $this->getTable() . '.id');
+                            ->leftJoin('organisation_member as om2', function ($join) {
+                                $join->on('om2.character_id', '=', $this->getTable() . '.id');
                             })
-                            ->where('om.organisation_id', null);
+                            ->where('om2.organisation_id', null);
                     } elseif ($key == 'race') {
                         $query
                             ->select($this->getTable() . '.*')
