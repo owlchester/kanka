@@ -261,7 +261,7 @@ function registerEntityFormActions() {
     $.each(entityFormActions, function () {
         $(this).on('click', function () {
 
-            console.log('setting the submit name to ' + $(this).data('action'));
+            //console.log('setting the submit name to ' + $(this).data('action'));
 
             entityFormSubmitMode.attr('name', $(this).data('action'));
 
@@ -901,7 +901,7 @@ function registerEditKeepAlive() {
     }
     keepAliveUrl = field.data('url');
 
-    console.log('keeping alive set up');
+    //console.log('keeping alive set up');
 
     setTimeout(keepAlivePulse, keepAliveTimer);
 }
@@ -926,7 +926,7 @@ function keepAlivePulse() {
         type: 'POST'
     })
     .done(function(result) {
-        console.log('kept alive');
+        //console.log('kept alive');
         setTimeout(keepAlivePulse, keepAliveTimer);
     });
 }

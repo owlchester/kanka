@@ -47,20 +47,20 @@ if (!empty($oldCalendarID)) {
             <div class="row">
                 <div class="col-md-4 col-sm-6">
                     <div class="form-group">
-                        <label>{{ __('calendars.fields.current_year') }}</label>
+                        <label>{{ __('calendars.fields.year') }}</label>
                         {!! Form::number('calendar_year', FormCopy::field('calendar_year')->string(), ['class' => 'form-control']) !!}
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
 
                     <div class="form-group">
-                        <label>{{ __('calendars.fields.current_month') }}</label>
+                        <label>{{ __('calendars.fields.month') }}</label>
                         {!! Form::select('calendar_month', (!empty($model) && $model->hasCalendar() ? $model->calendar->monthList(): (!empty($calendar) ? $calendar->monthList() : [])), FormCopy::field('calendar_month')->string(), ['class' => 'form-control']) !!}
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <div class="form-group">
-                        <label>{{ __('calendars.fields.current_day') }}</label>
+                        <label>{{ __('calendars.fields.day') }}</label>
                         {!! Form::number('calendar_day', FormCopy::field('calendar_day')->string(), ['class' => 'form-control']) !!}
                     </div>
                 </div>

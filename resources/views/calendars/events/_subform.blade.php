@@ -2,19 +2,19 @@
 <div class="row">
     <div class="col-md-4">
         <div class="form-group">
-            <label>{{ __('calendars.fields.current_year') }}</label>
+            <label>{{ __('calendars.fields.year') }}</label>
             {!! Form::number('year', (!empty($year) ? $year : null), ['class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-md-4">
         <div class="form-group">
-            <label>{{ __('calendars.fields.current_month') }}</label>
+            <label>{{ __('calendars.fields.month') }}</label>
             {!! Form::select('month', isset($calendar) ? $calendar->monthList() : [], (!empty($month) ? $month : null), ['class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-md-4">
         <div class="form-group">
-            <label>{{ __('calendars.fields.current_day') }}</label>
+            <label>{{ __('calendars.fields.day') }}</label>
             {!! Form::number('day', (!empty($day) ? $day : null), ['class' => 'form-control']) !!}
         </div>
     </div>

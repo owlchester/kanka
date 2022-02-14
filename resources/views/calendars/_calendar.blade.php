@@ -109,7 +109,7 @@ $weekNumber = 1;
                 {!! Form::open(['route' => ['calendars.show', $model], 'method' => 'GET']) !!}
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <label>{{ __('calendars.fields.current_year') }}</label>
+                    <label>{{ __('calendars.fields.year') }}</label>
                     {!! Form::number('year', null, ['class' => 'form-control', 'placeholder' => e($renderer->currentYear())]) !!}
                 </div>
                 @if ($renderer->isYearlyLayout())
