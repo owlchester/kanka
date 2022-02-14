@@ -69,7 +69,7 @@ return [
         ],
         'actions'           => [
             'rpg'           => 'Para campañas de rol',
-            'worldbuilder'  => 'Para creadores de mundos',
+            'worldbuilder'  => 'Para creación de mundos',
         ],
         'api'               => [
             'description'   => 'Queres crear ferramentas que se integren en Kanka? Visita :link.',
@@ -116,7 +116,7 @@ return [
         'dashboards'        => [
             'title' => 'Taboleiros',
         ],
-        'description'       => 'Coas nosas @mencións, etiquetas, e sistema de permisos en profundidade, Kanka facilita a administración do teu mundo ou campaña. Isto inclúe Personaxes e as súas relacións, Lugares e a súa historia, Misións e os seus obxectivos, Liñas temporais e as súas eras, e Calendarios con tanto eventos como fenómenos meteorolóxicos. E por se fose pouco, as usuarias de Kanka teñen voz e voto en decidir que novas funcionalidades son implementadas a través dos Votos da Comunidade.',
+        'description'       => 'Coas nosas @mencións, etiquetas, e sistema de permisos en profundidade, Kanka facilita a xestión do teu mundo ou campaña. Isto inclúe Personaxes e as súas relacións, Lugares e a súa historia, Misións e os seus obxectivos, Liñas temporais e as súas eras, e Calendarios con tanto eventos como fenómenos meteorolóxicos. E por se fose pouco, as usuarias de Kanka teñen voz e voto en decidir que novas funcionalidades son implementadas a través dos Votos da Comunidade.',
         'description_full'  => 'Kanka está constantemente sendo actualizada con novas funcionalidades e melloras, mais aquí están algunhas das máis importantes que pensamos que che gustarán.',
         'flora'             => [
             'description'   => 'Leva conta das criaturas que viven no teu mundo usando o módulo Raza, e constrúe un complexo ecosistema usando as relacións parentais.',
@@ -179,7 +179,7 @@ return [
         ],
         'rpg'               => [
             'description'   => 'Cun sistema de permisos profundo, misións, cadernos, personaxes, habilidades, e audio e vídeo integrados, axudámoste a administrar a túa campaña.',
-            'title'         => 'Administración de campañas de rol',
+            'title'         => 'Xestión de campañas de rol',
         ],
         'secrets'           => [
             'description'   => 'Toda entidade pode ter múltiples segredos ligados a ela en forma de notas de entidade. Estas poden ter permisos individuais para controlar quen pode velas, e poden ser fixadas na vista principal dunha entidade para ser facilmente accesíbeis.',
@@ -195,7 +195,7 @@ return [
             'description'   => 'Representa visualmente as liñas temporais dos teus mundos, imperios, familias nobres, ou incluso dunha personaxe.',
             'title'         => 'Liñas temporais',
         ],
-        'title'             => 'Potentes funcionalidades con incríbel flexibilidade',
+        'title'             => 'Funcionalidades potentes e flexíbeis',
         'unlimited'         => 'Ilimitadas',
         'updates'           => [
             'title' => 'Actualizacións frecuentes',
@@ -236,8 +236,8 @@ return [
     ],
     'master'        => [
         'call_to_action'    => 'Crea unha conta',
-        'description'       => 'Kanka é unha ferramenta perfecta para crear mundos e administrar campañas de rol. Axudámoste a crear e organizar as túas campañas e mundo co noso sistema de @mencións e un amplo abano de funcionalidades como calendarios, mapas interactivos, liñas temporais, organizacións, familias, personaxes, e moito máis!',
-        'heading'           => 'Creacións de mundos, Administración de campañas de rol, narración de historias. Todo en un.',
+        'description'       => 'Kanka é unha ferramenta perfecta para crear mundos e administrar campañas de rol. Axudámoste a crear e organizar as túas campañas e mundos co noso sistema de @mencións e un amplo abano de funcionalidades como calendarios, mapas interactivos, liñas temporais, organizacións, familias, personaxes, e moito máis!',
+        'heading'           => 'Xestión de campañas de rol e creación de mundos e historias. Todo en un.',
         'title'             => 'Kanka',
     ],
     'media'         => [

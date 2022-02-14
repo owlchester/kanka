@@ -9,10 +9,10 @@ return [
         'title'     => 'Новое погодное явление',
     ],
     'destroy'       => [
-        'success'   => 'Погода удалена',
+        'success'   => 'Погода удалена.',
     ],
     'edit'          => [
-        'success'   => 'Погода обновлена',
+        'success'   => 'Погода обновлена.',
         'title'     => 'Обновление погоды',
     ],
     'fields'        => [
@@ -25,7 +25,7 @@ return [
     ],
     'options'       => [
         'weather'   => [
-            'bolt'                  => 'Гром',
+            'bolt'                  => 'Гроза',
             'cloud'                 => 'Облака',
             'cloud-rain'            => 'Дождь',
             'cloud-showers-heavy'   => 'Ливень',

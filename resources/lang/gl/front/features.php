@@ -31,11 +31,11 @@ return [
         'title'         => 'Editor',
     ],
     'entity'        => [
-        'description'   => 'Kanka está construído en torno a unha lista duns 20 tipos de entidade diferentes. Estes son tipos predefinidos para elementos esenciais dunha campaña, incluíndo personaxes, lugares, familias, obxectos, misións, cadernos, calendarios, liñas temporais, e máis cousas. Todos comparten algunhas funcionalidades, mais son únicos e interaccionan con outros elementos da campaña.',
+        'description'   => 'Kanka está construído en torno a unha lista duns 20 tipos de entidade diferentes. Estes son tipos predefinidos para elementos esenciais dunha campaña, incluíndo personaxes, lugares, familias, obxectos, misións, cadernos, calendarios, liñas temporais, e máis cousas. Todos comparten algunhas funcionalidades, mais son únicos e interaccionan de formas diversas entre si.',
         'title'         => 'Entidades de Kanka',
     ],
     'free'          => [
-        'description'   => 'Non che gusta ter que pagar por funcionalidades básicas? Nós tamén, por iso todas as funcionalidades principais de Kanka son de balde, incluíndo poder ter campañas ilimitadas, número de integrantes ilimitado, e control total sobre que pode ver cada integrante. Tamén dispoñemos de varios :bonuses moi útiles, pero non esenciais.',
+        'description'   => 'Non che gusta ter que pagar por funcionalidades básicas? A nós tampouco, por iso todas as funcionalidades principais de Kanka son de balde, incluíndo poder ter campañas ilimitadas, número de integrantes ilimitado, e control total sobre que pode ver cada integrante. Tamén dispoñemos de varias :bonuses moi útiles, pero non esenciais.',
     ],
     'gm'            => [
         'title' => 'Dirección de xogo',
