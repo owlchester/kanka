@@ -26,9 +26,9 @@
             </span>
         @endcan
 
-        <h3 class="timeline-header cursor entity-note-toggle" data-toggle="collapse" data-target="#timeline-element-{{ $element->id }}" data-short="timeline-element-toggle-{{ $element->id }}">
-            <i class="fa fa-chevron-up" id="timeline-element-toggle-{{ $element->id }}-show" @if($element->collapsed()) style="display: none;" @endif></i>
-            <i class="fa fa-chevron-down" id="timeline-element-toggle-{{ $element->id }}-hide" @if(!$element->collapsed()) style="display: none;" @endif></i>
+        <h3 class="timeline-header cursor entity-note-toggle" data-toggle="collapse" data-target="#timeline-element-body-{{ $element->id }}" data-short="timeline-element-body-toggle-{{ $element->id }}">
+            <i class="fa fa-chevron-up" id="timeline-element-body-toggle-{{ $element->id }}-show" @if($element->collapsed()) style="display: none;" @endif></i>
+            <i class="fa fa-chevron-down" id="timeline-element-body-toggle-{{ $element->id }}-hide" @if(!$element->collapsed()) style="display: none;" @endif></i>
 
             {!! $element->htmlName() !!}
             @if(isset($element->date))<span class="text-muted">{{ $element->date }}</span>@endif
@@ -39,7 +39,7 @@
             @include('cruds.partials.visibility', ['model' => $element])
         </h3>
 
-        <div class="timeline-body entity-content collapse {{ $element->collapsed() ? 'out' : 'in' }}" id="timeline-element-{{ $element->id }}">
+        <div class="timeline-body entity-content collapse {{ $element->collapsed() ? 'out' : 'in' }}" id="timeline-element-body-{{ $element->id }}">
             {!! \App\Facades\Mentions::mapAny($element) !!}
 
             @if ($element->use_entity_entry && $element->entity && $element->entity->child->hasEntry())
