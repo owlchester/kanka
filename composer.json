@@ -21,7 +21,7 @@
         "caseyamcl/toc": "^3.0",
         "chriskonnertz/string-calc": "^1.0",
         "enlightn/enlightn": "^1.6",
-        "enshrined/svg-sanitize": "^0.13.3",
+        "enshrined/svg-sanitize": "^0.15.0",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.5",
         "ilestis/kanka-dnd5e-monster": "^4.0",
