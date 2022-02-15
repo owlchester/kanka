@@ -225,19 +225,6 @@ class AppServiceProvider extends ServiceProvider
             return auth()->check() && auth()->user()->hasRole('moderator');
         });
 
-        // Environment based directives
-        /*Blade::if('env', function ($environment) {
-            return app()->environment($environment);
-        });
-        Blade::if('notEnv', function ($environment) {
-            return !app()->environment($environment);
-        });*/
-
-        // API directive for users in the API role
-        /*Blade::if('api', function () {
-            return auth()->check() && auth()->user()->hasRole('api');
-        });*/
-
         // Permission to view an entity
         Blade::if('viewentity', function (Entity $entity) {
             return EntityPermission::canView($entity);
@@ -248,5 +235,22 @@ class AppServiceProvider extends ServiceProvider
             return Img::nowebp();
         });
 
+        // Tutorial modal handler
+        Blade::if('tutorial', function (string $tutorial) {
+            // Not logged in? Don't bother
+            if (!auth()->check()) {
+                return false;
+            }
+
+            /** @var User $user */
+            $user = auth()->user();
+
+            // If disabled tutorials, remove all
+            if ($user->disabledTutorial()) {
+                return false;
+            }
+
+            return !$user->readTutorial($tutorial);
+        });
     }
 }

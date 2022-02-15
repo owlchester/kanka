@@ -96,3 +96,5 @@
 @section('fullpage-form-end')
     {!! Form::close() !!}
 @endsection
+
+@includeIf($name . '.forms._tutorial')

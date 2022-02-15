@@ -12,6 +12,7 @@ use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignSetting;
 use App\Models\RpgSystem;
+use App\Models\UserLog;
 use App\Notifications\Header;
 use App\Services\EntityMappingService;
 use App\Services\ImageService;
@@ -151,6 +152,11 @@ class CampaignObserver
         $setting->save();
 
         UserCache::clearCampaigns();
+
+        UserLog::create([
+            'user_id' => auth()->user()->id,
+            'type_id' => UserLog::TYPE_CAMPAIGN_NEW
+        ]);
     }
 
     /**

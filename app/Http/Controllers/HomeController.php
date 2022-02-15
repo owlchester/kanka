@@ -28,9 +28,8 @@ class HomeController extends Controller
     {
         if (auth()->guest()) {
             return $this->front();
-        } else {
-            return $this->back();
         }
+        return $this->back();
     }
 
     /**

@@ -45,7 +45,7 @@ $defaultIndex = ($currentCampaign && $currentCampaign->defaultToNested()) || aut
 
                 @if ($currentCampaign->enabled('characters'))
                     <li class="{{ $sidebar->active('characters') }} subsection section-characters">
-                        <a href="{{ route('characters.index') }}"><i class="fa fa-user"></i> <span>{{ __('sidebar.characters') }}</span></a>
+                        <a class="" href="{{ route('characters.index') }}"><i class="fa fa-user"></i> <span>{{ __('sidebar.characters') }}</span></a>
                     </li>
                 @endif
                 @if ($currentCampaign->enabled('locations'))

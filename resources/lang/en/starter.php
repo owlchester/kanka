@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'campaign' => [
+        'name' => ':user\'s world',
+    ],
     'character1'    => [
         'fears'     => 'James is scared of loud noises and explosions.',
         'history'   => 'This is an example character. Born to Mance Owlchester and Rige Dunton, James grew up in the countryside of Genory before moving to the capital city of Unria to work as a scribe for the king.',

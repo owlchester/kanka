@@ -423,3 +423,4 @@ require('./calendar.js');
 require('./search.js');
 require('./notification');
 require('./quick-creator');
+require('./tutorial');

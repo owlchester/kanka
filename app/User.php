@@ -10,6 +10,7 @@ use App\Models\CampaignRole;
 use App\Models\Concerns\Filterable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
+use App\Models\Concerns\Tutorial;
 use App\Models\Patreon;
 use App\Models\Relations\UserRelations;
 use App\Models\Scopes\UserScope;
@@ -57,7 +58,9 @@ class User extends \Illuminate\Foundation\Auth\User
         Searchable,
         Filterable,
         Sortable,
-        Billable;
+        Billable,
+        Tutorial
+    ;
 
     protected static $currentCampaign = false;
 
@@ -118,7 +121,8 @@ class User extends \Illuminate\Foundation\Auth\User
      * @var string[]
      */
     protected $casts = [
-        'settings' => 'array'
+        'settings' => 'array',
+        'tutorial' => 'array',
     ];
 
     /**

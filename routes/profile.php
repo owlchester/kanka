@@ -81,3 +81,11 @@ Route::get('/marketplace', 'Settings\MarketplaceController@index')
     ->name('settings.marketplace');
 Route::post('/marketplace', 'Settings\MarketplaceController@save')
     ->name('settings.marketplace.save');
+
+// Tutorial
+Route::get('/tutorial/{tutorial}/done/{next?}', 'Settings\TutorialController@done')
+    ->name('settings.tutorial.done');
+Route::get('/tutorial/disable', 'Settings\TutorialController@disable')
+    ->name('settings.tutorial.disable');
+Route::get('/tutorial/reset', 'Settings\TutorialController@reset')
+    ->name('settings.tutorial.reset');

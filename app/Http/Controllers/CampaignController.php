@@ -94,15 +94,11 @@ class CampaignController extends Controller
             auth()->user()->setCurrentCampaign($campaign);
 
             // If it's the first campaign for the user, generate some boilerplate content
-            if ($first) {
+            /*if ($first) {
                 CampaignLocalization::forceCampaign($campaign);
                 $this->starterService->generateBoilerplate($campaign);
-            }
+            }*/
 
-            UserLog::create([
-                'user_id' => auth()->user()->id,
-                'type_id' => UserLog::TYPE_CAMPAIGN_NEW
-            ]);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();

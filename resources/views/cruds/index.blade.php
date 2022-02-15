@@ -17,7 +17,7 @@
 
             @can('create', $model)
                 <div class="btn-group pull-right">
-                    <a href="{{ route($route . '.create') }}" class="btn btn-primary">
+                    <a href="{{ route($route . '.create') }}" class="btn btn-primary btn-new-entity">
                         <i class="fa fa-plus"></i> <span class="hidden-xs hidden-sm">{{ __($langKey . '.index.add') }}</span>
                     </a>
                     @if(!in_array($name, ['menu_links', 'relations']))

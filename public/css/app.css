@@ -1227,6 +1227,91 @@ summary {
   transform: translateY(0);
 }
 
+/** Toast **/
+
+:root {
+  --toast-background: #00a65a;
+  --toast-text: white;
+}
+
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  max-height: 100%;
+  right: 20px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.toast-container .toast-success {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.toast-container .toast-success .toast-message {
+  display: inline-block;
+  background-color: var(--toast-background);
+  color: var(--toast-text);
+  padding: 10px;
+}
+
+.toast-container .toast-success .toast-message .fa-times {
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.tutorial-highlight {
+  box-shadow: 0 0 10px #fff, -10px 0 20px #f0f, 10px 0 20px #0ff;
+  /* outer right cyan */
+  -webkit-animation: tutorial-glow 10s linear infinite;
+          animation: tutorial-glow 10s linear infinite;
+  /*&:before {
+      content: '';
+      position: absolute;
+      left: -2px;
+      top: -2px;
+      background-size: 400%;
+      width: calc(100% + 5px);
+      height: calc(100% + 5px);
+      z-index: -1;
+      animation: tutorial-glow 10s linear infinite;
+  }*/
+}
+
+@-webkit-keyframes tutorial-glow {
+  0% {
+    box-shadow: 0 0 10px #fff, -10px 0 20px #f0f, 10px 0 20px #0ff;
+    /* outer right cyan */
+  }
+
+  50% {
+    box-shadow: 0 0 10px #fff, -10px 0 20px #0ff, 10px 0 20px #f0f;
+    /* outer right cyan */
+  }
+
+  100% {
+    box-shadow: 0 0 10px #fff, -10px 0 20px #f0f, 10px 0 20px #0ff;
+    /* outer right cyan */
+  }
+}
+
+@keyframes tutorial-glow {
+  0% {
+    box-shadow: 0 0 10px #fff, -10px 0 20px #f0f, 10px 0 20px #0ff;
+    /* outer right cyan */
+  }
+
+  50% {
+    box-shadow: 0 0 10px #fff, -10px 0 20px #0ff, 10px 0 20px #f0f;
+    /* outer right cyan */
+  }
+
+  100% {
+    box-shadow: 0 0 10px #fff, -10px 0 20px #f0f, 10px 0 20px #0ff;
+    /* outer right cyan */
+  }
+}
+
 :root {
   --calendar-today: #FFFDE2;
   --calendar-week: #FFFDE2;

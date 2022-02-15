@@ -8,6 +8,7 @@ use App\Facades\EntityPermission;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Services\Macros;
+use App\User;
 use Form;
 use Collective\Html\HtmlServiceProvider;
 use Illuminate\Support\Facades\Blade;

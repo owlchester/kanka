@@ -168,3 +168,29 @@
     <link href="{{ mix('css/dashboard.css') }}" rel="stylesheet">
     <link href="{{ mix('css/map-v3.css') }}" rel="stylesheet">
 @endsection
+
+@section('modals')
+    @tutorial('welcome')
+    <div class="modal fade tutorial-modal" id="tutorial-modal" role="dialog" aria-labelledby="tutorialModal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="tutorialModalTitle">{{ __('tutorials/home.welcome.title', ['user' => auth()->user()->name]) }}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{ __('tutorials/home.welcome.first') }}</p>
+                    <p>{{ __('tutorials/home.welcome.second') }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning pull-left" data-tutorial="disable" data-url="{{ route('settings.tutorial.disable') }}">
+                        {{ __('tutorials/actions.disable') }}
+                    </button>
+                    <button class="btn btn-success" data-tutorial="next" data-url="{{ route('settings.tutorial.done', ['tutorial' => 'welcome', 'next' => 'dashboard_1']) }}">
+                        {{ __('tutorials/actions.next') }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endtutorial
+@endsection

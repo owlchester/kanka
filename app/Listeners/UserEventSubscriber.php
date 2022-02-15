@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Models\UserLog;
 use App\Services\CampaignService;
 use App\Services\InviteService;
+use App\Services\StarterService;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
@@ -18,14 +19,18 @@ class UserEventSubscriber
     /** @var InviteService */
     public $inviteService;
 
+    /** @var StarterService */
+    public $starterService;
+
     /**
      * Create the event listener.
      *
      * @return void
      */
-    public function __construct(InviteService $inviteService)
+    public function __construct(InviteService $inviteService, StarterService $starterService)
     {
         $this->inviteService = $inviteService;
+        $this->starterService = $starterService;
     }
 
     /**
@@ -33,6 +38,19 @@ class UserEventSubscriber
      */
     public function onUserLogin($event)
     {
+        // Log the user's login
+        if (!$event->user) {
+            dd('Error OSL-010');
+        }
+
+        $log = UserLog::create([
+            'user_id' => $event->user->id,
+            'type_id' => UserLog::TYPE_LOGIN,
+        ]);
+        $log->save();
+
+        $event->user->update(['last_login_at' => Carbon::now()->toDateTimeString()]);
+
         // Does the user have a join campaign token?
         if (session()->has('invite_token')) {
             try {
@@ -44,18 +62,15 @@ class UserEventSubscriber
             } catch (Exception $e) {
                 // Silence errors here
             }
+        } elseif (session()->has('first_login')) {
+            // Let's create their first campaign for them
+            $campaign = $this->starterService
+                ->user($event->user)
+                ->createCampaign();
+            CampaignService::switchCampaign($campaign);
+            return true;
         }
 
-        // Log the login
-        if ($event->user) {
-            $log = UserLog::create([
-                'user_id' => $event->user->id,
-                'type_id' => UserLog::TYPE_LOGIN,
-            ]);
-            $log->save();
-
-            $event->user->update(['last_login_at' => Carbon::now()->toDateTimeString()]);
-        }
 
         // We want to register in the session a campaign_id
         CampaignService::switchToLast($event->user);
@@ -80,6 +95,19 @@ class UserEventSubscriber
     }
 
     /**
+     * @param $event
+     */
+    public function onUserRegistered($event)
+    {
+        // If the user has an invite token, we don't want to do anything else
+        if (session()->has('invite_token')) {
+            return;
+        }
+
+        session()->put('first_login', true);
+    }
+
+    /**
      * Register the listeners for the subscriber.
      *
      * @param  Illuminate\Events\Dispatcher  $events
@@ -89,6 +117,11 @@ class UserEventSubscriber
         $events->listen(
             'Illuminate\Auth\Events\Login',
             'App\Listeners\UserEventSubscriber@onUserLogin'
+        );
+
+        $events->listen(
+            'Illuminate\Auth\Events\Registered',
+            'App\Listeners\UserEventSubscriber@onUserRegistered'
         );
 
         $events->listen(
