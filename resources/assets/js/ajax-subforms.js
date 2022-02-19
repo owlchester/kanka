@@ -5,6 +5,7 @@
  * Usage: <form> tag must have class : 'ajax-subforms'
  *        Submit button or button group must be enclosed in a <div> that has the class : 'submit-group'
  */
+var currentAjaxForm;
 $(document).ready(function () {
     initSubforms();
 
@@ -40,7 +41,7 @@ function initSubforms() {
         e.preventDefault();
 
         //show button animation
-        let currentAjaxForm = $(this);
+        currentAjaxForm = $(this);
         currentAjaxForm.find('.submit-group').hide();
         currentAjaxForm.find('.submit-animation').show();
 
@@ -59,10 +60,13 @@ function initSubforms() {
             data: formData,
             cache: false,
             contentType: false,
-            processData: false
+            processData: false,
+            async: false
         }).done(function (res) {
             // If the validation succeeded, confirm its validity
             currentAjaxForm.attr('is-valid', true);
+            currentAjaxForm.off('submit')
+            //console.log('form is valid?', currentAjaxForm, currentAjaxForm.attr('is-valid'));
             // resubmit the form
             currentAjaxForm.submit();
         }).fail(function (err) {

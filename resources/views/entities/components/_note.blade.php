@@ -32,8 +32,8 @@
                         </li>
                         @endcan
                         <li>
-                            <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:note-{{ $note->id }}]" data-toggle="tooltip"
-                               data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:note-{{ $note->id }}]" data-toast="{{ __('entities/notes.copy_mention.success') }}">
+                            <a href="#" title="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $note->id }}]" data-toggle="tooltip"
+                               data-clipboard="[{{ $model->getEntityType() }}:{{ $model->entity->id }}|anchor:post-{{ $note->id }}]" data-toast="{{ __('entities/notes.copy_mention.success') }}">
                                 <i class="fa fa-link"></i> {{ __('entities/notes.copy_mention.copy') }}
                             </a>
                         </li>

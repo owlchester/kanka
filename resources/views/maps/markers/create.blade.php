@@ -66,7 +66,6 @@ __('maps/markers.create.title')
                             </li>
                         </ul>
                     </div>
-                    {!! Form::hidden('submit', null) !!}
                     @includeWhen(!request()->ajax(), 'partials.or_cancel')
                 </div>
                 <div class="submit-animation" style="display: none;">

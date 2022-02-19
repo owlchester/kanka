@@ -528,3 +528,6 @@ pre {
   background-color: var(--table-warning-hover);
 }
 
+.box-header > .box-tools .dropdown-menu > li > a {
+  color: var(--breadcrumb-text) !important;
+}
