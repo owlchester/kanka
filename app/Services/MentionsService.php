@@ -185,9 +185,11 @@ class MentionsService
         );
 
         // Summernote will inject the link differently.
+        //dump($text);
         $text = preg_replace_callback(
-            '`<a href="(.*?)#" class="mention" data-name="(.*?)" data-mention="([^"]*)">(.*?)</a>`',
+            '`<a href="([^"]*)" class="mention" data-name="(.*?)" data-mention="([^"]*)">(.*?)</a>`',
             function ($data) {
+                //dump($data);
                 if (count($data) !== 5) {
                     return $data[0];
                 }
@@ -199,6 +201,7 @@ class MentionsService
             },
             $text
         );
+        //dd($text);
 
         // Attributes
         $text = preg_replace(
