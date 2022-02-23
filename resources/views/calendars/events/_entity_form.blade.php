@@ -19,7 +19,7 @@ $onlyOneCalendar = count($calendars) == 1;
 
 
 <div class="entity-calendar-subform" style="{{ $onlyOneCalendar ? '' : 'display: none;' }}">
-    @include('calendars.events._subform')
+    @include('calendars.events._subform', ['colourAppendTo' => '#entity-modal'])
 </div>
 
 <div class="entity-calendar-loading" style="display: none">

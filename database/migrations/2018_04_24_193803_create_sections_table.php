@@ -38,7 +38,7 @@ class CreateSectionsTable extends Migration
         });
 
         Schema::table('campaign_settings', function (Blueprint $table) {
-            $table->boolean('sections')->default(true);
+            $table->boolean('tags')->default(true);
         });
     }
 
@@ -49,10 +49,10 @@ class CreateSectionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sections');
+        Schema::dropIfExists('tags');
 
         Schema::table('campaign_settings', function (Blueprint $table) {
-            $table->dropColumn('sections');
+            $table->dropColumn('tags');
         });
     }
 }

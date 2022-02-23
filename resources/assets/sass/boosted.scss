@@ -52,7 +52,7 @@
         line-height: 1.1;
       }
 
-      a:not(:last-child), span:not(:last-child) {
+      a:not(:last-of-type), span:not(:last-of-type) {
         &:after {
           content: ', ';
         }

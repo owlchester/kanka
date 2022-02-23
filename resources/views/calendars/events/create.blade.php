@@ -16,7 +16,7 @@
         <div class="panel-body">
             @include('partials.errors')
 
-            @include('calendars.events._form')
+            @include('calendars.events._form', ['colourAppendTo' => '#entity-modal'])
 
 
         </div>

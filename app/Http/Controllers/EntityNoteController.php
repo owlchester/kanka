@@ -134,7 +134,7 @@ class EntityNoteController extends Controller
 
         return redirect()
             ->route($entity->pluralType() . '.show', [$entity->child->id])
-            ->with('success', trans('entities/notes.create.success', [
+            ->with('success', __('entities/notes.create.success', [
                 'name' => $note->name, 'entity' => $entity->child->name
             ]));
     }
@@ -192,15 +192,8 @@ class EntityNoteController extends Controller
             return response()->redirectTo($route);
         }
 
-        if ($request->get('from') == 'main') {
-            return redirect()->route($entity->pluralType() . '.show', [$entity->child->id, '#entity-note-' . $entityNote->id])
-                ->with('success', trans('entities/notes.edit.success', [
-                    'name' => $entityNote->name, 'entity' => $entity->name
-                ]));
-        }
-
-        return redirect()->route($entity->pluralType() . '.show', [$entity->child->id])
-            ->with('success', trans('entities/notes.edit.success', [
+        return redirect()->route($entity->pluralType() . '.show', [$entity->child->id, '#post-' . $entityNote->id])
+            ->with('success', __('entities/notes.edit.success', [
                 'name' => $entityNote->name, 'entity' => $entity->name
             ]));
     }
@@ -219,7 +212,7 @@ class EntityNoteController extends Controller
 
         return redirect()
             ->route($entity->pluralType() . '.show', [$entity->child->id])
-            ->with('success', trans('entities/notes.destroy.success', [
+            ->with('success', __('entities/notes.destroy.success', [
                 'name' => $entityNote->name, 'entity' => $entity->name
             ]));
     }

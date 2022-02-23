@@ -35,6 +35,9 @@ class MentionsService
     /** @var array Created new mentions to avoid duplicates */
     protected $newEntityMentions = [];
 
+    /** @var bool New entities have been created from the mention parsing */
+    protected $createdNewEntities = false;
+
     /**
      * Map the mentions in an entity
      * @param MiscModel $model
@@ -132,6 +135,15 @@ class MentionsService
     }
 
     /**
+     * If new entities were created from the mentions
+     * @return bool
+     */
+    public function hasNewEntities(): bool
+    {
+        return $this->createdNewEntities;
+    }
+
+    /**
      * @param $model
      * @param string $field
      * @return string
@@ -185,20 +197,23 @@ class MentionsService
         );
 
         // Summernote will inject the link differently.
+        //dump($text);
         $text = preg_replace_callback(
-            '`<a href="#" class="mention" data-name="(.*?)" data-mention="([^"]*)">(.*?)</a>`',
+            '`<a href="([^"]*)" class="mention" data-name="(.*?)" data-mention="([^"]*)">(.*?)</a>`',
             function ($data) {
-                if (count($data) !== 4) {
+                //dump($data);
+                if (count($data) !== 5) {
                     return $data[0];
                 }
                 // If the name was changed, inject advanced mention
-                if ($data[1] != $data[3]) {
-                    return str_replace(']', '|' . $data[3] . ']', $data[2]);
+                if ($data[2] != $data[4]) {
+                    return str_replace(']', '|' . $data[4] . ']', $data[3]);
                 }
-                return $data[2];
+                return $data[3];
             },
             $text
         );
+        //dd($text);
 
         // Attributes
         $text = preg_replace(
@@ -578,6 +593,7 @@ class MentionsService
 
         $new = $service->makeNewMentionEntity($newMisc, $name);
         $this->newEntityMentions[$key] = $new->entity->id;
+        $this->createdNewEntities = true;
 
         return '[' . $type . ':' . $new->entity->id . ']';
 

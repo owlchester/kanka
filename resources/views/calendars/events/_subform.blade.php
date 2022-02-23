@@ -42,7 +42,15 @@
     <div class="col-md-6">
         <div class="form-group">
             <label>{{ __('calendars.fields.colour') }}</label><br />
-            {!! Form::text('colour', (!empty($entityEvent) ? null : '#cccccc'), ['class' => 'form-control spectrum', 'maxlength' => 7] ) !!}
+@php
+$fieldOptions = [
+    'class' => 'form-control spectrum', 'maxlength' => 7
+];
+if (isset($colourAppendTo) && request()->ajax()) {
+    $fieldOptions['data-append-to'] = $colourAppendTo;
+}
+@endphp
+            {!! Form::text('colour', (!empty($entityEvent) ? null : '#cccccc'), $fieldOptions ) !!}
         </div>
     </div>
 </div>

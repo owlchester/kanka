@@ -292,11 +292,15 @@ function initSpectrum() {
     if (!$.isFunction($.fn.spectrum)) {
         return;
     }
-    $(".spectrum").spectrum({
-        preferredFormat: "hex",
-        showInput: true,
-        showPalette: true,
-        allowEmpty: true
+
+    $.each($('.spectrum'), function (i) {
+        $(this).spectrum({
+            preferredFormat: "hex",
+            showInput: true,
+            showPalette: true,
+            allowEmpty: true,
+            appendTo: $(this).data('append-to') ?? null,
+        });
     });
 }
 
