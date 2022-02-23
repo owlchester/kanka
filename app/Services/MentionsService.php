@@ -35,6 +35,9 @@ class MentionsService
     /** @var array Created new mentions to avoid duplicates */
     protected $newEntityMentions = [];
 
+    /** @var bool New entities have been created from the mention parsing */
+    protected $createdNewEntities = false;
+
     /**
      * Map the mentions in an entity
      * @param MiscModel $model
@@ -129,6 +132,15 @@ class MentionsService
     public function editAny(Model $model, string $field = 'entry')
     {
         return $this->editEntity($model, $field);
+    }
+
+    /**
+     * If new entities were created from the mentions
+     * @return bool
+     */
+    public function hasNewEntities(): bool
+    {
+        return $this->createdNewEntities;
     }
 
     /**
@@ -581,6 +593,7 @@ class MentionsService
 
         $new = $service->makeNewMentionEntity($newMisc, $name);
         $this->newEntityMentions[$key] = $new->entity->id;
+        $this->createdNewEntities = true;
 
         return '[' . $type . ':' . $new->entity->id . ']';
 

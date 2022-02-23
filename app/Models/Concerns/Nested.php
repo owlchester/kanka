@@ -103,7 +103,6 @@ trait Nested
      */
     protected function callPendingAction()
     {
-        //dump('nested saving');
         $this->moved = false;
 
         if ( ! $this->pending && ! $this->exists) {
@@ -121,10 +120,23 @@ trait Nested
         $this->moved = call_user_func_array([ $this, $method ], $parameters);
     }
 
-    public function forceBoundReset()
+    /**
+     * Force this element to recalculate the tree bounds if it's being created
+     */
+    public function recalculateTreeBounds()
     {
-        if ( ! $this->pending && ! $this->exists) {
-            $this->actionRoot();
+        // No need if this entity exists
+        //dump('recalculate Tree Bounds');
+        if ($this->exists) {
+            //dump('already exists');
+            return;
+        }
+
+        $value = $this->getParentId();
+        if ($value) {
+            $this->appendToNode($this->newScopedQuery()->findOrFail($value));
+        } else {
+            $this->makeRoot();
         }
     }
 
