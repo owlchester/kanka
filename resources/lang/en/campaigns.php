@@ -48,16 +48,16 @@ TEXT
     ],
     'fields'                            => [
         'boosted'                   => 'Boosted by',
+        'character_personality_visibility' => 'Default character personality visibility',
         'connections'               => 'Show an entity\'s connection table by default (instead of relation explorer for boosted campaigns)',
         'css'                       => 'CSS',
         'description'               => 'Description',
         'entity_count'              => 'Entity Count',
+        'entity_privacy'            => 'Default new entity privacy',
         'entry'                     => 'Campaign description',
         'excerpt'                   => 'Campaign dashboard text',
         'followers'                 => 'Followers',
         'header_image'              => 'Campaign dashboard background image',
-        'hide_history'              => 'Hide entity history',
-        'hide_members'              => 'Hide campaign members',
         'image'                     => 'Image',
         'locale'                    => 'Locale',
         'name'                      => 'Name',
@@ -70,17 +70,18 @@ TEXT
         'superboosted'              => 'Superboosted by',
         'system'                    => 'System',
         'theme'                     => 'Theme',
-        'tooltip_family'            => 'Disable family names from tooltips',
-        'tooltip_image'             => 'Show entity image in tooltips',
         'visibility'                => 'Visibility',
     ],
     'following'                         => 'Following',
     'helpers'                           => [
         'boost_required'            => 'This feature requires the campaign to be boosted. More info on the :settings page.',
+        'boost_required_multi'      => 'These features require the campaign to be boosted. More info on the :settings page.',
         'boosted'                   => 'Some features are unlocked because this campaign is being boosted. Find out more on the :settings page.',
+        'character_personality_visibility' => 'When creating a new character as an admin, select the default privacy setting for its personality traits.',
         'css'                       => 'Write your own CSS that will be loaded into the pages of your campaign. Please note that any abuse of this feature can lead to a removal of your custom CSS. Repeated or grave offenses can lead to a removal of your campaign.',
         'dashboard'                 => 'Customise the way the campaign dashboard widget is displayed by filling out the following fields.',
         'entity_count'              => 'This number updates every six hours.',
+        'entity_privacy'            => 'When creating a new entity as an admin, select the default privacy setting of the new entity.',
         'excerpt'                   => 'The contents of this field will be displayed on the dashboard in the campaign header widget, so write a few sentences introducing your world. If this field is empty, the first 1000 characters of the campaign\'s entry field will be used instead.',
         'header_image'              => 'Image displayed as a background in the campaign header dashboard widget.',
         'hide_history'              => 'If enabled, only members of the campaign\'s :admin role will have access to an entity\'s history (log of changes).',
@@ -89,6 +90,7 @@ TEXT
         'name'                      => 'Your campaign/world can have any name as long as it contains at least 4 letters or numbers.',
         'public_campaign_filters'   => 'Help others find the campaign among other public campaigns by providing the following information.',
         'public_no_visibility'      => 'Heads up! Your campaign is public, but the campaign\'s public role can\'t access anything. :fix.',
+        'permissions_tab'           => 'Control the default privacy and visibility settings of new elements with the following options.',
         'related_visibility'        => 'Default Visibility value when creating a new element with this field (posts, relations, abilities, etc)',
         'system'                    => 'If your campaign is publicly visible, the system is shown in the :link page.',
         'systems'                   => 'To avoid cluttering users with options, some features of Kanka are only available with specific RPG systems (ie the D&D 5e monster stat block). Adding supported systems here will enable those features.',
@@ -220,10 +222,6 @@ TEXT
         'link'      => 'campaign applications',
         'title'     => 'Open Campaign',
     ],
-    'options'                           => [
-        'entity_personality_visibility' => 'Automatically set new characters to have their personality private by default.',
-        'entity_visibility'             => 'Automatically set newly created entities to private by default.',
-    ],
     'panels'                            => [
         'boosted'   => 'Boosted',
         'dashboard' => 'Dashboard',
@@ -238,6 +236,11 @@ TEXT
         'locale'        => 'Language code',
         'name'          => 'Your campaign name',
         'system'        => 'D&D, Pathfinder, Fate, DSA',
+    ],
+    'privacy'                           => [
+        'hidden'    => 'Hidden',
+        'private'   => 'Private',
+        'visible'   => 'Visible',
     ],
     'roles'                             => [
         'actions'       => [
@@ -409,8 +412,43 @@ TEXT
         ],
     ],
     'ui'                                => [
-        'helper'    => 'Use these settings to change the way some elements will be displayed in the campaign.',
-        'other'     => 'Other',
+        'boosted'       => 'Boosted',
+        'connections'   => [
+            'list'      => 'List interface',
+            'explorer'  => 'Relations explorer (if available, for boosted campaigns)',
+        ],
+        'helpers'       => [
+            'tooltip'           => 'Control which information is visibile when hovering an entity\'s name in their tooltip.',
+            'other'             => 'Other visual options for the campaign.',
+            'post_collapsed'    => 'When creating a new post on an entity, select the collapsed field\'s default value.',
+            'connections'       => 'When clicking on the connections subpage of an entity, select the default interface showed.',
+        ],
+        'other'         => 'Other',
+        'fields'        => [
+            'connections'       => 'Default entity\'s connections interface',
+            'family_toolip'     => 'Character\'s family',
+            'entity_image'      => 'Entity\'s image',
+            'nested'            => 'Default lists layout',
+            'post_collapsed'    => 'New post default collapsed value',
+            'member_list'       => 'Campaign\'s member list',
+            'entity_history'    => 'Entity\'s history logs',
+        ],
+        'nested'        => [
+            'default'   => 'Default',
+            'nested'    => 'Nested',
+        ],
+        'collapsed'     => [
+            'default'   => 'Default',
+            'collapsed' => 'Collapsed',
+        ],
+        'members'       => [
+            'visible'   => 'Visible to members',
+            'hidden'    => 'Only visible to campaign admins',
+        ],
+        'entity_history' => [
+            'visible' => 'Visible to members',
+            'hidden' => 'Only visible to campaign admins',
+        ]
     ],
     'visibilities'                      => [
         'private'   => 'Private',

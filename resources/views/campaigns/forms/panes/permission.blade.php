@@ -9,30 +9,23 @@ $visibilities = [
 ?>
 
 <div class="tab-pane" id="form-permission">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                {!! Form::hidden('entity_visibility', 0) !!}
-                <div class="checkbox">
-                    <label>
-                        {!! Form::checkbox('entity_visibility') !!}
-                        {{ __('campaigns.options.entity_visibility') }}
-                    </label>
-                </div>
-            </div>
 
+    <p class="help-block">
+        {{ __('campaigns.helpers.permissions_tab') }}
+    </p>
+    <div class="row">
+        <div class="col-md-6 col-lg-4">
             <div class="form-group">
-                {!! Form::hidden('entity_personality_visibility', 0) !!}
-                <div class="checkbox">
-                    <label>
-                        {!! Form::checkbox('entity_personality_visibility') !!}
-                        {{ __('campaigns.options.entity_personality_visibility') }}
-                    </label>
-                </div>
+                <label>
+                    {{ __('campaigns.fields.entity_privacy') }}
+                    <i class="fas fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('campaigns.helpers.entity_privacy') }}"></i>
+                </label>
+                {!! Form::select('entity_visibility', [0 => __('campaigns.privacy.visible'), 1 => __('campaigns.privacy.private')], null, ['class' => 'form-control']) !!}
+                <p class="help-block visible-xs visible-sm">{{ __('campaigns.helpers.entity_privacy') }}</p>
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6 col-lg-4">
             <div class="form-group">
                 <label>
                     {{ __('campaigns.fields.related_visibility') }}
@@ -40,6 +33,17 @@ $visibilities = [
                 </label>
                     {!! Form::select('settings[default_visibility]', $visibilities, null, ['class' => 'form-control']) !!}
                 <p class="help-block visible-xs visible-sm">{{ __('campaigns.helpers.related_visibility') }}</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="form-group">
+                <label>
+                    {{ __('campaigns.fields.character_personality_visibility') }}
+                    <i class="fas fa-question-circle hidden-xs hidden-sm" data-toggle="tooltip" title="{{ __('campaigns.helpers.character_personality_visibility') }}"></i>
+                </label>
+                {!! Form::select('entity_personality_visibility', [0 => __('campaigns.privacy.visible'), 1 => __('campaigns.privacy.private')], null, ['class' => 'form-control']) !!}
+                <p class="help-block visible-xs visible-sm">{{ __('campaigns.helpers.character_personality_visibility') }}</p>
             </div>
         </div>
     </div>

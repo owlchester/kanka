@@ -32,13 +32,6 @@
             {{ __('campaigns.panels.ui') }}
         </a>
     </li>
-    @if(isset($model) && $model->boosted())
-    <li>
-        <a href="#form-boosted" title="{{ __('campaigns.panels.boosted') }}"  data-toggle="tooltip">
-            <i class="fa fa-rocket"></i> {{ __('campaigns.panels.boosted') }}
-        </a>
-    </li>
-    @endif
 {{--    <li>--}}
 {{--        <a href="#form-system" title="{{ __('campaigns.panels.systems') }}"  data-toggle="tooltip">--}}
 {{--            {{ __('campaigns.panels.systems') }}--}}
