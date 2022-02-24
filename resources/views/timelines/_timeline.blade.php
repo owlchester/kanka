@@ -7,7 +7,7 @@
 $eras = $timeline->eras()->ordered($timeline->revert_order)->get();
 $loadedElements = [];
 ?>
-@foreach ($eras as $era)
+@forelse ($eras as $era)
     @php
     $position = 1;
     @endphp
@@ -93,7 +93,11 @@ $loadedElements = [];
         {!! Form::close() !!}
     @endcan
     </ul>
-@endforeach
+@empty
+    <div class="alert alert-warning">
+        <p>{{ __('timelines.helpers.no_era') }}</p>
+    </div>
+@endforelse
 
 
 
