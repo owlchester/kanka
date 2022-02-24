@@ -16,7 +16,10 @@ if (!isset($model) || !$model->boosted()) {
 
 <div class="tab-pane" id="form-ui">
 
-    <h4><i class="fas fa-rocket text-maroon"></i> {{ __('campaigns.ui.boosted') }}</h4>
+    <h4>
+        <i class="fas fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
+        {{ __('campaigns.ui.boosted') }}
+    </h4>
     @if (isset($model) && $model->boosted())
         <p class="help-block">
             {!! __('campaigns.helpers.boosted', ['settings' => link_to_route('settings.boost', __('settings.menu.boost'))]) !!}
@@ -44,7 +47,7 @@ if (!isset($model) || !$model->boosted()) {
                 ) !!}
                     <p class="help-block visible-xs visible-sm">{{ __('campaigns.helpers.theme') }}</p>
                 @if (!isset($model) || !$model->boosted())
-                    {!! Form::hidden('theme_id', 0) !!}
+                    {!! Form::hidden('theme_id', null) !!}
                 @endif
             </div>
         </div>
@@ -84,15 +87,16 @@ if (!isset($model) || !$model->boosted()) {
         <div class="col-md-6 col-lg-4">
             <div class="form-group">
                 <label>
-                    <i class="fas fa-rocket text-maroon"></i> {{ __('campaigns.ui.fields.entity_image') }}
+                    <i class="fas fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
+                    {{ __('campaigns.ui.fields.entity_image') }}
                 </label>
                 {!! Form::select('ui_settings[tooltip_image]', [0 => __('campaigns.privacy.hidden'), 1 => __('campaigns.privacy.visible')], null, $boostedFormFields) !!}
             </div>
             @if (!isset($model) || !$model->boosted())
                 {!! Form::hidden('ui_settings[tooltip_image]', 0) !!}
                 <p class="help-block">{!! __('campaigns.helpers.boost_required', [
-                        'settings' => link_to_route('settings.boost', __('settings.menu.boost'))
-                    ]) !!}</p>
+                    'settings' => link_to_route('settings.boost', __('settings.menu.boost'))
+                ]) !!}</p>
             @endif
         </div>
         <div class="col-md-6 col-lg-4">

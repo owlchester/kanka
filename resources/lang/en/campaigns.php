@@ -65,6 +65,7 @@ TEXT
         'open'                      => 'Open to applications',
         'post_collapsed'            => 'New posts on entities are collapsed by default.',
         'public_campaign_filters'   => 'Public Campaign Filters',
+        'public'                    => 'Campaign visibility',
         'related_visibility'        => 'Related Elements Visibility',
         'rpg_system'                => 'RPG Systems',
         'superboosted'              => 'Superboosted by',
@@ -89,7 +90,7 @@ TEXT
         'locale'                    => 'The language your campaign is written in. This is used for generating content and grouping public campaigns.',
         'name'                      => 'Your campaign/world can have any name as long as it contains at least 4 letters or numbers.',
         'public_campaign_filters'   => 'Help others find the campaign among other public campaigns by providing the following information.',
-        'public_no_visibility'      => 'Heads up! Your campaign is public, but the campaign\'s public role can\'t access anything. :fix.',
+        'public_no_visibility'      => 'Heads up! The campaign is public, but the campaign\'s public role can\'t access anything. :fix.',
         'permissions_tab'           => 'Control the default privacy and visibility settings of new elements with the following options.',
         'related_visibility'        => 'Default Visibility value when creating a new element with this field (posts, relations, abilities, etc)',
         'system'                    => 'If your campaign is publicly visible, the system is shown in the :link page.',
@@ -218,8 +219,12 @@ TEXT
         'your_role'             => 'Your role: <i>:role</i>',
     ],
     'open_campaign'                     => [
-        'helper'    => 'A public campaign that is open to applications will allow users to send an application to join ir through the campaign\'s dashboard. Find the list of applications in the campaign\'s :link page.',
+        'helper'    => 'A public campaign that is open to applications will allow users to send an application to join it through the campaign\'s dashboard. Find the list of applications in the campaign\'s :link page.',
         'link'      => 'campaign applications',
+        'statuses' => [
+            'closed' => 'Closed',
+            'open' => 'Open to applications',
+        ],
         'title'     => 'Open Campaign',
     ],
     'panels'                            => [
@@ -241,6 +246,11 @@ TEXT
         'hidden'    => 'Hidden',
         'private'   => 'Private',
         'visible'   => 'Visible',
+    ],
+    'public'    => [
+        'helpers' => [
+            'introduction' => 'Campaigns are private by default, and can be made public. This allows anyone to access them, and makes them available in the :public-campaigns page if they have entities visible to the :public-role role. A public campaign is visible to all, but for its content to be visible, the :public-role role needs adequate permissions.',
+        ],
     ],
     'roles'                             => [
         'actions'       => [

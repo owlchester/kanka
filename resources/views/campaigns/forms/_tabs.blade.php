@@ -13,8 +13,13 @@
         </a>
     </li>
     <li>
-        <a href="#form-dashboard" title="{{ __('campaigns.panels.dashboard') }}"  data-toggle="tooltip">
-            {{ __('campaigns.panels.dashboard') }}
+        <a href="#form-public" title="{{ __('campaigns.panels.sharing') }}"  data-toggle="tooltip">
+            {{ __('campaigns.panels.sharing') }}
+        </a>
+    </li>
+    <li>
+        <a href="#form-ui" title="{{ __('campaigns.panels.ui') }}"  data-toggle="tooltip">
+            {{ __('campaigns.panels.ui') }}
         </a>
     </li>
     <li>
@@ -23,13 +28,8 @@
         </a>
     </li>
     <li>
-        <a href="#form-public" title="{{ __('campaigns.panels.sharing') }}"  data-toggle="tooltip">
-            {{ __('campaigns.panels.sharing') }}
-        </a>
-    </li>
-    <li>
-        <a href="#form-ui" title="{{ __('campaigns.panels.ui') }}"  data-toggle="tooltip">
-            {{ __('campaigns.panels.ui') }}
+        <a href="#form-dashboard" title="{{ __('campaigns.panels.dashboard') }}"  data-toggle="tooltip">
+            {{ __('campaigns.panels.dashboard') }}
         </a>
     </li>
 {{--    <li>--}}

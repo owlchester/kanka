@@ -1,7 +1,7 @@
 <div class="form-group">
     <label>
-        {{ __('fields.tooltip.name') }}
         <i class="fas fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
+        {{ __('fields.tooltip.name') }}
     </label>
 
     @if($campaign->campaign()->boosted())
@@ -19,9 +19,8 @@
 
 <div class="form-group">
     <label>
-        {{ __('fields.header-image.title') }}
         <i class="fas fa-rocket" title="{{ __('crud.tooltips.boosted_feature') }}" data-toggle="tooltip"></i>
-
+        {{ __('fields.header-image.title') }}
     </label>
 
     @if($campaign->campaign()->boosted())
